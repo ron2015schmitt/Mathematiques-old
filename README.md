@@ -3,16 +3,30 @@ Columbia Object Oriented Linear algebra Library (COOLL)
 
 COOLL is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while leveraging C++ templates to provide run-time performance and memory usage on par with C.
 
-Using a technique called "expression templating", the library provides computational efficiency on par with C/Fortran.
+Advantages
++ object-oriented matrices and vectors
++ simple MATLAB-like syntactic sugar (eg, syntex to add two matrices is `A+B`, matrix vector multiply is `A|x` )
++ run-time performance and memory usage on par with C
++ does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
++ `CAREFUL` compile mode produces extensive information to aid in debugging
++ pretty formatted output of vectors and matrices
 
 ---------------------------------------------------------------------------
 
-0. LICENSE / COPYRIGHT
+# DEVELOPMENT
+
+Development for this project took place during the years 2003-2008.
+
+The code usees a technique called *expression templating*, the library provides computational efficiency on par with C/Fortran.
+
+*Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
+
+# LICENSE / COPYRIGHT
 
 The code that makes up this library is copyrighted.
 Read the LICENSE file.
 
-1. INSTALLATION
+# INSTALLATION
 
 The first step is to unzip and untar the library:
 
@@ -21,7 +35,7 @@ tar xf cooll-vers.tar
 
 You now have a directory with all the COOLL source code
 
-2. CONFIGURATION
+# CONFIGURATION
 
 cd into the COOLL directory and exceute the following command:
 
@@ -32,7 +46,7 @@ object code library that can be linked to (libcooll.a)
 
 
 
-3. EXAMPLES  
+# EXAMPLES  
 
 You will find examples in the subdirectory "examples". Compile the
 examples using the make utility:
@@ -43,7 +57,7 @@ This creates executables that can be run from the command line.  The
 file "vexample.cpp is the best way to learn about coding with COOLL.
 
 
-4. SAMPLE MAKEFILE
+# SAMPLE MAKEFILE
 
 A sample makefile is included for your convenience:
 
@@ -53,7 +67,7 @@ AFTER CONFIGURATION, copy this makefile to YOUR source code directory
 (or cut and paste into an existing makefile).
 
 
-5. USING THE COOLL LIBRARY
+# USING THE COOLL LIBRARY
 
 To use the COOLL library you need to include the library file "cooll.hpp"
 and link to the libcooll.a library file.  See the following files for
@@ -63,16 +77,16 @@ examples/SampleMakefile
 examples/vexample.cpp
 
 
-6. MODES OF OPERATION
+# MODES OF OPERATION
 
 The COOLL library supports two mode of operation: CARFEUL and fast.
 
-fast mode
+## fast mode
 
  This is the default.  All operations are performed without any error checking 
  (e.g. vector or matrix out of bounds access attempts, etc.)
 
-CAREFUL mode
+## CAREFUL mode
 
  This mode can be turned on through two different methods (see the following item).
  In this mode extensive error checking is performed to notify the user of
@@ -86,14 +100,14 @@ CAREFUL mode
 
 
 
-7. SETTING THE MODE
+# SETTING THE MODE
 
 The default mode is "fast mode".  Nothing needs to be done to set fast mode.
 
 Setting to CAERFUL mode is performed via a #define statement. There are
 two methods to accomplish this:
 
-A) [RECOMMENDED] Use the provided sample makefile and specify CAREFUL=1 on the command line
+## [RECOMMENDED] Use the provided sample makefile and specify CAREFUL=1 on the command line
 
 example:
 
@@ -107,7 +121,7 @@ without specifying the CAREFUL flag
  make clean myprogram
 
 
-B) Add a #define statement BEFORE each cooll.hpp include statement
+## Add a #define statement BEFORE each cooll.hpp include statement
 
 
 #define COOLL_CAREFUL 1
@@ -115,7 +129,7 @@ B) Add a #define statement BEFORE each cooll.hpp include statement
 
 
 
-7. RECOMMENDATIONS
+# RECOMMENDATIONS
 
 While developing your code, use CAREFUL mode.  When you are convinced that it is operating
 without errors, switch to fast mode.  
@@ -125,6 +139,6 @@ This way if a segmentation fault occurs, or you otherwise suspect an error, you 
 check the problem under careful mode.
 
 
-8.  NOTES
+#  NOTES
 
 Compile time is also considerably slower in CAREFUL mode.

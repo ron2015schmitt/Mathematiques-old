@@ -1,0 +1,121 @@
+-------------------------------------------------------
+
+LIBRARY TESTED = cooll
+g++ compiler options used = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+
+-------------------------------------------------------
+MACHINE DETAILS
+-------------------------------------------------------
+fill dynamic array, size= 10000000
+  The start time is: Thu Jun 10 14:16:58 2004
+  Finished at: Thu Jun 10 14:16:58 2004
+  CPU time = 0.15 sec
+fill static array, size= 10000000
+  The start time is: Thu Jun 10 14:16:58 2004
+  Finished at: Thu Jun 10 14:16:58 2004
+  CPU time = 0.15 sec
+fill STL vector, size= 10000000
+  The start time is: Thu Jun 10 14:16:58 2004
+  Finished at: Thu Jun 10 14:16:58 2004
+  CPU time = 0.23 sec
+-------------------------------------------------------
+fill math vector, size= 10000000
+  The start time is: Thu Jun 10 14:16:58 2004
+  Finished at: Thu Jun 10 14:16:58 2004
+  CPU time = 0.1 sec
+fill math vector, size= 10000000
+  The start time is: Thu Jun 10 14:16:58 2004
+  Finished at: Thu Jun 10 14:16:58 2004
+  CPU time = 0.08 sec
+v3 = v1 + v2, size= 10000000
+  The start time is: Thu Jun 10 14:16:58 2004
+  Finished at: Thu Jun 10 14:16:59 2004
+  CPU time = 0.16 sec
+v3 = 1.4*v1 + 5.0*v2, size= 10000000
+  The start time is: Thu Jun 10 14:16:59 2004
+  Finished at: Thu Jun 10 14:16:59 2004
+  CPU time = 0.15 sec
+v3 = 1.4*v1 + 5.0*v2 + v1/(v1 +v2), size= 10000000
+  The start time is: Thu Jun 10 14:16:59 2004
+  Finished at: Thu Jun 10 14:16:59 2004
+  CPU time = 0.28 sec
+v4 = v3, size= 10000000
+  The start time is: Thu Jun 10 14:16:59 2004
+  Finished at: Thu Jun 10 14:16:59 2004
+  CPU time = 0.14 sec
+v3 = sin(v1) + cos(v2), size= 10000000
+  The start time is: Thu Jun 10 14:16:59 2004
+  Finished at: Thu Jun 10 14:17:02 2004
+  CPU time = 2.55 sec
+v3 = sin(3.0*v1) + cos(4.0*v2) + v1, size= 10000000
+  The start time is: Thu Jun 10 14:17:02 2004
+  Finished at: Thu Jun 10 14:17:04 2004
+  CPU time = 2.19 sec
+v3 = 25.1*exp(v1), size= 10000000
+  The start time is: Thu Jun 10 14:17:04 2004
+  Finished at: Thu Jun 10 14:17:06 2004
+  CPU time = 2.09 sec
+v3 = 25.1*exp(v1), size= 10000000
+  The start time is: Thu Jun 10 14:17:06 2004
+  Finished at: Thu Jun 10 14:17:08 2004
+  CPU time = 2.08 sec
+allocate matrix, size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:08 2004
+  Finished at: Thu Jun 10 14:17:09 2004
+  CPU time = 0.23 sec
+fill math matrix, size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:09 2004
+  Finished at: Thu Jun 10 14:17:09 2004
+  CPU time = 0.08 sec
+allocate matrix and fill math matrix, size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:09 2004
+  Finished at: Thu Jun 10 14:17:13 2004
+  CPU time = 0.28 sec
+M3 = M1 + M2, size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:15 2004
+  Finished at: Thu Jun 10 14:17:17 2004
+  CPU time = 0.23 sec
+M3 = 1.4*M1 + 5.0*M2, size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:17 2004
+  Finished at: Thu Jun 10 14:17:17 2004
+  CPU time = 0.16 sec
+M3 = 1.4*M1 + 5.0*M2 + M1/(M1 +M2), size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:17 2004
+  Finished at: Thu Jun 10 14:17:18 2004
+  CPU time = 0.25 sec
+M3 = M1, size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:18 2004
+  Finished at: Thu Jun 10 14:17:18 2004
+  CPU time = 0.11 sec
+M3 = ~(M1), size= 3000x3000=9000000
+  The start time is: Thu Jun 10 14:17:18 2004
+  Finished at: Thu Jun 10 14:17:21 2004
+  CPU time = 0.9 sec
+fill math matrix, size= 400x400=160000
+  The start time is: Thu Jun 10 14:17:21 2004
+  Finished at: Thu Jun 10 14:17:21 2004
+  CPU time = 0 sec
+fill math matrix, size= 400x400=160000
+  The start time is: Thu Jun 10 14:17:21 2004
+  Finished at: Thu Jun 10 14:17:21 2004
+  CPU time = 0 sec
+M6 = (M4|M5), size= 400x400=160000
+  The start time is: Thu Jun 10 14:17:21 2004
+  Finished at: Thu Jun 10 14:17:21 2004
+  CPU time = 0.72 sec
+M6 = (M4|M4|M5), size= 400x400=160000
+  The start time is: Thu Jun 10 14:17:21 2004
+  Finished at: Thu Jun 10 14:17:23 2004
+  CPU time = 1.4 sec
+M6 = (M4|M6), size= 400x400=160000
+  The start time is: Thu Jun 10 14:17:23 2004
+  Finished at: Thu Jun 10 14:17:23 2004
+  CPU time = 0.71 sec
+v5 = (M6|v6), size= 400
+  The start time is: Thu Jun 10 14:17:23 2004
+  Finished at: Thu Jun 10 14:17:23 2004
+  CPU time = 0 sec
+
+TOTAL TIME ELAPSED (including text display) = 16.300000 sec
+
+-------------------------------------------------------

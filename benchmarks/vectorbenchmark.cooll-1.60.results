@@ -1,0 +1,49 @@
+-------------------------------------------------------
+
+LIBRARY TESTED = cooll
+g++ compiler options used = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+
+-------------------------------------------------------
+MACHINE DETAILS
+-------------------------------------------------------
+fill dynamic array, size= 10000000
+  The start time is: Mon Jun  7 14:56:06 2004
+  Finished at: Mon Jun  7 14:56:06 2004
+  CPU time = 0.15 sec
+fill static array, size= 10000000
+  The start time is: Mon Jun  7 14:56:06 2004
+  Finished at: Mon Jun  7 14:56:06 2004
+  CPU time = 0.16 sec
+fill STL vector, size= 10000000
+  The start time is: Mon Jun  7 14:56:06 2004
+  Finished at: Mon Jun  7 14:56:06 2004
+  CPU time = 0.24 sec
+-------------------------------------------------------
+fill math vector, size= 10000000
+  The start time is: Mon Jun  7 14:56:06 2004
+  Finished at: Mon Jun  7 14:56:06 2004
+  CPU time = 0.1 sec
+fill math vector, size= 10000000
+  The start time is: Mon Jun  7 14:56:06 2004
+  Finished at: Mon Jun  7 14:56:06 2004
+  CPU time = 0.08 sec
+v3 = v1 + v2, size= 10000000
+  The start time is: Mon Jun  7 14:56:06 2004
+  Finished at: Mon Jun  7 14:56:07 2004
+  CPU time = 0.15 sec
+v3 = 1.4*v1 + 5.0*v2, size= 10000000
+  The start time is: Mon Jun  7 14:56:07 2004
+  Finished at: Mon Jun  7 14:56:07 2004
+  CPU time = 0.16 sec
+v3 = 1.4*v1 + 5.0*v2 + v1/(v1 +v2), size= 10000000
+  The start time is: Mon Jun  7 14:56:07 2004
+  Finished at: Mon Jun  7 14:56:07 2004
+  CPU time = 0.29 sec
+v4 = v3, size= 10000000
+  The start time is: Mon Jun  7 14:56:07 2004
+  Finished at: Mon Jun  7 14:56:07 2004
+  CPU time = 0.12 sec
+
+TOTAL TIME ELAPSED = 2.120000 sec
+
+-------------------------------------------------------

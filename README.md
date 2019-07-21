@@ -107,7 +107,7 @@ The default mode is "fast mode".  Nothing needs to be done to set fast mode.
 Setting to CAERFUL mode is performed via a #define statement. There are
 two methods to accomplish this:
 
-### [RECOMMENDED] Use the provided sample makefile and specify CAREFUL=1 on the command line
+### RECOMMENDED METHOD: Use the provided sample makefile and specify CAREFUL=1 on the command line
 
 example:
 
@@ -121,12 +121,12 @@ without specifying the CAREFUL flag
  make clean myprogram
 
 
-### Add a #define statement BEFORE each cooll.hpp include statement
+### EXPLICIT METHOD: Add a #define statement BEFORE each cooll.hpp include statement
 
-
+```C++
 #define COOLL_CAREFUL 1
 #include "cooll.hpp"
-
+```
 
 
 ## RECOMMENDATIONS

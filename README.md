@@ -5,7 +5,12 @@ COOLL is numerical library for performing linear algebra in C++ via simple MATLA
 
 Advantages
 + object-oriented matrices and vectors
-+ simple MATLAB-like syntactic sugar (eg, syntax to add two matrices is `A+B`, matrix vector multiply is `A|x` )
++ simple MATLAB-like syntactic sugar 
+  + add two matrices is `A+B`
+  + matrix-vector multiply is `A|x` (`|` is symbol used for inner product)
+  + element-wise Multiply is `A*B`
+  + complicated expressions  `(A + B - 33.14*C)|(2*x + y)` with no run-time overhead
+  + complex number support
 + run-time performance and memory usage on par with C
 + does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
 + pretty formatted output of vectors and matrices

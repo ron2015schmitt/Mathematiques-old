@@ -8,8 +8,15 @@ Advantages
 + simple MATLAB-like syntactic sugar (eg, syntax to add two matrices is `A+B`, matrix vector multiply is `A|x` )
 + run-time performance and memory usage on par with C
 + does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
-+ `CAREFUL` compile mode produces extensive information to aid in debugging
 + pretty formatted output of vectors and matrices
++ `CAREFUL` compile mode produces extensive information to aid in debugging
+ + out of bounds access for vectors or matrices (e.g. x[10] where x is a
+   vector of length 6.
+ + adding/subtracting/multiplying/dividing vector or matrices of unequal
+   size
+ + invalid dot products of vector and/or matrices 
+ + other assorted errors
+
 
 ---------------------------------------------------------------------------
 
@@ -39,7 +46,7 @@ You now have a directory with all the COOLL source code
 
 cd into the COOLL directory and exceute the following command:
 
-./configure
+```./configure```
 
 This command builds the makefiles and compiles the source code into an
 object code library that can be linked to (libcooll.a)
@@ -51,7 +58,7 @@ object code library that can be linked to (libcooll.a)
 You will find examples in the subdirectory "examples". Compile the
 examples using the make utility:
 
-make all
+```make all```
 
 This creates executables that can be run from the command line.  The
 file "vexample.cpp is the best way to learn about coding with COOLL.
@@ -61,7 +68,7 @@ file "vexample.cpp is the best way to learn about coding with COOLL.
 
 A sample makefile is included for your convenience:
 
-examples/SampleMakefile
+```examples/SampleMakefile```
 
 AFTER CONFIGURATION, copy this makefile to YOUR source code directory
 (or cut and paste into an existing makefile).
@@ -73,8 +80,8 @@ To use the COOLL library you need to include the library file "cooll.hpp"
 and link to the libcooll.a library file.  See the following files for
 examples
 
-examples/SampleMakefile
-examples/vexample.cpp
+```examples/SampleMakefile```
+```examples/vexample.cpp```
 
 
 # MODES OF OPERATION
@@ -111,14 +118,15 @@ two methods to accomplish this:
 
 example:
 
- make clean CAREFUL=1 myprogram
+```make clean CAREFUL=1 myprogram```
+
 
 The target "clean" is not needed, but is a reccomended practice.
 
 If you want to recompile in fast mode, just use the makefile
 without specifying the CAREFUL flag
 
- make clean myprogram
+```make clean myprogram```
 
 
 ### EXPLICIT METHOD: Add a #define statement BEFORE each cooll.hpp include statement
@@ -139,6 +147,6 @@ This way if a segmentation fault occurs, or you otherwise suspect an error, you 
 check the problem under careful mode.
 
 
-#  NOTES
+##  NOTES
 
 Compile time is also considerably slower in CAREFUL mode.

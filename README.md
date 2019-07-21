@@ -10,12 +10,12 @@ Advantages
 + does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
 + pretty formatted output of vectors and matrices
 + `CAREFUL` compile mode produces extensive information to aid in debugging
-+ + out of bounds access for vectors or matrices (e.g. x[10] where x is a
+  + out of bounds access for vectors or matrices (e.g. x[10] where x is a
    vector of length 6.
-+ + adding/subtracting/multiplying/dividing vector or matrices of unequal
+  + adding/subtracting/multiplying/dividing vector or matrices of unequal
    size
-+ + invalid dot products of vector and/or matrices 
-+ + other assorted errors
+  + invalid dot products of vector and/or matrices 
+  + other assorted errors
 
 
 ---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ examples using the make utility:
 ```make all```
 
 This creates executables that can be run from the command line.  The
-file "vexample.cpp is the best way to learn about coding with COOLL.
+file `vexample.cpp` is the best way to learn about coding with COOLL.
 
 
 # SAMPLE MAKEFILE

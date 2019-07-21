@@ -17,7 +17,7 @@ Advantages
 
 Development for this project took place during the years 2003-2008.
 
-The code usees a technique called *expression templating*, the library provides computational efficiency on par with C/Fortran.
+The code uses a technique called *expression templating*, the library provides computational efficiency on par with C/Fortran.
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 

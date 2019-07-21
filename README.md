@@ -8,9 +8,13 @@ Advantages
 + simple MATLAB-like syntactic sugar 
   + add two matrices is `A+B`
   + matrix-vector multiply is `A|x` (`|` is symbol used for inner product)
+  + extremely efficient matrix-matrix multiply
   + element-wise Multiply is `A*B`
-  + complicated expressions  `(A + B - 33.14*C)|(2*x + y)` with no run-time overhead
+  + complicated expressions  `(A + B - 33.14*C)|(2*x + y)` with no run-time overhead and no intermediate objects
   + complex number support
+  + functions of matrices/vectors supported: `sin(x)`, `exp(A)` etc
+  + SVD and Eiegenvalue decomposition supported via LAPACK
+  + matrix inverse: `inv(A)`
 + run-time performance and memory usage on par with C
 + does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
 + pretty formatted output of vectors and matrices

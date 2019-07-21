@@ -100,14 +100,14 @@ The COOLL library supports two mode of operation: CARFEUL and fast.
 
 
 
-# SETTING THE MODE
+## SETTING THE MODE
 
 The default mode is "fast mode".  Nothing needs to be done to set fast mode.
 
 Setting to CAERFUL mode is performed via a #define statement. There are
 two methods to accomplish this:
 
-## [RECOMMENDED] Use the provided sample makefile and specify CAREFUL=1 on the command line
+### [RECOMMENDED] Use the provided sample makefile and specify CAREFUL=1 on the command line
 
 example:
 
@@ -121,7 +121,7 @@ without specifying the CAREFUL flag
  make clean myprogram
 
 
-## Add a #define statement BEFORE each cooll.hpp include statement
+### Add a #define statement BEFORE each cooll.hpp include statement
 
 
 #define COOLL_CAREFUL 1
@@ -129,7 +129,7 @@ without specifying the CAREFUL flag
 
 
 
-# RECOMMENDATIONS
+## RECOMMENDATIONS
 
 While developing your code, use CAREFUL mode.  When you are convinced that it is operating
 without errors, switch to fast mode.  

@@ -15,7 +15,7 @@ Advantages
   + functions of matrices/vectors supported: `sin(x)`, `exp(A)` etc
   + SVD and Eiegenvalue decomposition supported via LAPACK
   + matrix inverse: `inv(A)`
-+ run-time performance and memory usage on par with optimizeed C
++ run-time performance and memory usage on par with optimized C or and Fortran
 + does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
 + pretty formatted output of vectors and matrices
 + `CAREFUL` compile mode produces extensive information to aid in debugging

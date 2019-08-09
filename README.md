@@ -1,11 +1,11 @@
-# COOLL
-Columbia Object Oriented Linear algebra Library (COOLL)
+# mātricks
 
-COOLL is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while leveraging C++ templates to provide run-time performance and memory usage on par with C.
+mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while leveraging C++ templates to provide run-time performance and memory usage on par with C.
 
 Advantages
 + object-oriented matrices and vectors
 + simple MATLAB-like syntactic sugar 
+  + slices of vectors and matrices
   + add two matrices is `A+B`
   + matrix-vector multiply is `A|x` (`|` is symbol used for inner product)
   + extremely efficient matrix-matrix multiply `A|B`
@@ -46,19 +46,19 @@ Read the LICENSE file.
 
 The first step is to unzip and untar the library:
 ```bash
-gunzip cooll-vers.tar.gz
-tar xf cooll-vers.tar
+gunzip matricks-vers.tar.gz
+tar xf matricks-vers.tar
 ```
-You now have a directory with all the COOLL source code
+You now have a directory with all the mātricks source code
 
 # CONFIGURATION
 
-cd into the COOLL directory and exceute the following command:
+cd into the mātricks directory and exceute the following command:
 
 ```./configure```
 
 This command builds the makefiles and compiles the source code into an
-object code library that can be linked to (`libcooll.a`)
+object code library that can be linked to (`libmatricks.a`)
 
 
 
@@ -70,7 +70,7 @@ examples using the make utility:
 ```make all```
 
 This creates executables that can be run from the command line.  The
-file `vexample.cpp` is the best way to learn about coding with COOLL.
+file `vexample.cpp` is the best way to learn about coding with mātricks.
 
 
 # SAMPLE MAKEFILE
@@ -83,10 +83,10 @@ AFTER CONFIGURATION, copy this makefile to YOUR source code directory
 (or cut and paste into an existing makefile).
 
 
-# USING THE COOLL LIBRARY
+# USING THE mātricks LIBRARY
 
-To use the COOLL library you need to include the library file `cooll.hpp`
-and link to the `libcooll.a` library file.  See the following files for
+To use the mātricks library you need to include the library file `cooll.hpp`
+and link to the `libmatricks.a` library file.  See the following files for
 examples
 
 ```bash
@@ -97,7 +97,7 @@ examples/vexample.cpp
 
 # MODES OF OPERATION
 
-The COOLL library supports two mode of operation: `CARFEUL` and fast.
+The mātricks library supports two mode of operation: `CARFEUL` and fast.
 
 ## fast mode
 

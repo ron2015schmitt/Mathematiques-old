@@ -39,21 +39,18 @@ The code uses a technique called *expression templating*, the library provides c
 
 # LICENSE / COPYRIGHT
 
-The code that makes up this library is copyrighted.
+The code that makes up this library is copyrighted under the MIT license.
 Read the LICENSE file.
 
 # INSTALLATION
 
-The first step is to unzip and untar the library:
-```bash
-gunzip matricks-vers.tar.gz
-tar xf matricks-vers.tar
-```
+The first step is to clone the repo
+```git clone ```
 You now have a directory with all the mātricks source code
 
 # CONFIGURATION
 
-cd into the mātricks directory and exceute the following command:
+cd into the matricks directory and exceute the following command:
 
 ```./configure```
 

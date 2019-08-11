@@ -45,13 +45,16 @@ Read the LICENSE file.
 # INSTALLATION
 
 The first step is to clone the repo
-```git clone ```
+
+```git clone https://github.com/ron2015schmitt/matricks.git```
+
 You now have a directory with all the mātricks source code
 
 # CONFIGURATION
 
 cd into the matricks directory and exceute the following command:
 
+```cd matricks```
 ```./configure```
 
 This command builds the makefiles and compiles the source code into an
@@ -94,9 +97,9 @@ examples/vexample.cpp
 
 # MODES OF OPERATION
 
-The mātricks library supports two mode of operation: `CARFEUL` and fast.
+The mātricks library supports two mode of operation: `CAREFUL` and fast.
 
-## fast mode
+## Fast mode (default)
 
  This is the default.  All operations are performed without any error checking 
  (e.g. vector or matrix out of bounds access attempts, etc.)
@@ -140,7 +143,7 @@ without specifying the `CAREFUL` flag
 ### EXPLICIT METHOD: Add a #define statement BEFORE each matricks.hpp include statement
 
 ```C++
-#define COOLL_CAREFUL 1
+#define MATRICKS_CAREFUL 1
 #include "matricks.hpp"
 ```
 

@@ -28,7 +28,7 @@ namespace Matricks {
     // *********************** OBJECT DATA ***********************************
     int objectID_;
     size_type perline_;
-    size_type width_;   // for display
+    int width_;   // for display  (std::setw uses int as its size)
     TextFormat textformat_;
     std::valarray<D>* data_;
 #ifdef Matricks_CAREFUL
@@ -357,10 +357,10 @@ namespace Matricks {
       return perline_;
     }
 
-    size_type width(const size_type w)  { 
+    int width(const int w)  { 
       return (width_=w);
     }
-    size_type width(void)  const { 
+    int width(void)  const { 
       return width_;
     }
 
@@ -369,6 +369,7 @@ namespace Matricks {
       return VE_LAvector;
     }
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
     bool mustcopy(const void *vaddr) const {
       return false;
     }
@@ -394,7 +395,7 @@ namespace Matricks {
 
     // Assign all elements to the same constant value
     LAvector<D>& equals(const D d) { 
-      for(int i=size(); i--;) 
+      for(size_type i=size(); i--;) 
 	(*data_)[i]=d; 
       return *this;
     }
@@ -429,12 +430,12 @@ namespace Matricks {
 #else
 	LAvector<D> vtemp(size());
 #endif
-	for (register int i = size(); i--;)
+	for (register size_type i = size(); i--;)
 	  vtemp[i] = x[i];   // Inlined expression
-	for (register int i = size(); i--;)
+	for (register size_type i = size(); i--;)
 	  (*data_)[i] = vtemp[i];
       } else {
-	for (register int i = size(); i--;)
+	for (register size_type i = size(); i--;)
 	  (*data_)[i] = x[i];   // Inlined expression
       }
       return *this; 
@@ -569,7 +570,7 @@ namespace Matricks {
     friend std::ostream& operator<<(std::ostream &stream, const LAvector<D>& v) {
 
       const size_type N = v.size();
-      const size_type w = v.width();
+      const int w = v.width();
 
       switch (v.textformat()) {
       case text_braces:

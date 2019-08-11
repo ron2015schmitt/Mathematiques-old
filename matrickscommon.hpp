@@ -65,19 +65,6 @@ namespace Matricks {
    * Rounding
    ****************************************************************************   
    */
-#define ROUND_MACRO_INT(D) inline D round(const D x){return x;}
-  ROUND_MACRO_INT(char);
-  ROUND_MACRO_INT(unsigned char);
-  ROUND_MACRO_INT(short);
-  ROUND_MACRO_INT(unsigned short);
-  ROUND_MACRO_INT(int);
-  ROUND_MACRO_INT(unsigned int);
-  ROUND_MACRO_INT(long);
-  ROUND_MACRO_INT(unsigned long);
-#if LONGLONG_EXISTS
-  ROUND_MACRO_INT(long long);
-  ROUND_MACRO_INT(unsigned long long);
-#endif
 
   // complex rounding
  template <typename D> std::complex<D> round(const std::complex<D>& x) {

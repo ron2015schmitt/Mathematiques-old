@@ -9,52 +9,79 @@ using namespace Matricks;
 #include <iostream>
 using namespace std;
 
-
+// used to demonstrate how to convert to C++ vectors
 #include <vector>
+
+
+#define comment(x)  printf("// %s \n", x)
+#define printexp(x)  printf("-> %s = %s\n",  #x, x)
+#define printcode(x)  printf("%s;\n",  #x); x
+#define result(x)  printf("RESULT -> ");dispcr(x)
 
 
 int main()
 {
-  const int N = 4;
-  LAvector<double> v1(N,"v1");
-  LAvector<double> v2(N,"v2");
-  LAvector<double> v3(N,"v3");
-
-
-  cout <<endl<< "initialize each element of v1" << endl;
-  v1[0] = 1.0;
-  v1[1] = 2.0;
-  v1[2] = 3.0;
-  v1[3] = 4.0;
-  dispcr(v1);
+  cr();
+  cr();
   
+  comment("Declaration of vectors v1, v2, v3");
+  printcode(  const int N = 4 );
+  printcode( LAvector<double> v1(N,"v1") );
+  printcode( LAvector<double> v2(N,"v2") );
+  printcode( LAvector<double> v3(N,"v3") );
 
-  cout <<endl<< "initialize v2 using range<" << endl;
-  v2 = range<double>(5,8);
-  dispcr(v2);
+  cr();
+  cr();
+  comment("initialize each element of v1");
+  printcode( v1[0] = 1.0 );
+  printcode( v1[1] = 2.0 );
+  printcode( v1[2] = 3.0 );
+  printcode( v1[3] = 4.0 );
+  cr();
+  result(v1);
+  
+  cr();
+  cr();
+  comment("initialize v2 using range function");
+  printcode( v2 = range<double>(5,8) );
+  cr();
+  result(v2);
 
-  cout << endl << "initialize v2 using range<" << endl;
+  cr();
+  cr();
+  comment("initialize v2 using range function");
   v2 = range<double>(4,1);
-  dispcr(v2);
+  cr();
+  result(v2);
 
-  cout << endl << "initialize v2 using range<" << endl;
+  cr();
+  cr();
+  comment("initialize v2 using range");
   v2 = range<double>(400,100,-100);
-  dispcr(v2);
+  cr();
+  result(v2);
 
-
-
-  cout << endl << "initialize v2 using linspace" << endl;
+  cr();
+  cr();
+  comment("initialize v2 using linspace");
   v2 = linspace<double>(100,400,4);
-  dispcr(v2);
+  cr();
+  result(v2);
 
-  cout << endl << "initialize v2 using linspace" << endl;
+  cr();
+  cr();
+  comment("initialize v2 using linspace");
   v2 = linspace<double>(6,3,4);
-  dispcr(v2);
+  cr();
+  result(v2);
 
-  cout << endl << "initialize v2 from C-array (careful, no bounds checking!)" << endl;
+  cr();
+  cr();
+  comment("initialize v2 from C-array (careful, no bounds checking!)" );
   double ans7[4] = {1.234, 101.3, 0, -23.4};
   v2 = vcast<double>(ans7,4);
-  dispcr(v2);
+  cr();
+  result(v2);
 
   cout << endl << "initialize v2 from std::vector" << endl;
   vector<double> vstd(4);
@@ -63,8 +90,10 @@ int main()
   vstd[2] = -3;
   vstd[3] = -4;
   v2 = vcast<double>(vstd);
-  dispcr(v2);
+  cr();
+  result(v2);
 
+  
   cout << endl << "initialize v2 from std::valarray" << endl;
   valarray<double> val(4);
   val[0] = -11;
@@ -121,7 +150,7 @@ int main()
   cout <<d << endl;
 
   cout << "dot product" << endl;
-  d = (v1|v1+3*v2) + 1.0;
+  d = (v1|(v1+3*v2)) + 1.0;
   cout <<d << endl;
 
   cout << "maximum" << endl;

@@ -460,10 +460,6 @@ namespace Matricks {
       return ME_MRangeObj;
     }
 
-    template <class B>
-    MRangeObj<D>& operator=(const B& b) { 
-      return equals(b);
-    }
 
     MRangeObj<D>& operator=(const MRangeObj<D>& b) { 
       return equals(b);

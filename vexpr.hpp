@@ -237,7 +237,7 @@ namespace Matricks {
   /****************************************************************************
    * VRangeObj Expression Template 
    *
-   * wrapper for vector ranges  
+   * wrapper for vector ranges  (slices)
    ****************************************************************************
    */
  
@@ -291,13 +291,27 @@ namespace Matricks {
       return VE_VRangeObj;
     }
 
-    template <class B>
-    VRangeObj<D>& operator=(const B& b) { 
-      return equals(b);
+
+    VRangeObj<D>& operator=(VReconObj<D>& b) { 
+      return this->equals(b);
     }
 
+    template <class B>
+    VRangeObj<D>& operator=(const VorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    template <class B>
+    VRangeObj<D>& operator=(const MorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VRangeObj<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    
     VRangeObj<D>& operator=(const VRangeObj<D>& b) { 
-      return equals(b);
+      return this->equals(b);
     }
 
     std::string debugtxt(void) const {
@@ -370,15 +384,30 @@ namespace Matricks {
       return a_.size();
     }
 
+    VSetObj<D>& operator=(VReconObj<D>& b) { 
+      return this->equals(b);
+    }
+
     template <class B>
-    VSetObj<D>& operator=(const B& b) { 
-      return equals(b);
+    VSetObj<D>& operator=(const VorE<D,B>& rhs) { 
+      return this->equals(rhs);
     }
+
+    template <class B>
+    VSetObj<D>& operator=(const MorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VSetObj<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    
     VSetObj<D>& operator=(const VSetObj<D>& b) { 
-      return equals(b);
+      return this->equals(b);
     }
 
 
+    
     std::string debugtxt(void) const {
       return debugtxt_VSetObj(a_.debugtxt(),ii_.debugtxt());
     }
@@ -459,11 +488,6 @@ namespace Matricks {
 
     inline size_type asize(void) const {
       return a_.size();
-    }
-
-    template <class B>
-    VMaskObj<D>& operator=(const B& b) { 
-      return equals(b);
     }
 
     VMaskObj<D>& operator=(const VMaskObj<D>& b) { 

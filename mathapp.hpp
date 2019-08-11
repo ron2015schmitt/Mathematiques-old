@@ -3,7 +3,8 @@
 
 
 
-#include <cmath>
+//#include <cmath>
+#include <tgmath.h>
 #include <string>
 
 
@@ -14,13 +15,6 @@ namespace Matricks {
   /****************************************************************************
    *              Binary applicative templates 
    ****************************************************************************/
-
-
-
- 
-
-
-
 
 
   // y = pow(a,b)  
@@ -371,7 +365,7 @@ namespace Matricks {
     ApRound() { }
 
     static inline DataT apply(DataT a) { 
-      return Matricks::round(a); 
+      return std::round(a); 
     }
 
     static std::string debugtxt( const std::string& sa) {

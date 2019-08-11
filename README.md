@@ -85,7 +85,7 @@ AFTER CONFIGURATION, copy this makefile to YOUR source code directory
 
 # USING THE mātricks LIBRARY
 
-To use the mātricks library you need to include the library file `cooll.hpp`
+To use the mātricks library you need to include the library file `matricks.hpp`
 and link to the `libmatricks.a` library file.  See the following files for
 examples
 
@@ -140,11 +140,11 @@ without specifying the `CAREFUL` flag
 ```make clean myprogram```
 
 
-### EXPLICIT METHOD: Add a #define statement BEFORE each cooll.hpp include statement
+### EXPLICIT METHOD: Add a #define statement BEFORE each matricks.hpp include statement
 
 ```C++
 #define COOLL_CAREFUL 1
-#include "cooll.hpp"
+#include "matricks.hpp"
 ```
 
 

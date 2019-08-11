@@ -139,7 +139,7 @@ namespace Matricks {
 
 	
   template <typename D>
-  void _coollinfo(const LAvector<D>& a, std::string varname)
+  void _matricksinfo(const LAvector<D>& a, std::string varname)
   {
     std::ostringstream stream;
     stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.size() <<"]"<<", LAvectorID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
@@ -147,14 +147,14 @@ namespace Matricks {
   }
 
   template <typename D>
-  void _coollinfo(const p3vector<D>& a, std::string varname)
+  void _matricksinfo(const p3vector<D>& a, std::string varname)
   {
     std::ostringstream stream;
     stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.size() <<"]";
     std::cout <<  stream.str() <<std::endl;
   }
   template <typename D>
-  void _coollinfo(const Matrix<D>& a, std::string varname)
+  void _matricksinfo(const Matrix<D>& a, std::string varname)
   {
     std::ostringstream stream;
     stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.Nrows() << "x" << a.Ncols()<<"]"<<", MatrixID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
@@ -162,7 +162,7 @@ namespace Matricks {
   }
 
 
-#define coollinfo(var) _coollinfo(var,std::string(# var))
+#define matricksinfo(var) _matricksinfo(var,std::string(# var))
   
 
 

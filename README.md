@@ -54,8 +54,10 @@ You now have a directory with all the mātricks source code
 
 cd into the matricks directory and exceute the following command:
 
-```cd matricks```
-```./configure```
+```
+cd matricks
+./configure
+```
 
 This command builds the makefiles and compiles the source code into an
 object code library that can be linked to (`libmatricks.a`)

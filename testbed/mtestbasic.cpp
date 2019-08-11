@@ -3,16 +3,16 @@
  
 
 
-#include "cooll.hpp"
-using namespace COOLL;
+#import "matricks.hpp"
+using namespace Matricks;
 
-#include "testlib.hpp"
+#import "testlib.hpp"
 
-#include <iostream>
+#import <iostream>
 using namespace std;
 
 
-#include <vector>
+#import <vector>
 
 
 int main()
@@ -207,7 +207,7 @@ int main()
 
   Matrix<double> M5(2,1,"M5");
   "{{21,32},{43,54}}" >> M3;
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
   printcrcr("[A warning below indicates proper functionality.]");
 #endif
   M5=M3;
@@ -219,7 +219,7 @@ int main()
   compare(M5.Nrows(),ans50a);
   unsigned int ans50b = 4;
   compare(M5.Ncols(),ans50b);
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
   printcrcr("[A warning below indicates proper functionality.]");
 #endif
   M5=2.0*M3;

@@ -1,11 +1,11 @@
 
 # This is a sample makefile that you can use to compile and link code
-# to the COOLL library
+# to the MATRICKS library
 
 # This Make file assumes that GNU compilers will be used
 
 #****** THIS VARIABLE POINTS TO THE LIBRARY THAT YOU ARE USING ********
-COOLL ?= #COOLL#
+MATRICKS ?= #MATRICKS#
 
 COPTS = 
 LOPTS =
@@ -18,11 +18,11 @@ CC  = /usr/bin/gcc
 CXX = /usr/bin/g++ 
 
 
-INCLUDES = -I $(COOLL) 
+INCLUDES = -I $(MATRICKS) 
 
-VPATH = $(COOLL)
+VPATH = $(MATRICKS)
 
-LIBS = -L$(COOLL) -lcooll
+LIBS = -L$(MATRICKS) -lmatricks
 
 CXXFLAGS =  $(CXXOPT)  $(COPTS) $(INCLUDES)
 
@@ -40,7 +40,7 @@ clean:
 
 %.o: %.cpp  $(LIBFILES) 
 ifdef CAREFUL
-	$(CXX) $(CXXFLAGS) -D"COOLL_CAREFUL=1" -c $*.cpp -o $@
+	$(CXX) $(CXXFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
 else
 	$(CXX) $(CXXFLAGS) -c $*.cpp -o $@
 endif

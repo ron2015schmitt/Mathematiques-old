@@ -2,12 +2,12 @@
 //#define COOLL_CAREFUL
 
 
-#include <sys/types.h>
-#include <unistd.h>
+#import <sys/types.h>
+#import <unistd.h>
 
-#include <vector>
-#include <iostream>
-#include <cstdio>
+#import <vector>
+#import <iostream>
+#import <cstdio>
 
 
 
@@ -19,7 +19,7 @@ char compile_opts[] = COMPILEOPTS;
 
 
 // START: NUMERICAL LIBRARY SPECIFIC STUFF 
-#include "cooll.hpp"
+#import "cooll.hpp"
 using namespace COOLL;
 typedef LAvector<double> VectorT;
 char mathlib[] = "cooll";

@@ -1,45 +1,9 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
+
+#include "matricks.hpp"
 
 
 
-
-#define COOLL_CAREFUL
-#include "cooll.hpp"
-
-
-
-
-
-namespace COOLL {
+namespace Matricks {
 
 
   
@@ -50,25 +14,25 @@ namespace COOLL {
 
 
 
-  const char* error_str =   "**COOLL *ERROR*: ";
-  const char* warn_str =    "**COOLL warning: ";
+  const char* error_str =   "**Matricks *ERROR*: ";
+  const char* warn_str =    "**Matricks warning: ";
   const char* indent_str  = "                 ";
   const char* where_str  =  "          where  ";
-  const char* bug_str =     "**COOLL  *BUG* : ";
+  const char* bug_str =     "**Matricks  *BUG* : ";
 
-  void bug_report(const std::string& fname,const unsigned int linenum) {
+  void bug_report(const std::string& fname,const size_type linenum) {
     std::cerr << bug_str<< "Bug occured in file '"<<fname<<"' at line #"<<linenum<<std::endl;
     std::cerr << indent_str<<"Sorry. Please report."<<std::endl<<std::endl;
     return;
   }
 
 
-  void vduplicate_name(const unsigned int id, const std::string& name, const std::string& newname) {
+  void vduplicate_name(const size_type id, const std::string& name, const std::string& newname) {
     std::cout << warn_str << "Duplicate debug name \""<<name <<"\" requested for vector with ID="<<id<< std::endl;
     std::cout << indent_str << "The Name \""<<newname <<"\" was used instead"<< std::endl;
   }
 
-  void mduplicate_name(const unsigned int id, const std::string& name, const std::string& newname) {
+  void mduplicate_name(const size_type id, const std::string& name, const std::string& newname) {
     std::cout << warn_str << "Duplicate debug name \""<<name <<"\" requested for matrix with ID="<<id<< std::endl;
     std::cout << indent_str << "The Name \""<<newname <<"\" was used instead"<< std::endl;
   }
@@ -86,15 +50,15 @@ namespace COOLL {
   // VECTOR DIRECTORY IMPLEMENTATIONS
 
 
-  unsigned int CoollDirectory::NextVectorID_ = 1; 
-  std::map<unsigned int,std::string> CoollDirectory::vectorName_ ; 
-  std::map<unsigned int,std::string> CoollDirectory::vectorClass_ ; 
-  std::map<unsigned int,std::string> CoollDirectory::vectorDatatype_ ; 
-  std::map<unsigned int,unsigned int> CoollDirectory::vectorSize_ ; 
+  size_type MatricksObjectPool::NextVectorID_ = 1; 
+  std::map<size_type,std::string> MatricksObjectPool::vectorName_ ; 
+  std::map<size_type,std::string> MatricksObjectPool::vectorClass_ ; 
+  std::map<size_type,std::string> MatricksObjectPool::vectorDatatype_ ; 
+  std::map<size_type,size_type> MatricksObjectPool::vectorSize_ ; 
 
-  unsigned int CoollDirectory::addvector(const std::string name, const std::string classname, 
-			       const std::string datatype, const unsigned int size, const bool checkname) {
-    unsigned int id = NextVectorID_++;
+  size_type MatricksObjectPool::addvector(const std::string name, const std::string classname, 
+			       const std::string datatype, const size_type size, const bool checkname) {
+    size_type id = NextVectorID_++;
     
     vadd_name(name, id, checkname);
     
@@ -107,7 +71,7 @@ namespace COOLL {
 
 
 
-  void CoollDirectory::removevector(const unsigned int id) {
+  void MatricksObjectPool::removevector(const size_type id) {
 
     vectorName_.erase(id);
     vectorClass_.erase(id);
@@ -119,12 +83,12 @@ namespace COOLL {
 
 
 
-  std::string CoollDirectory::vectorname(const unsigned int id) {
+  std::string MatricksObjectPool::vectorname(const size_type id) {
     return (vectorName_.find(id))->second;
   }
 
 
-  std::string CoollDirectory::vadd_name(const std::string& name, const unsigned int id, const bool checkname) {
+  std::string MatricksObjectPool::vadd_name(const std::string& name, const size_type id, const bool checkname) {
 
     std::string newname = name;
 
@@ -138,13 +102,20 @@ namespace COOLL {
 
       // name was given by user
       // check to see if name already exists
-      static std::map<unsigned int,std::string>::iterator p; 
+      static std::map<size_type,std::string>::iterator p; 
       p = vectorName_.begin();
       int i = 1;
+
+#ifdef Matricks_CAREFUL
       bool dupe = false;
+#endif     
+
       while (p != vectorName_.end()) {
 	if (p->second == newname) {
+
+#ifdef Matricks_CAREFUL
 	  dupe = true;
+#endif     
 	  p = vectorName_.begin();
 	  std::ostringstream stream;
 	  stream << basename << "_" << ++i;
@@ -154,9 +125,10 @@ namespace COOLL {
 	}
       }
       
-#ifdef COOLL_CAREFUL
-      if (dupe) 
+#ifdef Matricks_CAREFUL
+      if (dupe) {
 	vduplicate_name(id,name,newname);
+      }
 #endif     
     }
 
@@ -168,17 +140,17 @@ namespace COOLL {
 
 
 
-  void CoollDirectory::vchange_name(const unsigned int id, const std::string& name, const bool checkname) {
+  void MatricksObjectPool::vchange_name(const size_type id, const std::string& name, const bool checkname) {
     vectorName_.erase(id);
     vadd_name(name, id, checkname);
   }
-  void CoollDirectory::vchange_size(const unsigned int id, const unsigned int size) {
+  void MatricksObjectPool::vchange_size(const size_type id, const size_type size) {
     vectorSize_[id] = size;
   }
 
 
 
-  void CoollDirectory::voutputglossary(const unsigned int id) {
+  void MatricksObjectPool::voutputglossary(const size_type id) {
     std::string s = where_str + vectorName_[id] + " is " + vectorClass_[id] + "<" + vectorDatatype_[id] + ">";
     std::cout << s << "[size=" << vectorSize_[id] << "], ID=" << id << std::endl;;
   }    
@@ -187,16 +159,16 @@ namespace COOLL {
   // MATRIX IMPLEMENTATIONS
 
 
-  unsigned int CoollDirectory::NextMatrixID_ = 1; 
-  std::map<unsigned int,std::string> CoollDirectory::matrixName_ ; 
-  std::map<unsigned int,std::string> CoollDirectory::matrixClass_ ; 
-  std::map<unsigned int,std::string> CoollDirectory::matrixDatatype_ ; 
-  std::map<unsigned int,unsigned int> CoollDirectory::matrixNrows_ ; 
-  std::map<unsigned int,unsigned int> CoollDirectory::matrixNcols_ ; 
+  size_type MatricksObjectPool::NextMatrixID_ = 1; 
+  std::map<size_type,std::string> MatricksObjectPool::matrixName_ ; 
+  std::map<size_type,std::string> MatricksObjectPool::matrixClass_ ; 
+  std::map<size_type,std::string> MatricksObjectPool::matrixDatatype_ ; 
+  std::map<size_type,size_type> MatricksObjectPool::matrixNrows_ ; 
+  std::map<size_type,size_type> MatricksObjectPool::matrixNcols_ ; 
 
-  unsigned int CoollDirectory::addmatrix(const std::string name, const std::string classname, 
-			       const std::string datatype, const unsigned int NR, const unsigned int NC, const bool checkname) {
-    unsigned int id = NextMatrixID_++;
+  size_type MatricksObjectPool::addmatrix(const std::string name, const std::string classname, 
+			       const std::string datatype, const size_type NR, const size_type NC, const bool checkname) {
+    size_type id = NextMatrixID_++;
     
     madd_name(name, id, checkname);
     
@@ -210,7 +182,7 @@ namespace COOLL {
 
 
 
-  void CoollDirectory::removematrix(const unsigned int id) {
+  void MatricksObjectPool::removematrix(const size_type id) {
 
     matrixName_.erase(id);
     matrixClass_.erase(id);
@@ -223,19 +195,19 @@ namespace COOLL {
 
 
 
-  std::string CoollDirectory::matrixname(const unsigned int id) {
+  std::string MatricksObjectPool::matrixname(const size_type id) {
     return (matrixName_.find(id))->second;
   }
-  unsigned int CoollDirectory::matrixNrows(const unsigned int id) {
+  size_type MatricksObjectPool::matrixNrows(const size_type id) {
     return (matrixNrows_.find(id))->second;
   }
-  unsigned int CoollDirectory::matrixNcols(const unsigned int id) {
+  size_type MatricksObjectPool::matrixNcols(const size_type id) {
     return (matrixNcols_.find(id))->second;
   }
 
 
 
-  std::string CoollDirectory::madd_name(const std::string name, const unsigned int id, const bool checkname) {
+  std::string MatricksObjectPool::madd_name(const std::string name, const size_type id, const bool checkname) {
 
     std::string newname = name;
 
@@ -249,13 +221,20 @@ namespace COOLL {
 
       // name was given by user
       // check to see if name already exists
-      static std::map<unsigned int,std::string>::iterator p; 
+      static std::map<size_type,std::string>::iterator p; 
       p = matrixName_.begin();
       int i = 1;
+#ifdef Matricks_CAREFUL
       bool dupe = false;
+#endif     
+
       while (p != matrixName_.end()) {
 	if (p->second == newname) {
+#ifdef Matricks_CAREFUL
 	  dupe = true;
+#endif     
+
+
 	  p = matrixName_.begin();
 	  std::ostringstream stream;
 	  stream << basename << "_" << ++i;
@@ -265,7 +244,7 @@ namespace COOLL {
 	}
       }
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if (dupe) 
 	mduplicate_name(id,name,newname);
 #endif     
@@ -276,11 +255,11 @@ namespace COOLL {
       
   }
 
-  void CoollDirectory::mchange_name(const unsigned int id, const std::string& name, const bool checkname) {
+  void MatricksObjectPool::mchange_name(const size_type id, const std::string& name, const bool checkname) {
     matrixName_.erase(id);
     madd_name(name, id, checkname);
   }
-  void CoollDirectory::mchange_size(const unsigned int id, const unsigned int NR, const unsigned int NC) {
+  void MatricksObjectPool::mchange_size(const size_type id, const size_type NR, const size_type NC) {
     matrixNrows_[id] = NR;
     matrixNcols_[id] = NC;
   }
@@ -288,7 +267,7 @@ namespace COOLL {
 
 
 
-  void CoollDirectory::moutputglossary(const unsigned int id) {
+  void MatricksObjectPool::moutputglossary(const size_type id) {
     std::string s = where_str + matrixName_[id] + " is " + matrixClass_[id] + "<" + matrixDatatype_[id] + ">";
     std::cout << s << "[size=" << matrixNrows_[id] << "x" << matrixNcols_[id] << "], ID=" << id << std::endl;;
   }    

@@ -1,45 +1,8 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
-
 #ifndef MBOOLOPS_H
 #define MBOOLOPS_H
 
 
-
-
-
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -463,14 +426,14 @@ namespace COOLL {
   inline bool alltrue( const MorE<bool,A>& a ) {
     bool result = true;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltrue");
       return false;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
+    for (register size_type i = 0; i< a.size(); i++)
       result = result && a(i);
     
     return result;
@@ -482,9 +445,9 @@ namespace COOLL {
   template <class A> 
   inline LAvector<bool> alltruebyrow( const MorE<bool,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "alltruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltruebyrow");
@@ -496,10 +459,10 @@ namespace COOLL {
     LAvector<bool> y(NR);
 #endif
 
-    unsigned int i = 0;
-    for(unsigned int r = 0; r<NR; r++) {
+    size_type i = 0;
+    for(size_type r = 0; r<NR; r++) {
       bool temp=true;
-      for(unsigned int c = 0; c<NC; c++,i++) {
+      for(size_type c = 0; c<NC; c++,i++) {
 	temp = temp && a(i);
       }
       y[r] = temp;
@@ -511,9 +474,9 @@ namespace COOLL {
   template <class A> 
   inline LAvector<bool> alltruebycol( const MorE<bool,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "alltruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltruebycol");
@@ -525,10 +488,10 @@ namespace COOLL {
     LAvector<bool> y(NC);
 #endif
 
-    for(unsigned int c = 0; c<NC; c++) {
-      unsigned int LIMIT = NR*NC-NC+c+1;
+    for(size_type c = 0; c<NC; c++) {
+      size_type LIMIT = NR*NC-NC+c+1;
       bool temp=true;
-      for(unsigned int i = c; i<LIMIT; i+=NC) {
+      for(size_type i = c; i<LIMIT; i+=NC) {
 	temp = temp && a(i);
       }
       y[c] = temp;
@@ -550,14 +513,14 @@ namespace COOLL {
   inline bool anytrue( const MorE<bool,A>& a ) {
     bool result = false;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytrue");
       return false;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
+    for (register size_type i = 0; i< a.size(); i++)
       result = result || a(i);
     
     return result;
@@ -570,9 +533,9 @@ namespace COOLL {
   template <class A> 
   inline LAvector<bool> anytruebyrow( const MorE<bool,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "anytruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytruebyrow");
@@ -584,10 +547,10 @@ namespace COOLL {
     LAvector<bool> y(NR);
 #endif
 
-    unsigned int i = 0;
-    for(unsigned int r = 0; r<NR; r++) {
+    size_type i = 0;
+    for(size_type r = 0; r<NR; r++) {
       bool temp=false;
-      for(unsigned int c = 0; c<NC; c++,i++) {
+      for(size_type c = 0; c<NC; c++,i++) {
 	temp = temp || a(i);
       }
       y[r] = temp;
@@ -599,9 +562,9 @@ namespace COOLL {
   template <class A> 
   inline LAvector<bool> anytruebycol( const MorE<bool,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "anytruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytruebycol");
@@ -613,10 +576,10 @@ namespace COOLL {
     LAvector<bool> y(NC);
 #endif
 
-    for(unsigned int c = 0; c<NC; c++) {
-      unsigned int LIMIT = NR*NC-NC+c+1;
+    for(size_type c = 0; c<NC; c++) {
+      size_type LIMIT = NR*NC-NC+c+1;
       bool temp=false;
-      for(unsigned int i = c; i<LIMIT; i+=NC) {
+      for(size_type i = c; i<LIMIT; i+=NC) {
 	temp = temp || a(i);
       }
       y[c] = temp;
@@ -628,18 +591,18 @@ namespace COOLL {
   // numtrue(a)
 
   template <class A> 
-  inline unsigned int numtrue( const MorE<bool,A>& a ) {
-    unsigned int result = 0;
+  inline size_type numtrue( const MorE<bool,A>& a ) {
+    size_type result = 0;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtrue");
       return 0;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
-      result += static_cast<unsigned int>(a(i));
+    for (register size_type i = 0; i< a.size(); i++)
+      result += static_cast<size_type>(a(i));
     
     return result;
   }
@@ -649,27 +612,27 @@ namespace COOLL {
   // numtruebyrow(a)
 
   template <class A> 
-  inline LAvector< unsigned int> numtruebyrow( const MorE<bool,A>& a ) {
+  inline LAvector< size_type> numtruebyrow( const MorE<bool,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "numtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtruebyrow");
-      LAvector< unsigned int> y(0,s);
+      LAvector< size_type> y(0,s);
       return y;
     }
-    LAvector< unsigned int> y(NR,s);
+    LAvector< size_type> y(NR,s);
 #else
-    LAvector< unsigned int> y(NR);
+    LAvector< size_type> y(NR);
 #endif
 
-    unsigned int i = 0;
-    for(unsigned int r = 0; r<NR; r++) {
-       unsigned int temp=0;
-      for(unsigned int c = 0; c<NC; c++,i++) {
-	temp  += static_cast<unsigned int>(a(i));
+    size_type i = 0;
+    for(size_type r = 0; r<NR; r++) {
+       size_type temp=0;
+      for(size_type c = 0; c<NC; c++,i++) {
+	temp  += static_cast<size_type>(a(i));
       }
       y[r] = temp;
     }
@@ -678,27 +641,27 @@ namespace COOLL {
 
   // numtruebycol(a)
   template <class A> 
-  inline LAvector< unsigned int> numtruebycol( const MorE<bool,A>& a ) {
+  inline LAvector< size_type> numtruebycol( const MorE<bool,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "numtruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtruebycol");
-      LAvector< unsigned int> y(0,s);
+      LAvector< size_type> y(0,s);
       return y;
     }
-    LAvector< unsigned int> y(NC,s);
+    LAvector< size_type> y(NC,s);
 #else
-    LAvector< unsigned int> y(NC);
+    LAvector< size_type> y(NC);
 #endif
 
-    for(unsigned int c = 0; c<NC; c++) {
-      unsigned int LIMIT = NR*NC-NC+c+1;
-      unsigned int temp=0;
-      for(unsigned int i = c; i<LIMIT; i+=NC) {
-	temp  += static_cast<unsigned int>(a(i));
+    for(size_type c = 0; c<NC; c++) {
+      size_type LIMIT = NR*NC-NC+c+1;
+      size_type temp=0;
+      for(size_type i = c; i<LIMIT; i+=NC) {
+	temp  += static_cast<size_type>(a(i));
       }
       y[c] = temp;
     }
@@ -713,31 +676,31 @@ namespace COOLL {
   // findtrue(a)
 
   template <class A> 
-  inline Matrix<unsigned int> findtrue( const MorE<bool,A>& a ) {
-    unsigned int N = 0;
+  inline Matrix<size_type> findtrue( const MorE<bool,A>& a ) {
+    size_type N = 0;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtrue");
-      Matrix<unsigned int> y(0,2,s);
+      Matrix<size_type> y(0,2,s);
       return y;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
-      N += static_cast<unsigned int>(a(i));
+    for (register size_type i = 0; i< a.size(); i++)
+      N += static_cast<size_type>(a(i));
  
-#ifdef COOLL_CAREFUL
-    Matrix<unsigned int> y(N,2,s);
+#ifdef Matricks_CAREFUL
+    Matrix<size_type> y(N,2,s);
 #else
-    Matrix<unsigned int> y(N,2);
+    Matrix<size_type> y(N,2);
 #endif
 
-   unsigned int i = 0;
-   unsigned int j = 0;
-    for(unsigned int r = 0; r<a.Nrows(); r++) {
-       for(unsigned int c = 0; c<a.Ncols(); c++,i++) {
+   size_type i = 0;
+   size_type j = 0;
+    for(size_type r = 0; r<a.Nrows(); r++) {
+       for(size_type c = 0; c<a.Ncols(); c++,i++) {
 	 if (a(i)) {
 	   y(j,0) = r;
 	   y(j,1) = c;
@@ -755,29 +718,29 @@ namespace COOLL {
   // findtruesi(a) -- return in single index format
 
   template <class A> 
-  inline LAvector<unsigned int> findtruesi( const MorE<bool,A>& a ) {
-    unsigned int N = 0;
+  inline LAvector<size_type> findtruesi( const MorE<bool,A>& a ) {
+    size_type N = 0;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string s = "findtruesi(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruesi");
-      LAvector<unsigned int> y(0,s);
+      LAvector<size_type> y(0,s);
       return y;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
-      N += static_cast<unsigned int>(a(i));
+    for (register size_type i = 0; i< a.size(); i++)
+      N += static_cast<size_type>(a(i));
  
-#ifdef COOLL_CAREFUL
-    LAvector<unsigned int> y(N,s);
+#ifdef Matricks_CAREFUL
+    LAvector<size_type> y(N,s);
 #else
-    LAvector<unsigned int> y(N);
+    LAvector<size_type> y(N);
 #endif
 
-    unsigned int j = 0;
-    for (register unsigned int i = 0; i< a.size(); i++) {
+    size_type j = 0;
+    for (register size_type i = 0; i< a.size(); i++) {
       if (a(i)) {
 	y[j] = i;
 	j++;
@@ -792,31 +755,31 @@ namespace COOLL {
   // findtruebyrow(a)
 
   template <class A> 
-  inline LAvector<unsigned int> findtruebyrow( const MorE<bool,A>& a ) {
-    unsigned int N = 0;
+  inline LAvector<size_type> findtruebyrow( const MorE<bool,A>& a ) {
+    size_type N = 0;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string s = "findtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruebyrow");
-      LAvector<unsigned int> y(0,2,s);
+      LAvector<size_type> y(0,2,s);
       return y;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
-      N += static_cast<unsigned int>(a(i));
+    for (register size_type i = 0; i< a.size(); i++)
+      N += static_cast<size_type>(a(i));
  
-#ifdef COOLL_CAREFUL
-    LAvector<unsigned int> y(N,2,s);
+#ifdef Matricks_CAREFUL
+    LAvector<size_type> y(N,2,s);
 #else
-    LAvector<unsigned int> y(N,2);
+    LAvector<size_type> y(N,2);
 #endif
 
-   unsigned int i = 0;
-   unsigned int j = 0;
-    for(unsigned int r = 0; r<a.Nrows(); r++) {
-       for(unsigned int c = 0; c<a.Ncols(); c++,i++) {
+   size_type i = 0;
+   size_type j = 0;
+    for(size_type r = 0; r<a.Nrows(); r++) {
+       for(size_type c = 0; c<a.Ncols(); c++,i++) {
 	 if (a(i)) {
 	   y[r] = 1;
 	 }

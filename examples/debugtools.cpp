@@ -1,10 +1,10 @@
 
 // flag for run-time bounds and size checking
-#define COOLL_CAREFUL
+#define MATRICKS_CAREFUL
 
 
-#include "cooll.hpp"
-using namespace COOLL;
+#include "matricks.hpp"
+using namespace Matricks;
 
 #include <iostream>
 using namespace std;
@@ -28,7 +28,7 @@ int main()
   dispcr(x.objectID());
 
 
-  printcrcr("The run-time name is used in all COOLL errors and warnings.");
+  printcrcr("The run-time name is used in all Matricks errors and warnings.");
   printcr("Run-time names are only available when the library is run in CAREFUL mode.");
 
   printcrcr("Here is an example of an error\n x[8] =11.0;");
@@ -56,21 +56,21 @@ int main()
   printcrcr("You can query a vector's size");
   dispcr(x.size());
 
-  printcrcr("You can display the classname of any COOLL object (container name only)");
+  printcrcr("You can display the classname of any Matricks object (container name only)");
   dispcr(x.classname());
 
-  printcrcr("You can display the full classname of any COOLL object");
+  printcrcr("You can display the full classname of any Matricks object");
   dispcr(x.fullclassname());
 
-  printcrcr("You can display the datatype contained in any COOLL object");
+  printcrcr("You can display the datatype contained in any Matricks object");
   dispcr(x.datatype());
 
-  printcrcr("You can also display a summary of information about any COOLL object");
-  coollinfo(x);
+  printcrcr("You can also display a summary of information about any Matricks object");
+  matricksinfo(x);
 
   Matrix<double> A(2,3,"me");
   cr();
-  coollinfo(A);
+  matricksinfo(A);
 
 
 

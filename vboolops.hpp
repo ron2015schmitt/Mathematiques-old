@@ -1,45 +1,10 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
 
 
 
 #ifndef VBOOLOPS_H
 #define VBOOLOPS_H
 
-
-
-
-
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -463,14 +428,14 @@ namespace COOLL {
   inline bool alltrue( const VorE<bool,A>& a ) {
     bool result = true;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"alltrue");
       return false;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
+    for (register size_type i = 0; i< a.size(); i++)
       result = result && a[i];
     
     return result;
@@ -483,14 +448,14 @@ namespace COOLL {
   inline bool anytrue( const VorE<bool,A>& a ) {
     bool result = false;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"anytrue");
       return false;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
+    for (register size_type i = 0; i< a.size(); i++)
       result = result || a[i];
     
     return result;
@@ -500,18 +465,18 @@ namespace COOLL {
   // numtrue(a)
 
   template <class A> 
-  inline unsigned int numtrue( const VorE<bool,A>& a ) {
-    unsigned int result = 0;
+  inline size_type numtrue( const VorE<bool,A>& a ) {
+    size_type result = 0;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"numtrue");
       return 0;
     }
 #endif
  
-    for (register unsigned int i = 0; i< a.size(); i++)
-      result += static_cast<unsigned int>(a[i]);
+    for (register size_type i = 0; i< a.size(); i++)
+      result += static_cast<size_type>(a[i]);
     
     return result;
   }
@@ -523,29 +488,29 @@ namespace COOLL {
   // findtrue(a)
 
   template <class A> 
-  inline LAvector<unsigned int> findtrue( const VorE<bool,A>& a ) {
+  inline LAvector<size_type> findtrue( const VorE<bool,A>& a ) {
     int N = 0;
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"findtrue");
-      LAvector<unsigned int> y(0,s);
+      LAvector<size_type> y(0,s);
       return y;
     }
 #endif
 
-    for (register unsigned int i = 0; i< a.size(); i++)
+    for (register size_type i = 0; i< a.size(); i++)
       N += int(a[i]);
  
-#ifdef COOLL_CAREFUL
-    LAvector<unsigned int> y(N,s);
+#ifdef Matricks_CAREFUL
+    LAvector<size_type> y(N,s);
 #else
-    LAvector<unsigned int> y(N);
+    LAvector<size_type> y(N);
 #endif
 
-    unsigned int j =0;
-    for (register unsigned int i = 0; i< a.size(); i++)
+    size_type j =0;
+    for (register size_type i = 0; i< a.size(); i++)
       if (a[i])
 	y[j++] = i;
     

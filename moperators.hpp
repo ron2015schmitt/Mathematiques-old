@@ -1,45 +1,11 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
 
 #ifndef MOPERATORS_H
-#define MOPERATORS_H 1
-
+#define MOPERATORS_H 
 
 #include <string>
 #include <sstream>
 
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -99,15 +65,15 @@ namespace COOLL {
   template <class D, class A, class B> 
   inline Matrix<D>
   operator|( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = b.Ncols();
-    const unsigned int M = a.Ncols();
-    const unsigned int C1 = NR*M;
+    const size_type NR = a.Nrows();
+    const size_type NC = b.Ncols();
+    const size_type M = a.Ncols();
+    const size_type C1 = NR*M;
 
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string name= a.debugtxt() + "|"+  b.debugtxt();
-    const unsigned int Mb = b.Nrows();
+    const size_type Mb = b.Nrows();
     if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
       mbad_expr_in_binary(a,b,"","|");
       Matrix<D> y(0,0,name);
@@ -122,12 +88,12 @@ namespace COOLL {
     Matrix<D> y(NR,NC);
 #endif
 
-    register unsigned int i = 0;
-    for(register unsigned int n=0; n < C1; n+=M) 
-      for(register unsigned int c=0; c < NC; c++,i++) {
-	unsigned int j = n;
-	unsigned int k = c;
-	const unsigned int C2 = n+M-1;
+    register size_type i = 0;
+    for(register size_type n=0; n < C1; n+=M) 
+      for(register size_type c=0; c < NC; c++,i++) {
+	size_type j = n;
+	size_type k = c;
+	const size_type C2 = n+M-1;
 	// using a local variable for the accumation saves a lot of CPU Time!!
 	D result = a(j) * b(k);
 	while (j<C2){
@@ -349,7 +315,7 @@ namespace COOLL {
 
   template <class D2, class D1, class A> 
   inline MFuncReshape<D2,MorE<D1,A>,ApCast<D1,D2> > 
-  mcast(const MorE<D1,A>& a, const unsigned int nr, const unsigned int nc)
+  mcast(const MorE<D1,A>& a, const size_type nr, const size_type nc)
   {
     return  MFuncReshape<D2,MorE<D1,A>,ApCast<D1,D2> >(a,nr,nc);
   }
@@ -360,7 +326,7 @@ namespace COOLL {
 
   template <class D2, class D1, class A> 
   inline MFuncVec<D2,VorE<D1,A>,ApCast<D1,D2> > 
-  mcast(const VorE<D1,A>& a, const unsigned int NR, const unsigned int NC)
+  mcast(const VorE<D1,A>& a, const size_type NR, const size_type NC)
   {
     return  MFuncVec<D2,VorE<D1,A>,ApCast<D1,D2> >(a,NR,NC);
   }
@@ -370,14 +336,14 @@ namespace COOLL {
 
   template <class D2, class D1> 
   inline Matrix<D2> 
-  mcast(const D1* dptr, const unsigned int NR, const unsigned int NC)
+  mcast(const D1* dptr, const size_type NR, const size_type NC)
   {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     Matrix<D2> m(NR,NC,"mcast(C-array)");
 #else
     Matrix<D2> m(NR,NC);
 #endif
-    for(unsigned int i = 0; i<NR*NC; i++) 
+    for(size_type i = 0; i<NR*NC; i++) 
       m(i) = static_cast<D2>(dptr[i]);
     return  m;
   }
@@ -388,17 +354,17 @@ namespace COOLL {
 
   template <class D2, class D1> 
   inline Matrix<D2> 
-  mcastF(const D1* dptr, const unsigned int NR, const unsigned int NC)
+  mcastF(const D1* dptr, const size_type NR, const size_type NC)
   {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     Matrix<D2> y(NR,NC,"mcast(Fortran-array)");
 #else
     Matrix<D2> y(NR,NC);
 #endif
-    const unsigned int C1 = NR*NC-NR;
-    register unsigned int i = 0;
-    for(register unsigned int c = 0; c < NR; c++, i++) {
-      register unsigned int k = c;
+    const size_type C1 = NR*NC-NR;
+    register size_type i = 0;
+    for(register size_type c = 0; c < NR; c++, i++) {
+      register size_type k = c;
       y(i) = static_cast<D2>(dptr[k]);
       while (k<C1) {
 	y((i+=1)) = static_cast<D2>(dptr[k+=NR]);
@@ -418,13 +384,13 @@ namespace COOLL {
   operator~(const MorE<D,A>& a)
   {
     // 0.75 secs
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-    const unsigned int NN = a.size();
-    const unsigned int C1 = NN-NC;
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+    const size_type NN = a.size();
+    const size_type C1 = NN-NC;
     
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string name=a.debugtxt();
     if (a.metype()==ME_Matrix)
       name = "~" + name;
@@ -442,9 +408,9 @@ namespace COOLL {
 #endif
 
 
-    register unsigned int i = 0;
-    for(register unsigned int c = 0; c < NC; c++, i++) {
-      register unsigned int k = c;
+    register size_type i = 0;
+    for(register size_type c = 0; c < NC; c++, i++) {
+      register size_type k = c;
       y(i) = a(k);
       while (k<C1) {
 	y((i+=1)) = a((k+=NC));
@@ -469,16 +435,16 @@ namespace COOLL {
   inline D2*
   toCarray(const MorE<D1,A>& m) {
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if ( mexpr_is_size_bad(m.size()) ){ 
       mbad_expr_in_unary(m,"toCarray");
       return 0;
     }
 #endif
 
-    const unsigned int N = m.size();
+    const size_type N = m.size();
     D2* dptr = new D2[N];
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       dptr[i] = static_cast<D2>(m(i));
     return  dptr;
   }
@@ -490,21 +456,21 @@ namespace COOLL {
   inline D2*
   toFarray(const MorE<D1,A>& m) {
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if ( mexpr_is_size_bad(m.size()) ){ 
       mbad_expr_in_unary(m,"toFarray");
       return 0;
     }
 #endif
 
-    const unsigned int NR = m.Nrows();
-    //    const unsigned int NC = m.Ncols();
-    const unsigned int N = m.size();
+    const size_type NR = m.Nrows();
+    //    const size_type NC = m.Ncols();
+    const size_type N = m.size();
     D2* dptr = new D2[N];
-    const unsigned int C1 = N-NR;
-    register unsigned int i = 0;
-    for(register unsigned int c = 0; c < NR; c++, i++) {
-      register unsigned int k = c;
+    const size_type C1 = N-NR;
+    register size_type i = 0;
+    for(register size_type c = 0; c < NR; c++, i++) {
+      register size_type k = c;
       dptr[k] = static_cast<D2>(m(i));
       while (k<C1) {
 	dptr[k+=NR] = static_cast<D2>(m(i+=1));
@@ -516,20 +482,20 @@ namespace COOLL {
 
 
   template <class A> 
-  LAvector<unsigned int> sub2ind(const MorE<unsigned int,A>& subs, const unsigned int NC) {
-    const unsigned int N = subs.Nrows();
-#ifdef COOLL_CAREFUL
+  LAvector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NC) {
+    const size_type N = subs.Nrows();
+#ifdef Matricks_CAREFUL
     std::string s = "sub2ind(" + subs.debugtxt() + ")";
-    LAvector<unsigned int> ii(N,s);
+    LAvector<size_type> ii(N,s);
     if ( subs.Ncols() !=2 ) {
       //error
       return ii;
     }
 #else
-    LAvector<unsigned int> ii(N);
+    LAvector<size_type> ii(N);
 #endif 
 
-    for (unsigned int i = 0;  i <N; i++)
+    for (size_type i = 0;  i <N; i++)
       ii[i] = NC*subs(i,0) + subs(i,1);
 
     return ii;
@@ -562,7 +528,7 @@ namespace COOLL {
   template <class D, class A> 
   inline D sum( const MorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"sum");
       return 0;
@@ -571,7 +537,7 @@ namespace COOLL {
  
     D result = a(0);
 
-    for (register unsigned int i = 1; i < a.size() ; i++ )
+    for (register size_type i = 1; i < a.size() ; i++ )
       result += a(i);
     
     return result;
@@ -583,9 +549,9 @@ namespace COOLL {
   template <class D, class A> 
   inline LAvector<D> sumbyrow( const MorE<D,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "sumbyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"sumbyrow");
@@ -597,10 +563,10 @@ namespace COOLL {
     LAvector<D> y(NR);
 #endif
 
-    unsigned int i = 0;
-    for(unsigned int r = 0; r<NR; r++) {
+    size_type i = 0;
+    for(size_type r = 0; r<NR; r++) {
       D temp=D();
-      for(unsigned int c = 0; c<NC; c++,i++) {
+      for(size_type c = 0; c<NC; c++,i++) {
 	temp += a(i);
       }
       y[r] = temp;
@@ -614,9 +580,9 @@ namespace COOLL {
   template <class D, class A> 
   inline LAvector<D> sumbycol( const MorE<D,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "sumbycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"sumbycol");
@@ -628,10 +594,10 @@ namespace COOLL {
     LAvector<D> y(NC);
 #endif
 
-    for(unsigned int c = 0; c<NC; c++) {
-      unsigned int LIMIT = NR*NC-NC+c+1;
+    for(size_type c = 0; c<NC; c++) {
+      size_type LIMIT = NR*NC-NC+c+1;
       D temp=D();
-      for(unsigned int i = c; i<LIMIT; i+=NC) {
+      for(size_type i = c; i<LIMIT; i+=NC) {
 	temp += a(i);
       }
       y[c] = temp;
@@ -647,14 +613,14 @@ namespace COOLL {
 
   template <class D, class A> 
   inline D min( const MorE<D,A>& a ) {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"min");
       return 0;
     }
 #endif
     D result = a(0);
-    for (register unsigned int i = 1; i < a.size() ; i++ )
+    for (register size_type i = 1; i < a.size() ; i++ )
       result = std::min(result,a(i));
     return result;
   }
@@ -666,9 +632,9 @@ namespace COOLL {
   template <class D, class A> 
   inline LAvector<D> minbyrow( const MorE<D,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "minbyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"minbyrow");
@@ -679,11 +645,11 @@ namespace COOLL {
 #else
     LAvector<D> y(NR);
 #endif
-    unsigned int i = 0;
-    for(unsigned int r = 0; r<NR; r++) {
+    size_type i = 0;
+    for(size_type r = 0; r<NR; r++) {
       D temp = a(i); 
       i++;
-      for(unsigned int c = 1; c<NC; c++,i++) {
+      for(size_type c = 1; c<NC; c++,i++) {
 	temp =  std::min(temp,a(i));
       }
       y[r] = temp;
@@ -698,9 +664,9 @@ namespace COOLL {
   template <class D, class A> 
   inline LAvector<D> minbycol( const MorE<D,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "minbycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"minbycol");
@@ -712,9 +678,9 @@ namespace COOLL {
     LAvector<D> y(NC);
 #endif
 
-    for(unsigned int c = 0; c<NC; c++) {
-      unsigned int LIMIT = NR*NC-NC+c+1;
-      unsigned int i = c;
+    for(size_type c = 0; c<NC; c++) {
+      size_type LIMIT = NR*NC-NC+c+1;
+      size_type i = c;
       D temp=a(i);
       for(i+=NC; i<LIMIT; i+=NC) {
 	temp = std::min(temp,a(i));
@@ -731,7 +697,7 @@ namespace COOLL {
   template <class D, class A> 
   inline D max( const MorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"max");
       return 0;
@@ -740,7 +706,7 @@ namespace COOLL {
  
     D result = a(0);
 
-    for (register unsigned int i = 1; i < a.size() ; i++ )
+    for (register size_type i = 1; i < a.size() ; i++ )
       result = std::max(result,a(i));
     
     return result;
@@ -756,9 +722,9 @@ namespace COOLL {
   template <class D, class A> 
   inline LAvector<D> maxbyrow( const MorE<D,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "maxbyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"maxbyrow");
@@ -769,11 +735,11 @@ namespace COOLL {
 #else
     LAvector<D> y(NR);
 #endif
-    unsigned int i = 0;
-    for(unsigned int r = 0; r<NR; r++) {
+    size_type i = 0;
+    for(size_type r = 0; r<NR; r++) {
       D temp = a(i); 
       i++;
-      for(unsigned int c = 1; c<NC; c++,i++) {
+      for(size_type c = 1; c<NC; c++,i++) {
 	temp =  std::max(temp,a(i));
       }
       y[r] = temp;
@@ -788,9 +754,9 @@ namespace COOLL {
   template <class D, class A> 
   inline LAvector<D> maxbycol( const MorE<D,A>& a ) {
     
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-#ifdef COOLL_CAREFUL
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+#ifdef Matricks_CAREFUL
     std::string s = "maxbycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"maxbycol");
@@ -802,9 +768,9 @@ namespace COOLL {
     LAvector<D> y(NC);
 #endif
 
-    for(unsigned int c = 0; c<NC; c++) {
-      unsigned int LIMIT = NR*NC-NC+c+1;
-      unsigned int i = c;
+    for(size_type c = 0; c<NC; c++) {
+      size_type LIMIT = NR*NC-NC+c+1;
+      size_type i = c;
       D temp=a(i);
       for(i+=NC; i<LIMIT; i+=NC) {
 	temp = std::max(temp,a(i));
@@ -824,7 +790,7 @@ namespace COOLL {
   template <class D, class A> 
   inline D tr( const MorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"tr");
       return 0;
@@ -832,15 +798,15 @@ namespace COOLL {
 #endif
  
     D result = a(0);
-    unsigned int Nmin;
+    size_type Nmin;
     if (a.Nrows() < a.Ncols())
       Nmin=a.Nrows();
     else
       Nmin=a.Ncols();
     
-    const unsigned int N=Nmin;
+    const size_type N=Nmin;
 
-    for (register unsigned int i = 1; i < N ; i++ )
+    for (register size_type i = 1; i < N ; i++ )
       result += a(i,i);
     
     return result;

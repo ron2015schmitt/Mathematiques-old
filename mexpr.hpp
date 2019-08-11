@@ -1,40 +1,6 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
 
-
-
-
-#ifndef MEXPR_H
-#define MEXPR_H 1
-
+#ifndef MVEXPR_H
+#define MVEXPR_H 
 
 #include <string>
 #include <sstream>
@@ -42,8 +8,13 @@
 #include <cmath>
 
 
-namespace COOLL {
+namespace Matricks {
 
+  template <class A> 
+  inline Matrix<size_type> findtrue( const MorE<bool,A>& a );
+
+  template <class A> 
+  inline LAvector<size_type> findtruesi( const MorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -63,24 +34,24 @@ namespace COOLL {
 
   public:
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return derived()(i);
     }
 
-    inline const D operator()(const unsigned int r, const unsigned int c) const {
+    inline const D operator()(const size_type r, const size_type c) const {
       return r*Ncols() + c;
     }
 
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return derived().Nrows();
     }
     
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return derived().Ncols();
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return derived().size();
     }
 
@@ -137,44 +108,44 @@ namespace COOLL {
 
   public:
 
-    inline const D operator()(const unsigned int i) const {  
-      const unsigned int index = derived().index(i);
+    inline const D operator()(const size_type i) const {  
+      const size_type index = derived().index(i);
       return derived().data(index);
     }
 
-    inline D& operator()(const unsigned int i) {  
-      const unsigned int index = derived().index(i);
+    inline D& operator()(const size_type i) {  
+      const size_type index = derived().index(i);
       return derived().data(index);
     }
 
-    inline const unsigned int index(void) const {
+    inline size_type index(void) const {
       return derived().index();
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return derived().size();
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return derived().Nrows();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return  derived().Ncols();
     }
 
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return derived().asize();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return derived().aID();
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return derived().aNrows();
     }
 
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return  derived().aNcols();
     }
 
@@ -187,15 +158,15 @@ namespace COOLL {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(unsigned int i=0; i<size(); i++) 
+      for(size_type i=0; i<size(); i++) 
 	(*this)(i)=d; 
       return derived();
     }
 
     // assign to recon object (issue error)
     DERIVED& equals(const MReconObj<D>& b) { 
-#ifdef COOLL_CAREFUL
-      mbad_reconassignment(a_.objectID(), b);
+#ifdef Matricks_CAREFUL
+      mbad_reconassignment(derived().objectID(), b);
 #endif
       return derived();
     }
@@ -206,11 +177,11 @@ namespace COOLL {
     template <class B>
     DERIVED& equals(const VorE<D,B>& rhs) { 
       
-      const unsigned int N =size();
+      const size_type N =size();
 
-#ifdef COOLL_CAREFUL
-      const unsigned int NR = Nrows();
-      const unsigned int NC = Ncols();
+#ifdef Matricks_CAREFUL
+      const size_type NR = Nrows();
+      const size_type NC = Ncols();
       if ( ( N !=  rhs.size() ) 
 	   || ( (NR!=1) && (NC!=1) ) ){ 
 	mbad_wrapper_assignment_vec(derived().debugtxt(),rhs.debugtxt());
@@ -221,17 +192,17 @@ namespace COOLL {
 #endif
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	LAvector<D> y(N,debugtxt());
 #else
 	LAvector<D> y(N);
 #endif
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()(i) = y[i]; 
       } else {
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()(i) = rhs[i]; 
       }
       return derived();
@@ -243,10 +214,10 @@ namespace COOLL {
     template <class B>
     DERIVED& equals(const MorE<D,B>& rhs) {
 
-      const unsigned int N =size();
-      const unsigned int NR = Nrows();
-      const unsigned int NC = Ncols();
-#ifdef COOLL_CAREFUL
+      const size_type N =size();
+      const size_type NR = Nrows();
+      const size_type NC = Ncols();
+#ifdef Matricks_CAREFUL
       if ( ( N !=  rhs.size() ) || (NR != rhs.Nrows()) || (NC != rhs.Ncols()) )  { 
 	mbad_wrapper_assignment(debugtxt(),rhs.debugtxt());
 	outputglossary();
@@ -257,17 +228,17 @@ namespace COOLL {
 
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	Matrix<D> y(NR,NC,debugtxt());
 #else
 	Matrix<D> y(NR,NC);
 #endif
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  y(i) = rhs(i); 
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()(i) = y(i); 
       } else {
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()(i) = rhs(i); 
       }
       return derived();
@@ -308,18 +279,18 @@ namespace COOLL {
   class MSubmatObj : public   MWrapperObj<D,MSubmatObj<D> >{
   private:
     Matrix<D>& a_;
-    const unsigned int a_NC;
-    const unsigned int rstart_;
-    const unsigned int rend_;
-    const unsigned int cstart_;
-    const unsigned int cend_;
-    const unsigned int NR_;
-    const unsigned int NC_;
+    const size_type a_NC;
+    const size_type rstart_;
+    const size_type rend_;
+    const size_type cstart_;
+    const size_type cend_;
+    const size_type NR_;
+    const size_type NC_;
 
   public:
     explicit MSubmatObj(Matrix<D>& a, 
-	       const unsigned int rstart, const unsigned int rend, 
-	       const unsigned int cstart, const unsigned int cend)
+	       const size_type rstart, const size_type rend, 
+	       const size_type cstart, const size_type cend)
       : a_(a), a_NC(a.Ncols()),
 	rstart_(rstart), rend_(rend), 
 	cstart_(cstart), cend_(cend),
@@ -327,19 +298,19 @@ namespace COOLL {
     { 
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline D& data(unsigned int i) {
+    inline D& data(size_type i) {
       return a_(i);
     }
 
-    inline const unsigned int index(unsigned int i) const{
+    inline size_type index(size_type i) const{
       const std::div_t result = std::div(int(i),int(Ncols()));
-      const unsigned int r = static_cast<unsigned int>(rstart_ + result.quot);
-      const unsigned int c = static_cast<unsigned int>(cstart_ + result.rem);
-      const unsigned int ind = r*a_NC + c;
-#ifdef COOLL_CAREFUL
+      const size_type r = static_cast<size_type>(rstart_ + result.quot);
+      const size_type c = static_cast<size_type>(cstart_ + result.rem);
+      const size_type ind = r*a_NC + c;
+#ifdef Matricks_CAREFUL
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -348,16 +319,16 @@ namespace COOLL {
       return ind;
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return NR_;
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return NC_;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if  ( (rstart_>rend_) || (cstart_>cend_)) {
 	mbad_submat(a_.objectID(), rstart_ ,rend_, cstart_, cend_);
 	return badsize;
@@ -368,16 +339,16 @@ namespace COOLL {
       return NR_*NC_;
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -439,17 +410,17 @@ namespace COOLL {
     { 
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline D& data(unsigned int i) {
+    inline D& data(size_type i) {
       return a_(i);
     }
 
 
-    inline const unsigned int index(unsigned int i) const{
-      const unsigned int ind = i_[i];
-#ifdef COOLL_CAREFUL
+    inline size_type index(size_type i) const{
+      const size_type ind = i_[i];
+#ifdef Matricks_CAREFUL
       if (ind>=asize()) {
 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -459,28 +430,28 @@ namespace COOLL {
     }
 
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return i_.size();      
     }
 
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return size();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return  1;
     }
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -537,12 +508,12 @@ namespace COOLL {
   class MSetObj :  public  MWrapperObj<D,MSetObj<D> > {
   private:
     Matrix<D>& a_;
-    const LAvector<unsigned int>* iiptr_;
-    const LAvector<unsigned int>& ii_;
-    const unsigned int indID_;
+    const LAvector<size_type>* iiptr_;
+    const LAvector<size_type>& ii_;
+    const size_type indID_;
     const bool indisvector;
   public:
-    explicit MSetObj(Matrix<D>& a, const LAvector<unsigned int>& ii)
+    explicit MSetObj(Matrix<D>& a, const LAvector<size_type>& ii)
       : a_(a), 
 	iiptr_(0), 
 	ii_(ii),
@@ -552,7 +523,7 @@ namespace COOLL {
     }
     explicit MSetObj(Matrix<D>& a, const Matrix<bool>& mask)
       : a_(a), 
-	iiptr_(new LAvector<unsigned int>(findtruesi(mask))), 
+	iiptr_(new LAvector<size_type>(findtruesi(mask))), 
 	ii_(*iiptr_),
 	indID_(mask.objectID()),
 	indisvector(false)
@@ -560,15 +531,15 @@ namespace COOLL {
     }
     explicit MSetObj(Matrix<D>& a, const LAvector<bool>& mask)
       : a_(a), 
-	iiptr_(new LAvector<unsigned int>(findtrue(mask))), 
+	iiptr_(new LAvector<size_type>(findtrue(mask))), 
 	ii_(*iiptr_),
 	indID_(mask.objectID()),
 	indisvector(true)
     {
     }
-    explicit MSetObj(Matrix<D>& a, const Matrix<unsigned int>& subs)
+    explicit MSetObj(Matrix<D>& a, const Matrix<size_type>& subs)
       : a_(a), 
-	iiptr_(new LAvector<unsigned int>(sub2ind(subs,a.Ncols()))), 
+	iiptr_(new LAvector<size_type>(sub2ind(subs,a.Ncols()))), 
 	ii_(*iiptr_),
 	indID_(subs.objectID()),
 	indisvector(false)
@@ -580,16 +551,16 @@ namespace COOLL {
       delete  iiptr_;
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_(i);
     }
 
-    inline const unsigned int index(unsigned int i) const{
-      const unsigned int ind = ii_[i];
-#ifdef COOLL_CAREFUL
+    inline size_type index(size_type i) const{
+      const size_type ind = ii_[i];
+#ifdef Matricks_CAREFUL
       if (ind>=asize()) {
 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -602,28 +573,28 @@ namespace COOLL {
       return ME_MSetObj;
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return ii_.size();
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return size();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return  1;
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -676,14 +647,14 @@ namespace COOLL {
   class MDualSetObj :  public  MWrapperObj<D,MDualSetObj<D> > {
   private:
     Matrix<D>& a_;
-    const unsigned int a_NC;
-    const LAvector<unsigned int>* iiptr_;
-    const LAvector<unsigned int>& ii_;
-    const LAvector<unsigned int>* jjptr_;
-    const LAvector<unsigned int>& jj_;
+    const size_type a_NC;
+    const LAvector<size_type>* iiptr_;
+    const LAvector<size_type>& ii_;
+    const LAvector<size_type>* jjptr_;
+    const LAvector<size_type>& jj_;
 
   public:
-    explicit MDualSetObj(Matrix<D>& a, const LAvector<unsigned int>& ii,  const LAvector<unsigned int>& jj)
+    explicit MDualSetObj(Matrix<D>& a, const LAvector<size_type>& ii,  const LAvector<size_type>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
@@ -691,18 +662,18 @@ namespace COOLL {
 	jjptr_(0), 
 	jj_(jj)
     { }
-    explicit MDualSetObj(Matrix<D>& a, const LAvector<unsigned int>& ii,  const unsigned int j)
+    explicit MDualSetObj(Matrix<D>& a, const LAvector<size_type>& ii,  const size_type j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
-	jjptr_(new LAvector<unsigned int>(1,j,"") ), 
+	jjptr_(new LAvector<size_type>(1,j,"") ), 
 	jj_(*jjptr_)
     {     }
-    explicit MDualSetObj(Matrix<D>& a, const unsigned int i, const LAvector<unsigned int>& jj)
+    explicit MDualSetObj(Matrix<D>& a, const size_type i, const LAvector<size_type>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new LAvector<unsigned int>(1,i,"") ), 
+	iiptr_(new LAvector<size_type>(1,i,"") ), 
 	ii_(*iiptr_),
 	jjptr_(0), 
 	jj_(jj)
@@ -714,21 +685,21 @@ namespace COOLL {
       delete  jjptr_;
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_(i);
     }
 
-    inline const unsigned int index(unsigned int k) const{
+    inline size_type index(size_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const unsigned int r = ii_[i];
-      const unsigned int c = jj_[j];
-      const unsigned int ind =  r*a_NC + c;
-#ifdef COOLL_CAREFUL
+      const size_type r = ii_[i];
+      const size_type c = jj_[j];
+      const size_type ind =  r*a_NC + c;
+#ifdef Matricks_CAREFUL
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -741,8 +712,8 @@ namespace COOLL {
       return ME_MDualSetObj;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if  ( (ii_.size()==badsize) || ( jj_.size()==badsize) ) {
 	return badsize;
       }
@@ -750,24 +721,24 @@ namespace COOLL {
       return Nrows()*Ncols();
     }
     
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return ii_.size();
     }
     
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return jj_.size();
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -836,7 +807,7 @@ namespace COOLL {
   class MDualRangeObj :  public  MWrapperObj<D,MDualRangeObj<D> > {
   private:
     Matrix<D>& a_;
-    const unsigned int a_NC;
+    const size_type a_NC;
     const seq& i_;
     const seq& j_;
 
@@ -852,21 +823,21 @@ namespace COOLL {
     { 
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_(i);
     }
 
-    inline const unsigned int index(unsigned int k) const{
+    inline size_type index(size_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const unsigned int r = i_[i];
-      const unsigned int c = j_[j];
-      const unsigned int ind =  r*a_NC + c;
-#ifdef COOLL_CAREFUL
+      const size_type r = i_[i];
+      const size_type c = j_[j];
+      const size_type ind =  r*a_NC + c;
+#ifdef Matricks_CAREFUL
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -879,8 +850,8 @@ namespace COOLL {
       return ME_MDualRangeObj;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if  ( (i_.size()==badsize) || ( j_.size()==badsize) ) {
 	return badsize;
       }
@@ -888,24 +859,24 @@ namespace COOLL {
       return Nrows()*Ncols();
     }
     
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return i_.size();
     }
     
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return j_.size();
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -959,23 +930,23 @@ namespace COOLL {
   class MSetRangeObj :  public  MWrapperObj<D,MSetRangeObj<D> > {
   private:
     Matrix<D>& a_;
-    const unsigned int a_NC;
-    const LAvector<unsigned int>* iiptr_;
-    const LAvector<unsigned int>& ii_;
+    const size_type a_NC;
+    const LAvector<size_type>* iiptr_;
+    const LAvector<size_type>& ii_;
     const seq& j_;
 
   public:
-    explicit MSetRangeObj(Matrix<D>& a, const LAvector<unsigned int>& ii, const seq& j )
+    explicit MSetRangeObj(Matrix<D>& a, const LAvector<size_type>& ii, const seq& j )
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
 	j_(j)
     { }
-    explicit MSetRangeObj(Matrix<D>& a, const unsigned int i, const seq& j)
+    explicit MSetRangeObj(Matrix<D>& a, const size_type i, const seq& j)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new LAvector<unsigned int>(1,i,"") ), 
+	iiptr_(new LAvector<size_type>(1,i,"") ), 
 	ii_(*iiptr_),
 	j_(j)
     { }
@@ -985,21 +956,21 @@ namespace COOLL {
       delete  iiptr_;
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_(i);
     }
 
-    inline const unsigned int index(unsigned int k) const{
+    inline size_type index(size_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const unsigned int r = ii_[i];
-      const unsigned int c = j_[j];
-      const unsigned int ind =  r*a_NC + c;
-#ifdef COOLL_CAREFUL
+      const size_type r = ii_[i];
+      const size_type c = j_[j];
+      const size_type ind =  r*a_NC + c;
+#ifdef Matricks_CAREFUL
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -1012,8 +983,8 @@ namespace COOLL {
       return ME_MSetRangeObj;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if  ( (ii_.size()==badsize) || ( j_.size()==badsize) ) {
 	return badsize;
       }
@@ -1021,24 +992,24 @@ namespace COOLL {
       return Nrows()*Ncols();
     }
     
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return ii_.size();
     }
     
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return j_.size();
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -1101,24 +1072,24 @@ namespace COOLL {
   class MRangeSetObj :  public  MWrapperObj<D,MRangeSetObj<D> > {
   private:
     Matrix<D>& a_;
-    const unsigned int a_NC;
+    const size_type a_NC;
     const seq& i_;
-    const LAvector<unsigned int>* jjptr_;
-    const LAvector<unsigned int>& jj_;
+    const LAvector<size_type>* jjptr_;
+    const LAvector<size_type>& jj_;
 
   public:
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const LAvector<unsigned int>& jj )
+    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const LAvector<size_type>& jj )
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
 	jjptr_(0), 
 	jj_(jj)
     { }
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const unsigned int j)
+    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const size_type j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
-	jjptr_(new LAvector<unsigned int>(1,j,"") ), 
+	jjptr_(new LAvector<size_type>(1,j,"") ), 
 	jj_(*jjptr_)
     { }
 
@@ -1127,21 +1098,21 @@ namespace COOLL {
       delete  jjptr_;
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_(i);
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_(i);
     }
 
-    inline const unsigned int index(unsigned int k) const{
+    inline size_type index(size_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const unsigned int r = i_[i];
-      const unsigned int c = jj_[j];
-      const unsigned int ind =  r*a_NC + c;
-#ifdef COOLL_CAREFUL
+      const size_type r = i_[i];
+      const size_type c = jj_[j];
+      const size_type ind =  r*a_NC + c;
+#ifdef Matricks_CAREFUL
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -1154,8 +1125,8 @@ namespace COOLL {
       return ME_MRangeSetObj;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if  ( (i_.size()==badsize) || ( jj_.size()==badsize) ) {
 	return badsize;
       }
@@ -1163,24 +1134,24 @@ namespace COOLL {
       return Nrows()*Ncols();
     }
     
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return i_.size();
     }
     
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return jj_.size();
     }
 
-    inline unsigned int aNrows(void) const {
+    inline size_type aNrows(void) const {
       return a_.Nrows();
     }
-    inline unsigned int aNcols(void) const {
+    inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
-    inline unsigned int aID(void) const {
+    inline size_type aID(void) const {
       return a_.objectID();
     }
 
@@ -1258,12 +1229,12 @@ namespace COOLL {
 
     template <class A>
     Matrix<D>& operator=(const MorE<D,A>& x) { 
-      unsigned int NR = x.Nrows();
-      unsigned int NC = x.Ncols();
+      size_type NR = x.Nrows();
+      size_type NC = x.Ncols();
 
 
-#ifdef COOLL_CAREFUL
-      unsigned int N = x.size();
+#ifdef Matricks_CAREFUL
+      size_type N = x.size();
       if ( N==badsize ){ 
 	mbad_expr_in_reconassignment(a_.objectID(), x);
 	return a_;
@@ -1271,7 +1242,7 @@ namespace COOLL {
 #endif
 
       if ( x.addrmatch(&a_)) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	Matrix<D> y(NR,NC,debugtxt());
 #else
 	Matrix<D> y(NR,NC);
@@ -1290,7 +1261,7 @@ namespace COOLL {
 
     Matrix<D>& operator=(const MReconObj<D>& b) { 
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       mbad_reconassignment(a_.objectID(), b);
 #endif
       return a_;
@@ -1337,12 +1308,12 @@ namespace COOLL {
     { 
     }
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return OP::apply(a_(i), b_(i));
     }
 
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       if  (a_.Nrows() !=  b_.Nrows() ) {
 	return badsize;
       } else {
@@ -1350,7 +1321,7 @@ namespace COOLL {
       }
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       if  (a_.Ncols() !=  b_.Ncols() ) {
 	return badsize;
       } else {
@@ -1359,7 +1330,7 @@ namespace COOLL {
     }
 
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       if ( (Nrows()==badsize) || (Ncols()==badsize) )
 	return badsize;
       else
@@ -1420,20 +1391,20 @@ namespace COOLL {
       : a_(a), val_(b)
     { }
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return OP::apply(a_(i), val_);
     }
 
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return a_.Nrows();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return a_.Ncols();
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return a_.size();
     }
 
@@ -1491,19 +1462,19 @@ namespace COOLL {
       :  val_(a), b_(b)
     { }
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return OP::apply(val_, b_(i));
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return b_.Nrows();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return b_.Ncols();
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return b_.size();
     }
 
@@ -1553,19 +1524,19 @@ namespace COOLL {
   public:
     explicit MFuncOp(const A& a) : a_(a) { }
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return FUNC::apply(a_(i));
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return a_.Nrows();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return a_.Ncols();
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return a_.size();
     }
 
@@ -1609,25 +1580,25 @@ namespace COOLL {
   
   private:
     const A& a_;
-    const unsigned int NR_; 
-    const unsigned int NC_;
+    const size_type NR_; 
+    const size_type NC_;
   public:
-    explicit MFuncVec(const A& a, const unsigned int NR, const unsigned int NC) : a_(a), NR_(NR), NC_(NC){ }
+    explicit MFuncVec(const A& a, const size_type NR, const size_type NC) : a_(a), NR_(NR), NC_(NC){ }
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return FUNC::apply(a_[i]);
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return NR_;
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return NC_;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if ( a_.size() != NR_*NC_ ){ 
 	vbad_mcast(debugtxt(), NR_, NC_, a_.size() );
 	outputglossary();
@@ -1675,27 +1646,27 @@ namespace COOLL {
   
   private:
     const A& a_;
-    const unsigned int NR_; 
-    const unsigned int NC_;
+    const size_type NR_; 
+    const size_type NC_;
   
   public:
-    explicit MFuncReshape(const A& a, const unsigned int NR, const unsigned int NC) : a_(a), NR_(NR), NC_(NC){ }
+    explicit MFuncReshape(const A& a, const size_type NR, const size_type NC) : a_(a), NR_(NR), NC_(NC){ }
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return FUNC::apply(a_(i));
     }
 
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return NR_;
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return NC_;
     }
 
-    inline unsigned int size(void) const {
-#ifdef COOLL_CAREFUL
+    inline size_type size(void) const {
+#ifdef Matricks_CAREFUL
       if ( a_.size() != NR_*NC_ ){ 
 	vbad_mcast(debugtxt(), NR_, NC_, a_.size() );
 	outputglossary();

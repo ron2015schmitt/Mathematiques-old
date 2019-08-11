@@ -1,37 +1,3 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
-
 #ifndef VEXPR_H
 #define VEXPR_H
 
@@ -41,15 +7,10 @@
 
 
 
-namespace COOLL {
+namespace Matricks {
 
-
-
-
-
-
-
-
+  template <class A>
+  inline LAvector<size_type> findtrue( const VorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -69,11 +30,11 @@ namespace COOLL {
 
   public:
 
-    inline const D operator[](const unsigned int i) const {
+    inline const D operator[](const size_type i) const {
       return derived()[i];
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return derived().size();
     }
 
@@ -127,9 +88,9 @@ namespace COOLL {
 
   public:
 
-    inline const D operator[](const unsigned int i) const {  
-      const unsigned int index = derived().index(i);
-#ifdef COOLL_CAREFUL
+    inline const D operator[](const size_type i) const {  
+      const size_type index = derived().index(i);
+#ifdef Matricks_CAREFUL
       if (index>=derived().asize()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
@@ -138,9 +99,9 @@ namespace COOLL {
       return derived().data(index);
     }
 
-    inline D& operator[](const unsigned int i) {  
-      const unsigned int index = derived().index(i);
-#ifdef COOLL_CAREFUL
+    inline D& operator[](const size_type i) {  
+      const size_type index = derived().index(i);
+#ifdef Matricks_CAREFUL
       if (index>=derived().asize()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
@@ -149,11 +110,11 @@ namespace COOLL {
       return derived().data(index);
     }
 
-    inline const unsigned int index(void) const {
+    inline size_type index(void) const {
       return derived().index();
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return derived().size();
     }
 
@@ -164,14 +125,14 @@ namespace COOLL {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(unsigned int i=0; i<size(); i++) 
+      for(size_type i=0; i<size(); i++) 
 	(*this)[i]=d; 
       return derived();
     }
     // assign to recon object (issue error)
     DERIVED& equals(const VReconObj<D>& b) { 
-#ifdef COOLL_CAREFUL
-      vbad_reconassignment(a_.objectID(), b);
+#ifdef Matricks_CAREFUL
+      vbad_reconassignment(derived().a_.objectID(), b);
 #endif
       return derived();
     }
@@ -182,9 +143,9 @@ namespace COOLL {
     template <class B>
     DERIVED& equals(const VorE<D,B>& rhs) { 
 
-      const unsigned int N =size();
+      const size_type N =size();
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( size() !=  rhs.size() ){ 
 	vbad_wrapper_assignment(debugtxt(),rhs.debugtxt());
 	outputglossary();
@@ -194,17 +155,17 @@ namespace COOLL {
 #endif
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	LAvector<D> y(N,debugtxt());
 #else
 	LAvector<D> y(N);
 #endif
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = rhs[i]; 
       }
       return derived();
@@ -217,10 +178,10 @@ namespace COOLL {
     template <class B>
     DERIVED& equals(const MorE<D,B>& rhs) {
 
-      const unsigned int N =size();
-#ifdef COOLL_CAREFUL
-      const unsigned int NR = rhs.Nrows();
-      const unsigned int NC = rhs.Ncols();
+      const size_type N =size();
+#ifdef Matricks_CAREFUL
+      const size_type NR = rhs.Nrows();
+      const size_type NC = rhs.Ncols();
       if ( ( N !=  rhs.size() ) 
 	   || ( (NR!=1) && (NC!=1) ) ){ 
 	vbad_wrapper_assignment_mat(derived().debugtxt(),rhs.debugtxt());
@@ -232,16 +193,16 @@ namespace COOLL {
 
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	LAvector<D> y(N,debugtxt());
 #else
 	LAvector<D> y(N);
 #endif
 	y=rhs;
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = rhs(i); 
       }
       return derived();
@@ -284,30 +245,30 @@ namespace COOLL {
   class VRangeObj : public  VWrapperObj<D,VRangeObj<D> > {
   private:
     LAvector<D>& a_;
-    const unsigned int start_;
-    const unsigned int end_;
-    const unsigned int step_;
+    const size_type start_;
+    const size_type end_;
+    const size_type step_;
     const bool increasing_;
 
   public:
-    VRangeObj(LAvector<D>& a, const unsigned int start, const unsigned int end, const int step)
+    VRangeObj(LAvector<D>& a, const size_type start, const size_type end, const int step)
       :   a_(a),  start_(start), end_(end), 
 	  step_((step>=0)?step:-step), 
 	  increasing_((end>=start)?true:false)
     { 
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_[i];
     }
-    inline D& data(unsigned int i) {
+    inline D& data(size_type i) {
       return a_[i];
     }
 
 
     // could improve speed for step=1 and step=-1 by creating a separate
     // function or template class that doesn't include the step multiply
-    inline const unsigned int index(unsigned int i) const{
+    inline size_type index(size_type i) const{
      if (increasing_) 
        return start_ + i * step_;
      else 
@@ -315,14 +276,14 @@ namespace COOLL {
     }
 
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
      if (increasing_) 
        return (end_-start_)/step_ + 1;
      else 
        return (start_-end_)/step_ + 1;      
     }
 
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
 
@@ -377,22 +338,22 @@ namespace COOLL {
   class VSetObj :  public  VWrapperObj<D,VSetObj<D> > {
   private:
     LAvector<D>& a_;
-    const LAvector<unsigned int>& ii_;
+    const LAvector<size_type>& ii_;
 
   public:
-    VSetObj(LAvector<D>& a, const LAvector<unsigned int>& ii)
+    VSetObj(LAvector<D>& a, const LAvector<size_type>& ii)
       : a_(a), ii_(ii)
     { 
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_[i];
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_[i];
     }
 
-    inline const unsigned int index(unsigned int i) const{
+    inline size_type index(size_type i) const{
       return ii_[i];
     }
 
@@ -401,11 +362,11 @@ namespace COOLL {
       return VE_VSetObj;
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return ii_.size();
     }
 
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
 
@@ -456,18 +417,18 @@ namespace COOLL {
   class VMaskObj :  public  VWrapperObj<D,VMaskObj<D> > {
   private:
     LAvector<D>& a_;
-    const LAvector<unsigned int>* ii_;
+    const LAvector<size_type>* ii_;
 
   public:
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     VMaskObj(LAvector<D>& a, const LAvector<bool>& mask)
-      : a_(a), ii_(new LAvector<unsigned int>(findtrue(mask)))
+      : a_(a), ii_(new LAvector<size_type>(findtrue(mask)))
     { 
       //      settext_VMaskObj(*ii_,mask);
     }
 #else
     VMaskObj(LAvector<D>& a, const LAvector<bool>& mask)
-      : a_(a), ii_(new LAvector<unsigned int>(findtrue(mask)))
+      : a_(a), ii_(new LAvector<size_type>(findtrue(mask)))
     { 
     }
 #endif
@@ -477,14 +438,14 @@ namespace COOLL {
       delete  ii_;
     }
 
-    inline const D data(unsigned int i) const{
+    inline const D data(size_type i) const{
       return a_[i];
     }
-    inline  D& data(unsigned int i) {
+    inline  D& data(size_type i) {
       return a_[i];
     }
 
-    inline const unsigned int index(unsigned int i) const{
+    inline size_type index(size_type i) const{
       return (*ii_)[i];
     }
 
@@ -492,11 +453,11 @@ namespace COOLL {
       return VE_VMaskObj;
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return ii_->size();
     }
 
-    inline unsigned int asize(void) const {
+    inline size_type asize(void) const {
       return a_.size();
     }
 
@@ -560,9 +521,9 @@ namespace COOLL {
 
     template <class A>
     LAvector<D>& operator=(const VorE<D,A>& x) { 
-      unsigned int N = x.size();
+      size_type N = x.size();
       
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( N==badsize ){ 
 	vbad_expr_in_reconassignment(a_.objectID(), x);
 	return a_;
@@ -570,7 +531,7 @@ namespace COOLL {
 #endif
       
       if ( x.addrmatch(&a_)) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	LAvector<D> y(N,debugtxt());
 #else
 	LAvector<D> y(N);
@@ -588,7 +549,7 @@ namespace COOLL {
 
     LAvector<D>& operator=(const VReconObj<D>& b) { 
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       vbad_reconassignment(a_.objectID(), b);
 #endif
       return a_;
@@ -638,11 +599,11 @@ namespace COOLL {
     { 
     }
 
-    inline const D operator[](const unsigned int i) const {  
+    inline const D operator[](const size_type i) const {  
       return OP::apply(a_[i], b_[i]); 
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       if ( a_.size() != b_.size() ) {
 	return badsize;
       } else {
@@ -708,11 +669,11 @@ namespace COOLL {
       : a_(a), val_(b)
     { }
 
-    inline const D operator[](const unsigned int i) const { 
+    inline const D operator[](const size_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return a_.size();
     }
 
@@ -771,11 +732,11 @@ namespace COOLL {
       :  val_(a), b_(b)
     { }
 
-    inline const D operator[](const unsigned int i) const { 
+    inline const D operator[](const size_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return b_.size();
     }
 
@@ -827,10 +788,10 @@ namespace COOLL {
     VFuncOp(const A& a) : a_(a) { }
 
 
-    inline const D operator[](const unsigned int i) const
+    inline const D operator[](const size_type i) const
     { return FUNC::apply(a_[i]); }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return a_.size();
     }
 

@@ -1,52 +1,19 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
 
-
-
-
-#ifndef COOLLPRINT_H
-#define COOLLPRINT_H
+#ifndef MATRICKS_PRINT_H
+#define MATRICKS_PRINT_H
 
 
 #include <iostream>
 #include <cstring>
 
-namespace COOLL {
+namespace Matricks {
 
 
   // core functions (internal use only)
 
   //////////////////////////////////////////////////////////////////
   template <typename X>
-  void _printvar(const X a, bool display, char *s, char* pres, char* posts)
+  void _printvar(const X a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "=" ;
@@ -54,14 +21,14 @@ namespace COOLL {
     std::cout << a;
     std::cout << posts;
   }
-  template <typename X, unsigned int N>
-  void _printvar(X (&a)[N], bool display, char *s, char* pres, char* posts)
+  template <typename X, size_type N>
+  void _printvar(X (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "[]=" ;
     std::cout<<pres;
     std::cout << "{ " ;
-    for(unsigned int i = 0; i<N ; i++) {
+    for(size_type i = 0; i<N ; i++) {
       std::cout << (a[i]) ;
       if (i != (N-1)) 
 	std::cout << " ,";
@@ -69,8 +36,8 @@ namespace COOLL {
     std::cout << " } " ;
     std::cout << posts;
   }
-  template <unsigned int N>
-  void _printvar(const char (&a)[N], bool display, char *s, char* pres, char* posts)
+  template <size_type N>
+  void _printvar(const char (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "=" ;
@@ -78,8 +45,8 @@ namespace COOLL {
     std::cout << a;
     std::cout << posts;
   }
-  template <unsigned int N>
-  void _printvar(char (&a)[N], bool display, char *s, char* pres, char* posts)
+  template <size_type N>
+  void _printvar(char (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "=" ;
@@ -90,7 +57,7 @@ namespace COOLL {
 
  
   template <typename D>
-  void _printvar(const Matrix<D>& a, bool display, char *s, char* pres, char* posts)
+  void _printvar(const Matrix<D>& a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "=" ;
@@ -99,7 +66,7 @@ namespace COOLL {
     std::cout << posts;
   }
   template <typename A, typename D>
-  void _printvar(const Mexpr<D,A>& exp, bool display, char *s, char* pres, char* posts)
+  void _printvar(const Mexpr<D,A>& exp, bool display, char const *s, char const *pres, char const *posts)
   {
     Matrix<D> a = exp;
     if (display)
@@ -110,7 +77,7 @@ namespace COOLL {
   }
 
   template <typename D>
-  void _printvar(const LAvector<D>& a, bool display, char *s, char* pres, char* posts)
+  void _printvar(const LAvector<D>& a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "=" ;
@@ -119,7 +86,7 @@ namespace COOLL {
     std::cout << posts;
   }
   template <typename A, typename D>
-  void _printvar(const Vexpr<D,A>& exp, bool display, char *s, char* pres, char* posts)
+  void _printvar(const Vexpr<D,A>& exp, bool display, char const *s, char const *pres, char const *posts)
   {
     LAvector<D> a = exp;
     if (display)
@@ -132,7 +99,7 @@ namespace COOLL {
 
 
   template <typename X>
-  void _printarray(const X *const a,  bool display, char *s,int start, int end, char *ending)
+  void _printarray(const X *const a,  bool display, char const *s,int start, int end, char const *ending)
   {
     int i;
     X temp;
@@ -142,7 +109,7 @@ namespace COOLL {
       temp = a[i];
       std::cout << temp ;
       if (i != end) 
-	cout << ",";
+	std::cout << ",";
     }
     std::cout <<ending;
   }

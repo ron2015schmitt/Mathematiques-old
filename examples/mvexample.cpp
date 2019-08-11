@@ -1,10 +1,10 @@
 
 // flag for run-time bounds and size checking
-#define COOLL_CAREFUL
+#define MATRICKS_CAREFUL
 
 
-#include "cooll.hpp"
-using namespace COOLL;
+#include "matricks.hpp"
+using namespace Matricks;
 
 #include <iostream>
 using namespace std;

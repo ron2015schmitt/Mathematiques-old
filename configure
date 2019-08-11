@@ -3,12 +3,12 @@
 
 # place the current path into the Makefiles
 temp=`pwd | sed -e 's/\//\\\\\//g'`
-sed -e "s/#COOLLDIR#/$temp/g" MakefileTemplate > Makefile
-sed -e "s/#COOLLDIR#/$temp/g" SampleMakefileTemplate > examples/SampleMakefile
+sed -e "s/#MATRICKS_DIR#/$temp/g" MakefileTemplate > Makefile
+sed -e "s/#MATRICKS_DIR#/$temp/g" SampleMakefileTemplate > examples/SampleMakefile
 
 
-# make the object file library (libcooll.a)
-make libcooll
+# make the object file library (libmatricks.a)
+make libmatricks
 
 
 

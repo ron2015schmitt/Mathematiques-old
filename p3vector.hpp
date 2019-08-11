@@ -1,60 +1,25 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
-
 
 #ifndef P3VECTOR_H
-
 #define P3VECTOR_H
 
 
-
 #include <iostream>
+#include <iomanip>
 #include <cstring>
 #include <cmath>
 #include <vector>
 
-namespace COOLL {
+namespace Matricks {
 
   class p3vectorformat {
   private:
     static TextFormat textformat_;
-    static unsigned int width_;  
+    static size_type width_;  
   public:
     static TextFormat textformat(void);
     static TextFormat textformat(const TextFormat newformat);
-    static unsigned int width(void);
-    static unsigned int width(const unsigned int newwidth);
+    static size_type width(void);
+    static size_type width(const size_type newwidth);
 
   };
 
@@ -142,9 +107,9 @@ namespace COOLL {
       return(data_[2]);
     }
     inline  const D operator[](const int i)const  {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ((i<0) || (i>2)) {
-	cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
+	std::cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
 	return D();
       }
 #endif
@@ -152,9 +117,9 @@ namespace COOLL {
     }
 
     inline  D &operator[](const int i) {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ((i<0) || (i>2)) {
-	cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
+	std::cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
 	return data_[0];
       }
 #endif
@@ -177,11 +142,11 @@ namespace COOLL {
       return vaddr==static_cast<const void*>(this);
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return 3;
     }
 
-    unsigned int objectID(void) const { 
+    size_type objectID(void) const { 
       return 0;
     }
 
@@ -275,23 +240,23 @@ namespace COOLL {
 
 
     inline friend std::ostream &operator<<(std::ostream &stream, const p3vector v) {
-      const unsigned int w = p3vectorformat::width();
+      const size_type w = p3vectorformat::width();
       std::string sep ="";
       switch (p3vectorformat::textformat()) {
       case text_braces:
 	stream << "{";
-	stream << setw(w)<<v[0] << ",";
-	stream <<  setw(w)<< v[1] << ",";
-	stream <<  setw(w)<< v[2] << "}";
+	stream << std::setw(w)<<v[0] << ",";
+	stream <<  std::setw(w)<< v[1] << ",";
+	stream <<  std::setw(w)<< v[2] << "}";
 	break;
       case text_nobraces:
 	if (w==0)
 	  sep = " ";
 	else
 	  sep="";
-	stream << setw(w)<<v[0] << sep;
-	stream <<  setw(w)<< v[1] << sep;
-	stream <<  setw(w)<< v[2] <<sep;
+	stream << std::setw(w)<<v[0] << sep;
+	stream <<  std::setw(w)<< v[1] << sep;
+	stream <<  std::setw(w)<< v[2] <<sep;
 	break;
       default:
 	break;
@@ -311,12 +276,12 @@ namespace COOLL {
     // stream >> operator
 
     friend std::istream& operator>>(std::istream& stream,  p3vector& x) {	
-      const unsigned int LINESZ = 32768;
+      const size_type LINESZ = 32768;
       char line[LINESZ];
       std::vector<D> v;
-      unsigned int N = 0;
+      size_type N = 0;
       D temp;
-      unsigned int Nlines = 0;
+      size_type Nlines = 0;
       std::istringstream strmline;
 
       switch (p3vectorformat::textformat()) {
@@ -331,7 +296,7 @@ namespace COOLL {
 	    strmline.str(line);
 	
 	    char c;
-	    unsigned int Nchars=0;
+	    size_type Nchars=0;
 	    while((state!=end) && strmline.get(c) ){
 	      Nchars++;
 	      if (isspace(c))
@@ -409,7 +374,7 @@ namespace COOLL {
 	    strmline.clear();
 	    strmline.str(line);
 	    char c;
-	    unsigned int Nchars=0;
+	    size_type Nchars=0;
 	    while((N<3) && strmline.get(c) ){
 	      Nchars++;
 	      std::string stemp = strmline.str();
@@ -444,7 +409,7 @@ namespace COOLL {
 	break;
       } //switch
 
-      for(unsigned int i=0; i<N; i++)
+      for(size_type i=0; i<N; i++)
 	x[i] = v[i];
       
       return restore_stream(stream,strmline);
@@ -535,7 +500,7 @@ namespace COOLL {
 
 
 
-}; //namespcae COOLL
+}; //namespcae Matricks
 
 
 #endif // p3vector_H

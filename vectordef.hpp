@@ -1,40 +1,9 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
 #ifndef VECTORDEF_H
 #define VECTORDEF_H 1
 
 #include <typeinfo>
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <complex>
 #include <valarray>
@@ -45,7 +14,7 @@
 
 
 
-namespace COOLL {
+namespace Matricks {
 
   template <class D> void sort(LAvector<D>& a );
 
@@ -58,11 +27,11 @@ namespace COOLL {
   private:
     // *********************** OBJECT DATA ***********************************
     int objectID_;
-    unsigned int perline_;
-    unsigned int width_;   // for display
+    size_type perline_;
+    size_type width_;   // for display
     TextFormat textformat_;
     std::valarray<D>* data_;
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     D dummy_;
 #else
     mutable std::string name_;
@@ -76,9 +45,9 @@ namespace COOLL {
 
     // ************************** CONSTRUCTOR **********************************
 
-    explicit LAvector<D>(const unsigned int n, const std::string name = "") { 
+    explicit LAvector<D>(const size_type n, const std::string name = "") { 
 
-      unsigned int N;
+      size_type N;
       if (n>maxsize) 
 	N=0;
       else 
@@ -91,10 +60,10 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = CoollDirectory::addvector(name, classname(), datatype(), size());
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
 
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -107,9 +76,9 @@ namespace COOLL {
 
     explicit LAvector<D>(const std::string name = "") { 
       
-      unsigned int n=0;
+      size_type n=0;
 
-      unsigned int N;
+      size_type N;
       if (n>maxsize) 
 	N=0;
       else 
@@ -122,10 +91,10 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = CoollDirectory::addvector(name, classname(), datatype(), size());
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
 
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -136,9 +105,9 @@ namespace COOLL {
 
     // ************************** CONSTANT INIT CONSTRUCTOR **********************************
 
-    explicit LAvector<D>(const unsigned int n, const D val, const std::string name="") { 
+    explicit LAvector<D>(const size_type n, const D val, const std::string name="") { 
       
-      unsigned int N;
+      size_type N;
       if (n>maxsize) 
 	N=0;
       else 
@@ -151,10 +120,10 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = CoollDirectory::addvector(name, classname(), datatype(), size());
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
       
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -171,8 +140,8 @@ namespace COOLL {
     // ************************** COPY CONSTRUCTOR *******************************
 
     LAvector<D>(const LAvector<D>& v2, const std::string name = "") {
-      const unsigned int n = v2.size();
-      unsigned int N;
+      const size_type n = v2.size();
+      size_type N;
       if (n>maxsize) 
 	N=0;
       else 
@@ -185,14 +154,14 @@ namespace COOLL {
       width_ = v2.width();
       textformat_= v2.textformat();
       
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       dummy_ = D();
       std::string name2 = name;
       if (name == "") {
 	name2 = "("+v2.debugtxt()+")";
-	objectID_ = CoollDirectory::addvector(name2, classname(), datatype(), size(), false);
+	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
       }else {
-	objectID_ = CoollDirectory::addvector(name2, classname(), datatype(), size());
+	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size());
       }
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -210,8 +179,8 @@ namespace COOLL {
 
     template <class A>
     LAvector<D>(const Vexpr<D,A>& x, const std::string name = "") {
-      const unsigned int n = x.size();
-      unsigned int N;
+      const size_type n = x.size();
+      size_type N;
       if (n>maxsize) 
 	N=0;
       else 
@@ -223,14 +192,14 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       dummy_ = D();
       std::string name2 = name;
       if (name == "") {
 	name2 = x.debugtxt();
-	objectID_ = CoollDirectory::addvector(name2, classname(), datatype(), size(), false);
+	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
       }else {
-	objectID_ = CoollDirectory::addvector(name2, classname(), datatype(), size());
+	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size());
       }
 
       if (n>maxsize) 
@@ -250,8 +219,8 @@ namespace COOLL {
       delete  data_ ;
 
       //remove from directory
-#ifdef COOLL_CAREFUL
-      CoollDirectory::removevector(objectID_);
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::removevector(objectID_);
 #endif
     }
   
@@ -269,10 +238,10 @@ namespace COOLL {
 
     // *** resize from given integer *** 
 
-    LAvector<D>&  resize(const unsigned int n) { 
+    LAvector<D>&  resize(const size_type n) { 
       if (n==this->size())
 	return *this;
-      unsigned int N;
+      size_type N;
       if (n>maxsize) 
 	N=0;
       else 
@@ -282,9 +251,9 @@ namespace COOLL {
       data_ = new std::valarray<D>(N); 
       perline_ = N+1;
       width_ = 0;
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       // update the directory
-      CoollDirectory::vchange_size(objectID_,N);
+      MatricksObjectPool::vchange_size(objectID_,N);
       if (n>maxsize) 
 	vbad_size(objectID_, n);
 #endif      
@@ -299,9 +268,9 @@ namespace COOLL {
     // ************************* ELEMENT ACCESS *********************************
 
     // "read/write" access
-    inline D& operator[](const unsigned int i)  {
+    inline D& operator[](const size_type i)  {
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if (i>=size()) {
 	vout_of_bounds(objectID_,i);
 	return dummy_; 
@@ -313,9 +282,9 @@ namespace COOLL {
 
 
     // "read only" access
-    inline const D operator[](const unsigned int i) const {
+    inline const D operator[](const size_type i) const {
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if (i>=size())  {
 	vout_of_bounds(objectID_,i);
 	return D(); 
@@ -341,10 +310,10 @@ namespace COOLL {
 
     // Accessing a SET of values 
 
-    const VSetObj<D> operator[](const LAvector<unsigned int>& ii) const {
+    const VSetObj<D> operator[](const LAvector<size_type>& ii) const {
       return VSetObj<D>(*this, ii);
     }
-    VSetObj<D> operator[](const LAvector<unsigned int>& ii) {
+    VSetObj<D> operator[](const LAvector<size_type>& ii) {
       return VSetObj<D>(*this, ii);
     }
 
@@ -352,7 +321,7 @@ namespace COOLL {
     // Accessing a SET of values using a MASK
     
     VMaskObj<D> operator[](const LAvector<bool>& mask)  {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
@@ -360,7 +329,7 @@ namespace COOLL {
       return  VMaskObj<D>(*this,mask);
     }
     const VMaskObj<D> operator[](const LAvector<bool>& mask)  const {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
@@ -373,25 +342,25 @@ namespace COOLL {
 
     // ************************** ATTRIBUTE ACCESS ********************************
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return data_->size();
     }
 
-    unsigned int objectID(void) const { 
+    size_type objectID(void) const { 
       return objectID_;
     }
 
-    unsigned int perline(const unsigned int Nline)  { 
+    size_type perline(const size_type Nline)  { 
       return (perline_=Nline);
     }
-    const unsigned int perline(void)  const { 
+    size_type perline(void)  const { 
       return perline_;
     }
 
-    unsigned int width(const unsigned int w)  { 
+    size_type width(const size_type w)  { 
       return (width_=w);
     }
-    const unsigned int width(void)  const { 
+    size_type width(void)  const { 
       return width_;
     }
 
@@ -436,7 +405,7 @@ namespace COOLL {
 
     // Assignment to a vector expression
     template <class A>  LAvector<D>& equals(const Vexpr<D,A>& x) {  
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       std::string s1 = debugtxt();
       std::string s2 = x.debugtxt();
       if ( vexpr_is_size_bad(x) ){ 
@@ -455,7 +424,7 @@ namespace COOLL {
       resize(x.size());
 
       if (x.mustcopy(this)) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	LAvector<D> vtemp(size(),x.debugtxt());
 #else
 	LAvector<D> vtemp(size());
@@ -479,7 +448,7 @@ namespace COOLL {
     // Copy asignment
     LAvector<D>& equals(const LAvector<D>& v2) {
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( (size()>0) && ( size() !=  v2.size() ) ){ 
 	vbad_assignment_warning(objectID(),v2.objectID());
       } else if (size() !=  v2.size() ){
@@ -491,7 +460,7 @@ namespace COOLL {
       // resize to avoid segmentation faults
       resize(v2.size());
 
-      for(register unsigned int i=size(); i--;)
+      for(register size_type i=size(); i--;)
 	(*data_)[i] = v2[i];    
       return *this;
     }
@@ -506,9 +475,9 @@ namespace COOLL {
     template <class A>
     LAvector<D>& operator=(const MorE<D,A>& m) {
 
-#ifdef COOLL_CAREFUL
-      const unsigned int NR = m.Nrows();
-      const unsigned int NC = m.Ncols();
+#ifdef Matricks_CAREFUL
+      const size_type NR = m.Nrows();
+      const size_type NC = m.Ncols();
       if ( size() !=  m.size() ){ 
 	vbad_assignment_mat(objectID(),NR,NC);
 	return *this;
@@ -518,7 +487,7 @@ namespace COOLL {
 	return *this;
       }
 #endif
-      for(register unsigned int i=size(); i--;)
+      for(register size_type i=size(); i--;)
 	(*data_)[i] = m(i);    
       return *this;
     }
@@ -527,8 +496,8 @@ namespace COOLL {
 
     template <class B>
     LAvector<D>& operator=(const VReconObj<D>& b) { 
-#ifdef COOLL_CAREFUL
-      vbad_reconassignment(a_.objectID(), b);
+#ifdef Matricks_CAREFUL
+      vbad_reconassignment(objectID(), b);
 #endif
       return *this;
     }
@@ -547,8 +516,8 @@ namespace COOLL {
     }
 
     std::string debugtxt(void) const {
-#ifdef COOLL_CAREFUL
-      return CoollDirectory::vectorname(objectID_); 
+#ifdef Matricks_CAREFUL
+      return MatricksObjectPool::vectorname(objectID_); 
 #else
       return name_;
 #endif
@@ -556,16 +525,16 @@ namespace COOLL {
 
     void debugtxt(const char* newname) const {
       std::string s = newname;
-#ifdef COOLL_CAREFUL
-      CoollDirectory::vchange_name(objectID_,s); 
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::vchange_name(objectID_,s); 
 #else
       name_=s;
 #endif
     }
 
     void debugtxt(const std::string newname) const {
-#ifdef COOLL_CAREFUL
-      CoollDirectory::vchange_name(objectID_,newname); 
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::vchange_name(objectID_,newname); 
 #else
       name_=name;
 #endif
@@ -590,8 +559,8 @@ namespace COOLL {
     }
 
     void outputglossary(void) const {
-#ifdef COOLL_CAREFUL
-      CoollDirectory::voutputglossary(objectID_);
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::voutputglossary(objectID_);
 #endif
     }
 
@@ -599,16 +568,16 @@ namespace COOLL {
 
     friend std::ostream& operator<<(std::ostream &stream, const LAvector<D>& v) {
 
-      const unsigned int N = v.size();
-      const unsigned int w = v.width();
+      const size_type N = v.size();
+      const size_type w = v.width();
 
       switch (v.textformat()) {
       case text_braces:
 	stream <<"{";
-	for(unsigned int i=0; i < N; i++) {
+	for(size_type i=0; i < N; i++) {
 	  if ( (i>0) && ((i%v.perline()) == 0 ) )
 	    stream <<std::endl << " ";
-	  stream <<setw(w)<< v[i];
+	  stream <<std::setw(w)<< v[i];
 	  if (i< (N-1))
 	    stream << ",";
 	}
@@ -620,10 +589,10 @@ namespace COOLL {
 	  sep = " ";
 	else
 	  sep="";
-	for(unsigned int i=0; i < N; i++) {
+	for(size_type i=0; i < N; i++) {
 	  if ( (i>0) && ((i%v.perline()) == 0 ) )
 	    stream <<std::endl;
-	  stream <<setw(w)<< v[i] << sep;
+	  stream <<std::setw(w)<< v[i] << sep;
 	}
 	break;
       }
@@ -641,13 +610,13 @@ return (st >> x);
     // stream >> operator
 
     friend std::istream& operator>>(std::istream& stream,  LAvector<D>& x) {	
-      const unsigned int LINESZ = 32768;
+      const size_type LINESZ = 32768;
       char line[LINESZ];
       std::vector<D> v;
-      unsigned int N = 0;
-      const unsigned int Nold = x.size();
+      size_type N = 0;
+      const size_type Nold = x.size();
       D temp;
-      unsigned int Nlines = 0;
+      size_type Nlines = 0;
       std::istringstream strmline;
 
       switch (x.textformat()) {
@@ -662,7 +631,7 @@ return (st >> x);
 	    strmline.str(line);
 	
 	    char c;
-	    unsigned int Nchars=0;
+	    size_type Nchars=0;
 	    while((state!=end) && strmline.get(c) ){
 	      Nchars++;
 	      if (isspace(c))
@@ -743,7 +712,7 @@ return (st >> x);
 	      strmline.clear();
 	      strmline.str(line);
 	      char c;
-	      unsigned int Nchars=0;
+	      size_type Nchars=0;
 	      while(strmline.get(c)){
 		Nchars++;
 		if (isspace(c))
@@ -771,7 +740,7 @@ return (st >> x);
 	      strmline.clear();
 	      strmline.str(line);
 	      char c;
-	      unsigned int Nchars=0;
+	      size_type Nchars=0;
 	      while((N<Nold) && strmline.get(c) ){
 		Nchars++;
 		std::string stemp = strmline.str();
@@ -806,7 +775,7 @@ return (st >> x);
 	break;
       } //switch
 
-      for(unsigned int i=0; i<N; i++)
+      for(size_type i=0; i<N; i++)
 	x[i] = v[i];
       
       return restore_stream(stream,strmline);
@@ -843,24 +812,12 @@ return (st >> x);
 
 
 
-
-
-  // The Range generating function (step by +/-1)
-
-  template <class D>
-  inline LAvector<D> range(D start, D end) {
-    if (end >= start)
-      return range<D>(start,end,static_cast<D>(1));
-    else 
-      return range<D>(start,end,static_cast<D>(-1));
-  }
-
   // The Range generating function (with step given)
 
   template <class D>
   inline LAvector<D> range(D start, D end, D step) {
     // determine size
-    unsigned int N = 0;
+    size_type N = 0;
     if (step > 0) {
       for (D x =start; x<=end; x +=step)
 	N +=1;
@@ -868,7 +825,7 @@ return (st >> x);
       for (D x =start; x>=end; x +=step) 
 	N +=1;
     }
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::ostringstream stream;
     stream << "range(" <<start<<","<<end<<","<<step<<")";
     LAvector<D> y(N,stream.str());
@@ -881,11 +838,23 @@ return (st >> x);
 #endif
     
     y[0] = start;
-    for (unsigned int i =1; i<N; i++)
+    for (size_type i =1; i<N; i++)
       y[i] = y[i-1] + step;
     
     return y;
   }
+
+
+  // The Range generating function (step by +/-1)
+
+  template <class D>
+  inline LAvector<D> range(D start, D end) {
+    if (end >= start)
+      return range<D>(start,end,static_cast<D>(1));
+    else 
+      return range<D>(start,end,static_cast<D>(-1));
+  }
+
 
 
 
@@ -893,8 +862,8 @@ return (st >> x);
   // linspace function
 
   template <class D>
-  inline LAvector<D> linspace(D start, D end, unsigned int N) {
-#ifdef COOLL_CAREFUL
+  inline LAvector<D> linspace(D start, D end, size_type N) {
+#ifdef Matricks_CAREFUL
     std::ostringstream stream;
     stream << "linspace(" <<start<<","<<end<<","<<N<<")";
     std::string s = stream.str();
@@ -904,7 +873,7 @@ return (st >> x);
 #endif
 
     // checking, ala make_string type and give error here if not: float, double or extended
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (N<2) {
       vbadlinspace<D>(start,end,N);
       return y;
@@ -914,7 +883,7 @@ return (st >> x);
     const D step = (end-start)/static_cast<D>(N-1);
 
     y[0] = start;
-    for(unsigned int i = 1; i<(N-1); i++) 
+    for(size_type i = 1; i<(N-1); i++) 
       y[i] = start + static_cast<D>(i)*step;
     y[N-1] = end;
     return y;

@@ -1,40 +1,10 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-//#include "debug.hpp"
 
 
 
-#ifndef MATRIXDEF_H
-#define MATRIXDEF_H 1
+
+#ifndef MATRIX_H
+#define MATRIX_H
+
 
 #include <typeinfo>
 #include <fstream>
@@ -49,7 +19,7 @@
 
 
 
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -66,13 +36,13 @@ namespace COOLL {
     // *********************** OBJECT DATA ***********************************
 
     int objectID_;
-    unsigned int Nrows_;
-    unsigned int Ncols_;
-    unsigned int perline_; // for display
-    unsigned int width_;   // for display
+    size_type Nrows_;
+    size_type Ncols_;
+    size_type perline_; // for display
+    size_type width_;   // for display
     TextFormat textformat_;
     std::valarray<D>* data_;
-#ifndef COOLL_CAREFUL
+#ifndef Matricks_CAREFUL
     mutable std::string name_;
 #endif
 
@@ -80,9 +50,9 @@ namespace COOLL {
 
     // ************************** CONSTRUCTOR **********************************
 
-    explicit Matrix<D>(const unsigned int NR, const unsigned int NC, const std::string name = "") {
+    explicit Matrix<D>(const size_type NR, const size_type NC, const std::string name = "") {
       // allocate store
-      unsigned int N = NR*NC;
+      size_type N = NR*NC;
       bool bad=false;
       double Ncheck = double(NR)*double(NC);
       if (Ncheck>double(maxsize)) {
@@ -104,8 +74,8 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef COOLL_CAREFUL
-      objectID_ = CoollDirectory::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
+#ifdef Matricks_CAREFUL
+      objectID_ = MatricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
 #else
@@ -117,11 +87,11 @@ namespace COOLL {
     // ****************** DEFAULT CONSTRUCTOR **********************************
 
     explicit Matrix<D>(const std::string name = "") {
-      unsigned int NR=0;
-      unsigned int NC=0;
+      size_type NR=0;
+      size_type NC=0;
 
       // allocate store
-      unsigned int N = NR*NC;
+      size_type N = NR*NC;
       bool bad=false;
       double Ncheck = double(NR)*double(NC);
       if (Ncheck>double(maxsize)) {
@@ -143,8 +113,8 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef COOLL_CAREFUL
-      objectID_ = CoollDirectory::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
+#ifdef Matricks_CAREFUL
+      objectID_ = MatricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
 #else
@@ -159,9 +129,9 @@ namespace COOLL {
 
     Matrix<D>(const Matrix<D>& m2, const std::string name = "") {
       // allocate store
-      const unsigned int NR = m2.Nrows();
-      const unsigned int NC = m2.Ncols();
-      unsigned int N = NR*NC;
+      const size_type NR = m2.Nrows();
+      const size_type NC = m2.Ncols();
+      size_type N = NR*NC;
       bool bad=false;
       double Ncheck = double(NR)*double(NC);
       if (Ncheck>double(maxsize)) {
@@ -180,13 +150,13 @@ namespace COOLL {
       width_ = m2.width();
       textformat_=m2.textformat();
       
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       std::string name2 = name;
       if (name == "") {
 	name2 = "("+m2.debugtxt()+")";
-	objectID_ = CoollDirectory::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
+	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
       } else {
-	objectID_ = CoollDirectory::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
+	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
       }
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -206,9 +176,9 @@ namespace COOLL {
     Matrix<D>(const Mexpr<D,A>& x, const std::string name = "") {
 
       // allocate store
-      const unsigned int NR = x.Nrows();
-      const unsigned int NC = x.Ncols();
-      unsigned int N = NR*NC;
+      const size_type NR = x.Nrows();
+      const size_type NC = x.Ncols();
+      size_type N = NR*NC;
       bool bad=false;
       double Ncheck = double(NR)*double(NC);
       if (Ncheck>double(maxsize)) {
@@ -227,13 +197,13 @@ namespace COOLL {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       std::string name2 = name;
       if (name == "") {
 	name2 = x.debugtxt();
-	objectID_ = CoollDirectory::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
+	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
       } else {
-	objectID_ = CoollDirectory::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
+	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
       }
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -253,8 +223,8 @@ namespace COOLL {
     ~Matrix<D>() {
       delete  data_ ;
 
-#ifdef COOLL_CAREFUL
-      CoollDirectory::removematrix(objectID_);
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::removematrix(objectID_);
 #endif
     }
 
@@ -271,13 +241,13 @@ namespace COOLL {
 
     // *** resize from given size *** 
 
-    Matrix<D>&  resize(const unsigned int NR, const unsigned int NC) { 
+    Matrix<D>&  resize(const size_type NR, const size_type NC) { 
 
       if (NR==this->Nrows() && NC==this->Ncols())
 	return *this;
 
       // allocate store
-      unsigned int N = NR*NC;
+      size_type N = NR*NC;
       bool bad=false;
       double Ncheck = double(NR)*double(NC);
       if (Ncheck>double(maxsize)) {
@@ -297,8 +267,8 @@ namespace COOLL {
       data_ = new std::valarray<D>(N); 
       perline_ = Ncols_;
       width_ = 0;
-#ifdef COOLL_CAREFUL
-      CoollDirectory::mchange_size(objectID_,Nrows_,Ncols_);
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
 #endif
@@ -314,10 +284,10 @@ namespace COOLL {
     // reshape(matrix,nr,nc)
     // the new matrix has teh same # of entries but has different number of rows/columns
     // data is left unchanged
-    Matrix<D>&  reshape(const unsigned int nr, const unsigned int nc) { 
+    Matrix<D>&  reshape(const size_type nr, const size_type nc) { 
 
-      const unsigned int nn = nr*nc;
-#ifdef COOLL_CAREFUL
+      const size_type nn = nr*nc;
+#ifdef Matricks_CAREFUL
       if (nn!=size()) {
 	mbad_reshape(objectID_,nr,nc,Nrows_,Ncols_);
 	return *this;
@@ -333,8 +303,8 @@ namespace COOLL {
       }
       perline_ = Ncols_;
       width_ = 0;
-#ifdef COOLL_CAREFUL
-      CoollDirectory::mchange_size(objectID_,Nrows_,Ncols_);
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
 #endif      
       return *this;
     }
@@ -471,8 +441,8 @@ namespace COOLL {
 
 
 
-    inline D& operator()(const unsigned int i)  {
-#ifdef COOLL_CAREFUL
+    inline D& operator()(const size_type i)  {
+#ifdef Matricks_CAREFUL
       if (i>=size()) {
 	mout_of_bounds(objectID_, i);
 	return (*data_)[0]; 
@@ -482,8 +452,8 @@ namespace COOLL {
     }
 
 
-    inline const D operator()(const unsigned int i) const {
-#ifdef COOLL_CAREFUL
+    inline const D operator()(const size_type i) const {
+#ifdef Matricks_CAREFUL
       if (i>=size()) {
 	mout_of_bounds(objectID_, i);
 	return 0;
@@ -510,24 +480,24 @@ namespace COOLL {
 
     // Accessing a SET of values 
 
-    const MSetObj<D> operator()(const LAvector<unsigned int>& ii) const {
+    const MSetObj<D> operator()(const LAvector<size_type>& ii) const {
       return MSetObj<D>(*this, ii);
     }
-    MSetObj<D> operator()(const LAvector<unsigned int>& ii) {
+    MSetObj<D> operator()(const LAvector<size_type>& ii) {
       return MSetObj<D>(*this, ii);
     }
 
     // Accessing a SET of values using a subscript matrix
 
-    const MSetObj<D> operator()(const Matrix<unsigned int>& subs) const {
-#ifdef COOLL_CAREFUL
+    const MSetObj<D> operator()(const Matrix<size_type>& subs) const {
+#ifdef Matricks_CAREFUL
       if ( subs.Ncols()!= 2 ) 
 	mbad_subsmatrix(objectID_,subs);
 #endif    
       return MSetObj<D>(*this, subs );
     }
-    MSetObj<D> operator()(const Matrix<unsigned int>& subs)  {
-#ifdef COOLL_CAREFUL
+    MSetObj<D> operator()(const Matrix<size_type>& subs)  {
+#ifdef Matricks_CAREFUL
       if ( subs.Ncols()!= 2 ) 
 	mbad_subsmatrix(objectID_,subs);
 #endif    
@@ -538,7 +508,7 @@ namespace COOLL {
     // Accessing a SET of values using a Matrix MASK
     
     MSetObj<D> operator()(const Matrix<bool>& mask)  {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( (size()!=mask.size()) || (Nrows()!=mask.Nrows()) || (Ncols()!=mask.Ncols()) ) {
 	mbad_mask(objectID_,mask);
       }
@@ -546,7 +516,7 @@ namespace COOLL {
       return  MSetObj<D>(*this,mask);
     }
     const MSetObj<D> operator()(const Matrix<bool>& mask)  const {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( (size()!=mask.size()) || (Nrows()!=mask.Nrows()) || (Ncols()!=mask.Ncols()) ) {
 	mbad_mask(objectID_,mask);
       }
@@ -558,7 +528,7 @@ namespace COOLL {
     // Accessing a SET of values using a vector MASK
     
     MSetObj<D> operator()(const LAvector<bool>& mask)  {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( size()!=mask.size() ) {
 	mbad_maskv(objectID_,mask);
       }
@@ -566,7 +536,7 @@ namespace COOLL {
       return  MSetObj<D>(*this,mask);
     }
     const MSetObj<D> operator()(const LAvector<bool>& mask) const  {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( size()!=mask.size() ) {
 	mbad_maskv(objectID_,mask);
       }
@@ -577,8 +547,8 @@ namespace COOLL {
 
     // ************************* (ROW,COL) INDEX ELEMENT ACCESS **************************
 
-    inline const unsigned int index(const unsigned int r, const unsigned int c) const {
-#ifdef COOLL_CAREFUL
+    inline size_type index(const size_type r, const size_type c) const {
+#ifdef Matricks_CAREFUL
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
 	return size()+1;
@@ -587,8 +557,8 @@ namespace COOLL {
       return c + Ncols_*r;
     }
 
-    inline D& operator()(const unsigned int r, const unsigned int c) {
-#ifdef COOLL_CAREFUL
+    inline D& operator()(const size_type r, const size_type c) {
+#ifdef Matricks_CAREFUL
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
 	return (*data_)[0]; 
@@ -597,8 +567,8 @@ namespace COOLL {
       return (*data_)[c + Ncols_*r]; 
     }
 
-    inline const D operator()(const unsigned int r, const unsigned int c) const {
-#ifdef COOLL_CAREFUL
+    inline const D operator()(const size_type r, const size_type c) const {
+#ifdef Matricks_CAREFUL
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
 	return 0; 
@@ -610,28 +580,28 @@ namespace COOLL {
 
     // Accessing a (set,set)
 
-    const MDualSetObj<D> operator()(const LAvector<unsigned int>& ii, const LAvector<unsigned int>& jj) const {
+    const MDualSetObj<D> operator()(const LAvector<size_type>& ii, const LAvector<size_type>& jj) const {
       return MDualSetObj<D>(*this, ii, jj);
     }
-    MDualSetObj<D> operator()(const LAvector<unsigned int>& ii, const LAvector<unsigned int>& jj)  {
+    MDualSetObj<D> operator()(const LAvector<size_type>& ii, const LAvector<size_type>& jj)  {
       return MDualSetObj<D>(*this, ii, jj);
     }
 
     // Accessing a (set,integer) 
 
-    const MDualSetObj<D> operator()(const LAvector<unsigned int>& ii, const unsigned int j) const {
+    const MDualSetObj<D> operator()(const LAvector<size_type>& ii, const size_type j) const {
       return MDualSetObj<D>(*this, ii, j);
     }
-    MDualSetObj<D> operator()(const LAvector<unsigned int>& ii, const unsigned int j)  {
+    MDualSetObj<D> operator()(const LAvector<size_type>& ii, const size_type j)  {
       return MDualSetObj<D>(*this, ii, j);
     }
 
     // Accessing a (integer,set) 
 
-    const MDualSetObj<D> operator()(const unsigned int i, const LAvector<unsigned int>& jj) const {
+    const MDualSetObj<D> operator()(const size_type i, const LAvector<size_type>& jj) const {
       return MDualSetObj<D>(*this, i,jj);
     }
-    MDualSetObj<D> operator()(const unsigned int i, const LAvector<unsigned int>& jj)  {
+    MDualSetObj<D> operator()(const size_type i, const LAvector<size_type>& jj)  {
       return MDualSetObj<D>(*this, i,jj);
     }
 
@@ -646,35 +616,35 @@ namespace COOLL {
 
     // Accessing  (set,seq)
 
-    const MSetRangeObj<D> operator()(const LAvector<unsigned int>& ii, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const LAvector<size_type>& ii, const seq& jj) const {
       return MSetRangeObj<D>(*this, ii, jj);
     }
-    MSetRangeObj<D> operator()(const LAvector<unsigned int>& ii, const seq& jj)  {
+    MSetRangeObj<D> operator()(const LAvector<size_type>& ii, const seq& jj)  {
       return MSetRangeObj<D>(*this, ii, jj);
     }
     // Accessing  (seq,set)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const LAvector<unsigned int>& jj) const {
+    const MRangeSetObj<D> operator()(const seq& ii, const LAvector<size_type>& jj) const {
       return MRangeSetObj<D>(*this, ii, jj);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const LAvector<unsigned int>& jj)  {
+    MRangeSetObj<D> operator()(const seq& ii, const LAvector<size_type>& jj)  {
       return MRangeSetObj<D>(*this, ii, jj);
     }
 
     // Accessing  (integer,seq)
 
-    const MSetRangeObj<D> operator()(const unsigned int i, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const size_type i, const seq& jj) const {
       return MSetRangeObj<D>(*this, i, jj);
     }
-    MSetRangeObj<D> operator()(const unsigned int i, const seq& jj)  {
+    MSetRangeObj<D> operator()(const size_type i, const seq& jj)  {
       return MSetRangeObj<D>(*this, i, jj);
     }
     // Accessing  (seq,integer)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const unsigned int j) const {
+    const MRangeSetObj<D> operator()(const seq& ii, const size_type j) const {
       return MRangeSetObj<D>(*this, ii, j);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const unsigned int j)  {
+    MRangeSetObj<D> operator()(const seq& ii, const size_type j)  {
       return MRangeSetObj<D>(*this, ii, j);
     }
 
@@ -685,33 +655,33 @@ namespace COOLL {
     // Accessing a submatrix of values
                                                                                         
     inline MSubmatObj<D>
-    submat(const unsigned int rstart, const unsigned int rend,
-	   const unsigned int cstart, const unsigned int cend)  {
+    submat(const size_type rstart, const size_type rend,
+	   const size_type cstart, const size_type cend)  {
       return MSubmatObj<D>(*this, rstart,  rend, cstart, cend);
     }
     inline const MSubmatObj<D>
-    submat(const unsigned int rstart, const unsigned int rend,
-	   const unsigned int cstart, const unsigned int cend)  const {
+    submat(const size_type rstart, const size_type rend,
+	   const size_type cstart, const size_type cend)  const {
       return MSubmatObj<D>(*this, rstart,  rend, cstart, cend);
     }
     
     // Accessing a row
     inline  MSubmatObj<D> 
-    row(const unsigned int r) {
+    row(const size_type r) {
       return submat(r,r,0,Ncols()-1);
     }
     inline const  MSubmatObj<D> 
-    row(const unsigned int r) const {
+    row(const size_type r) const {
       return submat(r,r,0,Ncols()-1);
     }
 
     // Accessing a column
     inline  MSubmatObj<D> 
-    col(const unsigned int c) {
+    col(const size_type c) {
       return submat(0,Nrows()-1,c,c);
     }
     inline const MSubmatObj<D> 
-    col(const unsigned int c) const {
+    col(const size_type c) const {
       return submat(0,Nrows()-1,c,c);
     }
 
@@ -719,19 +689,19 @@ namespace COOLL {
 
     // ************************** ATTRIBUTE ACCESS ********************************
 
-    inline const unsigned int size(void) const {
+    inline size_type size(void) const {
       return data_->size();
     }
 
-    inline const unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return Nrows_;
     }
 
-    inline const unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return Ncols_;
     }
 
-    const unsigned int objectID(void) const { 
+    size_type objectID(void) const { 
       return objectID_;
     }
 
@@ -739,17 +709,17 @@ namespace COOLL {
       return ME_Matrix;
     }
 
-    unsigned int perline(const unsigned int Nline)  { 
+    size_type perline(const size_type Nline)  { 
       return (perline_=Nline);
     }
-    const unsigned int perline(void)  const { 
+    size_type perline(void)  const { 
       return perline_;
     }
 
-    unsigned int width(const unsigned int w)  { 
+    size_type width(const size_type w)  { 
       return (width_=w);
     }
-    const unsigned int width(void)  const { 
+    size_type width(void)  const { 
       return width_;
     }
 
@@ -776,8 +746,8 @@ namespace COOLL {
 
     // Assign all elements to the same constant value
     Matrix<D>& operator=(const D d) { 
-      const unsigned int NN = size();
-      for(register unsigned int i=0; i<NN; i++) 
+      const size_type NN = size();
+      for(register size_type i=0; i<NN; i++) 
 	(*data_)[i] = d; 
       return *this;
     }
@@ -785,10 +755,10 @@ namespace COOLL {
 
     // Assignment to a matrix expression
     template <class A>  Matrix<D>& operator=(const Mexpr<D,A>& x) {
-      const unsigned int NN = x.size();
-      const unsigned int NR = x.Nrows();
-      const unsigned int NC = x.Ncols();
-#ifdef COOLL_CAREFUL
+      const size_type NN = x.size();
+      const size_type NR = x.Nrows();
+      const size_type NC = x.Ncols();
+#ifdef Matricks_CAREFUL
       {
 	if ( mexpr_is_size_bad(x.size()) ){ 
 	  mbad_expr_in_assignment(objectID(), x);
@@ -805,17 +775,17 @@ namespace COOLL {
       resize(NR,NC);
 
       if (x.mustcopy(this)) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	Matrix<D> mtemp(NR,NC,x.debugtxt());
 #else
 	Matrix<D> mtemp(NR,NC);
 #endif
-	for(register unsigned int i = 0; i < NN; i++) 
+	for(register size_type i = 0; i < NN; i++) 
 	  mtemp(i) = x(i);   
-	for(register unsigned int i = 0; i < NN; i++) 
+	for(register size_type i = 0; i < NN; i++) 
 	  (*this)(i) = mtemp(i);
       } else {
-	for(register unsigned int i = 0; i < NN; i++) 
+	for(register size_type i = 0; i < NN; i++) 
 	  (*this)(i) = x(i);   
       }
       return *this; 
@@ -824,7 +794,7 @@ namespace COOLL {
 
     // assign to recon object (issue error)
     Matrix<D>& operator=(const MReconObj<D>& b) { 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       mbad_reconassignment(objectID(), b);
 #endif
       return *this;
@@ -834,7 +804,7 @@ namespace COOLL {
     // Copy asignment 
     Matrix<D>& operator=(const Matrix<D>& m2) {
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( (size()>0) &&  ((Nrows_ != m2.Nrows()) || (Ncols_ != m2.Ncols()) )) {
 	mbad_assignment_warning(objectID_, m2.objectID());
       }
@@ -845,8 +815,8 @@ namespace COOLL {
 #endif
       resize(m2.Nrows(),m2.Ncols());
 
-      const unsigned int NN = size();
-      for(register unsigned int i=0; i<NN; i++) 
+      const size_type NN = size();
+      for(register size_type i=0; i<NN; i++) 
 	(*data_)[i] = m2(i);    
       return *this;
     }
@@ -856,9 +826,9 @@ namespace COOLL {
     
     template <class B>
     Matrix<D>& operator=(const VorE<D,B>& rhs) { 
-      const unsigned int N =size();
+      const size_type N =size();
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       if ( ( N !=  rhs.size() ) 
 	   || ( (Ncols() != 1) && (Nrows() !=1) )  ) {
 	//mvbad_assignment(derived().debugtxt(),rhs.debugtxt());
@@ -867,17 +837,17 @@ namespace COOLL {
 #endif
 
       if ( rhs.mustcopy(this) ) {    
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 	LAvector<D> y(N,rhs.debugtxt());
 #else
 	LAvector<D> y(N);
 #endif
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  (*data_)[i] = y[i]; 
       } else {
-	for(register unsigned int i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  (*data_)[i] = rhs[i]; 
       }
       return *this;
@@ -897,17 +867,17 @@ namespace COOLL {
 
 
     std::string debugtxt(void) const {
-#ifdef COOLL_CAREFUL
-      return CoollDirectory::matrixname(objectID_); 
+#ifdef Matricks_CAREFUL
+      return MatricksObjectPool::matrixname(objectID_); 
 #else
       return name_;
 #endif
     }
 
     void debugtxt(const char* newname) const {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       std::string s = newname;
-      CoollDirectory::mchange_name(objectID_,s); 
+      MatricksObjectPool::mchange_name(objectID_,s); 
 #else
       name_=newname;
 #endif
@@ -915,8 +885,8 @@ namespace COOLL {
     }
 
     void debugtxt(const std::string newname) const {
-#ifdef COOLL_CAREFUL
-      CoollDirectory::mchange_name(objectID_,newname); 
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::mchange_name(objectID_,newname); 
 #else
       name_=newname;
 #endif
@@ -942,8 +912,8 @@ namespace COOLL {
     }
 
     void outputglossary(void) const {
-#ifdef COOLL_CAREFUL
-      CoollDirectory::moutputglossary(objectID_);
+#ifdef Matricks_CAREFUL
+      MatricksObjectPool::moutputglossary(objectID_);
 #endif
     }
 
@@ -952,22 +922,22 @@ namespace COOLL {
     // stream << operator
 
     friend std::ostream& operator<<(std::ostream &stream, const Matrix<D>& m) {
-      const unsigned int NR = m.Nrows();
-      const unsigned int NC = m.Ncols();
-      const unsigned int w = m.width();
+      const size_type NR = m.Nrows();
+      const size_type NC = m.Ncols();
+      const size_type w = m.width();
       std::string sep;
       switch (m.textformat()) {
       case text_braces:
 	stream << "{";
 	if (NR>0)
 	  stream << " {";
-	for(unsigned int r=0; r < NR; r++) {
+	for(size_type r=0; r < NR; r++) {
 	  if (r>0)  
 	    stream << "  {";
-	  for(unsigned int c=0; c < NC; c++) {
+	  for(size_type c=0; c < NC; c++) {
 	    if ( (c>0) && ( (c%m.perline()) == 0 ) )
 	      stream << std::endl << "   ";
-	    stream <<setw(w) << m(r,c);
+	    stream <<std::setw(w) << m(r,c);
 	    if (c < (NC-1) )
 	      stream << ",";
 	  }
@@ -983,9 +953,9 @@ namespace COOLL {
 	  sep = " ";
 	else
 	  sep="";
-	for(unsigned int r=0; r < NR; r++) {
-	  for(unsigned int c=0; c < NC; c++) {
-	    stream <<setw(w) << m(r,c);
+	for(size_type r=0; r < NR; r++) {
+	  for(size_type c=0; c < NC; c++) {
+	    stream <<std::setw(w) << m(r,c);
 	    if (c < (NC-1) )
 	      stream << sep;
 	  }
@@ -1006,16 +976,16 @@ namespace COOLL {
 
 
     friend std::istream& operator>>(std::istream& stream,  Matrix<D>& m) {	
-      const unsigned int LINESZ = 32768;
+      const size_type LINESZ = 32768;
       char line[LINESZ];
-      unsigned int Nlines = 0;
+      size_type Nlines = 0;
       std::vector<D> v;
-      unsigned int NR=0;
-      unsigned int NC=0;
-      unsigned int N=0;
-      const unsigned int NCold=m.Ncols();
-      const unsigned int NRold=m.Nrows();
-      const unsigned int Nold=NRold*NCold;
+      size_type NR=0;
+      size_type NC=0;
+      size_type N=0;
+      const size_type NCold=m.Ncols();
+      const size_type NRold=m.Nrows();
+      const size_type Nold=NRold*NCold;
       D temp;
       std::istringstream strmline;
 
@@ -1024,14 +994,14 @@ namespace COOLL {
 	{
 	  enum States {begin, betweenrows, inrow, waitingforcomma, end};
 	  States state = begin;
-	  unsigned int col = 0;
+	  size_type col = 0;
 	  while( (state!=end) && stream.getline(line,LINESZ) ){
 	    Nlines++;
 	    strmline.clear();
 	    strmline.str(line);
 	    
 	    char c;
-	    unsigned int Nchars=0;
+	    size_type Nchars=0;
 	    while((state!=end) && strmline.get(c) ){
 	      Nchars++;
 	      if (isspace(c))
@@ -1142,13 +1112,13 @@ namespace COOLL {
 	  std::string oldline = line;
 	  if (Nold==0) {
 	    while( stream.getline(line,LINESZ) ){ // read as "one row per line" until end of stream
-	      unsigned int col = 0;
+	      size_type col = 0;
 	      Nlines++;
 	      strmline.clear();
 	      strmline.str(line);
 	    
 	      char c;
-	      unsigned int Nchars=0;
+	      size_type Nchars=0;
 	      while(strmline.get(c)){
 		Nchars++;
 		if (isspace(c))
@@ -1185,7 +1155,7 @@ namespace COOLL {
 	      strmline.clear();
 	      strmline.str(line);
 	      char c;
-	      unsigned int Nchars=0;
+	      size_type Nchars=0;
 	      while((N<Nold) && strmline.get(c)){
 		Nchars++;
 		if (isspace(c))
@@ -1223,8 +1193,8 @@ namespace COOLL {
 	break;
       }//switch
       
-      const unsigned int len=NR*NC;
-      for(unsigned int i=0; i<len; i++)
+      const size_type len=NR*NC;
+      for(size_type i=0; i<len; i++)
 	m(i) = v[i];
   
       return restore_stream(stream,strmline);

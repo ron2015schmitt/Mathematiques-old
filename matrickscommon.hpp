@@ -1,38 +1,5 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
-#ifndef COOLLCOMMON_H
-#define COOLLCOMMON_H 1
+#ifndef MATRICKSCOMMON_H
+#define MATRICKSCOMMON_H
 
 #include <typeinfo>
 #include <sstream>
@@ -41,8 +8,9 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <cmath>
+#include <tgmath.h>
 //#include <cfloat>
+//#include <cmath>
 #include <limits>
 #include <valarray>
 
@@ -50,9 +18,11 @@
 
 
 
-namespace COOLL {
+namespace Matricks {
 
 
+  typedef std::vector<double>::size_type   size_type;
+  
 
   inline std::istream& restore_stream(std::istream& tostream, std::istream& fromstream) {
     std::string s="";
@@ -60,14 +30,14 @@ namespace COOLL {
     while(fromstream.get(c)) 
       s += c;
 
-    unsigned int len = s.length();
+    size_t len = s.length();
     if (len >0) {
       if (tostream.eof())
 	tostream.clear();
       std::ostringstream tempstrm;
       tempstrm<<std::endl;
       tostream.putback(tempstrm.str()[0]);
-      for (unsigned int i = len;i>0; i--) 
+      for (size_t i = len;i>0; i--) 
 	tostream.putback(s[i-1]);
     }
     return tostream;
@@ -81,9 +51,9 @@ namespace COOLL {
    */
   typedef long double extended;
   // maximum subcript size for vectors and matrices
-  const unsigned int maxsize = std::numeric_limits<int>::max();
-  //  const unsigned int maxsize = std::numeric_limits<unsigned int>::max() -1;
-  const unsigned int badsize = std::numeric_limits<unsigned int>::max();
+  const size_type maxsize = std::numeric_limits<int>::max();
+  //  const size_type maxsize = std::numeric_limits<size_type>::max() -1;
+  const size_type badsize = std::numeric_limits<size_type>::max();
 
 
   enum TextFormat {text_braces,text_nobraces};
@@ -95,11 +65,7 @@ namespace COOLL {
    * Rounding
    ****************************************************************************   
    */
-#define ROUND_MACRO(D) inline D round(const D x) {return (x > 0.0) ? std::floor(x + 0.5) : std::ceil(x - 0.5);}
 #define ROUND_MACRO_INT(D) inline D round(const D x){return x;}
-  ROUND_MACRO(float);
-  ROUND_MACRO(double);
-  ROUND_MACRO(long double);
   ROUND_MACRO_INT(char);
   ROUND_MACRO_INT(unsigned char);
   ROUND_MACRO_INT(short);
@@ -113,8 +79,9 @@ namespace COOLL {
   ROUND_MACRO_INT(unsigned long long);
 #endif
 
+  // complex rounding
  template <typename D> std::complex<D> round(const std::complex<D>& x) {
-   return std::complex<D>(COOLL::round(x.real()),COOLL::round(x.imag()));
+   return std::complex<D>(round(x.real()), round(x.imag()));
  }
   
 
@@ -184,7 +151,7 @@ namespace COOLL {
   extern const char* bug_str;
 
 
-  void bug_report(const std::string& fname,const unsigned int linenum);
+  void bug_report(const std::string& fname,const size_type linenum);
 
 
   /****************************************************************************
@@ -192,7 +159,7 @@ namespace COOLL {
    ****************************************************************************   
    */
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
   inline std::string execution_mode(void) {
     return "CAREFUL";
   }
@@ -203,7 +170,7 @@ namespace COOLL {
 #endif
 
   inline void display_execution_mode(void) {
-    std::cout << "COOLL execution mode = "<< execution_mode() << std::endl;
+    std::cout << "Matricks execution mode = "<< execution_mode() << std::endl;
   }
 
 
@@ -217,41 +184,41 @@ namespace COOLL {
    */
   class seq {
   private:
-    const unsigned int start_;
-    const unsigned int end_;
+    const size_type start_;
+    const size_type end_;
     const int step_; 
   public:
-    seq(const unsigned int start, const unsigned int end, const int step) :
+    seq(const size_type start, const size_type end, const int step) :
       start_(start), end_(end), 
       step_(step) {
     }
-    seq(const unsigned int start, const unsigned int end) :
+    seq(const size_type start, const size_type end) :
       start_(start), end_(end), 
       step_((end >= start)?1:-1) {
     }
     
-    const unsigned int start(void) const{ return start_;}
-    const unsigned int end(void) const{ return end_;}
-    const  int step(void) const{ return step_;}
+    size_type start(void) const{ return start_;}
+    size_type end(void) const{ return end_;}
+    int step(void) const{ return step_;}
 
     // could improve speed for step=1 and step=-1 by creating a separate
     // function or template class that doesn't include the step multiply
-    inline const unsigned int operator[](const unsigned int i) const {
-      return static_cast<unsigned int>(start_ + i * step_);      
+    inline size_type operator[](const size_type i) const {
+      return static_cast<size_type>(start_ + i * step_);      
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       // issue warning if step ==0 (size is infinite)
       if ( (step_>=0) && ( end_>=start_ ) )
-	return (end_-start_)/static_cast<unsigned int>(step_) + 1;
+	return (end_-start_)/static_cast<size_type>(step_) + 1;
       else if ( (step_<0) && (end_<start_ ) )
-	return (start_-end_)/static_cast<unsigned int>(-step_) + 1;
+	return (start_-end_)/static_cast<size_type>(-step_) + 1;
       else
 	return 1;
     }
 
     void outputglossary(void) const {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       std::cout << where_str<< debugtxt() <<" has size=" <<size()<<std::endl;
 #endif
     }
@@ -300,11 +267,11 @@ namespace COOLL {
 
     typedef  D DataT;
 
-    inline const D operator[](const unsigned int i) const {
+    inline const D operator[](const size_type i) const {
       return derived()[i];
     }
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return derived().size();
     }
 
@@ -385,24 +352,24 @@ namespace COOLL {
     }
 
 
-    inline const D operator()(const unsigned int i) const {
+    inline const D operator()(const size_type i) const {
       return derived()(i);
     }
 
-    inline const D operator()(const unsigned int r, const unsigned int c) const {
+    inline const D operator()(const size_type r, const size_type c) const {
       return derived()(r,c);
     }
 
 
-    inline unsigned int size(void) const {
+    inline size_type size(void) const {
       return derived().size();
     }
 
-    inline unsigned int Nrows(void) const {
+    inline size_type Nrows(void) const {
       return derived().Nrows();
     }
 
-    inline unsigned int Ncols(void) const {
+    inline size_type Ncols(void) const {
       return derived().Ncols();
     }
 
@@ -451,7 +418,7 @@ namespace COOLL {
 
 
   template <class A> 
-  LAvector<unsigned int> sub2ind(const MorE<unsigned int,A>& subs, const unsigned int NR, const unsigned int NC);
+  LAvector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NR, const size_type NC);
 
 
 
@@ -485,61 +452,61 @@ namespace COOLL {
    */
 
 
-  class CoollDirectory {
+  class MatricksObjectPool {
   private:
-    static unsigned int NextVectorID_ ;
-    static std::map<unsigned int,std::string> vectorName_ ; 
-    static std::map<unsigned int,std::string> vectorClass_ ; 
-    static std::map<unsigned int,std::string> vectorDatatype_ ; 
-    static std::map<unsigned int,unsigned int> vectorSize_ ; 
+    static size_type NextVectorID_ ;
+    static std::map<size_type,std::string> vectorName_ ; 
+    static std::map<size_type,std::string> vectorClass_ ; 
+    static std::map<size_type,std::string> vectorDatatype_ ; 
+    static std::map<size_type,size_type> vectorSize_ ; 
 
-    static unsigned int NextMatrixID_ ;
-    static std::map<unsigned int,std::string> matrixName_ ; 
-    static std::map<unsigned int,std::string> matrixClass_ ; 
-    static std::map<unsigned int,std::string> matrixDatatype_ ; 
-    static std::map<unsigned int,unsigned int> matrixNrows_ ; 
-    static std::map<unsigned int,unsigned int> matrixNcols_ ; 
+    static size_type NextMatrixID_ ;
+    static std::map<size_type,std::string> matrixName_ ; 
+    static std::map<size_type,std::string> matrixClass_ ; 
+    static std::map<size_type,std::string> matrixDatatype_ ; 
+    static std::map<size_type,size_type> matrixNrows_ ; 
+    static std::map<size_type,size_type> matrixNcols_ ; 
 
   public:
-    inline static unsigned int NumVectors(void) { 
+    inline static size_t NumVectors(void) { 
       return vectorName_.size();
     }
 
-    static unsigned int addvector(const std::string name, const std::string classname, 
-			 const std::string datatype, const  unsigned int size, const bool checkname=true);
+    static size_type addvector(const std::string name, const std::string classname, 
+			 const std::string datatype, const  size_type size, const bool checkname=true);
 
-    static void removevector(const unsigned int id);
+    static void removevector(const size_type id);
 
-    static std::string vectorname(const unsigned int id);
+    static std::string vectorname(const size_type id);
 
-    static std::string vadd_name(const std::string& name, const unsigned int id, const bool checkname=true);
+    static std::string vadd_name(const std::string& name, const size_type id, const bool checkname=true);
 
-    static void vchange_name(const unsigned int id, const std::string& name, const bool checkname=true);
-    static void vchange_size(const unsigned int id, const unsigned  int size);
+    static void vchange_name(const size_type id, const std::string& name, const bool checkname=true);
+    static void vchange_size(const size_type id, const size_type size);
 
-    static void voutputglossary(const unsigned int id);
+    static void voutputglossary(const size_type id);
 
 
 
-    inline static unsigned int NumMatrices(void) { 
+    inline static size_t NumMatrices(void) { 
       return matrixName_.size();
     }
 
-    static unsigned int addmatrix(const std::string name, const std::string classname, 
-			 const std::string datatype, const unsigned  int NR, const unsigned int NC, const bool checkname=true);
+    static size_type addmatrix(const std::string name, const std::string classname, 
+			 const std::string datatype, const size_type NR, const size_type NC, const bool checkname=true);
   
-    static void removematrix(const unsigned int id);
+    static void removematrix(const size_type id);
 
-    static std::string matrixname(const unsigned int id);
-    static unsigned int CoollDirectory::matrixNrows(const unsigned int id);
-    static unsigned int CoollDirectory::matrixNcols(const unsigned int id);
+    static std::string matrixname(const size_type id);
+    static size_type matrixNrows(const size_type id);
+    static size_type matrixNcols(const size_type id);
 
 
-    static std::string madd_name(const std::string name, const unsigned int id, const bool checkname=true);
-    static void mchange_name(const unsigned int id, const std::string& name, const bool checkname=true);
-    static void mchange_size(const unsigned int id, const unsigned int NR,  const unsigned int NC);
+    static std::string madd_name(const std::string name, const size_type id, const bool checkname=true);
+    static void mchange_name(const size_type id, const std::string& name, const bool checkname=true);
+    static void mchange_size(const size_type id, const size_type NR,  const size_type NC);
 
-    static void moutputglossary(const unsigned int id);
+    static void moutputglossary(const size_type id);
 
 
   };
@@ -577,7 +544,7 @@ namespace COOLL {
   MTS_MACRO_DECL(short);
   MTS_MACRO_DECL(unsigned short);
   MTS_MACRO_DECL(int);
-  MTS_MACRO_DECL(unsigned int);
+  MTS_MACRO_DECL(size_type);
   MTS_MACRO_DECL(long);
   MTS_MACRO_DECL(unsigned long);
 #if LONGLONG_EXISTS

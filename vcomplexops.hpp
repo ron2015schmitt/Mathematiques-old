@@ -1,46 +1,12 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
 
 #ifndef VCOMPLEXOPS_H
 #define VCOMPLEXOPS_H
 
 
-
 #include <complex>
 
 
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -534,14 +500,14 @@ namespace COOLL {
   inline std::complex<D>  operator|( const VorE<D,A>& a, const  VorE<std::complex<D>,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
     }
 #endif
  
-    for (register unsigned int i = a.size(); i--;)
+    for (register size_type i = a.size(); i--;)
       result += a[i]*b[i];
     
     return result;
@@ -554,14 +520,14 @@ namespace COOLL {
   inline std::complex<D>  operator|( const VorE<std::complex<D>,A>& a, const  VorE<D,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
     }
 #endif
  
-    for (register unsigned int i = a.size(); i--;)
+    for (register size_type i = a.size(); i--;)
       result += a[i]*b[i];
     
     return result;
@@ -584,14 +550,14 @@ namespace COOLL {
   inline D norm( const VorE<std::complex<D>,A>& a ) {
     D result = D();
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"norm");
       return 0;
     }
 #endif
  
-    for (register unsigned int i = a.size(); i--;) {
+    for (register size_type i = a.size(); i--;) {
       D tempR = a[i].real(); 
       D tempI = a[i].imag(); 
       result += tempR*tempR + tempI*tempI;

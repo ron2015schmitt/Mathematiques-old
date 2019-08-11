@@ -1,46 +1,11 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
-
 #ifndef VOPERATORS_H
 #define VOPERATORS_H 1
-
 
 #include <string>
 #include <sstream>
 
 
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -327,8 +292,8 @@ namespace COOLL {
   inline LAvector<D2> 
   vcast(const MorE<D1,A>& a)
   {
-    const unsigned int N = a.size();
-#ifdef COOLL_CAREFUL
+    const size_type N = a.size();
+#ifdef Matricks_CAREFUL
     std::string name=a.debugtxt();
     name = "vcast("+name+")";
     if ( mexpr_is_size_bad(a.size()) ){ 
@@ -341,7 +306,7 @@ namespace COOLL {
     LAvector<D2> y(N);
 #endif
 
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(a(i));
     return y;
   }
@@ -352,10 +317,10 @@ namespace COOLL {
 
   template <class D2, class D1> 
   inline LAvector<D2>
-  vcast(const D1* dptr, const unsigned int N)
+  vcast(const D1* dptr, const size_type N)
   {
     LAvector<D2> y(N,"vcast(C-array)");
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(dptr[i]);
     return  y;
   }
@@ -367,9 +332,9 @@ namespace COOLL {
   template <class D2, class D1> 
   inline LAvector<D2>
   vcast(const std::vector<D1>& v2) {
-    const unsigned int N = v2.size();
+    const size_type N = v2.size();
     LAvector<D2> y(N,"vcast(std::vector)");
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v2[i]);
     return  y;
   }
@@ -380,9 +345,9 @@ namespace COOLL {
   template <class D2, class D1> 
   inline LAvector<D2>
   vcast(const std::valarray<D1>& v2) {
-    const unsigned int N = v2.size();
+    const size_type N = v2.size();
     LAvector<D2> y(N,"vcast(std::valarray)");
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v2[i]);
     return  y;
   }
@@ -400,9 +365,9 @@ namespace COOLL {
   template <class D2, class D1, class A> 
   inline D2*
   toCarray(const VorE<D1,A>& v) {
-    const unsigned int N = v.size();
+    const size_type N = v.size();
     D2* dptr = new D2[N];
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       dptr[i] = static_cast<D2>(v[i]);
     return  dptr;
   }
@@ -414,9 +379,9 @@ namespace COOLL {
   template <class D2, class D1, class A> 
   inline std::vector<D2>
   tostdvector(const VorE<D1,A>& v) {
-    const unsigned int N = v.size();
+    const size_type N = v.size();
     std::vector<D2> y(N);
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v[i]);
     return y;
   }
@@ -428,9 +393,9 @@ namespace COOLL {
   template <class D2, class D1, class A> 
   inline std::valarray<D2>
   tovalarray(const VorE<D1,A>& v) {
-    const unsigned int N = v.size();
+    const size_type N = v.size();
     std::valarray<D2> y(N);
-    for(unsigned int i = 0; i<N; i++) 
+    for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v[i]);
     return y;
   }
@@ -448,14 +413,14 @@ namespace COOLL {
   inline D operator|( const VorE<D,A>& a, const  VorE<D,B>& b ) {
     D result = D();
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
     }
 #endif
  
-    for (register unsigned int i = a.size(); i--;)
+    for (register size_type i = a.size(); i--;)
       result += a[i]*b[i];
     
     return result;
@@ -482,20 +447,20 @@ namespace COOLL {
   template <class D, class A> 
   inline D sum( const VorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sum");
       return 0;
     }
 #endif
  
-    const unsigned int N = a.size();
+    const size_type N = a.size();
     if (N==0)
       return 0;
 
     D result = a[0];
 
-    for (register unsigned int i = 1; i < N ; i++ )
+    for (register size_type i = 1; i < N ; i++ )
       result += a[i];
     
     return result;
@@ -512,20 +477,20 @@ namespace COOLL {
   template <class D, class A> 
   inline D norm( const VorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"norm");
       return 0;
     }
 #endif
  
-    const unsigned int N = a.size();
+    const size_type N = a.size();
     if (N==0)
       return 0;
 
     D result = a[0]*a[0];
 
-    for (register unsigned int i = 1; i < N ; i++ )
+    for (register size_type i = 1; i < N ; i++ )
       result += a[i]*a[i];
     
     return std::sqrt(result);
@@ -539,20 +504,20 @@ namespace COOLL {
   template <class D, class A> 
   inline D min( const VorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"min");
       return 0;
     }
 #endif
  
-    const unsigned int N = a.size();
+    const size_type N = a.size();
     if (N==0)
       return 0;
 
     D result = a[0];
 
-    for (register unsigned int i = 1; i < N ; i++ )
+    for (register size_type i = 1; i < N ; i++ )
       result = std::min(result,a[i]);
     
     return result;
@@ -566,19 +531,19 @@ namespace COOLL {
   template <class D, class A> 
   inline D max( const VorE<D,A>& a ) {
     
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"max");
       return 0;
     }
 #endif
-    const unsigned int N = a.size();
+    const size_type N = a.size();
     if (N==0)
       return 0;
 
     D result = a[0];
 
-    for (register unsigned int i = 1; i < N ; i++ )
+    for (register size_type i = 1; i < N ; i++ )
       result = std::max(result,a[i]);
     
     return result;
@@ -599,7 +564,7 @@ namespace COOLL {
 
   template <class D> void sort(LAvector<D>& a ) {
 
-    const unsigned int N = a.size();
+    const size_type N = a.size();
     if (N==0)
       return;
 
@@ -607,12 +572,12 @@ namespace COOLL {
     // support sorting
     std::vector<D> data(N);
     
-    for (register unsigned int i = 0; i < N ; i++ )
+    for (register size_type i = 0; i < N ; i++ )
       data[i] = a[i];
 
     sort(data.begin(),data.end());
     
-    for (register unsigned int i = 0; i < N ; i++ )
+    for (register size_type i = 0; i < N ; i++ )
       a[i] = data[i];
 
   }
@@ -623,7 +588,7 @@ namespace COOLL {
 
   template <class DAT> class idpair {
   public:
-    unsigned int ind;
+    size_type ind;
     DAT dat;
     
     bool operator<(const idpair<DAT>& x2) const {
@@ -631,19 +596,19 @@ namespace COOLL {
     }
   };
 
-  template <class D> LAvector<unsigned int> sortwind(LAvector<D>& a ) {
+  template <class D> LAvector<size_type> sortwind(LAvector<D>& a ) {
 
-    const unsigned int N = a.size();
-#ifdef COOLL_CAREFUL
+    const size_type N = a.size();
+#ifdef Matricks_CAREFUL
     std::string name = "sortindices(" + a.debugtxt() +")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sortwind");
-      LAvector<unsigned int> ivec(0,name);
+      LAvector<size_type> ivec(0,name);
       return ivec;
     }
-    LAvector<unsigned int> ivec(N,name);
+    LAvector<size_type> ivec(N,name);
 #else
-    LAvector<unsigned int> ivec(N);
+    LAvector<size_type> ivec(N);
 #endif
 
     if (N==0)
@@ -652,7 +617,7 @@ namespace COOLL {
     std::vector<idpair<D> > data(N);
     
 
-    for (register unsigned int i = 0; i < N ; i++ ) {
+    for (register size_type i = 0; i < N ; i++ ) {
       data[i].ind = i;
       data[i].dat = a[i];
     }
@@ -661,7 +626,7 @@ namespace COOLL {
     sort(data.begin(),data.end());
     
     
-    for (register unsigned int i = 0; i < N ; i++ ) {
+    for (register size_type i = 0; i < N ; i++ ) {
       ivec[i] = data[i].ind;
       a[i] = data[i].dat;
     }

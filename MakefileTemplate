@@ -1,7 +1,7 @@
 
-COOLLDIR = #COOLLDIR#
-VERSION = 1.9
-FNAME = cooll-$(VERSION)
+MATRICKS_DIR = #MATRICKS_DIR#
+VERSION = 2.0
+FNAME = matricks-$(VERSION)
 TEMP = /tmp/
 TDIR = $(TEMP)/$(FNAME)
 
@@ -75,24 +75,28 @@ TDIR = $(TEMP)/$(FNAME)
 #            (7) a vector or vector expression (matrix or matrix expression)
 #                of a different size, only a warning is given and then
 #                teh vfector (matrix) is resized.
+# V2.0       (1) resurrected
+# 2019AUG11
 ######################################################################
 
 
 COPTS = 
 LOPTS =
 
-CXXOPTFLAGS = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+#CXXOPTFLAGS = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+
+CXXOPTFLAGS = -finline-functions -finline-limit=750 -O1
 CXXOPT = -Wall -W -Wconversion $(CXXOPTFLAGS)
 CC  = /usr/bin/gcc
 CXX = /usr/bin/g++ 
 
 
-# assuems that  environment  variable "COOLLDIR" is set to the path where teh library resides
-INCLUDES += -I $(COOLLDIR) 
+# assuems that  environment  variable "MATRICKS_DIR" is set to the path where teh library resides
+INCLUDES += -I $(MATRICKS_DIR) 
 
-VPATH = $(COOLLDIR)
+VPATH = $(MATRICKS_DIR)
 
-LIBS += -L$(COOLLDIR) -lcooll
+LIBS += -L$(MATRICKS_DIR) -lmatricks
 
 LIB_LAPACK =  -llapack  -lg2c
 
@@ -100,8 +104,7 @@ CXXFLAGS =  $(CXXOPT)  $(COPTS) $(INCLUDES)
 
 LDFLAGS =  $(LOPTS) 
 
-LIBFILES = applicative.hpp matrixdef.hpp mvcomplexops.hpp vcomplexops.hpp boolapp.hpp mboolexpr.hpp mvexpr.hpp vectordef.hpp complexapp.hpp mboolops.hpp mvoperators.hpp verror.hpp coollcommon.hpp mcomplexexpr.hpp p3vector.hpp vexpr.hpp cooll.hpp mcomplexops.hpp print.hpp vmathops.hpp coollio.hpp merror.hpp util.hpp voperators.hpp cooll_lapack.hpp mexpr.hpp vboolexpr.hpp cooll_nr.hpp mmathops.hpp vboolops.hpp mathapp.hpp moperators.hpp vcomplexexpr.hpp
-
+LIBFILES = applicative.hpp matrixdef.hpp mvcomplexops.hpp vcomplexops.hpp boolapp.hpp mboolexpr.hpp mvexpr.hpp vectordef.hpp complexapp.hpp mboolops.hpp mvoperators.hpp verror.hpp matrickscommon.hpp mcomplexexpr.hpp p3vector.hpp vexpr.hpp matricks.hpp mcomplexops.hpp print.hpp vmathops.hpp matricksio.hpp merror.hpp matricksutil.hpp voperators.hpp matricks_lapack.hpp mexpr.hpp vboolexpr.hpp matricks_nr.hpp mmathops.hpp vboolops.hpp mathapp.hpp moperators.hpp vcomplexexpr.hpp
 
 
 EXEC ?=
@@ -122,25 +125,25 @@ clean:
 	\rm -f *.temp
 
 cleanall: clean 
-	\cd $(COOLLDIR)/examples && make clean
-	\cd $(COOLLDIR)/errorexamples && make clean
-	\cd $(COOLLDIR)/testbed && make clean
-	\cd $(COOLLDIR)/benchmarks && make clean
-	\cd $(COOLLDIR)/development && make clean
+	\cd $(MATRICKS_DIR)/examples && make clean
+	\cd $(MATRICKS_DIR)/errorexamples && make clean
+	\cd $(MATRICKS_DIR)/testbed && make clean
+	\cd $(MATRICKS_DIR)/benchmarks && make clean
+	\cd $(MATRICKS_DIR)/development && make clean
 
 fullpurge: cleanall
-	\rm -f $(COOLLDIR)/libcooll.a
-	\rm -f $(COOLLDIR)/*~
-	\rm -f $(COOLLDIR)/*.gz
-	\rm -f $(COOLLDIR)/*.tar
-	\rm -f $(COOLLDIR)/*.old
-	\rm -f $(COOLLDIR)/*/*~
-	\rm -f $(COOLLDIR)/*/*.old
-	\rm -f $(COOLLDIR)/Makefile
+	\rm -f $(MATRICKS_DIR)/libmatricks.a
+	\rm -f $(MATRICKS_DIR)/*~
+	\rm -f $(MATRICKS_DIR)/*.gz
+	\rm -f $(MATRICKS_DIR)/*.tar
+	\rm -f $(MATRICKS_DIR)/*.old
+	\rm -f $(MATRICKS_DIR)/*/*~
+	\rm -f $(MATRICKS_DIR)/*/*.old
+	\rm -f $(MATRICKS_DIR)/Makefile
 
 %.o: %.cpp  $(LIBFILES) 
 ifdef CAREFUL
-	$(CXX) $(CXXFLAGS) -D"COOLL_CAREFUL=1" -c $*.cpp -o $@
+	$(CXX) $(CXXFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
 else
 	$(CXX) $(CXXFLAGS) -c $*.cpp -o $@
 endif
@@ -152,9 +155,9 @@ endif
 
 all: $(EXEC)
 
-libcooll: coollcommon.o verror.o merror.o p3vector.o
-	@echo "configuring COOLL library version=$(VERSION)"
-	ar ruv libcooll.a $?
+libmatricks: matrickscommon.o verror.o merror.o p3vector.o
+	@echo "configuring MATRICKS library version=$(VERSION)"
+	ar rUuv libmatricks.a $?
 
 
 archive: fullpurge

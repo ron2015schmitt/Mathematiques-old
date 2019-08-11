@@ -3,11 +3,11 @@
 #define COOLL_CAREFUL
 
 
-#include "cooll.hpp"
+#import "cooll.hpp"
 using namespace COOLL;
 
-#include <iostream>
-#include <iomanip>
+#import <iostream>
+#import <iomanip>
 using namespace std;
 
 

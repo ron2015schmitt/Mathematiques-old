@@ -1,36 +1,3 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
-
 #ifndef VERROR_H
 #define VERROR_H 1
 
@@ -38,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-namespace COOLL {
+namespace Matricks {
 
 
   /****************************************************************************
@@ -52,19 +19,19 @@ namespace COOLL {
 
 
   void vbad_input_stream_size(const std::string& name, const std::string& line, 
-			     const unsigned int N1, const unsigned int N2);
+			     const size_type N1, const size_type N2);
 
   void vinput_stream_size_too_small(const std::string& name, const std::string& line, 
-				   const unsigned int N1, const unsigned int N2);
+				   const size_type N1, const size_type N2);
 
   void vsyntax_error(const std::string& name, const std::string& line, 
-		     const unsigned int N1, const unsigned int N2, 
-		     const unsigned int Nlines, const unsigned int Nchars, 
+		     const size_type N1, const size_type N2, 
+		     const size_type Nlines, const size_type Nchars, 
 		     const char c,
 		     const std::string& info, TextFormat textformat);
 
   //These are only used in CAREFUL mode
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
 
 
 
@@ -78,7 +45,7 @@ namespace COOLL {
 
 
   template <class D>
-  void vbadlinspace(const D start, const D end, const unsigned int N) {
+  void vbadlinspace(const D start, const D end, const size_type N) {
     std::cout << error_str << "linspace requires N>=2" << std::endl;
     std::cout << indent_str  << "(start,end,N) = ";
     std::cout << "(" << start << "," << end << "," << N <<")" << std::endl;
@@ -87,23 +54,23 @@ namespace COOLL {
 
 
  template <class D, class A> 
-  void vbad_assignment_expr(const unsigned int id, const VorE<D,A>& ve) {
-    std::string s1= CoollDirectory::vectorname(id);
+  void vbad_assignment_expr(const size_type id, const VorE<D,A>& ve) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "vector assignment to expression of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    std::cout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
  template <class D, class A> 
-  void vbad_assignment_expr_warning(const unsigned int id, const VorE<D,A>& ve) {
-    std::string s1= CoollDirectory::vectorname(id);
+  void vbad_assignment_expr_warning(const size_type id, const VorE<D,A>& ve) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << warn_str << "vector assignment to expression of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    std::cout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     ve.outputglossary();
     std::cout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
     std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
@@ -113,44 +80,44 @@ namespace COOLL {
 
 
    template <class D, class A> 
-  void vbad_expr_in_assignment(const unsigned int id, const VorE<D,A>& ve) {
-    std::string s1= CoollDirectory::vectorname(id);
+  void vbad_expr_in_assignment(const size_type id, const VorE<D,A>& ve) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
    template <class D, class A> 
-  void vbad_expr_in_reconassignment(const unsigned int id, const VorE<D,A>& ve) {
-    std::string s1= CoollDirectory::vectorname(id);
+  void vbad_expr_in_reconassignment(const size_type id, const VorE<D,A>& ve) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
     std::cout << indent_str  <<s1 << ".resize() = " << s2 << std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
 
    template <class D, class A> 
-   void vbad_reconassignment(const unsigned int id, const VorE<D,A>& ve) {
-    std::string s1= CoollDirectory::vectorname(id);
+   void vbad_reconassignment(const size_type id, const VorE<D,A>& ve) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << ".resize() objects are not permitted on the right hand side of an expression" << std::endl;
     std::cout << indent_str  <<s1 << " = " << s2<< ".resize()" << std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
 
    template <class D, class A> 
-   void vbad_mask(const unsigned int id, const VorE<D,A>& ve) {
-    std::string s1= CoollDirectory::vectorname(id);
+   void vbad_mask(const size_type id, const VorE<D,A>& ve) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "mask size does not match vector size" << std::endl;
     std::cout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
@@ -193,37 +160,37 @@ namespace COOLL {
   }
 
 
-  void vout_of_bounds(const unsigned int id, const unsigned int i);
+  void vout_of_bounds(const size_type id, const size_type i);
 
-  void vbad_size(const unsigned int id, const unsigned int n);
+  void vbad_size(const size_type id, const size_type n);
 
-  void mbad_vcast(const std::string s,  const unsigned int nr, const unsigned int nc,  const unsigned int N);
+  void mbad_vcast(const std::string s,  const size_type nr, const size_type nc,  const size_type N);
 
-  void vbad_assignment(const unsigned int id1, const unsigned int id2);
-  void vbad_assignment_warning(const unsigned int id1, const unsigned int id2);
+  void vbad_assignment(const size_type id1, const size_type id2);
+  void vbad_assignment_warning(const size_type id1, const size_type id2);
 
-  void vbadtype_assignment(const unsigned int id1, const unsigned int id2);
+  void vbadtype_assignment(const size_type id1, const size_type id2);
 
-  void vbad_assignment_mat(const unsigned int id1, const unsigned int NR, const unsigned int NC);
+  void vbad_assignment_mat(const size_type id1, const size_type NR, const size_type NC);
 
   void vbad_wrapper_assignment(const std::string& s1, const std::string& s2);
 
   void vbad_wrapper_assignment_mat(const std::string& s1, const std::string& s2);
 
-  void vwrapper_out_of_bounds(const std::string& s1, const unsigned int i, const unsigned int sz);
+  void vwrapper_out_of_bounds(const std::string& s1, const size_type i, const size_type sz);
 
 
 
-  std::string debugtxt_VRangeObj(const std::string s, const unsigned int start_,
-				 const unsigned int end_,const  int step_);
-  void outputglossary_VRangeObj(const unsigned int id, const std::string s, const unsigned int sz);
+  std::string debugtxt_VRangeObj(const std::string s, const size_type start_,
+				 const size_type end_,const  int step_);
+  void outputglossary_VRangeObj(const size_type id, const std::string s, const size_type sz);
 
   std::string debugtxt_VSetObj(const std::string s1, const std::string s2);
-  void outputglossary_VSetObj(const unsigned int id1, const unsigned int id2, const std::string s, const unsigned int sz);
+  void outputglossary_VSetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
   std::string debugtxt_VMaskObj(const std::string s1, const std::string s2);
-  void settext_VMaskObj(const LAvector<unsigned int>& ii,const  LAvector<bool>& mask);
-  void outputglossary_VMaskObj(const unsigned int id1, const unsigned int id2, const std::string s, const unsigned int sz);
+  void settext_VMaskObj(const LAvector<size_type>& ii,const  LAvector<bool>& mask);
+  void outputglossary_VMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
 
 

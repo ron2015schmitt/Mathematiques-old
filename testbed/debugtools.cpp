@@ -3,13 +3,13 @@
  
 
 
-#include "cooll.hpp"
-using namespace COOLL;
+#import "matricks.hpp"
+using namespace Matricks;
 
-#include "testlib.hpp"
+#import "testlib.hpp"
 
-#include <iostream>
-#include <complex>
+#import <iostream>
+#import <complex>
 
 using namespace std;
 

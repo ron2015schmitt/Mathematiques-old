@@ -1,46 +1,13 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
 
 
 
 #ifndef MCOMPLEXOPS_H
 #define MCOMPLEXOPS_H
 
-
-
 #include <complex>
 
 
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -539,14 +506,14 @@ namespace COOLL {
 
   template <class D, class A, class B> 
   inline  Matrix<std::complex<D> >  operator|( const MorE<D,A>& a, const  MorE<std::complex<D>,B>& b ) {
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = b.Ncols();
-    const unsigned int M = a.Ncols();
-    const unsigned int C1 = NR*M;
+    const size_type NR = a.Nrows();
+    const size_type NC = b.Ncols();
+    const size_type M = a.Ncols();
+    const size_type C1 = NR*M;
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string name= a.debugtxt() + "|"+  b.debugtxt();
-    const unsigned int Mb = b.Nrows();
+    const size_type Mb = b.Nrows();
     if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
       mbad_expr_in_binary(a,b,"","|");
       Matrix<std::complex<D> > y(0,0,name);
@@ -561,12 +528,12 @@ namespace COOLL {
     Matrix<std::complex<D> > y(NR,NC);
 #endif
 
-    register unsigned int i = 0;
-    for(register unsigned int n=0; n < C1; n+=M) 
-      for(register unsigned int c=0; c < NC; c++,i++) {
-	unsigned int j = n;
-	unsigned int k = c;
-	const unsigned int C2 = n+M-1;
+    register size_type i = 0;
+    for(register size_type n=0; n < C1; n+=M) 
+      for(register size_type c=0; c < NC; c++,i++) {
+	size_type j = n;
+	size_type k = c;
+	const size_type C2 = n+M-1;
 	// using a local variable for the accumation saves a lot of CPU Time!!
 	std::complex<D> result = a(j) * b(k);
 	while (j<C2){
@@ -579,14 +546,14 @@ namespace COOLL {
 
   template <class D, class A, class B> 
   inline  Matrix<std::complex<D> >  operator|( const MorE<std::complex<D>,A>& a, const  MorE<D,B>& b ) {
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = b.Ncols();
-    const unsigned int M = a.Ncols();
-    const unsigned int C1 = NR*M;
+    const size_type NR = a.Nrows();
+    const size_type NC = b.Ncols();
+    const size_type M = a.Ncols();
+    const size_type C1 = NR*M;
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string name= a.debugtxt() + "|"+  b.debugtxt();
-    const unsigned int Mb = b.Nrows();
+    const size_type Mb = b.Nrows();
     if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
       mbad_expr_in_binary(a,b,"","|");
       Matrix<std::complex<D> > y(0,0,name);
@@ -602,12 +569,12 @@ namespace COOLL {
 #endif
 
 
-    register unsigned int i = 0;
-    for(register unsigned int n=0; n < C1; n+=M) 
-      for(register unsigned int c=0; c < NC; c++,i++) {
-	unsigned int j = n;
-	unsigned int k = c;
-	const unsigned int C2 = n+M-1;
+    register size_type i = 0;
+    for(register size_type n=0; n < C1; n+=M) 
+      for(register size_type c=0; c < NC; c++,i++) {
+	size_type j = n;
+	size_type k = c;
+	const size_type C2 = n+M-1;
 	// using a local variable for the accumation saves a lot of CPU Time!!
 	std::complex<D> result = a(j) * b(k);
 	while (j<C2){
@@ -632,13 +599,13 @@ namespace COOLL {
   inline Matrix<std::complex<D> >
   adj(const MorE<std::complex<D>,A>& a)
   {
-    const unsigned int NR = a.Nrows();
-    const unsigned int NC = a.Ncols();
-    const unsigned int NN = a.size();
-    const unsigned int C1 = NN-NC;
+    const size_type NR = a.Nrows();
+    const size_type NC = a.Ncols();
+    const size_type NN = a.size();
+    const size_type C1 = NN-NC;
 
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string name="adj(" +a.debugtxt() +")";
     if ( mexpr_is_size_bad(a.size()) ){ 
       mbad_expr_in_unary(a,"adj");
@@ -650,9 +617,9 @@ namespace COOLL {
     Matrix<std::complex<D> > y(NC,NR);
 #endif
 
-    register unsigned int i = 0;
-    for(register unsigned int c = 0; c < NC; c++, i++) {
-      register unsigned int k = c;
+    register size_type i = 0;
+    for(register size_type c = 0; c < NC; c++, i++) {
+      register size_type k = c;
       y(i) = conj(a(k));
       do {
         y((i+=1)) = conj(a((k+=NC)));

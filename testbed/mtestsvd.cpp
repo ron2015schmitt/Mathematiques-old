@@ -2,21 +2,21 @@
  
 
 
-#include "cooll.hpp"
-using namespace COOLL;
+#import "matricks.hpp"
+using namespace Matricks;
 
-#include "cooll_lapack.hpp"
+#import "cooll_lapack.hpp"
 
-#include "testlib.hpp"
+#import "testlib.hpp"
 
-#include <iostream>
+#import <iostream>
 using namespace std;
 
 
-#include <vector>
+#import <vector>
 
 
-#include <cmath>
+#import <cmath>
 
 
 

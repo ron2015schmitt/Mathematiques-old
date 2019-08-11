@@ -1,46 +1,13 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
-
-
 
 
 #ifndef MVOPERATORS_H
-#define MVOPERATORS_H 1
-
+#define MVOPERATORS_H
 
 #include <string>
 #include <sstream>
 
 
-namespace COOLL {
+namespace Matricks {
 
 
 
@@ -51,9 +18,9 @@ namespace COOLL {
   inline Matrix<D>
   operator^(const VorE<D,A>& a, const VorE<D,B>& b)
   {
-    const unsigned int NC = a.size();
-    const unsigned int NR = b.size();
-#ifdef COOLL_CAREFUL
+    const size_type NC = a.size();
+    const size_type NR = b.size();
+#ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
     if (a.vetype() != VE_LAvector) 
       sa = "(" + sa + ")";
@@ -71,9 +38,9 @@ namespace COOLL {
     Matrix<D> y(NR,NC);
 #endif
 
-    register unsigned int i=0;
-    for(register unsigned int r=0; r < NR; r++) 
-      for(register unsigned int c=0; c < NC; c++,i++) 
+    register size_type i=0;
+    for(register size_type r=0; r < NR; r++) 
+      for(register size_type c=0; c < NC; c++,i++) 
 	y(i) = a[c]*b[r];   
 
     return  y;
@@ -87,13 +54,13 @@ namespace COOLL {
   inline LAvector<D>
   diag(const MorE<D,A>& a)
   {
-    unsigned int Nmin;
+    size_type Nmin;
     if (a.Nrows() < a.Ncols())
       Nmin=a.Nrows();
     else
       Nmin=a.Ncols();
-    const unsigned int N=Nmin;
-#ifdef COOLL_CAREFUL
+    const size_type N=Nmin;
+#ifdef Matricks_CAREFUL
     std::string name= "diag("+a.debugtxt() +")";
     if ( mexpr_is_size_bad(a.size()) ){ 
       mbad_expr_in_unary(a,"diag");
@@ -105,7 +72,7 @@ namespace COOLL {
     LAvector<D> v(N);
 #endif
 
-    for (register unsigned int i = 0; i < N ; i++ )
+    for (register size_type i = 0; i < N ; i++ )
       v[i] = a(i,i);
     return v;
   }
@@ -120,8 +87,8 @@ namespace COOLL {
   inline Matrix<D>
   diagmat(const VorE<D,A>& a)
   {
-    const unsigned int N = a.size();
-#ifdef COOLL_CAREFUL
+    const size_type N = a.size();
+#ifdef Matricks_CAREFUL
     std::string name;
     name = "diagmat(" + a.debugtxt() + ")";
     if (  vexpr_is_size_bad(a) ) { 
@@ -134,7 +101,7 @@ namespace COOLL {
     Matrix<D> y(N,N);
 #endif
 
-    for(register unsigned int i=0; i < N; i++) 
+    for(register size_type i=0; i < N; i++) 
       y(i,i) = a[i];   
 
     return  y;
@@ -148,12 +115,12 @@ namespace COOLL {
   template <class D, class A, class B> 
   inline LAvector<D>
   operator|( const MorE<D,A>& a, const  VorE<D,B>& b ) {
-    const unsigned int NR = a.Nrows();
-    const unsigned int M = a.Ncols();
-    const unsigned int C1 = NR*M;
-    const unsigned int C2 = M-1;
+    const size_type NR = a.Nrows();
+    const size_type M = a.Ncols();
+    const size_type C1 = NR*M;
+    const size_type C2 = M-1;
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
     if (a.metype() != ME_Matrix) 
       sa = "(" + sa + ")";
@@ -161,7 +128,7 @@ namespace COOLL {
     if (b.vetype() != VE_LAvector) 
       sb = "(" + sb + ")";
     std::string name= sa + "|"+  sb;
-    const unsigned int Mb = b.size();
+    const size_type Mb = b.size();
 
     if (mexpr_is_size_bad(a.size()) ) { 
       mbad_expr_in_unary(a,""); 
@@ -181,10 +148,10 @@ namespace COOLL {
     LAvector<D> y(NR);
 #endif
 
-    register unsigned int i = 0;
-    for(register unsigned int n=0; n < C1; n+=M, i++) {
-      unsigned int j = n;
-      unsigned int k = 0;
+    register size_type i = 0;
+    for(register size_type n=0; n < C1; n+=M, i++) {
+      size_type j = n;
+      size_type k = 0;
        // using a local variable for the accumation saves a lot of CPU Time!!
       D result = a(j) * b[k];
       do {
@@ -202,10 +169,10 @@ namespace COOLL {
   template <class D, class A, class B> 
   inline LAvector<D>
   operator|( const VorE<D,A>& a, const  MorE<D,B>& b ) {
-    const unsigned int NC = b.Ncols();
-    const unsigned int M = b.Nrows();
+    const size_type NC = b.Ncols();
+    const size_type M = b.Nrows();
 
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
     std::string sb = b.debugtxt();
     if (a.vetype() != VE_LAvector) 
@@ -213,7 +180,7 @@ namespace COOLL {
     if (b.metype() != ME_Matrix) 
       sb = "(" + sb + ")";
     std::string name= sa + "|"+  sb;
-    const unsigned int Ma = a.size();
+    const size_type Ma = a.size();
     if (mexpr_is_size_bad(b.size()) ) { 
       mbad_expr_in_unary(b,""); 
       LAvector<D> y(0,name);
@@ -232,11 +199,11 @@ namespace COOLL {
     LAvector<D> y(NC);
 #endif
 
-    register unsigned int i = 0;
-    for(register unsigned int c=0; c < NC; c++,i++) {
-      unsigned int j = 0;
-      unsigned int k = c;
-      const unsigned int C2 = M-1;
+    register size_type i = 0;
+    for(register size_type c=0; c < NC; c++,i++) {
+      size_type j = 0;
+      size_type k = c;
+      const size_type C2 = M-1;
       // using a local variable for the accumation saves a lot of CPU Time!!
       D result = a[j] * b(k);
       do {

@@ -3,16 +3,16 @@
  
 
 
-#include "cooll.hpp"
-using namespace COOLL;
+#import "matricks.hpp"
+using namespace Matricks;
 
-#include "testlib.hpp"
+#import "testlib.hpp"
 
-#include <iostream>
+#import <iostream>
 using namespace std;
 
 
-#include <vector>
+#import <vector>
 
 
 int main()
@@ -323,7 +323,7 @@ int main()
  
   LAvector<double> v5(2,"v5");
   "{21,32,43,54}" >> v3;
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
   printcrcr("[A warning below indicates proper functionality.]");
 #endif
   v5=v3;
@@ -333,7 +333,7 @@ int main()
   v5.resize(7);
   unsigned int ans50a = 7;
   compare(v5.size(),ans50a);
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
   printcrcr("[A warning below indicates proper functionality.]");
 #endif
   v5=2.0*v3;

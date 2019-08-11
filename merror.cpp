@@ -1,39 +1,8 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
 
 
 
-
-#define COOLL_CAREFUL
-#include "coollcommon.hpp"
+#define Matricks_CAREFUL
+#include "matrickscommon.hpp"
 #include "merror.hpp"
 
 #include <sstream>
@@ -41,7 +10,7 @@
 #include <string>
 #include <iomanip>
 
-namespace COOLL {
+namespace Matricks {
 
 
   /****************************************************************************
@@ -51,8 +20,8 @@ namespace COOLL {
 
 
   void mbad_input_stream_size(const std::string& name, const std::string& line, 
-			      const unsigned int NR1, const unsigned int NC1,
-			      const unsigned int NR2, const unsigned int NC2) {
+			      const size_type NR1, const size_type NC1,
+			      const size_type NR2, const size_type NC2) {
     std::string xname = "";
     if (name.size()>0)
       xname = " '"+name+"' ";
@@ -66,8 +35,8 @@ namespace COOLL {
   }
 
   void minput_stream_size_too_small(const std::string& name, const std::string& line, 
-				    const unsigned int N1, 
-				    const unsigned int NR, const unsigned int NC) {
+				    const size_type N1, 
+				    const size_type NR, const size_type NC) {
     std::string xname = "";
     if (name.size()>0)
       xname = " '"+name+"' ";
@@ -82,9 +51,9 @@ namespace COOLL {
   
 
   void msyntax_error(const std::string& name, const std::string& line, 
-		     const unsigned int N1, 
-		     const unsigned int NR, const unsigned int NC, 
-		     const unsigned int Nlines, const unsigned int Nchars,
+		     const size_type N1, 
+		     const size_type NR, const size_type NC, 
+		     const size_type Nlines, const size_type Nchars,
 		     const char c, 
 		     const std::string& info, TextFormat textformat) {
     std::string xname = "";
@@ -116,8 +85,8 @@ namespace COOLL {
 
 
   void mcol_number_error(const std::string& name, const std::string& line, 
-			 const unsigned int NR, const unsigned int NC, const unsigned int NCbad, 
-			 const unsigned int Nlines, 
+			 const size_type NR, const size_type NC, const size_type NCbad, 
+			 const size_type Nlines, 
 			 TextFormat textformat) {
     std::string xname = "";
     if (name.size()>0)
@@ -144,7 +113,7 @@ namespace COOLL {
   }	    
 
 
-  bool mexpr_is_size_bad(const unsigned int sz) {
+  bool mexpr_is_size_bad(const size_type sz) {
     // check for ill formed expression
     if ( sz == badsize ) { 
       return true;
@@ -152,94 +121,94 @@ namespace COOLL {
     return false;
   }
 
-  void mbad_size(const unsigned int id,  const unsigned int nr, const unsigned int nc) {
+  void mbad_size(const size_type id,  const size_type nr, const size_type nc) {
     using namespace std;
-    std::cout << error_str <<  CoollDirectory::matrixname(id) << " size="<<nr<<"x"<<nc<<"=";
+    std::cout << error_str <<  MatricksObjectPool::matrixname(id) << " size="<<nr<<"x"<<nc<<"=";
     cout.precision(15);
     cout.setf(ios::fixed);
     std::cout << double(nr)*double(nc);
     std::cout <<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
-    CoollDirectory::moutputglossary(id);
+    MatricksObjectPool::moutputglossary(id);
   }
 
-  void mbad_reshape(const unsigned int id,  const unsigned int nr, const unsigned int nc,  const unsigned int NR, const unsigned int NC) {
+  void mbad_reshape(const size_type id,  const size_type nr, const size_type nc,  const size_type NR, const size_type NC) {
     using namespace std;
-    std::cout << error_str <<  "Cannot reshape matrix "<<CoollDirectory::matrixname(id)<<std::endl;
+    std::cout << error_str <<  "Cannot reshape matrix "<<MatricksObjectPool::matrixname(id)<<std::endl;
     std::cout << indent_str << "The number of elements in the reshaped matrix ("<< nr<<"x"<<nc<<"=" <<nr*nc<<")"<<std::endl;
     std::cout <<indent_str<< "does not match the number of elements in the"<<std::endl;
     std::cout << indent_str<<"orginal matrix ("<< NR<<"x"<<NC<<"=" <<NR*NC<<")"<<std::endl;
-    CoollDirectory::moutputglossary(id);
+    MatricksObjectPool::moutputglossary(id);
   }
 
 
-  void mout_of_bounds(const unsigned int id, const unsigned int i) {
-    std::cout << error_str << "single index access="<<i<<" out of bounds for " << CoollDirectory::matrixname(id) << std::endl;
-    CoollDirectory::moutputglossary(id);
+  void mout_of_bounds(const size_type id, const size_type i) {
+    std::cout << error_str << "single index access="<<i<<" out of bounds for " << MatricksObjectPool::matrixname(id) << std::endl;
+    MatricksObjectPool::moutputglossary(id);
   }
 
 
-  void mout_of_bounds2(const unsigned int id, const unsigned int r, const unsigned int c) {
-    std::cout << error_str << "index=("<<r<<","<<c <<") out of bounds for " << CoollDirectory::matrixname(id) << std::endl;
-    CoollDirectory::moutputglossary(id);
+  void mout_of_bounds2(const size_type id, const size_type r, const size_type c) {
+    std::cout << error_str << "index=("<<r<<","<<c <<") out of bounds for " << MatricksObjectPool::matrixname(id) << std::endl;
+    MatricksObjectPool::moutputglossary(id);
   }
 
   void mwrapper_out_of_bounds(const std::string& wSTR, 
-			      const unsigned int aindex, const unsigned int wNR, 
-			      const unsigned int wNC,  const unsigned int wSZ,
-			      const unsigned int aID
+			      const size_type aindex, const size_type wNR, 
+			      const size_type wNC,  const size_type wSZ,
+			      const size_type aID
 			      ) {
-    const std::string aSTR =  CoollDirectory::matrixname(aID);
+    const std::string aSTR =  MatricksObjectPool::matrixname(aID);
 
     std::cout << error_str << "out of bounds access "; 
     std::cout <<aSTR<<"("<<aindex<<")"<< std::endl;
     std::cout <<indent_str<<"encountered in statement: " << wSTR << std::endl;
     std::cout << where_str << wSTR <<" has size="<<wNR<<"x"<<wNC<<"="<< wSZ << std::endl;
-    CoollDirectory::moutputglossary(aID);
+    MatricksObjectPool::moutputglossary(aID);
   }
 
   void mwrapper_out_of_bounds_rc(const std::string& wSTR, 
-				 const unsigned int r,   const unsigned int c, 
-				 const unsigned int wNR, const unsigned int wNC,  const unsigned int wSZ,
-				 const unsigned int aID
+				 const size_type r,   const size_type c, 
+				 const size_type wNR, const size_type wNC,  const size_type wSZ,
+				 const size_type aID
 				 ) {
-    const std::string aSTR =  CoollDirectory::matrixname(aID);
+    const std::string aSTR =  MatricksObjectPool::matrixname(aID);
 
     std::cout << error_str << "out of bounds access "; 
     std::cout <<aSTR<<"("<<r<<","<<c<<")"<< std::endl;
     std::cout <<indent_str<<"encountered in statement: " << wSTR << std::endl;
     std::cout << where_str << wSTR <<" has size="<<wNR<<"x"<<wNC<<"="<< wSZ << std::endl;
-    CoollDirectory::moutputglossary(aID);
+    MatricksObjectPool::moutputglossary(aID);
   }
 
 
 
 
-  void mbad_assignment(const unsigned int id1, const unsigned int id2) {
-    std::string s1= CoollDirectory::matrixname(id1);
-    std::string s2= CoollDirectory::matrixname(id2);
+  void mbad_assignment(const size_type id1, const size_type id2) {
+    std::string s1= MatricksObjectPool::matrixname(id1);
+    std::string s2= MatricksObjectPool::matrixname(id2);
     std::cout << error_str << "matrix assignment to matrix of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    CoollDirectory::moutputglossary(id1);
-    CoollDirectory::moutputglossary(id2);
+    MatricksObjectPool::moutputglossary(id1);
+    MatricksObjectPool::moutputglossary(id2);
   }
 
-  void mbad_assignment_warning(const unsigned int id1, const unsigned int id2) {
-    std::string s1= CoollDirectory::matrixname(id1);
-    std::string s2= CoollDirectory::matrixname(id2);
+  void mbad_assignment_warning(const size_type id1, const size_type id2) {
+    std::string s1= MatricksObjectPool::matrixname(id1);
+    std::string s2= MatricksObjectPool::matrixname(id2);
     std::cout << warn_str << "matrix assignment to matrix of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    CoollDirectory::moutputglossary(id1);
-    CoollDirectory::moutputglossary(id2);
+    MatricksObjectPool::moutputglossary(id1);
+    MatricksObjectPool::moutputglossary(id2);
     std::cout << indent_str<< "Matrix "<<s1<<" was resized accordingly."<<std::endl;
     std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int,int) method"<<std::endl;
   }
 
-  void mbad_assignment_std(const unsigned int id1, const unsigned int sz2) {
-    std::string s1= CoollDirectory::matrixname(id1);
+  void mbad_assignment_std(const size_type id1, const size_type sz2) {
+    std::string s1= MatricksObjectPool::matrixname(id1);
     std::string s2= "<matrix>";
     std::cout << error_str << "matrix assignment to std::matrix of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    CoollDirectory::moutputglossary(id1);
+    MatricksObjectPool::moutputglossary(id1);
     std::cout << where_str << "<matrix> is std::matrix" << "[size=" << sz2 << "]" << std::endl;
   }
 
@@ -254,16 +223,16 @@ namespace COOLL {
   }
 
 
-  void vbad_mcast(const std::string& s,  const unsigned int nr, const unsigned int nc,  const unsigned int N) {
+  void vbad_mcast(const std::string& s,  const size_type nr, const size_type nc,  const size_type N) {
     std::cout << error_str  << s<<std::endl;
     std::cout <<"matrix (expression) size="<<nr<<"x"<<nc<<"can not be cast to " << std::endl;
     std::cout << indent_str <<"size="<< N<<" vector because sizes are not compatible" << std::endl;
   }
 
 
-  void mbad_submat( const unsigned int id, const unsigned int rstart, const unsigned int rend, 
-		    const unsigned int cstart, const unsigned int cend) {
-    std::string s= CoollDirectory::matrixname(id);
+  void mbad_submat( const size_type id, const size_type rstart, const size_type rend, 
+		    const size_type cstart, const size_type cend) {
+    std::string s= MatricksObjectPool::matrixname(id);
     std::ostringstream stream;
     std::cout << error_str << "bad submatrix indices given" << std::endl;
     if (rstart>rend) 
@@ -274,7 +243,7 @@ namespace COOLL {
     std::cout << "seq(" << rstart << "," << rend <<"), seq(" << cstart << "," << cend << "))"<< std::endl;
     std::cout  << indent_str << "instead if this is what you intended"<< std::endl;
     std::cout <<indent_str << s << ".submat(" << rstart << "," << rend <<"," << cstart << "," << cend << ")";
-    CoollDirectory::moutputglossary(id);
+    MatricksObjectPool::moutputglossary(id);
   }
 
   
@@ -290,20 +259,20 @@ namespace COOLL {
   std::string debugtxt_paren1(const std::string& s1, const std::string& s2){  
     return s1 + "(" + s2+ ")";
   }
-  std::string debugtxt_paren1b(const std::string& s1, const unsigned int id, const bool isvector){  
+  std::string debugtxt_paren1b(const std::string& s1, const size_type id, const bool isvector){  
     std::string s2;
     if (isvector)
-      s2 = CoollDirectory::vectorname(id);
+      s2 = MatricksObjectPool::vectorname(id);
     else
-      s2 = CoollDirectory::matrixname(id);
+      s2 = MatricksObjectPool::matrixname(id);
     return s1 + "(" + s2+ ")";
   }
   std::string debugtxt_paren2(const std::string& s1, const std::string& s2, const std::string& s3){  
     return s1 + "(" + s2 +"," + s3+ ")";
   }
-  std::string debugtxt_submat(const unsigned int id,  const unsigned int rstart, const unsigned int rend, 
-			      const unsigned int cstart, const unsigned int cend) {
-    std::string s= CoollDirectory::matrixname(id);
+  std::string debugtxt_submat(const size_type id,  const size_type rstart, const size_type rend, 
+			      const size_type cstart, const size_type cend) {
+    std::string s= MatricksObjectPool::matrixname(id);
     std::ostringstream stream;
     stream << s << ".submat(" << rstart << "," << rend <<"," << cstart << "," << cend << ")";
     return stream.str();
@@ -312,31 +281,31 @@ namespace COOLL {
 
 
 
-  void outputglossary_M1(const std::string& s,  const unsigned int nr, const unsigned int nc, const unsigned int sz) { 
+  void outputglossary_M1(const std::string& s,  const size_type nr, const size_type nc, const size_type sz) { 
     std::cout << where_str << s <<" has size="<<nr<<"x"<<nc<<"="<<  sz << std::endl;
   }
   
 
 
-  void svd_bad_U(const unsigned int id,const unsigned int M) {
-    std::string s1= CoollDirectory::matrixname(id);
+  void svd_bad_U(const size_type id,const size_type M) {
+    std::string s1= MatricksObjectPool::matrixname(id);
     std::cout << warn_str << "'U' matrix ("<<s1<<") of SVD is not of proper size" << std::endl;
-    CoollDirectory::moutputglossary(id);
+    MatricksObjectPool::moutputglossary(id);
     std::cout << indent_str << "resizing to "<<M<<"x"<<M << std::endl;
   }
 
 
-  void svd_bad_S(const unsigned int id,const unsigned int minMN) {
-    std::string s1= CoollDirectory::vectorname(id);
+  void svd_bad_S(const size_type id,const size_type minMN) {
+    std::string s1= MatricksObjectPool::vectorname(id);
     std::cout << warn_str << "'S' vector ("<<s1<<") of SVD is not of proper size" << std::endl;
-    CoollDirectory::voutputglossary(id);
+    MatricksObjectPool::voutputglossary(id);
     std::cout << indent_str << "resizing to size="<<minMN << std::endl;
   }
 
-  void svd_bad_V(const unsigned int id,const unsigned int N) {
-    std::string s1= CoollDirectory::matrixname(id);
+  void svd_bad_V(const size_type id,const size_type N) {
+    std::string s1= MatricksObjectPool::matrixname(id);
     std::cout << warn_str << "'V' matrix ("<<s1<<") of SVD is not of proper size" << std::endl;
-    CoollDirectory::moutputglossary(id);
+    MatricksObjectPool::moutputglossary(id);
     std::cout << indent_str << "resizing to "<<N<<"x"<<N << std::endl;
   }
 

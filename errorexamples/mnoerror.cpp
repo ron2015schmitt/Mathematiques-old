@@ -1,9 +1,9 @@
 
-#include <iostream>
+#import <iostream>
 
 #define COOLL_CAREFUL
 
-#include "cooll.hpp"
+#import "cooll.hpp"
 
 using namespace COOLL;
 

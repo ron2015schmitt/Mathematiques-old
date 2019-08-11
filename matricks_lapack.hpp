@@ -1,39 +1,13 @@
-// START-OF-NOTICE
-// Copyright 2003, Columbia University
-// Authors: Ron Schmitt
-//
-//
-// This file is part of the Columbia Object Oriented 
-// Linear-algebra Library (COOLL).
-//
-// You should have received a copy of the License Agreement for the
-// COOLL along with the software;  see the file LICENSE.  
-// If not, contact
-// Department of Applied Physics and Applied Mathematics
-// Columbia Univeristy 
-// New York, NY 10027
-//
-// Permission to modify the code and to distribute modified code is
-// granted, provided the text of this NOTICE is retained, a notice that
-// the code was modified is included with the above COPYRIGHT NOTICE and
-// with the COPYRIGHT NOTICE in the LICENSE file, and that the LICENSE
-// file is distributed with the modified code.
-//
-// LICENSOR MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.
-// By way of example, but not limitation, Licensor MAKES NO
-// REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY
-// PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE COMPONENTS
-// OR DOCUMENTATION WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS
-// OR OTHER RIGHTS.
-//
-// END-OF-NOTICE
-//===========================================================================
 
-#ifndef COOLL_H
-#include "cooll.hpp"
-#endif
+
+
+#ifndef MATRICKS_LAPACK_H
+#define MATRICKS_LAPACK_H
 
 #include <complex>
+
+#include "matricks.hpp"
+
 
 
 // Interface to LAPACK
@@ -48,8 +22,8 @@
 //  which is the same as the STL complex datatype
 
 
-namespace cooll_lapack {
-  using namespace COOLL;
+namespace Matricks_lapack {
+  using namespace Matricks;
 
   // shoudl probably do check that FINT is a 32 bit int.
   typedef int FINT;
@@ -100,28 +74,28 @@ namespace cooll_lapack {
     // place checks here
 
 
-    const unsigned int M = A.Nrows();
-    const unsigned int N = A.Ncols();       // Dimensions of matrix.
-    const unsigned int minMN = std::min(M,N); 
+    const size_type M = A.Nrows();
+    const size_type N = A.Ncols();       // Dimensions of matrix.
+    const size_type minMN = std::min(M,N); 
 
     Matrix<std::complex<double> > Atemp(N,M,"Atemp");
     // need to pass transpose because lapack uses col major form
     Atemp = ~A;
 
     if ( (U.Nrows()!=M) || (U.Ncols()!=M) ) {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       svd_bad_U(U.objectID(),M);
 #endif
       U.resize(M,M);
     }
     if (S.size()!=minMN) {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       svd_bad_S(S.objectID(),minMN);
 #endif
       S.resize(minMN);
     }
     if ((V.Nrows()!=N) || (V.Ncols()!=N) ) {
-#ifdef COOLL_CAREFUL
+#ifdef Matricks_CAREFUL
       svd_bad_V(V.objectID(),N);
 #endif
       V.resize(N,N);
@@ -181,3 +155,8 @@ namespace cooll_lapack {
 
 
 };
+
+
+
+
+#endif

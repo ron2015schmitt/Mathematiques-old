@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+# place the current path into the Makefiles
+temp=`pwd | sed -e 's/\//\\\\\//g'`
+sed -e "s/#COOLLDIR#/$temp/g" MakefileTemplate > Makefile
+sed -e "s/#COOLLDIR#/$temp/g" SampleMakefileTemplate > examples/SampleMakefile
+
+
+# make the object file library (libcooll.a)
+make libcooll
+
+
+

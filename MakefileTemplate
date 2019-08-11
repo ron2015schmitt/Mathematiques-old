@@ -1,0 +1,165 @@
+
+COOLLDIR = #COOLLDIR#
+VERSION = 1.9
+FNAME = cooll-$(VERSION)
+TEMP = /tmp/
+TDIR = $(TEMP)/$(FNAME)
+
+######################################################################
+# DEVELOPMENT RELEASES
+# V0.9    has full vector functionality, including mixed real/complex arithmetic
+# V0.9.1  has full matrix real/complex support and includes testcases for all
+#           real/complex matrix and vector operations
+# V0.9.2  has fully tested matrix and vector boolean operations
+# V0.9.3  has fully tested vector access operations
+# V0.9.4  has fully tested matrix access operations
+######################################################################
+# OFFICIAL RELEASES
+# V1.0 is fully functional and fully tested. first official release.
+# V1.1 adds  (1) diagmat function, 
+#            (2) debugtxt() functionality for vectors in fast mode
+#            (3) svd for real matrices using numerical recipes
+#            (4) in-place transpose for fortran
+#            (5) svd for cmplx matrices using LAPACK
+# V1.2       (1) added default constructoirs for vectors and matrices
+#             (2) added name() as alias to debugtxt()
+#             (3) changed non-matching size assignments to a warning
+#                 if size is zero.
+# V1.3       (1) fixed bug in svd that caused svd of non-square matrices 
+#                to fail.  
+#            (2) added error checking to svd routine
+#            (3) changed cool_rnd functions to use floor and ceil
+#            (4) added more test cases to svdtest.cpp
+# V1.3.1     (1) changed SVD code so that error functions only called
+# 2004/04/30     when in CAREFUL mode (This was causing a compile error
+#		 in FAST mdoe)
+# V1.4       (1) fixed segmentation fault that occurred when 
+# 2004MAY27      using vector constructor with initialization value
+#            (2) Added ability to specify name with default constructors
+#            (3) Added input stream operator for vectors and matrices
+#            (4) Added new output/input formats for matrices/vectors
+#            (5) Added file io functions
+#            (6) Added clear() member for vectors and matrices
+#            (7) Added experimenatl versions of p3vectors and p3vectorN
+#                *These vector def'ns are subject to change*
+#            (8) Started fixing the "temp = 0" problems
+#
+# V1.5       (1) added testbed for vector and matrix constructors
+# 2004JUN1   (2) changed vector init constructors so that name is optional
+#            (3) fixed error in Matrix.name(char*) member
+#  
+# V1.6       (1) First official release of p3vector class
+# 2004JUN7   (2) changed p3vector to inherit form VorE
+#            (3) added p3vector examples
+#            (4) added p3vector testbed
+# V1.7       (1) redesigned "print" and "disp" functions
+# 2004JUN9   (2) removed debug.hpp and split its contents between
+#                print.hpp and util.hpp
+#            (3) added .fullclassname() member to vectors and matrices
+#            (4) added coolinfo() macro
+#            (5) added test file for classname functions
+# V1.8       (1) changed all "D x=0" to "D x=D()"
+# 2004JUN10  (2) changed applicative "y=std::cos(x)" to "using std::cos; y=cos(x);"
+#                and all other math functions
+#            (3) changed round(x) and sgn(x) implementations
+#            (4) added some test cases for multivectors
+#            (5) changed all referecnes to 'endl' to 'std::endl'
+# V1.9       (1) added width() function to p3vectorformat
+# 2004JUN14  (2) fixed some problems with LAvector[size=0]=LAvector
+#                this fix resolves knownerror002 
+#            (3) added test cases for (2)
+#            (4) change vector resize so that it does nothing
+#                if newsize is same as old size
+#            (5) repeated 2-4 for Matrix class (except no "multimatrix tests)
+#            (6) changed code so that if a vector (matrix) is assigned to
+#            (7) a vector or vector expression (matrix or matrix expression)
+#                of a different size, only a warning is given and then
+#                teh vfector (matrix) is resized.
+######################################################################
+
+
+COPTS = 
+LOPTS =
+
+CXXOPTFLAGS = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+CXXOPT = -Wall -W -Wconversion $(CXXOPTFLAGS)
+CC  = /usr/bin/gcc
+CXX = /usr/bin/g++ 
+
+
+# assuems that  environment  variable "COOLLDIR" is set to the path where teh library resides
+INCLUDES += -I $(COOLLDIR) 
+
+VPATH = $(COOLLDIR)
+
+LIBS += -L$(COOLLDIR) -lcooll
+
+LIB_LAPACK =  -llapack  -lg2c
+
+CXXFLAGS =  $(CXXOPT)  $(COPTS) $(INCLUDES)
+
+LDFLAGS =  $(LOPTS) 
+
+LIBFILES = applicative.hpp matrixdef.hpp mvcomplexops.hpp vcomplexops.hpp boolapp.hpp mboolexpr.hpp mvexpr.hpp vectordef.hpp complexapp.hpp mboolops.hpp mvoperators.hpp verror.hpp coollcommon.hpp mcomplexexpr.hpp p3vector.hpp vexpr.hpp cooll.hpp mcomplexops.hpp print.hpp vmathops.hpp coollio.hpp merror.hpp util.hpp voperators.hpp cooll_lapack.hpp mexpr.hpp vboolexpr.hpp cooll_nr.hpp mmathops.hpp vboolops.hpp mathapp.hpp moperators.hpp vcomplexexpr.hpp
+
+
+
+EXEC ?=
+LAPACKEXEC ?=
+
+#prevent any default rules from being used
+.SUFFIXES:
+
+# don't delete .o files
+.PRECIOUS: %.o
+
+clean:
+	\rm -f *.o
+	\rm -f $(EXEC)
+	\rm -f $(LAPACKEXEC)
+	\rm -f core.*
+	\rm -f *.s
+	\rm -f *.temp
+
+cleanall: clean 
+	\cd $(COOLLDIR)/examples && make clean
+	\cd $(COOLLDIR)/errorexamples && make clean
+	\cd $(COOLLDIR)/testbed && make clean
+	\cd $(COOLLDIR)/benchmarks && make clean
+	\cd $(COOLLDIR)/development && make clean
+
+fullpurge: cleanall
+	\rm -f $(COOLLDIR)/libcooll.a
+	\rm -f $(COOLLDIR)/*~
+	\rm -f $(COOLLDIR)/*.gz
+	\rm -f $(COOLLDIR)/*.tar
+	\rm -f $(COOLLDIR)/*.old
+	\rm -f $(COOLLDIR)/*/*~
+	\rm -f $(COOLLDIR)/*/*.old
+	\rm -f $(COOLLDIR)/Makefile
+
+%.o: %.cpp  $(LIBFILES) 
+ifdef CAREFUL
+	$(CXX) $(CXXFLAGS) -D"COOLL_CAREFUL=1" -c $*.cpp -o $@
+else
+	$(CXX) $(CXXFLAGS) -c $*.cpp -o $@
+endif
+
+
+%: %.o 
+	$(CXX) $(LDFLAGS) $*.o -o $@ $(LIBS) 
+
+
+all: $(EXEC)
+
+libcooll: coollcommon.o verror.o merror.o p3vector.o
+	@echo "configuring COOLL library version=$(VERSION)"
+	ar ruv libcooll.a $?
+
+
+archive: fullpurge
+	\rm -rf $(TDIR)
+	\mkdir $(TDIR)
+	\cp -r . $(TDIR)/
+	\cd $(TEMP) && tar cvof $(FNAME).tar $(FNAME)/ && gzip $(FNAME).tar 
+	\cp $(TEMP)/$(FNAME).tar.gz .

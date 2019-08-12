@@ -17,41 +17,41 @@ int main()
 {
   const int N = 4;
 
-  LAvector<double> v1(N);
-  LAvector<double> v2(N);
+  Vector<double> v1(N);
+  Vector<double> v2(N);
 
-  cout << "initialize v1" << endl;
+  std::cout << "initialize v1" << std::endl;
   v1 = range<double>(1,4) * 3.14159265/4.0;
-  cout << v1 << endl;
+  std::cout << v1 << std::endl;
 
-  cout << "sin" << endl;
+  std::cout << "sin" << std::endl;
   v2 = sin(v1);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "log" << endl;
+  std::cout << "log" << std::endl;
   v2 = log(v1);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "sign, sgn(v2)" << endl;
+  std::cout << "sign, sgn(v2)" << std::endl;
   v2[0] = -2.5;
   v2[1] = 100;
   v2[2] = 0;
   v2[3] = 23;
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
   v2 = sgn(v2);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "v1^3.0" << endl;
+  std::cout << "v1^3.0" << std::endl;
   v2 = pow(v1,3.0);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "round(v2)" << endl;
+  std::cout << "round(v2)" << std::endl;
   v2 = round(v2);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "complicated example#2" << endl;
+  std::cout << "complicated example#2" << std::endl;
   v2 = v1*(sin(2.0*v1)  +  cos(2.0*v1))/2.0;
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
 
   // functions supported: sin, cos, tan, sinh, cosh, tanh, exp, log, abs, log10

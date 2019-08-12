@@ -135,7 +135,7 @@ int main()
   cout << endl << "BAD EXPRESSION IN numtrue()" << endl;
   m = numtrue(MB1+MB3);
 
-  LAvector<bool> vb1(2,"vb1");
+  Vector<bool> vb1(2,"vb1");
   cout << endl << "BAD EXPRESSION IN alltruebyrow()" << endl;
   vb1 = alltruebyrow(MB1+MB2);
   cout << endl << "BAD EXPRESSION IN alltruebycol()" << endl;
@@ -145,7 +145,7 @@ int main()
   cout << endl << "BAD EXPRESSION IN anytruebycol()" << endl;
   vb1 = anytruebycol(MB1+MB2);
 
-  LAvector<unsigned int> vm1(2,"vm1");
+  Vector<unsigned int> vm1(2,"vm1");
   cout << endl << "BAD EXPRESSION IN numtruebyrow()" << endl;
   vm1 = numtruebyrow(MB1+MB2);
   cout << endl << "BAD EXPRESSION IN numtruebycol()" << endl;
@@ -160,14 +160,14 @@ int main()
   Matrix<double> A1(2,2,"A1");
   Matrix<double> A2(3,2,"A2");
   Matrix<double> A3(4,2,"A3");
-  LAvector<double> u1(2,"u1");
+  Vector<double> u1(2,"u1");
 
 
   cout << endl << "ILLEGAL USE OF .resize()" << endl;
   A1=A1.resize();
 
 
-  LAvector<double> vtemp0(4,"vtemp0");
+  Vector<double> vtemp0(4,"vtemp0");
   Matrix<unsigned int> Aind1(4,3,"Aind1");
   cout << endl << "BADLY SIZED MATRIX IN PAIRED SET ACCESS" << endl;
   vtemp0 =  A1(Aind1);
@@ -180,7 +180,7 @@ int main()
   A1 = A1(Mbool1);
 
 
-  LAvector<bool> ubool1(3,"ubool1");
+  Vector<bool> ubool1(3,"ubool1");
   cout<< endl << "VECTOR MASK SIZE DOES NOT MATCH MATRIX SIZE" << endl;
   A1 = A1(ubool1);
  
@@ -194,9 +194,9 @@ int main()
   cout << endl << "OUT OF BOUNDS .col() ACCESS" << endl;
   u1 = A1.col(2);
 
-  LAvector<unsigned int> vset1(5,"vset1");
+  Vector<unsigned int> vset1(5,"vset1");
   vset1 = range<unsigned int>(0,4);
-  LAvector<double> vtemp1(5,"vtemp1");
+  Vector<double> vtemp1(5,"vtemp1");
   cout << endl << "OUT OF BOUNDS SET ACCESS" << endl;
   vtemp1 =  A1(vset1);
 
@@ -204,7 +204,7 @@ int main()
 
   cout << endl << "OUT OF BOUNDS PAIRED SET ACCESS" << endl;
   Matrix<unsigned int> Aind2(6,2,"Aind2");
-  LAvector<double> vtemp2(6,"vtemp2");
+  Vector<double> vtemp2(6,"vtemp2");
   Aind2 = findtrue(A2==0);
   vtemp2 =  A1(Aind2);
 
@@ -225,9 +225,9 @@ int main()
   A2.resize() = A1(seq(0,1),seq(0,2));
 
 
-  LAvector<unsigned int> vset1b(2,"vset1b");
+  Vector<unsigned int> vset1b(2,"vset1b");
   vset1b = range<unsigned int>(1,2);
-  LAvector<unsigned int> vset2(2,"vset2");
+  Vector<unsigned int> vset2(2,"vset2");
   vset2 = range<unsigned int>(0,1);
   cout << endl << "OUT BOUNDS (sequence,set) ACCESS" << endl;
   A2.resize() = A1(seq(0,1),vset1b);

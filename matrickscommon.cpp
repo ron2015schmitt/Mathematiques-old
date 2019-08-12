@@ -305,12 +305,12 @@ namespace Matricks {
   MTS_MACRO2(std::complex<float>);
   MTS_MACRO2(std::complex<double>);
   MTS_MACRO2(std::complex<long double>);
-  MTS_MACRO2(LAvector<float>);
-  MTS_MACRO2(LAvector<double>);
-  MTS_MACRO2(LAvector<long double>);
-  MTS_MACRO2(LAvector<std::complex<double> >);
-  MTS_MACRO2(LAvector<LAvector<double> >);
-  MTS_MACRO2(LAvector<LAvector<std::complex<double> > >);
+  MTS_MACRO2(Vector<float>);
+  MTS_MACRO2(Vector<double>);
+  MTS_MACRO2(Vector<long double>);
+  MTS_MACRO2(Vector<std::complex<double> >);
+  MTS_MACRO2(Vector<Vector<double> >);
+  MTS_MACRO2(Vector<Vector<std::complex<double> > >);
   MTS_MACRO2(Matrix<float>);
   MTS_MACRO2(Matrix<double>);
   MTS_MACRO2(Matrix<long double>);

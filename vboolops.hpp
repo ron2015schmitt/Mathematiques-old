@@ -14,8 +14,8 @@ namespace Matricks {
    *               Templates for Binary Operators that return bool vectors
    *
    * D = data type, e.g. double
-   * A = either an LAvector or a Vexpr
-   * B = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
+   * B = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -79,7 +79,7 @@ namespace Matricks {
    *               Templates for vector/scalar Operators that return Bool vector
    *
    * D = data type, e.g. double (vector and scalar must be of same data type)
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -303,8 +303,8 @@ namespace Matricks {
   /************************************************************
    *               Templates for Binary Operators
    *
-   * A = either an LAvector or a Vexpr
-   * B = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
+   * B = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -338,7 +338,7 @@ namespace Matricks {
   /************************************************************
    *               Templates for vector/scalar Operators
    *
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -385,7 +385,7 @@ namespace Matricks {
   /****************************************************************
    *               Templates for Unary Operators & Unary Functions
    *
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    *****************************************************************
    */
 
@@ -488,14 +488,14 @@ namespace Matricks {
   // findtrue(a)
 
   template <class A> 
-  inline LAvector<size_type> findtrue( const VorE<bool,A>& a ) {
+  inline Vector<size_type> findtrue( const VorE<bool,A>& a ) {
     int N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"findtrue");
-      LAvector<size_type> y(0,s);
+      Vector<size_type> y(0,s);
       return y;
     }
 #endif
@@ -504,9 +504,9 @@ namespace Matricks {
       N += int(a[i]);
  
 #ifdef Matricks_CAREFUL
-    LAvector<size_type> y(N,s);
+    Vector<size_type> y(N,s);
 #else
-    LAvector<size_type> y(N);
+    Vector<size_type> y(N);
 #endif
 
     size_type j =0;

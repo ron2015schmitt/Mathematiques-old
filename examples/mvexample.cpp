@@ -18,24 +18,24 @@ int main()
   const int N1 = 4;
   const int N2 = 3;
   
-  LAvector<double> x1(N1,"x1");
-  cout << "initialize each element of x1" << endl;
+  Vector<double> x1(N1,"x1");
+  std::cout << "initialize each element of x1" << std::endl;
   x1[0] = 1.0;
   x1[1] = 2.0;
   x1[2] = 3.0;
   x1[3] = 4.0;
-  cout << x1<< endl;
+  std::cout << x1<< std::endl;
 
-  LAvector<double> x2(N2,"x2");
-  cout << "initialize each element of x2" << endl;
+  Vector<double> x2(N2,"x2");
+  std::cout << "initialize each element of x2" << std::endl;
   x2[0] = 5.0;
   x2[1] = 6.0;
   x2[2] = 7.0;
-  cout << x2 << endl;
+  std::cout << x2 << std::endl;
 
 
   Matrix<double> A1(N2,N1,"A1");
-  cout << "initialize each element of A1" << endl;
+  std::cout << "initialize each element of A1" << std::endl;
   A1(0,0) = 10.0;
   A1(0,1) = 20.0;
   A1(0,2) = 30.0;
@@ -48,96 +48,96 @@ int main()
   A1(2,1) = 100.0;
   A1(2,2) = 110.0;
   A1(2,3) = 120.0;
-  cout << A1<< endl;
+  std::cout << A1<< std::endl;
 
   Matrix<double> A2(N2,N1,"A2");
 
-  cout << "outer product A2=x1^x2" << endl;
+  std::cout << "outer product A2=x1^x2" << std::endl;
   A2 = (x1^x2);
-  cout << A2<< endl;
+  std::cout << A2<< std::endl;
   
 
-  cout << "complicated example A2=(x1^x2) + 3*A1" << endl;
+  std::cout << "complicated example A2=(x1^x2) + 3*A1" << std::endl;
   A2 = (x1^x2) + 3.0*A1;
-  cout << A2<< endl;
+  std::cout << A2<< std::endl;
 
 
-  cout << "x1=row 1 of A2" << endl;
+  std::cout << "x1=row 1 of A2" << std::endl;
   x1 = A2.row(1);
-  cout << x1<< endl;
+  std::cout << x1<< std::endl;
 
-  cout << "x2=column 2 of A2" << endl;
+  std::cout << "x2=column 2 of A2" << std::endl;
   x2 = A2.col(1);
-  cout << x2<< endl;
+  std::cout << x2<< std::endl;
   
 
-  cout << "x2=diagonal of A2+A1" << endl;
+  std::cout << "x2=diagonal of A2+A1" << std::endl;
   x2 = diag(A1+A2);
-  cout << x2<< endl;
+  std::cout << x2<< std::endl;
 
-  LAvector<double> x3(N1,"x3");
-  cout << "initialize each element of x3" << endl;
+  Vector<double> x3(N1,"x3");
+  std::cout << "initialize each element of x3" << std::endl;
   x3[0] = 1;
   x3[1] = 2;
   x3[2] = 3;
   x3[3] = 4;
-  cout << x3 << endl;
+  std::cout << x3 << std::endl;
 
-  cout << "matrix/vector dot product x2=(A1|x3)" << endl;
+  std::cout << "matrix/vector dot product x2=(A1|x3)" << std::endl;
   x2 = (A1|x3);
-  cout << x2<< endl;
+  std::cout << x2<< std::endl;
 
-  cout << "initialize each element of x2" << endl;
+  std::cout << "initialize each element of x2" << std::endl;
   x2[0] = 1;
   x2[1] = 2;
   x2[2] = 3;
-  cout << x2 << endl;
+  std::cout << x2 << std::endl;
 
-  cout << "matrix/vector dot product x3=(~A1|x2)" << endl;
+  std::cout << "matrix/vector dot product x3=(~A1|x2)" << std::endl;
   x3 = (~A1|x2);
-  cout << x3<< endl;
+  std::cout << x3<< std::endl;
 
-  cout << "vector/matrix dot product x3=(x2|A1)" << endl;
+  std::cout << "vector/matrix dot product x3=(x2|A1)" << std::endl;
   x3 = (x2|A1);
-  cout << x3<< endl;
+  std::cout << x3<< std::endl;
 
-  cout << x2<< endl;
-  cout << "initialize each element of x1" << endl;
+  std::cout << x2<< std::endl;
+  std::cout << "initialize each element of x1" << std::endl;
   x1[0] = 1;
   x1[1] = 3;
   x1[2] = 5;
   x1[3] = 2;
-  cout << x1<< endl;
-  LAvector<double> x4(N2,"x4");
+  std::cout << x1<< std::endl;
+  Vector<double> x4(N2,"x4");
   x4 =(A1|x1);
-  cout<<"x4 = (A1|x1)=" << x4<< endl;
+  std::cout<<"x4 = (A1|x1)=" << x4<< std::endl;
 
-  cout << "vector/matrix/vector dot product (x2|A1|x1)" << endl;
+  std::cout << "vector/matrix/vector dot product (x2|A1|x1)" << std::endl;
   double d = (x2|A1|x1);
-  cout << d << endl;
+  std::cout << d << std::endl;
 
 
-  cout << "x1 = row 2 of A1" << endl;
+  std::cout << "x1 = row 2 of A1" << std::endl;
   x1 = A1.row(2);
-  cout << x1 << endl;
+  std::cout << x1 << std::endl;
 
 
-  cout << "x1 = sqrt(row 2 of A1)" << endl;
+  std::cout << "x1 = sqrt(row 2 of A1)" << std::endl;
   x1 = sqrt_el(A1.row(2));
-  cout << x1 << endl;
+  std::cout << x1 << std::endl;
 
 
-  cout << "x2 = (col 0 of A1) " << endl;
+  std::cout << "x2 = (col 0 of A1) " << std::endl;
   x2 = A1.col(0);
-  cout << x2 << endl;
+  std::cout << x2 << std::endl;
 
-  cout << "x2 = A1[2,1:3]" << endl;
+  std::cout << "x2 = A1[2,1:3]" << std::endl;
   x2 = A1.submat(2,2,1,3);
-  cout << x2 << endl;
+  std::cout << x2 << std::endl;
 
-  cout << "x1[0:2] = (col 0 of A1) " << endl;
+  std::cout << "x1[0:2] = (col 0 of A1) " << std::endl;
   //  x1[ind(0,2)] = A1.col(0);
-  cout << x1 << endl;
+  std::cout << x1 << std::endl;
 
 
   return 0;

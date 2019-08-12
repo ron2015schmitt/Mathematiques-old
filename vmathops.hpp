@@ -11,8 +11,8 @@ namespace Matricks {
    *               Templates for Binary Operators
    *
    * D = data type, e.g. double
-   * A = either an LAvector or a Vexpr
-   * B = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
+   * B = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -34,7 +34,7 @@ namespace Matricks {
    *               Templates for vector/scalar Operators
    *
    * D = data type, e.g. double (vector and scalar must be of same data type)
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -69,7 +69,7 @@ namespace Matricks {
    *               Templates for Unary Operators & Unary Functions
    *
    * D = data type, e.g. double 
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    *****************************************************************
    */
 

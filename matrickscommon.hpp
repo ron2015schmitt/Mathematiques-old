@@ -230,7 +230,7 @@ namespace Matricks {
    * Enumeration for different subclasses of VorE class
    ****************************************************************************   
    */
-  enum VETypes {VE_LAvector, VE_VScalObj, VE_VRangeObj, VE_VSetObj, VE_VMaskObj,
+  enum VETypes {VE_Vector, VE_VScalObj, VE_VRangeObj, VE_VSetObj, VE_VMaskObj,
 		VE_VReconObj, VE_VConcatOp, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
@@ -294,7 +294,7 @@ namespace Matricks {
    ****************************************************************************   
    */
 
-  template <class D> class LAvector;
+  template <class D> class Vector;
   template <class D> class p3vector;
   template <class D, class A> class Vexpr;  
   template <class D, class A> class VWrapperObj;
@@ -405,7 +405,7 @@ namespace Matricks {
 
 
   template <class A> 
-  LAvector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NR, const size_type NC);
+  Vector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NR, const size_type NC);
 
 
 
@@ -421,9 +421,9 @@ namespace Matricks {
   public:
     typedef D Type;
   };
-  template <typename D> class RealVersionOfType<LAvector<D> > {
+  template <typename D> class RealVersionOfType<Vector<D> > {
   public:
-    typedef LAvector<typename RealVersionOfType<D>::Type> Type;
+    typedef Vector<typename RealVersionOfType<D>::Type> Type;
   };
   template <typename D> class RealVersionOfType<Matrix<D> > {
   public:
@@ -550,7 +550,7 @@ namespace Matricks {
   MTS_CONTAINER_MACRO(std::vector);
   MTS_CONTAINER_MACRO(std::valarray);
   
-  MTS_CONTAINER_MACRO(LAvector);
+  MTS_CONTAINER_MACRO(Vector);
   MTS_CONTAINER_MACRO(Matrix);
   MTS_CONTAINER_MACRO(p3vector);
 
@@ -561,12 +561,12 @@ namespace Matricks {
   MTS_MACRO_DECL2(std::complex<float>);
   MTS_MACRO_DECL2(std::complex<double>);
   MTS_MACRO_DECL2(std::complex<long double>);
-  MTS_MACRO_DECL2(LAvector<float>);
-  MTS_MACRO_DECL2(LAvector<double>);
-  MTS_MACRO_DECL2(LAvector<long double>);
-  MTS_MACRO_DECL2(LAvector<std::complex<double> >);
-  MTS_MACRO_DECL2(LAvector<LAvector<double> >);
-  MTS_MACRO_DECL2(LAvector<LAvector<std::complex<double> > >);
+  MTS_MACRO_DECL2(Vector<float>);
+  MTS_MACRO_DECL2(Vector<double>);
+  MTS_MACRO_DECL2(Vector<long double>);
+  MTS_MACRO_DECL2(Vector<std::complex<double> >);
+  MTS_MACRO_DECL2(Vector<Vector<double> >);
+  MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
   MTS_MACRO_DECL2(Matrix<float>);
   MTS_MACRO_DECL2(Matrix<double>);
   MTS_MACRO_DECL2(Matrix<long double>);
@@ -577,7 +577,7 @@ namespace Matricks {
   MTS_MACRO_DECL2(p3vector<std::complex<double> >);
 
   /*
-  MTS_MACRO_DECL2(LAvector<double>);
+  MTS_MACRO_DECL2(Vector<double>);
   MTS_MACRO_DECL2(std::complex<double>);
   */
 

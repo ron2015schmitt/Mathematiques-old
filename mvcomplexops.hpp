@@ -21,10 +21,10 @@ namespace Matricks {
     const size_type NR = b.size();
 #ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
-    if (a.vetype() != VE_LAvector) 
+    if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
     std::string sb = b.debugtxt();
-    if (b.vetype() != VE_LAvector) 
+    if (b.vetype() != VE_Vector) 
       sb = "(" + sb + ")";
     std::string name= sa + "^"+  sb;
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b)  ) { 
@@ -56,10 +56,10 @@ namespace Matricks {
     const size_type NR = b.size();
 #ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
-    if (a.vetype() != VE_LAvector) 
+    if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
     std::string sb = b.debugtxt();
-    if (b.vetype() != VE_LAvector) 
+    if (b.vetype() != VE_Vector) 
       sb = "(" + sb + ")";
     std::string name= sa + "^"+  sb;
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b)  ) { 
@@ -91,7 +91,7 @@ namespace Matricks {
   // dotproduct operator (complex matrix|real vector)
 
   template <class D, class A, class B> 
-  inline LAvector<std::complex<D> >
+  inline Vector<std::complex<D> >
   operator|( const MorE<std::complex<D> ,A>& a, const  VorE<D,B>& b ) {
     const size_type NR = a.Nrows();
     const size_type M = a.Ncols();
@@ -103,27 +103,27 @@ namespace Matricks {
     if (a.metype() != ME_Matrix) 
       sa = "(" + sa + ")";
     std::string sb = b.debugtxt();
-    if (b.vetype() != VE_LAvector) 
+    if (b.vetype() != VE_Vector) 
       sb = "(" + sb + ")";
     std::string name= sa + "|"+  sb;
     const size_type Mb = b.size();
 
     if (mexpr_is_size_bad(a.size()) ) { 
       mbad_expr_in_unary(a,""); 
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (  vexpr_is_size_bad(b)  ) { 
       vbad_expr_in_unary(b,"");
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (M!=Mb) {
       mvbad_dot_product(a,b);
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     }
-    LAvector<std::complex<D> > y(NR,name);
+    Vector<std::complex<D> > y(NR,name);
 #else
-    LAvector<std::complex<D> > y(NR);
+    Vector<std::complex<D> > y(NR);
 #endif
 
     register size_type i = 0;
@@ -145,7 +145,7 @@ namespace Matricks {
   // dotproduct operator (realvector|complexmatrix)
 
   template <class D, class A, class B> 
-  inline LAvector<std::complex<D> >
+  inline Vector<std::complex<D> >
   operator|( const VorE<D,A>& a, const  MorE<std::complex<D> ,B>& b ) {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
@@ -153,7 +153,7 @@ namespace Matricks {
 #ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
     std::string sb = b.debugtxt();
-    if (a.vetype() != VE_LAvector) 
+    if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
     if (b.metype() != ME_Matrix) 
       sb = "(" + sb + ")";
@@ -161,20 +161,20 @@ namespace Matricks {
     const size_type Ma = a.size();
     if (mexpr_is_size_bad(b.size()) ) { 
       mbad_expr_in_unary(b,""); 
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (  vexpr_is_size_bad(a)  ) { 
       vbad_expr_in_unary(a,"");
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (M!=Ma) {
       vmbad_dot_product(a,b);
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     }
-    LAvector<std::complex<D> > y(NC,name);
+    Vector<std::complex<D> > y(NC,name);
 #else
-    LAvector<std::complex<D> > y(NC);
+    Vector<std::complex<D> > y(NC);
 #endif
 
     register size_type i = 0;
@@ -201,7 +201,7 @@ namespace Matricks {
   // dotproduct operator (realmatrix|complexvector)
 
   template <class D, class A, class B> 
-  inline LAvector<std::complex<D> >
+  inline Vector<std::complex<D> >
   operator|( const MorE<D,A>& a, const  VorE<std::complex<D> ,B>& b ) {
     const size_type NR = a.Nrows();
     const size_type M = a.Ncols();
@@ -213,27 +213,27 @@ namespace Matricks {
     if (a.metype() != ME_Matrix) 
       sa = "(" + sa + ")";
     std::string sb = b.debugtxt();
-    if (b.vetype() != VE_LAvector) 
+    if (b.vetype() != VE_Vector) 
       sb = "(" + sb + ")";
     std::string name= sa + "|"+  sb;
     const size_type Mb = b.size();
 
     if (mexpr_is_size_bad(a.size()) ) { 
       mbad_expr_in_unary(a,""); 
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (  vexpr_is_size_bad(b)  ) { 
       vbad_expr_in_unary(b,"");
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (M!=Mb) {
       mvbad_dot_product(a,b);
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     }
-    LAvector<std::complex<D> > y(NR,name);
+    Vector<std::complex<D> > y(NR,name);
 #else
-    LAvector<std::complex<D> > y(NR);
+    Vector<std::complex<D> > y(NR);
 #endif
 
     register size_type i = 0;
@@ -255,7 +255,7 @@ namespace Matricks {
   // dotproduct operator (complexvector|realmatrix)
 
   template <class D, class A, class B> 
-  inline LAvector<std::complex<D> >
+  inline Vector<std::complex<D> >
   operator|( const VorE<std::complex<D> ,A>& a, const  MorE<D,B>& b ) {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
@@ -263,7 +263,7 @@ namespace Matricks {
 #ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
     std::string sb = b.debugtxt();
-    if (a.vetype() != VE_LAvector) 
+    if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
     if (b.metype() != ME_Matrix) 
       sb = "(" + sb + ")";
@@ -271,20 +271,20 @@ namespace Matricks {
     const size_type Ma = a.size();
     if (mexpr_is_size_bad(b.size()) ) { 
       mbad_expr_in_unary(b,""); 
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (  vexpr_is_size_bad(a)  ) { 
       vbad_expr_in_unary(a,"");
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     } else if (M!=Ma) {
       vmbad_dot_product(a,b);
-      LAvector<std::complex<D> > y(0,name);
+      Vector<std::complex<D> > y(0,name);
       return y;
     }
-    LAvector<std::complex<D> > y(NC,name);
+    Vector<std::complex<D> > y(NC,name);
 #else
-    LAvector<std::complex<D> > y(NC);
+    Vector<std::complex<D> > y(NC);
 #endif
 
     register size_type i = 0;

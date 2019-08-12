@@ -223,7 +223,7 @@ namespace Matricks {
       MatricksObjectPool::voutputglossary(id1);
       MatricksObjectPool::voutputglossary(id2);
   }
-  void settext_VMaskObj(const LAvector<size_type>& ii, const LAvector<bool>& mask) {
+  void settext_VMaskObj(const Vector<size_type>& ii, const Vector<bool>& mask) {
     ii.debugtxt("("+mask.debugtxt()+")");
   }
 

@@ -16,14 +16,14 @@
 
 namespace Matricks {
 
-  template <class D> void sort(LAvector<D>& a );
+  template <class D> void sort(Vector<D>& a );
 
   /****************************************************************************
-   * LAvector -- mathematical vector class.
+   * Vector -- mathematical vector class.
    ****************************************************************************   
    */
 
-  template <class D> class LAvector : public VorE<D,LAvector<D> > {
+  template <class D> class Vector : public VorE<D,Vector<D> > {
   private:
     // *********************** OBJECT DATA ***********************************
     int objectID_;
@@ -45,7 +45,7 @@ namespace Matricks {
 
     // ************************** CONSTRUCTOR **********************************
 
-    explicit LAvector<D>(const size_type n, const std::string name = "") { 
+    explicit Vector<D>(const size_type n, const std::string name = "") { 
 
       size_type N;
       if (n>maxsize) 
@@ -74,7 +74,7 @@ namespace Matricks {
 
     // *******************  DEFAULT  CONSTRUCTOR **********************************
 
-    explicit LAvector<D>(const std::string name = "") { 
+    explicit Vector<D>(const std::string name = "") { 
       
       size_type n=0;
 
@@ -105,7 +105,7 @@ namespace Matricks {
 
     // ************************** CONSTANT INIT CONSTRUCTOR **********************************
 
-    explicit LAvector<D>(const size_type n, const D val, const std::string name="") { 
+    explicit Vector<D>(const size_type n, const D val, const std::string name="") { 
       
       size_type N;
       if (n>maxsize) 
@@ -139,7 +139,7 @@ namespace Matricks {
 
     // ************************** COPY CONSTRUCTOR *******************************
 
-    LAvector<D>(const LAvector<D>& v2, const std::string name = "") {
+    Vector<D>(const Vector<D>& v2, const std::string name = "") {
       const size_type n = v2.size();
       size_type N;
       if (n>maxsize) 
@@ -178,7 +178,7 @@ namespace Matricks {
 
 
     template <class A>
-    LAvector<D>(const Vexpr<D,A>& x, const std::string name = "") {
+    Vector<D>(const Vexpr<D,A>& x, const std::string name = "") {
       const size_type n = x.size();
       size_type N;
       if (n>maxsize) 
@@ -215,7 +215,7 @@ namespace Matricks {
 
 
     // **************************** DESTRUCTOR **********************************
-    ~LAvector<D>() {
+    ~Vector<D>() {
       delete  data_ ;
 
       //remove from directory
@@ -238,7 +238,7 @@ namespace Matricks {
 
     // *** resize from given integer *** 
 
-    LAvector<D>&  resize(const size_type n) { 
+    Vector<D>&  resize(const size_type n) { 
       if (n==this->size())
 	return *this;
       size_type N;
@@ -260,7 +260,7 @@ namespace Matricks {
       return *this;
     }
 
-    LAvector<D>&  clear(void) { 
+    Vector<D>&  clear(void) { 
       return resize(0);
     }
 
@@ -310,17 +310,17 @@ namespace Matricks {
 
     // Accessing a SET of values 
 
-    const VSetObj<D> operator[](const LAvector<size_type>& ii) const {
+    const VSetObj<D> operator[](const Vector<size_type>& ii) const {
       return VSetObj<D>(*this, ii);
     }
-    VSetObj<D> operator[](const LAvector<size_type>& ii) {
+    VSetObj<D> operator[](const Vector<size_type>& ii) {
       return VSetObj<D>(*this, ii);
     }
 
 
     // Accessing a SET of values using a MASK
     
-    VMaskObj<D> operator[](const LAvector<bool>& mask)  {
+    VMaskObj<D> operator[](const Vector<bool>& mask)  {
 #ifdef Matricks_CAREFUL
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
@@ -328,7 +328,7 @@ namespace Matricks {
 #endif    
       return  VMaskObj<D>(*this,mask);
     }
-    const VMaskObj<D> operator[](const LAvector<bool>& mask)  const {
+    const VMaskObj<D> operator[](const Vector<bool>& mask)  const {
 #ifdef Matricks_CAREFUL
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
@@ -366,7 +366,7 @@ namespace Matricks {
 
 
     inline VETypes vetype(void) const {
-      return VE_LAvector;
+      return VE_Vector;
     }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -394,18 +394,18 @@ namespace Matricks {
     // equals functions are included so that derived classes can call these functions
 
     // Assign all elements to the same constant value
-    LAvector<D>& equals(const D d) { 
+    Vector<D>& equals(const D d) { 
       for(size_type i=size(); i--;) 
 	(*data_)[i]=d; 
       return *this;
     }
-    LAvector<D>& operator=(const D d) { 
+    Vector<D>& operator=(const D d) { 
       return equals(d);
     }
 
 
     // Assignment to a vector expression
-    template <class A>  LAvector<D>& equals(const Vexpr<D,A>& x) {  
+    template <class A>  Vector<D>& equals(const Vexpr<D,A>& x) {  
 #ifdef Matricks_CAREFUL
       std::string s1 = debugtxt();
       std::string s2 = x.debugtxt();
@@ -426,9 +426,9 @@ namespace Matricks {
 
       if (x.mustcopy(this)) {    
 #ifdef Matricks_CAREFUL
-	LAvector<D> vtemp(size(),x.debugtxt());
+	Vector<D> vtemp(size(),x.debugtxt());
 #else
-	LAvector<D> vtemp(size());
+	Vector<D> vtemp(size());
 #endif
 	for (register size_type i = size(); i--;)
 	  vtemp[i] = x[i];   // Inlined expression
@@ -440,14 +440,14 @@ namespace Matricks {
       }
       return *this; 
     }
-    template <class A>  LAvector<D>& operator=(const Vexpr<D,A>& x) {  
+    template <class A>  Vector<D>& operator=(const Vexpr<D,A>& x) {  
       return equals(x);
     }
 
 
 
     // Copy asignment
-    LAvector<D>& equals(const LAvector<D>& v2) {
+    Vector<D>& equals(const Vector<D>& v2) {
 
 #ifdef Matricks_CAREFUL
       if ( (size()>0) && ( size() !=  v2.size() ) ){ 
@@ -465,7 +465,7 @@ namespace Matricks {
 	(*data_)[i] = v2[i];    
       return *this;
     }
-    LAvector<D>& operator=(const LAvector<D>& v2) {
+    Vector<D>& operator=(const Vector<D>& v2) {
       return equals(v2);
     }
 
@@ -474,7 +474,7 @@ namespace Matricks {
     // assignment to matrix or submatrix
     // one of the two dimensions must have single element width
     template <class A>
-    LAvector<D>& operator=(const MorE<D,A>& m) {
+    Vector<D>& operator=(const MorE<D,A>& m) {
 
 #ifdef Matricks_CAREFUL
       const size_type NR = m.Nrows();
@@ -496,7 +496,7 @@ namespace Matricks {
 
 
     template <class B>
-    LAvector<D>& operator=(const VReconObj<D>& b) { 
+    Vector<D>& operator=(const VReconObj<D>& b) { 
 #ifdef Matricks_CAREFUL
       vbad_reconassignment(objectID(), b);
 #endif
@@ -508,11 +508,11 @@ namespace Matricks {
 
 
     static std::string classname(void)  {
-      return "LAvector";
+      return "Vector";
     }
 
     static std::string fullclassname(void) {
-      LAvector<D> dummy;
+      Vector<D> dummy;
       return make_type_string(dummy);
     }
 
@@ -567,7 +567,7 @@ namespace Matricks {
 
     // stream << operator
 
-    friend std::ostream& operator<<(std::ostream &stream, const LAvector<D>& v) {
+    friend std::ostream& operator<<(std::ostream &stream, const Vector<D>& v) {
 
       const size_type N = v.size();
       const int w = v.width();
@@ -602,7 +602,7 @@ namespace Matricks {
 
 
     //template <class D>	
-    friend inline std::istream& operator>>(const std::string s,  LAvector<D>& x) {	
+    friend inline std::istream& operator>>(const std::string s,  Vector<D>& x) {	
       std::istringstream st(s);
 return (st >> x);
     }
@@ -610,7 +610,7 @@ return (st >> x);
 
     // stream >> operator
 
-    friend std::istream& operator>>(std::istream& stream,  LAvector<D>& x) {	
+    friend std::istream& operator>>(std::istream& stream,  Vector<D>& x) {	
       const size_type LINESZ = 32768;
       char line[LINESZ];
       std::vector<D> v;
@@ -785,7 +785,7 @@ return (st >> x);
 
     // ******************** FRIENDS ********************************
 
-    friend  void sort<>(LAvector<D>& a );
+    friend  void sort<>(Vector<D>& a );
 
 
 
@@ -816,7 +816,7 @@ return (st >> x);
   // The Range generating function (with step given)
 
   template <class D>
-  inline LAvector<D> range(D start, D end, D step) {
+  inline Vector<D> range(D start, D end, D step) {
     // determine size
     size_type N = 0;
     if (step > 0) {
@@ -829,13 +829,13 @@ return (st >> x);
 #ifdef Matricks_CAREFUL
     std::ostringstream stream;
     stream << "range(" <<start<<","<<end<<","<<step<<")";
-    LAvector<D> y(N,stream.str());
+    Vector<D> y(N,stream.str());
     if ( N==0 ){ 
       vbadrange<D>(start,end,step);
       return y;
     }
 #else
-    LAvector<D> y(N);
+    Vector<D> y(N);
 #endif
     
     y[0] = start;
@@ -849,7 +849,7 @@ return (st >> x);
   // The Range generating function (step by +/-1)
 
   template <class D>
-  inline LAvector<D> range(D start, D end) {
+  inline Vector<D> range(D start, D end) {
     if (end >= start)
       return range<D>(start,end,static_cast<D>(1));
     else 
@@ -863,14 +863,14 @@ return (st >> x);
   // linspace function
 
   template <class D>
-  inline LAvector<D> linspace(D start, D end, size_type N) {
+  inline Vector<D> linspace(D start, D end, size_type N) {
 #ifdef Matricks_CAREFUL
     std::ostringstream stream;
     stream << "linspace(" <<start<<","<<end<<","<<N<<")";
     std::string s = stream.str();
-    LAvector<D> y(N,s);
+    Vector<D> y(N,s);
 #else
-    LAvector<D> y(N);
+    Vector<D> y(N);
 #endif
 
     // checking, ala make_string type and give error here if not: float, double or extended

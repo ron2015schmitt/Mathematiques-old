@@ -480,10 +480,10 @@ namespace Matricks {
 
     // Accessing a SET of values 
 
-    const MSetObj<D> operator()(const LAvector<size_type>& ii) const {
+    const MSetObj<D> operator()(const Vector<size_type>& ii) const {
       return MSetObj<D>(*this, ii);
     }
-    MSetObj<D> operator()(const LAvector<size_type>& ii) {
+    MSetObj<D> operator()(const Vector<size_type>& ii) {
       return MSetObj<D>(*this, ii);
     }
 
@@ -527,7 +527,7 @@ namespace Matricks {
 
     // Accessing a SET of values using a vector MASK
     
-    MSetObj<D> operator()(const LAvector<bool>& mask)  {
+    MSetObj<D> operator()(const Vector<bool>& mask)  {
 #ifdef Matricks_CAREFUL
       if ( size()!=mask.size() ) {
 	mbad_maskv(objectID_,mask);
@@ -535,7 +535,7 @@ namespace Matricks {
 #endif    
       return  MSetObj<D>(*this,mask);
     }
-    const MSetObj<D> operator()(const LAvector<bool>& mask) const  {
+    const MSetObj<D> operator()(const Vector<bool>& mask) const  {
 #ifdef Matricks_CAREFUL
       if ( size()!=mask.size() ) {
 	mbad_maskv(objectID_,mask);
@@ -580,28 +580,28 @@ namespace Matricks {
 
     // Accessing a (set,set)
 
-    const MDualSetObj<D> operator()(const LAvector<size_type>& ii, const LAvector<size_type>& jj) const {
+    const MDualSetObj<D> operator()(const Vector<size_type>& ii, const Vector<size_type>& jj) const {
       return MDualSetObj<D>(*this, ii, jj);
     }
-    MDualSetObj<D> operator()(const LAvector<size_type>& ii, const LAvector<size_type>& jj)  {
+    MDualSetObj<D> operator()(const Vector<size_type>& ii, const Vector<size_type>& jj)  {
       return MDualSetObj<D>(*this, ii, jj);
     }
 
     // Accessing a (set,integer) 
 
-    const MDualSetObj<D> operator()(const LAvector<size_type>& ii, const size_type j) const {
+    const MDualSetObj<D> operator()(const Vector<size_type>& ii, const size_type j) const {
       return MDualSetObj<D>(*this, ii, j);
     }
-    MDualSetObj<D> operator()(const LAvector<size_type>& ii, const size_type j)  {
+    MDualSetObj<D> operator()(const Vector<size_type>& ii, const size_type j)  {
       return MDualSetObj<D>(*this, ii, j);
     }
 
     // Accessing a (integer,set) 
 
-    const MDualSetObj<D> operator()(const size_type i, const LAvector<size_type>& jj) const {
+    const MDualSetObj<D> operator()(const size_type i, const Vector<size_type>& jj) const {
       return MDualSetObj<D>(*this, i,jj);
     }
-    MDualSetObj<D> operator()(const size_type i, const LAvector<size_type>& jj)  {
+    MDualSetObj<D> operator()(const size_type i, const Vector<size_type>& jj)  {
       return MDualSetObj<D>(*this, i,jj);
     }
 
@@ -616,18 +616,18 @@ namespace Matricks {
 
     // Accessing  (set,seq)
 
-    const MSetRangeObj<D> operator()(const LAvector<size_type>& ii, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const Vector<size_type>& ii, const seq& jj) const {
       return MSetRangeObj<D>(*this, ii, jj);
     }
-    MSetRangeObj<D> operator()(const LAvector<size_type>& ii, const seq& jj)  {
+    MSetRangeObj<D> operator()(const Vector<size_type>& ii, const seq& jj)  {
       return MSetRangeObj<D>(*this, ii, jj);
     }
     // Accessing  (seq,set)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const LAvector<size_type>& jj) const {
+    const MRangeSetObj<D> operator()(const seq& ii, const Vector<size_type>& jj) const {
       return MRangeSetObj<D>(*this, ii, jj);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const LAvector<size_type>& jj)  {
+    MRangeSetObj<D> operator()(const seq& ii, const Vector<size_type>& jj)  {
       return MRangeSetObj<D>(*this, ii, jj);
     }
 
@@ -838,9 +838,9 @@ namespace Matricks {
 
       if ( rhs.mustcopy(this) ) {    
 #ifdef Matricks_CAREFUL
-	LAvector<D> y(N,rhs.debugtxt());
+	Vector<D> y(N,rhs.debugtxt());
 #else
-	LAvector<D> y(N);
+	Vector<D> y(N);
 #endif
 	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 

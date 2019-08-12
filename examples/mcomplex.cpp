@@ -16,40 +16,40 @@ int main()
   const int N = 3;
 
   // real vectors
-  LAvector<double> v1(N);
-  LAvector<double> v2(N);
+  Vector<double> v1(N);
+  Vector<double> v2(N);
 
 
-  cout << "initialize v1 using range<" << endl;
+  std::cout << "initialize v1 using range<" << std::endl;
   v1 = range<double>(1,3);
-  cout << v1 << endl;
+  std::cout << v1 << std::endl;
 
-  cout << "initialize v2 using range<" << endl;
+  std::cout << "initialize v2 using range<" << std::endl;
   v2 = range<double>(100,300,100);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
   // complex vectors
 
-  LAvector<complex<double> > v3(N);
+  Vector<complex<double> > v3(N);
 
 
-  cout << "initialize each element of v3" << endl;
+  std::cout << "initialize each element of v3" << std::endl;
   v3[0] = complex<double>(1.0,2.0);
   v3[1] = complex<double>(3.0,4.0);
   v3[2] = complex<double>(5.0,6.0);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
 
 
 
 
-  cout << "initialize v3 = (v1,0)" << endl;
+  std::cout << "initialize v3 = (v1,0)" << std::endl;
   v3 = vcomplex(v1,0);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
-  cout << "initialize v3 = (0,v1)" << endl;
+  std::cout << "initialize v3 = (0,v1)" << std::endl;
   v3 = vcomplex(0.0,v1);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
 
 
@@ -60,61 +60,61 @@ int main()
   M1(1,1) = 4.0;
   Matrix<double> M2(2,2);
   Matrix<complex<double> > M3(2,2);
-  cout << "initialize M3 = (M1,0)" << endl;
+  std::cout << "initialize M3 = (M1,0)" << std::endl;
   M3 = mcomplex(M1,0.0);
-  cout << M3 << endl;
+  std::cout << M3 << std::endl;
 
-  cout << "initialize M3 = (0,M1)" << endl;
+  std::cout << "initialize M3 = (0,M1)" << std::endl;
   M3 = mcomplex(0.0,M1);
-  cout << M3 << endl;
+  std::cout << M3 << std::endl;
 
 
 
-  cout << "initialize v3 = (v1,v2)" << endl;
+  std::cout << "initialize v3 = (v1,v2)" << std::endl;
   v3 = vcomplex(v1,v2);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
-  cout << "dot product" << endl;
+  std::cout << "dot product" << std::endl;
   complex<double> dc = v3|v3;
-  cout <<dc << endl;
+  std::cout <<dc << std::endl;
 
 
-  cout << "conjgate dot product" << endl;
+  std::cout << "conjgate dot product" << std::endl;
   dc = conj(v3)|v3;
-  cout <<dc << endl;
+  std::cout <<dc << std::endl;
 
-  cout << "real part" << endl;
+  std::cout << "real part" << std::endl;
   v1 = real(v3);
-  cout << v1 << endl;
+  std::cout << v1 << std::endl;
 
-  cout << "imag part" << endl;
+  std::cout << "imag part" << std::endl;
   v2 = imag(v3);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "maginitude" << endl;
+  std::cout << "maginitude" << std::endl;
   v1 = abs(v3);
-  cout << v1 << endl;
+  std::cout << v1 << std::endl;
 
-  cout << "phase" << endl;
+  std::cout << "phase" << std::endl;
   v2 = arg(v3);
-  cout << v2 << endl;
+  std::cout << v2 << std::endl;
 
-  cout << "construct complex vector from magnitude,phase" << endl;
+  std::cout << "construct complex vector from magnitude,phase" << std::endl;
   v3 = vpolar(v1,v2);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
 
-  cout << "exp(v3)" << endl;
+  std::cout << "exp(v3)" << std::endl;
   v3 = exp(v3);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
-  cout << "square each element" << endl;
+  std::cout << "square each element" << std::endl;
   v3 = pow(v3,2.0);
-  cout << v3 << endl;
+  std::cout << v3 << std::endl;
 
-  cout << "norm(v3)" << endl;
+  std::cout << "norm(v3)" << std::endl;
   double d = norm(v3);
-  cout << d << endl;
+  std::cout << d << std::endl;
 
 
   return 0;

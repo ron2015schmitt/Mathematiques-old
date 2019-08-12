@@ -22,10 +22,10 @@ namespace Matricks {
     const size_type NR = b.size();
 #ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
-    if (a.vetype() != VE_LAvector) 
+    if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
     std::string sb = b.debugtxt();
-    if (b.vetype() != VE_LAvector) 
+    if (b.vetype() != VE_Vector) 
       sb = "(" + sb + ")";
     std::string name= sa + "^"+  sb;
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b)  ) { 
@@ -51,7 +51,7 @@ namespace Matricks {
   // vector = diagonal(Matrix)
 
   template <class D, class A> 
-  inline LAvector<D>
+  inline Vector<D>
   diag(const MorE<D,A>& a)
   {
     size_type Nmin;
@@ -64,12 +64,12 @@ namespace Matricks {
     std::string name= "diag("+a.debugtxt() +")";
     if ( mexpr_is_size_bad(a.size()) ){ 
       mbad_expr_in_unary(a,"diag");
-      LAvector<D> v(0,name);
+      Vector<D> v(0,name);
       return v;
     }
-    LAvector<D> v(N,name);
+    Vector<D> v(N,name);
 #else
-    LAvector<D> v(N);
+    Vector<D> v(N);
 #endif
 
     for (register size_type i = 0; i < N ; i++ )
@@ -113,7 +113,7 @@ namespace Matricks {
   // dotproduct operator (matrix|vector)
 
   template <class D, class A, class B> 
-  inline LAvector<D>
+  inline Vector<D>
   operator|( const MorE<D,A>& a, const  VorE<D,B>& b ) {
     const size_type NR = a.Nrows();
     const size_type M = a.Ncols();
@@ -125,27 +125,27 @@ namespace Matricks {
     if (a.metype() != ME_Matrix) 
       sa = "(" + sa + ")";
     std::string sb = b.debugtxt();
-    if (b.vetype() != VE_LAvector) 
+    if (b.vetype() != VE_Vector) 
       sb = "(" + sb + ")";
     std::string name= sa + "|"+  sb;
     const size_type Mb = b.size();
 
     if (mexpr_is_size_bad(a.size()) ) { 
       mbad_expr_in_unary(a,""); 
-      LAvector<D> y(0,name);
+      Vector<D> y(0,name);
       return y;
     } else if (  vexpr_is_size_bad(b)  ) { 
       vbad_expr_in_unary(b,"");
-      LAvector<D> y(0,name);
+      Vector<D> y(0,name);
       return y;
     } else if (M!=Mb) {
       mvbad_dot_product(a,b);
-      LAvector<D> y(0,name);
+      Vector<D> y(0,name);
       return y;
     }
-    LAvector<D> y(NR,name);
+    Vector<D> y(NR,name);
 #else
-    LAvector<D> y(NR);
+    Vector<D> y(NR);
 #endif
 
     register size_type i = 0;
@@ -167,7 +167,7 @@ namespace Matricks {
   // dotproduct operator (vector|matrix)
 
   template <class D, class A, class B> 
-  inline LAvector<D>
+  inline Vector<D>
   operator|( const VorE<D,A>& a, const  MorE<D,B>& b ) {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
@@ -175,7 +175,7 @@ namespace Matricks {
 #ifdef Matricks_CAREFUL
     std::string sa = a.debugtxt();
     std::string sb = b.debugtxt();
-    if (a.vetype() != VE_LAvector) 
+    if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
     if (b.metype() != ME_Matrix) 
       sb = "(" + sb + ")";
@@ -183,20 +183,20 @@ namespace Matricks {
     const size_type Ma = a.size();
     if (mexpr_is_size_bad(b.size()) ) { 
       mbad_expr_in_unary(b,""); 
-      LAvector<D> y(0,name);
+      Vector<D> y(0,name);
       return y;
     } else if (  vexpr_is_size_bad(a)  ) { 
       vbad_expr_in_unary(a,"");
-      LAvector<D> y(0,name);
+      Vector<D> y(0,name);
       return y;
     } else if (M!=Ma) {
       vmbad_dot_product(a,b);
-      LAvector<D> y(0,name);
+      Vector<D> y(0,name);
       return y;
     }
-    LAvector<D> y(NC,name);
+    Vector<D> y(NC,name);
 #else
-    LAvector<D> y(NC);
+    Vector<D> y(NC);
 #endif
 
     register size_type i = 0;

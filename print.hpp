@@ -77,7 +77,7 @@ namespace Matricks {
   }
 
   template <typename D>
-  void _printvar(const LAvector<D>& a, bool display, char const *s, char const *pres, char const *posts)
+  void _printvar(const Vector<D>& a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s << "=" ;
@@ -88,7 +88,7 @@ namespace Matricks {
   template <typename A, typename D>
   void _printvar(const Vexpr<D,A>& exp, bool display, char const *s, char const *pres, char const *posts)
   {
-    LAvector<D> a = exp;
+    Vector<D> a = exp;
     if (display)
       std::cout << s << "=" ;
     std::cout<<pres;
@@ -139,10 +139,10 @@ namespace Matricks {
 
 	
   template <typename D>
-  void _matricksinfo(const LAvector<D>& a, std::string varname)
+  void _matricksinfo(const Vector<D>& a, std::string varname)
   {
     std::ostringstream stream;
-    stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.size() <<"]"<<", LAvectorID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
+    stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.size() <<"]"<<", VectorID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
     std::cout <<  stream.str() <<std::endl;
   }
 

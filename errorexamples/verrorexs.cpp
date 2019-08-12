@@ -19,27 +19,27 @@ int main()
  
 
  
-  LAvector<double> v1(N,"v1");
-  LAvector<double> v2(N,"v2");
-  LAvector<double> v3(N,"v3");
+  Vector<double> v1(N,"v1");
+  Vector<double> v2(N,"v2");
+  Vector<double> v3(N,"v3");
 
 
-  LAvector<double> v4(N,"v4");
+  Vector<double> v4(N,"v4");
        
   
   double d = 0;
-  LAvector<bool> q(N);
+  Vector<bool> q(N);
 
 
 
 // explicit name testing
-  LAvector<double> r(N,"r");
+  Vector<double> r(N,"r");
   r=100;
   cout << r.name() <<"="<<r << endl;
-  LAvector<double> rr(N,"r");
+  Vector<double> rr(N,"r");
   rr=200;
   cout << rr.name() <<"="<<rr << endl;
-  LAvector<double> rrr(N,"r");
+  Vector<double> rrr(N,"r");
   rrr=300;
   cout << rrr.name() <<"="<<rrr << endl;
   rrr.name("rrr");
@@ -48,10 +48,10 @@ int main()
   // *** RUNTIME ERROR TESTING** ALL FOLLOWING SHOULD CAUSE RUNTIME ERRORS
 
   cout << endl<< "too large of a vector" << endl;
-  LAvector<double> b(maxsize+1,"b");
+  Vector<double> b(maxsize+1,"b");
 
   int M=N-1;
-  LAvector<double> vv(M,"vv");
+  Vector<double> vv(M,"vv");
   vv=1;
   cout <<endl << vv.name() <<"="<<vv << endl;
 
@@ -108,7 +108,7 @@ int main()
   cout<< endl << "assignment of different size vector to range" << endl; 
   v1[seq(0,4)] = vcast<double>(stdv2);
   
-  LAvector<double> vv2(N+1,"vv2");
+  Vector<double> vv2(N+1,"vv2");
   cout<< endl << "assignment of different size vector to range" << endl; 
   v1[seq(0,7)] = vv2;
 
@@ -122,11 +122,11 @@ int main()
   v1[v1<0.0] = v2;
 
 
-  LAvector<uint> vi(N+1,"vi");
+  Vector<uint> vi(N+1,"vi");
   cout<< endl << "assignment of different size vector to set " << endl; 
   v1 = v1[vi];
 
-  LAvector<uint> vj(N,"vj");
+  Vector<uint> vj(N,"vj");
   vj = range<uint>(2,N+1);
   cout<< endl << "assignment of vector to set that contains out of bounds value" << endl; 
   v1 = v1[vj];
@@ -134,19 +134,19 @@ int main()
 
 
 
-  LAvector<bool> b1(8,"b1");
+  Vector<bool> b1(8,"b1");
   cout<< endl << "MASK SIZE DOES NOT MATCH VECTOR SIZE" << endl; 
   v1 = v1[b1];
 
 
 
-  LAvector<double> vzero(0,"vzero");
+  Vector<double> vzero(0,"vzero");
   cout<< endl << "assigment to vector of different size (WARNING)" << endl;
   v4 = linspace<double>(1,7,7);
   vzero = v4;
   dispcr(vzero);
 
-  LAvector<double> vzero2;
+  Vector<double> vzero2;
   cout<< endl << "assigment to vector expression of different size (WARNING)" << endl;
   v1 = linspace<double>(300,900,7);
   v2 = linspace<double>(3,9,7);

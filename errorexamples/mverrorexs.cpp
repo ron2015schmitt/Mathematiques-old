@@ -35,7 +35,7 @@ int main()
       M2(r,c) = 10*(i+1);
   dispcr(M2);
 
-  LAvector<double> v1(3,"v1");
+  Vector<double> v1(3,"v1");
   /*
   M2.submat(0,2,1,2) = M1;
   dispcr(M2);
@@ -95,13 +95,13 @@ int main()
   cout << "v1[seq(0,1)] = M1.col(1)"<<endl;
   v1[seq(0,1)] = M1.col(1);
 
-  LAvector<double> v3(6,"v3");
+  Vector<double> v3(6,"v3");
   cout << "v3 = M1"<<endl;
   v3 = M1;
 
   cout<<endl << "BAD EXPRESSION IN VECTOR OUTER PRODUCT"<<endl;
-  LAvector<double> v4(3,"v4");
-  LAvector<double> v5(3,"v5");
+  Vector<double> v4(3,"v4");
+  Vector<double> v5(3,"v5");
   Matrix<double> M3(3,3,"M3");
   M3 = (v4+v3)^v3;
 
@@ -129,9 +129,9 @@ int main()
   v5 = v3|M3;
   
 
-  LAvector<complex<double> > vc1(3,"vc1");
-  LAvector<complex<double> > vc2(3,"vc2");
-  LAvector<complex<double> > vc3(6,"vc3");
+  Vector<complex<double> > vc1(3,"vc1");
+  Vector<complex<double> > vc2(3,"vc2");
+  Vector<complex<double> > vc3(6,"vc3");
   Matrix<complex<double> > MC1(3,3,"MC3");
 
   cout<<endl << "BAD REAL EXPRESSION IN REAL^COMPLEX VECTOR OUTER PRODUCT"<<endl;
@@ -147,7 +147,7 @@ int main()
   cout<<endl << "BAD CMPLX EXPRESSION IN COMPLEX^REAL VECTOR OUTER PRODUCT"<<endl;
   MC1 = (vc1+vc3)^v4;
 
-  LAvector<complex<double> > vc4(3,"vc4");
+  Vector<complex<double> > vc4(3,"vc4");
 
   cout<<endl << "BAD MATRIX EXPRESSION IN (REALMATRIX|CMPLXVECTOR)"<<endl;
   vc4 = (M2+M1)|vc1;

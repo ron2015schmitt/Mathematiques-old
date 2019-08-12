@@ -10,7 +10,7 @@
 namespace Matricks {
 
   template <class A>
-  inline LAvector<size_type> findtrue( const VorE<bool,A>& a );
+  inline Vector<size_type> findtrue( const VorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -156,9 +156,9 @@ namespace Matricks {
 
       if ( rhs.addrmatch(derived().addr()) ) {    
 #ifdef Matricks_CAREFUL
-	LAvector<D> y(N,debugtxt());
+	Vector<D> y(N,debugtxt());
 #else
-	LAvector<D> y(N);
+	Vector<D> y(N);
 #endif
 	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
@@ -194,9 +194,9 @@ namespace Matricks {
 
       if ( rhs.addrmatch(derived().addr()) ) {    
 #ifdef Matricks_CAREFUL
-	LAvector<D> y(N,debugtxt());
+	Vector<D> y(N,debugtxt());
 #else
-	LAvector<D> y(N);
+	Vector<D> y(N);
 #endif
 	y=rhs;
 	for(register size_type i=0; i<N; i++) 
@@ -244,14 +244,14 @@ namespace Matricks {
   template <class D>
   class VRangeObj : public  VWrapperObj<D,VRangeObj<D> > {
   private:
-    LAvector<D>& a_;
+    Vector<D>& a_;
     const size_type start_;
     const size_type end_;
     const size_type step_;
     const bool increasing_;
 
   public:
-    VRangeObj(LAvector<D>& a, const size_type start, const size_type end, const int step)
+    VRangeObj(Vector<D>& a, const size_type start, const size_type end, const int step)
       :   a_(a),  start_(start), end_(end), 
 	  step_((step>=0)?step:-step), 
 	  increasing_((end>=start)?true:false)
@@ -351,11 +351,11 @@ namespace Matricks {
   template<class D>
   class VSetObj :  public  VWrapperObj<D,VSetObj<D> > {
   private:
-    LAvector<D>& a_;
-    const LAvector<size_type>& ii_;
+    Vector<D>& a_;
+    const Vector<size_type>& ii_;
 
   public:
-    VSetObj(LAvector<D>& a, const LAvector<size_type>& ii)
+    VSetObj(Vector<D>& a, const Vector<size_type>& ii)
       : a_(a), ii_(ii)
     { 
     }
@@ -445,19 +445,19 @@ namespace Matricks {
   template<class D>
   class VMaskObj :  public  VWrapperObj<D,VMaskObj<D> > {
   private:
-    LAvector<D>& a_;
-    const LAvector<size_type>* ii_;
+    Vector<D>& a_;
+    const Vector<size_type>* ii_;
 
   public:
 #ifdef Matricks_CAREFUL
-    VMaskObj(LAvector<D>& a, const LAvector<bool>& mask)
-      : a_(a), ii_(new LAvector<size_type>(findtrue(mask)))
+    VMaskObj(Vector<D>& a, const Vector<bool>& mask)
+      : a_(a), ii_(new Vector<size_type>(findtrue(mask)))
     { 
       //      settext_VMaskObj(*ii_,mask);
     }
 #else
-    VMaskObj(LAvector<D>& a, const LAvector<bool>& mask)
-      : a_(a), ii_(new LAvector<size_type>(findtrue(mask)))
+    VMaskObj(Vector<D>& a, const Vector<bool>& mask)
+      : a_(a), ii_(new Vector<size_type>(findtrue(mask)))
     { 
     }
 #endif
@@ -531,10 +531,10 @@ namespace Matricks {
   template<class D>
   class VReconObj :  public  Vexpr<D,VReconObj<D> > {
   private:
-    LAvector<D>& a_;
+    Vector<D>& a_;
 
   public:
-    VReconObj(LAvector<D>& a)
+    VReconObj(Vector<D>& a)
       : a_(a)
     { 
     }
@@ -544,7 +544,7 @@ namespace Matricks {
     }
 
     template <class A>
-    LAvector<D>& operator=(const VorE<D,A>& x) { 
+    Vector<D>& operator=(const VorE<D,A>& x) { 
       size_type N = x.size();
       
 #ifdef Matricks_CAREFUL
@@ -556,9 +556,9 @@ namespace Matricks {
       
       if ( x.addrmatch(&a_)) {    
 #ifdef Matricks_CAREFUL
-	LAvector<D> y(N,debugtxt());
+	Vector<D> y(N,debugtxt());
 #else
-	LAvector<D> y(N);
+	Vector<D> y(N);
 #endif
 	y = x.derived();
 	a_.resize(N);
@@ -571,7 +571,7 @@ namespace Matricks {
       }
     }
 
-    LAvector<D>& operator=(const VReconObj<D>& b) { 
+    Vector<D>& operator=(const VReconObj<D>& b) { 
 
 #ifdef Matricks_CAREFUL
       vbad_reconassignment(a_.objectID(), b);
@@ -641,10 +641,10 @@ namespace Matricks {
 
     std::string debugtxt(void) const {
       std::string sa = a_.debugtxt();
-      if (a_.vetype() != VE_LAvector) 
+      if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
       std::string sb = b_.debugtxt();
-      if (b_.vetype() != VE_LAvector) 
+      if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
       return OP::debugtxt(sa,sb);
     }
@@ -707,7 +707,7 @@ namespace Matricks {
 
     std::string debugtxt(void) const {
       std::string sa = a_.debugtxt();
-      if (a_.vetype() != VE_LAvector) 
+      if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
       std::ostringstream stream;
       stream << val_;
@@ -773,7 +773,7 @@ namespace Matricks {
       stream << val_;
       std::string sa = stream.str();
       std::string sb = b_.debugtxt();
-      if (b_.vetype() != VE_LAvector) 
+      if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
       return OP::debugtxt(sa,sb);
     }

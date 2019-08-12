@@ -19,9 +19,9 @@ int main()
   
   const int N = 4;
 
-  LAvector<double> v1(N,"vec1");
-  LAvector<double> v2(N,"vec2");
-  LAvector<double> v3(N,"vec3");
+  Vector<double> v1(N,"vec1");
+  Vector<double> v2(N,"vec2");
+  Vector<double> v3(N,"vec3");
 
   dispcr(v1);
   dispcr(v2);

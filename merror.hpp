@@ -126,7 +126,7 @@ namespace Matricks {
     std::string s2= ve2.debugtxt();
     if (me1.metype() != ME_Matrix) 
       s1 = "(" + s1 + ")";
-    if (ve2.vetype() != VE_LAvector) 
+    if (ve2.vetype() != VE_Vector) 
       s2 = "(" + s2 + ")";
     std::cout << error_str << "dot product formed between incompatibly-sized objects" << std::endl;
     std::cout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
@@ -139,7 +139,7 @@ namespace Matricks {
   void vmbad_dot_product(const VorE<D1,A>& ve1, const MorE<D2,B>& me2) {
     std::string s1= ve1.debugtxt();
     std::string s2= me2.debugtxt();
-    if (ve1.vetype() != VE_LAvector) 
+    if (ve1.vetype() != VE_Vector) 
       s1 = "(" + s1 + ")";
     if (me2.metype() != ME_Matrix) 
       s2 = "(" + s2 + ")";

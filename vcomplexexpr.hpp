@@ -40,7 +40,7 @@ namespace Matricks {
 
     std::string debugtxt(void) const {
       std::string sa = a_.debugtxt();
-      if (a_.vetype() != VE_LAvector) 
+      if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
       std::ostringstream stream;
       stream << val_;
@@ -97,7 +97,7 @@ namespace Matricks {
       stream << val_;
       std::string sa = stream.str();
       std::string sb = b_.debugtxt();
-      if (b_.vetype() != VE_LAvector) 
+      if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
       return OP::debugtxt(sa,sb);
     }
@@ -124,10 +124,10 @@ namespace Matricks {
   template <class D, class OP>
   class VRealFromComplex : public  VWrapperObj<D,VRealFromComplex<D,OP> > {
   private:
-    LAvector<std::complex<D> >& a_;
+    Vector<std::complex<D> >& a_;
 
   public:
-    VRealFromComplex(LAvector<std::complex<D> >& a)
+    VRealFromComplex(Vector<std::complex<D> >& a)
       :   a_(a)
     { 
     }

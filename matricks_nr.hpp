@@ -27,7 +27,7 @@ namespace Matricks_nr {
 
   inline int svd(
 		 Matrix<double>& A, 
-		 Matrix<double>& U, LAvector<double>& W, Matrix<double>& V )
+		 Matrix<double>& U, Vector<double>& W, Matrix<double>& V )
   {
     const int M = A.Nrows();
     const int N = A.Ncols();       // Dimensions of matrix.

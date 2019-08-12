@@ -68,7 +68,7 @@ namespace Matricks_lapack {
 
   inline int svd(
 		 Matrix<std::complex<double> >& A, 
-		 Matrix<std::complex<double> >& U, LAvector<double>& S, 
+		 Matrix<std::complex<double> >& U, Vector<double>& S, 
 		 Matrix<std::complex<double> >& V )  {
 
     // place checks here
@@ -104,10 +104,10 @@ namespace Matricks_lapack {
     const FINT Mfint = static_cast<FINT>(M); 
     const FINT Nfint = static_cast<FINT>(N); 
     const FINT NRwork = 5*static_cast<FINT>(minMN); 
-    LAvector<double> Rwork(NRwork,"Rwork");
+    Vector<double> Rwork(NRwork,"Rwork");
 
 
-    LAvector<std::complex<double> > Work(1,"Work");
+    Vector<std::complex<double> > Work(1,"Work");
     const char jobu =  'A';
     const char jobvt = 'A';
     std::complex<double>* aptr = &Atemp(0,0);

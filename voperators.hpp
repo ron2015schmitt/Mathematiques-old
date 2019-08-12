@@ -13,8 +13,8 @@ namespace Matricks {
    *               Templates for Binary Operators
    *
    * D = data type, e.g. double
-   * A = either an LAvector or a Vexpr
-   * B = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
+   * B = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -90,7 +90,7 @@ namespace Matricks {
    *               Templates for vector/scalar Operators
    *
    * D = data type, e.g. double (vector and scalar must be of same data type)
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    ************************************************************
    */
 
@@ -252,7 +252,7 @@ namespace Matricks {
    *               Templates for Unary Operators & Unary Functions
    *
    * D = data type, e.g. double 
-   * A = either an LAvector or a Vexpr
+   * A = either an Vector or a Vexpr
    *****************************************************************
    */
 
@@ -289,7 +289,7 @@ namespace Matricks {
   // vcast(matrix)
 
   template <class D2, class D1, class A> 
-  inline LAvector<D2> 
+  inline Vector<D2> 
   vcast(const MorE<D1,A>& a)
   {
     const size_type N = a.size();
@@ -298,12 +298,12 @@ namespace Matricks {
     name = "vcast("+name+")";
     if ( mexpr_is_size_bad(a.size()) ){ 
       mbad_expr_in_unary(a,"vcast");
-      LAvector<D2> y(0,name);
+      Vector<D2> y(0,name);
       return y;
     }
-    LAvector<D2> y(N,name);
+    Vector<D2> y(N,name);
 #else
-    LAvector<D2> y(N);
+    Vector<D2> y(N);
 #endif
 
     for(size_type i = 0; i<N; i++) 
@@ -316,10 +316,10 @@ namespace Matricks {
   // vcast(C-array)
 
   template <class D2, class D1> 
-  inline LAvector<D2>
+  inline Vector<D2>
   vcast(const D1* dptr, const size_type N)
   {
-    LAvector<D2> y(N,"vcast(C-array)");
+    Vector<D2> y(N,"vcast(C-array)");
     for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(dptr[i]);
     return  y;
@@ -330,10 +330,10 @@ namespace Matricks {
   // vcast(std::vector)
 
   template <class D2, class D1> 
-  inline LAvector<D2>
+  inline Vector<D2>
   vcast(const std::vector<D1>& v2) {
     const size_type N = v2.size();
-    LAvector<D2> y(N,"vcast(std::vector)");
+    Vector<D2> y(N,"vcast(std::vector)");
     for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v2[i]);
     return  y;
@@ -343,10 +343,10 @@ namespace Matricks {
   // vcast(std::valarray)
 
   template <class D2, class D1> 
-  inline LAvector<D2>
+  inline Vector<D2>
   vcast(const std::valarray<D1>& v2) {
     const size_type N = v2.size();
-    LAvector<D2> y(N,"vcast(std::valarray)");
+    Vector<D2> y(N,"vcast(std::valarray)");
     for(size_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v2[i]);
     return  y;
@@ -562,7 +562,7 @@ namespace Matricks {
 
   // sort(a)
 
-  template <class D> void sort(LAvector<D>& a ) {
+  template <class D> void sort(Vector<D>& a ) {
 
     const size_type N = a.size();
     if (N==0)
@@ -596,19 +596,19 @@ namespace Matricks {
     }
   };
 
-  template <class D> LAvector<size_type> sortwind(LAvector<D>& a ) {
+  template <class D> Vector<size_type> sortwind(Vector<D>& a ) {
 
     const size_type N = a.size();
 #ifdef Matricks_CAREFUL
     std::string name = "sortindices(" + a.debugtxt() +")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sortwind");
-      LAvector<size_type> ivec(0,name);
+      Vector<size_type> ivec(0,name);
       return ivec;
     }
-    LAvector<size_type> ivec(N,name);
+    Vector<size_type> ivec(N,name);
 #else
-    LAvector<size_type> ivec(N);
+    Vector<size_type> ivec(N);
 #endif
 
     if (N==0)

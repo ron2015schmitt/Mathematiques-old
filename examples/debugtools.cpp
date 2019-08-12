@@ -15,12 +15,12 @@ int main()
 {
 
   cr();
-  printcr("When running in CAREFUL mode, all LAvector and Matrix objects are assigned");
+  printcr("When running in CAREFUL mode, all Vector and Matrix objects are assigned");
   printcr("a unique name and ID#. The name and ID can be accessed using the");
   printcr("name() and objectID() member functions respectively.");
 
   printcrcr("Here is an example");
-  LAvector<double> x(5);
+  Vector<double> x(5);
   x=linspace<double>(100,500,5);
   print("\t");
   dispcr(x.name());
@@ -37,7 +37,7 @@ int main()
 
   printcrcr("To make debugging easier, you can specify a name explicitly during instantiation");
   printcrcr("Here is an example");
-  LAvector<double> y(3,"y");
+  Vector<double> y(3,"y");
   "{31,32,33}">>y;
   print("\t");
   dispcr(y.name());

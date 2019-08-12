@@ -19,9 +19,9 @@ int main()
   
   const int N = 4;
 
-  LAvector<double> v1(N,"v1");
+  Vector<double> v1(N,"v1");
   "{10,20,30,40}">>v1;
-  LAvector<double> v2(N,"v2");
+  Vector<double> v2(N,"v2");
   "{11,22,33,44}">>v2;
 
   dispcr(v1);

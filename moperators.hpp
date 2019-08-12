@@ -482,17 +482,17 @@ namespace Matricks {
 
 
   template <class A> 
-  LAvector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NC) {
+  Vector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NC) {
     const size_type N = subs.Nrows();
 #ifdef Matricks_CAREFUL
     std::string s = "sub2ind(" + subs.debugtxt() + ")";
-    LAvector<size_type> ii(N,s);
+    Vector<size_type> ii(N,s);
     if ( subs.Ncols() !=2 ) {
       //error
       return ii;
     }
 #else
-    LAvector<size_type> ii(N);
+    Vector<size_type> ii(N);
 #endif 
 
     for (size_type i = 0;  i <N; i++)
@@ -547,7 +547,7 @@ namespace Matricks {
 
   // sumbyrow(a)
   template <class D, class A> 
-  inline LAvector<D> sumbyrow( const MorE<D,A>& a ) {
+  inline Vector<D> sumbyrow( const MorE<D,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -555,12 +555,12 @@ namespace Matricks {
     std::string s = "sumbyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"sumbyrow");
-      LAvector<D> y(0,s);
+      Vector<D> y(0,s);
       return y;
     }
-    LAvector<D> y(NR,s);
+    Vector<D> y(NR,s);
 #else
-    LAvector<D> y(NR);
+    Vector<D> y(NR);
 #endif
 
     size_type i = 0;
@@ -578,7 +578,7 @@ namespace Matricks {
 
   // sumbycol(a)
   template <class D, class A> 
-  inline LAvector<D> sumbycol( const MorE<D,A>& a ) {
+  inline Vector<D> sumbycol( const MorE<D,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -586,12 +586,12 @@ namespace Matricks {
     std::string s = "sumbycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"sumbycol");
-      LAvector<D> y(0,s);
+      Vector<D> y(0,s);
       return y;
     }
-    LAvector<D> y(NC,s);
+    Vector<D> y(NC,s);
 #else
-    LAvector<D> y(NC);
+    Vector<D> y(NC);
 #endif
 
     for(size_type c = 0; c<NC; c++) {
@@ -630,7 +630,7 @@ namespace Matricks {
   // minbyrow(a)
 
   template <class D, class A> 
-  inline LAvector<D> minbyrow( const MorE<D,A>& a ) {
+  inline Vector<D> minbyrow( const MorE<D,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -638,12 +638,12 @@ namespace Matricks {
     std::string s = "minbyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"minbyrow");
-      LAvector<D> y(0,s);
+      Vector<D> y(0,s);
       return y;
     }
-    LAvector<D> y(NR,s);
+    Vector<D> y(NR,s);
 #else
-    LAvector<D> y(NR);
+    Vector<D> y(NR);
 #endif
     size_type i = 0;
     for(size_type r = 0; r<NR; r++) {
@@ -662,7 +662,7 @@ namespace Matricks {
   // minbycol(a)
 
   template <class D, class A> 
-  inline LAvector<D> minbycol( const MorE<D,A>& a ) {
+  inline Vector<D> minbycol( const MorE<D,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -670,12 +670,12 @@ namespace Matricks {
     std::string s = "minbycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"minbycol");
-      LAvector<D> y(0,s);
+      Vector<D> y(0,s);
       return y;
     }
-    LAvector<D> y(NC,s);
+    Vector<D> y(NC,s);
 #else
-    LAvector<D> y(NC);
+    Vector<D> y(NC);
 #endif
 
     for(size_type c = 0; c<NC; c++) {
@@ -720,7 +720,7 @@ namespace Matricks {
   // maxbyrow(a)
 
   template <class D, class A> 
-  inline LAvector<D> maxbyrow( const MorE<D,A>& a ) {
+  inline Vector<D> maxbyrow( const MorE<D,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -728,12 +728,12 @@ namespace Matricks {
     std::string s = "maxbyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"maxbyrow");
-      LAvector<D> y(0,s);
+      Vector<D> y(0,s);
       return y;
     }
-    LAvector<D> y(NR,s);
+    Vector<D> y(NR,s);
 #else
-    LAvector<D> y(NR);
+    Vector<D> y(NR);
 #endif
     size_type i = 0;
     for(size_type r = 0; r<NR; r++) {
@@ -752,7 +752,7 @@ namespace Matricks {
   // maxbycol(a)
 
   template <class D, class A> 
-  inline LAvector<D> maxbycol( const MorE<D,A>& a ) {
+  inline Vector<D> maxbycol( const MorE<D,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -760,12 +760,12 @@ namespace Matricks {
     std::string s = "maxbycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"maxbycol");
-      LAvector<D> y(0,s);
+      Vector<D> y(0,s);
       return y;
     }
-    LAvector<D> y(NC,s);
+    Vector<D> y(NC,s);
 #else
-    LAvector<D> y(NC);
+    Vector<D> y(NC);
 #endif
 
     for(size_type c = 0; c<NC; c++) {

@@ -18,9 +18,9 @@ int main()
  
 
  
-  LAvector<double> v1(N);
-  LAvector<double> v2(N);
-  LAvector<double> v3(N);
+  Vector<double> v1(N);
+  Vector<double> v2(N);
+  Vector<double> v3(N);
 
   // should not generate any errors
 
@@ -44,7 +44,7 @@ int main()
 
   dispcr(v3 = v3 - v1*3.0);
 
-  LAvector<double> v4(N);
+  Vector<double> v4(N);
        
   dispcr(v4=(v1 + v2)/3.0);
   dispcr(v4=+v3);
@@ -76,7 +76,7 @@ int main()
   dispcr(d=min(v1));
 
   dispcr(v1);
-  LAvector<bool> q(N,"q");
+  Vector<bool> q(N,"q");
   q[1] = true;
   dispcr(q);
   dispcr(q=(v1==v1));
@@ -102,14 +102,14 @@ int main()
   dispcr(n=numtrue(v1>=1.0));
   
   dispcr(v1);
-  LAvector<unsigned int> i(0);
+  Vector<unsigned int> i(0);
   i.resize() = findtrue(v1>3.0);
   uint sz;
   dispcr(sz=i.size());
   
 
 
-  LAvector<double> v7(4);
+  Vector<double> v7(4);
 
   dispcr(v7 = v1[seq(2,5)]);
   
@@ -119,7 +119,7 @@ int main()
   cout <<"v3=v1+v3="<< v3 << endl;
 
 
-  LAvector<complex<double> > vc1(N);
+  Vector<complex<double> > vc1(N);
   vc1 = complex<double>(0,1)*v1;
   cout <<"vc1=i*v1="<< vc1 << endl;
   vc1 = v1*complex<double>(0,1);

@@ -20,7 +20,7 @@ int main()
   //  p3vector is a class that is optimized for represensting Physical 3-vectors (x,y,z)
   
   p3vector<double> v1(1,2,3);
-  cout << "initialize each element of v1" << endl;
+  std::cout << "initialize each element of v1" << std::endl;
   dispcr(v1);
 
   // can access the components in several ways
@@ -48,7 +48,7 @@ int main()
   dispcr(v2);
 
 
-  // can perform most any expression that can be used on LAvectors
+  // can perform most any expression that can be used on Vectors
   p3vector<double> v3;
 
   v2=v1;

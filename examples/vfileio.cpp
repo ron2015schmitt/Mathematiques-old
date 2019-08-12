@@ -20,8 +20,8 @@ int main()
   // the load and save functions use the standard C++ file streams
   // and are provided as a convenience
 
-  LAvector<double> v1(5,"vec1");
-  LAvector<double> v2("vec2");
+  Vector<double> v1(5,"vec1");
+  Vector<double> v2("vec2");
 
   dispcr(v2);
 

@@ -21,7 +21,7 @@ char compile_opts[] = COMPILEOPTS;
 // START: NUMERICAL LIBRARY SPECIFIC STUFF 
 #import "cooll.hpp"
 using namespace COOLL;
-typedef LAvector<double> VectorT;
+typedef Vector<double> VectorT;
 char mathlib[] = "cooll";
 // END: NUMERICAL LIBRARY SPECIFIC STUFF
 

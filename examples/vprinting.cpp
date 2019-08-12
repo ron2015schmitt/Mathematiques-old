@@ -19,62 +19,62 @@ int main()
   
   const int N = 4;
 
-  LAvector<double> v1(N,"vec1");
-  LAvector<double> v2(N,"vec2");
-  LAvector<double> v3(N,"vec3");
+  Vector<double> v1(N,"vec1");
+  Vector<double> v2(N,"vec2");
+  Vector<double> v3(N,"vec3");
 
-  cout << "initialize each element of v1" << endl;
+  std::cout << "initialize each element of v1" << std::endl;
   v1[0] = 1.0;
   v1[1] = -2.5;
   v1[2] = 3.3333;
   v1[3] = -4.0;
 
-  cout << endl;
-  cout << "default vector printing" << endl;
-  cout << v1 << endl;
+  std::cout << std::endl;
+  std::cout << "default vector printing" << std::endl;
+  std::cout << v1 << std::endl;
 
-  cout << endl;
-  cout << "vector printing (width=10 spaces)" << endl;
+  std::cout << std::endl;
+  std::cout << "vector printing (width=10 spaces)" << std::endl;
   v1.width(10);
-  cout << v1 << endl;
+  std::cout << v1 << std::endl;
 
-  cout << endl;
-  cout << "vector printing (print 2 values per line)" << endl;
+  std::cout << std::endl;
+  std::cout << "vector printing (print 2 values per line)" << std::endl;
   v1.perline(2);
-  cout << v1 << endl;
+  std::cout << v1 << std::endl;
 
   v1.perline(4);
 
 
-  cout << endl;
-  cout << "vector printing (precision=2 digits)" << endl;
-  cout.setf(ios::showpoint);
-  cout.precision(2);
-  cout << v1 << endl;
+  std::cout << std::endl;
+  std::cout << "vector printing (precision=2 digits)" << std::endl;
+  std::cout.setf(ios::showpoint);
+  std::cout.precision(2);
+  std::cout << v1 << std::endl;
 
 
-  cout << endl;
-  cout << "vector printing (scientific notation)" << endl;
-  cout.setf(ios::scientific);
-  cout << v1 << endl;
+  std::cout << std::endl;
+  std::cout << "vector printing (scientific notation)" << std::endl;
+  std::cout.setf(ios::scientific);
+  std::cout << v1 << std::endl;
 
-  cout << endl;
-  cout << "vector printing (left justified)" << endl;
-  cout.setf(ios::left);
-  cout << v1 << endl;
-
-
-  cout << endl;
-  cout << "vector printing (show + sign)" << endl;
-  cout.setf(ios::showpos);
-  cout << v1 << endl;
-  cout.unsetf(ios::showpos);
+  std::cout << std::endl;
+  std::cout << "vector printing (left justified)" << std::endl;
+  std::cout.setf(ios::left);
+  std::cout << v1 << std::endl;
 
 
-  cout<<endl << "CAN ALSO OUTPUT VECTORS WITHOUT BRACES AND COMMAS"<<endl;
-  cout<< "Here is the contents of v1: ";
+  std::cout << std::endl;
+  std::cout << "vector printing (show + sign)" << std::endl;
+  std::cout.setf(ios::showpos);
+  std::cout << v1 << std::endl;
+  std::cout.unsetf(ios::showpos);
+
+
+  std::cout<<std::endl << "CAN ALSO OUTPUT VECTORS WITHOUT BRACES AND COMMAS"<<std::endl;
+  std::cout<< "Here is the contents of v1: ";
   v1.textformat(text_nobraces);
-  cout <<v1<<endl;
+  std::cout <<v1<<std::endl;
   v1.textformat(text_braces);
 
   cr();
@@ -83,8 +83,8 @@ int main()
   printcr("The print macros just give the contents of the given variable or expression");
   printcr("The disp do the same as print, but also display the variable name");
 
-  cout << endl;
-  cout << "Printing variables using the \"print\", \"printcr\", and \"printcrcr\" macros" << endl;
+  std::cout << std::endl;
+  std::cout << "Printing variables using the \"print\", \"printcr\", and \"printcrcr\" macros" << std::endl;
   print(N);
   print(" ");
   printcr(4*N);
@@ -100,8 +100,8 @@ int main()
   printcr(a1);
   
 
-  cout << endl;
-  cout << "Printing variables using the \"disp\", \"dispcr\", and \"dispcrcr\" macros" << endl;
+  std::cout << std::endl;
+  std::cout << "Printing variables using the \"disp\", \"dispcr\", and \"dispcrcr\" macros" << std::endl;
   disp(N);
   dispcr(4*N);
   dispcr(s);

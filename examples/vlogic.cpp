@@ -16,76 +16,76 @@ using namespace std;
 int main()
 {
 
-  LAvector<double> v1(4,"v1");
+  Vector<double> v1(4,"v1");
 
-  cout << "initialize v1" << endl;
+  std::cout << "initialize v1" << std::endl;
   v1 = range<double>(1,4);
-  cout << v1 << endl<<endl;
+  std::cout << v1 << std::endl<<std::endl;
 
-  cout << "test v1==1 and store in q1" << endl;
-  LAvector<bool> q1(4,"q1");
+  std::cout << "test v1==1 and store in q1" << std::endl;
+  Vector<bool> q1(4,"q1");
   q1 = (v1==1);
-  cout <<"q1="<< q1;
+  std::cout <<"q1="<< q1;
   // the "boolalpha" flag allows display of boolean value as true/false
-  cout <<boolalpha;
+  std::cout <<boolalpha;
   // redisplay q1
-  cout <<"="<< q1 << endl<<endl;
+  std::cout <<"="<< q1 << std::endl<<std::endl;
 
-  cout << "test v1>=3 and store in q1" << endl;
+  std::cout << "test v1>=3 and store in q1" << std::endl;
   q1 = (v1>=3);
-  cout <<"q1="<< q1<<endl<<endl;
+  std::cout <<"q1="<< q1<<std::endl<<std::endl;
 
-  cout << "initialize v2" << endl;
-  LAvector<double> v2(4,"v2");
+  std::cout << "initialize v2" << std::endl;
+  Vector<double> v2(4,"v2");
   double data[4] = {-3.0, 0, 3.0, 10};
   v2 = vcast<double>(data,4);
-  cout << v2 << endl<<endl;
+  std::cout << v2 << std::endl<<std::endl;
 
-  cout << "test v1==v2 and store in q2" << endl;
-  LAvector<bool> q2(4,"q2");
+  std::cout << "test v1==v2 and store in q2" << std::endl;
+  Vector<bool> q2(4,"q2");
   q2 = (v1==v2);
-  cout <<"q2="<< q2<<endl<<endl;
+  std::cout <<"q2="<< q2<<std::endl<<std::endl;
 
-  cout << "logical OR: q3 = q1 || q2" << endl;
-  LAvector<bool> q3(4,"q3");
+  std::cout << "logical OR: q3 = q1 || q2" << std::endl;
+  Vector<bool> q3(4,"q3");
   q3 = (q1||q2);
-  cout <<"q3="<< q3<<endl<<endl;
+  std::cout <<"q3="<< q3<<std::endl<<std::endl;
 
-  cout << "logical AND: q3 = q1 && q2" << endl;
+  std::cout << "logical AND: q3 = q1 && q2" << std::endl;
   q3 = (q1&&q2);
-  cout <<"q3="<< q3<<endl<<endl;
+  std::cout <<"q3="<< q3<<std::endl<<std::endl;
 
-  cout << "logical NOT: q3 = !q1" << endl;
+  std::cout << "logical NOT: q3 = !q1" << std::endl;
   q3 = !q1;
-  cout <<"q3="<< q3<<endl<<endl;
+  std::cout <<"q3="<< q3<<std::endl<<std::endl;
 
 
-  cout << "count the number of true results in a boolean vector: n=numtrue(q1)" << endl;
+  std::cout << "count the number of true results in a boolean vector: n=numtrue(q1)" << std::endl;
   int n = numtrue(q3);
-  cout <<"n="<< n<<endl<<endl;
+  std::cout <<"n="<< n<<std::endl<<std::endl;
 
-  cout << "find the indices of the true results: j1=findtrue(q1)" << endl;
-  LAvector<uint> j1 = findtrue(q1);
-  cout <<"j1="<< j1 <<endl<<endl;
+  std::cout << "find the indices of the true results: j1=findtrue(q1)" << std::endl;
+  Vector<uint> j1 = findtrue(q1);
+  std::cout <<"j1="<< j1 <<std::endl<<std::endl;
 
-  cout << "determine if ANY values in a vector are zero: " << endl;
+  std::cout << "determine if ANY values in a vector are zero: " << std::endl;
   bool Q = anytrue(v1==0);
-  cout <<"Q=anytrue(v1==0) = "<< Q <<endl<<endl;
+  std::cout <<"Q=anytrue(v1==0) = "<< Q <<std::endl<<std::endl;
   Q = anytrue(v2==0);
-  cout <<"Q=anytrue(v2==0) = "<< Q <<endl<<endl;
+  std::cout <<"Q=anytrue(v2==0) = "<< Q <<std::endl<<std::endl;
 
-  cout << "determine if ALL values in a vector are positive: " << endl;
+  std::cout << "determine if ALL values in a vector are positive: " << std::endl;
   Q = alltrue(v1>0);
-  cout <<"Q=alltrue(v1>0) = "<< Q <<endl<<endl;
+  std::cout <<"Q=alltrue(v1>0) = "<< Q <<std::endl<<std::endl;
   Q = alltrue(v2>0);
-  cout <<"Q=alltrue(v2>0) = "<< Q <<endl<<endl;
+  std::cout <<"Q=alltrue(v2>0) = "<< Q <<std::endl<<std::endl;
 
-  cout << "collect all the negative values in a vector: " << endl;
-  LAvector<double> v4(0);
+  std::cout << "collect all the negative values in a vector: " << std::endl;
+  Vector<double> v4(0);
   v4.resize() = v1[v1<0];
-  cout <<"v4.resize() = v1[v1<0] = "<< v4 <<endl<<endl;
+  std::cout <<"v4.resize() = v1[v1<0] = "<< v4 <<std::endl<<std::endl;
   v4.resize() = v2[v2<0];
-  cout <<"v4.resize() = v2[v2<0] = "<< v4 <<endl<<endl;
+  std::cout <<"v4.resize() = v2[v2<0] = "<< v4 <<std::endl<<std::endl;
 
 
   return 0;

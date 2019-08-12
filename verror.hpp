@@ -126,9 +126,9 @@ namespace Matricks {
   void vbad_expr_in_binary(const VorE<D1,A>& ve1, const VorE<D2,B>& ve2, const char* fname, const char* seperator) {
     std::string s1= ve1.debugtxt();
     std::string s2= ve2.debugtxt();
-    if (ve1.vetype() != VE_LAvector) 
+    if (ve1.vetype() != VE_Vector) 
       s1 = "(" + s1 + ")";
-    if (ve2.vetype() != VE_LAvector) 
+    if (ve2.vetype() != VE_Vector) 
       s2 = "(" + s2 + ")";
     std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
     std::cout << indent_str << fname << "("  <<s1 << seperator << s2 << ")" <<std::endl;
@@ -189,7 +189,7 @@ namespace Matricks {
   void outputglossary_VSetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
   std::string debugtxt_VMaskObj(const std::string s1, const std::string s2);
-  void settext_VMaskObj(const LAvector<size_type>& ii,const  LAvector<bool>& mask);
+  void settext_VMaskObj(const Vector<size_type>& ii,const  Vector<bool>& mask);
   void outputglossary_VMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
 

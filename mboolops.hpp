@@ -443,7 +443,7 @@ namespace Matricks {
   // alltruebyrow(a)
 
   template <class A> 
-  inline LAvector<bool> alltruebyrow( const MorE<bool,A>& a ) {
+  inline Vector<bool> alltruebyrow( const MorE<bool,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -451,12 +451,12 @@ namespace Matricks {
     std::string s = "alltruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltruebyrow");
-      LAvector<bool> y(0,s);
+      Vector<bool> y(0,s);
       return y;
     }
-    LAvector<bool> y(NR,s);
+    Vector<bool> y(NR,s);
 #else
-    LAvector<bool> y(NR);
+    Vector<bool> y(NR);
 #endif
 
     size_type i = 0;
@@ -472,7 +472,7 @@ namespace Matricks {
 
   // alltruebycol(a)
   template <class A> 
-  inline LAvector<bool> alltruebycol( const MorE<bool,A>& a ) {
+  inline Vector<bool> alltruebycol( const MorE<bool,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -480,12 +480,12 @@ namespace Matricks {
     std::string s = "alltruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltruebycol");
-      LAvector<bool> y(0,s);
+      Vector<bool> y(0,s);
       return y;
     }
-    LAvector<bool> y(NC,s);
+    Vector<bool> y(NC,s);
 #else
-    LAvector<bool> y(NC);
+    Vector<bool> y(NC);
 #endif
 
     for(size_type c = 0; c<NC; c++) {
@@ -531,7 +531,7 @@ namespace Matricks {
   // anytruebyrow(a)
 
   template <class A> 
-  inline LAvector<bool> anytruebyrow( const MorE<bool,A>& a ) {
+  inline Vector<bool> anytruebyrow( const MorE<bool,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -539,12 +539,12 @@ namespace Matricks {
     std::string s = "anytruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytruebyrow");
-      LAvector<bool> y(0,s);
+      Vector<bool> y(0,s);
       return y;
     }
-    LAvector<bool> y(NR,s);
+    Vector<bool> y(NR,s);
 #else
-    LAvector<bool> y(NR);
+    Vector<bool> y(NR);
 #endif
 
     size_type i = 0;
@@ -560,7 +560,7 @@ namespace Matricks {
 
   // anytruebycol(a)
   template <class A> 
-  inline LAvector<bool> anytruebycol( const MorE<bool,A>& a ) {
+  inline Vector<bool> anytruebycol( const MorE<bool,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -568,12 +568,12 @@ namespace Matricks {
     std::string s = "anytruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytruebycol");
-      LAvector<bool> y(0,s);
+      Vector<bool> y(0,s);
       return y;
     }
-    LAvector<bool> y(NC,s);
+    Vector<bool> y(NC,s);
 #else
-    LAvector<bool> y(NC);
+    Vector<bool> y(NC);
 #endif
 
     for(size_type c = 0; c<NC; c++) {
@@ -612,7 +612,7 @@ namespace Matricks {
   // numtruebyrow(a)
 
   template <class A> 
-  inline LAvector< size_type> numtruebyrow( const MorE<bool,A>& a ) {
+  inline Vector< size_type> numtruebyrow( const MorE<bool,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -620,12 +620,12 @@ namespace Matricks {
     std::string s = "numtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtruebyrow");
-      LAvector< size_type> y(0,s);
+      Vector< size_type> y(0,s);
       return y;
     }
-    LAvector< size_type> y(NR,s);
+    Vector< size_type> y(NR,s);
 #else
-    LAvector< size_type> y(NR);
+    Vector< size_type> y(NR);
 #endif
 
     size_type i = 0;
@@ -641,7 +641,7 @@ namespace Matricks {
 
   // numtruebycol(a)
   template <class A> 
-  inline LAvector< size_type> numtruebycol( const MorE<bool,A>& a ) {
+  inline Vector< size_type> numtruebycol( const MorE<bool,A>& a ) {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
@@ -649,12 +649,12 @@ namespace Matricks {
     std::string s = "numtruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtruebycol");
-      LAvector< size_type> y(0,s);
+      Vector< size_type> y(0,s);
       return y;
     }
-    LAvector< size_type> y(NC,s);
+    Vector< size_type> y(NC,s);
 #else
-    LAvector< size_type> y(NC);
+    Vector< size_type> y(NC);
 #endif
 
     for(size_type c = 0; c<NC; c++) {
@@ -718,14 +718,14 @@ namespace Matricks {
   // findtruesi(a) -- return in single index format
 
   template <class A> 
-  inline LAvector<size_type> findtruesi( const MorE<bool,A>& a ) {
+  inline Vector<size_type> findtruesi( const MorE<bool,A>& a ) {
     size_type N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtruesi(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruesi");
-      LAvector<size_type> y(0,s);
+      Vector<size_type> y(0,s);
       return y;
     }
 #endif
@@ -734,9 +734,9 @@ namespace Matricks {
       N += static_cast<size_type>(a(i));
  
 #ifdef Matricks_CAREFUL
-    LAvector<size_type> y(N,s);
+    Vector<size_type> y(N,s);
 #else
-    LAvector<size_type> y(N);
+    Vector<size_type> y(N);
 #endif
 
     size_type j = 0;
@@ -755,14 +755,14 @@ namespace Matricks {
   // findtruebyrow(a)
 
   template <class A> 
-  inline LAvector<size_type> findtruebyrow( const MorE<bool,A>& a ) {
+  inline Vector<size_type> findtruebyrow( const MorE<bool,A>& a ) {
     size_type N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruebyrow");
-      LAvector<size_type> y(0,2,s);
+      Vector<size_type> y(0,2,s);
       return y;
     }
 #endif
@@ -771,9 +771,9 @@ namespace Matricks {
       N += static_cast<size_type>(a(i));
  
 #ifdef Matricks_CAREFUL
-    LAvector<size_type> y(N,2,s);
+    Vector<size_type> y(N,2,s);
 #else
-    LAvector<size_type> y(N,2);
+    Vector<size_type> y(N,2);
 #endif
 
    size_type i = 0;

@@ -37,10 +37,11 @@ The code uses a technique called *expression templating*, the library provides c
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 
-# LICENSE / COPYRIGHT
+# LICENSE 
 
-The code that makes up this library is copyrighted under the MIT license.
-Read the LICENSE file.
+The code that makes up this library is copyrighted under the *MIT license*.
+
+[Read the LICENSE file for details](LICENSE).
 
 # INSTALLATION
 

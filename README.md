@@ -1,6 +1,6 @@
 # mātricks
 
-mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while leveraging C++ templates to provide run-time performance and memory usage on par with C.
+mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 
 Advantages
 + object-oriented matrices and vectors

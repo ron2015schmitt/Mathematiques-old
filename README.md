@@ -1,5 +1,9 @@
 # mātricks
 
+```diff
+- CURRENTLY NOT READY FOR USE. CHECK BACK IN SEPTEMBER 2019 -
+```
+
 mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 
 Advantages

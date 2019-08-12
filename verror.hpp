@@ -189,7 +189,7 @@ namespace Matricks {
   void outputglossary_VSetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
   std::string debugtxt_VMaskObj(const std::string s1, const std::string s2);
-  void settext_VMaskObj(const Vector<size_type>& ii,const  Vector<bool>& mask);
+  void settext_VMaskObj(const Vector<uint>& ii,const  Vector<bool>& mask);
   void outputglossary_VMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
 

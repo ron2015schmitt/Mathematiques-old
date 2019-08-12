@@ -10,7 +10,7 @@
 namespace Matricks {
 
   template <class A>
-  inline Vector<size_type> findtrue( const VorE<bool,A>& a );
+  inline Vector<uint> findtrue( const VorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -352,10 +352,10 @@ namespace Matricks {
   class VSetObj :  public  VWrapperObj<D,VSetObj<D> > {
   private:
     Vector<D>& a_;
-    const Vector<size_type>& ii_;
+    const Vector<uint>& ii_;
 
   public:
-    VSetObj(Vector<D>& a, const Vector<size_type>& ii)
+    VSetObj(Vector<D>& a, const Vector<uint>& ii)
       : a_(a), ii_(ii)
     { 
     }
@@ -446,18 +446,18 @@ namespace Matricks {
   class VMaskObj :  public  VWrapperObj<D,VMaskObj<D> > {
   private:
     Vector<D>& a_;
-    const Vector<size_type>* ii_;
+    const Vector<uint>* ii_;
 
   public:
 #ifdef Matricks_CAREFUL
     VMaskObj(Vector<D>& a, const Vector<bool>& mask)
-      : a_(a), ii_(new Vector<size_type>(findtrue(mask)))
+      : a_(a), ii_(new Vector<uint>(findtrue(mask)))
     { 
       //      settext_VMaskObj(*ii_,mask);
     }
 #else
     VMaskObj(Vector<D>& a, const Vector<bool>& mask)
-      : a_(a), ii_(new Vector<size_type>(findtrue(mask)))
+      : a_(a), ii_(new Vector<uint>(findtrue(mask)))
     { 
     }
 #endif

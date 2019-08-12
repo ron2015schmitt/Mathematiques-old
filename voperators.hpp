@@ -596,19 +596,19 @@ namespace Matricks {
     }
   };
 
-  template <class D> Vector<size_type> sortwind(Vector<D>& a ) {
+  template <class D> Vector<uint> sortwind(Vector<D>& a ) {
 
     const size_type N = a.size();
 #ifdef Matricks_CAREFUL
     std::string name = "sortindices(" + a.debugtxt() +")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sortwind");
-      Vector<size_type> ivec(0,name);
+      Vector<uint> ivec(0,name);
       return ivec;
     }
-    Vector<size_type> ivec(N,name);
+    Vector<uint> ivec(N,name);
 #else
-    Vector<size_type> ivec(N);
+    Vector<uint> ivec(N);
 #endif
 
     if (N==0)

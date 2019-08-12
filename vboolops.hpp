@@ -476,7 +476,7 @@ namespace Matricks {
 #endif
  
     for (register size_type i = 0; i< a.size(); i++)
-      result += static_cast<size_type>(a[i]);
+      result += static_cast<uint>(a[i]);
     
     return result;
   }
@@ -488,14 +488,14 @@ namespace Matricks {
   // findtrue(a)
 
   template <class A> 
-  inline Vector<size_type> findtrue( const VorE<bool,A>& a ) {
+  inline Vector<uint> findtrue( const VorE<bool,A>& a ) {
     int N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"findtrue");
-      Vector<size_type> y(0,s);
+      Vector<uint> y(0,s);
       return y;
     }
 #endif
@@ -504,9 +504,9 @@ namespace Matricks {
       N += int(a[i]);
  
 #ifdef Matricks_CAREFUL
-    Vector<size_type> y(N,s);
+    Vector<uint> y(N,s);
 #else
-    Vector<size_type> y(N);
+    Vector<uint> y(N);
 #endif
 
     size_type j =0;

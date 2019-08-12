@@ -310,10 +310,10 @@ namespace Matricks {
 
     // Accessing a SET of values 
 
-    const VSetObj<D> operator[](const Vector<size_type>& ii) const {
+    const VSetObj<D> operator[](const Vector<uint>& ii) const {
       return VSetObj<D>(*this, ii);
     }
-    VSetObj<D> operator[](const Vector<size_type>& ii) {
+    VSetObj<D> operator[](const Vector<uint>& ii) {
       return VSetObj<D>(*this, ii);
     }
 

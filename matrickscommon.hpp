@@ -22,6 +22,7 @@ namespace Matricks {
 
 
   typedef std::vector<double>::size_type   size_type;
+  typedef unsigned int   uint;
   
 
   inline std::istream& restore_stream(std::istream& tostream, std::istream& fromstream) {
@@ -52,8 +53,8 @@ namespace Matricks {
   typedef long double extended;
   // maximum subcript size for vectors and matrices
   const size_type maxsize = std::numeric_limits<int>::max();
-  //  const size_type maxsize = std::numeric_limits<size_type>::max() -1;
-  const size_type badsize = std::numeric_limits<size_type>::max();
+  //  const size_type maxsize = std::numeric_limits<uint>::max() -1;
+  const size_type badsize = std::numeric_limits<uint>::max();
 
 
   enum TextFormat {text_braces,text_nobraces};
@@ -191,15 +192,15 @@ namespace Matricks {
     // could improve speed for step=1 and step=-1 by creating a separate
     // function or template class that doesn't include the step multiply
     inline size_type operator[](const size_type i) const {
-      return static_cast<size_type>(start_ + i * step_);      
+      return static_cast<uint>(start_ + i * step_);      
     }
 
     inline size_type size(void) const {
       // issue warning if step ==0 (size is infinite)
       if ( (step_>=0) && ( end_>=start_ ) )
-	return (end_-start_)/static_cast<size_type>(step_) + 1;
+	return (end_-start_)/static_cast<uint>(step_) + 1;
       else if ( (step_<0) && (end_<start_ ) )
-	return (start_-end_)/static_cast<size_type>(-step_) + 1;
+	return (start_-end_)/static_cast<uint>(-step_) + 1;
       else
 	return 1;
     }
@@ -405,7 +406,7 @@ namespace Matricks {
 
 
   template <class A> 
-  Vector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NR, const size_type NC);
+  Vector<uint> sub2ind(const MorE<size_type,A>& subs, const size_type NR, const size_type NC);
 
 
 

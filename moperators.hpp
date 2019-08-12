@@ -482,17 +482,17 @@ namespace Matricks {
 
 
   template <class A> 
-  Vector<size_type> sub2ind(const MorE<size_type,A>& subs, const size_type NC) {
+  Vector<uint> sub2ind(const MorE<size_type,A>& subs, const size_type NC) {
     const size_type N = subs.Nrows();
 #ifdef Matricks_CAREFUL
     std::string s = "sub2ind(" + subs.debugtxt() + ")";
-    Vector<size_type> ii(N,s);
+    Vector<uint> ii(N,s);
     if ( subs.Ncols() !=2 ) {
       //error
       return ii;
     }
 #else
-    Vector<size_type> ii(N);
+    Vector<uint> ii(N);
 #endif 
 
     for (size_type i = 0;  i <N; i++)

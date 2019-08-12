@@ -602,7 +602,7 @@ namespace Matricks {
 #endif
  
     for (register size_type i = 0; i< a.size(); i++)
-      result += static_cast<size_type>(a(i));
+      result += static_cast<uint>(a(i));
     
     return result;
   }
@@ -632,7 +632,7 @@ namespace Matricks {
     for(size_type r = 0; r<NR; r++) {
        size_type temp=0;
       for(size_type c = 0; c<NC; c++,i++) {
-	temp  += static_cast<size_type>(a(i));
+	temp  += static_cast<uint>(a(i));
       }
       y[r] = temp;
     }
@@ -661,7 +661,7 @@ namespace Matricks {
       size_type LIMIT = NR*NC-NC+c+1;
       size_type temp=0;
       for(size_type i = c; i<LIMIT; i+=NC) {
-	temp  += static_cast<size_type>(a(i));
+	temp  += static_cast<uint>(a(i));
       }
       y[c] = temp;
     }
@@ -676,25 +676,25 @@ namespace Matricks {
   // findtrue(a)
 
   template <class A> 
-  inline Matrix<size_type> findtrue( const MorE<bool,A>& a ) {
+  inline Matrix<uint> findtrue( const MorE<bool,A>& a ) {
     size_type N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtrue");
-      Matrix<size_type> y(0,2,s);
+      Matrix<uint> y(0,2,s);
       return y;
     }
 #endif
  
     for (register size_type i = 0; i< a.size(); i++)
-      N += static_cast<size_type>(a(i));
+      N += static_cast<uint>(a(i));
  
 #ifdef Matricks_CAREFUL
-    Matrix<size_type> y(N,2,s);
+    Matrix<uint> y(N,2,s);
 #else
-    Matrix<size_type> y(N,2);
+    Matrix<uint> y(N,2);
 #endif
 
    size_type i = 0;
@@ -718,25 +718,25 @@ namespace Matricks {
   // findtruesi(a) -- return in single index format
 
   template <class A> 
-  inline Vector<size_type> findtruesi( const MorE<bool,A>& a ) {
+  inline Vector<uint> findtruesi( const MorE<bool,A>& a ) {
     size_type N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtruesi(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruesi");
-      Vector<size_type> y(0,s);
+      Vector<uint> y(0,s);
       return y;
     }
 #endif
  
     for (register size_type i = 0; i< a.size(); i++)
-      N += static_cast<size_type>(a(i));
+      N += static_cast<uint>(a(i));
  
 #ifdef Matricks_CAREFUL
-    Vector<size_type> y(N,s);
+    Vector<uint> y(N,s);
 #else
-    Vector<size_type> y(N);
+    Vector<uint> y(N);
 #endif
 
     size_type j = 0;
@@ -755,25 +755,25 @@ namespace Matricks {
   // findtruebyrow(a)
 
   template <class A> 
-  inline Vector<size_type> findtruebyrow( const MorE<bool,A>& a ) {
+  inline Vector<uint> findtruebyrow( const MorE<bool,A>& a ) {
     size_type N = 0;
     
 #ifdef Matricks_CAREFUL
     std::string s = "findtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruebyrow");
-      Vector<size_type> y(0,2,s);
+      Vector<uint> y(0,2,s);
       return y;
     }
 #endif
  
     for (register size_type i = 0; i< a.size(); i++)
-      N += static_cast<size_type>(a(i));
+      N += static_cast<uint>(a(i));
  
 #ifdef Matricks_CAREFUL
-    Vector<size_type> y(N,2,s);
+    Vector<uint> y(N,2,s);
 #else
-    Vector<size_type> y(N,2);
+    Vector<uint> y(N,2);
 #endif
 
    size_type i = 0;

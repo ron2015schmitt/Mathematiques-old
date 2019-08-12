@@ -11,10 +11,10 @@
 namespace Matricks {
 
   template <class A> 
-  inline Matrix<size_type> findtrue( const MorE<bool,A>& a );
+  inline Matrix<uint> findtrue( const MorE<bool,A>& a );
 
   template <class A> 
-  inline Vector<size_type> findtruesi( const MorE<bool,A>& a );
+  inline Vector<uint> findtruesi( const MorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -307,8 +307,8 @@ namespace Matricks {
 
     inline size_type index(size_type i) const{
       const std::div_t result = std::div(int(i),int(Ncols()));
-      const size_type r = static_cast<size_type>(rstart_ + result.quot);
-      const size_type c = static_cast<size_type>(cstart_ + result.rem);
+      const size_type r = static_cast<uint>(rstart_ + result.quot);
+      const size_type c = static_cast<uint>(cstart_ + result.rem);
       const size_type ind = r*a_NC + c;
 #ifdef Matricks_CAREFUL
       if ( (r>=aNrows())||(c>=aNcols()) ){
@@ -504,12 +504,12 @@ namespace Matricks {
   class MSetObj :  public  MWrapperObj<D,MSetObj<D> > {
   private:
     Matrix<D>& a_;
-    const Vector<size_type>* iiptr_;
-    const Vector<size_type>& ii_;
+    const Vector<uint>* iiptr_;
+    const Vector<uint>& ii_;
     const size_type indID_;
     const bool indisvector;
   public:
-    explicit MSetObj(Matrix<D>& a, const Vector<size_type>& ii)
+    explicit MSetObj(Matrix<D>& a, const Vector<uint>& ii)
       : a_(a), 
 	iiptr_(0), 
 	ii_(ii),
@@ -519,7 +519,7 @@ namespace Matricks {
     }
     explicit MSetObj(Matrix<D>& a, const Matrix<bool>& mask)
       : a_(a), 
-	iiptr_(new Vector<size_type>(findtruesi(mask))), 
+	iiptr_(new Vector<uint>(findtruesi(mask))), 
 	ii_(*iiptr_),
 	indID_(mask.objectID()),
 	indisvector(false)
@@ -527,15 +527,15 @@ namespace Matricks {
     }
     explicit MSetObj(Matrix<D>& a, const Vector<bool>& mask)
       : a_(a), 
-	iiptr_(new Vector<size_type>(findtrue(mask))), 
+	iiptr_(new Vector<uint>(findtrue(mask))), 
 	ii_(*iiptr_),
 	indID_(mask.objectID()),
 	indisvector(true)
     {
     }
-    explicit MSetObj(Matrix<D>& a, const Matrix<size_type>& subs)
+    explicit MSetObj(Matrix<D>& a, const Matrix<uint>& subs)
       : a_(a), 
-	iiptr_(new Vector<size_type>(sub2ind(subs,a.Ncols()))), 
+	iiptr_(new Vector<uint>(sub2ind(subs,a.Ncols()))), 
 	ii_(*iiptr_),
 	indID_(subs.objectID()),
 	indisvector(false)
@@ -644,13 +644,13 @@ namespace Matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const Vector<size_type>* iiptr_;
-    const Vector<size_type>& ii_;
-    const Vector<size_type>* jjptr_;
-    const Vector<size_type>& jj_;
+    const Vector<uint>* iiptr_;
+    const Vector<uint>& ii_;
+    const Vector<uint>* jjptr_;
+    const Vector<uint>& jj_;
 
   public:
-    explicit MDualSetObj(Matrix<D>& a, const Vector<size_type>& ii,  const Vector<size_type>& jj)
+    explicit MDualSetObj(Matrix<D>& a, const Vector<uint>& ii,  const Vector<uint>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
@@ -658,18 +658,18 @@ namespace Matricks {
 	jjptr_(0), 
 	jj_(jj)
     { }
-    explicit MDualSetObj(Matrix<D>& a, const Vector<size_type>& ii,  const size_type j)
+    explicit MDualSetObj(Matrix<D>& a, const Vector<uint>& ii,  const size_type j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
-	jjptr_(new Vector<size_type>(1,j,"") ), 
+	jjptr_(new Vector<uint>(1,j,"") ), 
 	jj_(*jjptr_)
     {     }
-    explicit MDualSetObj(Matrix<D>& a, const size_type i, const Vector<size_type>& jj)
+    explicit MDualSetObj(Matrix<D>& a, const size_type i, const Vector<uint>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new Vector<size_type>(1,i,"") ), 
+	iiptr_(new Vector<uint>(1,i,"") ), 
 	ii_(*iiptr_),
 	jjptr_(0), 
 	jj_(jj)
@@ -927,12 +927,12 @@ namespace Matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const Vector<size_type>* iiptr_;
-    const Vector<size_type>& ii_;
+    const Vector<uint>* iiptr_;
+    const Vector<uint>& ii_;
     const seq& j_;
 
   public:
-    explicit MSetRangeObj(Matrix<D>& a, const Vector<size_type>& ii, const seq& j )
+    explicit MSetRangeObj(Matrix<D>& a, const Vector<uint>& ii, const seq& j )
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
@@ -942,7 +942,7 @@ namespace Matricks {
     explicit MSetRangeObj(Matrix<D>& a, const size_type i, const seq& j)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new Vector<size_type>(1,i,"") ), 
+	iiptr_(new Vector<uint>(1,i,"") ), 
 	ii_(*iiptr_),
 	j_(j)
     { }
@@ -1070,11 +1070,11 @@ namespace Matricks {
     Matrix<D>& a_;
     const size_type a_NC;
     const seq& i_;
-    const Vector<size_type>* jjptr_;
-    const Vector<size_type>& jj_;
+    const Vector<uint>* jjptr_;
+    const Vector<uint>& jj_;
 
   public:
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const Vector<size_type>& jj )
+    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const Vector<uint>& jj )
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
@@ -1085,7 +1085,7 @@ namespace Matricks {
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
-	jjptr_(new Vector<size_type>(1,j,"") ), 
+	jjptr_(new Vector<uint>(1,j,"") ), 
 	jj_(*jjptr_)
     { }
 

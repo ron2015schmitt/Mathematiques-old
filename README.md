@@ -172,7 +172,7 @@ check the problem under careful mode.
 
 Compile time is also considerably slower in CAREFUL mode.
 
-## Full Documentation
+## Coding Documentation
 
-[Documentation](doc/README.md)
+[Coding Documentation](doc/README.md)
 

@@ -69,6 +69,15 @@ object code library that can be linked to (`libmatricks.a`)
 
 
 
+# SAMPLE MAKEFILE
+
+A sample makefile is included for your convenience:
+
+```examples/Makefile```
+
+AFTER CONFIGURATION, copy this makefile to YOUR source code directory
+(or cut and paste into an existing makefile).
+
 # EXAMPLES  
 
 You will find examples in the subdirectory `examples`. Compile the
@@ -80,14 +89,7 @@ This creates executables that can be run from the command line.  The
 file `vexample.cpp` is the best way to learn about coding with mātricks.
 
 
-# SAMPLE MAKEFILE
 
-A sample makefile is included for your convenience:
-
-```examples/SampleMakefile```
-
-AFTER CONFIGURATION, copy this makefile to YOUR source code directory
-(or cut and paste into an existing makefile).
 
 
 # USING THE mātricks LIBRARY
@@ -97,9 +99,10 @@ and link to the `libmatricks.a` library file.  See the following files for
 examples
 
 ```bash
-examples/SampleMakefile
-examples/vexample.cpp
+examples/Makefile
 ```
+
+
 
 
 # MODES OF OPERATION
@@ -155,7 +158,7 @@ without specifying the `CAREFUL` flag
 ```
 
 
-## RECOMMENDATIONS
+### RECOMMENDATIONS
 
 While developing your code, use `CAREFUL` mode.  When you are convinced that it is operating
 without errors, switch to fast mode.  
@@ -165,6 +168,11 @@ This way if a segmentation fault occurs, or you otherwise suspect an error, you 
 check the problem under careful mode.
 
 
-##  NOTES
+###  NOTES
 
 Compile time is also considerably slower in CAREFUL mode.
+
+## Full Documentation
+
+[Documentation](doc/README.md)
+

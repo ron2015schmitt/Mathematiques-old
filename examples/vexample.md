@@ -26,8 +26,8 @@ v1[3] = 4.0;
 ```C++
   v1: {1,2,3,4}; 
 ```
-----
-### Using the range Function 
+
+### Using the `range` Function 
 
 
 **EXAMPLE 2**: Set `v2` using the **`range`** function 
@@ -39,7 +39,7 @@ v2 = range<double>(5,8);
 ```C++
   v2: {5,6,7,8}; 
 ```
-----
+
 
 
 **EXAMPLE 3**: Set `v2` using the **`range`** function 
@@ -51,7 +51,7 @@ v2 = range<double>(4,1);
 ```C++
   v2: {4,3,2,1}; 
 ```
-----
+
 
 
 **EXAMPLE 4**: Set `v2` using the **`range`** function 
@@ -63,7 +63,7 @@ v2 = range<double>(400,100,-100);
 ```C++
   v2: {400,300,200,100}; 
 ```
-----
+
 ### Using the `linspace` function 
 
 
@@ -76,7 +76,7 @@ v2 = linspace<double>(100,400,4);
 ```C++
   v2: {100,200,300,400}; 
 ```
-----
+
 
 
 **EXAMPLE 6**: Set `v2` using the linspace function 
@@ -88,7 +88,7 @@ v2 = linspace<double>(6,3,4);
 ```C++
   v2: {6,5,4,3}; 
 ```
-----
+
 
 
 **EXAMPLE 7**: initialize v2 from C-array (careful, no bounds checking!) 
@@ -100,7 +100,7 @@ v2 = vcast<double>(ans7,4);
 ```C++
   v2: {1.234,101.3,0,-23.4}; 
 ```
-----
+
 
 initialize v2 from std::vector
 
@@ -108,7 +108,7 @@ initialize v2 from std::vector
 ```C++
   v2: {-1,-2,-3,-4}; 
 ```
-----
+
 
 initialize v2 from std::valarray
 v2: {-11,-12,-13,-14}; 

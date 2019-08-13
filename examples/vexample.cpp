@@ -27,7 +27,7 @@ using namespace Matricks;
 
 #define resultstart() printf("**The result is**\n```C++\n")
 #define resultmulti(...)  printf("  ");dispcr(__VA_ARGS__)
-#define resultend() printf("```\n----\n")
+#define resultend() printf("```\n\n")
 #define result(x)  resultstart();resultmulti(x);resultend()
 
 
@@ -62,7 +62,7 @@ int main()
   result(v1);
 
 
-  header3("Using the range Function");
+  header3("Using the `range` Function");
   
   cr();
   cr();

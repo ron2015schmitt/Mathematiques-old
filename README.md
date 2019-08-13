@@ -66,9 +66,6 @@ cd matricks
 ./configure
 ```
 
-This command builds the makefiles and compiles the source code into an
-object code library that can be linked to (`libmatricks.a`)
-
 # USING THE mātricks LIBRARY
 
 To use the mātricks library you need to 

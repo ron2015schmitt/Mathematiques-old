@@ -25,7 +25,7 @@ using namespace Matricks;
 
 #define resultstart() printf("**The result is**\n```C++\n")
 #define resultmulti(x)  printf("  ");dispcr(x)
-#define resultend() printf("```\n  \n  \n")
+#define resultend() printf("```\n----\n")
 #define result(x)  resultstart();resultmulti(x);resultend()
 
 
@@ -35,8 +35,8 @@ int main()
   header1("Basic Vector Operations in mātricks");
   cr();
   header2("Declaring vectors");
-  text("Declare vectors ```v1```, ```v2```, ```v3```.");
-  text("The optional second paramter is the name that will be stored with the vector in the object pool.  This name can be any string that you like.");
+  text("Declare vectors `v1`, `v2`, `v3`.");
+  text("The optional second parameter is the name that will be stored with the vector in the object pool.  This name can be any string that you like.");
   codestart();
   codemulti( const int N = 4 );
   codemulti( Vector<double> v1(N,"v1") );
@@ -44,10 +44,10 @@ int main()
   codemulti( Vector<double> v3(N,"vector3") );
   codeend();
 
-  header2("Initializing vectors");
+  header2("Setting the values of a vector");
   cr();
   cr();
-  text("Initialize each element of ```v1``` individdually");
+  text("*EXAMPLE 1*: Set each element of `v1` individdually");
   codestart();
   codemulti( v1[0] = 1.0 );
   codemulti( v1[1] = 2.0 );
@@ -59,35 +59,35 @@ int main()
   
   cr();
   cr();
-  text("Initialize ```v2``` using range function");
+  text("Set `v2` using the range function");
   code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("Initialize ```v2``` using range function");
+  text("Set `v2` using the range function");
   code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("Initialize ```v2``` using range");
+  text("Set `v2` using the range function");
   code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("initialize v2 using linspace");
+  text("Set `v2` using the linspace function");
   code( v2 = linspace<double>(100,400,4) );
   cr(); 
   result(v2);
 
   cr();
   cr();
-  text("initialize v2 using linspace");
+  text("Set `v2` using the linspace function");
   code( v2 = linspace<double>(6,3,4) );
   cr();
   result(v2);

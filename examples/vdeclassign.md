@@ -2,7 +2,7 @@
 # Declaring and Assigning Vectors in mātricks 
 
 ## Declaring vectors 
-Declare vector `v1`. 
+**EXAMPLE 1**: Declare vector `v1`. 
 ```C++
 const int N = 4;
 Vector<double> v1(N);
@@ -12,7 +12,7 @@ Vector<double> v1(N);
   v1: {0,0,0,0}; 
 ```
 
-**EXAMPLE 1**: Declare `v2` and initialize to a constant 
+**EXAMPLE 2**: Declare `v2` and initialize to a constant 
 ```C++
 Vector<double> v2(N, -1 );
 ```
@@ -21,7 +21,7 @@ Vector<double> v2(N, -1 );
   v2: {-1,-1,-1,-1}; 
 ```
 
-**EXAMPLE 2**: Declare `v3` and initialize to a **C-style array** of values 
+**EXAMPLE 3**: Declare `v3` and initialize to a **C-style array** of values 
 ```C++
 Vector<double> v3( N, (const double[4]) {10, 20, 30, 40} );
 HELLO
@@ -35,7 +35,7 @@ HELLO
 ### Directly assigning the values of a vector 
 
 
-**EXAMPLE 3**: Set each element of `v1` **individually** 
+**EXAMPLE 4**: Set each element of `v1` **individually** 
 ```C++
 v1[0] = 1.0;
 v1[1] = 2.0;
@@ -48,20 +48,20 @@ v1[3] = 4.0;
   v1: {1,2,3,4}; 
 ```
 
-**EXAMPLE 4**: Assigning `v` from a **C-style array** 
+**EXAMPLE 5**: Assigning `v` from a **C-style array** 
 ```C++
 v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40});
 HELLO
 ```
 **The result is**
 ```C++
-  v1: {1,2,3,4}; 
+  v2: {10,20,30,40}; 
 ```
 
 ### Using the `range` Function 
 
 
-**EXAMPLE 5**: Assign `v1` using the **`range`** function 
+**EXAMPLE 6**: Assign `v1` using the **`range`** function 
 ```C++
 v1 = range<double>(5,8);
 ```
@@ -73,7 +73,7 @@ v1 = range<double>(5,8);
 
 
 
-**EXAMPLE 6**: Assign `v1` using the **`range`** function 
+**EXAMPLE 7**: Assign `v1` using the **`range`** function 
 ```C++
 v1 = range<double>(4,1);
 ```
@@ -85,7 +85,7 @@ v1 = range<double>(4,1);
 
 
 
-**EXAMPLE 7**: Assign `v1` using the **`range`** function 
+**EXAMPLE 8**: Assign `v1` using the **`range`** function 
 ```C++
 v1 = range<double>(400,100,-100);
 ```
@@ -98,7 +98,7 @@ v1 = range<double>(400,100,-100);
 ### Using the **`linspace`** function 
 
 
-**EXAMPLE 8**: Assign `v1` using the **`linspace`** function 
+**EXAMPLE 9**: Assign `v1` using the **`linspace`** function 
 ```C++
 v1 = linspace<double>(100,400,4);
 ```
@@ -110,7 +110,7 @@ v1 = linspace<double>(100,400,4);
 
 
 
-**EXAMPLE 9**: Assign `v1` using the **`linspace`** function 
+**EXAMPLE10**: Assign `v1` using the **`linspace`** function 
 ```C++
 v1 = linspace<double>(6,3,4);
 ```
@@ -210,7 +210,7 @@ v7[seq(0,1)]=0; v7={0,0,0.5}
 reverse the order of a vector
 v1 = v1[seq(3,0)]={0.5,0.1,-1,-2}
 The optional second parameter is the name that will be stored with the vector in the object pool.  This name can be any string that you like. 
-**EXAMPLE10**: Assigning `v1` from a **C-style array** 
+**EXAMPLE11**: Assigning `v1` from a **C-style array** 
 ```C++
 double temp[N] = {10, 20, 30, 40};
 v1 = vcast<double>(temp,N);

@@ -50,7 +50,8 @@ int main()
   header1("Declaring and Assigning Vectors in mātricks");
   cr();
   header2("Declaring vectors");
-  text("Declare vector `v1`.");
+  
+  example("Declare vector `v1`.");
   codestart();
   codemulti( const int N = 4 );
   codemulti( Vector<double> v1(N) );
@@ -92,7 +93,7 @@ int main()
   codestart();
   codemulti( v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40})  );
   codeend();
-  result(v1);
+  result(v2);
 
   header3("Using the `range` Function");
   

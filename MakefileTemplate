@@ -130,16 +130,17 @@ cleanall: clean
 	\cd $(MATRICKS_DIR)/testbed && make clean
 	\cd $(MATRICKS_DIR)/benchmarks && make clean
 	\cd $(MATRICKS_DIR)/development && make clean
+	\cd $(MATRICKS_DIR)/doc && make clean
 
 fullpurge: cleanall
-	\rm -f $(MATRICKS_DIR)/libmatricks.a
 	\rm -f $(MATRICKS_DIR)/*~
 	\rm -f $(MATRICKS_DIR)/*.gz
 	\rm -f $(MATRICKS_DIR)/*.tar
 	\rm -f $(MATRICKS_DIR)/*.old
 	\rm -f $(MATRICKS_DIR)/*/*~
 	\rm -f $(MATRICKS_DIR)/*/*.old
-	\rm -f $(MATRICKS_DIR)/examples
+	\rm -fr $(MATRICKS_DIR)/examples
+	\rm -fr $(MATRICKS_DIR)/lib
 
 %.o: %.cpp  $(LIBFILES) 
 ifdef CAREFUL

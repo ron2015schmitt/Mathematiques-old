@@ -140,8 +140,6 @@ namespace Matricks {
         // ************************** ARRAY INIT CONSTRUCTOR **********************************
     explicit Vector<D>(const size_type n, const D (vals)[], const std::string name="") { 
 
-            printf("HELLO\n");
-
       size_type N;
       if (n>maxsize) 
 	N=0;
@@ -166,9 +164,6 @@ namespace Matricks {
       name_=name;
 #endif      
 
-      for(size_type i = 0; i<N; i++) {
-	(*this)[i] = vals[i];
-      }
 
     }
 

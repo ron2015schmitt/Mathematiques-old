@@ -50,8 +50,6 @@ int _e = 1;
 int main()
 {
 
-
-  
   cr();
   header1("Declaring and Assigning Vectors in mātricks");
   printf("This document is automatically generated from file **`%s`**:\n",__FILE__);
@@ -68,16 +66,21 @@ int main()
 
   example("Declare `v2` and initialize to a constant" );
   codestart("C++");
-  codemulti( Vector<double> v2(N, -1 ) );
+  codemulti( Vector<double> v2(4, -1 ) );
   codeend();
   result(v2);
 
   example("Declare `v3` and initialize to a **C-style array** of values" );
   codestart("C++");
-  codemulti( Vector<double> v3( N, (const double[4]) {10, 20, 30, 40} )  );
+  codemulti( Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} )  );
   codeend();
   result(v3);
 
+  example("Declare `v4` and initialize to a **C-style array** of values" );
+  codestart("C++");
+  codemulti( Vector<double> v4( 4, (const double[]) {10, 20, 30, 40} )  );
+  codeend();
+  result(v4);
 
   
   header2("Assigning the values of a vector");

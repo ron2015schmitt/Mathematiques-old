@@ -1,6 +1,6 @@
 
 # Declaring and Assigning Vectors in mātricks 
-This document is automatically generated from file **`vdeclassign.cpp`**:
+This document is automatically generated from file **`vdeclaration.cpp`**:
 ## Declaring vectors 
 **EXAMPLE 1**: Declare vector `v1`. 
 ```C++
@@ -39,91 +39,21 @@ Vector<double> v4({10, 20, 30, 40});
   v4: {10,20,30,40}; 
 ```
 
-## Assigning the values of a vector 
-### Directly assigning the values of a vector 
-
-
-**EXAMPLE 5**: Set each element of `v1` **individually** 
+**EXAMPLE 5**: Declare `v5` and initialize to values of `v3` 
 ```C++
-v1[0] = 1.0;
-v1[1] = 2.0;
-v1[2] = 3.0;
-v1[3] = 4.0;
-```
-
-**The result is**
-```C++
-  v1: {1,2,3,4}; 
-```
-
-**EXAMPLE 6**: Assigning `v` from a **C-style array** 
-```C++
-v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40});
+Vector<double> v5(v3);
 ```
 **The result is**
 ```C++
-  v2: {10,20,30,40}; 
+  v5: {10,20,30,40}; 
 ```
 
-### Using the `range` Function 
-
-
-**EXAMPLE 7**: Assign `v1` using the **`range`** function 
+**EXAMPLE 6**: Declare `v6` and initialize to an expression 
+```C++
+Vector<double> v6(2*v3+1);
 ```
-v1 = range<double>(5,8);
-```
-
 **The result is**
 ```C++
-  v1: {5,6,7,8}; 
-```
-
-
-
-**EXAMPLE 8**: Assign `v1` using the **`range`** function 
-```
-v1 = range<double>(4,1);
-```
-
-**The result is**
-```C++
-  v1: {4,3,2,1}; 
-```
-
-
-
-**EXAMPLE 9**: Assign `v1` using the **`range`** function 
-```
-v1 = range<double>(400,100,-100);
-```
-
-**The result is**
-```C++
-  v1: {400,300,200,100}; 
-```
-
-### Using the **`linspace`** function 
-
-
-**EXAMPLE10**: Assign `v1` using the **`linspace`** function 
-```
-v1 = linspace<double>(100,400,4);
-```
-
-**The result is**
-```C++
-  v1: {100,200,300,400}; 
-```
-
-
-
-**EXAMPLE11**: Assign `v1` using the **`linspace`** function 
-```
-v1 = linspace<double>(6,3,4);
-```
-
-**The result is**
-```C++
-  v1: {6,5,4,3}; 
+  v6: {21,41,61,81}; 
 ```
 

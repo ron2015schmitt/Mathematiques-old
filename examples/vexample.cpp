@@ -15,7 +15,7 @@ using namespace Matricks;
 #define header1(x)  printf("# %s \n", x)
 #define comment(x)  printf("%s \n", x)
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
-#define printcode(x)  printf("```C++\n%s;\n```",  #x); x
+#define printcode(x)  printf("```C++\n%s;```\n",  #x); x
 #define result(x)  printf("> ");dispcr(x)
 
 

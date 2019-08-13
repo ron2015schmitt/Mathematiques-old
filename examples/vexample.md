@@ -4,7 +4,8 @@
 Declaration of vectors v1, v2, v3 
 ```C++
 const int N = 4;
-``````C++
+```
+```C++
 Vector<double> v1(N,"v1");
 ``````C++
 Vector<double> v2(N,"v2");

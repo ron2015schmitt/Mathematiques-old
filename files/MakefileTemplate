@@ -1,8 +1,8 @@
 
-
-MATRICKS_DIR = #MATRICKS_DIR#
 VERSION = 2.0
-FNAME = matricks-$(VERSION)
+MATRICKS_DIR := #MATRICKS_DIR#
+MATRICKS_INCLUDEDIR := $(MATRICKS_DIR)/include
+MATRICKS_LIBDIR := $(MATRICKS_DIR)/lib
 TEMP = /tmp/
 TDIR = $(TEMP)/$(FNAME)
 SHELL = /bin/bash
@@ -20,29 +20,20 @@ CPP = /usr/bin/g++
 
 COPTIMIZE = -finline-functions -finline-limit=750 -O0
 
+COPTS += 
+LOPTS += 
 
-COPT = -Wall -W -Wconversion 
-LOPT = 
-
-INCLUDEDIR = $(MATRICKS_DIR)/include
-
-HPPFILES := $(shell find $(INCLUDEDIR) -name '*.hpp')
-
-INCLUDES += -I $(INCLUDEDIR) 
-
-VPATH = $(MATRICKS_DIR)
-
-LIBS += -L$(MATRICKS_DIR)/lib -lmatricks
+INCLUDES += -I $(MATRICKS_INCLUDEDIR) 
+LIBS += -L$(MATRICKS_LIBDIR)/lib -lmatricks
 
 LIB_LAPACK =  -llapack  -lg2c
 
-CPPFLAGS =  $(COPTS)  $(COPTIMIZE) $(INCLUDES)
-
+CPPFLAGS = $(COPTS) $(COPTIMIZE) $(INCLUDES)
 LDFLAGS =  $(LOPTS)
 
+HPPFILES := $(shell find $(INCLUDEDIR) -name '*.hpp')
 
 EXEC ?=
-LAPACKEXEC ?=
 
 #prevent any default rules from being used
 .SUFFIXES:

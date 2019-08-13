@@ -14,7 +14,6 @@ LOPTS =
 # A certain amount of optimization is necessary 
 OPTIMIZATIONS = -finline-functions  -finline-limit=750 -O1
 CXXOPT = -Wall -W -Wconversion $(OPTIMIZATIONS)
-CC  = /usr/bin/gcc
 CXX = /usr/bin/g++ 
 
 
@@ -34,9 +33,15 @@ LDFLAGS =  $(LOPTS)
 # don't delete .o files
 .PRECIOUS: %.o
 
+
 clean:
 	\rm -f *.o
+	\rm -f $(EXEC)
+	\rm -f $(LAPACKEXEC)
 	\rm -f core.*
+	\rm -f *.s
+	\rm -f *.temp
+
 
 %.o: %.cpp  $(LIBFILES) 
 ifdef CAREFUL

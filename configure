@@ -14,7 +14,8 @@ echo "creating examples/Makefile ..."
 mkdir -p examples
 echo "  " > examples/Makefile
 echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >> examples/Makefile
-echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >> examples/Makesed -e "s/#MATRICKS_DIR#/$temp/g" SampleMakefileTemplate >> examples/Makefile
+echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >> examples/Makefile
+sed -e "s/#MATRICKS_DIR#/$temp/g" SampleMakefileTemplate >> examples/Makefile
 
 
 # make the object file library (libmatricks.a)

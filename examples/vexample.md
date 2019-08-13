@@ -1,8 +1,3 @@
-<style type="text/css">
-h1 {color:red;}
-p {color:blue;}
-
-
 # Basic Vector Operations in mātricks 
 
 ## Declaring vectors 
@@ -29,9 +24,7 @@ v1[3] = 4.0;
 ```C++
   v1: {1,2,3,4}; 
 ```
-  
----  
-
+###
 
 Initialize ```v2``` using range function 
 ```C++

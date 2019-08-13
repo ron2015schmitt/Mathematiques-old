@@ -94,7 +94,7 @@ A example makefile, ```examples/Makefile```,  is included for your convenience
 
 ## EXAMPLE CODE FILE
 
-An example C++ source file is, ```examples/example.cpp```,  is included for your convenience 
+An example of a C++ source file (```examples/example.cpp```) is shown below
 
 ```C++
 #include <iostream>

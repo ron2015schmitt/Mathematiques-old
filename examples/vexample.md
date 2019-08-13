@@ -26,7 +26,7 @@ v1[3] = 4.0;
   v1: {1,2,3,4}; 
 ```
   
-  
+---  
 
 
 Initialize ```v2``` using range function 

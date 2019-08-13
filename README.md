@@ -105,7 +105,7 @@ int main()
 
 Compile the code and run the code using
 ```bash
-g++ -I ~/matricks/include example.cpp -o example -L~/matricks/lib -lmatricks
+g++ -I ~/matricks/include example.cpp -o example -L ~/matricks/lib -lmatricks
 ./example
 ```
 

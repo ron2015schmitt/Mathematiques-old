@@ -7,6 +7,7 @@
 using namespace Matricks;
 
 #include <iostream>
+#include <string>
 
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
@@ -30,11 +31,16 @@ using namespace Matricks;
 #define resultend() printf("```\n\n")
 #define result(x)  resultstart();resultmulti(x);resultend()
 
+int _e = 1;
+char _str[2048];
+#define example(x) sprintf(_str,"**EXAMPLE%2d**: ",_e++); text(std::strcat(_str,x))
+
+
 
 int main()
 {
   cr();
-  header1("Basic Vector Operations in mātricks");
+  header1("Declaring and Assigning Vectors in mātricks");
   cr();
   header2("Declaring vectors");
   text("Declare vectors `v1`, `v2`, `v3`.");
@@ -46,12 +52,12 @@ int main()
   codemulti( Vector<double> v3(N,"vector3") );
   codeend();
 
-  header2("Setting the values of a vector");
+  header2("Assigning the values of a vector");
 
-  header3("Directly setting the values of a vector");
+  header3("Directly assigning the values of a vector");
   cr();
   cr();
-  text("**EXAMPLE 1**: Set each element of `v1` individually");
+  example("Set each element of `v1` **individually**");
   codestart();
   codemulti( v1[0] = 1.0 );
   codemulti( v1[1] = 2.0 );
@@ -61,53 +67,52 @@ int main()
   cr();
   result(v1);
 
+  example("Assigning `v1` from a **C-style array**" );
+  codestart();
+  codemulti( double temp[N] = {1.234, 101.3, 0, -23.4} );
+  codemulti( v1 = vcast<double>(temp,N) );
+  codeend();
+  result(v1);
+
 
   header3("Using the `range` Function");
   
   cr();
   cr();
-  text("**EXAMPLE 2**: Set `v2` using the **`range`** function");
+  example("Assign `v2` using the **`range`** function");
   code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("**EXAMPLE 3**: Set `v2` using the **`range`** function");
+  example("Assign `v2` using the **`range`** function");
   code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("**EXAMPLE 4**: Set `v2` using the **`range`** function");
+  example("Assign `v2` using the **`range`** function");
   code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);
 
-  header3("Using the `linspace` function");
+  header3("Using the **`linspace`** function");
   cr();
   cr();
-  text("**EXAMPLE 5**: Set `v2` using the **`linspace`** function");
+  example("Assign `v2` using the **`linspace`** function");
   code( v2 = linspace<double>(100,400,4) );
   cr(); 
   result(v2);
 
   cr();
   cr();
-  text("**EXAMPLE 6**: Set `v2` using the linspace function");
+  example("Assign `v2` using the **`linspace`** function");
   code( v2 = linspace<double>(6,3,4) );
   cr();
   result(v2);
 
-  cr();
-  cr();
-  text("**EXAMPLE 7**: initialize v2 from C-array (careful, no bounds checking!)" );
-  codestart();
-  codemulti( double ans7[4] = {1.234, 101.3, 0, -23.4} );
-  codemulti( v2 = vcast<double>(ans7,4) );
-  codeend();
-  result(v2);
 
   std::cout << std::endl << "initialize v2 from std::vector" << std::endl;
   std::vector<double> vstd(4);

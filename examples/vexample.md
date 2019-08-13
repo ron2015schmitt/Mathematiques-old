@@ -1,5 +1,5 @@
 
-# Basic Vector Operations in mātricks 
+# Declaring and Assigning Vectors in mātricks 
 
 ## Declaring vectors 
 Declare vectors `v1`, `v2`, `v3`. 
@@ -10,11 +10,11 @@ Vector<double> v1(N,"v1");
 Vector<double> v2(N,"v2");
 Vector<double> v3(N,"vector3");
 ```
-## Setting the values of a vector 
-### Directly setting the values of a vector 
+## Assigning the values of a vector 
+### Directly assigning the values of a vector 
 
 
-**EXAMPLE 1**: Set each element of `v1` individually 
+**EXAMPLE 1**: Set each element of `v1` **individually** 
 ```C++
 v1[0] = 1.0;
 v1[1] = 2.0;
@@ -27,10 +27,21 @@ v1[3] = 4.0;
   v1: {1,2,3,4}; 
 ```
 
+**EXAMPLE 2**: Assigning `v1` from a **C-style array** 
+**EXAMPLE 3**: Set `v1` from an array 
+```C++
+double temp[N] = {1.234, 101.3, 0, -23.4};
+v1 = vcast<double>(temp,N);
+```
+**The result is**
+```C++
+  v1: {1.234,101.3,0,-23.4}; 
+```
+
 ### Using the `range` Function 
 
 
-**EXAMPLE 2**: Set `v2` using the **`range`** function 
+**EXAMPLE 4**: Assign `v2` using the **`range`** function 
 ```C++
 v2 = range<double>(5,8);
 ```
@@ -42,7 +53,7 @@ v2 = range<double>(5,8);
 
 
 
-**EXAMPLE 3**: Set `v2` using the **`range`** function 
+**EXAMPLE 5**: Assign `v2` using the **`range`** function 
 ```C++
 v2 = range<double>(4,1);
 ```
@@ -54,7 +65,7 @@ v2 = range<double>(4,1);
 
 
 
-**EXAMPLE 4**: Set `v2` using the **`range`** function 
+**EXAMPLE 6**: Assign `v2` using the **`range`** function 
 ```C++
 v2 = range<double>(400,100,-100);
 ```
@@ -64,10 +75,10 @@ v2 = range<double>(400,100,-100);
   v2: {400,300,200,100}; 
 ```
 
-### Using the `linspace` function 
+### Using the **`linspace`** function 
 
 
-**EXAMPLE 5**: Set `v2` using the **`linspace`** function 
+**EXAMPLE 7**: Assign `v2` using the **`linspace`** function 
 ```C++
 v2 = linspace<double>(100,400,4);
 ```
@@ -79,7 +90,7 @@ v2 = linspace<double>(100,400,4);
 
 
 
-**EXAMPLE 6**: Set `v2` using the linspace function 
+**EXAMPLE 8**: Assign `v2` using the **`linspace`** function 
 ```C++
 v2 = linspace<double>(6,3,4);
 ```
@@ -87,18 +98,6 @@ v2 = linspace<double>(6,3,4);
 **The result is**
 ```C++
   v2: {6,5,4,3}; 
-```
-
-
-
-**EXAMPLE 7**: initialize v2 from C-array (careful, no bounds checking!) 
-```C++
-double ans7[4] = {1.234, 101.3, 0, -23.4};
-v2 = vcast<double>(ans7,4);
-```
-**The result is**
-```C++
-  v2: {1.234,101.3,0,-23.4}; 
 ```
 
 
@@ -117,40 +116,40 @@ initialize v2 using range<
 v2: {100,200,300,400}; 
 
 addition of vectors
- v3 = v1 + v2 = {101,202,303,404}
+ v3 = v1 + v2 = {101.234,301.3,300,376.6}
 
 vector subtraction
- v3 = v2 - v1 = {99,198,297,396}
+ v3 = v2 - v1 = {98.766,98.7,300,423.4}
 
 vector (element-wise) multiplication
- v3 = v1 * v2 = {100,400,900,1600}
+ v3 = v1 * v2 = {123.4,20260,0,-9360}
 
 vector (element-wise) division
- v3 = v2 / v1 = {100,100,100,100}
+ v3 = v2 / v1 = {81.0373,1.97433,inf,-17.094}
 
 vector + scalar
- v3 = v2 / v1 = {100,100,100,100}
+ v3 = v2 / v1 = {81.0373,1.97433,inf,-17.094}
 
 complicated example#1
- v3 =  3*(v1+v2) + 1000 = {1303,1606,1909,2212}
+ v3 =  3*(v1+v2) + 1000 = {1303.7,1903.9,1900,2129.8}
 
 complicated example#2
- v3 =  -200 + 100*v1 = {-100,0,100,200}
+ v3 =  -200 + 100*v1 = {-76.6,9930,-200,-2540}
 
 intitialize elements of v2 to the same value
 v2 = 1 = {1,1,1,1}
 dot product
-10
+79.134
 dot product
-61
+11049.2
 maximum
-5
+102.3
 minimum
--100
+-2540
 sum
-10
+79.134
 norm
-5.47723
+103.975
 vector of integers
 {20,19,18,17}
 vector of unsigned integers
@@ -158,7 +157,7 @@ vector of unsigned integers
 converting integer vector to single precision vector and adding a constant
 {20.5,19.5,18.5,17.5}
 converting double precision vector to extended precision vector and addign a constant
-{1.000000000000000001,2.000000000000000001,3.000000000000000001,4.000000000000000001}
+{1.233999999999999987,101.2999999999999972,1e-18,-23.39999999999999858}
 
 resize v1: v1.resize(3). Note that all data that as in v1 is lost.
 v1 = {0,0,0}

@@ -24,7 +24,7 @@ COPTS +=
 LOPTS += 
 
 INCLUDES += -I $(MATRICKS_INCLUDEDIR) 
-LIBS += -L$(MATRICKS_LIBDIR)/lib -lmatricks
+LIBS += -L$(MATRICKS_LIBDIR) -lmatricks
 
 LIB_LAPACK =  -llapack  -lg2c
 

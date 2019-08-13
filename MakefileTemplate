@@ -96,7 +96,7 @@ INCLUDES += -I $(MATRICKS_DIR)
 
 VPATH = $(MATRICKS_DIR)
 
-LIBS += -L$(MATRICKS_DIR) -lmatricks
+LIBS += -L$(MATRICKS_DIR)/lib -lmatricks
 
 LIB_LAPACK =  -llapack  -lg2c
 

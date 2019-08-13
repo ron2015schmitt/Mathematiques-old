@@ -12,7 +12,7 @@ LOPTS =
 
 
 # A certain amount of optimization is necessary 
-OPTIMIZATIONS = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+OPTIMIZATIONS = -finline-functions  -finline-limit=750 -O1
 CXXOPT = -Wall -W -Wconversion $(OPTIMIZATIONS)
 CC  = /usr/bin/gcc
 CXX = /usr/bin/g++ 
@@ -22,7 +22,7 @@ INCLUDES = -I $(MATRICKS)
 
 VPATH = $(MATRICKS)
 
-LIBS = -L$(MATRICKS) -lmatricks
+LIBS = -L$(MATRICKS)/lib -lmatricks
 
 CXXFLAGS =  $(CXXOPT)  $(COPTS) $(INCLUDES)
 

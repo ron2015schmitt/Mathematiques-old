@@ -71,8 +71,8 @@ namespace Matricks {
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
       
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
+      if (N>maxsize) 
+	vbad_size(objectID_, N);
 #else
       name_=name;
 #endif      

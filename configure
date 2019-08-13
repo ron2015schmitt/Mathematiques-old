@@ -19,7 +19,7 @@ echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >> exa
 
 # make the object file library (libmatricks.a)
 echo "creating libmatricks.a ..."
-make libmatricks
+make libmatricks && mkdir -p lib && mv libmatricks.a lib/
 
 
 

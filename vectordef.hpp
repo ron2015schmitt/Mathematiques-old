@@ -10,9 +10,12 @@
 #include <vector>
 #include <string>
 
+#if cpp11 == 1
+#include <initializer_list>
+#endif
 
 
-
+//#define VDEBUG
 
 namespace Matricks {
 
@@ -45,7 +48,50 @@ namespace Matricks {
 
     // ************************** CONSTRUCTOR **********************************
 
+    // ************************** C++11  INIT CONSTRUCTOR**********************************
+#if cpp11 == 1
+  
+    explicit Vector<D>(std::initializer_list<D> list, const std::string name="") { 
+
+
+      const size_type N =  list.size();
+      #ifdef VDEBUG
+      printf(">>> Vector(C++11 list) N=%lu\n",N);
+      #endif
+      
+      // allocate store
+      data_ = new std::valarray<D>(N); 
+
+      perline_ = N+1;
+      width_ = 0;
+      textformat_=text_braces;
+      
+#ifdef Matricks_CAREFUL
+      dummy_ = D();
+      // add this vector to the directory
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      
+      if (n>maxsize) 
+	vbad_size(objectID_, n);
+#else
+      name_=name;
+#endif      
+      size_type i = 0;
+      typename std::initializer_list<D>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	printf("list[%lu] = %f\n",i,*it);
+	(*this)[i++] = *it;
+      }
+    }
+
+#endif
+
+
     explicit Vector<D>(const size_type n, const std::string name = "") { 
+
+      #ifdef VDEBUG
+      printf(">>> Vector(int) N=%lu\n",n);
+      #endif
 
       size_type N;
       if (n>maxsize) 
@@ -78,6 +124,10 @@ namespace Matricks {
       
       size_type n=0;
 
+      #ifdef VDEBUG
+      printf(">>> Vector() N=%lu\n",n);
+      #endif
+
       size_type N;
       if (n>maxsize) 
 	N=0;
@@ -107,6 +157,10 @@ namespace Matricks {
 
     explicit Vector<D>(const size_type n, const D val, const std::string name="") { 
       
+      #ifdef VDEBUG
+      printf(">>> Vector(n,val) N=%lu\n",n);
+      #endif
+
       size_type N;
       if (n>maxsize) 
 	N=0;
@@ -137,8 +191,12 @@ namespace Matricks {
     }
 
 
-        // ************************** ARRAY INIT CONSTRUCTOR **********************************
+    // ************************** ARRAY INIT CONSTRUCTOR **********************************
     explicit Vector<D>(const size_type n, const D (vals)[], const std::string name="") { 
+
+      #ifdef VDEBUG
+      printf(">>> Vector(n,array) N=%lu\n",n);
+      #endif
 
       size_type N;
       if (n>maxsize) 
@@ -166,6 +224,9 @@ namespace Matricks {
 
 
     }
+
+
+
 
 
     // ************************** COPY CONSTRUCTOR *******************************
@@ -446,7 +507,7 @@ namespace Matricks {
       } else if ( (size()>0) && ( size() !=  x.size() ) ){ 
 	vbad_assignment_expr_warning(objectID(), x);
       } else if (size() !=  x.size() ){
-	  // if size=0, just silently resize this vector
+	// if size=0, just silently resize this vector
 	//vbad_assignment_expr_warning(objectID(),x);
       }
 
@@ -484,7 +545,7 @@ namespace Matricks {
       if ( (size()>0) && ( size() !=  v2.size() ) ){ 
 	vbad_assignment_warning(objectID(),v2.objectID());
       } else if (size() !=  v2.size() ){
-	  // if size=0, just silently resize this vector
+	// if size=0, just silently resize this vector
 	//	vbad_assignment_warning(objectID(),v2.objectID());
       }
  
@@ -635,7 +696,7 @@ namespace Matricks {
     //template <class D>	
     friend inline std::istream& operator>>(const std::string s,  Vector<D>& x) {	
       std::istringstream st(s);
-return (st >> x);
+      return (st >> x);
     }
 
 

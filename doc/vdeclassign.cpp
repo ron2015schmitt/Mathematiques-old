@@ -12,6 +12,10 @@ using namespace Matricks;
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
+#if cpp10 == 1
+#include <initializer_list>
+#endif
+
 char _str[2048];
 
 
@@ -76,12 +80,13 @@ int main()
   codeend();
   result(v3);
 
-  example("Declare `v4` and initialize to a **C-style array** of values" );
-  codestart("C++");
-  codemulti( Vector<double> v4( 4, (const double[]) {10, 20, 30, 40} )  );
-  codeend();
-  result(v4);
-
+  if (cpp11) {
+    example("Declare `v4` and initialize directly (**__C++11__**)" );
+    codestart("C++");
+    codemulti( Vector<double> v4({10, 20, 30, 40})  );
+    codeend();
+    result(v4);
+  }
   
   header2("Assigning the values of a vector");
 

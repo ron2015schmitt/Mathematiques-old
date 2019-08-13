@@ -14,7 +14,11 @@
 #include <limits>
 #include <valarray>
 
+#define cpp11 (__cplusplus >= 201100L)
 
+#if cpp11 == 1
+#include <initializer_list>
+#endif
 
 
 
@@ -23,6 +27,9 @@ namespace Matricks {
 
   typedef std::vector<double>::size_type   size_type;
   typedef unsigned int   uint;
+
+
+  
   
 
   inline std::istream& restore_stream(std::istream& tostream, std::istream& fromstream) {

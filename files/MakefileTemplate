@@ -1,0 +1,107 @@
+
+
+MATRICKS_DIR = #MATRICKS_DIR#
+VERSION = 2.0
+FNAME = matricks-$(VERSION)
+TEMP = /tmp/
+TDIR = $(TEMP)/$(FNAME)
+SHELL = /bin/bash
+CPP = /usr/bin/g++ 
+
+########################################################################
+#
+#-O0 Reduce compilation time and make debugging produce the expected results. This is the default.
+#-O1 Optimize. Optimizing compilation takes somewhat more time, and a lot more memory for a large function.
+#-O2 Optimize even more. GCC performs nearly all supported optimizations that do not involve a space-speed tradeoff. The compiler does not perform loop unrolling or function inlining when you specify -O2. As compared to -O, this option increases both compilation time and the performance of the generated code.
+#-O3 Optimize yet more. -O3 turns on all optimizations specified by -O2 and also turns on the -finline-functions, -funswitch-loops, -fpredictive-commoning, -fgcse-after-reload and -ftree-vectorize options.
+#-Os Optimize for size. -Os enables all -O2 optimizations that do not typically increase code size. It also performs further optimizations designed to reduce code size.
+#
+########################################################################
+
+COPTIMIZE = -finline-functions -finline-limit=750 -O0
+
+
+COPT = -Wall -W -Wconversion 
+LOPT = 
+
+INCLUDEDIR = $(MATRICKS_DIR)/include
+
+HPPFILES := $(shell find $(INCLUDEDIR) -name '*.hpp')
+
+INCLUDES += -I $(INCLUDEDIR) 
+
+VPATH = $(MATRICKS_DIR)
+
+LIBS += -L$(MATRICKS_DIR)/lib -lmatricks
+
+LIB_LAPACK =  -llapack  -lg2c
+
+CPPFLAGS =  $(COPTS)  $(COPTIMIZE) $(INCLUDES)
+
+LDFLAGS =  $(LOPTS)
+
+
+
+
+
+EXEC ?=
+LAPACKEXEC ?=
+
+#prevent any default rules from being used
+.SUFFIXES:
+
+# don't delete .o files
+.PRECIOUS: %.o
+
+clean:
+	\rm -f *.o
+	\rm -f $(EXEC)
+	\rm -f $(LAPACKEXEC)
+	\rm -f core.*
+	\rm -f *.s
+	\rm -f *.temp
+
+cleanall: clean 
+	\cd $(MATRICKS_DIR)/examples && make clean
+	\cd $(MATRICKS_DIR)/errorexamples && make clean
+	\cd $(MATRICKS_DIR)/testbed && make clean
+	\cd $(MATRICKS_DIR)/benchmarks && make clean
+	\cd $(MATRICKS_DIR)/development && make clean
+	\cd $(MATRICKS_DIR)/doc && make clean
+	\cd $(MATRICKS_DIR)/src && make clean
+
+fullpurge: cleanall
+	\rm -f $(MATRICKS_DIR)/*~
+	\rm -f $(MATRICKS_DIR)/*.gz
+	\rm -f $(MATRICKS_DIR)/*.tar
+	\rm -f $(MATRICKS_DIR)/*.old
+	\rm -f $(MATRICKS_DIR)/*/*~
+	\rm -f $(MATRICKS_DIR)/*/*.old
+	\rm -fr $(MATRICKS_DIR)/examples
+	\rm -fr $(MATRICKS_DIR)/lib
+
+%.o: %.cpp  $(HPPFILES) 
+ifdef CAREFUL
+	$(CPP) $(CPPFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
+else
+	$(CPP) $(CPPFLAGS) -c $*.cpp -o $@
+endif
+
+
+%: %.o 
+	$(CPP) $(LDFLAGS) $*.o -o $@ $(LIBS) 
+
+
+all: $(EXEC)
+
+
+archive: fullpurge
+	\rm -rf $(TDIR)
+	\mkdir $(TDIR)
+	\cp -r . $(TDIR)/
+	\cd $(TEMP) && tar cvof $(FNAME).tar $(FNAME)/ && gzip $(FNAME).tar 
+	\cp $(TEMP)/$(FNAME).tar.gz .
+
+info:
+	@echo "INCLUDEDIR = $(INCLUDEDIR)"
+	@echo "HPPFILES = $(HPPFILES)"

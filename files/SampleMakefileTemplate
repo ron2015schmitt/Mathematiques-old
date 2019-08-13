@@ -7,12 +7,14 @@
 #****** THIS VARIABLE POINTS TO THE LIBRARY THAT YOU ARE USING ********
 MATRICKS ?= #MATRICKS#
 
+SHELL = /bin/bash
+
 COPTS = 
 LOPTS =
 
 
 # A certain amount of optimization is good
-OPTIMIZATIONS = -finline-functions  -finline-limit=750 -O1
+OPTIMIZATIONS = -finline-functions  -finline-limit=750 -O0
 CXXOPT = -Wall -W -Wconversion $(OPTIMIZATIONS)
 CXX = /usr/bin/g++ 
 

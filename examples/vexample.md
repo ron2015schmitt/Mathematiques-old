@@ -11,6 +11,7 @@ Vector<double> v2(N,"v2");
 Vector<double> v3(N,"vector3");
 ```
 ## Setting the values of a vector 
+### Directly setting the values of a vector 
 
 
 **EXAMPLE 1**: Set each element of `v1` individually 
@@ -26,9 +27,10 @@ v1[3] = 4.0;
   v1: {1,2,3,4}; 
 ```
 ----
+### Using the range Function 
 
 
-**EXAMPLE 2**: Set `v2` using the *`range`* function 
+**EXAMPLE 2**: Set `v2` using the **`range`** function 
 ```C++
 v2 = range<double>(5,8);
 ```
@@ -40,7 +42,7 @@ v2 = range<double>(5,8);
 ----
 
 
-**EXAMPLE 3**: Set `v2` using the range function 
+**EXAMPLE 3**: Set `v2` using the **`range`** function 
 ```C++
 v2 = range<double>(4,1);
 ```
@@ -52,7 +54,7 @@ v2 = range<double>(4,1);
 ----
 
 
-**EXAMPLE 4**: Set `v2` using the range function 
+**EXAMPLE 4**: Set `v2` using the **`range`** function 
 ```C++
 v2 = range<double>(400,100,-100);
 ```
@@ -62,9 +64,10 @@ v2 = range<double>(400,100,-100);
   v2: {400,300,200,100}; 
 ```
 ----
+### Using the `linspace` function 
 
 
-**EXAMPLE 5**: Set `v2` using the linspace function 
+**EXAMPLE 5**: Set `v2` using the **`linspace`** function 
 ```C++
 v2 = linspace<double>(100,400,4);
 ```

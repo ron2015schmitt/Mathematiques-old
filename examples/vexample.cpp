@@ -14,6 +14,7 @@ using namespace Matricks;
 
 #define header1(x)  printf("# %s \n", x)
 #define header2(x)  printf("## %s \n", x)
+#define header3(x)  printf("### %s \n", x)
 #define text(x)  printf("%s \n", x)
 
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
@@ -46,6 +47,8 @@ int main()
   codeend();
 
   header2("Setting the values of a vector");
+
+  header3("Directly setting the values of a vector");
   cr();
   cr();
   text("**EXAMPLE 1**: Set each element of `v1` individually");
@@ -57,31 +60,35 @@ int main()
   codeend();
   cr();
   result(v1);
+
+
+  header3("Using the range Function");
   
   cr();
   cr();
-  text("**EXAMPLE 2**: Set `v2` using the *`range`* function");
+  text("**EXAMPLE 2**: Set `v2` using the **`range`** function");
   code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("**EXAMPLE 3**: Set `v2` using the range function");
+  text("**EXAMPLE 3**: Set `v2` using the **`range`** function");
   code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("**EXAMPLE 4**: Set `v2` using the range function");
+  text("**EXAMPLE 4**: Set `v2` using the **`range`** function");
   code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);
 
+  header3("Using the `linspace` function");
   cr();
   cr();
-  text("**EXAMPLE 5**: Set `v2` using the linspace function");
+  text("**EXAMPLE 5**: Set `v2` using the **`linspace`** function");
   code( v2 = linspace<double>(100,400,4) );
   cr(); 
   result(v2);

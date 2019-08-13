@@ -1,0 +1,52 @@
+
+# This is a sample makefile that you can use to compile and link code
+# to the MATRICKS library
+
+# This Make file assumes that GNU compilers will be used
+
+#****** THIS VARIABLE POINTS TO THE LIBRARY THAT YOU ARE USING ********
+MATRICKS ?= #MATRICKS#
+
+COPTS = 
+LOPTS =
+
+
+# A certain amount of optimization is necessary 
+OPTIMIZATIONS = -finline-functions -fmove-all-movables -finline-limit=750 -O1
+CXXOPT = -Wall -W -Wconversion $(OPTIMIZATIONS)
+CC  = /usr/bin/gcc
+CXX = /usr/bin/g++ 
+
+
+INCLUDES = -I $(MATRICKS) 
+
+VPATH = $(MATRICKS)
+
+LIBS = -L$(MATRICKS) -lmatricks
+
+CXXFLAGS =  $(CXXOPT)  $(COPTS) $(INCLUDES)
+
+LDFLAGS =  $(LOPTS) 
+
+#prevent any default rules from being used
+.SUFFIXES:
+
+# don't delete .o files
+.PRECIOUS: %.o
+
+clean:
+	\rm -f *.o
+	\rm -f core.*
+
+%.o: %.cpp  $(LIBFILES) 
+ifdef CAREFUL
+	$(CXX) $(CXXFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
+else
+	$(CXX) $(CXXFLAGS) -c $*.cpp -o $@
+endif
+
+
+
+%: %.o 
+	$(CXX) $(LDFLAGS) $*.o -o $@ $(LIBS) 
+

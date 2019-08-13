@@ -48,7 +48,7 @@ int main()
   header2("Setting the values of a vector");
   cr();
   cr();
-  text("*EXAMPLE 1*: Set each element of `v1` individually");
+  text("**EXAMPLE 1**: Set each element of `v1` individually");
   codestart();
   codemulti( v1[0] = 1.0 );
   codemulti( v1[1] = 2.0 );
@@ -60,42 +60,42 @@ int main()
   
   cr();
   cr();
-  text("*EXAMPLE 2*: Set `v2` using the range function");
+  text("**EXAMPLE 2**: Set `v2` using the *`range`* function");
   code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("*EXAMPLE 3*: Set `v2` using the range function");
+  text("**EXAMPLE 3**: Set `v2` using the range function");
   code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("*EXAMPLE 4*: Set `v2` using the range function");
+  text("**EXAMPLE 4**: Set `v2` using the range function");
   code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("*EXAMPLE 5*: Set `v2` using the linspace function");
+  text("**EXAMPLE 5**: Set `v2` using the linspace function");
   code( v2 = linspace<double>(100,400,4) );
   cr(); 
   result(v2);
 
   cr();
   cr();
-  text("*EXAMPLE 6*: Set `v2` using the linspace function");
+  text("**EXAMPLE 6**: Set `v2` using the linspace function");
   code( v2 = linspace<double>(6,3,4) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("*EXAMPLE 7*: initialize v2 from C-array (careful, no bounds checking!)" );
+  text("**EXAMPLE 7**: initialize v2 from C-array (careful, no bounds checking!)" );
   codestart();
   codemulti( double ans7[4] = {1.234, 101.3, 0, -23.4} );
   codemulti( v2 = vcast<double>(ans7,4) );

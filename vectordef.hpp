@@ -79,7 +79,7 @@ namespace Matricks {
       size_type i = 0;
       typename std::initializer_list<D>::iterator it; 
       for (it = list.begin(); it != list.end(); ++it)  { 
-	printf("list[%lu] = %f\n",i,*it);
+	//	printf("list[%lu] = %f\n",i,*it);
 	(*this)[i++] = *it;
       }
     }

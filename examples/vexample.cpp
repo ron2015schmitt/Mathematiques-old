@@ -23,9 +23,9 @@ using namespace Matricks;
 #define codeend() printf("```\n")
 #define code(x)  codestart();codemulti(x);codeend()
 
-#define resultstart() printf("**yields**\n```C++\n")
+#define resultstart() printf("**The result is**\n```C++\n")
 #define resultmulti(x)  printf("  ");dispcr(x)
-#define resultend() printf("```\n")
+#define resultend() printf("```\n  \n  \n")
 #define result(x)  resultstart();resultmulti(x);resultend()
 
 

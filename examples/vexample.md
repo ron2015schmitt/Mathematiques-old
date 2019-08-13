@@ -21,10 +21,12 @@ v1[2] = 3.0;
 v1[3] = 4.0;
 ```
 
-**yields**
+**The result is**
 ```C++
   v1: {1,2,3,4}; 
 ```
+  
+  
 
 
 Initialize ```v2``` using range function 
@@ -32,10 +34,12 @@ Initialize ```v2``` using range function
 v2 = range<double>(5,8);
 ```
 
-**yields**
+**The result is**
 ```C++
   v2: {5,6,7,8}; 
 ```
+  
+  
 
 
 Initialize ```v2``` using range function 
@@ -43,10 +47,12 @@ Initialize ```v2``` using range function
 v2 = range<double>(4,1);
 ```
 
-**yields**
+**The result is**
 ```C++
   v2: {4,3,2,1}; 
 ```
+  
+  
 
 
 Initialize ```v2``` using range 
@@ -54,10 +60,12 @@ Initialize ```v2``` using range
 v2 = range<double>(400,100,-100);
 ```
 
-**yields**
+**The result is**
 ```C++
   v2: {400,300,200,100}; 
 ```
+  
+  
 
 
 initialize v2 using linspace 
@@ -65,10 +73,12 @@ initialize v2 using linspace
 v2 = linspace<double>(100,400,4);
 ```
 
-**yields**
+**The result is**
 ```C++
   v2: {100,200,300,400}; 
 ```
+  
+  
 
 
 initialize v2 using linspace 
@@ -76,25 +86,31 @@ initialize v2 using linspace
 v2 = linspace<double>(6,3,4);
 ```
 
-**yields**
+**The result is**
 ```C++
   v2: {6,5,4,3}; 
 ```
+  
+  
 
 
 initialize v2 from C-array (careful, no bounds checking!) 
 
-**yields**
+**The result is**
 ```C++
   v2: {1.234,101.3,0,-23.4}; 
 ```
+  
+  
 
 initialize v2 from std::vector
 
-**yields**
+**The result is**
 ```C++
   v2: {-1,-2,-3,-4}; 
 ```
+  
+  
 
 initialize v2 from std::valarray
 v2: {-11,-12,-13,-14}; 

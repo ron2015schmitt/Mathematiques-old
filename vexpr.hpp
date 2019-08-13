@@ -235,14 +235,14 @@ namespace Matricks {
 
 
   /****************************************************************************
-   * VRangeObj Expression Template 
+   * VSliceObj Expression Template 
    *
    * wrapper for vector ranges  (slices)
    ****************************************************************************
    */
  
   template <class D>
-  class VRangeObj : public  VWrapperObj<D,VRangeObj<D> > {
+  class VSliceObj : public  VWrapperObj<D,VSliceObj<D> > {
   private:
     Vector<D>& a_;
     const size_type start_;
@@ -251,7 +251,7 @@ namespace Matricks {
     const bool increasing_;
 
   public:
-    VRangeObj(Vector<D>& a, const size_type start, const size_type end, const int step)
+    VSliceObj(Vector<D>& a, const size_type start, const size_type end, const int step)
       :   a_(a),  start_(start), end_(end), 
 	  step_((step>=0)?step:-step), 
 	  increasing_((end>=start)?true:false)
@@ -288,38 +288,38 @@ namespace Matricks {
     }
 
     inline VETypes vetype(void) const {
-      return VE_VRangeObj;
+      return VE_VSliceObj;
     }
 
 
-    VRangeObj<D>& operator=(VReconObj<D>& b) { 
+    VSliceObj<D>& operator=(VReconObj<D>& b) { 
       return this->equals(b);
     }
 
     template <class B>
-    VRangeObj<D>& operator=(const VorE<D,B>& rhs) { 
+    VSliceObj<D>& operator=(const VorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
     template <class B>
-    VRangeObj<D>& operator=(const MorE<D,B>& rhs) { 
+    VSliceObj<D>& operator=(const MorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
-    VRangeObj<D>& operator=(const D d) { 
+    VSliceObj<D>& operator=(const D d) { 
       return this->equals(d);
     }
     
-    VRangeObj<D>& operator=(const VRangeObj<D>& b) { 
+    VSliceObj<D>& operator=(const VSliceObj<D>& b) { 
       return this->equals(b);
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_VRangeObj(a_.debugtxt(),start_,end_,step_);
+      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
     }
 
     void outputglossary(void) const {
-      outputglossary_VRangeObj(a_.objectID(),debugtxt(),size());
+      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
     }
 
     bool mustcopy(const void *vaddr) const {
@@ -343,19 +343,19 @@ namespace Matricks {
 
 
   /****************************************************************************
-   * VSetObj Expression Template 
+   * VSubsetObj Expression Template 
    *
    * wrapper for a vector subset
    ****************************************************************************
    */
   template<class D>
-  class VSetObj :  public  VWrapperObj<D,VSetObj<D> > {
+  class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> > {
   private:
     Vector<D>& a_;
     const Vector<uint>& ii_;
 
   public:
-    VSetObj(Vector<D>& a, const Vector<uint>& ii)
+    VSubsetObj(Vector<D>& a, const Vector<uint>& ii)
       : a_(a), ii_(ii)
     { 
     }
@@ -373,7 +373,7 @@ namespace Matricks {
 
 
     inline VETypes vetype(void) const {
-      return VE_VSetObj;
+      return VE_VSubsetObj;
     }
 
     inline size_type size(void) const {
@@ -384,36 +384,36 @@ namespace Matricks {
       return a_.size();
     }
 
-    VSetObj<D>& operator=(VReconObj<D>& b) { 
+    VSubsetObj<D>& operator=(VReconObj<D>& b) { 
       return this->equals(b);
     }
 
     template <class B>
-    VSetObj<D>& operator=(const VorE<D,B>& rhs) { 
+    VSubsetObj<D>& operator=(const VorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
     template <class B>
-    VSetObj<D>& operator=(const MorE<D,B>& rhs) { 
+    VSubsetObj<D>& operator=(const MorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
-    VSetObj<D>& operator=(const D d) { 
+    VSubsetObj<D>& operator=(const D d) { 
       return this->equals(d);
     }
     
-    VSetObj<D>& operator=(const VSetObj<D>& b) { 
+    VSubsetObj<D>& operator=(const VSubsetObj<D>& b) { 
       return this->equals(b);
     }
 
 
     
     std::string debugtxt(void) const {
-      return debugtxt_VSetObj(a_.debugtxt(),ii_.debugtxt());
+      return debugtxt_VSubsetObj(a_.debugtxt(),ii_.debugtxt());
     }
 
     void outputglossary(void) const {
-      outputglossary_VSetObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
+      outputglossary_VSubsetObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
     }
 
     bool mustcopy(const void *vaddr) const {
@@ -437,32 +437,32 @@ namespace Matricks {
 
 
   /****************************************************************************
-   * VMaskObj Expression Template 
+   * VSubMaskObj Expression Template 
    *
    * wrapper for a vector submask
    ****************************************************************************
    */
   template<class D>
-  class VMaskObj :  public  VWrapperObj<D,VMaskObj<D> > {
+  class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> > {
   private:
     Vector<D>& a_;
     const Vector<uint>* ii_;
 
   public:
 #ifdef Matricks_CAREFUL
-    VMaskObj(Vector<D>& a, const Vector<bool>& mask)
+    VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
       : a_(a), ii_(new Vector<uint>(findtrue(mask)))
     { 
-      //      settext_VMaskObj(*ii_,mask);
+      //      settext_VSubMaskObj(*ii_,mask);
     }
 #else
-    VMaskObj(Vector<D>& a, const Vector<bool>& mask)
+    VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
       : a_(a), ii_(new Vector<uint>(findtrue(mask)))
     { 
     }
 #endif
 
-    ~VMaskObj()
+    ~VSubMaskObj()
     { 
       delete  ii_;
     }
@@ -479,7 +479,7 @@ namespace Matricks {
     }
 
     inline VETypes vetype(void) const {
-      return VE_VMaskObj;
+      return VE_VSubMaskObj;
     }
 
     inline size_type size(void) const {
@@ -490,16 +490,16 @@ namespace Matricks {
       return a_.size();
     }
 
-    VMaskObj<D>& operator=(const VMaskObj<D>& b) { 
+    VSubMaskObj<D>& operator=(const VSubMaskObj<D>& b) { 
       return equals(b);
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_VMaskObj(a_.debugtxt(),ii_->debugtxt());
+      return debugtxt_VSubMaskObj(a_.debugtxt(),ii_->debugtxt());
     }
 
     void outputglossary(void) const {
-      outputglossary_VMaskObj(a_.objectID(),ii_->objectID(),debugtxt(),size());
+      outputglossary_VSubMaskObj(a_.objectID(),ii_->objectID(),debugtxt(),size());
     }
 
     bool mustcopy(const void *vaddr) const {

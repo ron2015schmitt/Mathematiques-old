@@ -298,11 +298,11 @@ namespace Matricks {
 
     // Accessing a sequence of values
     
-    inline  VRangeObj<D>  operator[](const seq& i)  { 
-      return VRangeObj<D>(*this,i.start(),i.end(),i.step());
+    inline  VSliceObj<D>  operator[](const seq& i)  { 
+      return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
-    inline  const VRangeObj<D>  operator[](const seq& i) const  { 
-      return VRangeObj<D>(*this,i.start(),i.end(),i.step());
+    inline  const VSliceObj<D>  operator[](const seq& i) const  { 
+      return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
     
 
@@ -310,31 +310,31 @@ namespace Matricks {
 
     // Accessing a SET of values 
 
-    const VSetObj<D> operator[](const Vector<uint>& ii) const {
-      return VSetObj<D>(*this, ii);
+    const VSubsetObj<D> operator[](const Vector<uint>& ii) const {
+      return VSubsetObj<D>(*this, ii);
     }
-    VSetObj<D> operator[](const Vector<uint>& ii) {
-      return VSetObj<D>(*this, ii);
+    VSubsetObj<D> operator[](const Vector<uint>& ii) {
+      return VSubsetObj<D>(*this, ii);
     }
 
 
     // Accessing a SET of values using a MASK
     
-    VMaskObj<D> operator[](const Vector<bool>& mask)  {
+    VSubMaskObj<D> operator[](const Vector<bool>& mask)  {
 #ifdef Matricks_CAREFUL
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
 #endif    
-      return  VMaskObj<D>(*this,mask);
+      return  VSubMaskObj<D>(*this,mask);
     }
-    const VMaskObj<D> operator[](const Vector<bool>& mask)  const {
+    const VSubMaskObj<D> operator[](const Vector<bool>& mask)  const {
 #ifdef Matricks_CAREFUL
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
 #endif    
-      return  VMaskObj<D>(*this,mask);
+      return  VSubMaskObj<D>(*this,mask);
     }
 
 

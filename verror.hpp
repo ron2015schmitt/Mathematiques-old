@@ -181,16 +181,16 @@ namespace Matricks {
 
 
 
-  std::string debugtxt_VRangeObj(const std::string s, const size_type start_,
+  std::string debugtxt_VSliceObj(const std::string s, const size_type start_,
 				 const size_type end_,const  int step_);
-  void outputglossary_VRangeObj(const size_type id, const std::string s, const size_type sz);
+  void outputglossary_VSliceObj(const size_type id, const std::string s, const size_type sz);
 
-  std::string debugtxt_VSetObj(const std::string s1, const std::string s2);
-  void outputglossary_VSetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
+  std::string debugtxt_VSubsetObj(const std::string s1, const std::string s2);
+  void outputglossary_VSubsetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
-  std::string debugtxt_VMaskObj(const std::string s1, const std::string s2);
-  void settext_VMaskObj(const Vector<uint>& ii,const  Vector<bool>& mask);
-  void outputglossary_VMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
+  std::string debugtxt_VSubMaskObj(const std::string s1, const std::string s2);
+  void settext_VSubMaskObj(const Vector<uint>& ii,const  Vector<bool>& mask);
+  void outputglossary_VSubMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
 
 

@@ -169,12 +169,12 @@ namespace Matricks {
 
     std::string debugtxt(void) const {
       return a_.debugtxt();
-      //      return debugtxt_VRangeObj(a_.debugtxt(),start_,end_,step_);
+      //      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
     }
 
     void outputglossary(void) const {
       return a_.outputglossary();
-      //      outputglossary_VRangeObj(a_.objectID(),debugtxt(),size());
+      //      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
     }
 
     bool mustcopy(const void *vaddr) const {

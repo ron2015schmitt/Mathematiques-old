@@ -12,17 +12,18 @@ using namespace Matricks;
 #include <vector>
 
 
-#define comment(x)  printf("// %s \n", x)
+#define header1(x)  printf("# %s \n", x)
+#define comment(x)  printf("%s \n", x)
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
-#define printcode(x)  printf("%s;\n",  #x); x
-#define result(x)  printf("RESULT -> ");dispcr(x)
+#define printcode(x)  printf("```C++\n%s;\n```",  #x); x
+#define result(x)  printf("> ");dispcr(x)
 
 
 int main()
 {
   cr();
+  header1("Basic Vector Operations in mātricks");
   cr();
-  
   comment("Declaration of vectors v1, v2, v3");
   printcode(  const int N = 4 );
   printcode( Vector<double> v1(N,"v1") );

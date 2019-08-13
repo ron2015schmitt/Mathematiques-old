@@ -194,36 +194,36 @@ namespace Matricks {
 
 
 
-  std::string debugtxt_VRangeObj(const std::string s, const size_type start_,
+  std::string debugtxt_VSliceObj(const std::string s, const size_type start_,
 				 const size_type end_,const  int step_){     
       std::ostringstream stream;
       stream <<s << "(start=" << start_ << ", end=" << end_ << ", step=" << step_ << ")";
       return stream.str();
   }
-  void outputglossary_VRangeObj(const size_type id, const std::string s, const size_type sz) { 
+  void outputglossary_VSliceObj(const size_type id, const std::string s, const size_type sz) { 
       std::cout << where_str << s <<" has size="<< sz << std::endl;
       MatricksObjectPool::voutputglossary(id);
   }
 
 
-  std::string debugtxt_VSetObj(const std::string s1, const std::string s2){  
+  std::string debugtxt_VSubsetObj(const std::string s1, const std::string s2){  
     return s1 +"[" + s2 + "]";   
   }
-  void outputglossary_VSetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
+  void outputglossary_VSubsetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
       std::cout << where_str << s <<" has size="<< sz << std::endl;
       MatricksObjectPool::voutputglossary(id1);
       MatricksObjectPool::voutputglossary(id2);
   }
 
-  std::string debugtxt_VMaskObj(const std::string s1, const std::string s2){  
+  std::string debugtxt_VSubMaskObj(const std::string s1, const std::string s2){  
     return s1 +"[" + s2 + "]";   
   }
-  void outputglossary_VMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
+  void outputglossary_VSubMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
       std::cout << where_str << s <<" has size="<< sz << std::endl;
       MatricksObjectPool::voutputglossary(id1);
       MatricksObjectPool::voutputglossary(id2);
   }
-  void settext_VMaskObj(const Vector<uint>& ii, const Vector<bool>& mask) {
+  void settext_VSubMaskObj(const Vector<uint>& ii, const Vector<bool>& mask) {
     ii.debugtxt("("+mask.debugtxt()+")");
   }
 

@@ -231,7 +231,7 @@ namespace Matricks {
    * Enumeration for different subclasses of VorE class
    ****************************************************************************   
    */
-  enum VETypes {VE_Vector, VE_VScalObj, VE_VRangeObj, VE_VSetObj, VE_VMaskObj,
+  enum VETypes {VE_Vector, VE_VScalObj, VE_VSliceObj, VE_VSubsetObj, VE_VSubMaskObj,
 		VE_VReconObj, VE_VConcatOp, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
@@ -299,9 +299,9 @@ namespace Matricks {
   template <class D> class p3vector;
   template <class D, class A> class Vexpr;  
   template <class D, class A> class VWrapperObj;
-  template <class D> class VRangeObj;
-  template <class D> class VSetObj;
-  template <class D> class VMaskObj;
+  template <class D> class VSliceObj;
+  template <class D> class VSubsetObj;
+  template <class D> class VSubMaskObj;
   template <class D> class VReconObj;
 
 

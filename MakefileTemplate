@@ -92,7 +92,7 @@ CXX = /usr/bin/g++
 
 
 # assuems that  environment  variable "MATRICKS_DIR" is set to the path where teh library resides
-INCLUDES += -I $(MATRICKS_DIR) 
+INCLUDES += -I $(MATRICKS_DIR)/include 
 
 VPATH = $(MATRICKS_DIR)
 
@@ -104,7 +104,11 @@ CXXFLAGS =  $(CXXOPT)  $(COPTS) $(INCLUDES)
 
 LDFLAGS =  $(LOPTS) 
 
-LIBFILES = applicative.hpp matrixdef.hpp mvcomplexops.hpp vcomplexops.hpp boolapp.hpp mboolexpr.hpp mvexpr.hpp vectordef.hpp complexapp.hpp mboolops.hpp mvoperators.hpp verror.hpp matrickscommon.hpp mcomplexexpr.hpp p3vector.hpp vexpr.hpp matricks.hpp mcomplexops.hpp print.hpp vmathops.hpp matricksio.hpp merror.hpp matricksutil.hpp voperators.hpp matricks_lapack.hpp mexpr.hpp vboolexpr.hpp matricks_nr.hpp mmathops.hpp vboolops.hpp mathapp.hpp moperators.hpp vcomplexexpr.hpp
+
+INCLUDEDIR = $(MATRICKS_DIR)/include
+
+HPPFILES = $(shell find $(INCLUDEDIR)/ -name '*.hpp')
+
 
 
 EXEC ?=
@@ -131,6 +135,7 @@ cleanall: clean
 	\cd $(MATRICKS_DIR)/benchmarks && make clean
 	\cd $(MATRICKS_DIR)/development && make clean
 	\cd $(MATRICKS_DIR)/doc && make clean
+	\cd $(MATRICKS_DIR)/src && make clean
 
 fullpurge: cleanall
 	\rm -f $(MATRICKS_DIR)/*~
@@ -142,7 +147,7 @@ fullpurge: cleanall
 	\rm -fr $(MATRICKS_DIR)/examples
 	\rm -fr $(MATRICKS_DIR)/lib
 
-%.o: %.cpp  $(LIBFILES) 
+%.o: %.cpp  $(HPPFILES_FULL) 
 ifdef CAREFUL
 	$(CXX) $(CXXFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
 else
@@ -156,10 +161,6 @@ endif
 
 all: $(EXEC)
 
-libmatricks: matrickscommon.o verror.o merror.o p3vector.o
-	@echo "configuring MATRICKS library version=$(VERSION)"
-	ar rUuv libmatricks.a $?
-
 
 archive: fullpurge
 	\rm -rf $(TDIR)
@@ -167,3 +168,7 @@ archive: fullpurge
 	\cp -r . $(TDIR)/
 	\cd $(TEMP) && tar cvof $(FNAME).tar $(FNAME)/ && gzip $(FNAME).tar 
 	\cp $(TEMP)/$(FNAME).tar.gz .
+
+info:
+	@echo "INCLUDEDIR = $(INCLUDEDIR)"
+	@echo "HPPFILES = $(HPPFILES)

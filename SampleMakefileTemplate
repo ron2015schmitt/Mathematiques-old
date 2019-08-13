@@ -11,13 +11,13 @@ COPTS =
 LOPTS =
 
 
-# A certain amount of optimization is necessary 
+# A certain amount of optimization is good
 OPTIMIZATIONS = -finline-functions  -finline-limit=750 -O1
 CXXOPT = -Wall -W -Wconversion $(OPTIMIZATIONS)
 CXX = /usr/bin/g++ 
 
 
-INCLUDES = -I $(MATRICKS) 
+INCLUDES = -I $(MATRICKS)/include
 
 VPATH = $(MATRICKS)
 

@@ -135,7 +135,43 @@ namespace Matricks {
       *this = val;
 
     }
-    
+
+
+        // ************************** ARRAY INIT CONSTRUCTOR **********************************
+    explicit Vector<D>(const size_type n, const D (vals)[], const std::string name="") { 
+
+            printf("HELLO\n");
+
+      size_type N;
+      if (n>maxsize) 
+	N=0;
+      else 
+	N=n;
+      
+      // allocate store
+      data_ = new std::valarray<D>(vals, n); 
+
+      perline_ = N+1;
+      width_ = 0;
+      textformat_=text_braces;
+      
+#ifdef Matricks_CAREFUL
+      dummy_ = D();
+      // add this vector to the directory
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      
+      if (n>maxsize) 
+	vbad_size(objectID_, n);
+#else
+      name_=name;
+#endif      
+
+      for(size_type i = 0; i<N; i++) {
+	(*this)[i] = vals[i];
+      }
+
+    }
+
 
     // ************************** COPY CONSTRUCTOR *******************************
 

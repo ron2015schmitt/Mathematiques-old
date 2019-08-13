@@ -57,14 +57,20 @@ int main()
   codeend();
   result(v1);
 
-  text("When the name is not specified, the pool manager assigns one.");
+
+  example("Declare `v2` and initialize to a constant" );
   codestart();
-  codemulti( Vector<double> x(N) );
+  codemulti( Vector<double> v2(N, -1 ) );
   codeend();
-  result(x);
+  result(v2);
+
+  example("Declare `v3` and initialize to a **C-style array** of values" );
+  codestart();
+  codemulti( Vector<double> v3( N, (const double[4]) {10, 20, 30, 40} )  );
+  codeend();
+  result(v3);
 
 
-  
   
   header2("Assigning the values of a vector");
 
@@ -81,13 +87,12 @@ int main()
   cr();
   result(v1);
 
-  example("Assigning `v1` from a **C-style array**" );
+
+  example("Assigning `v` from a **C-style array**" );
   codestart();
-  codemulti( double temp[N] = {1.234, 101.3, 0, -23.4} );
-  codemulti( v1 = vcast<double>(temp,N) );
+  codemulti( v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40})  );
   codeend();
   result(v1);
-
 
   header3("Using the `range` Function");
   
@@ -127,9 +132,6 @@ int main()
   cr();
   result(v1);
 
-
-  codemulti( Vector<double> v2(N,"v2") );
-  codemulti( Vector<double> v3(N,"vector3") );
 
 
   std::cout << std::endl << "initialize v2 from std::vector" << std::endl;
@@ -313,7 +315,14 @@ int main()
 
     text("The optional second parameter is the name that will be stored with the vector in the object pool.  This name can be any string that you like.");
 
-  text("There's the macro **`Vector_`** name the vector automatically\n");
+
+      example("Assigning `v1` from a **C-style array**" );
+  codestart();
+  codemulti( double temp[N] = {10, 20, 30, 40} );
+  codemulti( v1 = vcast<double>(temp,N) );
+  codeend();
+  result(v1);
+text("There's the macro **`Vector_`** name the vector automatically\n");
   codestart();
   codemulti( Vector_(double, y, N) );
   codeend();
@@ -324,6 +333,12 @@ int main()
   codemulti( RVector2_(double, z, N) );
   codeend();
   result(z);
+
+    text("When the name is not specified, the pool manager assigns one.");
+  codestart();
+  codemulti( Vector<double> x(N) );
+  codeend();
+  result(x);
 
   return 0;
 }

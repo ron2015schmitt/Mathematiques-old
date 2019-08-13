@@ -12,20 +12,30 @@ Vector<double> v1(N);
   v1: {0,0,0,0}; 
 ```
 
-When the name is not specified, the pool manager assigns one. 
+**EXAMPLE 1**: Declare `v2` and initialize to a constant 
 ```C++
-Vector<double> x(N);
+Vector<double> v2(N, -1 );
 ```
 **The result is**
 ```C++
-  x: {0,0,0,0}; 
+  v2: {-1,-1,-1,-1}; 
+```
+
+**EXAMPLE 2**: Declare `v3` and initialize to a **C-style array** of values 
+```C++
+Vector<double> v3( N, (const double[4]) {10, 20, 30, 40} );
+HELLO
+```
+**The result is**
+```C++
+  v3: {10,20,30,40}; 
 ```
 
 ## Assigning the values of a vector 
 ### Directly assigning the values of a vector 
 
 
-**EXAMPLE 1**: Set each element of `v1` **individually** 
+**EXAMPLE 3**: Set each element of `v1` **individually** 
 ```C++
 v1[0] = 1.0;
 v1[1] = 2.0;
@@ -38,20 +48,20 @@ v1[3] = 4.0;
   v1: {1,2,3,4}; 
 ```
 
-**EXAMPLE 2**: Assigning `v1` from a **C-style array** 
+**EXAMPLE 4**: Assigning `v` from a **C-style array** 
 ```C++
-double temp[N] = {1.234, 101.3, 0, -23.4};
-v1 = vcast<double>(temp,N);
+v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40});
+HELLO
 ```
 **The result is**
 ```C++
-  v1: {1.234,101.3,0,-23.4}; 
+  v1: {1,2,3,4}; 
 ```
 
 ### Using the `range` Function 
 
 
-**EXAMPLE 3**: Assign `v1` using the **`range`** function 
+**EXAMPLE 5**: Assign `v1` using the **`range`** function 
 ```C++
 v1 = range<double>(5,8);
 ```
@@ -63,7 +73,7 @@ v1 = range<double>(5,8);
 
 
 
-**EXAMPLE 4**: Assign `v1` using the **`range`** function 
+**EXAMPLE 6**: Assign `v1` using the **`range`** function 
 ```C++
 v1 = range<double>(4,1);
 ```
@@ -75,7 +85,7 @@ v1 = range<double>(4,1);
 
 
 
-**EXAMPLE 5**: Assign `v1` using the **`range`** function 
+**EXAMPLE 7**: Assign `v1` using the **`range`** function 
 ```C++
 v1 = range<double>(400,100,-100);
 ```
@@ -88,7 +98,7 @@ v1 = range<double>(400,100,-100);
 ### Using the **`linspace`** function 
 
 
-**EXAMPLE 6**: Assign `v1` using the **`linspace`** function 
+**EXAMPLE 8**: Assign `v1` using the **`linspace`** function 
 ```C++
 v1 = linspace<double>(100,400,4);
 ```
@@ -100,7 +110,7 @@ v1 = linspace<double>(100,400,4);
 
 
 
-**EXAMPLE 7**: Assign `v1` using the **`linspace`** function 
+**EXAMPLE 9**: Assign `v1` using the **`linspace`** function 
 ```C++
 v1 = linspace<double>(6,3,4);
 ```
@@ -110,8 +120,6 @@ v1 = linspace<double>(6,3,4);
   v1: {6,5,4,3}; 
 ```
 
-Vector<double> v2(N,"v2");
-Vector<double> v3(N,"vector3");
 
 initialize v2 from std::vector
 
@@ -202,6 +210,16 @@ v7[seq(0,1)]=0; v7={0,0,0.5}
 reverse the order of a vector
 v1 = v1[seq(3,0)]={0.5,0.1,-1,-2}
 The optional second parameter is the name that will be stored with the vector in the object pool.  This name can be any string that you like. 
+**EXAMPLE10**: Assigning `v1` from a **C-style array** 
+```C++
+double temp[N] = {10, 20, 30, 40};
+v1 = vcast<double>(temp,N);
+```
+**The result is**
+```C++
+  v1: {1e+01,2e+01,3e+01,4e+01}; 
+```
+
 There's the macro **`Vector_`** name the vector automatically
  
 ```C++
@@ -220,5 +238,14 @@ RVector2_(double, z, N);
 **The result is**
 ```C++
   z: {0,0,0,0}; 
+```
+
+When the name is not specified, the pool manager assigns one. 
+```C++
+Vector<double> x(N);
+```
+**The result is**
+```C++
+  x: {0,0,0,0}; 
 ```
 

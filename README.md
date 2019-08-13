@@ -59,7 +59,7 @@ You now have a directory with all the mātricks source code
 
 # CONFIGURATION
 
-cd into the matricks directory and exceute the following command:
+cd into the matricks directory and execute the configure command:
 
 ```
 cd matricks
@@ -69,43 +69,52 @@ cd matricks
 This command builds the makefiles and compiles the source code into an
 object code library that can be linked to (`libmatricks.a`)
 
-
-
-# SAMPLE MAKEFILE
-
-A sample makefile is included for your convenience:
-
-```examples/Makefile```
-
-AFTER CONFIGURATION, copy this makefile to YOUR source code directory
-(or cut and paste into an existing makefile).
-
-# EXAMPLES  
-
-You will find examples in the subdirectory `examples`. Compile the
-examples using the make utility:
-
-```make all```
-
-This creates executables that can be run from the command line.  The
-file `vexample.cpp` is the best way to learn about coding with mātricks.
-
-
-
-
-
 # USING THE mātricks LIBRARY
 
-To use the mātricks library you need to include the library file `matricks.hpp`
-and link to the `libmatricks.a` library file.  See the following files for
-examples
+To use the mātricks library you need to 
 
-```bash
-examples/Makefile
+1. include the library file `matricks.hpp`, which is in the `include/` subdirecotry
+
+```C++
+#include "matricks.hpp"
 ```
 
+1. include the `include/` subdirecotry during compilation  and l the `libmatricks.a` library file in the `lib/` subdirecotry
+
+```bash
+g++ -I ~/matricks/include example.cpp -o example -L~/matricks/lib -lmatricks
+./example
+```
+
+## EXAMPLE MAKEFILE
+
+A example makefile, ```examples/Makefile```,  is included for your convenience 
+
+*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
+
+## EXAMPLE CODE FILE
+
+An example C++ source file is, ```examples/example.cpp```,  is included for your convenience 
+
+```C++
+#include <iostream>
+#include <string>
+
+#include "matricks.hpp"
 
 
+int main()
+{
+
+  using namespace Matricks;
+  Vector<double> v1(2, 3.14);
+
+  std::cout << std::endl << v1 << std::endl;
+  
+  return 0;
+}
+
+```
 
 # MODES OF OPERATION
 
@@ -160,7 +169,7 @@ without specifying the `CAREFUL` flag
 ```
 
 
-### RECOMMENDATIONS
+## RECOMMENDATIONS
 
 While developing your code, use `CAREFUL` mode.  When you are convinced that it is operating
 without errors, switch to fast mode.  
@@ -170,11 +179,11 @@ This way if a segmentation fault occurs, or you otherwise suspect an error, you 
 check the problem under careful mode.
 
 
-###  NOTES
+##  NOTES
 
 Compile time is also considerably slower in CAREFUL mode.
 
-## Coding Documentation
+# Coding Documentation
 
 [Coding Documentation](doc/README.md)
 

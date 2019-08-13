@@ -13,9 +13,11 @@ using namespace Matricks;
 
 
 #define header1(x)  printf("# %s \n", x)
-#define comment(x)  printf("%s \n", x)
+#define text(x)  printf("%s \n", x)
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
-#define printcode(x)  printf("```C++\n%s;```\n",  #x); x
+#define codestart() printf("\n```C++\n")
+#define printcode(x)  printf("\n%s;\n",  #x); x
+#define codeend() printf("\n```\n")
 #define result(x)  printf("> ");dispcr(x)
 
 
@@ -23,61 +25,75 @@ int main()
 {
   cr();
   header1("Basic Vector Operations in mātricks");
+ header1("Basic Vector Operations in mātricks");
   cr();
-  comment("Declaration of vectors v1, v2, v3");
+  text("Declaration of vectors v1, v2, v3");
+  codestart();
   printcode(  const int N = 4 );
   printcode( Vector<double> v1(N,"v1") );
   printcode( Vector<double> v2(N,"v2") );
   printcode( Vector<double> v3(N,"v3") );
+  codeend();
 
   cr();
   cr();
-  comment("initialize each element of v1");
+  text("initialize each element of v1");
+  codestart();
   printcode( v1[0] = 1.0 );
   printcode( v1[1] = 2.0 );
   printcode( v1[2] = 3.0 );
   printcode( v1[3] = 4.0 );
+  codeend();
   cr();
   result(v1);
   
   cr();
   cr();
-  comment("initialize v2 using range function");
+  text("initialize v2 using range function");
+  codestart();
   printcode( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  comment("initialize v2 using range function");
-  v2 = range<double>(4,1);
+  text("initialize v2 using range function");
+  codestart();
+  printcode( v2 = range<double>(4,1) );
+  codeend();
   cr();
   result(v2);
 
   cr();
   cr();
-  comment("initialize v2 using range");
-  v2 = range<double>(400,100,-100);
+  text("initialize v2 using range");
+  codestart();
+  printcode( v2 = range<double>(400,100,-100) );
+  codeend();
   cr();
   result(v2);
 
   cr();
   cr();
-  comment("initialize v2 using linspace");
-  v2 = linspace<double>(100,400,4);
+  text("initialize v2 using linspace");
+  codestart();
+  printcode( v2 = linspace<double>(100,400,4) );
+  codeend();
   cr();
   result(v2);
 
   cr();
   cr();
-  comment("initialize v2 using linspace");
-  v2 = linspace<double>(6,3,4);
+  text("initialize v2 using linspace");
+  codestart();
+  printcode( v2 = linspace<double>(6,3,4) );
+  codeend();
   cr();
   result(v2);
 
   cr();
   cr();
-  comment("initialize v2 from C-array (careful, no bounds checking!)" );
+  text("initialize v2 from C-array (careful, no bounds checking!)" );
   double ans7[4] = {1.234, 101.3, 0, -23.4};
   v2 = vcast<double>(ans7,4);
   cr();

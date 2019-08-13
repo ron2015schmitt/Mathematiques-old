@@ -1,16 +1,19 @@
 
 # Basic Vector Operations in mātricks 
 
-Declaration of vectors v1, v2, v3 
+## Declaring vectors 
+Declare vectors ```v1```, ```v2```, ```v3```. 
+The optional second paramter is the name that will be stored with the vector in the object pool.  This name can be any string that you like. 
 ```C++
 const int N = 4;
 Vector<double> v1(N,"v1");
 Vector<double> v2(N,"v2");
-Vector<double> v3(N,"v3");
+Vector<double> v3(N,"vector3");
 ```
+## Initializing vectors 
 
 
-initialize each element of v1 
+Initialize each element of ```v1``` individdually 
 ```C++
 v1[0] = 1.0;
 v1[1] = 2.0;
@@ -18,36 +21,40 @@ v1[2] = 3.0;
 v1[3] = 4.0;
 ```
 
+**yields**
 ```C++
   v1: {1,2,3,4}; 
 ```
 
 
-initialize v2 using range function 
+Initialize ```v2``` using range function 
 ```C++
 v2 = range<double>(5,8);
 ```
 
+**yields**
 ```C++
   v2: {5,6,7,8}; 
 ```
 
 
-initialize v2 using range function 
+Initialize ```v2``` using range function 
 ```C++
 v2 = range<double>(4,1);
 ```
 
+**yields**
 ```C++
   v2: {4,3,2,1}; 
 ```
 
 
-initialize v2 using range 
+Initialize ```v2``` using range 
 ```C++
 v2 = range<double>(400,100,-100);
 ```
 
+**yields**
 ```C++
   v2: {400,300,200,100}; 
 ```
@@ -58,6 +65,7 @@ initialize v2 using linspace
 v2 = linspace<double>(100,400,4);
 ```
 
+**yields**
 ```C++
   v2: {100,200,300,400}; 
 ```
@@ -68,6 +76,7 @@ initialize v2 using linspace
 v2 = linspace<double>(6,3,4);
 ```
 
+**yields**
 ```C++
   v2: {6,5,4,3}; 
 ```
@@ -75,12 +84,14 @@ v2 = linspace<double>(6,3,4);
 
 initialize v2 from C-array (careful, no bounds checking!) 
 
+**yields**
 ```C++
   v2: {1.234,101.3,0,-23.4}; 
 ```
 
 initialize v2 from std::vector
 
+**yields**
 ```C++
   v2: {-1,-2,-3,-4}; 
 ```

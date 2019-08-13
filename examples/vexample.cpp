@@ -13,6 +13,7 @@ using namespace Matricks;
 
 
 #define header1(x)  printf("# %s \n", x)
+#define header2(x)  printf("## %s \n", x)
 #define text(x)  printf("%s \n", x)
 
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
@@ -22,7 +23,7 @@ using namespace Matricks;
 #define codeend() printf("```\n")
 #define code(x)  codestart();codemulti(x);codeend()
 
-#define resultstart() printf("```C++\n")
+#define resultstart() printf("**yields**\n```C++\n")
 #define resultmulti(x)  printf("  ");dispcr(x)
 #define resultend() printf("```\n")
 #define result(x)  resultstart();resultmulti(x);resultend()
@@ -33,17 +34,20 @@ int main()
   cr();
   header1("Basic Vector Operations in mātricks");
   cr();
-  text("Declaration of vectors v1, v2, v3");
+  header2("Declaring vectors");
+  text("Declare vectors ```v1```, ```v2```, ```v3```.");
+  text("The optional second paramter is the name that will be stored with the vector in the object pool.  This name can be any string that you like.");
   codestart();
-  codemulti(  const int N = 4 );
+  codemulti( const int N = 4 );
   codemulti( Vector<double> v1(N,"v1") );
   codemulti( Vector<double> v2(N,"v2") );
-  codemulti( Vector<double> v3(N,"v3") );
+  codemulti( Vector<double> v3(N,"vector3") );
   codeend();
 
+  header2("Initializing vectors");
   cr();
   cr();
-  text("initialize each element of v1");
+  text("Initialize each element of ```v1``` individdually");
   codestart();
   codemulti( v1[0] = 1.0 );
   codemulti( v1[1] = 2.0 );
@@ -55,21 +59,21 @@ int main()
   
   cr();
   cr();
-  text("initialize v2 using range function");
+  text("Initialize ```v2``` using range function");
   code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("initialize v2 using range function");
+  text("Initialize ```v2``` using range function");
   code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("initialize v2 using range");
+  text("Initialize ```v2``` using range");
   code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);

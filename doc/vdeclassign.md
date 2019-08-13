@@ -14,7 +14,7 @@ Vector<double> v1(N);
 
 **EXAMPLE 2**: Declare `v2` and initialize to a constant 
 ```C++
-Vector<double> v2(N, -1 );
+Vector<double> v2(4, -1 );
 ```
 **The result is**
 ```C++
@@ -23,19 +23,27 @@ Vector<double> v2(N, -1 );
 
 **EXAMPLE 3**: Declare `v3` and initialize to a **C-style array** of values 
 ```C++
-Vector<double> v3( N, (const double[4]) {10, 20, 30, 40} );
-HELLO
+Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} );
 ```
 **The result is**
 ```C++
   v3: {10,20,30,40}; 
 ```
 
+**EXAMPLE 4**: Declare `v4` and initialize to a **C-style array** of values 
+```C++
+Vector<double> v4( 4, (const double[]) {10, 20, 30, 40} );
+```
+**The result is**
+```C++
+  v4: {10,20,30,40}; 
+```
+
 ## Assigning the values of a vector 
 ### Directly assigning the values of a vector 
 
 
-**EXAMPLE 4**: Set each element of `v1` **individually** 
+**EXAMPLE 5**: Set each element of `v1` **individually** 
 ```C++
 v1[0] = 1.0;
 v1[1] = 2.0;
@@ -48,10 +56,9 @@ v1[3] = 4.0;
   v1: {1,2,3,4}; 
 ```
 
-**EXAMPLE 5**: Assigning `v` from a **C-style array** 
+**EXAMPLE 6**: Assigning `v` from a **C-style array** 
 ```C++
 v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40});
-HELLO
 ```
 **The result is**
 ```C++
@@ -61,7 +68,7 @@ HELLO
 ### Using the `range` Function 
 
 
-**EXAMPLE 6**: Assign `v1` using the **`range`** function 
+**EXAMPLE 7**: Assign `v1` using the **`range`** function 
 ```
 v1 = range<double>(5,8);
 ```
@@ -73,7 +80,7 @@ v1 = range<double>(5,8);
 
 
 
-**EXAMPLE 7**: Assign `v1` using the **`range`** function 
+**EXAMPLE 8**: Assign `v1` using the **`range`** function 
 ```
 v1 = range<double>(4,1);
 ```
@@ -85,7 +92,7 @@ v1 = range<double>(4,1);
 
 
 
-**EXAMPLE 8**: Assign `v1` using the **`range`** function 
+**EXAMPLE 9**: Assign `v1` using the **`range`** function 
 ```
 v1 = range<double>(400,100,-100);
 ```
@@ -98,7 +105,7 @@ v1 = range<double>(400,100,-100);
 ### Using the **`linspace`** function 
 
 
-**EXAMPLE 9**: Assign `v1` using the **`linspace`** function 
+**EXAMPLE10**: Assign `v1` using the **`linspace`** function 
 ```
 v1 = linspace<double>(100,400,4);
 ```
@@ -110,7 +117,7 @@ v1 = linspace<double>(100,400,4);
 
 
 
-**EXAMPLE10**: Assign `v1` using the **`linspace`** function 
+**EXAMPLE11**: Assign `v1` using the **`linspace`** function 
 ```
 v1 = linspace<double>(6,3,4);
 ```

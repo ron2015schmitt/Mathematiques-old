@@ -125,7 +125,7 @@ clean:
 	\rm -f *.temp
 
 cleanall: clean 
-	\cd $(MATRICKS_DIR)/doc && make clean
+	\cd $(MATRICKS_DIR)/examples && make clean
 	\cd $(MATRICKS_DIR)/errorexamples && make clean
 	\cd $(MATRICKS_DIR)/testbed && make clean
 	\cd $(MATRICKS_DIR)/benchmarks && make clean
@@ -139,7 +139,7 @@ fullpurge: cleanall
 	\rm -f $(MATRICKS_DIR)/*.old
 	\rm -f $(MATRICKS_DIR)/*/*~
 	\rm -f $(MATRICKS_DIR)/*/*.old
-	\rm -f $(MATRICKS_DIR)/Makefile
+	\rm -f $(MATRICKS_DIR)/examples
 
 %.o: %.cpp  $(LIBFILES) 
 ifdef CAREFUL

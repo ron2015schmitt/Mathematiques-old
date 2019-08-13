@@ -35,9 +35,11 @@ Advantages
 
 # DEVELOPMENT
 
-Development for this project took place during the years 2003-2008.
+Development for this project originally took place during the years 2003-2008 
 
-The code uses a technique called *expression templating*, the library provides computational efficiency on par with C/Fortran.
+The code resurrected in 2019 and put on github.
+
+The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) called [expression templating](https://en.wikipedia.org/wiki/Expression_templates), the library provides computational efficiency on par with C/Fortran.
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 
@@ -57,7 +59,7 @@ You now have a directory with all the mātricks source code
 
 # CONFIGURATION
 
-cd into the matricks directory and exceute the following command:
+cd into the matricks directory and execute the configure command:
 
 ```
 cd matricks
@@ -67,42 +69,54 @@ cd matricks
 This command builds the makefiles and compiles the source code into an
 object code library that can be linked to (`libmatricks.a`)
 
-
-
-# SAMPLE MAKEFILE
-
-A sample makefile is included for your convenience:
-
-```examples/Makefile```
-
-AFTER CONFIGURATION, copy this makefile to YOUR source code directory
-(or cut and paste into an existing makefile).
-
-# EXAMPLES  
-
-You will find examples in the subdirectory `examples`. Compile the
-examples using the make utility:
-
-```make all```
-
-This creates executables that can be run from the command line.  The
-file `vexample.cpp` is the best way to learn about coding with mātricks.
-
-
-
-
-
 # USING THE mātricks LIBRARY
 
-To use the mātricks library you need to include the library file `matricks.hpp`
-and link to the `libmatricks.a` library file.  See the following files for
-examples
+To use the mātricks library you need to 
 
-```bash
-examples/Makefile
+1. Include the library file `include/matricks.hpp` in your source code
+```C++
+#include "matricks.hpp"
+```
+2. Include the `include/` subdirectory during compilation using the `-I` option
+
+3. Include the `lib/` subdirectory during linking using the `-L` option
+
+4. Include the option `-lmatricks` during linking
+
+## EXAMPLE CODE FILE
+
+An example of a C++ source file (```examples/example.cpp```) is shown below
+
+```C++
+#include <iostream>
+#include <string>
+
+#include "matricks.hpp"
+
+
+int main()
+{
+
+  using namespace Matricks;
+  Vector<double> v1(2, 3.14);
+
+  std::cout << std::endl << v1 << std::endl;
+  
+  return 0;
+}
 ```
 
+Compile the code and run the code using
+```bash
+g++ -I ~/matricks/include example.cpp -o example -L~/matricks/lib -lmatricks
+./example
+```
 
+## EXAMPLE MAKEFILE
+
+A example makefile, ```examples/Makefile```,  is included for your convenience 
+
+*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
 
 
 # MODES OF OPERATION
@@ -158,7 +172,7 @@ without specifying the `CAREFUL` flag
 ```
 
 
-### RECOMMENDATIONS
+## RECOMMENDATIONS
 
 While developing your code, use `CAREFUL` mode.  When you are convinced that it is operating
 without errors, switch to fast mode.  
@@ -168,11 +182,11 @@ This way if a segmentation fault occurs, or you otherwise suspect an error, you 
 check the problem under careful mode.
 
 
-###  NOTES
+##  NOTES
 
 Compile time is also considerably slower in CAREFUL mode.
 
-## Full Documentation
+# Coding Documentation
 
-[Documentation](doc/README.md)
+[Coding Documentation](doc/README.md)
 

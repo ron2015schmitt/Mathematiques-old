@@ -73,24 +73,15 @@ object code library that can be linked to (`libmatricks.a`)
 
 To use the mātricks library you need to 
 
-1. include the library file `matricks.hpp`, which is in the `include/` subdirecotry
-
+1. Include the library file `include/matricks.hpp` in your source code
 ```C++
 #include "matricks.hpp"
 ```
+2. Include the `include/` subdirectory during compilation using the `-I` option
 
-1. include the `include/` subdirecotry during compilation  and l the `libmatricks.a` library file in the `lib/` subdirecotry
+3. Include the `lib/` subdirectory during linking using the `-L` option
 
-```bash
-g++ -I ~/matricks/include example.cpp -o example -L~/matricks/lib -lmatricks
-./example
-```
-
-## EXAMPLE MAKEFILE
-
-A example makefile, ```examples/Makefile```,  is included for your convenience 
-
-*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
+4. Include the option `-lmatricks` during linking
 
 ## EXAMPLE CODE FILE
 
@@ -113,8 +104,20 @@ int main()
   
   return 0;
 }
-
 ```
+
+Compile the code and run the code using
+```bash
+g++ -I ~/matricks/include example.cpp -o example -L~/matricks/lib -lmatricks
+./example
+```
+
+## EXAMPLE MAKEFILE
+
+A example makefile, ```examples/Makefile```,  is included for your convenience 
+
+*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
+
 
 # MODES OF OPERATION
 

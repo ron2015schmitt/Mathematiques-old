@@ -7,9 +7,11 @@ const int N = 4;
 ```
 ```C++
 Vector<double> v1(N,"v1");
-``````C++
+```
+```C++
 Vector<double> v2(N,"v2");
-``````C++
+```
+```C++
 Vector<double> v3(N,"v3");
 ```
 

@@ -41,9 +41,6 @@ CPPFLAGS =  $(COPTS)  $(COPTIMIZE) $(INCLUDES)
 LDFLAGS =  $(LOPTS)
 
 
-
-
-
 EXEC ?=
 LAPACKEXEC ?=
 
@@ -105,3 +102,5 @@ archive: fullpurge
 info:
 	@echo "INCLUDEDIR = $(INCLUDEDIR)"
 	@echo "HPPFILES = $(HPPFILES)"
+	@echo "compile: " $(CPP) $(CPPFLAGS) -c $*.cpp -o $@
+	@echo "link: " $(CPP) $(LDFLAGS) $*.o -o $@ $(LIBS) 

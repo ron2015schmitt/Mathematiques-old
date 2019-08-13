@@ -14,35 +14,41 @@ using namespace Matricks;
 
 #define header1(x)  printf("# %s \n", x)
 #define text(x)  printf("%s \n", x)
+
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
-#define codestart() printf("\n```C++\n")
-#define printcode(x)  printf("\n%s;\n",  #x); x
-#define codeend() printf("\n```\n")
-#define result(x)  printf("> ");dispcr(x)
+
+#define codestart() printf("```C++\n")
+#define codemulti(x)  printf("%s;\n",  #x); x
+#define codeend() printf("```\n")
+#define code(x)  codestart();codemulti(x);codeend()
+
+#define resultstart() printf("```C++\n")
+#define resultmulti(x)  printf("  ");dispcr(x)
+#define resultend() printf("```\n")
+#define result(x)  resultstart();resultmulti(x);resultend()
 
 
 int main()
 {
   cr();
   header1("Basic Vector Operations in mātricks");
- header1("Basic Vector Operations in mātricks");
   cr();
   text("Declaration of vectors v1, v2, v3");
   codestart();
-  printcode(  const int N = 4 );
-  printcode( Vector<double> v1(N,"v1") );
-  printcode( Vector<double> v2(N,"v2") );
-  printcode( Vector<double> v3(N,"v3") );
+  codemulti(  const int N = 4 );
+  codemulti( Vector<double> v1(N,"v1") );
+  codemulti( Vector<double> v2(N,"v2") );
+  codemulti( Vector<double> v3(N,"v3") );
   codeend();
 
   cr();
   cr();
   text("initialize each element of v1");
   codestart();
-  printcode( v1[0] = 1.0 );
-  printcode( v1[1] = 2.0 );
-  printcode( v1[2] = 3.0 );
-  printcode( v1[3] = 4.0 );
+  codemulti( v1[0] = 1.0 );
+  codemulti( v1[1] = 2.0 );
+  codemulti( v1[2] = 3.0 );
+  codemulti( v1[3] = 4.0 );
   codeend();
   cr();
   result(v1);
@@ -50,44 +56,35 @@ int main()
   cr();
   cr();
   text("initialize v2 using range function");
-  codestart();
-  printcode( v2 = range<double>(5,8) );
+  code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
   text("initialize v2 using range function");
-  codestart();
-  printcode( v2 = range<double>(4,1) );
-  codeend();
+  code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
   text("initialize v2 using range");
-  codestart();
-  printcode( v2 = range<double>(400,100,-100) );
-  codeend();
+  code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);
 
   cr();
   cr();
   text("initialize v2 using linspace");
-  codestart();
-  printcode( v2 = linspace<double>(100,400,4) );
-  codeend();
-  cr();
+  code( v2 = linspace<double>(100,400,4) );
+  cr(); 
   result(v2);
 
   cr();
   cr();
   text("initialize v2 using linspace");
-  codestart();
-  printcode( v2 = linspace<double>(6,3,4) );
-  codeend();
+  code( v2 = linspace<double>(6,3,4) );
   cr();
   result(v2);
 

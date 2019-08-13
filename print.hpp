@@ -16,7 +16,7 @@ namespace Matricks {
   void _printvar(const X a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -25,7 +25,7 @@ namespace Matricks {
   void _printvar(X (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
-      std::cout << s << "[]=" ;
+      std::cout << s << "[]" ;
     std::cout<<pres;
     std::cout << "{ " ;
     for(size_type i = 0; i<N ; i++) {
@@ -40,7 +40,7 @@ namespace Matricks {
   void _printvar(const char (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s ;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -49,7 +49,7 @@ namespace Matricks {
   void _printvar(char (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -60,7 +60,7 @@ namespace Matricks {
   void _printvar(const Matrix<D>& a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -70,7 +70,7 @@ namespace Matricks {
   {
     Matrix<D> a = exp;
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -80,7 +80,7 @@ namespace Matricks {
   void _printvar(const Vector<D>& a, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -90,7 +90,7 @@ namespace Matricks {
   {
     Vector<D> a = exp;
     if (display)
-      std::cout << s << "=" ;
+      std::cout << s;
     std::cout<<pres;
     std::cout << a;
     std::cout << posts;
@@ -99,19 +99,23 @@ namespace Matricks {
 
 
   template <typename X>
-  void _printarray(const X *const a,  bool display, char const *s,int start, int end, char const *ending)
+  void _printarray(const X *const a,  bool display, char const *s,int start, int end, char const *pres, char const *posts)
   {
     int i;
     X temp;
 
-    std::cout << s << "[" << start << " to " << end<<"]={";
+    if (display) {
+      std::cout << s << "[" << start << " to " << end<<"]";
+    }
+    std::cout << pres;
+    std::cout << "{";
     for(i = start; i<=end ; i++) {
       temp = a[i];
       std::cout << temp ;
       if (i != end) 
 	std::cout << ",";
     }
-    std::cout <<ending;
+    std::cout << posts;
   }
 
 
@@ -124,7 +128,7 @@ namespace Matricks {
 #define print(var) _printvar(var,false,"","","")
 #define printcr(var) _printvar(var,false,"","","\n")
 #define printcrcr(var) _printvar(var,false,"","\n","\n")
-#define printarray(var,start,end) _printarray(var,false,# var,start,end,"; \n")
+#define printarray(var,start,end) _printarray(var,false,# var,start,end,"","; \n")
 
   inline void  cr(void) { std::cout <<std::endl;}
 
@@ -132,10 +136,10 @@ namespace Matricks {
   /* "disp"
    * These functions display the variable/expression and its value
    */
-#define disp(var) _printvar(var,true,# var,"","; ")
-#define dispcr(var) _printvar(var,true,# var,"","; \n")
-#define dispcrcr(var) _printvar(var,true,# var,"\n","; \n")
-#define disparray(var,start,end) _printarray(var,true,# var,start,end,"; \n")
+#define disp(var) _printvar(var,true,# var,": ","; ")
+#define dispcr(var) _printvar(var,true,# var,": ","; \n")
+#define dispcrcr(var) _printvar(var,true,# var,":\n","; \n")
+#define disparray(var,start,end) _printarray(var,true,# var,start,end,": ","; \n")
 
 	
   template <typename D>

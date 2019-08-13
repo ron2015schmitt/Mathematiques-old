@@ -1,0 +1,68 @@
+
+
+#prevent any default rules from being used
+.SUFFIXES:
+
+# don't delete .o files
+.PRECIOUS: %.o
+
+HPPFILES := $(shell find $(INCLUDEDIR) -name '*.hpp')
+
+%.o: %.cpp  $(HPPFILES) 
+ifdef CAREFUL
+	$(CPP) $(CPPFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
+else
+	$(CPP) $(CPPFLAGS) -c $*.cpp -o $@
+endif
+
+
+%: %.o 
+	$(CPP) $(LDFLAGS) $*.o -o $@ $(LIBS) 
+
+
+all: $(EXEC)
+
+
+archive: fullpurge
+	\rm -rf $(TDIR)
+	\mkdir $(TDIR)
+	\cp -r . $(TDIR)/
+	\cd $(TEMP) && tar cvof $(FNAME).tar $(FNAME)/ && gzip $(FNAME).tar 
+	\cp $(TEMP)/$(FNAME).tar.gz .
+
+info:
+	@echo "VERSION = $(VERSION)"
+	@echo "MATRICKS_DIR = $(MATRICKS_DIR)"
+	@echo "MATRICKS_INCLUDEDIR = $(MATRICKS_INCLUDEDIR)"
+	@echo "MATRICKS_LIBDIR = $(MATRICKS_LIBDIR)"
+	@echo "compile:  $(CPP) $(CPPFLAGS) -c '$*.cpp -o $@'"
+	@echo "link:  $(CPP) $(LDFLAGS) '$*.o -o $@' $(LIBS)"
+
+hppfiles:
+	@echo "HPPFILES = $(HPPFILES)"
+
+
+clean:
+	\rm -f *.o
+	\rm -f $(EXEC)
+	\rm -f core.*
+	\rm -f *.s
+	\rm -f *.temp
+
+cleanall: clean 
+	\cd $(MATRICKS_DIR)/examples && make clean
+	\cd $(MATRICKS_DIR)/errorexamples && make clean
+	\cd $(MATRICKS_DIR)/testbed && make clean
+	\cd $(MATRICKS_DIR)/benchmarks && make clean
+	\cd $(MATRICKS_DIR)/development && make clean
+	\cd $(MATRICKS_DIR)/doc && make clean
+	\cd $(MATRICKS_DIR)/src && make clean
+
+fullpurge: cleanall
+	\rm -f $(MATRICKS_DIR)/*~
+	\rm -f $(MATRICKS_DIR)/*.gz
+	\rm -f $(MATRICKS_DIR)/*.tar
+	\rm -f $(MATRICKS_DIR)/*.old
+	\rm -f $(MATRICKS_DIR)/*/*~
+	\rm -f $(MATRICKS_DIR)/*/*.old
+	\rm -fr $(MATRICKS_DIR)/lib

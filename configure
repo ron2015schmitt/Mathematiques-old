@@ -8,16 +8,17 @@ echo "creating Makefile ..."
 echo "  " > Makefile
 echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >>Makefile
 echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >>Makefile
-sed -e "s/#MATRICKS_DIR#/$temp/g" files/MakefileTemplate >> Makefile 
+sed -e "s/#MATRICKS_DIR#/$temp/g" files/Makefile.vars >> Makefile 
+cat  files/Makefile.matricks >> Makefile
 
 
 echo "creating examples/Makefile ..."
 mkdir -p examples
 echo "  " > examples/Makefile
 echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >> examples/Makefile
-echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >> examples/Makefile
-sed -e "s/#MATRICKS_DIR#/$temp/g" files/SampleMakefileTemplate >> examples/Makefile
-
+echo "# ********  THIS IS THE EXAMPLE USER MAKEFILE           **********" >> examples/Makefile
+sed -e "s/#MATRICKS_DIR#/$temp/g" files/Makefile.vars >> examples/Makefile
+cat  files/Makefile.user >> examples/Makefile
 
 # make the object file library (libmatricks.a)
 echo "creating libmatricks.a ..."

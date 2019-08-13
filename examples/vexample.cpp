@@ -33,8 +33,15 @@ using namespace Matricks;
 
 int _e = 1;
 char _str[2048];
+
 #define example(x) sprintf(_str,"**EXAMPLE%2d**: ",_e++); text(std::strcat(_str,x))
 
+
+#define Vector_(D, var, sz) Matricks::Vector<D> var(sz,#var)
+
+#define RVector2_(D, var, sz) sprintf(_str,"%s :: %s", __FUNCTION__, #var); Matricks::Vector<D> var(sz, "ron")
+
+// __FUNCTION__ __FILE__  __FILE__
 
 
 int main()
@@ -43,15 +50,22 @@ int main()
   header1("Declaring and Assigning Vectors in mātricks");
   cr();
   header2("Declaring vectors");
-  text("Declare vectors `v1`, `v2`, `v3`.");
-  text("The optional second parameter is the name that will be stored with the vector in the object pool.  This name can be any string that you like.");
+  text("Declare vector `v1`.");
   codestart();
   codemulti( const int N = 4 );
-  codemulti( Vector<double> v1(N,"v1") );
-  codemulti( Vector<double> v2(N,"v2") );
-  codemulti( Vector<double> v3(N,"vector3") );
+  codemulti( Vector<double> v1(N) );
   codeend();
+  result(v1);
 
+  text("When the name is not specified, the pool manager assigns one.");
+  codestart();
+  codemulti( Vector<double> x(N) );
+  codeend();
+  result(x);
+
+
+  
+  
   header2("Assigning the values of a vector");
 
   header3("Directly assigning the values of a vector");
@@ -79,39 +93,43 @@ int main()
   
   cr();
   cr();
-  example("Assign `v2` using the **`range`** function");
-  code( v2 = range<double>(5,8) );
+  example("Assign `v1` using the **`range`** function");
+  code( v1 = range<double>(5,8) );
   cr();
-  result(v2);
+  result(v1);
 
   cr();
   cr();
-  example("Assign `v2` using the **`range`** function");
-  code( v2 = range<double>(4,1) );
+  example("Assign `v1` using the **`range`** function");
+  code( v1 = range<double>(4,1) );
   cr();
-  result(v2);
+  result(v1);
 
   cr();
   cr();
-  example("Assign `v2` using the **`range`** function");
-  code( v2 = range<double>(400,100,-100) );
+  example("Assign `v1` using the **`range`** function");
+  code( v1 = range<double>(400,100,-100) );
   cr();
-  result(v2);
+  result(v1);
 
   header3("Using the **`linspace`** function");
   cr();
   cr();
-  example("Assign `v2` using the **`linspace`** function");
-  code( v2 = linspace<double>(100,400,4) );
+  example("Assign `v1` using the **`linspace`** function");
+  code( v1 = linspace<double>(100,400,4) );
   cr(); 
-  result(v2);
+  result(v1);
 
   cr();
   cr();
-  example("Assign `v2` using the **`linspace`** function");
-  code( v2 = linspace<double>(6,3,4) );
+  example("Assign `v1` using the **`linspace`** function");
+  code( v1 = linspace<double>(6,3,4) );
   cr();
-  result(v2);
+  result(v1);
+
+
+  codemulti( Vector<double> v2(N,"v2") );
+  codemulti( Vector<double> v3(N,"vector3") );
 
 
   std::cout << std::endl << "initialize v2 from std::vector" << std::endl;
@@ -293,6 +311,19 @@ int main()
   v1 = v1[seq(3,0)];
   std::cout <<"v1 = v1[seq(3,0)]=" << v1<<std::endl;
 
+    text("The optional second parameter is the name that will be stored with the vector in the object pool.  This name can be any string that you like.");
+
+  text("There's the macro **`Vector_`** name the vector automatically\n");
+  codestart();
+  codemulti( Vector_(double, y, N) );
+  codeend();
+  result(y);
+
+  text("There's the macro **`Vector2_`** name the vector automatically\n");
+  codestart();
+  codemulti( RVector2_(double, z, N) );
+  codeend();
+  result(z);
 
   return 0;
 }

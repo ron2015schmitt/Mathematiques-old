@@ -19,12 +19,13 @@ using namespace Matricks;
 #define printexp(x)  printf("-> %s = %s\n",  #x, x)
 
 #define codestart() printf("```C++\n")
-#define codemulti(x)  printf("%s;\n",  #x); x
+#define codemulti(...)  printf("%s;\n",  #__VA_ARGS__); __VA_ARGS__
+
 #define codeend() printf("```\n")
 #define code(x)  codestart();codemulti(x);codeend()
 
 #define resultstart() printf("**The result is**\n```C++\n")
-#define resultmulti(x)  printf("  ");dispcr(x)
+#define resultmulti(...)  printf("  ");dispcr(__VA_ARGS__)
 #define resultend() printf("```\n----\n")
 #define result(x)  resultstart();resultmulti(x);resultend()
 
@@ -47,7 +48,7 @@ int main()
   header2("Setting the values of a vector");
   cr();
   cr();
-  text("*EXAMPLE 1*: Set each element of `v1` individdually");
+  text("*EXAMPLE 1*: Set each element of `v1` individually");
   codestart();
   codemulti( v1[0] = 1.0 );
   codemulti( v1[1] = 2.0 );
@@ -59,45 +60,46 @@ int main()
   
   cr();
   cr();
-  text("Set `v2` using the range function");
+  text("*EXAMPLE 2*: Set `v2` using the range function");
   code( v2 = range<double>(5,8) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("Set `v2` using the range function");
+  text("*EXAMPLE 3*: Set `v2` using the range function");
   code( v2 = range<double>(4,1) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("Set `v2` using the range function");
+  text("*EXAMPLE 4*: Set `v2` using the range function");
   code( v2 = range<double>(400,100,-100) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("Set `v2` using the linspace function");
+  text("*EXAMPLE 5*: Set `v2` using the linspace function");
   code( v2 = linspace<double>(100,400,4) );
   cr(); 
   result(v2);
 
   cr();
   cr();
-  text("Set `v2` using the linspace function");
+  text("*EXAMPLE 6*: Set `v2` using the linspace function");
   code( v2 = linspace<double>(6,3,4) );
   cr();
   result(v2);
 
   cr();
   cr();
-  text("initialize v2 from C-array (careful, no bounds checking!)" );
-  double ans7[4] = {1.234, 101.3, 0, -23.4};
-  v2 = vcast<double>(ans7,4);
-  cr();
+  text("*EXAMPLE 7*: initialize v2 from C-array (careful, no bounds checking!)" );
+  codestart();
+  codemulti( double ans7[4] = {1.234, 101.3, 0, -23.4} );
+  codemulti( v2 = vcast<double>(ans7,4) );
+  codeend();
   result(v2);
 
   std::cout << std::endl << "initialize v2 from std::vector" << std::endl;

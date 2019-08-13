@@ -13,7 +13,7 @@ Vector<double> v3(N,"vector3");
 ## Setting the values of a vector 
 
 
-*EXAMPLE 1*: Set each element of `v1` individdually 
+*EXAMPLE 1*: Set each element of `v1` individually 
 ```C++
 v1[0] = 1.0;
 v1[1] = 2.0;
@@ -28,7 +28,7 @@ v1[3] = 4.0;
 ----
 
 
-Set `v2` using the range function 
+*EXAMPLE 2*: Set `v2` using the range function 
 ```C++
 v2 = range<double>(5,8);
 ```
@@ -40,7 +40,7 @@ v2 = range<double>(5,8);
 ----
 
 
-Set `v2` using the range function 
+*EXAMPLE 3*: Set `v2` using the range function 
 ```C++
 v2 = range<double>(4,1);
 ```
@@ -52,7 +52,7 @@ v2 = range<double>(4,1);
 ----
 
 
-Set `v2` using the range function 
+*EXAMPLE 4*: Set `v2` using the range function 
 ```C++
 v2 = range<double>(400,100,-100);
 ```
@@ -64,7 +64,7 @@ v2 = range<double>(400,100,-100);
 ----
 
 
-Set `v2` using the linspace function 
+*EXAMPLE 5*: Set `v2` using the linspace function 
 ```C++
 v2 = linspace<double>(100,400,4);
 ```
@@ -76,7 +76,7 @@ v2 = linspace<double>(100,400,4);
 ----
 
 
-Set `v2` using the linspace function 
+*EXAMPLE 6*: Set `v2` using the linspace function 
 ```C++
 v2 = linspace<double>(6,3,4);
 ```
@@ -88,8 +88,11 @@ v2 = linspace<double>(6,3,4);
 ----
 
 
-initialize v2 from C-array (careful, no bounds checking!) 
-
+*EXAMPLE 7*: initialize v2 from C-array (careful, no bounds checking!) 
+```C++
+double ans7[4] = {1.234, 101.3, 0, -23.4};
+v2 = vcast<double>(ans7,4);
+```
 **The result is**
 ```C++
   v2: {1.234,101.3,0,-23.4}; 

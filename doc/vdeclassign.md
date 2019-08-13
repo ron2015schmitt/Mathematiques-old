@@ -33,10 +33,6 @@ Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} );
 **EXAMPLE 4**: Declare `v4` and initialize directly (**__C++11__**) 
 ```C++
 Vector<double> v4({10, 20, 30, 40});
-list[0] = 10.000000
-list[1] = 20.000000
-list[2] = 30.000000
-list[3] = 40.000000
 ```
 **The result is**
 ```C++

@@ -66,3 +66,4 @@ fullpurge: cleanall
 	\rm -f $(MATRICKS_DIR)/*/*~
 	\rm -f $(MATRICKS_DIR)/*/*.old
 	\rm -fr $(MATRICKS_DIR)/lib
+	\rm -fr $(MATRICKS_DIR)/examples/Makefile

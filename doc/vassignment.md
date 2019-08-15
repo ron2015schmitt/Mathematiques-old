@@ -1,6 +1,6 @@
 
-# Vector assigmentin mātricks
-This document was automatically generated from file **`vassignment.cpp`** (mātricks-v2.1-r15).
+# Vector assigment in mātricks
+This document was automatically generated from file **`vassignment.cpp`** (mātricks-v2.1-r16).
 
 **EXAMPLE 1**: Assign all elements to a single value.
 ```C++

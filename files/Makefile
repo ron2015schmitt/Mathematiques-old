@@ -231,6 +231,14 @@ LFLAGS = $(OPTIMIZE) $(LOPT)
 	$(CPPC) $(LFLAGS) $*.o -o $@ $(LIBS) 
 
 
+#############################################################################
+# .md docs
+#############################################################################
+DOC ?=
+%.md: %
+	./$* > $@
+
+doc: $(DOC)
 
 ###########################################################
 #      Full Informative Dump (This is default)
@@ -292,6 +300,7 @@ cdiff:
 
 clean:
 	@command rm -f *.o
+	@command rm -f $(DOC)
 	@command rm -f *.a
 	@command rm -f *.s
 	@command rm -f *.temp

@@ -6,6 +6,7 @@
 #ifndef MATRICKS_H
 #define MATRICKS_H
 
+#include "matricks_version.hpp"
 #include "util.hpp"
 #include "matrickscommon.hpp"
 #include "applicative.hpp"

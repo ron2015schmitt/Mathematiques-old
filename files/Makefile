@@ -318,8 +318,44 @@ all: $(EXEC)
 # git related and versioning
 #############################################################
 
-# $(VERSION_FILE) should be a bash file with VERSION_MATRICKS=X.X
-VERSION_FILE = files/matricks.vers
+# input files
+#  VERSION_FILE should be a bash file with VERSION_MATRICKS=X.X
+VERSION_FILE = $(DIR_MATRICKS)/files/matricks.vers
+# output files
+TAG_FILE = $(DIR_MATRICKS)/files/matricks.tag
+TAG_ONELINE_SUMMARY_FILE = $(DIR_MATRICKS)/files/matricks.tag.onelinesummary
+TAG_ANNOTATION_FILE = $(DIR_MATRICKS)/files/matricks.tag.annotation
+
+
+
+# retrieve the Major.Minor version from the file
+# and then calculate the revision number (number of commits since version has been changed)
+
+define calcVersion
+. $(VERSION_FILE) && \
+echo -e " "$(BLUE)"VERSION_MATRICKS"$(DEFCLR)=$(BOLDON)$${VERSION_MATRICKS}$(BOLDOFF) &&\
+TAG=v$${VERSION_MATRICKS} ;\
+VERSION_COMMIT_COUNT=`git tag -l "$$TAG*" | wc -l | tr -d ' '` &&\
+echo -e " "$(BLUE)VERSION_COMMIT_COUNT$(DEFCLR)=$(BOLDON)$${VERSION_COMMIT_COUNT}$(BOLDOFF) &&\
+if [[ "$${COMMIT_COUNT}" -gt 0 ]]; then TAG=$${TAG}"-r"$${COMMIT_COUNT}; fi ;\
+echo -e " "$(BLUE)TAG$(DEFCLR)=$(BOLDON)$${TAG}$(BOLDOFF) ;\
+echo $${TAG} > $(TAG_FILE)
+endef
+
+
+define commit
+read -r -p "Would you like to commit these changes and push to githib [y/N] ? " response ;\
+response=$${response,,}  ;\
+if [[ $$response =~ ^(|n|no)$$ ]]; then \
+ echo "Exiting with no action taken" ;\
+else (\
+ git commit; \
+ git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim `cat $(TAG_FILE)`;\
+ git push --tags origin `git branch | grep '\*' | cut -f2 -d' '` );\
+fi 
+endef
+
+
 
 pull_all: pull 
 
@@ -330,19 +366,13 @@ git:
 	@echo
 	@git remote update origin
 	@if [[ $$(git fetch --dry-run) ]]; then (echo "Your local repo is NOT up-to-date: execute 'git pull' first";exit 1) ; else echo "Your local repo is up-to-date"; fi
-
-	@echo
-	@. ./$(VERSION_FILE) && TAG="v"$$VERSION_MATRICKS; COMMIT_COUNT=`git tag -l "$$TAG*" | wc -l | tr -d ' '`; if [[ "$$COMMIT_COUNT" -gt 0 ]]; then TAG=$$TAG"-r"$$COMMIT_COUNT; fi ; echo $$TAG > $(TAG_FILE)
-	@echo "Tag for this commit: $$(tput setaf 6)`cat $(TAG_FILE)`$$(tput sgr 0)"
-
-	@echo > $(TAG_ONELINE_SUMMARY_FILE) # blank by default. put one-line summary manually if desired
+	@$(call calcVersion)
+	@echo -e "Tag for this commit: "$(BOLDON)`cat $(TAG_FILE)` $(BOLDOFF)
+	@echo > $(TAG_ONELINE_SUMMARY_FILE) 
 	@cat $(TAG_ONELINE_SUMMARY_FILE) > $(TAG_ANNOTATION_FILE)
 	@cat $(TAG_FILE) >> $(TAG_ANNOTATION_FILE)
-	@echo "SUBMODULE SUMMARY:" >> $(TAG_ANNOTATION_FILE)
-	@git submodule >> $(TAG_ANNOTATION_FILE)
 	@cat  $(VERSION_FILE) >> $(TAG_ANNOTATION_FILE)
 	@git add $(TAG_FILE) $(TAG_ANNOTATION_FILE)
-
 	@echo
 	@git status 
 	@echo 
@@ -352,15 +382,7 @@ git:
 	@echo "git push --tags origin $$(tput setaf 6)`git branch | grep '\*' | cut -f2 -d' '`$$(tput sgr 0)"
 	@echo 
 	@echo 
-	@read -r -p "Would you like to commit these changes and push to githib [y/N] ? " response ;\
-	  response=$${response,,}  ;\
-	  if [[ $$response =~ ^(|n|no)$$ ]]; then \
-	    echo "Exiting with no action taken" ;\
-	  else (\
-	    git commit; \
-	    git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim `cat $(TAG_FILE)`;\
-	    git push --tags origin `git branch | grep '\*' | cut -f2 -d' '` );\
-	  fi 
+	@$(call commit)
 
 
 

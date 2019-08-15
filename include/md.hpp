@@ -3,7 +3,9 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-// Utilities for redering .md markdown for github
+
+
+// Utilities for rendering .md markdown for github
 
 
 #define matricks_preamble()  printf("This document was automatically generated from file **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_matricks)
@@ -21,7 +23,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
   
 #define matricks_toc() std::cout << std::endl<<"[Table of Contents](README.md)"<< std::endl;
 
-#define mdtitle(str)   std::cout << "# " << str << "in mātricks" << std::endl; write_mdtitle_file(__FILE__,str);
+#define mdtitle(str)   std::cout << "# " << str << " in mātricks" << std::endl; write_mdtitle_file(__FILE__,str);
  
 
 #define header1(str)  std::cout << "# " << str << std::endl

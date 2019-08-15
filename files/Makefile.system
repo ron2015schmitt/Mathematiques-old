@@ -80,7 +80,7 @@ git:
 	@cat $(TAG_FILE_MATRICKS) >> $(TAG_ANNOTATION_FILE)
 	@cat  $(VERSION_FILE_MATRICKS) >> $(TAG_ANNOTATION_FILE)
 	@git add $(TAG_FILE_MATRICKS) $(TAG_ANNOTATION_FILE)
-	@$(shell TAG=`cat $(TAG_FILE_MATRICKS)` && echo "const vers_matricks[] = \"$${TAG}\";" > $(VERSION_HEADER_FILE_MATRICKS) )
+	@$(shell TAG=`cat $(TAG_FILE_MATRICKS)` && echo "const char vers_matricks[] = \"$${TAG}\";" > $(VERSION_HEADER_FILE_MATRICKS) )
 	@git add $(VERSION_HEADER_FILE_MATRICKS)
 	@echo
 	@git status 

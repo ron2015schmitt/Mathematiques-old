@@ -24,7 +24,7 @@ int main()
   
   cr();
   header1("Declaring and Assigning Vectors in mātricks");
-  printf("This document is automatically generated from file **`%s`**:\n",__FILE__);
+  printf("This document is automatically generated from file **`%s`**, %s-%s\n",__FILE__, "mātricks ", vers_matricks);
   
   header2("Declaring vectors");
   

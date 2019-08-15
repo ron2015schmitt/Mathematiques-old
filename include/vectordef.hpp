@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 
-#if cpp11 == 1
+#if CPP11 == 1
 #include <initializer_list>
 #endif
 
@@ -49,7 +49,7 @@ namespace Matricks {
     // ************************** CONSTRUCTOR **********************************
 
     // ************************** C++11  INIT CONSTRUCTOR**********************************
-#if cpp11 == 1
+#if CPP11 == 1
   
     explicit Vector<D>(std::initializer_list<D> list, const std::string name="") { 
 

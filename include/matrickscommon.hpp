@@ -14,9 +14,9 @@
 #include <limits>
 #include <valarray>
 
-#define cpp11 (__cplusplus >= 201100L)
+#define CPP11 (__cplusplus >= 201100L)
 
-#if cpp11 == 1
+#if CPP11 == 1
 #include <initializer_list>
 #endif
 

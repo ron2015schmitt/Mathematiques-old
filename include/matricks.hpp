@@ -6,6 +6,7 @@
 #ifndef MATRICKS_H
 #define MATRICKS_H
 
+#include "util.hpp"
 #include "matrickscommon.hpp"
 #include "applicative.hpp"
 #include "mathapp.hpp"
@@ -15,7 +16,10 @@
 #include "merror.hpp"
 #include "vectordef.hpp"
 #include "matrixdef.hpp"
+
 #include "print.hpp"
+#include "md.hpp"
+
 #include "vexpr.hpp"
 #include "vboolexpr.hpp"
 #include "vcomplexexpr.hpp"

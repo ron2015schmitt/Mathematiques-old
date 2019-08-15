@@ -5,7 +5,7 @@
 // Utilities for redering .md markdown for github
 
   
-#define matricks_preamble()  printf("This document was automatically generated from file **`%s`** (%s-%s).\n",__FILE__, "mātricks", vers_matricks)
+#define matricks_preamble()  printf("This document was automatically generated from file **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_matricks)
 #define header1(str)  std::cout << "# " << str << std::endl
 #define header2(str)  std::cout << "## " << str << std::endl
 #define header3(str)  std::cout << "### " << str << std::endl

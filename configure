@@ -1,27 +1,98 @@
 #!/bin/bash
 
+# TEXT ATTRIBUTES
+BLACK='\033[0;30m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+GRAYlIGHT='\033[0;37m'
+DEFCLR='\033[0;39m'
+GRAYDARK='\033[0;90m'
+REDLIGHT='\033[0;91m'
+GREENLIGHT='\033[0;92m'
+YELLOWLGIHT='\033[0;93m'
+BLUELIGHT='\033[0;94m'
+MAGNETALIGHT='\033[0;95m'
+CYANLIGHT='\033[0;96m'
+WHITE='\033[0;97m'
+
+BOLDON='\e[0;1m'
+BOLDOFF='\e[0;0m'
+
+UNDERLINEON='\e[0;4m'
+UNDERLINEOFF='\e[0;0m'
+
+
+
+pwd=`pwd`
+mydir=`dirname $(readlink -f $0)`
+if [ "${pwd}" != "${mydir}" ]; then
+    echo -e "${RED}ERROR${DEFCLR} You must run this script from its directory."
+    exit -1
+fi
+            
+
 
 # place the current path into the Makefiles
 temp=`pwd | sed -e 's/\//\\\\\//g'`
 
-echo "creating Makefile ..."
-echo "  " > Makefile
+echo " "
+echo "Creating Makefile ..."
+echo "# " > Makefile
 echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >>Makefile
 echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >>Makefile
-sed -e "s/#MATRICKS_DIR#/$temp/g" files/Makefile.vars >> Makefile 
-cat  files/Makefile.matricks >> Makefile
+echo "" >> Makefile
+echo "" >> Makefile
+echo "##################################################################" >>Makefile
+echo "#  files/Makefile                                                #" >>Makefile
+echo "##################################################################" >>Makefile
+sed -e ""  files/Makefile >> Makefile
+echo "" >> Makefile
+echo "" >> Makefile
+echo "##################################################################" >>Makefile
+echo "#  files/Makefile.matricks                                       #" >>Makefile
+echo "##################################################################" >>Makefile
+sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> Makefile 
+echo "" >> Makefile
+echo "" >> Makefile
+echo "##################################################################" >>Makefile
+echo "#  files/Makefile.system                                         #" >>Makefile
+echo "##################################################################" >>Makefile
+cat   files/Makefile.system >> Makefile
+echo "" >> Makefile
+echo "" >> Makefile
+cp Makefile Makefile.clean
 
-
-echo "creating examples/Makefile ..."
+echo " "
+echo "Creating examples/Makefile ..."
 mkdir -p examples
-echo "  " > examples/Makefile
-echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >> examples/Makefile
-echo "# ********  THIS IS THE EXAMPLE USER MAKEFILE           **********" >> examples/Makefile
-sed -e "s/#MATRICKS_DIR#/$temp/g" files/Makefile.vars >> examples/Makefile
-cat  files/Makefile.user >> examples/Makefile
+echo "#" > examples/Makefile
+echo "# ****  THIS IS AN EXAMPLE USER MAKEFILE WITH LOTS OF FEATURES***" >>examples/Makefile
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>examples/Makefile
+echo "" >> examples/Makefile
+echo "" >> examples/Makefile
+echo "##################################################################" >>examples/Makefile
+echo "#  files/Makefile                                                #" >>examples/Makefile
+echo "##################################################################" >>examples/Makefile
+cat  files/Makefile >> examples/Makefile
+echo "" >> examples/Makefile
+echo "" >> examples/Makefile
+echo "##################################################################" >>examples/Makefile
+echo "#  files/Makefile.matricks                                       #" >>examples/Makefile
+echo "##################################################################" >>examples/Makefile
+sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> examples/Makefile 
+echo "" >> examples/Makefile
+echo "" >> examples/Makefile
+cp examples/Makefile examples/Makefile.clean
+
+
 
 # make the object file library (libmatricks.a)
-echo "creating libmatricks.a ..."
+echo " "
+echo "Creating libmatricks.a ..."
 cd src
 make libmatricks.a
 cd ..

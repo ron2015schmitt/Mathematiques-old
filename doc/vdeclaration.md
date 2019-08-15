@@ -1,6 +1,6 @@
 
 # Declaring and Assigning Vectors in mātricks
-This document is automatically generated from file **`vdeclaration.cpp`**, mātricks -v2.1-r6
+This document was automatically generated from file **`vdeclaration.cpp`** (mātricks-v2.1-r7)
 ## Declaring vectors
 **EXAMPLE 1**: Declare vector `v1`.
 ```C++

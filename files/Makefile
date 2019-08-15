@@ -310,3 +310,58 @@ cleanexec:
 
 
 all: $(EXEC) 
+
+
+
+
+#############################################################
+# git related and versioning
+#############################################################
+
+# $(VERSION_FILE) should be a bash file with VERSION_MATRICKS=X.X
+VERSION_FILE = files/matricks.vers
+
+pull_all: pull 
+
+pull:
+	git pull origin master
+
+git:
+	@echo
+	@git remote update origin
+	@if [[ $$(git fetch --dry-run) ]]; then (echo "Your local repo is NOT up-to-date: execute 'git pull' first";exit 1) ; else echo "Your local repo is up-to-date"; fi
+
+	@echo
+	@. ./$(VERSION_FILE) && TAG="v"$$VERSION_MATRICKS; COMMIT_COUNT=`git tag -l "$$TAG*" | wc -l | tr -d ' '`; if [[ "$$COMMIT_COUNT" -gt 0 ]]; then TAG=$$TAG"-r"$$COMMIT_COUNT; fi ; echo $$TAG > $(TAG_FILE)
+	@echo "Tag for this commit: $$(tput setaf 6)`cat $(TAG_FILE)`$$(tput sgr 0)"
+
+	@echo > $(TAG_ONELINE_SUMMARY_FILE) # blank by default. put one-line summary manually if desired
+	@cat $(TAG_ONELINE_SUMMARY_FILE) > $(TAG_ANNOTATION_FILE)
+	@cat $(TAG_FILE) >> $(TAG_ANNOTATION_FILE)
+	@echo "SUBMODULE SUMMARY:" >> $(TAG_ANNOTATION_FILE)
+	@git submodule >> $(TAG_ANNOTATION_FILE)
+	@cat  $(VERSION_FILE) >> $(TAG_ANNOTATION_FILE)
+	@git add $(TAG_FILE) $(TAG_ANNOTATION_FILE)
+
+	@echo
+	@git status 
+	@echo 
+	@echo "THE FOLLOWING COMMANDS WILL BE EXECUTED:"
+	@echo "git commit"
+	@echo "git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim $$(tput setaf 6)`cat $(TAG_FILE)`$$(tput sgr 0)"
+	@echo "git push --tags origin $$(tput setaf 6)`git branch | grep '\*' | cut -f2 -d' '`$$(tput sgr 0)"
+	@echo 
+	@echo 
+	@read -r -p "Would you like to commit these changes and push to githib [y/N] ? " response ;\
+	  response=$${response,,}  ;\
+	  if [[ $$response =~ ^(|n|no)$$ ]]; then \
+	    echo "Exiting with no action taken" ;\
+	  else (\
+	    git commit; \
+	    git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim `cat $(TAG_FILE)`;\
+	    git push --tags origin `git branch | grep '\*' | cut -f2 -d' '` );\
+	  fi 
+
+
+
+

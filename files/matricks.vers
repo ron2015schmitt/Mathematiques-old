@@ -1,0 +1,8 @@
+#!/bin/bash
+# version is Major.Minor
+# Major should be updated when Major changes have been made
+# Minor should be manually updated any time new functionality is added
+# Both should be integers
+# The Makefile will tack on a revision string for commits bewteen changes
+VERSION_MATRICKS=2.0
+

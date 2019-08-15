@@ -16,14 +16,6 @@ using namespace Matricks;
 #include <initializer_list>
 #endif
 
-char _str[2048];
-
-
-#define Vector_(D, var, sz) Matricks::Vector<D> var(sz,#var)
-
-#define RVector2_(D, var, sz) sprintf(_str,"%s :: %s", __FUNCTION__, #var); Matricks::Vector<D> var(sz, "ron")
-
-// __FUNCTION__ __FILE__  __FILE__
 
 
 int main()

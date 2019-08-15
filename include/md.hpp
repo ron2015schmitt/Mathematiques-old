@@ -4,12 +4,12 @@
 
 // Utilities for redering .md markdown for github
 
-#define header1(...)  printf("# %s \n", __VA_ARGS__)
-#define header2(...)  printf("## %s \n", __VA_ARGS__)
-#define header3(...)  printf("### %s \n", __VA_ARGS__)
-#define text(...)  printf("%s \n", __VA_ARGS__)
+#define header1(str)  std::cout << "# " << str << std::endl
+#define header2(str)  std::cout << "## " << str << std::endl
+#define header3(str)  std::cout << "### " << str << std::endl
+#define text(str)  std::cout << str << std::endl
 
-#define codestart(lang) std::cout << std::string("```") << std::string(lang) << std::string("\n")
+#define codestart(lang) std::cout << std::string("```") << std::string(lang) << std::endl
 #define codemulti(...)  printf("%s;\n",  #__VA_ARGS__); __VA_ARGS__
 #define codeend() printf("```\n")
 #define code(...)  codestart();codemulti(__VA_ARGS__);codeend()
@@ -19,5 +19,4 @@
 #define resultend() printf("```\n\n")
 #define result(...)  resultstart();resultmulti(__VA_ARGS__);resultend()
 
-#define example(n,...) sprintf(_str,"**EXAMPLE%2d**: ",n); text(std::strcat(_str,__VA_ARGS__))
-
+#define example(n,str) std::cout << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl

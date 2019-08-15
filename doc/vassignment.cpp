@@ -12,43 +12,10 @@ using namespace Matricks;
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if cpp10 == 1
+#if CPP11 == 1
 #include <initializer_list>
 #endif
 
-char _str[2048];
-
-
-#define header1(x)  printf("# %s \n", x)
-#define header2(x)  printf("## %s \n", x)
-#define header3(x)  printf("### %s \n", x)
-#define text(x)  printf("%s \n", x)
-
-#define printexp(x)  printf("-> %s = %s\n",  #x, x)
-
-#define codestart(lang) std::cout << std::string("```") << std::string(lang) << std::string("\n")
-//#define codestart() printf( "```\n" )
-#define codemulti(...)  printf("%s;\n",  #__VA_ARGS__); __VA_ARGS__
-
-#define codeend() printf("```\n")
-#define code(x)  codestart();codemulti(x);codeend()
-
-#define resultstart() printf("**The result is**\n```C++\n")
-#define resultmulti(...)  printf("  ");dispcr(__VA_ARGS__)
-#define resultend() printf("```\n\n")
-#define result(x)  resultstart();resultmulti(x);resultend()
-
-int _e = 1;
-
-//#define example(x) sprintf(_str,"**EXAMPLE%2d**: ",_e++); text(std::strcat(_str,x))
-#define example(x) sprintf(_str,"**EXAMPLE%2d**: ",_e++); text(std::strcat(_str,x))
-
-
-#define Vector_(D, var, sz) Matricks::Vector<D> var(sz,#var)
-
-#define RVector2_(D, var, sz) sprintf(_str,"%s :: %s", __FUNCTION__, #var); Matricks::Vector<D> var(sz, "ron")
-
-// __FUNCTION__ __FILE__  __FILE__
 
 
 int main()
@@ -80,7 +47,7 @@ int main()
   codeend();
   result(v3);
 
-  if (cpp11) {
+  if (CPP11) {
     example("Declare `v4` and initialize directly (**__C++11__**)" );
     codestart("C++");
     codemulti( Vector<double> v4({10, 20, 30, 40})  );

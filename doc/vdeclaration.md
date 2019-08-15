@@ -1,8 +1,8 @@
 
-# Declaring and Assigning Vectors in mātricks 
+# Declaring and Assigning Vectors in mātricks
 This document is automatically generated from file **`vdeclaration.cpp`**:
-## Declaring vectors 
-**EXAMPLE 1**: Declare vector `v1`. 
+## Declaring vectors
+**EXAMPLE 1**: Declare vector `v1`.
 ```C++
 const size_type N = 4;
 Vector<double> v1(N);
@@ -12,7 +12,7 @@ Vector<double> v1(N);
   v1: {0,0,0,0}; 
 ```
 
-**EXAMPLE 2**: Declare `v2` and initialize to a constant 
+**EXAMPLE 2**: Declare `v2` and initialize to a constant
 ```C++
 Vector<double> v2(4, -1 );
 ```
@@ -21,7 +21,7 @@ Vector<double> v2(4, -1 );
   v2: {-1,-1,-1,-1}; 
 ```
 
-**EXAMPLE 3**: Declare `v3` and initialize to a **C-style array** of values 
+**EXAMPLE 3**: Declare `v3` and initialize to a **C-style array** of values
 ```C++
 Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} );
 ```
@@ -30,7 +30,7 @@ Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} );
   v3: {10,20,30,40}; 
 ```
 
-**EXAMPLE 4**: Declare `v4` and initialize directly (**__C++11__**) 
+**EXAMPLE 4**: Declare `v4` and initialize directly (**__C++11__**)
 ```C++
 Vector<double> v4({10, 20, 30, 40});
 ```
@@ -39,7 +39,7 @@ Vector<double> v4({10, 20, 30, 40});
   v4: {10,20,30,40}; 
 ```
 
-**EXAMPLE 5**: Declare `v5` and initialize to values of `v3` 
+**EXAMPLE 5**: Declare `v5` and initialize to values of `v3`
 ```C++
 Vector<double> v5(v3);
 ```
@@ -48,7 +48,7 @@ Vector<double> v5(v3);
   v5: {10,20,30,40}; 
 ```
 
-**EXAMPLE 6**: Declare `v6` and initialize to an expression 
+**EXAMPLE 6**: Declare `v6` and initialize to an expression
 ```C++
 Vector<double> v6(2*v3+1);
 ```

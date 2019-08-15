@@ -30,7 +30,7 @@ int main()
   
   example(Nex++,"Assign all elements to a single value.");
   codestart("C++");
-  codemulti( Vector<double> v1(4); );
+  codemulti( Vector<double> v1(10) );
   codemulti( v1 = 78.9 );
   codeend();
   result(v1);
@@ -282,6 +282,8 @@ int main()
 //   codemulti( Vector<double> x(N) );
 //   codeend();
 //   result(x);
+
+  matricks_toc();
 
   return 0;
 }

@@ -67,6 +67,7 @@ int main()
   codeend();
   result(v6);
 
+  matricks_toc();
   
   return 0;
 }

@@ -6,6 +6,7 @@
 
   
 #define matricks_preamble()  printf("This document was automatically generated from file **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_matricks)
+#define matricks_toc() std::cout << std::endl<<"[Table of Contents](README.md)"<< std::endl;
 #define header1(str)  std::cout << "# " << str << std::endl
 #define header2(str)  std::cout << "## " << str << std::endl
 #define header3(str)  std::cout << "### " << str << std::endl

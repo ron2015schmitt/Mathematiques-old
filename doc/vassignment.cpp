@@ -24,7 +24,7 @@ int main()
   int Nex = 1;
   
   cr();
-  header1("Vector assigment in mātricks");
+  mdtitle("Vector assigment");
   matricks_preamble();
   
   

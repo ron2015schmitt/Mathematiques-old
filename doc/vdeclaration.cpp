@@ -23,7 +23,7 @@ int main()
   int Nex = 1;
   
   cr();
-  header1("Vector declaration in mātricks");
+  mdtitle("Vector declaration");
   matricks_preamble();
   
   example(Nex++, "Declare vector `v1`.");

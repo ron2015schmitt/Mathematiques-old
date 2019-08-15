@@ -1,4 +1,4 @@
 
-EXEC= vdeclaration vassigment
+EXEC= vdeclaration vassignment
 
 include ../Makefile

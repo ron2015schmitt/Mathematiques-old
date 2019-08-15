@@ -21,99 +21,59 @@ using namespace Matricks;
 int main()
 {
 
-  cr();
-  header1("Declaring and Assigning Vectors in mātricks");
-  printf("This document is automatically generated from file **`%s`**:\n",__FILE__);
-  
-  header2("Declaring vectors");
-  
-  example("Declare vector `v1`.");
-  codestart("C++");
-  codemulti( const size_type N = 4 );
-  codemulti( Vector<double> v1(N) );
-  codeend();
-  result(v1);
-
-
-  example("Declare `v2` and initialize to a constant" );
-  codestart("C++");
-  codemulti( Vector<double> v2(4, -1 ) );
-  codeend();
-  result(v2);
-
-  example("Declare `v3` and initialize to a **C-style array** of values" );
-  codestart("C++");
-  codemulti( Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} )  );
-  codeend();
-  result(v3);
-
-  if (CPP11) {
-    example("Declare `v4` and initialize directly (**__C++11__**)" );
-    codestart("C++");
-    codemulti( Vector<double> v4({10, 20, 30, 40})  );
-    codeend();
-    result(v4);
-  }
-  
-  header2("Assigning the values of a vector");
-
-  header3("Directly assigning the values of a vector");
-  cr();
-  cr();
-  example("Set each element of `v1` **individually**");
-  codestart("C++");
-  codemulti( v1[0] = 1.0 );
-  codemulti( v1[1] = 2.0 );
-  codemulti( v1[2] = 3.0 );
-  codemulti( v1[3] = 4.0 );
-  codeend();
-  cr();
-  result(v1);
-
-
-  example("Assigning `v` from a **C-style array**" );
-  codestart("C++");
-  codemulti( v2 = Vector<double>( N, (const double[]) {10, 20, 30, 40})  );
-  codeend();
-  result(v2);
-
-  header3("Using the `range` Function");
+  int Nex = 1;
   
   cr();
-  cr();
-  example("Assign `v1` using the **`range`** function");
-  code( v1 = range<double>(5,8) );
-  cr();
+  header1("Vector assigment in mātricks");
+  matricks_preamble();
+  
+  
+  example(Nex++,"Assign all elements to a single value.");
+  codestart("C++");
+  codemulti( Vector<double> v1(4); );
+  codemulti( v1 = 78.9 );
+  codeend();
   result(v1);
 
-  cr();
-  cr();
-  example("Assign `v1` using the **`range`** function");
-  code( v1 = range<double>(4,1) );
-  cr();
-  result(v1);
 
-  cr();
-  cr();
-  example("Assign `v1` using the **`range`** function");
-  code( v1 = range<double>(400,100,-100) );
-  cr();
-  result(v1);
 
-  header3("Using the **`linspace`** function");
-  cr();
-  cr();
-  example("Assign `v1` using the **`linspace`** function");
-  code( v1 = linspace<double>(100,400,4) );
-  cr(); 
-  result(v1);
+  // header3("Using the `range` Function");
+  
+  // cr();
+  // cr();
+  // example("Assign `v1` using the **`range`** function");
+  // code( v1 = range<double>(5,8) );
+  // cr();
+  // result(v1);
 
-  cr();
-  cr();
-  example("Assign `v1` using the **`linspace`** function");
-  code( v1 = linspace<double>(6,3,4) );
-  cr();
-  result(v1);
+  // cr();
+  // cr();
+  // example("Assign `v1` using the **`range`** function");
+  // code( v1 = range<double>(4,1) );
+  // cr();
+  // result(v1);
+
+  // cr();
+  // cr();
+  // example("Assign `v1` using the **`range`** function");
+  // code( v1 = range<double>(400,100,-100) );
+  // cr();
+  // result(v1);
+
+  // header3("Using the **`linspace`** function");
+  // cr();
+  // cr();
+  // example("Assign `v1` using the **`linspace`** function");
+  // code( v1 = linspace<double>(100,400,4) );
+  // cr(); 
+  // result(v1);
+
+  // cr();
+  // cr();
+  // example("Assign `v1` using the **`linspace`** function");
+  // code( v1 = linspace<double>(6,3,4) );
+  // cr();
+  // result(v1);
 
 
 

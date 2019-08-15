@@ -23,9 +23,8 @@ int main()
   int Nex = 1;
   
   cr();
-  header1("Declaring and Assigning Vectors in mātricks");
+  header1("Vector declaration in mātricks");
   matricks_preamble();
-  header2("Declaring vectors");
   
   example(Nex++, "Declare vector `v1`.");
   codestart("C++");

@@ -11,6 +11,9 @@ LIB_MATRICKS = -lmatricks
 INCLUDES += -I $(INCDIR_MATRICKS) 
 LIBS += -L$(LIBDIR_MATRICKS) $(LIB_MATRICKS)
 
+#  VERSION_FILE_MATRICKS should be a bash file with VERSION_MATRICKS=X.X
+VERSION_FILE_MATRICKS = $(DIR_MATRICKS)/files/matricks.vers
+VERSION_MATRICKS = `. $(VERSION_FILE_MATRICKS) && echo "$${VERSION_MATRICKS}"`
 
 LIB_LAPACK = -llapack -lg2c
 
@@ -24,7 +27,8 @@ info_matricks:
 	@$(call echovar,LIBDIR_MATRICKS)
 	@$(call echovar,LIB_MATRICKS)
 	@$(call echovar,LIB_LAPACK)
-	@$(call echovar,)
+	@$(call echovar,VERSION_FILE_MATRICKS)
+	@$(call echovar,VERSION_MATRICKS)
 	@$(call hr)
 	@echo
 

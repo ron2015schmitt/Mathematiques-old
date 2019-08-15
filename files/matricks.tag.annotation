@@ -1,10 +1,10 @@
 
-v2.1
+v2.1-r1
 #!/bin/bash
-# version is Major.Minor
-# Major should be updated when Major changes have been made
-# Minor should be manually updated any time new functionality is added
+# version = Major.Minor
+# Minor should be manually updated any time new functionality is added.
+# Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
-# The Makefile will tack on a revision string for commits bewteen changes
+# The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
 VERSION_MATRICKS=2.1
-
+# V2.1 Introduces version control

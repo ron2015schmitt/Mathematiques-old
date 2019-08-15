@@ -337,7 +337,7 @@ echo -e " "$(BLUE)"VERSION_MATRICKS"$(DEFCLR)=$(BOLDON)$${VERSION_MATRICKS}$(BOL
 TAG=v$${VERSION_MATRICKS} ;\
 VERSION_COMMIT_COUNT=`git tag -l "$$TAG*" | wc -l | tr -d ' '` &&\
 echo -e " "$(BLUE)VERSION_COMMIT_COUNT$(DEFCLR)=$(BOLDON)$${VERSION_COMMIT_COUNT}$(BOLDOFF) &&\
-if [[ "$${COMMIT_COUNT}" -gt 0 ]]; then TAG=$${TAG}"-r"$${COMMIT_COUNT}; fi ;\
+if [[ $${VERSION_COMMIT_COUNT} -gt 0 ]]; then TAG=$${TAG}"-r"$${VERSION_COMMIT_COUNT}; fi ;\
 echo -e " "$(BLUE)TAG$(DEFCLR)=$(BOLDON)$${TAG}$(BOLDOFF) ;\
 echo $${TAG} > $(TAG_FILE)
 endef

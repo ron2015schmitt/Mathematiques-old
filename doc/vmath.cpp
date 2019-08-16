@@ -49,7 +49,7 @@ int main()
     cr();
 
    
-    resultstart2();
+    resultstart2("");
     resultmulti(v1 + v2);
     resultmulti(v1 - v2);
     resultmulti(v1 * v2);
@@ -76,7 +76,7 @@ int main()
     codeend();
     cr();
 
-    resultstart2();
+    resultstart2("");
     resultmulti(v1 + 1);
     resultmulti(1 + v1);
     resultmulti(v1 - 10);
@@ -108,11 +108,13 @@ int main()
     codeend();
     cr();
 
-    resultstart2();
-    resultmulti( sgn(v)  );
+    resultstart2(": rounding and sign-related");
     resultmulti( floor(v)  );
     resultmulti( ceil(v)  );
     resultmulti( round(v)  );
+    resultmulti( sgn(v)  );
+    resultmulti( abs(v)  );
+    resultstart2(": powers, roots, and exponentiation");
     //    resultmulti( pow(10,v)  );
     //    resultmulti( pow(v,2)  );
     //    resultmulti( pow(v2,2)  );
@@ -122,12 +124,15 @@ int main()
     resultmulti( sqr(v)  );
     resultmulti( cube(v)  );
     resultmulti( sqrt(v)  );
+    resultstart2(": trig");
     resultmulti( sin(v)  );
     resultmulti( cos(v)  );
     resultmulti( tan(v)  );
+    resultstart2(": hyperbolic trig");
     resultmulti( sinh(v)  );
     resultmulti( cosh(v)  );
     resultmulti( tanh(v)  );
+    resultstart2(": inverse (ie 'arc') trig");
     resultmulti( asin(v)  );
     resultmulti( acos(v)  );
     resultmulti( atan(v)  );

@@ -38,7 +38,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define code(...)  codestart();codemulti(__VA_ARGS__);codeend()
 
 #define resultstart() printf("**The result is**\n```C++\n")
-#define resultstart2() printf("**Some expressions with results**\n```C++\n")
+#define resultstart2(str) printf("**Some expressions with results**%s\n```C++\n",str)
 #define resultmulti(...)  printf("  ");dispcr(__VA_ARGS__)
 #define resultend() printf("```\n\n")
 #define result(...)  resultstart();resultmulti(__VA_ARGS__);resultend()

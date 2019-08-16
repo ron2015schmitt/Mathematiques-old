@@ -1,6 +1,6 @@
 
 # Vector math in mātricks
-This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r35).
+This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r36).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
@@ -57,24 +57,33 @@ Vector<double> v(3);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 ```
 
-**Some expressions with results**
+**Some expressions with results**: rounding and sign-related
 ```C++
-  sgn(v):  {-1,-1,-1,0,1,1,1}; 
   floor(v):  {-3,-3,-1,0,1,2,2}; 
   ceil(v):  {-2,-2,-1,0,1,3,3}; 
   round(v):  {-3,-2,-1,0,1,2,3}; 
+  sgn(v):  {-1,-1,-1,0,1,1,1}; 
+  abs(v):  {2.5,2.25,1,0,1,2.25,2.5}; 
+**Some expressions with results**: powers, roots, and exponentiation
+```C++
   exp(v):  {0.082085,0.105399,0.367879,1,2.71828,9.48774,12.1825}; 
   log(v):  {nan,nan,nan,-inf,0,0.81093,0.916291}; 
   log10(v):  {nan,nan,nan,-inf,0,0.352183,0.39794}; 
   sqr(v):  {6.25,5.0625,1,0,1,5.0625,6.25}; 
-  cube(v):  {6.25,5.0625,1,0,1,5.0625,6.25}; 
+  cube(v):  {-15.625,-11.3906,-1,0,1,11.3906,15.625}; 
   sqrt(v):  {-nan,-nan,-nan,0,1,1.5,1.58114}; 
+**Some expressions with results**: trig
+```C++
   sin(v):  {-0.598472,-0.778073,-0.841471,0,0.841471,0.778073,0.598472}; 
   cos(v):  {-0.801144,-0.628174,0.540302,1,0.540302,-0.628174,-0.801144}; 
   tan(v):  {0.747022,1.23863,-1.55741,0,1.55741,-1.23863,-0.747022}; 
+**Some expressions with results**: hyperbolic trig
+```C++
   sinh(v):  {-6.0502,-4.69117,-1.1752,0,1.1752,4.69117,6.0502}; 
   cosh(v):  {6.13229,4.79657,1.54308,1,1.54308,4.79657,6.13229}; 
   tanh(v):  {-0.986614,-0.978026,-0.761594,0,0.761594,0.978026,0.986614}; 
+**Some expressions with results**: inverse (ie 'arc') trig
+```C++
   asin(v):  {nan,nan,-1.5708,0,1.5708,nan,nan}; 
   acos(v):  {nan,nan,3.14159,1.5708,0,nan,nan}; 
   atan(v):  {-1.19029,-1.15257,-0.785398,0,0.785398,1.15257,1.19029}; 

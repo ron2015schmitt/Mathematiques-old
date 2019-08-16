@@ -127,10 +127,10 @@ namespace Matricks {
   // cube(vector)
 
   template <class D, class A> 
-  inline VFuncOp<D,VorE<D,A>,ApSqr<D> > 
+  inline VFuncOp<D,VorE<D,A>,ApCube<D> > 
   cube(const VorE<D,A>& a)
   {
-    return  VFuncOp<D,VorE<D,A>,ApSqr<D> >(a);
+    return  VFuncOp<D,VorE<D,A>,ApCube<D> >(a);
   }
 
 

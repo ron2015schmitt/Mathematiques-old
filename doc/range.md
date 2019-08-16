@@ -1,6 +1,6 @@
 
 # The `range` function in mātricks
-This document was automatically generated from file **`range.cpp`** (mātricks-v2.1-r35).
+This document was automatically generated from file **`range.cpp`** (mātricks-v2.1-r36).
 
 ### Increasing Sequences
 * The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`

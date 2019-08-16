@@ -24,14 +24,14 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("The `**range**` and `**linspace**` functions");
+  mdtitle("The `*range*` and `*linspace*` functions");
   matricks_preamble();
   
 
-  header2("Using the `**range**` Function");
-  text("* For integers `start`, `end`, the `range<D>(start,end)` function returns a Vector<D> containing the numbers {`start`,`start`+1, `start`+2,... , `end`}");
+  header2("The `*range*` Function");
+  text("* For integers `start`, `end`, the `range<D>(start,end)` function returns a Vector<D> containing the numbers `{start,start+1, start+2,..., end}");
   codestart("C++");
-  dispcr(range<int>(1,8));
+  dispcr(range<int>(1,10));
   dispcr(range<double>(-3,3));
   codeend();
 
@@ -41,23 +41,22 @@ int main()
   codeend();
 
   
-  text("* The range<D>(Nstart,Nend,Nstride) function returns a Vector<D> containging the whole numbers from start counting by stride");
+  text("* The `range<D>(Nstart,Nend,Nstride)` function returns returns a Vector<D> containing the numbers `{start,start+stride, start+2*stride,..., end}");
   
-
 
   {
     cr();
     cr();
-    example(Nex++,"Assign `Vector`s of various types  using the **`range`** function");
+    example(Nex++,"Assign `Vector`s of various types  using the *`range`* function");
     codestart("C++");
-    code( Vector<unsigned int> v1 (4) );
-    code( v1 = range<unsigned int>(0,3) );
+    codemulti( Vector<unsigned int> v1 (4) );
+    codemulti( v1 = range<unsigned int>(0,3) );
     dispcr(v1);
-    code( Vector<int> v2 (4) );
-    code( v2 = range<int>(0,3) );
+    codemulti( Vector<int> v2 (4) );
+    codemulti( v2 = range<int>(0,3) );
     dispcr(v2);
-    code( Vector<double> v3 (4) );
-    code( v3 = range<double>(0,3) );
+    codemulti( Vector<double> v3 (4) );
+    codemulti( v3 = range<double>(0,3) );
     dispcr(v3);
     codeend();
     cr();

@@ -136,17 +136,17 @@ namespace Matricks {
   /* "disp"
    * These functions display the variable/expression and its value
    */
-#define disp(var) _printvar(var,true,# var,": ","; ")
-#define dispcr(var) _printvar(var,true,# var,": ","; \n")
+#define disp(var) _printvar(var,true,# var,":  ","; ")
+#define dispcr(var) _printvar(var,true,# var,":  ","; \n")
 #define dispcrcr(var) _printvar(var,true,# var,":\n","; \n")
-#define disparray(var,start,end) _printarray(var,true,# var,start,end,": ","; \n")
+#define disparray(var,start,end) _printarray(var,true,# var,start,end,":  ","; \n")
 
 	
   template <typename D>
   void _matricksinfo(const Vector<D>& a, std::string varname)
   {
     std::ostringstream stream;
-    stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.size() <<"]"<<", VectorID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
+    stream <<"SUMMARY for '" << varname << "':  "<< a.fullclassname()  << "[size=" << a.size() <<"]"<<", VectorID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
     std::cout <<  stream.str() <<std::endl;
   }
 
@@ -161,7 +161,7 @@ namespace Matricks {
   void _matricksinfo(const Matrix<D>& a, std::string varname)
   {
     std::ostringstream stream;
-    stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.Nrows() << "x" << a.Ncols()<<"]"<<", MatrixID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
+    stream <<"SUMMARY for '" << varname << "':  "<< a.fullclassname()  << "[size=" << a.Nrows() << "x" << a.Ncols()<<"]"<<", MatrixID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
     std::cout <<  stream.str() <<std::endl;
   }
 

@@ -184,6 +184,17 @@ namespace Matricks {
   }
 
 
+  // log2(vector)
+
+  template <class D, class A> 
+  inline VFuncOp<D,VorE<D,A>,ApLog2<D> > 
+  log2(const VorE<D,A>& a)
+  {
+    return  VFuncOp<D,VorE<D,A>,ApLog2<D> >(a);
+  }
+
+
+
   // asin(vector)
 
   template <class D, class A> 

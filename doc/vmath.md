@@ -1,6 +1,6 @@
 
 # Vector math in mātricks
-This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r36).
+This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r37).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
@@ -51,7 +51,7 @@ v1 = {10,20,30,40}; // C++11 list
 * A function of a `Vector` operates on each element.  
 
 
-**EXAMPLE 3**: functions of a `Vector`
+**EXAMPLE 3**: functions of a `Vector`—rounding and sign-related 
 ```C++
 Vector<double> v(3);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
@@ -64,29 +64,74 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
   round(v):  {-3,-2,-1,0,1,2,3}; 
   sgn(v):  {-1,-1,-1,0,1,1,1}; 
   abs(v):  {2.5,2.25,1,0,1,2.25,2.5}; 
+```
+
+
+
+
+**EXAMPLE 4**: functions of a `Vector`—powers, roots, and exponentiation
+```C++
+Vector<double> v(3);
+v = {-1,0,1,2,4}; // C++11 list
+```
+
 **Some expressions with results**: powers, roots, and exponentiation
 ```C++
-  exp(v):  {0.082085,0.105399,0.367879,1,2.71828,9.48774,12.1825}; 
-  log(v):  {nan,nan,nan,-inf,0,0.81093,0.916291}; 
-  log10(v):  {nan,nan,nan,-inf,0,0.352183,0.39794}; 
-  sqr(v):  {6.25,5.0625,1,0,1,5.0625,6.25}; 
-  cube(v):  {-15.625,-11.3906,-1,0,1,11.3906,15.625}; 
-  sqrt(v):  {-nan,-nan,-nan,0,1,1.5,1.58114}; 
+  exp(v):  {0.367879,1,2.71828,7.38906,54.5982}; 
+  log(v):  {nan,-inf,0,0.693147,1.38629}; 
+  log10(v):  {nan,-inf,0,0.30103,0.60206}; 
+  log2(v):  {nan,-inf,0,1,2}; 
+  sqr(v):  {1,0,1,4,16}; 
+  cube(v):  {-1,0,1,8,64}; 
+  sqrt(v):  {-nan,0,1,1.41421,2}; 
+```
+
+
+
+
+**EXAMPLE 5**: functions of a `Vector`—trig
+```C++
+Vector<double> v(3);
+v = {-M_PI, -M_PI/2, 0, M_PI/2, M_PI}; // C++11 list
+```
+
 **Some expressions with results**: trig
 ```C++
-  sin(v):  {-0.598472,-0.778073,-0.841471,0,0.841471,0.778073,0.598472}; 
-  cos(v):  {-0.801144,-0.628174,0.540302,1,0.540302,-0.628174,-0.801144}; 
-  tan(v):  {0.747022,1.23863,-1.55741,0,1.55741,-1.23863,-0.747022}; 
+  sin(v):  {-1.22465e-16,-1,0,1,1.22465e-16}; 
+  cos(v):  {-1,6.12323e-17,1,6.12323e-17,-1}; 
+  tan(v):  {1.22465e-16,-1.63312e+16,0,1.63312e+16,-1.22465e-16}; 
+```
+
+
+
+
+**EXAMPLE 6**: functions of a `Vector`—rounding and sign-related 
+```C++
+Vector<double> v(3);
+v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
+```
+
 **Some expressions with results**: hyperbolic trig
 ```C++
   sinh(v):  {-6.0502,-4.69117,-1.1752,0,1.1752,4.69117,6.0502}; 
   cosh(v):  {6.13229,4.79657,1.54308,1,1.54308,4.79657,6.13229}; 
   tanh(v):  {-0.986614,-0.978026,-0.761594,0,0.761594,0.978026,0.986614}; 
+```
+
+
+
+
+**EXAMPLE 7**: functions of a `Vector`—inverse (ie 'arc') trig
+```C++
+Vector<double> v(3);
+v = {-1,0,1}; // C++11 list
+```
+
 **Some expressions with results**: inverse (ie 'arc') trig
 ```C++
-  asin(v):  {nan,nan,-1.5708,0,1.5708,nan,nan}; 
-  acos(v):  {nan,nan,3.14159,1.5708,0,nan,nan}; 
-  atan(v):  {-1.19029,-1.15257,-0.785398,0,0.785398,1.15257,1.19029}; 
+  asin(v):  {-1.5708,0,1.5708}; 
+  acos(v):  {3.14159,1.5708,0}; 
+  atan(v):  {-0.785398,0,0.785398}; 
 ```
 
 ### Arbitrary combinations of the above functionality are supported

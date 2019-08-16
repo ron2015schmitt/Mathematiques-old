@@ -233,6 +233,25 @@ namespace Matricks {
 
   };
 
+  // log2(a)
+
+  template <class DataT> class ApLog2 {
+  public:
+    ApLog2() { }
+
+    static inline DataT apply(DataT a) {
+      using std::log;
+      return std::log2(a);
+    }
+
+    static std::string debugtxt( const std::string& sa) {
+      std::string sout = "log2(" + sa + ")";
+      return sout;
+    }
+
+  };
+
+
   // log10(a)
 
   template <class DataT> class ApLog10 {

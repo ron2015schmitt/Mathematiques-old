@@ -97,7 +97,7 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"functions of a `Vector`");
+    example(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(3) );
 #if CPP11 == 1
@@ -114,6 +114,23 @@ int main()
     resultmulti( round(v)  );
     resultmulti( sgn(v)  );
     resultmulti( abs(v)  );
+    resultend();
+    cr();
+  }
+    
+  {
+    cr();
+    cr();
+    example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
+    codestart("C++");
+    codemulti( Vector<double> v(3) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v = {-1,0,1,2,4});
+#else
+    codemulti( v = (const double[]) {-1,0,1,2,4} );
+#endif
+    codeend();
+    cr();
     resultstart2(": powers, roots, and exponentiation");
     //    resultmulti( pow(10,v)  );
     //    resultmulti( pow(v,2)  );
@@ -121,17 +138,75 @@ int main()
     resultmulti( exp(v)  );
     resultmulti( log(v)  );
     resultmulti( log10(v)  );
+    resultmulti( log2(v)  );
     resultmulti( sqr(v)  );
     resultmulti( cube(v)  );
     resultmulti( sqrt(v)  );
+    resultend();
+    cr();
+  }
+
+
+  {
+    cr();
+    cr();
+    example(Nex++,"functions of a `Vector`—trig");
+    codestart("C++");
+    codemulti( Vector<double> v(3) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v = {-M_PI, -M_PI/2, 0, M_PI/2, M_PI});
+#else
+    codemulti( v = (const double[]) {-M_PI, -M_PI/2, 0, M_PI/2, M_PI} );
+#endif
+    codeend();
+    cr();
+
     resultstart2(": trig");
     resultmulti( sin(v)  );
     resultmulti( cos(v)  );
     resultmulti( tan(v)  );
+    resultend();
+    cr();
+  }
+
+  
+  {
+    cr();
+    cr();
+    example(Nex++,"functions of a `Vector`—rounding and sign-related ");
+    codestart("C++");
+    codemulti( Vector<double> v(3) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v = {-2.5,-2.25,-1,0,1,2.25,2.5});
+#else
+    codemulti( v = (const double[]) {-2.5,-2.25,-1,0,1,2.25,2.5} );
+#endif
+    codeend();
+    cr();
+
     resultstart2(": hyperbolic trig");
     resultmulti( sinh(v)  );
     resultmulti( cosh(v)  );
     resultmulti( tanh(v)  );
+    resultend();
+    cr();
+  }
+
+
+  {
+    cr();
+    cr();
+    example(Nex++,"functions of a `Vector`—inverse (ie 'arc') trig");
+    codestart("C++");
+    codemulti( Vector<double> v(3) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v = {-1,0,1});
+#else
+    codemulti( v = (const double[]) {-1,0,1} );
+#endif
+    codeend();
+    cr();
+
     resultstart2(": inverse (ie 'arc') trig");
     resultmulti( asin(v)  );
     resultmulti( acos(v)  );

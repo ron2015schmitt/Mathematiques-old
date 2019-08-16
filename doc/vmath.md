@@ -1,17 +1,17 @@
 
 # Vector math in mātricks
-This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r33).
+This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r35).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
 
 
-**EXAMPLE 1**: Element-wise `Vector` math (using C++11 assignment)
+**EXAMPLE 1**: Element-wise `Vector` math
 ```C++
 Vector<double> v1(4);
-v1 = {10,20,30,40};
+v1 = {10,20,30,40}; // C++11 list
 Vector<double> v2(4);
-v2 = {1,2,3,4};
+v2 = {1,2,3,4}; // C++11 list
 ```
 
 **Some expressions with results**
@@ -23,14 +23,14 @@ v2 = {1,2,3,4};
 ```
 
 ### Vector-scalar arithmetic
-* The binary operators +,-,*,/ can each be used with a scalar and a `Vector`.
+* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.
 * In this case the scalar is operated on each element of the vector
 
 
-**EXAMPLE 2**: math with scalars and `Vector`s  (using C++11 assignment)
+**EXAMPLE 2**: math with scalars and `Vector`s
 ```C++
 Vector<double> v1(4);
-v1 = {10,20,30,40};
+v1 = {10,20,30,40}; // C++11 list
 ```
 
 **Some expressions with results**
@@ -38,11 +38,11 @@ v1 = {10,20,30,40};
   v1 + 1:  {11,21,31,41}; 
   1 + v1:  {11,21,31,41}; 
   v1 - 10:  {0,10,20,30}; 
-  120 - v1:  {110,100,90,80}; 
+  40 - v1:  {30,20,10,0}; 
   v1 * 2:  {20,40,60,80}; 
   2 * v1:  {20,40,60,80}; 
   v1 / 10:  {1,2,3,4}; 
-  40 / v1:  {4,2,1.33333,1}; 
+  120 / v1:  {12,6,4,3}; 
   1 + 120 / v1 - 8/8 + 5*v1*2:  {112,206,304,403}; 
 ```
 

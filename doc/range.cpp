@@ -110,7 +110,7 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"Assigning `Vector`'s the *`range`* function");
+    example(Nex++,"Assigning a `Vector`'s to a *`range`*");
     codestart("C++");
     codemulti( const size_t N = 10);
     codemulti( Vector<double> v (N));

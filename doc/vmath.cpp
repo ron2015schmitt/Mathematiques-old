@@ -31,27 +31,24 @@ int main()
   {
     cr();
     cr();
-#if CPP11 == 1
-    example(Nex++,"Element-wise `Vector` math (using C++11 assignment)");
-#else
     example(Nex++,"Element-wise `Vector` math");
-#endif
     codestart("C++");
     codemulti( Vector<double> v1(4) );
 #if CPP11 == 1
-    codemulti( v1 = {10,20,30,40} );
+    codemultiwcomment("C++11 list", v1 = {10,20,30,40});
 #else
     codemulti( v1 = (const double[]) {10,20,30,40} );
 #endif
     codemulti( Vector<double> v2(4) );
 #if CPP11 == 1
-    codemulti( v2 = {1,2,3,4} );
+    codemultiwcomment("C++11 list", v2 = {1,2,3,4});
 #else
     codemulti( v2 = (const double[]) {1,2,3,4} );
 #endif
     codeend();
     cr();
 
+   
     resultstart2();
     resultmulti(v1 + v2);
     resultmulti(v1 - v2);
@@ -62,21 +59,17 @@ int main()
 
 
   header3("Vector-scalar arithmetic");
-  text("* The binary operators +,-,*,/ can each be used with a scalar and a `Vector`.");
+  text("* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.");
   text("* In this case the scalar is operated on each element of the vector");
 
   {
     cr();
     cr();
-#if CPP11 == 1
-    example(Nex++,"math with scalars and `Vector`s  (using C++11 assignment)");
-#else
     example(Nex++,"math with scalars and `Vector`s");
-#endif
     codestart("C++");
     codemulti( Vector<double> v1(4) );
 #if CPP11 == 1
-    codemulti( v1 = {10,20,30,40} );
+    codemultiwcomment("C++11 list", v1 = {10,20,30,40});
 #else
     codemulti( v1 = (const double[]) {10,20,30,40} );
 #endif
@@ -87,11 +80,11 @@ int main()
     resultmulti(v1 + 1);
     resultmulti(1 + v1);
     resultmulti(v1 - 10);
-    resultmulti(120 - v1);
+    resultmulti(40 - v1);
     resultmulti(v1 * 2);
     resultmulti(2 * v1);
     resultmulti(v1 / 10);
-    resultmulti(40 / v1);
+    resultmulti(120 / v1);
     resultmulti(1 + 120 / v1 - 8/8 + 5*v1*2);
     resultend();
   }

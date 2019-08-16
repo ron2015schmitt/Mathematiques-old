@@ -29,15 +29,28 @@ int main()
   
 
   header2("The `range` Function");
+
+  header3("Increasing Sequences");
+
   text("* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start,start+1, start+2,..., end}`");
   codestart("C++");
   dispcr(range<int>(1,10));
   dispcr(range<double>(-3,3));
   codeend();
 
+  header3("Decreasing Sequences");
   text("* Counting down is also supported");
   codestart("C++");
   dispcr(range<int>(10,0));
+  codeend();
+
+
+  header3("Non-integer Sequences");
+
+  text("* The start and end need not be integers ");
+  codestart("C++");
+  dispcr(range<double>(1.5,5.5));
+  dispcr(range<double>(5.5,1.5));
   codeend();
 
   
@@ -47,14 +60,11 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"Assign `Vector`s of various types  using the *`range`* function");
+    example(Nex++,"Initialize `Vector`'s of various data types  using the *`range`* function");
     codestart("C++");
-    codemulti( Vector<unsigned int> v1 (4) );
-    codemulti( v1 = range<unsigned int>(0,3) );
-    codemulti( Vector<int> v2 (4) );
-    codemulti( v2 = range<int>(0,3) );
-    codemulti( Vector<double> v3 (4) );
-    codemulti( v3 = range<double>(0,3) );
+    codemulti( Vector<unsigned int> v1 ( range<unsigned int>(0,3) ) );
+    codemulti( Vector<int> v2 ( range<int>(0,3) ) );
+    codemulti( Vector<double> v3 ( range<double>(0,3)) );
     codeend();
     cr();
 

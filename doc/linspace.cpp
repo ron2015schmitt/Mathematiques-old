@@ -24,11 +24,9 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("The `range` and `linspace` functions");
+  mdtitle("The `linspace` function");
   matricks_preamble();
   
-
-  header2("The `range` Function");
 
   header3("Increasing Sequences");
 

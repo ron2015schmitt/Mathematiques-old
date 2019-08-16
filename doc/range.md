@@ -1,10 +1,9 @@
 
-# The `range` and `linspace` functions in mātricks
-This document was automatically generated from file **`rangeandlinspace.cpp`** (mātricks-v2.1-r26).
+# The `range` function in mātricks
+This document was automatically generated from file **`range.cpp`** (mātricks-v2.1-r27).
 
-## The `range` Function
 ### Increasing Sequences
-* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start,start+1, start+2,..., end}`
+* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`
 ```C++
 range<int>(1,10):  {1,2,3,4,5,6,7,8,9,10}; 
 range<double>(-3,3):  {-3,-2,-1,0,1,2,3}; 
@@ -21,7 +20,11 @@ range<double>(1.5,5.5):  {1.5,2.5,3.5,4.5,5.5};
 range<double>(5.5,1.5):  {5.5,4.5,3.5,2.5,1.5}; 
 ```
 ### Arbitrary stride
-* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start,start+stride, start+2*stride,..., end}`
+* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start, start+stride, start+2*stride, ..., (end)}`
+```C++
+range<int>(2,10,2):  {2,4,6,8,10}; 
+range<double>(0,10,0.5):  {0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10}; 
+```
 ### The end point isn't always included
 * The end point is only included when 
 ```C++
@@ -48,6 +51,21 @@ Vector<double> v3 ( range<double>(0,3));
   v1:  {0,1,2,3}; 
   v2:  {0,1,2,3}; 
   v3:  {0,1,2,3}; 
+```
+
+### Assigning `Vector`'s using `range`
+
+
+**EXAMPLE 2**: Assigning `Vector`'s the *`range`* function
+```C++
+const size_t N = 10;
+Vector<double> v (N);
+v = range<double>(0,N-1);
+```
+
+**The result is**
+```C++
+  v:  {0,1,2,3,4,5,6,7,8,9}; 
 ```
 
 

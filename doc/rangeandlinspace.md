@@ -20,7 +20,20 @@ range<int>(10,0):  {10,9,8,7,6,5,4,3,2,1,0};
 range<double>(1.5,5.5):  {1.5,2.5,3.5,4.5,5.5}; 
 range<double>(5.5,1.5):  {5.5,4.5,3.5,2.5,1.5}; 
 ```
-* The `range<D>(Nstart,Nend,Nstride)` function returns returns a Vector<D> containing the numbers `{start,start+stride, start+2*stride,..., end}`
+### Arbitrary stride
+* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start,start+stride, start+2*stride,..., end}`
+### The end point isn't always included
+* The end point is only included when 
+```C++
+end == start + n * stride
+```
+where `n` is an integer
+Below are two examples where the end point is not included
+```C++
+range<int>(0,5,2):  {0,2,4}; 
+range<double>(1,3.5):  {1,2,3}; 
+```
+### Initializing `Vector`'s using `range`
 
 
 **EXAMPLE 1**: Initialize `Vector`'s of various data types  using the *`range`* function

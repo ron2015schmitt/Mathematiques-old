@@ -53,9 +53,28 @@ int main()
   dispcr(range<double>(5.5,1.5));
   codeend();
 
+  header3("Arbitrary stride");
+
   
-  text("* The `range<D>(Nstart,Nend,Nstride)` function returns returns a Vector<D> containing the numbers `{start,start+stride, start+2*stride,..., end}`");
-  
+  text("* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start,start+stride, start+2*stride,..., end}`");
+
+
+  header3("The end point isn't always included");
+
+  text("* The end point is only included when ");
+  text("```C++");
+  text("end == start + n * stride");
+  text("```");
+  text("where `n` is an integer");
+
+  text("Below are two examples where the end point is not included");
+  codestart("C++");
+  dispcr(range<int>(0,5,2));
+  dispcr(range<double>(1,3.5));
+  codeend();
+
+
+  header3("Initializing `Vector`'s using `range`");
 
   {
     cr();

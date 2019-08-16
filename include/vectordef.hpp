@@ -557,6 +557,9 @@ namespace Matricks {
 	(*data_)[i] = v2[i];    
       return *this;
     }
+
+
+
     Vector<D>& operator=(const Vector<D>& v2) {
       return equals(v2);
     }
@@ -596,6 +599,41 @@ namespace Matricks {
     }
 
 
+    // assignment to a C++11 list
+#if CPP11 == 1
+    Vector<D>& equals(std::initializer_list<D> list) {
+      
+#ifdef Matricks_CAREFUL
+      if ( (size()>0) && ( size() !=  list.size() ) ){ 
+	vbad_assignment_warning(objectID(),list);
+      } else if (size() !=  list.size() ){
+	// if size=0, just silently resize this vector
+	//	vbad_assignment_warning(objectID(),v2.objectID());
+      }      
+#endif      
+
+      // resize to avoid segmentation faults
+      resize(list.size());
+
+      size_type i = 0;
+      typename std::initializer_list<D>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+
+      return *this;
+    }
+
+
+    Vector<D>& operator=(std::initializer_list<D> list) {
+      return equals(list);
+    }
+
+
+#endif
+
+
+    
     // ******************************* TEXT STUFF *******************************
 
 

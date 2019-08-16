@@ -1,5 +1,3 @@
-
-// flag for run-time bounds and size checking
 #define MATRICKS_CAREFUL
 
 
@@ -7,55 +5,64 @@
 using namespace Matricks;
 
 #include <iostream>
-using namespace std;
+#include <string>
 
+// used to demonstrate how to convert to C++ vectors
+#include <vector>
 
+#if CPP11 == 1
+#include <initializer_list>
+#endif
 
 
 
 int main()
 {
-  const int N = 4;
 
-  Vector<double> v1(N);
-  Vector<double> v2(N);
+  int Nex = 1;
+  
+  cr();
+  mdtitle("Vector math");
+  matricks_preamble();
 
-  std::cout << "initialize v1" << std::endl;
-  v1 = range<double>(1,4) * 3.14159265/4.0;
-  std::cout << v1 << std::endl;
+  header3("Element-wise arithmetic");
+  text("The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively");
 
-  std::cout << "sin" << std::endl;
-  v2 = sin(v1);
-  std::cout << v2 << std::endl;
+    {
+      cr();
+      cr();
+      example(Nex++,"Element-wise `Vector` math");
+      codestart("C++");
+      codemulti( Vector<double> v1(4) );
+#if CPP11 == 1
+      codemulti( v1 = {10,20,30,40} );
+#else
+      codemulti( v1 = (const double[]) {10,20,30,40} );
+#endif
+      codemulti( Vector<double> v2(4) );
+#if CPP11 == 1
+      codemulti( v2 = {1,2,3,4} );
+#else
+      codemulti( v2 = (const double[]) {1,2,3,4} );
+#endif
+    codeend();
+    cr();
 
-  std::cout << "log" << std::endl;
-  v2 = log(v1);
-  std::cout << v2 << std::endl;
+    resultstart();
+    resultmulti(v1 + v2);
+    resultmulti(v1 - v2);
+    resultmulti(v1 * v2);
+    resultmulti(v1 / v2);
+    resultend();
+  }
 
-  std::cout << "sign, sgn(v2)" << std::endl;
-  v2[0] = -2.5;
-  v2[1] = 100;
-  v2[2] = 0;
-  v2[3] = 23;
-  std::cout << v2 << std::endl;
-  v2 = sgn(v2);
-  std::cout << v2 << std::endl;
 
-  std::cout << "v1^3.0" << std::endl;
-  v2 = pow(v1,3.0);
-  std::cout << v2 << std::endl;
 
-  std::cout << "round(v2)" << std::endl;
-  v2 = round(v2);
-  std::cout << v2 << std::endl;
-
-  std::cout << "complicated example#2" << std::endl;
-  v2 = v1*(sin(2.0*v1)  +  cos(2.0*v1))/2.0;
-  std::cout << v2 << std::endl;
+  //  v2 = v1*(sin(2.0*v1)  +  cos(2.0*v1))/2.0;
 
 
   // functions supported: sin, cos, tan, sinh, cosh, tanh, exp, log, abs, log10
-  // pow(a,b), round, ceil, floor, asin, acos, atan, atan2, sqrt
+  // pow(a,b), round, ceil, floor, asin, acos, atan, atan2, sqrt, sgn
 
 
   return 0;

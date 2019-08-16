@@ -1,5 +1,5 @@
 
-EXEC = vdeclaration vassignment range linspace
+EXEC = vdeclaration vassignment range linspace vmath
 
 DOC = $(addsuffix .md,$(EXEC))
 

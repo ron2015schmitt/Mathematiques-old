@@ -30,6 +30,7 @@ int main()
   header3("Increasing Sequences");
 
   text("* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`");
+  example(Nex++, "Increasing sequences using `range`");
   codestart("C++");
   dispcr(range<int>(1,10));
   dispcr(range<double>(-3,3));
@@ -37,6 +38,7 @@ int main()
 
   header3("Decreasing Sequences");
   text("* Counting down is also supported");
+  example(Nex++, "Decreasing sequence using `range`");
   codestart("C++");
   dispcr(range<int>(10,0));
   codeend();
@@ -45,6 +47,7 @@ int main()
   header3("Non-integer Sequences");
 
   text("* The start and end need not be integers ");
+  example(Nex++, "Floating point sequences using `range`");
   codestart("C++");
   dispcr(range<double>(1.5,5.5));
   dispcr(range<double>(5.5,1.5));
@@ -55,6 +58,7 @@ int main()
   
   text("* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start, start+stride, start+2*stride, ..., (end)}`");
 
+  example(Nex++, "Seqeunces of different strides using `range`");
   codestart("C++");
   dispcr(range<int>(2,10,2));
   dispcr(range<double>(0,10,0.5));
@@ -66,9 +70,9 @@ int main()
   text("```C++");
   text("end == start + n * stride");
   text("```");
-  text("where `n` is an integer");
+  text("where `n` is an integer.\n");
 
-  text("Below are two examples where the end point is not included");
+  example(Nex++, "End point is not included in certain cases");
   codestart("C++");
   dispcr(range<int>(0,5,2));
   dispcr(range<double>(1,3.5));

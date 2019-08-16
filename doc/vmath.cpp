@@ -52,7 +52,7 @@ int main()
     codeend();
     cr();
 
-    resultstart();
+    resultstart2();
     resultmulti(v1 + v2);
     resultmulti(v1 - v2);
     resultmulti(v1 * v2);
@@ -83,16 +83,16 @@ int main()
     codeend();
     cr();
 
-    resultstart();
+    resultstart2();
     resultmulti(v1 + 1);
     resultmulti(1 + v1);
     resultmulti(v1 - 10);
-    resultmulti(40 - v1);
+    resultmulti(120 - v1);
     resultmulti(v1 * 2);
     resultmulti(2 * v1);
     resultmulti(v1 / 10);
     resultmulti(40 / v1);
-    resultmulti(1+ 40 / v1 - 8/8 + 5*v1*2);
+    resultmulti(1 + 120 / v1 - 8/8 + 5*v1*2);
     resultend();
   }
 

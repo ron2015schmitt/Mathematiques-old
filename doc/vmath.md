@@ -1,6 +1,6 @@
 
 # Vector math in mātricks
-This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r37).
+This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r39).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
@@ -92,7 +92,8 @@ v = {-1,0,1,2,4}; // C++11 list
 **EXAMPLE 5**: functions of a `Vector`—trig
 ```C++
 Vector<double> v(3);
-v = {-M_PI, -M_PI/2, 0, M_PI/2, M_PI}; // C++11 list
+constexpr double pi = std::acos(-1); // C++11 constexpr
+v = {-pi, -pi/2, 0, pi/2, pi}; // C++11 list
 ```
 
 **Some expressions with results**: trig
@@ -108,26 +109,26 @@ v = {-M_PI, -M_PI/2, 0, M_PI/2, M_PI}; // C++11 list
 **EXAMPLE 6**: functions of a `Vector`—rounding and sign-related 
 ```C++
 Vector<double> v(3);
-v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
+v = {-1,0,1}; // C++11 list
 ```
 
 **Some expressions with results**: hyperbolic trig
 ```C++
-  sinh(v):  {-6.0502,-4.69117,-1.1752,0,1.1752,4.69117,6.0502}; 
-  cosh(v):  {6.13229,4.79657,1.54308,1,1.54308,4.79657,6.13229}; 
-  tanh(v):  {-0.986614,-0.978026,-0.761594,0,0.761594,0.978026,0.986614}; 
+  sinh(v):  {-1.1752,0,1.1752}; 
+  cosh(v):  {1.54308,1,1.54308}; 
+  tanh(v):  {-0.761594,0,0.761594}; 
 ```
 
 
 
 
-**EXAMPLE 7**: functions of a `Vector`—inverse (ie 'arc') trig
+**EXAMPLE 7**: functions of a `Vector`—inverse trig
 ```C++
 Vector<double> v(3);
 v = {-1,0,1}; // C++11 list
 ```
 
-**Some expressions with results**: inverse (ie 'arc') trig
+**Some expressions with results**: inverse trig
 ```C++
   asin(v):  {-1.5708,0,1.5708}; 
   acos(v):  {3.14159,1.5708,0}; 

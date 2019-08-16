@@ -150,13 +150,16 @@ int main()
   {
     cr();
     cr();
+
     example(Nex++,"functions of a `Vector`—trig");
     codestart("C++");
     codemulti( Vector<double> v(3) );
 #if CPP11 == 1
-    codemultiwcomment("C++11 list", v = {-M_PI, -M_PI/2, 0, M_PI/2, M_PI});
+    codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
+    codemultiwcomment("C++11 list", v = {-pi, -pi/2, 0, pi/2, pi});
 #else
-    codemulti( v = (const double[]) {-M_PI, -M_PI/2, 0, M_PI/2, M_PI} );
+    codemulti( double pi = std::acos(-1) );
+    codemulti( v = (const double[]) {-pi, -pi, 0, pi, pi} );
 #endif
     codeend();
     cr();
@@ -177,9 +180,9 @@ int main()
     codestart("C++");
     codemulti( Vector<double> v(3) );
 #if CPP11 == 1
-    codemultiwcomment("C++11 list", v = {-2.5,-2.25,-1,0,1,2.25,2.5});
+    codemultiwcomment("C++11 list", v = {-1,0,1});
 #else
-    codemulti( v = (const double[]) {-2.5,-2.25,-1,0,1,2.25,2.5} );
+    codemulti( v = (const double[]) {-1,0,1} );
 #endif
     codeend();
     cr();
@@ -196,7 +199,7 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"functions of a `Vector`—inverse (ie 'arc') trig");
+    example(Nex++,"functions of a `Vector`—inverse trig");
     codestart("C++");
     codemulti( Vector<double> v(3) );
 #if CPP11 == 1
@@ -207,7 +210,7 @@ int main()
     codeend();
     cr();
 
-    resultstart2(": inverse (ie 'arc') trig");
+    resultstart2(": inverse trig");
     resultmulti( asin(v)  );
     resultmulti( acos(v)  );
     resultmulti( atan(v)  );

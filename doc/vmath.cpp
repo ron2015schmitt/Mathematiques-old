@@ -132,9 +132,9 @@ int main()
     codeend();
     cr();
     resultstart2(": powers, roots, and exponentiation");
-    //    resultmulti( pow(10,v)  );
-    //    resultmulti( pow(v,2)  );
-    //    resultmulti( pow(v2,2)  );
+    resultmulti( pow(2., v)  );
+    resultmulti( pow(v, 2.)  );
+    resultmulti( pow(v,v)  );
     resultmulti( exp(v)  );
     resultmulti( log(v)  );
     resultmulti( log10(v)  );

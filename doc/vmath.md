@@ -1,6 +1,6 @@
 
 # Vector math in mātricks
-This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r39).
+This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r40).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
@@ -77,6 +77,9 @@ v = {-1,0,1,2,4}; // C++11 list
 
 **Some expressions with results**: powers, roots, and exponentiation
 ```C++
+  pow(2., v):  {0.5,1,2,4,16}; 
+  pow(v, 2.):  {1,0,1,4,16}; 
+  pow(v,v):  {-1,1,1,4,256}; 
   exp(v):  {0.367879,1,2.71828,7.38906,54.5982}; 
   log(v):  {nan,-inf,0,0.693147,1.38629}; 
   log10(v):  {nan,-inf,0,0.30103,0.60206}; 

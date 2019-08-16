@@ -62,7 +62,14 @@ namespace Matricks {
   }
 
 
+  // pow(vector,vector)
 
+  template <class D, class A, class B> 
+  inline VBinOp<D,VorE<D,A>,VorE<D,B>,ApPow<D> > 
+  pow(const VorE<D,A>& a, const VorE<D,A>& b)
+  {
+    return  VBinOp<D,VorE<D,A>,VorE<D,B>,ApPow<D> >(a,b);
+  }
 
 
   /****************************************************************

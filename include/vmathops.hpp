@@ -104,6 +104,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApTan<D> >(a);
   }
+
+
   // sqrt(vector)
 
   template <class D, class A> 
@@ -112,6 +114,7 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApSqrt<D> >(a);
   }
+
   // sqr(vector)
 
   template <class D, class A> 
@@ -120,6 +123,17 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApSqr<D> >(a);
   }
+
+  // cube(vector)
+
+  template <class D, class A> 
+  inline VFuncOp<D,VorE<D,A>,ApSqr<D> > 
+  cube(const VorE<D,A>& a)
+  {
+    return  VFuncOp<D,VorE<D,A>,ApSqr<D> >(a);
+  }
+
+
   // exp(vector)
 
   template <class D, class A> 
@@ -128,6 +142,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApExp<D> >(a);
   }
+
+
   // abs(vector)
 
   template <class D, class A> 
@@ -136,6 +152,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApAbs<D> >(a);
   }
+
+
   // sgn(vector)
 
   template <class D, class A> 
@@ -144,6 +162,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApSign<D> >(a);
   }
+
+
   // log(vector)
 
   template <class D, class A> 
@@ -152,6 +172,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApLog<D> >(a);
   }
+
+
   // log10(vector)
 
   template <class D, class A> 
@@ -160,6 +182,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApLog10<D> >(a);
   }
+
+
   // asin(vector)
 
   template <class D, class A> 
@@ -169,6 +193,7 @@ namespace Matricks {
     return  VFuncOp<D,VorE<D,A>,ApAsin<D> >(a);
   }
 
+
   // acos(vector)
 
   template <class D, class A> 
@@ -177,6 +202,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApAcos<D> >(a);
   }
+
+
   // atan(vector)
 
   template <class D, class A> 
@@ -185,6 +212,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApAtan<D> >(a);
   }
+
+
   // atan2(vector)
 
   template <class D, class A> 
@@ -193,6 +222,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApAtan2<D> >(a);
   }
+
+
   // ceil(vector)
 
   template <class D, class A> 
@@ -201,6 +232,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApCeil<D> >(a);
   }
+
+
   // floor(vector)
 
   template <class D, class A> 
@@ -209,6 +242,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApFloor<D> >(a);
   }
+
+
   // round(vector)
 
   template <class D, class A> 
@@ -217,6 +252,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApRound<D> >(a);
   }
+
+
   // sinh(vector)
 
   template <class D, class A> 
@@ -225,6 +262,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApSinh<D> >(a);
   }
+
+
   // cosh(vector)
 
   template <class D, class A> 
@@ -233,6 +272,8 @@ namespace Matricks {
   {
     return  VFuncOp<D,VorE<D,A>,ApCosh<D> >(a);
   }
+
+
   // tanh(vector)
 
   template <class D, class A> 

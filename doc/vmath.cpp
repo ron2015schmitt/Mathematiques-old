@@ -90,13 +90,55 @@ int main()
   }
 
 
-  //  v2 = v1*(sin(2.0*v1)  +  cos(2.0*v1))/2.0;
+  header3("Vector math functions");
+  text("* A large number of functions is supported.  ");
+  text("* A function of a `Vector` operates on each element.  ");
+  
+  {
+    cr();
+    cr();
+    example(Nex++,"functions of a `Vector`");
+    codestart("C++");
+    codemulti( Vector<double> v(3) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v = {-2.5,-2.25,-1,0,1,2.25,2.5});
+#else
+    codemulti( v = (const double[]) {-2.5,-2.25,-1,0,1,2.25,2.5} );
+#endif
+    codeend();
+    cr();
+
+    resultstart2();
+    resultmulti( sgn(v)  );
+    resultmulti( floor(v)  );
+    resultmulti( ceil(v)  );
+    resultmulti( round(v)  );
+    //    resultmulti( pow(10,v)  );
+    //    resultmulti( pow(v,2)  );
+    //    resultmulti( pow(v2,2)  );
+    resultmulti( exp(v)  );
+    resultmulti( log(v)  );
+    resultmulti( log10(v)  );
+    resultmulti( sqr(v)  );
+    resultmulti( cube(v)  );
+    resultmulti( sqrt(v)  );
+    resultmulti( sin(v)  );
+    resultmulti( cos(v)  );
+    resultmulti( tan(v)  );
+    resultmulti( sinh(v)  );
+    resultmulti( cosh(v)  );
+    resultmulti( tanh(v)  );
+    resultmulti( asin(v)  );
+    resultmulti( acos(v)  );
+    resultmulti( atan(v)  );
+    resultend();
+  }
 
 
-  // functions supported: sin, cos, tan, sinh, cosh, tanh, exp, log, abs, log10
-  // pow(a,b), round, ceil, floor, asin, acos, atan, atan2, sqrt, sgn
 
+  header3("Arbitrary combinations of the above functionality are supported");
 
+  
   matricks_toc();
 
 

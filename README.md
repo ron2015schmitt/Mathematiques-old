@@ -26,8 +26,8 @@ Advantages
 + pretty formatted output of vectors and matrices
 + simple file i/o of vectors and matrices
 + Online [User's Guide](doc/README.md) in git markdown
- + clear documentation of every feature
- + documentation is generated from C++ code using the library itself
+  + clear documentation of every feature
+  + documentation is generated from C++ code using the library itself
 + `MEBUG` debugging compile mode produces extensive information to aid in debugging
   + out of bounds access for vectors or matrices (e.g. x[10] where x is a
    vector of length 6.

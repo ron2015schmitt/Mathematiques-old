@@ -33,34 +33,31 @@ int main()
   {
     example(Nex++,"Assign all elements to a single value.");
     codestart("C++");
-    codemulti( Vector<double> v1(10) );
-    codemulti( v1 = 78.9 );
+    codemulti( Vector<double> v(10) );
+    codemulti( v = 78.9 );
     codeend();
-    result(v1);
+    result(v);
   }
 
 
-#if CPP11==1
   {
     example(Nex++,"Assign from a C Array.");
+    text("_In DEBUG mode, this generates a warning since it is a dangerous practice. Use a C++11 list instead._");
     codestart("C++");
-    codemulti( Vector<double> v1(4) );
-    codemulti( v1 = {1,2,3,4} );
-    codemulti( Vector<double> v2(4) );
-    codemulti( v1 = {1,2,3,4} );
+    codemulti( Vector<double> v(4) );
+    codemulti( (const double[]) {1,2,3,4} );
     codeend();
-    result(v1);
+    result(v);
   }
-#endif
 
 #if CPP11==1
   {
     example(Nex++,"Assign from a C++11 list.");
     codestart("C++");
-    codemulti( Vector<double> v1(4) );
-    codemulti( v1 = {1,2,3,4} );
+    codemulti( Vector<double> v(4) );
+    codemulti( v = {1,2,3,4} );
     codeend();
-    result(v1);
+    result(v);
   }
 #endif
   

@@ -8,7 +8,7 @@
 // Utilities for rendering .md markdown for github
 
 
-#define matricks_preamble()  printf("This document was automatically generated from file **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_matricks)
+#define matricks_preamble()  printf("_This document was automatically generated from file_ **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_matricks)
 
 inline void write_mdtitle_file (std::string fname, std::string title) {
   using namespace std;

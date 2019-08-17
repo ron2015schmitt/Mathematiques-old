@@ -139,7 +139,14 @@ namespace Matricks {
     std::cout << indent_str  << "size of "<<typeString<<" = " << sz2  << std::endl;
   }
 
-  
+
+  void v_array_warning(const size_type id){
+    std::string s1= MatricksObjectPool::vectorname(id);
+    std::cout << warn_str << "vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead." << std::endl;
+    std::cout << indent_str  <<s1 << "= D array[]" << std::endl;
+    MatricksObjectPool::voutputglossary(id);
+  }
+      
   void vbad_assignment_warning(const size_type id1, const size_type id2) {
     std::string s1= MatricksObjectPool::vectorname(id1);
     std::string s2= MatricksObjectPool::vectorname(id2);

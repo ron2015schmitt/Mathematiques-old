@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (sum, dot product, etc) in mātricks
-This document was automatically generated from file **`vscalarout.cpp`** (mātricks-v2.1-r50).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.1-r51).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively

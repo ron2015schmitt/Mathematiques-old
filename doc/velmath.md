@@ -1,6 +1,6 @@
 
 # Element-wise Vector math in mātricks
-This document was automatically generated from file **`velmath.cpp`** (mātricks-v2.1-r50).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.1-r51).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -145,8 +145,8 @@ v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
 
 ### Arbitrary combinations of the above functionality are supported
 * Because mātricks uses expression templating:
-* * no intermediate objects are created
-* * the expression is calculated in a single for loop
+  * no intermediate objects are created
+  * the expression is calculated in a single for loop
 
 
 **EXAMPLE 8**: A huge expression

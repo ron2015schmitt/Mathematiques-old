@@ -172,6 +172,8 @@ namespace Matricks {
 
   void vbad_assignment_general_warning(const size_type id1, const size_type sz2, const std::string typeString);
 
+  void v_array_warning(const size_type id);
+
   void vbadtype_assignment(const size_type id1, const size_type id2);
 
   void vbad_assignment_mat(const size_type id1, const size_type NR, const size_type NC);

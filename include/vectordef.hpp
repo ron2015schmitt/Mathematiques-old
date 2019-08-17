@@ -51,7 +51,7 @@ namespace Matricks {
     // ************************** C++11  INIT CONSTRUCTOR**********************************
 #if CPP11 == 1
   
-    explicit Vector<D>(std::initializer_list<D> list, const std::string name="") { 
+    explicit Vector<D>(const std::initializer_list<D> list, const std::string name="") { 
 
 
       const size_type N =  list.size();
@@ -204,8 +204,6 @@ namespace Matricks {
       else 
 	N=n;
       
-      // allocate store
-      data_ = new std::valarray<D>(vals, n); 
 
       perline_ = N+1;
       width_ = 0;
@@ -214,13 +212,19 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
       
       if (n>maxsize) 
 	vbad_size(objectID_, n);
+
+      v_array_warning(objectID());
+
 #else
       name_=name;
 #endif      
+
+      // allocate store
+      data_ = new std::valarray<D>(vals, N); 
 
 
     }
@@ -538,6 +542,31 @@ namespace Matricks {
 
 
 
+
+    // assignment to an array
+    Vector<D>& equals(const D array[]) {
+      
+#ifdef MATRICKS_DEBUG
+      v_array_warning(objectID());
+#endif      
+
+      for (size_type i; i < size(); i++)  { 
+	(*this)[i++] = array[i];
+      }
+
+      return *this;
+    }
+
+
+    Vector<D>& operator=(const D array[]) {
+      return equals(array);
+    }
+
+
+
+
+    
+
     // Copy asignment
     Vector<D>& equals(const Vector<D>& v2) {
 
@@ -601,7 +630,7 @@ namespace Matricks {
 
     // assignment to a C++11 list
 #if CPP11 == 1
-    Vector<D>& equals(std::initializer_list<D> list) {
+    Vector<D>& equals(const std::initializer_list<D> list) {
       
 #ifdef MATRICKS_DEBUG
       if ( (size()>0) && ( size() !=  list.size() ) ){ 
@@ -625,7 +654,7 @@ namespace Matricks {
     }
 
 
-    Vector<D>& operator=(std::initializer_list<D> list) {
+    Vector<D>& operator=(const std::initializer_list<D> list) {
       return equals(list);
     }
 

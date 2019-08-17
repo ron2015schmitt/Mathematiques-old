@@ -133,7 +133,7 @@ namespace Matricks {
 
   void vbad_assignment_general_warning(const size_type id1, const size_type sz2, const std::string typeString) {
     std::string s1= MatricksObjectPool::vectorname(id1);
-    std::cout << error_str << "vector assignment to "<<typeString<<" of different size" << std::endl;
+    std::cout << warn_str << "vector assignment to "<<typeString<<" of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << typeString << std::endl;
     MatricksObjectPool::voutputglossary(id1);
     std::cout << indent_str  << "size of "<<typeString<<" = " << sz2  << std::endl;

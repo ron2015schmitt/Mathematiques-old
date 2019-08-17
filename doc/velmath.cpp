@@ -26,7 +26,7 @@ int main()
   matricks_preamble();
 
   header3("Element-wise arithmetic");
-  text("The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively");
+  text("The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively");
 
   {
     cr();
@@ -99,7 +99,7 @@ int main()
     cr();
     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
-    codemulti( Vector<double> v(3) );
+    codemulti( Vector<double> v(7) );
 #if CPP11 == 1
     codemultiwcomment("C++11 list", v = {-2.5,-2.25,-1,0,1,2.25,2.5});
 #else
@@ -123,7 +123,7 @@ int main()
     cr();
     example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
     codestart("C++");
-    codemulti( Vector<double> v(3) );
+    codemulti( Vector<double> v(5) );
 #if CPP11 == 1
     codemultiwcomment("C++11 list", v = {-1,0,1,2,4});
 #else
@@ -153,7 +153,7 @@ int main()
 
     example(Nex++,"functions of a `Vector`—trig");
     codestart("C++");
-    codemulti( Vector<double> v(3) );
+    codemulti( Vector<double> v(5) );
 #if CPP11 == 1
     codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
     codemultiwcomment("C++11 list", v = {-pi, -pi/2, 0, pi/2, pi});

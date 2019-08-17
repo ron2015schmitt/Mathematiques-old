@@ -25,7 +25,55 @@ int main()
   mdtitle("Complex-valued Vectors");
   matricks_preamble();
 
-  header3("Declaring and assigning complex-valued `Vector`'s");
+  header3("Representing the unit imaginary _i_");
+
+  {
+    cr();
+    cr();
+    example(Nex++,"The unit imaginary _i_ in C++14");
+    text("In C++14, the unit imaginary is defined by the product operator `operator\"\"i`");
+#if CPP14 == 1
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( using namespace literals );
+    codemulti( using namespace complex_literals );
+    codemulti(complex<double> z1 = 1i; );
+    codemulti(complex<double> z2 = 1+1i; );
+    codemulti(complex<double> z3 = -5i; );
+    codemulti(complex<double> z4 = 5; );
+    codeend();
+    resultstart2("");
+    resultmulti(z1);
+    resultmulti(z2);
+    resultmulti(z3);
+    resultmulti(z4);
+    resultend();
+  }
+#endif
+    
+  {
+    cr();
+    cr();
+    example(Nex++,"The unit imaginary _i_ (works in any version)");
+    cr(); 
+    text("In earlier versions of C++, the unit imaginary can be defined by");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( const complex<double> i = complex<double>(0,1) );
+    codemulti(complex<double> z1 = 1.*i; );
+    codemulti(complex<double> z2 = 1. + 1.*i; );
+    codemulti(complex<double> z3 = -5.*i; );
+    codemulti(complex<double> z4 = 5; );
+    codeend();
+    cr();
+    resultstart2("");
+    resultmulti(z1);
+    resultmulti(z2);
+    resultmulti(z3);
+    resultmulti(z4);
+    resultend();
+
+  }
 
   {
     cr();

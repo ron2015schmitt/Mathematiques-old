@@ -362,6 +362,16 @@ namespace Matricks {
       return resize(0);
     }
 
+    Vector<D>&  roundzeroes(D tolerance) { 
+      for(register size_type i=size(); i--;) {
+	const D d = (*data_)[i];
+	if (std::abs(d) < std::abs(tolerance)) {
+	  (*data_)[i] = 0;
+	}
+      }
+      return *this;
+    }
+
 
     // ************************* ELEMENT ACCESS *********************************
 

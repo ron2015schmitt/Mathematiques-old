@@ -2,10 +2,53 @@
 # Complex-valued Vectors in mātricks
 _This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.1-r67).
 
-### Declaring and assigning complex-valued `Vector`'s
+### Representing the unit imaginary _i_
 
 
-**EXAMPLE 1**: Complex  `Vector` 
+**EXAMPLE 1**: The unit imaginary _i_ in C++14
+In C++14, the unit imaginary is defined by the product operator `operator""i`
+```C++
+using namespace std;
+using namespace literals;
+using namespace complex_literals;
+complex<double> z1 = 1i;;
+complex<double> z2 = 1+1i;;
+complex<double> z3 = -5i;;
+complex<double> z4 = 5;;
+```
+**Some expressions with results**
+```C++
+  z1:  (0,1); 
+  z2:  (1,1); 
+  z3:  (0,-5); 
+  z4:  (5,0); 
+```
+
+
+
+**EXAMPLE 2**: The unit imaginary _i_ (works in any version)
+
+In earlier versions of C++, the unit imaginary can be defined by
+```C++
+using namespace std;
+const complex<double> i = complex<double>(0,1);
+complex<double> z1 = 1.*i;;
+complex<double> z2 = 1. + 1.*i;;
+complex<double> z3 = -5.*i;;
+complex<double> z4 = 5;;
+```
+
+**Some expressions with results**
+```C++
+  z1:  (0,1); 
+  z2:  (1,1); 
+  z3:  (-0,-5); 
+  z4:  (5,0); 
+```
+
+
+
+**EXAMPLE 3**: Complex  `Vector` 
 ```C++
 using namespace std;
 Vector<complex<double> > v(4);
@@ -22,7 +65,7 @@ v = { 1+1i, 1, 1i, 1-1i }; // C++11 list and C++14 literal `i` for unit imaginar
 ### Arithmetic with complex-valued `Vector`'s
 
 
-**EXAMPLE 2**: Complex  `Vector` 
+**EXAMPLE 4**: Complex  `Vector` 
 ```C++
 using namespace std;
 Vector<complex<double> > v1(4);
@@ -44,7 +87,7 @@ v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 ### Arithmetic with complex and real vectors `Vector`'s
 
 
-**EXAMPLE 3**: Complex  `Vector` 
+**EXAMPLE 5**: Complex  `Vector` 
 ```C++
 using namespace std;
 Vector<double > vr(4);

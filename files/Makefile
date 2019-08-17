@@ -196,7 +196,7 @@ OPTIMIZE ?=
 # COPT provided at the command line will append to options
 #############################################################################
 CPPC = g++
-COPT ?=
+override COPT ?=  -Wfatal-errors
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
 %.o: %.cpp 
@@ -211,7 +211,7 @@ endif
 # gfortran COMPILER
 #############################################################################
 FC = gfortran
-FOPT ?=
+override FOPT ?=
 FFLAGS = $(FOPT)
 LNK_FFLAGS = -lgfortran +fgcse-after-reload
 
@@ -224,7 +224,7 @@ LNK_FFLAGS = -lgfortran +fgcse-after-reload
 # LOPT provided at the command line will append to options
 #############################################################################
 LNK = g++
-LOPT ?=
+override LOPT ?=
 LFLAGS = $(OPTIMIZE) $(LOPT)
 
 %: %.o 

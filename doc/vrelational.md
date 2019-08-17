@@ -1,6 +1,6 @@
 
 # Vector relational operators in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.1-r54).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.1-r60).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively

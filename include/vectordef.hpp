@@ -8,6 +8,8 @@
 #include <complex>
 #include <valarray>
 #include <vector>
+#include <list>
+#include <iterator>
 #include <string>
 
 #if CPP11 == 1
@@ -628,25 +630,22 @@ namespace Matricks {
     }
 
 
-    // assignment to a C++11 list
-#if CPP11 == 1
-    Vector<D>& equals(const std::initializer_list<D> list) {
+    Vector<D>& equals(const std::list<D> mylist) {
       
 #ifdef MATRICKS_DEBUG
-      if ( (size()>0) && ( size() !=  list.size() ) ){ 
-	vbad_assignment_general_warning(objectID(),list.size(), "std::initializer_list<D>");
-      } else if (size() !=  list.size() ){
+      if ( (size()>0) && ( size() !=  mylist.size() ) ){ 
+	vbad_assignment_general_warning(objectID(),mylist.size(), "std::list<D>");
+      } else if (size() !=  mylist.size() ){
 	// if size=0, just silently resize this vector
 	//	vbad_assignment_warning(objectID(),v2.objectID());
       }      
 #endif      
 
       // resize to avoid segmentation faults
-      resize(list.size());
+      resize(mylist.size());
 
       size_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
-      for (it = list.begin(); it != list.end(); ++it)  { 
+      for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
 	(*this)[i++] = *it;
       }
 
@@ -654,8 +653,39 @@ namespace Matricks {
     }
 
 
-    Vector<D>& operator=(const std::initializer_list<D> list) {
-      return equals(list);
+    Vector<D>& operator=(const std::list<D> mylist) {
+      return equals(mylist);
+    }
+
+    
+    // assignment to a C++11 list
+#if CPP11 == 1
+    Vector<D>& equals(const std::initializer_list<D> mylist) {
+      
+#ifdef MATRICKS_DEBUG
+      if ( (size()>0) && ( size() !=  mylist.size() ) ){ 
+	vbad_assignment_general_warning(objectID(),mylist.size(), "std::initializer_list<D>");
+      } else if (size() !=  mylist.size() ){
+	// if size=0, just silently resize this vector
+	//	vbad_assignment_warning(objectID(),v2.objectID());
+      }      
+#endif      
+
+      // resize to avoid segmentation faults
+      resize(mylist.size());
+
+      size_type i = 0;
+      typename std::initializer_list<D>::iterator it; 
+      for (it = mylist.begin(); it != mylist.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+
+      return *this;
+    }
+
+
+    Vector<D>& operator=(const std::initializer_list<D> mylist) {
+      return equals(mylist);
     }
 #endif
 

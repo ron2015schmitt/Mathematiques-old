@@ -1,6 +1,6 @@
 
 # The `linspace` function in mātricks
-_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.1-r54).
+_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.1-r60).
 
 ### Increasing Sequences
 * The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start,start+1, start+2,..., end}`

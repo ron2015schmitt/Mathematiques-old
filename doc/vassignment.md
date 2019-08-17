@@ -1,6 +1,6 @@
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.1-r59).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.1-r60).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -20,7 +20,7 @@ _In DEBUG mode, this generates a warning since it is a dangerous practice. Use a
 Vector<double> v(4);
 v = (const double[]) {1,2,3,4};
 **Matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
-                 Vector2= D array[]
+                 Vector2 = D[]
           where  Vector2 is Vector<double>[size=4], ID=2
 ```
 **The result is**
@@ -73,7 +73,7 @@ v2 = 2*v1;
   v2:  {2,4,6,8}; 
 ```
 
-**EXAMPLE 6**: Assign from a std::{`vector`,`array`,`val_array`}.
+**EXAMPLE 6**: Assign from a std::{`vector`,`array`,`val_array`,`list`}.
 ```C++
 std::vector<double> vstd({1,2,3,4});
 Vector<double> v1(4);
@@ -84,6 +84,9 @@ v2 = varray;
 std::valarray<double> myvalarray = {100,200};
 Vector<double> v3(2);
 v3 = myvalarray;
+std::list<double> mylist = {-1,-2};;
+Vector<double> v4(2);
+v4 = mylist;
 ```
 **The result is**
 ```C++
@@ -98,6 +101,11 @@ v3 = myvalarray;
 **The result is**
 ```C++
   v3:  {100,200}; 
+```
+
+**The result is**
+```C++
+  v4:  {-1,-2}; 
 ```
 
 

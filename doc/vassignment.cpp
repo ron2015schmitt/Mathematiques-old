@@ -9,8 +9,8 @@ using namespace Matricks;
 #include <iostream>
 #include <string>
 
-// used to demonstrate how to convert to C++ vectors
 #include <vector>
+#include <list>
 
 #if CPP11 == 1
 #include <initializer_list>
@@ -93,7 +93,7 @@ int main()
   
 #if CPP11==1
   {
-    example(Nex++,"Assign from a std::{`vector`,`array`,`val_array`}.");
+    example(Nex++,"Assign from a std::{`vector`,`array`,`val_array`,`list`}.");
     codestart("C++");
     codemulti( std::vector<double> vstd({1,2,3,4}) );
     codemulti( Vector<double> v1(4) );
@@ -104,10 +104,14 @@ int main()
     codemulti( std::valarray<double> myvalarray = {100,200} );
     codemulti( Vector<double> v3(2) );
     codemulti( v3 = myvalarray );
+    codemulti( std::list<double> mylist = {-1,-2}; );
+    codemulti( Vector<double> v4(2) );
+    codemulti( v4 = mylist );
     codeend();
     result(v1);
     result(v2);
     result(v3);
+    result(v4);
   }
 #endif
 

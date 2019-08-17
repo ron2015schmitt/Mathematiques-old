@@ -203,9 +203,6 @@ CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 ifdef MEBUG
 	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=1" -c $*.cpp -o $@
 else
- ifdef MATRICKS_DEBUG
-	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=1" -c $*.cpp -o $@
- endif
 	$(CPPC) $(CFLAGS) -c $*.cpp -o $@
 endif
 

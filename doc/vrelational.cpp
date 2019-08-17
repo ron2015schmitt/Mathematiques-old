@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Element-wise Vector math");
+  mdtitle("Vector relational operators");
   matricks_preamble();
 
   header3("Element-wise arithmetic");

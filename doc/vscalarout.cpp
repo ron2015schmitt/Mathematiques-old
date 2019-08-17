@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Element-wise Vector math");
+  mdtitle("Vector functions that return a scalar (sum, dot product, etc)");
   matricks_preamble();
 
   header3("Element-wise arithmetic");

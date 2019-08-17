@@ -1,6 +1,6 @@
 
-# Element-wise Vector math in mātricks
-This document was automatically generated from file **`velmath.cpp`** (mātricks-v2.1-r44).
+# Vector slices and masks in mātricks
+This document was automatically generated from file **`vslicesmasks.cpp`** (mātricks-v2.1-r44).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively

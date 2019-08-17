@@ -657,9 +657,36 @@ namespace Matricks {
     Vector<D>& operator=(const std::initializer_list<D> list) {
       return equals(list);
     }
-
-
 #endif
+
+
+
+        // assignment to a std::vector
+    Vector<D>& equals(const std::vector<D> vstd) {
+      
+#ifdef MATRICKS_DEBUG
+      if ( (size()>0) && ( size() !=  vstd.size() ) ){ 
+	vbad_assignment_general_warning(objectID(),vstd.size(), "std::vector<D>");
+      } else if (size() !=  vstd.size() ){
+	// if size=0, just silently resize this vector
+	//	vbad_assignment_warning(objectID(),v2.objectID());
+      }      
+#endif      
+
+      // resize to avoid segmentation faults
+      resize(vstd.size());
+
+      for(register size_type i=size(); i--;)
+	(*data_)[i] = vstd[i];    
+
+      return *this;
+    }
+
+
+    Vector<D>& operator=(const std::vector<D> vstd) {
+      return equals(vstd);
+    }
+
 
 
     

@@ -62,6 +62,7 @@ int main()
 #endif
   
 
+#if CPP11==1
   {
     example(Nex++,"Assign from another `Vector`.");
     text("Note that values are copied from `v2` to `v1`");
@@ -75,8 +76,10 @@ int main()
     result(v1);
     result(v2);
   }
-
-    {
+#endif
+  
+#if CPP11==1
+  {
     example(Nex++,"Assign from a `Vector` expression.");
     codestart("C++");
     codemulti( Vector<double> v1({1,2,3,4}) );
@@ -86,7 +89,19 @@ int main()
     result(v1);
     result(v2);
   }
-
+#endif
+  
+#if CPP11==1
+  {
+    example(Nex++,"Assign from a `std::vector`.");
+    codestart("C++");
+    codemulti( std::vector<double> vstd({1,2,3,4}) );
+    codemulti( Vector<double> v(4) );
+    codemulti( v = vstd );
+    codeend();
+    result(v);
+  }
+#endif
   
   matricks_toc();
 

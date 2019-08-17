@@ -89,6 +89,8 @@ namespace Matricks {
 #endif
 
 
+    // constuct with default initialization of valarray (0's)
+
     explicit Vector<D>(const size_type n, const std::string name = "") { 
 
       #ifdef VDEBUG
@@ -120,7 +122,7 @@ namespace Matricks {
 #endif      
     }
 
-    // *******************  DEFAULT  CONSTRUCTOR **********************************
+    // *******************  DEFAULT  CONSTRUCTOR: empty **********************************
 
     explicit Vector<D>(const std::string name = "") { 
       
@@ -312,6 +314,52 @@ namespace Matricks {
 
 
 
+
+    // ************************** valarray CONSTRUCTOR **********************************
+    explicit Vector<D>(const size_type n, const std::valarray<D> (vals), const std::string name="") { 
+
+      #ifdef VDEBUG
+      printf(">>> Vector(n,array) N=%lu\n",n);
+      #endif
+
+      size_type N;
+      if (n>maxsize) 
+	N=0;
+      else 
+	N=n;
+      
+
+      perline_ = N+1;
+      width_ = 0;
+      textformat_=text_braces;
+      
+#ifdef MATRICKS_DEBUG
+      dummy_ = D();
+      // add this vector to the directory
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
+      
+      if (n>maxsize) 
+	vbad_size(objectID_, n);
+
+      v_array_warning(objectID());
+
+#else
+      name_=name;
+#endif      
+
+      // allocate store COPY CONSTRUCTOR!
+      data_ = new std::valarray<D>(vals, N); 
+
+
+    }
+
+
+
+
+
+
+    
+
     // **************************** DESTRUCTOR **********************************
     ~Vector<D>() {
       delete  data_ ;
@@ -375,6 +423,13 @@ namespace Matricks {
 
     // ************************* ELEMENT ACCESS *********************************
 
+    // "read/write" to the wrapped valarray
+    inline D& valarray()  {
+      return *data_; 
+    }
+
+
+    
     // "read/write" access
     inline D& operator[](const size_type i)  {
 

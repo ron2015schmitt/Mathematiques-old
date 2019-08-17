@@ -1,63 +1,80 @@
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.1-r60).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.1-r70).
 
-**EXAMPLE 1**: Declare vector `v1`.
+**EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
 const size_type N = 4;
-Vector<double> v1(N);
+Vector<double> v(N);
 ```
 **The result is**
 ```C++
-  v1:  {0,0,0,0}; 
+  v:  {0,0,0,0}; 
 ```
 
-**EXAMPLE 2**: Declare `v2` and initialize to a constant
+**EXAMPLE 2**: Declare `v` and initialize to a constant
 ```C++
-Vector<double> v2(4, -1 );
+Vector<double> v(4, -1 );
 ```
 **The result is**
 ```C++
-  v2:  {-1,-1,-1,-1}; 
+  v:  {-1,-1,-1,-1}; 
 ```
 
-**EXAMPLE 3**: Declare `v3` and initialize to a **C-style array** of values
+**EXAMPLE 3**: Declare `v` and initialize to a **C-style array** of values
 ```C++
-Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} );
+Vector<double> v( 4, (const double[]) {10, 20, 30, 40} );
 **Matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
                  Vector3 = D[]
           where  Vector3 is Vector<double>[size=4], ID=3
 ```
 **The result is**
 ```C++
-  v3:  {10,20,30,40}; 
+  v:  {10,20,30,40}; 
 ```
 
-**EXAMPLE 4**: Declare `v4` and initialize directly (**__C++11__**)
+**EXAMPLE 4**: Declare `v` and initialize directly from a list (**__C++11__**)
 ```C++
-Vector<double> v4({10, 20, 30, 40});
+Vector<double> v({10, 20, 30, 40});
 ```
 **The result is**
 ```C++
-  v4:  {10,20,30,40}; 
+  v:  {10,20,30,40}; 
 ```
 
-**EXAMPLE 5**: Declare `v5` and initialize to values of `v3`
+**EXAMPLE 5**: Declare `v2` and initialize to values of `v1`
+* Note that this is a _copy_ constructor.
+* In fact all of the `Vector` constructors are _copy_ constructors.
 ```C++
-Vector<double> v5(v3);
+Vector<double> v1( CARRAY({10,11,12,13}) );
+Vector<double> v2(v1);
+v1[0] = -1;;
+v2[0] = -2;;
 ```
 **The result is**
 ```C++
-  v5:  {10,20,30,40}; 
+  v1:  {-1,11,12,13}; 
 ```
 
-**EXAMPLE 6**: Declare `v6` and initialize to an expression
+**The result is**
 ```C++
-Vector<double> v6(2*v3+1);
+  v2:  {-2,11,12,13}; 
+```
+
+**EXAMPLE 6**: Declare `v2` and initialize to an expression
+* The expression is computed without creating any intermediate objects.
+```C++
+Vector<double> v1( CARRAY({10,11,12,13}) );
+Vector<double> v2(10*v1+1);
 ```
 **The result is**
 ```C++
-  v6:  {21,41,61,81}; 
+  v1:  {10,11,12,13}; 
+```
+
+**The result is**
+```C++
+  v2:  {101,111,121,131}; 
 ```
 
 

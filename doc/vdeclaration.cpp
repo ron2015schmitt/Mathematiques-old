@@ -18,6 +18,7 @@ using namespace Matricks;
 
 
 
+
 int main()
 {
   int Nex = 1;
@@ -25,47 +26,68 @@ int main()
   cr();
   mdtitle("Vector declaration");
   matricks_preamble();
-  
-  example(Nex++, "Declare vector `v1`.");
-  codestart("C++");
-  codemulti( const size_type N = 4 );
-  codemulti( Vector<double> v1(N) );
-  codeend();
-  result(v1);
 
-
-  example(Nex++, "Declare `v2` and initialize to a constant" );
-  codestart("C++");
-  codemulti( Vector<double> v2(4, -1 ) );
-  codeend();
-  result(v2);
-
-  example(Nex++, "Declare `v3` and initialize to a **C-style array** of values" );
-  codestart("C++");
-  codemulti( Vector<double> v3( 4, (const double[]) {10, 20, 30, 40} )  );
-  codeend();
-  result(v3);
-
-  if (CPP11) {
-    example(Nex++, "Declare `v4` and initialize directly (**__C++11__**)" );
+ 
+  {
+    example(Nex++, "Declare vector `v` (initialize to zeros).");
     codestart("C++");
-    codemulti( Vector<double> v4({10, 20, 30, 40})  );
+    codemulti( const size_type N = 4 );
+    codemulti( Vector<double> v(N) );
     codeend();
-    result(v4);
+    result(v);
   }
-  
 
-  example(Nex++, "Declare `v5` and initialize to values of `v3`" );
-  codestart("C++");
-  codemulti( Vector<double> v5(v3) );
-  codeend();
-  result(v5);
+  {
+    example(Nex++, "Declare `v` and initialize to a constant" );
+    codestart("C++");
+    codemulti( Vector<double> v(4, -1 ) );
+    codeend();
+    result(v);
+  }
 
-  example(Nex++, "Declare `v6` and initialize to an expression" );
-  codestart("C++");
-  codemulti( Vector<double> v6(2*v3+1) );
-  codeend();
-  result(v6);
+  {
+    example(Nex++, "Declare `v` and initialize to a **C-style array** of values" );
+    codestart("C++");
+    codemulti( Vector<double> v( 4, (const double[]) {10, 20, 30, 40} )  );
+    codeend();
+    result(v);
+  }
+
+#if CPP11 
+  {
+    example(Nex++, "Declare `v` and initialize directly from a list (**__C++11__**)" );
+    codestart("C++");
+    codemulti( Vector<double> v({10, 20, 30, 40})  );
+    codeend();
+    result(v);
+  }
+#endif
+
+  {
+    example(Nex++, "Declare `v2` and initialize to values of `v1`" );
+    text("* Note that this is a _copy_ constructor.");
+    text("* In fact all of the `Vector` constructors are _copy_ constructors.");
+    codestart("C++");
+    codemulti( Vector<double> v1( CARRAY({10,11,12,13}) ) );
+    codemulti( Vector<double> v2(v1) );
+    codemulti( v1[0] = -1; );
+    codemulti( v2[0] = -2; );
+    codeend();
+    result(v1);
+    result(v2);
+  }
+
+  {
+    example(Nex++, "Declare `v2` and initialize to an expression" );
+    text("* The expression is computed without creating any intermediate objects.");  
+    codestart("C++");
+    codemulti( Vector<double> v1( CARRAY({10,11,12,13}) ) );
+    codemulti( Vector<double> v2(10*v1+1) );
+    codeend();
+    result(v1);
+    result(v2);
+  }
+
 
   matricks_toc();
   

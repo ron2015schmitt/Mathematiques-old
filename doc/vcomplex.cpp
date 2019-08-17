@@ -25,24 +25,29 @@ int main()
   mdtitle("Complex-valued Vectors");
   matricks_preamble();
 
-  // const int N = 3;
+  header3("Declaring complex-valued `Vector`'s");
 
-  // // real vectors
-  // Vector<double> v1(N);
-  // Vector<double> v2(N);
+  {
+    cr();
+    cr();
+    example(Nex++,"Complex  `Vector` ");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( Vector<complex<double> > v(4) );
+#if CPP14 == 1
+    codemulti( using namespace literals );
+    codemulti( using namespace complex_literals );
+    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v = { 1+1i, 1, 1i, 1-1i } );
+#else
+#endif
+    codeend();
+    cr();
 
-
-  // std::cout << "initialize v1 (real vector) using range<" << std::endl;
-  // v1 = range<double>(1,3);
-  // std::cout << v1 << std::endl;
-
-  // std::cout << "initialize v2 (real vector) using range<" << std::endl;
-  // v2 = range<double>(100,300,100);
-  // std::cout << v2 << std::endl;
-
-  // // complex vectors
-
-  // Vector<complex<double> > v3(N);
+   
+    resultstart2("");
+    resultmulti(v);
+    resultend();
+  }
 
 
   // std::cout << "initialize each element of v3 (complex vector)" << std::endl;

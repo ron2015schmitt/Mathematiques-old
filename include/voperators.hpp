@@ -636,6 +636,26 @@ namespace Matricks {
   }
 
 
+  // reverse(a)
+
+  template <class D>
+  Vector<D>& reverse(Vector<D>& a ) {
+
+    const size_type N = a.size();
+    if (N==0)
+      return a;
+   
+    for (register size_type i = 0; i < N/2 ; i++ ) {
+      D temp = a[i];
+      a[i] = a[N-i-1];
+      a[N-i-1] = temp;
+    }
+
+    return a;
+
+  }
+
+
 
 };
 

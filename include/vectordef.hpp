@@ -1134,7 +1134,7 @@ namespace Matricks {
 
   // linspace function
 
-  template <class D>
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   inline Vector<D> linspace(D start, D end, size_type N) {
 #ifdef MATRICKS_DEBUG
     std::ostringstream stream;
@@ -1145,7 +1145,6 @@ namespace Matricks {
     Vector<D> y(N);
 #endif
 
-    // checking, ala make_string type and give error here if not: float, double or extended
 #ifdef MATRICKS_DEBUG
     if (N<2) {
       vbadlinspace<D>(start,end,N);

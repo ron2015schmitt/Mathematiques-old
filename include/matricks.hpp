@@ -23,7 +23,6 @@
 #include "vectordef.hpp"
 #include "matrixdef.hpp"
 
-#include "print.hpp"
 #include "md.hpp"
 
 #include "vexpr.hpp"
@@ -44,6 +43,8 @@
 #include "mvoperators.hpp"
 #include "mvcomplexops.hpp"
 #include "p3vector.hpp"
+
+#include "print.hpp"
 #include "matricksio.hpp"
 #include "matricksutil.hpp"
 

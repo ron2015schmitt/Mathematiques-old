@@ -12,30 +12,6 @@ namespace Matricks {
   // core functions (internal use only)
 
   //////////////////////////////////////////////////////////////////
-  template <typename X>
-  void _printvar(const X a, bool display, char const *s, char const *pres, char const *posts)
-  {
-    if (display)
-      std::cout << s;
-    std::cout<<pres;
-    std::cout << a;
-    std::cout << posts;
-  }
-  template <typename X, size_type N>
-  void _printvar(X (&a)[N], bool display, char const *s, char const *pres, char const *posts)
-  {
-    if (display)
-      std::cout << s << "[]" ;
-    std::cout<<pres;
-    std::cout << "{ " ;
-    for(size_type i = 0; i<N ; i++) {
-      std::cout << (a[i]) ;
-      if (i != (N-1)) 
-	std::cout << " ,";
-    }
-    std::cout << " } " ;
-    std::cout << posts;
-  }
   template <size_type N>
   void _printvar(const char (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
@@ -95,7 +71,41 @@ namespace Matricks {
     std::cout << a;
     std::cout << posts;
   }
+  template <typename A, typename B, typename D>
+  void _printvar(const VFuncOp<D,A,B>& exp, bool display, char const *s, char const *pres, char const *posts)
+  {
+    Vector<D> a = exp;
+    if (display)
+      std::cout << s;
+    std::cout<<pres;
+    std::cout << a;
+    std::cout << posts;
+  }
 
+  template <typename X>
+  void _printvar(const X a, bool display, char const *s, char const *pres, char const *posts)
+  {
+    if (display)
+      std::cout << s;
+    std::cout<<pres;
+    std::cout << a;
+    std::cout << posts;
+  }
+  template <typename X, size_type N>
+  void _printvar(X (&a)[N], bool display, char const *s, char const *pres, char const *posts)
+  {
+    if (display)
+      std::cout << s << "[]" ;
+    std::cout<<pres;
+    std::cout << "{ " ;
+    for(size_type i = 0; i<N ; i++) {
+      std::cout << (a[i]) ;
+      if (i != (N-1)) 
+	std::cout << " ,";
+    }
+    std::cout << " } " ;
+    std::cout << posts;
+  }
 
 
   template <typename X>

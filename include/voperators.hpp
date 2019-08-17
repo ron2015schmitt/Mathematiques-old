@@ -467,6 +467,29 @@ namespace Matricks {
   }
 
 
+  // prod(a)
+
+  template <class D, class A> 
+  inline D prod( const VorE<D,A>& a ) {
+    
+#ifdef MATRICKS_DEBUG
+    if (  vexpr_is_size_bad(a) ) {
+      vbad_expr_in_unary(a,"prod");
+      return 0;
+    }
+#endif
+ 
+    const size_type N = a.size();
+    if (N==0)
+      return 0;
+
+    D result = a[0];
+
+    for (register size_type i = 1; i < N ; i++ )
+      result *= a[i];
+    
+    return result;
+  }
 
 
 

@@ -93,14 +93,17 @@ int main()
   
 #if CPP11==1
   {
-    example(Nex++,"Assign from a `std::vector,array,val_array`.");
+    example(Nex++,"Assign from a std::{`vector`,`array`,`val_array`}.");
     codestart("C++");
     codemulti( std::vector<double> vstd({1,2,3,4}) );
-    codemulti( Vector<double> v1(4); );
-    codemulti( v1 = vstd; );
+    codemulti( Vector<double> v1(4) );
+    codemulti( v1 = vstd );
     codemulti( std::array<double, 3> varray = {10,20,30} );
-    codemulti( Vector<double> v2(3); );
-    codemulti( v2 = varray; );
+    codemulti( Vector<double> v2(3) );
+    codemulti( v2 = varray );
+    codemulti( std::valarray<double> myvalarray = {100,200} );
+    codemulti( Vector<double> v3(2) );
+    codemulti( v3 = myvalarray );
     codeend();
     result(v1);
     result(v2);

@@ -1,6 +1,6 @@
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.1-r57).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.1-r59).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -93,6 +93,11 @@ v3 = myvalarray;
 **The result is**
 ```C++
   v2:  {10,20,30}; 
+```
+
+**The result is**
+```C++
+  v3:  {100,200}; 
 ```
 
 

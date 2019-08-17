@@ -107,6 +107,7 @@ int main()
     codeend();
     result(v1);
     result(v2);
+    result(v3);
   }
 #endif
 

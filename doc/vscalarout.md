@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.1-r64).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.1-r67).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -37,7 +37,21 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 
 
-**EXAMPLE 3**: Compute the _product_ of the elements of a vector
+**EXAMPLE 3**: `norm` the elements of a vector
+* This function returns the square root of the sum of the squares of the elements, ie the square root of the dot product of the vector with itself.
+```C++
+Vector<double> v({1,2,3,4}); // C++11 list initialization
+```
+
+**Some expressions with results**
+```C++
+  norm(v):  5.47723; 
+  norm(2*exp(v)+1):  118.864; 
+```
+
+
+
+**EXAMPLE 4**: Compute the _product_ of the elements of a vector
 ```C++
 Vector<double> v({1,2,3,4}); // C++11 list initialization
 ```
@@ -50,7 +64,7 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 
 
-**EXAMPLE 4**: Find the _minimum_ of the elements of a vector
+**EXAMPLE 5**: Find the _minimum_ of the elements of a vector
 ```C++
 Vector<double> v({1,20,-1,0}); // C++11 list initialization
 ```
@@ -65,7 +79,7 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 
 
 
-**EXAMPLE 5**: Find the _maximum_ of the elements of a vector
+**EXAMPLE 6**: Find the _maximum_ of the elements of a vector
 ```C++
 Vector<double> v({1,20,-1,0}); // C++11 list initialization
 ```

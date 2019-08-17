@@ -77,6 +77,28 @@ int main()
   {
     cr();
     cr();
+    example(Nex++,"`norm` the elements of a vector");
+    text("* This function returns the square root of the sum of the squares of the elements, ie the square root of the dot product of the vector with itself.");
+    codestart("C++");
+#if CPP11 == 1
+    codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
+#else
+    codemulti( Vector<double> v( 4, (const double[]) {1, 2, 3, 4} )  );
+#endif
+    codeend();
+    cr();
+
+   
+    resultstart2("");
+    resultmulti( norm(v) );
+    resultmulti( norm(2*exp(v)+1) );
+    resultend();
+  }
+
+  
+  {
+    cr();
+    cr();
     example(Nex++,"Compute the _product_ of the elements of a vector");
     codestart("C++");
 #if CPP11 == 1

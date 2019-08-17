@@ -64,8 +64,8 @@ int main()
 #if CPP14 == 1
     codemulti( using namespace literals );
     codemulti( using namespace complex_literals );
-    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v1 = { 1+1i, 1, 1i, 1-1i } );
-    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v2 = { -1i, 0, 1-1i, 1+1i } );
+    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v1 = { -1i, 0, 1-1i, 1+1i } );
+    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v2 = { 1+1i, 1, 1i, -1i } );
 #else
 #endif
     codeend();
@@ -81,52 +81,35 @@ int main()
   }
 
 
-  // std::cout << "initialize each element of v3 (complex vector)" << std::endl;
-  // v3[0] = complex<double>(1,2);
-  // v3[1] = complex<double>(3,4);
-  // v3[2] = complex<double>(5,6);
-  // std::cout << v3 << std::endl;
+  header3("Arithmetic with complex and real vectors `Vector`'s");
 
-  // std::cout << "initialize v3 = (v1,0)" << std::endl;
-  // v3 = vcomplex(v1,0);
-  // std::cout << v3 << std::endl;
+  {
+    cr();
+    cr();
+    example(Nex++,"Complex  `Vector` ");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( Vector<double > vr(4) );
+    codemulti( Vector<complex<double> > vc(4) );
+#if CPP14 == 1
+    codemulti( using namespace literals );
+    codemulti( using namespace complex_literals );
+    codemultiwcomment("C++11 list ", vr = { 1, 2, 3, 4 } );
+    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", vc = { 1+1i, 1, 1i, -1i } );
+#else
+#endif
+    codeend();
+    cr();
 
-  // std::cout << "initialize v3 = (0,v1)" << std::endl;
-  // v3 = vcomplex(0,v1);
-  // std::cout << v3 << std::endl;
+   
+    resultstart2("");
+    resultmulti(vr+vc);
+    resultmulti(vr-vc);
+    resultmulti(vr*vc);
+    resultmulti(vr/vc);
+    resultend();
+  }
 
-  // std::cout << "initialize v3 = (v1,v2)" << std::endl;
-  // v3 = vcomplex(v1,v2);
-  // std::cout << v3 << std::endl;
-
-  // std::cout <<std::endl << "add real and complex vectors" << std::endl;
-  // v3 = v3+v1;
-  // std::cout <<"v3=v3+v1="<< v3 << std::endl;
-
-  // std::cout <<std::endl << "subtraction with real and complex vectors" << std::endl;
-  // v3 = v3-v1;
-  // std::cout <<"v3=v3-v1="<< v3 << std::endl;
-
-  // std::cout <<std::endl << "multipy real and complex vectors" << std::endl;
-  // v3 = v3*v1;
-  // std::cout <<"v3=v3*v1="<< v3 << std::endl;
-
-  // std::cout <<std::endl << "division with real and complex vectors" << std::endl;
-  // v3 = v3/v1;
-  // std::cout <<"v3=v3/v1="<< v3 << std::endl;
-
-  // std::cout<<std::endl << "dot product (v3|v3)" << std::endl;
-  // complex<double> dc = (v3|v3);
-  // std::cout <<dc << std::endl;
-
-
-  // std::cout << "conjugate dot product  conj(v3)|v3" << std::endl;
-  // dc = conj(v3)|v3;
-  // std::cout <<dc << std::endl;
-
-  // std::cout << "dot product (v1|v3)" << std::endl;
-  // dc = (v1|v3);
-  // std::cout <<dc << std::endl;
 
   // std::cout << "real part" << std::endl;
   // v1 = real(v3);

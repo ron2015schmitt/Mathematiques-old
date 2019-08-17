@@ -45,7 +45,7 @@ int main()
     text("_In DEBUG mode, this generates a warning since it is a dangerous practice. Use a C++11 list instead._");
     codestart("C++");
     codemulti( Vector<double> v(4) );
-    codemulti( (const double[]) {1,2,3,4} );
+    codemulti( v = (const double[]) {1,2,3,4} );
     codeend();
     result(v);
   }

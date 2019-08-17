@@ -25,6 +25,9 @@ Advantages
 + hand-optimized matrix multiply
 + pretty formatted output of vectors and matrices
 + simple file i/o of vectors and matrices
++ Online [User's Guide](doc/README.md) in git markdown
+ + clear documentation of every feature
+ + documentation is generated from C++ code using the library itself
 + `MEBUG` debugging compile mode produces extensive information to aid in debugging
   + out of bounds access for vectors or matrices (e.g. x[10] where x is a
    vector of length 6.
@@ -175,7 +178,7 @@ check the problem under careful mode.
 
 Compile time is also considerably slower in MEBUG mode.
 
-# Coding Documentation
+# DOCUMENTATION
 
-[Coding Documentation](doc/README.md)
+[User's Guide](doc/README.md)
 

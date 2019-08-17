@@ -1,6 +1,6 @@
 
 # Vector functions `sort` and `find` in mātricks
-_This document was automatically generated from file_ **`vsortandfind.cpp`** (mātricks-v2.1-r70).
+_This document was automatically generated from file_ **`vsortandfind.cpp`** (mātricks-v2.1-r72).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively

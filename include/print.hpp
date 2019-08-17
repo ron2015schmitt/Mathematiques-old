@@ -129,6 +129,9 @@ namespace Matricks {
   }
 
 
+
+
+  
   //////////////////////////////////////////////////////////////////
 
   /* "print"
@@ -146,9 +149,9 @@ namespace Matricks {
   /* "disp"
    * These functions display the variable/expression and its value
    */
-#define disp(var) _printvar(var,true,# var,":  ","; ")
-#define dispcr(var) _printvar(var,true,# var,":  ","; \n")
-#define dispcrcr(var) _printvar(var,true,# var,":\n","; \n")
+#define disp(...) _printvar(__VA_ARGS__,true,stringify(__VA_ARGS__),":  ","; ")
+#define dispcr(...) _printvar(__VA_ARGS__,true,stringify(__VA_ARGS__),":  ","; \n")
+#define dispcrcr(...) _printvar(__VA_ARGS__,true,stringify(__VA_ARGS__),":\n","; \n")
 #define disparray(var,start,end) _printarray(var,true,# var,start,end,":  ","; \n")
 
 	

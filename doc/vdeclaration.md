@@ -1,6 +1,6 @@
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.1-r70).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.1-r72).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -46,10 +46,10 @@ Vector<double> v({10, 20, 30, 40});
 * Note that this is a _copy_ constructor.
 * In fact all of the `Vector` constructors are _copy_ constructors.
 ```C++
-Vector<double> v1( CARRAY({10,11,12,13}) );
+Vector<double> v1( {10,11,12,13} );
 Vector<double> v2(v1);
-v1[0] = -1;;
-v2[0] = -2;;
+v1[0] = -1;
+v2[0] = -2;
 ```
 **The result is**
 ```C++
@@ -64,7 +64,7 @@ v2[0] = -2;;
 **EXAMPLE 6**: Declare `v2` and initialize to an expression
 * The expression is computed without creating any intermediate objects.
 ```C++
-Vector<double> v1( CARRAY({10,11,12,13}) );
+Vector<double> v1( {10,11,12,13} );
 Vector<double> v2(10*v1+1);
 ```
 **The result is**

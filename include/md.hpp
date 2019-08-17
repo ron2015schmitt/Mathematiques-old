@@ -32,8 +32,8 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define text(str)  std::cout << str << std::endl
 
 #define codestart(lang) std::cout << std::string("```") << std::string(lang) << std::endl
-#define codemulti(...)  printf("%s;\n",  #__VA_ARGS__); __VA_ARGS__
-#define codemultiwcomment(str,...)  printf("%s; // %s\n",  #__VA_ARGS__,str); __VA_ARGS__
+#define codemulti(...)  printf("%s;\n",  stringify(__VA_ARGS__)); __VA_ARGS__
+#define codemultiwcomment(str,...)  printf("%s; // %s\n",  stringify(__VA_ARGS__),str); __VA_ARGS__
 #define codeend() printf("```\n")
 #define code(...)  codestart();codemulti(__VA_ARGS__);codeend()
 

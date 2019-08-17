@@ -70,8 +70,8 @@ int main()
     codestart("C++");
     codemulti( Vector<double> v1( CARRAY({10,11,12,13}) ) );
     codemulti( Vector<double> v2(v1) );
-    codemulti( v1[0] = -1; );
-    codemulti( v2[0] = -2; );
+    codemulti( v1[0] = -1 );
+    codemulti( v2[0] = -2 );
     codeend();
     result(v1);
     result(v2);

@@ -6,6 +6,9 @@
 #define CPP14 (__cplusplus >= 201400L)
 #define CPP17 (__cplusplus >= 201700L)
 
+#define _stringify(...) #__VA_ARGS__
+#define stringify(...) _stringify(__VA_ARGS__)
+
 
 #if CPP11 == 1
 #define CARRAY(...) __VA_ARGS__

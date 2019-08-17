@@ -119,7 +119,7 @@ A example makefile, ```examples/Makefile```,  is included for your convenience
 *AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
 
 
-# DEBUGGIN 
+# EXTENSIVE DEBUGGING SUPPORT
 
 The mātricks library provides extensive debugging operation, turned on using the flag `MEBUG`.   The word `MEBUG` was chosen over `DEBUG` to avoid clashing with other code (libraries).
 
@@ -153,7 +153,7 @@ without specifying the `MEBUG` flag
 ```make clean myprogram```
 
 
-### EXPLICIT METHOD: Add a #define statement BEFORE each matricks.hpp include statement
+### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.hpp` include statement
 
 ```C++
 #define MEBUG 1

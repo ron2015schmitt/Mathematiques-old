@@ -227,8 +227,35 @@ int main()
 
 
   header3("Arbitrary combinations of the above functionality are supported");
+  text("* Because mātricks uses expression templating, there are no inetrmediate objects created:  the expression is calculated for each element.");
 
-  
+
+    {
+    cr();
+    cr();
+    example(Nex++,"A huge expression");
+    codestart("C++");
+    codemulti( Vector<double> v1(4) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v1 = {10,20,30,40});
+#else
+    codemulti( v1 = (const double[]) {10,20,30,40} );
+#endif
+    codemulti( Vector<double> v2(4) );
+#if CPP11 == 1
+    codemultiwcomment("C++11 list", v2 = {-1,-2,-3,-4});
+#else
+    codemulti( v2 = (const double[]) {1,2,3,4} );
+#endif
+    codeend();
+    cr();
+
+   
+    resultstart2("");
+    resultmulti(2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) );
+    resultend();
+  }
+
   matricks_toc();
 
 

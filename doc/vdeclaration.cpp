@@ -47,6 +47,8 @@ int main()
 
   {
     example(Nex++, "Declare `v` and initialize to a **C-style array** of values" );
+    cr();
+    text("In debug mode, this produces a warning, as shown below");
     codestart("C++");
     codemulti( Vector<double> v( 4, (const double[]) {10, 20, 30, 40} )  );
     codeend();
@@ -66,26 +68,30 @@ int main()
   {
     example(Nex++, "Declare `v2` and initialize to values of `v1`" );
     text("* Note that this is a _copy_ constructor.");
-    text("* In fact all of the `Vector` constructors are _copy_ constructors.");
+    text("* In fact _all_ of the `Vector` constructors are _copy_ constructors.");
     codestart("C++");
-    codemulti( Vector<double> v1( CARRAY({10,11,12,13}) ) );
+    codemultiNoteC11Array( Vector<double> v1( CARRAY({10,11,12,13}) ) );
     codemulti( Vector<double> v2(v1) );
     codemulti( v1[0] = -1 );
     codemulti( v2[0] = -2 );
     codeend();
-    result(v1);
-    result(v2);
+    resultstart();
+    resultmulti(v1);
+    resultmulti(v2);
+    resultend();
   }
 
   {
     example(Nex++, "Declare `v2` and initialize to an expression" );
     text("* The expression is computed without creating any intermediate objects.");  
     codestart("C++");
-    codemulti( Vector<double> v1( CARRAY({10,11,12,13}) ) );
+    codemultiNoteC11Array( Vector<double> v1( CARRAY({10,11,12,13}) ) );
     codemulti( Vector<double> v2(10*v1+1) );
     codeend();
-    result(v1);
-    result(v2);
+    resultstart();
+    resultmulti(v1);
+    resultmulti(v2);
+    resultend();
   }
 
 

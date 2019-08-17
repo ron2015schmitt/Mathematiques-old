@@ -143,7 +143,7 @@ namespace Matricks {
   void v_array_warning(const size_type id){
     std::string s1= MatricksObjectPool::vectorname(id);
     std::cout << warn_str << "vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead." << std::endl;
-    std::cout << indent_str  <<s1 << "= D array[]" << std::endl;
+    std::cout << indent_str  <<s1 << " = D[]" << std::endl;
     MatricksObjectPool::voutputglossary(id);
   }
       

@@ -62,6 +62,32 @@ int main()
 #endif
   
 
+  {
+    example(Nex++,"Assign from another `Vector`.");
+    text("Note that values are copied from `v2` to `v1`");
+    codestart("C++");
+    codemulti( Vector<double> v1({1,2,3,4}) );
+    codemulti( Vector<double> v2({0,0,0,0}) );
+    codemulti( v2 = v1 );
+    codemulti( v1[0] = 100; );
+    codemulti( v2[0] = 200; );
+    codeend();
+    result(v1);
+    result(v2);
+  }
+
+    {
+    example(Nex++,"Assign from a `Vector` expression.");
+    codestart("C++");
+    codemulti( Vector<double> v1({1,2,3,4}) );
+    codemulti( Vector<double> v2({0,0,0,0}) );
+    codemulti( v2 = 2*v1 );
+    codeend();
+    result(v1);
+    result(v2);
+  }
+
+  
   matricks_toc();
 
   return 0;

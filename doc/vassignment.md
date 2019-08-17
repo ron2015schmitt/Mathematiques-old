@@ -1,6 +1,6 @@
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.1-r53).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.1-r54).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -36,6 +36,41 @@ v = {1,2,3,4};
 **The result is**
 ```C++
   v:  {1,2,3,4}; 
+```
+
+**EXAMPLE 4**: Assign from another `Vector`.
+Note that values are copied from `v2` to `v1`
+```C++
+Vector<double> v1({1,2,3,4});
+Vector<double> v2({0,0,0,0});
+v2 = v1;
+v1[0] = 100;;
+v2[0] = 200;;
+```
+**The result is**
+```C++
+  v1:  {100,2,3,4}; 
+```
+
+**The result is**
+```C++
+  v2:  {200,2,3,4}; 
+```
+
+**EXAMPLE 5**: Assign from a `Vector` expression.
+```C++
+Vector<double> v1({1,2,3,4});
+Vector<double> v2({0,0,0,0});
+v2 = 2*v1;
+```
+**The result is**
+```C++
+  v1:  {1,2,3,4}; 
+```
+
+**The result is**
+```C++
+  v2:  {2,4,6,8}; 
 ```
 
 

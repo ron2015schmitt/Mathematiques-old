@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector math");
+  mdtitle("Element-wise Vector math");
   matricks_preamble();
 
   header3("Element-wise arithmetic");
@@ -202,10 +202,16 @@ int main()
     example(Nex++,"functions of a `Vector`—inverse trig");
     codestart("C++");
     codemulti( Vector<double> v(3) );
+    codemulti( Vector<double> v1(9) );
+    codemulti( Vector<double> v2(9) );
 #if CPP11 == 1
     codemultiwcomment("C++11 list", v = {-1,0,1});
+    codemultiwcomment("C++11 list", v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
+    codemultiwcomment("C++11 list", v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
 #else
     codemulti( v = (const double[]) {-1,0,1} );
+    codemulti( v1 = (const double[]) {-1,-1,-1, 0, 0, 0, 1, 1, 1});
+    codemulti( v2 = (const double[]) {-1, 0, 1,-1, 0, 1,-1, 0, 1});
 #endif
     codeend();
     cr();
@@ -214,6 +220,7 @@ int main()
     resultmulti( asin(v)  );
     resultmulti( acos(v)  );
     resultmulti( atan(v)  );
+    resultmulti( atan2(v1, v2)  );
     resultend();
   }
 

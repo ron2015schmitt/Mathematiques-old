@@ -26,6 +26,15 @@ namespace Matricks {
   }
 
 
+  // atan2(vector,vector)
+
+  template <class D, class A, class B> 
+  inline VBinOp<D,VorE<D,A>,VorE<D,B>,ApAtan2<D> > 
+  atan2(const VorE<D,A>& a, const VorE<D,B>& b)
+  {
+    return  VBinOp<D,VorE<D,A>,VorE<D,B>,ApAtan2<D> >(a,b);
+  }
+
 
 
 
@@ -232,14 +241,7 @@ namespace Matricks {
   }
 
 
-  // atan2(vector)
 
-  template <class D, class A> 
-  inline VFuncOp<D,VorE<D,A>,ApAtan2<D> > 
-  atan2(const VorE<D,A>& a)
-  {
-    return  VFuncOp<D,VorE<D,A>,ApAtan2<D> >(a);
-  }
 
 
   // ceil(vector)

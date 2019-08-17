@@ -1,6 +1,6 @@
 
-# Vector math in mātricks
-This document was automatically generated from file **`vmath.cpp`** (mātricks-v2.1-r40).
+# Element-wise Vector math in mātricks
+This document was automatically generated from file **`velmath.cpp`** (mātricks-v2.1-r41).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
@@ -128,7 +128,11 @@ v = {-1,0,1}; // C++11 list
 **EXAMPLE 7**: functions of a `Vector`—inverse trig
 ```C++
 Vector<double> v(3);
+Vector<double> v1(9);
+Vector<double> v2(9);
 v = {-1,0,1}; // C++11 list
+v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1}; // C++11 list
+v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
 ```
 
 **Some expressions with results**: inverse trig
@@ -136,6 +140,7 @@ v = {-1,0,1}; // C++11 list
   asin(v):  {-1.5708,0,1.5708}; 
   acos(v):  {3.14159,1.5708,0}; 
   atan(v):  {-0.785398,0,0.785398}; 
+  atan2(v1, v2):  {-2.35619,-1.5708,-0.785398,3.14159,0,0,2.35619,1.5708,0.785398}; 
 ```
 
 ### Arbitrary combinations of the above functionality are supported

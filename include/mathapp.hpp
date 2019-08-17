@@ -37,6 +37,25 @@ namespace Matricks {
 
 
 
+    // y = atan2(a,b)  
+
+  template <class DataT> class ApAtan2 {
+  public:
+    ApAtan2() { }
+    static inline DataT apply(DataT a, DataT b) { 
+      using std::atan2;
+      return atan2(a,b); 
+    }
+
+
+    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+      std::string sout = "atan2( " + sa + " , " + sb + " )";
+      return sout;
+    }
+  };
+
+
+
 
 
 
@@ -323,24 +342,6 @@ namespace Matricks {
     }
 
   };
-  // atan2(a)
-
-  template <class DataT> class ApAtan2 {
-  public:
-    ApAtan2() { }
-
-    static inline DataT apply(DataT a) {
-      using std::atan2;
-      return std::atan2(a);
-    }
-
-    static std::string debugtxt( const std::string& sa) {
-      std::string sout = "atan2(" + sa + ")";
-      return sout;
-    }
-
-  };
-
 
 
   // ceil(a)

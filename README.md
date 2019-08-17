@@ -1,13 +1,14 @@
 # mātricks
 
 ```diff
-- CURRENTLY NOT READY FOR USE. CHECK BACK IN SEPTEMBER 2019 -
+- CURRENTLY NOT READY FOR USE. Planned Launch Date: 2019 Aug 21 -
 ```
 
 mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 
 Advantages
 + object-oriented matrices and vectors
++ run-time performance and memory usage on par with optimized C or and Fortran
 + simple MATLAB-like syntactic sugar 
   + slices of vectors and matrices
   + add two matrices is `A+B`
@@ -19,10 +20,15 @@ Advantages
   + functions of matrices/vectors supported: `sin(x)`, `exp(A)` etc
   + SVD and Eiegenvalue decomposition supported via LAPACK
   + matrix inverse: `inv(A)`
-+ run-time performance and memory usage on par with optimized C or and Fortran
 + does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
++ expressions are computed in a single for loop
++ hand-optimized matrix multiply
 + pretty formatted output of vectors and matrices
-+ `CAREFUL` compile mode produces extensive information to aid in debugging
++ simple file i/o of vectors and matrices
++ Online [User's Guide](doc/README.md) in git markdown
+ + clear documentation of every feature
+ + documentation is generated from C++ code using the library itself
++ `MEBUG` debugging compile mode produces extensive information to aid in debugging
   + out of bounds access for vectors or matrices (e.g. x[10] where x is a
    vector of length 6.
   + adding/subtracting/multiplying/dividing vector or matrices of unequal
@@ -116,74 +122,63 @@ A example makefile, ```examples/Makefile```,  is included for your convenience
 *AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
 
 
-# MODES OF OPERATION
+# EXTENSIVE DEBUGGING SUPPORT
 
-The mātricks library supports two mode of operation: `CAREFUL` and fast.
+The mātricks library provides extensive debugging operation, turned on using the flag `MEBUG`.   The word `MEBUG` was chosen over `DEBUG` to avoid clashing with other code (libraries).
 
-## Fast mode (default)
-
- This is the default.  All operations are performed without any error checking 
- (e.g. vector or matrix out of bounds access attempts, etc.)
-
-## CAREFUL mode
-
- This mode can be turned on through two different methods (see the following item).
- In this mode extensive error checking is performed to notify the user of
+In this mode extensive error checking is performed to notify the user of
 
  - out of bounds access for vectors or matrices (e.g. x[10] where x is a
    vector of length 6.
  - adding/subtracting/multiplying/dividing vector or matrices of unequal
    size
  - invalid dot products of vector and/or matrices 
- - other assorted errors
+ - other assorted errors and warnings
 
 
 
-## SETTING THE MODE
+## SETTING `MEBUG` MODE
 
-The default mode is "fast mode".  Nothing needs to be done to set fast mode.
+There are two methods to accomplish this.
 
-Setting to `CAREFUL` mode is performed via a `#define` statement. There are
-two methods to accomplish this:
-
-### RECOMMENDED METHOD: Use the provided sample makefile and specify CAREFUL=1 on the command line
+### RECOMMENDED METHOD: Use the provided sample makefile and specify `MEBUG=1` on the command line
 
 example:
 
-```make clean CAREFUL=1 myprogram```
+```make clean MEBUG=1 myprogram```
 
 
 The target `clean` is not needed, but is a reccomended practice.
 
 If you want to recompile in fast mode, just use the makefile
-without specifying the `CAREFUL` flag
+without specifying the `MEBUG` flag
 
 ```make clean myprogram```
 
 
-### EXPLICIT METHOD: Add a #define statement BEFORE each matricks.hpp include statement
+### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.hpp` include statement
 
 ```C++
-#define MATRICKS_CAREFUL 1
+#define MEBUG 1
 #include "matricks.hpp"
 ```
 
 
 ## RECOMMENDATIONS
 
-While developing your code, use `CAREFUL` mode.  When you are convinced that it is operating
-without errors, switch to fast mode.  
+While developing your code, use `MEBUG` mode.  When you are convinced that it is operating
+without errors or warnings, run normally.  
 
-Compile a `CAREFUL` and a quick version of your code, giving the executables different names.
+Compile a `MEBUG` and a quick version of your code, giving the executables different names.
 This way if a segmentation fault occurs, or you otherwise suspect an error, you can quickly
 check the problem under careful mode.
 
 
 ##  NOTES
 
-Compile time is also considerably slower in CAREFUL mode.
+Compile time is also considerably slower in MEBUG mode.
 
-# Coding Documentation
+# DOCUMENTATION
 
-[Coding Documentation](doc/README.md)
+[User's Guide](doc/README.md)
 

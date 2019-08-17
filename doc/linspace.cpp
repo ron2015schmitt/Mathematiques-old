@@ -27,8 +27,8 @@ int main()
   mdtitle("The `linspace` function");
   matricks_preamble();
 
-  text("* The function `linspace<D>(start,end,N)` returns a Vector<D> containingequispaced numbers from start to end, spaced by (start-end)/(N-1)`");
-  text("* note that end can be less than start, in which case the returned sequence is decreasing");
+  text("* The function `linspace<D>(start,end,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `start` to `end`, spaced by `(start-end)/(N-1)`");
+  text("* Note that `end` can be less than `start`, in which case the returned sequence is decreasing");
   codestart("C++");
   dispcr(linspace<double>(100,400,4));
   dispcr(linspace<unsigned int>(1,2,2));

@@ -661,7 +661,7 @@ namespace Matricks {
 
 
 
-        // assignment to a std::vector
+    // assignment to a std::vector
     Vector<D>& equals(const std::vector<D> vstd) {
       
 #ifdef MATRICKS_DEBUG
@@ -687,6 +687,35 @@ namespace Matricks {
       return equals(vstd);
     }
 
+
+
+        // assignment to a std::array
+    template <std::size_t N>
+    Vector<D>& equals(const struct std::array<D,N> varray) {
+      
+#ifdef MATRICKS_DEBUG
+      if ( (size()>0) && ( size() !=  N) ) { 
+	vbad_assignment_general_warning(objectID(), N, "std::array<D,N>");
+      } else if (size() !=  N ){
+	// if size=0, just silently resize this vector
+	//	vbad_assignment_warning(objectID(),v2.objectID());
+      }      
+#endif      
+
+      // resize to avoid segmentation faults
+      resize(N);
+
+      for(register size_type i=size(); i--;)
+	(*data_)[i] = varray[i];    
+
+      return *this;
+    }
+
+
+    template <std::size_t N>
+    Vector<D>& operator=(const struct std::array<D,N> varray) {
+      return equals(varray);
+    }
 
 
     

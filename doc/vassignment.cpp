@@ -93,16 +93,21 @@ int main()
   
 #if CPP11==1
   {
-    example(Nex++,"Assign from a `std::vector`.");
+    example(Nex++,"Assign from a `std::vector,array,val_array`.");
     codestart("C++");
     codemulti( std::vector<double> vstd({1,2,3,4}) );
-    codemulti( Vector<double> v(4) );
-    codemulti( v = vstd );
+    codemulti( Vector<double> v1(4); );
+    codemulti( v1 = vstd; );
+    codemulti( std::array<double, 3> varray = {10,20,30} );
+    codemulti( Vector<double> v2(3); );
+    codemulti( v2 = varray; );
     codeend();
-    result(v);
+    result(v1);
+    result(v2);
   }
 #endif
-  
+
+
   matricks_toc();
 
   return 0;

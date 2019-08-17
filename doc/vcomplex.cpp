@@ -25,7 +25,7 @@ int main()
   mdtitle("Complex-valued Vectors");
   matricks_preamble();
 
-  header3("Declaring complex-valued `Vector`'s");
+  header3("Declaring and assigning complex-valued `Vector`'s");
 
   {
     cr();
@@ -46,6 +46,37 @@ int main()
    
     resultstart2("");
     resultmulti(v);
+    resultend();
+  }
+
+
+
+    header3("Arithmetic with complex-valued `Vector`'s");
+
+  {
+    cr();
+    cr();
+    example(Nex++,"Complex  `Vector` ");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( Vector<complex<double> > v1(4) );
+    codemulti( Vector<complex<double> > v2(4) );
+#if CPP14 == 1
+    codemulti( using namespace literals );
+    codemulti( using namespace complex_literals );
+    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v1 = { 1+1i, 1, 1i, 1-1i } );
+    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v2 = { -1i, 0, 1-1i, 1+1i } );
+#else
+#endif
+    codeend();
+    cr();
+
+   
+    resultstart2("");
+    resultmulti(v1+v2);
+    resultmulti(v1-v2);
+    resultmulti(v1*v2);
+    resultmulti(v1/v2);
     resultend();
   }
 

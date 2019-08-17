@@ -500,7 +500,7 @@ namespace Matricks {
   inline std::complex<D>  operator|( const VorE<D,A>& a, const  VorE<std::complex<D>,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
@@ -520,7 +520,7 @@ namespace Matricks {
   inline std::complex<D>  operator|( const VorE<std::complex<D>,A>& a, const  VorE<D,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
@@ -550,7 +550,7 @@ namespace Matricks {
   inline D norm( const VorE<std::complex<D>,A>& a ) {
     D result = D();
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"norm");
       return 0;

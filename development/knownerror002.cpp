@@ -24,8 +24,8 @@ int main()
   "{{0.1,0.2,0.3},{0.4,0.5,0.6}}" >> v1;
   dispcr(v1);
 
-  // this works only in CAREFUL mode
-  printcr("this works only in CAREFUL mode");
+  // this works only in DEBUG mode
+  printcr("this works only in DEBUG mode");
   LAvector<LAvector<double> > v2=v1;
   dispcr(v2);
 
@@ -35,8 +35,8 @@ int main()
   v3=v1;
   dispcr(v3);
 
-  // this works only in CAREFUL mode
-  printcr("this works only in CAREFUL mode");
+  // this works only in DEBUG mode
+  printcr("this works only in DEBUG mode");
   LAvector<LAvector<double> >  v4;
   "{{1,2,3},{4,5,6}}" >> v4; 
   dispcr(v4);

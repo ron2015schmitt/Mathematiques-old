@@ -149,9 +149,9 @@ namespace Matricks {
    ****************************************************************************   
    */
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
   inline std::string execution_mode(void) {
-    return "CAREFUL";
+    return "DEBUG";
   }
 #else
   inline std::string execution_mode(void) {
@@ -208,7 +208,7 @@ namespace Matricks {
     }
 
     void outputglossary(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       std::cout << where_str<< debugtxt() <<" has size=" <<size()<<std::endl;
 #endif
     }

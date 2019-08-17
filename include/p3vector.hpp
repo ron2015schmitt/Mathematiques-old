@@ -107,7 +107,7 @@ namespace Matricks {
       return(data_[2]);
     }
     inline  const D operator[](const int i)const  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ((i<0) || (i>2)) {
 	std::cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
 	return D();
@@ -117,7 +117,7 @@ namespace Matricks {
     }
 
     inline  D &operator[](const int i) {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ((i<0) || (i>2)) {
 	std::cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
 	return data_[0];

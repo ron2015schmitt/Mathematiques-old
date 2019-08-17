@@ -1,6 +1,6 @@
 
 // flag for run-time bounds and size checking
-#define COOLL_CAREFUL
+#define MATRICKS_DEBUG
 
 
 #import "cooll.hpp"

@@ -106,14 +106,14 @@ namespace Matricks {
       p = vectorName_.begin();
       int i = 1;
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       bool dupe = false;
 #endif     
 
       while (p != vectorName_.end()) {
 	if (p->second == newname) {
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	  dupe = true;
 #endif     
 	  p = vectorName_.begin();
@@ -125,7 +125,7 @@ namespace Matricks {
 	}
       }
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (dupe) {
 	vduplicate_name(id,name,newname);
       }
@@ -224,13 +224,13 @@ namespace Matricks {
       static std::map<size_type,std::string>::iterator p; 
       p = matrixName_.begin();
       int i = 1;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       bool dupe = false;
 #endif     
 
       while (p != matrixName_.end()) {
 	if (p->second == newname) {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	  dupe = true;
 #endif     
 
@@ -244,7 +244,7 @@ namespace Matricks {
 	}
       }
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (dupe) 
 	mduplicate_name(id,name,newname);
 #endif     

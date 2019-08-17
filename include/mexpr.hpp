@@ -165,7 +165,7 @@ namespace Matricks {
 
     // assign to recon object (issue error)
     DERIVED& equals(const MReconObj<D>& b) { 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       mbad_reconassignment(derived().objectID(), b);
 #endif
       return derived();
@@ -179,7 +179,7 @@ namespace Matricks {
       
       const size_type N =size();
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       const size_type NR = Nrows();
       const size_type NC = Ncols();
       if ( ( N !=  rhs.size() ) 
@@ -192,7 +192,7 @@ namespace Matricks {
 #endif
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	Vector<D> y(N,debugtxt());
 #else
 	Vector<D> y(N);
@@ -217,7 +217,7 @@ namespace Matricks {
       const size_type N =size();
       const size_type NR = Nrows();
       const size_type NC = Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( ( N !=  rhs.size() ) || (NR != rhs.Nrows()) || (NC != rhs.Ncols()) )  { 
 	mbad_wrapper_assignment(debugtxt(),rhs.debugtxt());
 	outputglossary();
@@ -228,7 +228,7 @@ namespace Matricks {
 
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	Matrix<D> y(NR,NC,debugtxt());
 #else
 	Matrix<D> y(NR,NC);
@@ -310,7 +310,7 @@ namespace Matricks {
       const size_type r = static_cast<uint>(rstart_ + result.quot);
       const size_type c = static_cast<uint>(cstart_ + result.rem);
       const size_type ind = r*a_NC + c;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -328,7 +328,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if  ( (rstart_>rend_) || (cstart_>cend_)) {
 	mbad_submat(a_.objectID(), rstart_ ,rend_, cstart_, cend_);
 	return badsize;
@@ -420,7 +420,7 @@ namespace Matricks {
 
     inline size_type index(size_type i) const{
       const size_type ind = i_[i];
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (ind>=asize()) {
 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -556,7 +556,7 @@ namespace Matricks {
 
     inline size_type index(size_type i) const{
       const size_type ind = ii_[i];
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (ind>=asize()) {
 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -695,7 +695,7 @@ namespace Matricks {
       const size_type r = ii_[i];
       const size_type c = jj_[j];
       const size_type ind =  r*a_NC + c;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -709,7 +709,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if  ( (ii_.size()==badsize) || ( jj_.size()==badsize) ) {
 	return badsize;
       }
@@ -833,7 +833,7 @@ namespace Matricks {
       const size_type r = i_[i];
       const size_type c = j_[j];
       const size_type ind =  r*a_NC + c;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -847,7 +847,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if  ( (i_.size()==badsize) || ( j_.size()==badsize) ) {
 	return badsize;
       }
@@ -966,7 +966,7 @@ namespace Matricks {
       const size_type r = ii_[i];
       const size_type c = j_[j];
       const size_type ind =  r*a_NC + c;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -980,7 +980,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if  ( (ii_.size()==badsize) || ( j_.size()==badsize) ) {
 	return badsize;
       }
@@ -1108,7 +1108,7 @@ namespace Matricks {
       const size_type r = i_[i];
       const size_type c = jj_[j];
       const size_type ind =  r*a_NC + c;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
 	return 0;
@@ -1122,7 +1122,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if  ( (i_.size()==badsize) || ( jj_.size()==badsize) ) {
 	return badsize;
       }
@@ -1229,7 +1229,7 @@ namespace Matricks {
       size_type NC = x.Ncols();
 
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       size_type N = x.size();
       if ( N==badsize ){ 
 	mbad_expr_in_reconassignment(a_.objectID(), x);
@@ -1238,7 +1238,7 @@ namespace Matricks {
 #endif
 
       if ( x.addrmatch(&a_)) {    
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	Matrix<D> y(NR,NC,debugtxt());
 #else
 	Matrix<D> y(NR,NC);
@@ -1257,7 +1257,7 @@ namespace Matricks {
 
     Matrix<D>& operator=(const MReconObj<D>& b) { 
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       mbad_reconassignment(a_.objectID(), b);
 #endif
       return a_;
@@ -1594,7 +1594,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( a_.size() != NR_*NC_ ){ 
 	vbad_mcast(debugtxt(), NR_, NC_, a_.size() );
 	outputglossary();
@@ -1662,7 +1662,7 @@ namespace Matricks {
     }
 
     inline size_type size(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( a_.size() != NR_*NC_ ){ 
 	vbad_mcast(debugtxt(), NR_, NC_, a_.size() );
 	outputglossary();

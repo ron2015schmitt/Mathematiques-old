@@ -42,7 +42,7 @@ namespace Matricks {
     size_type width_;   // for display
     TextFormat textformat_;
     std::valarray<D>* data_;
-#ifndef Matricks_CAREFUL
+#ifndef MATRICKS_DEBUG
     mutable std::string name_;
 #endif
 
@@ -74,7 +74,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       objectID_ = MatricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -113,7 +113,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       objectID_ = MatricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -150,7 +150,7 @@ namespace Matricks {
       width_ = m2.width();
       textformat_=m2.textformat();
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       std::string name2 = name;
       if (name == "") {
 	name2 = "("+m2.debugtxt()+")";
@@ -197,7 +197,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       std::string name2 = name;
       if (name == "") {
 	name2 = x.debugtxt();
@@ -223,7 +223,7 @@ namespace Matricks {
     ~Matrix<D>() {
       delete  data_ ;
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::removematrix(objectID_);
 #endif
     }
@@ -267,7 +267,7 @@ namespace Matricks {
       data_ = new std::valarray<D>(N); 
       perline_ = Ncols_;
       width_ = 0;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -287,7 +287,7 @@ namespace Matricks {
     Matrix<D>&  reshape(const size_type nr, const size_type nc) { 
 
       const size_type nn = nr*nc;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (nn!=size()) {
 	mbad_reshape(objectID_,nr,nc,Nrows_,Ncols_);
 	return *this;
@@ -303,7 +303,7 @@ namespace Matricks {
       }
       perline_ = Ncols_;
       width_ = 0;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
 #endif      
       return *this;
@@ -442,7 +442,7 @@ namespace Matricks {
 
 
     inline D& operator()(const size_type i)  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (i>=size()) {
 	mout_of_bounds(objectID_, i);
 	return (*data_)[0]; 
@@ -453,7 +453,7 @@ namespace Matricks {
 
 
     inline const D operator()(const size_type i) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (i>=size()) {
 	mout_of_bounds(objectID_, i);
 	return 0;
@@ -490,14 +490,14 @@ namespace Matricks {
     // Accessing a SET of values using a subscript matrix
 
     const MSetObj<D> operator()(const Matrix<uint>& subs) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( subs.Ncols()!= 2 ) 
 	mbad_subsmatrix(objectID_,subs);
 #endif    
       return MSetObj<D>(*this, subs );
     }
     MSetObj<D> operator()(const Matrix<uint>& subs)  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( subs.Ncols()!= 2 ) 
 	mbad_subsmatrix(objectID_,subs);
 #endif    
@@ -508,7 +508,7 @@ namespace Matricks {
     // Accessing a SET of values using a Matrix MASK
     
     MSetObj<D> operator()(const Matrix<bool>& mask)  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (size()!=mask.size()) || (Nrows()!=mask.Nrows()) || (Ncols()!=mask.Ncols()) ) {
 	mbad_mask(objectID_,mask);
       }
@@ -516,7 +516,7 @@ namespace Matricks {
       return  MSetObj<D>(*this,mask);
     }
     const MSetObj<D> operator()(const Matrix<bool>& mask)  const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (size()!=mask.size()) || (Nrows()!=mask.Nrows()) || (Ncols()!=mask.Ncols()) ) {
 	mbad_mask(objectID_,mask);
       }
@@ -528,7 +528,7 @@ namespace Matricks {
     // Accessing a SET of values using a vector MASK
     
     MSetObj<D> operator()(const Vector<bool>& mask)  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( size()!=mask.size() ) {
 	mbad_maskv(objectID_,mask);
       }
@@ -536,7 +536,7 @@ namespace Matricks {
       return  MSetObj<D>(*this,mask);
     }
     const MSetObj<D> operator()(const Vector<bool>& mask) const  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( size()!=mask.size() ) {
 	mbad_maskv(objectID_,mask);
       }
@@ -548,7 +548,7 @@ namespace Matricks {
     // ************************* (ROW,COL) INDEX ELEMENT ACCESS **************************
 
     inline size_type index(const size_type r, const size_type c) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
 	return size()+1;
@@ -558,7 +558,7 @@ namespace Matricks {
     }
 
     inline D& operator()(const size_type r, const size_type c) {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
 	return (*data_)[0]; 
@@ -568,7 +568,7 @@ namespace Matricks {
     }
 
     inline const D operator()(const size_type r, const size_type c) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
 	return 0; 
@@ -758,7 +758,7 @@ namespace Matricks {
       const size_type NN = x.size();
       const size_type NR = x.Nrows();
       const size_type NC = x.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       {
 	if ( mexpr_is_size_bad(x.size()) ){ 
 	  mbad_expr_in_assignment(objectID(), x);
@@ -775,7 +775,7 @@ namespace Matricks {
       resize(NR,NC);
 
       if (x.mustcopy(this)) {    
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	Matrix<D> mtemp(NR,NC,x.debugtxt());
 #else
 	Matrix<D> mtemp(NR,NC);
@@ -794,7 +794,7 @@ namespace Matricks {
 
     // assign to recon object (issue error)
     Matrix<D>& operator=(const MReconObj<D>& b) { 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       mbad_reconassignment(objectID(), b);
 #endif
       return *this;
@@ -804,7 +804,7 @@ namespace Matricks {
     // Copy asignment 
     Matrix<D>& operator=(const Matrix<D>& m2) {
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (size()>0) &&  ((Nrows_ != m2.Nrows()) || (Ncols_ != m2.Ncols()) )) {
 	mbad_assignment_warning(objectID_, m2.objectID());
       }
@@ -828,7 +828,7 @@ namespace Matricks {
     Matrix<D>& operator=(const VorE<D,B>& rhs) { 
       const size_type N =size();
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( ( N !=  rhs.size() ) 
 	   || ( (Ncols() != 1) && (Nrows() !=1) )  ) {
 	//mvbad_assignment(derived().debugtxt(),rhs.debugtxt());
@@ -837,7 +837,7 @@ namespace Matricks {
 #endif
 
       if ( rhs.mustcopy(this) ) {    
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	Vector<D> y(N,rhs.debugtxt());
 #else
 	Vector<D> y(N);
@@ -867,7 +867,7 @@ namespace Matricks {
 
 
     std::string debugtxt(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       return MatricksObjectPool::matrixname(objectID_); 
 #else
       return name_;
@@ -875,7 +875,7 @@ namespace Matricks {
     }
 
     void debugtxt(const char* newname) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       std::string s = newname;
       MatricksObjectPool::mchange_name(objectID_,s); 
 #else
@@ -885,7 +885,7 @@ namespace Matricks {
     }
 
     void debugtxt(const std::string newname) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::mchange_name(objectID_,newname); 
 #else
       name_=newname;
@@ -912,7 +912,7 @@ namespace Matricks {
     }
 
     void outputglossary(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::moutputglossary(objectID_);
 #endif
     }

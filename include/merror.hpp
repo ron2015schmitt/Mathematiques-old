@@ -35,7 +35,7 @@ namespace Matricks {
    */
 
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 
 
 

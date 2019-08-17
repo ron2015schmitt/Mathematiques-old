@@ -1,6 +1,6 @@
 
 // flag for run-time bounds and size checking
-#define MATRICKS_CAREFUL
+#define MATRICKS_DEBUG
 
 
 #include "matricks.hpp"
@@ -15,7 +15,7 @@ int main()
 {
 
   cr();
-  printcr("When running in CAREFUL mode, all Vector and Matrix objects are assigned");
+  printcr("When running in DEBUG mode, all Vector and Matrix objects are assigned");
   printcr("a unique name and ID#. The name and ID can be accessed using the");
   printcr("name() and objectID() member functions respectively.");
 
@@ -29,7 +29,7 @@ int main()
 
 
   printcrcr("The run-time name is used in all Matricks errors and warnings.");
-  printcr("Run-time names are only available when the library is run in CAREFUL mode.");
+  printcr("Run-time names are only available when the library is run in DEBUG mode.");
 
   printcrcr("Here is an example of an error\n x[8] =11.0;");
   x[8] = 11.0;

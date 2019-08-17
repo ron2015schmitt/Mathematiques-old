@@ -1,6 +1,6 @@
 
 
-#define Matricks_CAREFUL
+#define MATRICKS_DEBUG
 #include "matricks.hpp"
 
 
@@ -15,7 +15,7 @@
  * Most of these functions could be templated. However, when they are templated
  * the compiler tries to inline them and it causes the optimizer to go through
  * fits.  This in turn causes user compilation time to increase by a factor of 
- * 3 to 10 times when in "CAREFUL" mode!
+ * 3 to 10 times when in "DEBUG" mode!
  *
  * THE SOLUTION:
  * By creating actual compiled functions, the optimizer works on these 
@@ -130,6 +130,16 @@ namespace Matricks {
     MatricksObjectPool::voutputglossary(id2);
   }
 
+
+  void vbad_assignment_general_warning(const size_type id1, const size_type sz2, const std::string typeString) {
+    std::string s1= MatricksObjectPool::vectorname(id1);
+    std::cout << error_str << "vector assignment to "<<typeString<<" of different size" << std::endl;
+    std::cout << indent_str  <<s1 << "=" << typeString << std::endl;
+    MatricksObjectPool::voutputglossary(id1);
+    std::cout << indent_str  << "size of "<<typeString<<" = " << sz2  << std::endl;
+  }
+
+  
   void vbad_assignment_warning(const size_type id1, const size_type id2) {
     std::string s1= MatricksObjectPool::vectorname(id1);
     std::string s2= MatricksObjectPool::vectorname(id2);

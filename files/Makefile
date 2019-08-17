@@ -200,9 +200,12 @@ COPT ?=
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
 %.o: %.cpp 
-ifdef CAREFUL
-	$(CPPC) $(CFLAGS) -D"MATRICKS_CAREFUL=1" -c $*.cpp -o $@
+ifdef MEBUG
+	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=1" -c $*.cpp -o $@
 else
+ ifdef MATRICKS_DEBUG
+	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=1" -c $*.cpp -o $@
+ endif
 	$(CPPC) $(CFLAGS) -c $*.cpp -o $@
 endif
 

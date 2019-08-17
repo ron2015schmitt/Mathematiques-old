@@ -323,7 +323,7 @@ int main()
  
   LAvector<double> v5(2,"v5");
   "{21,32,43,54}" >> v3;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
   printcrcr("[A warning below indicates proper functionality.]");
 #endif
   v5=v3;
@@ -333,7 +333,7 @@ int main()
   v5.resize(7);
   unsigned int ans50a = 7;
   compare(v5.size(),ans50a);
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
   printcrcr("[A warning below indicates proper functionality.]");
 #endif
   v5=2.0*v3;

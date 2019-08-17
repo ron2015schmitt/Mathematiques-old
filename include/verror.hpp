@@ -30,8 +30,8 @@ namespace Matricks {
 		     const char c,
 		     const std::string& info, TextFormat textformat);
 
-  //These are only used in CAREFUL mode
-#ifdef Matricks_CAREFUL
+  //These are only used in DEBUG mode
+#ifdef MATRICKS_DEBUG
 
 
 
@@ -76,6 +76,7 @@ namespace Matricks {
     std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
   }
 
+  
 
 
 
@@ -168,6 +169,8 @@ namespace Matricks {
 
   void vbad_assignment(const size_type id1, const size_type id2);
   void vbad_assignment_warning(const size_type id1, const size_type id2);
+
+  void vbad_assignment_general_warning(const size_type id1, const size_type sz2, const std::string typeString);
 
   void vbadtype_assignment(const size_type id1, const size_type id2);
 

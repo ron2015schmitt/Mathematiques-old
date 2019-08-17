@@ -293,7 +293,7 @@ namespace Matricks {
   vcast(const MorE<D1,A>& a)
   {
     const size_type N = a.size();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string name=a.debugtxt();
     name = "vcast("+name+")";
     if ( mexpr_is_size_bad(a.size()) ){ 
@@ -413,7 +413,7 @@ namespace Matricks {
   inline D operator|( const VorE<D,A>& a, const  VorE<D,B>& b ) {
     D result = D();
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
@@ -447,7 +447,7 @@ namespace Matricks {
   template <class D, class A> 
   inline D sum( const VorE<D,A>& a ) {
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sum");
       return 0;
@@ -477,7 +477,7 @@ namespace Matricks {
   template <class D, class A> 
   inline D norm( const VorE<D,A>& a ) {
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"norm");
       return 0;
@@ -504,7 +504,7 @@ namespace Matricks {
   template <class D, class A> 
   inline D min( const VorE<D,A>& a ) {
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"min");
       return 0;
@@ -531,7 +531,7 @@ namespace Matricks {
   template <class D, class A> 
   inline D max( const VorE<D,A>& a ) {
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"max");
       return 0;
@@ -599,7 +599,7 @@ namespace Matricks {
   template <class D> Vector<uint> sortwind(Vector<D>& a ) {
 
     const size_type N = a.size();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string name = "sortindices(" + a.debugtxt() +")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sortwind");

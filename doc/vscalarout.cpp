@@ -1,4 +1,4 @@
-#define MATRICKS_CAREFUL
+#define MATRICKS_DEBUG
 
 
 #include "matricks.hpp"
@@ -259,7 +259,5 @@ int main()
   }
 
   matricks_toc();
-
-
   return 0;
 }

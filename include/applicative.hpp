@@ -7,7 +7,7 @@
 
 //
 //
-//  *** Compilation time could be cut drastically when in "CAREFUL" mode
+//  *** Compilation time could be cut drastically when in "DEBUG" mode
 // by placing all the debug functions in nontemplated fucntions.
 // see note in verror.cpp for more info
 

@@ -6,6 +6,11 @@
 #ifndef MATRICKS_H
 #define MATRICKS_H
 
+#ifdef MEBUG
+#define MATRICKS_DEBUG 1
+#endif
+
+
 #include "matricks_version.hpp"
 #include "util.hpp"
 #include "matrickscommon.hpp"

@@ -1,5 +1,5 @@
 
-//#define COOLL_CAREFUL
+//#define MATRICKS_DEBUG
 
 
 #import <sys/types.h>

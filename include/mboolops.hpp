@@ -426,7 +426,7 @@ namespace Matricks {
   inline bool alltrue( const MorE<bool,A>& a ) {
     bool result = true;
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltrue");
       return false;
@@ -447,7 +447,7 @@ namespace Matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "alltruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltruebyrow");
@@ -476,7 +476,7 @@ namespace Matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "alltruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"alltruebycol");
@@ -513,7 +513,7 @@ namespace Matricks {
   inline bool anytrue( const MorE<bool,A>& a ) {
     bool result = false;
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytrue");
       return false;
@@ -535,7 +535,7 @@ namespace Matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "anytruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytruebyrow");
@@ -564,7 +564,7 @@ namespace Matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "anytruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"anytruebycol");
@@ -594,7 +594,7 @@ namespace Matricks {
   inline size_type numtrue( const MorE<bool,A>& a ) {
     size_type result = 0;
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtrue");
       return 0;
@@ -616,7 +616,7 @@ namespace Matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "numtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtruebyrow");
@@ -645,7 +645,7 @@ namespace Matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "numtruebycol(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"numtruebycol");
@@ -679,7 +679,7 @@ namespace Matricks {
   inline Matrix<uint> findtrue( const MorE<bool,A>& a ) {
     size_type N = 0;
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtrue");
@@ -691,7 +691,7 @@ namespace Matricks {
     for (register size_type i = 0; i< a.size(); i++)
       N += static_cast<uint>(a(i));
  
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     Matrix<uint> y(N,2,s);
 #else
     Matrix<uint> y(N,2);
@@ -721,7 +721,7 @@ namespace Matricks {
   inline Vector<uint> findtruesi( const MorE<bool,A>& a ) {
     size_type N = 0;
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "findtruesi(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruesi");
@@ -733,7 +733,7 @@ namespace Matricks {
     for (register size_type i = 0; i< a.size(); i++)
       N += static_cast<uint>(a(i));
  
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     Vector<uint> y(N,s);
 #else
     Vector<uint> y(N);
@@ -758,7 +758,7 @@ namespace Matricks {
   inline Vector<uint> findtruebyrow( const MorE<bool,A>& a ) {
     size_type N = 0;
     
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::string s = "findtruebyrow(" + a.debugtxt() + ")";
     if (  mexpr_is_size_bad(a.size()) ) {
       mbad_expr_in_unary(a,"findtruebyrow");
@@ -770,7 +770,7 @@ namespace Matricks {
     for (register size_type i = 0; i< a.size(); i++)
       N += static_cast<uint>(a(i));
  
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     Vector<uint> y(N,2,s);
 #else
     Vector<uint> y(N,2);

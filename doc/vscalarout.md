@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (sum, dot product, etc) in mātricks
-This document was automatically generated from file **`vscalarout.cpp`** (mātricks-v2.1-r44).
+This document was automatically generated from file **`vscalarout.cpp`** (mātricks-v2.1-r46).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively
@@ -55,6 +55,10 @@ v1 = {10,20,30,40}; // C++11 list
 ```C++
 Vector<double> v(3);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
+**Matricks *ERROR*: vector assignment to std::initializer_list<D> of different size
+                 Vector17=std::initializer_list<D>
+          where  Vector17 is Vector<double>[size=3], ID=17
+                 size of std::initializer_list<D> = 7
 ```
 
 **Some expressions with results**: rounding and sign-related
@@ -73,6 +77,10 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 ```C++
 Vector<double> v(3);
 v = {-1,0,1,2,4}; // C++11 list
+**Matricks *ERROR*: vector assignment to std::initializer_list<D> of different size
+                 Vector23=std::initializer_list<D>
+          where  Vector23 is Vector<double>[size=3], ID=23
+                 size of std::initializer_list<D> = 5
 ```
 
 **Some expressions with results**: powers, roots, and exponentiation
@@ -97,6 +105,10 @@ v = {-1,0,1,2,4}; // C++11 list
 Vector<double> v(3);
 constexpr double pi = std::acos(-1); // C++11 constexpr
 v = {-pi, -pi/2, 0, pi/2, pi}; // C++11 list
+**Matricks *ERROR*: vector assignment to std::initializer_list<D> of different size
+                 Vector34=std::initializer_list<D>
+          where  Vector34 is Vector<double>[size=3], ID=34
+                 size of std::initializer_list<D> = 5
 ```
 
 **Some expressions with results**: trig

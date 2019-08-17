@@ -34,7 +34,7 @@ namespace Matricks {
     int width_;   // for display  (std::setw uses int as its size)
     TextFormat textformat_;
     std::valarray<D>* data_;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     D dummy_;
 #else
     mutable std::string name_;
@@ -66,7 +66,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
@@ -106,7 +106,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
@@ -141,7 +141,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
@@ -174,7 +174,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
@@ -211,7 +211,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
@@ -246,7 +246,7 @@ namespace Matricks {
       width_ = v2.width();
       textformat_= v2.textformat();
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       std::string name2 = name;
       if (name == "") {
@@ -284,7 +284,7 @@ namespace Matricks {
       width_ = 0;
       textformat_=text_braces;
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       dummy_ = D();
       std::string name2 = name;
       if (name == "") {
@@ -311,7 +311,7 @@ namespace Matricks {
       delete  data_ ;
 
       //remove from directory
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::removevector(objectID_);
 #endif
     }
@@ -343,7 +343,7 @@ namespace Matricks {
       data_ = new std::valarray<D>(N); 
       perline_ = N+1;
       width_ = 0;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       // update the directory
       MatricksObjectPool::vchange_size(objectID_,N);
       if (n>maxsize) 
@@ -362,7 +362,7 @@ namespace Matricks {
     // "read/write" access
     inline D& operator[](const size_type i)  {
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (i>=size()) {
 	vout_of_bounds(objectID_,i);
 	return dummy_; 
@@ -376,7 +376,7 @@ namespace Matricks {
     // "read only" access
     inline const D operator[](const size_type i) const {
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (i>=size())  {
 	vout_of_bounds(objectID_,i);
 	return D(); 
@@ -413,7 +413,7 @@ namespace Matricks {
     // Accessing a SET of values using a MASK
     
     VSubMaskObj<D> operator[](const Vector<bool>& mask)  {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
@@ -421,7 +421,7 @@ namespace Matricks {
       return  VSubMaskObj<D>(*this,mask);
     }
     const VSubMaskObj<D> operator[](const Vector<bool>& mask)  const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
@@ -498,7 +498,7 @@ namespace Matricks {
 
     // Assignment to a vector expression
     template <class A>  Vector<D>& equals(const Vexpr<D,A>& x) {  
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       std::string s1 = debugtxt();
       std::string s2 = x.debugtxt();
       if ( vexpr_is_size_bad(x) ){ 
@@ -517,7 +517,7 @@ namespace Matricks {
       resize(x.size());
 
       if (x.mustcopy(this)) {    
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
 	Vector<D> vtemp(size(),x.debugtxt());
 #else
 	Vector<D> vtemp(size());
@@ -541,7 +541,7 @@ namespace Matricks {
     // Copy asignment
     Vector<D>& equals(const Vector<D>& v2) {
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (size()>0) && ( size() !=  v2.size() ) ){ 
 	vbad_assignment_warning(objectID(),v2.objectID());
       } else if (size() !=  v2.size() ){
@@ -571,7 +571,7 @@ namespace Matricks {
     template <class A>
     Vector<D>& operator=(const MorE<D,A>& m) {
 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       const size_type NR = m.Nrows();
       const size_type NC = m.Ncols();
       if ( size() !=  m.size() ){ 
@@ -592,7 +592,7 @@ namespace Matricks {
 
     template <class B>
     Vector<D>& operator=(const VReconObj<D>& b) { 
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       vbad_reconassignment(objectID(), b);
 #endif
       return *this;
@@ -603,9 +603,9 @@ namespace Matricks {
 #if CPP11 == 1
     Vector<D>& equals(std::initializer_list<D> list) {
       
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       if ( (size()>0) && ( size() !=  list.size() ) ){ 
-	vbad_assignment_warning(objectID(),list);
+	vbad_assignment_general_warning(objectID(),list.size(), "std::initializer_list<D>");
       } else if (size() !=  list.size() ){
 	// if size=0, just silently resize this vector
 	//	vbad_assignment_warning(objectID(),v2.objectID());
@@ -647,7 +647,7 @@ namespace Matricks {
     }
 
     std::string debugtxt(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       return MatricksObjectPool::vectorname(objectID_); 
 #else
       return name_;
@@ -656,7 +656,7 @@ namespace Matricks {
 
     void debugtxt(const char* newname) const {
       std::string s = newname;
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::vchange_name(objectID_,s); 
 #else
       name_=s;
@@ -664,7 +664,7 @@ namespace Matricks {
     }
 
     void debugtxt(const std::string newname) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::vchange_name(objectID_,newname); 
 #else
       name_=name;
@@ -690,7 +690,7 @@ namespace Matricks {
     }
 
     void outputglossary(void) const {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
       MatricksObjectPool::voutputglossary(objectID_);
 #endif
     }
@@ -956,7 +956,7 @@ namespace Matricks {
       for (D x =start; x>=end; x +=step) 
 	N +=1;
     }
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::ostringstream stream;
     stream << "range(" <<start<<","<<end<<","<<step<<")";
     Vector<D> y(N,stream.str());
@@ -994,7 +994,7 @@ namespace Matricks {
 
   template <class D>
   inline Vector<D> linspace(D start, D end, size_type N) {
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     std::ostringstream stream;
     stream << "linspace(" <<start<<","<<end<<","<<N<<")";
     std::string s = stream.str();
@@ -1004,7 +1004,7 @@ namespace Matricks {
 #endif
 
     // checking, ala make_string type and give error here if not: float, double or extended
-#ifdef Matricks_CAREFUL
+#ifdef MATRICKS_DEBUG
     if (N<2) {
       vbadlinspace<D>(start,end,N);
       return y;

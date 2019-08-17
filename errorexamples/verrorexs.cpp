@@ -1,7 +1,7 @@
 
 #import <iostream>
 
-#define COOLL_CAREFUL
+#define MATRICKS_DEBUG
 
 
 #import "cooll.hpp"

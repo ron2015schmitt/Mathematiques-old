@@ -1,7 +1,7 @@
 
 
 
-#define Matricks_CAREFUL
+#define MATRICKS_DEBUG
 #include "matrickscommon.hpp"
 #include "merror.hpp"
 

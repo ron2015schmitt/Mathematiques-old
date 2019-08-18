@@ -30,10 +30,11 @@ int main()
   text("Since ");
 
   
-  Vector<int> v({1,2,3,4});
-  std::valarray<int> val = v.getValArray().apply(increment);
-  v = v.getValArray().apply(increment);
-  dispcr(v);
+  Vector<int> v1({1,2,3,4});
+  Vector<int> v2;
+  v2 = v1.getValArray().apply(increment);
+  dispcr(v1);
+  dispcr(v2);
   
 //   {
 //     cr();

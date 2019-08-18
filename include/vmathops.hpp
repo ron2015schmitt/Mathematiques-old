@@ -50,6 +50,13 @@ namespace Matricks {
 
 
 
+  template <class D, class A> 
+  inline VecOpScal<D,VorE<D,A>,ApRoundZeros<D> > 
+  roundzeros(const VorE<D,A>& a, const D tolerance)
+  {
+    return  VecOpScal<D,VorE<D,A>,ApRoundZeros<D> >(a, tolerance);
+  }
+
 
 
   // pow(vector,scalar)

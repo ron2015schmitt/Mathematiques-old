@@ -140,6 +140,7 @@ int main()
     codemulti( double pi = std::acos(-1) );
 #endif
     codemultiNoteC11Array(v = CARRAY({-pi, -pi/2, 0, pi/2, pi}));
+    codemulti( const double tol = 2e-16 );
     codeend();
     cr();
 
@@ -149,6 +150,13 @@ int main()
     resultmulti( tan(v)  );
     resultend();
     cr();
+    text("The results are cleaner, when we round to a tolerance");
+    resultstart2(": trig with rounded zeros");
+    resultmulti( roundzeros(sin(v),tol)  );
+    resultmulti( roundzeros(cos(v),tol)  );
+    resultmulti( roundzeros(tan(v),tol)  );
+    resultend();
+    
   }
 
   

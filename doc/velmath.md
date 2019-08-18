@@ -1,6 +1,6 @@
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.1-r78).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.1-r79).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -97,6 +97,7 @@ v = {-1,0,1,2,4}; // C++11 list
 Vector<double> v(5);
 constexpr double pi = std::acos(-1); // C++11 constexpr
 v = {-pi, -pi/2, 0, pi/2, pi}; // C++11 list
+const double tol = 2e-16;
 ```
 
 **Some expressions with results**: trig
@@ -106,6 +107,14 @@ v = {-pi, -pi/2, 0, pi/2, pi}; // C++11 list
   tan(v):  {1.22465e-16,-1.63312e+16,0,1.63312e+16,-1.22465e-16}; 
 ```
 
+
+The results are cleaner, when we round to a tolerance
+**Some expressions with results**: trig with rounded zeros
+```C++
+  roundzeros(sin(v),tol):  {0,-1,0,1,0}; 
+  roundzeros(cos(v),tol):  {-1,0,1,0,-1}; 
+  roundzeros(tan(v),tol):  {0,-1.63312e+16,0,1.63312e+16,0}; 
+```
 
 
 

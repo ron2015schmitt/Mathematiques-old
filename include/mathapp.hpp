@@ -449,6 +449,26 @@ namespace Matricks {
 
 
 
+    
+   // roundzeros(a,tol)
+
+  template <class DataT> class ApRoundZeros {
+  public:
+    ApRoundZeros() { }
+
+    static inline DataT apply(DataT a, const DataT tolerance) { 
+      using std::abs;
+      return (abs(a) < abs(tolerance)) ? 0 : a;
+    }
+
+    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+      std::string sout = "roundzeros( " + sa + " , " + sb + " )";
+      return sout;
+    }
+
+  };
+
+
 
 
 };

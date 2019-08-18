@@ -31,11 +31,12 @@ int main()
 
   {
   codestart("C++");
-  codemulti(struct X {static int increment (int x) {return ++x;}});
-  codemulti( Vector<int> v1(4, (const int[]) {1,2,3,4} ) ) ;
-  codemulti( Vector<int> v2 );
+  codemulti(struct X {static double increment (double x) {return ++x;}});
+  codemulti( Vector<double> v1(CARRAY({1,2,3,4}) ) ) ;
+  codemulti( Vector<double> v2 );
   codemulti( v2 = v1.getValArray().apply(X::increment) );
-  resultstart2(": user-defned function");
+  codeend();
+  resultstart();
   resultmulti( v1  );
   resultmulti( v2  );
   resultend();

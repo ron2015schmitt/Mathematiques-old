@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.2-r5).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.2-r6).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -24,24 +24,28 @@ Vector<double> v2({1,-1,1,-1}); // C++11 list
 
 
 
-**EXAMPLE 2**: Dot product of two complex vectors `(v1|v2)`
+**EXAMPLE 2**: Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`
+The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.
 ```C++
 using namespace std;
+const double tol = 2e-16;
 Vector<complex<double> > v1;
-v1 = vcomplex(range<double>(1,2), 0);
+v1 = vcomplex(range<double>(1,2), 0.);
+v1.roundzeros(tol);
 Vector<complex<double> > v2;
 v2 = vcomplex(range<double>(-1,-2), range<double>(2,3));
+v2.roundzeros(tol);
 ```
 
 **Some expressions with results**
 ```C++
-  v1:  {(1,4.66955e-310),(2,4.66955e-310)}; 
+  v1:  {(1,4.67837e-310),(2,4.67837e-310)}; 
   v2:  {(-1,2),(-2,3)}; 
-  (v1|v1):  (5,2.80173e-309); 
-  (v2|v2):  (-8,-16); 
-  (v1|v2):  (-5,8); 
-  (v2|v1):  (-5,8); 
-  (v1|(2*v2+1)):  (0,4); 
+  (~v1|v1):  (5,0); 
+  (~v2|v2):  (18,0); 
+  (~v1|v2):  (-5,8); 
+  (~v2|v1):  (-5,-8); 
+  (~v1|(2*v2+1)):  (-2,4); 
 ```
 
 

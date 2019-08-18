@@ -412,10 +412,7 @@ namespace matricks {
 
     Vector<D>&  roundzeros(D tolerance) { 
       for(register size_type i=size(); i--;) {
-	const D d = (*data_)[i];
-	if (std::abs(d) < std::abs(tolerance)) {
-	  (*data_)[i] = 0;
-	}
+	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }
       return *this;
     }

@@ -444,6 +444,13 @@ namespace matricks {
   }
 
 
+  template <class D, class A> 
+  inline VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,ApConj<D> > 
+  operator~(const VorE<std::complex<D>,A>& a)
+  {
+    return  VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,ApConj<D> >(a);
+  }
+
 
   // *** functions that return a real vector from a complex vector ***
 

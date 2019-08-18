@@ -73,6 +73,13 @@ namespace matricks {
  template <typename D> std::complex<D> round(const std::complex<D>& x) {
    return std::complex<D>(round(x.real()), round(x.imag()));
  }
+
+  template <typename D> D roundzero(const D& x, const D tolerance) {
+    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
+  }
+  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance) {
+    return std::complex<D>(roundzero(x.real()), roundzero(x.imag()));
+  }
   
 
   /****************************************************************************

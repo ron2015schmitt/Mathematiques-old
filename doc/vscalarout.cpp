@@ -53,13 +53,17 @@ int main()
     {
     cr();
     cr();
-    example(Nex++,"Dot product of two complex vectors `(v1|v2)`");
+    example(Nex++,"Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`");
+    text("The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.");
     codestart("C++");
     codemulti(using namespace std);
+    codemulti(const double tol = 2e-16);
     codemulti(Vector<complex<double> > v1);
-    codemulti(v1 = vcomplex(range<double>(1,2), 0));
+    codemulti(v1 = vcomplex(range<double>(1,2), 0.));
+    codemulti(v1.roundzeros(tol));
     codemulti(Vector<complex<double> > v2);
     codemulti(v2 = vcomplex(range<double>(-1,-2), range<double>(2,3)));
+    codemulti(v2.roundzeros(tol));
     codeend();
     cr();
 
@@ -67,11 +71,11 @@ int main()
     resultstart2("");
     resultmulti( v1 );
     resultmulti( v2 );
-    resultmulti( (v1|v1) );
-    resultmulti( (v2|v2) );
-    resultmulti( (v1|v2) );
-    resultmulti( (v2|v1) );
-    resultmulti( (v1|(2*v2+1)) );
+    resultmulti( (~v1|v1) );
+    resultmulti( (~v2|v2) );
+    resultmulti( (~v1|v2) );
+    resultmulti( (~v2|v1) );
+    resultmulti( (~v1|(2*v2+1)) );
     resultend();
   }
 

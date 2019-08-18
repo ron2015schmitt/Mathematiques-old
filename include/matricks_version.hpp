@@ -1,1 +1,1 @@
-const char vers_matricks[] = "v2.2-r5";
+const char vers_matricks[] = "v2.2-r6";

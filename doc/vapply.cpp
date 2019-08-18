@@ -170,7 +170,7 @@ int main()
  
   {
     cr();
-    example(Nex++,"Applying User-defined function `pos` via `op1`");
+    example(Nex++,"Applying User-defined function `pos` via `valarray` access");
     codestart("C++");
     codemulti(using namespace std );
     using namespace test;

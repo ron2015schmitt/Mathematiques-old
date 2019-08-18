@@ -62,7 +62,7 @@ Vector<double> v2(11,0.25);
 ### Applying User-defined functions using the `valarray` inside
 * Another technique is to use method `getValArray()` and `std::valarray.apply(func)`
 
-**EXAMPLE 3**: Applying User-defined function `pos` via `op1`
+**EXAMPLE 3**: Applying User-defined function `pos` via `valarray` access
 ```C++
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );

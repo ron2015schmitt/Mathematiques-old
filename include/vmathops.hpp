@@ -1,7 +1,7 @@
 #ifndef VMATHOPS_H
 #define VMATHOPS_H
 
-#include <cmath>
+#include <tgmath.h>
 #include <string>
 
 namespace Matricks {
@@ -36,11 +36,12 @@ namespace Matricks {
   }
 
 
-  template <class D, typename TypeHelper<D>::unary_func F, class A, class B> 
-  inline VBinOp<D,VorE<D,A>,VorE<D,B>,ApFun2<D,F> > 
+
+  template <class D, typename TypeHelper<D>::binary_func F, class A, class B> 
+  inline VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> > 
   op2(const VorE<D,A>& a, const VorE<D,B>& b)
   {
-    return  VBinOp<D,VorE<D,A>,VorE<D,B>,ApFun2<D,F> >(a,b);
+    return  VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> >(a,b);
   }
 
 
@@ -103,12 +104,12 @@ namespace Matricks {
    */
 
 
-  
+  // user-defined functions
   template <class D, typename TypeHelper<D>::unary_func F, class A> 
-  inline VFuncOp<D,VorE<D,A>,ApFun1<D,F> > 
+  inline VFuncOp<D, VorE<D,A>, ApFun1<D,F> > 
   op1(const VorE<D,A>& a)
   {
-    return  VFuncOp<D,VorE<D,A>,ApFun1<D,F> >(a);
+    return  VFuncOp<D, VorE<D,A>, ApFun1<D,F> >(a);
   }
 
 

@@ -6,6 +6,15 @@
 namespace Matricks {
 
 
+  std::string  replaceAll(std::string  s, std::string s1, std::string s2) {
+    size_t pos = s.find(s1);
+    while( pos != std::string::npos) {
+      s.replace(pos, s1.size(), s2);
+      pos = s.find(s1, pos + s2.size());
+    }
+    return s;
+  }
+
   
   /****************************************************************************
    * error reporting string definitions

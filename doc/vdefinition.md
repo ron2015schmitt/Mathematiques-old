@@ -1,28 +1,24 @@
 
 # Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.1-r73).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.1-r75).
 
 ### A `Matricks::Vector` wraps a `std::valarray`
 * This bears repeating: a `Matricks::Vector` wraps a `std::valarray`
 * In the example below
-  * `va` is copied to `vec` during construction
   * `valias` is referenced to the valarray inside `vec`.
 
 **EXAMPLE 1**: Getting the `valarray` wrapped by a `Vector`.
 ```C++
 using namespace std;
-valarray<double> va(4);
-Vector<double> vec(va);
+Vector<double> vec( {0,1,2,3} ); // C++11 list
 valarray<double>& valias = vec.getValArray();
-va[0] = 99;;
-vec[1] = 1;;
-valias[2] = 2;;
+vec[1] = -1;
+valias[2] = -2;
 ```
 **The result is**
 ```C++
-  va[]:  { 99 ,0 ,0 ,0 } ; 
-  vec:  {0,1,2,0}; 
-  valias[]:  { 0 ,1 ,2 ,0 } ; 
+  vec:  {0,-1,-2,3}; 
+  valias[]:  { 0 ,-1 ,-2 ,3 } ; 
 ```
 
 ### Setting and getting the wrapped `valarray`

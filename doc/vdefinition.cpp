@@ -32,7 +32,6 @@ int main()
   header3("A `Matricks::Vector` wraps a `std::valarray`");
   text("* This bears repeating: a `Matricks::Vector` wraps a `std::valarray`");
   text("* In the example below");
-  text("  * `va` is copied to `vec` during construction");
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
@@ -40,15 +39,12 @@ int main()
     example(Nex++, "Getting the `valarray` wrapped by a `Vector`.");
     codestart("C++");
     codemulti(using namespace std);
-    codemulti( valarray<double> va(4) );
-    codemulti( Vector<double> vec(va) );
+    codemultiNoteC11Array( Vector<double> vec( CARRAY({0,1,2,3}) ) );
     codemulti( valarray<double>& valias = vec.getValArray() );
-    codemulti( va[0] = 99; );
-    codemulti( vec[1] = 1; );
-    codemulti( valias[2] = 2; );
+    codemulti( vec[1] = -1 );
+    codemulti( valias[2] = -2 );
     codeend();
     resultstart();
-    resultmulti(va);
     resultmulti(vec);
     resultmulti(valias);
     resultend();

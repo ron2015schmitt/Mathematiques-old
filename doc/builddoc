@@ -1,4 +1,6 @@
 #!/bin/bash
 
-
+./clean $@
+set -x
 make newtag toc && git add -u && make git
+set +x

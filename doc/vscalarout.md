@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.2-r6).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.2-r8).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -25,6 +25,7 @@ Vector<double> v2({1,-1,1,-1}); // C++11 list
 
 
 **EXAMPLE 2**: Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`
+
 The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.
 ```C++
 using namespace std;
@@ -39,7 +40,7 @@ v2.roundzeros(tol);
 
 **Some expressions with results**
 ```C++
-  v1:  {(1,4.67837e-310),(2,4.67837e-310)}; 
+  v1:  {(1,4.65905e-310),(2,4.65905e-310)}; 
   v2:  {(-1,2),(-2,3)}; 
   (~v1|v1):  (5,0); 
   (~v2|v2):  (18,0); 
@@ -63,21 +64,36 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 
 
-**EXAMPLE 4**: `norm` the elements of a vector
-* This function returns the square root of the sum of the squares of the elements, ie the square root of the dot product of the vector with itself.
+**EXAMPLE 4**: `sum` the elements of a vector
 ```C++
 Vector<double> v({1,2,3,4}); // C++11 list initialization
 ```
 
 **Some expressions with results**
 ```C++
-  norm(v):  5.47723; 
-  norm(2*exp(v)+1):  118.864; 
+  sum(v):  10; 
+  sum(2*exp(v)+1):  173.582; 
 ```
 
 
 
-**EXAMPLE 5**: Compute the _product_ of the elements of a vector
+**EXAMPLE 5**: `integrate` a vector over the interval [a,b]
+```C++
+Vector<double> v;
+v = exp(linspace<double>(-1,1,13));
+```
+
+**Some expressions with results** precise value to 16 digits is 2.35040238729
+```C++
+  integrate(v,-1.,1.):  2.35584; 
+  integrate(v,-1.,1.,2):  2.35041; 
+  integrate(v,-1.,1.,3):  2.35042; 
+  integrate(v,-1.,1.,4):  2.3504; 
+```
+
+
+
+**EXAMPLE 6**: Compute the _product_ of the elements of a vector
 ```C++
 Vector<double> v({1,2,3,4}); // C++11 list initialization
 ```
@@ -90,7 +106,7 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 
 
-**EXAMPLE 6**: Find the _minimum_ of the elements of a vector
+**EXAMPLE 7**: Find the _minimum_ of the elements of a vector
 ```C++
 Vector<double> v({1,20,-1,0}); // C++11 list initialization
 ```
@@ -105,7 +121,7 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 
 
 
-**EXAMPLE 7**: Find the _maximum_ of the elements of a vector
+**EXAMPLE 8**: Find the _maximum_ of the elements of a vector
 ```C++
 Vector<double> v({1,20,-1,0}); // C++11 list initialization
 ```

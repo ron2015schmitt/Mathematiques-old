@@ -54,6 +54,7 @@ int main()
     cr();
     cr();
     example(Nex++,"Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`");
+    cr();
     text("The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.");
     codestart("C++");
     codemulti(using namespace std);
@@ -101,11 +102,10 @@ int main()
   }
 
 
-  {
+    {
     cr();
     cr();
-    example(Nex++,"`norm` the elements of a vector");
-    text("* This function returns the square root of the sum of the squares of the elements, ie the square root of the dot product of the vector with itself.");
+    example(Nex++,"`sum` the elements of a vector");
     codestart("C++");
 #if CPP11 == 1
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
@@ -117,8 +117,27 @@ int main()
 
    
     resultstart2("");
-    resultmulti( norm(v) );
-    resultmulti( norm(2*exp(v)+1) );
+    resultmulti( sum(v) );
+    resultmulti( sum(2*exp(v)+1) );
+    resultend();
+  }
+
+
+  {
+    cr();
+    cr();
+    example(Nex++,"`integrate` a vector over the interval [a,b]");
+    codestart("C++");
+    codemulti( Vector<double> v );
+    codemulti( v = exp(linspace<double>(-1,1,13)));
+    codeend();
+    cr();
+   
+    resultstart2(" precise value to 16 digits is 2.35040238729 (via Mathematica)");
+    resultmulti( integrate(v,-1.,1.) );
+    resultmulti( integrate(v,-1.,1.,2) );
+    resultmulti( integrate(v,-1.,1.,3) );
+    resultmulti( integrate(v,-1.,1.,4) );
     resultend();
   }
 

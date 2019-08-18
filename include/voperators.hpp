@@ -69,7 +69,7 @@ namespace matricks {
   inline VConcatOp<D,VorE<D,A>,VorE<D,B> > 
   operator,(const VorE<D,A>& a, const VorE<D,B>& b)
   {
-    return  VConcatOp<D,VorE<D,A>,VorE<D,B> >(a,b);
+  return  VConcatOp<D,VorE<D,A>,VorE<D,B> >(a,b);
   }
 
   // vectorexp , scalar
@@ -78,7 +78,7 @@ namespace matricks {
   inline VConcatOp<D,VorE<D,A>,VScalObj<D> > 
   operator,(const VorE<D,A>& a, const D b)
   {
-    return  VConcatOp<D,VorE<D,A>,VScalObj<D> >(a,VScalObj<D>(b));
+  return  VConcatOp<D,VorE<D,A>,VScalObj<D> >(a,VScalObj<D>(b));
   }
 
   */
@@ -445,7 +445,7 @@ namespace matricks {
   // sum(a)
 
   template <class D, class A> 
-  inline D sum( const VorE<D,A>& a ) {
+  D sum( const VorE<D,A>& a ) {
     
 #ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
@@ -467,10 +467,130 @@ namespace matricks {
   }
 
 
+  // integrate(a)
+  // order  name
+  //     1  trapazoidal
+  //     2  simpson
+  //     3  simpson 3/8
+  //     4  Boole
+  
+  template <class D, class A> 
+  D integrate( const VorE<D,A>& v, const D a, const D b, const int order=1 ) {
+    
+#ifdef MATRICKS_DEBUG
+    if (  vexpr_is_size_bad(v) ) {
+      vbad_expr_in_unary(v,"integrate");
+      return 0;
+    }
+    if (b<a)  {
+      std::cerr << "integrate: bad limit end points a="<<a<<", b="<<b<<std::endl;
+      return 0;
+    }
+    
+#endif
+ 
+    const size_type N = v.size();
+    if (N==0) {
+      return 0;
+    }
+    if (a==b) {
+      return 0;
+    }
+
+    D result = 0;
+
+    switch (order) {
+    case 1:
+
+      result += (v[0]+v[N-1])/2;
+      for (register size_type j = 1; j < N-1 ; j++ ) {
+	result += v[j];
+      }
+      result = result * (b-a)/D(N-1);
+      break;
+    case 2:
+      if (N%2==0)  {
+	std::cout << "integrate: Number of points must be odd N="<<N<<std::endl;
+      }
+      {
+	D sodd = 0;
+	D seven = 0;
+	result += v[0]+v[N-1];
+	for (register size_type j = 1; j < N-1 ; j++ ) {
+	  if (j%2==1) {
+	    sodd += v[j];
+	  } else {
+	    seven += v[j];
+	  }
+	}
+	result += 4*sodd + 2*seven;
+	result = result * (b-a)/(3*D(N-1));
+      }
+      break;
+    case 3:
+      if (N%3!=1)  {
+	std::cout << "integrate: N-1 must be divisible by 3, N="<<N<<std::endl;
+      }
+      {
+	D s1 = 0;
+	D s2 = 0;
+	D s3 = 0;
+	
+	result += v[0]+v[N-1];
+	for (register size_type j = 1; j < N-1 ; j++ ) {
+	  if (j%3==1) {
+	    s1 += v[j];
+	  } else if (j%3==2) {
+	    s2 += v[j];
+	  } else {
+	    s3 += v[j];
+	  }
+	}
+	result += 3*s1 + 3*s2 + 2*s3;
+	result = result * 3*(b-a)/(8*D(N-1));
+      }
+      break;
+    case 4:
+      if (N%4!=1)  {
+	std::cout << "integrate: N-1 must be divisible by 4, N="<<N<<std::endl;
+      }
+      {
+	D s1 = 0;
+	D s2 = 0;
+	D s3 = 0;
+	D s4 = 0;
+	
+	result += 7*(v[0]+v[N-1]);
+	for (register size_type j = 1; j < N-1 ; j++ ) {
+	  if (j%4==1) {
+	    s1 += v[j];
+	  } else if (j%4==2) {
+	    s2 += v[j];
+	  } else if (j%4==3) {
+	    s3 += v[j];
+	  } else {
+	    s4 += v[j];
+	  }
+	}
+	result += 32*s1 + 12*s2 + 32*s3 + 14*s4;
+	result = result * 2*(b-a)/(45*D(N-1));
+      }
+      break;
+    default:
+#ifdef MATRICKS_DEBUG
+      std::cerr << "integrate: bad order parameter order="<<order<<std::endl;   
+#endif
+      break;
+    }
+
+    return result;
+  }
+
+  
   // prod(a)
 
   template <class D, class A> 
-  inline D prod( const VorE<D,A>& a ) {
+  D prod( const VorE<D,A>& a ) {
     
 #ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
@@ -498,7 +618,7 @@ namespace matricks {
   // norm(a)
 
   template <class D, class A> 
-  inline D norm( const VorE<D,A>& a ) {
+  D norm( const VorE<D,A>& a ) {
     
 #ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
@@ -525,7 +645,7 @@ namespace matricks {
   // min(a)
 
   template <class D, class A> 
-  inline D min( const VorE<D,A>& a ) {
+  D min( const VorE<D,A>& a ) {
     
 #ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {
@@ -552,7 +672,7 @@ namespace matricks {
   // max(a)
 
   template <class D, class A> 
-  inline D max( const VorE<D,A>& a ) {
+  D max( const VorE<D,A>& a ) {
     
 #ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {

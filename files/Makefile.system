@@ -52,9 +52,13 @@ echo > $(TAG_ONELINE_SUMMARY_FILE)
 cat $(TAG_ONELINE_SUMMARY_FILE) > $(TAG_ANNOTATION_FILE)
 cat $(TAG_FILE_MATRICKS) >> $(TAG_ANNOTATION_FILE)
 cat  $(VERSION_FILE_MATRICKS) >> $(TAG_ANNOTATION_FILE)
+echo -e "Updating "$(BLUE)"$(notdir $(VERSION_HEADER_FILE_MATRICKS))"$(DEFCLR)
 $(shell echo "const char vers_matricks[] = \"`cat $(TAG_FILE_MATRICKS)`\";" > $(VERSION_HEADER_FILE_MATRICKS) )
+echo -e "Updating project "$(BLUE)"README.md"$(DEFCLR)
+cp  $(DIR_MATRICKS)/files/README.md.template  $(DIR_MATRICKS)/README.md
+TAG=`cat $(TAG_FILE_MATRICKS)` && echo -e " "$(BLUE)"VERSION_MATRICKS"$(DEFCLR)"="$${TAG} && sed -i "s/__VERSION_MATRICKS__/$${TAG}/g"  $(DIR_MATRICKS)/README.md
+sed -i -e "/__EXAMPLE_CPP__/{r $(DIR_MATRICKS)/examples/example.cpp" -e 'd}' $(DIR_MATRICKS)/README.md
 endef
-
 
 define commit
 read -r -p "Would you like to commit these changes and push to githib [y/N] ? " response ;\

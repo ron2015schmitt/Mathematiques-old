@@ -1,16 +1,32 @@
-#include <iostream>
-#include <string>
+#include <tgmath.h>
 
 #include "matricks.hpp"
 
 
 int main()
 {
+  const double pi = M_PI;
+  
+  using namespace matricks;
+  Vector<double> v1( linspace<double>(-1,1,21) );
+  Vector<double> v2;
+  v2 = 10*sin(pi/2*v1) + 10;
 
-  using namespace Matricks;
-  Vector<double> v1(2, 3.14);
+  dispcr(v1);
+  dispcr(v2);
+  dispcr(v1+v2);
 
-  std::cout << std::endl << v1 << std::endl;
+  // dot product
+  dispcr(v1|v2);
+
+  const double N = double(v2.size());
+  // mean
+  double mu2 = sum(v2)/N;
+  dispcr(mu2);
+
+  // std deviation
+  double sigma2 = norm(v2-mu2)/sqrt(N-1);
+  dispcr(sigma2);
   
   return 0;
 }

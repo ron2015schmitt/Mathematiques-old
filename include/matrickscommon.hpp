@@ -64,15 +64,24 @@ namespace matricks {
   void cant_open_file(const std::string& name);
 
 
+
+  // complex conjugate
+  template <typename D> std::complex<D>
+  operator~(const std::complex<D>& x) {
+    return std::complex<D>(x.real(), -x.imag());
+  }
+
+
+  
   /****************************************************************************
    * Rounding
    ****************************************************************************   
    */
 
   // complex rounding
- template <typename D> std::complex<D> round(const std::complex<D>& x) {
-   return std::complex<D>(round(x.real()), round(x.imag()));
- }
+  template <typename D> std::complex<D> round(const std::complex<D>& x) {
+    return std::complex<D>(round(x.real()), round(x.imag()));
+  }
 
   template <typename D> D roundzero(const D& x, const D tolerance) {
     return (std::abs(x) < std::abs(tolerance) ? 0 : x);

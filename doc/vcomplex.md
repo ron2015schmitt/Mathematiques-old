@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r4).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r7).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -24,6 +24,7 @@ complex<double> z4 = 5;
 ```C++
   z1:  (0,1); 
   z2:  (1,1); 
+  ~z2:  (1,-1); 
   z3:  (0,-5); 
   z4:  (5,0); 
 ```
@@ -162,10 +163,10 @@ Vector<double> v( range<double>(1,4) );
 
 **Some expressions with results**: create a complex vector from a real vector
 ```C++
-  vcomplex(v,0.):  {(1,4.68208e-310),(2,4.68208e-310),(3,4.68208e-310),(4,4.68208e-310)}; 
+  vcomplex(v,0.):  {(1,4.63992e-310),(2,4.63992e-310),(3,4.63992e-310),(4,4.63992e-310)}; 
   vcomplex(0.,v):  {(1.97626e-323,1),(1.97626e-323,2),(1.97626e-323,3),(1.97626e-323,4)}; 
   vcomplex(v,v):  {(1,1),(2,2),(3,3),(4,4)}; 
-  vcomplex(v,1.):  {(1,4.68208e-310),(2,4.68208e-310),(3,4.68208e-310),(4,4.68208e-310)}; 
+  vcomplex(v,1.):  {(1,4.63992e-310),(2,4.63992e-310),(3,4.63992e-310),(4,4.63992e-310)}; 
 ```
 
 

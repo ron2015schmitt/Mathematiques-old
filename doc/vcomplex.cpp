@@ -50,6 +50,7 @@ int main()
     resultstart2("");
     resultmulti(z1);
     resultmulti(z2);
+    resultmulti(~z2);
     resultmulti(z3);
     resultmulti(z4);
     resultend();

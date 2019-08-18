@@ -73,8 +73,8 @@ int main()
     codemultiNoteC11Array( Vector<double> v1(CARRAY({1,2,3,4})) );
     codemultiNoteC11Array( Vector<double> v2(CARRAY({0,0,0,0})) );
     codemulti( v2 = v1 );
-    codemulti( v1[0] = 100; );
-    codemulti( v2[0] = 200; );
+    codemulti( v1[0] = 100 );
+    codemulti( v2[0] = 200 );
     codeend();
     resultstart();
     resultmulti(v1);
@@ -100,7 +100,7 @@ int main()
   
 #if CPP11==1
   {
-    example(Nex++,"Assign from a std::{`vector`,`array`,`val_array`,`list`}.");
+    example(Nex++,"Assign from a `std` containers.");
     codestart("C++");
     codemultiNoteC11Array( std::vector<double> vstd(CARRAY({1,2,3,4})) );
     codemulti( Vector<double> v1(4) );

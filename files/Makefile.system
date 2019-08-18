@@ -12,7 +12,7 @@ cleanall: clean
 	\cd $(DIR_MATRICKS)/testbed && make clean
 	\cd $(DIR_MATRICKS)/benchmarks && make clean
 	\cd $(DIR_MATRICKS)/development && make clean
-	\cd $(DIR_MATRICKS)/doc && make clean
+	\cd $(DIR_MATRICKS)/doc && make reset
 	\cd $(DIR_MATRICKS)/src && make clean
 
 fullpurge: cleanall

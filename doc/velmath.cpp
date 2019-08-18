@@ -151,6 +151,7 @@ int main()
     resultend();
     cr();
     text("The results are cleaner, when we round to a tolerance");
+    cr();
     resultstart2(": trig with rounded zeros");
     resultmulti( roundzeros(sin(v),tol)  );
     resultmulti( roundzeros(cos(v),tol)  );

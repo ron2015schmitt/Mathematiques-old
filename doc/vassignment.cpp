@@ -100,7 +100,7 @@ int main()
   
 #if CPP11==1
   {
-    example(Nex++,"Assign from a `std` containers.");
+    example(Nex++,"Assign from `std` containers.");
     codestart("C++");
     codemultiNoteC11Array( std::vector<double> vstd(CARRAY({1,2,3,4})) );
     codemulti( Vector<double> v1(4) );

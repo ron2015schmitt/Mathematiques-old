@@ -34,17 +34,9 @@ int main()
     example(Nex++,"Element-wise `Vector` math");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v1 = {10,20,30,40});
-#else
-    codemulti( v1 = (const double[]) {10,20,30,40} );
-#endif
+    codemultiNoteC11Array(v1 = CARRAY({10,20,30,40}));
     codemulti( Vector<double> v2(4) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v2 = {1,2,3,4});
-#else
-    codemulti( v2 = (const double[]) {1,2,3,4} );
-#endif
+    codemultiNoteC11Array(v2 = CARRAY({1,2,3,4}));
     codeend();
     cr();
 
@@ -68,11 +60,7 @@ int main()
     example(Nex++,"math with scalars and `Vector`s");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v1 = {10,20,30,40});
-#else
-    codemulti( v1 = (const double[]) {10,20,30,40} );
-#endif
+    codemultiNoteC11Array(v1 = CARRAY({10,20,30,40}));
     codeend();
     cr();
 
@@ -100,11 +88,7 @@ int main()
     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(7) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v = {-2.5,-2.25,-1,0,1,2.25,2.5});
-#else
-    codemulti( v = (const double[]) {-2.5,-2.25,-1,0,1,2.25,2.5} );
-#endif
+    codemultiNoteC11Array(v = CARRAY({-2.5,-2.25,-1,0,1,2.25,2.5}));
     codeend();
     cr();
 
@@ -124,11 +108,7 @@ int main()
     example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
     codestart("C++");
     codemulti( Vector<double> v(5) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v = {-1,0,1,2,4});
-#else
-    codemulti( v = (const double[]) {-1,0,1,2,4} );
-#endif
+    codemultiNoteC11Array(v = CARRAY({-1,0,1,2,4}));
     codeend();
     cr();
     resultstart2(": powers, roots, and exponentiation");
@@ -156,11 +136,10 @@ int main()
     codemulti( Vector<double> v(5) );
 #if CPP11 == 1
     codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
-    codemultiwcomment("C++11 list", v = {-pi, -pi/2, 0, pi/2, pi});
 #else
     codemulti( double pi = std::acos(-1) );
-    codemulti( v = (const double[]) {-pi, -pi, 0, pi, pi} );
 #endif
+    codemultiNoteC11Array(v = CARRAY({-pi, -pi/2, 0, pi/2, pi}));
     codeend();
     cr();
 
@@ -179,11 +158,7 @@ int main()
     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(3) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v = {-1,0,1});
-#else
-    codemulti( v = (const double[]) {-1,0,1} );
-#endif
+    codemultiNoteC11Array(v = CARRAY({-1,0,1}));
     codeend();
     cr();
 
@@ -204,15 +179,9 @@ int main()
     codemulti( Vector<double> v(3) );
     codemulti( Vector<double> v1(9) );
     codemulti( Vector<double> v2(9) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v = {-1,0,1});
-    codemultiwcomment("C++11 list", v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
-    codemultiwcomment("C++11 list", v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
-#else
-    codemulti( v = (const double[]) {-1,0,1} );
-    codemulti( v1 = (const double[]) {-1,-1,-1, 0, 0, 0, 1, 1, 1});
-    codemulti( v2 = (const double[]) {-1, 0, 1,-1, 0, 1,-1, 0, 1});
-#endif
+    codemultiNoteC11Array(v = CARRAY({-1,0,1}));
+    codemultiNoteC11Array(v1 = CARRAY({-1,-1,-1, 0, 0, 0, 1, 1, 1}));
+    codemultiNoteC11Array(v2 = CARRAY({-1, 0, 1,-1, 0, 1,-1, 0, 1}));
     codeend();
     cr();
 
@@ -238,17 +207,9 @@ int main()
     example(Nex++,"A huge expression");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v1 = {10,20,30,40});
-#else
-    codemulti( v1 = (const double[]) {10,20,30,40} );
-#endif
+    codemultiNoteC11Array(v1 = CARRAY({10,20,30,40}));
     codemulti( Vector<double> v2(4) );
-#if CPP11 == 1
-    codemultiwcomment("C++11 list", v2 = {-1,-2,-3,-4});
-#else
-    codemulti( v2 = (const double[]) {1,2,3,4} );
-#endif
+    codemultiNoteC11Array(v2 = CARRAY({-1,-2,-3,-4}));
     codeend();
     cr();
 

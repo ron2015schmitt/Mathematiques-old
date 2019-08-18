@@ -19,7 +19,7 @@
 
 
 
-namespace Matricks {
+namespace matricks {
 
 
 
@@ -75,7 +75,7 @@ namespace Matricks {
       textformat_=text_braces;
       
 #ifdef MATRICKS_DEBUG
-      objectID_ = MatricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
+      objectID_ = matricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
 #else
@@ -114,7 +114,7 @@ namespace Matricks {
       textformat_=text_braces;
       
 #ifdef MATRICKS_DEBUG
-      objectID_ = MatricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
+      objectID_ = matricksObjectPool::addmatrix(name, classname(), datatype(), Nrows_, Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
 #else
@@ -154,9 +154,9 @@ namespace Matricks {
       std::string name2 = name;
       if (name == "") {
 	name2 = "("+m2.debugtxt()+")";
-	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
+	objectID_ = matricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
       } else {
-	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
+	objectID_ = matricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
       }
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -201,9 +201,9 @@ namespace Matricks {
       std::string name2 = name;
       if (name == "") {
 	name2 = x.debugtxt();
-	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
+	objectID_ = matricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_,false);
       } else {
-	objectID_ = MatricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
+	objectID_ = matricksObjectPool::addmatrix(name2, classname(), datatype(), Nrows_,Ncols_);
       }
       if (bad) 
 	mbad_size(objectID_, NR,NC);
@@ -224,7 +224,7 @@ namespace Matricks {
       delete  data_ ;
 
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::removematrix(objectID_);
+      matricksObjectPool::removematrix(objectID_);
 #endif
     }
 
@@ -268,7 +268,7 @@ namespace Matricks {
       perline_ = Ncols_;
       width_ = 0;
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
+      matricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
       if (bad) 
 	mbad_size(objectID_, NR,NC);
 #endif
@@ -304,7 +304,7 @@ namespace Matricks {
       perline_ = Ncols_;
       width_ = 0;
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
+      matricksObjectPool::mchange_size(objectID_,Nrows_,Ncols_);
 #endif      
       return *this;
     }
@@ -868,7 +868,7 @@ namespace Matricks {
 
     std::string debugtxt(void) const {
 #ifdef MATRICKS_DEBUG
-      return MatricksObjectPool::matrixname(objectID_); 
+      return matricksObjectPool::matrixname(objectID_); 
 #else
       return name_;
 #endif
@@ -877,7 +877,7 @@ namespace Matricks {
     void debugtxt(const char* newname) const {
 #ifdef MATRICKS_DEBUG
       std::string s = newname;
-      MatricksObjectPool::mchange_name(objectID_,s); 
+      matricksObjectPool::mchange_name(objectID_,s); 
 #else
       name_=newname;
 #endif
@@ -886,7 +886,7 @@ namespace Matricks {
 
     void debugtxt(const std::string newname) const {
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::mchange_name(objectID_,newname); 
+      matricksObjectPool::mchange_name(objectID_,newname); 
 #else
       name_=newname;
 #endif
@@ -913,7 +913,7 @@ namespace Matricks {
 
     void outputglossary(void) const {
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::moutputglossary(objectID_);
+      matricksObjectPool::moutputglossary(objectID_);
 #endif
     }
 

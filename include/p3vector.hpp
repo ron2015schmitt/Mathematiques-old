@@ -9,7 +9,7 @@
 #include <cmath>
 #include <vector>
 
-namespace Matricks {
+namespace matricks {
 
   class p3vectorformat {
   private:
@@ -500,7 +500,7 @@ namespace Matricks {
 
 
 
-}; //namespcae Matricks
+}; //namespcae matricks
 
 
 #endif // p3vector_H

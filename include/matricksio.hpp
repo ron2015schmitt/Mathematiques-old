@@ -9,7 +9,7 @@
 #include <ctime>
 #include <cstring>
 
-namespace Matricks {
+namespace matricks {
 
 
 

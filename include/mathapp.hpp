@@ -9,7 +9,7 @@
 
 
 
-namespace Matricks {
+namespace matricks {
 
 
   template<class D>
@@ -266,7 +266,7 @@ namespace Matricks {
     ApSign() { }
 
     static inline D apply(D a) {
-      return Matricks::sgn(a);
+      return matricks::sgn(a);
     }
 
     static std::string debugtxt( const std::string& sa) {

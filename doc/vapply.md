@@ -1,11 +1,11 @@
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.1-r88).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.2).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
 ```C++
- template <class D> 
+template <class D> 
 D pos(D x) {
   return (x>=0) ? x : 0;
 }
@@ -13,6 +13,7 @@ D pos(D x) {
 
 **Some expressions with results**: `pos` function
 ```C++
+
   pos(-5):  0; 
   pos(5):  5; 
 ```
@@ -24,13 +25,14 @@ D pos(D x) {
 * This form can be used in `Vector` expressions
 
 **EXAMPLE 1**: Applying User-defined function `pos` via `op1`
+
 ```C++
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
 Vector<int> v2(range<int>(-2,2));
 ```
 
-**Some expressions with results**Applying User-defined function `pos` via `op1`
+**Some expressions with results**: Applying User-defined function `pos` via `op1`
 ```C++
   op1<double,pos>(v1):  {0,0,0,0,0,0,0.2,0.4,0.6,0.8,1}; 
   op1<int,pos>(v2):  {0,0,0,1,2}; 
@@ -41,7 +43,7 @@ Vector<int> v2(range<int>(-2,2));
 ### Applying User-defined binary functions via `op2`
 
 * A similar function exists for binary user-defined functions: `op2<D,funcname>(Vector<D> v1, Vector<D> v2)`.
-* This form can be used in `Vector` expressions
+* This form can be used in `Vector` expressions as well.
 
 **EXAMPLE 2**: Applying `stdlib` function `fmax` via `op2`
 ```C++
@@ -76,13 +78,13 @@ v2 = v1.getValArray().apply(pos);
 
 
 
-### Creating new matricks functions
+### Creating new mātricks functions--Under the hood of mātricks
 
-User-defined can be bound into the `matricks` namespace as vector functions.
+User-defined function can be bound into the `matricks` namespace as vector functions.
 
-outside of a function place the code:
+place the following code in your file:
 ```C++
- namespace Matricks { 
+namespace matricks { 
 
   template <class D> class Ap_pos {
   public:
@@ -113,7 +115,7 @@ Vector<double> v1(linspace<double>(-1,1,11) );
 Vector<int> v2(range<int>(-2,2));
 ```
 
-**Some expressions with results**Applying User-defined bound-in function `pos` 
+**Some expressions with results**: Applying User-defined bound-in function `pos` 
 ```C++
   pos(v1):  {0,0,0,0,0,0,0.2,0.4,0.6,0.8,1}; 
   pos(v2):  {0,0,0,1,2}; 

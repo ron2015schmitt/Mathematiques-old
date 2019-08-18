@@ -4,7 +4,7 @@
 
 
 #include "matricks.hpp"
-using namespace Matricks;
+using namespace matricks;
 
 #include <iostream>
 using namespace std;
@@ -28,7 +28,7 @@ int main()
   dispcr(x.objectID());
 
 
-  printcrcr("The run-time name is used in all Matricks errors and warnings.");
+  printcrcr("The run-time name is used in all matricks errors and warnings.");
   printcr("Run-time names are only available when the library is run in DEBUG mode.");
 
   printcrcr("Here is an example of an error\n x[8] =11.0;");
@@ -56,16 +56,16 @@ int main()
   printcrcr("You can query a vector's size");
   dispcr(x.size());
 
-  printcrcr("You can display the classname of any Matricks object (container name only)");
+  printcrcr("You can display the classname of any matricks object (container name only)");
   dispcr(x.classname());
 
-  printcrcr("You can display the full classname of any Matricks object");
+  printcrcr("You can display the full classname of any matricks object");
   dispcr(x.fullclassname());
 
-  printcrcr("You can display the datatype contained in any Matricks object");
+  printcrcr("You can display the datatype contained in any matricks object");
   dispcr(x.datatype());
 
-  printcrcr("You can also display a summary of information about any Matricks object");
+  printcrcr("You can also display a summary of information about any matricks object");
   matricksinfo(x);
 
   Matrix<double> A(2,3,"me");

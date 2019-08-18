@@ -4,7 +4,7 @@
 
 
 #include "matricks.hpp"
-using namespace Matricks;
+using namespace matricks;
 
 #include <iostream>
 #include <string>

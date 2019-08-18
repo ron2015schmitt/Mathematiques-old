@@ -1,13 +1,14 @@
 
 # Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.1-r88).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.2).
 
-### A `Matricks::Vector` wraps a `std::valarray`
-* This bears repeating: a `Matricks::Vector` wraps a `std::valarray`
+### A `matricks::Vector` wraps a `std::valarray`
+* This bears repeating: a `matricks::Vector` wraps a `std::valarray`
 * In the example below
   * `valias` is referenced to the valarray inside `vec`.
 
 **EXAMPLE 1**: Getting the `valarray` wrapped by a `Vector`.
+
 ```C++
 using namespace std;
 Vector<double> vec( {0,1,2,3} ); // C++11 list
@@ -15,6 +16,7 @@ valarray<double>& valias = vec.getValArray();
 vec[1] = -1;
 valias[2] = -2;
 ```
+
 **The result is**
 ```C++
   vec:  {0,-1,-2,3}; 
@@ -29,6 +31,7 @@ valias[2] = -2;
   * `valias` is referenced to the valarray inside `vec`.
 
 **EXAMPLE 2**: Setting and getting the wrapped `valarray`
+
 ```C++
 using namespace std;
 valarray<double>* vaptr = new valarray<double>(4);
@@ -39,6 +42,7 @@ valarray<double>& valias = vec.getValArray();
 vec[1] = 1;
 valias[2] = 2;
 ```
+
 **The result is**
 ```C++
   *vaptr[]:  { 99 ,1 ,2 ,0 } ; 

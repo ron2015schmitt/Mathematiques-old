@@ -6,7 +6,7 @@
 #include <cmath>
 #include <string>
 
-namespace Matricks {
+namespace matricks {
 
 
 

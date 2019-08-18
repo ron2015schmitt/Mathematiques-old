@@ -7,7 +7,7 @@
 
 
 
-namespace Matricks {
+namespace matricks {
 
   template <class A>
   inline Vector<uint> findtrue( const VorE<bool,A>& a );

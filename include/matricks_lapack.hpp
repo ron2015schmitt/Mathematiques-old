@@ -22,8 +22,8 @@
 //  which is the same as the STL complex datatype
 
 
-namespace Matricks_lapack {
-  using namespace Matricks;
+namespace matricks_lapack {
+  using namespace matricks;
 
   // shoudl probably do check that FINT is a 32 bit int.
   typedef int FINT;

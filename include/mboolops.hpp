@@ -2,7 +2,7 @@
 #define MBOOLOPS_H
 
 
-namespace Matricks {
+namespace matricks {
 
 
 

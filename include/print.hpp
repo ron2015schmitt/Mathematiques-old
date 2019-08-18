@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cstring>
 
-namespace Matricks {
+namespace matricks {
 
 
   // core functions (internal use only)

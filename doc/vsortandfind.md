@@ -55,7 +55,7 @@ v1 = {10,20,30,40}; // C++11 list
 ```C++
 Vector<double> v(3);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
-**Matricks warning: vector assignment to std::initializer_list<D> of different size
+**matricks warning: vector assignment to std::initializer_list<D> of different size
                  Vector17=std::initializer_list<D>
           where  Vector17 is Vector<double>[size=3], ID=17
                  size of std::initializer_list<D> = 7
@@ -77,7 +77,7 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 ```C++
 Vector<double> v(3);
 v = {-1,0,1,2,4}; // C++11 list
-**Matricks warning: vector assignment to std::initializer_list<D> of different size
+**matricks warning: vector assignment to std::initializer_list<D> of different size
                  Vector23=std::initializer_list<D>
           where  Vector23 is Vector<double>[size=3], ID=23
                  size of std::initializer_list<D> = 5
@@ -105,7 +105,7 @@ v = {-1,0,1,2,4}; // C++11 list
 Vector<double> v(3);
 constexpr double pi = std::acos(-1); // C++11 constexpr
 v = {-pi, -pi/2, 0, pi/2, pi}; // C++11 list
-**Matricks warning: vector assignment to std::initializer_list<D> of different size
+**matricks warning: vector assignment to std::initializer_list<D> of different size
                  Vector34=std::initializer_list<D>
           where  Vector34 is Vector<double>[size=3], ID=34
                  size of std::initializer_list<D> = 5

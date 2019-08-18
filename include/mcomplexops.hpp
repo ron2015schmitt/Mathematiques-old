@@ -7,7 +7,7 @@
 #include <complex>
 
 
-namespace Matricks {
+namespace matricks {
 
 
 

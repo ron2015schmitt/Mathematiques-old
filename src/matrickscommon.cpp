@@ -3,7 +3,7 @@
 
 
 
-namespace Matricks {
+namespace matricks {
 
 
   std::string  replaceAll(std::string  s, std::string s1, std::string s2) {
@@ -23,11 +23,11 @@ namespace Matricks {
 
 
 
-  const char* error_str =   "**Matricks *ERROR*: ";
-  const char* warn_str =    "**Matricks warning: ";
+  const char* error_str =   "**matricks *ERROR*: ";
+  const char* warn_str =    "**matricks warning: ";
   const char* indent_str  = "                 ";
   const char* where_str  =  "          where  ";
-  const char* bug_str =     "**Matricks  *BUG* : ";
+  const char* bug_str =     "**matricks  *BUG* : ";
 
   void bug_report(const std::string& fname,const size_type linenum) {
     std::cerr << bug_str<< "Bug occured in file '"<<fname<<"' at line #"<<linenum<<std::endl;
@@ -59,13 +59,13 @@ namespace Matricks {
   // VECTOR DIRECTORY IMPLEMENTATIONS
 
 
-  size_type MatricksObjectPool::NextVectorID_ = 1; 
-  std::map<size_type,std::string> MatricksObjectPool::vectorName_ ; 
-  std::map<size_type,std::string> MatricksObjectPool::vectorClass_ ; 
-  std::map<size_type,std::string> MatricksObjectPool::vectorDatatype_ ; 
-  std::map<size_type,size_type> MatricksObjectPool::vectorSize_ ; 
+  size_type matricksObjectPool::NextVectorID_ = 1; 
+  std::map<size_type,std::string> matricksObjectPool::vectorName_ ; 
+  std::map<size_type,std::string> matricksObjectPool::vectorClass_ ; 
+  std::map<size_type,std::string> matricksObjectPool::vectorDatatype_ ; 
+  std::map<size_type,size_type> matricksObjectPool::vectorSize_ ; 
 
-  size_type MatricksObjectPool::addvector(const std::string name, const std::string classname, 
+  size_type matricksObjectPool::addvector(const std::string name, const std::string classname, 
 			       const std::string datatype, const size_type size, const bool checkname) {
     size_type id = NextVectorID_++;
     
@@ -80,7 +80,7 @@ namespace Matricks {
 
 
 
-  void MatricksObjectPool::removevector(const size_type id) {
+  void matricksObjectPool::removevector(const size_type id) {
 
     vectorName_.erase(id);
     vectorClass_.erase(id);
@@ -92,12 +92,12 @@ namespace Matricks {
 
 
 
-  std::string MatricksObjectPool::vectorname(const size_type id) {
+  std::string matricksObjectPool::vectorname(const size_type id) {
     return (vectorName_.find(id))->second;
   }
 
 
-  std::string MatricksObjectPool::vadd_name(const std::string& name, const size_type id, const bool checkname) {
+  std::string matricksObjectPool::vadd_name(const std::string& name, const size_type id, const bool checkname) {
 
     std::string newname = name;
 
@@ -149,17 +149,17 @@ namespace Matricks {
 
 
 
-  void MatricksObjectPool::vchange_name(const size_type id, const std::string& name, const bool checkname) {
+  void matricksObjectPool::vchange_name(const size_type id, const std::string& name, const bool checkname) {
     vectorName_.erase(id);
     vadd_name(name, id, checkname);
   }
-  void MatricksObjectPool::vchange_size(const size_type id, const size_type size) {
+  void matricksObjectPool::vchange_size(const size_type id, const size_type size) {
     vectorSize_[id] = size;
   }
 
 
 
-  void MatricksObjectPool::voutputglossary(const size_type id) {
+  void matricksObjectPool::voutputglossary(const size_type id) {
     std::string s = where_str + vectorName_[id] + " is " + vectorClass_[id] + "<" + vectorDatatype_[id] + ">";
     std::cout << s << "[size=" << vectorSize_[id] << "], ID=" << id << std::endl;;
   }    
@@ -168,14 +168,14 @@ namespace Matricks {
   // MATRIX IMPLEMENTATIONS
 
 
-  size_type MatricksObjectPool::NextMatrixID_ = 1; 
-  std::map<size_type,std::string> MatricksObjectPool::matrixName_ ; 
-  std::map<size_type,std::string> MatricksObjectPool::matrixClass_ ; 
-  std::map<size_type,std::string> MatricksObjectPool::matrixDatatype_ ; 
-  std::map<size_type,size_type> MatricksObjectPool::matrixNrows_ ; 
-  std::map<size_type,size_type> MatricksObjectPool::matrixNcols_ ; 
+  size_type matricksObjectPool::NextMatrixID_ = 1; 
+  std::map<size_type,std::string> matricksObjectPool::matrixName_ ; 
+  std::map<size_type,std::string> matricksObjectPool::matrixClass_ ; 
+  std::map<size_type,std::string> matricksObjectPool::matrixDatatype_ ; 
+  std::map<size_type,size_type> matricksObjectPool::matrixNrows_ ; 
+  std::map<size_type,size_type> matricksObjectPool::matrixNcols_ ; 
 
-  size_type MatricksObjectPool::addmatrix(const std::string name, const std::string classname, 
+  size_type matricksObjectPool::addmatrix(const std::string name, const std::string classname, 
 			       const std::string datatype, const size_type NR, const size_type NC, const bool checkname) {
     size_type id = NextMatrixID_++;
     
@@ -191,7 +191,7 @@ namespace Matricks {
 
 
 
-  void MatricksObjectPool::removematrix(const size_type id) {
+  void matricksObjectPool::removematrix(const size_type id) {
 
     matrixName_.erase(id);
     matrixClass_.erase(id);
@@ -204,19 +204,19 @@ namespace Matricks {
 
 
 
-  std::string MatricksObjectPool::matrixname(const size_type id) {
+  std::string matricksObjectPool::matrixname(const size_type id) {
     return (matrixName_.find(id))->second;
   }
-  size_type MatricksObjectPool::matrixNrows(const size_type id) {
+  size_type matricksObjectPool::matrixNrows(const size_type id) {
     return (matrixNrows_.find(id))->second;
   }
-  size_type MatricksObjectPool::matrixNcols(const size_type id) {
+  size_type matricksObjectPool::matrixNcols(const size_type id) {
     return (matrixNcols_.find(id))->second;
   }
 
 
 
-  std::string MatricksObjectPool::madd_name(const std::string name, const size_type id, const bool checkname) {
+  std::string matricksObjectPool::madd_name(const std::string name, const size_type id, const bool checkname) {
 
     std::string newname = name;
 
@@ -264,11 +264,11 @@ namespace Matricks {
       
   }
 
-  void MatricksObjectPool::mchange_name(const size_type id, const std::string& name, const bool checkname) {
+  void matricksObjectPool::mchange_name(const size_type id, const std::string& name, const bool checkname) {
     matrixName_.erase(id);
     madd_name(name, id, checkname);
   }
-  void MatricksObjectPool::mchange_size(const size_type id, const size_type NR, const size_type NC) {
+  void matricksObjectPool::mchange_size(const size_type id, const size_type NR, const size_type NC) {
     matrixNrows_[id] = NR;
     matrixNcols_[id] = NC;
   }
@@ -276,7 +276,7 @@ namespace Matricks {
 
 
 
-  void MatricksObjectPool::moutputglossary(const size_type id) {
+  void matricksObjectPool::moutputglossary(const size_type id) {
     std::string s = where_str + matrixName_[id] + " is " + matrixClass_[id] + "<" + matrixDatatype_[id] + ">";
     std::cout << s << "[size=" << matrixNrows_[id] << "x" << matrixNcols_[id] << "], ID=" << id << std::endl;;
   }    

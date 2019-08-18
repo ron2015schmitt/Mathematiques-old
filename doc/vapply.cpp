@@ -2,7 +2,7 @@
 
 
 #include "matricks.hpp"
-using namespace Matricks;
+using namespace matricks;
 
 #include <iostream>
 #include <string>
@@ -26,7 +26,7 @@ D pos(D x) {
 }
 };
 
-char pos_str[] = " \
+char pos_str[] = "\
 template <class D> \n\
 D pos(D x) {\n\
   return (x>=0) ? x : 0;\n\
@@ -34,7 +34,7 @@ D pos(D x) {\n\
 
 
 
-namespace Matricks {
+namespace matricks {
 
   template <class D> class ApPos {
   public:
@@ -62,8 +62,8 @@ namespace Matricks {
 }
 
 
-char matrickspos_str[] = " \
-namespace Matricks { \n\
+char matrickspos_str[] = "\
+namespace matricks { \n\
 \n\
   template <class D> class Ap_pos {\n\
   public:\n\
@@ -113,6 +113,7 @@ int main()
     cr();
     using namespace test;
     resultstart2(": `pos` function");
+    cr();
     resultmulti( pos(-5)  );
     resultmulti( pos(5)  );
     resultend();
@@ -126,6 +127,7 @@ int main()
     text("* This form can be used in `Vector` expressions");
     cr();
     example(Nex++,"Applying User-defined function `pos` via `op1`");
+    cr();
     codestart("C++");
     codemulti(using namespace std );
     codemulti( Vector<double> v1(linspace<double>(-1,1,11) ) );
@@ -133,7 +135,7 @@ int main()
     codeend();
     cr();
     using namespace test;
-    resultstart2("Applying User-defined function `pos` via `op1`");
+    resultstart2(": Applying User-defined function `pos` via `op1`");
     resultmulti( op1<double,pos>(v1)  );
     resultmulti( op1<int,pos>(v2)  );
     resultmulti( 2*v1 + op1<double,pos>( 2.3*sin(M_PI*v1) ) );
@@ -145,7 +147,7 @@ int main()
   {
     cr();
     text("* A similar function exists for binary user-defined functions: `op2<D,funcname>(Vector<D> v1, Vector<D> v2)`.");
-    text("* This form can be used in `Vector` expressions");
+    text("* This form can be used in `Vector` expressions as well.");
     cr();
     example(Nex++,"Applying `stdlib` function `fmax` via `op2`");
     codestart("C++");
@@ -186,12 +188,12 @@ int main()
   
  
   cr();
-  header3("Creating new matricks functions");
+  header3("Creating new mātricks functions--Under the hood of mātricks");
   {
     cr();
-    text("User-defined can be bound into the `matricks` namespace as vector functions.");
+    text("User-defined function can be bound into the `matricks` namespace as vector functions.");
     cr();
-    text("outside of a function place the code:");
+    text("place the following code in your file:");
     codestart("C++");
     text(matrickspos_str);
     codeend();
@@ -202,7 +204,7 @@ int main()
     codemulti( Vector<int> v2(range<int>(-2,2))  );
     codeend();
     cr();
-    resultstart2("Applying User-defined bound-in function `pos` ");
+    resultstart2(": Applying User-defined bound-in function `pos` ");
     resultmulti( pos(v1)  );
     resultmulti( pos(v2)  );
     resultmulti( 2*v1 + pos( 2.3*sin(M_PI*v1) ) );

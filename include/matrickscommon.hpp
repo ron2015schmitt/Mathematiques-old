@@ -17,7 +17,7 @@
 
 
 
-namespace Matricks {
+namespace matricks {
 
 
   typedef std::vector<double>::size_type   size_type;
@@ -160,7 +160,7 @@ namespace Matricks {
 #endif
 
   inline void display_execution_mode(void) {
-    std::cout << "Matricks execution mode = "<< execution_mode() << std::endl;
+    std::cout << "matricks execution mode = "<< execution_mode() << std::endl;
   }
 
 
@@ -442,7 +442,7 @@ namespace Matricks {
    */
 
 
-  class MatricksObjectPool {
+  class matricksObjectPool {
   private:
     static size_type NextVectorID_ ;
     static std::map<size_type,std::string> vectorName_ ; 

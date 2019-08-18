@@ -11,7 +11,7 @@
 // between NRC matrices & vectors and C matrices and vectors.
 
 
-namespace Matricks_nr {
+namespace matricks_nr {
 
 
   //

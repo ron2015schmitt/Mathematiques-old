@@ -4,7 +4,7 @@
 
 
 #include "matricks.hpp"
-using namespace Matricks;
+using namespace matricks;
 
 #include <iostream>
 #include <string>
@@ -29,14 +29,15 @@ int main()
   mdtitle("Vector definition");
   matricks_preamble();
 
-  header3("A `Matricks::Vector` wraps a `std::valarray`");
-  text("* This bears repeating: a `Matricks::Vector` wraps a `std::valarray`");
+  header3("A `matricks::Vector` wraps a `std::valarray`");
+  text("* This bears repeating: a `matricks::Vector` wraps a `std::valarray`");
   text("* In the example below");
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
     cr();
     example(Nex++, "Getting the `valarray` wrapped by a `Vector`.");
+    cr();
     codestart("C++");
     codemulti(using namespace std);
     codemultiNoteC11Array( Vector<double> vec( CARRAY({0,1,2,3}) ) );
@@ -44,6 +45,7 @@ int main()
     codemulti( vec[1] = -1 );
     codemulti( valias[2] = -2 );
     codeend();
+    cr();
     resultstart();
     resultmulti(vec);
     resultmulti(valias);
@@ -62,6 +64,7 @@ int main()
   {
     cr();
     example(Nex++, "Setting and getting the wrapped `valarray`");
+    cr();
     codestart("C++");
     codemulti(using namespace std);
     codemulti( valarray<double>* vaptr = new valarray<double>(4) );
@@ -72,6 +75,7 @@ int main()
     codemulti( vec[1] = 1 );
     codemulti( valias[2] = 2 );
     codeend();
+    cr();
     resultstart();
     resultmulti(*vaptr);
     resultmulti(vec);

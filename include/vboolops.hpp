@@ -4,7 +4,7 @@
 #ifndef VBOOLOPS_H
 #define VBOOLOPS_H
 
-namespace Matricks {
+namespace matricks {
 
 
 

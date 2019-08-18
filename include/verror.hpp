@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-namespace Matricks {
+namespace matricks {
 
 
   /****************************************************************************
@@ -55,22 +55,22 @@ namespace Matricks {
 
  template <class D, class A> 
   void vbad_assignment_expr(const size_type id, const VorE<D,A>& ve) {
-    std::string s1= MatricksObjectPool::vectorname(id);
+    std::string s1= matricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "vector assignment to expression of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    std::cout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
-    MatricksObjectPool::voutputglossary(id);
+    matricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
  template <class D, class A> 
   void vbad_assignment_expr_warning(const size_type id, const VorE<D,A>& ve) {
-    std::string s1= MatricksObjectPool::vectorname(id);
+    std::string s1= matricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << warn_str << "vector assignment to expression of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    std::cout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
-    MatricksObjectPool::voutputglossary(id);
+    matricksObjectPool::voutputglossary(id);
     ve.outputglossary();
     std::cout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
     std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
@@ -82,43 +82,43 @@ namespace Matricks {
 
    template <class D, class A> 
   void vbad_expr_in_assignment(const size_type id, const VorE<D,A>& ve) {
-    std::string s1= MatricksObjectPool::vectorname(id);
+    std::string s1= matricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    MatricksObjectPool::voutputglossary(id);
+    matricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
    template <class D, class A> 
   void vbad_expr_in_reconassignment(const size_type id, const VorE<D,A>& ve) {
-    std::string s1= MatricksObjectPool::vectorname(id);
+    std::string s1= matricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
     std::cout << indent_str  <<s1 << ".resize() = " << s2 << std::endl;
-    MatricksObjectPool::voutputglossary(id);
+    matricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
 
    template <class D, class A> 
    void vbad_reconassignment(const size_type id, const VorE<D,A>& ve) {
-    std::string s1= MatricksObjectPool::vectorname(id);
+    std::string s1= matricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << ".resize() objects are not permitted on the right hand side of an expression" << std::endl;
     std::cout << indent_str  <<s1 << " = " << s2<< ".resize()" << std::endl;
-    MatricksObjectPool::voutputglossary(id);
+    matricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 
 
    template <class D, class A> 
    void vbad_mask(const size_type id, const VorE<D,A>& ve) {
-    std::string s1= MatricksObjectPool::vectorname(id);
+    std::string s1= matricksObjectPool::vectorname(id);
     std::string s2= ve.debugtxt();
     std::cout << error_str << "mask size does not match vector size" << std::endl;
     std::cout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
-    MatricksObjectPool::voutputglossary(id);
+    matricksObjectPool::voutputglossary(id);
     ve.outputglossary();
   }
 

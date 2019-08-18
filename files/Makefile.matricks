@@ -24,7 +24,7 @@ LIB_LAPACK = -llapack -lg2c
 info_matricks:
 	@echo
 	@$(call hr)
-	@$(call title,"Matricks")
+	@$(call title,"matricks")
 	@$(call echovar,DIR_MATRICKS)
 	@$(call echovar,INCDIR_MATRICKS)
 	@$(call echovar,LIBDIR_MATRICKS)

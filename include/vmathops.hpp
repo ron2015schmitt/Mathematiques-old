@@ -4,7 +4,7 @@
 #include <tgmath.h>
 #include <string>
 
-namespace Matricks {
+namespace matricks {
 
 
  /************************************************************

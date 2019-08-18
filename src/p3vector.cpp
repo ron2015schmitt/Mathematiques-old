@@ -5,7 +5,7 @@
 
 
 
-namespace Matricks {
+namespace matricks {
 
   
 

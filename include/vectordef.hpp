@@ -19,7 +19,7 @@
 
 //#define VDEBUG
 
-namespace Matricks {
+namespace matricks {
 
   template <class D> void sort(Vector<D>& a );
 
@@ -76,7 +76,7 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
 
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -111,7 +111,7 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
 
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -144,7 +144,7 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
       
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -179,7 +179,7 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
       
       if (N>maxsize) 
 	vbad_size(objectID_, N);
@@ -214,7 +214,7 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
+      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), N);
       
       if (N>maxsize) 
 	vbad_size(objectID_, N);
@@ -253,7 +253,7 @@ namespace Matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
+      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), N);
       
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -296,9 +296,9 @@ namespace Matricks {
       std::string name2 = name;
       if (name == "") {
 	name2 = "("+v2.debugtxt()+")";
-	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
+	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
       }else {
-	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size());
+	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size());
       }
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -334,9 +334,9 @@ namespace Matricks {
       std::string name2 = name;
       if (name == "") {
 	name2 = x.debugtxt();
-	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
+	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
       }else {
-	objectID_ = MatricksObjectPool::addvector(name2, classname(), datatype(), size());
+	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size());
       }
 
       if (n>maxsize) 
@@ -365,7 +365,7 @@ namespace Matricks {
 
       //remove from directory
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::removevector(objectID_);
+      matricksObjectPool::removevector(objectID_);
 #endif
     }
   
@@ -399,7 +399,7 @@ namespace Matricks {
       width_ = 0;
 #ifdef MATRICKS_DEBUG
       // update the directory
-      MatricksObjectPool::vchange_size(objectID_,N);
+      matricksObjectPool::vchange_size(objectID_,N);
       if (n>maxsize) 
 	vbad_size(objectID_, n);
 #endif      
@@ -865,7 +865,7 @@ namespace Matricks {
 
     std::string debugtxt(void) const {
 #ifdef MATRICKS_DEBUG
-      return MatricksObjectPool::vectorname(objectID_); 
+      return matricksObjectPool::vectorname(objectID_); 
 #else
       return name_;
 #endif
@@ -874,7 +874,7 @@ namespace Matricks {
     void debugtxt(const char* newname) const {
       std::string s = newname;
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::vchange_name(objectID_,s); 
+      matricksObjectPool::vchange_name(objectID_,s); 
 #else
       name_=s;
 #endif
@@ -882,7 +882,7 @@ namespace Matricks {
 
     void debugtxt(const std::string newname) const {
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::vchange_name(objectID_,newname); 
+      matricksObjectPool::vchange_name(objectID_,newname); 
 #else
       name_=name;
 #endif
@@ -908,7 +908,7 @@ namespace Matricks {
 
     void outputglossary(void) const {
 #ifdef MATRICKS_DEBUG
-      MatricksObjectPool::voutputglossary(objectID_);
+      matricksObjectPool::voutputglossary(objectID_);
 #endif
     }
 

@@ -8,7 +8,7 @@
 #include <cmath>
 
 
-namespace Matricks {
+namespace matricks {
 
   template <class A> 
   inline Matrix<uint> findtrue( const MorE<bool,A>& a );

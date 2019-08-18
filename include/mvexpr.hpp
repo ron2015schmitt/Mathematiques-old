@@ -8,7 +8,7 @@
 #include <sstream>
 #include <cstdlib>
 
-namespace Matricks {
+namespace matricks {
 
 
 

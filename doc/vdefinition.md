@@ -7,14 +7,13 @@ _This document was automatically generated from file_ **`vdefinition.cpp`** (mā
 * In the example below
   * `va` is copied to `vec` during construction
   * `valias` is referenced to the valarray inside `vec`.
+
 **EXAMPLE 1**: Getting the `valarray` wrapped by a `Vector`.
 ```C++
-std::valarray<double> va(4);
+using namespace std;
+valarray<double> va(4);
 Vector<double> vec(va);
-**Matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
-                 Vector1 = D[]
-          where  Vector1 is Vector<double>[size=4], ID=1
-std::valarray<double>& valias = vec.getValArray();
+valarray<double>& valias = vec.getValArray();
 va[0] = 99;;
 vec[1] = 1;;
 valias[2] = 2;;
@@ -32,12 +31,14 @@ valias[2] = 2;;
   * `vec` is constructed with zero size
   * `vec` is set to wrap `vaptr`
   * `valias` is referenced to the valarray inside `vec`.
+
 **EXAMPLE 2**: Setting and getting the wrapped `valarray`
 ```C++
-std::valarray<double>* vaptr = new std::valarray<double>(4);
+using namespace std;
+valarray<double>* vaptr = new valarray<double>(4);
 Vector<double> vec(0);
 vec.setValArray(vaptr);
-std::valarray<double>& valias = vec.getValArray();
+valarray<double>& valias = vec.getValArray();
 (*vaptr)[0] = 99;
 vec[1] = 1;
 valias[2] = 2;

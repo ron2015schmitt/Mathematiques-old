@@ -50,52 +50,15 @@ namespace Matricks {
 
     // ************************** CONSTRUCTOR **********************************
 
-    // ************************** C++11  INIT CONSTRUCTOR**********************************
-#if CPP11 == 1
-  
-    explicit Vector<D>(const std::initializer_list<D> list, const std::string name="") { 
-
-
-      const size_type N =  list.size();
-      #ifdef VDEBUG
-      printf(">>> Vector(C++11 list) N=%lu\n",N);
-      #endif
-      
-      // allocate store
-      data_ = new std::valarray<D>(N); 
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
-      
-      if (N>maxsize) 
-	vbad_size(objectID_, N);
-#else
-      name_=name;
-#endif      
-      size_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
-      for (it = list.begin(); it != list.end(); ++it)  { 
-	//	printf("list[%lu] = %f\n",i,*it);
-	(*this)[i++] = *it;
-      }
-    }
-
-#endif
 
 
     // constuct with default initialization of valarray (0's)
 
     explicit Vector<D>(const size_type n, const std::string name = "") { 
 
-      #ifdef VDEBUG
+#ifdef VDEBUG
       printf(">>> Vector(int) N=%lu\n",n);
-      #endif
+#endif
 
       size_type N;
       if (n>maxsize) 
@@ -128,9 +91,9 @@ namespace Matricks {
       
       size_type n=0;
 
-      #ifdef VDEBUG
+#ifdef VDEBUG
       printf(">>> Vector() N=%lu\n",n);
-      #endif
+#endif
 
       size_type N;
       if (n>maxsize) 
@@ -161,9 +124,9 @@ namespace Matricks {
 
     explicit Vector<D>(const size_type n, const D val, const std::string name="") { 
       
-      #ifdef VDEBUG
+#ifdef VDEBUG
       printf(">>> Vector(n,val) N=%lu\n",n);
-      #endif
+#endif
 
       size_type N;
       if (n>maxsize) 
@@ -195,12 +158,86 @@ namespace Matricks {
     }
 
 
+    // ************************** C++11  INIT CONSTRUCTOR**********************************
+#if CPP11 == 1
+  
+    explicit Vector<D>(const std::initializer_list<D> list, const std::string name="") { 
+
+
+      const size_type N =  list.size();
+#ifdef VDEBUG
+      printf(">>> Vector(C++11 list) N=%lu\n",N);
+#endif
+      
+      // allocate store
+      data_ = new std::valarray<D>(N); 
+
+      perline_ = N+1;
+      width_ = 0;
+      textformat_=text_braces;
+      
+#ifdef MATRICKS_DEBUG
+      dummy_ = D();
+      // add this vector to the directory
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), size());
+      
+      if (N>maxsize) 
+	vbad_size(objectID_, N);
+#else
+      name_=name;
+#endif      
+      size_type i = 0;
+      typename std::initializer_list<D>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	//	printf("list[%lu] = %f\n",i,*it);
+	(*this)[i++] = *it;
+      }
+    }
+
+#endif
+
+
+    // ************************** valarray CONSTRUCTOR **********************************
+    explicit Vector<D>(const std::valarray<D>& valar, const std::string name="") { 
+
+#ifdef VDEBUG
+      printf(">>> Vector(n,valarray) N=%lu\n",n);
+#endif
+
+      size_type N = valar.size();
+      
+
+      perline_ = N+1;
+      width_ = 0;
+      textformat_=text_braces;
+      
+#ifdef MATRICKS_DEBUG
+      dummy_ = D();
+      // add this vector to the directory
+      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
+      
+      if (N>maxsize) 
+	vbad_size(objectID_, N);
+
+
+#else
+      name_=name;
+#endif      
+
+      // allocate store COPY CONSTRUCTOR!
+      data_ = new std::valarray<D>(valar); 
+
+
+    }
+
+
+
     // ************************** ARRAY INIT CONSTRUCTOR **********************************
     explicit Vector<D>(const size_type n, const D (vals)[], const std::string name="") { 
 
-      #ifdef VDEBUG
+#ifdef VDEBUG
       printf(">>> Vector(n,array) N=%lu\n",n);
-      #endif
+#endif
 
       size_type N;
       if (n>maxsize) 
@@ -315,40 +352,6 @@ namespace Matricks {
 
 
 
-    // ************************** valarray CONSTRUCTOR **********************************
-    explicit Vector<D>(const std::valarray<D>& valar, const std::string name="") { 
-
-      #ifdef VDEBUG
-      printf(">>> Vector(n,valarray) N=%lu\n",n);
-      #endif
-
-      size_type N = valar.size();
-      
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
-      
-      if (N>maxsize) 
-	vbad_size(objectID_, N);
-
-      v_array_warning(objectID());
-
-#else
-      name_=name;
-#endif      
-
-      // allocate store COPY CONSTRUCTOR!
-      data_ = new std::valarray<D>(valar); 
-
-
-    }
-
 
 
 
@@ -419,7 +422,7 @@ namespace Matricks {
 
 
 
-   // ************************* valarray ACCESS *********************************
+    // ************************* valarray ACCESS *********************************
 
 
     // "read/write" to the wrapped valarray

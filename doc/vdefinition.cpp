@@ -36,11 +36,13 @@ int main()
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
+    cr();
     example(Nex++, "Getting the `valarray` wrapped by a `Vector`.");
     codestart("C++");
-    codemulti( std::valarray<double> va(4) );
+    codemulti(using namespace std);
+    codemulti( valarray<double> va(4) );
     codemulti( Vector<double> vec(va) );
-    codemulti( std::valarray<double>& valias = vec.getValArray() );
+    codemulti( valarray<double>& valias = vec.getValArray() );
     codemulti( va[0] = 99; );
     codemulti( vec[1] = 1; );
     codemulti( valias[2] = 2; );
@@ -62,12 +64,14 @@ int main()
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
+    cr();
     example(Nex++, "Setting and getting the wrapped `valarray`");
     codestart("C++");
-    codemulti( std::valarray<double>* vaptr = new std::valarray<double>(4) );
+    codemulti(using namespace std);
+    codemulti( valarray<double>* vaptr = new valarray<double>(4) );
     codemulti( Vector<double> vec(0) );
     codemulti( vec.setValArray(vaptr) );
-    codemulti( std::valarray<double>& valias = vec.getValArray() );
+    codemulti( valarray<double>& valias = vec.getValArray() );
     codemulti( (*vaptr)[0] = 99 );
     codemulti( vec[1] = 1 );
     codemulti( valias[2] = 2 );

@@ -12,18 +12,41 @@
 namespace Matricks {
 
 
+  template<class D>
+  struct TypeHelper {
+    typedef D(*unary_func)(D);
+    typedef D(*binary_func)(D, D);
+  };
+
+
   /****************************************************************************
    *              Binary applicative templates 
    ****************************************************************************/
 
 
+  // y = op2<D,userfunc>(a,b)
+  template <class D, typename TypeHelper<D>::binary_func F> class ApFun2 {
+  public:
+    ApFun2() { }
+    static inline D apply(D a, D b) { 
+      return F(a,b); 
+    }
+
+
+    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+      std::string sout =std::string("op2<")+ stringify(D)+","+ stringify(F) +">(" + sa + " , " + sb + ")";
+       return sout;
+    }
+  };
+
+
   // y = pow(a,b)  
   // ie. a raised to the b power
 
-  template <class DataT> class ApPow {
+  template <class D> class ApPow {
   public:
     ApPow() { }
-    static inline DataT apply(DataT a, DataT b) { 
+    static inline D apply(D a, D b) { 
       using std::pow;
       return pow(a,b); 
     }
@@ -39,10 +62,10 @@ namespace Matricks {
 
     // y = atan2(a,b)  
 
-  template <class DataT> class ApAtan2 {
+  template <class D> class ApAtan2 {
   public:
     ApAtan2() { }
-    static inline DataT apply(DataT a, DataT b) { 
+    static inline D apply(D a, D b) { 
       using std::atan2;
       return atan2(a,b); 
     }
@@ -66,14 +89,33 @@ namespace Matricks {
 
 
 
+  
+    // y = op1<D,userfunc>(a)
+
+  template <class D, typename TypeHelper<D>::unary_func F> class ApFun1 {
+  public:
+    ApFun1() { }
+
+    static inline D apply(D a) { 
+      return F(a); 
+    }
+
+    static std::string debugtxt(const std::string& sa) {
+      std::string sout =std::string("op1<")+  typeid(D).name()+","+typeid(F).name() +">(" + sa + ")";
+      return sout;
+    }
+
+  };
+
+
 
   // sin(a)
 
-  template <class DataT> class ApSin {
+  template <class D> class ApSin {
   public:
     ApSin() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::sin;
       return sin(a); 
     }
@@ -88,11 +130,11 @@ namespace Matricks {
 
   // cos(a)
 
-  template <class DataT> class ApCos {
+  template <class D> class ApCos {
   public:
     ApCos() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::cos;
       return std::cos(a); 
     }
@@ -109,11 +151,11 @@ namespace Matricks {
 
   // tan(a)
 
-  template <class DataT> class ApTan {
+  template <class D> class ApTan {
   public:
     ApTan() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::tan;
       return std::tan(a); 
     }
@@ -128,11 +170,11 @@ namespace Matricks {
 
   // sqrt(a)
 
-  template <class DataT> class ApSqrt {
+  template <class D> class ApSqrt {
   public:
     ApSqrt() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::sqrt;
       return std::sqrt(a); 
     }
@@ -147,11 +189,11 @@ namespace Matricks {
 
   // sqr(a)
 
-  template <class DataT> class ApSqr {
+  template <class D> class ApSqr {
   public:
     ApSqr() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       return (a*a); 
     }
 
@@ -165,11 +207,11 @@ namespace Matricks {
 
   // cube(a)
 
-  template <class DataT> class ApCube {
+  template <class D> class ApCube {
   public:
     ApCube() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       return (a*a*a); 
     }
 
@@ -182,11 +224,11 @@ namespace Matricks {
 
 
   // exp(a)
-  template <class DataT> class ApExp {
+  template <class D> class ApExp {
   public:
     ApExp() { }
     
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::exp;
       return std::exp(a);
     }
@@ -201,11 +243,11 @@ namespace Matricks {
 
   // abs(a)
 
-  template <class DataT> class ApAbs {
+  template <class D> class ApAbs {
   public:
     ApAbs() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::abs;
       return std::abs(a);
     }
@@ -219,11 +261,11 @@ namespace Matricks {
 
   // sgn(a)
 
-  template <class DataT> class ApSign {
+  template <class D> class ApSign {
   public:
     ApSign() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       return Matricks::sgn(a);
     }
 
@@ -236,11 +278,11 @@ namespace Matricks {
 
   // log(a)
 
-  template <class DataT> class ApLog {
+  template <class D> class ApLog {
   public:
     ApLog() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::log;
       return std::log(a);
     }
@@ -254,11 +296,11 @@ namespace Matricks {
 
   // log2(a)
 
-  template <class DataT> class ApLog2 {
+  template <class D> class ApLog2 {
   public:
     ApLog2() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::log;
       return std::log2(a);
     }
@@ -273,11 +315,11 @@ namespace Matricks {
 
   // log10(a)
 
-  template <class DataT> class ApLog10 {
+  template <class D> class ApLog10 {
   public:
     ApLog10() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::log10;
       return std::log10(a);
     }
@@ -291,11 +333,11 @@ namespace Matricks {
 
   // asin(a)
 
-  template <class DataT> class ApAsin {
+  template <class D> class ApAsin {
   public:
     ApAsin() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::asin;
       return std::asin(a);
     }
@@ -309,11 +351,11 @@ namespace Matricks {
 
  // acos(a)
 
-  template <class DataT> class ApAcos {
+  template <class D> class ApAcos {
   public:
     ApAcos() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::acos;
       return std::acos(a);
     }
@@ -327,11 +369,11 @@ namespace Matricks {
 
   // atan(a)
 
-  template <class DataT> class ApAtan {
+  template <class D> class ApAtan {
   public:
     ApAtan() { }
 
-    static inline DataT apply(DataT a) {
+    static inline D apply(D a) {
       using std::atan;
       return std::atan(a);
     }
@@ -346,11 +388,11 @@ namespace Matricks {
 
   // ceil(a)
 
-  template <class DataT> class ApCeil {
+  template <class D> class ApCeil {
   public:
     ApCeil() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::ceil;
       return std::ceil(a); 
     }
@@ -363,11 +405,11 @@ namespace Matricks {
   };
   // floor(a)
 
-  template <class DataT> class ApFloor {
+  template <class D> class ApFloor {
   public:
     ApFloor() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::floor;
       return std::floor(a); 
     }
@@ -380,11 +422,11 @@ namespace Matricks {
   };
   // round(a)
 
-  template <class DataT> class ApRound {
+  template <class D> class ApRound {
   public:
     ApRound() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       return std::round(a); 
     }
 
@@ -396,11 +438,11 @@ namespace Matricks {
   };
   // sinh(a)
 
-  template <class DataT> class ApSinh {
+  template <class D> class ApSinh {
   public:
     ApSinh() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::sinh;
       return std::sinh(a); 
     }
@@ -413,11 +455,11 @@ namespace Matricks {
   };
   // cosh(a)
 
-  template <class DataT> class ApCosh {
+  template <class D> class ApCosh {
   public:
     ApCosh() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::cosh;
       return std::cosh(a); 
     }
@@ -430,11 +472,11 @@ namespace Matricks {
   };
   // tanh(a)
 
-  template <class DataT> class ApTanh {
+  template <class D> class ApTanh {
   public:
     ApTanh() { }
 
-    static inline DataT apply(DataT a) { 
+    static inline D apply(D a) { 
       using std::tanh;
       return std::tanh(a); 
     }
@@ -452,11 +494,11 @@ namespace Matricks {
     
    // roundzeros(a,tol)
 
-  template <class DataT> class ApRoundZeros {
+  template <class D> class ApRoundZeros {
   public:
     ApRoundZeros() { }
 
-    static inline DataT apply(DataT a, const DataT tolerance) { 
+    static inline D apply(D a, const D tolerance) { 
       using std::abs;
       return (abs(a) < abs(tolerance)) ? 0 : a;
     }

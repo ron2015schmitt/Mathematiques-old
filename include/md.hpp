@@ -26,6 +26,8 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define mdtitle(str)   std::cout << "# " << str << " in mātricks" << std::endl; write_mdtitle_file(__FILE__,str);
  
 
+
+
 #define header1(str)  std::cout << "# " << str << std::endl
 #define header2(str)  std::cout << "## " << str << std::endl
 #define header3(str)  std::cout << "### " << str << std::endl

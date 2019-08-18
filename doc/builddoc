@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+make newtag toc && git add -u && make git

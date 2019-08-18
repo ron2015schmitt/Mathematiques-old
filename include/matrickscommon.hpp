@@ -228,6 +228,7 @@ namespace matricks {
   };
 
 
+  template <class D> class Vector;
 
   /****************************************************************************
    * Enumeration for different subclasses of VorE class
@@ -285,8 +286,11 @@ namespace matricks {
       return derived().addrmatch(vaddr);
     }
 
-
-
+    friend std::ostream& operator<<(std::ostream &stream, const VorE<D,VE>& ve) {
+      Vector<D> v = ve.derived();
+      stream << v;
+      return stream;
+    }
   };
 
 
@@ -297,7 +301,6 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector;
   template <class D> class p3vector;
   template <class D, class A> class Vexpr;  
   template <class D, class A> class VWrapperObj;

@@ -1,6 +1,6 @@
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.2-r1).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.2-r4).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -27,8 +27,8 @@ In debug mode, this produces a warning, as shown below
 ```C++
 Vector<double> v( 4, (const double[]) {10, 20, 30, 40} );
 **matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
-                 Vector3 = D[]
-          where  Vector3 is Vector<double>[size=4], ID=3
+                 Vector5 = D[]
+          where  Vector5 is Vector<double>[size=4], ID=5
 ```
 **The result is**
 ```C++

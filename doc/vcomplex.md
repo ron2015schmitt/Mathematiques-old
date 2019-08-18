@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r3).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r4).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -109,7 +109,7 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
   vr-vc:  {(0,-1),(1,-0),(3,-1),(4,1)}; 
   vr*vc:  {(1,1),(2,0),(0,3),(0,-4)}; 
   vr/vc:  {(0.5,-0.5),(2,0),(0,-3),(-0,4)}; 
-  2.*vr + vc/2. + 1:  {(inf,inf),(inf,0),(7,inf),(9,-inf)}; 
+  2.*vr + vc/2. + 1:  {(inf,inf),(inf,0),(6,inf),(8,-inf)}; 
   complex<double>(0,1)*vr + complex<double>(5,2)*vc:  {(3,8),(5,4),(-2,8),(2,-1)}; 
 ```
 
@@ -142,13 +142,30 @@ Vector<double> vi( range<double>(-1,-4) );
 vc = vcomplex(vr, vi);
 ```
 
-**Some expressions with results**: construct real and imaginary parts
+**Some expressions with results**: create a complex vector from two real vectors
 ```C++
   vr:  {1,2,3,4}; 
   vi:  {-1,-2,-3,-4}; 
   vc:  {(1,-1),(2,-2),(3,-3),(4,-4)}; 
   real(vc):  {1,2,3,4}; 
   imag(vc):  {-1,-2,-3,-4}; 
+```
+
+
+
+
+**EXAMPLE 8**: create a complex vector from a real vector
+```C++
+using namespace std;
+Vector<double> v( range<double>(1,4) );
+```
+
+**Some expressions with results**: create a complex vector from a real vector
+```C++
+  vcomplex(v,0.):  {(1,4.68208e-310),(2,4.68208e-310),(3,4.68208e-310),(4,4.68208e-310)}; 
+  vcomplex(0.,v):  {(1.97626e-323,1),(1.97626e-323,2),(1.97626e-323,3),(1.97626e-323,4)}; 
+  vcomplex(v,v):  {(1,1),(2,2),(3,3),(4,4)}; 
+  vcomplex(v,1.):  {(1,4.68208e-310),(2,4.68208e-310),(3,4.68208e-310),(4,4.68208e-310)}; 
 ```
 
 

@@ -1,15 +1,17 @@
 
-include ../Makefile
 
 EXEC = vdeclaration vdefinition vassignment range linspace velmath vapply vcomplex vscalarout vrelational vsortandfind vslicesmasks vprint vfile vdebug
 
 DOC = $(addsuffix .md,$(EXEC))
 
-%.md: %
+%.md: % 
 	./$* > $@
 
 %.link_md: %.md
 	@echo
+
+include ../Makefile
+
 
 doc:  $(DOC)
 

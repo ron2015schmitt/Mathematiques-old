@@ -52,44 +52,14 @@ namespace matricks {
     std::cout << posts;
   }
 
-  template <typename D>
-  void _printvar(const Vector<D>& a, bool display, char const *s, char const *pres, char const *posts)
-  {
-    if (display)
-      std::cout << s;
-    std::cout<<pres;
-    std::cout << a;
-    std::cout << posts;
-  }
-
-  template <typename A, typename D>
-  void _printvar(const Vexpr<D,A>& exp, bool display, char const *s, char const *pres, char const *posts)
-  {
-    Vector<D> a = exp;
-    if (display)
-      std::cout << s;
-    std::cout<<pres;
-    std::cout << a;
-    std::cout << posts;
-  }
-  template <typename A, typename B, typename D>
-  void _printvar(const VFuncOp<D,A,B>& exp, bool display, char const *s, char const *pres, char const *posts)
-  {
-    Vector<D> a = exp;
-    if (display)
-      std::cout << s;
-    std::cout<<pres;
-    std::cout << a;
-    std::cout << posts;
-  }
 
   template <typename X>
-  void _printvar(const X a, bool display, char const *s, char const *pres, char const *posts)
+  void _printvar(const X x, bool display, char const *s, char const *pres, char const *posts)
   {
     if (display)
       std::cout << s;
     std::cout<<pres;
-    std::cout << a;
+    std::cout << x;
     std::cout << posts;
   }
 

@@ -209,7 +209,7 @@ int main()
     codeend();
     cr();
 
-    resultstart2(": construct real and imaginary parts");
+    resultstart2(": create a complex vector from two real vectors");
     resultmulti( vr  );
     resultmulti( vi  );
     resultmulti( vc  );
@@ -219,6 +219,24 @@ int main()
     cr();
   }
 
+  {
+    cr();
+    cr();
+    example(Nex++,"create a complex vector from a real vector");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( Vector<double> v( range<double>(1,4) ));
+    codeend();
+    cr();
+
+    resultstart2(": create a complex vector from a real vector");
+    resultmulti( vcomplex(v,0.) );
+    resultmulti( vcomplex(0.,v)  );
+    resultmulti( vcomplex(v,v) );
+    resultmulti( vcomplex(v,1.) );
+    resultend();
+    cr();
+  }
   
   //   text("* A function of a `Vector` operates on each element.  ");
   

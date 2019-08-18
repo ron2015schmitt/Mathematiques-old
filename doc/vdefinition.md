@@ -1,18 +1,54 @@
 
 # Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.1-r72).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.1-r73).
 
 ### A `Matricks::Vector` wraps a `std::valarray`
 * This bears repeating: a `Matricks::Vector` wraps a `std::valarray`
-**EXAMPLE 1**: Declare vector `v1` (initialize to zeroes).
+* In the example below
+  * `va` is copied to `vec` during construction
+  * `valias` is referenced to the valarray inside `vec`.
+**EXAMPLE 1**: Getting the `valarray` wrapped by a `Vector`.
 ```C++
-const size_type N = 4;
-Vector<double> v1(N);
+std::valarray<double> va(4);
+Vector<double> vec(va);
+**Matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
+                 Vector1 = D[]
+          where  Vector1 is Vector<double>[size=4], ID=1
+std::valarray<double>& valias = vec.getValArray();
+va[0] = 99;;
+vec[1] = 1;;
+valias[2] = 2;;
 ```
 **The result is**
 ```C++
-  v1:  {0,0,0,0}; 
+  va[]:  { 99 ,0 ,0 ,0 } ; 
+  vec:  {0,1,2,0}; 
+  valias[]:  { 0 ,1 ,2 ,0 } ; 
 ```
 
+### Setting and getting the wrapped `valarray`
+* In the example below
+  * valarray `vaptr` points to a new valarray
+  * `vec` is constructed with zero size
+  * `vec` is set to wrap `vaptr`
+  * `valias` is referenced to the valarray inside `vec`.
+**EXAMPLE 2**: Setting and getting the wrapped `valarray`
+```C++
+std::valarray<double>* vaptr = new std::valarray<double>(4);
+Vector<double> vec(0);
+vec.setValArray(vaptr);
+std::valarray<double>& valias = vec.getValArray();
+(*vaptr)[0] = 99;
+vec[1] = 1;
+valias[2] = 2;
+```
+**The result is**
+```C++
+  *vaptr[]:  { 99 ,1 ,2 ,0 } ; 
+  vec:  {99,1,2,0}; 
+  valias[]:  { 99 ,1 ,2 ,0 } ; 
+```
+
+  * The above code is correct in that it does not delete the object pointed to by `vaptr`.  After calling method `setValArray`, the `Vector` takes ownership and will delete the valarray in its destrcutor.
 
 [Table of Contents](README.md)

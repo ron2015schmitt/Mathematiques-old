@@ -61,6 +61,7 @@ namespace Matricks {
     std::cout << a;
     std::cout << posts;
   }
+
   template <typename A, typename D>
   void _printvar(const Vexpr<D,A>& exp, bool display, char const *s, char const *pres, char const *posts)
   {
@@ -91,6 +92,7 @@ namespace Matricks {
     std::cout << a;
     std::cout << posts;
   }
+
   template <typename X, size_type N>
   void _printvar(X (&a)[N], bool display, char const *s, char const *pres, char const *posts)
   {
@@ -107,7 +109,24 @@ namespace Matricks {
     std::cout << posts;
   }
 
+  template <typename D>
+  void _printvar(const std::valarray<D>& va, bool display, char const *s, char const *pres, char const *posts)
+  {
+    const size_t N = va.size();
+    if (display)
+      std::cout << s << "[]" ;
+    std::cout<<pres;
+    std::cout << "{ " ;
+    for(size_type i = 0; i<N ; i++) {
+      std::cout << (va[i]) ;
+      if (i != (N-1)) 
+	std::cout << " ,";
+    }
+    std::cout << " } " ;
+    std::cout << posts;
+  }
 
+  
   template <typename X>
   void _printarray(const X *const a,  bool display, char const *s,int start, int end, char const *pres, char const *posts)
   {

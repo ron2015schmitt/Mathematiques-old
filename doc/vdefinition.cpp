@@ -18,9 +18,12 @@ using namespace Matricks;
 
 
 
+
 int main()
 {
   int Nex = 1;
+
+
   
   cr();
   mdtitle("Vector definition");
@@ -28,15 +31,57 @@ int main()
 
   header3("A `Matricks::Vector` wraps a `std::valarray`");
   text("* This bears repeating: a `Matricks::Vector` wraps a `std::valarray`");
+  text("* In the example below");
+  text("  * `va` is copied to `vec` during construction");
+  text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
-    example(Nex++, "Declare vector `v1` (initialize to zeroes).");
+    example(Nex++, "Getting the `valarray` wrapped by a `Vector`.");
     codestart("C++");
-    codemulti( const size_type N = 4 );
-    codemulti( Vector<double> v1(N) );
+    codemulti( std::valarray<double> va(4) );
+    codemulti( Vector<double> vec(va) );
+    codemulti( std::valarray<double>& valias = vec.getValArray() );
+    codemulti( va[0] = 99; );
+    codemulti( vec[1] = 1; );
+    codemulti( valias[2] = 2; );
     codeend();
-    result(v1);
+    resultstart();
+    resultmulti(va);
+    resultmulti(vec);
+    resultmulti(valias);
+    resultend();
+
   }
+
+
+  header3("Setting and getting the wrapped `valarray`");
+  text("* In the example below");
+  text("  * valarray `vaptr` points to a new valarray");
+  text("  * `vec` is constructed with zero size");
+  text("  * `vec` is set to wrap `vaptr`" );
+  text("  * `valias` is referenced to the valarray inside `vec`.");
+
+  {
+    example(Nex++, "Setting and getting the wrapped `valarray`");
+    codestart("C++");
+    codemulti( std::valarray<double>* vaptr = new std::valarray<double>(4) );
+    codemulti( Vector<double> vec(0) );
+    codemulti( vec.setValArray(vaptr) );
+    codemulti( std::valarray<double>& valias = vec.getValArray() );
+    codemulti( (*vaptr)[0] = 99 );
+    codemulti( vec[1] = 1 );
+    codemulti( valias[2] = 2 );
+    codeend();
+    resultstart();
+    resultmulti(*vaptr);
+    resultmulti(vec);
+    resultmulti(valias);
+    resultend();
+
+  }
+
+  text("  * The above code is correct in that it does not delete the object pointed to by `vaptr`.  After calling method `setValArray`, the `Vector` takes ownership and will delete the valarray in its destrcutor.");
+
   
   matricks_toc();
   

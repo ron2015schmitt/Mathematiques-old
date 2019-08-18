@@ -316,17 +316,13 @@ namespace Matricks {
 
 
     // ************************** valarray CONSTRUCTOR **********************************
-    explicit Vector<D>(const size_type n, const std::valarray<D> (vals), const std::string name="") { 
+    explicit Vector<D>(const std::valarray<D>& valar, const std::string name="") { 
 
       #ifdef VDEBUG
-      printf(">>> Vector(n,array) N=%lu\n",n);
+      printf(">>> Vector(n,valarray) N=%lu\n",n);
       #endif
 
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
+      size_type N = valar.size();
       
 
       perline_ = N+1;
@@ -338,8 +334,8 @@ namespace Matricks {
       // add this vector to the directory
       objectID_ = MatricksObjectPool::addvector(name, classname(), datatype(), N);
       
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
+      if (N>maxsize) 
+	vbad_size(objectID_, N);
 
       v_array_warning(objectID());
 
@@ -348,7 +344,7 @@ namespace Matricks {
 #endif      
 
       // allocate store COPY CONSTRUCTOR!
-      data_ = new std::valarray<D>(vals, N); 
+      data_ = new std::valarray<D>(valar); 
 
 
     }
@@ -393,8 +389,9 @@ namespace Matricks {
       else 
 	N=n;
       // reallocate store
-      delete  data_ ;
-      data_ = new std::valarray<D>(N); 
+      //      delete  data_ ;
+      //      data_ = new std::valarray<D>(N);
+      data_->resize(N);
       perline_ = N+1;
       width_ = 0;
 #ifdef MATRICKS_DEBUG
@@ -421,13 +418,23 @@ namespace Matricks {
     }
 
 
-    // ************************* ELEMENT ACCESS *********************************
+
+   // ************************* valarray ACCESS *********************************
+
 
     // "read/write" to the wrapped valarray
-    inline D& valarray()  {
+    inline std::valarray<D>& getValArray()  {
       return *data_; 
     }
+    inline Vector<D>& setValArray(std::valarray<D>* valptr)  {
+      delete  data_ ;
+      const size_t N = valptr->size();
+      data_ = valptr;
+      perline_ = N+1;
+      return *this;
+    }
 
+    // ************************* ELEMENT ACCESS *********************************
 
     
     // "read/write" access

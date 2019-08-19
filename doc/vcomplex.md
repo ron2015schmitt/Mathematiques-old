@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r11).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r12).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -156,18 +156,18 @@ vc = vcomplex(vr, vi);
 
 
 
-**EXAMPLE 8**: create a complex vector from a real vector
+**EXAMPLE 8**: create a complex vector from a real vector and a scalar
 ```C++
 using namespace std;
 Vector<double> v( range<double>(1,4) );
 ```
 
-**Some expressions with results**: create a complex vector from a real vector
+**Some expressions with results**: create a complex vector from a real vector and a scalar
 ```C++
-  vcomplex(v,0.):  {(1,0),(2,0),(3,0),(4,0)}; 
-  vcomplex(0.,v):  {(0,1),(0,2),(0,3),(0,4)}; 
-  vcomplex(v,v):  {(1,1),(2,2),(3,3),(4,4)}; 
-  vcomplex(v,1.):  {(1,1),(2,1),(3,1),(4,1)}; 
+  vcomplex(v, 0.):  {(1,0),(2,0),(3,0),(4,0)}; 
+  vcomplex(v, 1.):  {(1,1),(2,1),(3,1),(4,1)}; 
+  vcomplex(0., v):  {(0,1),(0,2),(0,3),(0,4)}; 
+  vcomplex(1., v):  {(1,1),(1,2),(1,3),(1,4)}; 
 ```
 
 
@@ -209,10 +209,15 @@ v = vcomplex(vr, vi);
 
 **Some expressions with results**: functions of complex vectors
 ```C++
-  round(v):  {(1,-1),(2,0),(3,1)}; 
-  roundzero(v):  {(1,-1),(2,0),(3,1)}; 
-  exp(v):  {(1.46869,-2.28736),(7.38906,0),(10.8523,16.9014)}; 
+  v:  {(1,-1),(2,0),(3,1)}; 
   abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ):  {(1,-1),(2,0),(3,1)}; 
+  exp(v):  {(1.46869,-2.28736),(7.38906,0),(10.8523,16.9014)}; 
+  round(exp(v)):  {(1,-2),(7,0),(11,17)}; 
+  v + 0.1:  {(1.1,-1),(2.1,0),(3.1,1)}; 
+  0.1 + v:  {(1.1,-1),(2.1,0),(3.1,1)}; 
+  v - 0.1:  {(0.9,-1),(1.9,0),(2.9,1)}; 
+  0.1 - v:  {(-0.9,1),(-1.9,-0),(-2.9,-1)}; 
+  roundzero(v+1e-16):  {(1,-1),(2,0),(3,1)}; 
 ```
 
 

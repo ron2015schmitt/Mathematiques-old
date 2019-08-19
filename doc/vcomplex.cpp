@@ -226,18 +226,18 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"create a complex vector from a real vector");
+    example(Nex++,"create a complex vector from a real vector and a scalar");
     codestart("C++");
     codemulti( using namespace std );
     codemulti( Vector<double> v( range<double>(1,4) ));
     codeend();
     cr();
 
-    resultstart2(": create a complex vector from a real vector");
-    resultmulti( vcomplex(v,0.) );
-    resultmulti( vcomplex(0.,v)  );
-    resultmulti( vcomplex(v,v) );
-    resultmulti( vcomplex(v,1.) );
+    resultstart2(": create a complex vector from a real vector and a scalar");
+    resultmulti( vcomplex(v, 0.) );
+    resultmulti( vcomplex(v, 1.) );
+    resultmulti( vcomplex(0., v) );
+    resultmulti( vcomplex(1., v) );
     resultend();
     cr();
   }
@@ -292,8 +292,8 @@ int main()
       resultstart2(": functions of complex vectors");
       //      resultmulti( floor(v)  );
       //      resultmulti( ceil(v)  );
-      resultmulti( round(v)  );
-      resultmulti( roundzero(v) );
+      resultmulti( v  );
+      resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
       //      resultmulti( sgn(v)  );
       //      resultmulti( abs(v)  );
       //     resultstart2(": powers, roots, and exponentiation");
@@ -301,7 +301,12 @@ int main()
   //     resultmulti( pow(v, 2.)  );
   //     resultmulti( pow(v,v)  );
       resultmulti( exp(v)  );
-      resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
+      resultmulti( round(exp(v))  );
+      resultmulti( v + 0.1 );
+      resultmulti( 0.1 + v );
+      resultmulti( v - 0.1 );
+      resultmulti( 0.1 - v );
+      resultmulti( roundzero(v+1e-16) );
   //     resultmulti( log(v)  );
   //     resultmulti( log10(v)  );
   //     resultmulti( log2(v)  );

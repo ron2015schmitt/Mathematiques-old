@@ -476,14 +476,12 @@ namespace matricks {
     }
     
 
-
-
     // Accessing a SET of values 
 
-    const VSubsetObj<D> operator[](const Vector<uint>& ii) const {
+    const VSubsetObj<D> operator[](const Vector<size_type>& ii) const {
       return VSubsetObj<D>(*this, ii);
     }
-    VSubsetObj<D> operator[](const Vector<uint>& ii) {
+    VSubsetObj<D> operator[](const Vector<size_type>& ii) {
       return VSubsetObj<D>(*this, ii);
     }
 
@@ -509,6 +507,17 @@ namespace matricks {
 
 
 
+    // Accessing a SET of values using a list
+    // need a new object
+
+    // #if CPP11 == 1
+    // const VSubsetObj<D> operator[](const std::initializer_list<D>& list) const {
+    //   return VSubsetObj<D>(*this, ii);
+    // }
+    // VSubsetObj<D> operator[](const std::initializer_list<D>& ii) {
+    //   return VSubsetObj<D>(*this, ii);
+    // }
+    // #endif
 
     // ************************** ATTRIBUTE ACCESS ********************************
 

@@ -61,17 +61,47 @@ namespace matricks {
 
 
 
-  /*
+  
 
   // vector , vector
 
   template <class D, class A, class B> 
-  inline VConcatOp<D,VorE<D,A>,VorE<D,B> > 
-  operator,(const VorE<D,A>& a, const VorE<D,B>& b)
-  {
-  return  VConcatOp<D,VorE<D,A>,VorE<D,B> >(a,b);
+  inline Vector<D> &
+  operator,(const VorE<D,A>& a, const VorE<D,B>& b) {
+    return concat(a,b);
   }
 
+  // concat
+  template <class D, class A, class B> 
+  inline Vector<D> &
+  concat(const VorE<D,A>& a, const VorE<D,B>& b) {
+    const size_t Na = a.size();
+    const size_t Nb = b.size();
+    const size_t N = Na+Nb;
+    Vector<D> v(N);
+    v[seq(0,Na-1)] = a[seq(0,Na-1)];
+    v[seq(Na,N-1)] = b[seq(0,Nb-1)];
+    return v;
+  }
+
+
+    // rep(v,m)
+  template <class D, class A> 
+  inline Vector<D> &
+  rep(const VorE<D,A>& a, size_t m) {
+    const size_t Na = a.size();
+    const size_t N = m*Na;
+    Vector<D> v(N);
+    for(size_t j = 0; j < m; j++) {
+      size_t start = j*Na;
+      v[seq(start,start+Na-1)] = a[seq(0,Na-1)];
+    }
+    return v;
+  }
+
+  
+  
+  /*
   // vectorexp , scalar
 
   template <class D, class A> 
@@ -276,6 +306,11 @@ namespace matricks {
   }
 
 
+
+  
+
+
+  
   // vcast(vector)
 
   template <class D2, class D1, class A> 
@@ -286,6 +321,8 @@ namespace matricks {
   }
 
 
+
+  
   // vcast(matrix)
 
   template <class D2, class D1, class A> 

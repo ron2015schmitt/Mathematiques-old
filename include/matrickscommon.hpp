@@ -235,7 +235,7 @@ namespace matricks {
       return stream.str();
     }
 
-
+    
     friend std::ostream& operator<<(std::ostream &stream, const seq& i) {
       stream << i.debugtxt();
       return stream;
@@ -244,6 +244,8 @@ namespace matricks {
   };
 
 
+
+  
   template <class D> class Vector;
 
   /****************************************************************************

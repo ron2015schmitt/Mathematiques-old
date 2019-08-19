@@ -1,6 +1,6 @@
 
 # Vector file I/O in mātricks
-_This document was automatically generated from file_ **`vfile.cpp`** (mātricks-v2.2-r13).
+_This document was automatically generated from file_ **`vfile.cpp`** (mātricks-v2.3).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively

@@ -489,8 +489,26 @@ namespace matricks {
       return a_.size();
     }
 
+    VSubMaskObj<D>& operator=(VReconObj<D>& b) { 
+      return this->equals(b);
+    }
+
+    template <class B>
+    VSubMaskObj<D>& operator=(const VorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    template <class B>
+    VSubMaskObj<D>& operator=(const MorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VSubMaskObj<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    
     VSubMaskObj<D>& operator=(const VSubMaskObj<D>& b) { 
-      return equals(b);
+      return this->equals(b);
     }
 
     std::string debugtxt(void) const {

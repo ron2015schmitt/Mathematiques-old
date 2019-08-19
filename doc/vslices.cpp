@@ -38,6 +38,7 @@ int main()
     
    
     resultstart2("");
+    resultmulti( v[2,6]);
     resultmulti( v[seq(2,6)]);
     resultend();
   }

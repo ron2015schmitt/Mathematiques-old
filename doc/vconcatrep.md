@@ -1,6 +1,6 @@
 
 # Vector `join` and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.5-r1).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.5-r2).
 
 ### Vector `join` function
 * The Vector `join` function joins two vectors
@@ -19,6 +19,7 @@ Vector<double> v4;
 v4 = (v1,v2);
 Vector<double> va(2);
 Vector<double> vb(5);
+(va,vb) = v4;
 ```
 
 **The result is**

@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector Debugging (`MEBUG=1`)");
+  mdtitle("The `find` function and Vector subsets");
   matricks_preamble();
 
   matricks_toc();

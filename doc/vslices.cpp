@@ -22,8 +22,27 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector Debugging (`MEBUG=1`)");
+  mdtitle("Vector slices");
   matricks_preamble();
+
+  header3("The [start,end] slice");
+
+  {
+    cr();
+    cr();
+    example(Nex++,"slice `v[start,end]`");
+    codestart("C++");
+    codemulti( Vector<double> v( range<double>(0,10) ) );
+    codeend();
+    cr();
+    
+   
+    resultstart2("");
+    resultmulti( v[seq(2,6)]);
+    resultend();
+  }
+
+
 
   matricks_toc();
 

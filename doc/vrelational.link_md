@@ -1,1 +1,1 @@
-1. [Vector relational operators](vrelational.md)
+1. [Vector relational operators (`==`,`<`,`>`, etc) and masks](vrelational.md)

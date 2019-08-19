@@ -161,7 +161,9 @@ int main()
     
   }
 
-  
+
+  text("_Note that_ `expression[mask]` _access is not yet implemented_");
+
   matricks_toc();
     
   

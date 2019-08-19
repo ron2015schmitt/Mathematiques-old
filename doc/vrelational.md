@@ -120,5 +120,6 @@ v[(v < 0)] = 0.;
 ```
 
 
+_Note that_ `expression[mask]` _access is not yet implemented_
 
 [Table of Contents](README.md)

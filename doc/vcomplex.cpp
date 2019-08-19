@@ -197,6 +197,9 @@ int main()
     cr();
   }
 
+
+  header3("creating complex Vectors from real vectors and scalars");
+
   {
     cr();
     cr();
@@ -238,6 +241,36 @@ int main()
     resultend();
     cr();
   }
+
+
+  header3("Complex Conjugation");
+
+  text("Complex cojugation can be performed via the function `conj` or via the operator `~`");
+  {
+    cr();
+    cr();
+    example(Nex++,"compute the complex conjugate of a vector");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( Vector<complex<double> > vc(3) );
+    codemulti( Vector<double> vr( range<double>(1,3) ));
+    codemulti( Vector<double> vi( range<double>(-1,1) ));
+    codemulti( vc = vcomplex(vr, vi) );
+    codeend();
+    cr();
+
+    resultstart2(": create a complex vector from two real vectors");
+    resultmulti( vr  );
+    resultmulti( vi  );
+    resultmulti( vc  );
+    resultmulti( conj(vc)  );
+    resultmulti( ~vc  );
+    resultend();
+    cr();
+  }
+
+
+
   
   //   text("* A function of a `Vector` operates on each element.  ");
   

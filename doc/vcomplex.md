@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r7).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r9).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -132,6 +132,7 @@ v = {1+1.i, 1., 1.i, 2-5.i}; // C++11 list and C++14 imag
 ```
 
 
+### creating complex Vectors from real vectors and scalars
 
 
 **EXAMPLE 7**: create a complex vector from two real vectors
@@ -163,10 +164,33 @@ Vector<double> v( range<double>(1,4) );
 
 **Some expressions with results**: create a complex vector from a real vector
 ```C++
-  vcomplex(v,0.):  {(1,4.63992e-310),(2,4.63992e-310),(3,4.63992e-310),(4,4.63992e-310)}; 
+  vcomplex(v,0.):  {(1,4.67562e-310),(2,4.67562e-310),(3,4.67562e-310),(4,4.67562e-310)}; 
   vcomplex(0.,v):  {(1.97626e-323,1),(1.97626e-323,2),(1.97626e-323,3),(1.97626e-323,4)}; 
   vcomplex(v,v):  {(1,1),(2,2),(3,3),(4,4)}; 
-  vcomplex(v,1.):  {(1,4.63992e-310),(2,4.63992e-310),(3,4.63992e-310),(4,4.63992e-310)}; 
+  vcomplex(v,1.):  {(1,4.67562e-310),(2,4.67562e-310),(3,4.67562e-310),(4,4.67562e-310)}; 
+```
+
+
+### Complex Conjugation
+Complex cojugation can be performed via the function `conj` or via the operator `~`
+
+
+**EXAMPLE 9**: compute the complex conjugate of a vector
+```C++
+using namespace std;
+Vector<complex<double> > vc(3);
+Vector<double> vr( range<double>(1,3) );
+Vector<double> vi( range<double>(-1,1) );
+vc = vcomplex(vr, vi);
+```
+
+**Some expressions with results**: create a complex vector from two real vectors
+```C++
+  vr:  {1,2,3}; 
+  vi:  {-1,0,1}; 
+  vc:  {(1,-1),(2,0),(3,1)}; 
+  conj(vc):  {(1,1),(2,-0),(3,-1)}; 
+  ~vc:  {(1,1),(2,-0),(3,-1)}; 
 ```
 
 

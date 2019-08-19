@@ -1,6 +1,6 @@
 
 # Vector slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.3).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.5).
 
 ### The [start,end] slice
 

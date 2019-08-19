@@ -244,6 +244,20 @@ namespace matricks {
   };
 
 
+  /****************************************************************************
+   * Classes that inherit from VorE
+   ****************************************************************************   
+   */
+
+  template <class D> class p3vector;
+  template <class D, class A> class Vexpr;  
+  template <class D, class A> class VWrapperObj;
+  template <class D> class VSliceObj;
+  template <class D> class VSubsetObj;
+  template <class D> class VSubMaskObj;
+  template <class D> class VJoinObj;
+  template <class D> class VReconObj;
+ 
 
   
   template <class D> class Vector;
@@ -253,7 +267,7 @@ namespace matricks {
    ****************************************************************************   
    */
   enum VETypes {VE_Vector, VE_VScalObj, VE_VSliceObj, VE_VSubsetObj, VE_VSubMaskObj,
-		VE_VReconObj, VE_VConcatOp, 
+		VE_VReconObj, VE_VJoinObj, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
 		 VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
@@ -279,6 +293,7 @@ namespace matricks {
     inline const D operator[](const size_type i) const {
       return derived()[i];
     }
+
 
     inline size_type size(void) const {
       return derived().size();
@@ -314,18 +329,6 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * Some Classes that inherit from VorE
-   ****************************************************************************   
-   */
-
-  template <class D> class p3vector;
-  template <class D, class A> class Vexpr;  
-  template <class D, class A> class VWrapperObj;
-  template <class D> class VSliceObj;
-  template <class D> class VSubsetObj;
-  template <class D> class VSubMaskObj;
-  template <class D> class VReconObj;
 
 
   /****************************************************************************

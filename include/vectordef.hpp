@@ -468,20 +468,20 @@ namespace matricks {
 
     // Accessing a sequence of values
     
-    inline  VSliceObj<D>  operator[](const seq& i)  { 
+    VSliceObj<D>  operator[](const seq& i)  { 
       return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
-    inline  const VSliceObj<D>  operator[](const seq& i) const  { 
+    const VSliceObj<D>  operator[](const seq& i) const  { 
       return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
     
 
     // Accessing a SET of values 
 
-    const VSubsetObj<D> operator[](const Vector<size_type>& ii) const {
+    VSubsetObj<D> operator[](const Vector<size_type>& ii) {
       return VSubsetObj<D>(*this, ii);
     }
-    VSubsetObj<D> operator[](const Vector<size_type>& ii) {
+    const VSubsetObj<D> operator[](const Vector<size_type>& ii) const {
       return VSubsetObj<D>(*this, ii);
     }
 

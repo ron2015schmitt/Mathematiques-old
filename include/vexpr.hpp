@@ -90,7 +90,7 @@ namespace matricks {
     inline const D operator[](const size_type i) const {  
       const size_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
-      if (index>=derived().asize()) {
+      if (index>=derived().sizetotal()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
       }
@@ -101,7 +101,7 @@ namespace matricks {
     inline D& operator[](const size_type i) {  
       const size_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
-      if (index>=derived().asize()) {
+      if (index>=derived().sizetotal()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
       }
@@ -241,7 +241,7 @@ namespace matricks {
    */
  
   template <class D>
-  class VSliceObj : public  VWrapperObj<D,VSliceObj<D> > {
+  class VSliceObj : public  VWrapperObj<D, VSliceObj<D> > {
   private:
     Vector<D>& a_;
     const size_type start_;
@@ -282,7 +282,7 @@ namespace matricks {
        return (start_-end_)/step_ + 1;      
     }
 
-    inline size_type asize(void) const {
+    inline size_type sizetotal(void) const {
       return a_.size();
     }
 
@@ -379,7 +379,7 @@ namespace matricks {
       return ii_.size();
     }
 
-    inline size_type asize(void) const {
+    inline size_type sizetotal(void) const {
       return a_.size();
     }
 
@@ -436,6 +436,114 @@ namespace matricks {
 
 
   /****************************************************************************
+   * VJoinObj Expression Template 
+   *
+   * wrapper for joining two vectors
+   ****************************************************************************
+   */
+  template<class D>
+  class VJoinObj :  public  VWrapperObj<D,VJoinObj<D> > {
+  private:
+    Vector<D>& a_;
+    Vector<D>& b_;
+
+  public:
+    VJoinObj(Vector<D>& a, Vector<D>& b)
+      : a_(a), b_(b)
+    { 
+    }
+
+    inline const D data(size_type i) const{
+      if ( i < a_.size() ) {
+	return a_[i];
+      } else {
+	return b_[i-a_.size()];
+      }
+    }
+    inline  D& data(size_type i) {
+      if ( i < a_.size() ) {
+	return a_[i];
+      } else {
+	return b_[i-a_.size()];
+      }
+    }
+
+    inline size_type index(size_type i) const{
+      return i;
+    }
+
+
+
+    inline VETypes vetype(void) const {
+      return VE_VJoinObj;
+    }
+
+    inline size_type size(void) const {
+      return a_.size() +b_.size();
+    }
+
+    inline size_type sizetotal(void) const {
+      return a_.size() +b_.size();
+    }
+
+    VJoinObj<D>& operator=(VReconObj<D>& c) { 
+      return this->equals(c);
+    }
+
+    template <class B>
+    VJoinObj<D>& operator=(const VorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    template <class B>
+    VJoinObj<D>& operator=(const MorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VJoinObj<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    
+    VJoinObj<D>& operator=(const VJoinObj<D>& c) { 
+      return this->equals(c);
+    }
+
+
+    
+    std::string debugtxt(void) const {
+      return "";
+      //      return debugtxt_VJoinObj(a_.debugtxt(),ii_.debugtxt());
+    }
+
+    void outputglossary(void) const {
+      return ;
+      //      outputglossary_VJoinObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
+    }
+
+    bool mustcopy(const void *vaddr) const {
+      return addrmatch(vaddr);
+    }
+
+
+    bool addrmatch(const void *vaddr) const {
+      return (vaddr==static_cast<const void*>(&a_)) ||(vaddr==static_cast<const void*>(&b_)) ;
+    }
+
+
+    const void *addr(void) const {
+      return &a_;
+    }
+
+
+  };
+
+
+
+
+  
+
+
+  /****************************************************************************
    * VSubMaskObj Expression Template 
    *
    * wrapper for a vector submask
@@ -485,7 +593,7 @@ namespace matricks {
       return ii_->size();
     }
 
-    inline size_type asize(void) const {
+    inline size_type sizetotal(void) const {
       return a_.size();
     }
 

@@ -4,8 +4,9 @@
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.4
+VERSION_MATRICKS=2.5
 # V2.1 Introduced version control
 # V2.2 namespace Matricks -> matricks
-# V2.3 v[seq(start,end)] slices
-# V2.4 masks working
+# V2.3 v[seq(start,end)] slices -- only for Vectors
+# V2.4 masks working -- only for Vectors
+# V2.5 concat and rep -- only for Vectors

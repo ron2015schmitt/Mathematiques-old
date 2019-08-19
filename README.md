@@ -1,4 +1,4 @@
-# mātricks v2.4
+# mātricks v2.5
 
 ```diff
 - CURRENTLY NOT READY FOR USE. Planned Launch Date: 2019 Aug 21 -

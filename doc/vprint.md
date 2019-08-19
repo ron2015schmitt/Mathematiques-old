@@ -1,6 +1,6 @@
 
 # Vector printing and debugging in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.2-r10).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.2-r11).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element wise addition, subtraction, multiplication, and division respectively

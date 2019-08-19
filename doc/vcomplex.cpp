@@ -270,32 +270,6 @@ int main()
   }
 
 
-  header3("Complex Conjugation");
-
-  text("Complex cojugation can be performed via the function `conj` or via the operator `~`");
-  {
-    cr();
-    cr();
-    example(Nex++,"compute the complex conjugate of a vector");
-    codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > vc(3) );
-    codemulti( Vector<double> vr( range<double>(1,3) ));
-    codemulti( Vector<double> vi( range<double>(-1,1) ));
-    codemulti( vc = vcomplex(vr, vi) );
-    codeend();
-    cr();
-
-    resultstart2(": compute the complex conjugate of a vector");
-    resultmulti( vr  );
-    resultmulti( vi  );
-    resultmulti( vc  );
-    resultmulti( conj(vc)  );
-    resultmulti( ~vc  );
-    resultend();
-    cr();
-  }
-
 
 
   
@@ -319,7 +293,7 @@ int main()
       //      resultmulti( floor(v)  );
       //      resultmulti( ceil(v)  );
       resultmulti( round(v)  );
-      resultmulti( roundzero(v, 2e-16) );
+      resultmulti( roundzero(v) );
       //      resultmulti( sgn(v)  );
       //      resultmulti( abs(v)  );
       //     resultstart2(": powers, roots, and exponentiation");

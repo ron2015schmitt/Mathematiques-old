@@ -344,7 +344,7 @@ namespace matricks {
   public:
     ApRoundCplx() { }
 
-    static inline D apply(std::complex<D> a) {
+    static inline std::complex<D> apply(std::complex<D> a) {
       return matricks::round(a); 
     }
 

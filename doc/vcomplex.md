@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r10).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.2-r11).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -110,7 +110,7 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
   vr-vc:  {(0,-1),(1,-0),(3,-1),(4,1)}; 
   vr*vc:  {(1,1),(2,0),(0,3),(0,-4)}; 
   vr/vc:  {(0.5,-0.5),(2,0),(0,-3),(-0,4)}; 
-  2.*vr + vc/2. + 1:  {(inf,inf),(inf,0),(6,inf),(8,-inf)}; 
+  2.*vr + vc/2. + 1:  {(3.5,0.5),(5.5,0),(7,0.5),(9,-0.5)}; 
   complex<double>(0,1)*vr + complex<double>(5,2)*vc:  {(3,8),(5,4),(-2,8),(2,-1)}; 
 ```
 
@@ -164,10 +164,10 @@ Vector<double> v( range<double>(1,4) );
 
 **Some expressions with results**: create a complex vector from a real vector
 ```C++
-  vcomplex(v,0.):  {(1,4.64868e-310),(2,4.64868e-310),(3,4.64868e-310),(4,4.64868e-310)}; 
-  vcomplex(0.,v):  {(1.97626e-323,1),(1.97626e-323,2),(1.97626e-323,3),(1.97626e-323,4)}; 
+  vcomplex(v,0.):  {(1,0),(2,0),(3,0),(4,0)}; 
+  vcomplex(0.,v):  {(0,1),(0,2),(0,3),(0,4)}; 
   vcomplex(v,v):  {(1,1),(2,2),(3,3),(4,4)}; 
-  vcomplex(v,1.):  {(1,4.64868e-310),(2,4.64868e-310),(3,4.64868e-310),(4,4.64868e-310)}; 
+  vcomplex(v,1.):  {(1,1),(2,1),(3,1),(4,1)}; 
 ```
 
 
@@ -194,33 +194,10 @@ vc = vcomplex(vr, vi);
 ```
 
 
-### Complex Conjugation
-Complex cojugation can be performed via the function `conj` or via the operator `~`
-
-
-**EXAMPLE10**: compute the complex conjugate of a vector
-```C++
-using namespace std;
-Vector<complex<double> > vc(3);
-Vector<double> vr( range<double>(1,3) );
-Vector<double> vi( range<double>(-1,1) );
-vc = vcomplex(vr, vi);
-```
-
-**Some expressions with results**: compute the complex conjugate of a vector
-```C++
-  vr:  {1,2,3}; 
-  vi:  {-1,0,1}; 
-  vc:  {(1,-1),(2,0),(3,1)}; 
-  conj(vc):  {(1,1),(2,-0),(3,-1)}; 
-  ~vc:  {(1,1),(2,-0),(3,-1)}; 
-```
-
-
 * Functions defined for complex vectors  
 
 
-**EXAMPLE11**: functions of complex vectors
+**EXAMPLE10**: functions of complex vectors
 ```C++
 const double pi = 3.14159265358979323846;
 using namespace std;
@@ -233,7 +210,7 @@ v = vcomplex(vr, vi);
 **Some expressions with results**: functions of complex vectors
 ```C++
   round(v):  {(1,-1),(2,0),(3,1)}; 
-  roundzero(v, 2e-16):  {(1,-1),(2,0),(3,1)}; 
+  roundzero(v):  {(1,-1),(2,0),(3,1)}; 
   exp(v):  {(1.46869,-2.28736),(7.38906,0),(10.8523,16.9014)}; 
   abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ):  {(1,-1),(2,0),(3,1)}; 
 ```

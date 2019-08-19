@@ -167,11 +167,12 @@ namespace matricks {
 
 
  
-
+  
   // vcomplex(vector,realscalar)
 
-  template <class D, class A> 
-  inline CVecOpScal<D,VorE<D,A>,ApComplex<D > > 
+  
+  template <class D, class A, class B> 
+  inline VecOpScal<std::complex<D>, VorE<D,A>, ApComplex<D> > 
   vcomplex(const VorE<D,A>& a, const D b)
   {
     return  CVecOpScal<D,VorE<D,A>,ApComplex<D > >(a,b);
@@ -504,13 +505,13 @@ namespace matricks {
   }
 
 
+  
   // round(complex vector)
 
   template <class D, class A> 
-  inline VFuncOp<D,VorE<std::complex<D>,A>,ApRoundCplx<D> > 
-  round(const VorE<std::complex<D>,A>& a)
-  {
-    return  VFuncOp<D,VorE<std::complex<D>,A>,ApRoundCplx<D> >(a);
+  inline VFuncOp<std::complex<D>, VorE<std::complex<D>, A>, ApRoundCplx<D> > 
+  round(const VorE<std::complex<D>,A>& a)  {
+    return VFuncOp<std::complex<D>, VorE<std::complex<D>, A>, ApRoundCplx<D> >(a);
   }
 
 

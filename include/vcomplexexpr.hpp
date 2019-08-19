@@ -15,14 +15,14 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class OP>
-  class CVecOpScal : public Vexpr<std::complex<D>,CVecOpScal<D,A,OP> > {
+  class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
-    const D& val_;
+    const D val_;
 
   public:
-    CVecOpScal(const A& a, const D& b)
+    CVecOpScal(const A& a, const D b)
       : a_(a), val_(b)
     { }
 
@@ -72,7 +72,7 @@ namespace matricks {
   template<class D, class B, class OP>
   class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> > {
   private:
-    const D& val_;
+    const D val_;
     const B& b_;
 
   public:

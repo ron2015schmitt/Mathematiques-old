@@ -452,14 +452,17 @@ namespace matricks {
     typedef Matrix<typename RealVersionOfType<D>::Type> Type;
   };
 
-  template <typename D> class MatricksHelper {
-    D tolerance = D(0);
+  template <typename D> struct MatricksHelper {
+  public:
+    static D tolerance = D(0);
   };
-  template <> class MatricksHelper<double> {
-    double tolerance = 1.5e-16;
+  template <> struct MatricksHelper<double> {
+  public:
+    constexpr static double tolerance = 1.5e-16;
   };
-  template <> class MatricksHelper<float> {
-    float tolerance = 3.5e-7;
+  template <> struct MatricksHelper<float> {
+  public:
+    constexpr static float tolerance = 3.5e-7;
   };
 
 

@@ -436,6 +436,32 @@ namespace matricks {
 
     // ************************* ELEMENT ACCESS *********************************
 
+    // "read/write" access signed index
+    inline D& operator[](const int i)  {
+
+      int index;
+      if (i < 0) {
+	index = size() + i;
+      } else {
+	index = i;
+      }
+#ifdef MATRICKS_DEBUG
+      if (index>=size()) {
+	vout_of_bounds(objectID_,index);
+	return dummy_; 
+      }
+#endif    
+
+      return (*data_)[index]; 
+    }
+
+
+    // "read only" access igned index
+    inline const D operator[](const int i) const {
+      return (const D)(*data_)[i]; 
+    }
+
+
     
     // "read/write" access
     inline D& operator[](const size_type i)  {
@@ -453,16 +479,9 @@ namespace matricks {
 
     // "read only" access
     inline const D operator[](const size_type i) const {
-
-#ifdef MATRICKS_DEBUG
-      if (i>=size())  {
-	vout_of_bounds(objectID_,i);
-	return D(); 
-      }
-#endif    
-
-      return (*data_)[i]; 
+      return (const D)(*data_)[i]; 
     }
+
 
 
 
@@ -511,11 +530,11 @@ namespace matricks {
     // need a new object
 
     // #if CPP11 == 1
-    // const VSubsetObj<D> operator[](const std::initializer_list<D>& list) const {
+    // const VSubsetListObj<D> operator[](const std::initializer_list<D>& list) const {
     //   return VSubsetObj<D>(*this, ii);
     // }
-    // VSubsetObj<D> operator[](const std::initializer_list<D>& ii) {
-    //   return VSubsetObj<D>(*this, ii);
+    // VSubsetListObj<D> operator[](const std::initializer_list<D>& ii) {
+    //   return VSubsetListObj<D>(*this, ii);
     // }
     // #endif
 

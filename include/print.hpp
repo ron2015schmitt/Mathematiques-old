@@ -70,7 +70,7 @@ namespace matricks {
       std::cout << s << "[]" ;
     std::cout<<pres;
     std::cout << "{ " ;
-    for(size_type i = 0; i<N ; i++) {
+    for(index_type i = 0; i<N ; i++) {
       std::cout << (a[i]) ;
       if (i != (N-1)) 
 	std::cout << " ,";
@@ -87,7 +87,7 @@ namespace matricks {
       std::cout << s << "[]" ;
     std::cout<<pres;
     std::cout << "{ " ;
-    for(size_type i = 0; i<N ; i++) {
+    for(index_type i = 0; i<N ; i++) {
       std::cout << (va[i]) ;
       if (i != (N-1)) 
 	std::cout << " ,";
@@ -98,9 +98,9 @@ namespace matricks {
 
   
   template <typename X>
-  void _printarray(const X *const a,  bool display, char const *s,int start, int end, char const *pres, char const *posts)
+  void _printarray(const X *const a,  bool display, char const *s,index_type start, index_type end, char const *pres, char const *posts)
   {
-    int i;
+    index_type i;
     X temp;
 
     if (display) {

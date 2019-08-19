@@ -10,4 +10,4 @@ VERSION_MATRICKS=2.6
 # V2.3 v[seq(start,end)] slices -- only for Vectors
 # V2.4 masks working -- only for Vectors
 # V2.5 concat and rep -- only for Vectors
-# V2.6 negative indices like python
+# V2.6 negative indices like python. changing all indices to index_type = int

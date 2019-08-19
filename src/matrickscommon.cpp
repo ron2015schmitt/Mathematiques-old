@@ -113,7 +113,7 @@ namespace matricks {
       // check to see if name already exists
       static std::map<size_type,std::string>::iterator p; 
       p = vectorName_.begin();
-      int i = 1;
+      size_type i = 1;
 
 #ifdef MATRICKS_DEBUG
       bool dupe = false;
@@ -232,7 +232,7 @@ namespace matricks {
       // check to see if name already exists
       static std::map<size_type,std::string>::iterator p; 
       p = matrixName_.begin();
-      int i = 1;
+      size_type i = 1;
 #ifdef MATRICKS_DEBUG
       bool dupe = false;
 #endif     

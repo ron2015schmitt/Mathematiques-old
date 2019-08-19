@@ -31,9 +31,9 @@ namespace matricks {
   template <class D> class Vector : public VorE<D,Vector<D> > {
   private:
     // *********************** OBJECT DATA ***********************************
-    int objectID_;
+    size_type objectID_;
     size_type perline_;
-    int width_;   // for display  (std::setw uses int as its size)
+    size_type width_;   // for display  (std::setw uses int as its size)
     TextFormat textformat_;
     std::valarray<D>* data_;
 #ifdef MATRICKS_DEBUG
@@ -186,7 +186,7 @@ namespace matricks {
 #else
       name_=name;
 #endif      
-      size_type i = 0;
+      index_type i = 0;
       typename std::initializer_list<D>::iterator it; 
       for (it = list.begin(); it != list.end(); ++it)  { 
 	//	printf("list[%lu] = %f\n",i,*it);
@@ -411,7 +411,7 @@ namespace matricks {
     }
 
     Vector<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
-      for(register size_type i=size(); i--;) {
+      for(register index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }
       return *this;
@@ -437,9 +437,8 @@ namespace matricks {
     // ************************* ELEMENT ACCESS *********************************
 
     // "read/write" access signed index
-    inline D& operator[](const int i)  {
-
-      int index;
+    inline D& operator[](const index_type i)  {
+      index_type index;
       if (i < 0) {
 	index = size() + i;
       } else {
@@ -451,34 +450,12 @@ namespace matricks {
 	return dummy_; 
       }
 #endif    
-
       return (*data_)[index]; 
     }
 
 
     // "read only" access igned index
-    inline const D operator[](const int i) const {
-      return (const D)(*data_)[i]; 
-    }
-
-
-    
-    // "read/write" access
-    inline D& operator[](const size_type i)  {
-
-#ifdef MATRICKS_DEBUG
-      if (i>=size()) {
-	vout_of_bounds(objectID_,i);
-	return dummy_; 
-      }
-#endif    
-
-      return (*data_)[i]; 
-    }
-
-
-    // "read only" access
-    inline const D operator[](const size_type i) const {
+    inline const D operator[](const index_type i) const {
       return (const D)(*data_)[i]; 
     }
 
@@ -497,10 +474,10 @@ namespace matricks {
 
     // Accessing a SET of values using a vector of ints
 
-    VSubsetObj<D> operator[](const Vector<int>& ii) {
+    VSubsetObj<D> operator[](const Vector<index_type>& ii) {
       return VSubsetObj<D>(*this, ii);
     }
-    const VSubsetObj<D> operator[](const Vector<int>& ii) const {
+    const VSubsetObj<D> operator[](const Vector<index_type>& ii) const {
       return VSubsetObj<D>(*this, ii);
     }
 
@@ -555,10 +532,10 @@ namespace matricks {
       return perline_;
     }
 
-    int width(const int w)  { 
+    size_type width(const size_type w)  { 
       return (width_=w);
     }
-    int width(void)  const { 
+    size_type width(void)  const { 
       return width_;
     }
 
@@ -593,7 +570,7 @@ namespace matricks {
 
     // Assign all elements to the same constant value
     Vector<D>& equals(const D d) { 
-      for(size_type i=size(); i--;) 
+      for(index_type i=size(); i--;) 
 	(*data_)[i]=d; 
       return *this;
     }
@@ -628,12 +605,12 @@ namespace matricks {
 #else
 	Vector<D> vtemp(size());
 #endif
-	for (register size_type i = size(); i--;)
+	for (register index_type i = size(); i--;)
 	  vtemp[i] = x[i];   // Inlined expression
-	for (register size_type i = size(); i--;)
+	for (register index_type i = size(); i--;)
 	  (*data_)[i] = vtemp[i];
       } else {
-	for (register size_type i = size(); i--;)
+	for (register index_type i = size(); i--;)
 	  (*data_)[i] = x[i];   // Inlined expression
       }
       return *this; 
@@ -652,7 +629,7 @@ namespace matricks {
       v_array_warning(objectID());
 #endif      
 
-      for (size_type i; i < size(); i++)  { 
+      for (index_type i; i < size(); i++)  { 
 	(*this)[i++] = array[i];
       }
 
@@ -684,7 +661,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(v2.size());
 
-      for(register size_type i=size(); i--;)
+      for(register index_type i=size(); i--;)
 	(*data_)[i] = v2[i];    
       return *this;
     }
@@ -714,7 +691,7 @@ namespace matricks {
 	return *this;
       }
 #endif
-      for(register size_type i=size(); i--;)
+      for(register index_type i=size(); i--;)
 	(*data_)[i] = m(i);    
       return *this;
     }
@@ -744,7 +721,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(mylist.size());
 
-      size_type i = 0;
+      index_type i = 0;
       for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
 	(*this)[i++] = *it;
       }
@@ -942,7 +919,7 @@ namespace matricks {
     friend std::ostream& operator<<(std::ostream &stream, const Vector<D>& v) {
 
       const size_type N = v.size();
-      const int w = v.width();
+      const size_type w = v.width();
 
       switch (v.textformat()) {
       case text_braces:

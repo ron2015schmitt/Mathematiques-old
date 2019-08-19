@@ -1,6 +1,6 @@
 
 # Vector (pretty) printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.5).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.6-r3).
 
 
 [Table of Contents](README.md)

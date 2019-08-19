@@ -88,12 +88,12 @@ namespace matricks {
     Matrix<D> y(NR,NC);
 #endif
 
-    register size_type i = 0;
-    for(register size_type n=0; n < C1; n+=M) 
-      for(register size_type c=0; c < NC; c++,i++) {
-	size_type j = n;
-	size_type k = c;
-	const size_type C2 = n+M-1;
+    register index_type i = 0;
+    for(register index_type n=0; n < C1; n+=M) 
+      for(register index_type c=0; c < NC; c++,i++) {
+	index_type j = n;
+	index_type k = c;
+	const index_type C2 = n+M-1;
 	// using a local variable for the accumation saves a lot of CPU Time!!
 	D result = a(j) * b(k);
 	while (j<C2){
@@ -343,7 +343,7 @@ namespace matricks {
 #else
     Matrix<D2> m(NR,NC);
 #endif
-    for(size_type i = 0; i<NR*NC; i++) 
+    for(index_type i = 0; i<NR*NC; i++) 
       m(i) = static_cast<D2>(dptr[i]);
     return  m;
   }
@@ -361,10 +361,10 @@ namespace matricks {
 #else
     Matrix<D2> y(NR,NC);
 #endif
-    const size_type C1 = NR*NC-NR;
-    register size_type i = 0;
-    for(register size_type c = 0; c < NR; c++, i++) {
-      register size_type k = c;
+    const index_type C1 = NR*NC-NR;
+    register index_type i = 0;
+    for(register index_type c = 0; c < NR; c++, i++) {
+      register index_type k = c;
       y(i) = static_cast<D2>(dptr[k]);
       while (k<C1) {
 	y((i+=1)) = static_cast<D2>(dptr[k+=NR]);
@@ -387,7 +387,7 @@ namespace matricks {
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
     const size_type NN = a.size();
-    const size_type C1 = NN-NC;
+    const index_type C1 = NN-NC;
     
 
 #ifdef MATRICKS_DEBUG
@@ -408,9 +408,9 @@ namespace matricks {
 #endif
 
 
-    register size_type i = 0;
-    for(register size_type c = 0; c < NC; c++, i++) {
-      register size_type k = c;
+    register index_type i = 0;
+    for(register index_type c = 0; c < NC; c++, i++) {
+      register index_type k = c;
       y(i) = a(k);
       while (k<C1) {
 	y((i+=1)) = a((k+=NC));
@@ -442,9 +442,9 @@ namespace matricks {
     }
 #endif
 
-    const size_type N = m.size();
+    const index_type N = m.size();
     D2* dptr = new D2[N];
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       dptr[i] = static_cast<D2>(m(i));
     return  dptr;
   }
@@ -467,10 +467,10 @@ namespace matricks {
     //    const size_type NC = m.Ncols();
     const size_type N = m.size();
     D2* dptr = new D2[N];
-    const size_type C1 = N-NR;
-    register size_type i = 0;
-    for(register size_type c = 0; c < NR; c++, i++) {
-      register size_type k = c;
+    const index_type C1 = N-NR;
+    register index_type i = 0;
+    for(register index_type c = 0; c < NR; c++, i++) {
+      register index_type k = c;
       dptr[k] = static_cast<D2>(m(i));
       while (k<C1) {
 	dptr[k+=NR] = static_cast<D2>(m(i+=1));
@@ -482,20 +482,20 @@ namespace matricks {
 
 
   template <class A> 
-  Vector<uint> sub2ind(const MorE<size_type,A>& subs, const size_type NC) {
+  Vector<index_type> sub2ind(const MorE<index_type,A>& subs, const size_type NC) {
     const size_type N = subs.Nrows();
 #ifdef MATRICKS_DEBUG
     std::string s = "sub2ind(" + subs.debugtxt() + ")";
-    Vector<uint> ii(N,s);
+    Vector<index_type> ii(N,s);
     if ( subs.Ncols() !=2 ) {
       //error
       return ii;
     }
 #else
-    Vector<uint> ii(N);
+    Vector<index_type> ii(N);
 #endif 
 
-    for (size_type i = 0;  i <N; i++)
+    for (index_type i = 0;  i <N; i++)
       ii[i] = NC*subs(i,0) + subs(i,1);
 
     return ii;
@@ -537,7 +537,7 @@ namespace matricks {
  
     D result = a(0);
 
-    for (register size_type i = 1; i < a.size() ; i++ )
+    for (register index_type i = 1; i < a.size() ; i++ )
       result += a(i);
     
     return result;
@@ -563,10 +563,10 @@ namespace matricks {
     Vector<D> y(NR);
 #endif
 
-    size_type i = 0;
-    for(size_type r = 0; r<NR; r++) {
+    index_type i = 0;
+    for(index_type r = 0; r<NR; r++) {
       D temp=D();
-      for(size_type c = 0; c<NC; c++,i++) {
+      for(index_type c = 0; c<NC; c++,i++) {
 	temp += a(i);
       }
       y[r] = temp;
@@ -594,10 +594,10 @@ namespace matricks {
     Vector<D> y(NC);
 #endif
 
-    for(size_type c = 0; c<NC; c++) {
-      size_type LIMIT = NR*NC-NC+c+1;
+    for(index_type c = 0; c<NC; c++) {
+      index_type LIMIT = NR*NC-NC+c+1;
       D temp=D();
-      for(size_type i = c; i<LIMIT; i+=NC) {
+      for(index_type i = c; i<LIMIT; i+=NC) {
 	temp += a(i);
       }
       y[c] = temp;
@@ -620,7 +620,7 @@ namespace matricks {
     }
 #endif
     D result = a(0);
-    for (register size_type i = 1; i < a.size() ; i++ )
+    for (register index_type i = 1; i < a.size() ; i++ )
       result = std::min(result,a(i));
     return result;
   }
@@ -645,11 +645,11 @@ namespace matricks {
 #else
     Vector<D> y(NR);
 #endif
-    size_type i = 0;
-    for(size_type r = 0; r<NR; r++) {
+    index_type i = 0;
+    for(index_type r = 0; r<NR; r++) {
       D temp = a(i); 
       i++;
-      for(size_type c = 1; c<NC; c++,i++) {
+      for(index_type c = 1; c<NC; c++,i++) {
 	temp =  std::min(temp,a(i));
       }
       y[r] = temp;
@@ -678,9 +678,9 @@ namespace matricks {
     Vector<D> y(NC);
 #endif
 
-    for(size_type c = 0; c<NC; c++) {
-      size_type LIMIT = NR*NC-NC+c+1;
-      size_type i = c;
+    for(index_type c = 0; c<NC; c++) {
+      index_type LIMIT = NR*NC-NC+c+1;
+      index_type i = c;
       D temp=a(i);
       for(i+=NC; i<LIMIT; i+=NC) {
 	temp = std::min(temp,a(i));
@@ -706,7 +706,7 @@ namespace matricks {
  
     D result = a(0);
 
-    for (register size_type i = 1; i < a.size() ; i++ )
+    for (register index_type i = 1; i < a.size() ; i++ )
       result = std::max(result,a(i));
     
     return result;
@@ -735,11 +735,11 @@ namespace matricks {
 #else
     Vector<D> y(NR);
 #endif
-    size_type i = 0;
-    for(size_type r = 0; r<NR; r++) {
+    index_type i = 0;
+    for(index_type r = 0; r<NR; r++) {
       D temp = a(i); 
       i++;
-      for(size_type c = 1; c<NC; c++,i++) {
+      for(index_type c = 1; c<NC; c++,i++) {
 	temp =  std::max(temp,a(i));
       }
       y[r] = temp;
@@ -768,9 +768,9 @@ namespace matricks {
     Vector<D> y(NC);
 #endif
 
-    for(size_type c = 0; c<NC; c++) {
-      size_type LIMIT = NR*NC-NC+c+1;
-      size_type i = c;
+    for(index_type c = 0; c<NC; c++) {
+      index_type LIMIT = NR*NC-NC+c+1;
+      index_type i = c;
       D temp=a(i);
       for(i+=NC; i<LIMIT; i+=NC) {
 	temp = std::max(temp,a(i));
@@ -806,7 +806,7 @@ namespace matricks {
     
     const size_type N=Nmin;
 
-    for (register size_type i = 1; i < N ; i++ )
+    for (register index_type i = 1; i < N ; i++ )
       result += a(i,i);
     
     return result;

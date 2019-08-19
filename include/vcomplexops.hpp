@@ -534,7 +534,7 @@ namespace matricks {
     }
 #endif
  
-    for (register size_type i = a.size(); i--;)
+    for (register index_type i = a.size(); i--;)
       result += a[i]*b[i];
     
     return result;
@@ -554,7 +554,7 @@ namespace matricks {
     }
 #endif
  
-    for (register size_type i = a.size(); i--;)
+    for (register index_type i = a.size(); i--;)
       result += a[i]*b[i];
     
     return result;
@@ -584,7 +584,7 @@ namespace matricks {
     }
 #endif
  
-    for (register size_type i = a.size(); i--;) {
+    for (register index_type i = a.size(); i--;) {
       D tempR = a[i].real(); 
       D tempI = a[i].imag(); 
       result += tempR*tempR + tempI*tempI;

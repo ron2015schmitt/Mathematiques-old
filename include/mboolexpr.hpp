@@ -33,11 +33,11 @@ namespace matricks {
       : a_(a), b_(b)
     { 
     }
-    inline bool operator()(const size_type i) const {
+    inline bool operator()(const index_type i) const {
       return OP::apply(a_(i), b_(i));
     }
 
-    inline bool operator()(const size_type r, const size_type c) const {
+    inline bool operator()(const index_type r, const index_type c) const {
       return OP::apply(a_(r,c), b_(r,c));
     }
 
@@ -119,11 +119,11 @@ namespace matricks {
       : a_(a), val_(b)
     { }
 
-    inline bool operator()(const size_type i) const {
+    inline bool operator()(const index_type i) const {
       return OP::apply(a_(i), val_);
     }
 
-    inline bool operator()(const size_type r, const size_type c) const {
+    inline bool operator()(const index_type r, const index_type c) const {
       return OP::apply(a_(r,c), val_);
     }
 
@@ -191,11 +191,11 @@ namespace matricks {
       :  val_(a), b_(b)
     { }
 
-    inline bool operator()(const size_type i) const {
+    inline bool operator()(const index_type i) const {
       return OP::apply(val_, b_(i));
     }
 
-    inline bool operator()(const size_type r, const size_type c) const {
+    inline bool operator()(const index_type r, const index_type c) const {
       return OP::apply(val_, b_(r,c));
     }
 
@@ -256,11 +256,11 @@ namespace matricks {
   public:
     MboolFuncOp(const A& a) : a_(a) { }
 
-    inline bool operator()(const size_type i) const {
+    inline bool operator()(const index_type i) const {
       return FUNC::apply(a_(i));
     }
 
-    inline bool operator()(const size_type r, const size_type c) const {
+    inline bool operator()(const index_type r, const index_type c) const {
       return FUNC::apply(a_(r,c));
     }
 

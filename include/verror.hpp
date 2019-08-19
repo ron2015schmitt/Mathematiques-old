@@ -161,7 +161,7 @@ namespace matricks {
   }
 
 
-  void vout_of_bounds(const size_type id, const size_type i);
+  void vout_of_bounds(const size_type id, const index_type i);
 
   void vbad_size(const size_type id, const size_type n);
 
@@ -182,19 +182,19 @@ namespace matricks {
 
   void vbad_wrapper_assignment_mat(const std::string& s1, const std::string& s2);
 
-  void vwrapper_out_of_bounds(const std::string& s1, const size_type i, const size_type sz);
+  void vwrapper_out_of_bounds(const std::string& s1, const index_type i, const size_type sz);
 
 
 
-  std::string debugtxt_VSliceObj(const std::string s, const size_type start_,
-				 const size_type end_,const  int step_);
+  std::string debugtxt_VSliceObj(const std::string s, const index_type start_,
+				 const index_type end_,const  index_type step_);
   void outputglossary_VSliceObj(const size_type id, const std::string s, const size_type sz);
 
   std::string debugtxt_VSubsetObj(const std::string s1, const std::string s2);
   void outputglossary_VSubsetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
   std::string debugtxt_VSubMaskObj(const std::string s1, const std::string s2);
-  void settext_VSubMaskObj(const Vector<uint>& ii,const  Vector<bool>& mask);
+  void settext_VSubMaskObj(const Vector<index_type>& ii,const  Vector<bool>& mask);
   void outputglossary_VSubMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz);
 
 

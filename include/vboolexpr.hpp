@@ -33,7 +33,7 @@ namespace matricks {
     { 
     }
 
-    inline bool operator[](const size_type i) const {  
+    inline bool operator[](const index_type i) const {  
       return OP::apply(a_[i], b_[i]); 
     }
 
@@ -99,7 +99,7 @@ namespace matricks {
       : a_(a), val_(b)
     { }
 
-    inline bool operator[](const size_type i) const { 
+    inline bool operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
@@ -158,7 +158,7 @@ namespace matricks {
       :  val_(a), b_(b)
     { }
 
-    inline bool operator[](const size_type i) const { 
+    inline bool operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
@@ -211,7 +211,7 @@ namespace matricks {
     VBoolFuncOp(const A& a) : a_(a) { }
 
 
-    inline bool operator[](const size_type i) const
+    inline bool operator[](const index_type i) const
     { return FUNC::apply(a_[i]); }
 
     inline size_type size(void) const {

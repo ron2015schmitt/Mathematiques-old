@@ -37,9 +37,9 @@ namespace matricks {
     Matrix<std::complex<D> > y(NR,NC);
 #endif
 
-    register size_type i=0;
-    for(register size_type r=0; r < NR; r++) 
-      for(register size_type c=0; c < NC; c++,i++) 
+    register index_type i=0;
+    for(register index_type r=0; r < NR; r++) 
+      for(register index_type c=0; c < NC; c++,i++) 
 	y(i) = a[c]*b[r];   
 
     return  y;
@@ -72,9 +72,9 @@ namespace matricks {
     Matrix<std::complex<D> > y(NR,NC);
 #endif
 
-    register size_type i=0;
-    for(register size_type r=0; r < NR; r++) 
-      for(register size_type c=0; c < NC; c++,i++) 
+    register index_type i=0;
+    for(register index_type r=0; r < NR; r++) 
+      for(register index_type c=0; c < NC; c++,i++) 
 	y(i) = a[c]*b[r];   
 
     return  y;
@@ -95,8 +95,8 @@ namespace matricks {
   operator|( const MorE<std::complex<D> ,A>& a, const  VorE<D,B>& b ) {
     const size_type NR = a.Nrows();
     const size_type M = a.Ncols();
-    const size_type C1 = NR*M;
-    const size_type C2 = M-1;
+    const index_type C1 = NR*M;
+    const index_type C2 = M-1;
 
 #ifdef MATRICKS_DEBUG
     std::string sa = a.debugtxt();
@@ -126,10 +126,10 @@ namespace matricks {
     Vector<std::complex<D> > y(NR);
 #endif
 
-    register size_type i = 0;
-    for(register size_type n=0; n < C1; n+=M, i++) {
-      size_type j = n;
-      size_type k = 0;
+    register index_type i = 0;
+    for(register index_type n=0; n < C1; n+=M, i++) {
+      index_type j = n;
+      index_type k = 0;
        // using a local variable for the accumation saves a lot of CPU Time!!
       std::complex<D>  result = a(j) * b[k];
       do {
@@ -177,11 +177,11 @@ namespace matricks {
     Vector<std::complex<D> > y(NC);
 #endif
 
-    register size_type i = 0;
-    for(register size_type c=0; c < NC; c++,i++) {
-      size_type j = 0;
-      size_type k = c;
-      const size_type C2 = M-1;
+    register index_type i = 0;
+    for(register index_type c=0; c < NC; c++,i++) {
+      index_type j = 0;
+      index_type k = c;
+      const index_type C2 = M-1;
       // using a local variable for the accumation saves a lot of CPU Time!!
       std::complex<D>  result = a[j] * b(k);
       do {
@@ -205,8 +205,8 @@ namespace matricks {
   operator|( const MorE<D,A>& a, const  VorE<std::complex<D> ,B>& b ) {
     const size_type NR = a.Nrows();
     const size_type M = a.Ncols();
-    const size_type C1 = NR*M;
-    const size_type C2 = M-1;
+    const index_type C1 = NR*M;
+    const index_type C2 = M-1;
 
 #ifdef MATRICKS_DEBUG
     std::string sa = a.debugtxt();
@@ -236,10 +236,10 @@ namespace matricks {
     Vector<std::complex<D> > y(NR);
 #endif
 
-    register size_type i = 0;
-    for(register size_type n=0; n < C1; n+=M, i++) {
-      size_type j = n;
-      size_type k = 0;
+    register index_type i = 0;
+    for(register index_type n=0; n < C1; n+=M, i++) {
+      index_type j = n;
+      index_type k = 0;
        // using a local variable for the accumation saves a lot of CPU Time!!
       std::complex<D>  result = a(j) * b[k];
       do {
@@ -287,11 +287,11 @@ namespace matricks {
     Vector<std::complex<D> > y(NC);
 #endif
 
-    register size_type i = 0;
-    for(register size_type c=0; c < NC; c++,i++) {
-      size_type j = 0;
-      size_type k = c;
-      const size_type C2 = M-1;
+    register index_type i = 0;
+    for(register index_type c=0; c < NC; c++,i++) {
+      index_type j = 0;
+      index_type k = c;
+      const index_type C2 = M-1;
       // using a local variable for the accumation saves a lot of CPU Time!!
       std::complex<D>  result = a[j] * b(k);
       do {

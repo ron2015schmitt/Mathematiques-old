@@ -1,7 +1,7 @@
 maxsize:  2147483647; 
 
 # python-like access: negative indices, slices, lists in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.6-r1).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.6-r3).
 
 ## Element access
 ### Positive and negative indices

@@ -103,7 +103,7 @@ namespace matricks {
 
 
 
-  void vout_of_bounds(const size_type id, const size_type i) {
+  void vout_of_bounds(const size_type id, const index_type i) {
     std::cout << error_str << "index="<<i<<" out of bounds for " << matricksObjectPool::vectorname(id) << std::endl;
     matricksObjectPool::voutputglossary(id);
   }
@@ -193,7 +193,7 @@ namespace matricks {
   }
 
 
-  void vwrapper_out_of_bounds(const std::string& s1, const size_type i, const size_type sz) {
+  void vwrapper_out_of_bounds(const std::string& s1, const index_type i, const size_type sz) {
     std::cout << error_str << "out of bounds index="<<i<<" encountered during vector access"  << std::endl;
     std::cout << indent_str << s1 << std::endl;
     std::cout << where_str << s1 <<" has size="<<  sz << std::endl;
@@ -211,8 +211,8 @@ namespace matricks {
 
 
 
-  std::string debugtxt_VSliceObj(const std::string s, const size_type start_,
-				 const size_type end_,const  int step_){     
+  std::string debugtxt_VSliceObj(const std::string s, const index_type start_,
+				 const index_type end_,const  index_type step_){     
       std::ostringstream stream;
       stream <<s << "(start=" << start_ << ", end=" << end_ << ", step=" << step_ << ")";
       return stream.str();
@@ -240,7 +240,7 @@ namespace matricks {
       matricksObjectPool::voutputglossary(id1);
       matricksObjectPool::voutputglossary(id2);
   }
-  void settext_VSubMaskObj(const Vector<uint>& ii, const Vector<bool>& mask) {
+  void settext_VSubMaskObj(const Vector<index_type>& ii, const Vector<bool>& mask) {
     ii.debugtxt("("+mask.debugtxt()+")");
   }
 

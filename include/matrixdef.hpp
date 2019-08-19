@@ -315,14 +315,14 @@ namespace matricks {
     // For square matrices this operation is quick and easy.
     // For non-square matrices, this changes the shape and operation is time-consuming
     Matrix<D>  transpose(void) { 
-      const int NR = int(Nrows());
-      const int NC = int(Ncols());
-      const int N = int(size());
-      const int Nminus1 = N-1;
+      const index_type NR = index_type(Nrows());
+      const index_type NC = index_type(Ncols());
+      const index_type N = index_type(size());
+      const index_type Nminus1 = N-1;
 
       // symmetric matrix  
       if (NC == NR) {
-	int r,c;
+	index_type r,c;
 	D temp;
 	for (r = 0; r < NR; ++r)
 	  for (c = r + 1; c < NR; ++c) {
@@ -344,25 +344,25 @@ namespace matricks {
       // can set Nmove=1, but this will be very slow
       // Nmove=(NR+NC)/2 is optimal
       const bool Nmove =(NR+NC)/2;
-      int move[Nmove];
-      for (int i = 0; i < Nmove; ++i)
+      index_type move[Nmove];
+      for (index_type i = 0; i < Nmove; ++i)
 	move[i] = false;
 
 
       // there are always at least 2 fixed points (at j=0 and j=Nminus1)
-      int count = 2;		
+      index_type count = 2;		
       // find the rest of the fixed points
       if (NC >= 3 && NR >= 3)
 	count += gcd(NC - 1, NR - 1) - 1;	/* # fixed points */
 
-      int jstart = 1;
-      int magicnum = NC;
+      index_type jstart = 1;
+      index_type magicnum = NC;
 
       while (1) {
-	int jnext,jnextc;
-	int jstartC = Nminus1 - jstart;
-	int j = jstart;
-	int jC = jstartC;
+	index_type jnext,jnextc;
+	index_type jstartC = Nminus1 - jstart;
+	index_type j = jstart;
+	index_type jC = jstartC;
 	D dstart = (*this)(jstart);
 	D dstartC = (*this)(jstartC);
 
@@ -407,7 +407,7 @@ namespace matricks {
 	  } while (jstart==magicnum);
 	   
 	  jnext = magicnum;
-	  const  int max = Nminus1-jstart+1;
+	  const  index_type max = Nminus1-jstart+1;
 	  if (jstart < Nmove){
 	    if (!move[jstart])
 	      break;
@@ -441,7 +441,7 @@ namespace matricks {
 
 
 
-    inline D& operator()(const size_type i)  {
+    inline D& operator()(const index_type i)  {
 #ifdef MATRICKS_DEBUG
       if (i>=size()) {
 	mout_of_bounds(objectID_, i);
@@ -452,7 +452,7 @@ namespace matricks {
     }
 
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
 #ifdef MATRICKS_DEBUG
       if (i>=size()) {
 	mout_of_bounds(objectID_, i);
@@ -480,23 +480,23 @@ namespace matricks {
 
     // Accessing a SET of values 
 
-    const MSetObj<D> operator()(const Vector<uint>& ii) const {
+    const MSetObj<D> operator()(const Vector<index_type>& ii) const {
       return MSetObj<D>(*this, ii);
     }
-    MSetObj<D> operator()(const Vector<uint>& ii) {
+    MSetObj<D> operator()(const Vector<index_type>& ii) {
       return MSetObj<D>(*this, ii);
     }
 
     // Accessing a SET of values using a subscript matrix
 
-    const MSetObj<D> operator()(const Matrix<uint>& subs) const {
+    const MSetObj<D> operator()(const Matrix<index_type>& subs) const {
 #ifdef MATRICKS_DEBUG
       if ( subs.Ncols()!= 2 ) 
 	mbad_subsmatrix(objectID_,subs);
 #endif    
       return MSetObj<D>(*this, subs );
     }
-    MSetObj<D> operator()(const Matrix<uint>& subs)  {
+    MSetObj<D> operator()(const Matrix<index_type>& subs)  {
 #ifdef MATRICKS_DEBUG
       if ( subs.Ncols()!= 2 ) 
 	mbad_subsmatrix(objectID_,subs);
@@ -547,7 +547,7 @@ namespace matricks {
 
     // ************************* (ROW,COL) INDEX ELEMENT ACCESS **************************
 
-    inline size_type index(const size_type r, const size_type c) const {
+    inline index_type index(const index_type r, const index_type c) const {
 #ifdef MATRICKS_DEBUG
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
@@ -557,7 +557,7 @@ namespace matricks {
       return c + Ncols_*r;
     }
 
-    inline D& operator()(const size_type r, const size_type c) {
+    inline D& operator()(const index_type r, const index_type c) {
 #ifdef MATRICKS_DEBUG
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
@@ -567,7 +567,7 @@ namespace matricks {
       return (*data_)[c + Ncols_*r]; 
     }
 
-    inline const D operator()(const size_type r, const size_type c) const {
+    inline const D operator()(const index_type r, const index_type c) const {
 #ifdef MATRICKS_DEBUG
       if ( (r>=Nrows_) || (c>=Ncols_) ) {
 	mout_of_bounds2(objectID_, r,c);
@@ -580,28 +580,28 @@ namespace matricks {
 
     // Accessing a (set,set)
 
-    const MDualSetObj<D> operator()(const Vector<uint>& ii, const Vector<uint>& jj) const {
+    const MDualSetObj<D> operator()(const Vector<index_type>& ii, const Vector<index_type>& jj) const {
       return MDualSetObj<D>(*this, ii, jj);
     }
-    MDualSetObj<D> operator()(const Vector<uint>& ii, const Vector<uint>& jj)  {
+    MDualSetObj<D> operator()(const Vector<index_type>& ii, const Vector<index_type>& jj)  {
       return MDualSetObj<D>(*this, ii, jj);
     }
 
     // Accessing a (set,integer) 
 
-    const MDualSetObj<D> operator()(const Vector<uint>& ii, const size_type j) const {
+    const MDualSetObj<D> operator()(const Vector<index_type>& ii, const index_type j) const {
       return MDualSetObj<D>(*this, ii, j);
     }
-    MDualSetObj<D> operator()(const Vector<uint>& ii, const size_type j)  {
+    MDualSetObj<D> operator()(const Vector<index_type>& ii, const index_type j)  {
       return MDualSetObj<D>(*this, ii, j);
     }
 
     // Accessing a (integer,set) 
 
-    const MDualSetObj<D> operator()(const size_type i, const Vector<uint>& jj) const {
+    const MDualSetObj<D> operator()(const index_type i, const Vector<index_type>& jj) const {
       return MDualSetObj<D>(*this, i,jj);
     }
-    MDualSetObj<D> operator()(const size_type i, const Vector<uint>& jj)  {
+    MDualSetObj<D> operator()(const index_type i, const Vector<index_type>& jj)  {
       return MDualSetObj<D>(*this, i,jj);
     }
 
@@ -616,35 +616,35 @@ namespace matricks {
 
     // Accessing  (set,seq)
 
-    const MSetRangeObj<D> operator()(const Vector<uint>& ii, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const Vector<index_type>& ii, const seq& jj) const {
       return MSetRangeObj<D>(*this, ii, jj);
     }
-    MSetRangeObj<D> operator()(const Vector<uint>& ii, const seq& jj)  {
+    MSetRangeObj<D> operator()(const Vector<index_type>& ii, const seq& jj)  {
       return MSetRangeObj<D>(*this, ii, jj);
     }
     // Accessing  (seq,set)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const Vector<uint>& jj) const {
+    const MRangeSetObj<D> operator()(const seq& ii, const Vector<index_type>& jj) const {
       return MRangeSetObj<D>(*this, ii, jj);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const Vector<uint>& jj)  {
+    MRangeSetObj<D> operator()(const seq& ii, const Vector<index_type>& jj)  {
       return MRangeSetObj<D>(*this, ii, jj);
     }
 
     // Accessing  (integer,seq)
 
-    const MSetRangeObj<D> operator()(const size_type i, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const index_type i, const seq& jj) const {
       return MSetRangeObj<D>(*this, i, jj);
     }
-    MSetRangeObj<D> operator()(const size_type i, const seq& jj)  {
+    MSetRangeObj<D> operator()(const index_type i, const seq& jj)  {
       return MSetRangeObj<D>(*this, i, jj);
     }
     // Accessing  (seq,integer)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const size_type j) const {
+    const MRangeSetObj<D> operator()(const seq& ii, const index_type j) const {
       return MRangeSetObj<D>(*this, ii, j);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const size_type j)  {
+    MRangeSetObj<D> operator()(const seq& ii, const index_type j)  {
       return MRangeSetObj<D>(*this, ii, j);
     }
 
@@ -655,33 +655,33 @@ namespace matricks {
     // Accessing a submatrix of values
                                                                                         
     inline MSubmatObj<D>
-    submat(const size_type rstart, const size_type rend,
-	   const size_type cstart, const size_type cend)  {
+    submat(const index_type rstart, const index_type rend,
+	   const index_type cstart, const index_type cend)  {
       return MSubmatObj<D>(*this, rstart,  rend, cstart, cend);
     }
     inline const MSubmatObj<D>
-    submat(const size_type rstart, const size_type rend,
-	   const size_type cstart, const size_type cend)  const {
+    submat(const index_type rstart, const index_type rend,
+	   const index_type cstart, const index_type cend)  const {
       return MSubmatObj<D>(*this, rstart,  rend, cstart, cend);
     }
     
     // Accessing a row
     inline  MSubmatObj<D> 
-    row(const size_type r) {
+    row(const index_type r) {
       return submat(r,r,0,Ncols()-1);
     }
     inline const  MSubmatObj<D> 
-    row(const size_type r) const {
+    row(const index_type r) const {
       return submat(r,r,0,Ncols()-1);
     }
 
     // Accessing a column
     inline  MSubmatObj<D> 
-    col(const size_type c) {
+    col(const index_type c) {
       return submat(0,Nrows()-1,c,c);
     }
     inline const MSubmatObj<D> 
-    col(const size_type c) const {
+    col(const index_type c) const {
       return submat(0,Nrows()-1,c,c);
     }
 
@@ -747,7 +747,7 @@ namespace matricks {
     // Assign all elements to the same constant value
     Matrix<D>& operator=(const D d) { 
       const size_type NN = size();
-      for(register size_type i=0; i<NN; i++) 
+      for(register index_type i=0; i<NN; i++) 
 	(*data_)[i] = d; 
       return *this;
     }
@@ -780,12 +780,12 @@ namespace matricks {
 #else
 	Matrix<D> mtemp(NR,NC);
 #endif
-	for(register size_type i = 0; i < NN; i++) 
+	for(register index_type i = 0; i < NN; i++) 
 	  mtemp(i) = x(i);   
-	for(register size_type i = 0; i < NN; i++) 
+	for(register index_type i = 0; i < NN; i++) 
 	  (*this)(i) = mtemp(i);
       } else {
-	for(register size_type i = 0; i < NN; i++) 
+	for(register index_type i = 0; i < NN; i++) 
 	  (*this)(i) = x(i);   
       }
       return *this; 
@@ -816,7 +816,7 @@ namespace matricks {
       resize(m2.Nrows(),m2.Ncols());
 
       const size_type NN = size();
-      for(register size_type i=0; i<NN; i++) 
+      for(register index_type i=0; i<NN; i++) 
 	(*data_)[i] = m2(i);    
       return *this;
     }
@@ -842,12 +842,12 @@ namespace matricks {
 #else
 	Vector<D> y(N);
 #endif
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  (*data_)[i] = y[i]; 
       } else {
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  (*data_)[i] = rhs[i]; 
       }
       return *this;
@@ -931,10 +931,10 @@ namespace matricks {
 	stream << "{";
 	if (NR>0)
 	  stream << " {";
-	for(size_type r=0; r < NR; r++) {
+	for(index_type r=0; r < NR; r++) {
 	  if (r>0)  
 	    stream << "  {";
-	  for(size_type c=0; c < NC; c++) {
+	  for(index_type c=0; c < NC; c++) {
 	    if ( (c>0) && ( (c%m.perline()) == 0 ) )
 	      stream << std::endl << "   ";
 	    stream <<std::setw(w) << m(r,c);
@@ -953,8 +953,8 @@ namespace matricks {
 	  sep = " ";
 	else
 	  sep="";
-	for(size_type r=0; r < NR; r++) {
-	  for(size_type c=0; c < NC; c++) {
+	for(index_type r=0; r < NR; r++) {
+	  for(index_type c=0; c < NC; c++) {
 	    stream <<std::setw(w) << m(r,c);
 	    if (c < (NC-1) )
 	      stream << sep;
@@ -994,7 +994,7 @@ namespace matricks {
 	{
 	  enum States {begin, betweenrows, inrow, waitingforcomma, end};
 	  States state = begin;
-	  size_type col = 0;
+	  index_type col = 0;
 	  while( (state!=end) && stream.getline(line,LINESZ) ){
 	    Nlines++;
 	    strmline.clear();
@@ -1112,7 +1112,7 @@ namespace matricks {
 	  std::string oldline = line;
 	  if (Nold==0) {
 	    while( stream.getline(line,LINESZ) ){ // read as "one row per line" until end of stream
-	      size_type col = 0;
+	      index_type col = 0;
 	      Nlines++;
 	      strmline.clear();
 	      strmline.str(line);
@@ -1194,7 +1194,7 @@ namespace matricks {
       }//switch
       
       const size_type len=NR*NC;
-      for(size_type i=0; i<len; i++)
+      for(index_type i=0; i<len; i++)
 	m(i) = v[i];
   
       return restore_stream(stream,strmline);

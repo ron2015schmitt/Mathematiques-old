@@ -528,12 +528,12 @@ namespace matricks {
     Matrix<std::complex<D> > y(NR,NC);
 #endif
 
-    register size_type i = 0;
-    for(register size_type n=0; n < C1; n+=M) 
-      for(register size_type c=0; c < NC; c++,i++) {
-	size_type j = n;
-	size_type k = c;
-	const size_type C2 = n+M-1;
+    register index_type i = 0;
+    for(register index_type n=0; n < C1; n+=M) 
+      for(register index_type c=0; c < NC; c++,i++) {
+	index_type j = n;
+	index_type k = c;
+	const index_type C2 = n+M-1;
 	// using a local variable for the accumation saves a lot of CPU Time!!
 	std::complex<D> result = a(j) * b(k);
 	while (j<C2){
@@ -569,12 +569,12 @@ namespace matricks {
 #endif
 
 
-    register size_type i = 0;
-    for(register size_type n=0; n < C1; n+=M) 
-      for(register size_type c=0; c < NC; c++,i++) {
-	size_type j = n;
-	size_type k = c;
-	const size_type C2 = n+M-1;
+    register index_type i = 0;
+    for(register index_type n=0; n < C1; n+=M) 
+      for(register index_type c=0; c < NC; c++,i++) {
+	index_type j = n;
+	index_type k = c;
+	const index_type C2 = n+M-1;
 	// using a local variable for the accumation saves a lot of CPU Time!!
 	std::complex<D> result = a(j) * b(k);
 	while (j<C2){
@@ -617,9 +617,9 @@ namespace matricks {
     Matrix<std::complex<D> > y(NC,NR);
 #endif
 
-    register size_type i = 0;
-    for(register size_type c = 0; c < NC; c++, i++) {
-      register size_type k = c;
+    register index_type i = 0;
+    for(register index_type c = 0; c < NC; c++, i++) {
+      register index_type k = c;
       y(i) = conj(a(k));
       do {
         y((i+=1)) = conj(a((k+=NC)));

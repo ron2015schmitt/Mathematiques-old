@@ -141,19 +141,19 @@ namespace matricks {
   }
 
 
-  void mout_of_bounds(const size_type id, const size_type i) {
+  void mout_of_bounds(const size_type id, const index_type i) {
     std::cout << error_str << "single index access="<<i<<" out of bounds for " << matricksObjectPool::matrixname(id) << std::endl;
     matricksObjectPool::moutputglossary(id);
   }
 
 
-  void mout_of_bounds2(const size_type id, const size_type r, const size_type c) {
+  void mout_of_bounds2(const size_type id, const index_type r, const index_type c) {
     std::cout << error_str << "index=("<<r<<","<<c <<") out of bounds for " << matricksObjectPool::matrixname(id) << std::endl;
     matricksObjectPool::moutputglossary(id);
   }
 
   void mwrapper_out_of_bounds(const std::string& wSTR, 
-			      const size_type aindex, const size_type wNR, 
+			      const index_type aindex, const size_type wNR, 
 			      const size_type wNC,  const size_type wSZ,
 			      const size_type aID
 			      ) {
@@ -167,7 +167,7 @@ namespace matricks {
   }
 
   void mwrapper_out_of_bounds_rc(const std::string& wSTR, 
-				 const size_type r,   const size_type c, 
+				 const index_type r,   const index_type c, 
 				 const size_type wNR, const size_type wNC,  const size_type wSZ,
 				 const size_type aID
 				 ) {
@@ -230,8 +230,8 @@ namespace matricks {
   }
 
 
-  void mbad_submat( const size_type id, const size_type rstart, const size_type rend, 
-		    const size_type cstart, const size_type cend) {
+  void mbad_submat( const size_type id, const index_type rstart, const index_type rend, 
+		    const index_type cstart, const index_type cend) {
     std::string s= matricksObjectPool::matrixname(id);
     std::ostringstream stream;
     std::cout << error_str << "bad submatrix indices given" << std::endl;
@@ -270,8 +270,8 @@ namespace matricks {
   std::string debugtxt_paren2(const std::string& s1, const std::string& s2, const std::string& s3){  
     return s1 + "(" + s2 +"," + s3+ ")";
   }
-  std::string debugtxt_submat(const size_type id,  const size_type rstart, const size_type rend, 
-			      const size_type cstart, const size_type cend) {
+  std::string debugtxt_submat(const size_type id,  const index_type rstart, const index_type rend, 
+			      const index_type cstart, const index_type cend) {
     std::string s= matricksObjectPool::matrixname(id);
     std::ostringstream stream;
     stream << s << ".submat(" << rstart << "," << rend <<"," << cstart << "," << cend << ")";

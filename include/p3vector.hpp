@@ -106,7 +106,7 @@ namespace matricks {
     inline  D& z(void)  {
       return(data_[2]);
     }
-    inline  const D operator[](const int i)const  {
+    inline  const D operator[](const index_type i)const  {
 #ifdef MATRICKS_DEBUG
       if ((i<0) || (i>2)) {
 	std::cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
@@ -116,7 +116,7 @@ namespace matricks {
       return data_[i];
     }
 
-    inline  D &operator[](const int i) {
+    inline  D &operator[](const index_type i) {
 #ifdef MATRICKS_DEBUG
       if ((i<0) || (i>2)) {
 	std::cerr << "SOFTWARE ERROR: index to p3vector out of bounds: i=" << i << ", &v=" <<this << ", v[]=" << *this << std::endl;
@@ -155,7 +155,7 @@ namespace matricks {
 
     // Assign all elements to the same constant value
     p3vector<D>& equals(const D d) { 
-      for(int i=size(); i--;) 
+      for(index_type i=size(); i--;) 
 	data_[i]=d; 
       return *this;
     }
@@ -409,7 +409,7 @@ namespace matricks {
 	break;
       } //switch
 
-      for(size_type i=0; i<N; i++)
+      for(index_type i=0; i<N; i++)
 	x[i] = v[i];
       
       return restore_stream(stream,strmline);

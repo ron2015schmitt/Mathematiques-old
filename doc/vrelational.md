@@ -1,6 +1,6 @@
 
 # Vector relational operators (`==`,`<`,`>`, etc), logical operators and masks in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.5-r2).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.6-r3).
 
 ## Relational operators
 ### Relational operators between two Vectors

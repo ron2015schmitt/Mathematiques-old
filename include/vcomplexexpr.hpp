@@ -26,7 +26,7 @@ namespace matricks {
       : a_(a), val_(b)
     { }
 
-    inline const std::complex<D> operator[](const size_type i) const { 
+    inline const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
@@ -80,7 +80,7 @@ namespace matricks {
       : val_(a), b_(b)
     { }
 
-    inline const std::complex<D> operator[](const size_type i) const { 
+    inline const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
@@ -132,15 +132,15 @@ namespace matricks {
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return OP::give(a_[i]);
     }
-    inline D& data(size_type i) {
+    inline D& data(index_type i) {
       return OP::give(a_[i]);
     }
 
 
-    inline size_type index(size_type i) const{
+    inline index_type index(index_type i) const{
       return i;
     }
 

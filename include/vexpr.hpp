@@ -10,7 +10,7 @@
 namespace matricks {
 
   template <class A>
-  inline Vector<uint> findtrue( const VorE<bool,A>& a );
+  inline Vector<index_type> findtrue( const VorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -30,7 +30,7 @@ namespace matricks {
 
   public:
 
-    inline const D operator[](const size_type i) const {
+    inline const D operator[](const index_type i) const {
       return derived()[i];
     }
 
@@ -87,8 +87,8 @@ namespace matricks {
 
   public:
 
-    inline const D operator[](const size_type i) const {  
-      const size_type index = derived().index(i);
+    inline const D operator[](const index_type i) const {  
+      const index_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
       if (index>=derived().sizetotal()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
@@ -98,8 +98,8 @@ namespace matricks {
       return derived().data(index);
     }
 
-    inline D& operator[](const size_type i) {  
-      const size_type index = derived().index(i);
+    inline D& operator[](const index_type i) {  
+      const index_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
       if (index>=derived().sizetotal()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
@@ -109,7 +109,7 @@ namespace matricks {
       return derived().data(index);
     }
 
-    inline size_type index(void) const {
+    inline index_type index(void) const {
       return derived().index();
     }
 
@@ -124,7 +124,7 @@ namespace matricks {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(size_type i=0; i<size(); i++) 
+      for(index_type i=0; i<size(); i++) 
 	(*this)[i]=d; 
       return derived();
     }
@@ -159,12 +159,12 @@ namespace matricks {
 #else
 	Vector<D> y(N);
 #endif
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()[i] = rhs[i]; 
       }
       return derived();
@@ -198,10 +198,10 @@ namespace matricks {
 	Vector<D> y(N);
 #endif
 	y=rhs;
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()[i] = rhs(i); 
       }
       return derived();
@@ -244,30 +244,30 @@ namespace matricks {
   class VSliceObj : public  VWrapperObj<D, VSliceObj<D> > {
   private:
     Vector<D>& a_;
-    const size_type start_;
-    const size_type end_;
-    const size_type step_;
+    const index_type start_;
+    const index_type end_;
+    const index_type step_;
     const bool increasing_;
 
   public:
-    VSliceObj(Vector<D>& a, const size_type start, const size_type end, const int step)
+    VSliceObj(Vector<D>& a, const index_type start, const index_type end, const int step)
       :   a_(a),  start_(start), end_(end), 
 	  step_((step>=0)?step:-step), 
 	  increasing_((end>=start)?true:false)
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_[i];
     }
-    inline D& data(size_type i) {
+    inline D& data(index_type i) {
       return a_[i];
     }
 
 
     // could improve speed for step=1 and step=-1 by creating a separate
     // function or template class that doesn't include the step multiply
-    inline size_type index(size_type i) const{
+    inline index_type index(index_type i) const{
      if (increasing_) 
        return start_ + i * step_;
      else 
@@ -351,22 +351,22 @@ namespace matricks {
   class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> > {
   private:
     Vector<D>& a_;
-    const Vector<uint>& ii_;
+    const Vector<index_type>& ii_;
 
   public:
-    VSubsetObj(Vector<D>& a, const Vector<uint>& ii)
+    VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
       : a_(a), ii_(ii)
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_[i];
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_[i];
     }
 
-    inline size_type index(size_type i) const{
+    inline index_type index(index_type i) const{
       return ii_[i];
     }
 
@@ -453,14 +453,14 @@ namespace matricks {
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
@@ -468,7 +468,7 @@ namespace matricks {
       }
     }
 
-    inline size_type index(size_type i) const{
+    inline index_type index(index_type i) const{
       return i;
     }
 
@@ -553,18 +553,18 @@ namespace matricks {
   class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> > {
   private:
     Vector<D>& a_;
-    const Vector<uint>* ii_;
+    const Vector<index_type>* ii_;
 
   public:
 #ifdef MATRICKS_DEBUG
     VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
-      : a_(a), ii_(new Vector<uint>(findtrue(mask)))
+      : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
     { 
       //      settext_VSubMaskObj(*ii_,mask);
     }
 #else
     VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
-      : a_(a), ii_(new Vector<uint>(findtrue(mask)))
+      : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
     { 
     }
 #endif
@@ -574,14 +574,14 @@ namespace matricks {
       delete  ii_;
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_[i];
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_[i];
     }
 
-    inline size_type index(size_type i) const{
+    inline index_type index(index_type i) const{
       return (*ii_)[i];
     }
 
@@ -748,7 +748,7 @@ namespace matricks {
     { 
     }
 
-    inline const D operator[](const size_type i) const {  
+    inline const D operator[](const index_type i) const {  
       return OP::apply(a_[i], b_[i]); 
     }
 
@@ -818,7 +818,7 @@ namespace matricks {
       : a_(a), val_(b)
     { }
 
-    inline const D operator[](const size_type i) const { 
+    inline const D operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
@@ -881,7 +881,7 @@ namespace matricks {
       :  val_(a), b_(b)
     { }
 
-    inline const D operator[](const size_type i) const { 
+    inline const D operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
@@ -937,7 +937,7 @@ namespace matricks {
     VFuncOp(const A& a) : a_(a) { }
 
 
-    inline const D operator[](const size_type i) const
+    inline const D operator[](const index_type i) const
     { return FUNC::apply(a_[i]); }
 
     inline size_type size(void) const {

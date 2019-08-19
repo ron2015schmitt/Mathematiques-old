@@ -11,10 +11,10 @@
 namespace matricks {
 
   template <class A> 
-  inline Matrix<uint> findtrue( const MorE<bool,A>& a );
+  inline Matrix<index_type> findtrue( const MorE<bool,A>& a );
 
   template <class A> 
-  inline Vector<uint> findtruesi( const MorE<bool,A>& a );
+  inline Vector<index_type> findtruesi( const MorE<bool,A>& a );
 
 
   /****************************************************************************
@@ -34,11 +34,11 @@ namespace matricks {
 
   public:
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return derived()(i);
     }
 
-    inline const D operator()(const size_type r, const size_type c) const {
+    inline const D operator()(const index_type r, const index_type c) const {
       return r*Ncols() + c;
     }
 
@@ -108,17 +108,17 @@ namespace matricks {
 
   public:
 
-    inline const D operator()(const size_type i) const {  
-      const size_type index = derived().index(i);
+    inline const D operator()(const index_type i) const {  
+      const index_type index = derived().index(i);
       return derived().data(index);
     }
 
-    inline D& operator()(const size_type i) {  
-      const size_type index = derived().index(i);
+    inline D& operator()(const index_type i) {  
+      const index_type index = derived().index(i);
       return derived().data(index);
     }
 
-    inline size_type index(void) const {
+    inline index_type index(void) const {
       return derived().index();
     }
 
@@ -158,7 +158,7 @@ namespace matricks {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(size_type i=0; i<size(); i++) 
+      for(index_type i=0; i<size(); i++) 
 	(*this)(i)=d; 
       return derived();
     }
@@ -197,12 +197,12 @@ namespace matricks {
 #else
 	Vector<D> y(N);
 #endif
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()(i) = y[i]; 
       } else {
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()(i) = rhs[i]; 
       }
       return derived();
@@ -233,12 +233,12 @@ namespace matricks {
 #else
 	Matrix<D> y(NR,NC);
 #endif
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  y(i) = rhs(i); 
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()(i) = y(i); 
       } else {
-	for(register size_type i=0; i<N; i++) 
+	for(register index_type i=0; i<N; i++) 
 	  derived()(i) = rhs(i); 
       }
       return derived();
@@ -280,17 +280,17 @@ namespace matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const size_type rstart_;
-    const size_type rend_;
-    const size_type cstart_;
-    const size_type cend_;
+    const index_type rstart_;
+    const index_type rend_;
+    const index_type cstart_;
+    const index_type cend_;
     const size_type NR_;
     const size_type NC_;
 
   public:
     explicit MSubmatObj(Matrix<D>& a, 
-	       const size_type rstart, const size_type rend, 
-	       const size_type cstart, const size_type cend)
+	       const index_type rstart, const index_type rend, 
+	       const index_type cstart, const index_type cend)
       : a_(a), a_NC(a.Ncols()),
 	rstart_(rstart), rend_(rend), 
 	cstart_(cstart), cend_(cend),
@@ -298,18 +298,18 @@ namespace matricks {
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline D& data(size_type i) {
+    inline D& data(index_type i) {
       return a_(i);
     }
 
-    inline size_type index(size_type i) const{
+    inline index_type index(index_type i) const{
       const std::div_t result = std::div(int(i),int(Ncols()));
-      const size_type r = static_cast<uint>(rstart_ + result.quot);
-      const size_type c = static_cast<uint>(cstart_ + result.rem);
-      const size_type ind = r*a_NC + c;
+      const index_type r = static_cast<index_type>(rstart_ + result.quot);
+      const index_type c = static_cast<index_type>(cstart_ + result.rem);
+      const index_type ind = r*a_NC + c;
 #ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
@@ -410,16 +410,16 @@ namespace matricks {
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline D& data(size_type i) {
+    inline D& data(index_type i) {
       return a_(i);
     }
 
 
-    inline size_type index(size_type i) const{
-      const size_type ind = i_[i];
+    inline index_type index(index_type i) const{
+      const index_type ind = i_[i];
 #ifdef MATRICKS_DEBUG
       if (ind>=asize()) {
 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
@@ -504,12 +504,12 @@ namespace matricks {
   class MSetObj :  public  MWrapperObj<D,MSetObj<D> > {
   private:
     Matrix<D>& a_;
-    const Vector<uint>* iiptr_;
-    const Vector<uint>& ii_;
+    const Vector<index_type>* iiptr_;
+    const Vector<index_type>& ii_;
     const size_type indID_;
     const bool indisvector;
   public:
-    explicit MSetObj(Matrix<D>& a, const Vector<uint>& ii)
+    explicit MSetObj(Matrix<D>& a, const Vector<index_type>& ii)
       : a_(a), 
 	iiptr_(0), 
 	ii_(ii),
@@ -519,7 +519,7 @@ namespace matricks {
     }
     explicit MSetObj(Matrix<D>& a, const Matrix<bool>& mask)
       : a_(a), 
-	iiptr_(new Vector<uint>(findtruesi(mask))), 
+	iiptr_(new Vector<index_type>(findtruesi(mask))), 
 	ii_(*iiptr_),
 	indID_(mask.objectID()),
 	indisvector(false)
@@ -527,15 +527,15 @@ namespace matricks {
     }
     explicit MSetObj(Matrix<D>& a, const Vector<bool>& mask)
       : a_(a), 
-	iiptr_(new Vector<uint>(findtrue(mask))), 
+	iiptr_(new Vector<index_type>(findtrue(mask))), 
 	ii_(*iiptr_),
 	indID_(mask.objectID()),
 	indisvector(true)
     {
     }
-    explicit MSetObj(Matrix<D>& a, const Matrix<uint>& subs)
+    explicit MSetObj(Matrix<D>& a, const Matrix<index_type>& subs)
       : a_(a), 
-	iiptr_(new Vector<uint>(sub2ind(subs,a.Ncols()))), 
+	iiptr_(new Vector<index_type>(sub2ind(subs,a.Ncols()))), 
 	ii_(*iiptr_),
 	indID_(subs.objectID()),
 	indisvector(false)
@@ -547,15 +547,15 @@ namespace matricks {
       delete  iiptr_;
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_(i);
     }
 
-    inline size_type index(size_type i) const{
-      const size_type ind = ii_[i];
+    inline index_type index(index_type i) const{
+      const index_type ind = ii_[i];
 #ifdef MATRICKS_DEBUG
       if (ind>=asize()) {
 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
@@ -644,13 +644,13 @@ namespace matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const Vector<uint>* iiptr_;
-    const Vector<uint>& ii_;
-    const Vector<uint>* jjptr_;
-    const Vector<uint>& jj_;
+    const Vector<index_type>* iiptr_;
+    const Vector<index_type>& ii_;
+    const Vector<index_type>* jjptr_;
+    const Vector<index_type>& jj_;
 
   public:
-    explicit MDualSetObj(Matrix<D>& a, const Vector<uint>& ii,  const Vector<uint>& jj)
+    explicit MDualSetObj(Matrix<D>& a, const Vector<index_type>& ii,  const Vector<index_type>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
@@ -658,18 +658,18 @@ namespace matricks {
 	jjptr_(0), 
 	jj_(jj)
     { }
-    explicit MDualSetObj(Matrix<D>& a, const Vector<uint>& ii,  const size_type j)
+    explicit MDualSetObj(Matrix<D>& a, const Vector<index_type>& ii,  const index_type j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
-	jjptr_(new Vector<uint>(1,j,"") ), 
+	jjptr_(new Vector<index_type>(1,j,"") ), 
 	jj_(*jjptr_)
     {     }
-    explicit MDualSetObj(Matrix<D>& a, const size_type i, const Vector<uint>& jj)
+    explicit MDualSetObj(Matrix<D>& a, const index_type i, const Vector<index_type>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new Vector<uint>(1,i,"") ), 
+	iiptr_(new Vector<index_type>(1,i,"") ), 
 	ii_(*iiptr_),
 	jjptr_(0), 
 	jj_(jj)
@@ -681,20 +681,20 @@ namespace matricks {
       delete  jjptr_;
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_(i);
     }
 
-    inline size_type index(size_type k) const{
+    inline index_type index(index_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const size_type r = ii_[i];
-      const size_type c = jj_[j];
-      const size_type ind =  r*a_NC + c;
+      const index_type r = ii_[i];
+      const index_type c = jj_[j];
+      const index_type ind =  r*a_NC + c;
 #ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
@@ -752,11 +752,11 @@ namespace matricks {
       if (iiptr_==0) 
 	s1= ii_.debugtxt();
       else
-	s1= uint2string(ii_[0]);
+	s1= num2string(ii_[0]);
       if (jjptr_==0) 
 	s2= jj_.debugtxt();
       else
-	s2= uint2string(jj_[0]);
+	s2= num2string(jj_[0]);
       return debugtxt_paren2(a_.debugtxt(),s1,s2);
     }
 
@@ -819,20 +819,20 @@ namespace matricks {
     { 
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_(i);
     }
 
-    inline size_type index(size_type k) const{
+    inline index_type index(index_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const size_type r = i_[i];
-      const size_type c = j_[j];
-      const size_type ind =  r*a_NC + c;
+      const index_type r = i_[i];
+      const index_type c = j_[j];
+      const index_type ind =  r*a_NC + c;
 #ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
@@ -927,22 +927,22 @@ namespace matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const Vector<uint>* iiptr_;
-    const Vector<uint>& ii_;
+    const Vector<index_type>* iiptr_;
+    const Vector<index_type>& ii_;
     const seq& j_;
 
   public:
-    explicit MSetRangeObj(Matrix<D>& a, const Vector<uint>& ii, const seq& j )
+    explicit MSetRangeObj(Matrix<D>& a, const Vector<index_type>& ii, const seq& j )
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
 	j_(j)
     { }
-    explicit MSetRangeObj(Matrix<D>& a, const size_type i, const seq& j)
+    explicit MSetRangeObj(Matrix<D>& a, const index_type i, const seq& j)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new Vector<uint>(1,i,"") ), 
+	iiptr_(new Vector<index_type>(1,i,"") ), 
 	ii_(*iiptr_),
 	j_(j)
     { }
@@ -952,20 +952,20 @@ namespace matricks {
       delete  iiptr_;
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_(i);
     }
 
-    inline size_type index(size_type k) const{
+    inline index_type index(index_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const size_type r = ii_[i];
-      const size_type c = j_[j];
-      const size_type ind =  r*a_NC + c;
+      const index_type r = ii_[i];
+      const index_type c = j_[j];
+      const index_type ind =  r*a_NC + c;
 #ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
@@ -1023,7 +1023,7 @@ namespace matricks {
       if (iiptr_==0) 
 	s= ii_.debugtxt();
       else
-	s= uint2string(ii_[0]);
+	s= num2string(ii_[0]);
       return debugtxt_paren2(a_.debugtxt(),s,j_.debugtxt());
      }
 
@@ -1070,22 +1070,22 @@ namespace matricks {
     Matrix<D>& a_;
     const size_type a_NC;
     const seq& i_;
-    const Vector<uint>* jjptr_;
-    const Vector<uint>& jj_;
+    const Vector<index_type>* jjptr_;
+    const Vector<index_type>& jj_;
 
   public:
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const Vector<uint>& jj )
+    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const Vector<index_type>& jj )
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
 	jjptr_(0), 
 	jj_(jj)
     { }
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const size_type j)
+    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const index_type j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
-	jjptr_(new Vector<uint>(1,j,"") ), 
+	jjptr_(new Vector<index_type>(1,j,"") ), 
 	jj_(*jjptr_)
     { }
 
@@ -1094,20 +1094,20 @@ namespace matricks {
       delete  jjptr_;
     }
 
-    inline const D data(size_type i) const{
+    inline const D data(index_type i) const{
       return a_(i);
     }
-    inline  D& data(size_type i) {
+    inline  D& data(index_type i) {
       return a_(i);
     }
 
-    inline size_type index(size_type k) const{
+    inline index_type index(index_type k) const{
       const std::div_t result = std::div(int(k),int(Ncols()));
       const int i = result.quot;
       const int j = result.rem;
-      const size_type r = i_[i];
-      const size_type c = jj_[j];
-      const size_type ind =  r*a_NC + c;
+      const index_type r = i_[i];
+      const index_type c = jj_[j];
+      const index_type ind =  r*a_NC + c;
 #ifdef MATRICKS_DEBUG
       if ( (r>=aNrows())||(c>=aNcols()) ){
 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
@@ -1165,7 +1165,7 @@ namespace matricks {
       if (jjptr_==0) 
 	s= jj_.debugtxt();
       else
-	s= uint2string(jj_[0]);
+	s= num2string(jj_[0]);
       return debugtxt_paren2(a_.debugtxt(),i_.debugtxt(),s);
     }
 
@@ -1304,7 +1304,7 @@ namespace matricks {
     { 
     }
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return OP::apply(a_(i), b_(i));
     }
 
@@ -1387,7 +1387,7 @@ namespace matricks {
       : a_(a), val_(b)
     { }
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return OP::apply(a_(i), val_);
     }
 
@@ -1458,7 +1458,7 @@ namespace matricks {
       :  val_(a), b_(b)
     { }
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return OP::apply(val_, b_(i));
     }
 
@@ -1520,7 +1520,7 @@ namespace matricks {
   public:
     explicit MFuncOp(const A& a) : a_(a) { }
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return FUNC::apply(a_(i));
     }
 
@@ -1581,7 +1581,7 @@ namespace matricks {
   public:
     explicit MFuncVec(const A& a, const size_type NR, const size_type NC) : a_(a), NR_(NR), NC_(NC){ }
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return FUNC::apply(a_[i]);
     }
 
@@ -1648,7 +1648,7 @@ namespace matricks {
   public:
     explicit MFuncReshape(const A& a, const size_type NR, const size_type NC) : a_(a), NR_(NR), NC_(NC){ }
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return FUNC::apply(a_(i));
     }
 

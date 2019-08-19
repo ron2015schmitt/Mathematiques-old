@@ -339,7 +339,7 @@ namespace matricks {
     Vector<D2> y(N);
 #endif
 
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(a(i));
     return y;
   }
@@ -353,7 +353,7 @@ namespace matricks {
   vcast(const D1* dptr, const size_type N)
   {
     Vector<D2> y(N,"vcast(C-array)");
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(dptr[i]);
     return  y;
   }
@@ -367,7 +367,7 @@ namespace matricks {
   vcast(const std::vector<D1>& v2) {
     const size_type N = v2.size();
     Vector<D2> y(N,"vcast(std::vector)");
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v2[i]);
     return  y;
   }
@@ -380,7 +380,7 @@ namespace matricks {
   vcast(const std::valarray<D1>& v2) {
     const size_type N = v2.size();
     Vector<D2> y(N,"vcast(std::valarray)");
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v2[i]);
     return  y;
   }
@@ -400,7 +400,7 @@ namespace matricks {
   toCarray(const VorE<D1,A>& v) {
     const size_type N = v.size();
     D2* dptr = new D2[N];
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       dptr[i] = static_cast<D2>(v[i]);
     return  dptr;
   }
@@ -414,7 +414,7 @@ namespace matricks {
   tostdvector(const VorE<D1,A>& v) {
     const size_type N = v.size();
     std::vector<D2> y(N);
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v[i]);
     return y;
   }
@@ -428,7 +428,7 @@ namespace matricks {
   tovalarray(const VorE<D1,A>& v) {
     const size_type N = v.size();
     std::valarray<D2> y(N);
-    for(size_type i = 0; i<N; i++) 
+    for(index_type i = 0; i<N; i++) 
       y[i] = static_cast<D2>(v[i]);
     return y;
   }
@@ -453,7 +453,7 @@ namespace matricks {
     }
 #endif
  
-    for (register size_type i = a.size(); i--;)
+    for (register index_type i = a.size(); i--;)
       result += a[i]*b[i];
     
     return result;
@@ -493,7 +493,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register size_type i = 1; i < N ; i++ )
+    for (register index_type i = 1; i < N ; i++ )
       result += a[i];
     
     return result;
@@ -536,7 +536,7 @@ namespace matricks {
     case 1:
 
       result += (v[0]+v[N-1])/2;
-      for (register size_type j = 1; j < N-1 ; j++ ) {
+      for (register index_type j = 1; j < N-1 ; j++ ) {
 	result += v[j];
       }
       result = result * (b-a)/D(N-1);
@@ -549,7 +549,7 @@ namespace matricks {
 	D sodd = 0;
 	D seven = 0;
 	result += v[0]+v[N-1];
-	for (register size_type j = 1; j < N-1 ; j++ ) {
+	for (register index_type j = 1; j < N-1 ; j++ ) {
 	  if (j%2==1) {
 	    sodd += v[j];
 	  } else {
@@ -570,7 +570,7 @@ namespace matricks {
 	D s3 = 0;
 	
 	result += v[0]+v[N-1];
-	for (register size_type j = 1; j < N-1 ; j++ ) {
+	for (register index_type j = 1; j < N-1 ; j++ ) {
 	  if (j%3==1) {
 	    s1 += v[j];
 	  } else if (j%3==2) {
@@ -594,7 +594,7 @@ namespace matricks {
 	D s4 = 0;
 	
 	result += 7*(v[0]+v[N-1]);
-	for (register size_type j = 1; j < N-1 ; j++ ) {
+	for (register index_type j = 1; j < N-1 ; j++ ) {
 	  if (j%4==1) {
 	    s1 += v[j];
 	  } else if (j%4==2) {
@@ -638,7 +638,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register size_type i = 1; i < N ; i++ )
+    for (register index_type i = 1; i < N ; i++ )
       result *= a[i];
     
     return result;
@@ -666,7 +666,7 @@ namespace matricks {
 
     D result = a[0]*a[0];
 
-    for (register size_type i = 1; i < N ; i++ )
+    for (register index_type i = 1; i < N ; i++ )
       result += a[i]*a[i];
     
     return std::sqrt(result);
@@ -693,7 +693,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register size_type i = 1; i < N ; i++ )
+    for (register index_type i = 1; i < N ; i++ )
       result = std::min(result,a[i]);
     
     return result;
@@ -719,7 +719,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register size_type i = 1; i < N ; i++ )
+    for (register index_type i = 1; i < N ; i++ )
       result = std::max(result,a[i]);
     
     return result;
@@ -748,12 +748,12 @@ namespace matricks {
     // support sorting
     std::vector<D> data(N);
     
-    for (register size_type i = 0; i < N ; i++ )
+    for (register index_type i = 0; i < N ; i++ )
       data[i] = a[i];
 
     sort(data.begin(),data.end());
     
-    for (register size_type i = 0; i < N ; i++ )
+    for (register index_type i = 0; i < N ; i++ )
       a[i] = data[i];
 
   }
@@ -764,7 +764,7 @@ namespace matricks {
 
   template <class DAT> class idpair {
   public:
-    size_type ind;
+    index_type ind;
     DAT dat;
     
     bool operator<(const idpair<DAT>& x2) const {
@@ -772,19 +772,19 @@ namespace matricks {
     }
   };
 
-  template <class D> Vector<uint> sortwind(Vector<D>& a ) {
+  template <class D> Vector<index_type> sortwind(Vector<D>& a ) {
 
     const size_type N = a.size();
 #ifdef MATRICKS_DEBUG
     std::string name = "sortindices(" + a.debugtxt() +")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sortwind");
-      Vector<uint> ivec(0,name);
+      Vector<index_type> ivec(0,name);
       return ivec;
     }
-    Vector<uint> ivec(N,name);
+    Vector<index_type> ivec(N,name);
 #else
-    Vector<uint> ivec(N);
+    Vector<index_type> ivec(N);
 #endif
 
     if (N==0)
@@ -793,7 +793,7 @@ namespace matricks {
     std::vector<idpair<D> > data(N);
     
 
-    for (register size_type i = 0; i < N ; i++ ) {
+    for (register index_type i = 0; i < N ; i++ ) {
       data[i].ind = i;
       data[i].dat = a[i];
     }
@@ -802,7 +802,7 @@ namespace matricks {
     sort(data.begin(),data.end());
     
     
-    for (register size_type i = 0; i < N ; i++ ) {
+    for (register index_type i = 0; i < N ; i++ ) {
       ivec[i] = data[i].ind;
       a[i] = data[i].dat;
     }
@@ -821,7 +821,7 @@ namespace matricks {
     if (N==0)
       return a;
    
-    for (register size_type i = 0; i < N/2 ; i++ ) {
+    for (register index_type i = 0; i < N/2 ; i++ ) {
       D temp = a[i];
       a[i] = a[N-i-1];
       a[N-i-1] = temp;

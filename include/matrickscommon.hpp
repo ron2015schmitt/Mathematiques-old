@@ -119,17 +119,12 @@ namespace matricks {
    * miscellaneous functions
    ****************************************************************************   
    */
-  template <class I>
-  inline const std::string uint2string(I i) {
-    char buffer[10];
-    char* ptr = &buffer[9];
-    *ptr=0;
-    do {
-      unsigned lsd = i % 10;      
-      i /= 10;                     
-      *(--ptr)='0'+static_cast<char>(lsd);                          // Move back
-    } while(i != 0);
-    return std::string(ptr);
+  template <class D>
+  inline std::string num2string(D x) {
+    std::ostringstream strm;
+    strm << x;
+    return strm.str();
+    
   } 
 
   inline int gcd(int a, int b) {

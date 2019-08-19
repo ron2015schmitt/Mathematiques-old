@@ -130,6 +130,14 @@ namespace matricks {
     return  CVecOpScal<D,VorE<std::complex<D>,A>,ApPowCR<D> >(a,b);
   }
 
+  template <class D, class A> 
+  inline CVecOpScal<D,VorE<std::complex<D>,A>, ApRoundZeros<std::complex<D> > > 
+  roundzero(const VorE<std::complex<D>,A>& a, const D tol = MatricksHelper<D>::tolerance)
+  {
+    return  CVecOpScal<D,VorE<std::complex<D>,A>, ApRoundZeros<std::complex<D> > >(a,tol);
+  }
+
+
   // pow(complexvector,intscalar)
 
   template <class D, class A> 
@@ -452,6 +460,7 @@ namespace matricks {
   }
 
 
+  
   // *** functions that return a real vector from a complex vector ***
 
   // abs(complex vector)
@@ -492,6 +501,16 @@ namespace matricks {
   imag(const VorE<std::complex<D>,A>& a)
   {
     return  VFuncOp<D,VorE<std::complex<D>,A>,ApImag<D> >(a);
+  }
+
+
+  // round(complex vector)
+
+  template <class D, class A> 
+  inline VFuncOp<D,VorE<std::complex<D>,A>,ApRoundCplx<D> > 
+  round(const VorE<std::complex<D>,A>& a)
+  {
+    return  VFuncOp<D,VorE<std::complex<D>,A>,ApRoundCplx<D> >(a);
   }
 
 

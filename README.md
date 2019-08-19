@@ -1,4 +1,4 @@
-# mātricks v2.2-r9
+# mātricks v2.2-r10
 
 ```diff
 - CURRENTLY NOT READY FOR USE. Planned Launch Date: 2019 Aug 21 -
@@ -101,6 +101,8 @@ int main()
   const double pi = M_PI;
   
   using namespace matricks;
+  display_execution_mode();
+  
   Vector<double> v1( linspace<double>(-1,1,21) );
   Vector<double> v2;
   v2 = 10*sin(pi/2*v1) + 10;

@@ -8,6 +8,8 @@ int main()
   const double pi = M_PI;
   
   using namespace matricks;
+  display_execution_mode();
+  
   Vector<double> v1( linspace<double>(-1,1,21) );
   Vector<double> v2;
   v2 = 10*sin(pi/2*v1) + 10;

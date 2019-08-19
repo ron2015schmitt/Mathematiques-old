@@ -24,7 +24,10 @@ toc:  $(addsuffix .link_md, $(basename $(DOC)))
 	@cat README.md
 
 
-reset: 
+cleandocs:
+	@./clean $(EXEC)
+
+restore: 
 	@git checkout -- $(addsuffix .md,$(EXEC)) $(addsuffix .link_md,$(EXEC))
 
 

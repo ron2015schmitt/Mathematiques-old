@@ -410,7 +410,7 @@ namespace matricks {
       return resize(0);
     }
 
-    Vector<D>&  roundzeros(D tolerance) { 
+    Vector<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(register size_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }

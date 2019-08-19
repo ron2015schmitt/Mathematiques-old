@@ -259,7 +259,34 @@ int main()
     codeend();
     cr();
 
-    resultstart2(": create a complex vector from two real vectors");
+    resultstart2(": compute the complex conjugate of a vector");
+    resultmulti( vr  );
+    resultmulti( vi  );
+    resultmulti( vc  );
+    resultmulti( conj(vc)  );
+    resultmulti( ~vc  );
+    resultend();
+    cr();
+  }
+
+
+  header3("Complex Conjugation");
+
+  text("Complex cojugation can be performed via the function `conj` or via the operator `~`");
+  {
+    cr();
+    cr();
+    example(Nex++,"compute the complex conjugate of a vector");
+    codestart("C++");
+    codemulti( using namespace std );
+    codemulti( Vector<complex<double> > vc(3) );
+    codemulti( Vector<double> vr( range<double>(1,3) ));
+    codemulti( Vector<double> vi( range<double>(-1,1) ));
+    codemulti( vc = vcomplex(vr, vi) );
+    codeend();
+    cr();
+
+    resultstart2(": compute the complex conjugate of a vector");
     resultmulti( vr  );
     resultmulti( vi  );
     resultmulti( vc  );
@@ -272,137 +299,56 @@ int main()
 
 
   
-  //   text("* A function of a `Vector` operates on each element.  ");
+    text("* Functions defined for complex vectors  ");
   
-  //   {
-  //     cr();
-  //     cr();
-  //     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
-  //     codestart("C++");
-  //     codemulti( Vector<double> v(7) );
-  // #if CPP11 == 1
-  //     codemultiwcomment("C++11 list", v = {-2.5,-2.25,-1,0,1,2.25,2.5});
-  // #else
-  //     codemulti( v = (const double[]) {-2.5,-2.25,-1,0,1,2.25,2.5} );
-  // #endif
-  //     codeend();
-  //     cr();
+    {
+      cr();
+      cr();
+      example(Nex++,"functions of complex vectors");
+      codestart("C++");
+      codemulti(const double pi = M_PI);
+      codemulti( using namespace std );
+      codemulti( Vector<complex<double> > v(3) );
+      codemulti( Vector<double> vr( range<double>(1,3) ));
+      codemulti( Vector<double> vi( range<double>(-1,1) ));
+      codemulti( v = vcomplex(vr, vi) );
+      codeend();
+      cr();
 
-  //     resultstart2(": rounding and sign-related");
-  //     resultmulti( floor(v)  );
-  //     resultmulti( ceil(v)  );
-  //     resultmulti( round(v)  );
-  //     resultmulti( sgn(v)  );
-  //     resultmulti( abs(v)  );
-  //     resultend();
-  //     cr();
-  //   }
-    
-  //   {
-  //     cr();
-  //     cr();
-  //     example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
-  //     codestart("C++");
-  //     codemulti( Vector<double> v(5) );
-  // #if CPP11 == 1
-  //     codemultiwcomment("C++11 list", v = {-1,0,1,2,4});
-  // #else
-  //     codemulti( v = (const double[]) {-1,0,1,2,4} );
-  // #endif
-  //     codeend();
-  //     cr();
-  //     resultstart2(": powers, roots, and exponentiation");
+      resultstart2(": functions of complex vectors");
+      //      resultmulti( floor(v)  );
+      //      resultmulti( ceil(v)  );
+      resultmulti( round(v)  );
+      resultmulti( roundzero(v, 2e-16) );
+      //      resultmulti( sgn(v)  );
+      //      resultmulti( abs(v)  );
+      //     resultstart2(": powers, roots, and exponentiation");
   //     resultmulti( pow(2., v)  );
   //     resultmulti( pow(v, 2.)  );
   //     resultmulti( pow(v,v)  );
-  //     resultmulti( exp(v)  );
+      resultmulti( exp(v)  );
+      resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
   //     resultmulti( log(v)  );
   //     resultmulti( log10(v)  );
   //     resultmulti( log2(v)  );
   //     resultmulti( sqr(v)  );
   //     resultmulti( cube(v)  );
   //     resultmulti( sqrt(v)  );
-  //     resultend();
-  //     cr();
-  //   }
-
-
-  //   {
-  //     cr();
-  //     cr();
-
-  //     example(Nex++,"functions of a `Vector`—trig");
-  //     codestart("C++");
-  //     codemulti( Vector<double> v(5) );
-  // #if CPP11 == 1
-  //     codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
-  //     codemultiwcomment("C++11 list", v = {-pi, -pi/2, 0, pi/2, pi});
-  // #else
-  //     codemulti( double pi = std::acos(-1) );
-  //     codemulti( v = (const double[]) {-pi, -pi, 0, pi, pi} );
-  // #endif
-  //     codeend();
-  //     cr();
-
-  //     resultstart2(": trig");
   //     resultmulti( sin(v)  );
   //     resultmulti( cos(v)  );
   //     resultmulti( tan(v)  );
-  //     resultend();
-  //     cr();
-  //   }
-
-  
-  //   {
-  //     cr();
-  //     cr();
-  //     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
-  //     codestart("C++");
-  //     codemulti( Vector<double> v(3) );
-  // #if CPP11 == 1
-  //     codemultiwcomment("C++11 list", v = {-1,0,1});
-  // #else
-  //     codemulti( v = (const double[]) {-1,0,1} );
-  // #endif
-  //     codeend();
-  //     cr();
-
-  //     resultstart2(": hyperbolic trig");
   //     resultmulti( sinh(v)  );
   //     resultmulti( cosh(v)  );
   //     resultmulti( tanh(v)  );
-  //     resultend();
-  //     cr();
-  //   }
-
-
-  //   {
-  //     cr();
-  //     cr();
-  //     example(Nex++,"functions of a `Vector`—inverse trig");
-  //     codestart("C++");
-  //     codemulti( Vector<double> v(3) );
-  //     codemulti( Vector<double> v1(9) );
-  //     codemulti( Vector<double> v2(9) );
-  // #if CPP11 == 1
-  //     codemultiwcomment("C++11 list", v = {-1,0,1});
-  //     codemultiwcomment("C++11 list", v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
-  //     codemultiwcomment("C++11 list", v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
-  // #else
-  //     codemulti( v = (const double[]) {-1,0,1} );
-  //     codemulti( v1 = (const double[]) {-1,-1,-1, 0, 0, 0, 1, 1, 1});
-  //     codemulti( v2 = (const double[]) {-1, 0, 1,-1, 0, 1,-1, 0, 1});
-  // #endif
-  //     codeend();
-  //     cr();
-
-  //     resultstart2(": inverse trig");
   //     resultmulti( asin(v)  );
   //     resultmulti( acos(v)  );
   //     resultmulti( atan(v)  );
   //     resultmulti( atan2(v1, v2)  );
-  //     resultend();
-  //   }
+       resultend();
+       cr();
+    }
+
+
 
 
   matricks_toc();

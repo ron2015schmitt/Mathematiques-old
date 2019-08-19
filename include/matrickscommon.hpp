@@ -80,14 +80,14 @@ namespace matricks {
 
   // complex rounding
   template <typename D> std::complex<D> round(const std::complex<D>& x) {
-    return std::complex<D>(round(x.real()), round(x.imag()));
+    return std::complex<D>(std::round(x.real()), std::round(x.imag()));
   }
 
   template <typename D> D roundzero(const D& x, const D tolerance) {
     return (std::abs(x) < std::abs(tolerance) ? 0 : x);
   }
   template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance) {
-    return std::complex<D>(roundzero(x.real()), roundzero(x.imag()));
+    return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
   
 
@@ -171,12 +171,12 @@ namespace matricks {
   }
 #else
   inline std::string execution_mode(void) {
-    return "fast";
+    return "normal";
   }
 #endif
 
   inline void display_execution_mode(void) {
-    std::cout << "matricks execution mode = "<< execution_mode() << std::endl;
+    std::cout << "mātricks execution mode = "<< execution_mode() << std::endl;
   }
 
 
@@ -452,6 +452,15 @@ namespace matricks {
     typedef Matrix<typename RealVersionOfType<D>::Type> Type;
   };
 
+  template <typename D> class MatricksHelper {
+    D tolerance = D(0);
+  };
+  template <> class MatricksHelper<double> {
+    double tolerance = 1.5e-16;
+  };
+  template <> class MatricksHelper<float> {
+    float tolerance = 3.5e-7;
+  };
 
 
 

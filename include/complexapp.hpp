@@ -338,6 +338,22 @@ namespace matricks {
 
   };
 
+  // round(a)
+
+  template <class D> class ApRoundCplx {
+  public:
+    ApRoundCplx() { }
+
+    static inline D apply(std::complex<D> a) {
+      return matricks::round(a); 
+    }
+
+    static std::string debugtxt( const std::string& sa) {
+      std::string sout = "round(" + sa + ")";
+      return sout;
+    }
+
+  };
 
 
 

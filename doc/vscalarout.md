@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.2-r9).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.2-r10).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -32,15 +32,15 @@ using namespace std;
 const double tol = 2e-16;
 Vector<complex<double> > v1;
 v1 = vcomplex(range<double>(1,2), 0.);
-v1.roundzeros(tol);
+v1.roundzero(tol);
 Vector<complex<double> > v2;
 v2 = vcomplex(range<double>(-1,-2), range<double>(2,3));
-v2.roundzeros(tol);
+v2.roundzero(tol);
 ```
 
 **Some expressions with results**
 ```C++
-  v1:  {(1,4.67523e-310),(2,4.67523e-310)}; 
+  v1:  {(1,4.67052e-310),(2,4.67052e-310)}; 
   v2:  {(-1,2),(-2,3)}; 
   (~v1|v1):  (5,0); 
   (~v2|v2):  (18,0); 

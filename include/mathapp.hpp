@@ -4,7 +4,7 @@
 
 
 //#include <cmath>
-#include <tgmath.h>
+#include <ctgmath>
 #include <string>
 
 
@@ -426,7 +426,7 @@ namespace matricks {
   public:
     ApRound() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(D a) {
       return std::round(a); 
     }
 
@@ -492,19 +492,19 @@ namespace matricks {
 
 
     
-   // roundzeros(a,tol)
+   // roundzero(a,tol)
 
   template <class D> class ApRoundZeros {
   public:
+    typedef typename RealVersionOfType<D>::Type DREAL;
     ApRoundZeros() { }
 
-    static inline D apply(D a, const D tolerance) { 
-      using std::abs;
-      return (abs(a) < abs(tolerance)) ? 0 : a;
+    static inline D apply(D a, const DREAL tolerance) { 
+      return roundzero(a, tolerance);
     }
 
     static std::string debugtxt(const std::string& sa, const std::string& sb) {
-      std::string sout = "roundzeros( " + sa + " , " + sb + " )";
+      std::string sout = "roundzero( " + sa + " , " + sb + " )";
       return sout;
     }
 

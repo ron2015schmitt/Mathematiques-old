@@ -1,10 +1,11 @@
+maxsize:  2147483647; 
 
 # python-like access: negative indices, slices, lists in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.6).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.6-r1).
 
 ## Element access
 ### Positive and negative indices
-Similar to python, matricks allows negative indices
+Similar to python, mātricks allows negative indices
 
 v[-1] = v[N-1] = end element
 v[-2] = v[N-2] = penultimate element

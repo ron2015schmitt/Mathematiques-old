@@ -22,7 +22,12 @@ namespace matricks {
 
   typedef std::vector<double>::size_type   size_type;
   typedef unsigned int   uint;
-
+  typedef int index_type;
+  typedef long double extended;
+  // maximum subcript size for vectors and matrices (since we allow negative indexing)
+  const size_type maxsize = std::numeric_limits<index_type>::max();
+  //  const size_type maxsize = std::numeric_limits<uint>::max() -1;
+  const size_type badsize = std::numeric_limits<size_type>::max();
 
   
   
@@ -52,11 +57,6 @@ namespace matricks {
    * Some typedefs and constants
    ****************************************************************************   
    */
-  typedef long double extended;
-  // maximum subcript size for vectors and matrices
-  const size_type maxsize = std::numeric_limits<int>::max();
-  //  const size_type maxsize = std::numeric_limits<uint>::max() -1;
-  const size_type badsize = std::numeric_limits<uint>::max();
 
 
   enum TextFormat {text_braces,text_nobraces};
@@ -190,35 +190,35 @@ namespace matricks {
    */
   class seq {
   private:
-    const size_type start_;
-    const size_type end_;
-    const int step_; 
+    const index_type start_;
+    const index_type end_;
+    const index_type step_; 
   public:
-    seq(const size_type start, const size_type end, const int step) :
+    seq(const index_type start, const index_type end, const index_type step) :
       start_(start), end_(end), 
       step_(step) {
     }
-    seq(const size_type start, const size_type end) :
+    seq(const index_type start, const index_type end) :
       start_(start), end_(end), 
       step_((end >= start)?1:-1) {
     }
     
-    size_type start(void) const{ return start_;}
-    size_type end(void) const{ return end_;}
-    int step(void) const{ return step_;}
+    index_type start(void) const{ return start_;}
+    index_type end(void) const{ return end_;}
+    index_type step(void) const{ return step_;}
 
     // could improve speed for step=1 and step=-1 by creating a separate
     // function or template class that doesn't include the step multiply
-    inline size_type operator[](const size_type i) const {
-      return static_cast<uint>(start_ + i * step_);      
+    inline index_type operator[](const index_type i) const {
+      return (start_ + i * step_);      
     }
 
     inline size_type size(void) const {
       // issue warning if step ==0 (size is infinite)
       if ( (step_>=0) && ( end_>=start_ ) )
-	return (end_-start_)/static_cast<uint>(step_) + 1;
+	return (end_-start_)/static_cast<size_type>(step_) + 1;
       else if ( (step_<0) && (end_<start_ ) )
-	return (start_-end_)/static_cast<uint>(-step_) + 1;
+	return (start_-end_)/static_cast<size_type>(-step_) + 1;
       else
 	return 1;
     }
@@ -290,7 +290,7 @@ namespace matricks {
 
     typedef  D DataT;
 
-    inline const D operator[](const size_type i) const {
+    inline const D operator[](const index_type i) const {
       return derived()[i];
     }
 
@@ -366,11 +366,11 @@ namespace matricks {
     }
 
 
-    inline const D operator()(const size_type i) const {
+    inline const D operator()(const index_type i) const {
       return derived()(i);
     }
 
-    inline const D operator()(const size_type r, const size_type c) const {
+    inline const D operator()(const index_type r, const index_type c) const {
       return derived()(r,c);
     }
 
@@ -432,7 +432,7 @@ namespace matricks {
 
 
   template <class A> 
-  Vector<uint> sub2ind(const MorE<size_type,A>& subs, const size_type NR, const size_type NC);
+  Vector<index_type> sub2ind(const MorE<index_type,A>& subs, const size_type NR, const size_type NC);
 
 
 

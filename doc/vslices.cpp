@@ -19,7 +19,8 @@ using namespace matricks;
 
 int main()
 {
-
+  dispcr(maxsize);
+  
   int Nex = 1;
   
   cr();
@@ -29,7 +30,7 @@ int main()
   header2("Element access");
 
   header3("Positive and negative indices");
-  text("Similar to python, matricks allows negative indices");
+  text("Similar to python, mātricks allows negative indices");
   cr();
   text("v[-1] = v[N-1] = end element");
   text("v[-2] = v[N-2] = penultimate element");

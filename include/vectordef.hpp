@@ -495,12 +495,12 @@ namespace matricks {
     }
     
 
-    // Accessing a SET of values 
+    // Accessing a SET of values using a vector of ints
 
-    VSubsetObj<D> operator[](const Vector<size_type>& ii) {
+    VSubsetObj<D> operator[](const Vector<int>& ii) {
       return VSubsetObj<D>(*this, ii);
     }
-    const VSubsetObj<D> operator[](const Vector<size_type>& ii) const {
+    const VSubsetObj<D> operator[](const Vector<int>& ii) const {
       return VSubsetObj<D>(*this, ii);
     }
 

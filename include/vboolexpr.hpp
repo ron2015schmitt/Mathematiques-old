@@ -72,9 +72,6 @@ namespace matricks {
       b_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return (a_.mustcopy(vaddr)) && (b_.mustcopy(vaddr));
-    }
 
 
 
@@ -141,9 +138,6 @@ namespace matricks {
       a_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return a_.mustcopy(vaddr);
-    }
 
 
 
@@ -206,9 +200,6 @@ namespace matricks {
       b_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return b_.mustcopy(vaddr);
-    }
 
 
   };
@@ -260,9 +251,6 @@ namespace matricks {
       a_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return a_.mustcopy(vaddr);
-    }
 
 
   };

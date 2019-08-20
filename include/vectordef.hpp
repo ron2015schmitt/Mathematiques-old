@@ -380,7 +380,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      if (x.mustcopy(this)) {    
+      if (x.checkAddresses(this->getAddresses())) {    
 #ifdef MATRICKS_DEBUG
 	//	Vector<D> vtemp(size(),x.debugtxt());
 	Vector<D> vtemp(size());
@@ -655,18 +655,6 @@ namespace matricks {
 
 
     
-    //**********************************************************************
-    //************************** FOR DELETION **************************************
-    //**********************************************************************
-
-    #pragma GCC diagnostic ignored "-Wunused-parameter"
-    bool mustcopy(const void *vaddr) const {
-      return false;
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(this);
-    }
 
 
     //**********************************************************************

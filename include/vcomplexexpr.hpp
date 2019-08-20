@@ -60,9 +60,6 @@ namespace matricks {
       a_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return a_.mustcopy(vaddr);
-    }
   };
 
 
@@ -120,9 +117,6 @@ namespace matricks {
       b_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return b_.mustcopy(vaddr);
-    }
   };
 
 
@@ -197,18 +191,6 @@ namespace matricks {
       //      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
     }
 
-    bool mustcopy(const void *vaddr) const {
-       return addrmatch(vaddr);
-    }
-
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(&a_);
-    }
-
-    const void *addr(void) const {
-      return &a_;
-    }
 
 
   };

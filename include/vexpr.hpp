@@ -57,13 +57,6 @@ namespace matricks {
       derived().outputglossary();
     }
 
-    bool mustcopy(const void* vaddr) const {
-      return derived().mustcopy(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return derived().addrmatch(vaddr);
-    }
     std::vector<const void*> getAddresses(void) const {
       return derived().getAddresses();
     }
@@ -231,17 +224,6 @@ namespace matricks {
       return derived().outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return derived().mustcopy(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return derived().addrmatch(vaddr);
-    }
-
-    const void *addr(void) const {
-      return derived().addr();
-    }
     std::vector<const void*> getAddresses(void) const {
       return derived().getAddresses();
     }
@@ -358,19 +340,6 @@ namespace matricks {
       outputglossary_VSubsetObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return addrmatch(vaddr);
-    }
-
-
-    bool addrmatch(const void *vaddr) const {
-      return (vaddr==static_cast<const void*>(&a_)) ||(vaddr==static_cast<const void*>(&ii_)) ;
-    }
-
-
-    const void *addr(void) const {
-      return &a_;
-    }
 
 
   };
@@ -471,19 +440,6 @@ namespace matricks {
       //      outputglossary_VJoinObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return addrmatch(vaddr);
-    }
-
-
-    bool addrmatch(const void *vaddr) const {
-      return (vaddr==static_cast<const void*>(&a_)) ||(vaddr==static_cast<const void*>(&b_)) ;
-    }
-
-
-    const void *addr(void) const {
-      return &a_;
-    }
 
 
   };
@@ -587,18 +543,6 @@ namespace matricks {
       outputglossary_VSubMaskObj(a_.objectID(),ii_->objectID(),debugtxt(),size());
     }
 
-    bool mustcopy(const void *vaddr) const {
-       return addrmatch(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(&a_);
-    }
-
-
-    const void *addr(void) const {
-      return &a_;
-    }
 
   };
 
@@ -679,13 +623,6 @@ namespace matricks {
       a_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-       return addrmatch(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(&a_);
-    }
 
 
 
@@ -794,18 +731,6 @@ namespace matricks {
       outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
     }
 
-    bool mustcopy(const void *vaddr) const {
-       return addrmatch(vaddr);
-    }
-
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(&a_);
-    }
-
-    const void *addr(void) const {
-      return &a_;
-    }
 
 
   };
@@ -874,14 +799,6 @@ namespace matricks {
       b_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return (a_.mustcopy(vaddr)) || (b_.mustcopy(vaddr));
-    }
-
-
-    bool addrmatch(const void *vaddr) const {
-      return (a_.addrmatch(vaddr)) || (b_.addrmatch(vaddr));
-    }
 
 
   };
@@ -946,13 +863,6 @@ namespace matricks {
       a_.outputglossary();
     }
 
-    bool mustcopy(const void *vaddr) const {
-      return a_.mustcopy(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return a_.addrmatch(vaddr);
-    }
 
 
 
@@ -1015,13 +925,6 @@ namespace matricks {
     void outputglossary(void) const {
       b_.outputglossary();
     }
-    bool mustcopy(const void *vaddr) const {
-      return b_.mustcopy(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return b_.addrmatch(vaddr);
-    }
 
 
   };
@@ -1072,13 +975,6 @@ namespace matricks {
 
     void outputglossary(void) const {
       a_.outputglossary();
-    }
-    bool mustcopy(const void *vaddr) const {
-      return a_.mustcopy(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return a_.addrmatch(vaddr);
     }
 
 

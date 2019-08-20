@@ -364,13 +364,6 @@ namespace matricks {
       return derived().vetype();
     }
 
-    bool mustcopy(const void* vaddr) const {
-      return derived().mustcopy(vaddr);
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return derived().addrmatch(vaddr);
-    }
 
     std::vector<const void*> getAddresses(void) const {
       return derived().getAddresses();

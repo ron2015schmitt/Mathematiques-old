@@ -36,6 +36,8 @@ namespace matricks {
     VBoolBinOp(const A& a, const B& b)
       : a_(a), b_(b)
     { 
+      addAddress(&a_);
+      addAddress(&b_);
     }
 
     inline bool operator[](const index_type i) const {  
@@ -108,7 +110,9 @@ namespace matricks {
 
     BoolVecOpScal(const A& a, const D b)
       : a_(a), val_(b)
-    { }
+    {
+      addAddress(&a_);
+    }
 
     inline bool operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
@@ -172,7 +176,9 @@ namespace matricks {
 
     BoolScalOpVec(const D a, const B& b)
       :  val_(a), b_(b)
-    { }
+    {
+      addAddress(&b_);
+    }
 
     inline bool operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
@@ -229,7 +235,9 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VBoolFuncOp(const A& a) : a_(a) { }
+    VBoolFuncOp(const A& a) : a_(a) {
+      addAddress(&a_);
+    }
 
 
     inline bool operator[](const index_type i) const

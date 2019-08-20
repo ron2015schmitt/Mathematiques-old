@@ -29,7 +29,9 @@ namespace matricks {
 
     CVecOpScal(const A& a, const D b)
       : a_(a), val_(b)
-    { }
+    {
+      addAddress(&a_);
+    }
 
     inline const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
@@ -88,7 +90,9 @@ namespace matricks {
 
     CScalOpVec(const D a, const B& b)
       : val_(a), b_(b)
-    { }
+    {
+      addAddress(&b_);
+    }
 
     inline const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
@@ -145,6 +149,7 @@ namespace matricks {
     VRealFromComplex(Vector<std::complex<D> >& a)
       :   a_(a)
     { 
+      addAddress(&a_);
     }
 
     inline const D data(index_type i) const{

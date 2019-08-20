@@ -280,11 +280,15 @@ namespace matricks {
     VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
       : a_(a), ii_(ii), delete_ii_(false)
     { 
+      addAddress(&a_);
+      addAddress(&ii_);
     }
 #if CPP11 == 1    
     VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
       : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
     {
+      addAddress(&a_);
+      addAddress(&ii_);
     }
 #endif
     ~VSubsetObj() {
@@ -396,6 +400,8 @@ namespace matricks {
     VJoinObj(Vector<D>& a, Vector<D>& b)
       : a_(a), b_(b)
     { 
+      addAddress(&a_);
+      addAddress(&b_);
     }
 
     inline const D data(index_type i) const{
@@ -511,11 +517,15 @@ namespace matricks {
       : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
     { 
       //      settext_VSubMaskObj(*ii_,mask);
+      addAddress(&a_);
+      addAddress(&ii_);
     }
 #else
     VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
       : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
     { 
+      addAddress(&a_);
+      addAddress(&ii_);
     }
 #endif
 
@@ -617,6 +627,7 @@ namespace matricks {
     VReconObj(Vector<D>& a)
       : a_(a)
     { 
+      addAddress(&a_);
     }
 
     inline VETypes vetype(void) const {
@@ -716,6 +727,7 @@ namespace matricks {
 	  step_((step>=0)?step:-step), 
 	  increasing_((end>=start)?true:false)
     { 
+      addAddress(&a_);
     }
 
     inline const D data(index_type i) const{
@@ -826,6 +838,8 @@ namespace matricks {
     VBinOp(const A& a, const B& b)
       : a_(a), b_(b)
     { 
+      addAddress(&a_);
+      addAddress(&b_);
     }
 
     inline const D operator[](const index_type i) const {  
@@ -901,7 +915,9 @@ namespace matricks {
 
     VecOpScal(const A& a, const D b)
       : a_(a), val_(b)
-    { }
+    {
+      addAddress(&a_);
+    }
 
     inline const D operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
@@ -970,7 +986,9 @@ namespace matricks {
 
     ScalOpVec(const D a, const B& b)
       :  val_(a), b_(b)
-    { }
+    {
+      addAddress(&b_);
+    }
 
     inline const D operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
@@ -1031,7 +1049,9 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
 
-    VFuncOp(const A& a) : a_(a) { }
+    VFuncOp(const A& a) : a_(a) {
+      addAddress(&a_);
+    }
 
 
     inline const D operator[](const index_type i) const

@@ -66,8 +66,17 @@ namespace matricks {
       for (std::vector<const void*>::const_iterator  it = myaddrs.begin() ; it != myaddrs.end(); ++it) {
 	vec.push_back(*it);
       }
-      
       return vec;
+    }
+
+    bool checkAddresses(const std::vector<const void*> addrs) const {
+      for (size_type i = 0; i < addrs.size(); i++){
+	const void* addr = addrs[i];
+	if ( std::find(myaddrs.begin(), myaddrs.end(), addr) != myaddrs.end() ) {
+	  return true;
+	}
+      }
+      return false;
     }
 
     void addAddress(const void* addr) {
@@ -78,15 +87,6 @@ namespace matricks {
       myaddrs.insert(myaddrs.end(), addrs.begin(), addrs.end());
     }
     
-    bool haveMatchingAddresses(const std::vector<const void*> addrs) const {
-      for (size_type i = 0; i < addrs.size(); i++){
-	const void* addr = addrs[i];
-	if ( std::find(myaddrs.begin(), myaddrs.end(), addr) != myaddrs.end() ) {
-	  return true;
-	}
-      }
-      return false;
-    }
   };
 
     
@@ -372,6 +372,20 @@ namespace matricks {
       return derived().addrmatch(vaddr);
     }
 
+    std::vector<const void*> getAddresses(void) const {
+      return derived().getAddresses();
+    }
+    bool checkAddresses(const std::vector<const void*> addrs) const {
+      return derived().checkAddresses(addrs);
+    }
+    void addAddress(const void* addr) {
+      derived().addAddress(addr);
+    }
+    void addAddresses(const std::vector<const void*> addrs) {
+      derived().addAddresses(addrs);
+    }
+    
+    
     friend std::ostream& operator<<(std::ostream &stream, const VorE<D,VE>& ve) {
       Vector<D> v = ve.derived();
       stream << v;

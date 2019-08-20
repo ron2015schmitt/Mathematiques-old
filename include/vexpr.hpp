@@ -64,6 +64,18 @@ namespace matricks {
     bool addrmatch(const void *vaddr) const {
       return derived().addrmatch(vaddr);
     }
+    std::vector<const void*> getAddresses(void) const {
+      return derived().getAddresses();
+    }
+    bool checkAddresses(const std::vector<const void*> addrs) const {
+      return derived().checkAddresses(addrs);
+    }
+    void addAddress(const void* addr) {
+      derived().addAddress(addr);
+    }
+    void addAddresses(const std::vector<const void*> addrs) {
+      derived().addAddresses(addrs);
+    }
 
 
   };
@@ -155,7 +167,7 @@ namespace matricks {
       }
 #endif
 
-      if ( rhs.addrmatch(derived().addr()) ) {    
+      if ( rhs.checkAddresses(getAddresses()) ) {    
 #ifdef MATRICKS_DEBUG
 	Vector<D> y(N,debugtxt());
 #else
@@ -193,7 +205,7 @@ namespace matricks {
 #endif
 
 
-      if ( rhs.addrmatch(derived().addr()) ) {    
+      if ( rhs.checkAddresses(getAddresses()) ) {    
 #ifdef MATRICKS_DEBUG
 	Vector<D> y(N,debugtxt());
 #else
@@ -229,6 +241,18 @@ namespace matricks {
     const void *addr(void) const {
       return derived().addr();
     }
+    std::vector<const void*> getAddresses(void) const {
+      return derived().getAddresses();
+    }
+    bool checkAddresses(const std::vector<const void*> addrs) const {
+      return derived().checkAddresses(addrs);
+    }
+    void addAddress(const void* addr) {
+      derived().addAddress(addr);
+    }
+    void addAddresses(const std::vector<const void*> addrs) {
+      derived().addAddresses(addrs);
+    }
     
   };
 
@@ -248,6 +272,10 @@ namespace matricks {
     const bool delete_ii_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
     VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
       : a_(a), ii_(ii), delete_ii_(false)
     { 
@@ -358,6 +386,12 @@ namespace matricks {
     Vector<D>& b_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    
     VJoinObj(Vector<D>& a, Vector<D>& b)
       : a_(a), b_(b)
     { 
@@ -466,6 +500,11 @@ namespace matricks {
     const Vector<index_type>* ii_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
 #ifdef MATRICKS_DEBUG
     VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
       : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
@@ -569,6 +608,11 @@ namespace matricks {
     Vector<D>& a_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VReconObj(Vector<D>& a)
       : a_(a)
     { 
@@ -660,6 +704,11 @@ namespace matricks {
     const bool increasing_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VSliceObj(Vector<D>& a, const index_type start, const index_type end, const int step)
       :   a_(a),  start_(start), end_(end), 
 	  step_((step>=0)?step:-step), 
@@ -767,6 +816,11 @@ namespace matricks {
     const B& b_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VBinOp(const A& a, const B& b)
       : a_(a), b_(b)
     { 
@@ -838,6 +892,11 @@ namespace matricks {
     D val_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VecOpScal(const A& a, const D b)
       : a_(a), val_(b)
     { }
@@ -901,6 +960,12 @@ namespace matricks {
     const B& b_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+
     ScalOpVec(const D a, const B& b)
       :  val_(a), b_(b)
     { }
@@ -958,6 +1023,12 @@ namespace matricks {
     const A& a_;
   
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+
     VFuncOp(const A& a) : a_(a) { }
 
 
@@ -990,12 +1061,6 @@ namespace matricks {
 
 
   };
-
-
-
-
-
-
 
 
 

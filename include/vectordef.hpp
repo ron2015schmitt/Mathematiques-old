@@ -43,6 +43,10 @@ namespace matricks {
 #endif
 
   public:     
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
 
     typedef D element_type;
     typedef typename RealVersionOfType<D>::Type DREAL;

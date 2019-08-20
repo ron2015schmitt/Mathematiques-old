@@ -22,6 +22,11 @@ namespace matricks {
     const D val_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     CVecOpScal(const A& a, const D b)
       : a_(a), val_(b)
     { }
@@ -76,6 +81,11 @@ namespace matricks {
     const B& b_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     CScalOpVec(const D a, const B& b)
       : val_(a), b_(b)
     { }
@@ -127,6 +137,11 @@ namespace matricks {
     Vector<std::complex<D> >& a_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VRealFromComplex(Vector<std::complex<D> >& a)
       :   a_(a)
     { 

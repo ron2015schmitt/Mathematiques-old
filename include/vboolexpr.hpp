@@ -28,6 +28,11 @@ namespace matricks {
     const B& b_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VBoolBinOp(const A& a, const B& b)
       : a_(a), b_(b)
     { 
@@ -95,6 +100,12 @@ namespace matricks {
     D val_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+
     BoolVecOpScal(const A& a, const D b)
       : a_(a), val_(b)
     { }
@@ -154,6 +165,11 @@ namespace matricks {
     const B& b_;
 
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     BoolScalOpVec(const D a, const B& b)
       :  val_(a), b_(b)
     { }
@@ -208,6 +224,11 @@ namespace matricks {
     const A& a_;
   
   public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
     VBoolFuncOp(const A& a) : a_(a) { }
 
 

@@ -1,6 +1,6 @@
 
 # Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.7-r6).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.7-r7).
 
 ### A `matricks::Vector` wraps a `std::valarray`
 * This bears repeating: a `matricks::Vector` wraps a `std::valarray`

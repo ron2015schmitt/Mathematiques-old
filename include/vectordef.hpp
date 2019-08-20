@@ -503,17 +503,16 @@ namespace matricks {
 
 
 
-    // Accessing a SET of values using a list
-    // need a new object
+    //Accessing a SET of values using a list
 
-    // #if CPP11 == 1
-    // const VSubsetListObj<D> operator[](const std::initializer_list<D>& list) const {
-    //   return VSubsetObj<D>(*this, ii);
-    // }
-    // VSubsetListObj<D> operator[](const std::initializer_list<D>& ii) {
-    //   return VSubsetListObj<D>(*this, ii);
-    // }
-    // #endif
+    #if CPP11 == 1
+    VSubsetObj<D> operator[](const std::initializer_list<index_type>& list) {
+      return  VSubsetObj<D>(*this, list);
+    }
+    const VSubsetObj<D> operator[](const std::initializer_list<index_type>& list) const {
+      return  VSubsetObj<D>(*this, list);
+    }
+    #endif
 
     // ************************** ATTRIBUTE ACCESS ********************************
 

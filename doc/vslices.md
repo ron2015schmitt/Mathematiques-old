@@ -1,6 +1,6 @@
 
 # python-like access: negative indices, slices, lists in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7-r2).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7-r3).
 
 ## Element access
 ### Positive and negative indices
@@ -53,20 +53,29 @@ for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]);
 ### Access vector elements using a list of indices
 
 * The list can be smaller than or greater or equal in length to the vector!
+* The list can have repeated indices and indices can be in any order!
 
 
 **EXAMPLE 3**: Access via a C++11 initializer_list
 ```C++
-Vector<double> v( linspace<double>(0,1,11) );
-v:  {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+Vector<double> v( linspace<double>(0,1,10) );
+v:  {0,0.111111,0.222222,0.333333,0.444444,0.555556,0.666667,0.777778,0.888889,1}; 
 Vector<index_type> vi( range<index_type>(0,10,2) );
 vi:  {0,2,4,6,8,10}; 
 ```
 
 **The result is**
 ```C++
-  v:  {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+  v:  {0,0.111111,0.222222,0.333333,0.444444,0.555556,0.666667,0.777778,0.888889,1}; 
   vi:  {0,2,4,6,8,10}; 
+  v[vi]:  **matricks *ERROR*: out of bounds index=5 encountered during vector access
+                 linspace(0,1,10)[range(0,10,2)]
+          where  linspace(0,1,10)[range(0,10,2)] has size=6
+{0,0.222222,0.444444,0.666667,0.888889,0}; 
+  v[{0,4}]:  {0,0.444444}; 
+  v[{4,0,1,4}]:  {0.444444,0,0.111111,0.444444}; 
+  v[{0,-1}]:  {0,1}; 
+  v[{2,2,2,2,2,2,-2,-2,-2,-2,-2,-2}]:  {0.222222,0.222222,0.222222,0.222222,0.222222,0.222222,0.888889,0.888889,0.888889,0.888889,0.888889,0.888889}; 
 ```
 
 ## Slices

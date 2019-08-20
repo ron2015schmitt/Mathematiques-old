@@ -85,12 +85,13 @@ int main()
   header3("Access vector elements using a list of indices");
   cr();
   text("* The list can be smaller than or greater or equal in length to the vector!");
+  text("* The list can have repeated indices and indices can be in any order!");
   {
     cr();
     cr();
     example(Nex++,"Access via a C++11 initializer_list");
     codestart("C++");
-    codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
+    codemulti( Vector<double> v( linspace<double>(0,1,10) ) );
     dispcr(v);
     codemulti( Vector<index_type> vi( range<index_type>(0,10,2) ) );
     dispcr(vi);
@@ -99,11 +100,11 @@ int main()
     resultstart();
     resultmulti( v );
     resultmulti( vi );
-    // resultmulti( v[vi] );
-    // resultmulti( v[{0,4}] );
-    // resultmulti( v[{0,4}] );
-    // resultmulti( v[{0,-1}] );
-    // resultmulti( v[{2,2,2,2,-2,-2,-2,-2}] );
+    resultmulti( v[vi] );
+    resultmulti( v[{0,4}] );
+    resultmulti( v[{4,0,1,4}] );
+    resultmulti( v[{0,-1}] );
+    resultmulti( v[{2,2,2,2,2,2,-2,-2,-2,-2,-2,-2}] );
     resultend();
   }
 #endif

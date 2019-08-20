@@ -352,11 +352,21 @@ namespace matricks {
   private:
     Vector<D>& a_;
     const Vector<index_type>& ii_;
+    const bool delete_ii_;
 
   public:
     VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
-      : a_(a), ii_(ii)
+      : a_(a), ii_(ii), delete_ii_(false)
     { 
+    }
+#if CPP11 == 1    
+    VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
+      : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
+    {
+    }
+#endif
+    ~VSubsetObj() {
+      if (delete_ii_) delete &ii_;
     }
 
     inline const D data(index_type i) const{
@@ -367,7 +377,14 @@ namespace matricks {
     }
 
     inline index_type index(index_type i) const{
-      return ii_[i];
+      index_type ind = ii_[i];
+      //dispcr(ind);
+      //dispcr(sizetotal());
+      if (ind < 0) {
+	ind = sizetotal() + ind;
+      }
+      //dispcr(ind);
+      return ind;
     }
 
 

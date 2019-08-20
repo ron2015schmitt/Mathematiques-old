@@ -91,7 +91,7 @@ int main()
     cr();
     example(Nex++,"Access via a C++11 initializer_list");
     codestart("C++");
-    codemulti( Vector<double> v( linspace<double>(0,1,10) ) );
+    codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
     dispcr(v);
     codemulti( Vector<index_type> vi( range<index_type>(0,10,2) ) );
     dispcr(vi);

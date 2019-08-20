@@ -1,7 +1,6 @@
-maxsize:  2147483647; 
 
 # python-like access: negative indices, slices, lists in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.6-r3).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7).
 
 ## Element access
 ### Positive and negative indices
@@ -51,11 +50,30 @@ for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]);
   v:  {10,9,8,7,6,5,4,3,2,1,0}; 
 ```
 
+### Access vector elements using a list of indices
+
+* The list can be smaller than or greater or equal in length to the vector!
+
+
+**EXAMPLE 3**: Access via a C++11 initializer_list
+```C++
+Vector<double> v( linspace<double>(0,1,11) );
+v:  {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+Vector<index_type> vi( range<index_type>(0,10,2) );
+vi:  {0,2,4,6,8,10}; 
+```
+
+**The result is**
+```C++
+  v:  {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+  vi:  {0,2,4,6,8,10}; 
+```
+
 ## Slices
 ### The [start,end] slice
 
 
-**EXAMPLE 3**: slice `v[start,end]`
+**EXAMPLE 4**: slice `v[start,end]`
 ```C++
 Vector<double> v( range<double>(0,10) );
 ```

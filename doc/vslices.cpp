@@ -19,7 +19,6 @@ using namespace matricks;
 
 int main()
 {
-  dispcr(maxsize);
   
   int Nex = 1;
   
@@ -80,6 +79,34 @@ int main()
   }
 
 
+
+
+  #if CPP11 == 1
+  header3("Access vector elements using a list of indices");
+  cr();
+  text("* The list can be smaller than or greater or equal in length to the vector!");
+  {
+    cr();
+    cr();
+    example(Nex++,"Access via a C++11 initializer_list");
+    codestart("C++");
+    codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
+    dispcr(v);
+    codemulti( Vector<index_type> vi( range<index_type>(0,10,2) ) );
+    dispcr(vi);
+    codeend();
+    cr();
+    resultstart();
+    resultmulti( v );
+    resultmulti( vi );
+    // resultmulti( v[vi] );
+    // resultmulti( v[{0,4}] );
+    // resultmulti( v[{0,4}] );
+    // resultmulti( v[{0,-1}] );
+    // resultmulti( v[{2,2,2,2,-2,-2,-2,-2}] );
+    resultend();
+  }
+#endif
   
   header2("Slices");
   header3("The [start,end] slice");

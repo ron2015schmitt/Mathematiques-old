@@ -15,7 +15,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class OP>
-  class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> > {
+  class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -70,7 +70,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class B, class OP>
-  class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> > {
+  class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> >, VectorofPtrs {
   private:
     const D val_;
     const B& b_;
@@ -122,7 +122,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class OP>
-  class VRealFromComplex : public  VWrapperObj<D,VRealFromComplex<D,OP> > {
+  class VRealFromComplex : public  VWrapperObj<D,VRealFromComplex<D,OP> >, VectorofPtrs {
   private:
     Vector<std::complex<D> >& a_;
 

@@ -21,7 +21,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-  class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> > {
+  class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -88,7 +88,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-  class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> > {
+  class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -147,7 +147,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-  class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> > {
+  class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> >, VectorofPtrs {
 
   private:
     D val_;
@@ -202,7 +202,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-  class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >{
+  class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >, VectorofPtrs{
   
   private:
     const A& a_;

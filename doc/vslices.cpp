@@ -31,9 +31,9 @@ int main()
   header3("Positive and negative indices");
   text("Similar to python, mātricks allows negative indices");
   cr();
-  text("v[-1] = v[N-1] = end element");
-  text("v[-2] = v[N-2] = penultimate element");
-  text("v[-N] = v[0]   = first element");
+  text("`v[-1] == v[N-1]` == end element\n");
+  text("`v[-2] == v[N-2]` == penultimate element\n");
+  text("`v[-N] == v[0]`   == first element\n");
   {
     cr();
     cr();
@@ -82,9 +82,9 @@ int main()
 
 
   #if CPP11 == 1
-  header3("Access vector elements using a list of indices");
+  header3("Access vector elements using a `Vector` or a C++11 `initializer_list` of indices");
   cr();
-  text("* The list can be smaller than or greater or equal in length to the vector!");
+  text("* The list can be smaller than or greater than or equal to the length to the vector!");
   text("* The list can have repeated indices and indices can be in any order!");
   {
     cr();

@@ -13,6 +13,10 @@ namespace matricks {
   inline Vector<index_type> findtrue( const VorE<bool,A>& a );
 
 
+
+
+
+
   /****************************************************************************
    * Vexpr -- Vector Expression template abstract class
    ****************************************************************************
@@ -30,7 +34,7 @@ namespace matricks {
 
   public:
 
-    inline const D operator[](const index_type i) const {
+    inline const D operator[](const size_type i) const {
       return derived()[i];
     }
 
@@ -64,15 +68,13 @@ namespace matricks {
 
   };
 
-
-
-
-
-
+  
   /****************************************************************************
    * VWrapperObj Expression Template 
    *
    * abstract class 
+   * This is used for expressions that can be placed on the left hand side
+   * of an assignment
    ****************************************************************************
    */
   template <class D, class DERIVED>
@@ -87,8 +89,8 @@ namespace matricks {
 
   public:
 
-    inline const D operator[](const index_type i) const {  
-      const index_type index = derived().index(i);
+    inline const D operator[](const size_type i) const {  
+      const size_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
       if (index>=derived().sizetotal()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
@@ -98,8 +100,8 @@ namespace matricks {
       return derived().data(index);
     }
 
-    inline D& operator[](const index_type i) {  
-      const index_type index = derived().index(i);
+    inline D& operator[](const size_type i) {  
+      const size_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
       if (index>=derived().sizetotal()) {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
@@ -109,7 +111,7 @@ namespace matricks {
       return derived().data(index);
     }
 
-    inline index_type index(void) const {
+    inline size_type index(void) const {
       return derived().index();
     }
 
@@ -124,7 +126,7 @@ namespace matricks {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(index_type i=0; i<size(); i++) 
+      for(size_type i=0; i<size(); i++) 
 	(*this)[i]=d; 
       return derived();
     }
@@ -159,12 +161,12 @@ namespace matricks {
 #else
 	Vector<D> y(N);
 #endif
-	for(register index_type i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register index_type i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register index_type i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = rhs[i]; 
       }
       return derived();
@@ -198,10 +200,10 @@ namespace matricks {
 	Vector<D> y(N);
 #endif
 	y=rhs;
-	for(register index_type i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register index_type i=0; i<N; i++) 
+	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = rhs(i); 
       }
       return derived();
@@ -232,115 +234,6 @@ namespace matricks {
 
 
 
-
-  /****************************************************************************
-   * VSliceObj Expression Template 
-   *
-   * wrapper for vector ranges  (slices)
-   ****************************************************************************
-   */
- 
-  template <class D>
-  class VSliceObj : public  VWrapperObj<D, VSliceObj<D> > {
-  private:
-    Vector<D>& a_;
-    const index_type start_;
-    const index_type end_;
-    const index_type step_;
-    const bool increasing_;
-
-  public:
-    VSliceObj(Vector<D>& a, const index_type start, const index_type end, const int step)
-      :   a_(a),  start_(start), end_(end), 
-	  step_((step>=0)?step:-step), 
-	  increasing_((end>=start)?true:false)
-    { 
-    }
-
-    inline const D data(index_type i) const{
-      return a_[i];
-    }
-    inline D& data(index_type i) {
-      return a_[i];
-    }
-
-
-    // could improve speed for step=1 and step=-1 by creating a separate
-    // function or template class that doesn't include the step multiply
-    inline index_type index(index_type i) const{
-     if (increasing_) 
-       return start_ + i * step_;
-     else 
-       return start_ - i * step_;      
-    }
-
-
-    inline size_type size(void) const {
-     if (increasing_) 
-       return (end_-start_)/step_ + 1;
-     else 
-       return (start_-end_)/step_ + 1;      
-    }
-
-    inline size_type sizetotal(void) const {
-      return a_.size();
-    }
-
-    inline VETypes vetype(void) const {
-      return VE_VSliceObj;
-    }
-
-
-    VSliceObj<D>& operator=(VReconObj<D>& b) { 
-      return this->equals(b);
-    }
-
-    template <class B>
-    VSliceObj<D>& operator=(const VorE<D,B>& rhs) { 
-      return this->equals(rhs);
-    }
-
-    template <class B>
-    VSliceObj<D>& operator=(const MorE<D,B>& rhs) { 
-      return this->equals(rhs);
-    }
-
-    VSliceObj<D>& operator=(const D d) { 
-      return this->equals(d);
-    }
-    
-    VSliceObj<D>& operator=(const VSliceObj<D>& b) { 
-      return this->equals(b);
-    }
-
-    std::string debugtxt(void) const {
-      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
-    }
-
-    void outputglossary(void) const {
-      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
-    }
-
-    bool mustcopy(const void *vaddr) const {
-       return addrmatch(vaddr);
-    }
-
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(&a_);
-    }
-
-    const void *addr(void) const {
-      return &a_;
-    }
-
-
-  };
-
-
-
-
-
   /****************************************************************************
    * VSubsetObj Expression Template 
    *
@@ -348,7 +241,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> > {
+  class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> >, VectorofPtrs {
   private:
     Vector<D>& a_;
     const Vector<index_type>& ii_;
@@ -459,7 +352,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VJoinObj :  public  VWrapperObj<D,VJoinObj<D> > {
+  class VJoinObj :  public  VWrapperObj<D,VJoinObj<D> >, VectorofPtrs {
   private:
     Vector<D>& a_;
     Vector<D>& b_;
@@ -567,7 +460,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> > {
+  class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> >, VectorofPtrs {
   private:
     Vector<D>& a_;
     const Vector<index_type>* ii_;
@@ -671,7 +564,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VReconObj :  public  Vexpr<D,VReconObj<D> > {
+  class VReconObj :  public  Vexpr<D,VReconObj<D> >, VectorofPtrs {
   private:
     Vector<D>& a_;
 
@@ -746,6 +639,120 @@ namespace matricks {
 
 
 
+
+
+
+
+  /****************************************************************************
+   * VSliceObj Expression Template 
+   *
+   * wrapper for vector ranges  (slices)
+   ****************************************************************************
+   */
+ 
+  template <class D>
+  class VSliceObj : public  VWrapperObj<D, VSliceObj<D> >, VectorofPtrs {
+  private:
+    Vector<D>& a_;
+    const index_type start_;
+    const index_type end_;
+    const index_type step_;
+    const bool increasing_;
+
+  public:
+    VSliceObj(Vector<D>& a, const index_type start, const index_type end, const int step)
+      :   a_(a),  start_(start), end_(end), 
+	  step_((step>=0)?step:-step), 
+	  increasing_((end>=start)?true:false)
+    { 
+    }
+
+    inline const D data(index_type i) const{
+      return a_[i];
+    }
+    inline D& data(index_type i) {
+      return a_[i];
+    }
+
+
+    // could improve speed for step=1 and step=-1 by creating a separate
+    // function or template class that doesn't include the step multiply
+    inline index_type index(index_type i) const{
+     if (increasing_) 
+       return start_ + i * step_;
+     else 
+       return start_ - i * step_;      
+    }
+
+
+    inline size_type size(void) const {
+     if (increasing_) 
+       return (end_-start_)/step_ + 1;
+     else 
+       return (start_-end_)/step_ + 1;      
+    }
+
+    inline size_type sizetotal(void) const {
+      return a_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VSliceObj;
+    }
+
+
+    VSliceObj<D>& operator=(VReconObj<D>& b) { 
+      return this->equals(b);
+    }
+
+    template <class B>
+    VSliceObj<D>& operator=(const VorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    template <class B>
+    VSliceObj<D>& operator=(const MorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VSliceObj<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    
+    VSliceObj<D>& operator=(const VSliceObj<D>& b) { 
+      return this->equals(b);
+    }
+
+    std::string debugtxt(void) const {
+      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
+    }
+
+    void outputglossary(void) const {
+      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
+    }
+
+    bool mustcopy(const void *vaddr) const {
+       return addrmatch(vaddr);
+    }
+
+
+    bool addrmatch(const void *vaddr) const {
+      return vaddr==static_cast<const void*>(&a_);
+    }
+
+    const void *addr(void) const {
+      return &a_;
+    }
+
+
+  };
+
+
+
+
+
+
+
   /****************************************************************************
    * VBinOp Operator Expression Template 
    *
@@ -753,7 +760,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-  class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> > {
+  class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -824,7 +831,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-  class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> > {
+  class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -887,7 +894,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-  class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> > {
+  class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> >, VectorofPtrs {
 
   private:
     D val_;
@@ -945,7 +952,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-  class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >{
+  class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >, VectorofPtrs {
   
   private:
     const A& a_;

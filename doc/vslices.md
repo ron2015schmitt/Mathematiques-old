@@ -1,14 +1,17 @@
 
 # python-like access: negative indices, slices, lists in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7-r3).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7-r6).
 
 ## Element access
 ### Positive and negative indices
 Similar to python, mātricks allows negative indices
 
-v[-1] = v[N-1] = end element
-v[-2] = v[N-2] = penultimate element
-v[-N] = v[0]   = first element
+`v[-1] == v[N-1]` == end element
+
+`v[-2] == v[N-2]` == penultimate element
+
+`v[-N] == v[0]`   == first element
+
 
 
 **EXAMPLE 1**: Positive and negative indices
@@ -50,9 +53,9 @@ for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]);
   v:  {10,9,8,7,6,5,4,3,2,1,0}; 
 ```
 
-### Access vector elements using a list of indices
+### Access vector elements using a `Vector` or a C++11 `initializer_list` of indices
 
-* The list can be smaller than or greater or equal in length to the vector!
+* The list can be smaller than or greater than or equal to the length to the vector!
 * The list can have repeated indices and indices can be in any order!
 
 

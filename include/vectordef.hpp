@@ -28,7 +28,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public VorE<D,Vector<D> > {
+  template <class D> class Vector : public VorE<D,Vector<D> >, VectorofPtrs {
   private:
     // *********************** OBJECT DATA ***********************************
     size_type objectID_;

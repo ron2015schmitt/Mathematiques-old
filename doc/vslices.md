@@ -1,6 +1,6 @@
 
 # python-like access: negative indices, slices, lists in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7-r10).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.7-r11).
 
 ## Element access
 ### Positive and negative indices
@@ -22,7 +22,7 @@ const int N = v.size();
 
 **Some expressions with results**
 ```C++
-  v:  ; 
+  v:  {0,1,2,3,4,5,6,7,8,9,10}; 
   N:  11; 
   v[0]:  0; 
   v[1]:  1; 
@@ -41,7 +41,7 @@ Vector<double> v( range<double>(0,10) );
 
 **The result is**
 ```C++
-  v:  ; 
+  v:  {0,1,2,3,4,5,6,7,8,9,10}; 
 ```
 
 ```C++
@@ -50,7 +50,7 @@ for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]);
 
 **The result is**
 ```C++
-  v:  ; 
+  v:  {10,9,8,7,6,5,4,3,2,1,0}; 
 ```
 
 ### Access vector elements using a `Vector` or a C++11 `initializer_list` of indices
@@ -62,15 +62,15 @@ for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]);
 **EXAMPLE 3**: Access via a C++11 initializer_list
 ```C++
 Vector<double> v( linspace<double>(0,1,11) );
-v:  ; 
+v:  {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
 Vector<index_type> vi( range<index_type>(0,10,2) );
-vi:  ; 
+vi:  {0,2,4,6,8,10}; 
 ```
 
 **The result is**
 ```C++
-  v:  ; 
-  vi:  ; 
+  v:  {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+  vi:  {0,2,4,6,8,10}; 
   v[vi]:  {0,0.2,0.4,0.6,0.8,1}; 
   v[{0,4}]:  {0,0.4}; 
   v[{4,0,1,4}]:  {0.4,0,0.1,0.4}; 

@@ -1,6 +1,6 @@
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.7-r10).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.7-r11).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -9,7 +9,7 @@ Vector<double> v(N);
 ```
 **The result is**
 ```C++
-  v:  ; 
+  v:  {0,0,0,0}; 
 ```
 
 **EXAMPLE 2**: Declare `v` and initialize to a constant
@@ -18,7 +18,7 @@ Vector<double> v(4, -1 );
 ```
 **The result is**
 ```C++
-  v:  ; 
+  v:  {-1,-1,-1,-1}; 
 ```
 
 **EXAMPLE 3**: Declare `v` and initialize to a **C-style array** of values
@@ -28,11 +28,11 @@ In debug mode, this produces a warning, as shown below
 Vector<double> v( 4, (const double[]) {10, 20, 30, 40} );
 **matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
                   = D[]
-          where   is <>[size=0], ID=2
+          where   is <>[size=0], ID=3
 ```
 **The result is**
 ```C++
-  v:  ; 
+  v:  {10,20,30,40}; 
 ```
 
 **EXAMPLE 4**: Declare `v` and initialize directly from a list (**__C++11__**)
@@ -41,7 +41,7 @@ Vector<double> v({10, 20, 30, 40});
 ```
 **The result is**
 ```C++
-  v:  ; 
+  v:  {10,20,30,40}; 
 ```
 
 **EXAMPLE 5**: Declare `v2` and initialize to values of `v1`
@@ -55,8 +55,8 @@ v2[0] = -2;
 ```
 **The result is**
 ```C++
-  v1:  ; 
-  v2:  ; 
+  v1:  {-1,11,12,13}; 
+  v2:  {-2,11,12,13}; 
 ```
 
 **EXAMPLE 6**: Declare `v2` and initialize to an expression
@@ -67,8 +67,8 @@ Vector<double> v2(10*v1+1);
 ```
 **The result is**
 ```C++
-  v1:  ; 
-  v2:  ; 
+  v1:  {10,11,12,13}; 
+  v2:  {101,111,121,131}; 
 ```
 
 

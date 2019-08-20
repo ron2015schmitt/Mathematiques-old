@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.7-r10).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.7-r11).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -65,7 +65,7 @@ v = { 1+1i, 1, 1i, 1-1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  v:  ; 
+  v:  {(1,1),(1,0),(0,1),(1,-1)}; 
 ```
 
 ### Arithmetic with complex-valued `Vector`'s

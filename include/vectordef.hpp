@@ -40,9 +40,8 @@ namespace matricks {
     std::valarray<D>* data_;
 #ifdef MATRICKS_DEBUG
     D dummy_;
-#else
-    mutable std::string name_;
 #endif
+    mutable std::string name_;
 
   public:     
     using VectorofPtrs::getAddresses;
@@ -139,6 +138,7 @@ namespace matricks {
       const size_type N = v2.size();
       data_ = new std::valarray<D>(N); 
       *this = v2;
+      constructorHelper();
     }
 
 
@@ -164,7 +164,7 @@ namespace matricks {
       perline_ = size()+1;
       width_ = 0;
       textformat_=text_braces;
-
+      name_ = "Vector";
       addAddress(this);
       
 #ifdef MATRICKS_DEBUG

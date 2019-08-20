@@ -64,7 +64,7 @@ echo "##################################################################" >>Make
 cat files/Makefile.system >> Makefile
 echo "" >> Makefile
 echo "" >> Makefile
-cp Makefile Makefile.clean
+cp Makefile Makefile.pristine
 
 echo " "
 echo "Creating examples/Makefile ..."
@@ -86,9 +86,9 @@ echo "##################################################################" >>exam
 sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> examples/Makefile 
 echo "" >> examples/Makefile
 echo "" >> examples/Makefile
-cp examples/Makefile examples/Makefile.clean
+cp examples/Makefile examples/Makefile.pristine
 
-
+make newtag
 
 # make the object file library (libmatricks.a)
 echo " "

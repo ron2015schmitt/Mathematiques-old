@@ -30,6 +30,19 @@ namespace matricks {
   const size_type badsize = std::numeric_limits<size_type>::max();
 
   
+  template <typename T>
+  std::vector<T> mergeVectors(const std::vector<T> v1, const std::vector<T> v2) {
+    std::vector<T> v3 = v1;
+    v3.insert( v3.end(), v2.begin(), v2.end() );
+    return v3;
+  }
+
+  template <typename T>
+  std::vector<T> createVector(const T x) {
+    std::vector<T> v1;
+    v1.push_back(x);
+    return v1;
+  }
   
 
   inline std::istream& restore_stream(std::istream& tostream, std::istream& fromstream) {

@@ -43,14 +43,59 @@ namespace matricks {
     v1.push_back(x);
     return v1;
   }
-  
 
+
+  class VectorofPtrs {
+
+  public:
+    std::vector<const void*> myaddrs;
+
+
+    VectorofPtrs() {
+    }
+    VectorofPtrs(const void* addr) {
+      addAddress(addr);
+    }
+    VectorofPtrs(const std::vector<const void*> addrs) {
+      addAddresses(addrs);
+    }
+    
+    
+    std::vector<const void*> getAddresses(void) const {
+      std::vector<const void*> vec;
+      for (std::vector<const void*>::const_iterator  it = myaddrs.begin() ; it != myaddrs.end(); ++it) {
+	vec.push_back(*it);
+      }
+      
+      return vec;
+    }
+
+    void addAddress(const void* addr) {
+      myaddrs.push_back(addr);
+    }
+
+    void addAddresses(const std::vector<const void*> addrs) {
+      myaddrs.insert(myaddrs.end(), addrs.begin(), addrs.end());
+    }
+    
+    bool haveMatchingAddresses(const std::vector<const void*> addrs) const {
+      for (size_type i = 0; i < addrs.size(); i++){
+	const void* addr = addrs[i];
+	if ( std::find(myaddrs.begin(), myaddrs.end(), addr) != myaddrs.end() ) {
+	  return true;
+	}
+      }
+      return false;
+    }
+  };
+
+    
   inline std::istream& restore_stream(std::istream& tostream, std::istream& fromstream) {
     std::string s="";
     char c;
     while(fromstream.get(c)) 
       s += c;
-
+    
     size_t len = s.length();
     if (len >0) {
       if (tostream.eof())
@@ -278,7 +323,7 @@ namespace matricks {
 		VE_VReconObj, VE_VJoinObj, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
-		 VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
+		VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
 
 
 
@@ -312,7 +357,7 @@ namespace matricks {
     }
 
     void outputglossary(void) const {
-       derived().outputglossary();
+      derived().outputglossary();
     }
 
     inline VETypes vetype(void) const {
@@ -400,7 +445,7 @@ namespace matricks {
     }
 
     void outputglossary(void) const {
-       derived().outputglossary();
+      derived().outputglossary();
     }
 
     inline METypes metype(void) const {
@@ -507,7 +552,7 @@ namespace matricks {
     }
 
     static size_type addvector(const std::string name, const std::string classname, 
-			 const std::string datatype, const  size_type size, const bool checkname=true);
+			       const std::string datatype, const  size_type size, const bool checkname=true);
 
     static void removevector(const size_type id);
 
@@ -527,7 +572,7 @@ namespace matricks {
     }
 
     static size_type addmatrix(const std::string name, const std::string classname, 
-			 const std::string datatype, const size_type NR, const size_type NC, const bool checkname=true);
+			       const std::string datatype, const size_type NR, const size_type NC, const bool checkname=true);
   
     static void removematrix(const size_type id);
 
@@ -624,13 +669,13 @@ namespace matricks {
   MTS_MACRO_DECL2(p3vector<std::complex<double> >);
 
   /*
-  MTS_MACRO_DECL2(Vector<double>);
-  MTS_MACRO_DECL2(std::complex<double>);
+    MTS_MACRO_DECL2(Vector<double>);
+    MTS_MACRO_DECL2(std::complex<double>);
   */
 
   /* template <typename D, template <typename> class T>  std::string make_type_string(const T<D>& x) {
-    return (x.classname() + "<" +  make_type_string(D()) +"> "); 
-  }
+     return (x.classname() + "<" +  make_type_string(D()) +"> "); 
+     }
   */
 
 

@@ -1,6 +1,6 @@
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.7-r7).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.7-r8).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -54,8 +54,10 @@ Vector<double> v2(11,0.25);
 
 **The result is**
 ```C++
-  v1:  {-1,-0.8,-0.6,-0.4,-0.2,0,0.2,0.4,0.6,0.8,1}; 
-  v2:  {0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25}; 
+  v1:  {-1,-0.8,-0.6,-0.4,-0.2,0,
+ 0.2,0.4,0.6,0.8,1}; 
+  v2:  {0.25,0.25,0.25,0.25,0.25,0.25,
+ 0.25,0.25,0.25,0.25,0.25}; 
   op2<double,fmax>(v1,v2):  {0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.4,0.6,0.8,1}; 
 ```
 

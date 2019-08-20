@@ -1,6 +1,6 @@
 
 # Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.7-r7).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.7-r8).
 
 ### A `matricks::Vector` wraps a `std::valarray`
 * This bears repeating: a `matricks::Vector` wraps a `std::valarray`
@@ -19,7 +19,7 @@ valias[2] = -2;
 
 **The result is**
 ```C++
-  vec:  {0,-1,-2,3}; 
+  vec:  ; 
   valias[]:  { 0 ,-1 ,-2 ,3 } ; 
 ```
 
@@ -46,7 +46,7 @@ valias[2] = 2;
 **The result is**
 ```C++
   *vaptr[]:  { 99 ,1 ,2 ,0 } ; 
-  vec:  {99,1,2,0}; 
+  vec:  ; 
   valias[]:  { 99 ,1 ,2 ,0 } ; 
 ```
 

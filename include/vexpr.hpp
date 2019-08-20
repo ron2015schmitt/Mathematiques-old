@@ -169,7 +169,8 @@ namespace matricks {
 
       if ( rhs.checkAddresses(getAddresses()) ) {    
 #ifdef MATRICKS_DEBUG
-	Vector<D> y(N,debugtxt());
+	//	Vector<D> y(N,debugtxt());
+	Vector<D> y(N);
 #else
 	Vector<D> y(N);
 #endif
@@ -635,7 +636,8 @@ namespace matricks {
       
       if ( x.addrmatch(&a_)) {    
 #ifdef MATRICKS_DEBUG
-	Vector<D> y(N,debugtxt());
+	//	Vector<D> y(N,debugtxt());
+	Vector<D> y(N);
 #else
 	Vector<D> y(N);
 #endif

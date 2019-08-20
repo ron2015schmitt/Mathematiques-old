@@ -23,6 +23,7 @@ namespace matricks {
 
   template <class D> void sort(Vector<D>& a );
 
+  
   /****************************************************************************
    * Vector -- mathematical vector class.
    ****************************************************************************   
@@ -30,6 +31,7 @@ namespace matricks {
 
   template <class D> class Vector : public VorE<D,Vector<D> >, VectorofPtrs {
   private:
+
     // *********************** OBJECT DATA ***********************************
     size_type objectID_;
     size_type perline_;
@@ -52,318 +54,136 @@ namespace matricks {
     typedef typename RealVersionOfType<D>::Type DREAL;
 
 
-    // ************************** CONSTRUCTOR **********************************
+
+    //**********************************************************************
+    //************************** CONSTRUCTORS ******************************
+    //**********************************************************************
 
 
-
-    // constuct with default initialization of valarray (0's)
-
-    explicit Vector<D>(const size_type n, const std::string name = "") { 
-
-#ifdef VDEBUG
-      printf(">>> Vector(int) N=%lu\n",n);
-#endif
-
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
-
-      // allocate store
-      data_ = new std::valarray<D>(N); 
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
-
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-#else
-      name_=name;
-#endif      
+    // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
+    explicit Vector<D>() 
+    {
+      data_ = new std::valarray<D>(0); 
+      constructorHelper();
     }
 
-    // *******************  DEFAULT  CONSTRUCTOR: empty **********************************
 
-    explicit Vector<D>(const std::string name = "") { 
-      
-      size_type n=0;
+    // --------------------- constant=0 CONSTRUCTOR ---------------------
 
-#ifdef VDEBUG
-      printf(">>> Vector() N=%lu\n",n);
-#endif
-
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
-
-      // allocate store
-      data_ = new std::valarray<D>(N); 
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
-
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-#else
-      name_=name;
-#endif      
+    explicit Vector<D>(const size_type N) 
+    { 
+      data_ = new std::valarray<D>(N);
+      constructorHelper();
     }
 
-    // ************************** CONSTANT INIT CONSTRUCTOR **********************************
 
-    explicit Vector<D>(const size_type n, const D val, const std::string name="") { 
-      
-#ifdef VDEBUG
-      printf(">>> Vector(n,val) N=%lu\n",n);
-#endif
+    // --------------------- constant CONSTRUCTOR ---------------------
 
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
+    explicit Vector<D>(const size_type N, const D val) 
+    {
       
-      // allocate store
       data_ = new std::valarray<D>(N); 
-      
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
-      
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-#else
-      name_=name;
-#endif      
-
-      
       *this = val;
-
+      constructorHelper();
     }
 
 
-    // ************************** C++11  INIT CONSTRUCTOR**********************************
+    // ************* C++11 initializer_list CONSTRUCTOR---------------------
 #if CPP11 == 1
-  
-    explicit Vector<D>(const std::initializer_list<D> list, const std::string name="") { 
-
+    explicit Vector<D>(const std::initializer_list<D> list) 
+    {
 
       const size_type N =  list.size();
-#ifdef VDEBUG
-      printf(">>> Vector(C++11 list) N=%lu\n",N);
-#endif
-      
-      // allocate store
       data_ = new std::valarray<D>(N); 
 
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), size());
-      
-      if (N>maxsize) 
-	vbad_size(objectID_, N);
-#else
-      name_=name;
-#endif      
       index_type i = 0;
       typename std::initializer_list<D>::iterator it; 
       for (it = list.begin(); it != list.end(); ++it)  { 
-	//	printf("list[%lu] = %f\n",i,*it);
 	(*this)[i++] = *it;
       }
+
+      constructorHelper();
     }
 
 #endif
 
 
-    // ************************** valarray CONSTRUCTOR **********************************
-    explicit Vector<D>(const std::valarray<D>& valar, const std::string name="") { 
+    // --------------------- valarray CONSTRUCTOR ---------------------
+    explicit Vector<D>(const std::valarray<D>& valar) 
+    {
 
-#ifdef VDEBUG
-      printf(">>> Vector(n,valarray) N=%lu\n",n);
-#endif
-
-      size_type N = valar.size();
-      
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), N);
-      
-      if (N>maxsize) 
-	vbad_size(objectID_, N);
-
-
-#else
-      name_=name;
-#endif      
-
-      // allocate store COPY CONSTRUCTOR!
       data_ = new std::valarray<D>(valar); 
-
+      constructorHelper();
 
     }
 
 
 
-    // ************************** ARRAY INIT CONSTRUCTOR **********************************
-    explicit Vector<D>(const size_type n, const D (vals)[], const std::string name="") { 
-
-#ifdef VDEBUG
-      printf(">>> Vector(n,array) N=%lu\n",n);
-#endif
-
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
-      
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector(name, classname(), datatype(), N);
-      
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-
+    // --------------------- array[]  CONSTRUCTOR ---------------------
+    explicit Vector<D>(const size_type N, const D (vals)[]) 
+    {
       v_array_warning(objectID());
-
-#else
-      name_=name;
-#endif      
 
       // allocate store
       data_ = new std::valarray<D>(vals, N); 
-
-
+      constructorHelper();
     }
-
-
-
-
-
-    // ************************** COPY CONSTRUCTOR *******************************
-
-    Vector<D>(const Vector<D>& v2, const std::string name = "") {
-      const size_type n = v2.size();
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
-
-      // allocate store
-      data_ = new std::valarray<D>(N); 
-
-      perline_ = v2.perline();
-      width_ = v2.width();
-      textformat_= v2.textformat();
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      std::string name2 = name;
-      if (name == "") {
-	name2 = "("+v2.debugtxt()+")";
-	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
-      }else {
-	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size());
-      }
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-#else
-      name_=name;
-#endif      
-
-      *this = v2;
-      
-    }
-
-
-    // ************************** EXPRESSION CONSTRUCTOR *******************************
-
-
-    template <class A>
-    Vector<D>(const Vexpr<D,A>& x, const std::string name = "") {
-      const size_type n = x.size();
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
-
-      data_ = new std::valarray<D>(N); 
-
-      perline_ = N+1;
-      width_ = 0;
-      textformat_=text_braces;
-      
-#ifdef MATRICKS_DEBUG
-      dummy_ = D();
-      std::string name2 = name;
-      if (name == "") {
-	name2 = x.debugtxt();
-	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size(), false);
-      }else {
-	objectID_ = matricksObjectPool::addvector(name2, classname(), datatype(), size());
-      }
-
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-#else
-      name_=name;
-#endif      
-
-      *this = x;
-      
-    }
-
-
-
-
-
-
-
 
 
     
 
-    // **************************** DESTRUCTOR **********************************
+    // --------------------- COPY CONSTRUCTOR --------------------
+
+    Vector<D>(const Vector<D>& v2) 
+    {
+      const size_type N = v2.size();
+      data_ = new std::valarray<D>(N); 
+      *this = v2;
+    }
+
+
+    // --------------------- EXPRESSION CONSTRUCTOR --------------------
+
+
+    template <class A>
+    Vector<D>(const Vexpr<D,A>& x) 
+    {
+
+      const size_type N = x.size();
+      data_ = new std::valarray<D>(N); 
+      *this = x;
+      constructorHelper();
+    }
+
+
+
+
+    // --------------------- constructorHelper() --------------------
+    
+    void constructorHelper() {
+      perline_ = size()+1;
+      width_ = 0;
+      textformat_=text_braces;
+
+      addAddress(this);
+      
+#ifdef MATRICKS_DEBUG
+      dummy_ = D();
+      // add this vector to the directory
+      objectID_ = matricksObjectPool::addvector("", classname(), datatype(), size());
+#endif      
+    }
+
+
+
+
+
+
+
+    //**********************************************************************
+    //************************** DESTRUCTOR ******************************
+    //**********************************************************************
+
     ~Vector<D>() {
       delete  data_ ;
 
@@ -374,7 +194,11 @@ namespace matricks {
     }
   
 
-    // ******************** RESIZE ********************************
+    //**********************************************************************
+    //************************** Size related  ******************************
+    //**********************************************************************
+
+    // --------------------- RESIZE ---------------------
 
     // These allow the user to resize a vector
 
@@ -410,20 +234,16 @@ namespace matricks {
       return *this;
     }
 
-    Vector<D>&  clear(void) { 
-      return resize(0);
+
+    inline size_type size(void) const {
+      return data_->size();
     }
 
-    Vector<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
-      for(register index_type i=size(); i--;) {
-	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
-      }
-      return *this;
-    }
+    //**********************************************************************
+    //************************** ACCESSS ***********************************
+    //**********************************************************************
 
-
-
-    // ************************* valarray ACCESS *********************************
+    // -------------------- valarray ACCESS --------------------
 
 
     // "read/write" to the wrapped valarray
@@ -438,7 +258,7 @@ namespace matricks {
       return *this;
     }
 
-    // ************************* ELEMENT ACCESS *********************************
+    // -------------------- ELEMENT ACCESS --------------------
 
     // "read/write" access signed index
     inline D& operator[](const index_type i)  {
@@ -518,54 +338,12 @@ namespace matricks {
     }
     #endif
 
-    // ************************** ATTRIBUTE ACCESS ********************************
-
-    inline size_type size(void) const {
-      return data_->size();
-    }
-
-    size_type objectID(void) const { 
-      return objectID_;
-    }
-
-    size_type perline(const size_type Nline)  { 
-      return (perline_=Nline);
-    }
-    size_type perline(void)  const { 
-      return perline_;
-    }
-
-    size_type width(const size_type w)  { 
-      return (width_=w);
-    }
-    size_type width(void)  const { 
-      return width_;
-    }
 
 
-    inline VETypes vetype(void) const {
-      return VE_Vector;
-    }
-
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-    bool mustcopy(const void *vaddr) const {
-      return false;
-    }
-
-    bool addrmatch(const void *vaddr) const {
-      return vaddr==static_cast<const void*>(this);
-    }
-
-    TextFormat textformat(void) const {
-      return textformat_;
-    }
-
-    TextFormat textformat(TextFormat newformat) {
-      return textformat_ = newformat;
-    }
-
-
-    // ******************** ASSIGNMENT OPERATORS ********************************
+    
+    //**********************************************************************
+    //************************** ASSIGNMENT **************************************
+    //**********************************************************************
 
     // Any new assignment operators should also be addedc to VWrapperObj for consistency.
     // For this reason, in most cases, its preferred to overload the function vcast()
@@ -604,7 +382,8 @@ namespace matricks {
 
       if (x.mustcopy(this)) {    
 #ifdef MATRICKS_DEBUG
-	Vector<D> vtemp(size(),x.debugtxt());
+	//	Vector<D> vtemp(size(),x.debugtxt());
+	Vector<D> vtemp(size());
 #else
 	Vector<D> vtemp(size());
 #endif
@@ -854,10 +633,77 @@ namespace matricks {
       return equals(varray);
     }
 
-    
-    
-    // ******************************* TEXT STUFF *******************************
+    //**********************************************************************
+    //************************** MATH **************************************
+    //**********************************************************************
 
+    
+    Vector<D>&  clear(void) { 
+      return resize(0);
+    }
+
+    
+    Vector<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+      for(register index_type i=size(); i--;) {
+	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
+      }
+      return *this;
+    }
+
+    // move to here
+    friend  void sort<>(Vector<D>& a );
+
+
+    
+    //**********************************************************************
+    //************************** FOR DELETION **************************************
+    //**********************************************************************
+
+    #pragma GCC diagnostic ignored "-Wunused-parameter"
+    bool mustcopy(const void *vaddr) const {
+      return false;
+    }
+
+    bool addrmatch(const void *vaddr) const {
+      return vaddr==static_cast<const void*>(this);
+    }
+
+
+    //**********************************************************************
+    //************************** Text and debugging ************************
+    //**********************************************************************
+
+
+    size_type objectID(void) const { 
+      return objectID_;
+    }
+
+    size_type perline(const size_type Nline)  { 
+      return (perline_=Nline);
+    }
+    size_type perline(void)  const { 
+      return perline_;
+    }
+
+    size_type width(const size_type w)  { 
+      return (width_=w);
+    }
+    size_type width(void)  const { 
+      return width_;
+    }
+
+
+    inline VETypes vetype(void) const {
+      return VE_Vector;
+    }
+
+    TextFormat textformat(void) const {
+      return textformat_;
+    }
+
+    TextFormat textformat(TextFormat newformat) {
+      return textformat_ = newformat;
+    }
 
     static std::string classname(void)  {
       return "Vector";
@@ -1135,17 +981,13 @@ namespace matricks {
   
     }
 
-    // ******************** FRIENDS ********************************
-
-    friend  void sort<>(Vector<D>& a );
+    // --------------------- FRIENDS ---------------------
 
 
 
     
 
   };
-
-
 
 
 
@@ -1181,7 +1023,8 @@ namespace matricks {
 #ifdef MATRICKS_DEBUG
     std::ostringstream stream;
     stream << "range(" <<start<<","<<end<<","<<step<<")";
-    Vector<D> y(N,stream.str());
+    //    Vector<D> y(N,stream.str());
+    Vector<D> y(N);
     if ( N==0 ){ 
       vbadrange<D>(start,end,step);
       return y;
@@ -1220,7 +1063,8 @@ namespace matricks {
     std::ostringstream stream;
     stream << "linspace(" <<start<<","<<end<<","<<N<<")";
     std::string s = stream.str();
-    Vector<D> y(N,s);
+    //    Vector<D> y(N,s);
+    Vector<D> y(N);
 #else
     Vector<D> y(N);
 #endif

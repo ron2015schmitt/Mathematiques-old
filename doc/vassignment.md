@@ -1,6 +1,6 @@
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.7-r7).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.7-r8).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -11,7 +11,7 @@ v = 78.9;
 ```
 **The result is**
 ```C++
-  v:  {78.9,78.9,78.9,78.9,78.9,78.9,78.9,78.9,78.9,78.9}; 
+  v:  ; 
 ```
 
 
@@ -22,12 +22,12 @@ _In DEBUG mode, this generates a warning since it is a dangerous practice. Use a
 Vector<double> v(4);
 v = (const double[]) {1,2,3,4};
 **matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
-                 Vector3 = D[]
-          where  Vector3 is Vector<double>[size=4], ID=3
+                 Vector2 = D[]
+          where  Vector2 is Vector<double>[size=4], ID=2
 ```
 **The result is**
 ```C++
-  v:  {1,0,3,0}; 
+  v:  ; 
 ```
 
 **EXAMPLE 3**: Assign from a C++11 list.
@@ -37,7 +37,7 @@ v = {1,2,3,4};
 ```
 **The result is**
 ```C++
-  v:  {1,2,3,4}; 
+  v:  ; 
 ```
 
 **EXAMPLE 4**: Assign from another `Vector`.
@@ -52,8 +52,8 @@ v2[0] = 200;
 ```
 **The result is**
 ```C++
-  v1:  {100,2,3,4}; 
-  v2:  {200,2,3,4}; 
+  v1:  ; 
+  v2:  ; 
 ```
 
 **EXAMPLE 5**: Assign from a `Vector` expression.
@@ -64,8 +64,8 @@ v2 = 2*v1;
 ```
 **The result is**
 ```C++
-  v1:  {1,2,3,4}; 
-  v2:  {2,4,6,8}; 
+  v1:  ; 
+  v2:  ; 
 ```
 
 **EXAMPLE 6**: Assign from `std` containers.
@@ -85,10 +85,10 @@ v4 = mylist;
 ```
 **The result is**
 ```C++
-  v1:  {1,2,3,4}; 
-  v2:  {10,20,30}; 
-  v3:  {100,200}; 
-  v4:  {-1,-2}; 
+  v1:  ; 
+  v2:  ; 
+  v3:  ; 
+  v4:  ; 
 ```
 
 

@@ -663,13 +663,13 @@ namespace matricks {
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
-	jjptr_(new Vector<index_type>(1,j,"") ), 
+	jjptr_(new Vector<index_type>(1,j) ), 
 	jj_(*jjptr_)
     {     }
     explicit MDualSetObj(Matrix<D>& a, const index_type i, const Vector<index_type>& jj)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new Vector<index_type>(1,i,"") ), 
+	iiptr_(new Vector<index_type>(1,i) ), 
 	ii_(*iiptr_),
 	jjptr_(0), 
 	jj_(jj)
@@ -942,7 +942,7 @@ namespace matricks {
     explicit MSetRangeObj(Matrix<D>& a, const index_type i, const seq& j)
       : a_(a), 
 	a_NC(a.Ncols()),
-	iiptr_(new Vector<index_type>(1,i,"") ), 
+	iiptr_(new Vector<index_type>(1,i) ), 
 	ii_(*iiptr_),
 	j_(j)
     { }
@@ -1085,7 +1085,7 @@ namespace matricks {
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
-	jjptr_(new Vector<index_type>(1,j,"") ), 
+	jjptr_(new Vector<index_type>(1,j) ), 
 	jj_(*jjptr_)
     { }
 

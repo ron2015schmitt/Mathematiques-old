@@ -495,7 +495,8 @@ namespace matricks {
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"findtrue");
-      Vector<index_type> y(0,s);
+      //      Vector<index_type> y(0,s);
+      Vector<index_type> y(0);
       return y;
     }
 #endif
@@ -504,7 +505,8 @@ namespace matricks {
       N += int(a[i]);
  
 #ifdef MATRICKS_DEBUG
-    Vector<index_type> y(N,s);
+    //   Vector<index_type> y(N,s);
+    Vector<index_type> y(N);
 #else
     Vector<index_type> y(N);
 #endif

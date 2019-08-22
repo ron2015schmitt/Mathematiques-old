@@ -40,12 +40,12 @@ int main()
     codemulti( Vector<double> v1( range<double>(0,3) ) );
     codemulti( Vector<double> v2( range<double>(2,0) ) );
     codemulti( Vector<double> v3 );
-    //    codemulti( v3 = join(v1,v2) );
+    codemulti( v3 = join(v1,v2) );
     codemulti( Vector<double> v4 );
-    // codemulti( v4 = (v1,10*v2) );
+    codemulti( v4 = (v1,10*v2) );
     codemulti( Vector<double> va(2) );
     codemulti( Vector<double> vb(5) );
-    //    codemulti( (va,vb) = v4 );
+    //codemulti( (va,vb) = v4 );
     codeend();
     cr();
 
@@ -60,9 +60,8 @@ int main()
     resultmulti( join(v1,v1) );
     resultmulti( join(join(v1,v1),v1) );
     resultmulti( (v1,v1) );
-    resultmulti( ((v1,v1),v1) );
-    resultmulti( (v2,v2,v1) );
-    //    resultmulti( join(join(v1,v2),v2) );
+    resultmulti( (v1,v1,v1) );
+    resultmulti( (v1,v2,4*v1) );
     resultend();
   }
 

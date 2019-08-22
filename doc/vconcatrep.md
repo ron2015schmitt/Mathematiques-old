@@ -1,6 +1,6 @@
 
 # Vector `join` and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.7-r17).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.7-r18).
 
 ### Vector `join` function
 * The Vector `join` function joins two vectors
@@ -31,7 +31,7 @@ Vector<double> vb(5);
   join(join(v1,v1),v1):  {0,1,2,3,0,1,2,3,0,1,2,3}; 
   (v1,v1):  {0,1,2,3,0,1,2,3}; 
   ((v1,v1),v1):  {0,1,2,3,0,1,2,3,0,1,2,3}; 
-  (v2,v2,v1):  {2,1,0,2,1,0,0,1,2,3}; 
+  (v1,v2,4*v1):  {0,1,2,3,2,1,0,0,4,8,12}; 
 ```
 
 ### Vector `rep` function
@@ -45,8 +45,19 @@ Vector<double> v1( range<double>(1,3) );
 Vector<double> v2( range<double>(-1,-2) );
 Vector<double> v3;
 v3 = rep(v1,3);
+rep for loop
+  j=0, Na=3
+  j=1, Na=3
+  j=2, Na=3
 Vector<double> v4;
 v4 = (rep(v1,2), rep(v2,3));
+rep for loop
+  j=0, Na=2
+  j=1, Na=2
+  j=2, Na=2
+rep for loop
+  j=0, Na=3
+  j=1, Na=3
 ```
 
 **The result is**

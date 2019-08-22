@@ -306,6 +306,7 @@ namespace matricks {
   template <class D, class A> class Vexpr;  
   template <class D, class A> class VWrapperObj;
   template <class D> class VSliceObj;
+  template <class D> class VSliceExpr;
   template <class D> class VSubsetObj;
   template <class D> class VSubMaskObj;
   template <class D, class A, class B> class VJoinObj;
@@ -319,8 +320,13 @@ namespace matricks {
    * Enumeration for different subclasses of VorE class
    ****************************************************************************   
    */
-  enum VETypes {VE_Vector, VE_VScalObj, VE_VSliceObj, VE_VSubsetObj, VE_VSubMaskObj,
-		VE_VReconObj, VE_VJoinObj, 
+  enum VETypes {VE_Vector, VE_VScalObj,
+		VE_VSliceExpr,
+		VE_VSliceObj, 
+		VE_VSubsetObj, VE_VSubMaskObj,
+		VE_VReconObj,
+		VE_VJoinExpr, VE_VJoinObj,
+		VE_VRepExpr, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
 		VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
@@ -346,11 +352,6 @@ namespace matricks {
     inline const D operator[](const index_type i) const {
       return derived()[i];
     }
-    inline  D& operator[](const index_type i)  {
-      return derived()[i];
-    }
-
-
 
     inline size_type size(void) const {
       return derived().size();
@@ -391,6 +392,21 @@ namespace matricks {
   };
 
 
+
+  /****************************************************************************
+   * Vector or Wrapper
+   **************************************************************************** 
+   */
+  
+  template <class D, class VW> class VorW {
+  public:
+    inline VW& derived() {
+      return static_cast<VW&>(*this);
+    }
+    inline  D& operator[](const index_type i)  {
+      return derived()[i];
+    }
+  };
 
 
 

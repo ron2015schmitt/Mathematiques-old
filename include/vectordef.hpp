@@ -29,7 +29,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public VorE<D,Vector<D> >, VectorofPtrs {
+  template <class D> class Vector : public VorE<D,Vector<D> >, VectorofPtrs, VorW<D,Vector<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -286,13 +286,13 @@ namespace matricks {
 
 
 
-    // Accessing a slcuence of values
+    // Accessing a slice of values
     
     VSliceObj<D>  operator[](const slc& i)  { 
       return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
-    const VSliceObj<D>  operator[](const slc& i) const  { 
-      return VSliceObj<D>(*this,i.start(),i.end(),i.step());
+    const VSliceExpr<D>  operator[](const slc& i) const  { 
+      return VSliceExpr<D>(*this,i.start(),i.end(),i.step());
     }
     
 

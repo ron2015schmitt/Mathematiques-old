@@ -84,14 +84,18 @@ namespace matricks {
 
 
     // rep(v,m)
+
+  // TODO:  make input a const.  turn this into a expr
   template <class D> 
   inline Vector<D>&
   rep(Vector<D>& a, size_t m) {
     const size_t Na = a.size();
     const size_t N = m*Na;
     Vector<D> *v = new Vector<D>(N);
-    for(size_t j = 0; j < m; j++) {
-      size_t start = j*Na;
+    printf("rep for loop\n");
+    for(index_type j = 0; j < m; j++) {
+      index_type start = j*Na;
+      printf("  j=%d, Na=%lu\n",j,Na);
       (*v)[slc(start,start+Na-1)] = a[slc(0,Na-1)];
     }
     return *v;

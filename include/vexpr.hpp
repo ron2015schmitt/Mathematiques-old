@@ -83,7 +83,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class DERIVED>
-  class VWrapperObj : public  Vexpr<D,VWrapperObj<D,DERIVED> > {
+  class VWrapperObj : public  Vexpr<D,VWrapperObj<D,DERIVED> >, VorW<D,VWrapperObj<D,DERIVED> > {
   private:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -394,7 +394,7 @@ namespace matricks {
       return i;
     }
     inline VETypes vetype(void) const {
-      return VE_VJoinObj;
+      return VE_VJoinExpr;
     }
     inline size_type size(void) const {
       return a_.size() +b_.size();
@@ -601,13 +601,109 @@ namespace matricks {
 
 
 
+  /****************************************************************************
+   * VSliceExpr Expression Template 
+   *
+   * wrapper for vector ranges  (slices)
+   ****************************************************************************
+   */
+ 
+  template <class D>
+  class VSliceExpr : public  Vexpr<D, VSliceExpr<D> >, VectorofPtrs {
+  private:
+    const Vector<D>& a_;
+
+    const index_type start_;
+    const index_type end_;
+    const index_type step_;
+    const bool increasing_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VSliceExpr(const Vector<D>& a, const index_type start, const index_type end, const int step)
+      :   a_(a),  start_(start), end_(end), 
+	  step_((step>=0)?step:-step), 
+	  increasing_((end>=start)?true:false)
+    { 
+      addAddress(&a_);
+    }
+
+    inline const D data(const index_type i) const{
+      return a_[i];
+    }
+
+
+    // could improve speed for step=1 and step=-1 by creating a separate
+    // function or template class that doesn't include the step multiply
+    inline index_type index(index_type i) const{
+     if (increasing_) 
+       return start_ + i * step_;
+     else 
+       return start_ - i * step_;      
+    }
+
+
+    inline size_type size(void) const {
+     if (increasing_) 
+       return (end_-start_)/step_ + 1;
+     else 
+       return (start_-end_)/step_ + 1;      
+    }
+
+    inline size_type sizetotal(void) const {
+      return a_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VSliceExpr;
+    }
+
+
+    VSliceExpr<D>& operator=(VReconObj<D>& b) { 
+      return this->equals(b);
+    }
+
+    template <class B>
+    VSliceExpr<D>& operator=(const VorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    template <class B>
+    VSliceExpr<D>& operator=(const MorE<D,B>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VSliceExpr<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    
+    VSliceExpr<D>& operator=(const VSliceExpr<D>& b) { 
+      return this->equals(b);
+    }
+
+    std::string debugtxt(void) const {
+      return "";
+      // return debugtxt_VSliceExpr(a_.debugtxt(),start_,end_,step_);
+    }
+
+    void outputglossary(void) const {
+      //outputglossary_VSliceExpr(a_.objectID(),debugtxt(),size());
+    }
+
+
+
+  };
 
 
 
 
 
   /****************************************************************************
-   * VSliceObj Expression Template 
+   * VSliceObj Wrapper object
    *
    * wrapper for vector ranges  (slices)
    ****************************************************************************
@@ -695,11 +791,12 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
+      return "";
+      //return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
     }
 
     void outputglossary(void) const {
-      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
+      // outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
     }
 
 

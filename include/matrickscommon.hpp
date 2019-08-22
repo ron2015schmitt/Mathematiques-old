@@ -346,6 +346,10 @@ namespace matricks {
     inline const D operator[](const index_type i) const {
       return derived()[i];
     }
+    inline  D& operator[](const index_type i)  {
+      return derived()[i];
+    }
+
 
 
     inline size_type size(void) const {

@@ -150,6 +150,7 @@ namespace matricks {
     DERIVED& equals(const VorE<D,B>& rhs) { 
 
       const size_type N =size();
+      //      printf("size=%lu\n",N);
 
 #ifdef MATRICKS_DEBUG
       if ( size() !=  rhs.size() ){ 
@@ -250,6 +251,7 @@ namespace matricks {
   template<class D>
   class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> >, VectorofPtrs {
   private:
+    // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
     const Vector<index_type>& ii_;
     const bool delete_ii_;
@@ -277,10 +279,10 @@ namespace matricks {
       if (delete_ii_) delete &ii_;
     }
 
-    inline const D data(index_type i) const{
+    inline const D data(const index_type i) const{
       return a_[i];
     }
-    inline  D& data(index_type i) {
+    inline  D& data(const index_type i) {
       return a_[i];
     }
 
@@ -356,11 +358,12 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B>
-  class VJoinObj : public  Vexpr<D,VJoinObj<D,A,B> >, VectorofPtrs {
+  class VJoinObj : public  VWrapperObj<D,VJoinObj<D,A,B> >, VectorofPtrs {
 
   private:
-    const A& a_;
-    const B& b_;
+    // can't be constant since we alow to be on left hand side
+    A& a_;
+    B& b_;
 
   public:
     using VectorofPtrs::getAddresses;
@@ -368,7 +371,7 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VJoinObj(const A& a, const B& b)
+    VJoinObj(A& a, B& b)
       : a_(a), b_(b)
     { 
       addAddresses(a_.getAddresses());
@@ -376,14 +379,14 @@ namespace matricks {
     }
 
 
-    inline const D data(index_type i) const{
+    inline const D data(const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
     }
-    inline  D& data(index_type i) {
+    inline  D& data(const index_type i) {
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
@@ -427,9 +430,6 @@ namespace matricks {
       return this->equals(d);
     }
     
-    VJoinObj<D,A,B>& operator=(const VJoinObj<D,A,B>& c) { 
-      return this->equals(c);
-    }
 
   
     std::string debugtxt(void) const {
@@ -460,6 +460,7 @@ namespace matricks {
   template<class D>
   class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> >, VectorofPtrs {
   private:
+    // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
     const Vector<index_type>* ii_;
 
@@ -491,10 +492,10 @@ namespace matricks {
       delete  ii_;
     }
 
-    inline const D data(index_type i) const{
+    inline const D data(const index_type i) const{
       return a_[i];
     }
-    inline  D& data(index_type i) {
+    inline  D& data(const index_type i) {
       return a_[i];
     }
 
@@ -561,6 +562,7 @@ namespace matricks {
   template<class D>
   class VReconObj :  public  Vexpr<D,VReconObj<D> >, VectorofPtrs {
   private:
+    // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
 
   public:
@@ -648,7 +650,9 @@ namespace matricks {
   template <class D>
   class VSliceObj : public  VWrapperObj<D, VSliceObj<D> >, VectorofPtrs {
   private:
+    // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
+
     const index_type start_;
     const index_type end_;
     const index_type step_;
@@ -668,10 +672,10 @@ namespace matricks {
       addAddress(&a_);
     }
 
-    inline const D data(index_type i) const{
+    inline const D data(const index_type i) const{
       return a_[i];
     }
-    inline D& data(index_type i) {
+    inline D& data(const index_type i) {
       return a_[i];
     }
 

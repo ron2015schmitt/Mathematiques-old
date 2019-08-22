@@ -65,24 +65,20 @@ namespace matricks {
 
 
   // join
+
   template <class D, class A, class B> 
-  inline VJoinObj<D, VorE<D,A>, VorE<D,B> >
-  // a,b cannot be const since a join is permitted on LHS
-  join(VorE<D,A>& a, VorE<D,B>& b)
+  inline VJoinExpr<D,VorE<D,A>,VorE<D,B> > 
+  join(const VorE<D,A>& a, const VorE<D,B>& b)
   {
-    return  VJoinObj<D, VorE<D,A>, VorE<D,B> > (a,b);
+    return  VJoinExpr<D,VorE<D,A>,VorE<D,B> >(a,b);
   }
 
-  // operator,
   template <class D, class A, class B> 
-  // a,b cannot be const since a join is permitted on LHS
-  inline VJoinObj<D, VorE<D,A>, VorE<D,B> > 
-  operator,(VorE<D,A>& a, VorE<D,B>& b)
+  inline VJoinExpr<D,VorE<D,A>,VorE<D,B> > 
+  operator,(const VorE<D,A>& a, const VorE<D,B>& b)
   {
-    return  VJoinObj<D, VorE<D,A>, VorE<D,B> > (a,b);
+    return  VJoinExpr<D,VorE<D,A>,VorE<D,B> >(a,b);
   }
-
-
   
 
 

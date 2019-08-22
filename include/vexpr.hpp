@@ -351,19 +351,20 @@ namespace matricks {
 
 
 
+
   /****************************************************************************
-   * VJoinObj Expression Template 
+   * VJoinExpr Expression Template 
    *
-   * wrapper for joining two vectors
+   * expression for joining two VorE (RHS only)
    ****************************************************************************
    */
+
   template<class D, class A, class B>
-  class VJoinObj : public  VWrapperObj<D,VJoinObj<D,A,B> >, VectorofPtrs {
+  class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> >, VectorofPtrs {
 
   private:
-    // can't be constant since we alow to be on left hand side
-    A& a_;
-    B& b_;
+    const A& a_;
+    const B& b_;
 
   public:
     using VectorofPtrs::getAddresses;
@@ -371,13 +372,16 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VJoinObj(A& a, B& b)
+    VJoinExpr(const A& a, const B& b)
       : a_(a), b_(b)
     { 
       addAddresses(a_.getAddresses());
       addAddresses(b_.getAddresses());
     }
 
+    inline const D operator[](const index_type i) const {  
+      return this->data(i); 
+    }
 
     inline const D data(const index_type i) const{
       if ( i < a_.size() ) {
@@ -386,64 +390,26 @@ namespace matricks {
 	return b_[i-a_.size()];
       }
     }
-    inline  D& data(const index_type i) {
-      if ( i < a_.size() ) {
-	return a_[i];
-      } else {
-	return b_[i-a_.size()];
-      }
-    }
-
     inline index_type index(index_type i) const{
       return i;
     }
-
-
-
     inline VETypes vetype(void) const {
       return VE_VJoinObj;
     }
-
     inline size_type size(void) const {
       return a_.size() +b_.size();
     }
-
     inline size_type sizetotal(void) const {
       return a_.size() +b_.size();
     }
-
-    VJoinObj<D,A,B>& operator=(VReconObj<D>& c) { 
-      return this->equals(c);
-    }
-
-    template <class B2>
-    VJoinObj<D,A,B>& operator=(const VorE<D,B2>& rhs) { 
-      return this->equals(rhs);
-    }
-
-    template <class B2>
-    VJoinObj<D,A,B>& operator=(const MorE<D,B2>& rhs) { 
-      return this->equals(rhs);
-    }
-
-    VJoinObj<D,A,B>& operator=(const D d) { 
-      return this->equals(d);
-    }
-    
-
-  
     std::string debugtxt(void) const {
       return "";
-      //      return debugtxt_VJoinObj(a_.debugtxt(),ii_.debugtxt());
+      //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
     }
-
     void outputglossary(void) const {
       return ;
-      //      outputglossary_VJoinObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
+      //      outputglossary_VJoinExpr(a_.objectID(),ii_.objectID(),debugtxt(),size());
     }
-
-
-
   };
 
 

@@ -65,17 +65,21 @@ namespace matricks {
 
 
   // join
-  template <class D> inline
-  VJoinObj<D> join(Vector<D>& a, Vector<D>& b) {
-    return VJoinObj<D>(a,b);
+  template <class D, class A, class B> 
+  inline VJoinObj<D, VorE<D,A>, VorE<D,B> > 
+  join(const VorE<D,A>& a, const VorE<D,B>& b)
+  {
+    return  VJoinObj<D, VorE<D,A>, VorE<D,B> > (a,b);
   }
 
-  // vector , vector
-
-  template <class D> inline
-  VJoinObj<D> operator,(Vector<D>& a, Vector<D>& b) {
-    return join<D>(a,b);
+  // operator,
+  template <class D, class A, class B> 
+  inline VJoinObj<D, VorE<D,A>, VorE<D,B> > 
+  operator,(const VorE<D,A>& a, const VorE<D,B>& b)
+  {
+    return  VJoinObj<D, VorE<D,A>, VorE<D,B> > (a,b);
   }
+
 
   
 
@@ -97,17 +101,6 @@ namespace matricks {
 
   
   
-  /*
-  // vectorexp , scalar
-
-  template <class D, class A> 
-  inline VConcatOp<D,VorE<D,A>,VScalObj<D> > 
-  operator,(const VorE<D,A>& a, const D b)
-  {
-  return  VConcatOp<D,VorE<D,A>,VScalObj<D> >(a,VScalObj<D>(b));
-  }
-
-  */
 
 
 

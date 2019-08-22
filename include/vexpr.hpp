@@ -347,17 +347,20 @@ namespace matricks {
 
 
 
+
+
   /****************************************************************************
    * VJoinObj Expression Template 
    *
    * wrapper for joining two vectors
    ****************************************************************************
    */
-  template<class D>
-  class VJoinObj :  public  VWrapperObj<D,VJoinObj<D> >, VectorofPtrs {
+  template<class D, class A, class B>
+  class VJoinObj : public  Vexpr<D,VJoinObj<D,A,B> >, VectorofPtrs {
+
   private:
-    Vector<D>& a_;
-    Vector<D>& b_;
+    const A& a_;
+    const B& b_;
 
   public:
     using VectorofPtrs::getAddresses;
@@ -365,13 +368,13 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    
-    VJoinObj(Vector<D>& a, Vector<D>& b)
+    VJoinObj(const A& a, const B& b)
       : a_(a), b_(b)
     { 
-      addAddress(&a_);
-      addAddress(&b_);
+      addAddresses(a_.getAddresses());
+      addAddresses(b_.getAddresses());
     }
+
 
     inline const D data(index_type i) const{
       if ( i < a_.size() ) {
@@ -406,30 +409,29 @@ namespace matricks {
       return a_.size() +b_.size();
     }
 
-    VJoinObj<D>& operator=(VReconObj<D>& c) { 
+    VJoinObj<D,A,B>& operator=(VReconObj<D>& c) { 
       return this->equals(c);
     }
 
-    template <class B>
-    VJoinObj<D>& operator=(const VorE<D,B>& rhs) { 
+    template <class B2>
+    VJoinObj<D,A,B>& operator=(const VorE<D,B2>& rhs) { 
       return this->equals(rhs);
     }
 
-    template <class B>
-    VJoinObj<D>& operator=(const MorE<D,B>& rhs) { 
+    template <class B2>
+    VJoinObj<D,A,B>& operator=(const MorE<D,B2>& rhs) { 
       return this->equals(rhs);
     }
 
-    VJoinObj<D>& operator=(const D d) { 
+    VJoinObj<D,A,B>& operator=(const D d) { 
       return this->equals(d);
     }
     
-    VJoinObj<D>& operator=(const VJoinObj<D>& c) { 
+    VJoinObj<D,A,B>& operator=(const VJoinObj<D,A,B>& c) { 
       return this->equals(c);
     }
 
-
-    
+  
     std::string debugtxt(void) const {
       return "";
       //      return debugtxt_VJoinObj(a_.debugtxt(),ii_.debugtxt());
@@ -443,7 +445,6 @@ namespace matricks {
 
 
   };
-
 
 
 
@@ -763,8 +764,8 @@ namespace matricks {
     VBinOp(const A& a, const B& b)
       : a_(a), b_(b)
     { 
-      addAddress(&a_);
-      addAddress(&b_);
+      addAddresses(a_.getAddresses());
+      addAddresses(b_.getAddresses());
     }
 
     inline const D operator[](const index_type i) const {  
@@ -833,7 +834,7 @@ namespace matricks {
     VecOpScal(const A& a, const D b)
       : a_(a), val_(b)
     {
-      addAddress(&a_);
+      addAddresses(a_.getAddresses());
     }
 
     inline const D operator[](const index_type i) const { 
@@ -897,7 +898,7 @@ namespace matricks {
     ScalOpVec(const D a, const B& b)
       :  val_(a), b_(b)
     {
-      addAddress(&b_);
+      addAddresses(b_.getAddresses());
     }
 
     inline const D operator[](const index_type i) const { 
@@ -953,7 +954,7 @@ namespace matricks {
 
 
     VFuncOp(const A& a) : a_(a) {
-      addAddress(&a_);
+      addAddresses(a_.getAddresses());
     }
 
 

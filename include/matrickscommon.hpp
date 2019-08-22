@@ -308,7 +308,7 @@ namespace matricks {
   template <class D> class VSliceObj;
   template <class D> class VSubsetObj;
   template <class D> class VSubMaskObj;
-  template <class D> class VJoinObj;
+  template <class D, class A, class B> class VJoinObj;
   template <class D> class VReconObj;
  
 

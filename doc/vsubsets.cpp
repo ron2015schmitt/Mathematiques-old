@@ -55,7 +55,7 @@ int main()
     resultmulti( v[vodd] );
     resultmulti( v[vodd[1]]);
     resultmulti( v[veven,vodd] );
-    resultmulti( v[veven,vodd,veven,vodd] );
+    resultmulti( v[((veven,vodd),veven),vodd] );
     resultend();
   }
 
@@ -82,7 +82,7 @@ int main()
     resultmulti( v[{4,0,1,4}] );
     resultmulti( v[{1,0,2}] );
     resultmulti( v[{4,3,2,1,0}] );
-    resultmulti( v[{2,2,2,2,2,2,-2,-2,-2,-2,-2,-2}] );
+    resultmulti( v[{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}] );
     resultend();
   }
 #endif

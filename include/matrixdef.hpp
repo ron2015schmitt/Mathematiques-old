@@ -413,7 +413,7 @@ namespace matricks {
 	      break;
 	  } else {
 	    // this while loop is needed to cull out previously 
-	    // processed sequences
+	    // processed slcuences
 	    while (jnext > jstart && jnext < max) {
 	      j = jnext;
 	      jnext = NC * j - Nminus1 * (j / NR);
@@ -466,12 +466,12 @@ namespace matricks {
 
     
 
-    // Accessing a sequence of values
+    // Accessing a slcuence of values
     
-    inline  MRangeObj<D>  operator()(const seq& i)  { 
+    inline  MRangeObj<D>  operator()(const slc& i)  { 
       return MRangeObj<D>(*this,i);
     }
-    inline  const MRangeObj<D>  operator()(const seq& i) const  { 
+    inline  const MRangeObj<D>  operator()(const slc& i) const  { 
       return MRangeObj<D>(*this,i);
     }
     
@@ -605,46 +605,46 @@ namespace matricks {
       return MDualSetObj<D>(*this, i,jj);
     }
 
-    // Accessing a (seq,seq)
+    // Accessing a (slc,slc)
 
-    const MDualRangeObj<D> operator()(const seq& ii, const seq& jj) const {
+    const MDualRangeObj<D> operator()(const slc& ii, const slc& jj) const {
       return MDualRangeObj<D>(*this, ii, jj);
     }
-    MDualRangeObj<D> operator()(const seq& ii, const seq& jj)  {
+    MDualRangeObj<D> operator()(const slc& ii, const slc& jj)  {
       return MDualRangeObj<D>(*this, ii, jj);
     }
 
-    // Accessing  (set,seq)
+    // Accessing  (set,slc)
 
-    const MSetRangeObj<D> operator()(const Vector<index_type>& ii, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const Vector<index_type>& ii, const slc& jj) const {
       return MSetRangeObj<D>(*this, ii, jj);
     }
-    MSetRangeObj<D> operator()(const Vector<index_type>& ii, const seq& jj)  {
+    MSetRangeObj<D> operator()(const Vector<index_type>& ii, const slc& jj)  {
       return MSetRangeObj<D>(*this, ii, jj);
     }
-    // Accessing  (seq,set)
+    // Accessing  (slc,set)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const Vector<index_type>& jj) const {
+    const MRangeSetObj<D> operator()(const slc& ii, const Vector<index_type>& jj) const {
       return MRangeSetObj<D>(*this, ii, jj);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const Vector<index_type>& jj)  {
+    MRangeSetObj<D> operator()(const slc& ii, const Vector<index_type>& jj)  {
       return MRangeSetObj<D>(*this, ii, jj);
     }
 
-    // Accessing  (integer,seq)
+    // Accessing  (integer,slc)
 
-    const MSetRangeObj<D> operator()(const index_type i, const seq& jj) const {
+    const MSetRangeObj<D> operator()(const index_type i, const slc& jj) const {
       return MSetRangeObj<D>(*this, i, jj);
     }
-    MSetRangeObj<D> operator()(const index_type i, const seq& jj)  {
+    MSetRangeObj<D> operator()(const index_type i, const slc& jj)  {
       return MSetRangeObj<D>(*this, i, jj);
     }
-    // Accessing  (seq,integer)
+    // Accessing  (slc,integer)
 
-    const MRangeSetObj<D> operator()(const seq& ii, const index_type j) const {
+    const MRangeSetObj<D> operator()(const slc& ii, const index_type j) const {
       return MRangeSetObj<D>(*this, ii, j);
     }
-    MRangeSetObj<D> operator()(const seq& ii, const index_type j)  {
+    MRangeSetObj<D> operator()(const slc& ii, const index_type j)  {
       return MRangeSetObj<D>(*this, ii, j);
     }
 

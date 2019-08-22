@@ -23,7 +23,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("python-like access: negative indices, slices, lists");
+  mdtitle("python-like access: negative indices & slices");
   matricks_preamble();
 
   header2("Element access");
@@ -54,6 +54,10 @@ int main()
     resultmulti( v[-1] );
     resultmulti( v[-2] );
     resultmulti( v[-N] );
+  #if CPP11 == 1
+    resultmulti( v[{0,-1}] );
+    resultmulti( v[{2,2,-2,-2}] );
+  #endif
     resultend();
   }
 
@@ -81,41 +85,14 @@ int main()
 
 
 
-  #if CPP11 == 1
-  header3("Access vector elements using a `Vector` or a C++11 `initializer_list` of indices");
-  cr();
-  text("* The list can be smaller than or greater than or equal to the length to the vector!");
-  text("* The list can have repeated indices and indices can be in any order!");
-  {
-    cr();
-    cr();
-    example(Nex++,"Access via a C++11 initializer_list");
-    codestart("C++");
-    codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
-    dispcr(v);
-    codemulti( Vector<index_type> vi( range<index_type>(0,10,2) ) );
-    dispcr(vi);
-    codeend();
-    cr();
-    resultstart();
-    resultmulti( v );
-    resultmulti( vi );
-    resultmulti( v[vi] );
-    resultmulti( v[{0,4}] );
-    resultmulti( v[{4,0,1,4}] );
-    resultmulti( v[{0,-1}] );
-    resultmulti( v[{2,2,2,2,2,2,-2,-2,-2,-2,-2,-2}] );
-    resultend();
-  }
-#endif
   
-  header2("Slices");
+  header2("Slices via the `slc` function");
   header3("The [start,end] slice");
 
   {
     cr();
     cr();
-    example(Nex++,"slice `v[start,end]`");
+    example(Nex++,"slice `v[slc(start,end)]`");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(0,10) ) );
     codeend();
@@ -123,7 +100,7 @@ int main()
     
    
     resultstart2("");
-    resultmulti( v[seq(2,6)]);
+    resultmulti( v[slc(2,6)]);
     resultend();
   }
 

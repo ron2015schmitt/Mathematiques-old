@@ -286,12 +286,12 @@ namespace matricks {
 
 
 
-    // Accessing a sequence of values
+    // Accessing a slcuence of values
     
-    VSliceObj<D>  operator[](const seq& i)  { 
+    VSliceObj<D>  operator[](const slc& i)  { 
       return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
-    const VSliceObj<D>  operator[](const seq& i) const  { 
+    const VSliceObj<D>  operator[](const slc& i) const  { 
       return VSliceObj<D>(*this,i.start(),i.end(),i.step());
     }
     

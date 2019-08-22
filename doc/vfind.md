@@ -1,6 +1,6 @@
 
 # The `find` function and Vector subsets in mātricks
-_This document was automatically generated from file_ **`vfind.cpp`** (mātricks-v2.7-r11).
+_This document was automatically generated from file_ **`vfind.cpp`** (mātricks-v2.7-r12).
 
 
 [Table of Contents](README.md)

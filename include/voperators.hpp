@@ -90,7 +90,7 @@ namespace matricks {
     Vector<D> *v = new Vector<D>(N);
     for(size_t j = 0; j < m; j++) {
       size_t start = j*Na;
-      (*v)[seq(start,start+Na-1)] = a[seq(0,Na-1)];
+      (*v)[slc(start,start+Na-1)] = a[slc(0,Na-1)];
     }
     return *v;
   }

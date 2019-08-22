@@ -402,10 +402,10 @@ namespace matricks {
   class MRangeObj : public  MWrapperObj<D,MRangeObj<D> > {
   private:
     Matrix<D>& a_;
-    const seq& i_;
+    const slc& i_;
 
   public:
-    explicit MRangeObj(Matrix<D>& a, const seq& i)
+    explicit MRangeObj(Matrix<D>& a, const slc& i)
       :  a_(a), i_(i)
     { 
     }
@@ -804,11 +804,11 @@ namespace matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const seq& i_;
-    const seq& j_;
+    const slc& i_;
+    const slc& j_;
 
   public:
-    explicit MDualRangeObj(Matrix<D>& a, const seq& i,  const seq& j )
+    explicit MDualRangeObj(Matrix<D>& a, const slc& i,  const slc& j )
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
@@ -929,17 +929,17 @@ namespace matricks {
     const size_type a_NC;
     const Vector<index_type>* iiptr_;
     const Vector<index_type>& ii_;
-    const seq& j_;
+    const slc& j_;
 
   public:
-    explicit MSetRangeObj(Matrix<D>& a, const Vector<index_type>& ii, const seq& j )
+    explicit MSetRangeObj(Matrix<D>& a, const Vector<index_type>& ii, const slc& j )
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(0), 
 	ii_(ii),
 	j_(j)
     { }
-    explicit MSetRangeObj(Matrix<D>& a, const index_type i, const seq& j)
+    explicit MSetRangeObj(Matrix<D>& a, const index_type i, const slc& j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	iiptr_(new Vector<index_type>(1,i) ), 
@@ -1069,19 +1069,19 @@ namespace matricks {
   private:
     Matrix<D>& a_;
     const size_type a_NC;
-    const seq& i_;
+    const slc& i_;
     const Vector<index_type>* jjptr_;
     const Vector<index_type>& jj_;
 
   public:
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const Vector<index_type>& jj )
+    explicit MRangeSetObj(Matrix<D>& a, const slc& i, const Vector<index_type>& jj )
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),
 	jjptr_(0), 
 	jj_(jj)
     { }
-    explicit MRangeSetObj(Matrix<D>& a, const seq& i, const index_type j)
+    explicit MRangeSetObj(Matrix<D>& a, const slc& i, const index_type j)
       : a_(a), 
 	a_NC(a.Ncols()),
 	i_(i),

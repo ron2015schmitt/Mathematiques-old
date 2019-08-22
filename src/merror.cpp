@@ -240,7 +240,7 @@ namespace matricks {
     if (cstart>cend)
       std::cout << indent_str << "ending col cannot be smaller than starting col" << std::endl;
     std::cout << indent_str << "use "<<s<<"(";
-    std::cout << "seq(" << rstart << "," << rend <<"), seq(" << cstart << "," << cend << "))"<< std::endl;
+    std::cout << "slc(" << rstart << "," << rend <<"), slc(" << cstart << "," << cend << "))"<< std::endl;
     std::cout  << indent_str << "instead if this is what you intended"<< std::endl;
     std::cout <<indent_str << s << ".submat(" << rstart << "," << rend <<"," << cstart << "," << cend << ")";
     matricksObjectPool::moutputglossary(id);

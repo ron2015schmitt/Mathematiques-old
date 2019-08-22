@@ -238,20 +238,20 @@ namespace matricks {
 
 
   /****************************************************************************
-   * sequence class -- for accessing subsets of vectors/matrices (like "slice")
+   * slcuence class -- for accessing subsets of vectors/matrices (like "slice")
    ****************************************************************************
    */
-  class seq {
+  class slc {
   private:
     const index_type start_;
     const index_type end_;
     const index_type step_; 
   public:
-    seq(const index_type start, const index_type end, const index_type step) :
+    slc(const index_type start, const index_type end, const index_type step) :
       start_(start), end_(end), 
       step_(step) {
     }
-    seq(const index_type start, const index_type end) :
+    slc(const index_type start, const index_type end) :
       start_(start), end_(end), 
       step_((end >= start)?1:-1) {
     }
@@ -284,12 +284,12 @@ namespace matricks {
 
     std::string debugtxt(void) const {
       std::ostringstream stream;
-      stream <<  "seq(start=" << start_ << ", end=" << end_ << ", step=" << step_ << ")";
+      stream <<  "slc(start=" << start_ << ", end=" << end_ << ", step=" << step_ << ")";
       return stream.str();
     }
 
     
-    friend std::ostream& operator<<(std::ostream &stream, const seq& i) {
+    friend std::ostream& operator<<(std::ostream &stream, const slc& i) {
       stream << i.debugtxt();
       return stream;
     }

@@ -55,6 +55,7 @@ int main()
     resultmulti( v[vodd] );
     resultmulti( v[vodd[1]]);
     resultmulti( v[veven,vodd] );
+    resultmulti( v[vodd[veven[1]]]);
     resultmulti( v[((veven,vodd),veven),vodd] );
     resultend();
   }

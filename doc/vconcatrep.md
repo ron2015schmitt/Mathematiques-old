@@ -1,6 +1,10 @@
+function Any::Any(const MyType& var): MyType = double, var = 3.4
+function Any::Any(const MyType& var): MyType = int, var = 1
+function Any::Any(const MyType& var): MyType = Vector<double> , var = {0,0,0,0,0}
+Vector<Vector<double> > 
 
 # Vector `join` and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.8).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.8-r1).
 
 ### Vector `join` function
 * The Vector `join` function joins two vectors

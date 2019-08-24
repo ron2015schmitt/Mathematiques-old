@@ -205,7 +205,7 @@ namespace matricks {
 
     static std::string fullclassname(void) {
       p3vector<D> dummy;
-      return make_type_string(dummy);
+      return getTypeString(dummy);
     }
 
     std::string debugtxt(void) const {
@@ -232,7 +232,7 @@ namespace matricks {
 
     static std::string datatype(void) {
       D dummy = D();
-      return make_type_string(dummy);
+      return getTypeString(dummy);
     }
     void outputglossary(void) const {
     }

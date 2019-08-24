@@ -27,76 +27,72 @@ namespace matricks {
 
   // VECTOR DIRECTORY IMPLEMENTATIONS
 
-  class VariableWrapperInterface
-  {
-  };
 
-  template <typename T>
-  class VariableWrapper : public VariableWrapperInterface {
-    typedef T MyType;
-    MyType variable; 
-    explicit VariableWrapper(const MyType& var) : variable(var) {}
-    VariableWrapper() {}
-  };
-
-
-  class ObjectAttributes {
+  class ObjectInfo {
   public:
+    AnyIF& object;
     std::string className;
     std::string dataTypeName;
     std::string variableName;
     std::string functionName;
     size_type lineNumber;
     std::string fileName;
-    ObjectAttributes() {}
+    ObjectInfo() {}
   };
 
 
 
   size_type MatricksObjectManager::NextObjectID_ = 1; 
-  std::map<size_type, ObjectAttributes*> MatricksObjectManager::attributePool; 
-  std::map<std::string, VariableWrapperInterface > MatricksObjectManager::objectPool;
+  std::map<std::string, ObjectInfo& > MatricksObjectManager::objectPool;
   
 
-  
-  size_type MatricksObjectManager::addObject(
-					     //const std::unique_ptr<VariableWrapperInterface> > obj,
-					     const std::string variableName,
-					     const std::string functionName,
-					     const size_type lineNumber,
-					     const std::string fileName
-					     ) {
+  size_type MatricksObjectManager::addObject(const AnyIF& obj) {
     size_type id = NextObjectID_++;
-    ObjectAttributes  *myAttrs = new ObjectAttributes();
-    myAttrs->className = "ClassName";
-    myAttrs->dataTypeName = "D";
-    myAttrs->variableName = variableName;
-    myAttrs->functionName = functionName;
-    myAttrs->lineNumber = lineNumber;
-    myAttrs->fileName = fileName;
+    ObjectInfo& info = new ObjectInfo();
+    info->object = obj;
+    objectPool[id]= info;
+    
+  }
+  // size_type MatricksObjectManager::addObject(
+  // 					     //const std::unique_ptr<VariableWrapperInterface> > obj,
+  // 					     const std::string variableName,
+  // 					     const std::string functionName,
+  // 					     const size_type lineNumber,
+  // 					     const std::string fileName
+  // 					     ) {
+  //   size_type id = NextObjectID_++;
+  //   ObjectInfo  *myAttrs = new ObjectInfo();
+  //   myAttrs->className = "ClassName";
+  //   myAttrs->dataTypeName = "D";
+  //   myAttrs->variableName = variableName;
+  //   myAttrs->functionName = functionName;
+  //   myAttrs->lineNumber = lineNumber;
+  //   myAttrs->fileName = fileName;
 
-    attributePool[id]= myAttrs;
-    //    objectPool_.add(id, obj);
+  //   attributePool[id]= myAttrs;
+  //   //    objectPool_.add(id, obj);
 
-    return id;
+  //   return id;
+  // }
+
+
+  ObjectInfo& MatricksObjectManager::getObjectInfo(const size_type id) {
+    return objectPool[id];
   }
 
-
-  ObjectAttributes* MatricksObjectManager::getObjectAttributes(const size_type id) {
-    return attributePool[id];
-  }
   void MatricksObjectManager::removeObject(const size_type id) {
-    ObjectAttributes* a = getObjectAttributes(id);
-    attributePool.erase(id);
-    if (a==0) {
+    ObjectInfo& info = getObjectInfo(id);
+    objectPool.erase(id);
+    if (info==0) {
       return;
     }
-    delete a;
+    delete &info;
   }
+
   void MatricksObjectManager::outputGlossary(const size_type id) {
     using namespace std;
-    ObjectAttributes* a = getObjectAttributes(id);
-    if (a==0) {
+    ObjectInfo& info = getObjectInfo(id);
+    if (info==0) {
       return;
     }
       

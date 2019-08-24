@@ -170,7 +170,8 @@ namespace matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      //      objectID_ = MatricksObjectManager::addvector("", classname(), datatype() );
+      //      Any<Vector<D> > me;
+      //      objectID_ = MatricksObjectManager::addObject(this);
 #endif      
     }
 
@@ -700,7 +701,7 @@ namespace matricks {
 
     static std::string fullclassname(void) {
       Vector<D> dummy;
-      return make_type_string(dummy);
+      return getTypeString(dummy);
     }
 
     std::string debugtxt(void) const {
@@ -743,7 +744,7 @@ namespace matricks {
 
     static std::string datatype(void) {
       D dummy = D();
-      return make_type_string(dummy);
+      return getTypeString(dummy);
     }
 
     void outputglossary(void) const {

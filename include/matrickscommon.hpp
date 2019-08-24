@@ -29,6 +29,24 @@ namespace matricks {
   //  const size_type maxsize = std::numeric_limits<uint>::max() -1;
   const size_type badsize = std::numeric_limits<size_type>::max();
 
+
+
+    /****************************************************************************
+   * Classes that inherit from VorE
+   ****************************************************************************   
+   */
+
+  template <class D> class Vector;
+  template <class D> class p3vector;
+  template <class D, class A> class Vexpr;  
+  template <class D, class A> class VWrapperObj;
+  template <class D> class VSliceObj;
+  template <class D> class VSliceExpr;
+  template <class D> class VSubsetObj;
+  template <class D> class VSubMaskObj;
+  template <class D, class A, class B> class VJoinObj;
+  template <class D> class VReconObj;
+
   
   template <typename T>
   std::vector<T> mergeVectors(const std::vector<T> v1, const std::vector<T> v2) {
@@ -203,13 +221,46 @@ namespace matricks {
 
 
   template <typename T>
-  std::string make_type_string(T) {
+  std::string getTypeString(T var) {
     std::ostringstream stream;
     stream << typeid(T).name();
     return stream.str();
-  }
+  };
+
+#define SPECIALIZE_GETTYPESTRING(T) template <> std::string getTypeString(T var) {  return std::string(#T); }
+  
+  SPECIALIZE_GETTYPESTRING(std::string);
+
+  //  SPECIALIZE_GETTYPESTRING(void);
+  SPECIALIZE_GETTYPESTRING(float);
+  SPECIALIZE_GETTYPESTRING(double);
+  SPECIALIZE_GETTYPESTRING(long double);
+  
+  SPECIALIZE_GETTYPESTRING(bool);
+  SPECIALIZE_GETTYPESTRING(char);
+  SPECIALIZE_GETTYPESTRING(unsigned char);
+  SPECIALIZE_GETTYPESTRING(signed char);
+  
+  SPECIALIZE_GETTYPESTRING(short);
+  SPECIALIZE_GETTYPESTRING(unsigned short);
+  SPECIALIZE_GETTYPESTRING(int);
+  SPECIALIZE_GETTYPESTRING(long);
+  SPECIALIZE_GETTYPESTRING(unsigned long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_GETTYPESTRING(long long);
+  SPECIALIZE_GETTYPESTRING(unsigned long long);
+#endif
 
 
+#define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
+
+  
+  SPECIALIZE_GETTYPESTRING_CONTAINER(Vector);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::vector);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex);
+
+  
+  
   extern const char* error_str;
   extern const char* warn_str;
   extern const char* indent_str;
@@ -304,24 +355,9 @@ namespace matricks {
   };
 
 
-  /****************************************************************************
-   * Classes that inherit from VorE
-   ****************************************************************************   
-   */
-
-  template <class D> class p3vector;
-  template <class D, class A> class Vexpr;  
-  template <class D, class A> class VWrapperObj;
-  template <class D> class VSliceObj;
-  template <class D> class VSliceExpr;
-  template <class D> class VSubsetObj;
-  template <class D> class VSubMaskObj;
-  template <class D, class A, class B> class VJoinObj;
-  template <class D> class VReconObj;
  
 
   
-  template <class D> class Vector;
 
   /****************************************************************************
    * Enumeration for different subclasses of VorE class
@@ -564,22 +600,34 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  class VariableWrapperInterface;
-  class ObjectAttributes;
+
+  class AnyIF
+  {
+  };
+
+  template <typename T>
+  class Any : public AnyIF {
+  public:
+    typedef T MyType;
+    const MyType& variable; 
+    explicit Any(const MyType& var) : variable(var) {
+      using namespace std;
+      printf("function Any::Any(const MyType& var): MyType = %s, var = ",getTypeString(var).c_str());
+      cout << var << endl;
+    }
+  };
+
+  class ObjectInfo;
   
   class MatricksObjectManager {
   private:
     static size_type NextObjectID_; 
-    static std::map<size_type, ObjectAttributes*> attributePool; 
-    static std::map<std::string, VariableWrapperInterface > objectPool;
+    static std::map<std::string, ObjectInfo& > objectPool;
 
 
   public:
-    static size_type addObject(const std::string variableName,
-			       const std::string functionName,
-			       const size_type lineNumber,
-			       const std::string fileName);
-    static ObjectAttributes* getObjectAttributes(const size_type id);
+    static size_type addObject(const AnyIF& obj);
+    static ObjectInfo& getObjectInfo(const size_type id);
     static void removeObject(const size_type id);
     static void outputGlossary(const size_type id);
   };
@@ -625,81 +673,48 @@ namespace matricks {
 
 
 
-/****************************************************************************
- * type string creation
- ****************************************************************************   
- */
 
+
+// #define MTS_CONTAINER_MACRO(T) template <typename D>  std::string getTypeString(const T<D>& x) {return (std::string(# T) + "<" +  getTypeString(D()) +"> "); }
+
+
+// MTS_CONTAINER_MACRO(std::complex);
+// MTS_CONTAINER_MACRO(std::vector);
+// MTS_CONTAINER_MACRO(std::valarray);
   
+// MTS_CONTAINER_MACRO(Vector);
+// MTS_CONTAINER_MACRO(Matrix);
+// MTS_CONTAINER_MACRO(p3vector);
 
+// // the following are instantiated to reduce compile time
 
-#define MTS_MACRO_DECL(T)  std::string make_type_string(T);
+// #define  MTS_MACRO_DECL2(T)  std::string getTypeString(const T&);
 
-MTS_MACRO_DECL(void);
-MTS_MACRO_DECL(float);
-MTS_MACRO_DECL(double);
-MTS_MACRO_DECL(long double);
-
-MTS_MACRO_DECL(bool);
-MTS_MACRO_DECL(char);
-MTS_MACRO_DECL(unsigned char);
-MTS_MACRO_DECL(signed char);
-
-MTS_MACRO_DECL(short);
-MTS_MACRO_DECL(unsigned short);
-MTS_MACRO_DECL(int);
-//MTS_MACRO_DECL(size_type);
-MTS_MACRO_DECL(long);
-MTS_MACRO_DECL(unsigned long);
-#if LONGLONG_EXISTS
-MTS_MACRO_DECL(long long);
-MTS_MACRO_DECL(unsigned long long);
-#endif
-
-MTS_MACRO_DECL(std::string);
-
-
-
-#define MTS_CONTAINER_MACRO(T) template <typename D>  std::string make_type_string(const T<D>& x) {return (std::string(# T) + "<" +  make_type_string(D()) +"> "); }
-
-
-MTS_CONTAINER_MACRO(std::complex);
-MTS_CONTAINER_MACRO(std::vector);
-MTS_CONTAINER_MACRO(std::valarray);
-  
-MTS_CONTAINER_MACRO(Vector);
-MTS_CONTAINER_MACRO(Matrix);
-MTS_CONTAINER_MACRO(p3vector);
-
-// the following are instantiated to reduce compile time
-
-#define  MTS_MACRO_DECL2(T)  std::string make_type_string(const T&);
-
-MTS_MACRO_DECL2(std::complex<float>);
-MTS_MACRO_DECL2(std::complex<double>);
-MTS_MACRO_DECL2(std::complex<long double>);
-MTS_MACRO_DECL2(Vector<float>);
-MTS_MACRO_DECL2(Vector<double>);
-MTS_MACRO_DECL2(Vector<long double>);
-MTS_MACRO_DECL2(Vector<std::complex<double> >);
-MTS_MACRO_DECL2(Vector<Vector<double> >);
-MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
-MTS_MACRO_DECL2(Matrix<float>);
-MTS_MACRO_DECL2(Matrix<double>);
-MTS_MACRO_DECL2(Matrix<long double>);
-MTS_MACRO_DECL2(Matrix<std::complex<double> >);
-MTS_MACRO_DECL2(p3vector<float>);
-MTS_MACRO_DECL2(p3vector<double>);
-MTS_MACRO_DECL2(p3vector<long double>);
-MTS_MACRO_DECL2(p3vector<std::complex<double> >);
+// MTS_MACRO_DECL2(std::complex<float>);
+// MTS_MACRO_DECL2(std::complex<double>);
+// MTS_MACRO_DECL2(std::complex<long double>);
+// MTS_MACRO_DECL2(Vector<float>);
+// MTS_MACRO_DECL2(Vector<double>);
+// MTS_MACRO_DECL2(Vector<long double>);
+// MTS_MACRO_DECL2(Vector<std::complex<double> >);
+// MTS_MACRO_DECL2(Vector<Vector<double> >);
+// MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
+// MTS_MACRO_DECL2(Matrix<float>);
+// MTS_MACRO_DECL2(Matrix<double>);
+// MTS_MACRO_DECL2(Matrix<long double>);
+// MTS_MACRO_DECL2(Matrix<std::complex<double> >);
+// MTS_MACRO_DECL2(p3vector<float>);
+// MTS_MACRO_DECL2(p3vector<double>);
+// MTS_MACRO_DECL2(p3vector<long double>);
+// MTS_MACRO_DECL2(p3vector<std::complex<double> >);
 
 /*
   MTS_MACRO_DECL2(Vector<double>);
   MTS_MACRO_DECL2(std::complex<double>);
 */
 
-/* template <typename D, template <typename> class T>  std::string make_type_string(const T<D>& x) {
-   return (x.classname() + "<" +  make_type_string(D()) +"> "); 
+/* template <typename D, template <typename> class T>  std::string getTypeString(const T<D>& x) {
+   return (x.classname() + "<" +  getTypeString(D()) +"> "); 
    }
 */
 

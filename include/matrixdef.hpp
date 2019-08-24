@@ -862,7 +862,7 @@ namespace matricks {
 
     static std::string fullclassname(void) {
       Matrix<D> dummy;
-      return make_type_string(dummy);
+      return getTypeString(dummy);
     }
 
 
@@ -910,7 +910,7 @@ namespace matricks {
 
     static std::string datatype(void) {
       D dummy = D();
-      return make_type_string(dummy);
+      return getTypeString(dummy);
     }
 
     void outputglossary(void) const {

@@ -20,8 +20,18 @@ using namespace matricks;
 
 int main()
 {
-
+  using namespace std;
   int Nex = 1;
+
+  double d = 3.4;
+  Any<double> x(d);
+
+  Any<index_type> y(Nex);
+  Vector<double> ron(5);
+  Any<Vector<double> > z(ron);
+
+  Vector<Vector<double> > ronnie;
+  cout << getTypeString(ronnie) << endl;
   
   cr();
   mdtitle("Vector `join` and `rep` functions");
@@ -39,8 +49,7 @@ int main()
     cr();
     example(Nex++,"Vector `join` function");
     codestart("C++");
-    Vector_(x,double,5);
-
+    
     codemulti( Vector<double> v1( range<double>(0,3) ) );
     codemulti( Vector<double> v2( range<double>(2,0) ) );
     codemulti( Vector<double> v3 );

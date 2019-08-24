@@ -83,7 +83,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class DERIVED>
-  class VWrapperObj : public  Vexpr<D,VWrapperObj<D,DERIVED> >, VorW<D,VWrapperObj<D,DERIVED> > {
+  class VWrapperObj : public  Vexpr<D,VWrapperObj<D,DERIVED> >, public VorW<D,VWrapperObj<D,DERIVED> > {
   private:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -249,7 +249,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> >, VectorofPtrs {
+  class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -335,11 +335,12 @@ namespace matricks {
 
     
     std::string debugtxt(void) const {
-      return debugtxt_VSubsetObj(a_.debugtxt(),ii_.debugtxt());
+      return "";
+      //return debugtxt_VSubsetObj(a_.debugtxt(),ii_.debugtxt());
     }
 
     void outputglossary(void) const {
-      outputglossary_VSubsetObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
+      //outputglossary_VSubsetObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
     }
 
 
@@ -360,7 +361,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-  class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> >, VectorofPtrs {
+  class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -413,6 +414,105 @@ namespace matricks {
   };
 
 
+  /****************************************************************************
+   * VJoinObj Expression Template 
+   *
+   * expression for joining two VorE (RHS only)
+   ****************************************************************************
+   */
+
+  template<class D, class A, class B>
+  class VJoinObj : public  VWrapperObj<D,VJoinObj<D,A,B> >, public VectorofPtrs {
+
+  private:
+    A& a_;
+    B& b_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VJoinObj(A& a, B& b)
+      : a_(a), b_(b)
+    { 
+      addAddresses(a_.getAddresses());
+      addAddresses(b_.getAddresses());
+    }
+
+
+
+    inline const D operator[](const index_type i) const {  
+      return this->data(i); 
+    }
+
+    inline D& operator[](const index_type i) {  
+      return this->data(i); 
+    }
+
+
+
+    inline const D data(const index_type i) const{
+      if ( i < a_.size() ) {
+	return a_[i];
+      } else {
+	return b_[i-a_.size()];
+      }
+    }
+    inline  D& data(const index_type i) {
+      if ( i < a_.size() ) {
+	return a_[i];
+      } else {
+	return b_[i-a_.size()];
+      }
+    }
+
+    
+    inline index_type index(index_type i) const{
+      return i;
+    }
+    inline VETypes vetype(void) const {
+      return VE_VJoinObj;
+    }
+    inline size_type size(void) const {
+      return a_.size() +b_.size();
+    }
+    inline size_type sizetotal(void) const {
+      return a_.size() +b_.size();
+    }
+
+    VJoinObj<D,A,B>& operator=(VReconObj<D>& b) { 
+      return this->equals(b);
+    }
+
+    template <class C>
+    VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs) { 
+      printf("VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)\n");
+      return this->equals(rhs);
+    }
+
+    template <class C>
+    VJoinObj<D,A,B>& operator=(const MorE<D,C>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    VJoinObj<D,A,B>& operator=(const D d) { 
+      return this->equals(d);
+    }
+
+
+
+    std::string debugtxt(void) const {
+      return "";
+      //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
+    }
+    void outputglossary(void) const {
+      return ;
+      //      outputglossary_VJoinExpr(a_.objectID(),ii_.objectID(),debugtxt(),size());
+    }
+  };
+
 
   
 
@@ -424,7 +524,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> >, VectorofPtrs {
+  class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -504,11 +604,12 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_VSubMaskObj(a_.debugtxt(),ii_->debugtxt());
+      return "";
+      //      return debugtxt_VSubMaskObj(a_.debugtxt(),ii_->debugtxt());
     }
 
     void outputglossary(void) const {
-      outputglossary_VSubMaskObj(a_.objectID(),ii_->objectID(),debugtxt(),size());
+      //      outputglossary_VSubMaskObj(a_.objectID(),ii_->objectID(),debugtxt(),size());
     }
 
 
@@ -526,7 +627,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VReconObj :  public  Vexpr<D,VReconObj<D> >, VectorofPtrs {
+  class VReconObj :  public  Vexpr<D,VReconObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -609,7 +710,7 @@ namespace matricks {
    */
  
   template <class D>
-  class VSliceExpr : public  Vexpr<D, VSliceExpr<D> >, VectorofPtrs {
+  class VSliceExpr : public  Vexpr<D, VSliceExpr<D> >, public VectorofPtrs {
   private:
     const Vector<D>& a_;
 
@@ -710,7 +811,7 @@ namespace matricks {
    */
  
   template <class D>
-  class VSliceObj : public  VWrapperObj<D, VSliceObj<D> >, VectorofPtrs {
+  class VSliceObj : public  VWrapperObj<D, VSliceObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -816,7 +917,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-  class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> >, VectorofPtrs {
+  class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -886,7 +987,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-  class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> >, VectorofPtrs {
+  class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -949,7 +1050,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-  class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> >, VectorofPtrs {
+  class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> >, public VectorofPtrs {
 
   private:
     D val_;
@@ -1008,7 +1109,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-  class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >, VectorofPtrs {
+  class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >, public VectorofPtrs {
   
   private:
     const A& a_;

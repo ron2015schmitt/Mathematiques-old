@@ -202,6 +202,13 @@ namespace matricks {
    */
 
 
+  template <typename T>
+  std::string make_type_string(T) {
+    std::ostringstream stream;
+    stream << typeid(T).name();
+    return stream.str();
+  }
+
 
   extern const char* error_str;
   extern const char* warn_str;
@@ -557,153 +564,144 @@ namespace matricks {
    ****************************************************************************   
    */
 
-
-  class matricksObjectPool {
+  class VariableWrapperInterface;
+  class ObjectAttributes;
+  
+  class MatricksObjectManager {
   private:
-    static size_type NextVectorID_ ;
-    static std::map<size_type,std::string> vectorName_ ; 
-    static std::map<size_type,std::string> vectorClass_ ; 
-    static std::map<size_type,std::string> vectorDatatype_ ; 
-    static std::map<size_type,size_type> vectorSize_ ; 
+    static size_type NextObjectID_; 
+    static std::map<size_type, ObjectAttributes*> attributePool; 
+    static std::map<std::string, VariableWrapperInterface > objectPool;
 
-    static size_type NextMatrixID_ ;
-    static std::map<size_type,std::string> matrixName_ ; 
-    static std::map<size_type,std::string> matrixClass_ ; 
-    static std::map<size_type,std::string> matrixDatatype_ ; 
-    static std::map<size_type,size_type> matrixNrows_ ; 
-    static std::map<size_type,size_type> matrixNcols_ ; 
 
   public:
-    inline static size_t NumVectors(void) { 
-      return vectorName_.size();
-    }
-
-    static size_type addvector(const std::string name, const std::string classname, 
-			       const std::string datatype, const  size_type size, const bool checkname=true);
-
-    static void removevector(const size_type id);
-
-    static std::string vectorname(const size_type id);
-
-    static std::string vadd_name(const std::string& name, const size_type id, const bool checkname=true);
-
-    static void vchange_name(const size_type id, const std::string& name, const bool checkname=true);
-    static void vchange_size(const size_type id, const size_type size);
-
-    static void voutputglossary(const size_type id);
-
-
-
-    inline static size_t NumMatrices(void) { 
-      return matrixName_.size();
-    }
-
-    static size_type addmatrix(const std::string name, const std::string classname, 
-			       const std::string datatype, const size_type NR, const size_type NC, const bool checkname=true);
-  
-    static void removematrix(const size_type id);
-
-    static std::string matrixname(const size_type id);
-    static size_type matrixNrows(const size_type id);
-    static size_type matrixNcols(const size_type id);
-
-
-    static std::string madd_name(const std::string name, const size_type id, const bool checkname=true);
-    static void mchange_name(const size_type id, const std::string& name, const bool checkname=true);
-    static void mchange_size(const size_type id, const size_type NR,  const size_type NC);
-
-    static void moutputglossary(const size_type id);
-
-
+    static size_type addObject(const std::string variableName,
+			       const std::string functionName,
+			       const size_type lineNumber,
+			       const std::string fileName);
+    static ObjectAttributes* getObjectAttributes(const size_type id);
+    static void removeObject(const size_type id);
+    static void outputGlossary(const size_type id);
   };
+  
+
+  static size_type addvector(const std::string name, const std::string classname, 
+			     const std::string datatype, const  size_type size, const bool checkname=true);
+
+  static void removevector(const size_type id);
+
+  static std::string vectorname(const size_type id);
+
+  static std::string vadd_name(const std::string& name, const size_type id, const bool checkname=true);
+
+  static void vchange_name(const size_type id, const std::string& name, const bool checkname=true);
+  static void vchange_size(const size_type id, const size_type size);
+
+  static void outputGlossary(const size_type id);
+
+
+
+  size_t NumMatrices(void);
+
+  static size_type addmatrix(const std::string name, const std::string classname, 
+			     const std::string datatype, const size_type NR, const size_type NC, const bool checkname=true);
+  
+  static void removematrix(const size_type id);
+
+  static std::string matrixname(const size_type id);
+  static size_type matrixNrows(const size_type id);
+  static size_type matrixNcols(const size_type id);
+
+
+  static std::string madd_name(const std::string name, const size_type id, const bool checkname=true);
+  static void mchange_name(const size_type id, const std::string& name, const bool checkname=true);
+  static void mchange_size(const size_type id, const size_type NR,  const size_type NC);
+
+  static void moutputglossary(const size_type id);
 
 
 
 
 
-  /****************************************************************************
-   * type string creation
-   ****************************************************************************   
-   */
+
+
+/****************************************************************************
+ * type string creation
+ ****************************************************************************   
+ */
 
   
-  template <typename T>
-  std::string make_type_string(T) {
-    std::ostringstream stream;
-    stream << typeid(T).name();
-    return stream.str();
-  }
 
 
 #define MTS_MACRO_DECL(T)  std::string make_type_string(T);
 
-  MTS_MACRO_DECL(void);
-  MTS_MACRO_DECL(float);
-  MTS_MACRO_DECL(double);
-  MTS_MACRO_DECL(long double);
+MTS_MACRO_DECL(void);
+MTS_MACRO_DECL(float);
+MTS_MACRO_DECL(double);
+MTS_MACRO_DECL(long double);
 
-  MTS_MACRO_DECL(bool);
-  MTS_MACRO_DECL(char);
-  MTS_MACRO_DECL(unsigned char);
-  MTS_MACRO_DECL(signed char);
+MTS_MACRO_DECL(bool);
+MTS_MACRO_DECL(char);
+MTS_MACRO_DECL(unsigned char);
+MTS_MACRO_DECL(signed char);
 
-  MTS_MACRO_DECL(short);
-  MTS_MACRO_DECL(unsigned short);
-  MTS_MACRO_DECL(int);
-  MTS_MACRO_DECL(size_type);
-  MTS_MACRO_DECL(long);
-  MTS_MACRO_DECL(unsigned long);
+MTS_MACRO_DECL(short);
+MTS_MACRO_DECL(unsigned short);
+MTS_MACRO_DECL(int);
+//MTS_MACRO_DECL(size_type);
+MTS_MACRO_DECL(long);
+MTS_MACRO_DECL(unsigned long);
 #if LONGLONG_EXISTS
-  MTS_MACRO_DECL(long long);
-  MTS_MACRO_DECL(unsigned long long);
+MTS_MACRO_DECL(long long);
+MTS_MACRO_DECL(unsigned long long);
 #endif
 
-  MTS_MACRO_DECL(std::string);
+MTS_MACRO_DECL(std::string);
 
 
 
 #define MTS_CONTAINER_MACRO(T) template <typename D>  std::string make_type_string(const T<D>& x) {return (std::string(# T) + "<" +  make_type_string(D()) +"> "); }
 
 
-  MTS_CONTAINER_MACRO(std::complex);
-  MTS_CONTAINER_MACRO(std::vector);
-  MTS_CONTAINER_MACRO(std::valarray);
+MTS_CONTAINER_MACRO(std::complex);
+MTS_CONTAINER_MACRO(std::vector);
+MTS_CONTAINER_MACRO(std::valarray);
   
-  MTS_CONTAINER_MACRO(Vector);
-  MTS_CONTAINER_MACRO(Matrix);
-  MTS_CONTAINER_MACRO(p3vector);
+MTS_CONTAINER_MACRO(Vector);
+MTS_CONTAINER_MACRO(Matrix);
+MTS_CONTAINER_MACRO(p3vector);
 
-  // the following are instantiated to reduce compile time
+// the following are instantiated to reduce compile time
 
 #define  MTS_MACRO_DECL2(T)  std::string make_type_string(const T&);
 
-  MTS_MACRO_DECL2(std::complex<float>);
-  MTS_MACRO_DECL2(std::complex<double>);
-  MTS_MACRO_DECL2(std::complex<long double>);
-  MTS_MACRO_DECL2(Vector<float>);
+MTS_MACRO_DECL2(std::complex<float>);
+MTS_MACRO_DECL2(std::complex<double>);
+MTS_MACRO_DECL2(std::complex<long double>);
+MTS_MACRO_DECL2(Vector<float>);
+MTS_MACRO_DECL2(Vector<double>);
+MTS_MACRO_DECL2(Vector<long double>);
+MTS_MACRO_DECL2(Vector<std::complex<double> >);
+MTS_MACRO_DECL2(Vector<Vector<double> >);
+MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
+MTS_MACRO_DECL2(Matrix<float>);
+MTS_MACRO_DECL2(Matrix<double>);
+MTS_MACRO_DECL2(Matrix<long double>);
+MTS_MACRO_DECL2(Matrix<std::complex<double> >);
+MTS_MACRO_DECL2(p3vector<float>);
+MTS_MACRO_DECL2(p3vector<double>);
+MTS_MACRO_DECL2(p3vector<long double>);
+MTS_MACRO_DECL2(p3vector<std::complex<double> >);
+
+/*
   MTS_MACRO_DECL2(Vector<double>);
-  MTS_MACRO_DECL2(Vector<long double>);
-  MTS_MACRO_DECL2(Vector<std::complex<double> >);
-  MTS_MACRO_DECL2(Vector<Vector<double> >);
-  MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
-  MTS_MACRO_DECL2(Matrix<float>);
-  MTS_MACRO_DECL2(Matrix<double>);
-  MTS_MACRO_DECL2(Matrix<long double>);
-  MTS_MACRO_DECL2(Matrix<std::complex<double> >);
-  MTS_MACRO_DECL2(p3vector<float>);
-  MTS_MACRO_DECL2(p3vector<double>);
-  MTS_MACRO_DECL2(p3vector<long double>);
-  MTS_MACRO_DECL2(p3vector<std::complex<double> >);
+  MTS_MACRO_DECL2(std::complex<double>);
+*/
 
-  /*
-    MTS_MACRO_DECL2(Vector<double>);
-    MTS_MACRO_DECL2(std::complex<double>);
-  */
-
-  /* template <typename D, template <typename> class T>  std::string make_type_string(const T<D>& x) {
-     return (x.classname() + "<" +  make_type_string(D()) +"> "); 
-     }
-  */
+/* template <typename D, template <typename> class T>  std::string make_type_string(const T<D>& x) {
+   return (x.classname() + "<" +  make_type_string(D()) +"> "); 
+   }
+*/
 
 
 };

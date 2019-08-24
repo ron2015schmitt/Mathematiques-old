@@ -104,13 +104,13 @@ namespace matricks {
 
 
   void vout_of_bounds(const size_type id, const index_type i) {
-    std::cout << error_str << "index="<<i<<" out of bounds for " << matricksObjectPool::vectorname(id) << std::endl;
-    matricksObjectPool::voutputglossary(id);
+    std::cout << error_str << "index="<<i<<" out of bounds for obj#" << id << std::endl;
+    MatricksObjectManager::outputGlossary(id);
   }
 
   void vbad_size(const size_type id, const size_type n) {
-    std::cout << error_str <<  matricksObjectPool::vectorname(id) << " size="<<n<<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
-    matricksObjectPool::voutputglossary(id);
+    std::cout << error_str <<  id << " size="<<n<<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
+    MatricksObjectManager::outputGlossary(id);
   }
 
 
@@ -122,38 +122,40 @@ namespace matricks {
 
 
   void vbad_assignment(const size_type id1, const size_type id2) {
-    std::string s1= matricksObjectPool::vectorname(id1);
-    std::string s2= matricksObjectPool::vectorname(id2);
+    std::string s1 = std::string("obj#");
+    std::string s2 = std::string("obj#");
     std::cout << error_str << "vector assignment to vector of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    matricksObjectPool::voutputglossary(id1);
-    matricksObjectPool::voutputglossary(id2);
+    MatricksObjectManager::outputGlossary(id1);
+    MatricksObjectManager::outputGlossary(id2);
   }
 
 
   void vbad_assignment_general_warning(const size_type id1, const size_type sz2, const std::string typeString) {
-    std::string s1= matricksObjectPool::vectorname(id1);
+    //    std::string s1= MatricksObjectManager::vectorname(id1);
+    using namespace std;
+    string s1 = "";
     std::cout << warn_str << "vector assignment to "<<typeString<<" of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << typeString << std::endl;
-    matricksObjectPool::voutputglossary(id1);
+    MatricksObjectManager::outputGlossary(id1);
     std::cout << indent_str  << "size of "<<typeString<<" = " << sz2  << std::endl;
   }
 
 
   void v_array_warning(const size_type id){
-    std::string s1= matricksObjectPool::vectorname(id);
+    std::string s1= std::string("obj#");
     std::cout << warn_str << "vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead." << std::endl;
     std::cout << indent_str  <<s1 << " = D[]" << std::endl;
-    matricksObjectPool::voutputglossary(id);
+    MatricksObjectManager::outputGlossary(id);
   }
       
   void vbad_assignment_warning(const size_type id1, const size_type id2) {
-    std::string s1= matricksObjectPool::vectorname(id1);
-    std::string s2= matricksObjectPool::vectorname(id2);
+    std::string s1 = std::string("obj#");
+    std::string s2 = std::string("obj#");
     std::cout << warn_str << "vector assignment to vector of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    matricksObjectPool::voutputglossary(id1);
-    matricksObjectPool::voutputglossary(id2);
+    MatricksObjectManager::outputGlossary(id1);
+    MatricksObjectManager::outputGlossary(id2);
     std::cout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
     std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
   }
@@ -161,33 +163,33 @@ namespace matricks {
 
 
   void vbadtype_assignment(const size_type id1, const size_type id2) {
-    std::string s1= matricksObjectPool::vectorname(id1);
-    std::string s2= matricksObjectPool::vectorname(id2);
+    std::string s1 = std::string("obj#");
+    std::string s2 = std::string("obj#");
     std::cout << warn_str << "vector assignment to vector of different data type" << std::endl;
     std::cout << indent_str << "use vcast<type>(v) function to avoid this warning" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    matricksObjectPool::voutputglossary(id1);
-    matricksObjectPool::voutputglossary(id2);
+    MatricksObjectManager::outputGlossary(id1);
+    MatricksObjectManager::outputGlossary(id2);
   }
 
 
   void vbad_assignment_std(const size_type id1, const size_type sz2) {
-    std::string s1= matricksObjectPool::vectorname(id1);
+    std::string s1 = std::string("obj#");
     std::string s2= "<vector>";
     std::cout << error_str << "vector assignment to std::vector of different size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    matricksObjectPool::voutputglossary(id1);
+    MatricksObjectManager::outputGlossary(id1);
     std::cout << where_str << "<vector> is std::vector" << "[size=" << sz2 << "]" << std::endl;
   }
 
 
 
-  void vbad_assignment_mat(const size_type id1, const size_type NR, const size_type NC){
-    std::string s1= matricksObjectPool::vectorname(id1);
+  void vbad_assignment_mat(const size_type id1, const size_type NR, const size_type NC){ 
+    std::string s1 = std::string("obj#");
     std::string s2= "matrix";
     std::cout << error_str << "vector assignment to matrix (expression) of incompatible size" << std::endl;
     std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    matricksObjectPool::voutputglossary(id1);
+    MatricksObjectManager::outputGlossary(id1);
     std::cout << where_str << "matrix is Matrix or Matrix expression" << 
       "[" << NR << "x" << NC << "]" << std::endl;
   }
@@ -217,28 +219,28 @@ namespace matricks {
       stream <<s << "(start=" << start_ << ", end=" << end_ << ", step=" << step_ << ")";
       return stream.str();
   }
-  void outputglossary_VSliceObj(const size_type id, const std::string s, const size_type sz) { 
+  void outputGlossary_VSliceObj(const size_type id, const std::string s, const size_type sz) { 
       std::cout << where_str << s <<" has size="<< sz << std::endl;
-      matricksObjectPool::voutputglossary(id);
+      MatricksObjectManager::outputGlossary(id);
   }
 
 
   std::string debugtxt_VSubsetObj(const std::string s1, const std::string s2){  
     return s1 +"[" + s2 + "]";   
   }
-  void outputglossary_VSubsetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
+  void outputGlossary_VSubsetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
       std::cout << where_str << s <<" has size="<< sz << std::endl;
-      matricksObjectPool::voutputglossary(id1);
-      matricksObjectPool::voutputglossary(id2);
+      MatricksObjectManager::outputGlossary(id1);
+      MatricksObjectManager::outputGlossary(id2);
   }
 
   std::string debugtxt_VSubMaskObj(const std::string s1, const std::string s2){  
     return s1 +"[" + s2 + "]";   
   }
-  void outputglossary_VSubMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
+  void outputGlossary_VSubMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
       std::cout << where_str << s <<" has size="<< sz << std::endl;
-      matricksObjectPool::voutputglossary(id1);
-      matricksObjectPool::voutputglossary(id2);
+      MatricksObjectManager::outputGlossary(id1);
+      MatricksObjectManager::outputGlossary(id2);
   }
   void settext_VSubMaskObj(const Vector<index_type>& ii, const Vector<bool>& mask) {
     ii.debugtxt("("+mask.debugtxt()+")");

@@ -15,6 +15,8 @@ using namespace matricks;
 #endif
 
 
+#define Vector_(name,t,...) Vector<t> name(__VA_ARGS__); //MatricksObjectPool::(name.id(),std::string(#name)+"<"+stringify(t)+">"+" in "+__FUNCTION__+" at line "+stringify(__LINE__)+" in file "+__FILE__));
+
 
 int main()
 {
@@ -37,15 +39,27 @@ int main()
     cr();
     example(Nex++,"Vector `join` function");
     codestart("C++");
+    Vector_(x,double,5);
+
     codemulti( Vector<double> v1( range<double>(0,3) ) );
     codemulti( Vector<double> v2( range<double>(2,0) ) );
     codemulti( Vector<double> v3 );
     codemulti( v3 = join(v1,v2) );
-    codemulti( Vector<double> v4 );
-    codemulti( v4 = (v1,10*v2) );
+    codemulti( Vector<double> v4a );
+    codemulti( v4a = (v1,v2) );
+    codemulti( Vector<double> v4b );
+    codemulti( v4b = (v1,10*v2) );
+    codemulti( Vector<double> v4c );
+    codemulti( v4c = (10*v1,v2) );
+    codemulti( Vector<double> v4d );
+    codemulti( v4d = (10*v1,10*v2) );
+    codemulti( Vector<double> v5( range<double>(0,6) )  );
     codemulti( Vector<double> va(2) );
     codemulti( Vector<double> vb(5) );
-    //codemulti( (va,vb) = v4 );
+    codemulti( (va,vb) = v5 );
+    codemulti( Vector<double> vc(2) );
+    codemulti( Vector<double> vd(5) );
+    //    codemulti( (vc[{1,0}],vd) = v5 );
     codeend();
     cr();
 
@@ -54,14 +68,21 @@ int main()
     resultmulti(v1);
     resultmulti(v2);
     resultmulti(v3);
-    resultmulti(v4);
+    resultmulti(v4a);
+    resultmulti(v4b);
+    resultmulti(v4c);
+    resultmulti(v4d);
+    resultmulti(v5);
     resultmulti(va);
     resultmulti(vb);
+    resultmulti(vc);
+    resultmulti(vd);
     resultmulti( join(v1,v1) );
     resultmulti( join(join(v1,v1),v1) );
     resultmulti( (v1,v1) );
     resultmulti( (v1,v1,v1) );
     resultmulti( (v1,v2,4*v1) );
+    resultmulti( (5*v1,v2) );
     resultend();
   }
 

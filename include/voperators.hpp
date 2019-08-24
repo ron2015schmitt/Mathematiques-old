@@ -67,19 +67,88 @@ namespace matricks {
   // join
 
   template <class D, class A, class B> 
-  inline VJoinExpr<D,VorE<D,A>,VorE<D,B> > 
+  inline const VJoinExpr<D,VorE<D,A>,VorE<D,B> > 
   join(const VorE<D,A>& a, const VorE<D,B>& b)
   {
     return  VJoinExpr<D,VorE<D,A>,VorE<D,B> >(a,b);
   }
 
-  template <class D, class A, class B> 
-  inline VJoinExpr<D,VorE<D,A>,VorE<D,B> > 
-  operator,(const VorE<D,A>& a, const VorE<D,B>& b)
+
+  
+  // template <class D, class A, class B> 
+  // inline VJoinObj<D,VorE<D,A>,VorE<D,B> > 
+  // join(VorE<D,A>& a, VorE<D,B>& b)
+  // {
+  //   return  VJoinObj<D,VorE<D,A>,VorE<D,B> >(a,b);
+  // }
+
+
+
+  template <class D> 
+  inline VJoinObj<D,Vector<D>,Vector<D> > 
+  operator,(Vector<D>& a, Vector<D>& b)
   {
-    return  VJoinExpr<D,VorE<D,A>,VorE<D,B> >(a,b);
+    printf("  VJoinObj operator,(Vector<D>& a, Vector<D>& b)\n");
+    return  VJoinObj<D,Vector<D>,Vector<D> >(a,b);
+  }
+
+  template <class D> 
+  inline const VJoinExpr<D, Vector<D>,Vector<D> > 
+  operator,(const Vector<D>& a, const Vector<D>& b)
+  {
+    printf("  VJoinExpr operator,(const Vector<D>& a, const Vector<D>& b)\n");
+    return  VJoinExpr<D,Vector<D>,Vector<D> >(a,b);
+  }
+
+  template <class D, class B> 
+  inline const VJoinExpr<D, Vector<D>,Vexpr<D,B> > 
+  operator,(const Vector<D>& a, const Vexpr<D,B>& b)
+  {
+    printf("  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)\n");
+    return  VJoinExpr<D,Vector<D>,Vexpr<D,B>  >(a,b);
+  }
+
+  template <class D, class A> 
+  inline VJoinObj<D,Vexpr<D,A>,Vector<D> > 
+  operator,(Vexpr<D,A>& a, Vector<D>& b)
+  {
+    printf("  VJoinObj operator,(Vexpr<D,A>& a, Vector<D>& b)\n");
+    return  VJoinObj<D,Vexpr<D,A>,Vector<D> >(a,b);
   }
   
+  template <class D, class A, class B> 
+  inline const VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> > 
+  operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)
+  {
+    printf("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)\n");
+    return  VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> >(a,b);
+  }
+
+  // ^^the above works for everything except (vc[{1,0}], vd) =
+
+
+  
+
+  // template <class D, class B> 
+  //  inline VJoinObj<D,Vector<D>,VorW<D,B> > 
+  //  operator,(Vector<D>& a, VorW<D,B>& b)
+  //  {
+  //    return  VJoinObj<D,Vector<D>,VorW<D,B> >(a,b);
+  //  }
+
+   // template <class D> 
+   // inline VJoinObj<D,Vector<D>,Vector<D> > 
+   // operator,(Vector<D>& a, Vector<D>& b)
+   // {
+   //   return  VJoinObj<D,Vector<D>,Vector<D> >(a,b);
+   // }
+  
+  // template <class D, class A, class B> 
+  // inline const VJoinExpr<D,VorE<D,A>,VorE<D,B> > 
+  // operator,(const VorE<D,A>& a, const VorE<D,B>& b)
+  // {
+  //   return  VJoinExpr<D,VorE<D,A>,VorE<D,B> >(a,b);
+  // }
 
 
 

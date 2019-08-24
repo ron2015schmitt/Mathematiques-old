@@ -1,6 +1,6 @@
 
 # Vector `join` and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.7-r19).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.8).
 
 ### Vector `join` function
 * The Vector `join` function joins two vectors
@@ -15,10 +15,25 @@ Vector<double> v1( range<double>(0,3) );
 Vector<double> v2( range<double>(2,0) );
 Vector<double> v3;
 v3 = join(v1,v2);
-Vector<double> v4;
-v4 = (v1,10*v2);
+Vector<double> v4a;
+v4a = (v1,v2);
+  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
+Vector<double> v4b;
+v4b = (v1,10*v2);
+  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)
+Vector<double> v4c;
+v4c = (10*v1,v2);
+Vector<double> v4d;
+v4d = (10*v1,10*v2);
+  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)
+Vector<double> v5( range<double>(0,6) );
 Vector<double> va(2);
 Vector<double> vb(5);
+(va,vb) = v5;
+  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
+VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)
+Vector<double> vc(2);
+Vector<double> vd(5);
 ```
 
 **The result is**
@@ -26,14 +41,25 @@ Vector<double> vb(5);
   v1:  {0,1,2,3}; 
   v2:  {2,1,0}; 
   v3:  {0,1,2,3,2,1,0}; 
-  v4:  {0,1,2,3,20,10,0}; 
-  va:  {0,0}; 
-  vb:  {0,0,0,0,0}; 
+  v4a:  {0,1,2,3,2,1,0}; 
+  v4b:  {0,1,2,3,20,10,0}; 
+  v4c:  {2,1,0}; 
+  v4d:  {0,10,20,30,20,10,0}; 
+  v5:  {0,1,2,3,4,5,6}; 
+  va:  {0,1}; 
+  vb:  {2,3,4,5,6}; 
+  vc:  {0,0}; 
+  vd:  {0,0,0,0,0}; 
   join(v1,v1):  {0,1,2,3,0,1,2,3}; 
   join(join(v1,v1),v1):  {0,1,2,3,0,1,2,3,0,1,2,3}; 
-  (v1,v1):  {0,1,2,3,0,1,2,3}; 
-  (v1,v1,v1):  {0,1,2,3,0,1,2,3,0,1,2,3}; 
-  (v1,v2,4*v1):  {0,1,2,3,2,1,0,0,4,8,12}; 
+    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
+(v1,v1):  {0,1,2,3,0,1,2,3}; 
+    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
+(v1,v1,v1):  {0,1,2,3}; 
+    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
+  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)
+(v1,v2,4*v1):  {0,1,2,3,2,1,0,0,4,8,12}; 
+  (5*v1,v2):  {2,1,0}; 
 ```
 
 ### Vector `rep` function
@@ -60,6 +86,7 @@ rep for loop
 rep for loop
   j=0, Na=3
   j=1, Na=3
+  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
 ```
 
 **The result is**

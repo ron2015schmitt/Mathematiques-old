@@ -29,7 +29,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public VorE<D,Vector<D> >, VectorofPtrs, VorW<D,Vector<D> > {
+  template <class D> class Vector : public VorE<D,Vector<D> >, public VectorofPtrs, public VorW<D,Vector<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -170,7 +170,7 @@ namespace matricks {
 #ifdef MATRICKS_DEBUG
       dummy_ = D();
       // add this vector to the directory
-      objectID_ = matricksObjectPool::addvector("", classname(), datatype(), size());
+      //      objectID_ = MatricksObjectManager::addvector("", classname(), datatype() );
 #endif      
     }
 
@@ -189,7 +189,7 @@ namespace matricks {
 
       //remove from directory
 #ifdef MATRICKS_DEBUG
-      matricksObjectPool::removevector(objectID_);
+      MatricksObjectManager::removeObject(objectID_);
 #endif
     }
   
@@ -227,7 +227,6 @@ namespace matricks {
       width_ = 0;
 #ifdef MATRICKS_DEBUG
       // update the directory
-      matricksObjectPool::vchange_size(objectID_,N);
       if (n>maxsize) 
 	vbad_size(objectID_, n);
 #endif      
@@ -306,6 +305,8 @@ namespace matricks {
     }
 
 
+
+    
     // Accessing a SET of values using a MASK
     
     VSubMaskObj<D> operator[](const Vector<bool>& mask)  {
@@ -704,7 +705,7 @@ namespace matricks {
 
     std::string debugtxt(void) const {
 #ifdef MATRICKS_DEBUG
-      return matricksObjectPool::vectorname(objectID_); 
+      return ""; //MatricksObjectManager::vectorname(objectID_); 
 #else
       return name_;
 #endif
@@ -713,7 +714,7 @@ namespace matricks {
     void debugtxt(const char* newname) const {
       std::string s = newname;
 #ifdef MATRICKS_DEBUG
-      matricksObjectPool::vchange_name(objectID_,s); 
+      //      MatricksObjectManager::vchange_name(objectID_,s); 
 #else
       name_=s;
 #endif
@@ -721,7 +722,7 @@ namespace matricks {
 
     void debugtxt(const std::string newname) const {
 #ifdef MATRICKS_DEBUG
-      matricksObjectPool::vchange_name(objectID_,newname); 
+      // MatricksObjectManager::vchange_name(objectID_,newname); 
 #else
       name_=name;
 #endif
@@ -747,7 +748,7 @@ namespace matricks {
 
     void outputglossary(void) const {
 #ifdef MATRICKS_DEBUG
-      matricksObjectPool::voutputglossary(objectID_);
+      MatricksObjectManager::outputGlossary(objectID_);
 #endif
     }
 

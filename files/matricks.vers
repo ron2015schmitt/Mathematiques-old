@@ -4,7 +4,7 @@
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.7
+VERSION_MATRICKS=2.8
 # V2.1 Introduced version control
 # V2.2 namespace Matricks -> matricks
 # V2.3 v[seq(start,end)] slices -- only for Vectors
@@ -12,3 +12,4 @@ VERSION_MATRICKS=2.7
 # V2.5 concat and rep -- only for Vectors
 # V2.6 negative indices like python. changing all indices to index_type = int
 # V2.7 changed how addresses are stored and checked. 
+# V2.8 started migration to new debug facility

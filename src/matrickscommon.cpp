@@ -15,6 +15,104 @@ namespace matricks {
     return s;
   }
 
+
+  const char* error_str =   "**matricks *ERROR*: ";
+  const char* warn_str =    "**matricks warning: ";
+  const char* indent_str  = "                 ";
+  const char* where_str  =  "          where  ";
+  const char* bug_str =     "**matricks  *BUG* : ";
+
+
+
+
+  // VECTOR DIRECTORY IMPLEMENTATIONS
+
+  class VariableWrapperInterface
+  {
+  };
+
+  template <typename T>
+  class VariableWrapper : public VariableWrapperInterface {
+    typedef T MyType;
+    MyType variable; 
+    explicit VariableWrapper(const MyType& var) : variable(var) {}
+    VariableWrapper() {}
+  };
+
+
+  class ObjectAttributes {
+  public:
+    std::string className;
+    std::string dataTypeName;
+    std::string variableName;
+    std::string functionName;
+    size_type lineNumber;
+    std::string fileName;
+    ObjectAttributes() {}
+  };
+
+
+
+  size_type MatricksObjectManager::NextObjectID_ = 1; 
+  std::map<size_type, ObjectAttributes*> MatricksObjectManager::attributePool; 
+  std::map<std::string, VariableWrapperInterface > MatricksObjectManager::objectPool;
+  
+
+  
+  size_type MatricksObjectManager::addObject(
+					     //const std::unique_ptr<VariableWrapperInterface> > obj,
+					     const std::string variableName,
+					     const std::string functionName,
+					     const size_type lineNumber,
+					     const std::string fileName
+					     ) {
+    size_type id = NextObjectID_++;
+    ObjectAttributes  *myAttrs = new ObjectAttributes();
+    myAttrs->className = "ClassName";
+    myAttrs->dataTypeName = "D";
+    myAttrs->variableName = variableName;
+    myAttrs->functionName = functionName;
+    myAttrs->lineNumber = lineNumber;
+    myAttrs->fileName = fileName;
+
+    attributePool[id]= myAttrs;
+    //    objectPool_.add(id, obj);
+
+    return id;
+  }
+
+
+  ObjectAttributes* MatricksObjectManager::getObjectAttributes(const size_type id) {
+    return attributePool[id];
+  }
+  void MatricksObjectManager::removeObject(const size_type id) {
+    ObjectAttributes* a = getObjectAttributes(id);
+    attributePool.erase(id);
+    if (a==0) {
+      return;
+    }
+    delete a;
+  }
+  void MatricksObjectManager::outputGlossary(const size_type id) {
+    using namespace std;
+    ObjectAttributes* a = getObjectAttributes(id);
+    if (a==0) {
+      return;
+    }
+      
+    cout<< where_str << a->variableName << " is " << endl;
+    cout<< where_str << "obj:"<< id << " is: " << endl;
+    cout<< indent_str << "class name: "<< a->className << endl;
+    cout<< indent_str << "datatype name: "<< a->dataTypeName << endl;
+    cout<< indent_str << "variable name: "<< a->variableName << endl;
+    cout<< indent_str << "defined in function name: "<< a->functionName << endl;
+    cout<< indent_str << "           at line "<< a->lineNumber << " in file "<< a->fileName << endl;
+    
+  }    
+
+
+
+
   
   /****************************************************************************
    * error reporting string definitions
@@ -23,11 +121,6 @@ namespace matricks {
 
 
 
-  const char* error_str =   "**matricks *ERROR*: ";
-  const char* warn_str =    "**matricks warning: ";
-  const char* indent_str  = "                 ";
-  const char* where_str  =  "          where  ";
-  const char* bug_str =     "**matricks  *BUG* : ";
 
   void bug_report(const std::string& fname,const size_type linenum) {
     std::cerr << bug_str<< "Bug occured in file '"<<fname<<"' at line #"<<linenum<<std::endl;
@@ -52,282 +145,6 @@ namespace matricks {
     std::cerr << error_str<< "unable to open file '"<<name<<"'"<<std::endl;
     return;
   }	    
-
-
-
-
-  // VECTOR DIRECTORY IMPLEMENTATIONS
-
-
-  size_type matricksObjectPool::NextVectorID_ = 1; 
-  std::map<size_type,std::string> matricksObjectPool::vectorName_ ; 
-  std::map<size_type,std::string> matricksObjectPool::vectorClass_ ; 
-  std::map<size_type,std::string> matricksObjectPool::vectorDatatype_ ; 
-  std::map<size_type,size_type> matricksObjectPool::vectorSize_ ; 
-
-  size_type matricksObjectPool::addvector(const std::string name, const std::string classname, 
-			       const std::string datatype, const size_type size, const bool checkname) {
-    size_type id = NextVectorID_++;
-    
-    vadd_name(name, id, checkname);
-    
-    vectorClass_[id] = classname;
-    vectorDatatype_[id] = datatype;
-    vectorSize_[id] = size;
-    
-    return id;
-  }
-
-
-
-  void matricksObjectPool::removevector(const size_type id) {
-
-    vectorName_.erase(id);
-    vectorClass_.erase(id);
-    vectorDatatype_.erase(id);
-    vectorSize_.erase(id);
-
-  }
-
-
-
-
-  std::string matricksObjectPool::vectorname(const size_type id) {
-    return (vectorName_.find(id))->second;
-  }
-
-
-  std::string matricksObjectPool::vadd_name(const std::string& name, const size_type id, const bool checkname) {
-
-    std::string newname = name;
-
-    if (newname == "") {
-      std::ostringstream stream;
-      stream << "Vector" << id;
-      newname = stream.str();
-    } else if (checkname) {
-	
-      std::string basename = newname;
-
-      // name was given by user
-      // check to see if name already exists
-      static std::map<size_type,std::string>::iterator p; 
-      p = vectorName_.begin();
-      size_type i = 1;
-
-#ifdef MATRICKS_DEBUG
-      bool dupe = false;
-#endif     
-
-      while (p != vectorName_.end()) {
-	if (p->second == newname) {
-
-#ifdef MATRICKS_DEBUG
-	  dupe = true;
-#endif     
-	  p = vectorName_.begin();
-	  std::ostringstream stream;
-	  stream << basename << "_" << ++i;
-	  newname = stream.str();
-	} else {
-	  p++;
-	}
-      }
-      
-#ifdef MATRICKS_DEBUG
-      if (dupe) {
-	vduplicate_name(id,name,newname);
-      }
-#endif     
-    }
-
-    vectorName_[id] = newname;
-    return newname;
-      
-  }
-
-
-
-
-  void matricksObjectPool::vchange_name(const size_type id, const std::string& name, const bool checkname) {
-    vectorName_.erase(id);
-    vadd_name(name, id, checkname);
-  }
-  void matricksObjectPool::vchange_size(const size_type id, const size_type size) {
-    vectorSize_[id] = size;
-  }
-
-
-
-  void matricksObjectPool::voutputglossary(const size_type id) {
-    std::string s = where_str + vectorName_[id] + " is " + vectorClass_[id] + "<" + vectorDatatype_[id] + ">";
-    std::cout << s << "[size=" << vectorSize_[id] << "], ID=" << id << std::endl;;
-  }    
-
-
-  // MATRIX IMPLEMENTATIONS
-
-
-  size_type matricksObjectPool::NextMatrixID_ = 1; 
-  std::map<size_type,std::string> matricksObjectPool::matrixName_ ; 
-  std::map<size_type,std::string> matricksObjectPool::matrixClass_ ; 
-  std::map<size_type,std::string> matricksObjectPool::matrixDatatype_ ; 
-  std::map<size_type,size_type> matricksObjectPool::matrixNrows_ ; 
-  std::map<size_type,size_type> matricksObjectPool::matrixNcols_ ; 
-
-  size_type matricksObjectPool::addmatrix(const std::string name, const std::string classname, 
-			       const std::string datatype, const size_type NR, const size_type NC, const bool checkname) {
-    size_type id = NextMatrixID_++;
-    
-    madd_name(name, id, checkname);
-    
-    matrixClass_[id] = classname;
-    matrixDatatype_[id] = datatype;
-    matrixNrows_[id] = NR;
-    matrixNcols_[id] = NC;
-    
-    return id;
-  }
-
-
-
-  void matricksObjectPool::removematrix(const size_type id) {
-
-    matrixName_.erase(id);
-    matrixClass_.erase(id);
-    matrixDatatype_.erase(id);
-    matrixNrows_.erase(id);
-    matrixNcols_.erase(id);
-
-  }
-
-
-
-
-  std::string matricksObjectPool::matrixname(const size_type id) {
-    return (matrixName_.find(id))->second;
-  }
-  size_type matricksObjectPool::matrixNrows(const size_type id) {
-    return (matrixNrows_.find(id))->second;
-  }
-  size_type matricksObjectPool::matrixNcols(const size_type id) {
-    return (matrixNcols_.find(id))->second;
-  }
-
-
-
-  std::string matricksObjectPool::madd_name(const std::string name, const size_type id, const bool checkname) {
-
-    std::string newname = name;
-
-    if (newname == "") {
-      std::ostringstream stream;
-      stream << "Matrix" << id;
-      newname = stream.str();
-    } else  if (checkname){
-	
-      std::string basename = newname;
-
-      // name was given by user
-      // check to see if name already exists
-      static std::map<size_type,std::string>::iterator p; 
-      p = matrixName_.begin();
-      size_type i = 1;
-#ifdef MATRICKS_DEBUG
-      bool dupe = false;
-#endif     
-
-      while (p != matrixName_.end()) {
-	if (p->second == newname) {
-#ifdef MATRICKS_DEBUG
-	  dupe = true;
-#endif     
-
-
-	  p = matrixName_.begin();
-	  std::ostringstream stream;
-	  stream << basename << "_" << ++i;
-	  newname = stream.str();
-	} else {
-	  p++;
-	}
-      }
-
-#ifdef MATRICKS_DEBUG
-      if (dupe) 
-	mduplicate_name(id,name,newname);
-#endif     
-    }
-
-    matrixName_[id] = newname;
-    return newname;
-      
-  }
-
-  void matricksObjectPool::mchange_name(const size_type id, const std::string& name, const bool checkname) {
-    matrixName_.erase(id);
-    madd_name(name, id, checkname);
-  }
-  void matricksObjectPool::mchange_size(const size_type id, const size_type NR, const size_type NC) {
-    matrixNrows_[id] = NR;
-    matrixNcols_[id] = NC;
-  }
-
-
-
-
-  void matricksObjectPool::moutputglossary(const size_type id) {
-    std::string s = where_str + matrixName_[id] + " is " + matrixClass_[id] + "<" + matrixDatatype_[id] + ">";
-    std::cout << s << "[size=" << matrixNrows_[id] << "x" << matrixNcols_[id] << "], ID=" << id << std::endl;;
-  }    
-
-
-
-
-#define MTS_MACRO(T)  std::string make_type_string(T) {return std::string(# T); }
-
-  MTS_MACRO(void);
-  MTS_MACRO(float);
-  MTS_MACRO(double);
-  MTS_MACRO(long double);
-
-  MTS_MACRO(bool);
-  MTS_MACRO(char);
-  MTS_MACRO(unsigned char);
-  MTS_MACRO(signed char);
-
-  MTS_MACRO(short);
-  MTS_MACRO(unsigned short);
-  MTS_MACRO(int);
-  MTS_MACRO(unsigned int);
-  MTS_MACRO(long);
-  MTS_MACRO(unsigned long);
-#if LONGLONG_EXISTS
-  MTS_MACRO(long long);
-  MTS_MACRO(unsigned long long);
-#endif
-
-  MTS_MACRO(std::string);
-
-#define MTS_MACRO2(T)  std::string make_type_string(const T&) { return (std::string(# T)+" "); }
-
-  MTS_MACRO2(std::complex<float>);
-  MTS_MACRO2(std::complex<double>);
-  MTS_MACRO2(std::complex<long double>);
-  MTS_MACRO2(Vector<float>);
-  MTS_MACRO2(Vector<double>);
-  MTS_MACRO2(Vector<long double>);
-  MTS_MACRO2(Vector<std::complex<double> >);
-  MTS_MACRO2(Vector<Vector<double> >);
-  MTS_MACRO2(Vector<Vector<std::complex<double> > >);
-  MTS_MACRO2(Matrix<float>);
-  MTS_MACRO2(Matrix<double>);
-  MTS_MACRO2(Matrix<long double>);
-  MTS_MACRO2(Matrix<std::complex<double> >);
-  MTS_MACRO2(p3vector<float>);
-  MTS_MACRO2(p3vector<double>);
-  MTS_MACRO2(p3vector<long double>);
-  MTS_MACRO2(p3vector<std::complex<double> >);
 
 
 };

@@ -22,7 +22,7 @@ int main()
 
 
   cr();
-  mdtitle("Vector join operator `(v1,v2)` and `rep` functions");
+  mdtitle("Vector join operator `(v1,v2)` and `rep` function");
   matricks_preamble();
 
   

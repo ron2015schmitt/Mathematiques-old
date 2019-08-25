@@ -217,6 +217,9 @@ namespace matricks {
     }
 
 
+
+
+
     std::string debugtxt(void) const {
       return derived().debugtxt();
     }
@@ -273,6 +276,7 @@ namespace matricks {
     {
       addAddress(&a_);
       addAddress(&ii_);
+      printf("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
     }
 #endif
     ~VSubsetObj() {
@@ -333,6 +337,8 @@ namespace matricks {
     }
 
 
+
+    
     
     std::string debugtxt(void) const {
       return "";

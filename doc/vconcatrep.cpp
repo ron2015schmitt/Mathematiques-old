@@ -31,7 +31,7 @@ int main()
   Any<Vector<double> > z(ron);
 
   Vector<Vector<double> > ronnie;
-  cout << getTypeString(ronnie) << endl;
+  Any<Vector<Vector<double> > > zz(ronnie);
   
   cr();
   mdtitle("Vector `join` and `rep` functions");
@@ -49,11 +49,26 @@ int main()
     cr();
     example(Nex++,"Vector `join` function");
     codestart("C++");
-    
-    codemulti( Vector<double> v1( range<double>(0,3) ) );
-    codemulti( Vector<double> v2( range<double>(2,0) ) );
+    codemulti( Vector<double> v1( range<double>(0,2) ) );
+    codemulti( Vector<double> v2( range<double>(3,4) ) );
+    codeend();
+    cr();
+
+    resultstart();
+    resultmulti(v1);
+    resultmulti(v2);
+    resultmulti( (v1,v2) );
+    resultmulti( (v1,v2,v1) );
+    resultmulti( (v1,v2,v1,v2) );
+    resultmulti( (10*v1,v2)  );
+    resultmulti( (v1,10*v2)  );
+    resultmulti( (10*v1,10*v2)  );
+    resultend();
+
+
+    codestart("C++");
     codemulti( Vector<double> v3 );
-    codemulti( v3 = join(v1,v2) );
+    codemulti( v3 = (v1,v2,v1,v2) );
     codemulti( Vector<double> v4a );
     codemulti( v4a = (v1,v2) );
     codemulti( Vector<double> v4b );
@@ -68,7 +83,11 @@ int main()
     codemulti( (va,vb) = v5 );
     codemulti( Vector<double> vc(2) );
     codemulti( Vector<double> vd(5) );
+    codemulti( vc[{1,0}] = va );
     //    codemulti( (vc[{1,0}],vd) = v5 );
+    codemulti( Vector<double> ve(2) );
+    codemulti( Vector<double> vf(5) );
+    //    codemulti( (ve,vf[{4,3,2,1,0}]) = v5 );
     codeend();
     cr();
 
@@ -86,9 +105,8 @@ int main()
     resultmulti(vb);
     resultmulti(vc);
     resultmulti(vd);
-    resultmulti( join(v1,v1) );
-    resultmulti( join(join(v1,v1),v1) );
-    resultmulti( (v1,v1) );
+    resultmulti(ve);
+    resultmulti(vf);
     resultmulti( (v1,v1,v1) );
     resultmulti( (v1,v2,4*v1) );
     resultmulti( (5*v1,v2) );

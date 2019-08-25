@@ -45,6 +45,7 @@ namespace matricks {
   template <class D> class VSubsetObj;
   template <class D> class VSubMaskObj;
   template <class D, class A, class B> class VJoinObj;
+  template <class D, class A, class B> class VJoinExpr;
   template <class D> class VReconObj;
 
   
@@ -227,11 +228,13 @@ namespace matricks {
     return stream.str();
   };
 
+
+  std::string getTypeString(void) {  return std::string("void"); }
+  
 #define SPECIALIZE_GETTYPESTRING(T) template <> std::string getTypeString(T var) {  return std::string(#T); }
   
   SPECIALIZE_GETTYPESTRING(std::string);
 
-  //  SPECIALIZE_GETTYPESTRING(void);
   SPECIALIZE_GETTYPESTRING(float);
   SPECIALIZE_GETTYPESTRING(double);
   SPECIALIZE_GETTYPESTRING(long double);
@@ -257,7 +260,9 @@ namespace matricks {
   
   SPECIALIZE_GETTYPESTRING_CONTAINER(Vector);
   SPECIALIZE_GETTYPESTRING_CONTAINER(std::vector);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex)
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::valarray);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::initializer_list);
 
   
   

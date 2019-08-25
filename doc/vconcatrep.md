@@ -1,10 +1,6 @@
-function Any::Any(const MyType& var): MyType = double, var = 3.4
-function Any::Any(const MyType& var): MyType = int, var = 1
-function Any::Any(const MyType& var): MyType = Vector<double> , var = {0,0,0,0,0}
-function Any::Any(const MyType& var): MyType = Vector<Vector<double> > , var = {}
 
 # Vector `join` and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.8-r2).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.9).
 
 ### Vector `join` function
 * The Vector `join` function joins two vectors
@@ -23,49 +19,76 @@ Vector<double> v2( range<double>(3,4) );
 ```C++
   v1:  {0,1,2}; 
   v2:  {3,4}; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-(v1,v2):  {0,1,2,3,4}; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-(v1,v2,v1):  {0,1,2,3,4,0,1,2}; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-(v1,v2,v1,v2):  {0,1,2,3,4,0,1,2,3,4}; 
-    VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-(10*v1,v2):  {0,10,20,3,4}; 
-    VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)
-(v1,10*v2):  {0,1,2,30,40}; 
-  (10*v1,10*v2):  {30,40}; 
+  (v1,v2):  {0,1,2,3,4}; 
+  (v1,v2,v1):  {0,1,2,3,4,0,1,2}; 
+  (v1,v2,v1,v2):  {0,1,2,3,4,0,1,2,3,4}; 
+  (10*v1,v2):  {0,10,20,3,4}; 
+  (v1,10*v2):  {0,1,2,30,40}; 
+  (10*v1,10*v2):  {0,10,20,30,40}; 
+```
+
+```C++
+Vector<double> va(2);
+Vector<double> vb(3);
+(va,vb) = range<double>(1,5);
+```
+
+**The result is**
+```C++
+  va:  {1,2}; 
+  vb:  {3,4,5}; 
+```
+
+```C++
+Vector<double> ua(2);
+Vector<double> ub(3);
+(ua[{1,0}],ub) = range<double>(1,5);
+```
+
+**The result is**
+```C++
+  ua:  {2,1}; 
+  ub:  {3,4,5}; 
+```
+
+```C++
+Vector<double> wa(2);
+Vector<double> wb(3);
+(wa,wb[{2,1,0}]) = range<double>(1,5);
+```
+
+**The result is**
+```C++
+  wa:  {1,2}; 
+  wb:  {5,4,3}; 
+```
+
+```C++
+Vector<double> za(2);
+Vector<double> zb(3);
+(za[{1,0}],zb[{2,1,0}]) = range<double>(1,5);
+```
+
+**The result is**
+```C++
+  za:  {2,1}; 
+  zb:  {5,4,3}; 
 ```
 
 ```C++
 Vector<double> v3;
 v3 = (v1,v2,v1,v2);
-  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
 Vector<double> v4a;
 v4a = (v1,v2);
-  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
 Vector<double> v4b;
 v4b = (v1,10*v2);
-  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)
 Vector<double> v4c;
 v4c = (10*v1,v2);
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
 Vector<double> v4d;
 v4d = (10*v1,10*v2);
 Vector<double> v5( range<double>(0,6) );
-Vector<double> va(2);
-Vector<double> vb(5);
-(va,vb) = v5;
-  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)
 Vector<double> vc(2);
 Vector<double> vd(5);
-vc[{1,0}] = va;
-  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
 Vector<double> ve(2);
 Vector<double> vf(5);
 ```
@@ -78,21 +101,17 @@ Vector<double> vf(5);
   v4a:  {0,1,2,3,4}; 
   v4b:  {0,1,2,30,40}; 
   v4c:  {0,10,20,3,4}; 
-  v4d:  {30,40}; 
+  v4d:  {0,10,20,30,40}; 
   v5:  {0,1,2,3,4,5,6}; 
-  va:  {0,1}; 
-  vb:  {2,3,4,5,6}; 
-  vc:  {1,0}; 
+  va:  {1,2}; 
+  vb:  {3,4,5}; 
+  vc:  {0,0}; 
   vd:  {0,0,0,0,0}; 
   ve:  {0,0}; 
   vf:  {0,0,0,0,0}; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-(v1,v1,v1):  {0,1,2,0,1,2,0,1,2}; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-(v1,v2,4*v1):  {0,4,8}; 
-    VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)
-(5*v1,v2):  {0,5,10,3,4}; 
+  (v1,v1,v1):  {0,1,2,0,1,2,0,1,2}; 
+  (v1,v2,4*v1):  {0,1,2,3,4,0,4,8}; 
+  (5*v1,v2):  {0,5,10,3,4}; 
 ```
 
 ### Vector `rep` function
@@ -106,20 +125,8 @@ Vector<double> v1( range<double>(1,3) );
 Vector<double> v2( range<double>(-1,-2) );
 Vector<double> v3;
 v3 = rep(v1,3);
-rep for loop
-  j=0, Na=3
-  j=1, Na=3
-  j=2, Na=3
 Vector<double> v4;
 v4 = (rep(v1,2), rep(v2,3));
-rep for loop
-  j=0, Na=2
-  j=1, Na=2
-  j=2, Na=2
-rep for loop
-  j=0, Na=3
-  j=1, Na=3
-  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
 ```
 
 **The result is**
@@ -131,7 +138,6 @@ rep for loop
 ```
 
 
-_Note that_ `join(expression,expression)` _is not yet implemented_.
 
 _Note that_ `rep(expression, m)` _is not yet implemented_.
 

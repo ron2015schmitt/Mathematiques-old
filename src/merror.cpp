@@ -1,7 +1,7 @@
 
 
 
-#define MATRICKS_DEBUG
+#define MATRICKS_DEBUG 1
 #include "matrickscommon.hpp"
 #include "merror.hpp"
 

@@ -1,4 +1,4 @@
-#define MATRICKS_DEBUG
+#define MATRICKS_DEBUG 1
 
 
 #include "matricks.hpp"
@@ -14,25 +14,13 @@ using namespace matricks;
 #include <initializer_list>
 #endif
 
-
-#define Vector_(name,t,...) Vector<t> name(__VA_ARGS__); //MatricksObjectPool::(name.id(),std::string(#name)+"<"+stringify(t)+">"+" in "+__FUNCTION__+" at line "+stringify(__LINE__)+" in file "+__FILE__));
-
-
 int main()
 {
+ 
   using namespace std;
   int Nex = 1;
 
-  double d = 3.4;
-  Any<double> x(d);
 
-  Any<index_type> y(Nex);
-  Vector<double> ron(5);
-  Any<Vector<double> > z(ron);
-
-  Vector<Vector<double> > ronnie;
-  Any<Vector<Vector<double> > > zz(ronnie);
-  
   cr();
   mdtitle("Vector `join` and `rep` functions");
   matricks_preamble();
@@ -67,6 +55,52 @@ int main()
 
 
     codestart("C++");
+    codemulti( Vector<double> va(2) );
+    codemulti( Vector<double> vb(3) );
+    codemulti( (va,vb) = range<double>(1,5) );
+    codeend();
+    cr();
+    resultstart();
+    resultmulti(va);
+    resultmulti(vb);
+    resultend();
+
+    codestart("C++");
+    codemulti( Vector<double> ua(2) );
+    codemulti( Vector<double> ub(3) );
+    codemulti( (ua[{1,0}],ub) = range<double>(1,5) );
+    codeend();
+    cr();
+    resultstart();
+    resultmulti(ua);
+    resultmulti(ub);
+    resultend();
+
+    codestart("C++");
+    codemulti( Vector<double> wa(2) );
+    codemulti( Vector<double> wb(3) );
+    codemulti( (wa,wb[{2,1,0}]) = range<double>(1,5) );
+    codeend();
+    cr();
+    resultstart();
+    resultmulti(wa);
+    resultmulti(wb);
+    resultend();
+
+    codestart("C++");
+    codemulti( Vector<double> za(2) );
+    codemulti( Vector<double> zb(3) );
+    codemulti( (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5) );
+    codeend();
+    cr();
+    resultstart();
+    resultmulti(za);
+    resultmulti(zb);
+    resultend();
+
+    
+    
+    codestart("C++");
     codemulti( Vector<double> v3 );
     codemulti( v3 = (v1,v2,v1,v2) );
     codemulti( Vector<double> v4a );
@@ -78,12 +112,8 @@ int main()
     codemulti( Vector<double> v4d );
     codemulti( v4d = (10*v1,10*v2) );
     codemulti( Vector<double> v5( range<double>(0,6) )  );
-    codemulti( Vector<double> va(2) );
-    codemulti( Vector<double> vb(5) );
-    codemulti( (va,vb) = v5 );
     codemulti( Vector<double> vc(2) );
     codemulti( Vector<double> vd(5) );
-    codemulti( vc[{1,0}] = va );
     //    codemulti( (vc[{1,0}],vd) = v5 );
     codemulti( Vector<double> ve(2) );
     codemulti( Vector<double> vf(5) );
@@ -142,7 +172,6 @@ int main()
   }
 
   cr();
-  text("_Note that_ `join(expression,expression)` _is not yet implemented_.");
   cr();
   text("_Note that_ `rep(expression, m)` _is not yet implemented_.");
 

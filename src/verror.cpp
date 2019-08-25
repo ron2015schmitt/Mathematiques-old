@@ -1,6 +1,6 @@
 
+#define MATRICKS_DEBUG 1
 
-#define MATRICKS_DEBUG
 #include "matricks.hpp"
 
 

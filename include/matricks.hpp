@@ -14,6 +14,8 @@
 #include "matricks_version.hpp"
 #include "util.hpp"
 #include "matrickscommon.hpp"
+#include "print.hpp"
+
 #include "applicative.hpp"
 #include "mathapp.hpp"
 #include "boolapp.hpp"
@@ -44,7 +46,6 @@
 #include "mvcomplexops.hpp"
 #include "p3vector.hpp"
 
-#include "print.hpp"
 #include "matricksio.hpp"
 #include "matricksutil.hpp"
 

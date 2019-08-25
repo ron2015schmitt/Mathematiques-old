@@ -14,7 +14,12 @@
 #include <limits>
 #include <valarray>
 
-
+#ifdef MATRICKS_DEBUG
+  #define MEBUG_LEVEL1 1
+  #if (MATRICKS_DEBUG>1)
+    #define MEBUG_LEVEL2 1
+  #endif
+#endif
 
 
 namespace matricks {
@@ -222,16 +227,16 @@ namespace matricks {
 
 
   template <typename T>
-  std::string getTypeString(T var) {
+  inline std::string getTypeString(T var) {
     std::ostringstream stream;
     stream << typeid(T).name();
     return stream.str();
   };
 
 
-  std::string getTypeString(void) {  return std::string("void"); }
+  inline std::string getTypeString(void) {  return std::string("void"); }
   
-#define SPECIALIZE_GETTYPESTRING(T) template <> std::string getTypeString(T var) {  return std::string(#T); }
+#define SPECIALIZE_GETTYPESTRING(T) template <> inline std::string getTypeString(T var) {  return std::string(#T); }
   
   SPECIALIZE_GETTYPESTRING(std::string);
 
@@ -255,7 +260,7 @@ namespace matricks {
 #endif
 
 
-#define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
+#define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> inline std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
 
   
   SPECIALIZE_GETTYPESTRING_CONTAINER(Vector);
@@ -614,8 +619,8 @@ namespace matricks {
   class Any : public AnyIF {
   public:
     typedef T MyType;
-    const MyType& variable; 
-    explicit Any(const MyType& var) : variable(var) {
+    MyType& variable; 
+    explicit Any(MyType& var) : variable(var) {
       using namespace std;
       printf("function Any::Any(const MyType& var): MyType = %s, var = ",getTypeString(var).c_str());
       cout << var << endl;
@@ -627,12 +632,12 @@ namespace matricks {
   class MatricksObjectManager {
   private:
     static size_type NextObjectID_; 
-    static std::map<std::string, ObjectInfo& > objectPool;
+    static std::map<size_type, ObjectInfo* > objectPool;
 
 
   public:
-    static size_type addObject(const AnyIF& obj);
-    static ObjectInfo& getObjectInfo(const size_type id);
+    static size_type addObject(AnyIF& obj);
+    static ObjectInfo* getObjectInfo(const size_type id);
     static void removeObject(const size_type id);
     static void outputGlossary(const size_type id);
   };

@@ -37,20 +37,18 @@ namespace matricks {
     std::string functionName;
     size_type lineNumber;
     std::string fileName;
-    ObjectInfo() {}
+    ObjectInfo(AnyIF& obj) : object(obj) {}
   };
 
 
-
   size_type MatricksObjectManager::NextObjectID_ = 1; 
-  std::map<std::string, ObjectInfo& > MatricksObjectManager::objectPool;
+  std::map<size_type, ObjectInfo* > MatricksObjectManager::objectPool;
   
 
-  size_type MatricksObjectManager::addObject(const AnyIF& obj) {
+  size_type MatricksObjectManager::addObject(AnyIF& obj) {
     size_type id = NextObjectID_++;
-    ObjectInfo& info = new ObjectInfo();
-    info->object = obj;
-    objectPool[id]= info;
+    ObjectInfo* infoptr = new ObjectInfo(obj);
+    objectPool.at(id) = infoptr;
     
   }
   // size_type MatricksObjectManager::addObject(
@@ -76,33 +74,33 @@ namespace matricks {
   // }
 
 
-  ObjectInfo& MatricksObjectManager::getObjectInfo(const size_type id) {
-    return objectPool[id];
+  ObjectInfo* MatricksObjectManager::getObjectInfo(const size_type id) {
+    std::map<size_type, ObjectInfo* >::iterator it = objectPool.find(id);
+    if (it != objectPool.end()) {
+      return objectPool[id];
+    } else {
+      return 0;
+    }
   }
 
   void MatricksObjectManager::removeObject(const size_type id) {
-    ObjectInfo& info = getObjectInfo(id);
-    objectPool.erase(id);
-    if (info==0) {
-      return;
+    ObjectInfo* ptr = getObjectInfo(id);
+    if (ptr != 0) {
+      objectPool.erase(id);
+      delete ptr;
     }
-    delete &info;
   }
 
   void MatricksObjectManager::outputGlossary(const size_type id) {
-    using namespace std;
-    ObjectInfo& info = getObjectInfo(id);
-    if (info==0) {
-      return;
-    }
       
-    cout<< where_str << a->variableName << " is " << endl;
-    cout<< where_str << "obj:"<< id << " is: " << endl;
-    cout<< indent_str << "class name: "<< a->className << endl;
-    cout<< indent_str << "datatype name: "<< a->dataTypeName << endl;
-    cout<< indent_str << "variable name: "<< a->variableName << endl;
-    cout<< indent_str << "defined in function name: "<< a->functionName << endl;
-    cout<< indent_str << "           at line "<< a->lineNumber << " in file "<< a->fileName << endl;
+    // cout<< where_str << a->variableName << " is " << endl;
+    // cout<< where_str << "obj:"<< id << " is: " << endl;
+    // cout<< indent_str << "class name: "<< a->className << endl;
+    // cout<< indent_str << "datatype name: "<< a->dataTypeName << endl;
+    // cout<< indent_str << "variable name: "<< a->variableName << endl;
+    // cout<< indent_str << "defined in function name: "<< a->functionName << endl;
+    // cout<< indent_str << "           at line "<< a->lineNumber << " in file "<< 
+    //  a->fileName << endl;
     
   }    
 

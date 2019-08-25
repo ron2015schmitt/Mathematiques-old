@@ -1,6 +1,6 @@
 
 // flag for run-time bounds and size checking
-#define MATRICKS_DEBUG
+#define MATRICKS_DEBUG 1
 
 
 #include "matricks.hpp"

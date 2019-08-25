@@ -1,6 +1,6 @@
 
 # Access subsets of Vector elements in mātricks
-_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.8-r1).
+_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.9).
 
 You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices
 ## Element access `Vector[Vector<index_type>]`
@@ -26,12 +26,9 @@ Vector<index_type> vodd( range<index_type>(1,10,2) );
   vodd:  {1,3,5,7,9}; 
   v[vodd]:  {0.1,0.3,0.5,0.7,0.9}; 
   v[vodd[1]]:  0.3; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-v[veven,vodd]:  {0,0.2,0.4,0.6,0.8,1,0.1,0.3,0.5,0.7,0.9}; 
+  v[veven,vodd]:  {0,0.2,0.4,0.6,0.8,1,0.1,0.3,0.5,0.7,0.9}; 
   v[vodd[veven[1]]]:  0.5; 
-    VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-  VJoinObj operator,(Vector<D>& a, Vector<D>& b)
-v[((veven,vodd),veven),vodd]:  {0,0.2,0.4,0.6,0.8,1,0.1,0.3,0.5,0.7,0.9}; 
+  v[((veven,vodd),veven),vodd]:  {0,0.2,0.4,0.6,0.8,1,0.1,0.3,0.5,0.7,0.9,0,0.2,0.4,0.6,0.8,1,0.1,0.3,0.5,0.7,0.9}; 
 ```
 
 ## Element access `Vector[initializer_list<index_type>]`

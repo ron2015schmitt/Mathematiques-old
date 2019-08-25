@@ -64,24 +64,66 @@ namespace matricks {
   
 
 
-  // join
+  // operator, (join)
 
 
   template <class D> 
   inline VJoinObj<D,Vector<D>,Vector<D> > 
   operator,(Vector<D>& a, Vector<D>& b)
   {
-    printf("  VJoinObj operator,(Vector<D>& a, Vector<D>& b)\n");
+    
+    print2("  VJoinObj operator,(Vector<D>& a, Vector<D>& b)\n");
     return  VJoinObj<D,Vector<D>,Vector<D> >(a,b);
   }
 
+  //--------------------------------------------
+  // Need the const for compiler to find this
+  template <class D, class A> 
+  inline VJoinObj<D, VWrapperObj<D,A>, Vector<D> > 
+  operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)
+  {
+    print2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)\n");
+    VWrapperObj<D,A>& a_ = const_cast<VWrapperObj<D,A>& >(a);
+    Vector<D>& b_ = const_cast<Vector<D>& >(b);
+    return  VJoinObj<D, VWrapperObj<D,A>,Vector<D> >(a_,b_);
+  }
+  //--------------------------------------------
+
+  //--------------------------------------------
+  // Need the const for compiler to find this
+  template <class D, class B> 
+  inline VJoinObj<D, Vector<D>,VWrapperObj<D,B> > 
+  operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)
+  {
+    print2("  VJoinObj operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)\n");
+    Vector<D>& a_ = const_cast<Vector<D>& >(a);
+    VWrapperObj<D,B>& b_ = const_cast<VWrapperObj<D,B>& >(b);
+    return VJoinObj<D, Vector<D>,VWrapperObj<D,B> >(a_,b_);
+  }
+  //--------------------------------------------
+
+  //--------------------------------------------
+  // Need the const for compiler to find this
+  template <class D, class A, class B> 
+  inline VJoinObj<D, VWrapperObj<D,A>,VWrapperObj<D,B> > 
+  operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)
+  {
+    print2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)\n");
+    VWrapperObj<D,A>& a_ = const_cast<VWrapperObj<D,A>& >(a);
+    VWrapperObj<D,B>& b_ = const_cast<VWrapperObj<D,B>& >(b);
+    return  VJoinObj<D, VWrapperObj<D,A>,VWrapperObj<D,B> >(a_,b_);
+  }
+  //--------------------------------------------
+
+
+  
   ///---------
   
   template <class D> 
   inline const VJoinExpr<D, Vector<D>,Vector<D> > 
   operator,(const Vector<D>& a, const Vector<D>& b)
   {
-    printf("  VJoinExpr operator,(const Vector<D>& a, const Vector<D>& b)\n");
+    print2("  VJoinExpr operator,(const Vector<D>& a, const Vector<D>& b)\n");
     return  VJoinExpr<D,Vector<D>,Vector<D> >(a,b);
   }
 
@@ -89,7 +131,7 @@ namespace matricks {
   inline const VJoinExpr<D, Vector<D>,Vexpr<D,B> > 
   operator,(const Vector<D>& a, const Vexpr<D,B>& b)
   {
-    printf("  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)\n");
+    print2("  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)\n");
     return  VJoinExpr<D,Vector<D>,Vexpr<D,B>  >(a,b);
   }
 
@@ -97,7 +139,7 @@ namespace matricks {
   inline const VJoinExpr<D,Vexpr<D,A>,Vector<D> > 
   operator,(const Vexpr<D,A>& a, const Vector<D>& b)
   {
-    printf("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)\n");
+    print2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)\n");
     return  VJoinExpr<D,Vexpr<D,A>,Vector<D> >(a,b);
   }
  
@@ -105,7 +147,7 @@ namespace matricks {
   inline const VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> > 
   operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)
   {
-    printf("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)\n");
+    print2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)\n");
     return  VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> >(a,b);
   }
 
@@ -124,10 +166,10 @@ namespace matricks {
     const size_t Na = a.size();
     const size_t N = m*Na;
     Vector<D> *v = new Vector<D>(N);
-    printf("rep for loop\n");
+    print2("rep for loop\n");
     for(index_type j = 0; j < m; j++) {
       index_type start = j*Na;
-      printf("  j=%d, Na=%lu\n",j,Na);
+      print2("  j=%d, Na=%lu\n",j,Na);
       (*v)[slc(start,start+Na-1)] = a[slc(0,Na-1)];
     }
     return *v;

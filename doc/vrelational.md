@@ -1,5 +1,5 @@
 
-# Vector relational operators (`==`,`<`,`>`, etc), logical operators(`!`,`&&`,etc), masks, a `findtrue` in mātricks
+# Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`) in mātricks
 _This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.10-r2).
 
 ## Relational operators

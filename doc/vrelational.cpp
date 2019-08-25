@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector relational operators (`==`,`<`,`>`, etc), logical operators(`!`,`&&`,etc), masks, a `findtrue`");
+  mdtitle("Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`)");
   matricks_preamble();
 
   header2("Relational operators");

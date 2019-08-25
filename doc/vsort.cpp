@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector sorting");
+  mdtitle("Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`  ");
   matricks_preamble();
 
   matricks_toc();

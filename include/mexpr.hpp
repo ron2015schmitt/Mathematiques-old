@@ -417,21 +417,23 @@ namespace matricks {
       return a_(i);
     }
 
-
+    // TODO: **FIX THIS**
     inline index_type index(index_type i) const{
-      const index_type ind = i_[i];
-#ifdef MATRICKS_DEBUG
-      if (ind>=asize()) {
-	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
-      return ind;
+//       //      const index_type ind = i_[i];
+// #ifdef MATRICKS_DEBUG
+//       if (ind>=asize()) {
+// 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
+// 	return 0;
+//       }
+// #endif
+//       return i;
+      return 0;
     }
 
 
     inline size_type size(void) const {
-      return i_.size();      
+      return 0;
+      //      return i_.size();      
     }
 
     inline size_type asize(void) const {
@@ -827,19 +829,20 @@ namespace matricks {
     }
 
     inline index_type index(index_type k) const{
-      const std::div_t result = std::div(int(k),int(Ncols()));
-      const int i = result.quot;
-      const int j = result.rem;
-      const index_type r = i_[i];
-      const index_type c = j_[j];
-      const index_type ind =  r*a_NC + c;
-#ifdef MATRICKS_DEBUG
-      if ( (r>=aNrows())||(c>=aNcols()) ){
-	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
-      return ind;
+//       const std::div_t result = std::div(int(k),int(Ncols()));
+//       const int i = result.quot;
+//       const int j = result.rem;
+//       const index_type r = i_[i];
+//       const index_type c = j_[j];
+//       const index_type ind =  r*a_NC + c;
+// #ifdef MATRICKS_DEBUG
+//       if ( (r>=aNrows())||(c>=aNcols()) ){
+// 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
+// 	return 0;
+//       }
+// #endif
+//       return ind;
+      return 0;
     }
 
     inline METypes metype(void) const {
@@ -847,20 +850,22 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#ifdef MATRICKS_DEBUG
-      if  ( (i_.size()==badsize) || ( j_.size()==badsize) ) {
-	return badsize;
-      }
-#endif
+// #ifdef MATRICKS_DEBUG
+//       if  ( (i_.size()==badsize) || ( j_.size()==badsize) ) {
+// 	return badsize;
+//       }
+// #endif
       return Nrows()*Ncols();
     }
     
     inline size_type Nrows(void) const {
-      return i_.size();
+      //      return i_.size();
+      return 0;
     }
     
     inline size_type Ncols(void) const {
-      return j_.size();
+      //      return j_.size();
+      return 0;
     }
 
     inline size_type aNrows(void) const {
@@ -960,19 +965,20 @@ namespace matricks {
     }
 
     inline index_type index(index_type k) const{
-      const std::div_t result = std::div(int(k),int(Ncols()));
-      const int i = result.quot;
-      const int j = result.rem;
-      const index_type r = ii_[i];
-      const index_type c = j_[j];
-      const index_type ind =  r*a_NC + c;
-#ifdef MATRICKS_DEBUG
-      if ( (r>=aNrows())||(c>=aNcols()) ){
-	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
-      return ind;
+//       const std::div_t result = std::div(int(k),int(Ncols()));
+//       const int i = result.quot;
+//       const int j = result.rem;
+//       const index_type r = ii_[i];
+//       const index_type c = j_[j];
+//       const index_type ind =  r*a_NC + c;
+// #ifdef MATRICKS_DEBUG
+//       if ( (r>=aNrows())||(c>=aNcols()) ){
+// 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
+// 	return 0;
+//       }
+// #endif
+//       return ind;
+      return 0;
     }
 
     inline METypes metype(void) const {
@@ -980,20 +986,22 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#ifdef MATRICKS_DEBUG
-      if  ( (ii_.size()==badsize) || ( j_.size()==badsize) ) {
-	return badsize;
-      }
-#endif
+// #ifdef MATRICKS_DEBUG
+//       if  ( (ii_.size()==badsize) || ( j_.size()==badsize) ) {
+// 	return badsize;
+//       }
+// #endif
       return Nrows()*Ncols();
     }
     
     inline size_type Nrows(void) const {
-      return ii_.size();
+      //return ii_.size();
+      return 0;
     }
     
     inline size_type Ncols(void) const {
-      return j_.size();
+      //return j_.size();
+      return 0;
     }
 
     inline size_type aNrows(void) const {
@@ -1102,19 +1110,20 @@ namespace matricks {
     }
 
     inline index_type index(index_type k) const{
-      const std::div_t result = std::div(int(k),int(Ncols()));
-      const int i = result.quot;
-      const int j = result.rem;
-      const index_type r = i_[i];
-      const index_type c = jj_[j];
-      const index_type ind =  r*a_NC + c;
-#ifdef MATRICKS_DEBUG
-      if ( (r>=aNrows())||(c>=aNcols()) ){
-	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
-      return ind;
+//       const std::div_t result = std::div(int(k),int(Ncols()));
+//       const int i = result.quot;
+//       const int j = result.rem;
+//       const index_type r = i_[i];
+//       const index_type c = jj_[j];
+//       const index_type ind =  r*a_NC + c;
+// #ifdef MATRICKS_DEBUG
+//       if ( (r>=aNrows())||(c>=aNcols()) ){
+// 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
+// 	return 0;
+//       }
+// #endif
+//       return ind;
+      return 0;
     }
 
     inline METypes metype(void) const {
@@ -1122,20 +1131,22 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#ifdef MATRICKS_DEBUG
-      if  ( (i_.size()==badsize) || ( jj_.size()==badsize) ) {
-	return badsize;
-      }
-#endif
+// #ifdef MATRICKS_DEBUG
+//       if  ( (i_.size()==badsize) || ( jj_.size()==badsize) ) {
+// 	return badsize;
+//       }
+// #endif
       return Nrows()*Ncols();
     }
     
     inline size_type Nrows(void) const {
-      return i_.size();
+      //      return i_.size();
+      return 0;
     }
     
     inline size_type Ncols(void) const {
-      return jj_.size();
+      //      return jj_.size();
+      return 0;
     }
 
     inline size_type aNrows(void) const {

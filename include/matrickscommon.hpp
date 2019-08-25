@@ -13,6 +13,8 @@
 //#include <cmath>
 #include <limits>
 #include <valarray>
+#include <queue>
+
 
 #ifdef MATRICKS_DEBUG
   #define MEBUG_LEVEL1 1
@@ -53,6 +55,29 @@ namespace matricks {
   template <class D, class A, class B> class VJoinObj;
   template <class D, class A, class B> class VJoinExpr;
   template <class D> class VReconObj;
+
+
+  class slc {
+  private:
+    const index_type start_;
+    const index_type end_;
+    const index_type step_; 
+  public:
+    slc(const index_type start, const index_type end, const index_type step);
+    slc(const index_type start, const index_type end);
+    
+    index_type start(void) const;
+    index_type end(void) const; 
+    index_type step(void) const;
+
+    Vector<index_type>& toIndexVector(const size_type N) const;
+    void outputglossary(void) const;
+    std::string debugtxt(void) const;    
+    friend std::ostream& operator<<(std::ostream &stream, const slc& i) {
+      stream << i.debugtxt();
+      return stream;
+    }
+  };
 
   
   template <typename T>
@@ -317,66 +342,6 @@ namespace matricks {
 
 
 
-
-
-  /****************************************************************************
-   * slcuence class -- for accessing subsets of vectors/matrices (like "slice")
-   ****************************************************************************
-   */
-  class slc {
-  private:
-    const index_type start_;
-    const index_type end_;
-    const index_type step_; 
-  public:
-    slc(const index_type start, const index_type end, const index_type step) :
-      start_(start), end_(end), 
-      step_(step) {
-    }
-    slc(const index_type start, const index_type end) :
-      start_(start), end_(end), 
-      step_((end >= start)?1:-1) {
-    }
-    
-    index_type start(void) const{ return start_;}
-    index_type end(void) const{ return end_;}
-    index_type step(void) const{ return step_;}
-
-    // could improve speed for step=1 and step=-1 by creating a separate
-    // function or template class that doesn't include the step multiply
-    inline index_type operator[](const index_type i) const {
-      return (start_ + i * step_);      
-    }
-
-    inline size_type size(void) const {
-      // issue warning if step ==0 (size is infinite)
-      if ( (step_>=0) && ( end_>=start_ ) )
-	return (end_-start_)/static_cast<size_type>(step_) + 1;
-      else if ( (step_<0) && (end_<start_ ) )
-	return (start_-end_)/static_cast<size_type>(-step_) + 1;
-      else
-	return 1;
-    }
-
-    void outputglossary(void) const {
-#ifdef MATRICKS_DEBUG
-      std::cout << where_str<< debugtxt() <<" has size=" <<size()<<std::endl;
-#endif
-    }
-
-    std::string debugtxt(void) const {
-      std::ostringstream stream;
-      stream <<  "slc(start=" << start_ << ", end=" << end_ << ", step=" << step_ << ")";
-      return stream.str();
-    }
-
-    
-    friend std::ostream& operator<<(std::ostream &stream, const slc& i) {
-      stream << i.debugtxt();
-      return stream;
-    }
-    
-  };
 
 
  

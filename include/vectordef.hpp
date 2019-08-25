@@ -24,6 +24,10 @@
 namespace matricks {
 
 
+
+ 
+ 
+ 
   
   /****************************************************************************
    * Vector -- mathematical vector class.
@@ -287,12 +291,14 @@ namespace matricks {
 
     // Accessing a slice of values
     
-    VSliceObj<D>  operator[](const slc& i)  { 
-      return VSliceObj<D>(*this,i.start(),i.end(),i.step());
+    VSubsetObj<D> operator[](const slc& slice)  { 
+      return (*this)[slice.toIndexVector(size())];
     }
-    const VSliceExpr<D>  operator[](const slc& i) const  { 
-      return VSliceExpr<D>(*this,i.start(),i.end(),i.step());
+    const VSubsetObj<D>  operator[](const slc& slice) const  {
+      print2("Vector::operator[](const slc& slice)\n");
+      return (*this)[slice.toIndexVector(size())];
     }
+      
     
 
     // Accessing a SET of values using a vector of ints
@@ -1196,7 +1202,19 @@ namespace matricks {
 
 
 
+
+
+
+
+    
+    
+
+
+
+
+
 };
 
 
 #endif 
+

@@ -4,7 +4,7 @@
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.10
+VERSION_MATRICKS=2.11
 # V2.1 Introduced version control
 # V2.2 namespace Matricks -> matricks
 # V2.3 v[seq(start,end)] slices -- only for Vectors
@@ -19,3 +19,4 @@ VERSION_MATRICKS=2.10
 #      some fixes to the new debug facility
 # V2.10 check index < 0 in Vector and in VWrapper
 #       change rep to an expression
+# V2.11 convert sort and uniq from functions to methods

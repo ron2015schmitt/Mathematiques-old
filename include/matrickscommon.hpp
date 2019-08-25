@@ -221,6 +221,19 @@ namespace matricks {
     return a;
   }
 
+
+
+  template <class DAT> class pair {
+  public:
+    index_type index;
+    DAT data;
+    pair(index_type index_, DAT data_) : index(index_), data(data_) {}
+    pair() : index(0), data(DAT(0)) {}
+    bool operator<(const pair<DAT>& pair2) const {
+      return ((*this).data < pair2.data);
+    }
+  };
+
   /****************************************************************************
    * error reporting string definitions
    ****************************************************************************   

@@ -11,6 +11,8 @@
 #include <list>
 #include <iterator>
 #include <string>
+#include <queue>
+#include <map>
 
 #if CPP11 == 1
 #include <initializer_list>
@@ -21,7 +23,6 @@
 
 namespace matricks {
 
-  template <class D> void sort(Vector<D>& a );
 
   
   /****************************************************************************
@@ -653,11 +654,123 @@ namespace matricks {
       return *this;
     }
 
-    // move to here
-    friend  void sort<>(Vector<D>& a );
 
+    //**********************************************************************
+    //***************** in-place modification********************************
+    //**********************************************************************
 
+    // .sort()
+    //         sorts in place and returns the permuted indices
+
+    Vector<index_type>& sort() {
+
+      const size_type N = size();
+      Vector<index_type> &ivec = *(new Vector<index_type>(N));
+
+      if (N==0)
+	return ivec;
     
+      std::vector<pair<D> > temp(N);
+
+      for (register index_type i = 0; i < N ; i++ ) {
+	temp[i].index = i;
+	temp[i].data = (*data_)[i];
+      }
+    
+    
+      std::sort(temp.begin(),temp.end());
+    
+    
+      for (register index_type i = 0; i < N ; i++ ) {
+	ivec[i] = temp[i].index;
+	(*data_)[i] = temp[i].data;
+      }
+    
+      return ivec;
+
+    }
+
+
+    // .quniq()
+    //         removes adjacent duplicates
+
+    Vector<index_type>& quniq() {
+
+      const size_type N = size();
+
+      if (N==0)
+	return *(new Vector<index_type>(0));
+    
+      std::queue<pair<D> > unique;
+	
+      pair<D> prevpair(0, (*data_)[0]);
+      unique.push(prevpair);
+      for (register index_type i = 1; i < N ; i++ ) {
+	pair<D> mypair(i, (*data_)[i]);
+	if (mypair.data != prevpair.data) {
+	  unique.push(mypair);
+	  prevpair = mypair;
+	} 
+      }
+
+      const size_type Nnew = unique.size();
+      Vector<index_type> &indexvec = *(new Vector<index_type>(Nnew));
+      resize(Nnew);
+      for (register index_type i = 0; i < Nnew ; i++ ) {
+	pair<D> mypair = unique.front();
+	unique.pop();
+	indexvec[i] = mypair.index;
+	(*data_)[i] = mypair.data;
+      }
+
+      return indexvec;
+    }
+
+
+    // .uniq()
+    //         removes all duplicates
+
+    Vector<index_type>& uniq() {
+
+      const size_type N = size();
+
+      if (N==0)
+	return *(new Vector<index_type>(0));
+    
+      std::map<index_type,D> mymap;
+      for (register index_type j = 0; j < N ; j++ ) {
+	mymap[j] = (*data_)[j];
+      }
+
+      for (register index_type j = 0; j < N ; j++ ) {
+	if (mymap.find(j) == mymap.end()) continue;
+	pair<D> pair1(j, (*data_)[j]);
+	for (register index_type k = j+1; k < N ; k++ ) {
+	  if (mymap.find(k) == mymap.end()) continue;
+	  pair<D> pair2(k, (*data_)[k]);
+	  if (pair1.data == pair2.data) {
+	    mymap.erase(k);
+	  } 
+	}
+      }
+
+      const size_type Nnew = mymap.size();
+      Vector<index_type> &indexvec = *(new Vector<index_type>(Nnew));
+      resize(Nnew);
+      index_type k = 0;
+      for (typename std::map<index_type,D>::iterator it = mymap.begin(); it != mymap.end(); ++it) {
+	indexvec[k] = it->first;
+	(*data_)[k++] = it->second;
+      }
+
+      return indexvec;
+    }
+
+
+
+
+
+
 
 
     //**********************************************************************
@@ -1077,9 +1190,6 @@ namespace matricks {
 
 
   }
-
-
-
 
 
 

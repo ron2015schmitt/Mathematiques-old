@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector relational operators (`==`,`<`,`>`, etc), logical operators and masks");
+  mdtitle("Vector relational operators (`==`,`<`,`>`, etc), logical operators(`!`,`&&`,etc), masks, a `findtrue`");
   matricks_preamble();
 
   header2("Relational operators");
@@ -98,26 +98,6 @@ int main()
     resultend();
   }
 
-  header3("The functions `alltrue` and `numtrue`");
-  {
-    cr();
-    cr();
-    example(Nex++,"The functions `alltrue` and `numtrue`");
-    codestart("C++");
-    codemulti( Vector<double> v( range<double>(1,3) ) );
-    codeend();
-    cr();
-    
-   
-    resultstart2("");
-    resultmulti( v );
-    resultmulti(  (v > 2) );
-    resultmulti( alltrue(v > 2) );
-    resultmulti( numtrue(v > 2) );
-    resultmulti( numtrue(!(v > 2)) );
-    resultmulti( alltrue(v == v) );
-    resultend();
-  }
 
   header2("Vector mask access");
   text("* A subset of a vector can be extracted using a boolean-valued vector of the same size.");
@@ -162,7 +142,62 @@ int main()
   }
 
 
-  text("_Note that_ `expression[mask]` _access is not yet implemented_");
+  header2("Logical operators");
+
+  header3("The element-wise logical operatora `&&`,`||`,`!`");
+  {
+    cr();
+    cr();
+    example(Nex++,"The element-wise logical operators");
+    codestart("C++");
+    codemulti( Vector<double> v( range<double>(1,5) ) );
+    codeend();
+    cr();
+    
+   
+    resultstart2("");
+    resultmulti( v );
+    resultmulti(  (v > 2) );
+    resultmulti( !(v > 2) );
+    resultmulti( (v >= 2) && (v <= 4 ));
+    resultmulti( (v <= 2) || (v >= 4 ));
+    resultend();
+  }
+
+  header2("Logical functions");
+
+  header3("The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
+  {
+    cr();
+    text("* The function `alltrue(v)` returns a `bool`: true if every element of `v` is true, otherwise it returns false");
+    cr();
+    text("* The function `anytrue(v)` returns a `bool`: true if any element of `v` is true, otherwise it returns false");
+    cr();
+    text("* The function `numtrue(v)` returns a `size_type` equal to the number of elements of `v` that are true. ");
+    cr();
+    text("* The function `findtrue(v)` returns a `Vector<index_type>` which contains the indices of the true elements of `v`. ");
+    cr();
+    cr();
+    example(Nex++,"The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
+    codestart("C++");
+    codemulti( Vector<double> v( range<double>(1,3) ) );
+    codeend();
+    cr();
+    
+   
+    resultstart2("");
+    resultmulti( v );
+    resultmulti(  (v > 2) );
+    resultmulti( alltrue(v > 2) );
+    resultmulti( alltrue(v > 0) );
+    resultmulti( anytrue(v > 2) );
+    resultmulti( numtrue(v > 2) );
+    resultmulti( numtrue(!(v > 2)) );
+    resultmulti( numtrue(v > 0) );
+    resultmulti( findtrue(v > 2) );
+    resultmulti( findtrue(v > 0) );
+    resultend();
+  }
 
   matricks_toc();
     

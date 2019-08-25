@@ -465,8 +465,8 @@ namespace matricks {
   // numtrue(a)
 
   template <class A> 
-  inline index_type numtrue( const VorE<bool,A>& a ) {
-    index_type result = 0;
+  inline size_type numtrue( const VorE<bool,A>& a ) {
+    size_type result = 0;
     
 #ifdef MATRICKS_DEBUG
     if (  vexpr_is_size_bad(a) ) {

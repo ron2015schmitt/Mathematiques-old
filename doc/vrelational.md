@@ -1,6 +1,6 @@
 
-# Vector relational operators (`==`,`<`,`>`, etc), logical operators and masks in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.10-r1).
+# Vector relational operators (`==`,`<`,`>`, etc), logical operators(`!`,`&&`,etc), masks, a `findtrue` in mātricks
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.10-r2).
 
 ## Relational operators
 ### Relational operators between two Vectors
@@ -63,31 +63,13 @@ Vector<double> v( range<double>(1,5) );
   (v <= 2) || (v >= 4 ):  {1,1,0,1,1}; 
 ```
 
-### The functions `alltrue` and `numtrue`
-
-
-**EXAMPLE 4**: The functions `alltrue` and `numtrue`
-```C++
-Vector<double> v( range<double>(1,3) );
-```
-
-**Some expressions with results**
-```C++
-  v:  {1,2,3}; 
-  (v > 2):  {0,0,1}; 
-  alltrue(v > 2):  0; 
-  numtrue(v > 2):  1; 
-  numtrue(!(v > 2)):  2; 
-  alltrue(v == v):  1; 
-```
-
 ## Vector mask access
 * A subset of a vector can be extracted using a boolean-valued vector of the same size.
 * For example `v[v>0]` will return a vector containing only the positive values of v.
 * Vector mask access can be used on the left hand side of assigment, allowing you to set values via masks.
 
 
-**EXAMPLE 5**: Using vector masks
+**EXAMPLE 4**: Using vector masks
 ```C++
 Vector<double> v( range<double>(-10,10) );
 ```
@@ -120,6 +102,54 @@ v[(v < 0)] = 0.;
 ```
 
 
-_Note that_ `expression[mask]` _access is not yet implemented_
+## Logical operators
+### The element-wise logical operatora `&&`,`||`,`!`
+
+
+**EXAMPLE 5**: The element-wise logical operators
+```C++
+Vector<double> v( range<double>(1,5) );
+```
+
+**Some expressions with results**
+```C++
+  v:  {1,2,3,4,5}; 
+  (v > 2):  {0,0,1,1,1}; 
+  !(v > 2):  {1,1,0,0,0}; 
+  (v >= 2) && (v <= 4 ):  {0,1,1,1,0}; 
+  (v <= 2) || (v >= 4 ):  {1,1,0,1,1}; 
+```
+
+## Logical functions
+### The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`
+
+* The function `alltrue(v)` returns a `bool`: true if every element of `v` is true, otherwise it returns false
+
+* The function `anytrue(v)` returns a `bool`: true if any element of `v` is true, otherwise it returns false
+
+* The function `numtrue(v)` returns a `size_type` equal to the number of elements of `v` that are true. 
+
+* The function `findtrue(v)` returns a `Vector<index_type>` which contains the indices of the true elements of `v`. 
+
+
+**EXAMPLE 6**: The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`
+```C++
+Vector<double> v( range<double>(1,3) );
+```
+
+**Some expressions with results**
+```C++
+  v:  {1,2,3}; 
+  (v > 2):  {0,0,1}; 
+  alltrue(v > 2):  0; 
+  alltrue(v > 0):  1; 
+  anytrue(v > 2):  1; 
+  numtrue(v > 2):  1; 
+  numtrue(!(v > 2)):  2; 
+  numtrue(v > 0):  3; 
+  findtrue(v > 2):  {2}; 
+  findtrue(v > 0):  {0,1,2}; 
+```
+
 
 [Table of Contents](README.md)

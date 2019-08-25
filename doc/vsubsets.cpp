@@ -29,21 +29,21 @@ int main()
   text("You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices");
 
   
-  header2("Element access `Vector[Vector<index_type>]`");
+  header2("Access vector elements using a `Vector` of indices");
 
-
-  header3("Access vector elements using a `Vector` or a C++11 `initializer_list` of indices");
+  header3("Element access `Vector[Vector]`");
   cr();
   text("* The index Vector _can be smaller than or greater than or equal to_ the length to the data Vector!");
   text("* The index Vector _can have repeated indices and indices can be in any order_!");
   {
     cr();
     cr();
-    example(Nex++,"Access via a C++11 initializer_list");
+    example(Nex++,"Access via a Vector of indices");
     codestart("C++");
     codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
     codemulti( Vector<index_type> veven( range<index_type>(0,10,2) ) );
     codemulti( Vector<index_type> vodd( range<index_type>(1,10,2) ) );
+    codemulti( Vector<index_type> vconst(15,1 ) );
     codeend();
     cr();
     resultstart();
@@ -56,16 +56,17 @@ int main()
     resultmulti( v[vodd[1]]);
     resultmulti( v[veven,vodd] );
     resultmulti( v[vodd[veven[1]]]);
-    resultmulti( v[((veven,vodd),veven),vodd] );
+    resultmulti( vconst );
+    resultmulti( v[vconst] );
     resultend();
   }
 
 
- header2("Element access `Vector[initializer_list<index_type>]`");
-
 
   #if CPP11 == 1
-  header3("Access vector elements using a `Vector` or a C++11 `initializer_list` of indices");
+  header2("Access vector elements using an C++11 `initializer_list` of indices");
+  header3("Element access `Vector[initializer_list]`");
+
   cr();
   text("* The list can be smaller than or greater than or equal to the length to the data Vector.");
   text("* The list can have repeated indices and indices can be in any order.!");

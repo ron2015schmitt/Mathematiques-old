@@ -1,6 +1,6 @@
 #define MATRICKS_DEBUG 1
 
-
+ 
 #include "matricks.hpp"
 using namespace matricks;
 
@@ -22,20 +22,19 @@ int main()
 
 
   cr();
-  mdtitle("Vector `join` and `rep` functions");
+  mdtitle("Vector join operator and `rep` functions");
   matricks_preamble();
 
   
-  header3("Vector `join` function");
-  text("* The Vector `join` function joins two vectors");
-  text("* The comma operator `,` performs the same function.");
-  text("* This is an expression.  It does not create intermeidate objects.");
+  header3("Vector join operator `,` ");
+  text("* The Vector operator `,` joins two vectors");
+  text("* This is an expression.  It does not create intermediate objects.");
   text("* join can be used on the left hand side as well!");
  
   {
     cr();
     cr();
-    example(Nex++,"Vector `join` function");
+    example(Nex++,"Vector join operator `,`");
     codestart("C++");
     codemulti( Vector<double> v1( range<double>(0,2) ) );
     codemulti( Vector<double> v2( range<double>(3,4) ) );
@@ -53,7 +52,9 @@ int main()
     resultmulti( (10*v1,10*v2)  );
     resultend();
 
-
+    cr();
+    text("The following are examples usign the join operator on the left hand side");
+    cr();
     codestart("C++");
     codemulti( Vector<double> va(2) );
     codemulti( Vector<double> vb(3) );
@@ -65,6 +66,7 @@ int main()
     resultmulti(vb);
     resultend();
 
+  #if CPP11 == 1
     codestart("C++");
     codemulti( Vector<double> ua(2) );
     codemulti( Vector<double> ub(3) );
@@ -97,51 +99,9 @@ int main()
     resultmulti(za);
     resultmulti(zb);
     resultend();
-
+#endif
+  }    
     
-    
-    codestart("C++");
-    codemulti( Vector<double> v3 );
-    codemulti( v3 = (v1,v2,v1,v2) );
-    codemulti( Vector<double> v4a );
-    codemulti( v4a = (v1,v2) );
-    codemulti( Vector<double> v4b );
-    codemulti( v4b = (v1,10*v2) );
-    codemulti( Vector<double> v4c );
-    codemulti( v4c = (10*v1,v2) );
-    codemulti( Vector<double> v4d );
-    codemulti( v4d = (10*v1,10*v2) );
-    codemulti( Vector<double> v5( range<double>(0,6) )  );
-    codemulti( Vector<double> vc(2) );
-    codemulti( Vector<double> vd(5) );
-    //    codemulti( (vc[{1,0}],vd) = v5 );
-    codemulti( Vector<double> ve(2) );
-    codemulti( Vector<double> vf(5) );
-    //    codemulti( (ve,vf[{4,3,2,1,0}]) = v5 );
-    codeend();
-    cr();
-
-   
-    resultstart();
-    resultmulti(v1);
-    resultmulti(v2);
-    resultmulti(v3);
-    resultmulti(v4a);
-    resultmulti(v4b);
-    resultmulti(v4c);
-    resultmulti(v4d);
-    resultmulti(v5);
-    resultmulti(va);
-    resultmulti(vb);
-    resultmulti(vc);
-    resultmulti(vd);
-    resultmulti(ve);
-    resultmulti(vf);
-    resultmulti( (v1,v1,v1) );
-    resultmulti( (v1,v2,4*v1) );
-    resultmulti( (5*v1,v2) );
-    resultend();
-  }
 
   header3("Vector `rep` function");
   text("* The Vector `rep(v,m)` function replicates the input vector `m` times.");
@@ -173,8 +133,7 @@ int main()
 
   cr();
   cr();
-  text("_Note that_ `rep(expression, m)` _is not yet implemented_.");
-
+  
   matricks_toc();
 
 

@@ -1,15 +1,14 @@
 
-# Vector `join` and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.9).
+# Vector join operator and `rep` functions in mātricks
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.9-r2).
 
-### Vector `join` function
-* The Vector `join` function joins two vectors
-* The comma operator `,` performs the same function.
-* This is an expression.  It does not create intermeidate objects.
+### Vector join operator `,` 
+* The Vector operator `,` joins two vectors
+* This is an expression.  It does not create intermediate objects.
 * join can be used on the left hand side as well!
 
 
-**EXAMPLE 1**: Vector `join` function
+**EXAMPLE 1**: Vector join operator `,`
 ```C++
 Vector<double> v1( range<double>(0,2) );
 Vector<double> v2( range<double>(3,4) );
@@ -26,6 +25,9 @@ Vector<double> v2( range<double>(3,4) );
   (v1,10*v2):  {0,1,2,30,40}; 
   (10*v1,10*v2):  {0,10,20,30,40}; 
 ```
+
+
+The following are examples usign the join operator on the left hand side
 
 ```C++
 Vector<double> va(2);
@@ -75,45 +77,6 @@ Vector<double> zb(3);
   zb:  {5,4,3}; 
 ```
 
-```C++
-Vector<double> v3;
-v3 = (v1,v2,v1,v2);
-Vector<double> v4a;
-v4a = (v1,v2);
-Vector<double> v4b;
-v4b = (v1,10*v2);
-Vector<double> v4c;
-v4c = (10*v1,v2);
-Vector<double> v4d;
-v4d = (10*v1,10*v2);
-Vector<double> v5( range<double>(0,6) );
-Vector<double> vc(2);
-Vector<double> vd(5);
-Vector<double> ve(2);
-Vector<double> vf(5);
-```
-
-**The result is**
-```C++
-  v1:  {0,1,2}; 
-  v2:  {3,4}; 
-  v3:  {0,1,2,3,4,0,1,2,3,4}; 
-  v4a:  {0,1,2,3,4}; 
-  v4b:  {0,1,2,30,40}; 
-  v4c:  {0,10,20,3,4}; 
-  v4d:  {0,10,20,30,40}; 
-  v5:  {0,1,2,3,4,5,6}; 
-  va:  {1,2}; 
-  vb:  {3,4,5}; 
-  vc:  {0,0}; 
-  vd:  {0,0,0,0,0}; 
-  ve:  {0,0}; 
-  vf:  {0,0,0,0,0}; 
-  (v1,v1,v1):  {0,1,2,0,1,2,0,1,2}; 
-  (v1,v2,4*v1):  {0,1,2,3,4,0,4,8}; 
-  (5*v1,v2):  {0,5,10,3,4}; 
-```
-
 ### Vector `rep` function
 * The Vector `rep(v,m)` function replicates the input vector `m` times.
 * `rep` cannot be used on the left hand side of assignment, since it doesn't provide utility to do so.
@@ -139,6 +102,5 @@ v4 = (rep(v1,2), rep(v2,3));
 
 
 
-_Note that_ `rep(expression, m)` _is not yet implemented_.
 
 [Table of Contents](README.md)

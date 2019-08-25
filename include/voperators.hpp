@@ -159,10 +159,9 @@ namespace matricks {
 
   // rep(v,m)
 
-  // TODO:  make input a const.  turn this into a expr
-  template <class D> 
+  template <class D, class A> 
   inline Vector<D>&
-  rep(Vector<D>& a, size_t m) {
+  rep(const VorE<D,A>& a, const size_t m) {
     const size_t Na = a.size();
     const size_t N = m*Na;
     Vector<D> *v = new Vector<D>(N);
@@ -170,7 +169,9 @@ namespace matricks {
     for(index_type j = 0; j < m; j++) {
       index_type start = j*Na;
       print2("  j=%d, Na=%lu\n",j,Na);
-      (*v)[slc(start,start+Na-1)] = a[slc(0,Na-1)];
+      for(index_type k = 0; k < Na; k++) {
+	(*v)[start+k] = a[k];
+      }
     }
     return *v;
   }

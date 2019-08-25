@@ -106,6 +106,7 @@ int main()
   header3("Vector `rep` function");
   text("* The Vector `rep(v,m)` function replicates the input vector `m` times.");
   text("* `rep` cannot be used on the left hand side of assignment, since it doesn't provide utility to do so.");
+  text("* The Vector `rep(v,m)` function can be combined with the join operator.");
 
   
   {
@@ -114,11 +115,13 @@ int main()
     example(Nex++,"Vector `rep` function");
     codestart("C++");
     codemulti( Vector<double> v1( range<double>(1,3) ) );
-    codemulti( Vector<double> v2( range<double>(-1,-2) ) );
+    codemulti( Vector<double> v2( range<double>(4,5) ) );
     codemulti( Vector<double> v3 );
     codemulti( v3 = rep(v1,3) );
     codemulti( Vector<double> v4 );
     codemulti( v4 = (rep(v1,2), rep(v2,3)) );
+    codemulti( Vector<double> v5 );
+    codemulti( v5 = rep((v1,v2),2) );
     codeend();
     cr();
 
@@ -128,6 +131,7 @@ int main()
     resultmulti(v2);
     resultmulti(v3);
     resultmulti(v4);
+    resultmulti(v5);
     resultend();
   }
 

@@ -1,7 +1,7 @@
 # mātricks __VERSION_MATRICKS__
 
 ```diff
-- CURRENTLY NOT READY FOR USE. Planned Launch Date: 2019 Aug 26 -
+- CURRENTLY NOT READY FOR USE. Planned Launch Date: 2019 Sep 6 -
 ```
 
 mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.

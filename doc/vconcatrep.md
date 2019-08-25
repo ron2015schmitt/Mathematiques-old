@@ -1,6 +1,6 @@
 
 # Vector join operator and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.10).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.10-r1).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors
@@ -80,24 +80,28 @@ Vector<double> zb(3);
 ### Vector `rep` function
 * The Vector `rep(v,m)` function replicates the input vector `m` times.
 * `rep` cannot be used on the left hand side of assignment, since it doesn't provide utility to do so.
+* The Vector `rep(v,m)` function can be combined with the join operator.
 
 
 **EXAMPLE 2**: Vector `rep` function
 ```C++
 Vector<double> v1( range<double>(1,3) );
-Vector<double> v2( range<double>(-1,-2) );
+Vector<double> v2( range<double>(4,5) );
 Vector<double> v3;
 v3 = rep(v1,3);
 Vector<double> v4;
 v4 = (rep(v1,2), rep(v2,3));
+Vector<double> v5;
+v5 = rep((v1,v2),2);
 ```
 
 **The result is**
 ```C++
   v1:  {1,2,3}; 
-  v2:  {-1,-2}; 
+  v2:  {4,5}; 
   v3:  {1,2,3,1,2,3,1,2,3}; 
-  v4:  {1,2,3,1,2,3,-1,-2,-1,-2,-1,-2}; 
+  v4:  {1,2,3,1,2,3,4,5,4,5,4,5}; 
+  v5:  {1,2,3,4,5,1,2,3,4,5}; 
 ```
 
 

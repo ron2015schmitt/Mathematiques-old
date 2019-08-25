@@ -1,6 +1,6 @@
 
 # Vector join operator and `rep` functions in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.9-r2).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.10).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors

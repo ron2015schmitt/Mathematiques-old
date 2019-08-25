@@ -69,7 +69,7 @@ int main()
 
   cr();
   text("* The list can be smaller than or greater than or equal to the length to the data Vector.");
-  text("* The list can have repeated indices and indices can be in any order.!");
+  text("* The list can have repeated indices and indices can be in any order!");
   {
     cr();
     cr();

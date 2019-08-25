@@ -97,7 +97,7 @@ namespace matricks {
     inline const D operator[](const size_type i) const {  
       const size_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
-      if (index>=derived().sizetotal()) {
+      if ((index < 0) || (index >= derived().sizetotal()))  {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
       }
@@ -108,7 +108,7 @@ namespace matricks {
     inline D& operator[](const size_type i) {  
       const size_type index = derived().index(i);
 #ifdef MATRICKS_DEBUG
-      if (index>=derived().sizetotal()) {
+      if ((index < 0) || (index >= derived().sizetotal()))  {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
       }
@@ -912,6 +912,62 @@ namespace matricks {
 
 
 
+  /****************************************************************************
+   * VRepExpr Expression Template 
+   *
+   * expression for repeating a VorE (RHS only)
+   ****************************************************************************
+   */
+
+  template<class D, class A>
+  class VRepExpr : public  Vexpr<D,VRepExpr<D,A> >, public VectorofPtrs {
+
+  private:
+    const A& a_;
+    const size_type m_;
+    const size_type N_;
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VRepExpr(const A& a, const size_type m)
+      : a_(a), m_(m), N_(a_.size())
+    { 
+      addAddresses(a_.getAddresses());
+    }
+
+    inline const D operator[](const index_type i) const {  
+      return this->data(i); 
+    }
+
+    inline const D data(const index_type i) const{
+      index_type index = index_type(i % N_);
+      print2("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      return a_[index];
+    }
+    inline index_type index(index_type i) const{
+      return i;
+    }
+    inline VETypes vetype(void) const {
+      return VE_VRepExpr;
+    }
+    inline size_type size(void) const {
+      return m_*a_.size();
+    }
+    inline size_type sizetotal(void) const {
+      return m_*a_.size();
+    }
+    std::string debugtxt(void) const {
+      return "";
+      //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
+    }
+    void outputglossary(void) const {
+      return ;
+      //      outputglossary_VJoinExpr(a_.objectID(),ii_.objectID(),debugtxt(),size());
+    }
+  };
 
 
 

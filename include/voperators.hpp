@@ -160,20 +160,9 @@ namespace matricks {
   // rep(v,m)
 
   template <class D, class A> 
-  inline Vector<D>&
-  rep(const VorE<D,A>& a, const size_t m) {
-    const size_t Na = a.size();
-    const size_t N = m*Na;
-    Vector<D> *v = new Vector<D>(N);
-    print2("rep for loop\n");
-    for(index_type j = 0; j < m; j++) {
-      index_type start = j*Na;
-      print2("  j=%d, Na=%lu\n",j,Na);
-      for(index_type k = 0; k < Na; k++) {
-	(*v)[start+k] = a[k];
-      }
-    }
-    return *v;
+  inline VRepExpr<D,VorE<D,A> >
+  rep(const VorE<D,A>& a, const size_type m) {
+    return VRepExpr<D,VorE<D,A> >(a,m);
   }
 
   

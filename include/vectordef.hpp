@@ -262,14 +262,12 @@ namespace matricks {
 
     // "read/write" access signed index
     inline D& operator[](const index_type i)  {
-      index_type index;
+      index_type index = i;
       if (i < 0) {
-	index = size() + i;
-      } else {
-	index = i;
+	index += size();
       }
 #ifdef MATRICKS_DEBUG
-      if (index>=size()) {
+      if ( (index < 0) || (index >= size()) ) {
 	vout_of_bounds(objectID_,index);
 	return dummy_; 
       }

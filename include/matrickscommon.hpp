@@ -16,6 +16,21 @@
 #include <queue>
 
 
+namespace matricks {
+// do away with
+  extern const char* error_str;
+  extern const char* warn_str;
+  extern const char* indent_str;
+  extern const char* where_str;
+  extern const char* bug_str;
+
+  class Strings {
+  public:
+    static std::string error;
+    static std::string warn;
+    Strings();
+  };
+};
 
 namespace style {
   class Terminal {
@@ -73,10 +88,22 @@ namespace style {
 
   class Style {
   private:
+    static bool isInitialized;
+    static std::map<std::string, Style> styleMap;
     std::string stylestr_;
     std::string stylename_;
   public:
+    static void addStyle(const Style style); 
+    static void delStyle(const std::string styleName);
+    static Style& getStyle(const std::string styleName);
+    static void initialize();
+
     inline Style() {
+      printf(" STYLE() Style::isInitialized = %d \n", Style::isInitialized);
+
+      if (!Style::isInitialized) {
+	Style::initialize();
+      }
       stylestr_ = "";
     }
     inline Style(const std::string stylestr) {
@@ -177,11 +204,15 @@ namespace style {
   };
 
 
+  class FormatBase {
+  };
+    
   // TODO add style for both name and value
   template <>
-  class Format<double> {
+  class Format<double> : public FormatBase {
   private:
-    static char buffer_[2048];
+    static const size_t BUF_SIZE = 512;
+    static char buffer_[BUF_SIZE];
     std::string formatstr_ = "%f";
   public:
     typedef double MYTYPE;
@@ -194,6 +225,15 @@ namespace style {
     }
 
     inline Format& setFormatStr(const std::string formatstr) {
+      using namespace std;
+      MYTYPE x(0);
+      try {
+	sprintf(Format<double>::buffer_, formatstr.c_str(), x);
+      } catch (...) {
+	string classname = "";
+	cout << matricks::Strings::error << " illegal format passed to " << endl;
+	return *this;
+      }
       // TODO: test with try and catch
       formatstr_ = formatstr;
       return *this;
@@ -202,8 +242,7 @@ namespace style {
       return formatstr_;
     }
     inline std::string apply(const MYTYPE var) const {
-      const char *fstr = formatstr_.c_str();
-      std::sprintf(Format<double>::buffer_,fstr,var);
+      std::sprintf(Format<double>::buffer_, formatstr_.c_str(), var);
       return std::string(Format<double>::buffer_);
     }
     inline std::string getName() const {
@@ -216,9 +255,25 @@ namespace style {
   };
 
 
+  class Log {
+  public:
+    static Style style_log;
+    static Style style_nspace;
+    static Style style_class;
+    static Style style_func;
+    static Style style_str;
+    static void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "");
+
+    Log();
 
 
-  
+  };
+
+
+  inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    Log::log(spaceName, className, funcName, s);
+  }
+
   
 };
 
@@ -278,18 +333,7 @@ namespace matricks {
     cout <<  s << endl;
   }
 
-  extern const char* error_str;
-  extern const char* warn_str;
-  extern const char* indent_str;
-  extern const char* where_str;
-  extern const char* bug_str;
 
-  class Strings {
-  public:
-    static std::string error;
-    static std::string warn;
-    Strings();
-  };
 
 
     /****************************************************************************

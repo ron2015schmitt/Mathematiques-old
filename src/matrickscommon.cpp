@@ -4,21 +4,82 @@
 #include "matricks.hpp"
 #include <unistd.h>
 
-  namespace style {
+namespace style {
 
-    bool Terminal::isInitialized = false;
-    bool Terminal::supportsColor = false;
+  
+  bool Terminal::isInitialized = false;
+  bool Terminal::supportsColor = false;
     
-    bool Terminal::getSupportsColor() {
-      if (!isInitialized) {
-	supportsColor = ( isatty(STDOUT_FILENO) == 1 );
-	isInitialized = true;
-      }
-      return supportsColor;
+  bool Terminal::getSupportsColor() {
+    if (!isInitialized) {
+      supportsColor = ( isatty(STDOUT_FILENO) == 1 );
+      isInitialized = true;
     }
+    return supportsColor;
+  }
 
+  bool Style::isInitialized = false;
+  std::map<std::string, Style> Style::styleMap = *(new std::map<std::string, Style>());
+  void Style::addStyle(const Style style) {
+    printf(" adding style %s \n",style.getName().c_str());
+    Style::styleMap[style.getName()] = style;
+  }
+  void Style::delStyle(const std::string styleName) {
+    Style::styleMap.erase(styleName);
+  }
+  Style& Style::getStyle(const std::string styleName) {
+    return Style::styleMap[styleName];
+  }
+  void Style::initialize() {
+    Style::isInitialized = true;
+    printf(" Style::isInitialized = %d \n", Style::isInitialized);
+    printf(" Style::initialize \n");
+    Style::addStyle(*( new Style(GREEN,"green") ));
+    Style::addStyle(*( new Style(CYAN,"cyan") ));
+    Style::addStyle(*( new Style(BLUE2,"blue2") ));
+    Style::addStyle(*( new Style(BLACK,"black") ));
+    Style::addStyle(*( new Style(MAGENTA1,"magenta1") ));
+    Style::addStyle(*( new Style(BOLD,"bold") ));
+  }
 
-    char Format<double>::buffer_[2048];
+  Style Style_dummy = *(new Style());
+
+  
+  char Format<double>::buffer_[BUF_SIZE];
+
+  Style Log::style_log;
+  Style Log::style_nspace;
+  Style Log::style_class;
+  Style Log::style_func;
+  Style Log::style_str;
+    
+  Log::Log() {
+    using namespace std;
+    using namespace style;
+    Log::style_log = Style::getStyle("bold")+Style::getStyle("black");
+    Log::style_nspace = Style::getStyle("magenta1");
+    Log::style_class = Style::getStyle("cyan");
+    Log::style_func = Style::getStyle("blue2");
+    Log::style_str = Style::getStyle("black");
+  };
+
+  void Log::log(const std::string nspaceName, const std::string className, const std::string funcName, const std::string s) {
+    using namespace std;;
+    
+    cout << Log::style_log.apply("log:");
+    cout << " in function ";
+    cout << Log::style_nspace.apply(nspaceName);
+    cout << "::";
+    cout << Log::style_class.apply(className);
+    cout << "::";
+    cout << Log::style_func.apply(funcName);
+    cout << Log::style_str.apply(s);
+    cout << endl;
+  };
+
+  
+  Log Log_dummy = *(new Log());
+
 
 
 };
@@ -60,7 +121,6 @@ namespace matricks {
   };
 
   Strings dummy = *(new Strings());
-
 
 
   
@@ -192,7 +252,7 @@ namespace matricks {
 
 
 
-    /****************************************************************************
+  /****************************************************************************
    * slice class -- for accessing subsets of vectors/matrices 
    ****************************************************************************
    */

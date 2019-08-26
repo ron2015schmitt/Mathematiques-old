@@ -2,7 +2,6 @@
 
 
 #include "matricks.hpp"
-using namespace matricks;
 
 #include <iostream>
 #include <string>
@@ -21,6 +20,7 @@ using namespace matricks;
 int main()
 {
  
+  using namespace matricks;
   using namespace std;
   using namespace style;
   int Nex = 1;
@@ -102,6 +102,8 @@ int main()
   // dispcr(formatdouble.setFormatStr("%12.5f"));
   // dispcr(formatdouble.getFormatStr());
   // dispcr(formatdouble.apply(3.4));
+
+  log("matricks","Vector","resize","()");
   
   return 0;
 }

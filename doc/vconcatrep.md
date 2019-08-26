@@ -1,6 +1,7 @@
+Strings::Strings() initialization
 
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.12).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.13-r1).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors

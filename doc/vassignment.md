@@ -1,6 +1,7 @@
+Strings::Strings() initialization
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.12).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.13-r1).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -21,7 +22,7 @@ _In DEBUG mode, this generates a warning since it is a dangerous practice. Use a
 ```C++
 Vector<double> v(4);
 v = (const double[]) {1,2,3,4};
-**matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
+**mātricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
                  obj# = D[]
 ```
 **The result is**

@@ -1,6 +1,7 @@
+Strings::Strings() initialization
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.12).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.13-r1).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -26,7 +27,7 @@ Vector<double> v(4, -1 );
 In debug mode, this produces a warning, as shown below
 ```C++
 Vector<double> v( 4, (const double[]) {10, 20, 30, 40} );
-**matricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
+**mātricks warning: vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead.
                  obj# = D[]
 ```
 **The result is**

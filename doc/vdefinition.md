@@ -1,6 +1,7 @@
+Strings::Strings() initialization
 
 # Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.12).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r1).
 
 ### A `matricks::Vector` wraps a `std::valarray`
 * This bears repeating: a `matricks::Vector` wraps a `std::valarray`

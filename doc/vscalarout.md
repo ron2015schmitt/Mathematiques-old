@@ -1,6 +1,7 @@
+Strings::Strings() initialization
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.12).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r1).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.

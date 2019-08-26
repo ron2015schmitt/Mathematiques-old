@@ -33,6 +33,18 @@ namespace style {
   
   const std::string RESET   = ESC+"0m";
   const std::string BOLD    = ESC+"1m";
+  const std::string DIM     = ESC+"2m"; // not widely supported
+  const std::string ITALIC  = ESC+"3m"; // not widely supported
+  const std::string UNDERLINE  = ESC+"4m";
+  const std::string SLOWBLINK  = ESC+"5m";
+  const std::string RAPIDBLINK = ESC+"6m";
+  const std::string REVERSED   = ESC+"7m";
+  const std::string CROSSEDOUT = ESC+"9m";
+  const std::string FONT2      = ESC+"11m"; // not widely supported
+  const std::string FRAKTUR    = ESC+"20m"; // not widely supported
+  const std::string FRAMED     = ESC+"51m"; // not widely supported
+  const std::string ENCIRCLED  = ESC+"52m"; // not widely supported
+  const std::string OVERLINE   = ESC+"53m";
 
   const std::string BLACK   = ESC+"30m";      
   const std::string RED     = ESC+"31m";      
@@ -50,17 +62,163 @@ namespace style {
   const std::string YELLOWBACK  = BACK+"5;226m";      
   const std::string ORANGEBACK  = BACK+"5;208m";      
   const std::string ORANGE  = FORE+"5;208m";      
+  const std::string GRAY1  = FORE+"5;240m";      
 
+  const std::string BLUE1  = FORE+"5;18m";      
   const std::string BLUE2  = FORE+"5;21m";      
+  const std::string BLUE3  = FORE+"5;27m";      
+
+  const std::string MAGENTA1  = FORE+"5;129m";      
 
 
-  inline std::string apply(std::string style, std::string s) {
-    if (Terminal::getSupportsColor()) {
-      return style + s +RESET;
-    } else {
-      return s;
+  class Style {
+  private:
+    std::string stylestr_;
+    std::string stylename_;
+  public:
+    inline Style() {
+      stylestr_ = "";
     }
-  }
+    inline Style(const std::string stylestr) {
+      stylestr_ = stylestr;
+    }
+    inline Style(const std::string stylestr, const std::string name) {
+      stylestr_ = stylestr;
+      stylename_ = name;
+    }
+    inline std::string apply(const std::string s) const {
+      if (Terminal::getSupportsColor()) {
+	return stylestr_ + s +RESET;
+      } else {
+	return s;
+      }
+    }
+    inline Style& setStyle(const std::string stylestr) {
+      stylestr_ = stylestr;
+      return *this;
+    }
+    inline std::string getStyle() const {
+      return stylestr_;
+    }
+
+    inline Style& setName(const std::string name) {
+      stylename_ = name;
+      return *this;
+    }
+    inline std::string getName() const {
+      return stylename_;
+    }
+
+    inline Style& operator+(const Style& style2) const {
+      Style* style3 = new Style(this->getStyle() + style2.getStyle(), this->getName() + "+"+style2.getName() );
+      return *style3;
+    }
+    
+    inline friend std::ostream& operator<<(std::ostream &stream, const Style& style) {
+      std::string s = style.getName();
+      if (s.empty()) {
+	s = "style";
+      }
+      stream << style.apply(s);
+      return stream;
+    }
+
+  };
+
+
+  class StyledString {
+  private:
+    Style style_;
+    std::string text_;
+  public:
+    inline StyledString(const Style style, const std::string text) {
+      style_ = style;
+      text_ = text;
+    }
+    inline std::string get() const {
+      return style_.apply(text_);
+    }
+    inline std::string getStr() const {
+      return text_;
+    }
+    inline StyledString& setStyle(const Style style) {
+      style_ = style;
+      return *this;
+    }
+    inline Style& getStyle()  {
+      return style_;
+    }
+    inline friend std::ostream& operator<<(std::ostream &stream, const StyledString& ss) {
+      stream << ss.get();
+      return stream;
+    }
+      
+  };
+
+
+
+  template <typename D>
+  class Format {
+  public:
+    typedef D MYTYPE;
+    inline Format() {
+    }
+
+    inline std::string apply(const MYTYPE var) const {
+      std::ostringstream stream;
+      stream << var;
+      return stream.str();
+    }
+    inline std::string getName() const {
+      std::ostringstream stream;
+      stream << typeid(MYTYPE).name();
+      return stream.str();
+    }
+  };
+
+
+  // TODO add style for both name and value
+  template <>
+  class Format<double> {
+  private:
+    static char buffer_[2048];
+    std::string formatstr_ = "%f";
+  public:
+    typedef double MYTYPE;
+    inline Format() {
+      printf("Format::Format \n");
+    }
+    inline Format(const std::string formatstr) {
+      printf("Format::Format(const std::string formatstr) \n");
+      setFormatStr(formatstr);
+    }
+
+    inline Format& setFormatStr(const std::string formatstr) {
+      // TODO: test with try and catch
+      formatstr_ = formatstr;
+      return *this;
+    }
+    inline std::string getFormatStr() const {
+      return formatstr_;
+    }
+    inline std::string apply(const MYTYPE var) const {
+      const char *fstr = formatstr_.c_str();
+      std::sprintf(Format<double>::buffer_,fstr,var);
+      return std::string(Format<double>::buffer_);
+    }
+    inline std::string getName() const {
+      return "double";
+    }
+    inline friend std::ostream& operator<<(std::ostream &stream, const Format<double>& format) {
+      stream << "Format<"<<format.getName()<< "> = " << format.getFormatStr();
+      return stream;
+    }
+  };
+
+
+
+
+  
   
 };
 

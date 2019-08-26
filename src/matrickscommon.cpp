@@ -16,7 +16,10 @@
       }
       return supportsColor;
     }
-    
+
+
+    char Format<double>::buffer_[2048];
+
 
 };
 
@@ -45,7 +48,8 @@ namespace matricks {
   Strings::Strings() {
     using namespace std;
     using namespace style;
-    string s = apply(CYAN,"Strings::Strings()")+ " initialization\n";
+    Style cyan(CYAN);
+    string s = cyan.apply("Strings::Strings()")+ " initialization\n";
     print2("%s",s.c_str());
     Strings::error = "**mātricks ERROR:   ";
     Strings::warn =  "**mātricks WARNING: ";
@@ -57,7 +61,9 @@ namespace matricks {
 
   Strings dummy = *(new Strings());
 
-    
+
+
+  
   // VECTOR DIRECTORY IMPLEMENTATIONS
 
 

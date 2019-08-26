@@ -16,6 +16,10 @@
 #include <queue>
 
 
+// this is created by the makefiel and placed in 'exec_opt.cpp'
+extern char COMPILE_OPTIMIZE[];
+
+
 namespace matricks {
 // do away with
   extern const char* error_str;
@@ -24,6 +28,7 @@ namespace matricks {
   extern const char* where_str;
   extern const char* bug_str;
 
+  
   class Strings {
   public:
     static std::string error;
@@ -33,6 +38,8 @@ namespace matricks {
 };
 
 namespace style {
+  extern const char blankline[];
+
   class Terminal {
   private:
     static bool isInitialized;
@@ -298,21 +305,21 @@ namespace matricks {
 
 #if (MATRICKS_DEBUG==0)
   inline std::string execution_mode(void) {
-    return "normal (fast)";
+    return "MATRICKS_DEBUG off (fast)";
   }
   inline std::string execution_color(void) {
     return style::GREENBACK + style::BOLD;
   }
 #elif (MATRICKS_DEBUG==1)
   inline std::string execution_mode(void) {
-    return "DEBUG Level 1";
+    return "MATRICKS_DEBUG Level 1";
   }
   inline std::string execution_color(void) {
     return style::YELLOWBACK+ style::BOLD;
   }
 #elif (MATRICKS_DEBUG==2)
   inline std::string execution_mode(void) {
-    return "DEBUG Level 2";
+    return "MATRICKS_DEBUG Level 2";
   }
   inline std::string execution_color(void) {
     return style::ORANGEBACK+ style::BOLD;
@@ -322,15 +329,17 @@ namespace matricks {
   inline void display_execution_mode(void) {
     using namespace std;
     using namespace style;
-    string s = "";
-    if (Terminal::getSupportsColor()) {
-      s = s+ BLUE2+BOLD+"mātricks "+vers_matricks+": "+RESET
-	+ " execution mode = "
-	+ execution_color() + execution_mode() + RESET;
-    } else {
-      s =s+ "mātricks "+vers_matricks+": "+" execution mode = " + execution_mode();
-    }
-    cout <<  s << endl;
+    string version = string("mātricks ")+vers_matricks;
+    cout << Style::getStyle("crossedout").apply(blankline) << endl;
+    cout << (Style::getStyle("blue2")+Style::getStyle("bold")).apply(version);
+    cout << endl << endl;
+    cout << "compile-time settings:" << endl;
+    cout << "  " <<  execution_color() + execution_mode() + RESET << endl;
+    cout << Style::getStyle("bold").apply("  OPTIMIZE");
+    cout <<"=";
+    cout << Style::getStyle("cyan").apply(string(COMPILE_OPTIMIZE)) << endl;
+    cout << Style::getStyle("crossedout").apply(blankline) << endl;
+      
   }
 
 

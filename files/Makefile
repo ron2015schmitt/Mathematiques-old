@@ -55,7 +55,7 @@ endef
 .SUFFIXES:
 
 # don't delete .o files
-.PRECIOUS: %.o
+.PRECIOUS: %.o %_opts.cpp
 
 EXEC ?=
 
@@ -199,9 +199,14 @@ CPPC = g++
 override COPT ?=  -Wfatal-errors
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
+%_opts.cpp:
+	@echo "char COMPILE_OPTIMIZE[512] = "'"'$(OPTIMIZE)'";' > $@
+	@cat $@
+
+
 %.o: %.cpp 
 ifdef MEBUG
-	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=1" -c $*.cpp -o $@
+	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=$(MEBUG)" -c $*.cpp -o $@
 else
 	$(CPPC) $(CFLAGS) -c $*.cpp -o $@
 endif
@@ -227,8 +232,8 @@ LNK = g++
 override LOPT ?=
 LFLAGS = $(OPTIMIZE) $(LOPT)
 
-%: %.o 
-	$(CPPC) $(LFLAGS) $*.o -o $@ $(LIBS) 
+%: %.o %_opts.o
+	$(CPPC) $(LFLAGS) $*.o $*_opts.o -o $@ $(LIBS) 
 
 
 

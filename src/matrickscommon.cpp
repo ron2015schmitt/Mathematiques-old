@@ -6,6 +6,7 @@
 
 namespace style {
 
+  const char blankline[] = "                                                          ";
   
   bool Terminal::isInitialized = false;
   bool Terminal::supportsColor = false;
@@ -40,6 +41,9 @@ namespace style {
     Style::addStyle(*( new Style(BLACK,"black") ));
     Style::addStyle(*( new Style(MAGENTA1,"magenta1") ));
     Style::addStyle(*( new Style(BOLD,"bold") ));
+    Style::addStyle(*( new Style(UNDERLINE,"underline") ));
+    Style::addStyle(*( new Style(OVERLINE,"overline") ));
+    Style::addStyle(*( new Style(CROSSEDOUT,"crossedout") ));
   }
 
   Style Style_dummy = *(new Style());
@@ -59,6 +63,8 @@ namespace style {
     Log::style_log = Style::getStyle("bold")+Style::getStyle("black");
     Log::style_nspace = Style::getStyle("magenta1");
     Log::style_class = Style::getStyle("cyan");
+    Log::style_func = Style::getStyle("blue");
+    Log::style_func = Style::getStyle("blue1");
     Log::style_func = Style::getStyle("blue2");
     Log::style_str = Style::getStyle("black");
   };

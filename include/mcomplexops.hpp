@@ -511,7 +511,7 @@ namespace matricks {
     const size_type M = a.Ncols();
     const size_type C1 = NR*M;
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string name= a.debugtxt() + "|"+  b.debugtxt();
     const size_type Mb = b.Nrows();
     if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
@@ -551,7 +551,7 @@ namespace matricks {
     const size_type M = a.Ncols();
     const size_type C1 = NR*M;
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string name= a.debugtxt() + "|"+  b.debugtxt();
     const size_type Mb = b.Nrows();
     if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
@@ -605,7 +605,7 @@ namespace matricks {
     const size_type C1 = NN-NC;
 
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string name="adj(" +a.debugtxt() +")";
     if ( mexpr_is_size_bad(a.size()) ){ 
       mbad_expr_in_unary(a,"adj");

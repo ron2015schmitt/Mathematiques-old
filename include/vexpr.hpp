@@ -96,7 +96,7 @@ namespace matricks {
 
     inline const D operator[](const size_type i) const {  
       const size_type index = derived().index(i);
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ((index < 0) || (index >= derived().sizetotal()))  {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
@@ -107,7 +107,7 @@ namespace matricks {
 
     inline D& operator[](const size_type i) {  
       const size_type index = derived().index(i);
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ((index < 0) || (index >= derived().sizetotal()))  {
 	vwrapper_out_of_bounds(debugtxt(),i,size());
 	return derived().data(0);
@@ -137,7 +137,7 @@ namespace matricks {
     }
     // assign to recon object (issue error)
     DERIVED& equals(const VReconObj<D>& b) { 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       vbad_reconassignment(derived().a_.objectID(), b);
 #endif
       return derived();
@@ -152,7 +152,7 @@ namespace matricks {
       const size_type N =size();
       //      printf("size=%lu\n",N);
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( size() !=  rhs.size() ){ 
 	vbad_wrapper_assignment(debugtxt(),rhs.debugtxt());
 	outputglossary();
@@ -162,7 +162,7 @@ namespace matricks {
 #endif
 
       if ( rhs.checkAddresses(getAddresses()) ) {    
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
 	//	Vector<D> y(N,debugtxt());
 	Vector<D> y(N);
 #else
@@ -187,7 +187,7 @@ namespace matricks {
     DERIVED& equals(const MorE<D,B>& rhs) {
 
       const size_type N =size();
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       const size_type NR = rhs.Nrows();
       const size_type NC = rhs.Ncols();
       if ( ( N !=  rhs.size() ) 
@@ -201,7 +201,7 @@ namespace matricks {
 
 
       if ( rhs.checkAddresses(getAddresses()) ) {    
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
 	Vector<D> y(N,debugtxt());
 #else
 	Vector<D> y(N);
@@ -542,7 +542,7 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
       : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
     { 
@@ -658,7 +658,7 @@ namespace matricks {
     Vector<D>& operator=(const VorE<D,A>& x) { 
       size_type N = x.size();
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( N==badsize ){ 
 	vbad_expr_in_reconassignment(a_.objectID(), x);
 	return a_;
@@ -666,7 +666,7 @@ namespace matricks {
 #endif
       
       if ( x.addrmatch(&a_)) {    
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
 	//	Vector<D> y(N,debugtxt());
 	Vector<D> y(N);
 #else
@@ -685,7 +685,7 @@ namespace matricks {
 
     Vector<D>& operator=(const VReconObj<D>& b) { 
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       vbad_reconassignment(a_.objectID(), b);
 #endif
       return a_;

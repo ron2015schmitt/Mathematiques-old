@@ -1,6 +1,6 @@
+#define MATRICKS_DEBUG 1
 
-#include "matrickscommon.hpp"
-#include "p3vector.hpp"
+#include "matricks.hpp"
 
 
 

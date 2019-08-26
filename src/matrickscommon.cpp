@@ -1,8 +1,24 @@
 
-#define MATRICKS_DEBUG 1
+#define MATRICKS_DEBUG 2
 
 #include "matricks.hpp"
+#include <unistd.h>
 
+  namespace style {
+
+    bool Terminal::isInitialized = false;
+    bool Terminal::supportsColor = false;
+    
+    bool Terminal::getSupportsColor() {
+      if (!isInitialized) {
+	supportsColor = ( isatty(STDOUT_FILENO) == 1 );
+	isInitialized = true;
+      }
+      return supportsColor;
+    }
+    
+
+};
 
 
 namespace matricks {
@@ -17,16 +33,31 @@ namespace matricks {
     return s;
   }
 
-
-  const char* error_str =   "**matricks *ERROR*: ";
-  const char* warn_str =    "**matricks warning: ";
+  const char* error_str =    "**mātricks ERROR: ";
+  const char* warn_str =    "**mātricks warning: ";
   const char* indent_str  = "                 ";
-  const char* where_str  =  "          where  ";
-  const char* bug_str =     "**matricks  *BUG* : ";
+  const char* where_str  =  "           where  ";
+  const char* bug_str =     "**mātricks *BUG* : ";
 
 
+  std::string Strings::error;
+  std::string Strings::warn;
+  Strings::Strings() {
+    using namespace std;
+    using namespace style;
+    string s = apply(CYAN,"Strings::Strings()")+ " initialization\n";
+    print2("%s",s.c_str());
+    Strings::error = "**mātricks ERROR:   ";
+    Strings::warn =  "**mātricks WARNING: ";
+    if (Terminal::getSupportsColor()) {
+      Strings::error = string("")+RED+BOLD+Strings::error+RESET;
+      Strings::warn = string("")+ORANGE+BOLD+Strings::warn+RESET;
+    } 
+  };
 
+  Strings dummy = *(new Strings());
 
+    
   // VECTOR DIRECTORY IMPLEMENTATIONS
 
 
@@ -218,7 +249,7 @@ namespace matricks {
   }
 
   void slc::outputglossary(void) const {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     //      std::cout << where_str<< debugtxt() <<" has size=" <<size()<<std::endl;
 #endif
   }

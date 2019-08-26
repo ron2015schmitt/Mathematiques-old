@@ -16,12 +16,53 @@
 #include <queue>
 
 
-#ifdef MATRICKS_DEBUG
-  #define MEBUG_LEVEL1 1
-  #if (MATRICKS_DEBUG>1)
-    #define MEBUG_LEVEL2 1
-  #endif
-#endif
+
+namespace style {
+  class Terminal {
+  private:
+    static bool isInitialized;
+    static bool supportsColor;
+  public:
+    static bool getSupportsColor();
+    
+  };
+
+  const std::string ESC = "\033[";
+  const std::string FORE = ESC+"38;";
+  const std::string BACK = ESC+"48;";
+  
+  const std::string RESET   = ESC+"0m";
+  const std::string BOLD    = ESC+"1m";
+
+  const std::string BLACK   = ESC+"30m";      
+  const std::string RED     = ESC+"31m";      
+  const std::string GREEN   = ESC+"32m";      
+  const std::string GREENBRIGHT   = ESC+"92m";      
+  const std::string YELLOW  = ESC+"33m";      
+  const std::string YELLOWBRIGHT  = ESC+"93m";      
+  const std::string BLUE    = ESC+"34m";      
+  const std::string BLUEBRIGHT    = ESC+"94m";      
+  const std::string MAGENTA = ESC+"35m";      
+  const std::string CYAN    = ESC+"36m";      
+  const std::string WHITE   = ESC+"37m";
+
+  const std::string GREENBACK  =  BACK+"5;46m";      
+  const std::string YELLOWBACK  = BACK+"5;226m";      
+  const std::string ORANGEBACK  = BACK+"5;208m";      
+  const std::string ORANGE  = FORE+"5;208m";      
+
+  const std::string BLUE2  = FORE+"5;21m";      
+
+
+  inline std::string apply(std::string style, std::string s) {
+    if (Terminal::getSupportsColor()) {
+      return style + s +RESET;
+    } else {
+      return s;
+    }
+  }
+  
+};
 
 
 namespace matricks {
@@ -36,6 +77,61 @@ namespace matricks {
   //  const size_type maxsize = std::numeric_limits<uint>::max() -1;
   const size_type badsize = std::numeric_limits<size_type>::max();
 
+
+    /****************************************************************************
+   * execution mode string and display
+   ****************************************************************************   
+   */
+
+#if (MATRICKS_DEBUG==0)
+  inline std::string execution_mode(void) {
+    return "normal (fast)";
+  }
+  inline std::string execution_color(void) {
+    return style::GREENBACK + style::BOLD;
+  }
+#elif (MATRICKS_DEBUG==1)
+  inline std::string execution_mode(void) {
+    return "DEBUG Level 1";
+  }
+  inline std::string execution_color(void) {
+    return style::YELLOWBACK+ style::BOLD;
+  }
+#elif (MATRICKS_DEBUG==2)
+  inline std::string execution_mode(void) {
+    return "DEBUG Level 2";
+  }
+  inline std::string execution_color(void) {
+    return style::ORANGEBACK+ style::BOLD;
+  }
+#endif
+
+  inline void display_execution_mode(void) {
+    using namespace std;
+    using namespace style;
+    string s = "";
+    if (Terminal::getSupportsColor()) {
+      s = s+ BLUE2+BOLD+"mātricks "+vers_matricks+": "+RESET
+	+ " execution mode = "
+	+ execution_color() + execution_mode() + RESET;
+    } else {
+      s =s+ "mātricks "+vers_matricks+": "+" execution mode = " + execution_mode();
+    }
+    cout <<  s << endl;
+  }
+
+  extern const char* error_str;
+  extern const char* warn_str;
+  extern const char* indent_str;
+  extern const char* where_str;
+  extern const char* bug_str;
+
+  class Strings {
+  public:
+    static std::string error;
+    static std::string warn;
+    Strings();
+  };
 
 
     /****************************************************************************
@@ -310,34 +406,11 @@ namespace matricks {
 
   
   
-  extern const char* error_str;
-  extern const char* warn_str;
-  extern const char* indent_str;
-  extern const char* where_str;
-  extern const char* bug_str;
 
 
   void bug_report(const std::string& fname,const size_type linenum);
 
 
-  /****************************************************************************
-   * execution mode string and display
-   ****************************************************************************   
-   */
-
-#ifdef MATRICKS_DEBUG
-  inline std::string execution_mode(void) {
-    return "DEBUG";
-  }
-#else
-  inline std::string execution_mode(void) {
-    return "normal";
-  }
-#endif
-
-  inline void display_execution_mode(void) {
-    std::cout << "mātricks execution mode = "<< execution_mode() << std::endl;
-  }
 
 
 

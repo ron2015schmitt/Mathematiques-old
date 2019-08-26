@@ -83,19 +83,19 @@ namespace matricks_lapack {
     Atemp = ~A;
 
     if ( (U.Nrows()!=M) || (U.Ncols()!=M) ) {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       svd_bad_U(U.objectID(),M);
 #endif
       U.resize(M,M);
     }
     if (S.size()!=minMN) {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       svd_bad_S(S.objectID(),minMN);
 #endif
       S.resize(minMN);
     }
     if ((V.Nrows()!=N) || (V.Ncols()!=N) ) {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       svd_bad_V(V.objectID(),N);
 #endif
       V.resize(N,N);

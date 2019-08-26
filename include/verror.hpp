@@ -31,7 +31,7 @@ namespace matricks {
 		     const std::string& info, TextFormat textformat);
 
   //These are only used in DEBUG mode
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
 
 
 

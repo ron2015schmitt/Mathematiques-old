@@ -10,6 +10,22 @@
 #define MATRICKS_DEBUG 1
 #endif
 
+#define DO_EXPAND(VAL)  99##VAL
+#define EXPAND(VAL)     DO_EXPAND(VAL)
+
+#ifndef MATRICKS_DEBUG
+// not defined: set to 0
+   #define MATRICKS_DEBUG 0
+#elif (EXPAND(MATRICKS_DEBUG) == 99)
+  // defined but no value: set to 1
+  #undef MATRICKS_DEBUG
+  #define MATRICKS_DEBUG 1
+#elif (MATRICKS_DEBUG>2)
+  // no modes defined above 2
+  #undef MATRICKS_DEBUG
+  #define MATRICKS_DEBUG 2
+#endif
+
 
 #include "matricks_version.hpp"
 #include "util.hpp"

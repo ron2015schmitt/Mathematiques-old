@@ -385,7 +385,7 @@ namespace matricks {
   vcast(const MorE<D1,A>& a)
   {
     const size_type N = a.size();
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string name=a.debugtxt();
     name = "vcast("+name+")";
     if ( mexpr_is_size_bad(a.size()) ){ 
@@ -505,7 +505,7 @@ namespace matricks {
   inline D operator|( const VorE<D,A>& a, const  VorE<D,B>& b ) {
     D result = D();
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
       vbad_expr_in_binary(a,b,"","|");
       return 0;
@@ -539,7 +539,7 @@ namespace matricks {
   template <class D, class A> 
   D sum( const VorE<D,A>& a ) {
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"sum");
       return 0;
@@ -569,7 +569,7 @@ namespace matricks {
   template <class D, class A> 
   D integrate( const VorE<D,A>& v, const D a, const D b, const int order=1 ) {
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(v) ) {
       vbad_expr_in_unary(v,"integrate");
       return 0;
@@ -669,7 +669,7 @@ namespace matricks {
       }
       break;
     default:
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       std::cerr << "integrate: bad order parameter order="<<order<<std::endl;   
 #endif
       break;
@@ -684,7 +684,7 @@ namespace matricks {
   template <class D, class A> 
   D prod( const VorE<D,A>& a ) {
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"prod");
       return 0;
@@ -712,7 +712,7 @@ namespace matricks {
   template <class D, class A> 
   D norm( const VorE<D,A>& a ) {
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"norm");
       return 0;
@@ -739,7 +739,7 @@ namespace matricks {
   template <class D, class A> 
   D min( const VorE<D,A>& a ) {
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"min");
       return 0;
@@ -766,7 +766,7 @@ namespace matricks {
   template <class D, class A> 
   D max( const VorE<D,A>& a ) {
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"max");
       return 0;

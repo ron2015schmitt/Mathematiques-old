@@ -428,7 +428,7 @@ namespace matricks {
   inline bool alltrue( const VorE<bool,A>& a ) {
     bool result = true;
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"alltrue");
       return false;
@@ -448,7 +448,7 @@ namespace matricks {
   inline bool anytrue( const VorE<bool,A>& a ) {
     bool result = false;
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"anytrue");
       return false;
@@ -468,7 +468,7 @@ namespace matricks {
   inline size_type numtrue( const VorE<bool,A>& a ) {
     size_type result = 0;
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"numtrue");
       return 0;
@@ -491,7 +491,7 @@ namespace matricks {
   inline Vector<index_type> findtrue( const VorE<bool,A>& a ) {
     int N = 0;
     
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string s = "findtrue(" + a.debugtxt() + ")";
     if (  vexpr_is_size_bad(a) ) {
       vbad_expr_in_unary(a,"findtrue");
@@ -504,7 +504,7 @@ namespace matricks {
     for (register index_type i = 0; i< a.size(); i++)
       N += int(a[i]);
  
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     //   Vector<index_type> y(N,s);
     Vector<index_type> y(N);
 #else

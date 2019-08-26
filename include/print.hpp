@@ -171,15 +171,20 @@ namespace matricks {
 #define matricksinfo(var) _matricksinfo(var,std::string(# var))
   
 
-#ifdef MEBUG_LEVEL1
-#define print1(...) printf(__VA_ARGS__)
+#if MATRICKS_DEBUG>=1
+  #define print1(...) printf(__VA_ARGS__)
+  #define disp1(...) dispcr(__VA_ARGS__)
 #else
-#define print1(...) {}
+  #define print1(...) {}
+  #define disp1(...) {}
 #endif
-#ifdef MEBUG_LEVEL2
-#define print2(...) printf(__VA_ARGS__)
+
+#if MATRICKS_DEBUG>=2
+  #define print2(...) printf(__VA_ARGS__)
+  #define disp2(...) dispcr(__VA_ARGS__)
 #else
-#define print2(...) {}
+  #define print2(...) {}
+  #define disp2(...) {}
 #endif
   
 

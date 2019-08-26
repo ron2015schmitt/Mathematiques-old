@@ -43,7 +43,7 @@ namespace matricks {
     size_type width_;   // for display  (std::setw uses int as its size)
     TextFormat textformat_;
     std::valarray<D>* data_;
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     D dummy_;
 #endif
     mutable std::string name_;
@@ -172,7 +172,7 @@ namespace matricks {
       name_ = "Vector";
       addAddress(this);
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       dummy_ = D();
       // add this vector to the directory
       //      Any<Vector<D> > me;
@@ -194,7 +194,7 @@ namespace matricks {
       delete  data_ ;
 
       //remove from directory
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       MatricksObjectManager::removeObject(objectID_);
 #endif
     }
@@ -231,7 +231,7 @@ namespace matricks {
       data_->resize(N);
       perline_ = N+1;
       width_ = 0;
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       // update the directory
       if (n>maxsize) 
 	vbad_size(objectID_, n);
@@ -271,7 +271,7 @@ namespace matricks {
       if (i < 0) {
 	index += size();
       }
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (index < 0) || (index >= size()) ) {
 	vout_of_bounds(objectID_,index);
 	return dummy_; 
@@ -316,7 +316,7 @@ namespace matricks {
     // Accessing a SET of values using a MASK
     
     VSubMaskObj<D> operator[](const Vector<bool>& mask)  {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
@@ -324,7 +324,7 @@ namespace matricks {
       return  VSubMaskObj<D>(*this,mask);
     }
     const VSubMaskObj<D> operator[](const Vector<bool>& mask)  const {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if (size()!=mask.size()) {
 	vbad_mask(objectID_,mask);
       }
@@ -369,7 +369,7 @@ namespace matricks {
 
     // Assignment to a vector expression
     template <class A>  Vector<D>& equals(const Vexpr<D,A>& x) {  
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       std::string s1 = debugtxt();
       std::string s2 = x.debugtxt();
       if ( vexpr_is_size_bad(x) ){ 
@@ -388,7 +388,7 @@ namespace matricks {
       resize(x.size());
 
       if (x.checkAddresses(this->getAddresses())) {    
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
 	//	Vector<D> vtemp(size(),x.debugtxt());
 	Vector<D> vtemp(size());
 #else
@@ -414,7 +414,7 @@ namespace matricks {
     // assignment to an array
     Vector<D>& equals(const D array[]) {
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       v_array_warning(objectID());
 #endif      
 
@@ -438,7 +438,7 @@ namespace matricks {
     // Copy asignment
     Vector<D>& equals(const Vector<D>& v2) {
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (size()>0) && ( size() !=  v2.size() ) ){ 
 	vbad_assignment_warning(objectID(),v2.objectID());
       } else if (size() !=  v2.size() ){
@@ -468,7 +468,7 @@ namespace matricks {
     template <class A>
     Vector<D>& operator=(const MorE<D,A>& m) {
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       const size_type NR = m.Nrows();
       const size_type NC = m.Ncols();
       if ( size() !=  m.size() ){ 
@@ -489,7 +489,7 @@ namespace matricks {
 
     template <class B>
     Vector<D>& operator=(const VReconObj<D>& b) { 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       vbad_reconassignment(objectID(), b);
 #endif
       return *this;
@@ -498,7 +498,7 @@ namespace matricks {
 
     Vector<D>& equals(const std::list<D> mylist) {
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (size()>0) && ( size() !=  mylist.size() ) ){ 
 	vbad_assignment_general_warning(objectID(),mylist.size(), "std::list<D>");
       } else if (size() !=  mylist.size() ){
@@ -528,7 +528,7 @@ namespace matricks {
 #if CPP11 == 1
     Vector<D>& equals(const std::initializer_list<D> mylist) {
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (size()>0) && ( size() !=  mylist.size() ) ){ 
 	vbad_assignment_general_warning(objectID(),mylist.size(), "std::initializer_list<D>");
       } else if (size() !=  mylist.size() ){
@@ -560,7 +560,7 @@ namespace matricks {
     // assignment to a std::vector
     Vector<D>& equals(const std::vector<D> vstd) {
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (size()>0) && ( size() !=  vstd.size() ) ){ 
 	vbad_assignment_general_warning(objectID(),vstd.size(), "std::vector<D>");
       } else if (size() !=  vstd.size() ){
@@ -589,7 +589,7 @@ namespace matricks {
     template <std::size_t N>
     Vector<D>& equals(const struct std::array<D,N> varray) {
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (size()>0) && ( size() !=  N) ) { 
 	vbad_assignment_general_warning(objectID(), N, "std::array<D,N>");
       } else if (size() !=  N ){
@@ -618,7 +618,7 @@ namespace matricks {
     // assignment to a std::val_array
     Vector<D>& equals(const std::valarray<D> varray) {
       
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       if ( (size()>0) && ( size() !=  varray.size() ) ){ 
 	vbad_assignment_general_warning(objectID(),varray.size(), "std::valarray<D>");
       } else if (size() !=  varray.size() ){
@@ -825,7 +825,7 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       return ""; //MatricksObjectManager::vectorname(objectID_); 
 #else
       return name_;
@@ -834,7 +834,7 @@ namespace matricks {
 
     void debugtxt(const char* newname) const {
       std::string s = newname;
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       //      MatricksObjectManager::vchange_name(objectID_,s); 
 #else
       name_=s;
@@ -842,7 +842,7 @@ namespace matricks {
     }
 
     void debugtxt(const std::string newname) const {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       // MatricksObjectManager::vchange_name(objectID_,newname); 
 #else
       name_=name;
@@ -868,7 +868,7 @@ namespace matricks {
     }
 
     void outputglossary(void) const {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
       MatricksObjectManager::outputGlossary(objectID_);
 #endif
     }
@@ -1130,7 +1130,7 @@ namespace matricks {
       for (D x =start; x>=end; x +=step) 
 	N +=1;
     }
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::ostringstream stream;
     stream << "range(" <<start<<","<<end<<","<<step<<")";
     //    Vector<D> y(N,stream.str());
@@ -1169,7 +1169,7 @@ namespace matricks {
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   inline Vector<D> linspace(D start, D end, size_type N) {
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::ostringstream stream;
     stream << "linspace(" <<start<<","<<end<<","<<N<<")";
     std::string s = stream.str();
@@ -1179,7 +1179,7 @@ namespace matricks {
     Vector<D> y(N);
 #endif
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     if (N<2) {
       vbadlinspace<D>(start,end,N);
       return y;

@@ -1,12 +1,12 @@
 
-v2.12
+v2.13
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.12
+VERSION_MATRICKS=2.13
 # V2.1 Introduced version control
 # V2.2 namespace Matricks -> matricks
 # V2.3 v[seq(start,end)] slices -- only for Vectors
@@ -23,3 +23,4 @@ VERSION_MATRICKS=2.12
 #       change rep to an expression
 # V2.11 convert sort and uniq from functions to methods
 # V2.12 finished implementing slices
+# V2.13 introducing color and styles for terminal output

@@ -19,7 +19,7 @@ namespace matricks {
   {
     const size_type NC = a.size();
     const size_type NR = b.size();
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string sa = a.debugtxt();
     if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
@@ -54,7 +54,7 @@ namespace matricks {
   {
     const size_type NC = a.size();
     const size_type NR = b.size();
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string sa = a.debugtxt();
     if (a.vetype() != VE_Vector) 
       sa = "(" + sa + ")";
@@ -98,7 +98,7 @@ namespace matricks {
     const index_type C1 = NR*M;
     const index_type C2 = M-1;
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string sa = a.debugtxt();
     if (a.metype() != ME_Matrix) 
       sa = "(" + sa + ")";
@@ -150,7 +150,7 @@ namespace matricks {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string sa = a.debugtxt();
     std::string sb = b.debugtxt();
     if (a.vetype() != VE_Vector) 
@@ -208,7 +208,7 @@ namespace matricks {
     const index_type C1 = NR*M;
     const index_type C2 = M-1;
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string sa = a.debugtxt();
     if (a.metype() != ME_Matrix) 
       sa = "(" + sa + ")";
@@ -260,7 +260,7 @@ namespace matricks {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
 
-#ifdef MATRICKS_DEBUG
+#if MATRICKS_DEBUG>0
     std::string sa = a.debugtxt();
     std::string sb = b.debugtxt();
     if (a.vetype() != VE_Vector) 

@@ -828,12 +828,78 @@ namespace matricks {
       a_.outputglossary();
       b_.outputglossary();
     }
-
-
-
   };
 
 
+   /************************************************************
+   *               Templates for Binary+scalar Operators 
+   *
+   * D = data type, e.g. double
+   * A = either an Vector or a Vexpr
+   * B = either an Vector or a Vexpr
+   * N = int
+   ************************************************************
+   */
+
+  template<class D, class A, class X, class OP>
+  class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X,OP> >, public VectorofPtrs {
+
+  private:
+    const A& a_;
+    const X& x_;
+    const int N_;
+    
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VSeriesOp(const A& a, const X& x, const int N)
+      : a_(a), x_(x), N_(N)
+    { 
+      addAddresses(a_.getAddresses());
+      addAddresses(x_.getAddresses());
+    }
+
+    inline const D operator[](const index_type i) const {
+      D sum = 0;
+      // TODO: check a_.size >= N
+      for (int n = 0; n <= N_ ; n++) {
+	D a0 = a_[n];
+	if (a0==D(0)) continue;
+	sum += OP::apply(a0, x_[i], n);
+      }
+      return sum; 
+    }
+
+    inline size_type size(void) const {
+      return x_.size();
+      // TODO: check a_.size >= N
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VSeriesOp;
+    }
+
+    std::string debugtxt(void) const {
+      // TODO: get this working
+      std::string sa = a_.debugtxt();
+      if (a_.vetype() != VE_Vector) 
+	sa = "(" + sa + ")";
+      std::string sx = x_.debugtxt();
+      if (x_.vetype() != VE_Vector) 
+	sx = "(" + sx + ")";
+      std::string sN = print2str("%d",N_);
+      return OP::debugtxt(sa,sx,sN);
+    }
+
+
+    void outputglossary(void) const {
+      a_.outputglossary();
+      x_.outputglossary();
+    }
+  };
 
 
 

@@ -7,6 +7,7 @@
 namespace style {
 
   const char blankline[] = "                                                                               \n";
+  char Buffer[BUFFER_SIZE];
   
   bool Terminal::isInitialized = false;
   bool Terminal::supportsColor = false;

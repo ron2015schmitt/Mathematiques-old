@@ -44,6 +44,25 @@ namespace matricks {
     return  VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> >(a,b);
   }
 
+   /************************************************************
+   *               Templates for Binary+scalar Operators 
+   *
+   * D = data type, e.g. double
+   * A = either an Vector or a Vexpr
+   * B = either an Vector or a Vexpr
+   * N = int
+   ************************************************************
+   */
+  
+  // taylor(vector coefs, vector vals, max N)
+
+  template <class D, class A, class X> 
+  inline VSeriesOp<D, VorE<D,A>, VorE<D,X>, ApMonomial<D> > 
+  taylor(const VorE<D,A>& a, const VorE<D,X>& x, const int N)
+  {
+    return  VSeriesOp<D, VorE<D,A>, VorE<D,X>, ApMonomial<D> >(a,x,N);
+  }
+
 
 
   /************************************************************

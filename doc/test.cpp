@@ -40,7 +40,7 @@ int main()
   double d = 3.4;
   Any<double> x(d);
 
-  Any<index_type> y(Nex);
+  Any<index_type> yy(Nex);
   Vector<double> ron(5);
   Any<Vector<double> > z(ron);
 
@@ -122,5 +122,14 @@ int main()
   s1 = print2str("%15.8f\n",1.);
   dispcr(s1);
 
+
+  Vector<double> Bessel0Coeffs =  Vector<double>({1.,0.,-0.25,0.,0.015625,0.,-0.000434028,0.,6.78168e-6,0.,-6.78168e-8,0.,4.7095e-10,0.,-2.40281e-12,0.,9.38597e-15,0.,-2.8969e-17,0.,7.24226e-20,0.,-1.49633e-22,0.,2.5978e-25,0.});
+
+  Vector<double> r = linspace<double>(0,10,101);
+
+  Vector<double> y = taylor(Bessel0Coeffs, r, 25);
+
+  dispcr(y);
+  
   return 0;
 }

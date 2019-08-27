@@ -214,9 +214,9 @@ namespace style {
   };
 
 
-  static const size_t BUFFER_SIZE = 512;
-  static char Buffer[BUFFER_SIZE];
-#define print2str(...) (new std::string())->erase(0*std::snprintf(Buffer,BUFFER_SIZE, __VA_ARGS__)).append(Buffer)
+  const size_t BUFFER_SIZE = 512;
+  extern char Buffer[BUFFER_SIZE];
+#define print2str(...) (new std::string())->erase(0*std::snprintf(style::Buffer,style::BUFFER_SIZE, __VA_ARGS__)).append(style::Buffer)
 
   //<<std::snprintf(Buffer,BUFFER_SIZE, __VA_ARGS__))
 
@@ -410,7 +410,7 @@ namespace matricks {
   template <class D, class A, class B> class VJoinObj;
   template <class D, class A, class B> class VJoinExpr;
   template <class D> class VReconObj;
-
+  template <class D, class A, class X, class OP> class VSeriesOp;
 
   class slc {
   private:
@@ -692,6 +692,7 @@ namespace matricks {
 		VE_VJoinExpr, VE_VJoinObj,
 		VE_VRepExpr, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
+		VE_VSeriesOp,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
 		VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
 

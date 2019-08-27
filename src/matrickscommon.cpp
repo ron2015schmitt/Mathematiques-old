@@ -1,5 +1,5 @@
 
-#define MATRICKS_DEBUG 2
+#define MATRICKS_DEBUG 3
 
 #include "matricks.hpp"
 #include <unistd.h>
@@ -20,38 +20,85 @@ namespace style {
   }
 
   bool Style::isInitialized = false;
-  std::map<std::string, Style> Style::styleMap = *(new std::map<std::string, Style>());
-  void Style::addStyle(const Style style) {
-    printf(" adding style %s \n",style.getName().c_str());
-    Style::styleMap[style.getName()] = style;
+  std::map<std::string, Style> Style::Map = *(new std::map<std::string, Style>());
+  void Style::add(Style& style) {
+    printf3(" adding style %s \n",style.getName().c_str());
+    Style::Map.insert(std::pair<std::string, Style>(style.getName(), style));
   }
-  void Style::delStyle(const std::string styleName) {
-    Style::styleMap.erase(styleName);
+  void Style::del(const std::string styleName) {
+    Style::Map.erase(styleName);
   }
-  Style& Style::getStyle(const std::string styleName) {
-    return Style::styleMap[styleName];
+  Style& Style::get(const std::string styleName) {
+    return Style::Map[styleName];
   }
   void Style::initialize() {
     Style::isInitialized = true;
-    printf(" Style::isInitialized = %d \n", Style::isInitialized);
-    printf(" Style::initialize \n");
-    Style::addStyle(*( new Style(GREEN,"green") ));
-    Style::addStyle(*( new Style(CYAN,"cyan") ));
-    Style::addStyle(*( new Style(BLUE2,"blue2") ));
-    Style::addStyle(*( new Style(BLACK,"black") ));
-    Style::addStyle(*( new Style(MAGENTA1,"magenta1") ));
-    Style::addStyle(*( new Style(BOLD,"bold") ));
-    Style::addStyle(*( new Style(UNDERLINE,"underline") ));
-    Style::addStyle(*( new Style(OVERLINE,"overline") ));
-    Style::addStyle(*( new Style(CROSSEDOUT,"crossedout") ));
+    Style::add(*( new Style(GREEN,"green") ));
+    Style::add(*( new Style(CYAN,"cyan") ));
+    Style::add(*( new Style(BLUE2,"blue2") ));
+    Style::add(*( new Style(BLACK,"black") ));
+    Style::add(*( new Style(MAGENTA1,"magenta1") ));
+    Style::add(*( new Style(BOLD,"bold") ));
+    Style::add(*( new Style(UNDERLINE,"underline") ));
+    Style::add(*( new Style(OVERLINE,"overline") ));
+    Style::add(*( new Style(CROSSEDOUT,"crossedout") ));
   }
 
   Style Style_dummy = *(new Style());
 
+
+
+
+
+  bool StyledString::isInitialized = false;
+  std::map<SSEnum, StyledString> StyledString::Map = *(new std::map<SSEnum, StyledString>());
+  void StyledString::add(const SSEnum sse, StyledString& styledString) {
+    StyledString::Map.insert(std::pair<SSEnum, StyledString>(sse, styledString));
+  }
+  void StyledString::del(const SSEnum sse) {
+    StyledString::Map.erase(sse);
+  }
+  StyledString& StyledString::get(const SSEnum sse) {
+    return StyledString::Map[sse];
+  }
+  void StyledString::initialize() {
+    StyledString::isInitialized = true;
+    StyledString *error = new StyledString(*(new Style(BOLD+RED)),"** mātricks ERROR:   ");
+    StyledString::add(SSEnum::ERROR, *error);;
+    StyledString *warning = new StyledString(*(new Style(BOLD+ORANGE)),"** mātricks WARNING: ");
+    StyledString::add(SSEnum::WARNING, *warning);
+    StyledString *matricks = new StyledString(*(new Style(BOLD+BLUE2)),"mātricks");
+    StyledString::add(SSEnum::MATRICKS, *matricks);
+    StyledString *version = new StyledString(*(new Style(BOLD+BLUE2)),vers_matricks);
+    StyledString::add(SSEnum::VERSION, *version);
+    StyledString *dlevel0 = new StyledString(*(new Style(BOLD+GREENBACK)),"MATRICKS_DEBUG 0 (off/fast)");
+    StyledString::add(SSEnum::DLEVEL0, *dlevel0);
+    StyledString *dlevel1 = new StyledString(*(new Style(BOLD+YELLOWBACK)),"MATRICKS_DEBUG 1 (errors/warnings)");
+    StyledString::add(SSEnum::DLEVEL1, *dlevel1);
+    StyledString *dlevel2 = new StyledString(*(new Style(BOLD+ORANGEBACK)),"MATRICKS_DEBUG 2 (verbose)");
+    StyledString::add(SSEnum::DLEVEL2, *dlevel2);
+    StyledString *dlevel3 = new StyledString(*(new Style(BOLD+REDBACK)),"MATRICKS_DEBUG 3 (developer)");
+    StyledString::add(SSEnum::DLEVEL3, *dlevel3);
+#if (MATRICKS_DEBUG==0)
+    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel0);
+#elif (MATRICKS_DEBUG==1)
+    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel1);
+#elif (MATRICKS_DEBUG==2)
+    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel2);
+#elif (MATRICKS_DEBUG==3)
+    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel3);
+#endif
+
+    
+  }
+
+
   
   char Format<double>::buffer_[BUF_SIZE];
 
-  Style Log::style_log;
+  Style Log::style_log0;
+  Style Log::style_log1;
+  Style Log::style_log2;
   Style Log::style_nspace;
   Style Log::style_class;
   Style Log::style_func;
@@ -60,19 +107,48 @@ namespace style {
   Log::Log() {
     using namespace std;
     using namespace style;
-    Log::style_log = Style::getStyle("bold")+Style::getStyle("black");
-    Log::style_nspace = Style::getStyle("magenta1");
-    Log::style_class = Style::getStyle("cyan");
-    Log::style_func = Style::getStyle("blue");
-    Log::style_func = Style::getStyle("blue1");
-    Log::style_func = Style::getStyle("blue2");
-    Log::style_str = Style::getStyle("black");
+    Log::style_log0 = Style::get("bold")+Style::get("black");
+    Log::style_log1 = Style::get("bold")+Style::get("black");
+    Log::style_log2 = Style::get("bold")+Style::get("black");
+    Log::style_nspace =  Style::get("magenta1");
+    Log::style_class = Style::get("cyan");
+    Log::style_func =  Style::get("blue1");
+    Log::style_str = Style::get("black");
   };
 
-  void Log::log(const std::string nspaceName, const std::string className, const std::string funcName, const std::string s) {
-    using namespace std;;
-    
-    cout << Log::style_log.apply("log:");
+
+  void Log::print(const int level, std::string s) {
+    using namespace std;
+    switch(level) {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    }
+    cout << s << endl;
+  }
+
+  
+  void Log::log(const int level, const std::string nspaceName, const std::string className, const std::string funcName, const std::string s) {
+    using namespace std;
+    switch(level) {
+    case 0:
+      cout << Log::style_log0.apply("log:");
+      break;
+    case 1:
+      cout << Log::style_log1.apply("log1:");
+      break;
+    case 2:
+      cout << Log::style_log2.apply("log2:");
+      break;
+    case 3:
+      cout << Log::style_log2.apply("log3:");
+      break;
+    }
     cout << " in function ";
     cout << Log::style_nspace.apply(nspaceName);
     cout << "::";
@@ -83,6 +159,19 @@ namespace style {
     cout << endl;
   };
 
+
+  void Log::error(const std::string s){
+    using namespace std;
+    cout << StyledString::get(ERROR);
+    cout << s;
+    cout << endl;
+  }
+  void Log::warning(const std::string s){
+    using namespace std;
+    cout << StyledString::get(WARNING);
+    cout << s;
+    cout << endl;
+  }
   
   Log Log_dummy = *(new Log());
 
@@ -103,6 +192,8 @@ namespace matricks {
     return s;
   }
 
+
+  // TODO: delete these
   const char* error_str =    "**mātricks ERROR: ";
   const char* warn_str =    "**mātricks warning: ";
   const char* indent_str  = "                 ";
@@ -110,23 +201,6 @@ namespace matricks {
   const char* bug_str =     "**mātricks *BUG* : ";
 
 
-  std::string Strings::error;
-  std::string Strings::warn;
-  Strings::Strings() {
-    using namespace std;
-    using namespace style;
-    Style cyan(CYAN);
-    string s = cyan.apply("Strings::Strings()")+ " initialization\n";
-    print2("%s",s.c_str());
-    Strings::error = "**mātricks ERROR:   ";
-    Strings::warn =  "**mātricks WARNING: ";
-    if (Terminal::getSupportsColor()) {
-      Strings::error = string("")+RED+BOLD+Strings::error+RESET;
-      Strings::warn = string("")+ORANGE+BOLD+Strings::warn+RESET;
-    } 
-  };
-
-  Strings dummy = *(new Strings());
 
 
   
@@ -265,12 +339,12 @@ namespace matricks {
   slc::slc(const index_type start, const index_type end, const index_type step) :
     start_(start), end_(end), 
     step_(step) {
-    print2("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
+    printf2("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
   }
   slc::slc(const index_type start, const index_type end) :
     start_(start), end_(end), 
     step_(1) {
-    print2("slc::slc(start=%d, end=%d)\n",start, end);
+    printf2("slc::slc(start=%d, end=%d)\n",start, end);
   }
     
   index_type slc::start(void) const{ return start_;}
@@ -278,7 +352,7 @@ namespace matricks {
   index_type slc::step(void) const{ return step_;}
 
   Vector<index_type>& slc::toIndexVector(const size_type N) const {
-    print2("slc::toIndexVector(N=%lu)\n",N);
+    printf2("slc::toIndexVector(N=%lu)\n",N);
     index_type mystart = start_;
     if (mystart < 0) {
       mystart += N;

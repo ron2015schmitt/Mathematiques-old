@@ -29,12 +29,6 @@ namespace matricks {
   extern const char* bug_str;
 
   
-  class Strings {
-  public:
-    static std::string error;
-    static std::string warn;
-    Strings();
-  };
 };
 
 namespace style {
@@ -83,6 +77,7 @@ namespace style {
   const std::string GREENBACK  =  BACK+"5;46m";      
   const std::string YELLOWBACK  = BACK+"5;226m";      
   const std::string ORANGEBACK  = BACK+"5;208m";      
+  const std::string REDBACK  = BACK+"5;201m";      
   const std::string ORANGE  = FORE+"5;208m";      
   const std::string GRAY1  = FORE+"5;240m";      
 
@@ -93,32 +88,27 @@ namespace style {
   const std::string MAGENTA1  = FORE+"5;129m";      
 
 
+  
   class Style {
   private:
     static bool isInitialized;
-    static std::map<std::string, Style> styleMap;
+    static std::map<std::string, Style> Map;
     std::string stylestr_;
     std::string stylename_;
   public:
-    static void addStyle(const Style style); 
-    static void delStyle(const std::string styleName);
-    static Style& getStyle(const std::string styleName);
+    static void add(Style& style); 
+    static void del(const std::string styleName);
+    static Style& get(const std::string styleName);
     static void initialize();
 
-    inline Style() {
-      printf(" STYLE() Style::isInitialized = %d \n", Style::isInitialized);
-
+    inline Style() : stylestr_(""), stylename_("") {
       if (!Style::isInitialized) {
 	Style::initialize();
       }
-      stylestr_ = "";
     }
-    inline Style(const std::string stylestr) {
-      stylestr_ = stylestr;
+    inline Style(const std::string stylestr)  : stylestr_(stylestr), stylename_("") {
     }
-    inline Style(const std::string stylestr, const std::string name) {
-      stylestr_ = stylestr;
-      stylename_ = name;
+    inline Style(const std::string stylestr, const std::string stylename) : stylestr_(stylestr), stylename_(stylename){
     }
     inline std::string apply(const std::string s) const {
       if (Terminal::getSupportsColor()) {
@@ -127,24 +117,16 @@ namespace style {
 	return s;
       }
     }
-    inline Style& setStyle(const std::string stylestr) {
-      stylestr_ = stylestr;
-      return *this;
-    }
-    inline std::string getStyle() const {
+    inline std::string getStyleString() const {
       return stylestr_;
     }
 
-    inline Style& setName(const std::string name) {
-      stylename_ = name;
-      return *this;
-    }
     inline std::string getName() const {
       return stylename_;
     }
 
     inline Style& operator+(const Style& style2) const {
-      Style* style3 = new Style(this->getStyle() + style2.getStyle(), this->getName() + "+"+style2.getName() );
+      Style* style3 = new Style(this->getStyleString() + style2.getStyleString(), this->getName() + "+"+style2.getName() );
       return *style3;
     }
     
@@ -160,14 +142,32 @@ namespace style {
   };
 
 
+  
+  enum SSEnum {ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, DEBUG_LEVEL};
+
   class StyledString {
   private:
-    Style style_;
+    static bool isInitialized;
+    static std::map<SSEnum, StyledString> Map;
+    Style& style_;
     std::string text_;
   public:
-    inline StyledString(const Style style, const std::string text) {
-      style_ = style;
-      text_ = text;
+    static void add(const SSEnum ss, StyledString& styledString); 
+    static void del(const SSEnum ss);
+    static StyledString& get(const SSEnum ss);
+    static void initialize();
+
+    inline StyledString() :
+      style_(*( new Style(CROSSEDOUT,"crossedout"))),
+      text_(std::string("hello world"))
+    {
+      if (!StyledString::isInitialized) {
+    	StyledString::initialize();
+      }
+    }
+    inline StyledString(Style& style, const std::string text) :
+      style_(style), text_(text)
+    {  
     }
     inline std::string get() const {
       return style_.apply(text_);
@@ -175,11 +175,7 @@ namespace style {
     inline std::string getStr() const {
       return text_;
     }
-    inline StyledString& setStyle(const Style style) {
-      style_ = style;
-      return *this;
-    }
-    inline Style& getStyle()  {
+    inline Style& getStyle()  const {
       return style_;
     }
     inline friend std::ostream& operator<<(std::ostream &stream, const StyledString& ss) {
@@ -191,8 +187,16 @@ namespace style {
 
 
 
+
+  
+
+  class FormatBase {
+  };
+
+  // TODO: these all need to be static so that
+  //       we can dispatch from dispcr
   template <typename D>
-  class Format {
+  class Format : public FormatBase{
   public:
     typedef D MYTYPE;
     inline Format() {
@@ -211,10 +215,16 @@ namespace style {
   };
 
 
-  class FormatBase {
-  };
+  static const size_t BUFFER_SIZE = 512;
+  static char Buffer[BUFFER_SIZE];
+#define print2str(...) (new std::string())->erase(0*std::snprintf(Buffer,BUFFER_SIZE, __VA_ARGS__)).append(Buffer)
+
+  //<<std::snprintf(Buffer,BUFFER_SIZE, __VA_ARGS__))
+
     
   // TODO add style for both name and value
+  // TODO: these all need to be static so that
+  //       we can dispatch from dispcr
   template <>
   class Format<double> : public FormatBase {
   private:
@@ -228,24 +238,39 @@ namespace style {
     }
     inline Format(const std::string formatstr) {
       printf("Format::Format(const std::string formatstr) \n");
-      setFormatStr(formatstr);
+      set(formatstr);
     }
 
-    inline Format& setFormatStr(const std::string formatstr) {
+    inline void set(const std::string formatstr) {
       using namespace std;
       MYTYPE x(0);
+      int errcode = 0;
+      bool passed = true;
       try {
-	sprintf(Format<double>::buffer_, formatstr.c_str(), x);
+	errcode = sprintf(Format<double>::buffer_, formatstr.c_str(), x);
+	if (errcode<0) passed = false;
       } catch (...) {
 	string classname = "";
-	cout << matricks::Strings::error << " illegal format passed to " << endl;
-	return *this;
+	passed = false;
+	return;
       }
-      // TODO: test with try and catch
+      string s = string(Format<double>::buffer_);
+      size_t found = s.find("(nil)");
+      if (found!=string::npos) 	passed = false;
+
+      if (!passed) {
+	cout << StyledString::get(ERROR);
+	cout << " illegal format ";
+	cout << Style::get("bold").apply(string("\"") + formatstr + "\"");
+	cout << " passed to Format";
+	cout << "<" << getName() << ">";
+	cout << ".set" << endl;
+	return;
+      }     
       formatstr_ = formatstr;
-      return *this;
+      return;
     }
-    inline std::string getFormatStr() const {
+    inline std::string get() const {
       return formatstr_;
     }
     inline std::string apply(const MYTYPE var) const {
@@ -256,7 +281,7 @@ namespace style {
       return "double";
     }
     inline friend std::ostream& operator<<(std::ostream &stream, const Format<double>& format) {
-      stream << "Format<"<<format.getName()<< "> = " << format.getFormatStr();
+      stream << "Format<"<<format.getName()<< "> = " << format.get();
       return stream;
     }
   };
@@ -264,22 +289,28 @@ namespace style {
 
   class Log {
   public:
-    static Style style_log;
-    static Style style_nspace;
-    static Style style_class;
-    static Style style_func;
-    static Style style_str;
-    static void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "");
+    static  Style style_log0;
+    static  Style style_log1;
+    static  Style style_log2;
+    static  Style style_nspace;
+    static  Style style_class;
+    static  Style style_func;
+    static  Style style_str;
 
+    static void log(const int level, const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "");
+    static void print(const int level, std::string s);
+    static void warning(const std::string s);
+    static void error(const std::string s);
+
+    
     Log();
 
 
   };
 
 
-  inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-    Log::log(spaceName, className, funcName, s);
-  }
+
+
 
   
 };
@@ -298,47 +329,63 @@ namespace matricks {
   const size_type badsize = std::numeric_limits<size_type>::max();
 
 
+    inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    style::Log::log(0, spaceName, className, funcName, s);
+  }
+
+  inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    #if MATRICKS_DEBUG>=1
+    style::Log::log(1, spaceName, className, funcName, s);
+    #endif
+  }
+
+  inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    #if MATRICKS_DEBUG>=2
+    style::Log::log(2, spaceName, className, funcName, s);
+    #endif
+  }
+
+  inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    #if MATRICKS_DEBUG>=3
+    style::Log::log(3, spaceName, className, funcName, s);
+    #endif
+  }
+
+
+  inline void print1(const std::string s) {
+    #if MATRICKS_DEBUG>=1
+    style::Log::print(1,s);
+    #endif
+  }
+  inline void print2(const std::string s) {
+    #if MATRICKS_DEBUG>=2
+    style::Log::print(2,s);
+    #endif
+  }
+  inline void print3(const std::string s) {
+    #if MATRICKS_DEBUG>=3
+    style::Log::print(3,s);
+    #endif
+  }
+
     /****************************************************************************
    * execution mode string and display
    ****************************************************************************   
    */
 
-#if (MATRICKS_DEBUG==0)
-  inline std::string execution_mode(void) {
-    return "MATRICKS_DEBUG off (fast)";
-  }
-  inline std::string execution_color(void) {
-    return style::GREENBACK + style::BOLD;
-  }
-#elif (MATRICKS_DEBUG==1)
-  inline std::string execution_mode(void) {
-    return "MATRICKS_DEBUG Level 1";
-  }
-  inline std::string execution_color(void) {
-    return style::YELLOWBACK+ style::BOLD;
-  }
-#elif (MATRICKS_DEBUG==2)
-  inline std::string execution_mode(void) {
-    return "MATRICKS_DEBUG Level 2";
-  }
-  inline std::string execution_color(void) {
-    return style::ORANGEBACK+ style::BOLD;
-  }
-#endif
 
   inline void display_execution_mode(void) {
     using namespace std;
     using namespace style;
-    string version = string("mātricks ")+vers_matricks;
-    cout << Style::getStyle("crossedout").apply(blankline) << endl;
-    cout << (Style::getStyle("blue2")+Style::getStyle("bold")).apply(version);
+    cout << Style::get("crossedout").apply(blankline) << endl;
+    cout << StyledString::get(MATRICKS) << " ";
+    cout << StyledString::get(VERSION) << " ";
     cout << endl << endl;
     cout << "compile-time settings:" << endl;
-    cout << "  " <<  execution_color() + execution_mode() + RESET << endl;
-    cout << Style::getStyle("bold").apply("  OPTIMIZE");
-    cout <<"=";
-    cout << Style::getStyle("cyan").apply(string(COMPILE_OPTIMIZE)) << endl;
-    cout << Style::getStyle("crossedout").apply(blankline) << endl;
+    cout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
+    cout << Style::get("bold").apply("  OPTIMIZE");
+    cout << Style::get("cyan").apply(string(COMPILE_OPTIMIZE)) << endl;
+    cout << Style::get("crossedout").apply(blankline) << endl;
       
   }
 

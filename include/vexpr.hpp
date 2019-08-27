@@ -276,7 +276,7 @@ namespace matricks {
     {
       addAddress(&a_);
       addAddress(&ii_);
-      print2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
+      printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
     }
 #endif
     ~VSubsetObj() {
@@ -494,7 +494,7 @@ namespace matricks {
 
     template <class C>
     VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs) { 
-      print2("VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)\n");
+      printf2("VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)\n");
       return this->equals(rhs);
     }
 
@@ -743,7 +743,7 @@ namespace matricks {
 
     inline const D data(const index_type i) const{
       index_type index = index_type(i % N_);
-      print2("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      printf2("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
     }
     inline index_type index(index_type i) const{

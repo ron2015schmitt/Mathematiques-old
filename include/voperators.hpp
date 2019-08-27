@@ -72,7 +72,7 @@ namespace matricks {
   operator,(Vector<D>& a, Vector<D>& b)
   {
     
-    print2("  VJoinObj operator,(Vector<D>& a, Vector<D>& b)\n");
+    printf2("  VJoinObj operator,(Vector<D>& a, Vector<D>& b)\n");
     return  VJoinObj<D,Vector<D>,Vector<D> >(a,b);
   }
 
@@ -82,7 +82,7 @@ namespace matricks {
   inline VJoinObj<D, VWrapperObj<D,A>, Vector<D> > 
   operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)
   {
-    print2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)\n");
+    printf2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)\n");
     VWrapperObj<D,A>& a_ = const_cast<VWrapperObj<D,A>& >(a);
     Vector<D>& b_ = const_cast<Vector<D>& >(b);
     return  VJoinObj<D, VWrapperObj<D,A>,Vector<D> >(a_,b_);
@@ -95,7 +95,7 @@ namespace matricks {
   inline VJoinObj<D, Vector<D>,VWrapperObj<D,B> > 
   operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)
   {
-    print2("  VJoinObj operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)\n");
+    printf2("  VJoinObj operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)\n");
     Vector<D>& a_ = const_cast<Vector<D>& >(a);
     VWrapperObj<D,B>& b_ = const_cast<VWrapperObj<D,B>& >(b);
     return VJoinObj<D, Vector<D>,VWrapperObj<D,B> >(a_,b_);
@@ -108,7 +108,7 @@ namespace matricks {
   inline VJoinObj<D, VWrapperObj<D,A>,VWrapperObj<D,B> > 
   operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)
   {
-    print2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)\n");
+    printf2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)\n");
     VWrapperObj<D,A>& a_ = const_cast<VWrapperObj<D,A>& >(a);
     VWrapperObj<D,B>& b_ = const_cast<VWrapperObj<D,B>& >(b);
     return  VJoinObj<D, VWrapperObj<D,A>,VWrapperObj<D,B> >(a_,b_);
@@ -123,7 +123,7 @@ namespace matricks {
   inline const VJoinExpr<D, Vector<D>,Vector<D> > 
   operator,(const Vector<D>& a, const Vector<D>& b)
   {
-    print2("  VJoinExpr operator,(const Vector<D>& a, const Vector<D>& b)\n");
+    printf2("  VJoinExpr operator,(const Vector<D>& a, const Vector<D>& b)\n");
     return  VJoinExpr<D,Vector<D>,Vector<D> >(a,b);
   }
 
@@ -131,7 +131,7 @@ namespace matricks {
   inline const VJoinExpr<D, Vector<D>,Vexpr<D,B> > 
   operator,(const Vector<D>& a, const Vexpr<D,B>& b)
   {
-    print2("  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)\n");
+    printf2("  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)\n");
     return  VJoinExpr<D,Vector<D>,Vexpr<D,B>  >(a,b);
   }
 
@@ -139,7 +139,7 @@ namespace matricks {
   inline const VJoinExpr<D,Vexpr<D,A>,Vector<D> > 
   operator,(const Vexpr<D,A>& a, const Vector<D>& b)
   {
-    print2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)\n");
+    printf2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)\n");
     return  VJoinExpr<D,Vexpr<D,A>,Vector<D> >(a,b);
   }
  
@@ -147,7 +147,7 @@ namespace matricks {
   inline const VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> > 
   operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)
   {
-    print2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)\n");
+    printf2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)\n");
     return  VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> >(a,b);
   }
 

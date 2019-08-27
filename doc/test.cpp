@@ -34,8 +34,8 @@ int main()
   printf("MATRICKS_DEBUG=%d\n",MATRICKS_DEBUG);
   printf("EXPAND(MATRICKS_DEBUG)=%d\n",EXPAND(MATRICKS_DEBUG));
 
-  cout << "error string   ="<<Strings::error<<endl;
-  cout << "warning string ="<<Strings::warn<<endl;
+  cout << "error string   ="<<StyledString::get(ERROR)<<endl;
+  cout << "warning string ="<<StyledString::get(WARNING)<<endl;
   
   double d = 3.4;
   Any<double> x(d);
@@ -97,13 +97,30 @@ int main()
   Format<double> formatdouble("%f");
   dispcr(formatdouble);
   dispcr(formatdouble.getName());
-  dispcr(formatdouble.getFormatStr());
+  dispcr(formatdouble.get());
   dispcr(formatdouble.apply(3.4));
-  // dispcr(formatdouble.setFormatStr("%12.5f"));
-  // dispcr(formatdouble.getFormatStr());
-  // dispcr(formatdouble.apply(3.4));
-
-  log("matricks","Vector","resize","()");
+  printf("formatdouble.setFormatStr(\"%%12.5f\")\n");
+  formatdouble.set("%12.5f");
+  dispcr(formatdouble.get());
+  dispcr(formatdouble.apply(3.4));
   
+  printf("formatdouble.setFormatStr(\"%%parbage\")\n");
+  formatdouble.set("%parbage");
+  dispcr(formatdouble.get());
+  dispcr(formatdouble.apply(3.4));
+
+  int ronny = 5;
+  double q = 5.5;
+  double boots;
+  dispcr(boots);
+  log("matricks","Vector","resize","()");
+
+  //  string s1 = print2str("%15.8f\n",3.141592649);
+
+  string s1 = print2str("%15.8f\n",3.141592649);
+  dispcr(s1);
+  s1 = print2str("%15.8f\n",1.);
+  dispcr(s1);
+
   return 0;
 }

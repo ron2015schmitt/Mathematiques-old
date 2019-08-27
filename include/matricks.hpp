@@ -20,10 +20,10 @@
   // defined but no value: set to 1
   #undef MATRICKS_DEBUG
   #define MATRICKS_DEBUG 1
-#elif (MATRICKS_DEBUG>2)
-  // no modes defined above 2
+#elif (MATRICKS_DEBUG>3)
+  // no modes defined above 3
   #undef MATRICKS_DEBUG
-  #define MATRICKS_DEBUG 2
+  #define MATRICKS_DEBUG 3
 #endif
 
 

@@ -290,25 +290,27 @@ info:
 
 
 diff:
-	@diff Makefile.clean Makefile || exit 0
+	@diff Makefile.pristine Makefile || exit 0
 
 cdiff:
-	@colordiff Makefile.clean Makefile || exit 0
+	@colordiff Makefile.pristine Makefile || exit 0
 
-clean:
+clean: FORCE
 	@command rm -f *.o
 	@command rm -f $(DOC)
 	@command rm -f *.a
 	@command rm -f *.s
+	@command rm -f *_opts.*
 	@command rm -f *.temp
 	@command rm -f *.tmp
 	@command rm -f *~
 	@command rm -f $(EXEC)
 	@command rm -f core.*
 
-cleanexec:
+cleanexec: FORCE
 	@command rm -f $(EXECUTABLES)
 
 
 all: $(EXEC) 
 
+FORCE:

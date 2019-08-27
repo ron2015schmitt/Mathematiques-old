@@ -6,7 +6,7 @@
 
 namespace style {
 
-  const char blankline[] = "                                                          ";
+  const char blankline[] = "                                                                               \n";
   
   bool Terminal::isInitialized = false;
   bool Terminal::supportsColor = false;
@@ -19,32 +19,10 @@ namespace style {
     return supportsColor;
   }
 
-  bool Style::isInitialized = false;
-  std::map<std::string, Style> Style::Map = *(new std::map<std::string, Style>());
-  void Style::add(Style& style) {
-    printf3(" adding style %s \n",style.getName().c_str());
-    Style::Map.insert(std::pair<std::string, Style>(style.getName(), style));
-  }
-  void Style::del(const std::string styleName) {
-    Style::Map.erase(styleName);
-  }
-  Style& Style::get(const std::string styleName) {
-    return Style::Map[styleName];
-  }
-  void Style::initialize() {
-    Style::isInitialized = true;
-    Style::add(*( new Style(GREEN,"green") ));
-    Style::add(*( new Style(CYAN,"cyan") ));
-    Style::add(*( new Style(BLUE2,"blue2") ));
-    Style::add(*( new Style(BLACK,"black") ));
-    Style::add(*( new Style(MAGENTA1,"magenta1") ));
-    Style::add(*( new Style(BOLD,"bold") ));
-    Style::add(*( new Style(UNDERLINE,"underline") ));
-    Style::add(*( new Style(OVERLINE,"overline") ));
-    Style::add(*( new Style(CROSSEDOUT,"crossedout") ));
-  }
 
-  Style Style_dummy = *(new Style());
+  Style& Style::create(const std::string stylestr, const std::string stylename) {
+    return *( new Style(stylestr, stylename) );
+  }
 
 
 
@@ -63,22 +41,23 @@ namespace style {
   }
   void StyledString::initialize() {
     StyledString::isInitialized = true;
-    StyledString *error = new StyledString(*(new Style(BOLD+RED)),"** mātricks ERROR:   ");
+    StyledString *error = new StyledString(createStyle(BOLD+RED),"** mātricks ERROR:   ");
     StyledString::add(SSEnum::ERROR, *error);;
-    StyledString *warning = new StyledString(*(new Style(BOLD+ORANGE)),"** mātricks WARNING: ");
+    StyledString *warning = new StyledString(createStyle(BOLD+ORANGE),"** mātricks WARNING: ");
     StyledString::add(SSEnum::WARNING, *warning);
-    StyledString *matricks = new StyledString(*(new Style(BOLD+BLUE2)),"mātricks");
+    StyledString *matricks = new StyledString(createStyle(BOLD+BLUE2),"mātricks");
     StyledString::add(SSEnum::MATRICKS, *matricks);
-    StyledString *version = new StyledString(*(new Style(BOLD+BLUE2)),vers_matricks);
+    StyledString *version = new StyledString(createStyle(BOLD+BLUE2),vers_matricks);
     StyledString::add(SSEnum::VERSION, *version);
-    StyledString *dlevel0 = new StyledString(*(new Style(BOLD+GREENBACK)),"MATRICKS_DEBUG 0 (off/fast)");
+    StyledString *dlevel0 = new StyledString(createStyle(BOLD+GREENBACK),"MATRICKS_DEBUG 0 (off/fast)");
     StyledString::add(SSEnum::DLEVEL0, *dlevel0);
-    StyledString *dlevel1 = new StyledString(*(new Style(BOLD+YELLOWBACK)),"MATRICKS_DEBUG 1 (errors/warnings)");
+    StyledString *dlevel1 = new StyledString(createStyle(BOLD+YELLOWBACK),"MATRICKS_DEBUG 1 (errors/warnings)");
     StyledString::add(SSEnum::DLEVEL1, *dlevel1);
-    StyledString *dlevel2 = new StyledString(*(new Style(BOLD+ORANGEBACK)),"MATRICKS_DEBUG 2 (verbose)");
+    StyledString *dlevel2 = new StyledString(createStyle(BOLD+ORANGEBACK),"MATRICKS_DEBUG 2 (verbose)");
     StyledString::add(SSEnum::DLEVEL2, *dlevel2);
-    StyledString *dlevel3 = new StyledString(*(new Style(BOLD+REDBACK)),"MATRICKS_DEBUG 3 (developer)");
+    StyledString *dlevel3 = new StyledString(createStyle(BOLD+REDBACK),"MATRICKS_DEBUG 3 (developer)");
     StyledString::add(SSEnum::DLEVEL3, *dlevel3);
+    
 #if (MATRICKS_DEBUG==0)
     StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel0);
 #elif (MATRICKS_DEBUG==1)
@@ -89,8 +68,12 @@ namespace style {
     StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel3);
 #endif
 
+    StyledString *horline = new StyledString(createStyle(CROSSEDOUT),blankline);
+    StyledString::add(SSEnum::HORLINE, *horline);
     
   }
+
+
 
 
   
@@ -107,13 +90,13 @@ namespace style {
   Log::Log() {
     using namespace std;
     using namespace style;
-    Log::style_log0 = Style::get("bold")+Style::get("black");
-    Log::style_log1 = Style::get("bold")+Style::get("black");
-    Log::style_log2 = Style::get("bold")+Style::get("black");
-    Log::style_nspace =  Style::get("magenta1");
-    Log::style_class = Style::get("cyan");
-    Log::style_func =  Style::get("blue1");
-    Log::style_str = Style::get("black");
+    Log::style_log0 = createStyle(BOLD+BLACK);
+    Log::style_log1 = createStyle(BOLD+BLACK);
+    Log::style_log2 = createStyle(BOLD+BLACK);
+    Log::style_nspace =  createStyle(MAGENTA1);
+    Log::style_class = createStyle(CYAN);
+    Log::style_func =  createStyle(BLUE1);
+    Log::style_str = createStyle(BLACK);
   };
 
 

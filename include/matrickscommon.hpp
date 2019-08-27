@@ -43,6 +43,7 @@ namespace style {
     
   };
 
+  
   const std::string ESC = "\033[";
   const std::string FORE = ESC+"38;";
   const std::string BACK = ESC+"48;";
@@ -88,23 +89,18 @@ namespace style {
   const std::string MAGENTA1  = FORE+"5;129m";      
 
 
+
+
+  
   
   class Style {
   private:
-    static bool isInitialized;
-    static std::map<std::string, Style> Map;
     std::string stylestr_;
     std::string stylename_;
   public:
-    static void add(Style& style); 
-    static void del(const std::string styleName);
-    static Style& get(const std::string styleName);
-    static void initialize();
+    static Style& create(const std::string stylestr, const std::string stylename);
 
-    inline Style() : stylestr_(""), stylename_("") {
-      if (!Style::isInitialized) {
-	Style::initialize();
-      }
+    inline Style()  : stylestr_(""), stylename_("") {
     }
     inline Style(const std::string stylestr)  : stylestr_(stylestr), stylename_("") {
     }
@@ -142,8 +138,12 @@ namespace style {
   };
 
 
+
+#define createStyle(...) style::Style::create(__VA_ARGS__,#__VA_ARGS__)
+
   
-  enum SSEnum {ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, DEBUG_LEVEL};
+  
+  enum SSEnum {ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, DEBUG_LEVEL, HORLINE};
 
   class StyledString {
   private:
@@ -158,7 +158,7 @@ namespace style {
     static void initialize();
 
     inline StyledString() :
-      style_(*( new Style(CROSSEDOUT,"crossedout"))),
+      style_(createStyle(CROSSEDOUT)),
       text_(std::string("hello world"))
     {
       if (!StyledString::isInitialized) {
@@ -184,7 +184,6 @@ namespace style {
     }
       
   };
-
 
 
 
@@ -259,12 +258,14 @@ namespace style {
       if (found!=string::npos) 	passed = false;
 
       if (!passed) {
+	cout << StyledString::get(HORLINE);
 	cout << StyledString::get(ERROR);
 	cout << " illegal format ";
-	cout << Style::get("bold").apply(string("\"") + formatstr + "\"");
+	cout << createStyle(BOLD).apply(string("\"") + formatstr + "\"");
 	cout << " passed to Format";
 	cout << "<" << getName() << ">";
 	cout << ".set" << endl;
+	cout << StyledString::get(HORLINE);
 	return;
       }     
       formatstr_ = formatstr;
@@ -377,15 +378,15 @@ namespace matricks {
   inline void print_matricks_info(void) {
     using namespace std;
     using namespace style;
-    cout << Style::get("crossedout").apply(blankline) << endl;
+    cout << StyledString::get(HORLINE);
     cout << StyledString::get(MATRICKS) << " ";
     cout << StyledString::get(VERSION) << " ";
     cout << endl << endl;
     cout << "compile-time settings:" << endl;
     cout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
-    cout << Style::get("bold").apply("  OPTIMIZE");
-    cout << Style::get("cyan").apply(string(COMPILE_OPTIMIZE)) << endl;
-    cout << Style::get("crossedout").apply(blankline) << endl;
+    cout << createStyle(BOLD).apply("  OPTIMIZE: ");
+    cout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
+    cout << StyledString::get(HORLINE);
       
   }
 

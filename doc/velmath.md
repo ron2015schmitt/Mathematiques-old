@@ -1,7 +1,15 @@
-Strings::Strings() initialization
+ adding style green 
+ adding style cyan 
+ adding style blue2 
+ adding style black 
+ adding style magenta1 
+ adding style bold 
+ adding style underline 
+ adding style overline 
+ adding style crossedout 
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.13-r1).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.13-r5).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively

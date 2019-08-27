@@ -1,7 +1,15 @@
-Strings::Strings() initialization
+ adding style green 
+ adding style cyan 
+ adding style blue2 
+ adding style black 
+ adding style magenta1 
+ adding style bold 
+ adding style underline 
+ adding style overline 
+ adding style crossedout 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.13-r1).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.13-r5).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.

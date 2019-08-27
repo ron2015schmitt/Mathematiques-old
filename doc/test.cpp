@@ -27,7 +27,7 @@ int main()
 
   
   dispcr(Terminal::getSupportsColor());
-  display_execution_mode();
+  print_matricks_info();
   print1("DEBUG level 1 enabled \n");
   print2("DEBUG level 2 enabled \n");
 

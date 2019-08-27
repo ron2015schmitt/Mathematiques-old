@@ -1,7 +1,15 @@
-Strings::Strings() initialization
+ adding style green 
+ adding style cyan 
+ adding style blue2 
+ adding style black 
+ adding style magenta1 
+ adding style bold 
+ adding style underline 
+ adding style overline 
+ adding style crossedout 
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r1).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r5).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.

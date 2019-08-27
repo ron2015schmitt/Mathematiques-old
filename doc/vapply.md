@@ -1,7 +1,15 @@
-Strings::Strings() initialization
+ adding style green 
+ adding style cyan 
+ adding style blue2 
+ adding style black 
+ adding style magenta1 
+ adding style bold 
+ adding style underline 
+ adding style overline 
+ adding style crossedout 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.13-r1).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.13-r5).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 

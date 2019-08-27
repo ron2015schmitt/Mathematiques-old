@@ -374,7 +374,7 @@ namespace matricks {
    */
 
 
-  inline void display_execution_mode(void) {
+  inline void print_matricks_info(void) {
     using namespace std;
     using namespace style;
     cout << Style::get("crossedout").apply(blankline) << endl;

@@ -1,7 +1,15 @@
-Strings::Strings() initialization
+ adding style green 
+ adding style cyan 
+ adding style blue2 
+ adding style black 
+ adding style magenta1 
+ adding style bold 
+ adding style underline 
+ adding style overline 
+ adding style crossedout 
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.13-r1).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.13-r5).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.

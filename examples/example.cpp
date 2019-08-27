@@ -8,7 +8,7 @@ int main()
   const double pi = M_PI;
   
   using namespace matricks;
-  display_execution_mode();
+  print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );
   Vector<double> v2;

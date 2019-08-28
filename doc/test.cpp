@@ -2,7 +2,7 @@
 
 
 #include "matricks.hpp"
-
+#include "TypeTraits.h"
 #include <iostream>
 #include <string>
 
@@ -12,6 +12,23 @@
 #if CPP11 == 1
 #include <initializer_list>
 #endif
+
+template <class D, int I>
+class Mets {
+public:
+  static void test() {
+    printf("I = %d\n",I);
+  }
+};
+
+template <class D>
+class Mets<D,4> {
+public:
+  static void test2() {
+    printf("I is 4\n");
+  }
+};
+
 
 
 #define Vector_(name,t,...) Vector<t> name(__VA_ARGS__); //MatricksObjectPool::(name.id(),std::string(#name)+"<"+stringify(t)+">"+" in "+__FUNCTION__+" at line "+stringify(__LINE__)+" in file "+__FILE__));
@@ -151,6 +168,16 @@ int main()
 
   print1("newdispcr");
   newdispcr(pi);
+
+  Mets<double,1>::test();
+  Mets<double,4>::test2();
+
+  using namespace Loki;
+  dispcr(TypeTraits<double>::isStdFloat);
+  dispcr(TypeTraits<const double>::isStdFloat);
+  dispcr(TypeTraits<const double>::isConst);
+  TypeTraits<const double>::NonConstType degrom = 9;
+  dispcr(degrom);
   
   return 0;
 }

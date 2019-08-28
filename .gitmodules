@@ -1,0 +1,3 @@
+[submodule "loki"]
+	path = loki
+	url = https://github.com/dutor/loki.git

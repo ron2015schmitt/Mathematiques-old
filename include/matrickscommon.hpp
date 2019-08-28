@@ -331,6 +331,7 @@ namespace display {
 
   inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
     display::Log::log(0, spaceName, className, funcName, s);
+    std::cout << __PRETTY_FUNCTION__;
   }
 
   inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
@@ -342,6 +343,7 @@ namespace display {
   inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
 #if MATRICKS_DEBUG>=2
     display::Log::log(2, spaceName, className, funcName, s);
+    std::cout << __PRETTY_FUNCTION__;
 #endif
   }
 
@@ -429,6 +431,8 @@ namespace display {
     cout << endl << endl;
     cout << "compile-time settings:" << endl;
     cout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
+    cout << createStyle(BOLD).apply("  C++ version: ");
+    cout << createStyle(CYAN).apply(print2str("%lu",__cplusplus)) << endl;
     cout << createStyle(BOLD).apply("  OPTIMIZE: ");
     cout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
     cout << StyledString::get(HORLINE);

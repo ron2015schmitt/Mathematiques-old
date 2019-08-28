@@ -28,6 +28,24 @@ namespace matricks {
   extern const char* where_str;
   extern const char* bug_str;
 
+  /****************************************************************************
+   * Classes that inherit from VorE
+   ****************************************************************************   
+   */
+
+  template <class D> class Vector;
+  template <class D> class p3vector;
+  template <class D, class A> class Vexpr;  
+  template <class D, class A> class VWrapperObj;
+  template <class D, class A> class VRepExpr;
+  template <class D> class VSliceObj;
+  template <class D> class VSliceExpr;
+  template <class D> class VSubsetObj;
+  template <class D> class VSubMaskObj;
+  template <class D, class A, class B> class VJoinObj;
+  template <class D, class A, class B> class VJoinExpr;
+  template <class D> class VReconObj;
+  template <class D, class A, class X> class VSeriesOp;
   
 };
 
@@ -95,9 +113,14 @@ namespace display {
   const std::string BLUE3  = FORE+"5;27m";      
 
   const std::string MAGENTA1  = FORE+"5;129m";      
+  const std::string VIOLET1  = FORE+"5;17m";      
+  const std::string GREEN1  = FORE+"5;22m";      
 
 
 
+  const size_t BUFFER_SIZE = 512;
+  extern char Buffer[BUFFER_SIZE];
+#define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
 
   
   
@@ -108,11 +131,20 @@ namespace display {
   public:
     static Style& create(const std::string stylestr, const std::string stylename);
 
+    static Style& create(const unsigned int n) {
+      Style* style = new Style(n);
+      return *style;
+    }
+
     inline Style()  : stylestr_(""), stylename_("") {
     }
     inline Style(const std::string stylestr)  : stylestr_(stylestr), stylename_("") {
     }
     inline Style(const std::string stylestr, const std::string stylename) : stylestr_(stylestr), stylename_(stylename){
+    }
+    inline Style(const unsigned int n)  {
+      stylestr_ = FORE+print2str("5;%um",n);
+      stylename_ = "";
     }
     inline std::string apply(const std::string s) const {
       if (Terminal::getSupportsColor()) {
@@ -204,57 +236,111 @@ namespace display {
 
   
 
+
+    /****************************************************************************
+   * error reporting string definitions
+   ****************************************************************************   
+   */
+
+
+  template <typename T>
+  inline std::string getTypeString(T var) {
+    std::ostringstream stream;
+    stream << typeid(T).name();
+    return stream.str();
+  };
+
+
+  inline std::string getTypeString(void) {  return std::string("void"); }
+  
+#define SPECIALIZE_GETTYPESTRING(T) template <> inline std::string getTypeString(T var) {  return std::string(#T); }
+  
+  SPECIALIZE_GETTYPESTRING(std::string);
+
+  SPECIALIZE_GETTYPESTRING(float);
+  SPECIALIZE_GETTYPESTRING(double);
+  SPECIALIZE_GETTYPESTRING(long double);
+  
+  SPECIALIZE_GETTYPESTRING(bool);
+  SPECIALIZE_GETTYPESTRING(char);
+  SPECIALIZE_GETTYPESTRING(unsigned char);
+  SPECIALIZE_GETTYPESTRING(signed char);
+  
+  SPECIALIZE_GETTYPESTRING(short);
+  SPECIALIZE_GETTYPESTRING(unsigned short);
+  SPECIALIZE_GETTYPESTRING(int);
+  SPECIALIZE_GETTYPESTRING(long);
+  SPECIALIZE_GETTYPESTRING(unsigned long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_GETTYPESTRING(long long);
+  SPECIALIZE_GETTYPESTRING(unsigned long long);
+#endif
+
+
+#define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> inline std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
+
+  
+  SPECIALIZE_GETTYPESTRING_CONTAINER(matricks::Vector);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::vector);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex)
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::valarray);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::initializer_list);
+
+  // need two parameters
+  //  SPECIALIZE_GETTYPESTRING_CONTAINER(matricks::Vexpr);
+
+  
   class FormatBase {
   };
 
-  // create a default instance
-  template <typename D>
-  class Format : public FormatBase{
-  public:
-    typedef D MYTYPE;
-    static Format<MYTYPE>& getDefault() {
-      Format<MYTYPE> *format = new Format<MYTYPE>();
-      return *format;
-    }
-    inline Format() {
-    }
-
-    inline std::string apply(const MYTYPE var) const {
-      std::ostringstream stream;
-      stream << var;
-      return stream.str();
-    }
-    inline std::string getName() const {
-      std::ostringstream stream;
-      stream << typeid(MYTYPE).name();
-      return stream.str();
-    }
-  };
-
-
-  const size_t BUFFER_SIZE = 512;
-  extern char Buffer[BUFFER_SIZE];
-#define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
-
-
-
-
-
-  // TODO add style for both name and value
-  // TODO: these all need to be static so that
-  //       we can dispatch from dispcr
-  template <>
-  class Format<const double> : public FormatBase {
+  template <class T>
+  class Format : public FormatBase {
   private:
-    std::string formatstr_ = "%f";
+    std::string formatstr_ = "";
     Style& style_zero = createStyle(GRAY1);
     Style& style_num = createStyle(RESET);
-    StyledString *styled_name = new StyledString(createStyle(MAGENTA1),"double");
+    StyledString *styled_name = new StyledString(createStyle(GREEN),"");
   public:
-    typedef const double MYTYPE;
-    typedef Loki::TypeTraits<const double>::NonConstType  MYTYPENOCONST;
+    typedef T MYTYPE;
+    typedef typename Loki::TypeTraits<T>::NonConstType TNOCONST;
+    TNOCONST t = 0;
+    
     static Format<MYTYPE>& getDefault() {
       Format<MYTYPE> *format = new Format<MYTYPE>();
+      if (Loki::TypeTraits<TNOCONST>::isFloat) {
+	format->formatstr_ = "%g";
+	format->style_zero = createStyle(GRAY1);
+	format->style_num = createStyle(RESET);
+	TNOCONST *x = new TNOCONST(0);
+	std::string name = getTypeString(*x);
+	format->styled_name = new StyledString(createStyle(GREEN1),name);
+      } else if (Loki::TypeTraits<TNOCONST>::isSignedInt) {
+	format->formatstr_ = "%d";
+	format->style_zero = createStyle(GRAY1);
+	format->style_num =  Style::create(19);
+	TNOCONST *x = new TNOCONST(0);
+	std::string name = getTypeString(*x);
+	format->styled_name = new StyledString(createStyle(GREEN1),name);
+      } else if (Loki::TypeTraits<TNOCONST>::isUnsignedInt) {
+	if (sizeof(TNOCONST) == sizeof(long int)) {
+	  format->formatstr_ = "%lu";
+	} else {
+	  format->formatstr_ = "%u";
+	}
+	format->style_zero = createStyle(GRAY1);
+	format->style_num = Style::create(53);
+	TNOCONST *x = new TNOCONST(0);
+	std::string name = getTypeString(*x);
+	format->styled_name = new StyledString(createStyle(GREEN1),name);
+      } else if (typeid(TNOCONST)==typeid(bool)) {
+	format->formatstr_ = "%d";
+	format->style_zero = createStyle(GRAY1);
+	format->style_num = Style::create(28);
+	TNOCONST *x = new TNOCONST(0);
+	std::string name = getTypeString(*x);
+	format->styled_name = new StyledString(createStyle(GREEN1),name);
+      }
+      
       return *format;
     }
     inline Format() {
@@ -265,8 +351,13 @@ namespace display {
       set(formatstr);
     }
 
-    inline void set(const std::string formatstr) {
+    inline Format<MYTYPE>& set(const std::string formatstr) {
       using namespace std;
+      if (formatstr.empty()) {
+	formatstr_ = formatstr;
+	return *this;
+      }
+      
       MYTYPE x(0);
       int errcode = 0;
       bool passed = true;
@@ -276,7 +367,6 @@ namespace display {
       } catch (...) {
 	string classname = "";
 	passed = false;
-	return;
       }
       string s = string(Buffer);
       size_t found = s.find("(nil)");
@@ -291,20 +381,26 @@ namespace display {
 	cout << "<" << getName() << ">";
 	cout << ".set" << endl;
 	cout << StyledString::get(HORLINE);
-	return;
+	return *this;
       }     
       formatstr_ = formatstr;
-      return;
+	return *this;
     }
     inline std::string get() const {
       return formatstr_;
     }
     inline std::string apply(const MYTYPE val) const {
-      std::string s = print2str(formatstr_.c_str(), val);
-      if (val == MYTYPE(0)) {
-	return style_zero.apply(s);
-      } 
-      return style_num.apply(s);
+      if (formatstr_.empty()) {
+	std::stringstream ss;
+	ss << val;
+	return style_num.apply(ss.str());
+      } else {
+	std::string s = print2str(formatstr_.c_str(), val);
+	if (val == MYTYPE(0)) {
+	  return style_zero.apply(s);
+	} 
+	return style_num.apply(s);
+      }
     }
     inline std::string getName() const {
       return styled_name->get();
@@ -316,6 +412,8 @@ namespace display {
   };  //class Format
 
 
+
+  
   class Log {
   public:
     static  Style style_log0;
@@ -470,24 +568,6 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * Classes that inherit from VorE
-   ****************************************************************************   
-   */
-
-  template <class D> class Vector;
-  template <class D> class p3vector;
-  template <class D, class A> class Vexpr;  
-  template <class D, class A> class VWrapperObj;
-  template <class D, class A> class VRepExpr;
-  template <class D> class VSliceObj;
-  template <class D> class VSliceExpr;
-  template <class D> class VSubsetObj;
-  template <class D> class VSubMaskObj;
-  template <class D, class A, class B> class VJoinObj;
-  template <class D, class A, class B> class VJoinExpr;
-  template <class D> class VReconObj;
-  template <class D, class A, class X> class VSeriesOp;
 
   class slc {
   private:
@@ -691,54 +771,6 @@ namespace matricks {
     }
   };
 
-  /****************************************************************************
-   * error reporting string definitions
-   ****************************************************************************   
-   */
-
-
-  template <typename T>
-  inline std::string getTypeString(T var) {
-    std::ostringstream stream;
-    stream << typeid(T).name();
-    return stream.str();
-  };
-
-
-  inline std::string getTypeString(void) {  return std::string("void"); }
-  
-#define SPECIALIZE_GETTYPESTRING(T) template <> inline std::string getTypeString(T var) {  return std::string(#T); }
-  
-  SPECIALIZE_GETTYPESTRING(std::string);
-
-  SPECIALIZE_GETTYPESTRING(float);
-  SPECIALIZE_GETTYPESTRING(double);
-  SPECIALIZE_GETTYPESTRING(long double);
-  
-  SPECIALIZE_GETTYPESTRING(bool);
-  SPECIALIZE_GETTYPESTRING(char);
-  SPECIALIZE_GETTYPESTRING(unsigned char);
-  SPECIALIZE_GETTYPESTRING(signed char);
-  
-  SPECIALIZE_GETTYPESTRING(short);
-  SPECIALIZE_GETTYPESTRING(unsigned short);
-  SPECIALIZE_GETTYPESTRING(int);
-  SPECIALIZE_GETTYPESTRING(long);
-  SPECIALIZE_GETTYPESTRING(unsigned long);
-#if LONGLONG_EXISTS
-  SPECIALIZE_GETTYPESTRING(long long);
-  SPECIALIZE_GETTYPESTRING(unsigned long long);
-#endif
-
-
-#define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> inline std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
-
-  
-  SPECIALIZE_GETTYPESTRING_CONTAINER(Vector);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::vector);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex)
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::valarray);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::initializer_list);
 
   
   
@@ -1011,7 +1043,7 @@ namespace matricks {
     MyType& variable; 
     explicit Any(MyType& var) : variable(var) {
       using namespace std;
-      printf("function Any::Any(const MyType& var): MyType = %s, var = ",getTypeString(var).c_str());
+      printf("function Any::Any(const MyType& var): MyType = %s, var = ",display::getTypeString(var).c_str());
       cout << var << endl;
     }
   };

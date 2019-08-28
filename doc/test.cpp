@@ -175,12 +175,35 @@ int main()
   using namespace Loki;
   dispcr(TypeTraits<double>::isStdFloat);
   dispcr(TypeTraits<const double>::isStdFloat);
+  dispcr(TypeTraits<const double>::isFloat);
   dispcr(TypeTraits<const double>::isConst);
   TypeTraits<const double>::NonConstType degrom = 9;
   newdispcr(degrom);
   newdispcr(0.0);
   double harvey = 0;
   newdispcr(harvey);
+
+  int inty = 25;
+  newdispcr(inty);
+
+  unsigned int uny = 25;
+  newdispcr(uny);
+
+
+  dispcr(sizeof(uny));
+  dispcr(sizeof(long int));
+
+
+  long int linty = 25;
+  newdispcr(linty);
+
+  unsigned long int luny = 25;
+  newdispcr(luny);
+
+  bool booly = 1;
+  newdispcr(booly);
+  booly = 0;
+  newdispcr(booly);
 
   
   return 0;

@@ -841,8 +841,8 @@ namespace matricks {
    ************************************************************
    */
 
-  template<class D, class A, class X, class OP>
-  class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X,OP> >, public VectorofPtrs {
+  template<class D, class A, class X>
+  class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -863,12 +863,19 @@ namespace matricks {
     }
 
     inline const D operator[](const index_type i) const {
+      const D x = x_[i];
       D sum = 0;
       // TODO: check a_.size >= N
+      D xpow = 1;
       for (int n = 0; n <= N_ ; n++) {
 	D an = a_[n];
-	if (an==D(0)) continue;
-	sum += an*OP::apply(x_[i], n);
+	if (an!=D(0)) {
+	  sum += an*xpow;
+	}
+	//	if (i==2) {
+	//  disp(i);disp(x);disp(n);disp(xpow);disp(an);disp(sum);cr();
+	//}
+	xpow *= x;
       }
       return sum; 
     }
@@ -891,7 +898,7 @@ namespace matricks {
       if (x_.vetype() != VE_Vector) 
 	sx = "(" + sx + ")";
       std::string sN = print2str("%d",N_);
-      return OP::debugtxt(sx,sN);
+      return "";
     }
 
 

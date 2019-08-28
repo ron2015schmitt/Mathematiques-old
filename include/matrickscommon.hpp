@@ -34,6 +34,15 @@ namespace matricks {
 namespace display {
   extern const char blankline[];
 
+  inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void print1(const std::string s);
+  inline void print2(const std::string s);
+  inline void print3(const std::string s);
+
+  
   class Terminal {
   private:
     static bool isInitialized;
@@ -155,6 +164,9 @@ namespace display {
     static void del(const SSEnum ss);
     static StyledString& get(const SSEnum ss);
     static void initialize();
+    static StyledString& create(Style& style, const std::string text) {
+          return *( new StyledString(style, text) );
+    }
 
     inline StyledString() :
       style_(createStyle(CROSSEDOUT)),
@@ -171,8 +183,12 @@ namespace display {
     inline std::string get() const {
       return style_.apply(text_);
     }
-    inline std::string getStr() const {
+    inline std::string getString() const {
       return text_;
+    }
+    inline StyledString& setString(const std::string text)  {
+      text_ = text;
+      return *this;
     }
     inline Style& getStyle()  const {
       return style_;
@@ -196,6 +212,10 @@ namespace display {
   class Format : public FormatBase{
   public:
     typedef D MYTYPE;
+    static Format<MYTYPE>& getDefault() {
+      Format<MYTYPE> *format = new Format<MYTYPE>();
+      return *format;
+    }
     inline Format() {
     }
 
@@ -217,23 +237,28 @@ namespace display {
 #define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
 
 
-    
+
+
+
   // TODO add style for both name and value
   // TODO: these all need to be static so that
   //       we can dispatch from dispcr
   template <>
-  class Format<double> : public FormatBase {
+  class Format<const double> : public FormatBase {
   private:
-    static const size_t BUF_SIZE = 512;
-    static char buffer_[BUF_SIZE];
     std::string formatstr_ = "%f";
   public:
-    typedef double MYTYPE;
+    typedef const double MYTYPE;
+    typedef double MYTYPENOTCONST;
+    static Format<MYTYPE>& getDefault() {
+      Format<MYTYPE> *format = new Format<MYTYPE>();
+      return *format;
+    }
     inline Format() {
-      printf("Format::Format \n");
+      print3("Format::Format \n");
     }
     inline Format(const std::string formatstr) {
-      printf("Format::Format(const std::string formatstr) \n");
+      print3("Format::Format(const std::string formatstr) \n");
       set(formatstr);
     }
 
@@ -243,14 +268,14 @@ namespace display {
       int errcode = 0;
       bool passed = true;
       try {
-	errcode = sprintf(Format<double>::buffer_, formatstr.c_str(), x);
+	errcode = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), x);
 	if (errcode<0) passed = false;
       } catch (...) {
 	string classname = "";
 	passed = false;
 	return;
       }
-      string s = string(Format<double>::buffer_);
+      string s = string(Buffer);
       size_t found = s.find("(nil)");
       if (found!=string::npos) 	passed = false;
 
@@ -272,13 +297,12 @@ namespace display {
       return formatstr_;
     }
     inline std::string apply(const MYTYPE var) const {
-      std::sprintf(Format<double>::buffer_, formatstr_.c_str(), var);
-      return std::string(Format<double>::buffer_);
+      return print2str(formatstr_.c_str(), var);
     }
     inline std::string getName() const {
       return "double";
     }
-    inline friend std::ostream& operator<<(std::ostream &stream, const Format<double>& format) {
+    inline friend std::ostream& operator<<(std::ostream &stream, const Format<MYTYPE>& format) {
       stream << "Format<"<<format.getName()<< "> = " << format.get();
       return stream;
     }
@@ -349,25 +373,45 @@ namespace display {
   
   // add class variable that if defined overrides the default, taken from the Format class
   class Display {
+  private:
+    static bool isInitialized;
+    static StyledString* expression;
+    static StyledString* equals;
+    static StyledString* terminator;
   public:
-    template <typename X>
-    static void display(X& x, const std::string name) {
-      using namespace std;
-      cout << name;
-      cout << ": ";
-      cout << Format<X>::apply(x);
-      cout << ";";
+    static void initialize() {
+      log2("display","Display","initialize","()");
+      
+      Display::isInitialized = true;
+      Display::expression = new StyledString(createStyle(BLUE1+BOLD),": ");
+      Display::equals = new StyledString(createStyle(GRAY1),": ");
+      Display::terminator = new StyledString(createStyle(GRAY1),";");
+    }
+    Display(){
+      if (!isInitialized) {
+	Display::initialize();
+      }
     }
     template <typename X>
-    static void displaycr(X& x, const std::string name) {
+    static void mydisp(const X& x, const std::string name) {
       using namespace std;
-      display(x, name);
+      log2("display","Display","mydisp","(const X& x, const std::string name)");
+      expression->setString(name);
+      cout << *expression;
+      cout << *equals;
+      cout << Format<const X>::getDefault().apply(x);
+      cout << *terminator;
+    }
+    template <typename X>
+    static void mydispcr(const X& x, const std::string name) {
+      using namespace std;
+      mydisp(x, name);
       cout << endl;
     }
   };  // class Display
 
 
-#define newdispcr(...) display::Display::display(__VA_ARGS__,#__VA_ARGS__)
+#define newdispcr(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
 
       
   /****************************************************************************
@@ -432,7 +476,7 @@ namespace matricks {
   template <class D, class A, class B> class VJoinObj;
   template <class D, class A, class B> class VJoinExpr;
   template <class D> class VReconObj;
-  template <class D, class A, class X, class OP> class VSeriesOp;
+  template <class D, class A, class X> class VSeriesOp;
 
   class slc {
   private:

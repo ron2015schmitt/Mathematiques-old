@@ -94,7 +94,7 @@ int main()
   StyledString ss(bold+magenta1, "Hello");
   dispcr(ss);
 
-  Format<double> formatdouble("%f");
+  Format<const double> formatdouble("%f");
   dispcr(formatdouble);
   dispcr(formatdouble.getName());
   dispcr(formatdouble.get());
@@ -149,7 +149,7 @@ int main()
   dispcr(Bn);
   dispcr(y2);
 
-  
+  print1("newdispcr");
   newdispcr(pi);
   
   return 0;

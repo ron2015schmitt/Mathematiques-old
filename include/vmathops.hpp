@@ -57,10 +57,10 @@ namespace matricks {
   // taylor(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-  inline VSeriesOp<D, VorE<D,A>, VorE<D,X>, ApMonomial<D> > 
+  inline VSeriesOp<D, VorE<D,A>, VorE<D,X> > 
   taylor(const VorE<D,A>& a, const VorE<D,X>& x, const int N)
   {
-    return  VSeriesOp<D, VorE<D,A>, VorE<D,X>, ApMonomial<D> >(a,x,N);
+    return  VSeriesOp<D, VorE<D,A>, VorE<D,X> >(a,x,N);
   }
 
   // fourier(vector cos coefs, vector sin coefs, vector vals, max N, k1=2pi/wavelength or 2pi/period)

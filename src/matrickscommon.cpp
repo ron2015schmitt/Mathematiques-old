@@ -78,7 +78,6 @@ namespace display {
 
 
   
-  char Format<double>::buffer_[BUF_SIZE];
 
   Style Log::style_log0;
   Style Log::style_log1;
@@ -91,9 +90,9 @@ namespace display {
   Log::Log() {
     using namespace std;
     using namespace display;
-    Log::style_log0 = createStyle(BOLD+BLACK);
-    Log::style_log1 = createStyle(BOLD+BLACK);
-    Log::style_log2 = createStyle(BOLD+BLACK);
+    Log::style_log0 = createStyle(BOLD+BLUE1);
+    Log::style_log1 = createStyle(BOLD+BLUE2);
+    Log::style_log2 = createStyle(BOLD+BLUE3);
     Log::style_nspace =  createStyle(MAGENTA1);
     Log::style_class = createStyle(CYAN);
     Log::style_func =  createStyle(BLUE1);
@@ -160,6 +159,13 @@ namespace display {
   Log Log_dummy = *(new Log());
 
 
+  bool Display::isInitialized = false;
+  StyledString* Display::expression = 0;
+  StyledString* Display::equals = 0;
+  StyledString* Display::terminator = 0;
+  Display display_dummy = *(new Display());
+  
+  
 
 };
 

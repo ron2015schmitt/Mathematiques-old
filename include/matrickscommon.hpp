@@ -21,7 +21,7 @@ extern char COMPILE_OPTIMIZE[];
 
 
 namespace matricks {
-// do away with
+  // do away with
   extern const char* error_str;
   extern const char* warn_str;
   extern const char* indent_str;
@@ -31,7 +31,7 @@ namespace matricks {
   
 };
 
-namespace style {
+namespace display {
   extern const char blankline[];
 
   class Terminal {
@@ -40,7 +40,6 @@ namespace style {
     static bool supportsColor;
   public:
     static bool getSupportsColor();
-    
   };
 
   
@@ -139,7 +138,7 @@ namespace style {
 
 
 
-#define createStyle(...) style::Style::create(__VA_ARGS__,#__VA_ARGS__)
+#define createStyle(...) display::Style::create(__VA_ARGS__,#__VA_ARGS__)
 
   
   
@@ -192,8 +191,7 @@ namespace style {
   class FormatBase {
   };
 
-  // TODO: these all need to be static so that
-  //       we can dispatch from dispcr
+  // create a default instance
   template <typename D>
   class Format : public FormatBase{
   public:
@@ -216,9 +214,8 @@ namespace style {
 
   const size_t BUFFER_SIZE = 512;
   extern char Buffer[BUFFER_SIZE];
-#define print2str(...) (new std::string())->erase(0*std::snprintf(style::Buffer,style::BUFFER_SIZE, __VA_ARGS__)).append(style::Buffer)
+#define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
 
-  //<<std::snprintf(Buffer,BUFFER_SIZE, __VA_ARGS__))
 
     
   // TODO add style for both name and value
@@ -285,7 +282,7 @@ namespace style {
       stream << "Format<"<<format.getName()<< "> = " << format.get();
       return stream;
     }
-  };
+  };  //class Format
 
 
   class Log {
@@ -306,15 +303,99 @@ namespace style {
     
     Log();
 
+  }; // class  Log
 
-  };
+  inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    display::Log::log(0, spaceName, className, funcName, s);
+  }
+
+  inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+#if MATRICKS_DEBUG>=1
+    display::Log::log(1, spaceName, className, funcName, s);
+#endif
+  }
+
+  inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+#if MATRICKS_DEBUG>=2
+    display::Log::log(2, spaceName, className, funcName, s);
+#endif
+  }
+
+  inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+#if MATRICKS_DEBUG>=3
+    display::Log::log(3, spaceName, className, funcName, s);
+#endif
+  }
 
 
+  inline void print1(const std::string s) {
+#if MATRICKS_DEBUG>=1
+    display::Log::print(1,s);
+#endif
+  }
+  inline void print2(const std::string s) {
+#if MATRICKS_DEBUG>=2
+    display::Log::print(2,s);
+#endif
+  }
+  inline void print3(const std::string s) {
+#if MATRICKS_DEBUG>=3
+    display::Log::print(3,s);
+#endif
+  }
 
 
 
   
-};
+  // add class variable that if defined overrides the default, taken from the Format class
+  class Display {
+  public:
+    template <typename X>
+    static void display(X& x, const std::string name) {
+      using namespace std;
+      cout << name;
+      cout << ": ";
+      cout << Format<X>::apply(x);
+      cout << ";";
+    }
+    template <typename X>
+    static void displaycr(X& x, const std::string name) {
+      using namespace std;
+      display(x, name);
+      cout << endl;
+    }
+  };  // class Display
+
+
+#define newdispcr(...) display::Display::display(__VA_ARGS__,#__VA_ARGS__)
+
+      
+  /****************************************************************************
+   * execution mode string and display
+   ****************************************************************************   
+   */
+
+
+  inline void print_matricks_info(void) {
+    using namespace std;
+    using namespace display;
+    cout << StyledString::get(HORLINE);
+    cout << StyledString::get(MATRICKS) << " ";
+    cout << StyledString::get(VERSION) << " ";
+    cout << endl << endl;
+    cout << "compile-time settings:" << endl;
+    cout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
+    cout << createStyle(BOLD).apply("  OPTIMIZE: ");
+    cout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
+    cout << StyledString::get(HORLINE);
+      
+  }
+
+    
+  
+
+  
+}; // namespace display
 
 
 namespace matricks {
@@ -330,70 +411,11 @@ namespace matricks {
   const size_type badsize = std::numeric_limits<size_type>::max();
 
 
-    inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-    style::Log::log(0, spaceName, className, funcName, s);
-  }
-
-  inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-    #if MATRICKS_DEBUG>=1
-    style::Log::log(1, spaceName, className, funcName, s);
-    #endif
-  }
-
-  inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-    #if MATRICKS_DEBUG>=2
-    style::Log::log(2, spaceName, className, funcName, s);
-    #endif
-  }
-
-  inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-    #if MATRICKS_DEBUG>=3
-    style::Log::log(3, spaceName, className, funcName, s);
-    #endif
-  }
-
-
-  inline void print1(const std::string s) {
-    #if MATRICKS_DEBUG>=1
-    style::Log::print(1,s);
-    #endif
-  }
-  inline void print2(const std::string s) {
-    #if MATRICKS_DEBUG>=2
-    style::Log::print(2,s);
-    #endif
-  }
-  inline void print3(const std::string s) {
-    #if MATRICKS_DEBUG>=3
-    style::Log::print(3,s);
-    #endif
-  }
-
-    /****************************************************************************
-   * execution mode string and display
-   ****************************************************************************   
-   */
-
-
-  inline void print_matricks_info(void) {
-    using namespace std;
-    using namespace style;
-    cout << StyledString::get(HORLINE);
-    cout << StyledString::get(MATRICKS) << " ";
-    cout << StyledString::get(VERSION) << " ";
-    cout << endl << endl;
-    cout << "compile-time settings:" << endl;
-    cout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
-    cout << createStyle(BOLD).apply("  OPTIMIZE: ");
-    cout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
-    cout << StyledString::get(HORLINE);
-      
-  }
 
 
 
 
-    /****************************************************************************
+  /****************************************************************************
    * Classes that inherit from VorE
    ****************************************************************************   
    */
@@ -692,7 +714,7 @@ namespace matricks {
 		VE_VJoinExpr, VE_VJoinObj,
 		VE_VRepExpr, 
 		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
-		VE_VSeriesOp,
+		VE_VSeriesOp, VE_VSeriesOp2,
 		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
 		VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
 
@@ -997,48 +1019,48 @@ namespace matricks {
 
 
 
-// #define MTS_CONTAINER_MACRO(T) template <typename D>  std::string getTypeString(const T<D>& x) {return (std::string(# T) + "<" +  getTypeString(D()) +"> "); }
+  // #define MTS_CONTAINER_MACRO(T) template <typename D>  std::string getTypeString(const T<D>& x) {return (std::string(# T) + "<" +  getTypeString(D()) +"> "); }
 
 
-// MTS_CONTAINER_MACRO(std::complex);
-// MTS_CONTAINER_MACRO(std::vector);
-// MTS_CONTAINER_MACRO(std::valarray);
+  // MTS_CONTAINER_MACRO(std::complex);
+  // MTS_CONTAINER_MACRO(std::vector);
+  // MTS_CONTAINER_MACRO(std::valarray);
   
-// MTS_CONTAINER_MACRO(Vector);
-// MTS_CONTAINER_MACRO(Matrix);
-// MTS_CONTAINER_MACRO(p3vector);
+  // MTS_CONTAINER_MACRO(Vector);
+  // MTS_CONTAINER_MACRO(Matrix);
+  // MTS_CONTAINER_MACRO(p3vector);
 
-// // the following are instantiated to reduce compile time
+  // // the following are instantiated to reduce compile time
 
-// #define  MTS_MACRO_DECL2(T)  std::string getTypeString(const T&);
+  // #define  MTS_MACRO_DECL2(T)  std::string getTypeString(const T&);
 
-// MTS_MACRO_DECL2(std::complex<float>);
-// MTS_MACRO_DECL2(std::complex<double>);
-// MTS_MACRO_DECL2(std::complex<long double>);
-// MTS_MACRO_DECL2(Vector<float>);
-// MTS_MACRO_DECL2(Vector<double>);
-// MTS_MACRO_DECL2(Vector<long double>);
-// MTS_MACRO_DECL2(Vector<std::complex<double> >);
-// MTS_MACRO_DECL2(Vector<Vector<double> >);
-// MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
-// MTS_MACRO_DECL2(Matrix<float>);
-// MTS_MACRO_DECL2(Matrix<double>);
-// MTS_MACRO_DECL2(Matrix<long double>);
-// MTS_MACRO_DECL2(Matrix<std::complex<double> >);
-// MTS_MACRO_DECL2(p3vector<float>);
-// MTS_MACRO_DECL2(p3vector<double>);
-// MTS_MACRO_DECL2(p3vector<long double>);
-// MTS_MACRO_DECL2(p3vector<std::complex<double> >);
+  // MTS_MACRO_DECL2(std::complex<float>);
+  // MTS_MACRO_DECL2(std::complex<double>);
+  // MTS_MACRO_DECL2(std::complex<long double>);
+  // MTS_MACRO_DECL2(Vector<float>);
+  // MTS_MACRO_DECL2(Vector<double>);
+  // MTS_MACRO_DECL2(Vector<long double>);
+  // MTS_MACRO_DECL2(Vector<std::complex<double> >);
+  // MTS_MACRO_DECL2(Vector<Vector<double> >);
+  // MTS_MACRO_DECL2(Vector<Vector<std::complex<double> > >);
+  // MTS_MACRO_DECL2(Matrix<float>);
+  // MTS_MACRO_DECL2(Matrix<double>);
+  // MTS_MACRO_DECL2(Matrix<long double>);
+  // MTS_MACRO_DECL2(Matrix<std::complex<double> >);
+  // MTS_MACRO_DECL2(p3vector<float>);
+  // MTS_MACRO_DECL2(p3vector<double>);
+  // MTS_MACRO_DECL2(p3vector<long double>);
+  // MTS_MACRO_DECL2(p3vector<std::complex<double> >);
 
-/*
-  MTS_MACRO_DECL2(Vector<double>);
-  MTS_MACRO_DECL2(std::complex<double>);
-*/
+  /*
+    MTS_MACRO_DECL2(Vector<double>);
+    MTS_MACRO_DECL2(std::complex<double>);
+  */
 
-/* template <typename D, template <typename> class T>  std::string getTypeString(const T<D>& x) {
-   return (x.classname() + "<" +  getTypeString(D()) +"> "); 
-   }
-*/
+  /* template <typename D, template <typename> class T>  std::string getTypeString(const T<D>& x) {
+     return (x.classname() + "<" +  getTypeString(D()) +"> "); 
+     }
+  */
 
 
 };

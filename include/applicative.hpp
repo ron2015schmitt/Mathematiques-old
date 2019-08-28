@@ -172,22 +172,6 @@ namespace matricks {
 
 
 
-    // y = a + b
-
-  template <class DataT> class ApMonomial {
-  public:
-    ApMonomial() { }
-  
-    static inline DataT apply(DataT a_n, DataT x, int n) { 
-      return a_n*std::pow(x,n); 
-    }
-
-    static std::string debugtxt(const std::string& sa, const std::string& sx, const std::string& sn) {
-      std::string sout = sa + " * " + sx +"^"+sn ;
-      return sout;
-    }
-
-  };
 
 
 

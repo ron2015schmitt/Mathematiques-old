@@ -22,7 +22,7 @@ int main()
  
   using namespace matricks;
   using namespace std;
-  using namespace style;
+  using namespace display;
   int Nex = 1;
 
   
@@ -130,6 +130,27 @@ int main()
   Vector<double> y = taylor(Bessel0Coeffs, r, 25);
 
   dispcr(y);
+
+
+  // CLuasen function
+
+  const size_type N = 20;
+  Vector<double> An = Vector<double>(N,0.);
+
+  Vector<double> Bn = 1./sqr(range<double>(0,N-1));
+  Bn[0] = 0.0;
+
+  const double pi = M_PI;
+  Vector<double> t = linspace<double>(-2*pi,2*pi,201);
+  const double T = 2*pi;
+  const double omega = 1;
+  Vector<double> y2 = fourier(An,Bn, t, An.size(), omega );
+  dispcr(An);
+  dispcr(Bn);
+  dispcr(y2);
+
+  
+  newdispcr(pi);
   
   return 0;
 }

@@ -4,7 +4,7 @@
 #include "matricks.hpp"
 #include <unistd.h>
 
-namespace style {
+namespace display {
 
   const char blankline[] = "                                                                               \n";
   char Buffer[BUFFER_SIZE];
@@ -90,7 +90,7 @@ namespace style {
     
   Log::Log() {
     using namespace std;
-    using namespace style;
+    using namespace display;
     Log::style_log0 = createStyle(BOLD+BLACK);
     Log::style_log1 = createStyle(BOLD+BLACK);
     Log::style_log2 = createStyle(BOLD+BLACK);

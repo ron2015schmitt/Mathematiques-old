@@ -866,9 +866,9 @@ namespace matricks {
       D sum = 0;
       // TODO: check a_.size >= N
       for (int n = 0; n <= N_ ; n++) {
-	D a0 = a_[n];
-	if (a0==D(0)) continue;
-	sum += OP::apply(a0, x_[i], n);
+	D an = a_[n];
+	if (an==D(0)) continue;
+	sum += an*OP::apply(x_[i], n);
       }
       return sum; 
     }
@@ -891,7 +891,7 @@ namespace matricks {
       if (x_.vetype() != VE_Vector) 
 	sx = "(" + sx + ")";
       std::string sN = print2str("%d",N_);
-      return OP::debugtxt(sa,sx,sN);
+      return OP::debugtxt(sx,sN);
     }
 
 
@@ -901,6 +901,85 @@ namespace matricks {
     }
   };
 
+
+
+  template<class D, class A, class B, class X, class OP1, class OP2>
+  class VSeriesOp2 : public  Vexpr<D,VSeriesOp2< D, A, B, X, OP1, OP2> >, public VectorofPtrs {
+
+  private:
+    const A& a_;
+    const B& b_;
+    const X& x_;
+    const int N_;
+    const D k1_;
+    Vector<D>& k_;
+    bool initialized;
+    
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
+      : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N+1)))
+    {
+      addAddresses(a_.getAddresses());
+      addAddresses(b_.getAddresses());
+      addAddresses(x_.getAddresses());
+      addAddresses(k_.getAddresses());
+      for (int n = 0; n <= N_ ; n++) {
+	k_[n] = n*k1_;
+      }
+    }
+    ~VSeriesOp2(){
+      delete &k_;
+    }
+    inline const D operator[](const index_type i) const {
+      D sum = 0;
+      // TODO: check a_.size >= N
+      for (int n = 0; n <= N_ ; n++) {
+	D kx = k_[n]*x_[i];
+	D an = a_[n];
+	if (an != D(0)) {
+	  sum += an*OP1::apply(kx);
+	}
+	D bn = b_[n];
+	if (bn != D(0)) {
+	  sum += bn*OP2::apply(kx);
+	}
+      }
+      return sum; 
+    }
+
+    inline size_type size(void) const {
+      return x_.size();
+      // TODO: check a_.size >= N
+      // TODO: check b_.size >= N
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VSeriesOp2;
+    }
+
+    std::string debugtxt(void) const {
+      // TODO: get this working
+      std::string sa = a_.debugtxt();
+      if (a_.vetype() != VE_Vector) 
+	sa = "(" + sa + ")";
+      std::string sx = x_.debugtxt();
+      if (x_.vetype() != VE_Vector) 
+	sx = "(" + sx + ")";
+      std::string sN = print2str("%d",N_);
+      return OP1::debugtxt(sx);
+    }
+
+
+    void outputglossary(void) const {
+      a_.outputglossary();
+      x_.outputglossary();
+    }
+  };
 
 
 

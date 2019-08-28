@@ -58,6 +58,23 @@ namespace matricks {
     }
   };
 
+  // y = powint(a,n)  
+  // ie. a raised to the n power
+
+  template <class D> class ApMonomial {
+  public:
+    ApMonomial() { }
+    static inline D apply(D x, int n) { 
+      using std::pow;
+      return pow(x,n); 
+    }
+
+
+    static std::string debugtxt(const std::string& sx, const std::string& sn) {
+      std::string sout = sx + "^" + sn ;
+      return sout;
+    }
+  };
 
 
     // y = atan2(a,b)  

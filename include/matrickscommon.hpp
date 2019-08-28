@@ -247,9 +247,12 @@ namespace display {
   class Format<const double> : public FormatBase {
   private:
     std::string formatstr_ = "%f";
+    Style& style_zero = createStyle(GRAY1);
+    Style& style_num = createStyle(RESET);
+    StyledString *styled_name = new StyledString(createStyle(MAGENTA1),"double");
   public:
     typedef const double MYTYPE;
-    typedef double MYTYPENOTCONST;
+    typedef Loki::TypeTraits<const double>::NonConstType  MYTYPENOCONST;
     static Format<MYTYPE>& getDefault() {
       Format<MYTYPE> *format = new Format<MYTYPE>();
       return *format;
@@ -296,11 +299,15 @@ namespace display {
     inline std::string get() const {
       return formatstr_;
     }
-    inline std::string apply(const MYTYPE var) const {
-      return print2str(formatstr_.c_str(), var);
+    inline std::string apply(const MYTYPE val) const {
+      std::string s = print2str(formatstr_.c_str(), val);
+      if (val == MYTYPE(0)) {
+	return style_zero.apply(s);
+      } 
+      return style_num.apply(s);
     }
     inline std::string getName() const {
-      return "double";
+      return styled_name->get();
     }
     inline friend std::ostream& operator<<(std::ostream &stream, const Format<MYTYPE>& format) {
       stream << "Format<"<<format.getName()<< "> = " << format.get();
@@ -315,7 +322,7 @@ namespace display {
     static  Style style_log1;
     static  Style style_log2;
     static  Style style_nspace;
-    static  Style style_class;
+    ;    static  Style style_class;
     static  Style style_func;
     static  Style style_str;
 
@@ -331,7 +338,7 @@ namespace display {
 
   inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
     display::Log::log(0, spaceName, className, funcName, s);
-    std::cout << __PRETTY_FUNCTION__;
+    //    std::cout << __PRETTY_FUNCTION__;
   }
 
   inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
@@ -343,7 +350,6 @@ namespace display {
   inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
 #if MATRICKS_DEBUG>=2
     display::Log::log(2, spaceName, className, funcName, s);
-    std::cout << __PRETTY_FUNCTION__;
 #endif
   }
 
@@ -398,6 +404,7 @@ namespace display {
     static void mydisp(const X& x, const std::string name) {
       using namespace std;
       log2("display","Display","mydisp","(const X& x, const std::string name)");
+      cout << Format<const X>::getDefault().getName() << " ";
       expression->setString(name);
       cout << *expression;
       cout << *equals;

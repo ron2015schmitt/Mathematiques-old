@@ -177,7 +177,11 @@ int main()
   dispcr(TypeTraits<const double>::isStdFloat);
   dispcr(TypeTraits<const double>::isConst);
   TypeTraits<const double>::NonConstType degrom = 9;
-  dispcr(degrom);
+  newdispcr(degrom);
+  newdispcr(0.0);
+  double harvey = 0;
+  newdispcr(harvey);
+
   
   return 0;
 }

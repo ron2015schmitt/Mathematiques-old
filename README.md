@@ -1,4 +1,4 @@
-# mātricks v2.13-r11
+# mātricks v2.13-r12
 
 ```diff
 - CURRENTLY NOT READY FOR USE. Planned Launch Date: 2019 Sep 6 -
@@ -76,9 +76,9 @@ cd matricks
 
 To use the mātricks library you need to 
 
-1. Include the library file `include/matricks.hpp` in your source code
+1. Include the library file `include/matricks.h` in your source code
 ```C++
-#include "matricks.hpp"
+#include "matricks.h"
 ```
 2. Include the `include/` subdirectory during compilation using the `-I` option
 
@@ -93,7 +93,7 @@ An example of a C++ source file (```examples/example.cpp```) is shown below
 ```C++
 #include <tgmath.h>
 
-#include "matricks.hpp"
+#include "matricks.h"
 
 
 int main()
@@ -101,6 +101,7 @@ int main()
   const double pi = M_PI;
   
   using namespace matricks;
+  using namespace display;
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );
@@ -174,11 +175,11 @@ without specifying the `MEBUG` flag
 ```make clean myprogram```
 
 
-### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.hpp` include statement
+### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.h` include statement
 
 ```C++
 #define MEBUG 1
-#include "matricks.hpp"
+#include "matricks.h"
 ```
 
 

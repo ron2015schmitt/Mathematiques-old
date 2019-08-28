@@ -6,7 +6,7 @@
 
 #include <complex>
 
-#include "matricks.hpp"
+#include "matricks.h"
 
 
 

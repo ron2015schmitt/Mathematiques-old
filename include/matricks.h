@@ -26,8 +26,13 @@
   #define MATRICKS_DEBUG 3
 #endif
 
+// -------------------------------------------
+//     From loki submodule
+#include "TypeTraits.h"
+// -------------------------------------------
 
-#include "matricks_version.hpp"
+
+#include "matricks_version.h"
 #include "util.hpp"
 #include "matrickscommon.hpp"
 #include "print.hpp"
@@ -43,13 +48,12 @@
 
 #include "md.hpp"
 
-#include "vexpr.hpp"
-#include "vboolexpr.hpp"
-#include "vcomplexexpr.hpp"
+#include "vexpressions.h"
 #include "mexpr.hpp"
 #include "mboolexpr.hpp"
 #include "mcomplexexpr.hpp"
 #include "mvexpr.hpp"
+
 #include "voperators.hpp"
 #include "vmathops.hpp"
 #include "vboolops.hpp"
@@ -60,6 +64,7 @@
 #include "mcomplexops.hpp"
 #include "mvoperators.hpp"
 #include "mvcomplexops.hpp"
+
 #include "p3vector.hpp"
 
 #include "matricksio.hpp"

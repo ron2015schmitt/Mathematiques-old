@@ -1,6 +1,6 @@
 #include <tgmath.h>
 
-#include "matricks.hpp"
+#include "matricks.h"
 
 
 int main()
@@ -8,6 +8,7 @@ int main()
   const double pi = M_PI;
   
   using namespace matricks;
+  using namespace display;
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );

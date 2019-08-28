@@ -26,7 +26,7 @@ VERSION_FILE_MATRICKS = $(DIR_MATRICKS)/files/matricks.vers
 VERSION_MATRICKS = `. $(VERSION_FILE_MATRICKS) && echo "$${VERSION_MATRICKS}"`
 TAG_FILE_MATRICKS = $(DIR_MATRICKS)/files/matricks.tag
 TAG_MATRICKS = `cat $(TAG_FILE_MATRICKS)`
-VERSION_HEADER_FILE_MATRICKS = $(DIR_MATRICKS)/include/matricks_version.hpp
+VERSION_HEADER_FILE_MATRICKS = $(DIR_MATRICKS)/include/matricks_version.h
 
 LIB_LAPACK = -llapack -lg2c
 

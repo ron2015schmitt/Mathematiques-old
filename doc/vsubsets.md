@@ -1,15 +1,7 @@
- adding style green 
- adding style cyan 
- adding style blue2 
- adding style black 
- adding style magenta1 
- adding style bold 
- adding style underline 
- adding style overline 
- adding style crossedout 
-
+log2: in function display::Display::initialize()
+void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
 # Access subsets of Vector elements in mātricks
-_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.13-r5).
+_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.13-r10).
 
 You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices
 ## Access vector elements using a `Vector` of indices

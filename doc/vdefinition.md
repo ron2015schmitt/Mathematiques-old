@@ -1,18 +1,11 @@
- adding style green 
- adding style cyan 
- adding style blue2 
- adding style black 
- adding style magenta1 
- adding style bold 
- adding style underline 
- adding style overline 
- adding style crossedout 
+log2: in function display::Display::initialize()
+void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+# under the hood—`Vector` definition in mātricks
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r10).
 
-# Vector definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r5).
-
-### A `matricks::Vector` wraps a `std::valarray`
-* This bears repeating: a `matricks::Vector` wraps a `std::valarray`
+* _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
+### The Vector class is a wrapper
+* The `matricks::Vector` wraps a `std::valarray`
 * In the example below
   * `valias` is referenced to the valarray inside `vec`.
 

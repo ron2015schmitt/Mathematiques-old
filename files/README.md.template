@@ -76,9 +76,9 @@ cd matricks
 
 To use the mātricks library you need to 
 
-1. Include the library file `include/matricks.hpp` in your source code
+1. Include the library file `include/matricks.h` in your source code
 ```C++
-#include "matricks.hpp"
+#include "matricks.h"
 ```
 2. Include the `include/` subdirectory during compilation using the `-I` option
 
@@ -141,11 +141,11 @@ without specifying the `MEBUG` flag
 ```make clean myprogram```
 
 
-### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.hpp` include statement
+### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.h` include statement
 
 ```C++
 #define MEBUG 1
-#include "matricks.hpp"
+#include "matricks.h"
 ```
 
 

@@ -1,7 +1,7 @@
 
 #define MATRICKS_DEBUG 3
 
-#include "matricks.hpp"
+#include "matricks.h"
 #include <unistd.h>
 
 namespace display {

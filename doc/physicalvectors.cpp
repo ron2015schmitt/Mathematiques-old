@@ -3,7 +3,7 @@
 #define MATRICKS_DEBUG 1
 
 
-#include "matricks.hpp"
+#include "matricks.h"
 using namespace matricks;
 
 #include <iostream>

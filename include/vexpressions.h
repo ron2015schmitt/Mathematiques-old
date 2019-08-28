@@ -1169,3 +1169,477 @@ namespace matricks {
 };
 
 #endif
+
+#ifndef VBOOLEXPR_H
+#define VBOOLEXPR_H
+
+#include <string>
+#include <sstream>
+
+
+namespace matricks {
+
+
+
+
+
+
+
+  /****************************************************************************
+   * VBoolBinOp Operator Expression Template 
+   *
+   * vector/vector binary operator expressions
+   ****************************************************************************
+   */
+  template<class D, class A, class B, class OP>
+  class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> >, VectorofPtrs {
+
+  private:
+    const A& a_;
+    const B& b_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VBoolBinOp(const A& a, const B& b)
+      : a_(a), b_(b)
+    { 
+      addAddress(&a_);
+      addAddress(&b_);
+    }
+
+    inline bool operator[](const index_type i) const {  
+      return OP::apply(a_[i], b_[i]); 
+    }
+
+    inline size_type size(void) const {
+      if ( a_.size() != b_.size() ) {
+	return badsize;
+      } else {
+	return a_.size();
+      }
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VBoolBinOp;
+    }
+
+    std::string debugtxt(void) const {
+      std::string sa = a_.debugtxt();
+      if (a_.vetype() != VE_Vector) 
+	sa = "(" + sa + ")";
+      std::string sb = b_.debugtxt();
+      if (b_.vetype() != VE_Vector) 
+	sb = "(" + sb + ")";
+      return OP::debugtxt(sa,sb);
+    }
+
+
+    void outputglossary(void) const {
+      a_.outputglossary();
+      b_.outputglossary();
+    }
+
+
+
+
+  };
+
+
+
+
+
+
+
+  /****************************************************************************
+   * BoolVecOpScal Operator Template 
+   *
+   * vector/scalar binary operators
+   ****************************************************************************
+   */
+
+
+  template<class D, class A, class OP>
+  class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> >, VectorofPtrs {
+
+  private:
+    const A& a_;
+    D val_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+
+    BoolVecOpScal(const A& a, const D b)
+      : a_(a), val_(b)
+    {
+      addAddress(&a_);
+    }
+
+    inline bool operator[](const index_type i) const { 
+      return OP::apply(a_[i], val_); 
+    }
+
+    inline size_type size(void) const {
+      return a_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_BoolVecOpScal;
+    }
+
+    std::string debugtxt(void) const {
+      std::string sa = a_.debugtxt();
+      if (a_.vetype() != VE_Vector) 
+	sa = "(" + sa + ")";
+      std::ostringstream stream;
+      stream << val_;
+      std::string sb = stream.str();
+      return OP::debugtxt(sa,sb);
+    }
+
+
+    void outputglossary(void) const {
+      a_.outputglossary();
+    }
+
+
+
+
+  };
+
+
+
+
+
+  /****************************************************************************
+   * BoolScalOpVec Operator Template 
+   *
+   * scalar/vector binary operators
+   ****************************************************************************
+   */
+
+
+  template<class D, class B, class OP>
+  class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> >, VectorofPtrs {
+
+  private:
+    D val_;
+    const B& b_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    BoolScalOpVec(const D a, const B& b)
+      :  val_(a), b_(b)
+    {
+      addAddress(&b_);
+    }
+
+    inline bool operator[](const index_type i) const { 
+      return OP::apply(val_,b_[i]); 
+    }
+
+    inline size_type size(void) const {
+      return b_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_BoolScalOpVec;
+    }
+
+    std::string debugtxt(void) const {
+      std::ostringstream stream;
+      stream << val_;
+      std::string sa = stream.str();
+      std::string sb = b_.debugtxt();
+      if (b_.vetype() != VE_Vector) 
+	sb = "(" + sb + ")";
+      return OP::debugtxt(sa,sb);
+    }
+
+    void outputglossary(void) const {
+      b_.outputglossary();
+    }
+
+
+
+  };
+
+
+
+
+  /****************************************************************************
+   * VBoolFuncOp Operator Template 
+   *
+   * unary operators and unary function overloading
+   ****************************************************************************
+   */
+
+  template<class D, class A, class FUNC>
+  class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >, VectorofPtrs{
+  
+  private:
+    const A& a_;
+  
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VBoolFuncOp(const A& a) : a_(a) {
+      addAddress(&a_);
+    }
+
+
+    inline bool operator[](const index_type i) const
+    { return FUNC::apply(a_[i]); }
+
+    inline size_type size(void) const {
+      return a_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VBoolFuncOp;
+    }
+
+    std::string debugtxt(void) const {
+      std::string sa = a_.debugtxt();
+      return FUNC::debugtxt(sa);
+    }
+
+    void outputglossary(void) const {
+      a_.outputglossary();
+    }
+
+
+
+  };
+
+
+
+
+
+
+
+
+
+
+};
+
+#endif
+#ifndef VCOMPLEXEXPR_H
+#define VCOMPLEXEXPR_H
+
+#include <string>
+#include <sstream>
+#include <complex>
+
+namespace matricks {
+
+
+  /****************************************************************************
+   * CVecOpScal Operator Template 
+   *
+   * complex vector = binfunc(ComplexOrRealVector,RealScalar) binary operators 
+   ****************************************************************************
+   */
+  template<class D, class A, class OP>
+  class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> >, VectorofPtrs {
+
+  private:
+    const A& a_;
+    const D val_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    CVecOpScal(const A& a, const D b)
+      : a_(a), val_(b)
+    {
+      addAddress(&a_);
+    }
+
+    inline const std::complex<D> operator[](const index_type i) const { 
+      return OP::apply(a_[i], val_); 
+    }
+
+    inline size_type size(void) const {
+      return a_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_CVecOpScal;
+    }
+
+    std::string debugtxt(void) const {
+      std::string sa = a_.debugtxt();
+      if (a_.vetype() != VE_Vector) 
+	sa = "(" + sa + ")";
+      std::ostringstream stream;
+      stream << val_;
+      std::string sb = stream.str();
+      return OP::debugtxt(sa,sb);
+    }
+
+
+    void outputglossary(void) const {
+      a_.outputglossary();
+    }
+
+  };
+
+
+
+
+
+
+  /****************************************************************************
+   * CScalOpVec Operator Template 
+   *
+   * complex vector = binfunc(RealScalar,ComplexOrRealVector) binary operators 
+   ****************************************************************************
+   */
+  template<class D, class B, class OP>
+  class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> >, VectorofPtrs {
+  private:
+    const D val_;
+    const B& b_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    CScalOpVec(const D a, const B& b)
+      : val_(a), b_(b)
+    {
+      addAddress(&b_);
+    }
+
+    inline const std::complex<D> operator[](const index_type i) const { 
+      return OP::apply(val_,b_[i]); 
+    }
+
+    inline size_type size(void) const {
+      return b_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_CScalOpVec;
+    }
+
+    std::string debugtxt(void) const {
+      std::ostringstream stream;
+      stream << val_;
+      std::string sa = stream.str();
+      std::string sb = b_.debugtxt();
+      if (b_.vetype() != VE_Vector) 
+	sb = "(" + sb + ")";
+      return OP::debugtxt(sa,sb);
+    }
+
+    void outputglossary(void) const {
+      b_.outputglossary();
+    }
+
+  };
+
+
+
+
+
+  /****************************************************************************
+   * VRealFromComplex Expression Template 
+   *
+   * used for accessing real/imag part of complex vector
+   ****************************************************************************
+   */
+  template <class D, class OP>
+  class VRealFromComplex : public  VWrapperObj<D,VRealFromComplex<D,OP> >, VectorofPtrs {
+  private:
+    Vector<std::complex<D> >& a_;
+
+  public:
+    using VectorofPtrs::getAddresses;
+    using VectorofPtrs::checkAddresses;
+    using VectorofPtrs::addAddress;
+    using VectorofPtrs::addAddresses;
+
+    VRealFromComplex(Vector<std::complex<D> >& a)
+      :   a_(a)
+    { 
+      addAddress(&a_);
+    }
+
+    inline const D data(index_type i) const{
+      return OP::give(a_[i]);
+    }
+    inline D& data(index_type i) {
+      return OP::give(a_[i]);
+    }
+
+
+    inline index_type index(index_type i) const{
+      return i;
+    }
+
+
+    inline size_type size(void) const {
+      return a_.size();
+    }
+
+    inline size_type asize(void) const {
+      return a_.size();
+    }
+
+    inline VETypes vetype(void) const {
+      return VE_VRealFromComplex;
+    }
+
+    template <class B>
+    VRealFromComplex<D,OP>& operator=(const B& b) { 
+      return equals(b);
+    }
+
+    template <class OP2>
+    VRealFromComplex<D,OP>& operator=(const VRealFromComplex<D,OP2>& b) { 
+      return equals(b);
+    }
+
+    std::string debugtxt(void) const {
+      return a_.debugtxt();
+      //      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
+    }
+
+    void outputglossary(void) const {
+      return a_.outputglossary();
+      //      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
+    }
+
+
+
+  };
+
+
+
+
+
+
+};
+
+#endif 

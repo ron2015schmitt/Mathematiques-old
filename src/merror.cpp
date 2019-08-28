@@ -2,7 +2,7 @@
 
 
 #define MATRICKS_DEBUG 1
-#include "matricks.hpp"
+#include "matricks.h"
 
 #include <sstream>
 #include <iostream>

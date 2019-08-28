@@ -1,15 +1,7 @@
- adding style green 
- adding style cyan 
- adding style blue2 
- adding style black 
- adding style magenta1 
- adding style bold 
- adding style underline 
- adding style overline 
- adding style crossedout 
-
+log2: in function display::Display::initialize()
+void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r5).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r10).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.

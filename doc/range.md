@@ -1,15 +1,7 @@
- adding style green 
- adding style cyan 
- adding style blue2 
- adding style black 
- adding style magenta1 
- adding style bold 
- adding style underline 
- adding style overline 
- adding style crossedout 
-
+log2: in function display::Display::initialize()
+void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
 # The `range` function in mātricks
-_This document was automatically generated from file_ **`range.cpp`** (mātricks-v2.13-r5).
+_This document was automatically generated from file_ **`range.cpp`** (mātricks-v2.13-r10).
 
 ### Increasing Sequences
 * The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`

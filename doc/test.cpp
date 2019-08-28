@@ -1,7 +1,7 @@
 #define MATRICKS_DEBUG 2
 
 
-#include "matricks.hpp"
+#include "matricks.h"
 #include "TypeTraits.h"
 #include <iostream>
 #include <string>

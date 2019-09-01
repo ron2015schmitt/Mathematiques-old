@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.13-r18).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.

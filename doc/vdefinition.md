@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # under the hood—`Vector` definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r18).
 
 * _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
 ### The Vector class is a wrapper

@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in mātricks
-_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.13-r18).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method

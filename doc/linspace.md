@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # The `linspace` function in mātricks
-_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.13-r18).
 
 * The function `linspace<D>(start,end,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `start` to `end`, spaced by `(start-end)/(N-1)`
 * Note that `end` can be less than `start`, in which case the returned sequence is decreasing

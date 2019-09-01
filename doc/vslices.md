@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # python-like access: negative indices & slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.13-r18).
 
 ## Element access
 ### Positive and negative indices

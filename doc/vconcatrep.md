@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.13-r18).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors

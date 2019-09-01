@@ -1,7 +1,6 @@
-log2: in function display::Display::initialize()
-void display::log2(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, std::__cxx11::string)
+
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.13-r10).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.13-r18).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++

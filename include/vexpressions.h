@@ -1,19 +1,17 @@
-#ifndef VEXPR_H
-#define VEXPR_H
+#ifndef VEXPRESSIONS_H
+#define VEXPRESSIONS_H
 
 
 #include <string>
 #include <sstream>
+#include <complex>
 
 
 
 namespace matricks {
 
   template <class A>
-  inline Vector<index_type> findtrue( const VorE<bool,A>& a );
-
-
-
+    inline Vector<index_type> findtrue( const VorE<bool,A>& a );
 
 
 
@@ -22,7 +20,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class EXP> 
-  class Vexpr : public VorE<D,Vexpr<D,EXP> > {
+    class Vexpr : public VorE<D,Vexpr<D,EXP> > {
   private:
     typedef  D DataT;
     inline EXP& derived() {
@@ -83,7 +81,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class DERIVED>
-  class VWrapperObj : public  Vexpr<D,VWrapperObj<D,DERIVED> >, public VorW<D,VWrapperObj<D,DERIVED> > {
+    class VWrapperObj : public  Vexpr<D,VWrapperObj<D,DERIVED> >, public VorW<D,VWrapperObj<D,DERIVED> > {
   private:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -147,7 +145,7 @@ namespace matricks {
 
     // assign to vector or expression
     template <class B>
-    DERIVED& equals(const VorE<D,B>& rhs) { 
+      DERIVED& equals(const VorE<D,B>& rhs) { 
 
       const size_type N =size();
       //      printf("size=%lu\n",N);
@@ -184,7 +182,7 @@ namespace matricks {
 
     // assignment to matrix or submatrix (must be 1xN or Nx1)
     template <class B>
-    DERIVED& equals(const MorE<D,B>& rhs) {
+      DERIVED& equals(const MorE<D,B>& rhs) {
 
       const size_type N =size();
 #if MATRICKS_DEBUG>0
@@ -252,7 +250,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> >, public VectorofPtrs {
+    class VSubsetObj :  public  VWrapperObj<D,VSubsetObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -264,20 +262,20 @@ namespace matricks {
     using VectorofPtrs::checkAddresses;
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
-    VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
-      : a_(a), ii_(ii), delete_ii_(false)
-    { 
-      addAddress(&a_);
-      addAddress(&ii_);
-    }
+  VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
+    : a_(a), ii_(ii), delete_ii_(false)
+      { 
+	addAddress(&a_);
+	addAddress(&ii_);
+      }
 #if CPP11 == 1    
-    VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
-      : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
-    {
-      addAddress(&a_);
-      addAddress(&ii_);
-      printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
-    }
+  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
+    : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
+      {
+	addAddress(&a_);
+	addAddress(&ii_);
+	printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
+      }
 #endif
     ~VSubsetObj() {
       if (delete_ii_) delete &ii_;
@@ -319,12 +317,12 @@ namespace matricks {
     }
 
     template <class B>
-    VSubsetObj<D>& operator=(const VorE<D,B>& rhs) { 
+      VSubsetObj<D>& operator=(const VorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
     template <class B>
-    VSubsetObj<D>& operator=(const MorE<D,B>& rhs) { 
+      VSubsetObj<D>& operator=(const MorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
@@ -367,7 +365,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-  class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> >, public VectorofPtrs {
+    class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -379,8 +377,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VJoinExpr(const A& a, const B& b)
-      : a_(a), b_(b)
+  VJoinExpr(const A& a, const B& b)
+    : a_(a), b_(b)
     { 
       addAddresses(a_.getAddresses());
       addAddresses(b_.getAddresses());
@@ -428,7 +426,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-  class VJoinObj : public  VWrapperObj<D,VJoinObj<D,A,B> >, public VectorofPtrs {
+    class VJoinObj : public  VWrapperObj<D,VJoinObj<D,A,B> >, public VectorofPtrs {
 
   private:
     A& a_;
@@ -440,8 +438,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VJoinObj(A& a, B& b)
-      : a_(a), b_(b)
+  VJoinObj(A& a, B& b)
+    : a_(a), b_(b)
     { 
       addAddresses(a_.getAddresses());
       addAddresses(b_.getAddresses());
@@ -493,13 +491,13 @@ namespace matricks {
     }
 
     template <class C>
-    VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs) { 
+      VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs) { 
       printf2("VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)\n");
       return this->equals(rhs);
     }
 
     template <class C>
-    VJoinObj<D,A,B>& operator=(const MorE<D,C>& rhs) { 
+      VJoinObj<D,A,B>& operator=(const MorE<D,C>& rhs) { 
       return this->equals(rhs);
     }
 
@@ -530,7 +528,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> >, public VectorofPtrs {
+    class VSubMaskObj :  public  VWrapperObj<D,VSubMaskObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -543,26 +541,26 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
 #if MATRICKS_DEBUG>0
-    VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
-      : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
-    { 
-      //      settext_VSubMaskObj(*ii_,mask);
-      addAddress(&a_);
-      addAddress(&ii_);
-    }
+  VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
+    : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
+      { 
+	//      settext_VSubMaskObj(*ii_,mask);
+	addAddress(&a_);
+	addAddress(&ii_);
+      }
 #else
-    VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
-      : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
-    { 
-      addAddress(&a_);
-      addAddress(&ii_);
-    }
+  VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
+    : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
+      { 
+	addAddress(&a_);
+	addAddress(&ii_);
+      }
 #endif
 
     ~VSubMaskObj()
-    { 
-      delete  ii_;
-    }
+      { 
+	delete  ii_;
+      }
 
     inline const D data(const index_type i) const{
       return a_[i];
@@ -592,12 +590,12 @@ namespace matricks {
     }
 
     template <class B>
-    VSubMaskObj<D>& operator=(const VorE<D,B>& rhs) { 
+      VSubMaskObj<D>& operator=(const VorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
     template <class B>
-    VSubMaskObj<D>& operator=(const MorE<D,B>& rhs) { 
+      VSubMaskObj<D>& operator=(const MorE<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
@@ -633,7 +631,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-  class VReconObj :  public  Vexpr<D,VReconObj<D> >, public VectorofPtrs {
+    class VReconObj :  public  Vexpr<D,VReconObj<D> >, public VectorofPtrs {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -644,8 +642,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VReconObj(Vector<D>& a)
-      : a_(a)
+  VReconObj(Vector<D>& a)
+    : a_(a)
     { 
       addAddress(&a_);
     }
@@ -655,7 +653,7 @@ namespace matricks {
     }
 
     template <class A>
-    Vector<D>& operator=(const VorE<D,A>& x) { 
+      Vector<D>& operator=(const VorE<D,A>& x) { 
       size_type N = x.size();
       
 #if MATRICKS_DEBUG>0
@@ -719,7 +717,7 @@ namespace matricks {
    */
 
   template<class D, class A>
-  class VRepExpr : public  Vexpr<D,VRepExpr<D,A> >, public VectorofPtrs {
+    class VRepExpr : public  Vexpr<D,VRepExpr<D,A> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -731,11 +729,11 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VRepExpr(const A& a, const size_type m)
-      : a_(a), m_(m), N_(a_.size())
-    { 
-      addAddresses(a_.getAddresses());
-    }
+  VRepExpr(const A& a, const size_type m)
+    : a_(a), m_(m), N_(a_.size())
+      { 
+	addAddresses(a_.getAddresses());
+      }
 
     inline const D operator[](const index_type i) const {  
       return this->data(i); 
@@ -778,7 +776,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-  class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> >, public VectorofPtrs {
+    class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -790,8 +788,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VBinOp(const A& a, const B& b)
-      : a_(a), b_(b)
+  VBinOp(const A& a, const B& b)
+    : a_(a), b_(b)
     { 
       addAddresses(a_.getAddresses());
       addAddresses(b_.getAddresses());
@@ -831,7 +829,7 @@ namespace matricks {
   };
 
 
-   /************************************************************
+  /************************************************************
    *               Templates for Binary+scalar Operators 
    *
    * D = data type, e.g. double
@@ -842,7 +840,7 @@ namespace matricks {
    */
 
   template<class D, class A, class X>
-  class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X> >, public VectorofPtrs {
+    class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -855,8 +853,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VSeriesOp(const A& a, const X& x, const int N)
-      : a_(a), x_(x), N_(N)
+  VSeriesOp(const A& a, const X& x, const int N)
+    : a_(a), x_(x), N_(N)
     { 
       addAddresses(a_.getAddresses());
       addAddresses(x_.getAddresses());
@@ -911,7 +909,7 @@ namespace matricks {
 
 
   template<class D, class A, class B, class X, class OP1, class OP2>
-  class VSeriesOp2 : public  Vexpr<D,VSeriesOp2< D, A, B, X, OP1, OP2> >, public VectorofPtrs {
+    class VSeriesOp2 : public  Vexpr<D,VSeriesOp2< D, A, B, X, OP1, OP2> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -928,17 +926,17 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
-      : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N+1)))
-    {
-      addAddresses(a_.getAddresses());
-      addAddresses(b_.getAddresses());
-      addAddresses(x_.getAddresses());
-      addAddresses(k_.getAddresses());
-      for (int n = 0; n <= N_ ; n++) {
-	k_[n] = n*k1_;
+  VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
+    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N+1)))
+      {
+	addAddresses(a_.getAddresses());
+	addAddresses(b_.getAddresses());
+	addAddresses(x_.getAddresses());
+	addAddresses(k_.getAddresses());
+	for (int n = 0; n <= N_ ; n++) {
+	  k_[n] = n*k1_;
+	}
       }
-    }
     ~VSeriesOp2(){
       delete &k_;
     }
@@ -1000,7 +998,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-  class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> >, public VectorofPtrs {
+    class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> >, public VectorofPtrs {
 
   private:
     const A& a_;
@@ -1012,8 +1010,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VecOpScal(const A& a, const D b)
-      : a_(a), val_(b)
+  VecOpScal(const A& a, const D b)
+    : a_(a), val_(b)
     {
       addAddresses(a_.getAddresses());
     }
@@ -1063,7 +1061,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-  class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> >, public VectorofPtrs {
+    class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> >, public VectorofPtrs {
 
   private:
     D val_;
@@ -1076,8 +1074,8 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
 
-    ScalOpVec(const D a, const B& b)
-      :  val_(a), b_(b)
+  ScalOpVec(const D a, const B& b)
+    :  val_(a), b_(b)
     {
       addAddresses(b_.getAddresses());
     }
@@ -1122,7 +1120,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-  class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >, public VectorofPtrs {
+    class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >, public VectorofPtrs {
   
   private:
     const A& a_;
@@ -1134,7 +1132,7 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
 
-    VFuncOp(const A& a) : a_(a) {
+  VFuncOp(const A& a) : a_(a) {
       addAddresses(a_.getAddresses());
     }
 
@@ -1166,24 +1164,6 @@ namespace matricks {
 
 
 
-};
-
-#endif
-
-#ifndef VBOOLEXPR_H
-#define VBOOLEXPR_H
-
-#include <string>
-#include <sstream>
-
-
-namespace matricks {
-
-
-
-
-
-
 
   /****************************************************************************
    * VBoolBinOp Operator Expression Template 
@@ -1192,7 +1172,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-  class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> >, VectorofPtrs {
+    class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -1204,8 +1184,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VBoolBinOp(const A& a, const B& b)
-      : a_(a), b_(b)
+  VBoolBinOp(const A& a, const B& b)
+    : a_(a), b_(b)
     { 
       addAddress(&a_);
       addAddress(&b_);
@@ -1263,7 +1243,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-  class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> >, VectorofPtrs {
+    class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -1276,8 +1256,8 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
 
-    BoolVecOpScal(const A& a, const D b)
-      : a_(a), val_(b)
+  BoolVecOpScal(const A& a, const D b)
+    : a_(a), val_(b)
     {
       addAddress(&a_);
     }
@@ -1327,7 +1307,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-  class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> >, VectorofPtrs {
+    class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> >, VectorofPtrs {
 
   private:
     D val_;
@@ -1339,8 +1319,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    BoolScalOpVec(const D a, const B& b)
-      :  val_(a), b_(b)
+  BoolScalOpVec(const D a, const B& b)
+    :  val_(a), b_(b)
     {
       addAddress(&b_);
     }
@@ -1386,7 +1366,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-  class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >, VectorofPtrs{
+    class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >, VectorofPtrs{
   
   private:
     const A& a_;
@@ -1397,7 +1377,7 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VBoolFuncOp(const A& a) : a_(a) {
+  VBoolFuncOp(const A& a) : a_(a) {
       addAddress(&a_);
     }
 
@@ -1435,17 +1415,7 @@ namespace matricks {
 
 
 
-};
 
-#endif
-#ifndef VCOMPLEXEXPR_H
-#define VCOMPLEXEXPR_H
-
-#include <string>
-#include <sstream>
-#include <complex>
-
-namespace matricks {
 
 
   /****************************************************************************
@@ -1455,7 +1425,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class OP>
-  class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> >, VectorofPtrs {
+    class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> >, VectorofPtrs {
 
   private:
     const A& a_;
@@ -1467,8 +1437,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    CVecOpScal(const A& a, const D b)
-      : a_(a), val_(b)
+  CVecOpScal(const A& a, const D b)
+    : a_(a), val_(b)
     {
       addAddress(&a_);
     }
@@ -1514,7 +1484,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class B, class OP>
-  class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> >, VectorofPtrs {
+    class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> >, VectorofPtrs {
   private:
     const D val_;
     const B& b_;
@@ -1525,8 +1495,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    CScalOpVec(const D a, const B& b)
-      : val_(a), b_(b)
+  CScalOpVec(const D a, const B& b)
+    : val_(a), b_(b)
     {
       addAddress(&b_);
     }
@@ -1570,7 +1540,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class OP>
-  class VRealFromComplex : public  VWrapperObj<D,VRealFromComplex<D,OP> >, VectorofPtrs {
+    class VRealFromComplex : public  VWrapperObj<D,VRealFromComplex<D,OP> >, VectorofPtrs {
   private:
     Vector<std::complex<D> >& a_;
 
@@ -1580,8 +1550,8 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-    VRealFromComplex(Vector<std::complex<D> >& a)
-      :   a_(a)
+  VRealFromComplex(Vector<std::complex<D> >& a)
+    :   a_(a)
     { 
       addAddress(&a_);
     }
@@ -1612,12 +1582,12 @@ namespace matricks {
     }
 
     template <class B>
-    VRealFromComplex<D,OP>& operator=(const B& b) { 
+      VRealFromComplex<D,OP>& operator=(const B& b) { 
       return equals(b);
     }
 
     template <class OP2>
-    VRealFromComplex<D,OP>& operator=(const VRealFromComplex<D,OP2>& b) { 
+      VRealFromComplex<D,OP>& operator=(const VRealFromComplex<D,OP2>& b) { 
       return equals(b);
     }
 
@@ -1638,8 +1608,6 @@ namespace matricks {
 
 
 
-
-
-};
+};  //namespace matricks
 
 #endif 

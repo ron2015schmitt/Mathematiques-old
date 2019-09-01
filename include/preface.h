@@ -51,4 +51,28 @@
 extern char COMPILE_OPTIMIZE[];
 
 
+namespace matricks {
+
+  //****************************************************************************
+  //                          Some declarations. 
+  //****************************************************************************
+
+
+  template <class D> class Vector;
+  template <class D> class p3vector;
+  template <class D, class A> class Vexpr;  
+  template <class D, class A> class VWrapperObj;
+  template <class D, class A> class VRepExpr;
+  template <class D> class VSliceObj;
+  template <class D> class VSliceExpr;
+  template <class D> class VSubsetObj;
+  template <class D> class VSubMaskObj;
+  template <class D, class A, class B> class VJoinObj;
+  template <class D, class A, class B> class VJoinExpr;
+  template <class D> class VReconObj;
+  template <class D, class A, class X> class VSeriesOp;
+  
+};
+
+
 #endif

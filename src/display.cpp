@@ -133,8 +133,7 @@ namespace display {
   //---------------------------------------------------------------------------------
 
   Style FormatData<std::complex<double> >::style_for_type_name = createStyle(GREEN);
-  Style FormatData<std::complex<double> >::style_for_value = createStyle(RESET);
-  Style FormatData<std::complex<double> >::style_for_zero = createStyle(GRAY1);
+  Style FormatData<std::complex<double> >::style_for_punctuation = createStyle(GRAY1);
   const std::string FormatData<std::complex<double> >::format_string_default = "%s + i*%s";
   std::string FormatData<std::complex<double> >::format_string = format_string_default;
   

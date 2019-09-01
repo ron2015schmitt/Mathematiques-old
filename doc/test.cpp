@@ -13,37 +13,8 @@
 #include <initializer_list>
 #endif
 
-template <class D, int I>
-class Mets {
-public:
-  static void test() {
-    printf("I = %d\n",I);
-  }
-};
-
-template <class D>
-class Mets<D,4> {
-public:
-  static void test2() {
-    printf("I is 4\n");
-  }
-};
 
 
-namespace display {
-
-
-
-
-  
-
-
-
-
-
-
-  // this allows const and non-const to be treated by same class
-};
 
 #define Vector_(name,t,...) Vector<t> name(__VA_ARGS__); //MatricksObjectPool::(name.id(),std::string(#name)+"<"+stringify(t)+">"+" in "+__FUNCTION__+" at line "+stringify(__LINE__)+" in file "+__FILE__));
 
@@ -132,16 +103,20 @@ int main()
   setFormatString<double>("%s");
 
   setFormatString<double>("% 10.5f");
-  printObj(xx);cr();
-  printObj(xxc);cr();
+  tdisp(xx);
+  tdisp(xxc);
   setFormatString<double>("%g");
   cout << getFormatString<std::complex<double> >().c_str() << endl;
   complex<double> zc = complex<double>(2.3,4.5);
-  printObj(zc);cr();
+  tdisp(zc);
 
   //  setFormatString<complex<double> >("%g + i*%g");
   setFormatString<complex<double> >("%s +%si");
-  printObj(zc);cr();
-  tdisp(zc);cr();
+  tdisp(zc);
+
+  bool booly = true;
+  //  tdisp(booly);cr();
+
+  
   return 0;
 }

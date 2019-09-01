@@ -287,7 +287,7 @@ namespace display {
   //                       FormatData
   //****************************************************************************
 
-    class FormatBase {
+  class FormatBase {
   };
 
   template <typename T>
@@ -296,6 +296,7 @@ namespace display {
     static Style style_for_type_name;
     static Style style_for_value;
   };
+
 
 
   //****************************************************************************
@@ -321,14 +322,14 @@ namespace display {
     return stream.str();
   }
 
-
-    
   template <typename T>
   inline std::string getTypeString(const T var) {
     std::ostringstream stream;
     stream << typeid(T).name();
     return stream.str();
   };
+
+   
 
 
   inline std::string getTypeString(void) {  return std::string("void"); }
@@ -481,8 +482,7 @@ namespace display {
   class FormatData<std::complex<double> > {
   public:
     static Style style_for_type_name;
-    static Style style_for_value;
-    static Style style_for_zero;
+    static Style style_for_punctuation;
     static std::string format_string;  
     const static std::string format_string_default; 
   };
@@ -490,7 +490,7 @@ namespace display {
 
   template <>
   inline std::string getTypeName(const std::complex<double> & var) {
-    std::string s = FormatData<std::complex<double> >::style_for_type_name.apply("std::complex ");
+    std::string s = FormatData<std::complex<double> >::style_for_type_name.apply("std::complex");
     s += "<" + getTypeName(var.real())+ +"> ";
     return s;
   }
@@ -511,10 +511,10 @@ namespace display {
     try {
       snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), x.real() );
       string sr = string(Buffer);
-      printf("sr=%s\n",sr.c_str());
+      //      printf("sr=%s\n",sr.c_str());
       snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), x.imag() );
       string si = string(Buffer);
-      printf("si=%s\n",si.c_str());
+      //      printf("si=%s\n",si.c_str());
       ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), sr.c_str(), si.c_str());
       if (ret<0) passed = false;
     } catch (...) {
@@ -529,20 +529,20 @@ namespace display {
     double xi = double(0);
     double *xrptr = &xr;
     double *xiptr = &xi;
-    printf("s = %s\n",s.c_str());
+    //    printf("s = %s\n",s.c_str());
     char chr[64];
     char chi[64];
     ret = std::sscanf(Buffer, formatstr.c_str() , chr, chi);
-    printf("ret=%d chr=%s chi=%s\n",ret,chr,chi);
+    //    printf("ret=%d chr=%s chi=%s\n",ret,chr,chi);
     if (ret != 2) passed = false;
     
-    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
+    //    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
     ret = std::sscanf(chr, "%lg" ,xrptr);
     if (ret != 1) passed = false;
-    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
+    //    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
     ret = std::sscanf(chi,  "%lg" ,xiptr);
     if (ret != 1) passed = false;
-    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
+    //    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
     if (ret != 1) passed = false;
     if (xr != x.real())  passed = false;
     if (xi != x.imag())  passed = false;
@@ -575,13 +575,25 @@ namespace display {
   inline void printObj<std::complex<double> >(const std::complex<double>& d) {
     using namespace std;
     using namespace matricks;
+
+    // print the real and imaginary parts to strings
     snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), d.real() );
     string sr = string(Buffer);
-    printf("sr=%s\n",sr.c_str());
     snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), d.imag() );
     string si = string(Buffer);
-    printf("si=%s\n",si.c_str());
-    printf(getFormatString<std::complex<double> >().c_str(), sr.c_str(), si.c_str());
+
+    // decompose the format string so we can apply style to the punctuation
+    string fs = getFormatString<std::complex<double> >();
+    int m1 = fs.find("%s");
+    string fs1 = fs.substr(0,m1);
+    int m2 = fs.find("%s",m1+2);
+    string fs2 = fs.substr(m1+2,m2-m1-2);
+    string fs3 = fs.substr(m2+2,fs.size()-m2-2);
+    Style style = FormatData<std::complex<double> >::style_for_punctuation;
+    fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
+
+    // put it all together
+    printf(fs.c_str(), sr.c_str(), si.c_str());
   }
   
 

@@ -140,7 +140,7 @@ namespace display {
     const static std::string format_string_default; 
   };
 
-  Style FormatData<std::complex<double> >::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<std::complex<double> >::style_for_type_name = createStyle(GREEN);
   Style FormatData<std::complex<double> >::style_for_value = createStyle(RESET);
   Style FormatData<std::complex<double> >::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<std::complex<double> >::format_string_default = "%s + i*%s";
@@ -148,7 +148,9 @@ namespace display {
   
   template <>
   inline std::string getTypeName(const std::complex<double> & var) {
-    return FormatData<std::complex<double> >::style_for_type_name.apply("std::complex<double> ");
+    std::string s = FormatData<std::complex<double> >::style_for_type_name.apply("std::complex ");
+    s += "<" + getTypeName(var.real())+ +"> ";
+    return s;
   }
   
   
@@ -454,5 +456,6 @@ int main()
   //  setFormatString<complex<double> >("%g + i*%g");
   setFormatString<complex<double> >("%s +%si");
   printObj(zc);cr();
+  tdisp(zc);cr();
   return 0;
 }

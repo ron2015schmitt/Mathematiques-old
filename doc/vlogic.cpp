@@ -4,10 +4,8 @@
 
 
 #include "matricks.h"
-using namespace matricks;
 
 #include <iostream>
-using namespace std;
 
 
 
@@ -15,6 +13,10 @@ using namespace std;
 
 int main()
 {
+  using namespace matricks;
+  using namespace std;
+  using namespace display;
+  using namespace md;
 
   Vector<double> v1(4,"v1");
 

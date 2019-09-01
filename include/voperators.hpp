@@ -79,39 +79,39 @@ namespace matricks {
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class A> 
-  inline VJoinObj<D, VWrapperObj<D,A>, Vector<D> > 
-  operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)
+  inline VJoinObj<D, VWrapper<D,A>, Vector<D> > 
+  operator,(const VWrapper<D,A>& a, const Vector<D>& b)
   {
-    printf2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const Vector<D>& b)\n");
-    VWrapperObj<D,A>& a_ = const_cast<VWrapperObj<D,A>& >(a);
+    printf2("  VJoinObj operator,(const VWrapper<D,A>& a, const Vector<D>& b)\n");
+    VWrapper<D,A>& a_ = const_cast<VWrapper<D,A>& >(a);
     Vector<D>& b_ = const_cast<Vector<D>& >(b);
-    return  VJoinObj<D, VWrapperObj<D,A>,Vector<D> >(a_,b_);
+    return  VJoinObj<D, VWrapper<D,A>,Vector<D> >(a_,b_);
   }
   //--------------------------------------------
 
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class B> 
-  inline VJoinObj<D, Vector<D>,VWrapperObj<D,B> > 
-  operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)
+  inline VJoinObj<D, Vector<D>,VWrapper<D,B> > 
+  operator,(const Vector<D>& a, const VWrapper<D,B>& b)
   {
-    printf2("  VJoinObj operator,(const Vector<D>& a, const VWrapperObj<D,B>& b)\n");
+    printf2("  VJoinObj operator,(const Vector<D>& a, const VWrapper<D,B>& b)\n");
     Vector<D>& a_ = const_cast<Vector<D>& >(a);
-    VWrapperObj<D,B>& b_ = const_cast<VWrapperObj<D,B>& >(b);
-    return VJoinObj<D, Vector<D>,VWrapperObj<D,B> >(a_,b_);
+    VWrapper<D,B>& b_ = const_cast<VWrapper<D,B>& >(b);
+    return VJoinObj<D, Vector<D>,VWrapper<D,B> >(a_,b_);
   }
   //--------------------------------------------
 
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class A, class B> 
-  inline VJoinObj<D, VWrapperObj<D,A>,VWrapperObj<D,B> > 
-  operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)
+  inline VJoinObj<D, VWrapper<D,A>,VWrapper<D,B> > 
+  operator,(const VWrapper<D,A>& a, const VWrapper<D,B>& b)
   {
-    printf2("  VJoinObj operator,(const VWrapperObj<D,A>& a, const VWrapperObj<D,B>& b)\n");
-    VWrapperObj<D,A>& a_ = const_cast<VWrapperObj<D,A>& >(a);
-    VWrapperObj<D,B>& b_ = const_cast<VWrapperObj<D,B>& >(b);
-    return  VJoinObj<D, VWrapperObj<D,A>,VWrapperObj<D,B> >(a_,b_);
+    printf2("  VJoinObj operator,(const VWrapper<D,A>& a, const VWrapper<D,B>& b)\n");
+    VWrapper<D,A>& a_ = const_cast<VWrapper<D,A>& >(a);
+    VWrapper<D,B>& b_ = const_cast<VWrapper<D,B>& >(b);
+    return  VJoinObj<D, VWrapper<D,A>,VWrapper<D,B> >(a_,b_);
   }
   //--------------------------------------------
 

@@ -1,12 +1,13 @@
 
 #define MATRICKS_DEBUG 1
 
-#include "matricks.h"
-
-
 #include <sstream>
 #include <iostream>
 #include <string>
+
+#include "matricks.h"
+
+
 
 
 

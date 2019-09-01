@@ -91,7 +91,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VWrapperObj Expression Template 
+   * VWrapper Expression Template 
    *
    * abstract class 
    ****************************************************************************

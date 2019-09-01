@@ -352,7 +352,7 @@ namespace matricks {
     //************************** ASSIGNMENT **************************************
     //**********************************************************************
 
-    // Any new assignment operators should also be addedc to VWrapperObj for consistency.
+    // Any new assignment operators should also be addedc to VWrapper for consistency.
     // For this reason, in most cases, its preferred to overload the function vcast()
     // equals functions are included so that derived classes can call these functions
 

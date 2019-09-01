@@ -18,17 +18,23 @@
 #include "display.h"
 
 #include "matrickscommon.hpp"
+
+#include "verror.hpp"
+#include "merror.hpp"
 #include "print.hpp"
+
 #include "applicative.hpp"
 #include "mathapp.hpp"
 #include "boolapp.hpp"
 #include "complexapp.hpp"
-#include "verror.hpp"
-#include "merror.hpp"
+
 #include "vectordef.hpp"
 #include "matrixdef.hpp"
-#include "md.hpp"
 
+
+
+#include "vexpr.h"
+#include "vwrapper.h"
 #include "vexpressions.h"
 
 #include "mexpr.hpp"
@@ -40,6 +46,7 @@
 #include "vmathops.hpp"
 #include "vboolops.hpp"
 #include "vcomplexops.hpp"
+
 #include "moperators.hpp"
 #include "mmathops.hpp"
 #include "mboolops.hpp"
@@ -51,6 +58,7 @@
 
 #include "matricksio.hpp"
 #include "matricksutil.hpp"
+#include "md.h"
 
 
 #endif

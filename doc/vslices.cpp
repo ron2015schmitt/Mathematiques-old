@@ -2,7 +2,6 @@
 
 
 #include "matricks.h"
-using namespace matricks;
 
 #include <iostream>
 #include <string>
@@ -19,6 +18,10 @@ using namespace matricks;
 
 int main()
 {
+  using namespace matricks;
+  using namespace std;
+  using namespace display;
+  using namespace md;
   
   int Nex = 1;
   

@@ -4,15 +4,16 @@
 
 
 #include "matricks.h"
-using namespace matricks;
 
 #include <iostream>
-using namespace std;
 
 
 
 int main()
 {
+  using namespace matricks;
+  using namespace md;
+  using namespace std;
 
   cr();
   printcr("When running in DEBUG mode, all Vector and Matrix objects are assigned");

@@ -1,12 +1,15 @@
+#ifndef MD_H
+#define MD_H
+
 
 #include <iostream>
 #include <string>
-#include <iostream>
 #include <fstream>
 
 
 // Utilities for rendering .md markdown for github
 
+namespace md {
 
 #define matricks_preamble()  printf("_This document was automatically generated from file_ **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_matricks)
 
@@ -38,9 +41,9 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define codemultiwcomment(str,...)  printf("%s; // %s\n",  stringify(__VA_ARGS__),str); __VA_ARGS__
 
 #if CPP11 == 1
-#define codemultiNoteC11Array(...)  printf("%s; // C++11 list\n",  stringify(__VA_ARGS__)); __VA_ARGS__
+ #define codemultiNoteC11Array(...)  printf("%s; // C++11 list\n",  stringify(__VA_ARGS__)); __VA_ARGS__
 #else
-#define codemultiNoteC11Array(...)  printf("%s;\n",  stringify(__VA_ARGS__)); __VA_ARGS__
+ #define codemultiNoteC11Array(...)  printf("%s;\n",  stringify(__VA_ARGS__)); __VA_ARGS__
 #endif
 
 #define codeend() printf("```\n")
@@ -53,3 +56,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define result(...)  resultstart();resultmulti(__VA_ARGS__);resultend()
 
 #define example(n,str) std::cout << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl
+
+};
+
+#endif

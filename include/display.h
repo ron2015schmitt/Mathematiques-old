@@ -35,7 +35,7 @@ namespace matricks {
   template <class D> class Vector;
   template <class D> class p3vector;
   template <class D, class A> class Vexpr;  
-  template <class D, class A> class VWrapperObj;
+  template <class D, class A> class VWrapper;
   template <class D, class A> class VRepExpr;
   template <class D> class VSliceObj;
   template <class D> class VSliceExpr;

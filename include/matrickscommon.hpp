@@ -14,6 +14,7 @@
 #include <limits>
 #include <valarray>
 #include <queue>
+#include <list>
 
 
 // this is created by the makefiel and placed in 'exec_opt.cpp'
@@ -142,6 +143,8 @@ namespace display {
     }
     inline Style(const std::string stylestr, const std::string stylename) : stylestr_(stylestr), stylename_(stylename){
     }
+    inline Style(const Style& style) : stylestr_(style.getStyleString()), stylename_(style.getName()){
+    }
     inline Style(const unsigned int n)  {
       stylestr_ = FORE+print2str("5;%um",n);
       stylename_ = "";
@@ -212,6 +215,10 @@ namespace display {
       style_(style), text_(text)
     {  
     }
+    inline StyledString(const StyledString& styledstring) :
+      style_(styledstring.getStyle()), text_(styledstring.getString())
+    {  
+    }
     inline std::string get() const {
       return style_.apply(text_);
     }
@@ -225,6 +232,14 @@ namespace display {
     inline Style& getStyle()  const {
       return style_;
     }
+
+    StyledString& operator=(const StyledString& styledstring) {
+      style_ = styledstring.getStyle();
+      text_ = styledstring.getString();
+      return *this;
+    }
+
+
     inline friend std::ostream& operator<<(std::ostream &stream, const StyledString& ss) {
       stream << ss.get();
       return stream;
@@ -242,9 +257,38 @@ namespace display {
    ****************************************************************************   
    */
 
+    template <typename T>
+  class FormatData {
+  public:
+    static Style style_for_type_name;
+    static Style style_for_value;
+  };
 
   template <typename T>
-  inline std::string getTypeString(T var) {
+  Style FormatData<T>::style_for_type_name = createStyle(CYAN);
+  template <typename T>
+  Style FormatData<T>::style_for_value = createStyle(ORANGE);
+
+  template <typename T>
+  inline std::string getFormatString() {
+    return FormatData<T>::format_string;
+  }
+  template <typename T>
+  inline std::string getDefaultFormatString() {
+    return FormatData<T>::default_format_string;
+  }
+
+  template <typename T>
+  inline std::string getTypeName(const T& var) {
+    std::ostringstream stream;
+    stream << FormatData<T>::style_for_type_name.apply(typeid(T).name());
+    return stream.str();
+  }
+
+
+    
+  template <typename T>
+  inline std::string getTypeString(const T var) {
     std::ostringstream stream;
     stream << typeid(T).name();
     return stream.str();
@@ -285,132 +329,155 @@ namespace display {
   SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex)
   SPECIALIZE_GETTYPESTRING_CONTAINER(std::valarray);
   SPECIALIZE_GETTYPESTRING_CONTAINER(std::initializer_list);
+  SPECIALIZE_GETTYPESTRING_CONTAINER(std::list);
 
   // need two parameters
   //  SPECIALIZE_GETTYPESTRING_CONTAINER(matricks::Vexpr);
 
-  
+
+
   class FormatBase {
   };
 
-  template <class T>
-  class Format : public FormatBase {
-  private:
-    std::string formatstr_ = "";
-    Style& style_zero = createStyle(GRAY1);
-    Style& style_num = createStyle(RESET);
-    StyledString *styled_name = new StyledString(createStyle(GREEN),"");
-  public:
-    typedef T MYTYPE;
-    typedef typename Loki::TypeTraits<T>::NonConstType TNOCONST;
-    TNOCONST t = 0;
+  
+
+  
+  
+  
+
+  
+  // template <class Tin>
+  // class Format : public FormatBase {
+  // private:
+  //   std::string formatstr_ = "";
+  //   Style& style_zero = createStyle(GRAY1);
+  //   Style& style_num = createStyle(RESET);
+  //   StyledString *styled_name = new StyledString(createStyle(GREEN),"");
+  // public:
+  //   typedef const Tin TC;
+  //   typedef typename Loki::TypeTraits<Tin>::NonConstType T;
     
-    static Format<MYTYPE>& getDefault() {
-      Format<MYTYPE> *format = new Format<MYTYPE>();
-      if (Loki::TypeTraits<TNOCONST>::isFloat) {
-	format->formatstr_ = "%g";
-	format->style_zero = createStyle(GRAY1);
-	format->style_num = createStyle(RESET);
-	TNOCONST *x = new TNOCONST(0);
-	std::string name = getTypeString(*x);
-	format->styled_name = new StyledString(createStyle(GREEN1),name);
-      } else if (Loki::TypeTraits<TNOCONST>::isSignedInt) {
-	format->formatstr_ = "%d";
-	format->style_zero = createStyle(GRAY1);
-	format->style_num =  Style::create(19);
-	TNOCONST *x = new TNOCONST(0);
-	std::string name = getTypeString(*x);
-	format->styled_name = new StyledString(createStyle(GREEN1),name);
-      } else if (Loki::TypeTraits<TNOCONST>::isUnsignedInt) {
-	if (sizeof(TNOCONST) == sizeof(long int)) {
-	  format->formatstr_ = "%lu";
-	} else {
-	  format->formatstr_ = "%u";
-	}
-	format->style_zero = createStyle(GRAY1);
-	format->style_num = Style::create(53);
-	TNOCONST *x = new TNOCONST(0);
-	std::string name = getTypeString(*x);
-	format->styled_name = new StyledString(createStyle(GREEN1),name);
-      } else if (typeid(TNOCONST)==typeid(bool)) {
-	format->formatstr_ = "%d";
-	format->style_zero = createStyle(GRAY1);
-	format->style_num = Style::create(28);
-	TNOCONST *x = new TNOCONST(0);
-	std::string name = getTypeString(*x);
-	format->styled_name = new StyledString(createStyle(GREEN1),name);
-      }
+  //   static Format<Tin>& getDefault() {
+  //     Format<Tin>*format = new Format<Tin>();
+  //     if (Loki::TypeTraits<T>::isFloat) {
+  // 	format->formatstr_ = "%g";
+  // 	format->style_zero = createStyle(GRAY1);
+  // 	format->style_num = createStyle(RESET);
+  // 	T *x = new T(0);
+  // 	std::string name = getTypeString(*x);
+  // 	format->styled_name = new StyledString(createStyle(GREEN1),name);
+  //     } else if (Loki::TypeTraits<T>::isSignedInt) {
+  // 	format->formatstr_ = "%d";
+  // 	format->style_zero = createStyle(GRAY1);
+  // 	format->style_num =  Style::create(19);
+  // 	T *x = new T(0);
+  // 	std::string name = getTypeString(*x);
+  // 	format->styled_name = new StyledString(createStyle(GREEN1),name);
+  //     } else if (Loki::TypeTraits<T>::isUnsignedInt) {
+  // 	if (sizeof(T) == sizeof(long int)) {
+  // 	  format->formatstr_ = "%lu";
+  // 	} else {
+  // 	  format->formatstr_ = "%u";
+  // 	}
+  // 	format->style_zero = createStyle(GRAY1);
+  // 	format->style_num = Style::create(53);
+  // 	T *x = new T(0);
+  // 	std::string name = getTypeString(*x);
+  // 	format->styled_name = new StyledString(createStyle(GREEN1),name);
+  //     }
       
-      return *format;
-    }
-    inline Format() {
-      print3("Format::Format \n");
-    }
-    inline Format(const std::string formatstr) {
-      print3("Format::Format(const std::string formatstr) \n");
-      set(formatstr);
-    }
+  //     return *format;
+  //   }
+  //   inline Format() {
+  //     print2("Format<Tin>::Format \n");
+  //   }
+  //   inline Format(const std::string formatstr) {
+  //     print2("Format<Tin>::Format(const std::string formatstr) \n");
+  //     set(formatstr);
+  //   }
 
-    inline Format<MYTYPE>& set(const std::string formatstr) {
-      using namespace std;
-      if (formatstr.empty()) {
-	formatstr_ = formatstr;
-	return *this;
-      }
-      
-      MYTYPE x(0);
-      int errcode = 0;
-      bool passed = true;
-      try {
-	errcode = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), x);
-	if (errcode<0) passed = false;
-      } catch (...) {
-	string classname = "";
-	passed = false;
-      }
-      string s = string(Buffer);
-      size_t found = s.find("(nil)");
-      if (found!=string::npos) 	passed = false;
+  //   inline std::string get() const {
+  //     return formatstr_;
+  //   }
+  //   inline std::string apply(Tin val) const {
+  //     if (formatstr_.empty()) {
+  // 	std::stringstream ss;
+  // 	ss << val;
+  // 	return style_num.apply(ss.str());
+  //     } else {
+  // 	std::string s = print2str(formatstr_.c_str(), val);
+  // 	if (val == T(0)) {
+  // 	  return style_zero.apply(s);
+  // 	} 
+  // 	return style_num.apply(s);
+  //     }
+  //   }
+  //   inline StyledString getStyledTypeName() const {
+  //     return *styled_name;
+  //   }
+  //   inline friend std::ostream& operator<<(std::ostream &stream, const Format<Tin>& format) {
+  //     stream << "Format<"<<format.getStyledTypeName()<< "> = " << format.get();
+  //     return stream;
+  //   }
+  // };  //class Format<Tin>
 
-      if (!passed) {
-	cout << StyledString::get(HORLINE);
-	cout << StyledString::get(ERROR);
-	cout << " illegal format ";
-	cout << createStyle(BOLD).apply(string("\"") + formatstr + "\"");
-	cout << " passed to Format";
-	cout << "<" << getName() << ">";
-	cout << ".set" << endl;
-	cout << StyledString::get(HORLINE);
-	return *this;
-      }     
-      formatstr_ = formatstr;
-	return *this;
-    }
-    inline std::string get() const {
-      return formatstr_;
-    }
-    inline std::string apply(const MYTYPE val) const {
-      if (formatstr_.empty()) {
-	std::stringstream ss;
-	ss << val;
-	return style_num.apply(ss.str());
-      } else {
-	std::string s = print2str(formatstr_.c_str(), val);
-	if (val == MYTYPE(0)) {
-	  return style_zero.apply(s);
-	} 
-	return style_num.apply(s);
-      }
-    }
-    inline std::string getName() const {
-      return styled_name->get();
-    }
-    inline friend std::ostream& operator<<(std::ostream &stream, const Format<MYTYPE>& format) {
-      stream << "Format<"<<format.getName()<< "> = " << format.get();
-      return stream;
-    }
-  };  //class Format
 
+
+
+  
+  // template <>
+  // class Format<bool> : public FormatBase {
+  // private:
+  //   StyledString styled_name_ = *(new StyledString(createStyle(GREEN),"bool"));
+  //   StyledString styled_true_ = *(new StyledString(createStyle(GREEN1),"true"));
+  //   StyledString styled_false_ = *(new StyledString(createStyle(GRAY1),"false"));
+  // public:
+  //   typedef const bool TC;
+  //   typedef bool T;
+    
+  //   static Format<bool> getDefault() {
+  //     Format<bool>*format = new Format<T>();
+  //     return *format;
+  //   }
+  //   inline Format() {
+  //     print2("Format<bool>::Format \n");
+  //   }
+  //   inline Format(StyledString styled_true, StyledString styled_false) {
+  //     print2("Format<bool>::Format(const std::string formatstr) \n");
+  //     setTrueStyleString(styled_true);
+  //     setFalseStyleString(styled_false);
+  //   }
+  
+    
+  //   inline Format<bool>& setTrueStyleString(StyledString styled_true) {
+  //     styled_true_ = styled_true;
+  //     return *this;
+  //   }
+  //   inline Format<bool>& setFalseStyleString(StyledString styled_false) {
+  //     styled_false_ = styled_false;
+  //     return *this;
+  //   }
+  //   inline std::string get() const {
+  //     std::string s("");
+  //     return s + "{"+styled_true_.get()+", "+styled_false_.get()+"}";
+  //   }
+  //   inline std::string apply(TC val) const {
+  //     if (val == true) {
+  // 	return styled_true_.get();
+  //     } else {
+  // 	return styled_false_.get();
+  //     }
+  //   }
+  //   inline std::string getStyledTypeName() const {
+  //     return styled_name_.get();
+  //   }
+  //   inline friend std::ostream& operator<<(std::ostream &stream, const Format<T>& format) {
+  //     print1("hello");
+  //     stream << "Format<"<<format.getStyledTypeName()<< "> = " << format.get();
+  //     return stream;
+  //   }
+  // };  //class Format<bool>
+  
 
 
   
@@ -474,7 +541,11 @@ namespace display {
 #endif
   }
 
-
+  template <typename T>
+  inline void printObj(const T& t) {
+    using namespace std;
+    cout << t;
+  }
 
   
   // add class variable that if defined overrides the default, taken from the Format class
@@ -499,26 +570,37 @@ namespace display {
       }
     }
     template <typename X>
-    static void mydisp(const X& x, const std::string name) {
+    static void mydisp(const X& x, const std::string name, const bool displayType, const bool issueCR) {
       using namespace std;
-      log2("display","Display","mydisp","(const X& x, const std::string name)");
-      cout << Format<const X>::getDefault().getName() << " ";
+      log3("display","Display","mydisp","(const X& x, const std::string name)");
+      if (displayType) {
+	cout << getTypeName(x) << " ";
+      }
       expression->setString(name);
       cout << *expression;
       cout << *equals;
-      cout << Format<const X>::getDefault().apply(x);
+      printObj<X>(x);
       cout << *terminator;
+      if (issueCR) {
+	cout << endl;
+      }
     }
     template <typename X>
     static void mydispcr(const X& x, const std::string name) {
       using namespace std;
-      mydisp(x, name);
-      cout << endl;
+      mydisp(x, name,false, true);
+    }
+    template <typename X>
+    static void tmydispcr(const X& x, const std::string name) {
+      using namespace std;
+      mydisp(x, name, true, true);
     }
   };  // class Display
 
 
-#define newdispcr(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
+#define newdisp(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
+#define tdisp(...) display::Display::tmydispcr(__VA_ARGS__,#__VA_ARGS__)
+
 
       
   /****************************************************************************

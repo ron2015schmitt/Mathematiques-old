@@ -30,6 +30,220 @@ public:
 };
 
 
+namespace display {
+
+
+
+
+  
+
+
+  template <typename D> 
+  inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
+    using namespace std;
+    if (formatstr.empty()) {
+      return false;
+    }
+    
+    int ret = 0;
+    bool passed = true;
+    try {
+      ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), x);
+      if (ret<0) passed = false;
+    } catch (...) {
+      string classname = "";
+      passed = false;
+    }
+    string s = string(Buffer);
+    size_t found = s.find("(nil)");
+    if (found!=string::npos) 	passed = false;
+    
+    D x2 = D(0);
+    D *x2ptr = &x2;
+    ret = std::sscanf(Buffer, "%lg", x2ptr);
+    if (ret != 1) passed = false;
+    if (x2 != x)  passed = false;
+    
+    if (!passed) {
+      cout << StyledString::get(HORLINE);
+      cout << StyledString::get(ERROR);
+      cout << " illegal format string";
+      cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+      cout << " passed to Format";
+      cout << "<" << display::getTypeName(x) << ">";
+      cout << endl;
+      cout << StyledString::get(HORLINE);
+      return false;
+    }     
+    return true;
+  }
+
+
+  
+
+  template <typename T>
+  inline void setFormatString(const std::string fstring) {
+    T* xptr = new T(25);
+    bool valid = checkFormatString<T>(fstring, *xptr);
+    if (valid) {
+      FormatData<T>::format_string = fstring;
+    }
+  }
+
+
+  //---------------------------------------------------------------------------------
+  //       specialize for double
+  //---------------------------------------------------------------------------------
+  
+
+  template <>
+  class FormatData<double> {
+  public:
+    static Style style_for_type_name;
+    static Style style_for_value;
+    static Style style_for_zero;
+    const static std::string format_string_default; 
+    static std::string format_string;  
+  };
+
+  Style FormatData<double>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<double>::style_for_value = createStyle(RESET);
+  Style FormatData<double>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<double>::format_string_default = "%lg";  // used for scanf so do NOT change
+  std::string FormatData<double>::format_string = format_string_default;
+  
+  template <>
+  inline std::string getTypeName(const double& var) {
+    return FormatData<double>::style_for_type_name.apply("double");
+  }
+  
+  
+  template <>
+  inline void printObj(const double& d) {
+    using namespace std;
+    printf(getFormatString<double>().c_str(),d);
+  }
+  
+
+
+  //---------------------------------------------------------------------------------
+  //       specialize for complex<double>
+  //---------------------------------------------------------------------------------
+
+  template <>
+  class FormatData<std::complex<double> > {
+  public:
+    static Style style_for_type_name;
+    static Style style_for_value;
+    static Style style_for_zero;
+    static std::string format_string;  
+    const static std::string format_string_default; 
+  };
+
+  Style FormatData<std::complex<double> >::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<std::complex<double> >::style_for_value = createStyle(RESET);
+  Style FormatData<std::complex<double> >::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<std::complex<double> >::format_string_default = "%s + i*%s";
+  std::string FormatData<std::complex<double> >::format_string = format_string_default;
+  
+  template <>
+  inline std::string getTypeName(const std::complex<double> & var) {
+    return FormatData<std::complex<double> >::style_for_type_name.apply("std::complex<double> ");
+  }
+  
+  
+  
+
+  template <> 
+  inline bool checkFormatString<std::complex<double> >(const std::string formatstr, const std::complex<double>& x) {
+    using namespace std;
+    if (formatstr.empty()) {
+      return false;
+    }
+    
+    int ret = 0;
+    bool passed = true;
+    ;
+    try {
+      snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), x.real() );
+      string sr = string(Buffer);
+      matricks::dispcr(sr);
+      snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), x.imag() );
+      string si = string(Buffer);
+      matricks::dispcr(si);
+      ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), sr.c_str(), si.c_str());
+      if (ret<0) passed = false;
+    } catch (...) {
+      string classname = "";
+      passed = false;
+    }
+    string s = string(Buffer);
+    size_t found = s.find("(nil)");
+    if (found!=string::npos) 	passed = false;
+    
+    double xr = double(0);
+    double xi = double(0);
+    double *xrptr = &xr;
+    double *xiptr = &xi;
+    printf("s = %s\n",s.c_str());
+    char chr[64];
+    char chi[64];
+    ret = std::sscanf(Buffer, formatstr.c_str() , chr, chi);
+    printf("ret=%d chr=%s chi=%s\n",ret,chr,chi);
+    if (ret != 2) passed = false;
+    
+    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
+    ret = std::sscanf(chr, "%lg" ,xrptr);
+    if (ret != 1) passed = false;
+    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
+    ret = std::sscanf(chi,  "%lg" ,xiptr);
+    if (ret != 1) passed = false;
+    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
+    if (ret != 1) passed = false;
+    if (xr != x.real())  passed = false;
+    if (xi != x.imag())  passed = false;
+    
+    if (!passed) {
+      cout << StyledString::get(HORLINE);
+      cout << StyledString::get(ERROR);
+      cout << " illegal format string";
+      cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+      cout << " passed to Format";
+      cout << "<" << display::getTypeName(x) << ">";
+      cout << endl;
+      cout << StyledString::get(HORLINE);
+      return false;
+    }     
+    return true;
+  }
+
+  template <>
+  inline void setFormatString<std::complex<double> >(const std::string fstring) {
+    std::complex<double> * xptr = new std::complex<double>(1,2);
+    bool valid = checkFormatString<std::complex<double> >(fstring, *xptr);
+    if (valid) {
+      FormatData<std::complex<double> >::format_string = fstring;
+    }
+  }
+
+  
+  template <>
+  inline void printObj(const std::complex<double>& d) {
+    using namespace std;
+    using namespace matricks;
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), d.real() );
+    string sr = string(Buffer);
+    dispcr(sr);
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), d.imag() );
+    string si = string(Buffer);
+    dispcr(si);
+    printf(getFormatString<std::complex<double> >().c_str(), sr.c_str(), si.c_str());
+  }
+  
+
+
+  // this allows const and non-const to be treated by same class
+};
 
 #define Vector_(name,t,...) Vector<t> name(__VA_ARGS__); //MatricksObjectPool::(name.id(),std::string(#name)+"<"+stringify(t)+">"+" in "+__FUNCTION__+" at line "+stringify(__LINE__)+" in file "+__FILE__));
 
@@ -111,20 +325,6 @@ int main()
   StyledString ss(bold+magenta1, "Hello");
   dispcr(ss);
 
-  Format<const double> formatdouble("%f");
-  dispcr(formatdouble);
-  dispcr(formatdouble.getName());
-  dispcr(formatdouble.get());
-  dispcr(formatdouble.apply(3.4));
-  printf("formatdouble.setFormatStr(\"%%12.5f\")\n");
-  formatdouble.set("%12.5f");
-  dispcr(formatdouble.get());
-  dispcr(formatdouble.apply(3.4));
-  
-  printf("formatdouble.setFormatStr(\"%%parbage\")\n");
-  formatdouble.set("%parbage");
-  dispcr(formatdouble.get());
-  dispcr(formatdouble.apply(3.4));
 
   int ronny = 5;
   double q = 5.5;
@@ -167,7 +367,7 @@ int main()
   dispcr(y2);
 
   print1("newdispcr");
-  newdispcr(pi);
+  newdisp(pi);
 
   Mets<double,1>::test();
   Mets<double,4>::test2();
@@ -178,16 +378,16 @@ int main()
   dispcr(TypeTraits<const double>::isFloat);
   dispcr(TypeTraits<const double>::isConst);
   TypeTraits<const double>::NonConstType degrom = 9;
-  newdispcr(degrom);
-  newdispcr(0.0);
+  newdisp(degrom);
+  newdisp(0.0);
   double harvey = 0;
-  newdispcr(harvey);
+  newdisp(harvey);
 
   int inty = 25;
-  newdispcr(inty);
+  newdisp(inty);
 
   unsigned int uny = 25;
-  newdispcr(uny);
+  newdisp(uny);
 
 
   dispcr(sizeof(uny));
@@ -195,16 +395,64 @@ int main()
 
 
   long int linty = 25;
-  newdispcr(linty);
+  newdisp(linty);
 
   unsigned long int luny = 25;
-  newdispcr(luny);
+  newdisp(luny);
 
   bool booly = 1;
-  newdispcr(booly);
+  newdisp(booly);
   booly = 0;
-  newdispcr(booly);
+  newdisp(booly);
 
+  // Format<const double> formatdouble("%f");
+  // dispcr(formatdouble);
+  // dispcr(formatdouble.getStyledTypeName());
+  // dispcr(formatdouble.get());
+  // dispcr(formatdouble.apply(3.4));
+  // printf("formatdouble.setFormatStr(\"%%12.5f\")\n");
+  // formatdouble.set("%12.5f");
+  // dispcr(formatdouble.get());
+  // dispcr(formatdouble.apply(3.4));
   
+  // printf("formatdouble.setFormatStr(\"%%parbage\")\n");
+  // formatdouble.set("%parbage");
+  // dispcr(formatdouble.get());
+  // dispcr(formatdouble.apply(3.4));
+
+  // Format<bool> formatbool =  *(new Format<bool>);
+  // cout <<formatbool<<endl;
+  // dispcr(formatbool);
+  // Format<double> formatdub = *(new Format<double>);
+  // Format<const double> formatcdub =  *(new Format<const double>);
+  // cout <<formatdub<<endl;
+  // dispcr(formatdub);
+
+
+  double xx = 5.5;
+  const double xxc = 23.3;
+
+  dispcr(getTypeName(y2));
+  dispcr(getTypeName(xx));
+  dispcr(getTypeName(xxc));
+
+
+  setFormatString<double>("%lf");
+  dispcr(xx);
+  setFormatString<double>("hello");
+  setFormatString<double>("%y");
+  setFormatString<double>("%s");
+
+  setFormatString<double>("% 10.5f");
+  printObj(xx);cr();
+  printObj(xxc);cr();
+  setFormatString<double>("%g");
+  cout << getFormatString<std::complex<double> >().c_str() << endl;
+  complex<double> zc = complex<double>(2.3,4.5);
+  printObj(zc);cr();
+
+  //  setFormatString<complex<double> >("%g + i*%g");
+  setFormatString<complex<double> >("%s +%si");
+  printObj(zc);cr();
   return 0;
 }

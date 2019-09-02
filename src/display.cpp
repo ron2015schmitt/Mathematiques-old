@@ -120,15 +120,92 @@ namespace display {
   //---------------------------------------------------------------------------------
   //       specialize for double
   //---------------------------------------------------------------------------------
-  
 
+  // float
+  Style FormatData<float>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<float>::style_for_value = createStyle(RESET);
+  Style FormatData<float>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<float>::format_string_default = "%g";
+  std::string FormatData<float>::format_string = format_string_default;
+
+  // double
   Style FormatData<double>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<double>::style_for_value = createStyle(RESET);
   Style FormatData<double>::style_for_zero = createStyle(GRAY1);
-  const std::string FormatData<double>::format_string_default = "%lg";  // used for scanf so do NOT change
+  const std::string FormatData<double>::format_string_default = "%lg";
   std::string FormatData<double>::format_string = format_string_default;
 
+  // long double
+  Style FormatData<long double>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<long double>::style_for_value = createStyle(RESET);
+  Style FormatData<long double>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<long double>::format_string_default = "%llg";
+  std::string FormatData<long double>::format_string = format_string_default;
 
+  // short
+  Style FormatData<short>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<short>::style_for_value = createStyle(BLUE);
+  Style FormatData<short>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<short>::format_string_default = "%d";
+  std::string FormatData<short>::format_string = format_string_default;
+
+  // int
+  Style FormatData<int>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<int>::style_for_value = createStyle(BLUE);
+  Style FormatData<int>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<int>::format_string_default = "%d";
+  std::string FormatData<int>::format_string = format_string_default;
+
+  // long
+  Style FormatData<long>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<long>::style_for_value = createStyle(BLUE);
+  Style FormatData<long>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<long>::format_string_default = "%ld";
+  std::string FormatData<long>::format_string = format_string_default;
+
+
+#if LONGLONG_EXISTS
+  // long long
+  Style FormatData<long long>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<long long>::style_for_value = createStyle(BLUE);
+  Style FormatData<long long>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<long long>::format_string_default = "%lld";
+  std::string FormatData<long long>::format_string = format_string_default;
+#endif
+
+  // unsigned short
+  Style FormatData<unsigned short>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<unsigned short>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned short>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<unsigned short>::format_string_default = "%u";
+  std::string FormatData<unsigned short>::format_string = format_string_default;
+
+  // unsigned int
+  Style FormatData<unsigned int>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<unsigned int>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned int>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<unsigned int>::format_string_default = "%u";
+  std::string FormatData<unsigned int>::format_string = format_string_default;
+
+  // unsigned long
+  Style FormatData<unsigned long>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<unsigned long>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned long>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<unsigned long>::format_string_default = "%lu";
+  std::string FormatData<unsigned long>::format_string = format_string_default;
+
+
+#if LONGLONG_EXISTS
+  // unsigned long long
+  Style FormatData<unsigned long long>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<unsigned long long>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned long long>::style_for_zero = createStyle(GRAY1);
+  const std::string FormatData<unsigned long long>::format_string_default = "%llu";
+  std::string FormatData<unsigned long long>::format_string = format_string_default;
+#endif
+
+
+  
   //---------------------------------------------------------------------------------
   //       specialize for complex<double>
   //---------------------------------------------------------------------------------

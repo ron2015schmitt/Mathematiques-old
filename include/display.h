@@ -44,6 +44,7 @@ namespace display {
   //                          Some declarations. Definitions below
   //****************************************************************************
 
+
   
   inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
   inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
@@ -53,6 +54,24 @@ namespace display {
   inline void print2(const std::string s);
   inline void print3(const std::string s);
 
+
+#if MATRICKS_DEBUG>=1
+  #define printf1(...) printf(__VA_ARGS__)
+#else
+  #define printf1(...) {}
+#endif
+
+#if MATRICKS_DEBUG>=2
+  #define printf2(...) printf(__VA_ARGS__)
+#else
+  #define printf2(...) {}
+#endif
+
+#if MATRICKS_DEBUG>=3
+  #define printf3(...) printf(__VA_ARGS__)
+#else
+  #define printf3(...) {}
+#endif
 
 
   //****************************************************************************
@@ -307,6 +326,9 @@ namespace display {
     return stream.str();
   }
 
+
+  ////////////////////////////////////////////////////////////////////////////
+  // REMOVE
   template <typename T>
   inline std::string getTypeString(const T var) {
     std::ostringstream stream;
@@ -342,6 +364,7 @@ namespace display {
   SPECIALIZE_GETTYPESTRING(unsigned long long);
 #endif
 
+  
 
 #define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> inline std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
 
@@ -353,18 +376,7 @@ namespace display {
   SPECIALIZE_GETTYPESTRING_CONTAINER(std::initializer_list);
   SPECIALIZE_GETTYPESTRING_CONTAINER(std::list);
 
-  // need two parameters
-  //  SPECIALIZE_GETTYPESTRING_CONTAINER(matricks::Vexpr);
-
-
-
-
-  
-
-  
-  
-
-  
+  ////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -430,33 +442,106 @@ namespace display {
 
 
   //---------------------------------------------------------------------------------
-  //       specialize for double
+  //       specialize FormatData
   //---------------------------------------------------------------------------------
-  
 
-  template <>
-  class FormatData<double> {
-  public:
-    static Style style_for_type_name;
-    static Style style_for_value;
-    static Style style_for_zero;
-    const static std::string format_string_default; 
-    static std::string format_string;  
+  
+#define SPECIALIZE_FormatData_mathtype(TYPE) \
+  template <>  class FormatData<TYPE> { \
+  public: \
+    static Style style_for_type_name;\
+    static Style style_for_value;\
+    static Style style_for_zero;\
+    const static std::string format_string_default;\
+    static std::string format_string;\
   };
 
+  SPECIALIZE_FormatData_mathtype(float);
+  SPECIALIZE_FormatData_mathtype(double);
+  SPECIALIZE_FormatData_mathtype(long double);
+
+  SPECIALIZE_FormatData_mathtype(short);
+  SPECIALIZE_FormatData_mathtype(int);
+  SPECIALIZE_FormatData_mathtype(long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_FormatData_mathtype(long long);
+#endif
+
+  SPECIALIZE_FormatData_mathtype(unsigned short);
+  SPECIALIZE_FormatData_mathtype(unsigned int);
+  SPECIALIZE_FormatData_mathtype(unsigned long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_FormatData_mathtype(unsigned long long);
+#endif
+
   
-  template <>
-  inline std::string getTypeName(const double& var) {
-    return FormatData<double>::style_for_type_name.apply("double");
+  //---------------------------------------------------------------------------------
+  //       specialize getTypeName
+  //---------------------------------------------------------------------------------
+
+
+#define SPECIALIZE_getTypeName(TYPE) \
+  template <> \
+  inline std::string getTypeName(const TYPE& var) { \
+    return FormatData<TYPE>::style_for_type_name.apply(#TYPE);\
+  }
+
+  SPECIALIZE_getTypeName(float);
+  SPECIALIZE_getTypeName(double);
+  SPECIALIZE_getTypeName(long double);
+
+  SPECIALIZE_getTypeName(short);
+  SPECIALIZE_getTypeName(int);
+  SPECIALIZE_getTypeName(long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_getTypeName(long long);
+#endif
+
+  SPECIALIZE_getTypeName(unsigned short);
+  SPECIALIZE_getTypeName(unsigned int);
+  SPECIALIZE_getTypeName(unsigned long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_getTypeName(unsigned long long);
+#endif
+
+
+  
+  //---------------------------------------------------------------------------------
+  //       specialize printObj
+  //---------------------------------------------------------------------------------
+
+  
+#define SPECIALIZE_printObj(TYPE)					\
+  template <>								\
+    inline void printObj<TYPE >(const TYPE& d) {			\
+    using namespace std;						\
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
+    string sval = string(Buffer);					\
+    Style style = FormatData<TYPE >::style_for_value;			\
+    TYPE zero = 0;							\
+    if (d == zero) {							\
+      style = FormatData<TYPE >::style_for_zero;			\
+    }									\
+    cout << style.apply(sval);						\
   }
   
-  
-  template <>
-  inline void printObj<double>(const double& d) {
-    using namespace std;
-    printf(getFormatString<double>().c_str(),d);
-  }
-  
+  SPECIALIZE_printObj(float);
+  SPECIALIZE_printObj(double);
+  SPECIALIZE_printObj(long double);
+
+  SPECIALIZE_printObj(short);
+  SPECIALIZE_printObj(int);
+  SPECIALIZE_printObj(long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_printObj(long long);
+#endif
+
+  SPECIALIZE_printObj(unsigned short);
+  SPECIALIZE_printObj(unsigned int);
+  SPECIALIZE_printObj(unsigned long);
+#if LONGLONG_EXISTS
+  SPECIALIZE_printObj(unsigned long long);
+#endif
 
 
   //---------------------------------------------------------------------------------

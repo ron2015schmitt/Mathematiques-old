@@ -155,38 +155,8 @@ namespace matricks {
   }
 
 
-#define matricksinfo(var) _matricksinfo(var,std::string(# var))
   
 
-#if MATRICKS_DEBUG>=1
-  #define printf1(...) printf(__VA_ARGS__)
-  #define disp1(...) disp(__VA_ARGS__)
-  #define dispcr1(...) dispcr(__VA_ARGS__)
-#else
-  #define printf1(...) {}
-  #define disp1(...) {}
-  #define dispcr1(...) {}
-#endif
-
-#if MATRICKS_DEBUG>=2
-  #define printf2(...) printf(__VA_ARGS__)
-  #define disp2(...) disp(__VA_ARGS__)
-  #define dispcr2(...) dispcr(__VA_ARGS__)
-#else
-  #define printf2(...) {}
-  #define disp2(...) {}
-  #define dispcr2(...) {}
-#endif
-
-#if MATRICKS_DEBUG>=3
-  #define printf3(...) printf(__VA_ARGS__)
-  #define disp3(...) disp(__VA_ARGS__)
-  #define dispcr3(...) dispcr(__VA_ARGS__)
-#else
-  #define printf3(...) {}
-  #define disp3(...) {}
-  #define dispcr3(...) {}
-#endif
 
 
 

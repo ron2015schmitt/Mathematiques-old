@@ -117,6 +117,14 @@ int main()
   bool booly = true;
   //  tdisp(booly);cr();
 
+  int ii = -5;
+  tdisp(ii);
   
+  unsigned int uu = 5;
+  tdisp(uu);
+
+  unsigned int uzero = 0;
+  tdisp(uzero);
+
   return 0;
 }

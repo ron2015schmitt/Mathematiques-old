@@ -1,21 +1,7 @@
-
-
-
-
 #ifndef MATRIX_H
 #define MATRIX_H
 
 
-#include <typeinfo>
-#include <fstream>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <complex>
-#include <valarray>
-#include <vector>
-#include <string>
-#include <cstring>
 
 
 

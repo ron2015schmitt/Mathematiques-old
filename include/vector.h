@@ -1,31 +1,11 @@
-#ifndef VECTORDEF_H
-#define VECTORDEF_H 1
-
-#include <typeinfo>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <complex>
-#include <valarray>
-#include <vector>
-#include <list>
-#include <iterator>
-#include <string>
-#include <queue>
-#include <map>
-
-#if CPP11 == 1
-#include <initializer_list>
-#endif
+#ifndef VECTOR_H
+#define VECTOR_H 1
 
 
-//#define VDEBUG
+
 
 namespace matricks {
 
-
-
- 
  
  
   
@@ -773,6 +753,22 @@ namespace matricks {
     }
 
 
+    Vector<D>& reverse() {
+
+      const size_type N = size();
+      if (N==0)
+	return *this;
+   
+      for (register index_type i = 0; i < N/2 ; i++ ) {
+	D temp = (*data_)[i];
+	(*data_)[i] = (*data_)[N-i-1];
+	(*data_)[N-i-1] = temp;
+      }
+      
+      return *this;
+      
+    }
+
 
 
 
@@ -1099,115 +1095,6 @@ namespace matricks {
 
   };
 
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  // The Range generating function (with step given)
-
-  template <class D>
-  inline Vector<D> range(D start, D end, D step) {
-    // determine size
-    size_type N = 0;
-    if (step > 0) {
-      for (D x =start; x<=end; x +=step)
-	N +=1;
-    } else {
-      for (D x =start; x>=end; x +=step) 
-	N +=1;
-    }
-#if MATRICKS_DEBUG>0
-    std::ostringstream stream;
-    stream << "range(" <<start<<","<<end<<","<<step<<")";
-    //    Vector<D> y(N,stream.str());
-    Vector<D> y(N);
-    if ( N==0 ){ 
-      vbadrange<D>(start,end,step);
-      return y;
-    }
-#else
-    Vector<D> y(N);
-#endif
-    
-    y[0] = start;
-    for (size_type i =1; i<N; i++)
-      y[i] = y[i-1] + step;
-    
-    return y;
-  }
-
-
-  // The Range generating function (step by +/-1)
-
-  template <class D>
-  inline Vector<D> range(D start, D end) {
-    if (end >= start)
-      return range<D>(start,end,static_cast<D>(1));
-    else 
-      return range<D>(start,end,static_cast<D>(-1));
-  }
-
-
-
-
-
-  // linspace function
-
-  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  inline Vector<D> linspace(D start, D end, size_type N) {
-#if MATRICKS_DEBUG>0
-    std::ostringstream stream;
-    stream << "linspace(" <<start<<","<<end<<","<<N<<")";
-    std::string s = stream.str();
-    //    Vector<D> y(N,s);
-    Vector<D> y(N);
-#else
-    Vector<D> y(N);
-#endif
-
-#if MATRICKS_DEBUG>0
-    if (N<2) {
-      vbadlinspace<D>(start,end,N);
-      return y;
-    } 
-#endif
-
-    const D step = (end-start)/static_cast<D>(N-1);
-
-    y[0] = start;
-    for(size_type i = 1; i<(N-1); i++) 
-      y[i] = start + static_cast<D>(i)*step;
-    y[N-1] = end;
-    return y;
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-    
-    
 
 
 

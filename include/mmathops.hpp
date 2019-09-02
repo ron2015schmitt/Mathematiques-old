@@ -1,10 +1,6 @@
-
-
 #ifndef MMATHOPS_H
 #define MMATHOPS_H
 
-#include <cmath>
-#include <string>
 
 namespace matricks {
 

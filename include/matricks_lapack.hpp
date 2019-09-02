@@ -4,7 +4,6 @@
 #ifndef MATRICKS_LAPACK_H
 #define MATRICKS_LAPACK_H
 
-#include <complex>
 
 #include "matricks.h"
 

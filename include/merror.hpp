@@ -1,11 +1,6 @@
-
-
 #ifndef MERROR_H
 #define MERROR_H
 
-#include <sstream>
-#include <iostream>
-#include <string>
 
 namespace matricks {
 

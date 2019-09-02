@@ -3,9 +3,6 @@
 #define MATRICKSUTIL_H
 
 
-#include <iostream>
-#include <ctime>
-#include <cstring>
 
 namespace matricks {
 

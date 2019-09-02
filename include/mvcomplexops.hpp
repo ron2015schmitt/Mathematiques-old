@@ -2,9 +2,6 @@
 #define MVCOMPLEXOPS_H 1
 
 
-#include <string>
-#include <sstream>
-
 
 namespace matricks {
 

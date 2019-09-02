@@ -1,9 +1,6 @@
-
 #ifndef MOPERATORS_H
 #define MOPERATORS_H 
 
-#include <string>
-#include <sstream>
 
 namespace matricks {
 

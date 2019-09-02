@@ -2,11 +2,6 @@
 #define VEXPRESSIONS_H
 
 
-#include <string>
-#include <sstream>
-#include <complex>
-
-
 
 namespace matricks {
 
@@ -48,7 +43,7 @@ namespace matricks {
       {
 	addAddress(&a_);
 	addAddress(&ii_);
-	printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
+	//	printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
       }
 #endif
     ~VSubsetObj() {

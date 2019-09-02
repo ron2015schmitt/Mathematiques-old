@@ -1,13 +1,7 @@
-
 #ifndef P3VECTOR_H
 #define P3VECTOR_H
 
 
-#include <iostream>
-#include <iomanip>
-#include <cstring>
-#include <cmath>
-#include <vector>
 
 namespace matricks {
 

@@ -1,10 +1,5 @@
-
-
 #ifndef MVOPERATORS_H
 #define MVOPERATORS_H
-
-#include <string>
-#include <sstream>
 
 
 namespace matricks {

@@ -1,12 +1,6 @@
-
-
-
 #ifndef MCOMPLEXEXPR_H
 #define MCOMPLEXEXPR_H 1
 
-#include <string>
-#include <sstream>
-#include <complex>
 
 namespace matricks {
 

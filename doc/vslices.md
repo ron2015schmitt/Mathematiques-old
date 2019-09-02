@@ -30,10 +30,8 @@ const int N = v.size();
   v[-1]:  10; 
   v[-2]:  9; 
   v[-N]:  0; 
-    VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
-v[{0,-1}]:  {0,10}; 
-    VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
-v[{2,2,-2,-2}]:  {2,2,9,9}; 
+  v[{0,-1}]:  {0,10}; 
+  v[{2,2,-2,-2}]:  {2,2,9,9}; 
 ```
 
 

@@ -2,9 +2,6 @@
 #define MD_H
 
 
-#include <iostream>
-#include <string>
-#include <fstream>
 
 
 // Utilities for rendering .md markdown for github

@@ -2,12 +2,6 @@
 #define VEXPR_H
 
 
-#include <string>
-#include <sstream>
-#include <complex>
-
-
-
 namespace matricks {
 
 

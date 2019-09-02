@@ -1,10 +1,6 @@
 #ifndef VERROR_H
 #define VERROR_H 1
 
-#include <sstream>
-#include <iostream>
-#include <string>
-
 namespace matricks {
 
 

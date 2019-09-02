@@ -1,10 +1,5 @@
-
 #ifndef MATRICKS_PRINT_H
 #define MATRICKS_PRINT_H
-
-
-#include <iostream>
-#include <cstring>
 
 namespace matricks {
 

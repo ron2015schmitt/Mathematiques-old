@@ -6,6 +6,33 @@
 #ifndef MATRICKS_H
 #define MATRICKS_H
 
+#include <ctgmath>
+//#include <cmath>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+
+#include <complex>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <map>
+#include <queue>
+#include <sstream>
+#include <string>
+#include <typeinfo>
+#include <valarray>
+#include <vector>
+
+#if CPP11 == 1
+#include <initializer_list>
+#endif
+
+
+
 
 // -------------------------------------------
 //     From loki submodule
@@ -19,19 +46,17 @@
 
 #include "matrickscommon.hpp"
 
+#include "vorevorw.h"
+
 #include "verror.hpp"
 #include "merror.hpp"
 #include "print.hpp"
 
-#include "applicative.hpp"
-#include "mathapp.hpp"
-#include "boolapp.hpp"
-#include "complexapp.hpp"
+#include "functors.h"
 
-#include "vectordef.hpp"
+#include "vector.h"
+
 #include "matrixdef.hpp"
-
-
 
 #include "vexpr.h"
 #include "vwrapper.h"
@@ -42,10 +67,7 @@
 #include "mcomplexexpr.hpp"
 #include "mvexpr.hpp"
 
-#include "voperators.hpp"
-#include "vmathops.hpp"
-#include "vboolops.hpp"
-#include "vcomplexops.hpp"
+#include "vfunctions.h"
 
 #include "moperators.hpp"
 #include "mmathops.hpp"

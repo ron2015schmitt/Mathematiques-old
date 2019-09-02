@@ -1,21 +1,6 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#include <typeinfo>
-#include <sstream>
-#include <complex>
-#include <iostream>
-#include <string>
-#include <map>
-#include <vector>
-#include <tgmath.h>
-//#include <cfloat>
-//#include <cmath>
-#include <limits>
-#include <valarray>
-#include <queue>
-#include <list>
-
 
 
 

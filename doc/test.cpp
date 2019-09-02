@@ -172,6 +172,10 @@ int main()
   tdisp(q);
   tdisp(q);
 
+  Vector<double> v( {1.1,2.2,3.3,4.4} );
+  tdisp(v);
+
+  tdisp(exp(sin(3*v+1)));
   
   return 0;
 }

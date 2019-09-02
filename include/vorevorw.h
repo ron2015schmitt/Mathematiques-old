@@ -75,12 +75,11 @@ namespace matricks {
       derived().addAddresses(addrs);
     }
     
-    
     friend std::ostream& operator<<(std::ostream &stream, const VorE<D,VE>& ve) {
-      Vector<D> v = ve.derived();
-      stream << v;
+      stream << ve.derived();
       return stream;
     }
+    
   };
 
 

@@ -35,16 +35,6 @@ namespace matricks {
     }
 
 
-
-
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
-    }
-
-    void outputglossary(void) const {
-      derived().outputglossary();
-    }
-
     std::vector<const void*> getAddresses(void) const {
       return derived().getAddresses();
     }
@@ -58,6 +48,21 @@ namespace matricks {
       derived().addAddresses(addrs);
     }
 
+
+    std::string classname() const {
+      return "Vexpr";
+    }
+    std::string debugtxt(void) const {
+      return derived().debugtxt();
+    }
+    void outputglossary(void) const {
+      derived().outputglossary();
+    }
+    friend std::ostream& operator<<(std::ostream &stream, const Vexpr<D,EXP>& ve) {
+      Vector<D> v(ve);
+      stream << v;
+      return stream;
+    }
 
   };
 

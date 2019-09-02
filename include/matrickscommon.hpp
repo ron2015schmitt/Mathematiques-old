@@ -8,14 +8,6 @@
 namespace matricks {
 
 
-  typedef std::vector<double>::size_type   size_type;
-  typedef unsigned int   uint;
-  typedef int index_type;
-  typedef long double extended;
-  // maximum subcript size for vectors and matrices (since we allow negative indexing)
-  const size_type maxsize = std::numeric_limits<index_type>::max();
-  //  const size_type maxsize = std::numeric_limits<uint>::max() -1;
-  const size_type badsize = std::numeric_limits<size_type>::max();
 
 
 

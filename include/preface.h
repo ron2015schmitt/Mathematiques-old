@@ -53,9 +53,16 @@ extern char COMPILE_OPTIMIZE[];
 
 namespace matricks {
 
-  //****************************************************************************
-  //                          Some declarations. 
-  //****************************************************************************
+
+  typedef std::vector<double>::size_type   size_type;
+  typedef int index_type;
+
+  typedef long double extended;
+
+  // maximum subcript size for vectors and matrices (since we allow negative indexing)
+  const size_type maxsize = std::numeric_limits<index_type>::max();
+  const size_type badsize = std::numeric_limits<size_type>::max();
+
 
 
   template <class D> class Vector;

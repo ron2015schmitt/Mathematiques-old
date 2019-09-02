@@ -284,12 +284,13 @@ namespace display {
 
 
 
-  
-
 
   //****************************************************************************
   //                       FormatData
   //****************************************************************************
+
+
+  template <typename T> inline std::string getTypeName(const T& var);
 
   class FormatBase {
   };
@@ -309,88 +310,6 @@ namespace display {
     return FormatData<T>::default_format_string;
   }
 
-
-  //****************************************************************************
-  //                      getTypeName
-  //****************************************************************************
-
-
-  
-
-  template <typename T>
-  inline std::string getTypeName(const T& var) {
-    std::ostringstream stream;
-    Style style = createStyle(GREEN);
-    stream << style.apply(typeid(T).name());
-    return stream.str();
-  }
-
-
-
-
-  template <typename D> 
-  inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
-    using namespace std;
-    if (formatstr.empty()) {
-      return false;
-    }
-    
-    int ret = 0;
-    bool passed = true;
-    try {
-      ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), x);
-      if (ret<0) passed = false;
-    } catch (...) {
-      string classname = "";
-      passed = false;
-    }
-    string s = string(Buffer);
-    size_t found = s.find("(nil)");
-    if (found!=string::npos) 	passed = false;
-    
-    D x2 = D(0);
-    D *x2ptr = &x2;
-    ret = std::sscanf(Buffer, "%lg", x2ptr);
-    if (ret != 1) passed = false;
-    if (x2 != x)  passed = false;
-    
-    if (!passed) {
-      cout << StyledString::get(HORLINE);
-      cout << StyledString::get(ERROR);
-      cout << " illegal format string";
-      cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
-      cout << " passed to Format";
-      cout << "<" << display::getTypeName(x) << ">";
-      cout << endl;
-      cout << StyledString::get(HORLINE);
-      return false;
-    }     
-    return true;
-  }
-
-
-  
-
-  template <typename T>
-  inline void setFormatString(const std::string fstring) {
-    T* xptr = new T(25);
-    bool valid = checkFormatString<T>(fstring, *xptr);
-    if (valid) {
-      FormatData<T>::format_string = fstring;
-    }
-  }
-
-
-
-  template <typename T>
-  inline void printObj(const T& d) {
-    std::cout << d;
-  }
-
-
-  //---------------------------------------------------------------------------------
-  //       specialize FormatData
-  //---------------------------------------------------------------------------------
 
   
 #define SPECIALIZE_FormatData_mathtype(TYPE) \
@@ -451,12 +370,90 @@ namespace display {
     static std::string string_for_false;
   };
 
+
+  // Vector
+  class FormatDataVector {
+  public: 
+    static matricks::index_type max_elements_per_line;
+    static Style style_for_type_name;	    
+    static Style style_for_punctuation;
+    static std::string string_opening;
+    static std::string string_delimeter;
+    static std::string string_endofline;
+    static std::string string_closing;
+  };
+
+
+  //****************************************************************************
+  //       FormatString
+  //****************************************************************************
+
+
+
+  template <typename D> 
+  inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
+    using namespace std;
+    if (formatstr.empty()) {
+      return false;
+    }
+    
+    int ret = 0;
+    bool passed = true;
+    try {
+      ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), x);
+      if (ret<0) passed = false;
+    } catch (...) {
+      string classname = "";
+      passed = false;
+    }
+    string s = string(Buffer);
+    size_t found = s.find("(nil)");
+    if (found!=string::npos) 	passed = false;
+    
+    D x2 = D(0);
+    D *x2ptr = &x2;
+    ret = std::sscanf(Buffer, "%lg", x2ptr);
+    if (ret != 1) passed = false;
+    if (x2 != x)  passed = false;
+    
+    if (!passed) {
+      cout << StyledString::get(HORLINE);
+      cout << StyledString::get(ERROR);
+      cout << " illegal format string";
+      cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+      cout << " passed to Format";
+      cout << "<" << display::getTypeName(x) << ">";
+      cout << endl;
+      cout << StyledString::get(HORLINE);
+      return false;
+    }     
+    return true;
+  }
+
+
   
-  
+
+  template <typename T>
+  inline void setFormatString(const std::string fstring) {
+    T* xptr = new T(25);
+    bool valid = checkFormatString<T>(fstring, *xptr);
+    if (valid) {
+      FormatData<T>::format_string = fstring;
+    }
+  }
+
+
   //---------------------------------------------------------------------------------
-  //       specialize getTypeName
+  //       getTypeName
   //---------------------------------------------------------------------------------
 
+  template <typename T>
+  inline std::string getTypeName(const T& var) {
+    std::ostringstream stream;
+    Style style = createStyle(GREEN);
+    stream << style.apply(var.classname());
+    return stream.str();
+  }
 
 #define SPECIALIZE_getTypeName(TYPE) \
   template <> \
@@ -508,11 +505,16 @@ namespace display {
     return s;								\
   }
 
+
+  SPECIALIZE_getTypeName_CONTAINER(matricks::Vector);
+
   SPECIALIZE_getTypeName_CONTAINER(std::vector);
   SPECIALIZE_getTypeName_CONTAINER(std::valarray);
   SPECIALIZE_getTypeName_CONTAINER(std::list);
-  SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
   SPECIALIZE_getTypeName_CONTAINER(std::queue);
+#if CPP11 == 1
+  SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
+#endif
 
 #define SPECIALIZE_getTypeName_CONTAINER2(TYPE)				\
   template <typename D1, typename D2>						\
@@ -524,13 +526,24 @@ namespace display {
     s = s+"<"+getTypeName(d1)+","+getTypeName(d2)+">";					\
     return s;								\
   }
+
   SPECIALIZE_getTypeName_CONTAINER2(std::map);
 
+
+
   
+
+
   //---------------------------------------------------------------------------------
-  //       specialize printObj
+  //       printObj
   //---------------------------------------------------------------------------------
 
+  template <typename T>
+  inline void printObj(const T& d) {
+    std::cout << d;
+  }
+
+    
   
 #define SPECIALIZE_mathtypes_printObj(TYPE)					\
   template <>								\
@@ -655,6 +668,7 @@ namespace display {
   }
 
     // std::initializer_list
+#if CPP11 == 1
   template <typename D>							
     inline void printObj(const std::initializer_list<D>& var) {
     std::cout << "{";
@@ -665,7 +679,7 @@ namespace display {
     }
     std::cout << "}";
   }
-
+#endif
 
     // std::queue
   template <typename D>							
@@ -693,6 +707,27 @@ namespace display {
       std::cout <<" "<< it->first << ":" << it->second << std::endl;
     }
     std::cout << "}";
+  }
+
+
+  // matricks::Vector
+  template <typename D>							
+    inline void printObj(const matricks::Vector<D>& var) {
+    Style& style = FormatDataVector::style_for_punctuation;
+    std::cout << style.apply(FormatDataVector::string_opening);
+    const matricks::index_type N = FormatDataVector::max_elements_per_line;
+    matricks::index_type k = 0;
+    for (matricks::index_type ii = 0; ii < var.size(); ii++) {
+      if (ii>0)  {
+	std::cout << style.apply(FormatDataVector::string_delimeter);
+      }
+      if (k++ > N)  {
+	std::cout << style.apply(FormatDataVector::string_endofline);
+	k = 0;
+      }
+      printObj(var[ii]);
+    }
+    std::cout << style.apply(FormatDataVector::string_closing);
   }
 
   

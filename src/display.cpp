@@ -222,7 +222,15 @@ namespace display {
   std::string FormatData<bool>::string_for_false = "0";
 
 
-  
+  // Vector
+  matricks::index_type FormatDataVector::max_elements_per_line = matricks::maxsize;
+  Style FormatDataVector::style_for_type_name = createStyle(CYAN);	    
+  Style FormatDataVector::style_for_punctuation = createStyle(GRAY1);
+  std::string FormatDataVector::string_opening = "{";
+  std::string FormatDataVector::string_delimeter = ", ";
+  std::string FormatDataVector::string_endofline = "\n";
+  std::string FormatDataVector::string_closing = "}";
+
   //---------------------------------------------------------------------------------
   //       specialize for complex<double>
   //---------------------------------------------------------------------------------

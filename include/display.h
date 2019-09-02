@@ -297,18 +297,8 @@ namespace display {
   template <typename T>
   class FormatData {
   public:
-    static Style style_for_type_name;
-    static Style style_for_value;
   };
 
-
-
-  //****************************************************************************
-  //                       FormatData Helper functions
-  //****************************************************************************
-
-
-  
 
   template <typename T>
   inline std::string getFormatString() {
@@ -319,10 +309,19 @@ namespace display {
     return FormatData<T>::default_format_string;
   }
 
+
+  //****************************************************************************
+  //                      getTypeName
+  //****************************************************************************
+
+
+  
+
   template <typename T>
   inline std::string getTypeName(const T& var) {
     std::ostringstream stream;
-    stream << FormatData<T>::style_for_type_name.apply(typeid(T).name());
+    Style style = createStyle(GREEN);
+    stream << style.apply(typeid(T).name());
     return stream.str();
   }
 
@@ -436,8 +435,7 @@ namespace display {
 
   template <typename T>
   inline void printObj(const T& d) {
-    using namespace std;
-    cout << d;
+    std::cout << d;
   }
 
 
@@ -474,6 +472,37 @@ namespace display {
   SPECIALIZE_FormatData_mathtype(unsigned long long);
 #endif
 
+
+  // string
+  template <>  class FormatData<std::string> {
+  public: 
+    static Style style_for_type_name;	    
+    static Style style_for_value;
+    const static std::string format_string_default;
+    static std::string format_string;
+  };
+
+  // char
+  template <>  class FormatData<char> {
+  public: 
+    static Style style_for_type_name;	    
+    static Style style_for_value;
+    const static std::string format_string_default;
+    static std::string format_string;
+  };
+
+
+  // bool
+  template <>  class FormatData<bool> {
+  public: 
+    static Style style_for_type_name;	    
+    static Style style_for_true;
+    static Style style_for_false;
+    static std::string string_for_true;
+    static std::string string_for_false;
+  };
+
+  
   
   //---------------------------------------------------------------------------------
   //       specialize getTypeName
@@ -505,13 +534,28 @@ namespace display {
 #endif
 
 
+  SPECIALIZE_getTypeName(std::string);
+  SPECIALIZE_getTypeName(char);
+  SPECIALIZE_getTypeName(bool);
+
+
+  // T[]
+  template <typename T, size_t N>
+    inline std::string getTypeName(const T (&a)[N]) {
+    std::string tname = getTypeName(a[0]);
+    std::ostringstream stream;
+    stream << tname << "[" << N << "]";
+    return stream.str();
+  }
+
+  
   
   //---------------------------------------------------------------------------------
   //       specialize printObj
   //---------------------------------------------------------------------------------
 
   
-#define SPECIALIZE_printObj(TYPE)					\
+#define SPECIALIZE_mathtypes_printObj(TYPE)					\
   template <>								\
     inline void printObj<TYPE >(const TYPE& d) {			\
     using namespace std;						\
@@ -525,25 +569,79 @@ namespace display {
     cout << style.apply(sval);						\
   }
   
-  SPECIALIZE_printObj(float);
-  SPECIALIZE_printObj(double);
-  SPECIALIZE_printObj(long double);
+  SPECIALIZE_mathtypes_printObj(float);
+  SPECIALIZE_mathtypes_printObj(double);
+  SPECIALIZE_mathtypes_printObj(long double);
 
-  SPECIALIZE_printObj(short);
-  SPECIALIZE_printObj(int);
-  SPECIALIZE_printObj(long);
+  SPECIALIZE_mathtypes_printObj(short);
+  SPECIALIZE_mathtypes_printObj(int);
+  SPECIALIZE_mathtypes_printObj(long);
 #if LONGLONG_EXISTS
-  SPECIALIZE_printObj(long long);
+  SPECIALIZE_mathtypes_printObj(long long);
 #endif
 
-  SPECIALIZE_printObj(unsigned short);
-  SPECIALIZE_printObj(unsigned int);
-  SPECIALIZE_printObj(unsigned long);
+  SPECIALIZE_mathtypes_printObj(unsigned short);
+  SPECIALIZE_mathtypes_printObj(unsigned int);
+  SPECIALIZE_mathtypes_printObj(unsigned long);
 #if LONGLONG_EXISTS
-  SPECIALIZE_printObj(unsigned long long);
+  SPECIALIZE_mathtypes_printObj(unsigned long long);
 #endif
 
+  // string
+  template <>				
+    inline void printObj<std::string>(const std::string& str) {
+    using namespace std;
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<std::string>().c_str(), str.c_str() );
+    string s = string(Buffer);
+    Style style = FormatData<std::string>::style_for_value;
+    cout << style.apply(s);
+  }
 
+  // char
+  template <>				
+    inline void printObj<char>(const char& c) {
+    using namespace std;					
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<char>().c_str(), c );
+    string s = string(Buffer);
+    Style style = FormatData<char>::style_for_value;
+    cout << style.apply(s);
+  }
+
+
+  // bool
+  template <>				
+    inline void printObj<bool>(const bool& b) {
+    using namespace std;
+    if (b) {
+      Style style = FormatData<bool>::style_for_true;
+      string s = FormatData<bool>::string_for_true;
+      cout << style.apply(s);
+    } else {
+      Style style = FormatData<bool>::style_for_false;
+      string s = FormatData<bool>::string_for_false;
+      cout << style.apply(s);
+    }
+  }
+  
+
+  // T[N]
+  template <typename T,  size_t N>
+    inline void printObj(const T (&a)[N]) {
+    std::cout << "{";
+    for (size_t ii = 0; ii < N; ii++) {
+      if (ii>0)  std::cout << ", ";
+      printObj(a[ii]);
+    }
+    std::cout << "}";
+  }
+
+  // char[N]
+  template <size_t N>
+    inline void printObj(const char (&a)[N]) {
+    std::cout << a;
+  }
+
+  
   //---------------------------------------------------------------------------------
   //       specialize for complex<double>
   //---------------------------------------------------------------------------------
@@ -755,8 +853,8 @@ namespace display {
       log3("display","Display","initialize","()");
       
       Display::isInitialized = true;
-      Display::expression = new StyledString(createStyle(BLUE1+BOLD),": ");
-      Display::equals = new StyledString(createStyle(GRAY1),": ");
+      Display::expression = new StyledString(createStyle(BOLD),"");
+      Display::equals = new StyledString(createStyle(GRAY1)," = ");
       Display::terminator = new StyledString(createStyle(GRAY1),";");
     }
     Display(){
@@ -774,7 +872,7 @@ namespace display {
       expression->setString(name);
       cout << *expression;
       cout << *equals;
-      printObj<X>(x);
+      printObj(x);
       cout << *terminator;
       if (issueCR) {
 	cout << endl;

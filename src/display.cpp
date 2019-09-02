@@ -112,10 +112,6 @@ namespace display {
   //****************************************************************************
 
 
-  template <typename T>
-  Style FormatData<T>::style_for_type_name = createStyle(CYAN);
-  template <typename T>
-  Style FormatData<T>::style_for_value = createStyle(ORANGE);
 
   //---------------------------------------------------------------------------------
   //       specialize for double
@@ -203,6 +199,27 @@ namespace display {
   const std::string FormatData<unsigned long long>::format_string_default = "%llu";
   std::string FormatData<unsigned long long>::format_string = format_string_default;
 #endif
+
+
+    // string
+  Style FormatData<std::string>::style_for_type_name = createStyle(GREEN);
+  Style FormatData<std::string>::style_for_value = createStyle(RESET);
+  const std::string FormatData<std::string>::format_string_default = "%s";
+  std::string FormatData<std::string>::format_string = format_string_default;
+
+  // char
+  Style FormatData<char>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<char>::style_for_value = createStyle(RESET);
+  const std::string FormatData<char>::format_string_default = "%c";
+  std::string FormatData<char>::format_string = format_string_default;
+
+
+  // bool
+  Style FormatData<bool>::style_for_type_name = createStyle(MAGENTA);
+  Style FormatData<bool>::style_for_true = createStyle(GREEN);
+  Style FormatData<bool>::style_for_false = createStyle(GRAY1);
+  std::string FormatData<bool>::string_for_true = "1";
+  std::string FormatData<bool>::string_for_false = "0";
 
 
   

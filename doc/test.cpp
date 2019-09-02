@@ -115,7 +115,7 @@ int main()
   tdisp(zc);
 
   bool booly = true;
-  //  tdisp(booly);cr();
+  tdisp(booly);
 
   int ii = -5;
   tdisp(ii);
@@ -126,5 +126,19 @@ int main()
   unsigned int uzero = 0;
   tdisp(uzero);
 
+  tdisp(4*uu+13);
+
+  string s = "hello world";
+  tdisp(s);
+  
+  char c = 'q';
+  tdisp(c);
+
+  char ronny[] = "ronny";
+  tdisp(ronny);
+
+  int ints[] = {-1,2,32};
+  tdisp(ints);
+  
   return 0;
 }

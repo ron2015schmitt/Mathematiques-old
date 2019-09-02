@@ -326,57 +326,6 @@ namespace display {
   }
 
 
-  ////////////////////////////////////////////////////////////////////////////
-  // REMOVE
-  template <typename T>
-  inline std::string getTypeString(const T var) {
-    std::ostringstream stream;
-    stream << typeid(T).name();
-    return stream.str();
-  };
-
-   
-
-
-  inline std::string getTypeString(void) {  return std::string("void"); }
-  
-#define SPECIALIZE_GETTYPESTRING(T) template <> inline std::string getTypeString(T var) {  return std::string(#T); }
-  
-  SPECIALIZE_GETTYPESTRING(std::string);
-
-  SPECIALIZE_GETTYPESTRING(float);
-  SPECIALIZE_GETTYPESTRING(double);
-  SPECIALIZE_GETTYPESTRING(long double);
-  
-  SPECIALIZE_GETTYPESTRING(bool);
-  SPECIALIZE_GETTYPESTRING(char);
-  SPECIALIZE_GETTYPESTRING(unsigned char);
-  SPECIALIZE_GETTYPESTRING(signed char);
-  
-  SPECIALIZE_GETTYPESTRING(short);
-  SPECIALIZE_GETTYPESTRING(unsigned short);
-  SPECIALIZE_GETTYPESTRING(int);
-  SPECIALIZE_GETTYPESTRING(long);
-  SPECIALIZE_GETTYPESTRING(unsigned long);
-#if LONGLONG_EXISTS
-  SPECIALIZE_GETTYPESTRING(long long);
-  SPECIALIZE_GETTYPESTRING(unsigned long long);
-#endif
-
-  
-
-#define SPECIALIZE_GETTYPESTRING_CONTAINER(TYPE)  template <typename D> inline std::string getTypeString(const TYPE<D>& x) {return (std::string(# TYPE) + "<" +  getTypeString(D()) +"> "); }
-
-  
-  SPECIALIZE_GETTYPESTRING_CONTAINER(matricks::Vector);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::vector);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::complex)
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::valarray);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::initializer_list);
-  SPECIALIZE_GETTYPESTRING_CONTAINER(std::list);
-
-  ////////////////////////////////////////////////////////////////////////////
-
 
 
   template <typename D> 
@@ -548,7 +497,35 @@ namespace display {
     return stream.str();
   }
 
-  
+
+#define SPECIALIZE_getTypeName_CONTAINER(TYPE)				\
+  template <typename D>							\
+    inline std::string getTypeName(const TYPE<D>& var) {		\
+    Style style = createStyle(CYAN);					\
+    std::string s =  style.apply(#TYPE);				\
+    D d;								\
+    s = s+"<"+getTypeName(d)+">";					\
+    return s;								\
+  }
+
+  SPECIALIZE_getTypeName_CONTAINER(std::vector);
+  SPECIALIZE_getTypeName_CONTAINER(std::valarray);
+  SPECIALIZE_getTypeName_CONTAINER(std::list);
+  SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
+  SPECIALIZE_getTypeName_CONTAINER(std::queue);
+
+#define SPECIALIZE_getTypeName_CONTAINER2(TYPE)				\
+  template <typename D1, typename D2>						\
+    inline std::string getTypeName(const TYPE<D1,D2>& var) {		\
+    Style style = createStyle(CYAN);					\
+    std::string s =  style.apply(#TYPE);				\
+    D1 d1;								\
+    D2 d2;								\
+    s = s+"<"+getTypeName(d1)+","+getTypeName(d2)+">";					\
+    return s;								\
+  }
+  SPECIALIZE_getTypeName_CONTAINER2(std::map);
+
   
   //---------------------------------------------------------------------------------
   //       specialize printObj
@@ -639,6 +616,83 @@ namespace display {
   template <size_t N>
     inline void printObj(const char (&a)[N]) {
     std::cout << a;
+  }
+
+
+  // std::vector
+  template <typename D>							
+    inline void printObj(const std::vector<D>& var) {
+    std::cout << "{";
+    for (size_t ii = 0; ii < var.size(); ii++) {
+      if (ii>0)  std::cout << ", ";
+      printObj(var[ii]);
+    }
+    std::cout << "}";
+  }
+
+  // std::valarray
+  template <typename D>							
+    inline void printObj(const std::valarray<D>& var) {
+    std::cout << "{";
+    for (size_t ii = 0; ii < var.size(); ii++) {
+      if (ii>0)  std::cout << ", ";
+      printObj(var[ii]);
+    }
+    std::cout << "}";
+  }
+
+
+  // std::list
+  template <typename D>							
+    inline void printObj(const std::list<D>& var) {
+    std::cout << "{";
+    size_t ii = 0;
+    for(typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
+      if (ii++>0)  std::cout << ", ";
+      printObj(*it);
+    }
+    std::cout << "}";
+  }
+
+    // std::initializer_list
+  template <typename D>							
+    inline void printObj(const std::initializer_list<D>& var) {
+    std::cout << "{";
+    size_t ii = 0;
+    for(typename std::initializer_list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
+      if (ii++>0)  std::cout << ", ";
+      printObj(*it);
+    }
+    std::cout << "}";
+  }
+
+
+    // std::queue
+  template <typename D>							
+    inline void printObj(const std::queue<D>& var) {
+    // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
+    std::queue<D> myq = var;
+      
+    std::cout << "{";
+    const size_t N = myq.size();
+    for (size_t ii = 0; ii < N; ii++) {
+      if (ii>0)  std::cout << ", ";
+      D val = myq.front();
+      myq.pop();
+      printObj(val);
+    }
+    std::cout << "}";
+  }
+
+    
+  // std::map
+  template <typename D1, typename D2>					
+    inline void printObj(const std::map<D1,D2>& mymap) {
+    std::cout << "{" << std::endl;
+    for (typename std::map<D1,D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++ ) {
+      std::cout <<" "<< it->first << ":" << it->second << std::endl;
+    }
+    std::cout << "}";
   }
 
   

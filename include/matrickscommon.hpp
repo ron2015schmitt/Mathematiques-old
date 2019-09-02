@@ -390,7 +390,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-
+  // change this to use vectors and matrices instead
   class AnyIF
   {
   };
@@ -402,8 +402,6 @@ namespace matricks {
     MyType& variable; 
     explicit Any(MyType& var) : variable(var) {
       using namespace std;
-      printf("function Any::Any(const MyType& var): MyType = %s, var = ",display::getTypeString(var).c_str());
-      cout << var << endl;
     }
   };
 

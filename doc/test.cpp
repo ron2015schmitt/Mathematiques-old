@@ -139,6 +139,39 @@ int main()
 
   int ints[] = {-1,2,32};
   tdisp(ints);
+
+  std::vector<double> vec(3);
+  vec[0]=1.1;
+  vec[1]=2.2;
+  vec[2]=3.3;
+  tdisp(vec);
+
+  std::map<int,std::string> mymap;
+  mymap[1] = "hello";
+  mymap[66] = "ron";
+  tdisp(mymap);
+
+  std::valarray<double> val(3);
+  val[0]=9.1;
+  val[1]=9.2;
+  val[2]=9.3;
+  tdisp(val);
+
+  std::list<double> lis;
+  lis.push_back(33.3);
+  lis.push_back(-5.5);
+  tdisp(lis);
+
+  std::initializer_list<double> l0;
+  l0 = {1,2,3,4.4};
+  tdisp(l0);
+
+  std::queue<double> q;
+  q.push(33.);
+  q.push(-5.5);
+  tdisp(q);
+  tdisp(q);
+
   
   return 0;
 }

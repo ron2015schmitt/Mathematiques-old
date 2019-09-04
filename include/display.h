@@ -449,10 +449,7 @@ namespace display {
 
   template <typename T>
   inline std::string getTypeName(const T& var) {
-    std::ostringstream stream;
-    Style style = createStyle(GREEN);
-    stream << style.apply(var.classname());
-    return stream.str();
+    return var.classname();
   }
 
 #define SPECIALIZE_getTypeName(TYPE) \
@@ -506,7 +503,6 @@ namespace display {
   }
 
 
-  SPECIALIZE_getTypeName_CONTAINER(matricks::Vector);
 
   SPECIALIZE_getTypeName_CONTAINER(std::vector);
   SPECIALIZE_getTypeName_CONTAINER(std::valarray);
@@ -709,26 +705,6 @@ namespace display {
     std::cout << "}";
   }
 
-
-  // matricks::Vector
-  template <typename D>							
-    inline void printObj(const matricks::Vector<D>& var) {
-    Style& style = FormatDataVector::style_for_punctuation;
-    std::cout << style.apply(FormatDataVector::string_opening);
-    const matricks::index_type N = FormatDataVector::max_elements_per_line;
-    matricks::index_type k = 0;
-    for (matricks::index_type ii = 0; ii < var.size(); ii++) {
-      if (ii>0)  {
-	std::cout << style.apply(FormatDataVector::string_delimeter);
-      }
-      if (k++ > N)  {
-	std::cout << style.apply(FormatDataVector::string_endofline);
-	k = 0;
-      }
-      printObj(var[ii]);
-    }
-    std::cout << style.apply(FormatDataVector::string_closing);
-  }
 
   
   //---------------------------------------------------------------------------------

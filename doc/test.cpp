@@ -172,7 +172,9 @@ int main()
   tdisp(q);
   tdisp(q);
 
-  Vector<double> v( {1.1,2.2,3.3,4.4} );
+  Vector<double> v( range<double>(0,11));
+  tdisp(v);
+  FormatDataVector::max_elements_per_line = 6;
   tdisp(v);
 
   tdisp(exp(sin(3*v+1)));

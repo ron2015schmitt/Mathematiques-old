@@ -812,13 +812,14 @@ namespace matricks {
     }
 
     static std::string classname(void)  {
-      return "Vector";
+      using namespace display;
+      Style style = FormatDataVector::style_for_type_name;		
+      std::string s =  style.apply("Vector");				
+      D d;								
+      s = s+"<"+getTypeName(d)+">";					
+      return s;
     }
 
-    static std::string fullclassname(void) {
-      Vector<D> dummy;
-      return getTypeString(dummy);
-    }
 
     std::string debugtxt(void) const {
 #if MATRICKS_DEBUG>0
@@ -872,35 +873,23 @@ namespace matricks {
     // stream << operator
 
     friend std::ostream& operator<<(std::ostream &stream, const Vector<D>& v) {
+      using namespace display;
 
-      const size_type N = v.size();
-      const size_type w = v.width();
-
-      switch (v.textformat()) {
-      case text_braces:
-	stream <<"{";
-	for(size_type i=0; i < N; i++) {
-	  if ( (i>0) && ((i%v.perline()) == 0 ) )
-	    stream <<std::endl << " ";
-	  stream <<std::setw(w)<< v[i];
-	  if (i< (N-1))
-	    stream << ",";
+      Style& style = FormatDataVector::style_for_punctuation;
+      stream << style.apply(FormatDataVector::string_opening);
+      const matricks::index_type N = FormatDataVector::max_elements_per_line;
+      matricks::index_type k = 1;
+      for (matricks::index_type ii = 0; ii < v.size(); ii++, k++) {
+	if (ii>0)  {
+	  stream << style.apply(FormatDataVector::string_delimeter);
 	}
-	stream << "}";
-	break;
-      case text_nobraces:
-	std::string sep;
-	if (v.width()==0)
-	  sep = " ";
-	else
-	  sep="";
-	for(size_type i=0; i < N; i++) {
-	  if ( (i>0) && ((i%v.perline()) == 0 ) )
-	    stream <<std::endl;
-	  stream <<std::setw(w)<< v[i] << sep;
+	printObj(v[ii]);
+	if (k >= N)  {
+	  stream << style.apply(FormatDataVector::string_endofline);
+	  k = 1;
 	}
-	break;
       }
+      stream << style.apply(FormatDataVector::string_closing);
       return stream;
     }
 

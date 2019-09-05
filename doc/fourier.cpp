@@ -28,32 +28,12 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Taylor series and plotting results in Mathematica");
+  mdtitle0("Calculating a Fourier series and plotting the results in Matlab");
   matricks_preamble();
 
   header2("Fourier Series for the Claussen Function");
   text("The (Claussen function)[http://mathworld.wolfram.com/ClausenFunction.html] or order 1 is defined by");
 
-  {
-    cr();
-    cr();
-    example(Nex++,"Element-wise `Vector` math");
-    codestart("C++");
-    codemulti( Vector<double> v1(4) );
-    codemultiNoteC11Array(v1 = CARRAY({10,20,30,40}));
-    codemulti( Vector<double> v2(4) );
-    codemultiNoteC11Array(v2 = CARRAY({1,2,3,4}));
-    codeend();
-    cr();
-
-   
-    resultstart2("");
-    resultmulti(v1 + v2);
-    resultmulti(v1 - v2);
-    resultmulti(v1 * v2);
-    resultmulti(v1 / v2);
-    resultend();
-  }
 
   // CLuasen function
 
@@ -72,5 +52,8 @@ int main()
   disp(Bn);
   disp(y2);
 
+  matricks_toc();
+
+  
   return 0;
 }

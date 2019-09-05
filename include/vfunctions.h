@@ -2013,6 +2013,17 @@ namespace matricks {
    * N = int
    ************************************************************
    */
+
+
+
+  // maclaurin(vector coefs, vector vals, max N)
+
+  template <class D, class A, class X> 
+    inline VSeriesOp<D, VorE<D,A>, VorE<D,X> > 
+    maclaurin(const VorE<D,A>& a, const VorE<D,X>& x, const int N, const D x0)
+    {
+      return  VSeriesOp<D, VorE<D,A>, VorE<D,X> >(a,x,N,x0);
+    }
   
   // taylor(vector coefs, vector vals, max N)
 

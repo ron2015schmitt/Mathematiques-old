@@ -1,9 +1,10 @@
 
-# Calculating a Taylor series and plotting the results in Mathematica in mātricks
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r33).
+# Calculating a Taylor series and plotting the results in Mathematica
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r36).
 
-## Taylor Series for the Bessel Function J<sub>0</sub>(x)
-The first 20 (n=0,1,...19) coefficients for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(x) are:
+## Taylor Series for the Bessel Function J<sub>0</sub>(r)
+We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). 
+The first 20 (n=0,1,...19) coefficients for  J<sub>0</sub>(r), are:
 
 ```C++
 J0Coeffs = {
@@ -13,17 +14,16 @@ J0Coeffs = {
      0.000000e+00,  9.385970e-15,  0.000000e+00, -2.896900e-17,  0.000000e+00
 }; 
 ```
-These were determined using the `Mathematica` command
+These were determined using the following `Mathematica` command
 
 ```Mathematica
-N[Table[SeriesCoefficient[BesselJ[0,x],{x,0,n}],{n,0,19}]]
+N[Table[SeriesCoefficient[BesselJ[0,r],{r,0,n}],{n,0,19}]]
 
 ```
 
 
 Set up the output format so that we can copy and paste into Mathematica
 ```C++
-;
 using namespace display;
 FormatDataVector::string_opening = "{\n    ";
 FormatDataVector::string_delimeter = ", ";
@@ -110,6 +110,115 @@ p2=Plot[BesselJ[0,r],{r,0,10}];
 Show[p1,p2]
 ```
 This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].
-![Taylor Series for Jo(x)](BesselTaylorSeries.png)
+![Taylor Series for Jo(r)](BesselTaylorSeries.png)
+## Maclaurin Series for the Bessel Function J<sub>0</sub>(x)
+To acheive better accuracy, we can calculate the [Maclaurin Series](http://mathworld.wolfram.com/MaclaurinSeries.html) at the point `r=5`, which is the center of our interval of interest.
+The first 20 (n=0,1,...19) coefficients for the Maclaurin Series (`r<sub>0</sub>=5`) for the function J<sub>0</sub>(r), are:
+
+```C++
+J0Coeffs = {
+    -1.775970 10^-01,  3.275790 10^-01,  5.604050 10^-02, -5.614870 10^-02, -1.707390 10^-03, 
+     2.520210 10^-03,  1.120220 10^-05, -5.379500 10^-05,  2.133300 10^-07,  6.781100 10^-07, 
+    -4.885720 10^-09, -5.664200 10^-09,  4.800960 10^-11,  3.370940 10^-11, -2.997110 10^-13, 
+    -1.502980 10^-13,  1.338560 10^-15,  5.209790 10^-16, -4.547440 10^-18, -1.444490 10^-18
+}; 
+```
+These were determined using the following `Mathematica` command
+
+```Mathematica
+N[Table[SeriesCoefficient[BesselJ[0,r],{r,50,n}],{n,0,19}]]
+
+```
+
+
+Set up the output format so that we can copy and paste into Mathematica
+```C++
+using namespace display;
+FormatDataVector::string_opening = "{\n    ";
+FormatDataVector::string_delimeter = ", ";
+FormatDataVector::max_elements_per_line = 5;
+FormatDataVector::string_endofline = "\n    ";
+FormatDataVector::string_closing = "\n}";
+setFormatString<double>("% 10.6e");
+FormatData<double>::tens = true;
+```
+
+Define the Vector of coefficients: 
+
+```C++
+Vector<double> J0Coeffs = Vector<double>( {-0.177597,0.327579,0.0560405,-0.0561487,-0.00170739,0.00252021,0.0000112022,-0.000053795,2.1333e-7,6.7811e-7,-4.88572e-9,-5.6642e-9,4.80096e-11,3.37094e-11,-2.99711e-13,-1.50298e-13,1.33856e-15,5.20979e-16,-4.54744e-18,-1.44449e-18});
+```
+
+Define the coordinate vector `r` as 101 points over the interval [0,10]: 
+
+```C++
+Vector<double> r = linspace<double>(0,10,101);
+```
+
+Calculate the Maclaurin series and store the results in vector `y`: 
+
+```C++
+Vector<double> y = maclaurin(J0Coeffs, r, 19, 5.);
+```
+
+The results `r` and `y` are:
+
+```Mathematica
+r = {
+     0.000000 10^+00,  1.000000 10^-01,  2.000000 10^-01,  3.000000 10^-01,  4.000000 10^-01, 
+     5.000000 10^-01,  6.000000 10^-01,  7.000000 10^-01,  8.000000 10^-01,  9.000000 10^-01, 
+     1.000000 10^+00,  1.100000 10^+00,  1.200000 10^+00,  1.300000 10^+00,  1.400000 10^+00, 
+     1.500000 10^+00,  1.600000 10^+00,  1.700000 10^+00,  1.800000 10^+00,  1.900000 10^+00, 
+     2.000000 10^+00,  2.100000 10^+00,  2.200000 10^+00,  2.300000 10^+00,  2.400000 10^+00, 
+     2.500000 10^+00,  2.600000 10^+00,  2.700000 10^+00,  2.800000 10^+00,  2.900000 10^+00, 
+     3.000000 10^+00,  3.100000 10^+00,  3.200000 10^+00,  3.300000 10^+00,  3.400000 10^+00, 
+     3.500000 10^+00,  3.600000 10^+00,  3.700000 10^+00,  3.800000 10^+00,  3.900000 10^+00, 
+     4.000000 10^+00,  4.100000 10^+00,  4.200000 10^+00,  4.300000 10^+00,  4.400000 10^+00, 
+     4.500000 10^+00,  4.600000 10^+00,  4.700000 10^+00,  4.800000 10^+00,  4.900000 10^+00, 
+     5.000000 10^+00,  5.100000 10^+00,  5.200000 10^+00,  5.300000 10^+00,  5.400000 10^+00, 
+     5.500000 10^+00,  5.600000 10^+00,  5.700000 10^+00,  5.800000 10^+00,  5.900000 10^+00, 
+     6.000000 10^+00,  6.100000 10^+00,  6.200000 10^+00,  6.300000 10^+00,  6.400000 10^+00, 
+     6.500000 10^+00,  6.600000 10^+00,  6.700000 10^+00,  6.800000 10^+00,  6.900000 10^+00, 
+     7.000000 10^+00,  7.100000 10^+00,  7.200000 10^+00,  7.300000 10^+00,  7.400000 10^+00, 
+     7.500000 10^+00,  7.600000 10^+00,  7.700000 10^+00,  7.800000 10^+00,  7.900000 10^+00, 
+     8.000000 10^+00,  8.100000 10^+00,  8.200000 10^+00,  8.300000 10^+00,  8.400000 10^+00, 
+     8.500000 10^+00,  8.600000 10^+00,  8.700000 10^+00,  8.800000 10^+00,  8.900000 10^+00, 
+     9.000000 10^+00,  9.100000 10^+00,  9.200000 10^+00,  9.300000 10^+00,  9.400000 10^+00, 
+     9.500000 10^+00,  9.600000 10^+00,  9.700000 10^+00,  9.800000 10^+00,  9.900000 10^+00, 
+     1.000000 10^+01
+}; 
+y = {
+    -1.775970 10^-01, -1.443350 10^-01, -1.102907 10^-01, -7.580338 10^-02, -4.121038 10^-02, 
+    -6.844161 10^-03,  2.697058 10^-02,  5.991970 10^-02,  9.170224 10^-02,  1.220330 10^-01, 
+     1.506449 10^-01,  1.772911 10^-01,  2.017468 10^-01,  2.238116 10^-01,  2.433102 10^-01, 
+     2.600942 10^-01,  2.740429 10^-01,  2.850643 10^-01,  2.930951 10^-01,  2.981015 10^-01, 
+     3.000787 10^-01,  2.990508 10^-01,  2.950701 10^-01,  2.882163 10^-01,  2.785955 10^-01, 
+     2.663389 10^-01,  2.516010 10^-01,  2.345582 10^-01,  2.154068 10^-01,  1.943607 10^-01, 
+     1.716496 10^-01,  1.475161 10^-01,  1.222138 10^-01,  9.600444 10^-02,  6.915542 10^-02, 
+     4.193722 10^-02,  1.462074 10^-02, -1.252523 10^-02, -3.923657 10^-02, -6.525631 10^-02, 
+    -9.033701 10^-02, -1.142430 10^-01, -1.367526 10^-01, -1.576598 10^-01, -1.767768 10^-01, 
+    -1.939346 10^-01, -2.089853 10^-01, -2.218029 10^-01, -2.322845 10^-01, -2.403509 10^-01, 
+    -2.459472 10^-01, -2.490432 10^-01, -2.496335 10^-01, -2.477370 10^-01, -2.433970 10^-01, 
+    -2.366803 10^-01, -2.276766 10^-01, -2.164972 10^-01, -2.032741 10^-01, -1.881588 10^-01, 
+    -1.713202 10^-01, -1.529438 10^-01, -1.332297 10^-01, -1.123908 10^-01, -9.065152 10^-02, 
+    -6.824573 10^-02, -4.541558 10^-02, -2.241000 10^-02,  5.163969 10^-04,  2.310410 10^-02, 
+     4.508909 10^-02,  6.620265 10^-02,  8.617063 10^-02,  1.047118 10^-01,  1.215352 10^-01, 
+     1.363364 10^-01,  1.487923 10^-01,  1.585539 10^-01,  1.652375 10^-01,  1.684128 10^-01, 
+     1.675885 10^-01,  1.621940 10^-01,  1.515570 10^-01,  1.348758 10^-01,  1.111862 10^-01, 
+     7.932023 10^-02,  3.785766 10^-02, -1.493340 10^-02, -8.116724 10^-02, -1.634251 10^-01, 
+    -2.648563 10^-01, -3.892981 10^-01, -5.414186 10^-01, -7.268850 10^-01, -9.525640 10^-01, 
+    -1.226756 10^+00, -1.559475 10^+00, -1.962771 10^+00, -2.451115 10^+00, -3.041846 10^+00, 
+    -3.755697 10^+00
+}; 
+```
+Cut and paste the above data for r and y into Mathematica as well as the following commands
+
+```Mathematica
+p1=ListPlot[Partition[Riffle[r,y],2],PlotStyle->Red];
+p2=Plot[BesselJ[0,r],{r,0,10}];
+Show[p1,p2]
+```
+This yields the following plot comparing the Maclaurin series [red dots] to the exact function [solid blue].
+![Maclaurin Series for Jo(x)](BesselMaclaurinSeries.png)
 
 [Table of Contents](README.md)

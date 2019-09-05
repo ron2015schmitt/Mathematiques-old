@@ -615,6 +615,7 @@ namespace matricks {
     const A& a_;
     const X& x_;
     const int N_;
+    const D& x0_;
     
   public:
     using VectorofPtrs::getAddresses;
@@ -622,15 +623,21 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
+  VSeriesOp(const A& a, const X& x, const int N, const D& x0)
+    : a_(a), x_(x), N_(N), x0_(x0)
+    { 
+      addAddresses(a_.getAddresses());
+      addAddresses(x_.getAddresses());
+    }
   VSeriesOp(const A& a, const X& x, const int N)
-    : a_(a), x_(x), N_(N)
+    : a_(a), x_(x), N_(N), x0_(0)
     { 
       addAddresses(a_.getAddresses());
       addAddresses(x_.getAddresses());
     }
 
     inline const D operator[](const index_type i) const {
-      const D x = x_[i];
+      const D x = x_[i] - x0_;
       D sum = 0;
       // TODO: check a_.size >= N
       D xpow = 1;

@@ -142,25 +142,25 @@ int main()
   std::cout << std::endl<< "construct a matrix via an expression,  Matrix<double> B4 = ~A1+1;" << std::endl;
   Matrix<double> B4 = ~A1+1;
   B4.name("B4");
-  dispcr(B4);
+  disp(B4);
 
 
   Vector<double> v1(2,"v1");
   v1 = sumbyrow(B4);
-  dispcr(v1);
+  disp(v1);
   Vector<double> v2(3,"v2");
   v2 = sumbycol(A5);
-  dispcr(v2);
+  disp(v2);
 
 
   v1 = minbyrow(A5);
-  dispcr(v1);
+  disp(v1);
   v2 = minbycol(A5);
-  dispcr(v2);
+  disp(v2);
   v1 = maxbyrow(A5);
-  dispcr(v1);
+  disp(v1);
   v2 = maxbycol(A5);
-  dispcr(v2);
+  disp(v2);
 
   return 0;
 }

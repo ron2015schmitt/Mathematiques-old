@@ -24,9 +24,9 @@ int main()
   Vector<double> x(5);
   x=linspace<double>(100,500,5);
   print("\t");
-  dispcr(x.name());
+  disp(x.name());
   print("\t");
-  dispcr(x.objectID());
+  disp(x.objectID());
 
 
   printcrcr("The run-time name is used in all matricks errors and warnings.");
@@ -41,30 +41,30 @@ int main()
   Vector<double> y(3,"y");
   "{31,32,33}">>y;
   print("\t");
-  dispcr(y.name());
+  disp(y.name());
   print("\t");
-  dispcr(y.objectID());
+  disp(y.objectID());
 
 
   printcrcr("You can also change the name at any time");
   printcrcr("Here is an example");
   y.name("joe");
   print("\t");
-  dispcr(y.name());
+  disp(y.name());
   print("\t");
-  dispcr(y.objectID());
+  disp(y.objectID());
 
   printcrcr("You can query a vector's size");
-  dispcr(x.size());
+  disp(x.size());
 
   printcrcr("You can display the classname of any matricks object (container name only)");
-  dispcr(x.classname());
+  disp(x.classname());
 
   printcrcr("You can display the full classname of any matricks object");
-  dispcr(x.fullclassname());
+  disp(x.fullclassname());
 
   printcrcr("You can display the datatype contained in any matricks object");
-  dispcr(x.datatype());
+  disp(x.datatype());
 
   printcrcr("You can also display a summary of information about any matricks object");
   matricksinfo(x);

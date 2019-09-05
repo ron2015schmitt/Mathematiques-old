@@ -79,7 +79,7 @@ int main()
     example(Nex++,"Access via a C++11 initializer_list");
     codestart("C++");
     codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
-    dispcr(v);
+    disp(v);
     codeend();
     cr();
     resultstart();

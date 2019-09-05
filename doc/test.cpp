@@ -28,7 +28,7 @@ int main()
   int Nex = 1;
 
   
-  dispcr(Terminal::getSupportsColor());
+  disp(Terminal::getSupportsColor());
   print_matricks_info();
   print1("DEBUG level 1 enabled \n");
   print2("DEBUG level 2 enabled \n");
@@ -41,63 +41,63 @@ int main()
   
   
   Style bold(BOLD,"bold");
-  dispcr(bold);
-  dispcr(bold.apply("hello"));
+  disp(bold);
+  disp(bold.apply("hello"));
 
   Style dim(DIM,"dim");  // doesn't work
-  dispcr(dim);
+  disp(dim);
 
   Style underline(UNDERLINE,"underline");
-  dispcr(underline);
+  disp(underline);
 
   Style crossedout(CROSSEDOUT,"crossedout");
-  dispcr(crossedout);
+  disp(crossedout);
 
   Style font2(FONT2,"font2"); // doesn;t work
-  dispcr(font2);
+  disp(font2);
 
   Style framed(FRAMED,"framed"); // doesn;t work
-  dispcr(framed);
+  disp(framed);
 
   Style encircled(ENCIRCLED,"encircled"); // doesn;t work
-  dispcr(encircled);
+  disp(encircled);
 
   Style overline(OVERLINE,"overline");
-  dispcr(overline);
+  disp(overline);
 
   Style gray1(GRAY1,"gray1");
-  dispcr(gray1);
+  disp(gray1);
 
   Style blue(BLUE,"blue");
-  dispcr(blue);
+  disp(blue);
   Style blue1(BLUE1,"blue1");
-  dispcr(blue1);
+  disp(blue1);
   Style blue2(BLUE2,"blue2");
-  dispcr(blue2);
+  disp(blue2);
   Style blue3(BLUE3,"blue3");
-  dispcr(blue3);
+  disp(blue3);
   Style cyan(CYAN,"cyan");
-  dispcr(cyan);
+  disp(cyan);
 
   Style magenta(MAGENTA,"magenta");
-  dispcr(magenta);
+  disp(magenta);
   Style magenta1(MAGENTA1,"magenta1");
-  dispcr(magenta1);
+  disp(magenta1);
 
   StyledString ss(bold+magenta1, "Hello");
-  dispcr(ss);
+  disp(ss);
 
 
 
   double xx = 5.5;
   const double xxc = 23.3;
 
-  dispcr(getTypeName(xx));
-  dispcr(getTypeName(xxc));
+  disp(getTypeName(xx));
+  disp(getTypeName(xxc));
 
 
   setFormatString<double>("%lf");
-  dispcr(xx);
+  disp(xx);
   setFormatString<double>("hello");
   setFormatString<double>("%y");
   setFormatString<double>("%s");

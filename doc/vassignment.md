@@ -1,6 +1,6 @@
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.13-r29).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.13-r30).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -11,7 +11,7 @@ v = 78.9;
 ```
 **The result is**
 ```C++
-  v:  {78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9}; 
+  v = {78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9}; 
 ```
 
 
@@ -26,7 +26,7 @@ v = (const double[]) {1,2,3,4};
 ```
 **The result is**
 ```C++
-  v:  {0, 0, 0, 0}; 
+  v = {0, 0, 0, 0}; 
 ```
 
 **EXAMPLE 3**: Assign from a C++11 list.
@@ -36,7 +36,7 @@ v = {1,2,3,4};
 ```
 **The result is**
 ```C++
-  v:  {1, 2, 3, 4}; 
+  v = {1, 2, 3, 4}; 
 ```
 
 **EXAMPLE 4**: Assign from another `Vector`.
@@ -51,8 +51,8 @@ v2[0] = 200;
 ```
 **The result is**
 ```C++
-  v1:  {100, 2, 3, 4}; 
-  v2:  {200, 2, 3, 4}; 
+  v1 = {100, 2, 3, 4}; 
+  v2 = {200, 2, 3, 4}; 
 ```
 
 **EXAMPLE 5**: Assign from a `Vector` expression.
@@ -63,8 +63,8 @@ v2 = 2*v1;
 ```
 **The result is**
 ```C++
-  v1:  {1, 2, 3, 4}; 
-  v2:  {2, 4, 6, 8}; 
+  v1 = {1, 2, 3, 4}; 
+  v2 = {2, 4, 6, 8}; 
 ```
 
 **EXAMPLE 6**: Assign from `std` containers.
@@ -84,10 +84,10 @@ v4 = mylist;
 ```
 **The result is**
 ```C++
-  v1:  {1, 2, 3, 4}; 
-  v2:  {10, 20, 30}; 
-  v3:  {100, 200}; 
-  v4:  {-1, -2}; 
+  v1 = {1, 2, 3, 4}; 
+  v2 = {10, 20, 30}; 
+  v3 = {100, 200}; 
+  v4 = {-1, -2}; 
 ```
 
 

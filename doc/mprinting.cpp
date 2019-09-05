@@ -29,19 +29,19 @@ int main()
 
   std::cout << std::endl;
   std::cout << "default matrix printing (braces, width=0)" << std::endl;
-  dispcrcr(A1);
+  dispcr(A1);
 
   std::cout << std::endl;
   std::cout << "matrix printing: no braces, width=0" << std::endl;
   A1.textformat(text_nobraces);
-  dispcrcr(A1);
+  dispcr(A1);
 
 
   std::cout << std::endl;
   std::cout << "matrix printing: braces, width=10 spaces" << std::endl;
   A1.textformat(text_braces);
   A1.width(10);
-  dispcrcr(A1);
+  dispcr(A1);
 
   std::cout << std::endl;
   std::cout << "matrix printing: no braces, width=5 spaces, precision=3 digits" << std::endl;
@@ -49,7 +49,7 @@ int main()
   A1.width(5);
   std::cout.setf(ios::showpoint);
   std::cout.precision(3);
-  dispcrcr(A1);
+  dispcr(A1);
 
 
   return 0;

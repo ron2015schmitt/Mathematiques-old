@@ -32,10 +32,10 @@ int main()
   // Vector<double> v1(5,"vec1");
   // Vector<double> v2("vec2");
 
-  // dispcr(v2);
+  // disp(v2);
 
   // "{1,2,3,4,5}" >> v1;
-  // dispcr(v1);
+  // disp(v1);
 
   // // save a vector to a file in default "braces" format
   // save(v1,"v1.temp");
@@ -45,11 +45,11 @@ int main()
   // // ** THE DATA IN The FILE
   // load(v2,"v1.temp");
 
-  // dispcr(v2);
+  // disp(v2);
 
 
   // "{1.1,1.2,1.3,1.4,1.5}" >> v1;
-  // dispcr(v1);
+  // disp(v1);
 
 
   // // save a vector to a file in default "no braces" format
@@ -58,11 +58,11 @@ int main()
 
   // // load a vector from a file in "no braces" format
   // v2.clear();
-  // dispcr(v2);
+  // disp(v2);
   // v2.textformat(text_nobraces);
   // load(v2,"v1b.temp");
 
-  // dispcr(v2);
+  // disp(v2);
 
 
   matricks_toc();

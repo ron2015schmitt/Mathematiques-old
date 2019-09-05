@@ -39,9 +39,9 @@ int main()
   const double T = 2*pi;
   const double omega = 1;
   Vector<double> y2 = fourier(An,Bn, t, An.size(), omega );
-  dispcr(An);
-  dispcr(Bn);
-  dispcr(y2);
+  disp(An);
+  disp(Bn);
+  disp(y2);
 
   return 0;
 }

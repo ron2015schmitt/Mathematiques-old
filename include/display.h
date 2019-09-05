@@ -959,10 +959,10 @@ namespace display {
   };  // class Display
 
 
-#define newdisp(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
+#define disp(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
 #define tdisp(...) display::Display::tmydispcr(__VA_ARGS__,#__VA_ARGS__)
 
-#define newcr()  display::Display::issuecr()
+#define cr()  display::Display::issuecr()
 
 
   // for how this works, refer to
@@ -985,6 +985,43 @@ namespace display {
   // The macro that the programmer uses 
 #define mdisp(...)   mdisp_X(,##__VA_ARGS__, disp_10(__VA_ARGS__), disp_9(__VA_ARGS__), disp_8(__VA_ARGS__), disp_7(__VA_ARGS__), disp_6(__VA_ARGS__), disp_5(__VA_ARGS__), disp_4(__VA_ARGS__), disp_3(__VA_ARGS__), disp_2(__VA_ARGS__), disp_1(__VA_ARGS__), disp_0()) 
 
+
+
+
+#if MATRICKS_DEBUG>=1
+#define mdisp1(...) mdisp(__VA_ARGS__)
+#define disp1(...) disp(__VA_ARGS__)
+#define tdisp1(...) tdisp(__VA_ARGS__)
+#else
+#define mdisp1(...) {}
+#define disp1(...) {}
+#define tdisp1(...) {}
+#endif
+
+#if MATRICKS_DEBUG>=2
+#define mdisp2(...) mdisp(__VA_ARGS__)
+#define disp2(...) disp(__VA_ARGS__)
+#define tdisp2(...) tdisp(__VA_ARGS__)
+#else
+#define mdisp2(...) {}
+#define disp2(...) {}
+#define tdisp2(...) {}
+#endif
+
+#if MATRICKS_DEBUG>=3
+#define mdisp3(...) mdisp(__VA_ARGS__)
+#define disp3(...) disp(__VA_ARGS__)
+#define tdisp3(...) tdisp(__VA_ARGS__)
+#else
+#define mdisp3(...) {}
+#define disp3(...) {}
+#define tdisp3(...) {}
+#endif
+
+
+
+
+  
   //****************************************************************************
   //                       print_matricks_info
   //****************************************************************************

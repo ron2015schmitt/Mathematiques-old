@@ -25,8 +25,8 @@ int main()
 
 
   "{{1,2,3},{4,5,6}}" >> M1;
-  dispcr(M1);
-  dispcr(M2);
+  disp(M1);
+  disp(M2);
 
   // save a matrix to a file in default "braces" format
   save(M1,"Matrix1.temp");
@@ -36,11 +36,11 @@ int main()
   // ** THE DATA IN The FILE
   load(M2,"Matrix1.temp");
 
-  dispcr(M2);
+  disp(M2);
 
 
     "{{0,12,-3},{3.14159265,5.1,6.122}}" >> M1;
-  dispcr(M1);
+  disp(M1);
 
 
   // save a matrix to a file in default "no braces" format
@@ -49,11 +49,11 @@ int main()
 
   // load a matrix from a file in "no braces" format
   M2.clear();
-  dispcr(M2);
+  disp(M2);
   M2.textformat(text_nobraces);
   load(M2,"Matrix2.temp");
 
-  dispcr(M2);
+  disp(M2);
 
 
 

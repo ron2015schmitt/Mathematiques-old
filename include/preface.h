@@ -78,6 +78,9 @@ namespace matricks {
   template <class D, class A, class B> class VJoinExpr;
   template <class D> class VReconObj;
   template <class D, class A, class X> class VSeriesOp;
+
+
+  template <class D> class Matrix;
   
 };
 

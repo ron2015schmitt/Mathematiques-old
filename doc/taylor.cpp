@@ -32,7 +32,7 @@ int main()
 
   Vector<double> y = taylor(Bessel0Coeffs, r, 25);
 
-  dispcr(y);
+  disp(y);
 
 
   return 0;

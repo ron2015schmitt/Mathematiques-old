@@ -36,8 +36,8 @@ int main()
   cr();
   example(Nex++, "Increasing sequences using `range`");
   codestart("C++");
-  dispcr(range<int>(1,10));
-  dispcr(range<double>(-3,3));
+  disp(range<int>(1,10));
+  disp(range<double>(-3,3));
   codeend();
 
   header3("Decreasing Sequences");
@@ -45,7 +45,7 @@ int main()
   cr();
   example(Nex++, "Decreasing sequence using `range`");
   codestart("C++");
-  dispcr(range<int>(10,0));
+  disp(range<int>(10,0));
   codeend();
 
 
@@ -55,8 +55,8 @@ int main()
   cr();
   example(Nex++, "Floating point sequences using `range`");
   codestart("C++");
-  dispcr(range<double>(1.5,5.5));
-  dispcr(range<double>(5.5,1.5));
+  disp(range<double>(1.5,5.5));
+  disp(range<double>(5.5,1.5));
   codeend();
 
   header3("Arbitrary stride");
@@ -67,8 +67,8 @@ int main()
   cr();
   example(Nex++, "Seqeunces of different strides using `range`");
   codestart("C++");
-  dispcr(range<int>(2,10,2));
-  dispcr(range<double>(0,10,0.5));
+  disp(range<int>(2,10,2));
+  disp(range<double>(0,10,0.5));
   codeend();
 
   header3("The end point isn't always included");
@@ -82,8 +82,8 @@ int main()
   cr();
   example(Nex++, "End point is not included in certain cases");
   codestart("C++");
-  dispcr(range<int>(0,5,2));
-  dispcr(range<double>(1,3.5));
+  disp(range<int>(0,5,2));
+  disp(range<double>(1,3.5));
   codeend();
 
 

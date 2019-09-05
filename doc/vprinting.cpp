@@ -101,15 +101,15 @@ int main()
   
 
   std::cout << std::endl;
-  std::cout << "Printing variables using the \"disp\", \"dispcr\", and \"dispcrcr\" macros" << std::endl;
+  std::cout << "Printing variables using the \"disp\", \"disp\", and \"dispcr\" macros" << std::endl;
   disp(N);
-  dispcr(4*N);
-  dispcr(s);
+  disp(4*N);
+  disp(s);
+  disp(v1);
+  disp(2.0*v1+1.0);
+  disp(d1);
   dispcr(v1);
-  dispcr(2.0*v1+1.0);
-  dispcr(d1);
-  dispcrcr(v1);
-  dispcr(a1);
+  disp(a1);
 
 
 

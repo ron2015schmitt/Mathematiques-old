@@ -59,12 +59,12 @@ namespace matricks {
 
     inline index_type index(index_type i) const{
       index_type ind = ii_[i];
-      //dispcr(ind);
-      //dispcr(sizetotal());
+      //disp(ind);
+      //disp(sizetotal());
       if (ind < 0) {
 	ind = sizetotal() + ind;
       }
-      //dispcr(ind);
+      //disp(ind);
       return ind;
     }
 

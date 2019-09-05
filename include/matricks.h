@@ -43,6 +43,7 @@
 #include "matricks_version.h"
 #include "preface.h"
 #include "display.h"
+#include "debug.h"
 
 #include "matrickscommon.hpp"
 
@@ -50,7 +51,6 @@
 
 #include "verror.hpp"
 #include "merror.hpp"
-#include "print.hpp"
 
 #include "functors.h"
 

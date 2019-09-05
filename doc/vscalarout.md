@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r29).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r30).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -15,11 +15,11 @@ Vector<double> v2({1,-1,1,-1}); // C++11 list
 
 **Some expressions with results**
 ```C++
-  (v1|v1):  30; 
-  (v2|v2):  4; 
-  (v1|v2):  -2; 
-  (v2|v1):  -2; 
-  (v1|(2*v2+1)):  6; 
+  (v1|v1) = 30; 
+  (v2|v2) = 4; 
+  (v1|v2) = -2; 
+  (v2|v1) = -2; 
+  (v1|(2*v2+1)) = 6; 
 ```
 
 
@@ -40,13 +40,13 @@ v2.roundzero(tol);
 
 **Some expressions with results**
 ```C++
-  v1:  {1 + i*0, 2 + i*0}; 
-  v2:  {-1 + i*2, -2 + i*3}; 
-  (~v1|v1):  (5,0); 
-  (~v2|v2):  (18,0); 
-  (~v1|v2):  (-5,8); 
-  (~v2|v1):  (-5,-8); 
-  (~v1|(2*v2+1)):  (-7,16); 
+  v1 = {1 + i*0, 2 + i*0}; 
+  v2 = {-1 + i*2, -2 + i*3}; 
+  (~v1|v1) = 5 + i*0; 
+  (~v2|v2) = 18 + i*0; 
+  (~v1|v2) = -5 + i*8; 
+  (~v2|v1) = -5 + i*-8; 
+  (~v1|(2*v2+1)) = -7 + i*16; 
 ```
 
 
@@ -58,8 +58,8 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  sum(v):  10; 
-  sum(2*exp(v)+1):  173.582; 
+  sum(v) = 10; 
+  sum(2*exp(v)+1) = 173.582; 
 ```
 
 
@@ -71,8 +71,8 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  sum(v):  10; 
-  sum(2*exp(v)+1):  173.582; 
+  sum(v) = 10; 
+  sum(2*exp(v)+1) = 173.582; 
 ```
 
 
@@ -85,10 +85,10 @@ v = exp(linspace<double>(-1,1,13));
 
 **Some expressions with results** precise value to 16 digits is 2.35040238729 (via Mathematica)
 ```C++
-  integrate(v,-1.,1.):  2.35584; 
-  integrate(v,-1.,1.,2):  2.35041; 
-  integrate(v,-1.,1.,3):  2.35042; 
-  integrate(v,-1.,1.,4):  2.3504; 
+  integrate(v,-1.,1.) = 2.35584; 
+  integrate(v,-1.,1.,2) = 2.35041; 
+  integrate(v,-1.,1.,3) = 2.35042; 
+  integrate(v,-1.,1.,4) = 2.3504; 
 ```
 
 
@@ -100,8 +100,8 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  prod(v):  24; 
-  prod(2*exp(v)+1):  460753; 
+  prod(v) = 24; 
+  prod(2*exp(v)+1) = 460753; 
 ```
 
 
@@ -113,10 +113,10 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  v:  {1, 20, -1, 0}; 
-  min(v):  -1; 
-  2*exp(v)+1:  {6.43656, 9.7033e+08, 1.73576, 3}; 
-  min(2*exp(v)+1):  1.73576; 
+  v = {1, 20, -1, 0}; 
+  min(v) = -1; 
+  2*exp(v)+1 = {6.43656, 9.7033e+08, 1.73576, 3}; 
+  min(2*exp(v)+1) = 1.73576; 
 ```
 
 
@@ -128,10 +128,10 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  v:  {1, 20, -1, 0}; 
-  max(v):  20; 
-  2*exp(v)+1:  {6.43656, 9.7033e+08, 1.73576, 3}; 
-  max(2*exp(v)+1):  9.7033e+08; 
+  v = {1, 20, -1, 0}; 
+  max(v) = 20; 
+  2*exp(v)+1 = {6.43656, 9.7033e+08, 1.73576, 3}; 
+  max(2*exp(v)+1) = 9.7033e+08; 
 ```
 
 

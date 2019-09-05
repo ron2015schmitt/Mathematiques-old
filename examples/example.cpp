@@ -15,21 +15,21 @@ int main()
   Vector<double> v2;
   v2 = 10*sin(pi/2*v1) + 10;
 
-  dispcr(v1);
-  dispcr(v2);
-  dispcr(v1+v2);
+  disp(v1);
+  disp(v2);
+  disp(v1+v2);
 
   // dot product
-  dispcr(v1|v2);
+  disp(v1|v2);
 
   const double N = double(v2.size());
   // mean
   double mu2 = sum(v2)/N;
-  dispcr(mu2);
+  disp(mu2);
 
   // std deviation
   double sigma2 = norm(v2-mu2)/sqrt(N-1);
-  dispcr(sigma2);
+  disp(sigma2);
   
   return 0;
 }

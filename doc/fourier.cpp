@@ -41,14 +41,14 @@ int main()
   {
     cr();
     cr();
-    text("Set up the output format so that we can copy and paste into Mathematica");
+    text("Set up the output format so that we can copy and paste into Matlab");
     codestart("C++");
     codemulti( using namespace display  );
-    codemulti( FormatDataVector::string_opening =  "[\\n    "  );
+    codemulti( FormatDataVector::string_opening =  "[\\\n    "  );
     codemulti( FormatDataVector::string_delimeter = ", "  );
     codemulti( FormatDataVector::max_elements_per_line = 5  );
-    codemulti( FormatDataVector::string_endofline = "\\n    "  );
-    codemulti( FormatDataVector::string_closing =   "\\n]"  );
+    codemulti( FormatDataVector::string_endofline = "\\\n    "  );
+    codemulti( FormatDataVector::string_closing =   "\\\n]"  );
     codemulti( setFormatString<double>("% 10.6e")  );
     codemulti(  FormatData<double>::tens = false );
     codeend();
@@ -83,12 +83,12 @@ int main()
     cr();
 
 
-    text("Calculate the Fourier series the results in vector `y`: ");
+    text("Calculate the Fourier series and store the results in vector `Cl1`: ");
     cr();
     codestart("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 1 );
-    codemulti(     Vector<double> y = ifourier(An,Bn, t, An.size(), omega ) );
+    codemulti(     Vector<double> Cl1 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
     cr();
 
@@ -97,15 +97,12 @@ int main()
     cr();
     codestart("Matlab");
     disp(t);
-    disp(y);
+    disp(Cl1);
     codeend();
 
     text("Cut and paste the above data for r and y into Mathematica as well as the following commands");
     cr();
-    codestart("Mathematica");
-    text("p1=ListPlot[Partition[Riffle[r,y],2],PlotStyle->Red];");
-    text("p2=Plot[BesselJ[0,r],{r,0,10}];");
-    text("Show[p1,p2]");
+    codestart("Matlab");
     codeend();
 
     text("This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].");

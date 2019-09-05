@@ -1,6 +1,6 @@
 
 # Calculating a Fourier series and plotting the results in Matlab
-_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r35).
+_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r39).
 
 ## Fourier Series for the Claussen Function
 The (Claussen function)[http://mathworld.wolfram.com/ClausenFunction.html] or order 1 is defined by

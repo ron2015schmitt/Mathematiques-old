@@ -55,11 +55,6 @@ int main()
     cr();
 
 
-  
-
-
-
-
     text("Define the coefficient vectors: ");
     cr();
 
@@ -93,7 +88,7 @@ int main()
     cr();
 
     
-    text("The results `r` and `y` are:");
+    text("The results `t` and `Cl1` are:");
     cr();
     codestart("Matlab");
     disp(t);
@@ -111,6 +106,75 @@ int main()
 
   }
 
+  header3("Claussen function of order _n=2_");
+
+  {
+    cr();
+    cr();
+    text("Set up the output format so that we can copy and paste into Matlab");
+    codestart("C++");
+    codemulti( using namespace display  );
+    codemulti( FormatDataVector::string_opening =  "[ ...\n    "  );
+    codemulti( FormatDataVector::string_delimeter = ", "  );
+    codemulti( FormatDataVector::max_elements_per_line = 5  );
+    codemulti( FormatDataVector::string_endofline = " ...\n    "  );
+    codemulti( FormatDataVector::string_closing =   " ...\n]"  );
+    codemulti( setFormatString<double>("% 10.6e")  );
+    codemulti(  FormatData<double>::tens = false );
+    codeend();
+    cr();
+
+
+    text("Define the coefficient vectors: ");
+    cr();
+
+    
+    codestart("C++");
+    codemulti( const size_type N = 20 );
+    codemulti( Vector<double> An = Vector<double>(N,0.) );
+    codemulti( Vector<double> Bn = 1./sqr(range<double>(0,N-1)) );
+    codemulti( Bn[0] = 0. );
+    codeend();
+    cr();
+
+
+    text("Define the coordinate vector `t` as 201 points over the interval [-2pi,+2pi]: ");
+    cr();
+    
+    codestart("C++");
+    codemulti(   const double pi = M_PI  );
+    codemulti(   Vector<double> t = linspace<double>(-2*pi,2*pi,201) );
+    codeend();
+    cr();
+
+
+    text("Calculate the Fourier series and store the results in vector `Cl1`: ");
+    cr();
+    codestart("C++");
+    codemulti(     const double T = 2*pi );
+    codemulti(     const double omega = 1 );
+    codemulti(     Vector<double> Cl2 = ifourier(An,Bn, t, An.size(), omega ) );
+    codeend();
+    cr();
+
+    
+    text("The results `t` and `Cl2` are:");
+    cr();
+    codestart("Matlab");
+    disp(t);
+    disp(Cl2);
+    codeend();
+
+    text("Cut and paste the above data for r and y into Matlab as well as the following commands");
+    cr();
+    codestart("Matlab");
+    codeend();
+
+    text("This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].");
+
+    text("![Taylor Series for Jo(r)](BesselTaylorSeries.png)");
+
+  }
 
   matricks_toc();
 

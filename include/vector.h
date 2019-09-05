@@ -878,15 +878,15 @@ namespace matricks {
       Style& style = FormatDataVector::style_for_punctuation;
       stream << style.apply(FormatDataVector::string_opening);
       const matricks::index_type N = FormatDataVector::max_elements_per_line;
-      matricks::index_type k = 1;
+      matricks::index_type k = 0;
       for (matricks::index_type ii = 0; ii < v.size(); ii++, k++) {
-	printObj(v[ii]);
-	if (ii < v.size()-1)  {
-	  stream << style.apply(FormatDataVector::string_delimeter);
-	}
 	if (k >= N)  {
 	  stream << style.apply(FormatDataVector::string_endofline);
 	  k = 0;
+	}
+	printObj(v[ii]);
+	if (ii < v.size()-1)  {
+	  stream << style.apply(FormatDataVector::string_delimeter);
 	}
       }
       stream << style.apply(FormatDataVector::string_closing);

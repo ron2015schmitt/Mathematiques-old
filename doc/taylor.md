@@ -1,6 +1,6 @@
 
 # Calculating a Taylor series and plotting the results in Mathematica in mātricks
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r32).
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r33).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(x)
 The first 20 (n=0,1,...19) coefficients for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(x) are:
@@ -11,7 +11,6 @@ J0Coeffs = {
      0.000000e+00, -4.340280e-04,  0.000000e+00,  6.781680e-06,  0.000000e+00, 
     -6.781680e-08,  0.000000e+00,  4.709500e-10,  0.000000e+00, -2.402810e-12, 
      0.000000e+00,  9.385970e-15,  0.000000e+00, -2.896900e-17,  0.000000e+00
-    
 }; 
 ```
 These were determined using the `Mathematica` command

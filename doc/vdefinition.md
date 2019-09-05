@@ -1,6 +1,6 @@
 
 # under the hood—`Vector` definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r20).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.13-r29).
 
 * _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
 ### The Vector class is a wrapper
@@ -20,7 +20,7 @@ valias[2] = -2;
 
 **The result is**
 ```C++
-  vec:  {0,-1,-2,3}; 
+  vec:  {0, -1, -2, 3}; 
   valias[]:  { 0 ,-1 ,-2 ,3 } ; 
 ```
 
@@ -47,7 +47,7 @@ valias[2] = 2;
 **The result is**
 ```C++
   *vaptr[]:  { 99 ,1 ,2 ,0 } ; 
-  vec:  {99,1,2,0}; 
+  vec:  {99, 1, 2, 0}; 
   valias[]:  { 99 ,1 ,2 ,0 } ; 
 ```
 

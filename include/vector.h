@@ -275,7 +275,7 @@ namespace matricks {
       return (*this)[slice.toIndexVector(size())];
     }
     const VSubsetObj<D>  operator[](const slc& slice) const  {
-      printf2("Vector::operator[](const slc& slice)\n");
+      display::log3("Vector","operator[]","(const slc& slice)\n");
       return (*this)[slice.toIndexVector(size())];
     }
       

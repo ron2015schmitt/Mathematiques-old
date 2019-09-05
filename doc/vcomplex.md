@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.13-r20).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.13-r29).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -65,7 +65,7 @@ v = { 1+1i, 1, 1i, 1-1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  v:  {(1,1),(1,0),(0,1),(1,-1)}; 
+  v:  {1 + i*1, 1 + i*0, 0 + i*1, 1 + i*-1}; 
 ```
 
 ### Arithmetic with complex-valued `Vector`'s
@@ -84,10 +84,10 @@ v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  v1+v2:  {(1,0),(1,0),(1,0),(1,0)}; 
-  v1-v2:  {(-1,-2),(-1,0),(1,-2),(1,2)}; 
-  v1*v2:  {(1,-1),(0,0),(1,1),(1,-1)}; 
-  v1/v2:  {(-0.5,-0.5),(0,0),(-1,-1),(-1,1)}; 
+  v1+v2:  {1 + i*0, 1 + i*0, 1 + i*0, 1 + i*0}; 
+  v1-v2:  {-1 + i*-2, -1 + i*0, 1 + i*-2, 1 + i*2}; 
+  v1*v2:  {1 + i*-1, 0 + i*0, 1 + i*1, 1 + i*-1}; 
+  v1/v2:  {-0.5 + i*-0.5, 0 + i*0, -1 + i*-1, -1 + i*1}; 
 ```
 
 ### Mixed arithmetic with complex and real vectors and scalars `Vector`'s
@@ -106,12 +106,12 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  vr+vc:  {(2,1),(3,0),(3,1),(4,-1)}; 
-  vr-vc:  {(0,-1),(1,-0),(3,-1),(4,1)}; 
-  vr*vc:  {(1,1),(2,0),(0,3),(0,-4)}; 
-  vr/vc:  {(0.5,-0.5),(2,0),(0,-3),(-0,4)}; 
-  2.*vr + vc/2. + 1:  {(3.5,0.5),(5.5,0),(7,0.5),(9,-0.5)}; 
-  complex<double>(0,1)*vr + complex<double>(5,2)*vc:  {(3,8),(5,4),(-2,8),(2,-1)}; 
+  vr+vc:  {2 + i*1, 3 + i*0, 3 + i*1, 4 + i*-1}; 
+  vr-vc:  {0 + i*-1, 1 + i*-0, 3 + i*-1, 4 + i*1}; 
+  vr*vc:  {1 + i*1, 2 + i*0, 0 + i*3, 0 + i*-4}; 
+  vr/vc:  {0.5 + i*-0.5, 2 + i*0, 0 + i*-3, -0 + i*4}; 
+  2.*vr + vc/2. + 1:  {3.5 + i*0.5, 5.5 + i*0, 7 + i*0.5, 9 + i*-0.5}; 
+  complex<double>(0,1)*vr + complex<double>(5,2)*vc:  {3 + i*8, 5 + i*4, -2 + i*8, 2 + i*-1}; 
 ```
 
 ### real and imag parts of `Vector`'s
@@ -126,9 +126,9 @@ v = {1+1.i, 1., 1.i, 2-5.i}; // C++11 list and C++14 imag
 
 **Some expressions with results**: real and imaginary parts
 ```C++
-  v:  {(1,1),(1,0),(0,1),(2,-5)}; 
-  real(v):  {1,1,0,2}; 
-  imag(v):  {1,0,1,-5}; 
+  v:  {1 + i*1, 1 + i*0, 0 + i*1, 2 + i*-5}; 
+  real(v):  {1, 1, 0, 2}; 
+  imag(v):  {1, 0, 1, -5}; 
 ```
 
 
@@ -146,11 +146,11 @@ vc = vcomplex(vr, vi);
 
 **Some expressions with results**: create a complex vector from two real vectors
 ```C++
-  vr:  {1,2,3,4}; 
-  vi:  {-1,-2,-3,-4}; 
-  vc:  {(1,-1),(2,-2),(3,-3),(4,-4)}; 
-  real(vc):  {1,2,3,4}; 
-  imag(vc):  {-1,-2,-3,-4}; 
+  vr:  {1, 2, 3, 4}; 
+  vi:  {-1, -2, -3, -4}; 
+  vc:  {1 + i*-1, 2 + i*-2, 3 + i*-3, 4 + i*-4}; 
+  real(vc):  {1, 2, 3, 4}; 
+  imag(vc):  {-1, -2, -3, -4}; 
 ```
 
 
@@ -164,10 +164,10 @@ Vector<double> v( range<double>(1,4) );
 
 **Some expressions with results**: create a complex vector from a real vector and a scalar
 ```C++
-  vcomplex(v, 0.):  {(1,0),(2,0),(3,0),(4,0)}; 
-  vcomplex(v, 1.):  {(1,1),(2,1),(3,1),(4,1)}; 
-  vcomplex(0., v):  {(0,1),(0,2),(0,3),(0,4)}; 
-  vcomplex(1., v):  {(1,1),(1,2),(1,3),(1,4)}; 
+  vcomplex(v, 0.):  {1 + i*0, 2 + i*0, 3 + i*0, 4 + i*0}; 
+  vcomplex(v, 1.):  {1 + i*1, 2 + i*1, 3 + i*1, 4 + i*1}; 
+  vcomplex(0., v):  {0 + i*1, 0 + i*2, 0 + i*3, 0 + i*4}; 
+  vcomplex(1., v):  {1 + i*1, 1 + i*2, 1 + i*3, 1 + i*4}; 
 ```
 
 
@@ -186,11 +186,11 @@ vc = vcomplex(vr, vi);
 
 **Some expressions with results**: compute the complex conjugate of a vector
 ```C++
-  vr:  {1,2,3}; 
-  vi:  {-1,0,1}; 
-  vc:  {(1,-1),(2,0),(3,1)}; 
-  conj(vc):  {(1,1),(2,-0),(3,-1)}; 
-  ~vc:  {(1,1),(2,-0),(3,-1)}; 
+  vr:  {1, 2, 3}; 
+  vi:  {-1, 0, 1}; 
+  vc:  {1 + i*-1, 2 + i*0, 3 + i*1}; 
+  conj(vc):  {1 + i*1, 2 + i*-0, 3 + i*-1}; 
+  ~vc:  {1 + i*1, 2 + i*-0, 3 + i*-1}; 
 ```
 
 
@@ -209,15 +209,15 @@ v = vcomplex(vr, vi);
 
 **Some expressions with results**: functions of complex vectors
 ```C++
-  v:  {(1,-1),(2,0),(3,1)}; 
-  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ):  {(1,-1),(2,0),(3,1)}; 
-  exp(v):  {(1.46869,-2.28736),(7.38906,0),(10.8523,16.9014)}; 
-  round(exp(v)):  {(1,-2),(7,0),(11,17)}; 
-  v + 0.1:  {(1.1,-1),(2.1,0),(3.1,1)}; 
-  0.1 + v:  {(1.1,-1),(2.1,0),(3.1,1)}; 
-  v - 0.1:  {(0.9,-1),(1.9,0),(2.9,1)}; 
-  0.1 - v:  {(-0.9,1),(-1.9,-0),(-2.9,-1)}; 
-  roundzero(v+1e-16):  {(1,-1),(2,0),(3,1)}; 
+  v:  {1 + i*-1, 2 + i*0, 3 + i*1}; 
+  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ):  {1 + i*-1, 2 + i*0, 3 + i*1}; 
+  exp(v):  {1.46869 + i*-2.28736, 7.38906 + i*0, 10.8523 + i*16.9014}; 
+  round(exp(v)):  {1 + i*-2, 7 + i*0, 11 + i*17}; 
+  v + 0.1:  {1.1 + i*-1, 2.1 + i*0, 3.1 + i*1}; 
+  0.1 + v:  {1.1 + i*-1, 2.1 + i*0, 3.1 + i*1}; 
+  v - 0.1:  {0.9 + i*-1, 1.9 + i*0, 2.9 + i*1}; 
+  0.1 - v:  {-0.9 + i*1, -1.9 + i*-0, -2.9 + i*-1}; 
+  roundzero(v+1e-16):  {1 + i*-1, 2 + i*0, 3 + i*1}; 
 ```
 
 

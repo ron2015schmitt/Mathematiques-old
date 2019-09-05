@@ -1,6 +1,6 @@
 
 # python-like access: negative indices & slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.13-r20).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.13-r29).
 
 ## Element access
 ### Positive and negative indices
@@ -22,7 +22,7 @@ const int N = v.size();
 
 **Some expressions with results**
 ```C++
-  v:  {0,1,2,3,4,5,6,7,8,9,10}; 
+  v:  {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
   N:  11; 
   v[0]:  0; 
   v[1]:  1; 
@@ -30,8 +30,8 @@ const int N = v.size();
   v[-1]:  10; 
   v[-2]:  9; 
   v[-N]:  0; 
-  v[{0,-1}]:  {0,10}; 
-  v[{2,2,-2,-2}]:  {2,2,9,9}; 
+  v[{0,-1}]:  {0, 10}; 
+  v[{2,2,-2,-2}]:  {2, 2, 9, 9}; 
 ```
 
 
@@ -43,7 +43,7 @@ Vector<double> v( range<double>(0,10) );
 
 **The result is**
 ```C++
-  v:  {0,1,2,3,4,5,6,7,8,9,10}; 
+  v:  {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
 ```
 
 ```C++
@@ -52,7 +52,7 @@ for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]);
 
 **The result is**
 ```C++
-  v:  {10,9,8,7,6,5,4,3,2,1,0}; 
+  v:  {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}; 
 ```
 
 ## Slices via the `slc` function
@@ -82,16 +82,16 @@ Vector<double> v( range<double>(0,10) );
 ```C++
   slc::slc(start=2, end=6)
 slc::toIndexVector(N=11)
-v[slc(2,6)]:  {2,3,4,5,6}; 
+v[slc(2,6)]:  {2, 3, 4, 5, 6}; 
   slc::slc(start=0, end=-1)
 slc::toIndexVector(N=11)
-v[slc(0,-1)]:  {0,1,2,3,4,5,6,7,8,9,10}; 
+v[slc(0,-1)]:  {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
   slc::slc(start=0, end=1)
 slc::toIndexVector(N=11)
-v[slc(0,1)]:  {0,1}; 
+v[slc(0,1)]:  {0, 1}; 
   slc::slc(start=-2, end=-1)
 slc::toIndexVector(N=11)
-v[slc(-2,-1)]:  {9,10}; 
+v[slc(-2,-1)]:  {9, 10}; 
   slc::slc(start=1, end=0)
 slc::toIndexVector(N=11)
 v[slc(1,0)]:  {}; 
@@ -137,16 +137,16 @@ slc::toIndexVector(N=1)
 v1[slc(-1,0,-1)]:  {}; 
   slc::slc(start=-1, end=0, step=-1)
 slc::toIndexVector(N=2)
-v2[slc(-1,0,-1)]:  {1,0}; 
+v2[slc(-1,0,-1)]:  {1, 0}; 
   slc::slc(start=-1, end=0, step=-1)
 slc::toIndexVector(N=3)
-v3[slc(-1,0,-1)]:  {2,1,0}; 
+v3[slc(-1,0,-1)]:  {2, 1, 0}; 
   slc::slc(start=-1, end=0, step=-1)
 slc::toIndexVector(N=4)
-v4[slc(-1,0,-1)]:  {3,2,1,0}; 
+v4[slc(-1,0,-1)]:  {3, 2, 1, 0}; 
   slc::slc(start=-1, end=0, step=-1)
 slc::toIndexVector(N=11)
-v10[slc(-1,0,-1)]:  {10,9,8,7,6,5,4,3,2,1,0}; 
+v10[slc(-1,0,-1)]:  {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}; 
 ```
 
 **Some expressions with results**: get even-index elements of various vectors using the same slice
@@ -162,13 +162,13 @@ slc::toIndexVector(N=2)
 v2[slc(0,-1,2)]:  {0}; 
   slc::slc(start=0, end=-1, step=2)
 slc::toIndexVector(N=3)
-v3[slc(0,-1,2)]:  {0,2}; 
+v3[slc(0,-1,2)]:  {0, 2}; 
   slc::slc(start=0, end=-1, step=2)
 slc::toIndexVector(N=4)
-v4[slc(0,-1,2)]:  {0,2}; 
+v4[slc(0,-1,2)]:  {0, 2}; 
   slc::slc(start=0, end=-1, step=2)
 slc::toIndexVector(N=11)
-v10[slc(0,-1,2)]:  {0,2,4,6,8,10}; 
+v10[slc(0,-1,2)]:  {0, 2, 4, 6, 8, 10}; 
 ```
 
 **Some expressions with results**: get odd-index elements of various vectors using the same slice
@@ -187,10 +187,10 @@ slc::toIndexVector(N=3)
 v3[slc(1,-1,2)]:  {1}; 
   slc::slc(start=1, end=-1, step=2)
 slc::toIndexVector(N=4)
-v4[slc(1,-1,2)]:  {1,3}; 
+v4[slc(1,-1,2)]:  {1, 3}; 
   slc::slc(start=1, end=-1, step=2)
 slc::toIndexVector(N=11)
-v10[slc(1,-1,2)]:  {1,3,5,7,9}; 
+v10[slc(1,-1,2)]:  {1, 3, 5, 7, 9}; 
 ```
 
 

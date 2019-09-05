@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r20).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r29).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -40,8 +40,8 @@ v2.roundzero(tol);
 
 **Some expressions with results**
 ```C++
-  v1:  {(1,0),(2,0)}; 
-  v2:  {(-1,2),(-2,3)}; 
+  v1:  {1 + i*0, 2 + i*0}; 
+  v2:  {-1 + i*2, -2 + i*3}; 
   (~v1|v1):  (5,0); 
   (~v2|v2):  (18,0); 
   (~v1|v2):  (-5,8); 
@@ -113,9 +113,9 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  v:  {1,20,-1,0}; 
+  v:  {1, 20, -1, 0}; 
   min(v):  -1; 
-  2*exp(v)+1:  {6.43656,9.7033e+08,1.73576,3}; 
+  2*exp(v)+1:  {6.43656, 9.7033e+08, 1.73576, 3}; 
   min(2*exp(v)+1):  1.73576; 
 ```
 
@@ -128,9 +128,9 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 
 **Some expressions with results**
 ```C++
-  v:  {1,20,-1,0}; 
+  v:  {1, 20, -1, 0}; 
   max(v):  20; 
-  2*exp(v)+1:  {6.43656,9.7033e+08,1.73576,3}; 
+  2*exp(v)+1:  {6.43656, 9.7033e+08, 1.73576, 3}; 
   max(2*exp(v)+1):  9.7033e+08; 
 ```
 

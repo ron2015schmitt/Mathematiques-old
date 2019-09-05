@@ -188,6 +188,7 @@ int main()
     cr();
     example(Nex++,"functions of a `Vector`—inverse trig");
     codestart("C++");
+    codemulti( double pi = std::acos(-1) );
     codemulti( Vector<double> v(3) );
     codemulti( Vector<double> v1(9) );
     codemulti( Vector<double> v2(9) );
@@ -198,10 +199,10 @@ int main()
     cr();
 
     resultstart2(": inverse trig");
-    resultmulti( asin(v)  );
-    resultmulti( acos(v)  );
-    resultmulti( atan(v)  );
-    resultmulti( atan2(v1, v2)  );
+    resultmulti( asin(v)/pi  );
+    resultmulti( acos(v)/pi  );
+    resultmulti( atan(v)/pi  );
+    resultmulti( atan2(v1, v2)/pi  );
     resultend();
   }
 

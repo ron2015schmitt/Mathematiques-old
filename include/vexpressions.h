@@ -615,7 +615,7 @@ namespace matricks {
     const A& a_;
     const X& x_;
     const int N_;
-    const D& x0_;
+    const D x0_;
     
   public:
     using VectorofPtrs::getAddresses;
@@ -623,7 +623,7 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-  VSeriesOp(const A& a, const X& x, const int N, const D& x0)
+  VSeriesOp(const A& a, const X& x, const int N, const D x0)
     : a_(a), x_(x), N_(N), x0_(x0)
     { 
       addAddresses(a_.getAddresses());
@@ -646,9 +646,9 @@ namespace matricks {
 	if (an!=D(0)) {
 	  sum += an*xpow;
 	}
-	//	if (i==2) {
-	//  disp(i);disp(x);disp(n);disp(xpow);disp(an);disp(sum);cr();
-	//}
+	if (i==2) {
+	  mdisp(x0_,x_[i],x,sum,xpow,N_,n,an);
+	}
 	xpow *= x;
       }
       return sum; 

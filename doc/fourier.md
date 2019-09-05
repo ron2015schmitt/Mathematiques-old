@@ -15,7 +15,7 @@ FormatDataVector::string_opening = "[\n    ";
 FormatDataVector::string_delimeter = ", ";
 FormatDataVector::max_elements_per_line = 5;
 FormatDataVector::string_endofline = "\n    ";
-FormatDataVector::string_closing = "\n]";
+FormatDataVector::string_closing = "\n] ";
 setFormatString<double>("% 10.6e");
 FormatData<double>::tens = false;
 ```
@@ -89,7 +89,7 @@ t = [
      5.654867e+00,  5.717699e+00,  5.780530e+00,  5.843362e+00,  5.906194e+00, 
      5.969026e+00,  6.031858e+00,  6.094690e+00,  6.157522e+00,  6.220353e+00, 
      6.283185e+00
-]; 
+] ; 
 Cl1 = [
      3.547740e+00,  3.195373e+00,  2.376498e+00,  1.593600e+00,  1.188378e+00, 
      1.114201e+00,  1.089545e+00,  9.238571e-01,  6.702121e-01,  4.926940e-01, 
@@ -132,7 +132,7 @@ Cl1 = [
      4.498827e-01,  4.926940e-01,  6.702121e-01,  9.238571e-01,  1.089545e+00, 
      1.114201e+00,  1.188378e+00,  1.593600e+00,  2.376498e+00,  3.195373e+00, 
      3.547740e+00
-]; 
+] ; 
 ```
 Cut and paste the above data for r and y into Matlab as well as the following commands
 

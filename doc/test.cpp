@@ -106,12 +106,12 @@ int main()
   tdisp(xx);
   tdisp(xxc);
   setFormatString<double>("%g");
-  cout << getFormatString<std::complex<double> >().c_str() << endl;
+  cout << getFormatStringComplex().c_str() << endl;
   complex<double> zc = complex<double>(2.3,4.5);
   tdisp(zc);
 
   //  setFormatString<complex<double> >("%g + i*%g");
-  setFormatString<complex<double> >("%s +%si");
+  setFormatStringComplex("%s +%si");
   tdisp(zc);
 
   bool booly = true;
@@ -178,6 +178,15 @@ int main()
   tdisp(v);
 
   tdisp(exp(sin(3*v+1)));
+
+
+  stringstream sss;
+
+  sss << "hello";
+
+  double dubs = 0;
+  sss >> dubs;
+  cout<< "dubs="<<dubs<<endl;
   
   return 0;
 }

@@ -711,8 +711,7 @@ namespace display {
   //       specialize for complex<double>
   //---------------------------------------------------------------------------------
 
-  template <>
-  class FormatData<std::complex<double> > {
+  class FormatDataComplex {
   public:
     static Style style_for_type_name;
     static Style style_for_punctuation;
@@ -721,18 +720,16 @@ namespace display {
   };
 
 
-  template <>
-  inline std::string getTypeName(const std::complex<double> & var) {
-    std::string s = FormatData<std::complex<double> >::style_for_type_name.apply("std::complex");
+  template <class D>
+  inline std::string getTypeName(const std::complex<D> & var) {
+    std::string s = FormatDataComplex::style_for_type_name.apply("std::complex");
     s += "<" + getTypeName(var.real())+ +"> ";
     return s;
   }
   
-  
-  
+    
 
-  template <> 
-  inline bool checkFormatString<std::complex<double> >(const std::string formatstr, const std::complex<double>& x) {
+  inline bool checkFormatStringComplex(const std::string formatstr) {
     using namespace std;
     if (formatstr.empty()) {
       return false;
@@ -740,53 +737,49 @@ namespace display {
     
     int ret = 0;
     bool passed = true;
-    ;
+    string sr = string("%f");
+    string si = string("%f");
     try {
-      snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), x.real() );
-      string sr = string(Buffer);
-      //      printf("sr=%s\n",sr.c_str());
-      snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), x.imag() );
-      string si = string(Buffer);
-      //      printf("si=%s\n",si.c_str());
       ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), sr.c_str(), si.c_str());
       if (ret<0) passed = false;
     } catch (...) {
-      string classname = "";
       passed = false;
     }
     string s = string(Buffer);
     size_t found = s.find("(nil)");
     if (found!=string::npos) 	passed = false;
+
+    string formatfloats = s;
+    float xreal = 3.1415;
+    float ximag = 2.72;
+    try {
+      ret = snprintf(Buffer, BUFFER_SIZE, formatfloats.c_str(), xreal, ximag);
+      if (ret<0) passed = false;
+    } catch (...) {
+      passed = false;
+    }
+    s = string(Buffer);
+    found = s.find("(nil)");
+    if (found!=string::npos) 	passed = false;
+
     
-    double xr = double(0);
-    double xi = double(0);
-    double *xrptr = &xr;
-    double *xiptr = &xi;
-    //    printf("s = %s\n",s.c_str());
-    char chr[64];
-    char chi[64];
-    ret = std::sscanf(Buffer, formatstr.c_str() , chr, chi);
-    //    printf("ret=%d chr=%s chi=%s\n",ret,chr,chi);
+    //    printf("formatstr = %s\n",formatstr.c_str());
+    //    printf("formatfloats = %s\n",formatfloats.c_str());
+
+    float xreal2 = 3.1415;
+    float ximag2 = 2.72;
+    ret = std::sscanf(Buffer, formatfloats.c_str() , &xreal2, &ximag2);
+    //    printf("xreal2=%f ximag2=%f\n",xreal2,ximag2);
     if (ret != 2) passed = false;
-    
-    //    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
-    ret = std::sscanf(chr, "%lg" ,xrptr);
-    if (ret != 1) passed = false;
-    //    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
-    ret = std::sscanf(chi,  "%lg" ,xiptr);
-    if (ret != 1) passed = false;
-    //    printf("ret=%d xr=%g xi=%g\n",ret,xr,xi);
-    if (ret != 1) passed = false;
-    if (xr != x.real())  passed = false;
-    if (xi != x.imag())  passed = false;
+    if (xreal2 != xreal)  passed = false;
+    if (ximag2 != ximag)  passed = false;
     
     if (!passed) {
       cout << StyledString::get(HORLINE);
       cout << StyledString::get(ERROR);
       cout << " illegal format string";
       cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
-      cout << " passed to Format";
-      cout << "<" << display::getTypeName(x) << ">";
+      cout << " passed to setFormatStringComplex";
       cout << endl;
       cout << StyledString::get(HORLINE);
       return false;
@@ -794,35 +787,37 @@ namespace display {
     return true;
   }
 
-  template <>
-  inline void setFormatString<std::complex<double> >(const std::string fstring) {
-    std::complex<double> * xptr = new std::complex<double>(1,2);
-    bool valid = checkFormatString<std::complex<double> >(fstring, *xptr);
+  inline std::string getFormatStringComplex() {
+    return FormatDataComplex::format_string;
+  }
+
+  inline void setFormatStringComplex(const std::string fstring) {
+    bool valid = checkFormatStringComplex(fstring);
     if (valid) {
-      FormatData<std::complex<double> >::format_string = fstring;
+      FormatDataComplex::format_string = fstring;
     }
   }
 
   
-  template <>
-  inline void printObj<std::complex<double> >(const std::complex<double>& d) {
+  template <class D>
+  inline void printObj(const std::complex<D>& d) {
     using namespace std;
     using namespace matricks;
 
     // print the real and imaginary parts to strings
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), d.real() );
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<D>().c_str(), d.real() );
     string sr = string(Buffer);
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<double>().c_str(), d.imag() );
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<D>().c_str(), d.imag() );
     string si = string(Buffer);
 
     // decompose the format string so we can apply style to the punctuation
-    string fs = getFormatString<std::complex<double> >();
+    string fs = getFormatStringComplex();
     int m1 = fs.find("%s");
     string fs1 = fs.substr(0,m1);
     int m2 = fs.find("%s",m1+2);
     string fs2 = fs.substr(m1+2,m2-m1-2);
     string fs3 = fs.substr(m2+2,fs.size()-m2-2);
-    Style style = FormatData<std::complex<double> >::style_for_punctuation;
+    Style style = FormatDataComplex::style_for_punctuation;
     fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
 
     // put it all together

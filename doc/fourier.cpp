@@ -44,11 +44,11 @@ int main()
     text("Set up the output format so that we can copy and paste into Matlab");
     codestart("C++");
     codemulti( using namespace display  );
-    codemulti( FormatDataVector::string_opening =  "[\\\n    "  );
+    codemulti( FormatDataVector::string_opening =  "[\n    "  );
     codemulti( FormatDataVector::string_delimeter = ", "  );
     codemulti( FormatDataVector::max_elements_per_line = 5  );
-    codemulti( FormatDataVector::string_endofline = "\\\n    "  );
-    codemulti( FormatDataVector::string_closing =   "\\\n]"  );
+    codemulti( FormatDataVector::string_endofline = "\n    "  );
+    codemulti( FormatDataVector::string_closing =   "\n]"  );
     codemulti( setFormatString<double>("% 10.6e")  );
     codemulti(  FormatData<double>::tens = false );
     codeend();
@@ -100,7 +100,7 @@ int main()
     disp(Cl1);
     codeend();
 
-    text("Cut and paste the above data for r and y into Mathematica as well as the following commands");
+    text("Cut and paste the above data for r and y into Matlab as well as the following commands");
     cr();
     codestart("Matlab");
     codeend();

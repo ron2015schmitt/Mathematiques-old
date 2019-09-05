@@ -703,13 +703,13 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
   VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
-    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N+1)))
+    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N)))
       {
 	addAddresses(a_.getAddresses());
 	addAddresses(b_.getAddresses());
 	addAddresses(x_.getAddresses());
 	addAddresses(k_.getAddresses());
-	for (int n = 0; n <= N_ ; n++) {
+	for (int n = 0; n < N_ ; n++) {
 	  k_[n] = n*k1_;
 	}
       }
@@ -719,7 +719,7 @@ namespace matricks {
     inline const D operator[](const index_type i) const {
       D sum = 0;
       // TODO: check a_.size >= N
-      for (int n = 0; n <= N_ ; n++) {
+      for (int n = 0; n < N_ ; n++) {
 	D kx = k_[n]*x_[i];
 	D an = a_[n];
 	if (an != D(0)) {

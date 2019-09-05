@@ -2034,12 +2034,12 @@ namespace matricks {
       return  VSeriesOp<D, VorE<D,A>, VorE<D,X> >(a,x,N);
     }
 
-  // fourier(vector cos coefs, vector sin coefs, vector vals, max N, k1=2pi/wavelength or 2pi/period)
+  // ifourier(vector cos coefs, vector sin coefs, vector vals, max N, k1=2pi/wavelength or 2pi/period)
   // sin coefs must include a coef for n=0 even though its irrelevant
 
   template <class D, class A, class B, class X> 
     inline  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, ApCos<D>, ApSin<D> >
-    fourier(const VorE<D,A>& Acos, const VorE<D,B>& Bsin, const VorE<D,X>& x, const int N, const D k1)
+    ifourier(const VorE<D,A>& Acos, const VorE<D,B>& Bsin, const VorE<D,X>& x, const int N, const D k1)
     {
       return  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, ApCos<D>, ApSin<D> >(Acos,Bsin,x,N,k1);
     }

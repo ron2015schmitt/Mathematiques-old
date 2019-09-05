@@ -28,29 +28,92 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle0("Calculating a Fourier series and plotting the results in Matlab");
+  mdtitle0("Calculating a function via Fourier series and plotting the results in Matlab");
   matricks_preamble();
 
-  header2("Fourier Series for the Claussen Function");
-  text("The (Claussen function)[http://mathworld.wolfram.com/ClausenFunction.html] or order 1 is defined by");
+  header2("Fourier Series for the Claussen Functions");
+  text("As our example, we'll use the [Claussen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Claussen function of order _n_ has Fourier series: ");
+  text("![Claussen Functions](ClaussenDefinition.PNG)");
 
 
-  // CLuasen function
+  header3("Claussen function of order _n=1_");
 
-  const size_type N = 20;
-  Vector<double> An = Vector<double>(N,0.);
+  {
+    cr();
+    cr();
+    text("Set up the output format so that we can copy and paste into Mathematica");
+    codestart("C++");
+    codemulti( using namespace display  );
+    codemulti( FormatDataVector::string_opening =  "[\\n    "  );
+    codemulti( FormatDataVector::string_delimeter = ", "  );
+    codemulti( FormatDataVector::max_elements_per_line = 5  );
+    codemulti( FormatDataVector::string_endofline = "\\n    "  );
+    codemulti( FormatDataVector::string_closing =   "\\n]"  );
+    codemulti( setFormatString<double>("% 10.6e")  );
+    codemulti(  FormatData<double>::tens = false );
+    codeend();
+    cr();
 
-  Vector<double> Bn = 1./sqr(range<double>(0,N-1));
-  Bn[0] = 0.0;
 
-  const double pi = M_PI;
-  Vector<double> t = linspace<double>(-2*pi,2*pi,201);
-  const double T = 2*pi;
-  const double omega = 1;
-  Vector<double> y2 = fourier(An,Bn, t, An.size(), omega );
-  disp(An);
-  disp(Bn);
-  disp(y2);
+  
+
+
+
+
+    text("Define the coefficient vectors: ");
+    cr();
+
+    
+    codestart("C++");
+    codemulti( const size_type N = 20 );
+    codemulti( Vector<double> An = 1./range<double>(0,N-1) );
+    codemulti( An[0] = 0. );
+    codemulti( Vector<double> Bn = Vector<double>(N,0.) );
+    codeend();
+    cr();
+
+
+    text("Define the coordinate vector `t` as 201 points over the interval [-2pi,+2pi]: ");
+    cr();
+    
+    codestart("C++");
+    codemulti(   const double pi = M_PI  );
+    codemulti(   Vector<double> t = linspace<double>(-2*pi,2*pi,201) );
+    codeend();
+    cr();
+
+
+    text("Calculate the Fourier series the results in vector `y`: ");
+    cr();
+    codestart("C++");
+    codemulti(     const double T = 2*pi );
+    codemulti(     const double omega = 1 );
+    codemulti(     Vector<double> y = ifourier(An,Bn, t, An.size(), omega ) );
+    codeend();
+    cr();
+
+    
+    text("The results `r` and `y` are:");
+    cr();
+    codestart("Matlab");
+    disp(t);
+    disp(y);
+    codeend();
+
+    text("Cut and paste the above data for r and y into Mathematica as well as the following commands");
+    cr();
+    codestart("Mathematica");
+    text("p1=ListPlot[Partition[Riffle[r,y],2],PlotStyle->Red];");
+    text("p2=Plot[BesselJ[0,r],{r,0,10}];");
+    text("Show[p1,p2]");
+    codeend();
+
+    text("This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].");
+
+    text("![Taylor Series for Jo(r)](BesselTaylorSeries.png)");
+
+  }
+
 
   matricks_toc();
 

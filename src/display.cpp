@@ -123,6 +123,7 @@ namespace display {
   Style FormatData<float>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<float>::format_string_default = "%g";
   std::string FormatData<float>::format_string = format_string_default;
+  bool FormatData<float>::tens = false;
 
   // double
   Style FormatData<double>::style_for_type_name = createStyle(MAGENTA);
@@ -130,13 +131,16 @@ namespace display {
   Style FormatData<double>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<double>::format_string_default = "%lg";
   std::string FormatData<double>::format_string = format_string_default;
+  bool FormatData<double>::tens = false;
 
+  
   // long double
   Style FormatData<long double>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<long double>::style_for_value = createStyle(RESET);
   Style FormatData<long double>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long double>::format_string_default = "%llg";
   std::string FormatData<long double>::format_string = format_string_default;
+  bool FormatData<long double>::tens = false;
 
   // short
   Style FormatData<short>::style_for_type_name = createStyle(MAGENTA);

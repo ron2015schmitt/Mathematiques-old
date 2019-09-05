@@ -1,4 +1,4 @@
-#define MATRICKS_DEBUG 2
+#define MATRICKS_DEBUG 1
 
 
 #include "matricks.h"

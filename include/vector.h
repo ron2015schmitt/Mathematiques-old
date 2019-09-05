@@ -880,13 +880,13 @@ namespace matricks {
       const matricks::index_type N = FormatDataVector::max_elements_per_line;
       matricks::index_type k = 1;
       for (matricks::index_type ii = 0; ii < v.size(); ii++, k++) {
-	if (ii>0)  {
+	printObj(v[ii]);
+	if (ii < v.size()-1)  {
 	  stream << style.apply(FormatDataVector::string_delimeter);
 	}
-	printObj(v[ii]);
 	if (k >= N)  {
 	  stream << style.apply(FormatDataVector::string_endofline);
-	  k = 1;
+	  k = 0;
 	}
       }
       stream << style.apply(FormatDataVector::string_closing);

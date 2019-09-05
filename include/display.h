@@ -74,6 +74,28 @@ namespace display {
 #endif
 
 
+
+    //****************************************************************************
+  //                        String functions
+  //****************************************************************************
+
+  inline std::string  replaceAll(std::string  s, std::string s1, std::string s2) {
+    size_t pos = s.find(s1);
+    while( pos != std::string::npos) {
+      s.replace(pos, s1.size(), s2);
+      pos = s.find(s1, pos + s2.size());
+    }
+    return s;
+  }
+
+  const size_t BUFFER_SIZE = 512;
+  extern char Buffer[BUFFER_SIZE];
+
+  // this definition is crafty, but probably better to make into a function
+  
+#define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
+
+  
   //****************************************************************************
   //                          Terminal
   //****************************************************************************
@@ -141,12 +163,6 @@ namespace display {
 
 
 
-  const size_t BUFFER_SIZE = 512;
-  extern char Buffer[BUFFER_SIZE];
-
-  // this definition is crafty, but probably better to make into a function
-  
-#define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
 
 
   //****************************************************************************
@@ -293,6 +309,7 @@ namespace display {
   template <typename T> inline std::string getTypeName(const T& var);
 
   class FormatBase {
+    
   };
 
   template <typename T>
@@ -322,10 +339,6 @@ namespace display {
     static std::string format_string;			\
   };
 
-  SPECIALIZE_FormatData_mathtype(float);
-  SPECIALIZE_FormatData_mathtype(double);
-  SPECIALIZE_FormatData_mathtype(long double);
-
   SPECIALIZE_FormatData_mathtype(short);
   SPECIALIZE_FormatData_mathtype(int);
   SPECIALIZE_FormatData_mathtype(long);
@@ -341,6 +354,23 @@ namespace display {
 #endif
 
 
+
+#define SPECIALIZE_FormatData_floating(TYPE)		\
+  template <>  class FormatData<TYPE> {			\
+  public:						\
+    static Style style_for_type_name;			\
+    static Style style_for_value;			\
+    static Style style_for_zero;			\
+    const static std::string format_string_default;	\
+    static std::string format_string;			\
+    static bool tens;					\
+};
+
+  SPECIALIZE_FormatData_floating(float);
+  SPECIALIZE_FormatData_floating(double);
+  SPECIALIZE_FormatData_floating(long double);
+
+  
   // string
   template <>  class FormatData<std::string> {
   public: 
@@ -555,9 +585,6 @@ namespace display {
     cout << style.apply(sval);						\
   }
   
-  SPECIALIZE_mathtypes_printObj(float);
-  SPECIALIZE_mathtypes_printObj(double);
-  SPECIALIZE_mathtypes_printObj(long double);
 
   SPECIALIZE_mathtypes_printObj(short);
   SPECIALIZE_mathtypes_printObj(int);
@@ -572,6 +599,32 @@ namespace display {
 #if LONGLONG_EXISTS
   SPECIALIZE_mathtypes_printObj(unsigned long long);
 #endif
+
+
+
+  #define SPECIALIZE_floating_printObj(TYPE)				\
+  template <>								\
+    inline void printObj<TYPE >(const TYPE& d) {			\
+    using namespace std;						\
+    snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
+    string sval = string(Buffer);					\
+    if (FormatData<TYPE>::tens)  {					\
+      sval = replaceAll(sval,"E"," 10^");					\
+      sval = replaceAll(sval,"e"," 10^");					\
+    }									\
+    Style style = FormatData<TYPE >::style_for_value;			\
+    TYPE zero = 0;							\
+    if (d == zero) {							\
+      style = FormatData<TYPE >::style_for_zero;			\
+    }									\
+    cout << style.apply(sval);						\
+  }
+  
+  SPECIALIZE_floating_printObj(float);
+  SPECIALIZE_floating_printObj(double);
+  SPECIALIZE_floating_printObj(long double);
+
+
 
   // string
   template <>				

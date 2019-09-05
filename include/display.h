@@ -56,21 +56,21 @@ namespace display {
 
 
 #if MATRICKS_DEBUG>=1
-  #define printf1(...) printf(__VA_ARGS__)
+#define printf1(...) printf(__VA_ARGS__)
 #else
-  #define printf1(...) {}
+#define printf1(...) {}
 #endif
 
 #if MATRICKS_DEBUG>=2
-  #define printf2(...) printf(__VA_ARGS__)
+#define printf2(...) printf(__VA_ARGS__)
 #else
-  #define printf2(...) {}
+#define printf2(...) {}
 #endif
 
 #if MATRICKS_DEBUG>=3
-  #define printf3(...) printf(__VA_ARGS__)
+#define printf3(...) printf(__VA_ARGS__)
 #else
-  #define printf3(...) {}
+#define printf3(...) {}
 #endif
 
 
@@ -235,25 +235,25 @@ namespace display {
     static StyledString& get(const SSEnum ss);
     static void initialize();
     static StyledString& create(Style& style, const std::string text) {
-          return *( new StyledString(style, text) );
+      return *( new StyledString(style, text) );
     }
 
     inline StyledString() :
       style_(createStyle(CROSSEDOUT)),
       text_(std::string("hello world"))
-    {
-      if (!StyledString::isInitialized) {
-    	StyledString::initialize();
-      }
-    }
+	{
+	  if (!StyledString::isInitialized) {
+	    StyledString::initialize();
+	  }
+	}
     inline StyledString(Style& style, const std::string text) :
       style_(style), text_(text)
     {  
     }
     inline StyledString(const StyledString& styledstring) :
       style_(styledstring.getStyle()), text_(styledstring.getString())
-    {  
-    }
+      {  
+      }
     inline std::string get() const {
       return style_.apply(text_);
     }
@@ -296,30 +296,30 @@ namespace display {
   };
 
   template <typename T>
-  class FormatData {
+    class FormatData {
   public:
   };
 
 
   template <typename T>
-  inline std::string getFormatString() {
+    inline std::string getFormatString() {
     return FormatData<T>::format_string;
   }
   template <typename T>
-  inline std::string getDefaultFormatString() {
+    inline std::string getDefaultFormatString() {
     return FormatData<T>::default_format_string;
   }
 
 
   
-#define SPECIALIZE_FormatData_mathtype(TYPE) \
-  template <>  class FormatData<TYPE> { \
-  public: \
-    static Style style_for_type_name;\
-    static Style style_for_value;\
-    static Style style_for_zero;\
-    const static std::string format_string_default;\
-    static std::string format_string;\
+#define SPECIALIZE_FormatData_mathtype(TYPE)		\
+  template <>  class FormatData<TYPE> {			\
+  public:						\
+    static Style style_for_type_name;			\
+    static Style style_for_value;			\
+    static Style style_for_zero;			\
+    const static std::string format_string_default;	\
+    static std::string format_string;			\
   };
 
   SPECIALIZE_FormatData_mathtype(float);
@@ -391,7 +391,7 @@ namespace display {
 
 
   template <typename D> 
-  inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
+    inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
     using namespace std;
     if (formatstr.empty()) {
       return false;
@@ -434,7 +434,7 @@ namespace display {
   
 
   template <typename T>
-  inline void setFormatString(const std::string fstring) {
+    inline void setFormatString(const std::string fstring) {
     T* xptr = new T(25);
     bool valid = checkFormatString<T>(fstring, *xptr);
     if (valid) {
@@ -448,14 +448,14 @@ namespace display {
   //---------------------------------------------------------------------------------
 
   template <typename T>
-  inline std::string getTypeName(const T& var) {
+    inline std::string getTypeName(const T& var) {
     return var.classname();
   }
 
-#define SPECIALIZE_getTypeName(TYPE) \
-  template <> \
-  inline std::string getTypeName(const TYPE& var) { \
-    return FormatData<TYPE>::style_for_type_name.apply(#TYPE);\
+#define SPECIALIZE_getTypeName(TYPE)				\
+  template <>							\
+    inline std::string getTypeName(const TYPE& var) {		\
+    return FormatData<TYPE>::style_for_type_name.apply(#TYPE);	\
   }
 
   SPECIALIZE_getTypeName(float);
@@ -492,14 +492,14 @@ namespace display {
   }
 
 
-#define SPECIALIZE_getTypeName_CONTAINER(TYPE)				\
-  template <typename D>							\
-    inline std::string getTypeName(const TYPE<D>& var) {		\
-    Style style = createStyle(CYAN);					\
-    std::string s =  style.apply(#TYPE);				\
-    D d;								\
-    s = s+"<"+getTypeName(d)+">";					\
-    return s;								\
+#define SPECIALIZE_getTypeName_CONTAINER(TYPE)			\
+  template <typename D>						\
+    inline std::string getTypeName(const TYPE<D>& var) {	\
+    Style style = createStyle(CYAN);				\
+    std::string s =  style.apply(#TYPE);			\
+    D d;							\
+    s = s+"<"+getTypeName(d)+">";				\
+    return s;							\
   }
 
 
@@ -512,15 +512,15 @@ namespace display {
   SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
 #endif
 
-#define SPECIALIZE_getTypeName_CONTAINER2(TYPE)				\
-  template <typename D1, typename D2>						\
-    inline std::string getTypeName(const TYPE<D1,D2>& var) {		\
-    Style style = createStyle(CYAN);					\
-    std::string s =  style.apply(#TYPE);				\
-    D1 d1;								\
-    D2 d2;								\
-    s = s+"<"+getTypeName(d1)+","+getTypeName(d2)+">";					\
-    return s;								\
+#define SPECIALIZE_getTypeName_CONTAINER2(TYPE)			\
+  template <typename D1, typename D2>				\
+    inline std::string getTypeName(const TYPE<D1,D2>& var) {	\
+    Style style = createStyle(CYAN);				\
+    std::string s =  style.apply(#TYPE);			\
+    D1 d1;							\
+    D2 d2;							\
+    s = s+"<"+getTypeName(d1)+","+getTypeName(d2)+">";		\
+    return s;							\
   }
 
   SPECIALIZE_getTypeName_CONTAINER2(std::map);
@@ -535,13 +535,13 @@ namespace display {
   //---------------------------------------------------------------------------------
 
   template <typename T>
-  inline void printObj(const T& d) {
+    inline void printObj(const T& d) {
     std::cout << d;
   }
 
     
   
-#define SPECIALIZE_mathtypes_printObj(TYPE)					\
+#define SPECIALIZE_mathtypes_printObj(TYPE)				\
   template <>								\
     inline void printObj<TYPE >(const TYPE& d) {			\
     using namespace std;						\
@@ -663,7 +663,7 @@ namespace display {
     std::cout << "}";
   }
 
-    // std::initializer_list
+  // std::initializer_list
 #if CPP11 == 1
   template <typename D>							
     inline void printObj(const std::initializer_list<D>& var) {
@@ -677,7 +677,7 @@ namespace display {
   }
 #endif
 
-    // std::queue
+  // std::queue
   template <typename D>							
     inline void printObj(const std::queue<D>& var) {
     // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
@@ -721,7 +721,7 @@ namespace display {
 
 
   template <class D>
-  inline std::string getTypeName(const std::complex<D> & var) {
+    inline std::string getTypeName(const std::complex<D> & var) {
     std::string s = FormatDataComplex::style_for_type_name.apply("std::complex");
     s += "<" + getTypeName(var.real())+ +"> ";
     return s;
@@ -800,7 +800,7 @@ namespace display {
 
   
   template <class D>
-  inline void printObj(const std::complex<D>& d) {
+    inline void printObj(const std::complex<D>& d) {
     using namespace std;
     using namespace matricks;
 
@@ -915,7 +915,7 @@ namespace display {
       Display::isInitialized = true;
       Display::expression = new StyledString(createStyle(BOLD),"");
       Display::equals = new StyledString(createStyle(GRAY1)," = ");
-      Display::terminator = new StyledString(createStyle(GRAY1),";");
+      Display::terminator = new StyledString(createStyle(GRAY1),"; ");
     }
     Display(){
       if (!isInitialized) {
@@ -923,7 +923,7 @@ namespace display {
       }
     }
     template <typename X>
-    static void mydisp(const X& x, const std::string name, const bool displayType, const bool issueCR) {
+      static void mydisp(const X& x, const std::string name, const bool displayType, const bool issueCR) {
       using namespace std;
       log3("display","Display","mydisp","(const X& x, const std::string name)");
       if (displayType) {
@@ -939,14 +939,22 @@ namespace display {
       }
     }
     template <typename X>
-    static void mydispcr(const X& x, const std::string name) {
+      static void mydisp(const X& x, const std::string name) {
+      using namespace std;
+      mydisp(x, name,false, false);
+    }
+    template <typename X>
+      static void mydispcr(const X& x, const std::string name) {
       using namespace std;
       mydisp(x, name,false, true);
     }
     template <typename X>
-    static void tmydispcr(const X& x, const std::string name) {
+      static void tmydispcr(const X& x, const std::string name) {
       using namespace std;
       mydisp(x, name, true, true);
+    }
+    static void issuecr() {
+      std::cout << std::endl;
     }
   };  // class Display
 
@@ -954,8 +962,28 @@ namespace display {
 #define newdisp(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
 #define tdisp(...) display::Display::tmydispcr(__VA_ARGS__,#__VA_ARGS__)
 
+#define newcr()  display::Display::issuecr()
 
-      
+
+  // for how this works, refer to
+  //https://stackoverflow.com/questions/3046889/optional-parameters-with-c-macros
+#define disp_0()  display::Display::issuecr()
+#define disp_1(A)  display::Display::mydisp(A,#A)
+#define disp_2(A,B)   disp_1(A);disp_1(B)
+#define disp_3(A,B,C)  disp_1(A);disp_1(B);disp_1(C)
+#define disp_4(A,B,C,D) disp_1(A);disp_1(B);disp_1(C);disp_1(D)
+#define disp_5(A,B,C,D,E) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E)
+#define disp_6(A,B,C,D,E,F) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F)
+#define disp_7(A,B,C,D,E,F,G) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G)
+#define disp_8(A,B,C,D,E,F,G,H) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G);disp_1(H)
+#define disp_9(A,B,C,D,E,F,G,H,I) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G);disp_1(H);disp_1(I)
+#define disp_10(A,B,C,D,E,F,G,H,I,J) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G);disp_1(H);disp_1(I);disp_1(J)
+
+  // The interim macro that simply strips the excess and ends up with the required macro
+#define mdisp_X(x,A,B,C,D,E,F,G,H,I,J,FUNC, ...)    FUNC;disp_0()
+
+  // The macro that the programmer uses 
+#define mdisp(...)   mdisp_X(,##__VA_ARGS__, disp_10(__VA_ARGS__), disp_9(__VA_ARGS__), disp_8(__VA_ARGS__), disp_7(__VA_ARGS__), disp_6(__VA_ARGS__), disp_5(__VA_ARGS__), disp_4(__VA_ARGS__), disp_3(__VA_ARGS__), disp_2(__VA_ARGS__), disp_1(__VA_ARGS__), disp_0()) 
 
   //****************************************************************************
   //                       print_matricks_info

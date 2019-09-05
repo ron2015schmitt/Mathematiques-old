@@ -32,7 +32,7 @@ int main()
   print_matricks_info();
   print1("DEBUG level 1 enabled \n");
   print2("DEBUG level 2 enabled \n");
-
+  
   printf("MATRICKS_DEBUG=%d\n",MATRICKS_DEBUG);
   printf("EXPAND(MATRICKS_DEBUG)=%d\n",EXPAND(MATRICKS_DEBUG));
 
@@ -106,8 +106,9 @@ int main()
   tdisp(xx);
   tdisp(xxc);
   setFormatString<double>("%g");
-  cout << getFormatStringComplex().c_str() << endl;
-  complex<double> zc = complex<double>(2.3,4.5);
+  
+  std::cout << display::getFormatStringComplex() << endl;
+  complex<double> zc(2.3,4.5);
   tdisp(zc);
 
   //  setFormatString<complex<double> >("%g + i*%g");
@@ -179,14 +180,17 @@ int main()
 
   tdisp(exp(sin(3*v+1)));
 
+  disp_0();
+  double w=24.32;
+  int u = 7;
+  disp_1(w);cr();
+  disp_2(w,u);cr();
 
-  stringstream sss;
+  mdisp();
+  mdisp(w);
+  mdisp(w,u);
 
-  sss << "hello";
-
-  double dubs = 0;
-  sss >> dubs;
-  cout<< "dubs="<<dubs<<endl;
-  
+  mdisp(w,u,ii,uu,booly,ronny,c,s,zc);
+    
   return 0;
 }

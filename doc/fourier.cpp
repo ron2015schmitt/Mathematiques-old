@@ -138,12 +138,12 @@ int main()
     cr();
 
 
-    text("Define the coordinate vector `t` as 201 points over the interval [-2pi,+2pi]: ");
+    text("Define the coordinate vector `t` as 201 points over the interval [0,+2pi]: ");
     cr();
     
     codestart("C++");
     codemulti(   const double pi = M_PI  );
-    codemulti(   Vector<double> t = linspace<double>(-2*pi,2*pi,201) );
+    codemulti(   Vector<double> t = linspace<double>(0,2*pi,201) );
     codeend();
     cr();
 

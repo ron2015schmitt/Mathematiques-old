@@ -128,7 +128,7 @@ int main()
   header2("Maclaurin Series for the Bessel Function J<sub>0</sub>(x)");
 
   text("To acheive better accuracy, we can calculate the [Maclaurin Series](http://mathworld.wolfram.com/MaclaurinSeries.html) at the point `r=5`, which is the center of our interval of interest.");
-  text("The first 20 (n=0,1,...19) coefficients for the Maclaurin Series (`r<sub>0</sub>=5`) for the function J<sub>0</sub>(r), are:\n");
+  text("The first 20 (n=0,1,...19) coefficients for the Maclaurin Series (r<sub>0</sub>=5) for the function J<sub>0</sub>(r), are:\n");
 
 
   {  
@@ -150,7 +150,7 @@ int main()
   cr();
 
   codestart("Mathematica");
-  text("N[Table[SeriesCoefficient[BesselJ[0,r],{r,50,n}],{n,0,19}]]");
+  text("N[Table[SeriesCoefficient[BesselJ[0,r],{r,5,n}],{n,0,19}]]");
   cr();
   codeend();
   

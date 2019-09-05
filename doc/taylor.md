@@ -1,9 +1,9 @@
 
-# Taylor series and plotting results in Mathematica in mātricks
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r31).
+# Calculating a Taylor series and plotting the results in Mathematica in mātricks
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r32).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(x)
-The first 20 (n=0,1,...19) coefficients for the (Bessel Function of the first kind)[http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html] of order 0, J<sub>0</sub>(x) are:
+The first 20 (n=0,1,...19) coefficients for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(x) are:
 
 ```C++
 J0Coeffs = {
@@ -25,32 +25,32 @@ N[Table[SeriesCoefficient[BesselJ[0,x],{x,0,n}],{n,0,19}]]
 Set up the output format so that we can copy and paste into Mathematica
 ```C++
 ;
-using namespace display;;
-FormatDataVector::string_opening = "{\n    ";;
-FormatDataVector::string_delimeter = ", ";;
-FormatDataVector::max_elements_per_line = 5;;
-FormatDataVector::string_endofline = "\n    ";;
-FormatDataVector::string_closing = "\n}";;
-setFormatString<double>("% 10.6e");;
+using namespace display;
+FormatDataVector::string_opening = "{\n    ";
+FormatDataVector::string_delimeter = ", ";
+FormatDataVector::max_elements_per_line = 5;
+FormatDataVector::string_endofline = "\n    ";
+FormatDataVector::string_closing = "\n}";
+setFormatString<double>("% 10.6e");
 FormatData<double>::tens = true;
 ```
 
 Define the Vector of coefficients: 
 
 ```C++
-Vector<double> J0Coeffs = Vector<double>({1.,0.,-0.25,0.,0.015625,0.,-0.000434028,0.,6.78168e-6,0.,-6.78168e-8,0.,4.7095e-10,0.,-2.40281e-12,0.,9.38597e-15,0.,-2.8969e-17,0.});;
+Vector<double> J0Coeffs = Vector<double>({1.,0.,-0.25,0.,0.015625,0.,-0.000434028,0.,6.78168e-6,0.,-6.78168e-8,0.,4.7095e-10,0.,-2.40281e-12,0.,9.38597e-15,0.,-2.8969e-17,0.});
 ```
 
 Define the coordinate vector `r` as 101 points over the interval [0,10]: 
 
 ```C++
-Vector<double> r = linspace<double>(0,10,101);;
+Vector<double> r = linspace<double>(0,10,101);
 ```
 
 Calculate the Taylor series and store the results in vector `y`: 
 
 ```C++
-Vector<double> y = taylor(J0Coeffs, r, 19);;
+Vector<double> y = taylor(J0Coeffs, r, 19);
 ```
 
 The results `r` and `y` are:
@@ -110,5 +110,7 @@ p1=ListPlot[Partition[Riffle[r,y],2],PlotStyle->Red];
 p2=Plot[BesselJ[0,r],{r,0,10}];
 Show[p1,p2]
 ```
-Yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].
+This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].
 ![Taylor Series for Jo(x)](BesselTaylorSeries.png)
+
+[Table of Contents](README.md)

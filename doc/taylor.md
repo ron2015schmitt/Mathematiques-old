@@ -1,6 +1,6 @@
 
 # Calculating a Taylor series and plotting the results in Mathematica
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r50).
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r51).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(r)
 We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). 
@@ -134,13 +134,6 @@ N[Table[SeriesCoefficient[BesselJ[0,r],{r,5,n}],{n,0,19}]]
 Set up the output format so that we can copy and paste into Mathematica, this time using the function `set_mathematica_var_format`
 ```C++
 set_mathematica_var_format();
-FormatDataVector::string_opening = "{\n    ";
-FormatDataVector::string_delimeter = ", ";
-FormatDataVector::max_elements_per_line = 5;
-FormatDataVector::string_endofline = "\n    ";
-FormatDataVector::string_closing = "\n}";
-setFormatString<double>("% 10.8e");
-FormatData<double>::tens = true;
 ```
 
 Define the Vector of coefficients: 

@@ -148,13 +148,6 @@ int main()
     text("Set up the output format so that we can copy and paste into Mathematica, this time using the function `set_mathematica_var_format`");
     codestart("C++");
     codemulti( set_mathematica_var_format()  );
-    codemulti( FormatDataVector::string_opening =  "{\n    "  );
-    codemulti( FormatDataVector::string_delimeter = ", "  );
-    codemulti( FormatDataVector::max_elements_per_line = 5  );
-    codemulti( FormatDataVector::string_endofline = "\n    "  );
-    codemulti( FormatDataVector::string_closing =   "\n}"  );
-    codemulti( setFormatString<double>("% 10.8e")  );
-    codemulti(  FormatData<double>::tens = true );
     codeend();
     cr();
 

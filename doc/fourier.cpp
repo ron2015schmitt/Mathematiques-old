@@ -31,12 +31,12 @@ int main()
   mdtitle0("Calculating a function via Fourier series and plotting the results in Matlab");
   matricks_preamble();
 
-  header2("Fourier Series for the Claussen Functions");
-  text("As our example, we'll use the [Claussen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Claussen function of order _n_ has Fourier series: ");
-  text("![Claussen Functions](ClaussenDefinition.PNG)");
+  header2("Fourier Series for the Clausen Functions");
+  text("As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: ");
+  text("![Clausen Functions](ClausenDefinition.PNG)");
 
 
-  header3("Claussen function of order _n=1_");
+  header3("Clausen function of order _n=1_");
 
   {
     cr();
@@ -49,7 +49,7 @@ int main()
     codemulti( FormatDataVector::max_elements_per_line = 5  );
     codemulti( FormatDataVector::string_endofline = " ...\n    "  );
     codemulti( FormatDataVector::string_closing =   " ...\n]"  );
-    codemulti( setFormatString<double>("% 10.6e")  );
+    codemulti( setFormatString<double>("% 10.8e")  );
     codemulti(  FormatData<double>::tens = false );
     codeend();
     cr();
@@ -61,19 +61,20 @@ int main()
     
     codestart("C++");
     codemulti( const size_type N = 20 );
-    codemulti( Vector<double> An = 1./range<double>(0,N-1) );
+    codemulti( Vector<double> k = range<double>(0,N-1)  );
+    codemulti( Vector<double> An = 1/k );
     codemulti( An[0] = 0. );
     codemulti( Vector<double> Bn = Vector<double>(N,0.) );
     codeend();
     cr();
 
 
-    text("Define the coordinate vector `t` as 51 points over the interval [-2pi,+2pi]: ");
+    text("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
     cr();
     
     codestart("C++");
     codemulti(   const double pi = M_PI  );
-    codemulti(   Vector<double> t = linspace<double>(-2*pi,2*pi,51) );
+    codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
     codeend();
     cr();
 
@@ -82,7 +83,7 @@ int main()
     cr();
     codestart("C++");
     codemulti(     const double T = 2*pi );
-    codemulti(     const double omega = 1 );
+    codemulti(     const double omega = 2*pi/T );
     codemulti(     Vector<double> Cl1 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
     cr();
@@ -95,32 +96,25 @@ int main()
     disp(Cl1);
     codeend();
 
-    text("Cut and paste the above data for r and y into Matlab as well as the following commands");
+    text("Cut and paste the above data for `t` and `Cl1` into Matlab as well as the following commands");
     cr();
     codestart("Matlab");
     codeend();
 
-    text("This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].");
+    text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
 
-    text("![Taylor Series for Jo(r)](BesselTaylorSeries.png)");
+    text("![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n1.png)");
 
   }
 
-  header3("Claussen function of order _n=2_");
+  header3("Clausen function of order _n=2_");
 
   {
     cr();
     cr();
-    text("Set up the output format so that we can copy and paste into Matlab");
+    text("Set up the output format so that we can copy and paste into Matlab, this time using the function `set_matlab_var_format()`");
     codestart("C++");
-    codemulti( using namespace display  );
-    codemulti( FormatDataVector::string_opening =  "[ ...\n    "  );
-    codemulti( FormatDataVector::string_delimeter = ", "  );
-    codemulti( FormatDataVector::max_elements_per_line = 5  );
-    codemulti( FormatDataVector::string_endofline = " ...\n    "  );
-    codemulti( FormatDataVector::string_closing =   " ...\n]"  );
-    codemulti( setFormatString<double>("% 10.6e")  );
-    codemulti(  FormatData<double>::tens = false );
+    codemulti( set_matlab_var_format()  );
     codeend();
     cr();
 
@@ -131,8 +125,9 @@ int main()
     
     codestart("C++");
     codemulti( const size_type N = 20 );
+    codemulti( Vector<double> k = range<double>(0,N-1)  );
     codemulti( Vector<double> An = Vector<double>(N,0.) );
-    codemulti( Vector<double> Bn = 1./sqr(range<double>(0,N-1)) );
+    codemulti( Vector<double> Bn = 1./sqr(k) );
     codemulti( Bn[0] = 0. );
     codeend();
     cr();
@@ -152,7 +147,7 @@ int main()
     cr();
     codestart("C++");
     codemulti(     const double T = 2*pi );
-    codemulti(     const double omega = 1 );
+    codemulti(     const double omega = 2*pi/T );
     codemulti(     Vector<double> Cl2 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
     cr();
@@ -170,9 +165,9 @@ int main()
     codestart("Matlab");
     codeend();
 
-    text("This yields the following plot comparing the Taylor series [red dots] to the exact function [solid blue].");
+    text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
 
-    text("![Taylor Series for Jo(r)](BesselTaylorSeries.png)");
+    text("![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n2.png)");
 
   }
 

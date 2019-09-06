@@ -36,7 +36,14 @@ namespace matricks {
       return stream;
     }
   };
+  namespace SLC {
+    const slc all(0,-1,1);
+    const slc rev(-1,0,-1);
+    const slc eve(0,-1,2);
+    const slc odd(1,-1,2);
+  };
 
+  
   
   template <typename T>
   std::vector<T> mergeVectors(const std::vector<T> v1, const std::vector<T> v2) {

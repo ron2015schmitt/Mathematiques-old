@@ -33,7 +33,7 @@ int main()
 
   header2("Fourier Series for the Clausen Functions");
   text("As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: ");
-  text("![Clausen Functions](ClausenDefinition.PNG)");
+  text("![Clausen Functions](ClausenDefinition.png)");
 
 
   header3("Clausen function of order _n=1_");
@@ -99,6 +99,9 @@ int main()
     text("Cut and paste the above data for `t` and `Cl1` into Matlab as well as the following commands");
     cr();
     codestart("Matlab");
+    text(" tt=linspace(0,2*pi,1000);"  );
+    text("y1=-log(2*sin(tt/2));" );
+    text("plot(t,Cl1,'r.',t2,y1);" );
     codeend();
 
     text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");

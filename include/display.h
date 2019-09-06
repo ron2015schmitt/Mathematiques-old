@@ -1098,8 +1098,20 @@ namespace display {
   }
 
     
- 
 
+  inline void set_mathematica_var_format() {
+    using namespace display;
+    FormatDataVector::string_opening =  "{\n    ";
+    FormatDataVector::string_delimeter = ", ";
+    FormatDataVector::max_elements_per_line = 5;
+    FormatDataVector::string_endofline = "\n    ";
+    FormatDataVector::string_closing =   "\n}";
+    setFormatString<double>("% 10.8e");
+  }
+
+
+  inline void set_matlab_var_format() {
+  }
   
 }; // namespace display
 

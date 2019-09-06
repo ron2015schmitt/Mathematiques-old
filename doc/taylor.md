@@ -1,6 +1,6 @@
 
 # Calculating a Taylor series and plotting the results in Mathematica
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r40).
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.13-r49).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(r)
 We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). 
@@ -8,10 +8,10 @@ The first 20 (n=0,1,...19) coefficients for  J<sub>0</sub>(r), are:
 
 ```C++
 J0Coeffs = {
-     1.000000e+00,  0.000000e+00, -2.500000e-01,  0.000000e+00,  1.562500e-02, 
-     0.000000e+00, -4.340280e-04,  0.000000e+00,  6.781680e-06,  0.000000e+00, 
-    -6.781680e-08,  0.000000e+00,  4.709500e-10,  0.000000e+00, -2.402810e-12, 
-     0.000000e+00,  9.385970e-15,  0.000000e+00, -2.896900e-17,  0.000000e+00
+     1.00000000e+00,  0.00000000e+00, -2.50000000e-01,  0.00000000e+00,  1.56250000e-02, 
+     0.00000000e+00, -4.34028000e-04,  0.00000000e+00,  6.78168000e-06,  0.00000000e+00, 
+    -6.78168000e-08,  0.00000000e+00,  4.70950000e-10,  0.00000000e+00, -2.40281000e-12, 
+     0.00000000e+00,  9.38597000e-15,  0.00000000e+00, -2.89690000e-17,  0.00000000e+00
 }; 
 ```
 These were determined using the following `Mathematica` command
@@ -117,10 +117,10 @@ The first 20 (n=0,1,...19) coefficients for the Maclaurin Series (r<sub>0</sub>=
 
 ```C++
 J0Coeffs = {
-    -1.775970 10^-01,  3.275790 10^-01,  5.604050 10^-02, -5.614870 10^-02, -1.707390 10^-03, 
-     2.520210 10^-03,  1.120220 10^-05, -5.379500 10^-05,  2.133300 10^-07,  6.781100 10^-07, 
-    -4.885720 10^-09, -5.664200 10^-09,  4.800960 10^-11,  3.370940 10^-11, -2.997110 10^-13, 
-    -1.502980 10^-13,  1.338560 10^-15,  5.209790 10^-16, -4.547440 10^-18, -1.444490 10^-18
+    -1.77597000 10^-01,  3.27579000 10^-01,  5.60405000 10^-02, -5.61487000 10^-02, -1.70739000 10^-03, 
+     2.52021000 10^-03,  1.12022000 10^-05, -5.37950000 10^-05,  2.13330000 10^-07,  6.78110000 10^-07, 
+    -4.88572000 10^-09, -5.66420000 10^-09,  4.80096000 10^-11,  3.37094000 10^-11, -2.99711000 10^-13, 
+    -1.50298000 10^-13,  1.33856000 10^-15,  5.20979000 10^-16, -4.54744000 10^-18, -1.44449000 10^-18
 }; 
 ```
 These were determined using the following `Mathematica` command
@@ -131,9 +131,9 @@ N[Table[SeriesCoefficient[BesselJ[0,r],{r,5,n}],{n,0,19}]]
 ```
 
 
-Set up the output format so that we can copy and paste into Mathematica
+Set up the output format so that we can copy and paste into Mathematica, this time using the function `set_mathematica_var_format`
 ```C++
-using namespace display;
+set_mathematica_var_format();
 FormatDataVector::string_opening = "{\n    ";
 FormatDataVector::string_delimeter = ", ";
 FormatDataVector::max_elements_per_line = 5;

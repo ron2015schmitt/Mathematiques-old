@@ -38,14 +38,8 @@ int main()
 
 
   {  
-    using namespace display;
-    FormatDataVector::string_opening =  "{\n    ";
-    FormatDataVector::string_delimeter = ", ";
-    FormatDataVector::max_elements_per_line = 5;
-    FormatDataVector::string_endofline = "\n    ";
-    FormatDataVector::string_closing =   "\n}";
-    setFormatString<double>("% 10.6e");
-    Vector<double> J0Coeffs =  Vector<double>({1.,0.,-0.25,0.,0.015625,0.,-0.000434028,0.,6.78168e-6,0.,-6.78168e-8,0.,4.7095e-10,0.,-2.40281e-12,0.,9.38597e-15,0.,-2.8969e-17,0.});
+    set_mathematica_var_format();
+  Vector<double> J0Coeffs =  Vector<double>({1.,0.,-0.25,0.,0.015625,0.,-0.000434028,0.,6.78168e-6,0.,-6.78168e-8,0.,4.7095e-10,0.,-2.40281e-12,0.,9.38597e-15,0.,-2.8969e-17,0.});
 
     codestart("C++");
     disp(J0Coeffs);
@@ -132,13 +126,7 @@ int main()
 
 
   {  
-    using namespace display;
-    FormatDataVector::string_opening =  "{\n    ";
-    FormatDataVector::string_delimeter = ", ";
-    FormatDataVector::max_elements_per_line = 5;
-    FormatDataVector::string_endofline = "\n    ";
-    FormatDataVector::string_closing =   "\n}";
-    setFormatString<double>("% 10.6e");
+    set_mathematica_var_format();
     Vector<double> J0Coeffs =  Vector<double>({-0.177597,0.327579,0.0560405,-0.0561487,-0.00170739,0.00252021,0.0000112022,-0.000053795,2.1333e-7,6.7811e-7,-4.88572e-9,-5.6642e-9,4.80096e-11,3.37094e-11,-2.99711e-13,-1.50298e-13,1.33856e-15,5.20979e-16,-4.54744e-18,-1.44449e-18});
 
     codestart("C++");
@@ -157,9 +145,9 @@ int main()
   {
     cr();
     cr();
-    text("Set up the output format so that we can copy and paste into Mathematica");
+    text("Set up the output format so that we can copy and paste into Mathematica, this time using the function `set_mathematica_var_format`");
     codestart("C++");
-    codemulti( using namespace display  );
+    codemulti( set_mathematica_var_format()  );
     codemulti( FormatDataVector::string_opening =  "{\n    "  );
     codemulti( FormatDataVector::string_delimeter = ", "  );
     codemulti( FormatDataVector::max_elements_per_line = 5  );

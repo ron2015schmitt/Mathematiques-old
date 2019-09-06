@@ -1,6 +1,6 @@
 
 # Calculating a function via Fourier series and plotting the results in Matlab
-_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r56).
+_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r57).
 
 ## Fourier Series for the Clausen Functions
 As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: 
@@ -85,7 +85,11 @@ y1=-log(2*abs(sin(tt/2)));
 plot(t,CL1,'r.',tt,y1)
 ```
 The above matlab code calculates the first Clausen function using the equation
+
+
 ![Closed form for CL1(t)](ClausenFormula_n1.png)
+
+
 We exclude the end points, 0 and pi, because the function is infinite at these points.
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
 ![Fourier Series for CL1</sub>(t)](ClausenFourierSeries_n1.png)
@@ -162,7 +166,11 @@ y2=cumtrapz(-log(2*abs(sin(tt/2))))*dt;
 plot(t,CL2,'r.',tt,y2)
 ```
 The above matlab code calculates the second Clausen function using the following integral
+
+
 ![Closed form for CL2(t)](ClausenFormula_n2.png)
+
+
 We exclude the end points, 0 and pi, because the integrand is infinite at these points.
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
 ![Fourier Series for CL2(t)](ClausenFourierSeries_n2.png)

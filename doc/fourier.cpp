@@ -107,7 +107,11 @@ int main()
     codeend();
 
     text("The above matlab code calculates the first Clausen function using the equation");
+    cr();
+    cr();
     text("![Closed form for CL1(t)](ClausenFormula_n1.png)");
+    cr();
+    cr();
     
     text("We exclude the end points, 0 and pi, because the function is infinite at these points.");
 
@@ -181,7 +185,11 @@ int main()
     codeend();
 
     text("The above matlab code calculates the second Clausen function using the following integral");
+    cr();
+    cr();
     text("![Closed form for CL2(t)](ClausenFormula_n2.png)");
+    cr();
+    cr();
 
     text("We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
     text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");

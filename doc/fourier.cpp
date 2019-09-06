@@ -79,7 +79,7 @@ int main()
     cr();
 
 
-    text("Calculate the Fourier series and store the results in vector `Cl1`: ");
+    text("Calculate the Fourier series and store the results in vector `CL1`: ");
     cr();
     codestart("C++");
     codemulti(     const double T = 2*pi );
@@ -89,7 +89,7 @@ int main()
     cr();
 
     
-    text("The results `t` and `Cl1` are:");
+    text("The results `t` and `CL1` are:");
     cr();
     codestart("Matlab");
     disp(t);
@@ -157,7 +157,7 @@ int main()
     cr();
 
 
-    text("Calculate the Fourier series and store the results in vector `Cl1`: ");
+    text("Calculate the Fourier series and store the results in vector `CL2`: ");
     cr();
     codestart("C++");
     codemulti(     const double T = 2*pi );

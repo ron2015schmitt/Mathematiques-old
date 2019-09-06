@@ -1,6 +1,6 @@
 
 # Calculating a function via Fourier series and plotting the results in Matlab
-_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r57).
+_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r58).
 
 ## Fourier Series for the Clausen Functions
 As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: 
@@ -37,7 +37,7 @@ const double pi = 3.14159265358979323846;
 Vector<double> t = linspace<double>(0,2*pi,51);
 ```
 
-Calculate the Fourier series and store the results in vector `Cl1`: 
+Calculate the Fourier series and store the results in vector `CL1`: 
 
 ```C++
 const double T = 2*pi;
@@ -45,7 +45,7 @@ const double omega = 2*pi/T;
 Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega );
 ```
 
-The results `t` and `Cl1` are:
+The results `t` and `CL1` are:
 
 ```Matlab
 t = [ ...
@@ -118,7 +118,7 @@ const double pi = 3.14159265358979323846;
 Vector<double> t = linspace<double>(0,2*pi,51);
 ```
 
-Calculate the Fourier series and store the results in vector `Cl1`: 
+Calculate the Fourier series and store the results in vector `CL2`: 
 
 ```C++
 const double T = 2*pi;

@@ -78,7 +78,7 @@ Cl1 = [ ...
 Cut and paste the above data for `t` and `Cl1` into Matlab as well as the following commands
 
 ```Matlab
- tt=linspace(0,2*pi,1000);
+tt=linspace(0,2*pi,1000);
 y1=-log(2*sin(tt/2));
 plot(t,Cl1,'r.',t2,y1);
 ```
@@ -147,9 +147,14 @@ Cl2 = [ ...
     -9.12300242e-16 ...
 ]; 
 ```
-Cut and paste the above data for r and y into Matlab as well as the following commands
+Cut and paste the above data for r and y into Matlab as well as the following commands.  We exclude the end points, 0 and pi, because the integrand is infinite at these points.
 
 ```Matlab
+N=10000;
+dt=2*pi/N;
+tt=linspace(dt,2*pi-dt,10000);
+y2=cumtrapz(-log(2*sin(tt/2)))*dt;
+plot(t,Cl2,'r.',tt,y2)
 ```
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
 ![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n2.png)

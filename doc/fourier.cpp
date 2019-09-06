@@ -99,7 +99,7 @@ int main()
     text("Cut and paste the above data for `t` and `Cl1` into Matlab as well as the following commands");
     cr();
     codestart("Matlab");
-    text(" tt=linspace(0,2*pi,1000);"  );
+    text("tt=linspace(0,2*pi,1000);"  );
     text("y1=-log(2*sin(tt/2));" );
     text("plot(t,Cl1,'r.',t2,y1);" );
     codeend();
@@ -163,9 +163,14 @@ int main()
     disp(Cl2);
     codeend();
 
-    text("Cut and paste the above data for r and y into Matlab as well as the following commands");
+    text("Cut and paste the above data for r and y into Matlab as well as the following commands.  We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
     cr();
     codestart("Matlab");
+    text("N=10000;");
+    text("dt=2*pi/N;");
+    text("tt=linspace(dt,2*pi-dt,10000);");
+    text("y2=cumtrapz(-log(2*sin(tt/2)))*dt;");
+    text("plot(t,Cl2,'r.',tt,y2)");
     codeend();
 
     text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");

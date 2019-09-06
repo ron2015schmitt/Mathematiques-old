@@ -1,6 +1,6 @@
 
 # Calculating a function via Fourier series and plotting the results in Matlab
-_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r54).
+_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.13-r56).
 
 ## Fourier Series for the Clausen Functions
 As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: 
@@ -42,7 +42,7 @@ Calculate the Fourier series and store the results in vector `Cl1`:
 ```C++
 const double T = 2*pi;
 const double omega = 2*pi/T;
-Vector<double> Cl1 = ifourier(An,Bn, t, An.size(), omega );
+Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega );
 ```
 
 The results `t` and `Cl1` are:
@@ -61,7 +61,7 @@ t = [ ...
      5.65486678e+00,  5.78053048e+00,  5.90619419e+00,  6.03185789e+00,  6.15752160e+00,  ...
      6.28318531e+00 ...
 ]; 
-Cl1 = [ ...
+CL1 = [ ...
      3.54773966e+00,  2.37649806e+00,  1.18837837e+00,  1.08954466e+00,  6.70212104e-01,  ...
      4.49882732e-01,  3.66844724e-01,  1.01722992e-01,  7.16511105e-02, -7.02907275e-02,  ...
     -1.88547918e-01, -2.03656272e-01, -3.47537369e-01, -3.62834235e-01, -4.23505952e-01,  ...
@@ -75,17 +75,19 @@ Cl1 = [ ...
      3.54773966e+00 ...
 ]; 
 ```
-Cut and paste the above data for `t` and `Cl1` into Matlab as well as the following commands
+Cut and paste the above data for `t` and `CL1` into Matlab as well as the following commands
 
 ```Matlab
 N=10000;
 dt=2*pi/N;
 tt=linspace(dt,2*pi-dt,10000);
 y1=-log(2*sin(tt/2));
-plot(t,Cl1,'r.',tt,y1)
+plot(t,CL1,'r.',tt,y1)
 ```
+The above matlab code calculates the first Clausen function using the following equation (refer to the link earlier for more about this).  We exclude the end points, 0 and pi, because the function is infinite at these points.
+![Closed form for CL1(t)](ClausenFormula_n1.png)
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
-![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n1.png)
+![Fourier Series for CL1</sub>(t)](ClausenFourierSeries_n1.png)
 ### Clausen function of order _n=2_
 
 
@@ -116,10 +118,10 @@ Calculate the Fourier series and store the results in vector `Cl1`:
 ```C++
 const double T = 2*pi;
 const double omega = 2*pi/T;
-Vector<double> Cl2 = ifourier(An,Bn, t, An.size(), omega );
+Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega );
 ```
 
-The results `t` and `Cl2` are:
+The results `t` and `CL2` are:
 
 ```Matlab
 t = [ ...
@@ -135,7 +137,7 @@ t = [ ...
      5.65486678e+00,  5.78053048e+00,  5.90619419e+00,  6.03185789e+00,  6.15752160e+00,  ...
      6.28318531e+00 ...
 ]; 
-Cl2 = [ ...
+CL2 = [ ...
      0.00000000e+00,  3.91566598e-01,  6.00043244e-01,  7.41013319e-01,  8.55181325e-01,  ...
      9.20043638e-01,  9.74362042e-01,  1.00263931e+00,  1.01203918e+00,  1.01443074e+00,  ...
      9.95652326e-01,  9.72211411e-01,  9.37639689e-01,  8.91563220e-01,  8.43916566e-01,  ...
@@ -149,16 +151,18 @@ Cl2 = [ ...
     -9.12300242e-16 ...
 ]; 
 ```
-Cut and paste the above data for r and y into Matlab as well as the following commands.  We exclude the end points, 0 and pi, because the integrand is infinite at these points.
+Cut and paste the above data for t and CL2 into Matlab as well as the following commands.
 
 ```Matlab
 N=10000;
 dt=2*pi/N;
 tt=linspace(dt,2*pi-dt,10000);
 y2=cumtrapz(-log(2*sin(tt/2)))*dt;
-plot(t,Cl2,'r.',tt,y2)
+plot(t,CL2,'r.',tt,y2)
 ```
+The above matlab code calculates the second Clausen function using the following integral (refer to the link earlier for more about this).  We exclude the end points, 0 and pi, because the integrand is infinite at these points.
+![Closed form for CL2(t)](ClausenFormula_n2.png)
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
-![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n2.png)
+![Fourier Series for CL2(t)](ClausenFourierSeries_n2.png)
 
 [Table of Contents](README.md)

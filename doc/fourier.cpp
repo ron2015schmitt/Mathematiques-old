@@ -84,7 +84,7 @@ int main()
     codestart("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 2*pi/T );
-    codemulti(     Vector<double> Cl1 = ifourier(An,Bn, t, An.size(), omega ) );
+    codemulti(     Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
     cr();
 
@@ -93,22 +93,26 @@ int main()
     cr();
     codestart("Matlab");
     disp(t);
-    disp(Cl1);
+    disp(CL1);
     codeend();
 
-    text("Cut and paste the above data for `t` and `Cl1` into Matlab as well as the following commands");
+    text("Cut and paste the above data for `t` and `CL1` into Matlab as well as the following commands");
     cr();
     codestart("Matlab");
     text("N=10000;");
     text("dt=2*pi/N;");
     text("tt=linspace(dt,2*pi-dt,10000);");
     text("y1=-log(2*sin(tt/2));");
-    text("plot(t,Cl1,'r.',tt,y1)");
+    text("plot(t,CL1,'r.',tt,y1)");
     codeend();
+
+    text("The above matlab code calculates the first Clausen function using the following equation (refer to the link earlier for more about this).  We exclude the end points, 0 and pi, because the function is infinite at these points.");
+
+    text("![Closed form for CL1(t)](ClausenFormula_n1.png)");
 
     text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
 
-    text("![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n1.png)");
+    text("![Fourier Series for CL1</sub>(t)](ClausenFourierSeries_n1.png)");
 
   }
 
@@ -153,31 +157,35 @@ int main()
     codestart("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 2*pi/T );
-    codemulti(     Vector<double> Cl2 = ifourier(An,Bn, t, An.size(), omega ) );
+    codemulti(     Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
     cr();
 
     
-    text("The results `t` and `Cl2` are:");
+    text("The results `t` and `CL2` are:");
     cr();
     codestart("Matlab");
     disp(t);
-    disp(Cl2);
+    disp(CL2);
     codeend();
 
-    text("Cut and paste the above data for r and y into Matlab as well as the following commands.  We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
+    text("Cut and paste the above data for t and CL2 into Matlab as well as the following commands.");
     cr();
     codestart("Matlab");
     text("N=10000;");
     text("dt=2*pi/N;");
     text("tt=linspace(dt,2*pi-dt,10000);");
     text("y2=cumtrapz(-log(2*sin(tt/2)))*dt;");
-    text("plot(t,Cl2,'r.',tt,y2)");
+    text("plot(t,CL2,'r.',tt,y2)");
     codeend();
+
+    text("The above matlab code calculates the second Clausen function using the following integral (refer to the link earlier for more about this).  We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
+
+    text("![Closed form for CL2(t)](ClausenFormula_n2.png)");
 
     text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
 
-    text("![Fourier Series for Cl<sub>n=1</sub>(t)](ClausenFourierSeries_n2.png)");
+    text("![Fourier Series for CL2(t)](ClausenFourierSeries_n2.png)");
 
   }
 

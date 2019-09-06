@@ -1,5 +1,5 @@
 
-#define MATRICKS_DEBUG 3
+#define MATRICKS_DEBUG 1
 
 #include "matricks.h"
 #include <unistd.h>
@@ -147,12 +147,12 @@ namespace matricks {
   slc::slc(const index_type start, const index_type end, const index_type step) :
     start_(start), end_(end), 
     step_(step) {
-    printf2("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
+    printf3("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
   }
   slc::slc(const index_type start, const index_type end) :
     start_(start), end_(end), 
     step_(1) {
-    printf2("slc::slc(start=%d, end=%d)\n",start, end);
+    printf3("slc::slc(start=%d, end=%d)\n",start, end);
   }
     
   index_type slc::start(void) const{ return start_;}
@@ -160,7 +160,7 @@ namespace matricks {
   index_type slc::step(void) const{ return step_;}
 
   Vector<index_type>& slc::toIndexVector(const size_type N) const {
-    printf2("slc::toIndexVector(N=%lu)\n",N);
+    printf3("slc::toIndexVector(N=%lu)\n",N);
     index_type mystart = start_;
     if (mystart < 0) {
       mystart += N;

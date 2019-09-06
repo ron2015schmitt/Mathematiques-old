@@ -81,11 +81,12 @@ Cut and paste the above data for `t` and `CL1` into Matlab as well as the follow
 N=10000;
 dt=2*pi/N;
 tt=linspace(dt,2*pi-dt,10000);
-y1=-log(2*sin(tt/2));
+y1=-log(2*abs(sin(tt/2)));
 plot(t,CL1,'r.',tt,y1)
 ```
-The above matlab code calculates the first Clausen function using the following equation (refer to the link earlier for more about this).  We exclude the end points, 0 and pi, because the function is infinite at these points.
+The above matlab code calculates the first Clausen function using the equation
 ![Closed form for CL1(t)](ClausenFormula_n1.png)
+We exclude the end points, 0 and pi, because the function is infinite at these points.
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
 ![Fourier Series for CL1</sub>(t)](ClausenFourierSeries_n1.png)
 ### Clausen function of order _n=2_
@@ -157,11 +158,12 @@ Cut and paste the above data for t and CL2 into Matlab as well as the following 
 N=10000;
 dt=2*pi/N;
 tt=linspace(dt,2*pi-dt,10000);
-y2=cumtrapz(-log(2*sin(tt/2)))*dt;
+y2=cumtrapz(-log(2*abs(sin(tt/2))))*dt;
 plot(t,CL2,'r.',tt,y2)
 ```
-The above matlab code calculates the second Clausen function using the following integral (refer to the link earlier for more about this).  We exclude the end points, 0 and pi, because the integrand is infinite at these points.
+The above matlab code calculates the second Clausen function using the following integral
 ![Closed form for CL2(t)](ClausenFormula_n2.png)
+We exclude the end points, 0 and pi, because the integrand is infinite at these points.
 This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].
 ![Fourier Series for CL2(t)](ClausenFourierSeries_n2.png)
 

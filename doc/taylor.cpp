@@ -65,7 +65,7 @@ int main()
     codemulti( FormatDataVector::max_elements_per_line = 5  );
     codemulti( FormatDataVector::string_endofline = "\n    "  );
     codemulti( FormatDataVector::string_closing =   "\n}"  );
-    codemulti( setFormatString<double>("% 10.6e")  );
+    codemulti( setFormatString<double>("% 10.8e")  );
     codemulti(  FormatData<double>::tens = true );
     codeend();
     cr();
@@ -153,7 +153,7 @@ int main()
     codemulti( FormatDataVector::max_elements_per_line = 5  );
     codemulti( FormatDataVector::string_endofline = "\n    "  );
     codemulti( FormatDataVector::string_closing =   "\n}"  );
-    codemulti( setFormatString<double>("% 10.6e")  );
+    codemulti( setFormatString<double>("% 10.8e")  );
     codemulti(  FormatData<double>::tens = true );
     codeend();
     cr();

@@ -820,13 +820,13 @@ namespace matricks {
 
       if (order == 0) {
 	this->cumsum();
-	const D dx = (b-a)/(N);
+	const D dx = (b-a)/D(N);
 	for (register index_type i = 0; i < N ; i++ ) {
 	  mydata[i] *= dx;
 	}
       } else if (order == 1) {
 	this->cumtrapz();
-	const D dx = (b-a)/(N-1);
+	const D dx = (b-a)/D(N-1);
 	for (register index_type i = 1; i < N ; i++ ) {
 	  mydata[i] *= dx;
 	}

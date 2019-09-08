@@ -92,8 +92,9 @@ int main()
     codemulti( const double b = 4 );
     codemulti( const double pi = M_PI );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
-    codemulti( Vector<double> erf );
-    codemulti( erf = 2/sqrt(pi)*exp(-sqr(x)/2) );
+    codemulti( Vector<double> f );
+    codemulti( f = 2/sqrt(pi)*exp(-sqr(x)/2) );
+    codemulti( Vector<double> erf = f );
     codemulti( erf.integrate_a2x(a,b,1) ) ;
     codemulti( set_mathematica_var_format() );
     codeend();
@@ -103,6 +104,7 @@ int main()
     cr();
     codestart("Mathematica");
     disp(x);
+    disp(f);
     disp(erf);
     codeend();
 

@@ -94,7 +94,7 @@ int main()
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
     codemulti( Vector<double> erf );
     codemulti( erf = 2/sqrt(pi)*exp(-sqr(x)/2) );
-    codemulti( erf.integrate_a2x(a,b,2) ) ;
+    codemulti( erf.integrate_a2x(a,b,1) ) ;
     codemulti( set_mathematica_var_format() );
     codeend();
     cr();

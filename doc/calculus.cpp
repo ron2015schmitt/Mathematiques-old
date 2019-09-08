@@ -152,7 +152,7 @@ int main()
   }
 
   
-  header2("Various related functions");
+  header2("Various functions related to integration and differentiation");
   text("All of these functions modify the vector _in place_.");
 
   {

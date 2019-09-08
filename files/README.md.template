@@ -2,8 +2,11 @@
 
 ```diff
 - CURRENTLY NOT READY FOR USE.
-- I am making great progress
-- Planned Date for full vector functionality: 2019 Sep 9 MON
+- Code has been upgraded/refactored for all *EXCEPT*
+  - differentiation
+  - file i/o
+  - debugging
+  - matrix operations
 - Planned Date for full matrix functionality: 2019 Sep 20 FRI
 ```
 

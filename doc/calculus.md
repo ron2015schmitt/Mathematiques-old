@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r15).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r18).
 
 ## Integration
 ### Definite integrals
@@ -152,7 +152,7 @@ Vector<double> v1(5);
 ```C++
 ```
 
-## Various related functions
+## Various functions related to integration and differentiation
 All of these functions modify the vector _in place_.
 
 

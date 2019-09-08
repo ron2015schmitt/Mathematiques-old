@@ -1,6 +1,6 @@
 
 # Calculating a Taylor series and plotting the results in Mathematica
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.14).
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.14-r6).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(r)
 We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). 
@@ -8,10 +8,10 @@ The first 20 (n=0,1,...19) coefficients for  J<sub>0</sub>(r), are:
 
 ```C++
 J0Coeffs = {
-     1.00000000e+00,  0.00000000e+00, -2.50000000e-01,  0.00000000e+00,  1.56250000e-02, 
-     0.00000000e+00, -4.34028000e-04,  0.00000000e+00,  6.78168000e-06,  0.00000000e+00, 
-    -6.78168000e-08,  0.00000000e+00,  4.70950000e-10,  0.00000000e+00, -2.40281000e-12, 
-     0.00000000e+00,  9.38597000e-15,  0.00000000e+00, -2.89690000e-17,  0.00000000e+00
+     1.00000000 10^+00,  0.00000000 10^+00, -2.50000000 10^-01,  0.00000000 10^+00,  1.56250000 10^-02, 
+     0.00000000 10^+00, -4.34028000 10^-04,  0.00000000 10^+00,  6.78168000 10^-06,  0.00000000 10^+00, 
+    -6.78168000 10^-08,  0.00000000 10^+00,  4.70950000 10^-10,  0.00000000 10^+00, -2.40281000 10^-12, 
+     0.00000000 10^+00,  9.38597000 10^-15,  0.00000000 10^+00, -2.89690000 10^-17,  0.00000000 10^+00
 }; 
 ```
 These were determined using the following `Mathematica` command

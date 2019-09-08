@@ -75,11 +75,29 @@ int main()
   cr();
   text("A semi-definite integral yields a function as its output.");
   
-  text("Integration requires a cumulative sum.  Differentiation requires points around it.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
+  text("Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
   text("All of the remaining functions discussed in this section modify the vector _in place_.");
+  
 
-  header2("Differentiation");
-  text("");
+    {
+    cr();
+    cr();
+    example(Nex++," The error function integral");
+    text("The _error function_ is the following semi-definite integral of the Gaussian function.");
+    cr();
+    text("![ErrorFunction](ErrorFunction.PNG)");
+    codestart("C++");
+    codemulti( Vector<double> v1(5) );
+    codeend();
+    cr();
+
+   
+    resultstart3("");
+    resultend();
+  }
+
+      header2("Differentiation");
+  text(" Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
 
   {
     cr();

@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r2).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r3).
 
 ## Integration
 ### Definite integrals
@@ -41,13 +41,27 @@ A semi-definite integral is created by replacing one of the end points with _x_.
 ![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)
 
 A semi-definite integral yields a function as its output.
-Integration requires a cumulative sum.  Differentiation requires points around it.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
+Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
 All of the remaining functions discussed in this section modify the vector _in place_.
+
+
+**EXAMPLE 2**:  The error function integral
+The _error function_ is the following semi-definite integral of the Gaussian function.
+
+![ErrorFunction](ErrorFunction.PNG)
+```C++
+Vector<double> v1(5);
+```
+
+**Results**
+```C++
+```
+
 ## Differentiation
+ Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.
 
 
-
-**EXAMPLE 2**: Derivatives
+**EXAMPLE 3**: Derivatives
 ```C++
 Vector<double> v1(5);
 ```
@@ -60,7 +74,7 @@ Vector<double> v1(5);
 All of these functions modify the vector _in place_.
 
 
-**EXAMPLE 3**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
+**EXAMPLE 4**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
 ```C++
 Vector<double> v1(5);
 ```

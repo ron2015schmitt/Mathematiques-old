@@ -129,7 +129,7 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"`integrate` a vector over the interval [a,b]");
+    example(Nex++,"`integrate_a2b` a vector over the interval [a,b]");
     codestart("C++");
     codemulti( Vector<double> v );
     codemulti( v = exp(linspace<double>(-1,1,13)));
@@ -137,10 +137,10 @@ int main()
     cr();
    
     resultstart2(" precise value to 16 digits is 2.35040238729 (via Mathematica)");
-    resultmulti( integrate(v,-1.,1.) );
-    resultmulti( integrate(v,-1.,1.,2) );
-    resultmulti( integrate(v,-1.,1.,3) );
-    resultmulti( integrate(v,-1.,1.,4) );
+    resultmulti( integrate_a2b(v,-1.,1.) );
+    resultmulti( integrate_a2b(v,-1.,1.,2) );
+    resultmulti( integrate_a2b(v,-1.,1.,3) );
+    resultmulti( integrate_a2b(v,-1.,1.,4) );
     resultend();
   }
 

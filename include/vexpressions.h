@@ -940,7 +940,6 @@ namespace matricks {
 
 
 
-
   /****************************************************************************
    * VBoolBinOp Operator Expression Template 
    *

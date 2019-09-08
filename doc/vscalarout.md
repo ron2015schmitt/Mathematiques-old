@@ -1,6 +1,6 @@
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.13-r60).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.14).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -77,7 +77,7 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 
 
 
-**EXAMPLE 5**: `integrate` a vector over the interval [a,b]
+**EXAMPLE 5**: `integrate_a2b` a vector over the interval [a,b]
 ```C++
 Vector<double> v;
 v = exp(linspace<double>(-1,1,13));
@@ -85,10 +85,10 @@ v = exp(linspace<double>(-1,1,13));
 
 **Some expressions with results** precise value to 16 digits is 2.35040238729 (via Mathematica)
 ```C++
-  integrate(v,-1.,1.) = 2.35584; 
-  integrate(v,-1.,1.,2) = 2.35041; 
-  integrate(v,-1.,1.,3) = 2.35042; 
-  integrate(v,-1.,1.,4) = 2.3504; 
+  integrate_a2b(v,-1.,1.) = 2.35584; 
+  integrate_a2b(v,-1.,1.,2) = 2.35041; 
+  integrate_a2b(v,-1.,1.,3) = 2.35042; 
+  integrate_a2b(v,-1.,1.,4) = 2.3504; 
 ```
 
 

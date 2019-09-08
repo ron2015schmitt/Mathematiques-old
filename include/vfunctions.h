@@ -1608,6 +1608,8 @@ namespace matricks {
 
 
 
+  
+
   /****************************************************************
    * functions that convert vectors into other objects
    *****************************************************************
@@ -1754,23 +1756,24 @@ namespace matricks {
   }
 
 
-  // integrate(a)
+  // integrate_a2b(a)
   // order  name
+  //     0  rectangular
   //     1  trapazoidal
   //     2  simpson
   //     3  simpson 3/8
   //     4  Boole
   
   template <class D, class A> 
-    D integrate( const VorE<D,A>& v, const D a, const D b, const int order=1 ) {
+    D integrate_a2b( const VorE<D,A>& v, const D a, const D b, const int order=1 ) {
     
 #if MATRICKS_DEBUG>0
     if (  vexpr_is_size_bad(v) ) {
-      vbad_expr_in_unary(v,"integrate");
+      vbad_expr_in_unary(v,"integrate_a2b");
       return 0;
     }
     if (b<a)  {
-      std::cerr << "integrate: bad limit end points a="<<a<<", b="<<b<<std::endl;
+      std::cerr << "integrate_a2b: bad limit end points a="<<a<<", b="<<b<<std::endl;
       return 0;
     }
     
@@ -1787,8 +1790,13 @@ namespace matricks {
     D result = 0;
 
     switch (order) {
+    case 0:
+      for (register index_type j = 0; j < N ; j++ ) {
+	result += v[j];
+      }
+      result = result * (b-a)/D(N);
+      break;
     case 1:
-
       result += (v[0]+v[N-1])/2;
       for (register index_type j = 1; j < N-1 ; j++ ) {
 	result += v[j];
@@ -1797,7 +1805,7 @@ namespace matricks {
       break;
     case 2:
       if (N%2==0)  {
-	std::cout << "integrate: Number of points must be odd N="<<N<<std::endl;
+	std::cout << "integrate_a2b: Number of points must be odd N="<<N<<std::endl;
       }
       {
 	D sodd = 0;
@@ -1816,7 +1824,7 @@ namespace matricks {
       break;
     case 3:
       if (N%3!=1)  {
-	std::cout << "integrate: N-1 must be divisible by 3, N="<<N<<std::endl;
+	std::cout << "integrate_a2b: N-1 must be divisible by 3, N="<<N<<std::endl;
       }
       {
 	D s1 = 0;
@@ -1839,7 +1847,7 @@ namespace matricks {
       break;
     case 4:
       if (N%4!=1)  {
-	std::cout << "integrate: N-1 must be divisible by 4, N="<<N<<std::endl;
+	std::cout << "integrate_a2b: N-1 must be divisible by 4, N="<<N<<std::endl;
       }
       {
 	D s1 = 0;
@@ -1865,7 +1873,7 @@ namespace matricks {
       break;
     default:
 #if MATRICKS_DEBUG>0
-      std::cerr << "integrate: bad order parameter order="<<order<<std::endl;   
+      std::cerr << "integrate_a2b: bad order parameter order="<<order<<std::endl;   
 #endif
       break;
     }

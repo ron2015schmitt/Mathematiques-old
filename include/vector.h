@@ -770,11 +770,174 @@ namespace matricks {
     }
 
 
+    // .cumsum() -- cumulative sum
+
+    Vector<D>& cumsum() {
+      const size_type N = size();
+      D sum = 0;
+      for (register index_type i = 0; i < N ; i++ ) {
+	sum += (*data_)[i];
+	(*data_)[i] = sum;
+      }
+      return *this;
+    }
+
+    // .cumprod()  --  cumulative product
+
+    Vector<D>& cumprod() {
+      const size_type N = size();
+      D prod = 1;
+      for (register index_type i = 0; i < N ; i++ ) {
+	prod *= (*data_)[i];
+	(*data_)[i] = prod;
+      }
+      return *this;
+    }
+
+
+    // .cumtrapz() -- cumulative trapezoidal summation
+
+    Vector<D>& cumtrapz() {
+      const size_type N = size();
+      D sum = (*data_)[0]/2;
+      (*data_)[0] = 0;
+      for (register index_type i = 1; i < N ; i++ ) {
+	sum += (*data_)[i];
+	(*data_)[i] = sum - (*data_)[i]/2;
+      }
+      return *this;
+    }
+
+    // integrate_a2x(order)
+    // order  name
+    //     0  rectangular
+    //     1  trapazoidal
+    Vector<D>& integrate_a2x(const D a, const D b, const int order=1) {
+      const size_type N = size();
+
+      if (order == 0) {
+	this->cumsum();
+	const D dx = (b-a)/(N);
+	for (register index_type i = 0; i < N ; i++ ) {
+	  (*data_)[i] *= dx*(i+1);
+	}
+      } else if (order == 1) {
+	this->cumtrapz();
+	const D dx = (b-a)/(N-1);
+	for (register index_type i = 1; i < N ; i++ ) {
+	  (*data_)[i] *= dx*i;
+	}
+      }  else {
+	//TODO: issue error
+      }
+      return *this;
+    }
+
+
+    // .cumsumrev() -- cumulative sum -- from last to first
+
+    Vector<D>& cumsum_rev() {
+      const size_type N = size();
+      D sum = 0;
+      for (register index_type i = 0; i < N ; i++ ) {
+	sum += (*data_)[N-1-i];
+	(*data_)[N-1-i] = sum;
+      }
+      return *this;
+    }
+
+    // .cumprodrev()  --  cumulative product  -- from last to first
+
+    Vector<D>& cumprod_rev() {
+      const size_type N = size();
+      D prod = 1;
+      for (register index_type i = 0; i < N ; i++ ) {
+	prod *= (*data_)[N-1-i];
+	(*data_)[N-1-i] = prod;
+      }
+      return *this;
+    }
+
+
+    // .cumtrapz() -- cumulative trapezoidal summation -- from last to first
+
+    Vector<D>& cumtrapz_rev() {
+      const size_type N = size();
+      D sum = (*data_)[N-1]/2;
+      (*data_)[N-1] = 0;
+      for (register index_type i = 1; i < N ; i++ ) {
+	sum += (*data_)[N-1-i];
+	(*data_)[N-1-i] = sum - (*data_)[N-1-i]/2;
+      }
+      return *this;
+    }
 
 
 
+    // integrate_x2b
+    // order  name
+    //     0  rectangular
+    //     1  trapazoidal
+    Vector<D>& integrate_x2b(const D a, const D b, const int order=1) {
+      const size_type N = size();
+
+      if (order == 0) {
+	this->cumsum_rev();
+	const D dx = (b-a)/(N);
+	for (register index_type i = 0; i < N ; i++ ) {
+	  (*data_)[N-1-i] *= dx*(i+1);
+	}
+      } else if (order == 1) {
+	this->cumtrapz_rev();
+	const D dx = (b-a)/(N-1);
+	for (register index_type i = 1; i < N ; i++ ) {
+	  (*data_)[N-1-i] *= dx*i;
+	}
+      }  else {
+	//TODO: issue error
+      }
+      return *this;
+    }
 
 
+
+    // diff   (v[n] = v[n] - v[n-1])
+    Vector<D>& diff(const bool periodic=false) {
+      const size_type N = size();
+      D temp;
+      if (periodic) {
+	temp = (*data_)[0] - (*data_)[N-1];
+      } else {
+	temp = (*data_)[1] - (*data_)[0];
+      }
+
+      for (register index_type i = 0; i < N-1 ; i++ ) {
+	(*data_)[N-1-i] = (*data_)[N-1-i] - (*data_)[N-2-i];
+      }
+
+      (*data_)[0] = temp;
+      return *this;
+    }
+
+    // diff_rev   (v[n] = v[n+1] - v[n])
+    Vector<D>& diff_rev(const bool periodic=false) {
+      const size_type N = size();
+      D temp;
+      if (periodic) {
+	temp = (*data_)[0] - (*data_)[N-1];
+      } else {
+	temp = (*data_)[N-1] - (*data_)[N-2];
+      }
+
+      for (register index_type i = 0; i < N-1 ; i++ ) {
+	(*data_)[i] = (*data_)[i+1] - (*data_)[i];
+      }
+
+      (*data_)[N-1] = temp;
+      return *this;
+    }
+
+    
     //**********************************************************************
     //************************** Text and debugging ************************
     //**********************************************************************

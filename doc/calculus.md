@@ -50,7 +50,14 @@ use the method `.integrate_a2x(a, b, order)`.
 use the method `.integrate_x2b(a, b, order)`.
 
 
-Where [`a`,`b`] defines the interval being used and `order` specifiess the integration method order: 0 for rectangular integration and 1 for trapezoidal integration.
+Where [`a`,`b`] defines the interval being used and `order` specifies the integration method order: 
+
+* 0 for rectangular integration
+
+* 1 for trapezoidal integration.
+
+
+
 A semi-definite integral yields a function as its output.
 Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
 All of the remaining functions discussed in this section modify the vector _in place_.

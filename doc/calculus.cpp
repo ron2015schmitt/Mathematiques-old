@@ -79,7 +79,12 @@ int main()
   text("use the method `.integrate_x2b(a, b, order)`.");
   cr();
   cr();
-  text("Where [`a`,`b`] defines the interval being used and `order` specifiess the integration method order: 0 for rectangular integration and 1 for trapezoidal integration.");
+  text("Where [`a`,`b`] defines the interval being used and `order` specifies the integration method order: \n");
+  text("* 0 for rectangular integration\n");
+  text("* 1 for trapezoidal integration.\n");
+  
+  cr();
+  cr();
   text("A semi-definite integral yields a function as its output.");
   
   text("Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");

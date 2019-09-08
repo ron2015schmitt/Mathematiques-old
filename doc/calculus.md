@@ -1,12 +1,15 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r1).
 
-### Integration
+## Integration
+### Definite integrals
+Integrating over an interval [a,b] yields a single number--the area under the curve.
+
+![Definite Integral](DefiniteIntegral.PNG)
 
 
-
-**EXAMPLE 1**: Integration
+**EXAMPLE 1**: Definite integrals
 ```C++
 const size_type N = 100000;
 const double a = 0 + 1/double(N);
@@ -30,9 +33,14 @@ Integrating f(x) yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Eu
   integrate_a2b(f,a,b,2) = 0.577116; 
 ```
 
+### Semi
+Integration requires a cumulative sum.  Differentiation requires points around it.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
+All of these functions modify the vector _in place_.
+## Differentiation
 
 
-**EXAMPLE 2**: Differentiation
+
+**EXAMPLE 2**: Derivatives
 ```C++
 Vector<double> v1(5);
 ```
@@ -41,6 +49,8 @@ Vector<double> v1(5);
 ```C++
 ```
 
+## Various related functions
+All of these functions modify the vector _in place_.
 
 
 **EXAMPLE 3**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
@@ -72,5 +82,6 @@ Vector<double> v1(5);
   v1.diff_rev(true) = {3, 5, 7, 9, -24}; 
 ```
 
+The suffix `_rev` denote that the function starts at the highest element instead of the lowest element. Passing `true` to diff signifies that the function is periodic over the interval [a,b]. 
 
 [Table of Contents](README.md)

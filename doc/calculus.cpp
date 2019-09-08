@@ -28,14 +28,18 @@ int main()
   mdtitle("Calculus");
   matricks_preamble();
 
-  header3("Integration");
-  text("");
+  header2("Integration");
+  header3("Definite integrals");
 
+  text("Integrating over an interval [a,b] yields a single number--the area under the curve.");
+  cr();
+  text("![Definite Integral](DefiniteIntegral.PNG)");
 
+  
   {
     cr();
     cr();
-    example(Nex++,"Integration");
+    example(Nex++,"Definite integrals");
     codestart("C++");
     codemulti( const size_type N = 100000 );
     codemulti( const double a = 0 + 1/double(N) );
@@ -62,11 +66,17 @@ int main()
   }
 
 
+  header3("Semi");
+  text("Integration requires a cumulative sum.  Differentiation requires points around it.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
+  text("All of these functions modify the vector _in place_.");
+
+  header2("Differentiation");
+  text("");
 
   {
     cr();
     cr();
-    example(Nex++,"Differentiation");
+    example(Nex++,"Derivatives");
     codestart("C++");
     codemulti( Vector<double> v1(5) );
     codeend();
@@ -76,6 +86,10 @@ int main()
     resultstart2("");
     resultend();
   }
+
+  
+  header2("Various related functions");
+  text("All of these functions modify the vector _in place_.");
 
   {
     cr();
@@ -111,6 +125,8 @@ int main()
     resultend();
   }
 
+  text("The suffix `_rev` denote that the function starts at the highest element instead of the lowest element. Passing `true` to diff signifies that the function is periodic over the interval [a,b]. ");
+  
   matricks_toc();
 
 

@@ -83,7 +83,7 @@ int main()
     cr();
     cr();
     example(Nex++," The error function integral");
-    text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of the Gaussian function.");
+    text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and vairance of 1/2).");
     cr();
     text("![ErrorFunction](ErrorFunction.PNG)");
     codestart("C++");
@@ -92,9 +92,9 @@ int main()
     codemulti( const double b = 4 );
     codemulti( const double pi = M_PI );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
-    codemulti( Vector<double> f );
-    codemulti( f = 2/sqrt(pi)*exp(-sqr(x)/2) );
-    codemulti( Vector<double> erf = f );
+    codemulti( Vector<double> gauss );
+    codemulti( gauss = 2/sqrt(pi)*exp(-sqr(x)) );
+    codemulti( Vector<double> erf = gauss );
     codemulti( erf.integrate_a2x(a,b,1) ) ;
     codemulti( set_mathematica_var_format() );
     codeend();
@@ -104,7 +104,6 @@ int main()
     cr();
     codestart("Mathematica");
     disp(x);
-    disp(f);
     disp(erf);
     codeend();
 

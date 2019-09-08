@@ -49,12 +49,12 @@ int main()
    
     text("Integrating f(x) yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. ");
     cr();
-    text(" [!Euler–Mascheron Integral](EulerMascheroniConstant.PNG)");
+    text(" ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)");
     cr();
-    resultstart2("");
+    resultstart3("");
     resultmulti( N );
     resultmulti( a );
-    resultmulti( 1-b );
+    resultmulti( b );
     resultmulti( integrate_a2b(f,a,b,0) );
     resultmulti( integrate_a2b(f,a,b,1) );
     resultmulti( integrate_a2b(f,a,b,2) );

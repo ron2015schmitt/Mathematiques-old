@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.13-r61).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14).
 
 ### Integration
 
@@ -18,13 +18,13 @@ f=-log(log(1/x));
 
 Integrating f(x) yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. 
 
- [!Euler–Mascheron Integral](EulerMascheroniConstant.PNG)
+ ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)
 
-**Some expressions with results**
+**Results**
 ```C++
   N = 100000; 
   a = 1e-05; 
-  1-b = 1e-05; 
+  b = 0.99999; 
   integrate_a2b(f,a,b,0) = 0.577156; 
   integrate_a2b(f,a,b,1) = 0.577117; 
   integrate_a2b(f,a,b,2) = 0.577116; 

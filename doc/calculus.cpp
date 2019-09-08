@@ -69,16 +69,17 @@ int main()
   header3("Semi-Definite Integrals");
   text("A semi-definite integral is created by replacing one of the end points with _x_.");
   cr();
-  text("For the integral\n");
+  text("* For the integral\n");
   text("![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)\n");
-  text("use the method `integrate_a2x`.");
+  text("use the method `.integrate_a2x(a, b, order)`.");
   cr();
   cr();
-  text("For the integral\n");
+  text("* For the integral\n");
   text("![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)\n");
-  text("use the method `integrate_x2b`.");
+  text("use the method `.integrate_x2b(a, b, order)`.");
   cr();
   cr();
+  text("Where [`a`,`b`] defines the interval being used and `order` specifiess the integration method order: 0 for rectangular integration and 1 for trapezoidal integration.");
   text("A semi-definite integral yields a function as its output.");
   
   text("Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
@@ -89,7 +90,7 @@ int main()
     cr();
     cr();
     example(Nex++," The error function integral");
-    text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and vairance of 1/2).");
+    text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and variance of 1/2).");
     cr();
     text("![ErrorFunction](ErrorFunction.PNG)");
     codestart("C++");

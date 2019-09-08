@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r14).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r15).
 
 ## Integration
 ### Definite integrals
@@ -36,27 +36,28 @@ Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathwor
 ### Semi-Definite Integrals
 A semi-definite integral is created by replacing one of the end points with _x_.
 
-For the integral
+* For the integral
 
 ![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)
 
-use the method `integrate_a2x`.
+use the method `.integrate_a2x(a, b, order)`.
 
 
-For the integral
+* For the integral
 
 ![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)
 
-use the method `integrate_x2b`.
+use the method `.integrate_x2b(a, b, order)`.
 
 
+Where [`a`,`b`] defines the interval being used and `order` specifiess the integration method order: 0 for rectangular integration and 1 for trapezoidal integration.
 A semi-definite integral yields a function as its output.
 Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
 All of the remaining functions discussed in this section modify the vector _in place_.
 
 
 **EXAMPLE 2**:  The error function integral
-The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and vairance of 1/2).
+The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and variance of 1/2).
 
 ![ErrorFunction](ErrorFunction.PNG)
 ```C++

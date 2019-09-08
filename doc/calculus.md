@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r12).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r13).
 
 ## Integration
 ### Definite integrals
@@ -36,11 +36,15 @@ Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathwor
 ### Semi-Definite Integrals
 A semi-definite integral is created by replacing one of the end points with _x_.
 
-![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)   Use the method `integrate_a2x`.
+For the integral
+![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)
+use the method `integrate_a2x`.
 
- or 
 
-![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)   Use the method `integrate_a2x`.
+For the integral
+![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)
+use the method `integrate_x2b`.
+
 
 A semi-definite integral yields a function as its output.
 Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.

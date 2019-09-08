@@ -45,13 +45,13 @@ int main()
     codemulti( const double a = 0 + 1/double(N) );
     codemulti( const double b = 1 - 1/double(N) );
     codemulti( Vector<double> x(linspace<double>(a,b,N-1)) );
-    codemulti( Vector<double> f; );
+    codemulti( Vector<double> f );
     codemulti( f=-log(log(1/x)) );
     codeend();
     cr();
 
    
-    text("Integrating f(x) yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. ");
+    text("Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. ");
     cr();
     text(" ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)");
     cr();
@@ -66,9 +66,17 @@ int main()
   }
 
 
-  header3("Semi");
+  header3("Semi-Definite Integrals");
+  text("A semi-definite integral is created by replacing one of the end points with _x_.");
+  cr();
+  text("![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)");
+  cr();
+  text("![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)");
+  cr();
+  text("A semi-definite integral yields a function as its output.");
+  
   text("Integration requires a cumulative sum.  Differentiation requires points around it.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
-  text("All of these functions modify the vector _in place_.");
+  text("All of the remaining functions discussed in this section modify the vector _in place_.");
 
   header2("Differentiation");
   text("");

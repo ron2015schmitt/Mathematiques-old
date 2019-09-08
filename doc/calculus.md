@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r1).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r2).
 
 ## Integration
 ### Definite integrals
@@ -15,11 +15,11 @@ const size_type N = 100000;
 const double a = 0 + 1/double(N);
 const double b = 1 - 1/double(N);
 Vector<double> x(linspace<double>(a,b,N-1));
-Vector<double> f;;
+Vector<double> f;
 f=-log(log(1/x));
 ```
 
-Integrating f(x) yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. 
+Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. 
 
  ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)
 
@@ -33,9 +33,16 @@ Integrating f(x) yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Eu
   integrate_a2b(f,a,b,2) = 0.577116; 
 ```
 
-### Semi
+### Semi-Definite Integrals
+A semi-definite integral is created by replacing one of the end points with _x_.
+
+![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)
+
+![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)
+
+A semi-definite integral yields a function as its output.
 Integration requires a cumulative sum.  Differentiation requires points around it.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
-All of these functions modify the vector _in place_.
+All of the remaining functions discussed in this section modify the vector _in place_.
 ## Differentiation
 
 

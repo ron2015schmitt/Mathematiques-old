@@ -88,7 +88,7 @@ int main()
     text("![ErrorFunction](ErrorFunction.PNG)");
     codestart("C++");
     codemulti( const size_type N = 101 );
-    codemulti( const double a = -4 );
+    codemulti( const double a = 0 );
     codemulti( const double b = 4 );
     codemulti( const double pi = M_PI );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
@@ -110,7 +110,7 @@ int main()
     cr();
     codestart("Mathematica");
     text("p1=ListPlot[Partition[Riffle[x,erf],2],PlotStyle->Red];");
-    text("p2=Plot[Erf[0,x],{x,-4,4}];");
+    text("p2=Plot[Erf[0,x],{x,0,4}];");
     text("Show[p1,p2]");
     codeend();
 

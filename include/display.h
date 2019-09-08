@@ -324,7 +324,7 @@ namespace display {
   }
   template <typename T>
     inline std::string getDefaultFormatString() {
-    return FormatData<T>::default_format_string;
+    return FormatData<T>::format_string_default;
   }
 
 
@@ -1099,6 +1099,18 @@ namespace display {
 
     
 
+  inline void set_default_format() {
+    using namespace display;
+    FormatDataVector::string_opening =  "{";
+    FormatDataVector::string_delimeter = ",";
+    FormatDataVector::max_elements_per_line = matricks::maxsize;
+    FormatDataVector::string_endofline = "\n";
+    FormatDataVector::string_closing =   "}";
+    FormatData<double>::format_string = FormatData<double>::format_string_default;
+    FormatData<double>::tens = false;
+    // TODO: finish the rest of the defaults
+  }
+
   inline void set_mathematica_var_format() {
     using namespace display;
     FormatDataVector::string_opening =  "{\n    ";
@@ -1107,6 +1119,7 @@ namespace display {
     FormatDataVector::string_endofline = "\n    ";
     FormatDataVector::string_closing =   "\n}";
     setFormatString<double>("% 10.8e");
+    FormatData<double>::tens = true;
   }
 
 

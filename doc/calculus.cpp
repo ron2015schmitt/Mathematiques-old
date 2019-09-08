@@ -83,17 +83,42 @@ int main()
     cr();
     cr();
     example(Nex++," The error function integral");
-    text("The _error function_ is the following semi-definite integral of the Gaussian function.");
+    text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of the Gaussian function.");
     cr();
     text("![ErrorFunction](ErrorFunction.PNG)");
     codestart("C++");
-    codemulti( Vector<double> v1(5) );
+    codemulti( const size_type N = 101 );
+    codemulti( const double a = -4 );
+    codemulti( const double b = 4 );
+    codemulti( const double pi = M_PI );
+    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    codemulti( Vector<double> erf );
+    codemulti( erf = 2/sqrt(pi)*exp(-sqr(x)/2) );
+    codemulti( erf.integrate_a2x(a,b,2) ) ;
+    codemulti( set_mathematica_var_format() );
     codeend();
     cr();
 
+    text("The results _x_ and _f_(_x_) are:");
+    cr();
+    codestart("Mathematica");
+    disp(x);
+    disp(erf);
+    codeend();
+
+    text("Cut and paste the above data for `x` and `erf` into Mathematica as well as the following commands");
+    cr();
+    codestart("Mathematica");
+    text("p1=ListPlot[Partition[Riffle[x,erf],2],PlotStyle->Red];");
+    text("p2=Plot[Erf[0,x],{x,-4,4}];");
+    text("Show[p1,p2]");
+    codeend();
+
+    text("This yields the following plot comparing the results above [red dots] to the exact function [solid blue].");
+
+    text("![ErrorFunctionPlot](ErrorFunctionPlot.png)");
+
    
-    resultstart3("");
-    resultend();
   }
 
       header2("Differentiation");
@@ -122,6 +147,7 @@ int main()
     cr();
     example(Nex++,"Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc");
     codestart("C++");
+    codemulti( set_default_format() );
     codemulti( Vector<double> v1(5) );
     codeend();
     cr();

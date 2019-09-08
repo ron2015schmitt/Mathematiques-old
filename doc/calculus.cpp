@@ -69,13 +69,13 @@ int main()
   header3("Semi-Definite Integrals");
   text("A semi-definite integral is created by replacing one of the end points with _x_.");
   cr();
-  text("For the integral");
-  text("![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)");
+  text("For the integral\n");
+  text("![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)\n");
   text("use the method `integrate_a2x`.");
   cr();
   cr();
-  text("For the integral");
-  text("![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)");
+  text("For the integral\n");
+  text("![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)\n");
   text("use the method `integrate_x2b`.");
   cr();
   cr();

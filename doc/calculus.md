@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r13).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r14).
 
 ## Integration
 ### Definite integrals
@@ -37,12 +37,16 @@ Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathwor
 A semi-definite integral is created by replacing one of the end points with _x_.
 
 For the integral
+
 ![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)
+
 use the method `integrate_a2x`.
 
 
 For the integral
+
 ![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)
+
 use the method `integrate_x2b`.
 
 

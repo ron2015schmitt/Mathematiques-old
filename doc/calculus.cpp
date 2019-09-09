@@ -91,7 +91,7 @@ int main()
   text("All of the remaining functions discussed in this section modify the vector _in place_.");
   
 
-    {
+  {
     cr();
     cr();
     example(Nex++," The error function integral");
@@ -130,24 +130,59 @@ int main()
     text("This yields the following plot comparing the results above [red dots] to the exact function [solid blue].");
 
     text("![ErrorFunctionPlot](ErrorFunctionPlot.png)");
-
-   
+    
+    
   }
 
-      header2("Differentiation");
-  text(" Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
+  header2("Differentiation");
+  text("* Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
+  text("* the method for differentiation is .D(a, b, Npts)`, where _Npts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+
 
   {
     cr();
     cr();
-    example(Nex++,"Derivatives");
+    example(Nex++,"Derivative of _f_(_x_) = 5_x_");
     codestart("C++");
-    codemulti( Vector<double> v1(5) );
+    codemulti( set_default_format() );
+    codemulti( const double pi = M_PI );
+    codemulti( const size_type N = 11 );
+    codemulti( const double a = 0 );
+    codemulti( const double b = 1 );
+    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    codemulti( Vector<double> f = 5*x );
     codeend();
     cr();
 
-   
-    resultstart2("");
+    resultstart3("");
+    resultmulti(x);
+    resultmulti(deriv(5*x,a,b,2));
+    resultmulti(deriv(x*x,a,b,2));
+    resultmulti(deriv(5*x,a,b,3));
+    resultmulti(deriv(x*x,a,b,3));
+    resultend();
+  }
+
+
+  cr();
+  text("If the function is periodic, set the optional parameter `periodic=true` to produce better results and the end points.");
+
+  {
+    cr();
+    cr();
+    example(Nex++,"Derivatives of sin");
+    codestart("C++");
+    codestart("C++");
+    codemulti( const double pi = M_PI );
+    codemulti( const size_type N = 101 );
+    codemulti( const double a = -pi );
+    codemulti( const double b = +pi );
+    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    codemulti( Vector<double> gauss );
+    codeend();
+    cr();
+
+    resultstart3("");
     resultend();
   }
 

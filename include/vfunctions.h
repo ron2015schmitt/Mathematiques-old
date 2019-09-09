@@ -1607,7 +1607,13 @@ namespace matricks {
   }
 
 
-
+  template <class D, class A>
+    inline Vector<D>& deriv(const  VorE<D,A>& f, const D a, const D b, int Npts=2, const bool periodic=false, const int n=1) {
+    Vector<D> *df = new Vector<D>(f.size());
+    *df = f;
+    df->deriv(a,b,Npts,periodic,n);
+    return *df;
+  }
   
 
   /****************************************************************

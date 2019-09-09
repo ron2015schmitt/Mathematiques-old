@@ -385,10 +385,55 @@ namespace matricks {
       }
       return *this; 
     }
+
     template <class A>  Vector<D>& operator=(const Vexpr<D,A>& x) {  
       return equals(x);
     }
 
+
+
+    
+    template <class A>  Vector<D>& equals(const VorE<D,A>& x) {  
+#if MATRICKS_DEBUG>0
+      std::string s1 = debugtxt();
+      std::string s2 = x.debugtxt();
+      if ( vexpr_is_size_bad(x) ){ 
+	vbad_expr_in_assignment(objectID(), x);
+	return *this;
+      } else if ( (size()>0) && ( size() !=  x.size() ) ){ 
+	vbad_assignment_expr_warning(objectID(), x);
+      } else if (size() !=  x.size() ){
+	// if size=0, just silently resize this vector
+	//vbad_assignment_expr_warning(objectID(),x);
+      }
+
+#endif
+
+      // resize to avoid segmentation faults
+      resize(x.size());
+
+      if (x.checkAddresses(this->getAddresses())) {    
+#if MATRICKS_DEBUG>0
+	//	Vector<D> vtemp(size(),x.debugtxt());
+	Vector<D> vtemp(size());
+#else
+	Vector<D> vtemp(size());
+#endif
+	for (register index_type i = size(); i--;)
+	  vtemp[i] = x[i];   // Inlined expression
+	for (register index_type i = size(); i--;)
+	  (*data_)[i] = vtemp[i];
+      } else {
+	for (register index_type i = size(); i--;)
+	  (*data_)[i] = x[i];   // Inlined expression
+      }
+      return *this; 
+    }
+
+    
+    template <class A>  Vector<D>& operator=(const VorE<D,A>& x) {  
+      return equals(x);
+    }
 
 
 
@@ -800,6 +845,7 @@ namespace matricks {
 
     Vector<D>& cumtrapz() {
       const size_type N = size();
+      if (N==0) return *this;
       D sum = (*data_)[0]/2;
       (*data_)[0] = 0;
       for (register index_type i = 1; i < N ; i++ ) {
@@ -827,7 +873,7 @@ namespace matricks {
       } else if (order == 1) {
 	this->cumtrapz();
 	const D dx = (b-a)/D(N-1);
-	for (register index_type i = 1; i < N ; i++ ) {
+	for (register index_type i = 0; i < N ; i++ ) {
 	  mydata[i] *= dx;
 	}
       }  else {
@@ -871,6 +917,7 @@ namespace matricks {
     Vector<D>& cumtrapz_rev() {
       std::valarray<D> &mydata = *data_;
       const size_type N = size();
+      if (N==0) return *this;
 
       D sum = mydata[N-1]/2;
       mydata[N-1] = 0;
@@ -900,7 +947,7 @@ namespace matricks {
       } else if (order == 1) {
 	this->cumtrapz_rev();
 	const D dx = (b-a)/(N-1);
-	for (register index_type i = 1; i < N ; i++ ) {
+	for (register index_type i = 0; i < N ; i++ ) {
 	  mydata[N-1-i] *= dx;
 	}
       }  else {
@@ -915,6 +962,7 @@ namespace matricks {
     Vector<D>& diff(const bool periodic=false) {
       std::valarray<D> &mydata = *data_;
       const size_type N = size();
+      if (N<=1) return *this;
 
       D temp;
       if (periodic) {
@@ -935,6 +983,7 @@ namespace matricks {
     Vector<D>& diff_rev(const bool periodic=false) {
       const size_type N = size();
       std::valarray<D> &mydata = *data_;
+      if (N<=1) return *this;
 
       D temp;
       if (periodic) {
@@ -950,6 +999,62 @@ namespace matricks {
       mydata[N-1] = temp;
       return *this;
     }
+
+
+    // deriv -  derivative
+
+    Vector<D>& deriv(const D a, const D b, int Dpts=3, const bool periodic=false, const int n=1) {
+      std::valarray<D> &mydata = *data_;
+      const size_type N = size();
+      if (N<=1) return *this;
+
+      const D dx = (b-a)/D(N-1);
+
+      if (Dpts > N ) {
+	//TODO: error or warning
+	Dpts = N;
+      }
+
+      if (Dpts == 2) {
+	this->diff(periodic);
+	for (register index_type i = 0; i < N ; i++ ) {
+	  mydata[i] /= dx;
+	}
+	
+      } else if (Dpts == 3) {
+	D prev;
+	D curr;
+	D last;
+	if (periodic) {
+	  // first point
+	  prev = mydata[1] - mydata[N-1];
+	  // last
+	  last = mydata[0] - mydata[N-2];
+	} else {
+	  // first point
+	  prev = -3*mydata[0] + 4*mydata[1] - mydata[2];
+	  // last
+	  last = 3*mydata[N-1] - 4*mydata[N-2] + mydata[N-3];
+	}
+	
+	const D c0 = 0.5/dx;
+	for (register index_type i = 1; i < N-1 ; i++ ) {
+	  curr = mydata[i+1] - mydata[i-1];
+	  mydata[i-1] = c0*prev;
+	  prev = curr;
+	}
+	mydata[N-2] = c0*prev;
+	mydata[N-1] = c0*last;
+	
+      }  else {
+	//TODO: issue error
+      }
+      if (n>1) {
+	return this->deriv(a,b,Dpts,periodic,n-1);
+      } 
+      return *this;
+    }
+
 
     
     //**********************************************************************

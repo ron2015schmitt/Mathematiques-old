@@ -140,15 +140,46 @@ Show[p1,p2]
 This yields the following plot comparing the results above [red dots] to the exact function [solid blue].
 ![ErrorFunctionPlot](ErrorFunctionPlot.png)
 ## Differentiation
- Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.
+* Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.
+* the method for differentiation is .D(a, b, Npts)`, where _Npts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
 
 
-**EXAMPLE 3**: Derivatives
+**EXAMPLE 3**: Derivative of _f_(_x_) = 5_x_
 ```C++
-Vector<double> v1(5);
+set_default_format();
+const double pi = 3.14159265358979323846;
+const size_type N = 11;
+const double a = 0;
+const double b = 1;
+Vector<double> x( linspace<double>(a,b,N) );
+Vector<double> f = 5*x;
 ```
 
-**Some expressions with results**
+**Results**
+```C++
+  x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+  deriv(5*x,a,b,2) = {5,5,5,5,5,5,5,5,5,5,5}; 
+  deriv(x*x,a,b,2) = {0.1,0.1,0.3,0.5,0.7,0.9,1.1,1.3,1.5,1.7,1.9}; 
+  deriv(5*x,a,b,3) = {5,5,5,5,5,5,5,5,5,5,5}; 
+  deriv(x*x,a,b,3) = {0,0.2,0.4,0.6,0.8,1,1.2,1.4,1.6,1.8,2}; 
+```
+
+
+If the function is periodic, set the optional parameter `periodic=true` to produce better results and the end points.
+
+
+**EXAMPLE 4**: Derivatives of sin
+```C++
+```C++
+const double pi = 3.14159265358979323846;
+const size_type N = 101;
+const double a = -pi;
+const double b = +pi;
+Vector<double> x( linspace<double>(a,b,N) );
+Vector<double> gauss;
+```
+
+**Results**
 ```C++
 ```
 
@@ -156,7 +187,7 @@ Vector<double> v1(5);
 All of these functions modify the vector _in place_.
 
 
-**EXAMPLE 4**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
+**EXAMPLE 5**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
 ```C++
 set_default_format();
 Vector<double> v1(5);

@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r25).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r27).
 
 ## Integration
 ### Definite integrals
@@ -161,7 +161,7 @@ The derivative of the function _f_(_x_) = is the constant 5
 ```C++
 set_default_format();
 const double pi = 3.14159265358979323846;
-const size_type N = 21;
+const size_type N = 11;
 const double a = 0;
 const double b = 1;
 Vector<double> x( linspace<double>(a,b,N) );
@@ -169,17 +169,17 @@ Vector<double> x( linspace<double>(a,b,N) );
 
 **Results**
 ```C++
-  x = {0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1}; 
-  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5}; 
+  x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
 ## Differentiation: optional parameters
 * The differentiation method/function has 3 optional parameters:
   * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`
 * The optional parameters are:
-  * _n_ [DEFAULT=1] is the number of derivatives to compute: 
-  * _Dpts_ [DEFAULT=7] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
-  * _periodic_ [DEFAULT=false]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.
+  * `n` [DEFAULT=`1`] is the number of derivatives to compute: 
+  * `Dpts` [DEFAULT=`7`] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
+  * `periodic` [DEFAULT=`false`]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.
 ## Differentiation: taking multiple derivatives in one call
 
 
@@ -230,11 +230,11 @@ f3 = {
     -9.11757591 10^-01, -8.09439168 10^-01, -6.56260706 10^-01, -4.61846969 10^-01, -2.38413689 10^-01
 }; 
 f5 = {
-     1.05291443 10^+01, -3.14182878 10^+00, -9.74596907 10^+00,  4.39711598 10^+00,  4.01934134 10^-01, 
-     9.68232383 10^-01,  9.97499877 10^-01,  9.81768708 10^-01,  9.04349400 10^-01,  7.70106494 10^-01, 
+     1.18056005 10^-13,  2.48558605 10^-01,  4.81499360 10^-01,  6.84185738 10^-01,  8.43882210 10^-01, 
+     9.50554460 10^-01,  9.97499877 10^-01,  9.81768708 10^-01,  9.04349400 10^-01,  7.70106494 10^-01, 
      5.87474964 10^-01,  3.67930222 10^-01,  1.25267071 10^-01, -1.25267071 10^-01, -3.67930222 10^-01, 
-    -5.87474964 10^-01, -7.70106494 10^-01, -8.86671477 10^-01, -1.42371678 10^+00,  2.92643263 10^+00, 
-    -1.47650614 10^+01,  1.26459115 10^+01, -2.83150102 10^-01,  1.24743362 10^+01, -1.69803275 10^+01
+    -5.87474964 10^-01, -7.70106494 10^-01, -9.04349400 10^-01, -9.81768708 10^-01, -9.97499877 10^-01, 
+    -9.50554460 10^-01, -8.43882210 10^-01, -6.84185738 10^-01, -4.81499360 10^-01, -2.48558605 10^-01
 }; 
 f7 = {
      1.85797403 10^-13,  2.48688118 10^-01,  4.81750248 10^-01,  6.84542237 10^-01,  8.44321920 10^-01, 
@@ -251,7 +251,7 @@ p2=ListPlot[Partition[Riffle[x,f2],2],PlotStyle->Red];
 p3=ListPlot[Partition[Riffle[x,f3],2],PlotStyle->Orange];
 p5=ListPlot[Partition[Riffle[x,f5],2],PlotStyle->Yellow];
 p7=ListPlot[Partition[Riffle[x,f7],2],PlotStyle->Green];
-p=Plot[sin[x],{x,0,2*Pi}];
+p=Plot[Sin[x],{x,0,2*Pi}];
 Show[p,p2,p3,p5,p7]
 ```
 This yields the following plot comparing the results above [dots] to the exact function [solid blue].

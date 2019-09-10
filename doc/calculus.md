@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r28).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r29).
 
 ## Integration
 ### Definite integrals
@@ -256,8 +256,22 @@ Show[p, p2, p3, p5, p7]
 ```
 This yields the following plot comparing the results above [dots] to the exact function [solid blue].
 ![The Fourth Derivative of Sin(x)](FourthDerivativeSinPlot.png)
+From these results we observe:
+* the 2 point derivative has a bias that shifts the data to the right by 1/2 a grid point for each derivative taken.
+* the 3 point derivative is approximately correct: rms error = 2.9%
+* the 5 point derivative is very accurate:         rms error = 0.04%
+* the 7 point derivative is even more accurate:    rms error = 5ppm
+
+
+The root mean square (rms) errors were calculated in Mathematica using the following commands.
+```Mathematica
+RootMeanSquare[f2 - Sin[x]]*100
+RootMeanSquare[f3 - Sin[x]]*100
+RootMeanSquare[f5 - Sin[x]]*100
+RootMeanSquare[f7 - Sin[x]]*10^6
+```
 ## Various functions related to integration and differentiation
-All of these functions modify the vector _in place_.
+All of these functions can be called _either_ as a method, eg `v.cumsum()` or a function `cumsum(v)`.
 
 
 **EXAMPLE 5**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc

@@ -249,6 +249,23 @@ int main()
 
     text("![The Fourth Derivative of Sin(x)](FourthDerivativeSinPlot.png)");
 
+    text("From these results we observe:");
+    text("* the 2 point derivative has a bias that shifts the data to the right by 1/2 a grid point for each derivative taken.");
+    text("* the 3 point derivative is approximately correct: rms error = 2.9%");
+    text("* the 5 point derivative is very accurate:         rms error = 0.04%");
+    text("* the 7 point derivative is even more accurate:    rms error = 5ppm");
+    cr();
+    cr();
+    text("The root mean square (rms) errors were calculated in Mathematica using the following commands.");
+
+    codestart("Mathematica");
+    text("RootMeanSquare[f2 - Sin[x]]*100");
+    text("RootMeanSquare[f3 - Sin[x]]*100");
+    text("RootMeanSquare[f5 - Sin[x]]*100");
+    text("RootMeanSquare[f7 - Sin[x]]*10^6");
+    codeend();
+
+    
   }
 
 
@@ -256,7 +273,7 @@ int main()
 
   
   header2("Various functions related to integration and differentiation");
-  text("All of these functions modify the vector _in place_.");
+  text("All of these functions can be called _either_ as a method, eg `v.cumsum()` or a function `cumsum(v)`.");
 
   {
     cr();

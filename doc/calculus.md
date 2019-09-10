@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r22).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r25).
 
 ## Integration
 ### Definite integrals
@@ -154,8 +154,10 @@ Usage:
   * on a Vector or expression using the function `deriv(f, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
 
 
-**EXAMPLE 3**: Derivative of the function 5 _x_
-The derivative of the function 5 _x_ is the constant 5
+**EXAMPLE 3**: Derivative of the function _f_(_x_) = 5 _x_
+
+
+The derivative of the function _f_(_x_) = is the constant 5
 ```C++
 set_default_format();
 const double pi = 3.14159265358979323846;
@@ -168,8 +170,7 @@ Vector<double> x( linspace<double>(a,b,N) );
 **Results**
 ```C++
   x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
-  a = 0; b = 1; n = 1; Dpts = 3; periodic = 0; 
-deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
+  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
 ## Differentiation: optional parameters
@@ -183,8 +184,14 @@ deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5};
 
 
 **EXAMPLE 4**: The fourth derivative of sin _x_
+
+
 Here we take the 4th derivative of sin _x_ , which is simply sin _x_:
+
+
 ![4th derivative of sin(x)](fourthDerivativeOfSin.png)
+
+
 We also set `periodic=true` since sin _x_ is periodic over [0,2pi)
 ```C++
 set_mathematica_var_format();
@@ -195,10 +202,6 @@ const double b = 2*pi*(1 - 1/double(N));
 Vector<double> x( linspace<double>(a,b,N) );
 Vector<double> f1 = sin(x);
 Vector<double> f2 = deriv(f1,a,b,4,3,true );
-a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 4; Dpts = 3; periodic = 1; 
-a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 3; Dpts = 3; periodic = 1; 
-a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 2; Dpts = 3; periodic = 1; 
-a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 1; Dpts = 3; periodic = 1; 
 ```
 
 **Results**

@@ -156,8 +156,10 @@ int main()
   {
     cr();
     cr();
-    example(Nex++,"Derivative of the function 5 _x_");
-    text("The derivative of the function 5 _x_ is the constant 5");
+    example(Nex++,"Derivative of the function _f_(_x_) = 5 _x_");
+    cr();
+    cr();
+    text("The derivative of the function _f_(_x_) = is the constant 5");
     codestart("C++");
     codemulti( set_default_format() );
     codemulti( const double pi = M_PI );
@@ -189,8 +191,14 @@ int main()
     cr();
     cr();
     example(Nex++,"The fourth derivative of sin _x_");
+    cr();
+    cr();
     text("Here we take the 4th derivative of sin _x_ , which is simply sin _x_:");
+    cr();
+    cr();
     text("![4th derivative of sin(x)](fourthDerivativeOfSin.png)");
+    cr();
+    cr();
     text("We also set `periodic=true` since sin _x_ is periodic over [0,2pi)");
     codestart("C++");
     codemulti( set_mathematica_var_format() );

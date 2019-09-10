@@ -1005,7 +1005,7 @@ namespace matricks {
 
     Vector<D>& deriv(const D a, const D b, const int n=1, int Dpts=3, const bool periodic=false) {
       std::valarray<D> &mydata = *data_;
-      mdisp(a,b,n,Dpts,periodic);
+      //mdisp(a,b,n,Dpts,periodic);
       const size_type N = size();
       if (N<=1) return *this;
 
@@ -1046,6 +1046,29 @@ namespace matricks {
 	}
 	mydata[N-2] = c0*prev;
 	mydata[N-1] = c0*last;
+	
+      } else if (Dpts == 5) {
+	D prev1;
+	D prev2;
+	D curr;
+	D last1;
+	D last2;
+	if (periodic) {
+	  // first point
+	  // last
+	} else {
+	  // first point
+	  // last
+	}
+	
+	const D c0 = 1/(12*dx);
+	for (register index_type i = 2; i < N-2 ; i++ ) {
+	}
+	
+      } else if (Dpts == 7) {
+	const D c0 = 1/(60*dx);
+	for (register index_type i = 3; i < N-3 ; i++ ) {
+	}
 	
       }  else {
 	//TODO: issue error

@@ -11,6 +11,6 @@ fi
 
 
 ./deconfigure
-./configure
+./configure newtag
 
 

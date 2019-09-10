@@ -303,6 +303,7 @@ clean: FORCE
 	@command rm -f *_opts.*
 	@command rm -f *.temp
 	@command rm -f *.tmp
+	@command rm -f *.link_md
 	@command rm -f *~
 	@command rm -f $(EXEC)
 	@command rm -f core.*

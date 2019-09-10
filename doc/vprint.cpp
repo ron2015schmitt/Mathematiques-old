@@ -25,9 +25,19 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Vector (pretty) printing");
+  mdtitle("Formatted, styled (color, bold etc) printing");
   matricks_preamble();
+  Header2("The function `disp(x)`");
 
+  text("The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.");
+
+    example(Nex++,"simple examples of `disp(x)` usage");
+    codestart("C++");
+ 
+    codeend();
+
+  
+  
   matricks_toc();
 
 

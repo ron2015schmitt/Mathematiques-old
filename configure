@@ -6,6 +6,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLLOW='\033[0;33m'
 BLUE='\033[0;34m'
+BLUE1='\033[38;5;18m'
 MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 GRAYlIGHT='\033[0;37m'
@@ -77,6 +78,7 @@ echo "" >> examples/Makefile
 echo "##################################################################" >>examples/Makefile
 echo "#  files/Makefile                                                #" >>examples/Makefile
 echo "##################################################################" >>examples/Makefile
+echo 'EXEC += example printing' >> examples/Makefile
 cat files/Makefile >> examples/Makefile
 echo "" >> examples/Makefile
 echo "" >> examples/Makefile
@@ -88,10 +90,15 @@ echo "" >> examples/Makefile
 echo "" >> examples/Makefile
 cp examples/Makefile examples/Makefile.pristine
 
-# DO NOT MAKE A NEW TAG.
-# IF USER WANTS TO START DEVLOPMENT
-# THEN RUN 'reconfigure'
-#make newtag
+# DO NOT MAKE A NEW TAG UNLESS SPECIFIED.
+
+if [ "${1}" == "newtag" ]; then
+    echo " "
+    echo -e "${BOLDON}${BLUE1}CREATING NEW REVISION NUMBER${DEFCLR}..."
+    echo " "
+    make newtag
+fi
+  
 
 # make the object file library (libmatricks.a)
 echo " "
@@ -100,6 +107,4 @@ cd src
 make libmatricks.a
 cd ..
 mkdir -p lib && mv src/libmatricks.a lib/
-
-
 

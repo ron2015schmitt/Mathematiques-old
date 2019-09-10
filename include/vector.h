@@ -1056,9 +1056,9 @@ namespace matricks {
 	D lastminus1;
 	if (periodic) {
 	  // second to last point
-	  lastminus1 = dat[N-3] - 8*dat[N-2] + 8*dat[N-1] - dat[0];
+	  lastminus1 = dat[N-4] - 8*dat[N-3] + 8*dat[N-1] - dat[0];
 	  // last
-	  last       = dat[N-4] - 8*dat[N-3] + 8*dat[0]   - dat[1];
+	  last       = dat[N-3] - 8*dat[N-2] + 8*dat[0]   - dat[1];
 	  // first point
 	  prev2      = dat[N-2] - 8*dat[N-1] + 8*dat[1]   - dat[2];
 	  // second point

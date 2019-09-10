@@ -163,7 +163,7 @@ int main()
     codestart("C++");
     codemulti( set_default_format() );
     codemulti( const double pi = M_PI );
-    codemulti( const size_type N = 21 );
+    codemulti( const size_type N = 11 );
     codemulti( const double a = 0 );
     codemulti( const double b = 1 );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
@@ -192,9 +192,9 @@ int main()
     text("* The differentiation method/function has 3 optional parameters:");
     text("  * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`");
     text("* The optional parameters are:");
-    text("  * _n_ [DEFAULT=1] is the number of derivatives to compute: ");
-    text("  * _Dpts_ [DEFAULT=7] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
-    text("  * _periodic_ [DEFAULT=false]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.");
+    text("  * `n` [DEFAULT=`1`] is the number of derivatives to compute: ");
+    text("  * `Dpts` [DEFAULT=`7`] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+    text("  * `periodic` [DEFAULT=`false`]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.");
 
     header2("Differentiation: taking multiple derivatives in one call");
     
@@ -241,7 +241,7 @@ int main()
     text("p3=ListPlot[Partition[Riffle[x,f3],2],PlotStyle->Orange];");
     text("p5=ListPlot[Partition[Riffle[x,f5],2],PlotStyle->Yellow];");
     text("p7=ListPlot[Partition[Riffle[x,f7],2],PlotStyle->Green];");
-    text("p=Plot[sin[x],{x,0,2*Pi}];");
+    text("p=Plot[Sin[x],{x,0,2*Pi}];");
     text("Show[p,p2,p3,p5,p7]");
     codeend();
 

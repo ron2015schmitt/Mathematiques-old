@@ -51,7 +51,7 @@ int main()
     cr();
 
    
-    text("Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. ");
+    text("Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, many points are needed to achieve even a few digits of accuracy, due to the singularities. ");
     cr();
     text(" ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)");
     cr();
@@ -71,24 +71,25 @@ int main()
   cr();
   text("* For the integral\n");
   text("![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)\n");
-  text("use the method `.integrate_a2x(a, b, order)`.");
+  text("use the method `f.integrate_a2x(a, b)` or the function `integrate_a2x(f, a, b)`.");
   cr();
   cr();
   text("* For the integral\n");
   text("![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)\n");
-  text("use the method `.integrate_x2b(a, b, order)`.");
+  text("use the method `f.integrate_x2b(a, b)` or the function `integrate_x2b(f, a, b)`.");
   cr();
   cr();
-  text("Where [`a`,`b`] defines the interval being used and `order` specifies the integration method order: \n");
-  text("* 0 for rectangular integration\n");
-  text("* 1 for trapezoidal integration.\n");
+  text("Where [`a`,`b`] defines the interval being used\n");
   
   cr();
   cr();
   text("A semi-definite integral yields a function as its output.");
   
-  text("Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
-  text("All of the remaining functions discussed in this section modify the vector _in place_.");
+  text("Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions can be performed: ");
+  text("  * on a Vector in place using `f.integrate_a2x(a, b)`, mimizing both memory usage and computation time.");
+  text("  * on a Vector or expression using the function `integrate_a2x(f, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
+
+  text("All of the remaining functions discussed in this page can be called in either manner.");
   
 
   {
@@ -107,7 +108,7 @@ int main()
     codemulti( Vector<double> gauss );
     codemulti( gauss = 2/sqrt(pi)*exp(-sqr(x)) );
     codemulti( Vector<double> erf = gauss );
-    codemulti( erf.integrate_a2x(a,b,1) ) ;
+    codemulti( erf.integrate_a2x(a,b) ) ;
     codemulti( set_mathematica_var_format() );
     codeend();
     cr();
@@ -134,6 +135,18 @@ int main()
     
   }
 
+
+  header3("Semi-Definite Integrals: optional parameters");
+
+
+  text("The optional `order` parameter specifies the integration method order: \n");
+  text("* 0 for rectangular integration\n");
+  text("* 1 for trapezoidal integration (DEFAULT).\n");
+
+  text("Usage: \n");
+  text("* `f.integrate_x2b(a, b,order)`");
+  text("* `integrate_x2b(f, a, b)`");
+  
   header2("Differentiation");
   text("* Differentiation requires points around it.   The derivative can be performed :");
   text("  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.");

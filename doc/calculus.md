@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r19).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r21).
 
 ## Integration
 ### Definite integrals
@@ -19,7 +19,7 @@ Vector<double> f;
 f=-log(log(1/x));
 ```
 
-Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, this simple approach to the integral isn't particularly accurate. 
+Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, many points are needed to achieve even a few digits of accuracy, due to the singularities. 
 
  ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)
 
@@ -40,27 +40,25 @@ A semi-definite integral is created by replacing one of the end points with _x_.
 
 ![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)
 
-use the method `.integrate_a2x(a, b, order)`.
+use the method `f.integrate_a2x(a, b)` or the function `integrate_a2x(f, a, b)`.
 
 
 * For the integral
 
 ![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)
 
-use the method `.integrate_x2b(a, b, order)`.
+use the method `f.integrate_x2b(a, b)` or the function `integrate_x2b(f, a, b)`.
 
 
-Where [`a`,`b`] defines the interval being used and `order` specifies the integration method order: 
-
-* 0 for rectangular integration
-
-* 1 for trapezoidal integration.
+Where [`a`,`b`] defines the interval being used
 
 
 
 A semi-definite integral yields a function as its output.
-Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions are performed in place, mimizing both memory usage and computation time.
-All of the remaining functions discussed in this section modify the vector _in place_.
+Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions can be performed: 
+  * on a Vector in place using `f.integrate_a2x(a, b)`, mimizing both memory usage and computation time.
+  * on a Vector or expression using the function `integrate_a2x(f, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
+All of the remaining functions discussed in this page can be called in either manner.
 
 
 **EXAMPLE 2**:  The error function integral
@@ -76,7 +74,7 @@ Vector<double> x( linspace<double>(a,b,N) );
 Vector<double> gauss;
 gauss = 2/sqrt(pi)*exp(-sqr(x));
 Vector<double> erf = gauss;
-erf.integrate_a2x(a,b,1);
+erf.integrate_a2x(a,b);
 set_mathematica_var_format();
 ```
 
@@ -139,6 +137,17 @@ Show[p1,p2]
 ```
 This yields the following plot comparing the results above [red dots] to the exact function [solid blue].
 ![ErrorFunctionPlot](ErrorFunctionPlot.png)
+### Semi-Definite Integrals: optional parameters
+The optional `order` parameter specifies the integration method order: 
+
+* 0 for rectangular integration
+
+* 1 for trapezoidal integration (DEFAULT).
+
+Usage: 
+
+* `f.integrate_x2b(a, b,order)`
+* `integrate_x2b(f, a, b)`
 ## Differentiation
 * Differentiation requires points around it.   The derivative can be performed :
   * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.

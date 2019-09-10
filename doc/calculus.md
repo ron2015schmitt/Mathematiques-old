@@ -161,7 +161,7 @@ The derivative of the function _f_(_x_) = is the constant 5
 ```C++
 set_default_format();
 const double pi = 3.14159265358979323846;
-const size_type N = 11;
+const size_type N = 21;
 const double a = 0;
 const double b = 1;
 Vector<double> x( linspace<double>(a,b,N) );
@@ -169,8 +169,8 @@ Vector<double> x( linspace<double>(a,b,N) );
 
 **Results**
 ```C++
-  x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
-  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
+  x = {0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1}; 
+  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
 ## Differentiation: optional parameters
@@ -180,13 +180,13 @@ Vector<double> x( linspace<double>(a,b,N) );
   * _n_ [DEFAULT=1] is the number of derivatives to compute: 
   * _Dpts_ [DEFAULT=7] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
   * _periodic_ [DEFAULT=false]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.
-### Differentiation: taking multiple derivatives in one call
+## Differentiation: taking multiple derivatives in one call
 
 
 **EXAMPLE 4**: The fourth derivative of sin _x_
 
 
-Here we take the 4th derivative of sin _x_ , which is simply sin _x_:
+Here we take the 4th derivative of sin _x_ using `Dpts`=2,3,5, and 7 points. The result for all should be sin _x_:
 
 
 ![4th derivative of sin(x)](fourthDerivativeOfSin.png)
@@ -200,12 +200,14 @@ const size_type N = 25;
 const double a = 0;
 const double b = 2*pi*(1 - 1/double(N));
 Vector<double> x( linspace<double>(a,b,N) );
-Vector<double> f1 = sin(x);
-Vector<double> f2 = deriv(f1,a,b,4,3,true );
+Vector<double> f = sin(x);
+Vector<double> f2 = deriv(f,a,b,4,2,true );
+Vector<double> f3 = deriv(f,a,b,4,3,true );
+Vector<double> f5 = deriv(f,a,b,4,5,true );
+Vector<double> f7 = deriv(f,a,b,4,7,true );
 ```
 
-**Results**
-```C++
+```Mathematica
 x = {
      0.00000000 10^+00,  2.51327412 10^-01,  5.02654825 10^-01,  7.53982237 10^-01,  1.00530965 10^+00, 
      1.25663706 10^+00,  1.50796447 10^+00,  1.75929189 10^+00,  2.01061930 10^+00,  2.26194671 10^+00, 
@@ -213,22 +215,47 @@ x = {
      3.76991118 10^+00,  4.02123860 10^+00,  4.27256601 10^+00,  4.52389342 10^+00,  4.77522083 10^+00, 
      5.02654825 10^+00,  5.27787566 10^+00,  5.52920307 10^+00,  5.78053048 10^+00,  6.03185789 10^+00
 }; 
-f1 = {
-     0.00000000 10^+00,  2.48689887 10^-01,  4.81753674 10^-01,  6.84547106 10^-01,  8.44327926 10^-01, 
-     9.51056516 10^-01,  9.98026728 10^-01,  9.82287251 10^-01,  9.04827052 10^-01,  7.70513243 10^-01, 
-     5.87785252 10^-01,  3.68124553 10^-01,  1.25333234 10^-01, -1.25333234 10^-01, -3.68124553 10^-01, 
-    -5.87785252 10^-01, -7.70513243 10^-01, -9.04827052 10^-01, -9.82287251 10^-01, -9.98026728 10^-01, 
-    -9.51056516 10^-01, -8.44327926 10^-01, -6.84547106 10^-01, -4.81753674 10^-01, -2.48689887 10^-01
-}; 
 f2 = {
+    -4.76705933 10^-01, -2.46084153 10^-01,  3.91384923 10^-13,  2.46084153 10^-01,  4.76705933 10^-01, 
+     6.77374527 10^-01,  8.35481188 10^-01,  9.41091493 10^-01,  9.87569558 10^-01,  9.71994996 10^-01, 
+     8.95346414 10^-01,  7.62439924 10^-01,  5.81626529 10^-01,  3.64267400 10^-01,  1.24020011 10^-01, 
+    -1.24020011 10^-01, -3.64267400 10^-01, -5.81626529 10^-01, -7.62439924 10^-01, -8.95346414 10^-01, 
+    -9.71994996 10^-01, -9.87569558 10^-01, -9.41091493 10^-01, -8.35481188 10^-01, -6.77374527 10^-01
+}; 
+f3 = {
      4.72665765 10^-14,  2.38413689 10^-01,  4.61846969 10^-01,  6.56260706 10^-01,  8.09439168 10^-01, 
      9.11757591 10^-01,  9.56786932 10^-01,  9.41697830 10^-01,  8.67438391 10^-01,  7.38674607 10^-01, 
      5.63497181 10^-01,  3.52913155 10^-01,  1.20154297 10^-01, -1.20154297 10^-01, -3.52913155 10^-01, 
     -5.63497181 10^-01, -7.38674607 10^-01, -8.67438391 10^-01, -9.41697830 10^-01, -9.56786932 10^-01, 
     -9.11757591 10^-01, -8.09439168 10^-01, -6.56260706 10^-01, -4.61846969 10^-01, -2.38413689 10^-01
 }; 
+f5 = {
+     1.05291443 10^+01, -3.14182878 10^+00, -9.74596907 10^+00,  4.39711598 10^+00,  4.01934134 10^-01, 
+     9.68232383 10^-01,  9.97499877 10^-01,  9.81768708 10^-01,  9.04349400 10^-01,  7.70106494 10^-01, 
+     5.87474964 10^-01,  3.67930222 10^-01,  1.25267071 10^-01, -1.25267071 10^-01, -3.67930222 10^-01, 
+    -5.87474964 10^-01, -7.70106494 10^-01, -8.86671477 10^-01, -1.42371678 10^+00,  2.92643263 10^+00, 
+    -1.47650614 10^+01,  1.26459115 10^+01, -2.83150102 10^-01,  1.24743362 10^+01, -1.69803275 10^+01
+}; 
+f7 = {
+     1.85797403 10^-13,  2.48688118 10^-01,  4.81750248 10^-01,  6.84542237 10^-01,  8.44321920 10^-01, 
+     9.51049752 10^-01,  9.98019630 10^-01,  9.82280264 10^-01,  9.04820617 10^-01,  7.70507762 10^-01, 
+     5.87781072 10^-01,  3.68121934 10^-01,  1.25332342 10^-01, -1.25332342 10^-01, -3.68121934 10^-01, 
+    -5.87781072 10^-01, -7.70507762 10^-01, -9.04820617 10^-01, -9.82280264 10^-01, -9.98019630 10^-01, 
+    -9.51049752 10^-01, -8.44321920 10^-01, -6.84542237 10^-01, -4.81750248 10^-01, -2.48688118 10^-01
+}; 
 ```
+Cut and paste the above data for `x`, `f2`, `f3`,...  into Mathematica as well as the following commands
 
+```Mathematica
+p2=ListPlot[Partition[Riffle[x,f2],2],PlotStyle->Red];
+p3=ListPlot[Partition[Riffle[x,f3],2],PlotStyle->Orange];
+p5=ListPlot[Partition[Riffle[x,f5],2],PlotStyle->Yellow];
+p7=ListPlot[Partition[Riffle[x,f7],2],PlotStyle->Green];
+p=Plot[sin[x],{x,0,2*Pi}];
+Show[p,p2,p3,p5,p7]
+```
+This yields the following plot comparing the results above [dots] to the exact function [solid blue].
+![The Fourth Derivative of Sin(x)](FourthDerivativeSinPlot.png)
 ## Various functions related to integration and differentiation
 All of these functions modify the vector _in place_.
 

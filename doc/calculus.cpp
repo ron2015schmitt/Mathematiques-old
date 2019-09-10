@@ -163,7 +163,7 @@ int main()
     codestart("C++");
     codemulti( set_default_format() );
     codemulti( const double pi = M_PI );
-    codemulti( const size_type N = 11 );
+    codemulti( const size_type N = 21 );
     codemulti( const double a = 0 );
     codemulti( const double b = 1 );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
@@ -173,6 +173,17 @@ int main()
     resultstart3("");
     resultmulti(x);
     resultmulti(deriv(5*x,a,b));
+
+    // resultmulti(deriv(5*x,a,b,1,2));
+    // resultmulti(deriv(5*x,a,b,1,3));
+    // resultmulti(deriv(5*x,a,b,1,5));
+    // resultmulti(deriv(5*x,a,b,1,7));
+
+    // resultmulti(deriv(x*x,a,b,1,2));
+    // resultmulti(deriv(x*x,a,b,1,3));
+    // resultmulti(deriv(x*x,a,b,1,5));
+    // resultmulti(deriv(x*x,a,b,1,7));
+
     resultend();
   }
 
@@ -185,7 +196,7 @@ int main()
     text("  * _Dpts_ [DEFAULT=7] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
     text("  * _periodic_ [DEFAULT=false]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.");
 
-    header3("Differentiation: taking multiple derivatives in one call");
+    header2("Differentiation: taking multiple derivatives in one call");
     
   {
     cr();
@@ -193,7 +204,7 @@ int main()
     example(Nex++,"The fourth derivative of sin _x_");
     cr();
     cr();
-    text("Here we take the 4th derivative of sin _x_ , which is simply sin _x_:");
+    text("Here we take the 4th derivative of sin _x_ using `Dpts`=2,3,5, and 7 points. The result for all should be sin _x_:");
     cr();
     cr();
     text("![4th derivative of sin(x)](fourthDerivativeOfSin.png)");
@@ -207,16 +218,37 @@ int main()
     codemulti( const double a = 0 );
     codemulti( const double b = 2*pi*(1 - 1/double(N)) );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
-    codemulti( Vector<double> f1 = sin(x) );
-    codemulti( Vector<double> f2 = deriv(f1,a,b,4,3,true )  );
+    codemulti( Vector<double> f = sin(x) );
+    codemulti( Vector<double> f2 = deriv(f,a,b,4,2,true )  );
+    codemulti( Vector<double> f3 = deriv(f,a,b,4,3,true )  );
+    codemulti( Vector<double> f5 = deriv(f,a,b,4,5,true )  );
+    codemulti( Vector<double> f7 = deriv(f,a,b,4,7,true )  );
     codeend();
     cr();
 
-    resultstart3("");
+    codestart("Mathematica");
     disp(x);
-    disp(f1);
     disp(f2);
-    resultend();
+    disp(f3);
+    disp(f5);
+    disp(f7);
+    codeend();
+
+    text("Cut and paste the above data for `x`, `f2`, `f3`,...  into Mathematica as well as the following commands");
+    cr();
+    codestart("Mathematica");
+    text("p2=ListPlot[Partition[Riffle[x,f2],2],PlotStyle->Red];");
+    text("p3=ListPlot[Partition[Riffle[x,f3],2],PlotStyle->Orange];");
+    text("p5=ListPlot[Partition[Riffle[x,f5],2],PlotStyle->Yellow];");
+    text("p7=ListPlot[Partition[Riffle[x,f7],2],PlotStyle->Green];");
+    text("p=Plot[sin[x],{x,0,2*Pi}];");
+    text("Show[p,p2,p3,p5,p7]");
+    codeend();
+
+    text("This yields the following plot comparing the results above [dots] to the exact function [solid blue].");
+
+    text("![The Fourth Derivative of Sin(x)](FourthDerivativeSinPlot.png)");
+
   }
 
 

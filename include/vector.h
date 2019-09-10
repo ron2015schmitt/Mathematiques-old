@@ -1002,9 +1002,10 @@ namespace matricks {
 
 
     // deriv -  derivative
+    // any change in the default parameters must be likewise made in vfunctions.h: deriv(...)
 
-    Vector<D>& deriv(const D a, const D b, const int n=1, int Dpts=3, const bool periodic=false) {
-      std::valarray<D> &mydata = *data_;
+    Vector<D>& deriv(const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
+      std::valarray<D> &dat = *data_;
       //mdisp(a,b,n,Dpts,periodic);
       const size_type N = size();
       if (N<=1) return *this;
@@ -1019,7 +1020,7 @@ namespace matricks {
       if (Dpts == 2) {
 	this->diff(periodic);
 	for (register index_type i = 0; i < N ; i++ ) {
-	  mydata[i] /= dx;
+	  dat[i] /= dx;
 	}
 	
       } else if (Dpts == 3) {
@@ -1028,47 +1029,98 @@ namespace matricks {
 	D last;
 	if (periodic) {
 	  // first point
-	  prev = mydata[1] - mydata[N-1];
+	  prev = dat[1] - dat[N-1];
 	  // last
-	  last = mydata[0] - mydata[N-2];
+	  last = dat[0] - dat[N-2];
 	} else {
 	  // first point
-	  prev = -3*mydata[0] + 4*mydata[1] - mydata[2];
+	  prev = -3*dat[0] + 4*dat[1] - dat[2];
 	  // last
-	  last = 3*mydata[N-1] - 4*mydata[N-2] + mydata[N-3];
+	  last = 3*dat[N-1] - 4*dat[N-2] + dat[N-3];
 	}
 	
 	const D c0 = 0.5/dx;
 	for (register index_type i = 1; i < N-1 ; i++ ) {
-	  curr = mydata[i+1] - mydata[i-1];
-	  mydata[i-1] = c0*prev;
+	  curr = dat[i+1] - dat[i-1];
+	  dat[i-1] = c0*prev;
 	  prev = curr;
 	}
-	mydata[N-2] = c0*prev;
-	mydata[N-1] = c0*last;
+	dat[N-2] = c0*prev;
+	dat[N-1] = c0*last;
 	
       } else if (Dpts == 5) {
 	D prev1;
 	D prev2;
 	D curr;
-	D last1;
-	D last2;
+	D last;
+	D lastminus1;
 	if (periodic) {
-	  // first point
+	  // second to last point
+	  lastminus1 = dat[N-3] - 8*dat[N-2] + 8*dat[N-1] - dat[0];
 	  // last
+	  last       = dat[N-4] - 8*dat[N-3] + 8*dat[0]   - dat[1];
+	  // first point
+	  prev2      = dat[N-2] - 8*dat[N-1] + 8*dat[1]   - dat[2];
+	  // second point
+	  prev1      = dat[N-1] - 8*dat[0]   + 8*dat[2]   - dat[3];
 	} else {
-	  // first point
-	  // last
+	  lastminus1 =   -dat[N-5] +  6*dat[N-4] - 18*dat[N-3] + 10*dat[N-2] +  3*dat[N-1];
+	  last       =  3*dat[N-5] - 16*dat[N-4] + 36*dat[N-3] - 48*dat[N-2] + 25*dat[N-1];
+	  prev2      = -3*dat[4]   + 16*dat[3]   - 36*dat[2]   + 48*dat[1]   - 25*dat[0];
+	  prev1      =    dat[4]   -  6*dat[3]   + 18*dat[2]   - 10*dat[1]   -  3*dat[0];
 	}
 	
 	const D c0 = 1/(12*dx);
 	for (register index_type i = 2; i < N-2 ; i++ ) {
+	  curr = dat[i-2] - 8*dat[i-1] + 8*dat[i+1]  - dat[i+2];
+	  dat[i-2] = c0*prev2;
+	  prev2 = prev1;
+	  prev1 = curr;
 	}
+	dat[N-4] = c0*prev2;
+	dat[N-3] = c0*prev1;
+	dat[N-2] = c0*lastminus1;
+	dat[N-1] = c0*last;
 	
       } else if (Dpts == 7) {
+	D prev1;
+	D prev2;
+	D prev3;
+	D curr;
+	D last;
+	D lastminus1;
+	D lastminus2;
+	if (periodic) {
+	  lastminus2 = -dat[N-6] + 9*dat[N-5] - 45*dat[N-4] + 45*dat[N-2]  - 9*dat[N-1] + dat[0];
+	  lastminus1 = -dat[N-5] + 9*dat[N-4] - 45*dat[N-3] + 45*dat[N-1]  - 9*dat[0] + dat[1];
+	  last  = -dat[N-4] + 9*dat[N-3] - 45*dat[N-2] + 45*dat[0]  - 9*dat[1] + dat[2];
+	  prev3 = -dat[N-3] + 9*dat[N-2] - 45*dat[N-1] + 45*dat[1]  - 9*dat[2] + dat[3];
+	  prev2 = -dat[N-2] + 9*dat[N-1] - 45*dat[0]   + 45*dat[2]  - 9*dat[3] + dat[4];
+	  prev1 = -dat[N-1] + 9*dat[0]   - 45*dat[1]   + 45*dat[3]  - 9*dat[4] + dat[5];
+	} else {
+	  lastminus2= -(  2*dat[N-1] - 24*dat[N-2] -  35*dat[N-3] +  80*dat[N-4] -  30*dat[N-5] +  8*dat[N-6] -    dat[N-7]);
+	  lastminus1= -(-10*dat[N-1] - 77*dat[N-2] + 150*dat[N-3] - 100*dat[N-4] +  50*dat[N-5] - 15*dat[N-6] +  2*dat[N-7]);
+	  last =     -(-147*dat[N-1] +360*dat[N-2]- 450*dat[N-3] + 400*dat[N-4] - 225*dat[N-5] + 72*dat[N-6] - 10*dat[N-7]);
+	  
+	  prev3 = -147*dat[0] + 360*dat[1] - 450*dat[2] + 400*dat[3] - 225*dat[4] + 72*dat[5] - 10*dat[6];
+	  prev2 =  -10*dat[0] -  77*dat[1] + 150*dat[2] - 100*dat[3] +  50*dat[4] - 15*dat[5] +  2*dat[6];
+	  prev1 =    2*dat[0] -  24*dat[1] -  35*dat[2] +  80*dat[3] -  30*dat[4] +  8*dat[5] -    dat[6];
+	}
 	const D c0 = 1/(60*dx);
 	for (register index_type i = 3; i < N-3 ; i++ ) {
+	  curr = -dat[i-3] + 9*dat[i-2] - 45*dat[i-1] + 45*dat[i+1]  - 9*dat[i+2] + dat[i+3];
+	  dat[i-3] = c0*prev3;
+	  prev3 = prev2;
+	  prev2 = prev1;
+	  prev1 = curr;
 	}
+	dat[N-6] = c0*prev3;
+	dat[N-5] = c0*prev2;
+	dat[N-4] = c0*prev1;
+	dat[N-3] = c0*lastminus2;
+	dat[N-2] = c0*lastminus1;
+	dat[N-1] = c0*last;
+
 	
       }  else {
 	//TODO: issue error

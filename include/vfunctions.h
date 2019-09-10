@@ -1736,9 +1736,10 @@ namespace matricks {
 
 
   // derivative
+  // any change in the default parameters must be likewise made in Vector.deriv(...)
   
   template <class D, class A>
-    inline Vector<D>& deriv(const VorE<D,A>& f, const D a, const D b, const int n=1, int Dpts=3, const bool periodic=false) {
+    inline Vector<D>& deriv(const VorE<D,A>& f, const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
     Vector<D> *df = new Vector<D>(f.size());
     *df = f;
     df->deriv(a,b,n,Dpts,periodic);

@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r27).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r28).
 
 ## Integration
 ### Definite integrals
@@ -247,12 +247,12 @@ f7 = {
 Cut and paste the above data for `x`, `f2`, `f3`,...  into Mathematica as well as the following commands
 
 ```Mathematica
-p2=ListPlot[Partition[Riffle[x,f2],2],PlotStyle->Red];
-p3=ListPlot[Partition[Riffle[x,f3],2],PlotStyle->Orange];
-p5=ListPlot[Partition[Riffle[x,f5],2],PlotStyle->Yellow];
-p7=ListPlot[Partition[Riffle[x,f7],2],PlotStyle->Green];
-p=Plot[Sin[x],{x,0,2*Pi}];
-Show[p,p2,p3,p5,p7]
+p2 = ListPlot[Partition[Riffle[x, f2], 2], PlotStyle -> {Red, PointSize[0.01], Opacity[0.9]},PlotLegends -> {"Dpts=2"}];
+p3 = ListPlot[Partition[Riffle[x, f3], 2], PlotStyle -> {Orange, PointSize[0.01], Opacity[0.75]}, PlotLegends -> {"Dpts=3"}];
+p5 = ListPlot[Partition[Riffle[x, f5], 2], PlotStyle -> {Green, PointSize[0.01], Opacity[0.5]}, PlotLegends -> {"Dpts=5"}];
+p7 = ListPlot[Partition[Riffle[x, f7], 2],PlotStyle -> {Black, PointSize[0.005], Opacity[0.9]}, PlotLegends -> {"Dpts=7"}];
+p = Plot[Sin[x], {x, 0, 2*Pi}, PlotLegends -> {"sin(x)"}];
+Show[p, p2, p3, p5, p7]
 ```
 This yields the following plot comparing the results above [dots] to the exact function [solid blue].
 ![The Fourth Derivative of Sin(x)](FourthDerivativeSinPlot.png)

@@ -237,12 +237,12 @@ int main()
     text("Cut and paste the above data for `x`, `f2`, `f3`,...  into Mathematica as well as the following commands");
     cr();
     codestart("Mathematica");
-    text("p2=ListPlot[Partition[Riffle[x,f2],2],PlotStyle->Red];");
-    text("p3=ListPlot[Partition[Riffle[x,f3],2],PlotStyle->Orange];");
-    text("p5=ListPlot[Partition[Riffle[x,f5],2],PlotStyle->Yellow];");
-    text("p7=ListPlot[Partition[Riffle[x,f7],2],PlotStyle->Green];");
-    text("p=Plot[Sin[x],{x,0,2*Pi}];");
-    text("Show[p,p2,p3,p5,p7]");
+    text("p2 = ListPlot[Partition[Riffle[x, f2], 2], PlotStyle -> {Red, PointSize[0.01], Opacity[0.9]},PlotLegends -> {\"Dpts=2\"}];");
+    text("p3 = ListPlot[Partition[Riffle[x, f3], 2], PlotStyle -> {Orange, PointSize[0.01], Opacity[0.75]}, PlotLegends -> {\"Dpts=3\"}];");
+    text("p5 = ListPlot[Partition[Riffle[x, f5], 2], PlotStyle -> {Green, PointSize[0.01], Opacity[0.5]}, PlotLegends -> {\"Dpts=5\"}];");
+    text("p7 = ListPlot[Partition[Riffle[x, f7], 2],PlotStyle -> {Black, PointSize[0.005], Opacity[0.9]}, PlotLegends -> {\"Dpts=7\"}];");
+    text("p = Plot[Sin[x], {x, 0, 2*Pi}, PlotLegends -> {\"sin(x)\"}];");
+    text("Show[p, p2, p3, p5, p7]");
     codeend();
 
     text("This yields the following plot comparing the results above [dots] to the exact function [solid blue].");

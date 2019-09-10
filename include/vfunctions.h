@@ -1601,17 +1601,147 @@ namespace matricks {
   // round(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<std::complex<D>, VorE<std::complex<D>, A>, ApRoundCplx<D> > 
+    inline VFuncOp<std::complex<D>, VorE<std::complex<D>, A> , ApRoundCplx<D> > 
     round(const VorE<std::complex<D>,A>& a)  {
     return VFuncOp<std::complex<D>, VorE<std::complex<D>, A>, ApRoundCplx<D> >(a);
   }
 
 
+
+  /****************************************************************
+   * calculus related
+   *****************************************************************
+   */
+
+  
+  // reverse
+
   template <class D, class A>
-    inline Vector<D>& deriv(const  VorE<D,A>& f, const D a, const D b, int Npts=2, const bool periodic=false, const int n=1) {
+    inline Vector<D>& reverse(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->reverse();
+    return *g;
+  }
+
+
+  // cumsum() -- cumulative sum
+
+  template <class D, class A>
+    inline Vector<D>& cumsum(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->cumsum();
+    return *g;
+  }
+  
+  // cumprod()  --  cumulative product
+  
+  template <class D, class A>
+    inline Vector<D>& cumprod(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->cumprod();
+    return *g;
+  }
+
+
+  // cumtrapz() -- cumulative trapezoidal summation
+  
+  template <class D, class A>
+    inline Vector<D>& cumtrapz(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->cumtrapz();
+    return *g;
+  }
+
+  // integrate_a2x(order)
+  // order  name
+  //     0  rectangular
+  //     1  trapazoidal
+  template <class D, class A>
+    inline Vector<D>& integrate_a2x(const VorE<D,A>& f, const D a, const D b, const int order=1) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->integrate_a2x(a,b,order);
+    return *g;
+  }
+
+
+  // cumsumrev() -- cumulative sum -- from last to first
+
+  template <class D, class A>
+    inline Vector<D>& cumsum_rev(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->cumsum_rev();
+    return *g;
+  }
+
+    // cumprodrev()  --  cumulative product  -- from last to first
+
+  template <class D, class A>
+    inline Vector<D>& cumprod_rev(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->cumprod_rev();
+    return *g;
+  }
+
+
+    // cumtrapz() -- cumulative trapezoidal summation -- from last to first
+
+  template <class D, class A>
+    inline Vector<D>& cumtrapz_rev(const VorE<D,A>& f) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->cumtrapz_rev();
+    return *g;
+  }
+
+
+
+  // integrate_x2b
+  // order  name
+  //     0  rectangular
+  //     1  trapazoidal
+  template <class D, class A>
+    inline Vector<D>& integrate_x2b(const VorE<D,A>& f, const D a, const D b, const int order=1) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->integrate_x2b(a,b,order);
+    return *g;
+  }
+
+
+
+  // diff   (v[n] = v[n] - v[n-1])
+  template <class D, class A>
+    inline Vector<D>& diff(const VorE<D,A>& f, const bool periodic=false) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->diff(periodic);
+    return *g;
+  }
+
+  // diff_rev   (v[n] = v[n+1] - v[n])
+  template <class D, class A>
+    inline Vector<D>& diff_rev(const VorE<D,A>& f, const bool periodic=false) {
+    Vector<D> *g = new Vector<D>(f.size());
+    *g = f;
+    g->diff_rev(periodic);
+    return *g;
+  }
+
+
+  // derivative
+  
+  template <class D, class A>
+    inline Vector<D>& deriv(const VorE<D,A>& f, const D a, const D b, int Dpts=3, const int n=1, const bool periodic=false) {
     Vector<D> *df = new Vector<D>(f.size());
     *df = f;
-    df->deriv(a,b,Npts,periodic,n);
+    df->deriv(a,b,Dpts,n,periodic);
     return *df;
   }
   

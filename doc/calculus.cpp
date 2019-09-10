@@ -135,14 +135,16 @@ int main()
   }
 
   header2("Differentiation");
-  text("* Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.");
-  text("* the method for differentiation is .D(a, b, Npts)`, where _Npts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+  text("* Differentiation requires points around it.   The derivative can be performed :");
+  text("  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.");
+  text("  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
+  text("* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
 
 
   {
     cr();
     cr();
-    example(Nex++,"Derivative of _f_(_x_) = 5_x_");
+    example(Nex++,"Derivative of the function 5 _x_");
     codestart("C++");
     codemulti( set_default_format() );
     codemulti( const double pi = M_PI );
@@ -150,18 +152,43 @@ int main()
     codemulti( const double a = 0 );
     codemulti( const double b = 1 );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
-    codemulti( Vector<double> f = 5*x );
     codeend();
     cr();
 
     resultstart3("");
     resultmulti(x);
-    resultmulti(deriv(5*x,a,b,2));
-    resultmulti(deriv(x*x,a,b,2));
-    resultmulti(deriv(5*x,a,b,3));
-    resultmulti(deriv(x*x,a,b,3));
+    resultmulti(deriv(5*x,a,b));
     resultend();
   }
+
+
+    header2("Differentiation");
+  text("* Differentiation requires points around it.   The derivative can be performed :");
+  text("  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.");
+  text("  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
+  text("* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+
+
+  {
+    cr();
+    cr();
+    example(Nex++,"Derivative of the function 5 _x_");
+    codestart("C++");
+    codemulti( set_default_format() );
+    codemulti( const double pi = M_PI );
+    codemulti( const size_type N = 11 );
+    codemulti( const double a = 0 );
+    codemulti( const double b = 1 );
+    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    codeend();
+    cr();
+
+    resultstart3("");
+    resultmulti(x);
+    resultmulti(deriv(5*x,a,b));
+    resultend();
+  }
+
 
 
   cr();

@@ -1003,7 +1003,7 @@ namespace matricks {
 
     // deriv -  derivative
 
-    Vector<D>& deriv(const D a, const D b, int Dpts=3, const bool periodic=false, const int n=1) {
+    Vector<D>& deriv(const D a, const D b, int Dpts=3, const int n=1, const bool periodic=false) {
       std::valarray<D> &mydata = *data_;
       const size_type N = size();
       if (N<=1) return *this;

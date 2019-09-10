@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r18).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r19).
 
 ## Integration
 ### Definite integrals
@@ -140,11 +140,13 @@ Show[p1,p2]
 This yields the following plot comparing the results above [red dots] to the exact function [solid blue].
 ![ErrorFunctionPlot](ErrorFunctionPlot.png)
 ## Differentiation
-* Differentiation requires points around it. For this reasons these functions are performed in place, mimizing both memory usage and computation time.
-* the method for differentiation is .D(a, b, Npts)`, where _Npts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
+* Differentiation requires points around it.   The derivative can be performed :
+  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.
+  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
+* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
 
 
-**EXAMPLE 3**: Derivative of _f_(_x_) = 5_x_
+**EXAMPLE 3**: Derivative of the function 5 _x_
 ```C++
 set_default_format();
 const double pi = 3.14159265358979323846;
@@ -152,23 +154,42 @@ const size_type N = 11;
 const double a = 0;
 const double b = 1;
 Vector<double> x( linspace<double>(a,b,N) );
-Vector<double> f = 5*x;
 ```
 
 **Results**
 ```C++
   x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
-  deriv(5*x,a,b,2) = {5,5,5,5,5,5,5,5,5,5,5}; 
-  deriv(x*x,a,b,2) = {0.1,0.1,0.3,0.5,0.7,0.9,1.1,1.3,1.5,1.7,1.9}; 
-  deriv(5*x,a,b,3) = {5,5,5,5,5,5,5,5,5,5,5}; 
-  deriv(x*x,a,b,3) = {0,0.2,0.4,0.6,0.8,1,1.2,1.4,1.6,1.8,2}; 
+  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
+```
+
+## Differentiation
+* Differentiation requires points around it.   The derivative can be performed :
+  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.
+  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
+* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
+
+
+**EXAMPLE 4**: Derivative of the function 5 _x_
+```C++
+set_default_format();
+const double pi = 3.14159265358979323846;
+const size_type N = 11;
+const double a = 0;
+const double b = 1;
+Vector<double> x( linspace<double>(a,b,N) );
+```
+
+**Results**
+```C++
+  x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
+  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
 
 If the function is periodic, set the optional parameter `periodic=true` to produce better results and the end points.
 
 
-**EXAMPLE 4**: Derivatives of sin
+**EXAMPLE 5**: Derivatives of sin
 ```C++
 ```C++
 const double pi = 3.14159265358979323846;
@@ -187,7 +208,7 @@ Vector<double> gauss;
 All of these functions modify the vector _in place_.
 
 
-**EXAMPLE 5**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
+**EXAMPLE 6**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
 ```C++
 set_default_format();
 Vector<double> v1(5);

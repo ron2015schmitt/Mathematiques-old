@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r21).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.14-r22).
 
 ## Integration
 ### Definite integrals
@@ -146,16 +146,16 @@ The optional `order` parameter specifies the integration method order:
 
 Usage: 
 
-* `f.integrate_x2b(a, b,order)`
-* `integrate_x2b(f, a, b)`
+* `f.integrate_x2b(a, b, order)`
+* `integrate_x2b(f, a, b, order)`
 ## Differentiation
 * Differentiation requires points around it.   The derivative can be performed :
-  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.
-  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
-* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
+  * on a Vector in place using `f.deriv(a, b)`, mimizing both memory usage and computation time.
+  * on a Vector or expression using the function `deriv(f, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
 
 
 **EXAMPLE 3**: Derivative of the function 5 _x_
+The derivative of the function 5 _x_ is the constant 5
 ```C++
 set_default_format();
 const double pi = 3.14159265358979323846;
@@ -168,56 +168,69 @@ Vector<double> x( linspace<double>(a,b,N) );
 **Results**
 ```C++
   x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
-  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
+  a = 0; b = 1; n = 1; Dpts = 3; periodic = 0; 
+deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
-## Differentiation
-* Differentiation requires points around it.   The derivative can be performed :
-  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.
-  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. 
-* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
+## Differentiation: optional parameters
+* The differentiation method/function has 3 optional parameters:
+  * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`
+* The optional parameters are:
+  * _n_ [DEFAULT=1] is the number of derivatives to compute: 
+  * _Dpts_ [DEFAULT=7] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
+  * _periodic_ [DEFAULT=false]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.
+### Differentiation: taking multiple derivatives in one call
 
 
-**EXAMPLE 4**: Derivative of the function 5 _x_
+**EXAMPLE 4**: The fourth derivative of sin _x_
+Here we take the 4th derivative of sin _x_ , which is simply sin _x_:
+![4th derivative of sin(x)](fourthDerivativeOfSin.png)
+We also set `periodic=true` since sin _x_ is periodic over [0,2pi)
 ```C++
-set_default_format();
+set_mathematica_var_format();
 const double pi = 3.14159265358979323846;
-const size_type N = 11;
+const size_type N = 25;
 const double a = 0;
-const double b = 1;
+const double b = 2*pi*(1 - 1/double(N));
 Vector<double> x( linspace<double>(a,b,N) );
+Vector<double> f1 = sin(x);
+Vector<double> f2 = deriv(f1,a,b,4,3,true );
+a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 4; Dpts = 3; periodic = 1; 
+a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 3; Dpts = 3; periodic = 1; 
+a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 2; Dpts = 3; periodic = 1; 
+a =  0.00000000 10^+00; b =  6.03185789 10^+00; n = 1; Dpts = 3; periodic = 1; 
 ```
 
 **Results**
 ```C++
-  x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
-  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
-```
-
-
-If the function is periodic, set the optional parameter `periodic=true` to produce better results and the end points.
-
-
-**EXAMPLE 5**: Derivatives of sin
-```C++
-```C++
-const double pi = 3.14159265358979323846;
-const size_type N = 101;
-const double a = -pi;
-const double b = +pi;
-Vector<double> x( linspace<double>(a,b,N) );
-Vector<double> gauss;
-```
-
-**Results**
-```C++
+x = {
+     0.00000000 10^+00,  2.51327412 10^-01,  5.02654825 10^-01,  7.53982237 10^-01,  1.00530965 10^+00, 
+     1.25663706 10^+00,  1.50796447 10^+00,  1.75929189 10^+00,  2.01061930 10^+00,  2.26194671 10^+00, 
+     2.51327412 10^+00,  2.76460154 10^+00,  3.01592895 10^+00,  3.26725636 10^+00,  3.51858377 10^+00, 
+     3.76991118 10^+00,  4.02123860 10^+00,  4.27256601 10^+00,  4.52389342 10^+00,  4.77522083 10^+00, 
+     5.02654825 10^+00,  5.27787566 10^+00,  5.52920307 10^+00,  5.78053048 10^+00,  6.03185789 10^+00
+}; 
+f1 = {
+     0.00000000 10^+00,  2.48689887 10^-01,  4.81753674 10^-01,  6.84547106 10^-01,  8.44327926 10^-01, 
+     9.51056516 10^-01,  9.98026728 10^-01,  9.82287251 10^-01,  9.04827052 10^-01,  7.70513243 10^-01, 
+     5.87785252 10^-01,  3.68124553 10^-01,  1.25333234 10^-01, -1.25333234 10^-01, -3.68124553 10^-01, 
+    -5.87785252 10^-01, -7.70513243 10^-01, -9.04827052 10^-01, -9.82287251 10^-01, -9.98026728 10^-01, 
+    -9.51056516 10^-01, -8.44327926 10^-01, -6.84547106 10^-01, -4.81753674 10^-01, -2.48689887 10^-01
+}; 
+f2 = {
+     4.72665765 10^-14,  2.38413689 10^-01,  4.61846969 10^-01,  6.56260706 10^-01,  8.09439168 10^-01, 
+     9.11757591 10^-01,  9.56786932 10^-01,  9.41697830 10^-01,  8.67438391 10^-01,  7.38674607 10^-01, 
+     5.63497181 10^-01,  3.52913155 10^-01,  1.20154297 10^-01, -1.20154297 10^-01, -3.52913155 10^-01, 
+    -5.63497181 10^-01, -7.38674607 10^-01, -8.67438391 10^-01, -9.41697830 10^-01, -9.56786932 10^-01, 
+    -9.11757591 10^-01, -8.09439168 10^-01, -6.56260706 10^-01, -4.61846969 10^-01, -2.38413689 10^-01
+}; 
 ```
 
 ## Various functions related to integration and differentiation
 All of these functions modify the vector _in place_.
 
 
-**EXAMPLE 6**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
+**EXAMPLE 5**: Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc
 ```C++
 set_default_format();
 Vector<double> v1(5);

@@ -144,20 +144,20 @@ int main()
   text("* 1 for trapezoidal integration (DEFAULT).\n");
 
   text("Usage: \n");
-  text("* `f.integrate_x2b(a, b,order)`");
-  text("* `integrate_x2b(f, a, b)`");
+  text("* `f.integrate_x2b(a, b, order)`");
+  text("* `integrate_x2b(f, a, b, order)`");
   
   header2("Differentiation");
   text("* Differentiation requires points around it.   The derivative can be performed :");
-  text("  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.");
-  text("  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
-  text("* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+  text("  * on a Vector in place using `f.deriv(a, b)`, mimizing both memory usage and computation time.");
+  text("  * on a Vector or expression using the function `deriv(f, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
 
 
   {
     cr();
     cr();
     example(Nex++,"Derivative of the function 5 _x_");
+    text("The derivative of the function 5 _x_ is the constant 5");
     codestart("C++");
     codemulti( set_default_format() );
     codemulti( const double pi = M_PI );
@@ -175,56 +175,44 @@ int main()
   }
 
 
-    header2("Differentiation");
-  text("* Differentiation requires points around it.   The derivative can be performed :");
-  text("  * on a Vector in place using `.deriv(a, b)`, mimizing both memory usage and computation time.");
-  text("  * on a Vector or expression using the function `deriv(v, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
-  text("* The method for differentiation is `.deriv(a, b, Dpts)`, where _Dpts_ is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+    header2("Differentiation: optional parameters");
+    text("* The differentiation method/function has 3 optional parameters:");
+    text("  * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`");
+    text("* The optional parameters are:");
+    text("  * _n_ [DEFAULT=1] is the number of derivatives to compute: ");
+    text("  * _Dpts_ [DEFAULT=7] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
+    text("  * _periodic_ [DEFAULT=false]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.");
 
-
+    header3("Differentiation: taking multiple derivatives in one call");
+    
   {
     cr();
     cr();
-    example(Nex++,"Derivative of the function 5 _x_");
+    example(Nex++,"The fourth derivative of sin _x_");
+    text("Here we take the 4th derivative of sin _x_ , which is simply sin _x_:");
+    text("![4th derivative of sin(x)](fourthDerivativeOfSin.png)");
+    text("We also set `periodic=true` since sin _x_ is periodic over [0,2pi)");
     codestart("C++");
-    codemulti( set_default_format() );
+    codemulti( set_mathematica_var_format() );
     codemulti( const double pi = M_PI );
-    codemulti( const size_type N = 11 );
+    codemulti( const size_type N = 25 );
     codemulti( const double a = 0 );
-    codemulti( const double b = 1 );
+    codemulti( const double b = 2*pi*(1 - 1/double(N)) );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    codemulti( Vector<double> f1 = sin(x) );
+    codemulti( Vector<double> f2 = deriv(f1,a,b,4,3,true )  );
     codeend();
     cr();
 
     resultstart3("");
-    resultmulti(x);
-    resultmulti(deriv(5*x,a,b));
+    disp(x);
+    disp(f1);
+    disp(f2);
     resultend();
   }
 
 
 
-  cr();
-  text("If the function is periodic, set the optional parameter `periodic=true` to produce better results and the end points.");
-
-  {
-    cr();
-    cr();
-    example(Nex++,"Derivatives of sin");
-    codestart("C++");
-    codestart("C++");
-    codemulti( const double pi = M_PI );
-    codemulti( const size_type N = 101 );
-    codemulti( const double a = -pi );
-    codemulti( const double b = +pi );
-    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
-    codemulti( Vector<double> gauss );
-    codeend();
-    cr();
-
-    resultstart3("");
-    resultend();
-  }
 
   
   header2("Various functions related to integration and differentiation");

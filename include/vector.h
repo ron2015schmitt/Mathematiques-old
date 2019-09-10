@@ -1003,8 +1003,9 @@ namespace matricks {
 
     // deriv -  derivative
 
-    Vector<D>& deriv(const D a, const D b, int Dpts=3, const int n=1, const bool periodic=false) {
+    Vector<D>& deriv(const D a, const D b, const int n=1, int Dpts=3, const bool periodic=false) {
       std::valarray<D> &mydata = *data_;
+      mdisp(a,b,n,Dpts,periodic);
       const size_type N = size();
       if (N<=1) return *this;
 
@@ -1050,7 +1051,7 @@ namespace matricks {
 	//TODO: issue error
       }
       if (n>1) {
-	return this->deriv(a,b,Dpts,periodic,n-1);
+	return this->deriv(a,b,n-1,Dpts,periodic);
       } 
       return *this;
     }

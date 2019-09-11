@@ -1,6 +1,8 @@
 
-# Formatted and styled printing in mātricks
+# *Formatted and styled printing* in mātricks
 _This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r9).
+
+_The examples in this section can be found in file_ `examples/printing.cpp`
 
 ## `namespace display`: print-related functionality
 ### The function `disp(x)`
@@ -37,7 +39,7 @@ disp(z);
 ```
 
 
-An actual screen-shot of the output is shown below:
+The actual screen-shot of the output is shown below:
 
 
 ![disp example 1](disp_example1.png)
@@ -63,9 +65,54 @@ tdisp(z);
 ```
 
 
-An actual screen-shot of the output is shown below:
+The actual screen-shot of the output is shown below:
 
 
 ![disp example 2](disp_example2.png)
+### The function `tdisp(x)`
+
+
+The function `tdisp(x)` displays the variable type, in addition to the variable name and value
+
+
+**EXAMPLE 3**: simple examples of `tdisp(x)` usage
+display each varible using `tdisp`:
+
+
+```C++
+tdisp(n);
+tdisp(x);
+tdisp(vals);
+tdisp(done);
+tdisp(v);
+tdisp(str);
+tdisp(s);
+tdisp(z);
+```
+
+
+The actual screen-shot of the output is shown below:
+
+
+![disp example 2](disp_example2.png)
+### The function `mdisp(x1,x2,...)`
+
+
+The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.
+
+
+display each varible using `mdisp`:
+
+
+```C++
+mdisp(n,x,vals,done,str,s,z);
+```
+
+
+The actual screen-shot of the output is shown below:
+
+
+![disp example 3](disp_example3.png)
+<img src="disp_example3.png" width="834" height="41">
 
 [Table of Contents](README.md)

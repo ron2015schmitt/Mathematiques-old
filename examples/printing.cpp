@@ -44,5 +44,8 @@ int main()
   tdisp(z);
 
   cr();cr();
+  mdisp(n,x,vals,done,str,s,z);
+  
+  cr();cr();
   return 0;
 }

@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r14).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r15).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -116,5 +116,30 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 4](disp_example4.png)
+## Supported Types
+
+
+* The following types are currently supported by the display commands
+* `bool`
+* `short`, `int`, `long`, `long long`
+* `unsigned short`, `unsigned int`, `unsigned long`, `unsigned long long`
+* `float`, `double`, `long double`
+* `char`, `unsigned char`
+* `char[]` C-style strings
+* `std::string` C++ strings
+* `std::complex<D>` complex numbers
+* `matricks::Vector<D>` vectors
+* `matricks::Matrix<D>` matrices
+* `D[]` C-style arrays
+* `std::vector` C++ vectors
+* `std::valarray` C++ valarrays
+* `std::vector` C++ vectors
+* `std::list` C++ lists
+* `std::queue` C++ queues
+* `std::map` C++ maps
+* `std::initializer_list` C++11 
+* **Any class** that supports `.classname()` and `operator<<` is automatically supported
+
+
 
 [Table of Contents](README.md)

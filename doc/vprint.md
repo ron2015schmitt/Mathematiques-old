@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r26).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r27).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -198,10 +198,13 @@ This latter setting can be used to print in colors to a file, which will display
 * matricks defines the class `Style` for applying color and other attributes, such as **bold**
 
 * The predefined styles are shown below
+
 ![styles](displaycolors.png)
+
 You can combine the styles using the `+` sign
 
 ![stylescombined](displaycolorscombined.png)
+
 * To use any of these, use the `createStyle` macro
 ```C++
 

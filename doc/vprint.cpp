@@ -31,16 +31,22 @@ int main()
   cr();
   mdtitle("\\*Formatted and styled printing");
   matricks_preamble();
-  text("_The examples in this section can be found in file_ `examples/printing.cpp`\n");
-  header2("`namespace display`: print-related functionality");
+  text("* The examples in this section can be found in file_ `examples/printing.cpp`\n");
+  text("* All of the functions decribed in this section are in the namespace `display`");
+  text("* Practically speaking, this functionality is one of the most useful aspects of mātricks.");
+
+
+  // disp()
   
-  header3("The function `disp(x)`");
+  header2("The function `disp(x)`");
   cr();cr();
 
   text("The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.");
   cr();cr();
   
   example(Nex++,"simple examples of `disp(x)` usage");
+  cr();cr();
+  text("Define and initialize some variables:");
   cr();cr();
   codestart("C++");
   codemulti(  int n = 45 );
@@ -53,7 +59,7 @@ int main()
   codemulti(  std::complex<double> z(1,-1)  );
   codeend();
 
-  text("display each varible using `disp`:");
+  text("display each variable using `disp`:");
   cr();cr();
 
   codestart("C++");
@@ -72,16 +78,16 @@ int main()
   cr();cr();
   text("![disp example 1](disp_example1.png)");
   
+  // tdisp()
 
-  header3("The function `tdisp(x)`");
+  header2("The function `tdisp(x)`");
   cr();cr();
 
   text("The function `tdisp(x)` displays the variable type, in addition to the variable name and value");
   cr();cr();
   
-  example(Nex++,"simple examples of `tdisp(x)` usage");
+  example(Nex++," `tdisp(x)` usage");
 
-  text("display each varible using `tdisp`:");
   cr();cr();
 
   codestart("C++");
@@ -101,14 +107,19 @@ int main()
   text("![disp example 2](disp_example2.png)");
 
 
-  header3("The function `mdisp(x1,x2,...)`");
+  // mdisp()
+
+  header2("The function `mdisp(x1,x2,...)`");
   cr();cr();
 
-  text("The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.");
+  text("* The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.");
+  text("* Very useful for displaying:");
+  text("  * the arguments passed to a function");
+  text("  * the variables inside a for loop");
   cr();cr();
   
 
-  text("display each varible using `mdisp`:");
+  example(Nex++," `mdisp(x1,x2,...)` usage");
   cr();cr();
 
   codestart("C++");
@@ -120,9 +131,31 @@ int main()
   cr();cr();
   text("![disp example 3](disp_example3.png)");
 
-  // tried this but doesn't help
-  //  text("<img src=\"disp_example3.png\" width=\"834\" height=\"41\">");
+  // tried this but doesn't help with displaying at the correct scale
+  text("<img src=\"disp_example3.png\" width=\"600\" height=\"30\">");
 
+
+
+  // expressions
+
+  header2("Displaying expressions");
+  cr();cr();
+
+  text("* The functions introduced above can also be used to display expressions.");
+  text("* vector and matrix expressions can be displayed in this manner.");
+  cr();cr();
+  
+
+  example(Nex++," displaying expressions");
+  cr();cr();
+
+  codestart("C++");
+  codeend();
+
+  cr();cr();
+  text("The actual screen-shot of the output is shown below:");
+  cr();cr();
+  text("![disp example 4](disp_example4.png)");
 
   
   matricks_toc();

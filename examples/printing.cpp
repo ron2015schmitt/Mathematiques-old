@@ -13,6 +13,7 @@ int main()
   using namespace matricks;
   using namespace display;
 
+  const double pi = M_PI;
   int n = 45;
   double x = 3.14;
   double vals[] = {1.1,2.2,3.3};
@@ -45,6 +46,14 @@ int main()
 
   cr();cr();
   mdisp(n,x,vals,done,str,s,z);
+
+  cr();cr();
+  disp(n+3);
+  disp(10*x-1);
+  disp(!done);
+  disp( round(10*sin(pi/10*v) + 10) );
+  disp(s+" tour");
+
   
   cr();cr();
   return 0;

@@ -1,17 +1,21 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r10).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r11).
 
-_The examples in this section can be found in file_ `examples/printing.cpp`
+* The examples in this section can be found in file_ `examples/printing.cpp`
 
-## `namespace display`: print-related functionality
-### The function `disp(x)`
+* All of the functions decribed in this section are in the namespace `display`
+* Practically speaking, this functionality is one of the most useful aspects of mātricks.
+## The function `disp(x)`
 
 
 The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.
 
 
 **EXAMPLE 1**: simple examples of `disp(x)` usage
+
+
+Define and initialize some variables:
 
 
 ```C++
@@ -24,7 +28,7 @@ char str[] = "hello";
 std::string s = "world";
 std::complex<double> z(1,-1);
 ```
-display each varible using `disp`:
+display each variable using `disp`:
 
 
 ```C++
@@ -43,14 +47,13 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 1](disp_example1.png)
-### The function `tdisp(x)`
+## The function `tdisp(x)`
 
 
 The function `tdisp(x)` displays the variable type, in addition to the variable name and value
 
 
-**EXAMPLE 2**: simple examples of `tdisp(x)` usage
-display each varible using `tdisp`:
+**EXAMPLE 2**:  `tdisp(x)` usage
 
 
 ```C++
@@ -69,13 +72,16 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 2](disp_example2.png)
-### The function `mdisp(x1,x2,...)`
+## The function `mdisp(x1,x2,...)`
 
 
-The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.
+* The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.
+* Very useful for displaying:
+  * the arguments passed to a function
+  * the variables inside a for loop
 
 
-display each varible using `mdisp`:
+**EXAMPLE 3**:  `mdisp(x1,x2,...)` usage
 
 
 ```C++
@@ -87,5 +93,24 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 3](disp_example3.png)
+<img src="disp_example3.png" width="600" height="30">
+## Displaying expressions
+
+
+* The functions introduced above can also be used to display expressions.
+* vector and matrix expressions can be displayed in this manner.
+
+
+**EXAMPLE 4**:  displaying expressions
+
+
+```C++
+```
+
+
+The actual screen-shot of the output is shown below:
+
+
+![disp example 4](disp_example4.png)
 
 [Table of Contents](README.md)

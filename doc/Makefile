@@ -1,6 +1,6 @@
 
 
-EXEC = vdeclaration  vassignment range linspace velmath vapply vcomplex vscalarout vrelational vsubsets vconcatrep vslices vsort vprint taylor fourier calculus vfile vdebug vdefinition
+EXEC = vdeclaration  vassignment range linspace velmath vapply vprint vcomplex vscalarout vrelational vsubsets vconcatrep vslices vsort taylor fourier calculus vfile vdebug vdefinition
 
 DOC = $(addsuffix .md,$(EXEC))
 

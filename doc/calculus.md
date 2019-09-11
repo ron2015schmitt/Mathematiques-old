@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.15-r7).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.15-r10).
 
 ## Integration
 ### Definite integrals
@@ -173,14 +173,14 @@ Vector<double> x( linspace<double>(a,b,N) );
   deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
-## Differentiation: optional parameters
+### Differentiation: optional parameters
 * The differentiation method/function has 3 optional parameters:
   * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`
 * The optional parameters are:
   * `n` [DEFAULT=`1`] is the number of derivatives to compute: 
   * `Dpts` [DEFAULT=`7`] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. 
   * `periodic` [DEFAULT=`false`]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.
-## Differentiation: taking multiple derivatives in one call
+### Differentiation: taking multiple derivatives in one call
 
 
 **EXAMPLE 4**: The fourth derivative of sin _x_

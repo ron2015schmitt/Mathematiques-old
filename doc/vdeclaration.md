@@ -1,6 +1,6 @@
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.15-r7).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.15-r10).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++

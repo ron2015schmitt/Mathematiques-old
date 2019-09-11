@@ -1,6 +1,6 @@
 
-# *Formatted and styled printing* in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r9).
+# \*Formatted and styled printing in mātricks
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r10).
 
 _The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -69,32 +69,6 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 2](disp_example2.png)
-### The function `tdisp(x)`
-
-
-The function `tdisp(x)` displays the variable type, in addition to the variable name and value
-
-
-**EXAMPLE 3**: simple examples of `tdisp(x)` usage
-display each varible using `tdisp`:
-
-
-```C++
-tdisp(n);
-tdisp(x);
-tdisp(vals);
-tdisp(done);
-tdisp(v);
-tdisp(str);
-tdisp(s);
-tdisp(z);
-```
-
-
-The actual screen-shot of the output is shown below:
-
-
-![disp example 2](disp_example2.png)
 ### The function `mdisp(x1,x2,...)`
 
 
@@ -113,6 +87,5 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 3](disp_example3.png)
-<img src="disp_example3.png" width="834" height="41">
 
 [Table of Contents](README.md)

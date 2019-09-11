@@ -29,7 +29,7 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("*Formatted and styled printing*");
+  mdtitle("\\*Formatted and styled printing");
   matricks_preamble();
   text("_The examples in this section can be found in file_ `examples/printing.cpp`\n");
   header2("`namespace display`: print-related functionality");
@@ -101,34 +101,6 @@ int main()
   text("![disp example 2](disp_example2.png)");
 
 
-    header3("The function `tdisp(x)`");
-  cr();cr();
-
-  text("The function `tdisp(x)` displays the variable type, in addition to the variable name and value");
-  cr();cr();
-  
-  example(Nex++,"simple examples of `tdisp(x)` usage");
-
-  text("display each varible using `tdisp`:");
-  cr();cr();
-
-  codestart("C++");
-  text("tdisp(n);");
-  text("tdisp(x);");
-  text("tdisp(vals);");
-  text("tdisp(done);");
-  text("tdisp(v);");
-  text("tdisp(str);");
-  text("tdisp(s);");
-  text("tdisp(z);");
-  codeend();
-
-  cr();cr();
-  text("The actual screen-shot of the output is shown below:");
-  cr();cr();
-  text("![disp example 2](disp_example2.png)");
-
-
   header3("The function `mdisp(x1,x2,...)`");
   cr();cr();
 
@@ -148,7 +120,11 @@ int main()
   cr();cr();
   text("![disp example 3](disp_example3.png)");
 
-  text("<img src=\"disp_example3.png\" width=\"834\" height=\"41\">");
+  // tried this but doesn't help
+  //  text("<img src=\"disp_example3.png\" width=\"834\" height=\"41\">");
+
+
+  
   matricks_toc();
 
   return 0;

@@ -1,6 +1,6 @@
 
 # Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r3).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r5).
 
 ## `namespace display`: print-related functionality
 ### The function `disp(x)`
@@ -34,6 +34,8 @@ disp(z)
 
 
 An actual screen-shot of the output is shown below:
+
+
 ![disp example 1](disp_example1.png)
 
 [Table of Contents](README.md)

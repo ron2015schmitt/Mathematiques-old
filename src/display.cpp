@@ -241,7 +241,7 @@ namespace display {
 
   Style FormatDataComplex::style_for_type_name = createStyle(GREEN);
   Style FormatDataComplex::style_for_punctuation = createStyle(GRAY1);
-  const std::string FormatDataComplex::format_string_default = "%s + i*%s";
+  const std::string FormatDataComplex::format_string_default = "(%s,%s)";
   std::string FormatDataComplex::format_string = format_string_default;
   
   //****************************************************************************

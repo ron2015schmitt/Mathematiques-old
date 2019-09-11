@@ -27,16 +27,37 @@ int main()
   cr();
   mdtitle("Formatted, styled (color, bold etc) printing");
   matricks_preamble();
-  Header2("The function `disp(x)`");
+
+  header2("`namespace display`: print-related functionality");
+  
+  header2("The function `disp(x)`");
 
   text("The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.");
+  
+  example(Nex++,"simple examples of `disp(x)` usage");
+  codestart("C++");
+  codemulti(  int n = 45 );
+  codemulti(  double x = 3.14 );
+  codemulti(  double vals[] = {1.1,2.2,3.3} );
+  codemulti(  char str[] = "hello" );
+  codemulti(  std::string s = "world"  );
+  codemulti(  std::complex<double> z(1,-1)  );
+  codeend();
 
-    example(Nex++,"simple examples of `disp(x)` usage");
-    codestart("C++");
- 
-    codeend();
+  text("display each varible using `disp`:");
 
   
+  codestart("C++");
+  text("disp(n)");
+  text("disp(x)");
+  text("disp(vals)");
+  text("disp(str)");
+  text("disp(s)");
+  text("disp(z)");
+  codeend();
+
+  text("An actual screen-shot of the output is shown below:");
+  text("![disp example 1](disp_example1.png)");
   
   matricks_toc();
 

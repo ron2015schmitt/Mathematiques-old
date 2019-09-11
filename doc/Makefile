@@ -29,7 +29,6 @@ cleandocs:
 
 restore: 
 	@git checkout -- $(addsuffix .md,$(EXEC)) README.md
-	@git checkout -- $(addsuffix .link_md,$(EXEC))
 
 
 # usage:

@@ -173,7 +173,7 @@ namespace display {
   const std::string ITALIC  = ESC+"3m"; // not widely supported
   const std::string UNDERLINE  = ESC+"4m";
   const std::string SLOWBLINK  = ESC+"5m";
-  const std::string RAPIDBLINK = ESC+"6m";
+  const std::string RAPIDBLINK = ESC+"6m"; // not widely supported
   const std::string REVERSED   = ESC+"7m";
   const std::string CROSSEDOUT = ESC+"9m";
   const std::string FONT2      = ESC+"11m"; // not widely supported
@@ -182,32 +182,38 @@ namespace display {
   const std::string ENCIRCLED  = ESC+"52m"; // not widely supported
   const std::string OVERLINE   = ESC+"53m";
 
-  const std::string BLACK   = ESC+"30m";      
-  const std::string RED     = ESC+"31m";      
-  const std::string GREEN   = ESC+"32m";      
-  const std::string GREENBRIGHT   = ESC+"92m";      
-  const std::string YELLOW  = ESC+"33m";      
-  const std::string YELLOWBRIGHT  = ESC+"93m";      
-  const std::string BLUE    = ESC+"34m";      
-  const std::string BLUEBRIGHT    = ESC+"94m";      
-  const std::string MAGENTA = ESC+"35m";      
-  const std::string CYAN    = ESC+"36m";      
+  const std::string GRAY2   = ESC+"30m";      
+  const std::string GRAY1  = FORE+"5;240m";      
   const std::string WHITE   = ESC+"37m";
 
-  const std::string GREENBACK  =  BACK+"5;46m";      
-  const std::string YELLOWBACK  = BACK+"5;226m";      
-  const std::string ORANGEBACK  = BACK+"5;208m";      
-  const std::string REDBACK  = BACK+"5;201m";      
+  // organized per ROYGBIV
+  const std::string RED     = ESC+"31m";      
   const std::string ORANGE  = FORE+"5;208m";      
-  const std::string GRAY1  = FORE+"5;240m";      
-
+  const std::string YELLOW  = ESC+"33m";      
+  const std::string YELLOWBRIGHT  = ESC+"93m";      
+  const std::string GREEN   = ESC+"32m";      
+  const std::string GREENBRIGHT   = ESC+"92m";      
+  const std::string GREEN1  = FORE+"5;22m";      
+  const std::string CYAN    = ESC+"36m";      
+  const std::string BLUE    = ESC+"34m";      
+  const std::string BLUEBRIGHT    = ESC+"94m";      
   const std::string BLUE1  = FORE+"5;18m";      
   const std::string BLUE2  = FORE+"5;21m";      
   const std::string BLUE3  = FORE+"5;27m";      
-
+  const std::string MAGENTA = ESC+"35m";      
   const std::string MAGENTA1  = FORE+"5;129m";      
-  const std::string VIOLET1  = FORE+"5;17m";      
-  const std::string GREEN1  = FORE+"5;22m";      
+  const std::string VIOLET1  = FORE+"5;54m";      
+
+
+
+  
+  const std::string BLACKBACK  = BACK+"5;16m";      
+  const std::string REDBACK  = BACK+"5;160m";      
+  const std::string ORANGEBACK  = BACK+"5;208m";      
+  const std::string YELLOWBACK  = BACK+"5;226m";      
+  const std::string GREENBACK  =  BACK+"5;46m";      
+
+
 
 
 
@@ -240,6 +246,14 @@ namespace display {
     }
     inline Style(const unsigned int n)  {
       stylestr_ = FORE+print2str("5;%um",n);
+      stylename_ = "";
+    }
+    inline Style(const unsigned int n, const unsigned int m)  {
+      stylestr_ = FORE+print2str("5;%um",n)+BACK+print2str("5;%um",m);
+      stylename_ = "";
+    }
+    inline Style(const std::string attributestr, const unsigned int n, const unsigned int m)  {
+      stylestr_ = attributestr+FORE+print2str("5;%um",n)+BACK+print2str("5;%um",m);
       stylename_ = "";
     }
     inline std::string apply(const std::string s) const {

@@ -53,6 +53,60 @@ int main()
   disp(!done);
   disp( round(10*sin(pi/10*v) + 10) );
   disp(s+" tour");
+  mout << std::endl;
+
+  mout << createStyle(GRAY1) << "  ";
+  mout << createStyle(GRAY2) << "  ";
+  mout << createStyle(WHITE+BLACKBACK) << "  ";
+  mout << std::endl;
+  
+  mout << createStyle(RED) << "  ";
+  mout << std::endl;
+  mout << createStyle(ORANGE) << "  ";
+  mout << std::endl;
+  mout << createStyle(YELLOW) << "  ";
+  mout << createStyle(YELLOWBRIGHT) << "  ";
+  mout << std::endl;
+  mout << createStyle(GREEN) << "  ";
+  mout << createStyle(GREENBRIGHT) << "  ";
+  mout << createStyle(GREEN1) << "  ";
+  mout << std::endl;
+  mout << createStyle(CYAN) << "  ";
+  mout << createStyle(BLUE) << "  ";
+  mout << createStyle(BLUEBRIGHT) << "  ";
+  mout << createStyle(BLUE1) << "  ";
+  mout << createStyle(BLUE2) << "  ";
+  mout << createStyle(BLUE3) << "  ";
+  mout << std::endl;
+  mout << createStyle(MAGENTA) << "  ";
+  mout << createStyle(MAGENTA1) << "  ";
+  mout << createStyle(VIOLET1) << "  ";
+  mout << std::endl;
+  mout << createStyle(BOLD) << "  ";
+  mout << createStyle(UNDERLINE) << "  ";
+  mout << createStyle(CROSSEDOUT) << "  ";
+  mout << createStyle(OVERLINE) << "  ";
+  mout << createStyle(SLOWBLINK) << "  ";
+  mout << std::endl;
+
+  mout << createStyle(REDBACK) << "  ";
+  mout << createStyle(ORANGEBACK) << "  ";
+  mout << createStyle(YELLOWBACK) << "  ";
+  mout << createStyle(GREENBACK) << "  ";
+  mout << std::endl;
+  mout << std::endl;
+  mout << std::endl;
+
+  mout << createStyle(BOLD+UNDERLINE+VIOLET1) << "  ";
+  mout << std::endl;
+  mout << std::endl;
+  mout << std::endl;
+  mout << std::endl;
+
+
+  Style mystyle = createStyle(BOLD+RED);
+  mout << mystyle.apply("with style") + " without style " << std::endl;
+  mout << std::endl;
 
   
   cr();cr();

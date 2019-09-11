@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r24).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r26).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -192,14 +192,39 @@ This latter setting can be used to print in colors to a file, which will display
 
 
 
+## Text `Style` class
+* Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).
+
+* matricks defines the class `Style` for applying color and other attributes, such as **bold**
+
+* The predefined styles are shown below
+![styles](displaycolors.png)
+You can combine the styles using the `+` sign
+
+![stylescombined](displaycolorscombined.png)
+* To use any of these, use the `createStyle` macro
+```C++
+
+Style mystyle = createStyle(BOLD+RED);
+
+mout << mystyle.apply("with style") + " without style " << std::endl;
+
+```
+
+![stylesexample](displaycolorsexample.png)
+* _The Style class checks to see whether or not to actually use colors, as described in the previous sub-section_
+
+
+
 ## Customizing the format and colors
 
 
-### Customizing number format
+### Customizing number formats
+**TO DO**
 
 
 ### Customizing complex number format
-The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is "(%s, %s)"
+The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `"(%s, %s)"`
 
 
 
@@ -237,6 +262,7 @@ Matlab output format / C++14 format `"%s + %si"`
 z = 1 + -2i; 
 ```
 ### Customizing Vector format
+**TO DO**
 
 
 

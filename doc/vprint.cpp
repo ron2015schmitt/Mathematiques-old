@@ -239,12 +239,29 @@ int main()
   text("This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.\n");
   
   cr();cr();
+  header2("Text `Style` class");
+  text("* Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).\n");
+  text("* matricks defines the class `Style` for applying color and other attributes, such as **bold**\n");
+  text("* The predefined styles are shown below");
+  text("![styles](displaycolors.png)");
+  text("You can combine the styles using the `+` sign\n");
+  text("![stylescombined](displaycolorscombined.png)");
+  text("* To use any of these, use the `createStyle` macro");
+  text("```C++\n");
+  text("Style mystyle = createStyle(BOLD+RED);\n");
+  text("mout << mystyle.apply(\"with style\") + \" without style \" << std::endl;\n");
+  text("```\n");
+  text("![stylesexample](displaycolorsexample.png)");
+  text("* _The Style class checks to see whether or not to actually use colors, as described in the previous sub-section_\n");
+  cr();cr();
+
   header2("Customizing the format and colors");
   cr();cr();
-  header3("Customizing number format");
+  header3("Customizing number formats");
+  text("**TO DO**");
   cr();cr();
   header3("Customizing complex number format");
-  text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is \"(%s, %s)\"\n");
+  text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `\"(%s, %s)\"`\n");
   cr();cr();
 
   {
@@ -285,6 +302,7 @@ int main()
   }
 
   header3("Customizing Vector format");
+  text("**TO DO**");
   cr();cr();
   
 

@@ -169,18 +169,19 @@ int main()
   header2("Supported Types");
   cr();cr();
 
-  text("* The following types are currently supported by the display commands");
+  text("The following types are currently supported by the display commands");
+  text("* **Any class** with methods `.classname()` and `operator<<` is automatically supported");
+  text("* `matricks::Vector<D>` vectors");
+  text("* `matricks::Matrix<D>` matrices");
   text("* `bool`");
   text("* `short`, `int`, `long`, `long long`");
   text("* `unsigned short`, `unsigned int`, `unsigned long`, `unsigned long long`");
   text("* `float`, `double`, `long double`");
   text("* `char`, `unsigned char`");
   text("* `char[]` C-style strings");
+  text("* `D[]` C-style arrays");
   text("* `std::string` C++ strings");
   text("* `std::complex<D>` complex numbers");
-  text("* `matricks::Vector<D>` vectors");
-  text("* `matricks::Matrix<D>` matrices");
-  text("* `D[]` C-style arrays");
   text("* `std::vector` C++ vectors");
   text("* `std::valarray` C++ valarrays");
   text("* `std::vector` C++ vectors");
@@ -188,7 +189,6 @@ int main()
   text("* `std::queue` C++ queues");
   text("* `std::map` C++ maps");
   text("* `std::initializer_list` C++11 ");
-  text("* **Any class** that supports `.classname()` and `operator<<` is automatically supported");
 
 
   

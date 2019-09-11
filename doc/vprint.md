@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r15).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r16).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -119,18 +119,19 @@ The actual screen-shot of the output is shown below:
 ## Supported Types
 
 
-* The following types are currently supported by the display commands
+The following types are currently supported by the display commands
+* **Any class** with methods `.classname()` and `operator<<` is automatically supported
+* `matricks::Vector<D>` vectors
+* `matricks::Matrix<D>` matrices
 * `bool`
 * `short`, `int`, `long`, `long long`
 * `unsigned short`, `unsigned int`, `unsigned long`, `unsigned long long`
 * `float`, `double`, `long double`
 * `char`, `unsigned char`
 * `char[]` C-style strings
+* `D[]` C-style arrays
 * `std::string` C++ strings
 * `std::complex<D>` complex numbers
-* `matricks::Vector<D>` vectors
-* `matricks::Matrix<D>` matrices
-* `D[]` C-style arrays
 * `std::vector` C++ vectors
 * `std::valarray` C++ valarrays
 * `std::vector` C++ vectors
@@ -138,7 +139,6 @@ The actual screen-shot of the output is shown below:
 * `std::queue` C++ queues
 * `std::map` C++ maps
 * `std::initializer_list` C++11 
-* **Any class** that supports `.classname()` and `operator<<` is automatically supported
 
 
 

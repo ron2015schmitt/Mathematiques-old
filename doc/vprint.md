@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r12).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r14).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -93,7 +93,6 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 3](disp_example3.png)
-<img src="disp_example3.png" width="100%" height="100%">
 ## Displaying expressions
 
 
@@ -105,6 +104,11 @@ The actual screen-shot of the output is shown below:
 
 
 ```C++
+disp(n+3);
+disp(10*x-1);
+disp(!done);
+disp( round(10*sin(pi/10*v) + 10) );
+disp(s+" tour");
 ```
 
 

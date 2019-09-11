@@ -152,7 +152,7 @@ The display commands also have versions that only display when the code is compi
 * `disp3`, `tdisp3`, `mdisp3` will
   * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
   * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
-### Controlling the output stream and color
+## Controlling the output stream and color
 * All output uses C++ streams (*no* `printf`)
 * By default all output is sent to `std::cout`
 * The output stream can be set using `Terminal::setmout(std::ostream&)`.
@@ -166,12 +166,29 @@ Terminal::setmout(std::cerr);
 For example, you can output a string:
 ```C++
 
-mout << "Hello World" << std::endl
+mout << "Hello World" << std::endl;
 
 ```
 
+* By default, matricks uses color when it detects that the output stream is connected to a terminal.
+* By default, matricks disables color when it detects that the output stream is piped to a file.
+* However, the user can override this behavior as follows
+To force matricks to use plain text, used the following settings:
+```C++
+
 Terminal::setColorOverride(true);
-Terminal::setOverrideValue(true);
+Terminal::setOverrideValue(false);
+```
+
+To force matricks to use color text, used the following settings:
+```C++
+
+Terminal::setColorOverride(true);
+Terminal::setOverrideValue(truee);
+```
+
+This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.
+
 
 
 ## Customizing the format and colors

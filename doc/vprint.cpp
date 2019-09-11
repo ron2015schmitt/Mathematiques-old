@@ -210,7 +210,7 @@ int main()
   text("  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
   text("  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
-  header3("Controlling the output stream and color");
+  header2("Controlling the output stream and color");
   text("* All output uses C++ streams (*no* `printf`)");
   text("* By default all output is sent to `std::cout`");
   text("* The output stream can be set using `Terminal::setmout(std::ostream&)`.");
@@ -221,13 +221,22 @@ int main()
   text("* You can use the matricks output stream via `Terminal::getmout()` or the macro `mout`");
   text("For example, you can output a string:");
   text("```C++\n");
-  text("mout << \"Hello World\" << std::endl\n");
+  text("mout << \"Hello World\" << std::endl;\n");
   text("```\n");
- 
-  
+  text("* By default, matricks uses color when it detects that the output stream is connected to a terminal.");
+  text("* By default, matricks disables color when it detects that the output stream is piped to a file.");
+  text("* However, the user can override this behavior as follows");
+  text("To force matricks to use plain text, used the following settings:");
+  text("```C++\n");
   text("Terminal::setColorOverride(true);");
-  text("Terminal::setOverrideValue(true);");
-
+  text("Terminal::setOverrideValue(false);");
+  text("```\n");
+  text("To force matricks to use color text, used the following settings:");
+  text("```C++\n");
+  text("Terminal::setColorOverride(true);");
+  text("Terminal::setOverrideValue(truee);");
+  text("```\n");
+  text("This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.\n");
   
   cr();cr();
   header2("Customizing the format and colors");

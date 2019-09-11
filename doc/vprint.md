@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r11).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r12).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -93,7 +93,7 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 3](disp_example3.png)
-<img src="disp_example3.png" width="600" height="30">
+<img src="disp_example3.png" width="100%" height="100%">
 ## Displaying expressions
 
 

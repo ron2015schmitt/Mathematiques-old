@@ -132,7 +132,7 @@ int main()
   text("![disp example 3](disp_example3.png)");
 
   // tried this but doesn't help with displaying at the correct scale
-  text("<img src=\"disp_example3.png\" width=\"600\" height=\"30\">");
+  text("<img src=\"disp_example3.png\" width=\"100%\" height=\"100%\">");
 
 
 

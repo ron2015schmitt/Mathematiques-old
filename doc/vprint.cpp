@@ -132,7 +132,8 @@ int main()
   text("![disp example 3](disp_example3.png)");
 
   // tried this but doesn't help with displaying at the correct scale
-  text("<img src=\"disp_example3.png\" width=\"100%\" height=\"100%\">");
+  // the image are always blurred by github for some reason
+  //text("<img src=\"disp_example3.png\" width=\"100%\" height=\"100%\">");
 
 
 
@@ -150,6 +151,11 @@ int main()
   cr();cr();
 
   codestart("C++");
+  text("disp(n+3);");
+  text("disp(10*x-1);");
+  text("disp(!done);");
+  text("disp( round(10*sin(pi/10*v) + 10) );");
+  text("disp(s+\" tour\");");
   codeend();
 
   cr();cr();

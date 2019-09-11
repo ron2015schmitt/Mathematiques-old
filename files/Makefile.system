@@ -91,6 +91,7 @@ git:
 	@$(call newVersionTag)
 	@git add $(TAG_FILE_MATRICKS) $(TAG_ANNOTATION_FILE)
 	@git add $(VERSION_HEADER_FILE_MATRICKS)
+	@git add -u
 	@echo
 	@git status 
 	@echo 

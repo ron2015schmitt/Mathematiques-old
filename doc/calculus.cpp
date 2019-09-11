@@ -188,7 +188,7 @@ int main()
   }
 
 
-    header2("Differentiation: optional parameters");
+    header3("Differentiation: optional parameters");
     text("* The differentiation method/function has 3 optional parameters:");
     text("  * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`");
     text("* The optional parameters are:");
@@ -196,7 +196,7 @@ int main()
     text("  * `Dpts` [DEFAULT=`7`] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
     text("  * `periodic` [DEFAULT=`false`]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.");
 
-    header2("Differentiation: taking multiple derivatives in one call");
+    header3("Differentiation: taking multiple derivatives in one call");
     
   {
     cr();

@@ -255,27 +255,27 @@ int main()
   codeend();
 
   cr();cr();
-  text("Default format: \"(%s, %s)\"\n");
+  text("Default format: `\"(%s, %s)\"`\n");
   codestart("C++");
   disp(z);
   codeend();
 
   cr();cr();
-  text("Matlab input format \"%s + i*%s\"\n");
+  text("Matlab input format `\"%s + i*%s\"`\n");
   setFormatStringComplex("%s + i*%s");
   codestart("C++");
   disp(z);
   codeend();
 
   cr();cr();
-  text("Mathematica input format \"%s + I*%s\"\n");
+  text("Mathematica input format `\"%s + I*%s\"`\n");
   setFormatStringComplex("%s + I*%s");
   codestart("C++");
   disp(z);
   codeend();
 
   cr();cr();
-  text("Matlab output format / C++14 format \"%s + %si\"\n");
+  text("Matlab output format / C++14 format `\"%s + %si\"`\n");
   setFormatStringComplex("%s + %si");
   codestart("C++");
   disp(z);

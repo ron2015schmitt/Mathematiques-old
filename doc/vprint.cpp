@@ -25,16 +25,19 @@ int main()
   int Nex = 1;
   
   cr();
-  mdtitle("Formatted, styled (color, bold etc) printing");
+  mdtitle("Formatted and styled printing");
   matricks_preamble();
 
   header2("`namespace display`: print-related functionality");
   
-  header2("The function `disp(x)`");
+  header3("The function `disp(x)`");
+  cr();cr();
 
   text("The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.");
+  cr();cr();
   
   example(Nex++,"simple examples of `disp(x)` usage");
+  cr();cr();
   codestart("C++");
   codemulti(  int n = 45 );
   codemulti(  double x = 3.14 );
@@ -45,8 +48,8 @@ int main()
   codeend();
 
   text("display each varible using `disp`:");
+  cr();cr();
 
-  
   codestart("C++");
   text("disp(n)");
   text("disp(x)");
@@ -56,6 +59,7 @@ int main()
   text("disp(z)");
   codeend();
 
+  cr();cr();
   text("An actual screen-shot of the output is shown below:");
   text("![disp example 1](disp_example1.png)");
   

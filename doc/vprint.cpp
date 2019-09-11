@@ -242,10 +242,10 @@ int main()
   header2("Text `Style` class");
   text("* Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).\n");
   text("* matricks defines the class `Style` for applying color and other attributes, such as **bold**\n");
-  text("* The predefined styles are shown below");
-  text("![styles](displaycolors.png)");
+  text("* The predefined styles are shown below\n");
+  text("![styles](displaycolors.png)\n");
   text("You can combine the styles using the `+` sign\n");
-  text("![stylescombined](displaycolorscombined.png)");
+  text("![stylescombined](displaycolorscombined.png)\n");
   text("* To use any of these, use the `createStyle` macro");
   text("```C++\n");
   text("Style mystyle = createStyle(BOLD+RED);\n");

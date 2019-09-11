@@ -198,8 +198,17 @@ int main()
 
   text("The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.");
   text("* `disp1`, `tdisp1`, `mdisp1` will");
-  text("  * `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp1`, `mdisp`");
-  text("  * `MATRICKS_DEBUG == 0` or undefined`: compile to null statements (ie no output and no real-time hit)");
+  text("  * when `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`");
+  text("  * when `MATRICKS_DEBUG == 0` or is undefined: compile to null statements (ie no output and no real-time hit)");
+
+  text("* `disp2`, `tdisp2`, `mdisp2` will");
+  text("  * when `MATRICKS_DEBUG >= 2`: behave like `disp`, `tdisp`, `mdisp`");
+  text("  * when `MATRICKS_DEBUG < 2` or is undefined: compile to null statements (ie no output and no real-time hit)");
+
+
+  text("* `disp3`, `tdisp3`, `mdisp3` will");
+  text("  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
+  text("  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
   
   cr();cr();

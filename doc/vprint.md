@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r17).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r18).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -144,8 +144,14 @@ The following types are currently supported by the display commands
 
 The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.
 * `disp1`, `tdisp1`, `mdisp1` will
-  * `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp1`, `mdisp`
-  * `MATRICKS_DEBUG == 0` or undefined`: compile to null statements (ie no output and no real-time hit)
+  * when `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`
+  * when `MATRICKS_DEBUG == 0` or is undefined: compile to null statements (ie no output and no real-time hit)
+* `disp2`, `tdisp2`, `mdisp2` will
+  * when `MATRICKS_DEBUG >= 2`: behave like `disp`, `tdisp`, `mdisp`
+  * when `MATRICKS_DEBUG < 2` or is undefined: compile to null statements (ie no output and no real-time hit)
+* `disp3`, `tdisp3`, `mdisp3` will
+  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
+  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
 
 
 

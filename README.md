@@ -1,4 +1,4 @@
-# mātricks v2.15-r21
+# mātricks v2.15-r22
 
 ```diff
 - CURRENTLY NOT READY FOR USE.
@@ -110,9 +110,7 @@ int main()
   using namespace matricks;
   using namespace display;
 
-  Terminal::setColorOverride(true);
-  Terminal::setOverrideValue(true);
-  
+   
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );

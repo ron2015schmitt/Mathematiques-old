@@ -152,6 +152,28 @@ The display commands also have versions that only display when the code is compi
 * `disp3`, `tdisp3`, `mdisp3` will
   * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
   * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
+### Controlling the output stream and color
+* All output uses C++ streams (*no* `printf`)
+* By default all output is sent to `std::cout`
+* The output stream can be set using `Terminal::setmout(std::ostream&)`.
+For example to set the output to stderr:
+```C++
+
+Terminal::setmout(std::cerr);
+```
+
+* You can use the matricks output stream via `Terminal::getmout()` or the macro `mout`
+For example, you can output a string:
+```C++
+
+mout << "Hello World" << std::endl
+
+```
+
+Terminal::setColorOverride(true);
+Terminal::setOverrideValue(true);
+
+
 ## Customizing the format and colors
 
 
@@ -162,9 +184,6 @@ The display commands also have versions that only display when the code is compi
 
 
 ### Customizing Vector format
-
-
-### Controlling color and style
 
 
 

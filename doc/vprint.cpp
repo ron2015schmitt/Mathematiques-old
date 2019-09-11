@@ -210,6 +210,26 @@ int main()
   text("  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
   text("  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
+  header3("Controlling the output stream and color");
+  text("* All output uses C++ streams (*no* `printf`)");
+  text("* By default all output is sent to `std::cout`");
+  text("* The output stream can be set using `Terminal::setmout(std::ostream&)`.");
+  text("For example to set the output to stderr:");
+  text("```C++\n");
+  text("Terminal::setmout(std::cerr);");
+  text("```\n");
+  text("* You can use the matricks output stream via `Terminal::getmout()` or the macro `mout`");
+  text("For example, you can output a string:");
+  text("```C++\n");
+  text("mout << \"Hello World\" << std::endl\n");
+  text("```\n");
+ 
+  
+  text("Terminal::setColorOverride(true);");
+  text("Terminal::setOverrideValue(true);");
+
+  
+  cr();cr();
   header2("Customizing the format and colors");
   cr();cr();
   header3("Customizing number format");
@@ -217,12 +237,6 @@ int main()
   header3("Customizing complex number format");
   cr();cr();
   header3("Customizing Vector format");
-  cr();cr();
-  header3("Controlling color and style");
-
-  
-
-  
   cr();cr();
   
 

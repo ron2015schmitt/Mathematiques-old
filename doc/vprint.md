@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r21).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r23).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -173,18 +173,19 @@ mout << "Hello World" << std::endl;
 * By default, matricks uses color when it detects that the output stream is connected to a terminal.
 * By default, matricks disables color when it detects that the output stream is piped to a file.
 * However, the user can override this behavior as follows
-To force matricks to use plain text, used the following settings:
+
+To force matricks to use plain text, use the following settings:
 ```C++
 
 Terminal::setColorOverride(true);
 Terminal::setOverrideValue(false);
 ```
 
-To force matricks to use color text, used the following settings:
+To force matricks to use color text, use the following settings:
 ```C++
 
 Terminal::setColorOverride(true);
-Terminal::setOverrideValue(truee);
+Terminal::setOverrideValue(true);
 ```
 
 This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.

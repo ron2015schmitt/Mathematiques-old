@@ -225,16 +225,16 @@ int main()
   text("```\n");
   text("* By default, matricks uses color when it detects that the output stream is connected to a terminal.");
   text("* By default, matricks disables color when it detects that the output stream is piped to a file.");
-  text("* However, the user can override this behavior as follows");
-  text("To force matricks to use plain text, used the following settings:");
+  text("* However, the user can override this behavior as follows\n");
+  text("To force matricks to use plain text, use the following settings:");
   text("```C++\n");
   text("Terminal::setColorOverride(true);");
   text("Terminal::setOverrideValue(false);");
   text("```\n");
-  text("To force matricks to use color text, used the following settings:");
+  text("To force matricks to use color text, use the following settings:");
   text("```C++\n");
   text("Terminal::setColorOverride(true);");
-  text("Terminal::setOverrideValue(truee);");
+  text("Terminal::setOverrideValue(true);");
   text("```\n");
   text("This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.\n");
   

@@ -33,7 +33,7 @@ int main()
 
   text("Integrating over an interval [a,b] yields a single number--the area under the curve.");
   cr();
-  text("![Definite Integral](DefiniteIntegral.PNG)");
+  text("![Definite Integral](DefiniteIntegral.png)");
 
   
   {
@@ -53,7 +53,7 @@ int main()
    
     text("Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, many points are needed to achieve even a few digits of accuracy, due to the singularities. ");
     cr();
-    text(" ![Euler–Mascheron Integral](EulerMascheroniConstant.PNG)");
+    text(" ![Euler–Mascheron Integral](EulerMascheroniConstant.png)");
     cr();
     resultstart3("");
     resultmulti( N );
@@ -70,12 +70,12 @@ int main()
   text("A semi-definite integral is created by replacing one of the end points with _x_.");
   cr();
   text("* For the integral\n");
-  text("![Semi-Definite Integral a2x](SemiDefinite_a2x.PNG)\n");
+  text("![Semi-Definite Integral a2x](SemiDefinite_a2x.png)\n");
   text("use the method `f.integrate_a2x(a, b)` or the function `integrate_a2x(f, a, b)`.");
   cr();
   cr();
   text("* For the integral\n");
-  text("![Semi-Definite Integral x2b](SemiDefinite_x2b.PNG)\n");
+  text("![Semi-Definite Integral x2b](SemiDefinite_x2b.png)\n");
   text("use the method `f.integrate_x2b(a, b)` or the function `integrate_x2b(f, a, b)`.");
   cr();
   cr();
@@ -98,7 +98,7 @@ int main()
     example(Nex++," The error function integral");
     text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and variance of 1/2).");
     cr();
-    text("![ErrorFunction](ErrorFunction.PNG)");
+    text("![ErrorFunction](ErrorFunction.png)");
     codestart("C++");
     codemulti( const size_type N = 101 );
     codemulti( const double a = 0 );

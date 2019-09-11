@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r16).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r17).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -139,6 +139,13 @@ The following types are currently supported by the display commands
 * `std::queue` C++ queues
 * `std::map` C++ maps
 * `std::initializer_list` C++11 
+## Debug-only printing
+
+
+The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.
+* `disp1`, `tdisp1`, `mdisp1` will
+  * `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp1`, `mdisp`
+  * `MATRICKS_DEBUG == 0` or undefined`: compile to null statements (ie no output and no real-time hit)
 
 
 

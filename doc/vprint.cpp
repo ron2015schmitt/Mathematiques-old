@@ -164,7 +164,7 @@ int main()
   text("![disp example 4](disp_example4.png)");
 
 
-    // expressions
+  // expressions
 
   header2("Supported Types");
   cr();cr();
@@ -191,8 +191,17 @@ int main()
   text("* `std::initializer_list` C++11 ");
 
 
-  
+  // debug-only printing
 
+  header2("Debug-only printing");
+  cr();cr();
+
+  text("The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.");
+  text("* `disp1`, `tdisp1`, `mdisp1` will");
+  text("  * `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp1`, `mdisp`");
+  text("  * `MATRICKS_DEBUG == 0` or undefined`: compile to null statements (ie no output and no real-time hit)");
+
+  
   cr();cr();
   
 

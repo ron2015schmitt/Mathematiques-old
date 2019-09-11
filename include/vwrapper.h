@@ -85,7 +85,6 @@ namespace matricks {
       DERIVED& equals(const VorE<D,B>& rhs) { 
 
       const size_type N =size();
-      //      printf("size=%lu\n",N);
 
 #if MATRICKS_DEBUG>0
       if ( size() !=  rhs.size() ){ 

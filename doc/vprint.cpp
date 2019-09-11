@@ -210,6 +210,18 @@ int main()
   text("  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
   text("  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
+  header2("Customizing the format and colors");
+  cr();cr();
+  header3("Customizing number format");
+  cr();cr();
+  header3("Customizing complex number format");
+  cr();cr();
+  header3("Customizing Vector format");
+  cr();cr();
+  header3("Controlling color and style");
+
+  
+
   
   cr();cr();
   

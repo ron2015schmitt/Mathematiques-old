@@ -29,18 +29,14 @@ namespace display {
   //                          Terminal
   //****************************************************************************
 
-  
-  bool Terminal::isInitialized = false;
-  bool Terminal::supportsColor = false;
-    
-  bool Terminal::getSupportsColor() {
-    if (!isInitialized) {
-      supportsColor = ( isatty(STDOUT_FILENO) == 1 );
-      isInitialized = true;
-    }
-    return supportsColor;
-  }
+  std::ostream* Terminal::outputstream;
 
+  bool Terminal::isInitialized = false;
+  bool Terminal::colorOverride = false;
+  bool Terminal::overrideValue = false;
+    
+
+  Terminal Terminal_dummy = *(new Terminal());
 
   //****************************************************************************
   //                       Style
@@ -283,7 +279,7 @@ namespace display {
     case 3:
       break;
     }
-    cout << s << endl;
+    mout << s << endl;
   }
 
   
@@ -291,40 +287,40 @@ namespace display {
     using namespace std;
     switch(level) {
     case 0:
-      cout << Log::style_log0.apply("log:");
+      mout << Log::style_log0.apply("log:");
       break;
     case 1:
-      cout << Log::style_log1.apply("log1:");
+      mout << Log::style_log1.apply("log1:");
       break;
     case 2:
-      cout << Log::style_log2.apply("log2:");
+      mout << Log::style_log2.apply("log2:");
       break;
     case 3:
-      cout << Log::style_log3.apply("log3:");
+      mout << Log::style_log3.apply("log3:");
       break;
     }
-    cout << " in function ";
-    cout << Log::style_nspace.apply(nspaceName);
-    cout << "::";
-    cout << Log::style_class.apply(className);
-    cout << "::";
-    cout << Log::style_func.apply(funcName);
-    cout << Log::style_str.apply(s);
-    cout << endl;
+    mout << " in function ";
+    mout << Log::style_nspace.apply(nspaceName);
+    mout << "::";
+    mout << Log::style_class.apply(className);
+    mout << "::";
+    mout << Log::style_func.apply(funcName);
+    mout << Log::style_str.apply(s);
+    mout << endl;
   };
 
 
   void Log::error(const std::string s){
     using namespace std;
-    cout << StyledString::get(ERROR);
-    cout << s;
-    cout << endl;
+    mout << StyledString::get(ERROR);
+    mout << s;
+    mout << endl;
   }
   void Log::warning(const std::string s){
     using namespace std;
-    cout << StyledString::get(WARNING);
-    cout << s;
-    cout << endl;
+    mout << StyledString::get(WARNING);
+    mout << s;
+    mout << endl;
   }
   
   Log Log_dummy = *(new Log());

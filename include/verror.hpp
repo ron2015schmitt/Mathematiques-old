@@ -34,17 +34,17 @@ namespace matricks {
 
   template <class D>
   void vbadrange(const D start, const D end, const D step) {
-    std::cout << warn_str << "range vector of zero length created" << std::endl;
-    std::cout << indent_str  << "(start,end,step) = ";
-    std::cout << "(" << start << "," << end << "," << step <<")" << std::endl;
+    mout << warn_str << "range vector of zero length created" << std::endl;
+    mout << indent_str  << "(start,end,step) = ";
+    mout << "(" << start << "," << end << "," << step <<")" << std::endl;
   }    
 
 
   template <class D>
   void vbadlinspace(const D start, const D end, const size_type N) {
-    std::cout << error_str << "linspace requires N>=2" << std::endl;
-    std::cout << indent_str  << "(start,end,N) = ";
-    std::cout << "(" << start << "," << end << "," << N <<")" << std::endl;
+    mout << error_str << "linspace requires N>=2" << std::endl;
+    mout << indent_str  << "(start,end,N) = ";
+    mout << "(" << start << "," << end << "," << N <<")" << std::endl;
   }    
 
 
@@ -54,9 +54,9 @@ namespace matricks {
    //    std::string s1= MatricksObjectManager::vectorname(id);
    std::string s1 = "";
     std::string s2= ve.debugtxt();
-    std::cout << error_str << "vector assignment to expression of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    //    std::cout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
+    mout << error_str << "vector assignment to expression of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
+    //    mout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
     //    MatricksObjectManager::outputGlossary(id);
     ve.outputglossary();
   }
@@ -65,13 +65,13 @@ namespace matricks {
    //    std::string s1= MatricksObjectManager::vectorname(id);
    std::string s1 = "";
    std::string s2= ve.debugtxt();
-    std::cout << warn_str << "vector assignment to expression of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
-    //    std::cout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
+    mout << warn_str << "vector assignment to expression of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
+    //    mout << where_str  << s2 << "has size="<<ve.size()<< std::endl;
     //    MatricksObjectManager::outputGlossary(id);
     ve.outputglossary();
-    std::cout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
-    std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
+    mout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
+    mout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
   }
 
   
@@ -83,8 +83,8 @@ namespace matricks {
      //    std::string s1= MatricksObjectManager::vectorname(id);
      std::string s1 = "";
     std::string s2= ve.debugtxt();
-    std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "expression formed between vectors of different sizes" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id);
     ve.outputglossary();
   }
@@ -95,8 +95,8 @@ namespace matricks {
      std::string s1 = "";
 
      std::string s2= ve.debugtxt();
-     std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
-     std::cout << indent_str  <<s1 << ".resize() = " << s2 << std::endl;
+     mout << error_str << "expression formed between vectors of different sizes" << std::endl;
+     mout << indent_str  <<s1 << ".resize() = " << s2 << std::endl;
      MatricksObjectManager::outputGlossary(id);
      ve.outputglossary();
   }
@@ -108,8 +108,8 @@ namespace matricks {
      std::string s1 = "";
 
      std::string s2= ve.debugtxt();
-    std::cout << error_str << ".resize() objects are not permitted on the right hand side of an expression" << std::endl;
-    std::cout << indent_str  <<s1 << " = " << s2<< ".resize()" << std::endl;
+    mout << error_str << ".resize() objects are not permitted on the right hand side of an expression" << std::endl;
+    mout << indent_str  <<s1 << " = " << s2<< ".resize()" << std::endl;
     MatricksObjectManager::outputGlossary(id);
     ve.outputglossary();
   }
@@ -120,8 +120,8 @@ namespace matricks {
      //    std::string s1= MatricksObjectManager::vectorname(id);
      std::string s1 = "";
     std::string s2= ve.debugtxt();
-    std::cout << error_str << "mask size does not match vector size" << std::endl;
-    std::cout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
+    mout << error_str << "mask size does not match vector size" << std::endl;
+    mout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
     MatricksObjectManager::outputGlossary(id);
     ve.outputglossary();
   }
@@ -135,8 +135,8 @@ namespace matricks {
       s1 = "(" + s1 + ")";
     if (ve2.vetype() != VE_Vector) 
       s2 = "(" + s2 + ")";
-    std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
-    std::cout << indent_str << fname << "("  <<s1 << seperator << s2 << ")" <<std::endl;
+    mout << error_str << "expression formed between vectors of different sizes" << std::endl;
+    mout << indent_str << fname << "("  <<s1 << seperator << s2 << ")" <<std::endl;
     ve1.outputglossary();
     ve2.outputglossary();
   }
@@ -145,8 +145,8 @@ namespace matricks {
    template <class D, class A> 
   void vbad_expr_in_unary(const VorE<D,A>& ve, const char* fname) {
     std::string s1= ve.debugtxt();
-    std::cout << error_str << "expression formed between vectors of different sizes" << std::endl;
-    std::cout << indent_str << fname << "("  <<s1 << ")" <<std::endl;
+    mout << error_str << "expression formed between vectors of different sizes" << std::endl;
+    mout << indent_str << fname << "("  <<s1 << ")" <<std::endl;
     ve.outputglossary();
   }
 

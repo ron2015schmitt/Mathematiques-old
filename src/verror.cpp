@@ -105,28 +105,28 @@ namespace matricks {
 
 
   void vout_of_bounds(const size_type id, const index_type i) {
-    std::cout << error_str << "index="<<i<<" out of bounds for obj#" << id << std::endl;
+    mout << error_str << "index="<<i<<" out of bounds for obj#" << id << std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
 
   void vbad_size(const size_type id, const size_type n) {
-    std::cout << error_str <<  id << " size="<<n<<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
+    mout << error_str <<  id << " size="<<n<<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
 
 
   void mbad_vcast(const std::string s,  const size_type nr, const size_type nc,  const size_type N) {
-    std::cout << error_str  << s<<std::endl;
-    std::cout <<"vector(or expression) size="<<N<<"can not be cast to " << std::endl;
-    std::cout << indent_str << nr<< "x"<<nc<<" matrix because sizes are not compatible" << std::endl;
+    mout << error_str  << s<<std::endl;
+    mout <<"vector(or expression) size="<<N<<"can not be cast to " << std::endl;
+    mout << indent_str << nr<< "x"<<nc<<" matrix because sizes are not compatible" << std::endl;
   }
 
 
   void vbad_assignment(const size_type id1, const size_type id2) {
     std::string s1 = std::string("obj#");
     std::string s2 = std::string("obj#");
-    std::cout << error_str << "vector assignment to vector of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "vector assignment to vector of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id1);
     MatricksObjectManager::outputGlossary(id2);
   }
@@ -136,29 +136,29 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::vectorname(id1);
     using namespace std;
     string s1 = "";
-    std::cout << warn_str << "vector assignment to "<<typeString<<" of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << typeString << std::endl;
+    mout << warn_str << "vector assignment to "<<typeString<<" of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << typeString << std::endl;
     MatricksObjectManager::outputGlossary(id1);
-    std::cout << indent_str  << "size of "<<typeString<<" = " << sz2  << std::endl;
+    mout << indent_str  << "size of "<<typeString<<" = " << sz2  << std::endl;
   }
 
 
   void v_array_warning(const size_type id){
     std::string s1= std::string("obj#");
-    std::cout << warn_str << "vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead." << std::endl;
-    std::cout << indent_str  <<s1 << " = D[]" << std::endl;
+    mout << warn_str << "vector assignment to a C array always carries the risk of out of bounds access. Use C++11 list assignment instead." << std::endl;
+    mout << indent_str  <<s1 << " = D[]" << std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
       
   void vbad_assignment_warning(const size_type id1, const size_type id2) {
     std::string s1 = std::string("obj#");
     std::string s2 = std::string("obj#");
-    std::cout << warn_str << "vector assignment to vector of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << warn_str << "vector assignment to vector of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id1);
     MatricksObjectManager::outputGlossary(id2);
-    std::cout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
-    std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
+    mout << indent_str<< "Vector "<<s1<<" was resized accordingly."<<std::endl;
+    mout << indent_str<< "To avoid this warning, explicitly resize using .resize(int) method"<<std::endl;
   }
 
 
@@ -166,9 +166,9 @@ namespace matricks {
   void vbadtype_assignment(const size_type id1, const size_type id2) {
     std::string s1 = std::string("obj#");
     std::string s2 = std::string("obj#");
-    std::cout << warn_str << "vector assignment to vector of different data type" << std::endl;
-    std::cout << indent_str << "use vcast<type>(v) function to avoid this warning" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << warn_str << "vector assignment to vector of different data type" << std::endl;
+    mout << indent_str << "use vcast<type>(v) function to avoid this warning" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id1);
     MatricksObjectManager::outputGlossary(id2);
   }
@@ -177,10 +177,10 @@ namespace matricks {
   void vbad_assignment_std(const size_type id1, const size_type sz2) {
     std::string s1 = std::string("obj#");
     std::string s2= "<vector>";
-    std::cout << error_str << "vector assignment to std::vector of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "vector assignment to std::vector of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id1);
-    std::cout << where_str << "<vector> is std::vector" << "[size=" << sz2 << "]" << std::endl;
+    mout << where_str << "<vector> is std::vector" << "[size=" << sz2 << "]" << std::endl;
   }
 
 
@@ -188,27 +188,27 @@ namespace matricks {
   void vbad_assignment_mat(const size_type id1, const size_type NR, const size_type NC){ 
     std::string s1 = std::string("obj#");
     std::string s2= "matrix";
-    std::cout << error_str << "vector assignment to matrix (expression) of incompatible size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "vector assignment to matrix (expression) of incompatible size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id1);
-    std::cout << where_str << "matrix is Matrix or Matrix expression" << 
+    mout << where_str << "matrix is Matrix or Matrix expression" << 
       "[" << NR << "x" << NC << "]" << std::endl;
   }
 
 
   void vwrapper_out_of_bounds(const std::string& s1, const index_type i, const size_type sz) {
-    std::cout << error_str << "out of bounds index="<<i<<" encountered during vector access"  << std::endl;
-    std::cout << indent_str << s1 << std::endl;
-    std::cout << where_str << s1 <<" has size="<<  sz << std::endl;
+    mout << error_str << "out of bounds index="<<i<<" encountered during vector access"  << std::endl;
+    mout << indent_str << s1 << std::endl;
+    mout << where_str << s1 <<" has size="<<  sz << std::endl;
   }
 
   void vbad_wrapper_assignment(const std::string& s1, const std::string& s2) {
-    std::cout << error_str << "vector subset assignment to vector (expression) of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "vector subset assignment to vector (expression) of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
   }
   void vbad_wrapper_assignment_mat(const std::string& s1, const std::string& s2) {
-    std::cout << error_str << "vector subset assignment to matrix (expression) of incompatible size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "vector subset assignment to matrix (expression) of incompatible size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
   }
 
 
@@ -221,7 +221,7 @@ namespace matricks {
       return stream.str();
   }
   void outputGlossary_VSliceObj(const size_type id, const std::string s, const size_type sz) { 
-      std::cout << where_str << s <<" has size="<< sz << std::endl;
+      mout << where_str << s <<" has size="<< sz << std::endl;
       MatricksObjectManager::outputGlossary(id);
   }
 
@@ -230,7 +230,7 @@ namespace matricks {
     return s1 +"[" + s2 + "]";   
   }
   void outputGlossary_VSubsetObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
-      std::cout << where_str << s <<" has size="<< sz << std::endl;
+      mout << where_str << s <<" has size="<< sz << std::endl;
       MatricksObjectManager::outputGlossary(id1);
       MatricksObjectManager::outputGlossary(id2);
   }
@@ -239,7 +239,7 @@ namespace matricks {
     return s1 +"[" + s2 + "]";   
   }
   void outputGlossary_VSubMaskObj(const size_type id1, const size_type id2, const std::string s, const size_type sz) { 
-      std::cout << where_str << s <<" has size="<< sz << std::endl;
+      mout << where_str << s <<" has size="<< sz << std::endl;
       MatricksObjectManager::outputGlossary(id1);
       MatricksObjectManager::outputGlossary(id2);
   }

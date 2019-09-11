@@ -21,20 +21,20 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
   myfile.close();
 }
   
-#define matricks_toc() std::cout << std::endl<<"[Table of Contents](README.md)"<< std::endl;
+#define matricks_toc() mout << std::endl<<"[Table of Contents](README.md)"<< std::endl;
 
-#define mdtitle(str)   std::cout << "# " << str << " in mātricks" << std::endl; write_mdtitle_file(__FILE__,str);
+#define mdtitle(str)   mout << "# " << str << " in mātricks" << std::endl; write_mdtitle_file(__FILE__,str);
  
-#define mdtitle0(str)   std::cout << "# " << str << std::endl; write_mdtitle_file(__FILE__,str);
+#define mdtitle0(str)   mout << "# " << str << std::endl; write_mdtitle_file(__FILE__,str);
 
 
 
-#define header1(str)  std::cout << "# " << str << std::endl
-#define header2(str)  std::cout << "## " << str << std::endl
-#define header3(str)  std::cout << "### " << str << std::endl
-#define text(str)  std::cout << str << std::endl
+#define header1(str)  mout << "# " << str << std::endl
+#define header2(str)  mout << "## " << str << std::endl
+#define header3(str)  mout << "### " << str << std::endl
+#define text(str)  mout << str << std::endl
 
-#define codestart(lang) std::cout << std::string("```") << std::string(lang) << std::endl
+#define codestart(lang) mout << std::string("```") << std::string(lang) << std::endl
 #define codemulti(...)  printf("%s;\n",  stringify(__VA_ARGS__)); __VA_ARGS__
 #define codemultiwcomment(str,...)  printf("%s; // %s\n",  stringify(__VA_ARGS__),str); __VA_ARGS__
 
@@ -54,7 +54,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define resultend() printf("```\n\n")
 #define result(...)  resultstart();resultmulti(__VA_ARGS__);resultend()
 
-#define example(n,str) std::cout << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl
+#define example(n,str) mout << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl
 
 };
 

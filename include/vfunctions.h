@@ -1942,7 +1942,7 @@ namespace matricks {
       break;
     case 2:
       if (N%2==0)  {
-	std::cout << "integrate_a2b: Number of points must be odd N="<<N<<std::endl;
+	mout << "integrate_a2b: Number of points must be odd N="<<N<<std::endl;
       }
       {
 	D sodd = 0;
@@ -1961,7 +1961,7 @@ namespace matricks {
       break;
     case 3:
       if (N%3!=1)  {
-	std::cout << "integrate_a2b: N-1 must be divisible by 3, N="<<N<<std::endl;
+	mout << "integrate_a2b: N-1 must be divisible by 3, N="<<N<<std::endl;
       }
       {
 	D s1 = 0;
@@ -1984,7 +1984,7 @@ namespace matricks {
       break;
     case 4:
       if (N%4!=1)  {
-	std::cout << "integrate_a2b: N-1 must be divisible by 4, N="<<N<<std::endl;
+	mout << "integrate_a2b: N-1 must be divisible by 4, N="<<N<<std::endl;
       }
       {
 	D s1 = 0;

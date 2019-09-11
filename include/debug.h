@@ -10,7 +10,7 @@ namespace matricks {
       {
 	std::ostringstream stream;
 	stream <<"SUMMARY for '" << varname << "':  "<< a.fullclassname()  << "[size=" << a.size() <<"]"<<", VectorID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
-	std::cout <<  stream.str() <<std::endl;
+	mout <<  stream.str() <<std::endl;
       }
 
     template <typename D>
@@ -18,14 +18,14 @@ namespace matricks {
       {
 	std::ostringstream stream;
 	stream <<"SUMMARY for '" << varname << "': "<< a.fullclassname()  << "[size=" << a.size() <<"]";
-	std::cout <<  stream.str() <<std::endl;
+	mout <<  stream.str() <<std::endl;
       }
     template <typename D>
       void _matricksinfo(const Matrix<D>& a, std::string varname)
       {
 	std::ostringstream stream;
 	stream <<"SUMMARY for '" << varname << "':  "<< a.fullclassname()  << "[size=" << a.Nrows() << "x" << a.Ncols()<<"]"<<", MatrixID=" << a.objectID()<<", "<< varname<<".name() = "<<'"' << a.name()<<'"';
-	std::cout <<  stream.str() <<std::endl;
+	mout <<  stream.str() <<std::endl;
       }
 
   

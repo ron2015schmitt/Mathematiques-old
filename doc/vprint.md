@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r18).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r21).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -152,6 +152,19 @@ The display commands also have versions that only display when the code is compi
 * `disp3`, `tdisp3`, `mdisp3` will
   * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
   * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
+## Customizing the format and colors
+
+
+### Customizing number format
+
+
+### Customizing complex number format
+
+
+### Customizing Vector format
+
+
+### Controlling color and style
 
 
 

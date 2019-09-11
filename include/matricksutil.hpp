@@ -20,7 +20,7 @@ namespace matricks {
     }
     void start_timer_verbose(void) {
       tm1_ = time(0);
-      std::cout << "  The start time is: " << ctime(&tm1_);
+      mout << "  The start time is: " << ctime(&tm1_);
       ckstart_ = clock();
     }
     void stop_timer(void) {
@@ -33,8 +33,8 @@ namespace matricks {
       tm2_ = time(0);
       ckdiff_ = ckstop_-ckstart_;
       cputime_ = double(ckstop_-ckstart_)/double(CLOCKS_PER_SEC);
-      std::cout << "  Finished at: " << ctime(&tm2_);
-      std::cout << "  CPU time = " << cputime_ << " sec" << std::endl;
+      mout << "  Finished at: " << ctime(&tm2_);
+      mout << "  CPU time = " << cputime_ << " sec" << std::endl;
     }
 
     double cputime(void)  {

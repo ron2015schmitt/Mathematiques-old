@@ -9,6 +9,10 @@ int main()
   
   using namespace matricks;
   using namespace display;
+
+  Terminal::setColorOverride(true);
+  Terminal::setOverrideValue(true);
+  
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );

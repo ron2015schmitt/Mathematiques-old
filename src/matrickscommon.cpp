@@ -80,13 +80,13 @@ namespace matricks {
 
   void MatricksObjectManager::outputGlossary(const size_type id) {
       
-    // cout<< where_str << a->variableName << " is " << endl;
-    // cout<< where_str << "obj:"<< id << " is: " << endl;
-    // cout<< indent_str << "class name: "<< a->className << endl;
-    // cout<< indent_str << "datatype name: "<< a->dataTypeName << endl;
-    // cout<< indent_str << "variable name: "<< a->variableName << endl;
-    // cout<< indent_str << "defined in function name: "<< a->functionName << endl;
-    // cout<< indent_str << "           at line "<< a->lineNumber << " in file "<< 
+    // mout<< where_str << a->variableName << " is " << endl;
+    // mout<< where_str << "obj:"<< id << " is: " << endl;
+    // mout<< indent_str << "class name: "<< a->className << endl;
+    // mout<< indent_str << "datatype name: "<< a->dataTypeName << endl;
+    // mout<< indent_str << "variable name: "<< a->variableName << endl;
+    // mout<< indent_str << "defined in function name: "<< a->functionName << endl;
+    // mout<< indent_str << "           at line "<< a->lineNumber << " in file "<< 
     //  a->fileName << endl;
     
   }    
@@ -111,13 +111,13 @@ namespace matricks {
 
 
   void vduplicate_name(const size_type id, const std::string& name, const std::string& newname) {
-    std::cout << warn_str << "Duplicate debug name \""<<name <<"\" requested for vector with ID="<<id<< std::endl;
-    std::cout << indent_str << "The Name \""<<newname <<"\" was used instead"<< std::endl;
+    mout << warn_str << "Duplicate debug name \""<<name <<"\" requested for vector with ID="<<id<< std::endl;
+    mout << indent_str << "The Name \""<<newname <<"\" was used instead"<< std::endl;
   }
 
   void mduplicate_name(const size_type id, const std::string& name, const std::string& newname) {
-    std::cout << warn_str << "Duplicate debug name \""<<name <<"\" requested for matrix with ID="<<id<< std::endl;
-    std::cout << indent_str << "The Name \""<<newname <<"\" was used instead"<< std::endl;
+    mout << warn_str << "Duplicate debug name \""<<name <<"\" requested for matrix with ID="<<id<< std::endl;
+    mout << indent_str << "The Name \""<<newname <<"\" was used instead"<< std::endl;
   }
 
 
@@ -204,7 +204,7 @@ namespace matricks {
 
   void slc::outputglossary(void) const {
 #if MATRICKS_DEBUG>0
-    //      std::cout << where_str<< debugtxt() <<" has size=" <<size()<<std::endl;
+    //      mout << where_str<< debugtxt() <<" has size=" <<size()<<std::endl;
 #endif
   }
 

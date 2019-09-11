@@ -123,32 +123,32 @@ namespace matricks {
 
   void mbad_size(const size_type id,  const size_type nr, const size_type nc) {
     using namespace std;
-    std::cout << error_str <<  "matrix" << " size="<<nr<<"x"<<nc<<"=";
-    cout.precision(15);
-    cout.setf(ios::fixed);
-    std::cout << double(nr)*double(nc);
-    std::cout <<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
+    mout << error_str <<  "matrix" << " size="<<nr<<"x"<<nc<<"=";
+    mout.precision(15);
+    mout.setf(ios::fixed);
+    mout << double(nr)*double(nc);
+    mout <<" is too large. Limits are: 0 <= size <= " << maxsize << std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
 
   void mbad_reshape(const size_type id,  const size_type nr, const size_type nc,  const size_type NR, const size_type NC) {
     using namespace std;
-    std::cout << error_str <<  "Cannot reshape matrix ";//<<MatricksObjectManager::matrixname(id)<<std::endl;
-    std::cout << indent_str << "The number of elements in the reshaped matrix ("<< nr<<"x"<<nc<<"=" <<nr*nc<<")"<<std::endl;
-    std::cout <<indent_str<< "does not match the number of elements in the"<<std::endl;
-    std::cout << indent_str<<"orginal matrix ("<< NR<<"x"<<NC<<"=" <<NR*NC<<")"<<std::endl;
+    mout << error_str <<  "Cannot reshape matrix ";//<<MatricksObjectManager::matrixname(id)<<std::endl;
+    mout << indent_str << "The number of elements in the reshaped matrix ("<< nr<<"x"<<nc<<"=" <<nr*nc<<")"<<std::endl;
+    mout <<indent_str<< "does not match the number of elements in the"<<std::endl;
+    mout << indent_str<<"orginal matrix ("<< NR<<"x"<<NC<<"=" <<NR*NC<<")"<<std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
 
 
   void mout_of_bounds(const size_type id, const index_type i) {
-    std::cout << error_str << "single index access="<<i<<" out of bounds for ";// << MatricksObjectManager::matrixname(id) << std::endl;
+    mout << error_str << "single index access="<<i<<" out of bounds for ";// << MatricksObjectManager::matrixname(id) << std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
 
 
   void mout_of_bounds2(const size_type id, const index_type r, const index_type c) {
-    std::cout << error_str << "index=("<<r<<","<<c <<") out of bounds for ";// << MatricksObjectManager::matrixname(id) << std::endl;
+    mout << error_str << "index=("<<r<<","<<c <<") out of bounds for ";// << MatricksObjectManager::matrixname(id) << std::endl;
     MatricksObjectManager::outputGlossary(id);
   }
 
@@ -159,10 +159,10 @@ namespace matricks {
 			      ) {
     const std::string aSTR = "";// MatricksObjectManager::matrixname(aID);
 
-    std::cout << error_str << "out of bounds access "; 
-    std::cout <<aSTR<<"("<<aindex<<")"<< std::endl;
-    std::cout <<indent_str<<"encountered in statement: " << wSTR << std::endl;
-    std::cout << where_str << wSTR <<" has size="<<wNR<<"x"<<wNC<<"="<< wSZ << std::endl;
+    mout << error_str << "out of bounds access "; 
+    mout <<aSTR<<"("<<aindex<<")"<< std::endl;
+    mout <<indent_str<<"encountered in statement: " << wSTR << std::endl;
+    mout << where_str << wSTR <<" has size="<<wNR<<"x"<<wNC<<"="<< wSZ << std::endl;
     MatricksObjectManager::outputGlossary(aID);
   }
 
@@ -173,10 +173,10 @@ namespace matricks {
 				 ) {
     const std::string aSTR = "";// MatricksObjectManager::matrixname(aID);
 
-    std::cout << error_str << "out of bounds access "; 
-    std::cout <<aSTR<<"("<<r<<","<<c<<")"<< std::endl;
-    std::cout <<indent_str<<"encountered in statement: " << wSTR << std::endl;
-    std::cout << where_str << wSTR <<" has size="<<wNR<<"x"<<wNC<<"="<< wSZ << std::endl;
+    mout << error_str << "out of bounds access "; 
+    mout <<aSTR<<"("<<r<<","<<c<<")"<< std::endl;
+    mout <<indent_str<<"encountered in statement: " << wSTR << std::endl;
+    mout << where_str << wSTR <<" has size="<<wNR<<"x"<<wNC<<"="<< wSZ << std::endl;
     MatricksObjectManager::outputGlossary(aID);
   }
 
@@ -189,8 +189,8 @@ namespace matricks {
     std::string s1= "<matrix>";
     std::string s2= "<matrix>";
 
-    std::cout << error_str << "matrix assignment to matrix of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "matrix assignment to matrix of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     MatricksObjectManager::outputGlossary(id1);
     MatricksObjectManager::outputGlossary(id2);
   }
@@ -200,39 +200,39 @@ namespace matricks {
     //    std::string s2= MatricksObjectManager::matrixname(id2);
     std::string s1= "<matrix>";
     std::string s2= "<matrix>";
-    std::cout << warn_str << "matrix assignment to matrix of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << warn_str << "matrix assignment to matrix of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     ///    MatricksObjectManager::moutputGlossary(id1);
     //    MatricksObjectManager::moutputGlossary(id2);
-    std::cout << indent_str<< "Matrix "<<s1<<" was resized accordingly."<<std::endl;
-    std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int,int) method"<<std::endl;
+    mout << indent_str<< "Matrix "<<s1<<" was resized accordingly."<<std::endl;
+    mout << indent_str<< "To avoid this warning, explicitly resize using .resize(int,int) method"<<std::endl;
   }
 
   void mbad_assignment_std(const size_type id1, const size_type sz2) {
     //    std::string s1= MatricksObjectManager::matrixname(id1);
     std::string s1= "<matrix>";
     std::string s2= "<matrix>";
-    std::cout << error_str << "matrix assignment to std::matrix of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "matrix assignment to std::matrix of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    MatricksObjectManager::moutputGlossary(id1);
-    std::cout << where_str << "<matrix> is std::matrix" << "[size=" << sz2 << "]" << std::endl;
+    mout << where_str << "<matrix> is std::matrix" << "[size=" << sz2 << "]" << std::endl;
   }
 
   void mbad_wrapper_assignment(const std::string& s1, const std::string& s2) {
-    std::cout << error_str << "matrix subset assignment to matrix (expression) of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "matrix subset assignment to matrix (expression) of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
   }
 
   void mbad_wrapper_assignment_vec(const std::string& s1, const std::string& s2) {
-    std::cout << error_str << "matrix subset assignment to vector (expression) of incompatible size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "matrix subset assignment to vector (expression) of incompatible size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
   }
 
 
   void vbad_mcast(const std::string& s,  const size_type nr, const size_type nc,  const size_type N) {
-    std::cout << error_str  << s<<std::endl;
-    std::cout <<"matrix (expression) size="<<nr<<"x"<<nc<<"can not be cast to " << std::endl;
-    std::cout << indent_str <<"size="<< N<<" vector because sizes are not compatible" << std::endl;
+    mout << error_str  << s<<std::endl;
+    mout <<"matrix (expression) size="<<nr<<"x"<<nc<<"can not be cast to " << std::endl;
+    mout << indent_str <<"size="<< N<<" vector because sizes are not compatible" << std::endl;
   }
 
 
@@ -241,15 +241,15 @@ namespace matricks {
     //    std::string s= MatricksObjectManager::matrixname(id);
     std::string s = "<matrix>";
     std::ostringstream stream;
-    std::cout << error_str << "bad submatrix indices given" << std::endl;
+    mout << error_str << "bad submatrix indices given" << std::endl;
     if (rstart>rend) 
-      std::cout << indent_str << "ending row cannot be smaller than starting row" << std::endl;
+      mout << indent_str << "ending row cannot be smaller than starting row" << std::endl;
     if (cstart>cend)
-      std::cout << indent_str << "ending col cannot be smaller than starting col" << std::endl;
-    std::cout << indent_str << "use "<<s<<"(";
-    std::cout << "slc(" << rstart << "," << rend <<"), slc(" << cstart << "," << cend << "))"<< std::endl;
-    std::cout  << indent_str << "instead if this is what you intended"<< std::endl;
-    std::cout <<indent_str << s << ".submat(" << rstart << "," << rend <<"," << cstart << "," << cend << ")";
+      mout << indent_str << "ending col cannot be smaller than starting col" << std::endl;
+    mout << indent_str << "use "<<s<<"(";
+    mout << "slc(" << rstart << "," << rend <<"), slc(" << cstart << "," << cend << "))"<< std::endl;
+    mout  << indent_str << "instead if this is what you intended"<< std::endl;
+    mout <<indent_str << s << ".submat(" << rstart << "," << rend <<"," << cstart << "," << cend << ")";
     //    MatricksObjectManager::moutputGlossary(id);
   }
 
@@ -289,31 +289,31 @@ namespace matricks {
 
 
   void outputGlossary_M1(const std::string& s,  const size_type nr, const size_type nc, const size_type sz) { 
-    std::cout << where_str << s <<" has size="<<nr<<"x"<<nc<<"="<<  sz << std::endl;
+    mout << where_str << s <<" has size="<<nr<<"x"<<nc<<"="<<  sz << std::endl;
   }
   
 
 
   void svd_bad_U(const size_type id,const size_type M) {
     std::string s1=""; // MatricksObjectManager::matrixname(id);
-    std::cout << warn_str << "'U' matrix ("<<s1<<") of SVD is not of proper size" << std::endl;
+    mout << warn_str << "'U' matrix ("<<s1<<") of SVD is not of proper size" << std::endl;
     //MatricksObjectManager::moutputGlossary(id);
-    std::cout << indent_str << "resizing to "<<M<<"x"<<M << std::endl;
+    mout << indent_str << "resizing to "<<M<<"x"<<M << std::endl;
   }
 
 
   void svd_bad_S(const size_type id,const size_type minMN) {
     std::string s1="";//MatricksObjectManager::vectorname(id);
-    std::cout << warn_str << "'S' vector ("<<s1<<") of SVD is not of proper size" << std::endl;
+    mout << warn_str << "'S' vector ("<<s1<<") of SVD is not of proper size" << std::endl;
     //MatricksObjectManager::voutputGlossary(id);
-    std::cout << indent_str << "resizing to size="<<minMN << std::endl;
+    mout << indent_str << "resizing to size="<<minMN << std::endl;
   }
 
   void svd_bad_V(const size_type id,const size_type N) {
     std::string s1=""; // MatricksObjectManager::matrixname(id);
-    std::cout << warn_str << "'V' matrix ("<<s1<<") of SVD is not of proper size" << std::endl;
+    mout << warn_str << "'V' matrix ("<<s1<<") of SVD is not of proper size" << std::endl;
     //MatricksObjectManager::moutputGlossary(id);
-    std::cout << indent_str << "resizing to "<<N<<"x"<<N << std::endl;
+    mout << indent_str << "resizing to "<<N<<"x"<<N << std::endl;
   }
 
 

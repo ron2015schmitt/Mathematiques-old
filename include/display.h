@@ -1,6 +1,7 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
+#include <unistd.h>
 
 
 
@@ -55,23 +56,6 @@ namespace display {
   inline void print3(const std::string s);
 
 
-#if MATRICKS_DEBUG>=1
-#define printf1(...) printf(__VA_ARGS__)
-#else
-#define printf1(...) {}
-#endif
-
-#if MATRICKS_DEBUG>=2
-#define printf2(...) printf(__VA_ARGS__)
-#else
-#define printf2(...) {}
-#endif
-
-#if MATRICKS_DEBUG>=3
-#define printf3(...) printf(__VA_ARGS__)
-#else
-#define printf3(...) {}
-#endif
 
 
 
@@ -95,6 +79,26 @@ namespace display {
   
 #define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
 
+
+
+#if MATRICKS_DEBUG>=1
+#define printf1(...) display::mout << print2str(__VA_ARGS__)
+#else
+#define printf1(...) {}
+#endif
+
+#if MATRICKS_DEBUG>=2
+#define printf2(...) display::mout << print2str(__VA_ARGS__)
+#else
+#define printf2(...) {}
+#endif
+
+#if MATRICKS_DEBUG>=3
+#define printf3(...) display::mout << print2str(__VA_ARGS__)
+#else
+#define printf3(...) {}
+#endif
+
   
   //****************************************************************************
   //                          Terminal
@@ -104,11 +108,55 @@ namespace display {
   class Terminal {
   private:
     static bool isInitialized;
-    static bool supportsColor;
+    static bool colorOverride;
+    static bool overrideValue;
+    static std::ostream* outputstream;
   public:
-    static bool getSupportsColor();
+    Terminal() {
+      // for initializing the class
+      if (!isInitialized) {
+	outputstream = &std::cout;
+      }
+      isInitialized = true;
+    }
+    
+    inline static bool getUseColor() {
+      bool useColor = false;
+      if (Terminal::outputstream == &std::cout) {
+	useColor = ( isatty(STDOUT_FILENO) == 1 );
+      } else if (Terminal::outputstream == &std::cerr) {
+	useColor = ( isatty(STDERR_FILENO) == 1 );
+      }
+      if (colorOverride) {
+	return overrideValue;
+      } else {
+	return useColor;
+      }
+    }
+
+    inline static void setColorOverride(bool val) {
+      colorOverride = val;
+    }
+    inline static void setOverrideValue(bool val) {
+      overrideValue = val;
+    }      
+    inline static void setmout(std::ostream& os) {
+      outputstream = &os;
+    }      
+    inline static bool getColorOverride() {
+      return colorOverride;
+    }
+    inline static bool getOverrideValue() {
+      return overrideValue;
+    }
+    inline static std::ostream& getmout() {
+      return *outputstream;
+    }      
   };
 
+
+#define mout (display::Terminal::getmout())
+  
 
   //****************************************************************************
   //                       Terminal escape codes for color etc
@@ -195,7 +243,7 @@ namespace display {
       stylename_ = "";
     }
     inline std::string apply(const std::string s) const {
-      if (Terminal::getSupportsColor()) {
+      if (Terminal::getUseColor()) {
 	return stylestr_ + s +RESET;
       } else {
 	return s;
@@ -447,14 +495,14 @@ namespace display {
     if (x2 != x)  passed = false;
     
     if (!passed) {
-      cout << StyledString::get(HORLINE);
-      cout << StyledString::get(ERROR);
-      cout << " illegal format string";
-      cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
-      cout << " passed to Format";
-      cout << "<" << display::getTypeName(x) << ">";
-      cout << endl;
-      cout << StyledString::get(HORLINE);
+      mout << StyledString::get(HORLINE);
+      mout << StyledString::get(ERROR);
+      mout << " illegal format string";
+      mout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+      mout << " passed to Format";
+      mout << "<" << display::getTypeName(x) << ">";
+      mout << endl;
+      mout << StyledString::get(HORLINE);
       return false;
     }     
     return true;
@@ -566,7 +614,7 @@ namespace display {
 
   template <typename T>
     inline void printObj(const T& d) {
-    std::cout << d;
+    mout << d;
   }
 
     
@@ -582,7 +630,7 @@ namespace display {
     if (d == zero) {							\
       style = FormatData<TYPE >::style_for_zero;			\
     }									\
-    cout << style.apply(sval);						\
+    mout << style.apply(sval);						\
   }
   
 
@@ -617,7 +665,7 @@ namespace display {
     if (d == zero) {							\
       style = FormatData<TYPE >::style_for_zero;			\
     }									\
-    cout << style.apply(sval);						\
+    mout << style.apply(sval);						\
   }
   
   SPECIALIZE_floating_printObj(float);
@@ -633,7 +681,7 @@ namespace display {
     snprintf(Buffer, BUFFER_SIZE, getFormatString<std::string>().c_str(), str.c_str() );
     string s = string(Buffer);
     Style style = FormatData<std::string>::style_for_value;
-    cout << style.apply(s);
+    mout << style.apply(s);
   }
 
   // char
@@ -643,7 +691,7 @@ namespace display {
     snprintf(Buffer, BUFFER_SIZE, getFormatString<char>().c_str(), c );
     string s = string(Buffer);
     Style style = FormatData<char>::style_for_value;
-    cout << style.apply(s);
+    mout << style.apply(s);
   }
 
 
@@ -654,11 +702,11 @@ namespace display {
     if (b) {
       Style style = FormatData<bool>::style_for_true;
       string s = FormatData<bool>::string_for_true;
-      cout << style.apply(s);
+      mout << style.apply(s);
     } else {
       Style style = FormatData<bool>::style_for_false;
       string s = FormatData<bool>::string_for_false;
-      cout << style.apply(s);
+      mout << style.apply(s);
     }
   }
   
@@ -666,67 +714,67 @@ namespace display {
   // T[N]
   template <typename T,  size_t N>
     inline void printObj(const T (&a)[N]) {
-    std::cout << "{";
+    mout << "{";
     for (size_t ii = 0; ii < N; ii++) {
-      if (ii>0)  std::cout << ", ";
+      if (ii>0)  mout << ", ";
       printObj(a[ii]);
     }
-    std::cout << "}";
+    mout << "}";
   }
 
   // char[N]
   template <size_t N>
     inline void printObj(const char (&a)[N]) {
-    std::cout << a;
+    mout << a;
   }
 
 
   // std::vector
   template <typename D>							
     inline void printObj(const std::vector<D>& var) {
-    std::cout << "{";
+    mout << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
-      if (ii>0)  std::cout << ", ";
+      if (ii>0)  mout << ", ";
       printObj(var[ii]);
     }
-    std::cout << "}";
+    mout << "}";
   }
 
   // std::valarray
   template <typename D>							
     inline void printObj(const std::valarray<D>& var) {
-    std::cout << "{";
+    mout << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
-      if (ii>0)  std::cout << ", ";
+      if (ii>0)  mout << ", ";
       printObj(var[ii]);
     }
-    std::cout << "}";
+    mout << "}";
   }
 
 
   // std::list
   template <typename D>							
     inline void printObj(const std::list<D>& var) {
-    std::cout << "{";
+    mout << "{";
     size_t ii = 0;
     for(typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
-      if (ii++>0)  std::cout << ", ";
+      if (ii++>0)  mout << ", ";
       printObj(*it);
     }
-    std::cout << "}";
+    mout << "}";
   }
 
   // std::initializer_list
 #if CPP11 == 1
   template <typename D>							
     inline void printObj(const std::initializer_list<D>& var) {
-    std::cout << "{";
+    mout << "{";
     size_t ii = 0;
     for(typename std::initializer_list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
-      if (ii++>0)  std::cout << ", ";
+      if (ii++>0)  mout << ", ";
       printObj(*it);
     }
-    std::cout << "}";
+    mout << "}";
   }
 #endif
 
@@ -736,26 +784,26 @@ namespace display {
     // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
     std::queue<D> myq = var;
       
-    std::cout << "{";
+    mout << "{";
     const size_t N = myq.size();
     for (size_t ii = 0; ii < N; ii++) {
-      if (ii>0)  std::cout << ", ";
+      if (ii>0)  mout << ", ";
       D val = myq.front();
       myq.pop();
       printObj(val);
     }
-    std::cout << "}";
+    mout << "}";
   }
 
     
   // std::map
   template <typename D1, typename D2>					
     inline void printObj(const std::map<D1,D2>& mymap) {
-    std::cout << "{" << std::endl;
+    mout << "{" << std::endl;
     for (typename std::map<D1,D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++ ) {
-      std::cout <<" "<< it->first << ":" << it->second << std::endl;
+      mout <<" "<< it->first << ":" << it->second << std::endl;
     }
-    std::cout << "}";
+    mout << "}";
   }
 
 
@@ -828,13 +876,13 @@ namespace display {
     if (ximag2 != ximag)  passed = false;
     
     if (!passed) {
-      cout << StyledString::get(HORLINE);
-      cout << StyledString::get(ERROR);
-      cout << " illegal format string";
-      cout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
-      cout << " passed to setFormatStringComplex";
-      cout << endl;
-      cout << StyledString::get(HORLINE);
+      mout << StyledString::get(HORLINE);
+      mout << StyledString::get(ERROR);
+      mout << " illegal format string";
+      mout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+      mout << " passed to setFormatStringComplex";
+      mout << endl;
+      mout << StyledString::get(HORLINE);
       return false;
     }     
     return true;
@@ -874,7 +922,7 @@ namespace display {
     fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
 
     // put it all together
-    printf(fs.c_str(), sr.c_str(), si.c_str());
+    mout << print2str(fs.c_str(), sr.c_str(), si.c_str());
   }
   
 
@@ -908,7 +956,7 @@ namespace display {
 
   inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
     display::Log::log(0, spaceName, className, funcName, s);
-    //    std::cout << __PRETTY_FUNCTION__;
+    //    mout << __PRETTY_FUNCTION__;
   }
 
   inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
@@ -980,15 +1028,15 @@ namespace display {
       using namespace std;
       log3("display","Display","mydisp","(const X& x, const std::string name)");
       if (displayType) {
-	cout << getTypeName(x) << " ";
+	mout << getTypeName(x) << " ";
       }
       expression->setString(name);
-      cout << *expression;
-      cout << *equals;
+      mout << *expression;
+      mout << *equals;
       printObj(x);
-      cout << *terminator;
+      mout << *terminator;
       if (issueCR) {
-	cout << endl;
+	mout << endl;
       }
     }
     template <typename X>
@@ -1007,7 +1055,7 @@ namespace display {
       mydisp(x, name, true, true);
     }
     static void issuecr() {
-      std::cout << std::endl;
+      mout << std::endl;
     }
   };  // class Display
 
@@ -1083,17 +1131,17 @@ namespace display {
   inline void print_matricks_info(void) {
     using namespace std;
     using namespace display;
-    cout << StyledString::get(HORLINE);
-    cout << StyledString::get(MATRICKS) << " ";
-    cout << StyledString::get(VERSION) << " ";
-    cout << endl << endl;
-    cout << "compile-time settings:" << endl;
-    cout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
-    cout << createStyle(BOLD).apply("  C++ version: ");
-    cout << createStyle(CYAN).apply(print2str("%lu",__cplusplus)) << endl;
-    cout << createStyle(BOLD).apply("  OPTIMIZE: ");
-    cout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
-    cout << StyledString::get(HORLINE);
+    mout << StyledString::get(HORLINE);
+    mout << StyledString::get(MATRICKS) << " ";
+    mout << StyledString::get(VERSION) << " ";
+    mout << endl << endl;
+    mout << "compile-time settings:" << endl;
+    mout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
+    mout << createStyle(BOLD).apply("  C++ version: ");
+    mout << createStyle(CYAN).apply(print2str("%lu",__cplusplus)) << endl;
+    mout << createStyle(BOLD).apply("  OPTIMIZE: ");
+    mout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
+    mout << StyledString::get(HORLINE);
       
   }
 

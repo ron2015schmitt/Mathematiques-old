@@ -43,8 +43,8 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= me.debugtxt();
-    std::cout << error_str << "matrix assignment to expression of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "matrix assignment to expression of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
   }
@@ -55,12 +55,12 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= me.debugtxt();
-    std::cout << warn_str << "matrix assignment to expression of different size" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << warn_str << "matrix assignment to expression of different size" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
-    std::cout << indent_str<< "Matrix "<<s1<<" was resized accordingly."<<std::endl;
-    std::cout << indent_str<< "To avoid this warning, explicitly resize using .resize(int,int) method"<<std::endl;
+    mout << indent_str<< "Matrix "<<s1<<" was resized accordingly."<<std::endl;
+    mout << indent_str<< "To avoid this warning, explicitly resize using .resize(int,int) method"<<std::endl;
   }
 
   template <class D, class A> 
@@ -68,8 +68,8 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= me.debugtxt();
-    std::cout << error_str << "expression formed between matrices of different sizes" << std::endl;
-    std::cout << indent_str  <<s1 << "=" << s2 << std::endl;
+    mout << error_str << "expression formed between matrices of different sizes" << std::endl;
+    mout << indent_str  <<s1 << "=" << s2 << std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
   }
@@ -80,8 +80,8 @@ namespace matricks {
      //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= me.debugtxt();
-    std::cout << error_str << "expression formed between matrices of different sizes" << std::endl;
-    std::cout << indent_str  <<s1 << ".resize() = " << s2 << std::endl;
+    mout << error_str << "expression formed between matrices of different sizes" << std::endl;
+    mout << indent_str  <<s1 << ".resize() = " << s2 << std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
   }
@@ -95,8 +95,8 @@ namespace matricks {
       s1 = "(" + s1 + ")";
     if (me2.metype() != ME_Matrix) 
       s2 = "(" + s2 + ")";
-    std::cout << error_str << "expression formed between matrices of different sizes" << std::endl;
-    std::cout << indent_str << fname << "("  <<s1 << seperator << s2 << ")" <<std::endl;
+    mout << error_str << "expression formed between matrices of different sizes" << std::endl;
+    mout << indent_str << fname << "("  <<s1 << seperator << s2 << ")" <<std::endl;
     me1.outputglossary();
     me2.outputglossary();
   }
@@ -112,8 +112,8 @@ namespace matricks {
       s1 = "(" + s1 + ")";
     if (me2.metype() != ME_Matrix) 
       s2 = "(" + s2 + ")";
-    std::cout << error_str << "dot product formed between incompatibly-sized matrices" << std::endl;
-    std::cout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
+    mout << error_str << "dot product formed between incompatibly-sized matrices" << std::endl;
+    mout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
     me1.outputglossary();
     me2.outputglossary();
   }
@@ -127,8 +127,8 @@ namespace matricks {
       s1 = "(" + s1 + ")";
     if (ve2.vetype() != VE_Vector) 
       s2 = "(" + s2 + ")";
-    std::cout << error_str << "dot product formed between incompatibly-sized objects" << std::endl;
-    std::cout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
+    mout << error_str << "dot product formed between incompatibly-sized objects" << std::endl;
+    mout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
     me1.outputglossary();
     ve2.outputglossary();
   }
@@ -142,8 +142,8 @@ namespace matricks {
       s1 = "(" + s1 + ")";
     if (me2.metype() != ME_Matrix) 
       s2 = "(" + s2 + ")";
-    std::cout << error_str << "dot product formed between incompatibly-sized objects" << std::endl;
-    std::cout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
+    mout << error_str << "dot product formed between incompatibly-sized objects" << std::endl;
+    mout << indent_str  << "("  <<s1 << "|" << s2 << ")" <<std::endl;
     ve1.outputglossary();
     me2.outputglossary();
   }
@@ -153,8 +153,8 @@ namespace matricks {
   template <class D, class A> 
   void mbad_expr_in_unary(const MorE<D,A>& me, const char* fname) {
     std::string s1= me.debugtxt();
-    std::cout << error_str << "expression formed between matrices of different sizes" << std::endl;
-    std::cout << indent_str << fname << "("  <<s1 << ")" <<std::endl;
+    mout << error_str << "expression formed between matrices of different sizes" << std::endl;
+    mout << indent_str << fname << "("  <<s1 << ")" <<std::endl;
     me.outputglossary();
   }
 
@@ -169,9 +169,9 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= me.debugtxt();
-    std::cout << error_str << "subscript matrices must have exactly 2 columns" << std::endl;
-    std::cout << indent_str  <<"Matrix "<<s2<<" is not of this form"<< std::endl;
-    std::cout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
+    mout << error_str << "subscript matrices must have exactly 2 columns" << std::endl;
+    mout << indent_str  <<"Matrix "<<s2<<" is not of this form"<< std::endl;
+    mout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
   }
@@ -182,8 +182,8 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= me.debugtxt();
-    std::cout << error_str << "mask size does not match maxtrix size" << std::endl;
-    std::cout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
+    mout << error_str << "mask size does not match maxtrix size" << std::endl;
+    mout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
   }
@@ -194,8 +194,8 @@ namespace matricks {
     //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s1 = "";
     std::string s2= ve.debugtxt();
-    std::cout << error_str << "mask size does not match maxtrix size" << std::endl;
-    std::cout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
+    mout << error_str << "mask size does not match maxtrix size" << std::endl;
+    mout << indent_str  <<s1 <<"[" <<s2<<"]"<< std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     ve.outputglossary();
   }
@@ -205,8 +205,8 @@ namespace matricks {
     std::string s1 = "";
      //    std::string s1= MatricksObjectManager::matrixname(id);
     std::string s2= me.debugtxt();
-    std::cout << error_str << ".resize() objects are not permitted on the right hand side of an expression" << std::endl;
-    std::cout << indent_str  <<s1 << " = " << s2 << std::endl;
+    mout << error_str << ".resize() objects are not permitted on the right hand side of an expression" << std::endl;
+    mout << indent_str  <<s1 << " = " << s2 << std::endl;
     //    MatricksObjectManager::moutputglossary(id);
     me.outputglossary();
   }

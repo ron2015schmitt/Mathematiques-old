@@ -244,7 +244,46 @@ int main()
   header3("Customizing number format");
   cr();cr();
   header3("Customizing complex number format");
+  text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is \"(%s, %s)\"\n");
   cr();cr();
+
+  {
+  example(Nex++," complex number formats");
+  codestart("C++");
+  codemulti( using namespace display );
+  codemulti( std::complex<double> z(1,-2)  );
+  codeend();
+
+  cr();cr();
+  text("Default format: \"(%s, %s)\"\n");
+  codestart("C++");
+  disp(z);
+  codeend();
+
+  cr();cr();
+  text("Matlab input format \"%s + i*%s\"\n");
+  setFormatStringComplex("%s + i*%s");
+  codestart("C++");
+  disp(z);
+  codeend();
+
+  cr();cr();
+  text("Mathematica input format \"%s + I*%s\"\n");
+  setFormatStringComplex("%s + I*%s");
+  codestart("C++");
+  disp(z);
+  codeend();
+
+  cr();cr();
+  text("Matlab output format / C++14 format \"%s + %si\"\n");
+  setFormatStringComplex("%s + %si");
+  codestart("C++");
+  disp(z);
+  codeend();
+
+  
+  }
+
   header3("Customizing Vector format");
   cr();cr();
   

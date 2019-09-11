@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r23).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r24).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -199,8 +199,43 @@ This latter setting can be used to print in colors to a file, which will display
 
 
 ### Customizing complex number format
+The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is "(%s, %s)"
 
 
+
+**EXAMPLE 5**:  complex number formats
+```C++
+using namespace display;
+std::complex<double> z(1,-2);
+```
+
+
+Default format: "(%s, %s)"
+
+```C++
+z = (1,-2); 
+```
+
+
+Matlab input format "%s + i*%s"
+
+```C++
+z = 1 + i*-2; 
+```
+
+
+Mathematica input format "%s + I*%s"
+
+```C++
+z = 1 + I*-2; 
+```
+
+
+Matlab output format / C++14 format "%s + %si"
+
+```C++
+z = 1 + -2i; 
+```
 ### Customizing Vector format
 
 

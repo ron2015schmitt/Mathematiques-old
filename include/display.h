@@ -809,7 +809,7 @@ namespace display {
 
   
   //---------------------------------------------------------------------------------
-  //       specialize for complex<double>
+  //       specialize for complex
   //---------------------------------------------------------------------------------
 
   class FormatDataComplex {
@@ -1167,6 +1167,7 @@ namespace display {
     FormatDataVector::string_endofline = "\n    ";
     FormatDataVector::string_closing =   "\n}";
     setFormatString<double>("% 10.8e");
+    setFormatStringComplex("%s + I*%s");
     FormatData<double>::tens = true;
   }
 
@@ -1179,6 +1180,7 @@ namespace display {
     FormatDataVector::string_endofline = " ...\n    ";
     FormatDataVector::string_closing =   " ...\n]";
     setFormatString<double>("% 10.8e");
+    setFormatStringComplex("%s + i*%s");
     FormatData<double>::tens = false;
   }
   

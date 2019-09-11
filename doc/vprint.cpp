@@ -61,6 +61,7 @@ int main()
 
   cr();cr();
   text("An actual screen-shot of the output is shown below:");
+  cr();cr();
   text("![disp example 1](disp_example1.png)");
   
   matricks_toc();

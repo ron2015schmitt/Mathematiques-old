@@ -275,10 +275,10 @@ int main()
   text("* The user can define a style for any foreground color and background color combination as follows:\n");
 
   codestart("C++");
-  text("int nf = 27;  // color for foreground  \n");
-  text("int nb = 227; // color for background  \n");
-  text("display::Style mystyle(nf,nb); \n");
-  text("display::mout << mystyle.apply(\"Hello World\") << std::endl; \n");
+  text("int nf = 27;  // color for foreground");
+  text("int nb = 227; // color for background");
+  text("display::Style mystyle(nf,nb); ");
+  text("display::mout << mystyle.apply(\"Hello World\") << std::endl; ");
   codeend();
 
   text("* Style objects can added:\n");

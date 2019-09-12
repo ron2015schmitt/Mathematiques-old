@@ -142,6 +142,9 @@ The following types are currently supported by the display commands
 ## Debug-only printing
 
 
+### Debug-only printing: `disp[123]`, `tdisp[123]`, `mdisp[123]`
+
+
 The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.
 * `disp1`, `tdisp1`, `mdisp1` will
   * when `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`
@@ -152,6 +155,11 @@ The display commands also have versions that only display when the code is compi
 * `disp3`, `tdisp3`, `mdisp3` will
   * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
   * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
+### Debug-only printing: `print[123]`, `printf[123]`
+
+
+* The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `mout` followed by a carriage return.
+* The functions `printf1`, `printf2`, `printf3` function like printf, but actually use sprintf and then output to the stream `mout` using C++ methodlogy.
 ## Controlling the output stream and color
 * All output uses C++ streams (*no* `printf`)
 * By default all output is sent to `std::cout`
@@ -221,8 +229,22 @@ The output from the above two lines of code is:
 
 * _The Style class checks to see whether or not to actually use colors, as described in the previous sub-section_
 
-**TO DO**:  bespoke styles
 
+
+
+
+### Custom styles
+* The user can define a style for any foreground color and background color combination using the constructor:
+
+```C++
+int nf = 27;  // color for foreground  
+
+int nb = 227; // color for background  
+
+display::Style mystyle(nf,nb); 
+
+```
+* Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
 ## Customizing the format and colors
 

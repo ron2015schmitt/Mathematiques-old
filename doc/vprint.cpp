@@ -196,6 +196,9 @@ int main()
   header2("Debug-only printing");
   cr();cr();
 
+  header3("Debug-only printing: `disp[123]`, `tdisp[123]`, `mdisp[123]`");
+  cr();cr();
+
   text("The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.");
   text("* `disp1`, `tdisp1`, `mdisp1` will");
   text("  * when `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`");
@@ -210,6 +213,16 @@ int main()
   text("  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
   text("  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
+
+  header3("Debug-only printing: `print[123]`, `printf[123]`");
+  cr();cr();
+  
+  text("* The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `mout` followed by a carriage return.");
+
+  text("* The functions `printf1`, `printf2`, `printf3` function like printf, but actually use sprintf and then output to the stream `mout` using C++ methodlogy.");
+
+
+  
   header2("Controlling the output stream and color");
   text("* All output uses C++ streams (*no* `printf`)");
   text("* By default all output is sent to `std::cout`");
@@ -255,9 +268,22 @@ int main()
   text("![stylesexample](displaycolorsexample.png)");
   cr();cr();
   text("* _The Style class checks to see whether or not to actually use colors, as described in the previous sub-section_\n");
-  text("**TO DO**:  bespoke styles");
   cr();cr();
 
+  cr();cr();
+  header3("Custom styles");
+  text("* The user can define a style for any foreground color and background color combination using the constructor:\n");
+
+  codestart("C++");
+  text("int nf = 27;  // color for foreground  \n");
+  text("int nb = 227; // color for background  \n");
+  text("display::Style mystyle(nf,nb); \n");
+  codeend();
+
+  
+  text("* Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)\n");
+
+  
   header2("Customizing the format and colors");
   cr();cr();
   header3("Customizing number formats");

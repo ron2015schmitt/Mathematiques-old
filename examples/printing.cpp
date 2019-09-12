@@ -107,7 +107,17 @@ int main()
   Style mystyle = createStyle(BOLD+RED);
   mout << mystyle.apply("with style") + " without style " << std::endl;
   mout << std::endl;
+  mout << std::endl;
+  mout << std::endl;
 
+
+  Style mystyle2(27,227);
+  mout << mystyle2.apply("with style") + " without style " << std::endl;
+  mout << std::endl;
+  mout << std::endl;
+  mout << std::endl;
+
+  
   
   cr();cr();
   return 0;

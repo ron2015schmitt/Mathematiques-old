@@ -446,6 +446,7 @@ int main()
   cr();cr();
 
   text("The format for `matricks:Vector` output is controlled by the following static class variables.");
+  cr();cr();
   text("|`FormatDataVector` class variable|default value|");
   text("|------------------|------------------------|");
   text("|string_opening| \"{\"|");
@@ -456,6 +457,7 @@ int main()
 
   cr();cr();
   text("The function `set_mathematica_var_format()` sets these varibles as follows");
+  cr();cr();
   text("|`FormatDataVector` class variable|Mathematica value|");
   text("|------------------|------------------------|");
   text("|string_opening| \"{\\n    \" |");
@@ -466,6 +468,7 @@ int main()
 
   cr();cr();
   text("The function `set_matlab_var_format()` sets these varibles as follows");
+  cr();cr();
   text("|`FormatDataVector` class variable|Matlab value|");
   text("|------------------|------------------------|");
   text("|string_opening|   \"[ ...\\n    \"  |");

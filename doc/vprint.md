@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r45).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r46).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -398,6 +398,8 @@ z =  1.000000 + -2.000000i;
 
 
 The format for `matricks:Vector` output is controlled by the following static class variables.
+
+
 |`FormatDataVector` class variable|default value|
 |------------------|------------------------|
 |string_opening| "{"|
@@ -408,6 +410,8 @@ The format for `matricks:Vector` output is controlled by the following static cl
 
 
 The function `set_mathematica_var_format()` sets these varibles as follows
+
+
 |`FormatDataVector` class variable|Mathematica value|
 |------------------|------------------------|
 |string_opening| "{\n    " |
@@ -418,6 +422,8 @@ The function `set_mathematica_var_format()` sets these varibles as follows
 
 
 The function `set_matlab_var_format()` sets these varibles as follows
+
+
 |`FormatDataVector` class variable|Matlab value|
 |------------------|------------------------|
 |string_opening|   "[ ...\n    "  |

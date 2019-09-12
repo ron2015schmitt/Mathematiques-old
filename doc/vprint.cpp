@@ -544,11 +544,11 @@ int main()
   header3("Color and style settings for floating point number types\n");
 
   cr();cr();
-  text("| `FormatData<D>` class variable | default value | \n");
-  text("|--------------------|----------------------------|\n");
-  text("| style_for_type_name | Style(MAGENTA) | \n");
-  text("| style_for_value | Style(BLACK) | \n");
-  text("| style_for_zero | Style(GRAY1) | \n");
+  text("| `FormatData<D>` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(MAGENTA) | ");
+  text("| style_for_value | Style(BLACK) | ");
+  text("| style_for_zero | Style(GRAY1) | ");
   cr();cr();
 
   header3("Color and style settings for `char`, `string`, and `bool`\n");

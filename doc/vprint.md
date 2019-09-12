@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r50).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r51).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -503,15 +503,10 @@ v = [ ...
 
 
 | `FormatData<D>` class variable | default value | 
-
 |--------------------|----------------------------|
-
 | style_for_type_name | Style(MAGENTA) | 
-
 | style_for_value | Style(BLACK) | 
-
 | style_for_zero | Style(GRAY1) | 
-
 
 
 ### Color and style settings for `char`, `string`, and `bool`

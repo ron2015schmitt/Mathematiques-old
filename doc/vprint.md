@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r32).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r34).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -237,14 +237,10 @@ The output from the above two lines of code is:
 * The user can define a style for any foreground color and background color combination as follows:
 
 ```C++
-int nf = 27;  // color for foreground  
-
-int nb = 227; // color for background  
-
+int nf = 27;  // color for foreground
+int nb = 227; // color for background
 display::Style mystyle(nf,nb); 
-
 display::mout << mystyle.apply("Hello World") << std::endl; 
-
 ```
 * Style objects can added:
 

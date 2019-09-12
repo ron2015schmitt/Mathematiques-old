@@ -470,6 +470,7 @@ int main()
   
   header4("Mathematica-style Vector format");
   cr();cr();
+  text("The Mathematica-style format allows you to cut and paste results directly into a Mathematica notebook.  ");
   text("The function `set_mathematica_var_format()` sets these variables as follows");
   cr();cr();
   text("|`FormatDataVector` class variable|Mathematica value|");
@@ -504,6 +505,7 @@ int main()
   
   header4("Matlab-style Vector format");
   cr();cr();
+  text("The Matlab-style format allows you to cut and paste results directly into the Matlab command line or m-file.  ");
   text("The function `set_matlab_var_format()` sets these varibles as follows");
   cr();cr();
   text("|`FormatDataVector` class variable|Matlab value|");

@@ -421,6 +421,7 @@ v = {1001,1002,1003,1004,1005,1006,1007,1008,1009,1010};
 #### Mathematica-style Vector format
 
 
+The Mathematica-style format allows you to cut and paste results directly into a Mathematica notebook.  
 The function `set_mathematica_var_format()` sets these variables as follows
 
 
@@ -458,6 +459,7 @@ v = {
 #### Matlab-style Vector format
 
 
+The Matlab-style format allows you to cut and paste results directly into the Matlab command line or m-file.  
 The function `set_matlab_var_format()` sets these varibles as follows
 
 

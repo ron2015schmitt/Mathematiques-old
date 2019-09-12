@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r42).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r43).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -397,13 +397,12 @@ z =  1.000000 + -2.000000i;
 **TO DO**
 
 
-------------------------------------------
+|Class variable|default value|
+|------------------|------------------------|
 |FormatDataVector::string_opening| "{"|
 |FormatDataVector::string_delimeter | ","|
 |FormatDataVector::max_elements_per_line | matricks::maxsize|
-|FormatDataVector::string_endofline | "
-"|
+|FormatDataVector::string_endofline | "\n"|
 |FormatDataVector::string_closing |   "}"|
-------------------------------------------
 
 [Table of Contents](README.md)

@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r39).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r40).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -259,7 +259,7 @@ display::mout << mybold.apply("Hello World") << std::endl;
 
 
 ### Customizing number formats
-You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`
+You can set the number format for any of the primitive datatypes using template function `setFormatString<D>(std::string)`
 
 
 **EXAMPLE 5**:  `double` number format
@@ -306,6 +306,28 @@ setFormatString<int>("%10d");
 
 
 
+### Customizing format for `char`,`string`, and `bool`
+* The default format for `char` is `"%c"`
+* The default format for `std::string` is `"%s"`
+* For `bool` types, the following _class variables_ are used:
+  * `FormatData<bool>::string_for_true`
+  * `FormatData<bool>::string_for_false`
+* The default `bool` string are `0` and `1`
+
+
+```C++
+using namespace display;
+bool a = true;;
+```
+
+**Results**: The default `bool` format which yields
+```C++
+  a = 1; 
+  !a = 0; 
+```
+
+
+
 ### Customizing complex number format
 The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `"(%s, %s)"`
 
@@ -321,28 +343,40 @@ std::complex<double> z(1,-2);
 Default format: `"(%s, %s)"`
 
 ```C++
-z = (+1.000000000000000,-2.000000000000000); 
+z = (1,-2); 
 ```
 
 
 Matlab input format `"%s + i*%s"`
 
 ```C++
-z = +1.000000000000000 + i*-2.000000000000000; 
+z = 1 + i*-2; 
 ```
 
 
 Mathematica input format `"%s + I*%s"`
 
 ```C++
-z = +1.000000000000000 + I*-2.000000000000000; 
+z = 1 + I*-2; 
 ```
 
 
 Matlab output format / C++14 format `"%s + %si"`
 
 ```C++
-z = +1.000000000000000 + -2.000000000000000i; 
+z = 1 + -2i; 
+```
+
+
+Note that the format of the real and imaginary parts of `complex<D>` are controlled by the format string for the template data type.`
+
+```C++
+setFormatString<double>("%9.6f");
+```
+The above statement changes the display of `z` to
+
+```C++
+z =  1.000000 + -2.000000i; 
 ```
 ### Customizing Vector format
 **TO DO**

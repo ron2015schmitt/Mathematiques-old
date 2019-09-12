@@ -298,7 +298,7 @@ int main()
   header2("Customizing the format and colors by data type");
   cr();cr();
   header3("Customizing number formats");
-  text("You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`");
+  text("You can set the number format for any of the primitive datatypes using template function `setFormatString<D>(std::string)`");
 
   {
     cr();cr();
@@ -328,7 +328,7 @@ int main()
   {
     cr();cr();
     example(Nex++," `int` number format");
-      
+
     codestart("C++");
     codemulti( using namespace display );
     codemulti( int n = -1024  );
@@ -349,13 +349,38 @@ int main()
 
   }
 
-    
   cr();cr();
+  header3("Customizing format for `char`,`string`, and `bool`");
+  text("* The default format for `char` is `\"%c\"`");
+  text("* The default format for `std::string` is `\"%s\"`");
+  text("* For `bool` types, the following _class variables_ are used:");
+  text("  * `FormatData<bool>::string_for_true`");
+  text("  * `FormatData<bool>::string_for_false`");
+  text("* The default `bool` string are `0` and `1`");
+
+  {
+    cr();cr();
+    codestart("C++");
+    codemulti( using namespace display );
+    codemulti( bool a = true;  );
+    codeend();
+    text("");
+
+    resultstart3(": The default `bool` format which yields");
+    resultmulti(a);
+    resultmulti(!a);
+    resultend();
+    cr();cr();
+  } 
+
+
+  
   header3("Customizing complex number format");
   text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `\"(%s, %s)\"`\n");
   cr();cr();
 
   {
+    set_default_format();
     example(Nex++," complex number formats");
     codestart("C++");
     codemulti( using namespace display );
@@ -385,6 +410,16 @@ int main()
     cr();cr();
     text("Matlab output format / C++14 format `\"%s + %si\"`\n");
     setFormatStringComplex("%s + %si");
+    codestart("C++");
+    disp(z);
+    codeend();
+
+    cr();cr();
+    text("Note that the format of the real and imaginary parts of `complex<D>` are controlled by the format string for the template data type.`\n");
+    codestart("C++");
+    codemulti( setFormatString<double>("%9.6f")  );
+    codeend();
+    text("The above statement changes the display of `z` to\n");
     codestart("C++");
     disp(z);
     codeend();

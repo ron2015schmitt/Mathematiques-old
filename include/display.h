@@ -1172,6 +1172,21 @@ namespace display {
     FormatData<double>::format_string = FormatData<double>::format_string_default;
     FormatData<double>::tens = false;
     // TODO: finish the rest of the defaults
+    FormatData<float>::format_string = FormatData<float>::format_string_default;
+    FormatData<long double>::format_string = FormatData<long double>::format_string_default;
+    FormatData<short>::format_string = FormatData<short>::format_string_default;
+    FormatData<int>::format_string = FormatData<int>::format_string_default;
+    FormatData<long>::format_string = FormatData<long>::format_string_default;
+    FormatData<unsigned short>::format_string = FormatData<unsigned short>::format_string_default;
+    FormatData<unsigned int>::format_string = FormatData<unsigned int>::format_string_default;
+    FormatData<unsigned long>::format_string = FormatData<unsigned long>::format_string_default;
+    FormatData<char>::format_string = FormatData<char>::format_string_default;
+
+    FormatData<std::string>::format_string = FormatData<std::string>::format_string_default;
+
+    FormatData<bool>::string_for_true = "1";
+    FormatData<bool>::string_for_false = "0";
+    
   }
 
   inline void set_mathematica_var_format() {

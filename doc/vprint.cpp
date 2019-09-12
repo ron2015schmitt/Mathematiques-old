@@ -50,6 +50,7 @@ int main()
   cr();cr();
   codestart("C++");
   codemulti(  int n = 45 );
+  codemulti(  int m =256 );
   codemulti(  double x = 3.14 );
   codemulti(  double vals[] = {1.1,2.2,3.3} );
   codemulti(  bool done = true );
@@ -64,6 +65,7 @@ int main()
 
   codestart("C++");
   text("disp(n);");
+  text("disp(m);");
   text("disp(x);");
   text("disp(vals);");
   text("disp(done);");
@@ -92,6 +94,7 @@ int main()
 
   codestart("C++");
   text("tdisp(n);");
+  text("tdisp(m);");
   text("tdisp(x);");
   text("tdisp(vals);");
   text("tdisp(done);");
@@ -123,7 +126,7 @@ int main()
   cr();cr();
 
   codestart("C++");
-  text("mdisp(n,x,vals,done,str,s,z);");
+  text("mdisp(n,m,x,vals,done,str,s,z);");
   codeend();
 
   cr();cr();
@@ -135,6 +138,28 @@ int main()
   // the image are always blurred by github for some reason
   //text("<img src=\"disp_example3.png\" width=\"100%\" height=\"100%\">");
 
+
+  // dispval()
+
+  header2("The function `dispval(x)`");
+  cr();cr();
+
+  text("* The function `dispval(x)` prints only the variable value, without the name and equals sign, and _without a carriage return_.");
+  cr();cr();
+  
+
+  example(Nex++," `dispval(x)` usage");
+  cr();cr();
+
+  codestart("C++");
+  text("dispval(n);");
+  text("dispval(m);");
+  codeend();
+
+  cr();cr();
+  text("The actual screen-shot of the output is shown below:");
+  cr();cr();
+  text("![disp example 3b](disp_example3b.png)");
 
 
   // expressions
@@ -568,7 +593,7 @@ int main()
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(MAGENTA) | ");
-  text("| style_for_value | Style(BLUE3) | ");
+  text("| style_for_value | Style(VIOLET1) | ");
   text("| style_for_zero | Style(GRAY1) | ");
   cr();cr();
 

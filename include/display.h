@@ -77,24 +77,24 @@ namespace display {
 
   // this definition is crafty, but probably better to make into a function
   
-#define print2str(...) (new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer)
+#define printf2str(...) ((new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer))
 
 
 
 #if MATRICKS_DEBUG>=1
-#define printf1(...) display::mout << print2str(__VA_ARGS__)
+#define printf1(...) display::mout << printf2str(__VA_ARGS__)
 #else
 #define printf1(...) {}
 #endif
 
 #if MATRICKS_DEBUG>=2
-#define printf2(...) display::mout << print2str(__VA_ARGS__)
+#define printf2(...) display::mout << printf2str(__VA_ARGS__)
 #else
 #define printf2(...) {}
 #endif
 
 #if MATRICKS_DEBUG>=3
-#define printf3(...) display::mout << print2str(__VA_ARGS__)
+#define printf3(...) display::mout << printf2str(__VA_ARGS__)
 #else
 #define printf3(...) {}
 #endif
@@ -246,15 +246,15 @@ namespace display {
     inline Style(const Style& style) : stylestr_(style.getStyleString()), stylename_(style.getName()){
     }
     inline Style(const unsigned int n)  {
-      stylestr_ = FORE+print2str("5;%um",n);
+      stylestr_ = FORE+printf2str("5;%um",n);
       stylename_ = "";
     }
     inline Style(const unsigned int n, const unsigned int m)  {
-      stylestr_ = FORE+print2str("5;%um",n)+BACK+print2str("5;%um",m);
+      stylestr_ = FORE+printf2str("5;%um",n)+BACK+printf2str("5;%um",m);
       stylename_ = "";
     }
     inline Style(const std::string attributestr, const unsigned int n, const unsigned int m)  {
-      stylestr_ = attributestr+FORE+print2str("5;%um",n)+BACK+print2str("5;%um",m);
+      stylestr_ = attributestr+FORE+printf2str("5;%um",n)+BACK+printf2str("5;%um",m);
       stylename_ = "";
     }
     inline std::string apply(const std::string s) const {
@@ -625,19 +625,19 @@ namespace display {
 
 
   //---------------------------------------------------------------------------------
-  //       printObj
+  //       dispval
   //---------------------------------------------------------------------------------
 
   template <typename T>
-    inline void printObj(const T& d) {
+    inline void dispval(const T& d) {
     mout << d;
   }
 
     
   
-#define SPECIALIZE_mathtypes_printObj(TYPE)				\
+#define SPECIALIZE_mathtypes_dispval(TYPE)				\
   template <>								\
-    inline void printObj<TYPE >(const TYPE& d) {			\
+    inline void dispval<TYPE >(const TYPE& d) {			\
     using namespace std;						\
     snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
     string sval = string(Buffer);					\
@@ -650,25 +650,25 @@ namespace display {
   }
   
 
-  SPECIALIZE_mathtypes_printObj(short);
-  SPECIALIZE_mathtypes_printObj(int);
-  SPECIALIZE_mathtypes_printObj(long);
+  SPECIALIZE_mathtypes_dispval(short);
+  SPECIALIZE_mathtypes_dispval(int);
+  SPECIALIZE_mathtypes_dispval(long);
 #if LONGLONG_EXISTS
-  SPECIALIZE_mathtypes_printObj(long long);
+  SPECIALIZE_mathtypes_dispval(long long);
 #endif
 
-  SPECIALIZE_mathtypes_printObj(unsigned short);
-  SPECIALIZE_mathtypes_printObj(unsigned int);
-  SPECIALIZE_mathtypes_printObj(unsigned long);
+  SPECIALIZE_mathtypes_dispval(unsigned short);
+  SPECIALIZE_mathtypes_dispval(unsigned int);
+  SPECIALIZE_mathtypes_dispval(unsigned long);
 #if LONGLONG_EXISTS
-  SPECIALIZE_mathtypes_printObj(unsigned long long);
+  SPECIALIZE_mathtypes_dispval(unsigned long long);
 #endif
 
 
 
-  #define SPECIALIZE_floating_printObj(TYPE)				\
+  #define SPECIALIZE_floating_dispval(TYPE)				\
   template <>								\
-    inline void printObj<TYPE >(const TYPE& d) {			\
+    inline void dispval<TYPE >(const TYPE& d) {			\
     using namespace std;						\
     snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
     string sval = string(Buffer);					\
@@ -684,15 +684,15 @@ namespace display {
     mout << style.apply(sval);						\
   }
   
-  SPECIALIZE_floating_printObj(float);
-  SPECIALIZE_floating_printObj(double);
-  SPECIALIZE_floating_printObj(long double);
+  SPECIALIZE_floating_dispval(float);
+  SPECIALIZE_floating_dispval(double);
+  SPECIALIZE_floating_dispval(long double);
 
 
 
   // string
   template <>				
-    inline void printObj<std::string>(const std::string& str) {
+    inline void dispval<std::string>(const std::string& str) {
     using namespace std;
     snprintf(Buffer, BUFFER_SIZE, getFormatString<std::string>().c_str(), str.c_str() );
     string s = string(Buffer);
@@ -702,7 +702,7 @@ namespace display {
 
   // char
   template <>				
-    inline void printObj<char>(const char& c) {
+    inline void dispval<char>(const char& c) {
     using namespace std;					
     snprintf(Buffer, BUFFER_SIZE, getFormatString<char>().c_str(), c );
     string s = string(Buffer);
@@ -713,7 +713,7 @@ namespace display {
 
   // bool
   template <>				
-    inline void printObj<bool>(const bool& b) {
+    inline void dispval<bool>(const bool& b) {
     using namespace std;
     if (b) {
       Style style = FormatData<bool>::style_for_true;
@@ -729,40 +729,40 @@ namespace display {
 
   // T[N]
   template <typename T,  size_t N>
-    inline void printObj(const T (&a)[N]) {
+    inline void dispval(const T (&a)[N]) {
     mout << "{";
     for (size_t ii = 0; ii < N; ii++) {
       if (ii>0)  mout << ", ";
-      printObj(a[ii]);
+      dispval(a[ii]);
     }
     mout << "}";
   }
 
   // char[N]
   template <size_t N>
-    inline void printObj(const char (&a)[N]) {
+    inline void dispval(const char (&a)[N]) {
     mout << a;
   }
 
 
   // std::vector
   template <typename D>							
-    inline void printObj(const std::vector<D>& var) {
+    inline void dispval(const std::vector<D>& var) {
     mout << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
       if (ii>0)  mout << ", ";
-      printObj(var[ii]);
+      dispval(var[ii]);
     }
     mout << "}";
   }
 
   // std::valarray
   template <typename D>							
-    inline void printObj(const std::valarray<D>& var) {
+    inline void dispval(const std::valarray<D>& var) {
     mout << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
       if (ii>0)  mout << ", ";
-      printObj(var[ii]);
+      dispval(var[ii]);
     }
     mout << "}";
   }
@@ -770,12 +770,12 @@ namespace display {
 
   // std::list
   template <typename D>							
-    inline void printObj(const std::list<D>& var) {
+    inline void dispval(const std::list<D>& var) {
     mout << "{";
     size_t ii = 0;
     for(typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
       if (ii++>0)  mout << ", ";
-      printObj(*it);
+      dispval(*it);
     }
     mout << "}";
   }
@@ -783,12 +783,12 @@ namespace display {
   // std::initializer_list
 #if CPP11 == 1
   template <typename D>							
-    inline void printObj(const std::initializer_list<D>& var) {
+    inline void dispval(const std::initializer_list<D>& var) {
     mout << "{";
     size_t ii = 0;
     for(typename std::initializer_list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
       if (ii++>0)  mout << ", ";
-      printObj(*it);
+      dispval(*it);
     }
     mout << "}";
   }
@@ -796,7 +796,7 @@ namespace display {
 
   // std::queue
   template <typename D>							
-    inline void printObj(const std::queue<D>& var) {
+    inline void dispval(const std::queue<D>& var) {
     // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
     std::queue<D> myq = var;
       
@@ -806,7 +806,7 @@ namespace display {
       if (ii>0)  mout << ", ";
       D val = myq.front();
       myq.pop();
-      printObj(val);
+      dispval(val);
     }
     mout << "}";
   }
@@ -814,7 +814,7 @@ namespace display {
     
   // std::map
   template <typename D1, typename D2>					
-    inline void printObj(const std::map<D1,D2>& mymap) {
+    inline void dispval(const std::map<D1,D2>& mymap) {
     mout << "{" << std::endl;
     for (typename std::map<D1,D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++ ) {
       mout <<" "<< it->first << ":" << it->second << std::endl;
@@ -917,7 +917,7 @@ namespace display {
 
   
   template <class D>
-    inline void printObj(const std::complex<D>& d) {
+    inline void dispval(const std::complex<D>& d) {
     using namespace std;
     using namespace matricks;
 
@@ -938,7 +938,7 @@ namespace display {
     fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
 
     // put it all together
-    mout << print2str(fs.c_str(), sr.c_str(), si.c_str());
+    mout << printf2str(fs.c_str(), sr.c_str(), si.c_str());
   }
   
 
@@ -1049,7 +1049,7 @@ namespace display {
       expression->setString(name);
       mout << *expression;
       mout << *equals;
-      printObj(x);
+      dispval(x);
       mout << *terminator;
       if (issueCR) {
 	mout << endl;
@@ -1154,7 +1154,7 @@ namespace display {
     mout << "compile-time settings:" << endl;
     mout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
     mout << createStyle(BOLD).apply("  C++ version: ");
-    mout << createStyle(CYAN).apply(print2str("%lu",__cplusplus)) << endl;
+    mout << createStyle(CYAN).apply(printf2str("%lu",__cplusplus)) << endl;
     mout << createStyle(BOLD).apply("  OPTIMIZE: ");
     mout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
     mout << StyledString::get(HORLINE);

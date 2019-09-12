@@ -171,21 +171,21 @@ namespace display {
 
   // unsigned short
   Style FormatData<unsigned short>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned short>::style_for_value = createStyle(BLUE3);
+  Style FormatData<unsigned short>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned short>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned short>::format_string_default = "%u";
   std::string FormatData<unsigned short>::format_string = format_string_default;
 
   // unsigned int
   Style FormatData<unsigned int>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned int>::style_for_value = createStyle(BLUE3);
+  Style FormatData<unsigned int>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned int>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned int>::format_string_default = "%u";
   std::string FormatData<unsigned int>::format_string = format_string_default;
 
   // unsigned long
   Style FormatData<unsigned long>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned long>::style_for_value = createStyle(BLUE3);
+  Style FormatData<unsigned long>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned long>::format_string_default = "%lu";
   std::string FormatData<unsigned long>::format_string = format_string_default;
@@ -194,7 +194,7 @@ namespace display {
 #if LONGLONG_EXISTS
   // unsigned long long
   Style FormatData<unsigned long long>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned long long>::style_for_value = createStyle(BLUE3);
+  Style FormatData<unsigned long long>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned long long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned long long>::format_string_default = "%llu";
   std::string FormatData<unsigned long long>::format_string = format_string_default;

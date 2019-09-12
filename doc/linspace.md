@@ -1,6 +1,6 @@
 
 # The `linspace` function in mātricks
-_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.15-r56).
+_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.15-r57).
 
 * The function `linspace<D>(start,end,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `start` to `end`, spaced by `(start-end)/(N-1)`
 * Note that `end` can be less than `start`, in which case the returned sequence is decreasing

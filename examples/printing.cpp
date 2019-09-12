@@ -15,6 +15,7 @@ int main()
 
   const double pi = M_PI;
   int n = 45;
+  unsigned int m = 256;
   double x = 3.14;
   double vals[] = {1.1,2.2,3.3};
   bool done = true;
@@ -26,6 +27,7 @@ int main()
 
   cr();cr();
   disp(n);
+  disp(m);
   disp(x);
   disp(vals);
   disp(done);
@@ -36,6 +38,7 @@ int main()
 
   cr();cr();
   tdisp(n);
+  tdisp(m);
   tdisp(x);
   tdisp(vals);
   tdisp(done);
@@ -45,8 +48,12 @@ int main()
   tdisp(z);
 
   cr();cr();
-  mdisp(n,x,vals,done,str,s,z);
+  mdisp(n,m,x,vals,done,str,s,z);
 
+  cr();cr();
+  dispval(n);
+  dispval(m);
+  
   cr();cr();
   disp(n+3);
   disp(10*x-1);

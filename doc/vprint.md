@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r56).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r57).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -20,6 +20,7 @@ Define and initialize some variables:
 
 ```C++
 int n = 45;
+int m =256;
 double x = 3.14;
 double vals[] = {1.1,2.2,3.3};
 bool done = true;
@@ -33,6 +34,7 @@ display each variable using `disp`:
 
 ```C++
 disp(n);
+disp(m);
 disp(x);
 disp(vals);
 disp(done);
@@ -58,6 +60,7 @@ The function `tdisp(x)` displays the variable type, in addition to the variable 
 
 ```C++
 tdisp(n);
+tdisp(m);
 tdisp(x);
 tdisp(vals);
 tdisp(done);
@@ -85,7 +88,7 @@ The actual screen-shot of the output is shown below:
 
 
 ```C++
-mdisp(n,x,vals,done,str,s,z);
+mdisp(n,m,x,vals,done,str,s,z);
 ```
 
 
@@ -93,6 +96,25 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 3](disp_example3.png)
+## The function `dispval(x)`
+
+
+* The function `dispval(x)` prints only the variable value, without the name and equals sign, and _without a carriage return_.
+
+
+**EXAMPLE 4**:  `dispval(x)` usage
+
+
+```C++
+dispval(n);
+dispval(m);
+```
+
+
+The actual screen-shot of the output is shown below:
+
+
+![disp example 3b](disp_example3b.png)
 ## Displaying expressions
 
 
@@ -100,7 +122,7 @@ The actual screen-shot of the output is shown below:
 * vector and matrix expressions can be displayed in this manner.
 
 
-**EXAMPLE 4**:  displaying expressions
+**EXAMPLE 5**:  displaying expressions
 
 
 ```C++
@@ -262,7 +284,7 @@ display::mout << mybold.apply("Hello World") << std::endl;
 You can set the number format for any of the primitive datatypes using template function `setFormatString<D>(std::string)`
 
 
-**EXAMPLE 5**:  `double` number format
+**EXAMPLE 6**:  `double` number format
 ```C++
 using namespace display;
 double x = 2.51;
@@ -284,7 +306,7 @@ setFormatString<double>("%+18.15f");
 
 
 
-**EXAMPLE 6**:  `int` number format
+**EXAMPLE 7**:  `int` number format
 ```C++
 using namespace display;
 int n = -1024;
@@ -348,7 +370,7 @@ The format for complex numbers is set using the function `setFormatStringComplex
 
 
 
-**EXAMPLE 7**:  complex number formats
+**EXAMPLE 8**:  complex number formats
 ```C++
 using namespace display;
 std::complex<double> z(1,-2);
@@ -408,7 +430,7 @@ The format for `matricks:Vector` output is controlled by the following static cl
 |string_closing |   "}"|
 
 
-**EXAMPLE 8**:  default Vector format
+**EXAMPLE 9**:  default Vector format
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
@@ -442,7 +464,7 @@ setFormatString<double>("% 10.8e");
 FormatData<double>::tens = true;
 setFormatStringComplex("%s + I*%s");
 ```
-**EXAMPLE 9**:  Mathematica Vector format
+**EXAMPLE10**:  Mathematica Vector format
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
@@ -480,7 +502,7 @@ setFormatString<double>("% 10.8e");
 FormatData<double>::tens = false;
 setFormatStringComplex("%s + i*%s");
 ```
-**EXAMPLE10**:  Matlab Vector format
+**EXAMPLE11**:  Matlab Vector format
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
@@ -527,7 +549,7 @@ v = [ ...
 | `FormatData<D>` class variable | default value | 
 |--------------------|----------------------------|
 | style_for_type_name | Style(MAGENTA) | 
-| style_for_value | Style(BLUE3) | 
+| style_for_value | Style(VIOLET1) | 
 | style_for_zero | Style(GRAY1) | 
 
 

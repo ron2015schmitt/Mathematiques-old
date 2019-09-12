@@ -1242,7 +1242,7 @@ namespace matricks {
 	  stream << style.apply(FormatDataVector::string_endofline);
 	  k = 0;
 	}
-	printObj(v[ii]);
+	dispval(v[ii]);
 	if (ii < v.size()-1)  {
 	  stream << style.apply(FormatDataVector::string_delimeter);
 	}

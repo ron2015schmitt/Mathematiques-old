@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r37).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r38).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -262,7 +262,7 @@ display::mout << mybold.apply("Hello World") << std::endl;
 You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`
 
 
-**EXAMPLE 5**:  double number format
+**EXAMPLE 5**:  `double` number format
 ```C++
 using namespace display;
 double x = 2.51;
@@ -274,12 +274,34 @@ double x = 2.51;
 ```
 
 ```C++
-setFormatString<double>("%+18.15g");
+setFormatString<double>("%+18.15f");
 ```
 
-**Results**: The format "%+18.15g"  yields
+**Results**: The format "%+18.15f"  yields
 ```C++
-  x =              +2.51; 
+  x = +2.510000000000000; 
+```
+
+
+
+**EXAMPLE 6**:  `int` number format
+```C++
+using namespace display;
+int n = -1024;;
+```
+
+**Results**: The default format is "%d" which yields
+```C++
+  x = +3.140000000000000; 
+```
+
+```C++
+setFormatString<int>("%10d");
+```
+
+**Results**: The format "%10d"  yields
+```C++
+  x = +3.140000000000000; 
 ```
 
 
@@ -289,7 +311,7 @@ The format for complex numbers is set using the function `setFormatStringComplex
 
 
 
-**EXAMPLE 6**:  complex number formats
+**EXAMPLE 7**:  complex number formats
 ```C++
 using namespace display;
 std::complex<double> z(1,-2);
@@ -299,28 +321,28 @@ std::complex<double> z(1,-2);
 Default format: `"(%s, %s)"`
 
 ```C++
-z = (                +1,                -2); 
+z = (+1.000000000000000,-2.000000000000000); 
 ```
 
 
 Matlab input format `"%s + i*%s"`
 
 ```C++
-z =                 +1 + i*                -2; 
+z = +1.000000000000000 + i*-2.000000000000000; 
 ```
 
 
 Mathematica input format `"%s + I*%s"`
 
 ```C++
-z =                 +1 + I*                -2; 
+z = +1.000000000000000 + I*-2.000000000000000; 
 ```
 
 
 Matlab output format / C++14 format `"%s + %si"`
 
 ```C++
-z =                 +1 +                 -2i; 
+z = +1.000000000000000 + -2.000000000000000i; 
 ```
 ### Customizing Vector format
 **TO DO**

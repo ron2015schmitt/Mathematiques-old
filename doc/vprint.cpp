@@ -300,68 +300,94 @@ int main()
   header3("Customizing number formats");
   text("You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`");
 
-    {
-      cr();cr();
-      example(Nex++," double number format");
+  {
+    cr();cr();
+    example(Nex++," `double` number format");
       
-      codestart("C++");
-      codemulti( using namespace display );
-      codemulti( double x = 2.51  );
-      codeend();
-      text("");
+    codestart("C++");
+    codemulti( using namespace display );
+    codemulti( double x = 2.51  );
+    codeend();
+    text("");
 
-      resultstart3(": The default format is \"%g\" which yields");
-      resultmulti(x );
-      resultend();
+    resultstart3(": The default format is \"%g\" which yields");
+    resultmulti(x );
+    resultend();
 
-      codestart("C++");
-      codemulti( setFormatString<double>("%+18.15g")  );
-      codeend();
-      text("");
-      resultstart3(": The format \"%+18.15g\"  yields");
-      resultmulti(x );
-      resultend();
+    codestart("C++");
+    codemulti( setFormatString<double>("%+18.15f")  );
+    codeend();
+    text("");
+    resultstart3(": The format \"%+18.15f\"  yields");
+    resultmulti(x );
+    resultend();
 
-    }
-  
+  }
+
+
+  {
+    cr();cr();
+    example(Nex++," `int` number format");
+      
+    codestart("C++");
+    codemulti( using namespace display );
+    codemulti( int n = -1024;  );
+    codeend();
+    text("");
+
+    resultstart3(": The default format is \"%d\" which yields");
+    resultmulti(x );
+    resultend();
+
+    codestart("C++");
+    codemulti( setFormatString<int>("%10d")  );
+    codeend();
+    text("");
+    resultstart3(": The format \"%10d\"  yields");
+    resultmulti(x );
+    resultend();
+
+  }
+
+    
   cr();cr();
   header3("Customizing complex number format");
   text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `\"(%s, %s)\"`\n");
   cr();cr();
 
   {
-  example(Nex++," complex number formats");
-  codestart("C++");
-  codemulti( using namespace display );
-  codemulti( std::complex<double> z(1,-2)  );
-  codeend();
+    example(Nex++," complex number formats");
+    codestart("C++");
+    codemulti( using namespace display );
+    codemulti( std::complex<double> z(1,-2)  );
+    codeend();
+      
+    cr();cr();
+    text("Default format: `\"(%s, %s)\"`\n");
+    codestart("C++");
+    disp(z);
+    codeend();
+      
+    cr();cr();
+    text("Matlab input format `\"%s + i*%s\"`\n");
+    setFormatStringComplex("%s + i*%s");
+    codestart("C++");
+    disp(z);
+    codeend();
 
-  cr();cr();
-  text("Default format: `\"(%s, %s)\"`\n");
-  codestart("C++");
-  disp(z);
-  codeend();
+    cr();cr();
+    text("Mathematica input format `\"%s + I*%s\"`\n");
+    setFormatStringComplex("%s + I*%s");
+    codestart("C++");
+    disp(z);
+    codeend();
 
-  cr();cr();
-  text("Matlab input format `\"%s + i*%s\"`\n");
-  setFormatStringComplex("%s + i*%s");
-  codestart("C++");
-  disp(z);
-  codeend();
-
-  cr();cr();
-  text("Mathematica input format `\"%s + I*%s\"`\n");
-  setFormatStringComplex("%s + I*%s");
-  codestart("C++");
-  disp(z);
-  codeend();
-
-  cr();cr();
-  text("Matlab output format / C++14 format `\"%s + %si\"`\n");
-  setFormatStringComplex("%s + %si");
-  codestart("C++");
-  disp(z);
-  codeend();
+    cr();cr();
+    text("Matlab output format / C++14 format `\"%s + %si\"`\n");
+    setFormatStringComplex("%s + %si");
+    codestart("C++");
+    disp(z);
+    codeend();
 
   
   }

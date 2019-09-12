@@ -504,7 +504,8 @@ namespace display {
     
     D x2 = D(0);
     D *x2ptr = &x2;
-    ret = std::sscanf(Buffer, "%lg", x2ptr);
+    string format = FormatData<D>::format_string_default;
+    ret = std::sscanf(Buffer, format.c_str(), x2ptr);
     if (ret != 1) passed = false;
     if (x2 != x)  passed = false;
     

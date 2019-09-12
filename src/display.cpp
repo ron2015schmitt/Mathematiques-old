@@ -109,8 +109,9 @@ namespace display {
 
 
   //---------------------------------------------------------------------------------
-  //       specialize for double
-  //---------------------------------------------------------------------------------
+  //       specialize
+  // ** DO NOT CHANGE THE DEFAULT TYPE BECAUSE THESE ARE USED FOR SCANNING  **
+  //------------------------------------------------------------------------------
 
   // float
   Style FormatData<float>::style_for_type_name = createStyle(MAGENTA);

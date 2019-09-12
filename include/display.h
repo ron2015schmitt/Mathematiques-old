@@ -1164,14 +1164,18 @@ namespace display {
 
   inline void set_default_format() {
     using namespace display;
+    // TODO: include default styles
+
     FormatDataVector::string_opening =  "{";
     FormatDataVector::string_delimeter = ",";
     FormatDataVector::max_elements_per_line = matricks::maxsize;
     FormatDataVector::string_endofline = "\n";
     FormatDataVector::string_closing =   "}";
+
+    setFormatStringComplex("(%s, %s)");
+
     FormatData<double>::format_string = FormatData<double>::format_string_default;
     FormatData<double>::tens = false;
-    // TODO: finish the rest of the defaults
     FormatData<float>::format_string = FormatData<float>::format_string_default;
     FormatData<long double>::format_string = FormatData<long double>::format_string_default;
     FormatData<short>::format_string = FormatData<short>::format_string_default;

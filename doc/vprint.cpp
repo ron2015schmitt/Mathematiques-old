@@ -375,8 +375,8 @@ int main()
     text("For example, we can change the bool display value to true/false as follows.");
     codestart("C++");
     codemulti( using namespace display );
-    codemulti( FormatData<bool>::string_for_true = "true"; );
-    codemulti( FormatData<bool>::string_for_false = "false"; );
+    codemulti( FormatData<bool>::string_for_true = "true" );
+    codemulti( FormatData<bool>::string_for_false = "false" );
     codeend();
     text("");
 
@@ -444,7 +444,15 @@ int main()
   header3("Customizing Vector format");
   text("**TO DO**");
   cr();cr();
-  
+
+  text("------------------------------------------");
+  text("|FormatDataVector::string_opening| \"{\"|");
+  text("|FormatDataVector::string_delimeter | \",\"|");
+  text("|FormatDataVector::max_elements_per_line | matricks::maxsize|");
+  text("|FormatDataVector::string_endofline | \"\n\"|");
+  text("|FormatDataVector::string_closing |   \"}\"|");
+  text("------------------------------------------");
+
 
 
   

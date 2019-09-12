@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r41).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r42).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -331,8 +331,8 @@ bool a = true;
 For example, we can change the bool display value to true/false as follows.
 ```C++
 using namespace display;
-FormatData<bool>::string_for_true = "true";;
-FormatData<bool>::string_for_false = "false";;
+FormatData<bool>::string_for_true = "true";
+FormatData<bool>::string_for_false = "false";
 ```
 
 **Results**: The above format yields
@@ -358,7 +358,7 @@ std::complex<double> z(1,-2);
 Default format: `"(%s, %s)"`
 
 ```C++
-z = (1,-2); 
+z = (1, -2); 
 ```
 
 
@@ -397,5 +397,13 @@ z =  1.000000 + -2.000000i;
 **TO DO**
 
 
+------------------------------------------
+|FormatDataVector::string_opening| "{"|
+|FormatDataVector::string_delimeter | ","|
+|FormatDataVector::max_elements_per_line | matricks::maxsize|
+|FormatDataVector::string_endofline | "
+"|
+|FormatDataVector::string_closing |   "}"|
+------------------------------------------
 
 [Table of Contents](README.md)

@@ -54,8 +54,8 @@ int main()
   text("* The function `linspace_b<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b-delta`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
   text("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
   codestart("C++");
-  disp(linspace_a<double>(0,1,10));
-  disp(linspace_a<double>(1,0,10));
+  disp(linspace_b<double>(0,1,10));
+  disp(linspace_b<double>(1,0,10));
   codeend();
 
   text("* This function is very useful for dealing the domain of trig functions, since typicallywe want to use the **interval [0,2*pi)**, ie we dont want to include the point 2*pi");
@@ -65,8 +65,8 @@ int main()
   text("* The function `linspace_ab<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b-delta`, where `delta=(b-a)/(N+1)` is the spacing between consecutive points.");
   text("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
   codestart("C++");
-  disp(linspace_a<double>(0,1,9));
-  disp(linspace_a<double>(1,0,9));
+  disp(linspace_ab<double>(0,1,9));
+  disp(linspace_ab<double>(1,0,9));
   codeend();
 
   

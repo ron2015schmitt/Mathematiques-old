@@ -1,6 +1,6 @@
 
 # The `linspace` functions in mātricks
-_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.15-r57).
+_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.15-r58).
 
 ## The `linspace` function: numerical interval [a,b]
 * The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`
@@ -22,16 +22,16 @@ linspace_a<double>(1,0,10) = {0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0};
 * The function `linspace_b<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b-delta`, where `delta=(b-a)/(N)` is the spacing between consecutive points.
 * Note that `b` can be less than `a`, in which case the returned sequence is decreasing
 ```C++
-linspace_a<double>(0,1,10) = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1}; 
-linspace_a<double>(1,0,10) = {0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0}; 
+linspace_b<double>(0,1,10) = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}; 
+linspace_b<double>(1,0,10) = {1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1}; 
 ```
 * This function is very useful for dealing the domain of trig functions, since typicallywe want to use the **interval [0,2*pi)**, ie we dont want to include the point 2*pi
 ## The `linspace_ab` function: numerical interval (a,b)
 * The function `linspace_ab<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b-delta`, where `delta=(b-a)/(N+1)` is the spacing between consecutive points.
 * Note that `b` can be less than `a`, in which case the returned sequence is decreasing
 ```C++
-linspace_a<double>(0,1,9) = {0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667, 0.777778, 0.888889, 1}; 
-linspace_a<double>(1,0,9) = {0.888889, 0.777778, 0.666667, 0.555556, 0.444444, 0.333333, 0.222222, 0.111111, 0}; 
+linspace_ab<double>(0,1,9) = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}; 
+linspace_ab<double>(1,0,9) = {0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1}; 
 ```
 
 [Table of Contents](README.md)

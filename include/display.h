@@ -1,5 +1,5 @@
-#ifndef DISPLAY_H
-#define DISPLAY_H
+#ifndef MATRICKS__DISPLAY
+#define MATRICKS__DISPLAY
 
 #include <unistd.h>
 
@@ -59,7 +59,7 @@ namespace display {
 
 
 
-    //****************************************************************************
+  //****************************************************************************
   //                        String functions
   //****************************************************************************
 
@@ -72,14 +72,35 @@ namespace display {
     return s;
   }
 
+
+  // THIS BUFFER IS USED THROUGHOUT THE DISPLAY CODE
   const size_t BUFFER_SIZE = 512;
   extern char Buffer[BUFFER_SIZE];
+
+  //------------------------------------------------------------
+  //                        printf2str
+  //------------------------------------------------------------
 
   // this definition is crafty, but probably better to make into a function
   
 #define printf2str(...) ((new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer))
 
 
+
+  //------------------------------------------------------------
+  //                        num2string
+  //------------------------------------------------------------
+
+
+  template <class D>
+    inline std::string num2string(D x) {
+    std::ostringstream strm;
+    strm << x;
+    return strm.str();
+  } 
+
+
+  
 
 #if MATRICKS_DEBUG>=1
 #define printf1(...) display::mout << printf2str(__VA_ARGS__)
@@ -427,7 +448,7 @@ namespace display {
     const static std::string format_string_default;	\
     static std::string format_string;			\
     static bool tens;					\
-};
+  };
 
   SPECIALIZE_FormatData_floating(float);
   SPECIALIZE_FormatData_floating(double);
@@ -637,7 +658,7 @@ namespace display {
   
 #define SPECIALIZE_mathtypes_dispval(TYPE)				\
   template <>								\
-    inline void dispval<TYPE >(const TYPE& d) {			\
+    inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
     snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
     string sval = string(Buffer);					\
@@ -666,15 +687,15 @@ namespace display {
 
 
 
-  #define SPECIALIZE_floating_dispval(TYPE)				\
+#define SPECIALIZE_floating_dispval(TYPE)				\
   template <>								\
-    inline void dispval<TYPE >(const TYPE& d) {			\
+    inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
     snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
     string sval = string(Buffer);					\
     if (FormatData<TYPE>::tens)  {					\
-      sval = replaceAll(sval,"E"," 10^");					\
-      sval = replaceAll(sval,"e"," 10^");					\
+      sval = replaceAll(sval,"E"," 10^");				\
+      sval = replaceAll(sval,"e"," 10^");				\
     }									\
     Style style = FormatData<TYPE >::style_for_value;			\
     TYPE zero = 0;							\

@@ -43,6 +43,9 @@
 #include "matricks_version.h"
 #include "preface.h"
 #include "display.h"
+#include "util.h"
+#include "slices.h"
+
 #include "debug.h"
 
 #include "matrickscommon.hpp"
@@ -80,7 +83,7 @@
 #include "p3vector.hpp"
 
 #include "matricksio.hpp"
-#include "matricksutil.hpp"
+#include "coda.h"
 #include "md.h"
 
 

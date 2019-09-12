@@ -7,42 +7,6 @@
 
 namespace matricks {
 
-
-
-
-
-
-
-
-
-  class slc {
-  private:
-    const index_type start_;
-    const index_type end_;
-    const index_type step_; 
-  public:
-    slc(const index_type start, const index_type end, const index_type step);
-    slc(const index_type start, const index_type end);
-    
-    index_type start(void) const;
-    index_type end(void) const; 
-    index_type step(void) const;
-
-    Vector<index_type>& toIndexVector(const size_type N) const;
-    void outputglossary(void) const;
-    std::string debugtxt(void) const;    
-    friend std::ostream& operator<<(std::ostream &stream, const slc& i) {
-      stream << i.debugtxt();
-      return stream;
-    }
-  };
-  namespace SLC {
-    const slc all(0,-1,1);
-    const slc rev(-1,0,-1);
-    const slc eve(0,-1,2);
-    const slc odd(1,-1,2);
-  };
-
   
   
   template <typename T>
@@ -138,78 +102,6 @@ namespace matricks {
 
 
 
-  // complex conjugate
-  template <typename D> std::complex<D>
-  operator~(const std::complex<D>& x) {
-    return std::complex<D>(x.real(), -x.imag());
-  }
-
-
-  
-  /****************************************************************************
-   * Rounding
-   ****************************************************************************   
-   */
-
-  // complex rounding
-  template <typename D> std::complex<D> round(const std::complex<D>& x) {
-    return std::complex<D>(std::round(x.real()), std::round(x.imag()));
-  }
-
-  template <typename D> D roundzero(const D& x, const D tolerance) {
-    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
-  }
-  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance) {
-    return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
-  }
-  
-
-  /****************************************************************************
-   * sgn(x) function
-   ****************************************************************************   
-   */
-#define SGN_MACRO(D)  inline D sgn(const D x) {if (x>0) return static_cast<D>(1); else if (x<0) return static_cast<D>(-1); else return static_cast<D>(0);}
-#define SGN_MACRO_US(D)  inline D sgn(const D x) {if (x>0) return static_cast<D>(1);else return static_cast<D>(0);}
-
-  SGN_MACRO(float);
-  SGN_MACRO(double);
-  SGN_MACRO(long double);
-  SGN_MACRO(char);
-  SGN_MACRO_US(unsigned char);
-  SGN_MACRO(short);
-  SGN_MACRO_US(unsigned short);
-  SGN_MACRO(int);
-  SGN_MACRO_US(unsigned int);
-  SGN_MACRO(long);
-  SGN_MACRO_US(unsigned long);
-#if LONGLONG_EXISTS
-  SGN_MACRO(long long);
-  SGN_MACRO_US(unsigned long long);
-#endif
-
-
-  /****************************************************************************
-   * miscellaneous functions
-   ****************************************************************************   
-   */
-  template <class D>
-  inline std::string num2string(D x) {
-    std::ostringstream strm;
-    strm << x;
-    return strm.str();
-    
-  } 
-
-  inline int gcd(int a, int b) {
-    int r;
-    do {
-      r = a % b;
-      a = b;
-      b = r;
-    } while (r != 0);
-    
-    return a;
-  }
 
 
 
@@ -330,18 +222,6 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Matrix;
-  template <class D, class A> class Mexpr;  
-  template <class D, class A> class MWrapperObj;
-  template <class D> class MSubmatObj;
-  template <class D> class MRangeObj;
-  template <class D> class MSetObj;
-  template <class D> class MDualSetObj;
-  template <class D> class MDualRangeObj;
-  template <class D> class MSetRangeObj;
-  template <class D> class MRangeSetObj;
-  template <class D> class MReconObj;
-
 
   template <class A> 
   Vector<index_type> sub2ind(const MorE<index_type,A>& subs, const size_type NR, const size_type NC);
@@ -367,19 +247,6 @@ namespace matricks {
   template <typename D> class RealVersionOfType<Matrix<D> > {
   public:
     typedef Matrix<typename RealVersionOfType<D>::Type> Type;
-  };
-
-  template <typename D> struct MatricksHelper {
-  public:
-    static D tolerance = D(0);
-  };
-  template <> struct MatricksHelper<double> {
-  public:
-    constexpr static double tolerance = 1.5e-16;
-  };
-  template <> struct MatricksHelper<float> {
-  public:
-    constexpr static float tolerance = 3.5e-7;
   };
 
 

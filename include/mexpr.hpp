@@ -749,11 +749,11 @@ namespace matricks {
       if (iiptr_==0) 
 	s1= ii_.debugtxt();
       else
-	s1= num2string(ii_[0]);
+	s1= display::num2string(ii_[0]);
       if (jjptr_==0) 
 	s2= jj_.debugtxt();
       else
-	s2= num2string(jj_[0]);
+	s2= display::num2string(jj_[0]);
       return debugtxt_paren2(a_.debugtxt(),s1,s2);
     }
 
@@ -1026,7 +1026,7 @@ namespace matricks {
       if (iiptr_==0) 
 	s= ii_.debugtxt();
       else
-	s= num2string(ii_[0]);
+	s= display::num2string(ii_[0]);
       return debugtxt_paren2(a_.debugtxt(),s,j_.debugtxt());
      }
 
@@ -1171,7 +1171,7 @@ namespace matricks {
       if (jjptr_==0) 
 	s= jj_.debugtxt();
       else
-	s= num2string(jj_[0]);
+	s= display::num2string(jj_[0]);
       return debugtxt_paren2(a_.debugtxt(),i_.debugtxt(),s);
     }
 

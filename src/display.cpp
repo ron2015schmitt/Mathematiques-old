@@ -19,11 +19,11 @@ namespace matricks {
 
 
 namespace display {
-
+  
   const char blankline[] = "                                                                               \n";
-  char Buffer[BUFFER_SIZE];
-
-
+  char Buffer[display::BUFFER_SIZE];
+  
+  
   //****************************************************************************
   //                          Terminal
   //****************************************************************************
@@ -201,7 +201,7 @@ namespace display {
 #endif
 
 
-    // string
+  // string
   Style FormatData<std::string>::style_for_type_name = createStyle(GREEN);
   Style FormatData<std::string>::style_for_value = createStyle(BLACK);
   const std::string FormatData<std::string>::format_string_default = "%s";
@@ -341,8 +341,6 @@ namespace display {
   
 
 };
-
-
 
 
 

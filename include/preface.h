@@ -1,5 +1,5 @@
-#ifndef MATRICKS__PREFACE_H
-#define MATRICKS__PREFACE_H
+#ifndef MATRICKS__PREFACE
+#define MATRICKS__PREFACE
 
 
 #define CPP11 (__cplusplus >= 201100L)
@@ -64,7 +64,6 @@ namespace matricks {
   const size_type badsize = std::numeric_limits<size_type>::max();
 
 
-
   template <class D> class Vector;
   template <class D> class p3vector;
   template <class D, class A> class Vexpr;  
@@ -81,7 +80,18 @@ namespace matricks {
 
 
   template <class D> class Matrix;
-  
+  template <class D, class A> class Mexpr;  
+  template <class D, class A> class MWrapperObj;
+  template <class D> class MSubmatObj;
+  template <class D> class MRangeObj;
+  template <class D> class MSetObj;
+  template <class D> class MDualSetObj;
+  template <class D> class MDualRangeObj;
+  template <class D> class MSetRangeObj;
+  template <class D> class MRangeSetObj;
+  template <class D> class MReconObj;
+
+
 };
 
 

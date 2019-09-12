@@ -32,6 +32,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define header1(str)  mout << "# " << str << std::endl
 #define header2(str)  mout << "## " << str << std::endl
 #define header3(str)  mout << "### " << str << std::endl
+#define header4(str)  mout << "#### " << str << std::endl
 #define text(str)  mout << str << std::endl
 
 #define codestart(lang) mout << std::string("```") << std::string(lang) << std::endl

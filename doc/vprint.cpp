@@ -468,6 +468,7 @@ int main()
     codeend();
   }
   
+  header4("Mathematica-style Vector format");
   cr();cr();
   text("The function `set_mathematica_var_format()` sets these variables as follows");
   cr();cr();
@@ -501,6 +502,7 @@ int main()
     codeend();
   }
   
+  header4("Matlab-style Vector format");
   cr();cr();
   text("The function `set_matlab_var_format()` sets these varibles as follows");
   cr();cr();
@@ -512,6 +514,27 @@ int main()
   text("|string_endofline |  \" ...\\n    \"  |");
   text("|string_closing |   \" ...\\n]\"  |");
 
+  cr();cr();
+  text("* This function also changes the format for doubles and complex numbers");
+  cr();cr();
+  codestart("C++");
+  codemulti( setFormatString<double>("% 10.8e") );
+  codemulti( FormatData<double>::tens = false );
+  codemulti( setFormatStringComplex("%s + i*%s") );
+  codeend();
+  {
+    
+    example(Nex++," Matlab Vector format");
+    codestart("C++");
+    codemulti( using namespace matricks );
+    codemulti( Vector<double> v = range<double>(1001,1010);  );
+    codemulti( set_matlab_var_format() );
+    codeend();
+    text("The Matlab format yields\n");
+    codestart("C++");
+    disp(v);
+    codeend();
+  }
 
   matricks_toc();
 

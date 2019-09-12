@@ -57,10 +57,10 @@ int main()
     resultmulti( v[-1] );
     resultmulti( v[-2] );
     resultmulti( v[-N] );
-  #if CPP11 == 1
+#if CPP11 == 1
     resultmulti( v[{0,-1}] );
     resultmulti( v[{2,2,-2,-2}] );
-  #endif
+#endif
     resultend();
   }
 
@@ -167,10 +167,9 @@ int main()
     resultmulti( v4[slc(1,-1,2)]);
     resultmulti( v10[slc(1,-1,2)]);
     resultend();
-}
+  }
 
   matricks_toc();
-
-
   return 0;
+
 }

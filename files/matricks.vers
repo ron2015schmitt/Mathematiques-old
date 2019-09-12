@@ -4,7 +4,7 @@
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.15
+VERSION_MATRICKS=2.16
 # V2.1 Introduced version control
 # V2.2 namespace Matricks -> matricks
 # V2.3 v[seq(start,end)] slices -- only for Vectors
@@ -24,3 +24,4 @@ VERSION_MATRICKS=2.15
 # V2.13 introducing color and styles for terminal output
 # V2.14 adding cumsum,cumprod,cumtrapz and other calculus functions
 # V2.15 addign documentation for display and various functions not yet documented
+# V2.16 major refactoring to use Tensor class for Vector and Matrix and new debugging

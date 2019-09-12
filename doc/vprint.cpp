@@ -445,13 +445,13 @@ int main()
   text("**TO DO**");
   cr();cr();
 
-  text("|Class variable|default value|");
+  text("|`FormatDataVector` class variable|default value|");
   text("|------------------|------------------------|");
-  text("|FormatDataVector::string_opening| \"{\"|");
-  text("|FormatDataVector::string_delimeter | \",\"|");
-  text("|FormatDataVector::max_elements_per_line | matricks::maxsize|");
-  text("|FormatDataVector::string_endofline | \"\\n\"|");
-  text("|FormatDataVector::string_closing |   \"}\"|");
+  text("|string_opening| \"{\"|");
+  text("|string_delimeter | \",\"|");
+  text("|max_elements_per_line | matricks::maxsize|");
+  text("|string_endofline | \"\\n\"|");
+  text("|string_closing |   \"}\"|");
 
 
 

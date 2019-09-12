@@ -295,10 +295,26 @@ int main()
   text("* Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)\n");
 
   
-  header2("Customizing the format and colors");
+  header2("Customizing the format and colors by data type");
   cr();cr();
   header3("Customizing number formats");
-  text("**TO DO**");
+  text("You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`");
+
+    {
+      example(Nex++," double number format");
+      
+      codestart("C++");
+      codemulti( using namespace display );
+      codemulti( double x = 2.51  );
+      codeend();
+      text("");
+
+      resultstart3(": The default format is \"%g\" which yields");
+      resultmulti(x );
+      resultend();
+
+    }
+  
   cr();cr();
   header3("Customizing complex number format");
   text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `\"(%s, %s)\"`\n");

@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r34).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r35).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -255,11 +255,22 @@ display::mout << mybold.apply("Hello World") << std::endl;
 * Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles
 * Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
-## Customizing the format and colors
+## Customizing the format and colors by data type
 
 
 ### Customizing number formats
-**TO DO**
+You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`
+**EXAMPLE 5**:  double number format
+```C++
+using namespace display;
+double x = 2.51;
+```
+
+**Results**: The default format is "%g" which yields
+```C++
+  x = 2.51; 
+```
+
 
 
 ### Customizing complex number format
@@ -267,7 +278,7 @@ The format for complex numbers is set using the function `setFormatStringComplex
 
 
 
-**EXAMPLE 5**:  complex number formats
+**EXAMPLE 6**:  complex number formats
 ```C++
 using namespace display;
 std::complex<double> z(1,-2);

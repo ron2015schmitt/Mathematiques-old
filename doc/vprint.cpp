@@ -453,6 +453,7 @@ int main()
   text("|max_elements_per_line | matricks::maxsize|");
   text("|string_endofline | \"\\n\"|");
   text("|string_closing |   \"}\"|");
+  cr();cr();
 
   {
     set_default_format();
@@ -468,7 +469,7 @@ int main()
   }
   
   cr();cr();
-  text("The function `set_mathematica_var_format()` sets these varibles as follows");
+  text("The function `set_mathematica_var_format()` sets these variables as follows");
   cr();cr();
   text("|`FormatDataVector` class variable|Mathematica value|");
   text("|------------------|------------------------|");
@@ -478,6 +479,28 @@ int main()
   text("|string_endofline | \"\\n    \" |");
   text("|string_closing |   \"\\n}\"   |");
 
+  cr();cr();
+  text("* This function also changes the format for doubles and complex numbers");
+  cr();cr();
+  codestart("C++");
+  codemulti( setFormatString<double>("% 10.8e") );
+  codemulti( FormatData<double>::tens = true );
+  codemulti( setFormatStringComplex("%s + I*%s") );
+  codeend();
+  {
+    
+    example(Nex++," Mathematica Vector format");
+    codestart("C++");
+    codemulti( using namespace matricks );
+    codemulti( Vector<double> v = range<double>(1001,1010);  );
+    codemulti( set_mathematica_var_format() );
+    codeend();
+    text("The Mathematica format yields\n");
+    codestart("C++");
+    disp(v);
+    codeend();
+  }
+  
   cr();cr();
   text("The function `set_matlab_var_format()` sets these varibles as follows");
   cr();cr();

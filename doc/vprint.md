@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r46).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r48).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -406,6 +406,8 @@ The format for `matricks:Vector` output is controlled by the following static cl
 |max_elements_per_line | matricks::maxsize|
 |string_endofline | "\n"|
 |string_closing |   "}"|
+
+
 **EXAMPLE 8**:  default Vector format
 ```C++
 using namespace matricks;
@@ -418,7 +420,7 @@ v = {1001,1002,1003,1004,1005,1006,1007,1008,1009,1010};
 ```
 
 
-The function `set_mathematica_var_format()` sets these varibles as follows
+The function `set_mathematica_var_format()` sets these variables as follows
 
 
 |`FormatDataVector` class variable|Mathematica value|
@@ -428,6 +430,30 @@ The function `set_mathematica_var_format()` sets these varibles as follows
 |max_elements_per_line | 5 |
 |string_endofline | "\n    " |
 |string_closing |   "\n}"   |
+
+
+* This function also changes the format for doubles and complex numbers
+
+
+```C++
+setFormatString<double>("% 10.8e");
+FormatData<double>::tens = true;
+setFormatStringComplex("%s + I*%s");
+```
+**EXAMPLE 9**:  Mathematica Vector format
+```C++
+using namespace matricks;
+Vector<double> v = range<double>(1001,1010);;
+set_mathematica_var_format();
+```
+The Mathematica format yields
+
+```C++
+v = {
+     1.00100000 10^+03,  1.00200000 10^+03,  1.00300000 10^+03,  1.00400000 10^+03,  1.00500000 10^+03, 
+     1.00600000 10^+03,  1.00700000 10^+03,  1.00800000 10^+03,  1.00900000 10^+03,  1.01000000 10^+03
+}; 
+```
 
 
 The function `set_matlab_var_format()` sets these varibles as follows

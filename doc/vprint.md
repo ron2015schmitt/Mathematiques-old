@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r44).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r45).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -397,6 +397,7 @@ z =  1.000000 + -2.000000i;
 **TO DO**
 
 
+The format for `matricks:Vector` output is controlled by the following static class variables.
 |`FormatDataVector` class variable|default value|
 |------------------|------------------------|
 |string_opening| "{"|
@@ -404,5 +405,25 @@ z =  1.000000 + -2.000000i;
 |max_elements_per_line | matricks::maxsize|
 |string_endofline | "\n"|
 |string_closing |   "}"|
+
+
+The function `set_mathematica_var_format()` sets these varibles as follows
+|`FormatDataVector` class variable|Mathematica value|
+|------------------|------------------------|
+|string_opening| "{\n    " |
+|string_delimeter | ", " |
+|max_elements_per_line | 5 |
+|string_endofline | "\n    " |
+|string_closing |   "\n}"   |
+
+
+The function `set_matlab_var_format()` sets these varibles as follows
+|`FormatDataVector` class variable|Matlab value|
+|------------------|------------------------|
+|string_opening|   "[ ...\n    "  |
+|string_delimeter | ", "  |
+|max_elements_per_line | 5 |
+|string_endofline |  " ...\n    "  |
+|string_closing |   " ...\n]"  |
 
 [Table of Contents](README.md)

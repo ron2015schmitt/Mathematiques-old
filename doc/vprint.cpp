@@ -445,6 +445,7 @@ int main()
   text("**TO DO**");
   cr();cr();
 
+  text("The format for `matricks:Vector` output is controlled by the following static class variables.");
   text("|`FormatDataVector` class variable|default value|");
   text("|------------------|------------------------|");
   text("|string_opening| \"{\"|");
@@ -453,9 +454,27 @@ int main()
   text("|string_endofline | \"\\n\"|");
   text("|string_closing |   \"}\"|");
 
+  cr();cr();
+  text("The function `set_mathematica_var_format()` sets these varibles as follows");
+  text("|`FormatDataVector` class variable|Mathematica value|");
+  text("|------------------|------------------------|");
+  text("|string_opening| \"{\\n    \" |");
+  text("|string_delimeter | \", \" |");
+  text("|max_elements_per_line | 5 |");
+  text("|string_endofline | \"\\n    \" |");
+  text("|string_closing |   \"\\n}\"   |");
+
+  cr();cr();
+  text("The function `set_matlab_var_format()` sets these varibles as follows");
+  text("|`FormatDataVector` class variable|Matlab value|");
+  text("|------------------|------------------------|");
+  text("|string_opening|   \"[ ...\\n    \"  |");
+  text("|string_delimeter | \", \"  |");
+  text("|max_elements_per_line | 5 |");
+  text("|string_endofline |  \" ...\\n    \"  |");
+  text("|string_closing |   \" ...\\n]\"  |");
 
 
-  
   matricks_toc();
 
   return 0;

@@ -31,7 +31,7 @@ int main()
   header2("Integration");
   header3("Definite integrals");
 
-  text("Integrating over an interval [a,b] yields a single number--the area under the curve.");
+  text("Integrating over an interval (a,b) yields a single number--the area under the curve.");
   cr();
   text("![Definite Integral](DefiniteIntegral.png)");
 
@@ -42,9 +42,9 @@ int main()
     example(Nex++,"Definite integrals");
     codestart("C++");
     codemulti( const size_type N = 100000 );
-    codemulti( const double a = 0 + 1/double(N) );
-    codemulti( const double b = 1 - 1/double(N) );
-    codemulti( Vector<double> x(linspace<double>(a,b,N-1)) );
+    codemulti( const double a = 0 );
+    codemulti( const double b = 1 );
+    codemulti( Vector<double> x(linspace_ab<double>(a,b,N)) );
     codemulti( Vector<double> f );
     codemulti( f=-log(log(1/x)) );
     codeend();
@@ -216,8 +216,8 @@ int main()
     codemulti( const double pi = M_PI );
     codemulti( const size_type N = 25 );
     codemulti( const double a = 0 );
-    codemulti( const double b = 2*pi*(1 - 1/double(N)) );
-    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    codemulti( const double b = 2*pi );
+    codemulti( Vector<double> x( linspace_b<double>(a,b,N) ) );
     codemulti( Vector<double> f = sin(x) );
     codemulti( Vector<double> f2 = deriv(f,a,b,4,2,true )  );
     codemulti( Vector<double> f3 = deriv(f,a,b,4,3,true )  );

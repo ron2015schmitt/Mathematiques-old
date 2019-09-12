@@ -1,14 +1,37 @@
 
-# The `linspace` function in mātricks
+# The `linspace` functions in mātricks
 _This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.15-r57).
 
-* The function `linspace<D>(start,end,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `start` to `end`, spaced by `(start-end)/(N-1)`
-* Note that `end` can be less than `start`, in which case the returned sequence is decreasing
+## The `linspace` function: numerical interval [a,b]
+* The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`
+* Note that `b` can be less than `a`, in which case the returned sequence is decreasing
 ```C++
 linspace<double>(100,400,4) = {100, 200, 300, 400}; 
 linspace<unsigned int>(1,2,2) = {1, 2}; 
 linspace<double>(0,1,11) = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1}; 
 linspace<double>(1,0,11) = {1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0}; 
+```
+## The `linspace_a` function: numerical interval (a,b]
+* The function `linspace_a<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b`, where `delta=(b-a)/(N)` is the spacing between consecutive points.
+* Note that `b` can be less than `a`, in which case the returned sequence is decreasing
+```C++
+linspace_a<double>(0,1,10) = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1}; 
+linspace_a<double>(1,0,10) = {0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0}; 
+```
+## The `linspace_b` function: numerical interval [a,b)
+* The function `linspace_b<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b-delta`, where `delta=(b-a)/(N)` is the spacing between consecutive points.
+* Note that `b` can be less than `a`, in which case the returned sequence is decreasing
+```C++
+linspace_a<double>(0,1,10) = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1}; 
+linspace_a<double>(1,0,10) = {0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0}; 
+```
+* This function is very useful for dealing the domain of trig functions, since typicallywe want to use the **interval [0,2*pi)**, ie we dont want to include the point 2*pi
+## The `linspace_ab` function: numerical interval (a,b)
+* The function `linspace_ab<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b-delta`, where `delta=(b-a)/(N+1)` is the spacing between consecutive points.
+* Note that `b` can be less than `a`, in which case the returned sequence is decreasing
+```C++
+linspace_a<double>(0,1,9) = {0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667, 0.777778, 0.888889, 1}; 
+linspace_a<double>(1,0,9) = {0.888889, 0.777778, 0.666667, 0.555556, 0.444444, 0.333333, 0.222222, 0.111111, 0}; 
 ```
 
 [Table of Contents](README.md)

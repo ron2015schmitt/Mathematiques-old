@@ -1,6 +1,6 @@
 
 # Calculating a Taylor series and plotting the results in Mathematica
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.15-r58).
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.15-r60).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(r)
 We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). 

@@ -1,6 +1,6 @@
 
 # python-like access: negative indices & slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.15-r58).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.15-r60).
 
 ## Element access
 ### Positive and negative indices

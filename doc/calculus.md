@@ -1,6 +1,6 @@
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.15-r58).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.15-r60).
 
 ## Integration
 ### Definite integrals

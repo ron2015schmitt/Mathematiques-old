@@ -67,7 +67,8 @@
 #include "mcomplexexpr.hpp"
 #include "mvexpr.hpp"
 
-#include "vfunctions.h"
+#include "functions.h"
+#include "functions_v.h"
 
 #include "moperators.hpp"
 #include "mmathops.hpp"

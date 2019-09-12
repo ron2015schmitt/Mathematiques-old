@@ -442,7 +442,6 @@ int main()
   }
 
   header3("Customizing Vector format");
-  text("**TO DO**");
   cr();cr();
 
   text("The format for `matricks:Vector` output is controlled by the following static class variables.");
@@ -455,6 +454,19 @@ int main()
   text("|string_endofline | \"\\n\"|");
   text("|string_closing |   \"}\"|");
 
+  {
+    set_default_format();
+    example(Nex++," default Vector format");
+    codestart("C++");
+    codemulti( using namespace matricks );
+    codemulti( Vector<double> v = range<double>(1001,1010);  );
+    codeend();
+    text("The default format yields\n");
+    codestart("C++");
+    disp(v);
+    codeend();
+  }
+  
   cr();cr();
   text("The function `set_mathematica_var_format()` sets these varibles as follows");
   cr();cr();

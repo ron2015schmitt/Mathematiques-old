@@ -394,7 +394,6 @@ The above statement changes the display of `z` to
 z =  1.000000 + -2.000000i; 
 ```
 ### Customizing Vector format
-**TO DO**
 
 
 The format for `matricks:Vector` output is controlled by the following static class variables.
@@ -407,6 +406,16 @@ The format for `matricks:Vector` output is controlled by the following static cl
 |max_elements_per_line | matricks::maxsize|
 |string_endofline | "\n"|
 |string_closing |   "}"|
+**EXAMPLE 8**:  default Vector format
+```C++
+using namespace matricks;
+Vector<double> v = range<double>(1001,1010);;
+```
+The default format yields
+
+```C++
+v = {1001,1002,1003,1004,1005,1006,1007,1008,1009,1010}; 
+```
 
 
 The function `set_mathematica_var_format()` sets these varibles as follows

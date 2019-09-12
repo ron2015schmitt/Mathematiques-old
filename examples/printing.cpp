@@ -103,21 +103,29 @@ int main()
   mout << std::endl;
   mout << std::endl;
 
-
-  Style mystyle = createStyle(BOLD+RED);
-  mout << mystyle.apply("with style") + " without style " << std::endl;
+  {
+    Style mystyle = createStyle(BOLD+RED);
+    mout << mystyle.apply("with style") + " without style " << std::endl;
+  }
   mout << std::endl;
   mout << std::endl;
   mout << std::endl;
 
+  {
+    int nf = 27;  // color for foreground
+    int nb = 227; // color for background 
+    Style mystyle(nf, nb);
+    mout << mystyle.apply("Hello World") << std::endl;
 
-  Style mystyle2(27,227);
-  mout << mystyle2.apply("with style") + " without style " << std::endl;
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+    mout << std::endl;
+    mout << std::endl;
+    mout << std::endl;
 
-  
+
+    Style bold(BOLD); 
+    Style mybold = bold + mystyle; 
+    mout << mybold.apply("Hello World") << std::endl; 
+  }
   
   cr();cr();
   return 0;

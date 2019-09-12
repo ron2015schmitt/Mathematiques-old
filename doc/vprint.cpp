@@ -272,14 +272,25 @@ int main()
 
   cr();cr();
   header3("Custom styles");
-  text("* The user can define a style for any foreground color and background color combination using the constructor:\n");
+  text("* The user can define a style for any foreground color and background color combination as follows:\n");
 
   codestart("C++");
   text("int nf = 27;  // color for foreground  \n");
   text("int nb = 227; // color for background  \n");
   text("display::Style mystyle(nf,nb); \n");
+  text("display::mout << mystyle.apply(\"Hello World\") << std::endl; \n");
   codeend();
 
+  text("* Style objects can added:\n");
+  codestart("C++");
+  text("int nf = 27;  // color for foreground  \n");
+  text("int nb = 227; // color for background  \n");
+  text("display::Style mystyle(nf,nb); \n");
+  text("display::Style bold(BOLD); \n");
+  text("display::Style mybold = bold + mystyle; \n");
+  text("display::mout << mybold.apply(\"Hello World\") << std::endl; \n");
+  codeend();
+  text("* Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles");
   
   text("* Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)\n");
 

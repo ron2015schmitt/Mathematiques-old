@@ -310,7 +310,7 @@ int main()
     codeend();
     text("");
 
-    resultstart3(": The default format is \"%g\" which yields");
+    resultstart3(": The default format is `\"%g\"` which yields");
     resultmulti(x );
     resultend();
 
@@ -318,7 +318,7 @@ int main()
     codemulti( setFormatString<double>("%+18.15f")  );
     codeend();
     text("");
-    resultstart3(": The format \"%+18.15f\"  yields");
+    resultstart3(": The format `\"%+18.15f\"`  yields");
     resultmulti(x );
     resultend();
 
@@ -331,20 +331,20 @@ int main()
       
     codestart("C++");
     codemulti( using namespace display );
-    codemulti( int n = -1024;  );
+    codemulti( int n = -1024  );
     codeend();
     text("");
 
-    resultstart3(": The default format is \"%d\" which yields");
-    resultmulti(x );
+    resultstart3(": The default format is `\"%d\"` which yields");
+    resultmulti(n);
     resultend();
 
     codestart("C++");
     codemulti( setFormatString<int>("%10d")  );
     codeend();
     text("");
-    resultstart3(": The format \"%10d\"  yields");
-    resultmulti(x );
+    resultstart3(": The format `\"%10d\"`  yields");
+    resultmulti(n);
     resultend();
 
   }

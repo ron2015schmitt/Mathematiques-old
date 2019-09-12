@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r38).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r39).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -268,7 +268,7 @@ using namespace display;
 double x = 2.51;
 ```
 
-**Results**: The default format is "%g" which yields
+**Results**: The default format is `"%g"` which yields
 ```C++
   x = 2.51; 
 ```
@@ -277,7 +277,7 @@ double x = 2.51;
 setFormatString<double>("%+18.15f");
 ```
 
-**Results**: The format "%+18.15f"  yields
+**Results**: The format `"%+18.15f"`  yields
 ```C++
   x = +2.510000000000000; 
 ```
@@ -287,21 +287,21 @@ setFormatString<double>("%+18.15f");
 **EXAMPLE 6**:  `int` number format
 ```C++
 using namespace display;
-int n = -1024;;
+int n = -1024;
 ```
 
-**Results**: The default format is "%d" which yields
+**Results**: The default format is `"%d"` which yields
 ```C++
-  x = +3.140000000000000; 
+  n = -1024; 
 ```
 
 ```C++
 setFormatString<int>("%10d");
 ```
 
-**Results**: The format "%10d"  yields
+**Results**: The format `"%10d"`  yields
 ```C++
-  x = +3.140000000000000; 
+  n =      -1024; 
 ```
 
 

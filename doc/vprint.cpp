@@ -239,20 +239,23 @@ int main()
   text("This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.\n");
   
   cr();cr();
-  header2("Text `Style` class");
+  header2("The `Style` class");
   text("* Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).\n");
   text("* matricks defines the class `Style` for applying color and other attributes, such as **bold**\n");
   text("* The predefined styles are shown below\n");
   text("![styles](displaycolors.png)\n");
   text("You can combine the styles using the `+` sign\n");
   text("![stylescombined](displaycolorscombined.png)\n");
-  text("* To use any of these, use the `createStyle` macro");
+  text("* To use any of these, use the `createStyle` macro as the following example illustrates");
   text("```C++\n");
   text("Style mystyle = createStyle(BOLD+RED);\n");
   text("mout << mystyle.apply(\"with style\") + \" without style \" << std::endl;\n");
   text("```\n");
+  text("The output from the above two lines of code is:\n");
   text("![stylesexample](displaycolorsexample.png)");
+  cr();cr();
   text("* _The Style class checks to see whether or not to actually use colors, as described in the previous sub-section_\n");
+  text("**TO DO**:  bespoke styles");
   cr();cr();
 
   header2("Customizing the format and colors");

@@ -262,7 +262,7 @@ namespace display {
     Log::style_nspace =  createStyle(MAGENTA1);
     Log::style_class = createStyle(CYAN);
     Log::style_func =  createStyle(BLUE1);
-    Log::style_str = createStyle(BLACK);
+    Log::style_str = createStyle(RESET);
   };
 
 

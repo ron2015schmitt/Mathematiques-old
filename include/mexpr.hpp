@@ -160,9 +160,6 @@ namespace matricks {
 
     // assign to recon object (issue error)
     DERIVED& equals(const MReconObj<D>& b) { 
-#if MATRICKS_DEBUG>0
-      mbad_reconassignment(derived().objectID(), b);
-#endif
       return derived();
     }
 
@@ -174,24 +171,9 @@ namespace matricks {
       
       const size_type N =size();
 
-#if MATRICKS_DEBUG>0
-      const size_type NR = Nrows();
-      const size_type NC = Ncols();
-      if ( ( N !=  rhs.size() ) 
-	   || ( (NR!=1) && (NC!=1) ) ){ 
-	mbad_wrapper_assignment_vec(derived().debugtxt(),rhs.debugtxt());
-	derived().outputglossary();
-	rhs.outputglossary();
-	return derived();
-      }
-#endif
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#if MATRICKS_DEBUG>0
-	Vector<D> y(N,debugtxt());
-#else
 	Vector<D> y(N);
-#endif
 	for(register index_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
 	for(register index_type i=0; i<N; i++) 
@@ -212,22 +194,11 @@ namespace matricks {
       const size_type N =size();
       const size_type NR = Nrows();
       const size_type NC = Ncols();
-#if MATRICKS_DEBUG>0
-      if ( ( N !=  rhs.size() ) || (NR != rhs.Nrows()) || (NC != rhs.Ncols()) )  { 
-	mbad_wrapper_assignment(debugtxt(),rhs.debugtxt());
-	outputglossary();
-	rhs.outputglossary();
-	return derived();
-      }
-#endif
 
 
       if ( rhs.addrmatch(derived().addr()) ) {    
-#if MATRICKS_DEBUG>0
-	Matrix<D> y(NR,NC,debugtxt());
-#else
 	Matrix<D> y(NR,NC);
-#endif
+
 	for(register index_type i=0; i<N; i++) 
 	  y(i) = rhs(i); 
 	for(register index_type i=0; i<N; i++) 
@@ -305,12 +276,6 @@ namespace matricks {
       const index_type r = static_cast<index_type>(rstart_ + result.quot);
       const index_type c = static_cast<index_type>(cstart_ + result.rem);
       const index_type ind = r*a_NC + c;
-#if MATRICKS_DEBUG>0
-      if ( (r>=aNrows())||(c>=aNcols()) ){
-	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
       return ind;
     }
 
@@ -323,14 +288,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#if MATRICKS_DEBUG>0
-      if  ( (rstart_>rend_) || (cstart_>cend_)) {
-	mbad_submat(a_.objectID(), rstart_ ,rend_, cstart_, cend_);
-	return badsize;
-      }else {
-	return NR_*NC_;
-      }
-#endif
       return NR_*NC_;
     }
 
@@ -342,9 +299,6 @@ namespace matricks {
     }
     inline size_type asize(void) const {
       return a_.size();
-    }
-    inline size_type aID(void) const {
-      return a_.objectID();
     }
 
 
@@ -362,7 +316,7 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_submat(a_.objectID(), rstart_ ,rend_, cstart_, cend_);
+      return "";
     }
 
     void outputglossary(void) const {
@@ -414,14 +368,6 @@ namespace matricks {
 
     // TODO: **FIX THIS**
     inline index_type index(index_type i) const{
-//       //      const index_type ind = i_[i];
-// #if MATRICKS_DEBUG>0
-//       if (ind>=asize()) {
-// 	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
-// 	return 0;
-//       }
-// #endif
-//       return i;
       return 0;
     }
 
@@ -448,9 +394,6 @@ namespace matricks {
     inline size_type aNcols(void) const {
       return a_.Ncols();
     }
-    inline size_type aID(void) const {
-      return a_.objectID();
-    }
 
 
     inline METypes metype(void) const {
@@ -463,7 +406,7 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_paren1(a_.debugtxt(),i_.debugtxt());
+      return "";
     }
 
     void outputglossary(void) const {
@@ -510,7 +453,7 @@ namespace matricks {
       : a_(a), 
 	iiptr_(0), 
 	ii_(ii),
-	indID_(ii.objectID()),
+	indID_(0),
 	indisvector(true)
     {
     }
@@ -518,7 +461,7 @@ namespace matricks {
       : a_(a), 
 	iiptr_(new Vector<index_type>(findtruesi(mask))), 
 	ii_(*iiptr_),
-	indID_(mask.objectID()),
+	indID_(0),
 	indisvector(false)
     {
     }
@@ -526,7 +469,7 @@ namespace matricks {
       : a_(a), 
 	iiptr_(new Vector<index_type>(findtrue(mask))), 
 	ii_(*iiptr_),
-	indID_(mask.objectID()),
+	indID_(0),
 	indisvector(true)
     {
     }
@@ -534,7 +477,7 @@ namespace matricks {
       : a_(a), 
 	iiptr_(new Vector<index_type>(sub2ind(subs,a.Ncols()))), 
 	ii_(*iiptr_),
-	indID_(subs.objectID()),
+	indID_(0),
 	indisvector(false)
     {
     }
@@ -553,12 +496,6 @@ namespace matricks {
 
     inline index_type index(index_type i) const{
       const index_type ind = ii_[i];
-#if MATRICKS_DEBUG>0
-      if (ind>=asize()) {
-	mwrapper_out_of_bounds(debugtxt(),ind,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
       return ind;
     }
 
@@ -588,7 +525,7 @@ namespace matricks {
       return a_.size();
     }
     inline size_type aID(void) const {
-      return a_.objectID();
+      return 0;
     }
 
     template <class B>
@@ -601,7 +538,7 @@ namespace matricks {
 
 
     std::string debugtxt(void) const {
-      return debugtxt_paren1b(a_.debugtxt(),indID_,indisvector);
+      return "";
     }
 
     void outputglossary(void) const {
@@ -692,12 +629,6 @@ namespace matricks {
       const index_type r = ii_[i];
       const index_type c = jj_[j];
       const index_type ind =  r*a_NC + c;
-#if MATRICKS_DEBUG>0
-      if ( (r>=aNrows())||(c>=aNcols()) ){
-	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-	return 0;
-      }
-#endif
       return ind;
     }
 
@@ -706,11 +637,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#if MATRICKS_DEBUG>0
-      if  ( (ii_.size()==badsize) || ( jj_.size()==badsize) ) {
-	return badsize;
-      }
-#endif
       return Nrows()*Ncols();
     }
     
@@ -730,9 +656,6 @@ namespace matricks {
     }
     inline size_type asize(void) const {
       return a_.size();
-    }
-    inline size_type aID(void) const {
-      return a_.objectID();
     }
 
     template <class B>
@@ -754,7 +677,7 @@ namespace matricks {
 	s2= jj_.debugtxt();
       else
 	s2= display::num2string(jj_[0]);
-      return debugtxt_paren2(a_.debugtxt(),s1,s2);
+      return "";
     }
 
     void outputglossary(void) const {
@@ -824,19 +747,6 @@ namespace matricks {
     }
 
     inline index_type index(index_type k) const{
-//       const std::div_t result = std::div(int(k),int(Ncols()));
-//       const int i = result.quot;
-//       const int j = result.rem;
-//       const index_type r = i_[i];
-//       const index_type c = j_[j];
-//       const index_type ind =  r*a_NC + c;
-// #if MATRICKS_DEBUG>0
-//       if ( (r>=aNrows())||(c>=aNcols()) ){
-// 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-// 	return 0;
-//       }
-// #endif
-//       return ind;
       return 0;
     }
 
@@ -845,11 +755,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-// #if MATRICKS_DEBUG>0
-//       if  ( (i_.size()==badsize) || ( j_.size()==badsize) ) {
-// 	return badsize;
-//       }
-// #endif
       return Nrows()*Ncols();
     }
     
@@ -872,9 +777,6 @@ namespace matricks {
     inline size_type asize(void) const {
       return a_.size();
     }
-    inline size_type aID(void) const {
-      return a_.objectID();
-    }
 
     template <class B>
     MDualRangeObj<D>& operator=(const B& b) { 
@@ -885,7 +787,7 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-      return debugtxt_paren2(a_.debugtxt(),i_.debugtxt(),j_.debugtxt());
+      return "";
     }
 
     void outputglossary(void) const {
@@ -960,19 +862,6 @@ namespace matricks {
     }
 
     inline index_type index(index_type k) const{
-//       const std::div_t result = std::div(int(k),int(Ncols()));
-//       const int i = result.quot;
-//       const int j = result.rem;
-//       const index_type r = ii_[i];
-//       const index_type c = j_[j];
-//       const index_type ind =  r*a_NC + c;
-// #if MATRICKS_DEBUG>0
-//       if ( (r>=aNrows())||(c>=aNcols()) ){
-// 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-// 	return 0;
-//       }
-// #endif
-//       return ind;
       return 0;
     }
 
@@ -981,11 +870,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-// #if MATRICKS_DEBUG>0
-//       if  ( (ii_.size()==badsize) || ( j_.size()==badsize) ) {
-// 	return badsize;
-//       }
-// #endif
       return Nrows()*Ncols();
     }
     
@@ -1008,9 +892,6 @@ namespace matricks {
     inline size_type asize(void) const {
       return a_.size();
     }
-    inline size_type aID(void) const {
-      return a_.objectID();
-    }
 
     template <class B>
     MSetRangeObj<D>& operator=(const B& b) { 
@@ -1027,7 +908,7 @@ namespace matricks {
 	s= ii_.debugtxt();
       else
 	s= display::num2string(ii_[0]);
-      return debugtxt_paren2(a_.debugtxt(),s,j_.debugtxt());
+      return "";
      }
 
     void outputglossary(void) const {
@@ -1111,12 +992,6 @@ namespace matricks {
 //       const index_type r = i_[i];
 //       const index_type c = jj_[j];
 //       const index_type ind =  r*a_NC + c;
-// #if MATRICKS_DEBUG>0
-//       if ( (r>=aNrows())||(c>=aNcols()) ){
-// 	mwrapper_out_of_bounds_rc(debugtxt(),r,c,Nrows(),Ncols(),size(),aID());
-// 	return 0;
-//       }
-// #endif
 //       return ind;
       return 0;
     }
@@ -1126,11 +1001,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-// #if MATRICKS_DEBUG>0
-//       if  ( (i_.size()==badsize) || ( jj_.size()==badsize) ) {
-// 	return badsize;
-//       }
-// #endif
       return Nrows()*Ncols();
     }
     
@@ -1153,9 +1023,6 @@ namespace matricks {
     inline size_type asize(void) const {
       return a_.size();
     }
-    inline size_type aID(void) const {
-      return a_.objectID();
-    }
 
     template <class B>
     MRangeSetObj<D>& operator=(const B& b) { 
@@ -1172,7 +1039,7 @@ namespace matricks {
 	s= jj_.debugtxt();
       else
 	s= display::num2string(jj_[0]);
-      return debugtxt_paren2(a_.debugtxt(),i_.debugtxt(),s);
+      return "";
     }
 
     void outputglossary(void) const {
@@ -1235,20 +1102,9 @@ namespace matricks {
       size_type NC = x.Ncols();
 
 
-#if MATRICKS_DEBUG>0
-      size_type N = x.size();
-      if ( N==badsize ){ 
-	mbad_expr_in_reconassignment(a_.objectID(), x);
-	return a_;
-      }
-#endif
 
       if ( x.addrmatch(&a_)) {    
-#if MATRICKS_DEBUG>0
-	Matrix<D> y(NR,NC,debugtxt());
-#else
 	Matrix<D> y(NR,NC);
-#endif
 	y = x.derived();
 	a_.resize(NR,NC);
 	a_ = y;
@@ -1263,9 +1119,6 @@ namespace matricks {
 
     Matrix<D>& operator=(const MReconObj<D>& b) { 
 
-#if MATRICKS_DEBUG>0
-      mbad_reconassignment(a_.objectID(), b);
-#endif
       return a_;
     }
 
@@ -1353,9 +1206,7 @@ namespace matricks {
     }
 
     std::string debugtxt(void) const {
-      std::string sa = debugtxt_paren(a_.debugtxt(),a_.metype());
-      std::string sb = debugtxt_paren(b_.debugtxt(),b_.metype());
-      return OP::debugtxt(sa,sb);
+      return "";
     }
 
     void outputglossary(void) const {
@@ -1600,13 +1451,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#if MATRICKS_DEBUG>0
-      if ( a_.size() != NR_*NC_ ){ 
-	vbad_mcast(debugtxt(), NR_, NC_, a_.size() );
-	outputglossary();
-	return badsize;
-      }
-#endif
       return a_.size();
     }
 
@@ -1668,13 +1512,6 @@ namespace matricks {
     }
 
     inline size_type size(void) const {
-#if MATRICKS_DEBUG>0
-      if ( a_.size() != NR_*NC_ ){ 
-	vbad_mcast(debugtxt(), NR_, NC_, a_.size() );
-	outputglossary();
-	return badsize;
-      }
-#endif
       return a_.size();
     }
 

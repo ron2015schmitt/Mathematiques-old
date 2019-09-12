@@ -232,6 +232,21 @@ namespace matricks {
   }
 
 
+  //***********************************************************************
+  //      Pair class
+  //***********************************************************************
+
+  template <class DAT> class Pair {
+  public:
+    index_type index;
+    DAT data;
+  Pair(index_type index_, DAT data_) : index(index_), data(data_) {}
+  Pair() : index(0), data(DAT(0)) {}
+    bool operator<(const Pair<DAT>& pair2) const {
+      return ((*this).data < pair2.data);
+    }
+  };
+
 
   /************************************************************************
    * Class type querying/manipulation

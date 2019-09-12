@@ -16,23 +16,8 @@ namespace matricks {
   {
     const size_type NC = a.size();
     const size_type NR = b.size();
-#if MATRICKS_DEBUG>0
-    std::string sa = a.debugtxt();
-    if (a.vetype() != VE_Vector) 
-      sa = "(" + sa + ")";
-    std::string sb = b.debugtxt();
-    if (b.vetype() != VE_Vector) 
-      sb = "(" + sb + ")";
-    std::string name= sa + "^"+  sb;
-    if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b)  ) { 
-      vbad_expr_in_binary(a,b,"","^");
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    }
-    Matrix<std::complex<D> > y(NR,NC,name);
-#else
     Matrix<std::complex<D> > y(NR,NC);
-#endif
+
 
     register index_type i=0;
     for(register index_type r=0; r < NR; r++) 
@@ -51,23 +36,8 @@ namespace matricks {
   {
     const size_type NC = a.size();
     const size_type NR = b.size();
-#if MATRICKS_DEBUG>0
-    std::string sa = a.debugtxt();
-    if (a.vetype() != VE_Vector) 
-      sa = "(" + sa + ")";
-    std::string sb = b.debugtxt();
-    if (b.vetype() != VE_Vector) 
-      sb = "(" + sb + ")";
-    std::string name= sa + "^"+  sb;
-    if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b)  ) { 
-      vbad_expr_in_binary(a,b,"","^");
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    }
-    Matrix<std::complex<D> > y(NR,NC,name);
-#else
     Matrix<std::complex<D> > y(NR,NC);
-#endif
+
 
     register index_type i=0;
     for(register index_type r=0; r < NR; r++) 
@@ -95,33 +65,8 @@ namespace matricks {
     const index_type C1 = NR*M;
     const index_type C2 = M-1;
 
-#if MATRICKS_DEBUG>0
-    std::string sa = a.debugtxt();
-    if (a.metype() != ME_Matrix) 
-      sa = "(" + sa + ")";
-    std::string sb = b.debugtxt();
-    if (b.vetype() != VE_Vector) 
-      sb = "(" + sb + ")";
-    std::string name= sa + "|"+  sb;
-    const size_type Mb = b.size();
-
-    if (mexpr_is_size_bad(a.size()) ) { 
-      mbad_expr_in_unary(a,""); 
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (  vexpr_is_size_bad(b)  ) { 
-      vbad_expr_in_unary(b,"");
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (M!=Mb) {
-      mvbad_dot_product(a,b);
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    }
-    Vector<std::complex<D> > y(NR,name);
-#else
     Vector<std::complex<D> > y(NR);
-#endif
+
 
     register index_type i = 0;
     for(register index_type n=0; n < C1; n+=M, i++) {
@@ -147,32 +92,8 @@ namespace matricks {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
 
-#if MATRICKS_DEBUG>0
-    std::string sa = a.debugtxt();
-    std::string sb = b.debugtxt();
-    if (a.vetype() != VE_Vector) 
-      sa = "(" + sa + ")";
-    if (b.metype() != ME_Matrix) 
-      sb = "(" + sb + ")";
-    std::string name= sa + "|"+  sb;
-    const size_type Ma = a.size();
-    if (mexpr_is_size_bad(b.size()) ) { 
-      mbad_expr_in_unary(b,""); 
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (  vexpr_is_size_bad(a)  ) { 
-      vbad_expr_in_unary(a,"");
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (M!=Ma) {
-      vmbad_dot_product(a,b);
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    }
-    Vector<std::complex<D> > y(NC,name);
-#else
     Vector<std::complex<D> > y(NC);
-#endif
+
 
     register index_type i = 0;
     for(register index_type c=0; c < NC; c++,i++) {
@@ -205,33 +126,8 @@ namespace matricks {
     const index_type C1 = NR*M;
     const index_type C2 = M-1;
 
-#if MATRICKS_DEBUG>0
-    std::string sa = a.debugtxt();
-    if (a.metype() != ME_Matrix) 
-      sa = "(" + sa + ")";
-    std::string sb = b.debugtxt();
-    if (b.vetype() != VE_Vector) 
-      sb = "(" + sb + ")";
-    std::string name= sa + "|"+  sb;
-    const size_type Mb = b.size();
-
-    if (mexpr_is_size_bad(a.size()) ) { 
-      mbad_expr_in_unary(a,""); 
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (  vexpr_is_size_bad(b)  ) { 
-      vbad_expr_in_unary(b,"");
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (M!=Mb) {
-      mvbad_dot_product(a,b);
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    }
-    Vector<std::complex<D> > y(NR,name);
-#else
     Vector<std::complex<D> > y(NR);
-#endif
+
 
     register index_type i = 0;
     for(register index_type n=0; n < C1; n+=M, i++) {
@@ -257,32 +153,8 @@ namespace matricks {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
 
-#if MATRICKS_DEBUG>0
-    std::string sa = a.debugtxt();
-    std::string sb = b.debugtxt();
-    if (a.vetype() != VE_Vector) 
-      sa = "(" + sa + ")";
-    if (b.metype() != ME_Matrix) 
-      sb = "(" + sb + ")";
-    std::string name= sa + "|"+  sb;
-    const size_type Ma = a.size();
-    if (mexpr_is_size_bad(b.size()) ) { 
-      mbad_expr_in_unary(b,""); 
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (  vexpr_is_size_bad(a)  ) { 
-      vbad_expr_in_unary(a,"");
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    } else if (M!=Ma) {
-      vmbad_dot_product(a,b);
-      Vector<std::complex<D> > y(0,name);
-      return y;
-    }
-    Vector<std::complex<D> > y(NC,name);
-#else
     Vector<std::complex<D> > y(NC);
-#endif
+
 
     register index_type i = 0;
     for(register index_type c=0; c < NC; c++,i++) {
@@ -298,8 +170,6 @@ namespace matricks {
     }
     return  y;
   }
-
-
 
 
 

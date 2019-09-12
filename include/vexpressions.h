@@ -45,7 +45,8 @@ namespace matricks {
 	addAddress(&ii_);
 	//	printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
       }
-#endif
+#endif // C++11
+    
     ~VSubsetObj() {
       if (delete_ii_) delete &ii_;
     }
@@ -309,22 +310,13 @@ namespace matricks {
     using VectorofPtrs::addAddress;
     using VectorofPtrs::addAddresses;
 
-#if MATRICKS_DEBUG>0
-  VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
-    : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
-      { 
-	//      settext_VSubMaskObj(*ii_,mask);
-	addAddress(&a_);
-	addAddress(&ii_);
-      }
-#else
   VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
     : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
       { 
 	addAddress(&a_);
 	addAddress(&ii_);
       }
-#endif
+
 
     ~VSubMaskObj()
       { 
@@ -425,20 +417,10 @@ namespace matricks {
       Vector<D>& operator=(const VorE<D,A>& x) { 
       size_type N = x.size();
       
-#if MATRICKS_DEBUG>0
-      if ( N==badsize ){ 
-	vbad_expr_in_reconassignment(a_.objectID(), x);
-	return a_;
-      }
-#endif
       
       if ( x.addrmatch(&a_)) {    
-#if MATRICKS_DEBUG>0
-	//	Vector<D> y(N,debugtxt());
 	Vector<D> y(N);
-#else
-	Vector<D> y(N);
-#endif
+
 	y = x.derived();
 	a_.resize(N);
 	a_ = y;
@@ -452,9 +434,6 @@ namespace matricks {
 
     Vector<D>& operator=(const VReconObj<D>& b) { 
 
-#if MATRICKS_DEBUG>0
-      vbad_reconassignment(a_.objectID(), b);
-#endif
       return a_;
     }
 

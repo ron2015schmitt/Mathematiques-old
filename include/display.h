@@ -5,34 +5,6 @@
 
 
 
-namespace matricks {
-  // do away with
-  extern const char* error_str;
-  extern const char* warn_str;
-  extern const char* indent_str;
-  extern const char* where_str;
-  extern const char* bug_str;
-
-  //****************************************************************************
-  //                          Some declarations. 
-  //****************************************************************************
-
-
-  template <class D> class Vector;
-  template <class D> class p3vector;
-  template <class D, class A> class Vexpr;  
-  template <class D, class A> class VWrapper;
-  template <class D, class A> class VRepExpr;
-  template <class D> class VSliceObj;
-  template <class D> class VSliceExpr;
-  template <class D> class VSubsetObj;
-  template <class D> class VSubMaskObj;
-  template <class D, class A, class B> class VJoinObj;
-  template <class D, class A, class B> class VJoinExpr;
-  template <class D> class VReconObj;
-  template <class D, class A, class X> class VSeriesOp;
-  
-};
 
 namespace display {
 

@@ -31,23 +31,11 @@ namespace matricks {
 
     inline const D operator[](const size_type i) const {  
       const size_type index = derived().index(i);
-#if MATRICKS_DEBUG>0
-      if ((index < 0) || (index >= derived().sizetotal()))  {
-	vwrapper_out_of_bounds(debugtxt(),i,size());
-	return derived().data(0);
-      }
-#endif
       return derived().data(index);
     }
 
     inline D& operator[](const size_type i) {  
       const size_type index = derived().index(i);
-#if MATRICKS_DEBUG>0
-      if ((index < 0) || (index >= derived().sizetotal()))  {
-	vwrapper_out_of_bounds(debugtxt(),i,size());
-	return derived().data(0);
-      }
-#endif
       return derived().data(index);
     }
 
@@ -72,9 +60,6 @@ namespace matricks {
     }
     // assign to recon object (issue error)
     DERIVED& equals(const VReconObj<D>& b) { 
-#if MATRICKS_DEBUG>0
-      vbad_reconassignment(derived().a_.objectID(), b);
-#endif
       return derived();
     }
     
@@ -86,22 +71,10 @@ namespace matricks {
 
       const size_type N =size();
 
-#if MATRICKS_DEBUG>0
-      if ( size() !=  rhs.size() ){ 
-	vbad_wrapper_assignment(debugtxt(),rhs.debugtxt());
-	outputglossary();
-	rhs.outputglossary();
-	return derived();
-      }
-#endif
 
       if ( rhs.checkAddresses(getAddresses()) ) {    
-#if MATRICKS_DEBUG>0
-	//	Vector<D> y(N,debugtxt());
 	Vector<D> y(N);
-#else
-	Vector<D> y(N);
-#endif
+
 	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
 	for(register size_type i=0; i<N; i++) 
@@ -121,25 +94,11 @@ namespace matricks {
       DERIVED& equals(const MorE<D,B>& rhs) {
 
       const size_type N =size();
-#if MATRICKS_DEBUG>0
-      const size_type NR = rhs.Nrows();
-      const size_type NC = rhs.Ncols();
-      if ( ( N !=  rhs.size() ) 
-	   || ( (NR!=1) && (NC!=1) ) ){ 
-	vbad_wrapper_assignment_mat(derived().debugtxt(),rhs.debugtxt());
-	derived().outputglossary();
-	rhs.outputglossary();
-	return derived();
-      }
-#endif
 
 
       if ( rhs.checkAddresses(getAddresses()) ) {    
-#if MATRICKS_DEBUG>0
-	Vector<D> y(N,debugtxt());
-#else
 	Vector<D> y(N);
-#endif
+
 	y=rhs;
 	for(register size_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 

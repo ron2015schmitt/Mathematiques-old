@@ -507,22 +507,7 @@ namespace matricks {
     const size_type M = a.Ncols();
     const size_type C1 = NR*M;
 
-#if MATRICKS_DEBUG>0
-    std::string name= a.debugtxt() + "|"+  b.debugtxt();
-    const size_type Mb = b.Nrows();
-    if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
-      mbad_expr_in_binary(a,b,"","|");
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    } else if (M!=Mb) {
-      mbad_dot_product(a,b);
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    }
-    Matrix<std::complex<D> > y(NR,NC,name);
-#else
     Matrix<std::complex<D> > y(NR,NC);
-#endif
 
     register index_type i = 0;
     for(register index_type n=0; n < C1; n+=M) 
@@ -547,22 +532,7 @@ namespace matricks {
     const size_type M = a.Ncols();
     const size_type C1 = NR*M;
 
-#if MATRICKS_DEBUG>0
-    std::string name= a.debugtxt() + "|"+  b.debugtxt();
-    const size_type Mb = b.Nrows();
-    if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
-      mbad_expr_in_binary(a,b,"","|");
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    } else if (M!=Mb) {
-      mbad_dot_product(a,b);
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    }
-    Matrix<std::complex<D> > y(NR,NC,name);
-#else
     Matrix<std::complex<D> > y(NR,NC);
-#endif
 
 
     register index_type i = 0;
@@ -601,17 +571,7 @@ namespace matricks {
     const size_type C1 = NN-NC;
 
 
-#if MATRICKS_DEBUG>0
-    std::string name="adj(" +a.debugtxt() +")";
-    if ( mexpr_is_size_bad(a.size()) ){ 
-      mbad_expr_in_unary(a,"adj");
-      Matrix<std::complex<D> > y(0,0,name);
-      return y;
-    }
-    Matrix<std::complex<D> > y(NC,NR,name);
-#else
     Matrix<std::complex<D> > y(NC,NR);
-#endif
 
     register index_type i = 0;
     for(register index_type c = 0; c < NC; c++, i++) {

@@ -7,15 +7,6 @@
 
 
 
-namespace matricks {
-
-  // TODO: delete these
-  const char* error_str =    "**mātricks ERROR: ";
-  const char* warn_str =    "**mātricks warning: ";
-  const char* indent_str  = "                 ";
-  const char* where_str  =  "           where  ";
-  const char* bug_str =     "**mātricks *BUG* : ";
-};
 
 
 namespace display {

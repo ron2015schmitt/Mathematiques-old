@@ -54,12 +54,6 @@ namespace matricks {
   inline Vector<D>& linspace(D start, D end, size_type N) {
     Vector<D> *y = new Vector<D>(N);
 
-#if MATRICKS_DEBUG>0
-    if (N<2) {
-      vbadlinspace<D>(start,end,N);
-      return *y;
-    } 
-#endif
 
     const D step = (end-start)/static_cast<D>(N-1);
 
@@ -82,12 +76,6 @@ namespace matricks {
   inline Vector<D>& linspace_a(D start, D end, size_type N) {
     Vector<D> *y = new Vector<D>(N);
 
-#if MATRICKS_DEBUG>0
-    if (N<2) {
-      vbadlinspace<D>(start,end,N);
-      return *y;
-    } 
-#endif
   
     const D step = (end-start)/static_cast<D>(N);
     return linspace(start+step, end, N);
@@ -102,12 +90,6 @@ namespace matricks {
   inline Vector<D>& linspace_b(D start, D end, size_type N) {
     Vector<D> *y = new Vector<D>(N);
 
-#if MATRICKS_DEBUG>0
-    if (N<2) {
-      vbadlinspace<D>(start,end,N);
-      return *y;
-    } 
-#endif
   
     const D step = (end-start)/static_cast<D>(N);
     return linspace(start, end-step, N);
@@ -121,12 +103,6 @@ namespace matricks {
   inline Vector<D>& linspace_ab(D start, D end, size_type N) {
     Vector<D> *y = new Vector<D>(N);
 
-#if MATRICKS_DEBUG>0
-    if (N<2) {
-      vbadlinspace<D>(start,end,N);
-      return *y;
-    } 
-#endif
   
     const D step = (end-start)/static_cast<D>(N+1);
     return linspace(start+step, end-step, N);
@@ -467,17 +443,6 @@ namespace matricks {
   template <class D, class A> 
     D integrate_a2b( const VorE<D,A>& v, const D a, const D b, const int order=1 ) {
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(v) ) {
-      vbad_expr_in_unary(v,"integrate_a2b");
-      return 0;
-    }
-    if (b<a)  {
-      std::cerr << "integrate_a2b: bad limit end points a="<<a<<", b="<<b<<std::endl;
-      return 0;
-    }
-    
-#endif
  
     const size_type N = v.size();
     if (N==0) {
@@ -595,12 +560,6 @@ namespace matricks {
     inline D operator|( const VorE<D,A>& a, const  VorE<D,B>& b ) {
     D result = D();
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
-      vbad_expr_in_binary(a,b,"","|");
-      return 0;
-    }
-#endif
  
     for (register index_type i = a.size(); i--;)
       result += a[i]*b[i];
@@ -615,12 +574,6 @@ namespace matricks {
     inline std::complex<D>  operator|( const VorE<D,A>& a, const  VorE<std::complex<D>,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
-      vbad_expr_in_binary(a,b,"","|");
-      return 0;
-    }
-#endif
  
     for (register index_type i = a.size(); i--;)
       result += a[i]*b[i];
@@ -635,12 +588,6 @@ namespace matricks {
     inline std::complex<D>  operator|( const VorE<std::complex<D>,A>& a, const  VorE<D,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) || vexpr_is_size_bad(b) || ( a.size() != b.size() ) ){ 
-      vbad_expr_in_binary(a,b,"","|");
-      return 0;
-    }
-#endif
  
     for (register index_type i = a.size(); i--;)
       result += a[i]*b[i];

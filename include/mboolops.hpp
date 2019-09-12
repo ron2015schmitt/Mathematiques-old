@@ -426,12 +426,6 @@ namespace matricks {
   inline bool alltrue( const MorE<bool,A>& a ) {
     bool result = true;
     
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"alltrue");
-      return false;
-    }
-#endif
  
     for (register size_type i = 0; i< a.size(); i++)
       result = result && a(i);
@@ -447,17 +441,7 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "alltruebyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"alltruebyrow");
-      Vector<bool> y(0,s);
-      return y;
-    }
-    Vector<bool> y(NR,s);
-#else
     Vector<bool> y(NR);
-#endif
 
     size_type i = 0;
     for(size_type r = 0; r<NR; r++) {
@@ -476,17 +460,7 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "alltruebycol(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"alltruebycol");
-      Vector<bool> y(0,s);
-      return y;
-    }
-    Vector<bool> y(NC,s);
-#else
     Vector<bool> y(NC);
-#endif
 
     for(size_type c = 0; c<NC; c++) {
       size_type LIMIT = NR*NC-NC+c+1;
@@ -513,12 +487,6 @@ namespace matricks {
   inline bool anytrue( const MorE<bool,A>& a ) {
     bool result = false;
     
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"anytrue");
-      return false;
-    }
-#endif
  
     for (register size_type i = 0; i< a.size(); i++)
       result = result || a(i);
@@ -535,17 +503,7 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "anytruebyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"anytruebyrow");
-      Vector<bool> y(0,s);
-      return y;
-    }
-    Vector<bool> y(NR,s);
-#else
     Vector<bool> y(NR);
-#endif
 
     size_type i = 0;
     for(size_type r = 0; r<NR; r++) {
@@ -564,17 +522,7 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "anytruebycol(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"anytruebycol");
-      Vector<bool> y(0,s);
-      return y;
-    }
-    Vector<bool> y(NC,s);
-#else
     Vector<bool> y(NC);
-#endif
 
     for(size_type c = 0; c<NC; c++) {
       size_type LIMIT = NR*NC-NC+c+1;
@@ -594,12 +542,6 @@ namespace matricks {
   inline int numtrue( const MorE<bool,A>& a ) {
     size_type result = 0;
     
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"numtrue");
-      return 0;
-    }
-#endif
  
     for (register size_type i = 0; i< a.size(); i++)
       result += static_cast<int>(a(i));
@@ -616,17 +558,7 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "numtruebyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"numtruebyrow");
-      Vector< size_type> y(0,s);
-      return y;
-    }
-    Vector< size_type> y(NR,s);
-#else
     Vector< size_type> y(NR);
-#endif
 
     size_type i = 0;
     for(size_type r = 0; r<NR; r++) {
@@ -645,17 +577,7 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "numtruebycol(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"numtruebycol");
-      Vector< size_type> y(0,s);
-      return y;
-    }
-    Vector< size_type> y(NC,s);
-#else
     Vector< size_type> y(NC);
-#endif
 
     for(size_type c = 0; c<NC; c++) {
       size_type LIMIT = NR*NC-NC+c+1;
@@ -679,23 +601,11 @@ namespace matricks {
   inline Matrix<index_type> findtrue( const MorE<bool,A>& a ) {
     size_type N = 0;
     
-#if MATRICKS_DEBUG>0
-    std::string s = "findtrue(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"findtrue");
-      Matrix<index_type> y(0,2,s);
-      return y;
-    }
-#endif
  
     for (register size_type i = 0; i< a.size(); i++)
       N += static_cast<index_type>(a(i));
  
-#if MATRICKS_DEBUG>0
-    Matrix<index_type> y(N,2,s);
-#else
     Matrix<index_type> y(N,2);
-#endif
 
    size_type i = 0;
    size_type j = 0;
@@ -721,23 +631,11 @@ namespace matricks {
   inline Vector<index_type> findtruesi( const MorE<bool,A>& a ) {
     size_type N = 0;
     
-#if MATRICKS_DEBUG>0
-    std::string s = "findtruesi(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"findtruesi");
-      Vector<index_type> y(0,s);
-      return y;
-    }
-#endif
  
     for (register size_type i = 0; i< a.size(); i++)
       N += static_cast<index_type>(a(i));
  
-#if MATRICKS_DEBUG>0
-    Vector<index_type> y(N,s);
-#else
     Vector<index_type> y(N);
-#endif
 
     size_type j = 0;
     for (register size_type i = 0; i< a.size(); i++) {
@@ -758,23 +656,11 @@ namespace matricks {
   inline Vector<index_type> findtruebyrow( const MorE<bool,A>& a ) {
     size_type N = 0;
     
-#if MATRICKS_DEBUG>0
-    std::string s = "findtruebyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"findtruebyrow");
-      Vector<index_type> y(0,2,s);
-      return y;
-    }
-#endif
  
     for (register size_type i = 0; i< a.size(); i++)
       N += static_cast<index_type>(a(i));
  
-#if MATRICKS_DEBUG>0
-    Vector<index_type> y(N,2,s);
-#else
     Vector<index_type> y(N,2);
-#endif
 
    size_type i = 0;
    size_type j = 0;

@@ -20,7 +20,7 @@ namespace matricks {
     std::ofstream out(fname.data(),std::ios::out);
     
     if (!out) {
-      cant_open_file(fname);
+      //      cant_open_file(fname);
       return 1;
     }
     
@@ -58,7 +58,7 @@ namespace matricks {
   bool load(X& x, std::string fname) {
     std::ifstream in(fname.data(),std::ios::in);
     if (!in) {
-      cant_open_file(fname);
+      //      cant_open_file(fname);
       return 1;
     }
 

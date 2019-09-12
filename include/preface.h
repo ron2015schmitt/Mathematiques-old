@@ -65,7 +65,6 @@ namespace matricks {
 
 
   template <class D> class Vector;
-  template <class D> class p3vector;
   template <class D, class A> class Vexpr;  
   template <class D, class A> class VWrapper;
   template <class D, class A> class VRepExpr;
@@ -77,7 +76,6 @@ namespace matricks {
   template <class D, class A, class B> class VJoinExpr;
   template <class D> class VReconObj;
   template <class D, class A, class X> class VSeriesOp;
-
 
   template <class D> class Matrix;
   template <class D, class A> class Mexpr;  

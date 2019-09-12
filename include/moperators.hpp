@@ -1,5 +1,5 @@
-#ifndef MOPERATORS_H
-#define MOPERATORS_H 
+#ifndef MATRICKS__MOPERATORS_H
+#define MATRICKS__MOPERATORS_H 
 
 
 namespace matricks {
@@ -68,22 +68,7 @@ namespace matricks {
     const size_type C1 = NR*M;
 
 
-#if MATRICKS_DEBUG>0
-    std::string name= a.debugtxt() + "|"+  b.debugtxt();
-    const size_type Mb = b.Nrows();
-    if ( (mexpr_is_size_bad(a.size())) || (mexpr_is_size_bad(b.size())) ){ 
-      mbad_expr_in_binary(a,b,"","|");
-      Matrix<D> y(0,0,name);
-      return y;
-    } else if (M!=Mb) {
-      mbad_dot_product(a,b);
-      Matrix<D> y(0,0,name);
-      return y;
-    }
-    Matrix<D> y(NR,NC,name);
-#else
     Matrix<D> y(NR,NC);
-#endif
 
     register index_type i = 0;
     for(register index_type n=0; n < C1; n+=M) 
@@ -335,11 +320,7 @@ namespace matricks {
   inline Matrix<D2> 
   mcast(const D1* dptr, const size_type NR, const size_type NC)
   {
-#if MATRICKS_DEBUG>0
-    Matrix<D2> m(NR,NC,"mcast(C-array)");
-#else
     Matrix<D2> m(NR,NC);
-#endif
     for(index_type i = 0; i<NR*NC; i++) 
       m(i) = static_cast<D2>(dptr[i]);
     return  m;
@@ -353,11 +334,7 @@ namespace matricks {
   inline Matrix<D2> 
   mcastF(const D1* dptr, const size_type NR, const size_type NC)
   {
-#if MATRICKS_DEBUG>0
-    Matrix<D2> y(NR,NC,"mcast(Fortran-array)");
-#else
     Matrix<D2> y(NR,NC);
-#endif
     const index_type C1 = NR*NC-NR;
     register index_type i = 0;
     for(register index_type c = 0; c < NR; c++, i++) {
@@ -387,22 +364,8 @@ namespace matricks {
     const index_type C1 = NN-NC;
     
 
-#if MATRICKS_DEBUG>0
-    std::string name=a.debugtxt();
-    if (a.metype()==ME_Matrix)
-      name = "~" + name;
-    else
-      name = "~("+name+")";
-
-    if ( mexpr_is_size_bad(a.size()) ){ 
-      mbad_expr_in_unary(a,"~");
-      Matrix<D> y(0,0,name);
-      return y;
-    }
-    Matrix<D> y(NC,NR,name);
-#else
     Matrix<D> y(NC,NR);
-#endif
+
 
 
     register index_type i = 0;
@@ -432,12 +395,6 @@ namespace matricks {
   inline D2*
   toCarray(const MorE<D1,A>& m) {
 
-#if MATRICKS_DEBUG>0
-    if ( mexpr_is_size_bad(m.size()) ){ 
-      mbad_expr_in_unary(m,"toCarray");
-      return 0;
-    }
-#endif
 
     const index_type N = m.size();
     D2* dptr = new D2[N];
@@ -453,12 +410,6 @@ namespace matricks {
   inline D2*
   toFarray(const MorE<D1,A>& m) {
 
-#if MATRICKS_DEBUG>0
-    if ( mexpr_is_size_bad(m.size()) ){ 
-      mbad_expr_in_unary(m,"toFarray");
-      return 0;
-    }
-#endif
 
     const size_type NR = m.Nrows();
     //    const size_type NC = m.Ncols();
@@ -481,16 +432,8 @@ namespace matricks {
   template <class A> 
   Vector<index_type> sub2ind(const MorE<index_type,A>& subs, const size_type NC) {
     const size_type N = subs.Nrows();
-#if MATRICKS_DEBUG>0
-    std::string s = "sub2ind(" + subs.debugtxt() + ")";
-    Vector<index_type> ii(N,s);
-    if ( subs.Ncols() !=2 ) {
-      //error
-      return ii;
-    }
-#else
     Vector<index_type> ii(N);
-#endif 
+ 
 
     for (index_type i = 0;  i <N; i++)
       ii[i] = NC*subs(i,0) + subs(i,1);
@@ -525,12 +468,6 @@ namespace matricks {
   template <class D, class A> 
   inline D sum( const MorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"sum");
-      return 0;
-    }
-#endif
  
     D result = a(0);
 
@@ -548,17 +485,8 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "sumbyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"sumbyrow");
-      Vector<D> y(0,s);
-      return y;
-    }
-    Vector<D> y(NR,s);
-#else
     Vector<D> y(NR);
-#endif
+
 
     index_type i = 0;
     for(index_type r = 0; r<NR; r++) {
@@ -579,17 +507,8 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "sumbycol(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"sumbycol");
-      Vector<D> y(0,s);
-      return y;
-    }
-    Vector<D> y(NC,s);
-#else
     Vector<D> y(NC);
-#endif
+
 
     for(index_type c = 0; c<NC; c++) {
       index_type LIMIT = NR*NC-NC+c+1;
@@ -610,12 +529,6 @@ namespace matricks {
 
   template <class D, class A> 
   inline D min( const MorE<D,A>& a ) {
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"min");
-      return 0;
-    }
-#endif
     D result = a(0);
     for (register index_type i = 1; i < a.size() ; i++ )
       result = std::min(result,a(i));
@@ -631,17 +544,8 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "minbyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"minbyrow");
-      Vector<D> y(0,s);
-      return y;
-    }
-    Vector<D> y(NR,s);
-#else
     Vector<D> y(NR);
-#endif
+
     index_type i = 0;
     for(index_type r = 0; r<NR; r++) {
       D temp = a(i); 
@@ -663,17 +567,8 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "minbycol(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"minbycol");
-      Vector<D> y(0,s);
-      return y;
-    }
-    Vector<D> y(NC,s);
-#else
     Vector<D> y(NC);
-#endif
+
 
     for(index_type c = 0; c<NC; c++) {
       index_type LIMIT = NR*NC-NC+c+1;
@@ -694,12 +589,6 @@ namespace matricks {
   template <class D, class A> 
   inline D max( const MorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"max");
-      return 0;
-    }
-#endif
  
     D result = a(0);
 
@@ -721,17 +610,8 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "maxbyrow(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"maxbyrow");
-      Vector<D> y(0,s);
-      return y;
-    }
-    Vector<D> y(NR,s);
-#else
     Vector<D> y(NR);
-#endif
+
     index_type i = 0;
     for(index_type r = 0; r<NR; r++) {
       D temp = a(i); 
@@ -753,17 +633,8 @@ namespace matricks {
     
     const size_type NR = a.Nrows();
     const size_type NC = a.Ncols();
-#if MATRICKS_DEBUG>0
-    std::string s = "maxbycol(" + a.debugtxt() + ")";
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"maxbycol");
-      Vector<D> y(0,s);
-      return y;
-    }
-    Vector<D> y(NC,s);
-#else
     Vector<D> y(NC);
-#endif
+
 
     for(index_type c = 0; c<NC; c++) {
       index_type LIMIT = NR*NC-NC+c+1;
@@ -787,12 +658,6 @@ namespace matricks {
   template <class D, class A> 
   inline D tr( const MorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  mexpr_is_size_bad(a.size()) ) {
-      mbad_expr_in_unary(a,"tr");
-      return 0;
-    }
-#endif
  
     D result = a(0);
     size_type Nmin;
@@ -811,8 +676,6 @@ namespace matricks {
 
 
 };
-
-
 
 
 

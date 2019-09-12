@@ -1371,12 +1371,6 @@ namespace matricks {
   template <class D, class A> 
     D sum( const VorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"sum");
-      return 0;
-    }
-#endif
  
     const size_type N = a.size();
     if (N==0)
@@ -1398,12 +1392,6 @@ namespace matricks {
   template <class D, class A> 
     D prod( const VorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"prod");
-      return 0;
-    }
-#endif
  
     const size_type N = a.size();
     if (N==0)
@@ -1426,12 +1414,6 @@ namespace matricks {
   template <class D, class A> 
     D norm( const VorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"norm");
-      return 0;
-    }
-#endif
  
     const size_type N = a.size();
     if (N==0)
@@ -1453,12 +1435,6 @@ namespace matricks {
   template <class D, class A> 
     D min( const VorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"min");
-      return 0;
-    }
-#endif
  
     const size_type N = a.size();
     if (N==0)
@@ -1480,12 +1456,6 @@ namespace matricks {
   template <class D, class A> 
     D max( const VorE<D,A>& a ) {
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"max");
-      return 0;
-    }
-#endif
     const size_type N = a.size();
     if (N==0)
       return 0;
@@ -1506,12 +1476,6 @@ namespace matricks {
     inline D norm( const VorE<std::complex<D>,A>& a ) {
     D result = D();
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"norm");
-      return 0;
-    }
-#endif
  
     for (register index_type i = a.size(); i--;) {
       D tempR = a[i].real(); 
@@ -1538,12 +1502,6 @@ namespace matricks {
     inline bool alltrue( const VorE<bool,A>& a ) {
     bool result = true;
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"alltrue");
-      return false;
-    }
-#endif
  
     for (register index_type i = 0; i< a.size(); i++)
       result = result && a[i];
@@ -1558,12 +1516,6 @@ namespace matricks {
     inline bool anytrue( const VorE<bool,A>& a ) {
     bool result = false;
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"anytrue");
-      return false;
-    }
-#endif
  
     for (register index_type i = 0; i< a.size(); i++)
       result = result || a[i];
@@ -1578,12 +1530,6 @@ namespace matricks {
     inline size_type numtrue( const VorE<bool,A>& a ) {
     size_type result = 0;
     
-#if MATRICKS_DEBUG>0
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"numtrue");
-      return 0;
-    }
-#endif
  
     for (register index_type i = 0; i< a.size(); i++)
       result += static_cast<index_type>(a[i]);
@@ -1601,25 +1547,11 @@ namespace matricks {
     inline Vector<index_type> findtrue( const VorE<bool,A>& a ) {
     int N = 0;
     
-#if MATRICKS_DEBUG>0
-    std::string s = "findtrue(" + a.debugtxt() + ")";
-    if (  vexpr_is_size_bad(a) ) {
-      vbad_expr_in_unary(a,"findtrue");
-      //      Vector<index_type> y(0,s);
-      Vector<index_type> y(0);
-      return y;
-    }
-#endif
 
     for (register index_type i = 0; i< a.size(); i++)
       N += int(a[i]);
  
-#if MATRICKS_DEBUG>0
-    //   Vector<index_type> y(N,s);
     Vector<index_type> y(N);
-#else
-    Vector<index_type> y(N);
-#endif
 
     index_type j =0;
     for (register index_type i = 0; i< a.size(); i++)

@@ -18,16 +18,8 @@ namespace matricks {
   private:
 
     // *********************** OBJECT DATA ***********************************
-    size_type objectID_;
-    size_type perline_;
-    size_type width_;   // for display  (std::setw uses int as its size)
-    TextFormat textformat_;
     std::valarray<D>* data_;
 
-#if MATRICKS_DEBUG>0
-    D dummy_;
-#endif
-    mutable std::string name_;
 
   public:     
     using VectorofPtrs::getAddresses;
@@ -89,8 +81,8 @@ namespace matricks {
 
       constructorHelper();
     }
+#endif // C++11
 
-#endif
 
 
     // --------------------- valarray CONSTRUCTOR ---------------------
@@ -107,7 +99,6 @@ namespace matricks {
     // --------------------- array[]  CONSTRUCTOR ---------------------
     explicit Vector<D>(const size_type N, const D (vals)[]) 
     {
-      v_array_warning(objectID());
 
       // allocate store
       data_ = new std::valarray<D>(vals, N); 
@@ -147,18 +138,7 @@ namespace matricks {
     // --------------------- constructorHelper() --------------------
     
     void constructorHelper() {
-      perline_ = size()+1;
-      width_ = 0;
-      textformat_=text_braces;
-      name_ = "Vector";
       addAddress(this);
-      
-#if MATRICKS_DEBUG>0
-      dummy_ = D();
-      // add this vector to the directory
-      //      Any<Vector<D> > me;
-      //      objectID_ = MatricksObjectManager::addObject(this);
-#endif      
     }
 
 
@@ -175,9 +155,6 @@ namespace matricks {
       delete  data_ ;
 
       //remove from directory
-#if MATRICKS_DEBUG>0
-      MatricksObjectManager::removeObject(objectID_);
-#endif
     }
   
 
@@ -210,13 +187,6 @@ namespace matricks {
       //      delete  data_ ;
       //      data_ = new std::valarray<D>(N);
       data_->resize(N);
-      perline_ = N+1;
-      width_ = 0;
-#if MATRICKS_DEBUG>0
-      // update the directory
-      if (n>maxsize) 
-	vbad_size(objectID_, n);
-#endif      
       return *this;
     }
 
@@ -240,7 +210,6 @@ namespace matricks {
       delete  data_ ;
       const size_t N = valptr->size();
       data_ = valptr;
-      perline_ = N+1;
       return *this;
     }
 
@@ -252,12 +221,6 @@ namespace matricks {
       if (i < 0) {
 	index += size();
       }
-#if MATRICKS_DEBUG>0
-      if ( (index < 0) || (index >= size()) ) {
-	vout_of_bounds(objectID_,index);
-	return dummy_; 
-      }
-#endif    
       return (*data_)[index]; 
     }
 
@@ -297,19 +260,9 @@ namespace matricks {
     // Accessing a SET of values using a MASK
     
     VSubMaskObj<D> operator[](const Vector<bool>& mask)  {
-#if MATRICKS_DEBUG>0
-      if (size()!=mask.size()) {
-	vbad_mask(objectID_,mask);
-      }
-#endif    
       return  VSubMaskObj<D>(*this,mask);
     }
     const VSubMaskObj<D> operator[](const Vector<bool>& mask)  const {
-#if MATRICKS_DEBUG>0
-      if (size()!=mask.size()) {
-	vbad_mask(objectID_,mask);
-      }
-#endif    
       return  VSubMaskObj<D>(*this,mask);
     }
 
@@ -317,14 +270,14 @@ namespace matricks {
 
     //Accessing a SET of values using a list
 
-    #if CPP11 == 1
+#if CPP11 == 1
     VSubsetObj<D> operator[](const std::initializer_list<index_type>& list) {
       return  VSubsetObj<D>(*this, list);
     }
     const VSubsetObj<D> operator[](const std::initializer_list<index_type>& list) const {
       return  VSubsetObj<D>(*this, list);
     }
-    #endif
+#endif // C++11
 
 
 
@@ -350,31 +303,13 @@ namespace matricks {
 
     // Assignment to a vector expression
     template <class A>  Vector<D>& equals(const Vexpr<D,A>& x) {  
-#if MATRICKS_DEBUG>0
-      std::string s1 = debugtxt();
-      std::string s2 = x.debugtxt();
-      if ( vexpr_is_size_bad(x) ){ 
-	vbad_expr_in_assignment(objectID(), x);
-	return *this;
-      } else if ( (size()>0) && ( size() !=  x.size() ) ){ 
-	vbad_assignment_expr_warning(objectID(), x);
-      } else if (size() !=  x.size() ){
-	// if size=0, just silently resize this vector
-	//vbad_assignment_expr_warning(objectID(),x);
-      }
-
-#endif
 
       // resize to avoid segmentation faults
       resize(x.size());
 
       if (x.checkAddresses(this->getAddresses())) {    
-#if MATRICKS_DEBUG>0
-	//	Vector<D> vtemp(size(),x.debugtxt());
 	Vector<D> vtemp(size());
-#else
-	Vector<D> vtemp(size());
-#endif
+
 	for (register index_type i = size(); i--;)
 	  vtemp[i] = x[i];   // Inlined expression
 	for (register index_type i = size(); i--;)
@@ -394,31 +329,13 @@ namespace matricks {
 
     
     template <class A>  Vector<D>& equals(const VorE<D,A>& x) {  
-#if MATRICKS_DEBUG>0
-      std::string s1 = debugtxt();
-      std::string s2 = x.debugtxt();
-      if ( vexpr_is_size_bad(x) ){ 
-	vbad_expr_in_assignment(objectID(), x);
-	return *this;
-      } else if ( (size()>0) && ( size() !=  x.size() ) ){ 
-	vbad_assignment_expr_warning(objectID(), x);
-      } else if (size() !=  x.size() ){
-	// if size=0, just silently resize this vector
-	//vbad_assignment_expr_warning(objectID(),x);
-      }
-
-#endif
 
       // resize to avoid segmentation faults
       resize(x.size());
 
       if (x.checkAddresses(this->getAddresses())) {    
-#if MATRICKS_DEBUG>0
-	//	Vector<D> vtemp(size(),x.debugtxt());
 	Vector<D> vtemp(size());
-#else
-	Vector<D> vtemp(size());
-#endif
+
 	for (register index_type i = size(); i--;)
 	  vtemp[i] = x[i];   // Inlined expression
 	for (register index_type i = size(); i--;)
@@ -440,9 +357,6 @@ namespace matricks {
     // assignment to an array
     Vector<D>& equals(const D array[]) {
       
-#if MATRICKS_DEBUG>0
-      v_array_warning(objectID());
-#endif      
 
       for (index_type i; i < size(); i++)  { 
 	(*this)[i++] = array[i];
@@ -464,15 +378,6 @@ namespace matricks {
     // Copy asignment
     Vector<D>& equals(const Vector<D>& v2) {
 
-#if MATRICKS_DEBUG>0
-      if ( (size()>0) && ( size() !=  v2.size() ) ){ 
-	vbad_assignment_warning(objectID(),v2.objectID());
-      } else if (size() !=  v2.size() ){
-	// if size=0, just silently resize this vector
-	//	vbad_assignment_warning(objectID(),v2.objectID());
-      }
- 
-#endif
       // resize to avoid segmentation faults
       resize(v2.size());
 
@@ -494,18 +399,6 @@ namespace matricks {
     template <class A>
     Vector<D>& operator=(const MorE<D,A>& m) {
 
-#if MATRICKS_DEBUG>0
-      const size_type NR = m.Nrows();
-      const size_type NC = m.Ncols();
-      if ( size() !=  m.size() ){ 
-	vbad_assignment_mat(objectID(),NR,NC);
-	return *this;
-      }
-      if ((NR!=1) && (NC!=1)) { 
-	vbad_assignment_mat(objectID(),NR,NC);
-	return *this;
-      }
-#endif
       for(register index_type i=size(); i--;)
 	(*data_)[i] = m(i);    
       return *this;
@@ -515,23 +408,12 @@ namespace matricks {
 
     template <class B>
     Vector<D>& operator=(const VReconObj<D>& b) { 
-#if MATRICKS_DEBUG>0
-      vbad_reconassignment(objectID(), b);
-#endif
       return *this;
     }
 
 
     Vector<D>& equals(const std::list<D> mylist) {
       
-#if MATRICKS_DEBUG>0
-      if ( (size()>0) && ( size() !=  mylist.size() ) ){ 
-	vbad_assignment_general_warning(objectID(),mylist.size(), "std::list<D>");
-      } else if (size() !=  mylist.size() ){
-	// if size=0, just silently resize this vector
-	//	vbad_assignment_warning(objectID(),v2.objectID());
-      }      
-#endif      
 
       // resize to avoid segmentation faults
       resize(mylist.size());
@@ -554,14 +436,6 @@ namespace matricks {
 #if CPP11 == 1
     Vector<D>& equals(const std::initializer_list<D> mylist) {
       
-#if MATRICKS_DEBUG>0
-      if ( (size()>0) && ( size() !=  mylist.size() ) ){ 
-	vbad_assignment_general_warning(objectID(),mylist.size(), "std::initializer_list<D>");
-      } else if (size() !=  mylist.size() ){
-	// if size=0, just silently resize this vector
-	//	vbad_assignment_warning(objectID(),v2.objectID());
-      }      
-#endif      
 
       // resize to avoid segmentation faults
       resize(mylist.size());
@@ -574,26 +448,18 @@ namespace matricks {
 
       return *this;
     }
-
+#endif // C++11
 
     Vector<D>& operator=(const std::initializer_list<D> mylist) {
       return equals(mylist);
     }
-#endif
+
 
 
 
     // assignment to a std::vector
     Vector<D>& equals(const std::vector<D> vstd) {
       
-#if MATRICKS_DEBUG>0
-      if ( (size()>0) && ( size() !=  vstd.size() ) ){ 
-	vbad_assignment_general_warning(objectID(),vstd.size(), "std::vector<D>");
-      } else if (size() !=  vstd.size() ){
-	// if size=0, just silently resize this vector
-	//	vbad_assignment_warning(objectID(),v2.objectID());
-      }      
-#endif      
 
       // resize to avoid segmentation faults
       resize(vstd.size());
@@ -615,14 +481,6 @@ namespace matricks {
     template <std::size_t N>
     Vector<D>& equals(const struct std::array<D,N> varray) {
       
-#if MATRICKS_DEBUG>0
-      if ( (size()>0) && ( size() !=  N) ) { 
-	vbad_assignment_general_warning(objectID(), N, "std::array<D,N>");
-      } else if (size() !=  N ){
-	// if size=0, just silently resize this vector
-	//	vbad_assignment_warning(objectID(),v2.objectID());
-      }      
-#endif      
 
       // resize to avoid segmentation faults
       resize(N);
@@ -644,14 +502,6 @@ namespace matricks {
     // assignment to a std::val_array
     Vector<D>& equals(const std::valarray<D> varray) {
       
-#if MATRICKS_DEBUG>0
-      if ( (size()>0) && ( size() !=  varray.size() ) ){ 
-	vbad_assignment_general_warning(objectID(),varray.size(), "std::valarray<D>");
-      } else if (size() !=  varray.size() ){
-	// if size=0, just silently resize this vector
-	//	vbad_assignment_warning(objectID(),v2.objectID());
-      }      
-#endif      
 
       // resize to avoid segmentation faults
       resize(varray.size());
@@ -702,7 +552,7 @@ namespace matricks {
       if (N==0)
 	return ivec;
     
-      std::vector<pair<D> > temp(N);
+      std::vector<Pair<D> > temp(N);
 
       for (register index_type i = 0; i < N ; i++ ) {
 	temp[i].index = i;
@@ -733,12 +583,12 @@ namespace matricks {
       if (N==0)
 	return *(new Vector<index_type>(0));
     
-      std::queue<pair<D> > unique;
+      std::queue<Pair<D> > unique;
 	
-      pair<D> prevpair(0, (*data_)[0]);
+      Pair<D> prevpair(0, (*data_)[0]);
       unique.push(prevpair);
       for (register index_type i = 1; i < N ; i++ ) {
-	pair<D> mypair(i, (*data_)[i]);
+	Pair<D> mypair(i, (*data_)[i]);
 	if (mypair.data != prevpair.data) {
 	  unique.push(mypair);
 	  prevpair = mypair;
@@ -749,7 +599,7 @@ namespace matricks {
       Vector<index_type> &indexvec = *(new Vector<index_type>(Nnew));
       resize(Nnew);
       for (register index_type i = 0; i < Nnew ; i++ ) {
-	pair<D> mypair = unique.front();
+	Pair<D> mypair = unique.front();
 	unique.pop();
 	indexvec[i] = mypair.index;
 	(*data_)[i] = mypair.data;
@@ -776,10 +626,10 @@ namespace matricks {
 
       for (register index_type j = 0; j < N ; j++ ) {
 	if (mymap.find(j) == mymap.end()) continue;
-	pair<D> pair1(j, (*data_)[j]);
+	Pair<D> pair1(j, (*data_)[j]);
 	for (register index_type k = j+1; k < N ; k++ ) {
 	  if (mymap.find(k) == mymap.end()) continue;
-	  pair<D> pair2(k, (*data_)[k]);
+	  Pair<D> pair2(k, (*data_)[k]);
 	  if (pair1.data == pair2.data) {
 	    mymap.erase(k);
 	  } 
@@ -1138,36 +988,10 @@ namespace matricks {
     //**********************************************************************
 
 
-    size_type objectID(void) const { 
-      return objectID_;
-    }
-
-    size_type perline(const size_type Nline)  { 
-      return (perline_=Nline);
-    }
-    size_type perline(void)  const { 
-      return perline_;
-    }
-
-    size_type width(const size_type w)  { 
-      return (width_=w);
-    }
-    size_type width(void)  const { 
-      return width_;
-    }
-
-
     inline VETypes vetype(void) const {
       return VE_Vector;
     }
 
-    TextFormat textformat(void) const {
-      return textformat_;
-    }
-
-    TextFormat textformat(TextFormat newformat) {
-      return textformat_ = newformat;
-    }
 
     static std::string classname(void)  {
       using namespace display;
@@ -1179,53 +1003,13 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-#if MATRICKS_DEBUG>0
-      return ""; //MatricksObjectManager::vectorname(objectID_); 
-#else
-      return name_;
-#endif
-    }
-
-    void debugtxt(const char* newname) const {
-      std::string s = newname;
-#if MATRICKS_DEBUG>0
-      //      MatricksObjectManager::vchange_name(objectID_,s); 
-#else
-      name_=s;
-#endif
-    }
-
-    void debugtxt(const std::string newname) const {
-#if MATRICKS_DEBUG>0
-      // MatricksObjectManager::vchange_name(objectID_,newname); 
-#else
-      name_=name;
-#endif
-    }
-
-    std::string name(void) const {
-      return debugtxt();
-    }
-
-    void name(const char* newname) const {
-      debugtxt(newname);
-    }
-
-    void name(const std::string newname) const {
-      debugtxt(newname);
+    std::string expression(void) const {
+      return "";
     }
 
 
-    static std::string datatype(void) {
-      D dummy = D();
-      return getTypeString(dummy);
-    }
 
     void outputglossary(void) const {
-#if MATRICKS_DEBUG>0
-      MatricksObjectManager::outputGlossary(objectID_);
-#endif
     }
 
     // stream << operator
@@ -1262,187 +1046,183 @@ namespace matricks {
     // stream >> operator
 
     friend std::istream& operator>>(std::istream& stream,  Vector<D>& x) {	
-      const size_type LINESZ = 32768;
-      char line[LINESZ];
-      std::vector<D> v;
-      size_type N = 0;
-      const size_type Nold = x.size();
-      D temp;
-      size_type Nlines = 0;
-      std::istringstream strmline;
+      // const size_type LINESZ = 32768;
+      // char line[LINESZ];
+      // std::vector<D> v;
+      // size_type N = 0;
+      // const size_type Nold = x.size();
+      // D temp;
+      // size_type Nlines = 0;
+      // std::istringstream strmline;
 
-      switch (x.textformat()) {
-      case text_braces: 
-	{
-	  enum States {begin, invec, waitingforcomma, end};
-	  States state = begin;
+      // switch (x.textformat()) {
+      // case text_braces: 
+      // 	{
+      // 	  enum States {begin, invec, waitingforcomma, end};
+      // 	  States state = begin;
 
-	  while( (state!=end) && stream.getline(line,LINESZ)){
-	    Nlines++;
-	    strmline.clear();
-	    strmline.str(line);
+      // 	  while( (state!=end) && stream.getline(line,LINESZ)){
+      // 	    Nlines++;
+      // 	    strmline.clear();
+      // 	    strmline.str(line);
 	
-	    char c;
-	    size_type Nchars=0;
-	    while((state!=end) && strmline.get(c) ){
-	      Nchars++;
-	      if (isspace(c))
-		continue;
-	      if (c=='%')
-		break; // ignore rest of line "%" signifies a comment
+      // 	    char c;
+      // 	    size_type Nchars=0;
+      // 	    while((state!=end) && strmline.get(c) ){
+      // 	      Nchars++;
+      // 	      if (isspace(c))
+      // 		continue;
+      // 	      if (c=='%')
+      // 		break; // ignore rest of line "%" signifies a comment
 	  
-	      switch (state) {
-	      case begin:
-		if  (c=='{')  {
-		  state = invec;
-		  break;
-		}else {
-		  std::string extrastr = "Expecting an opening brace.";
-		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
-		  return stream;
-		}
-		break;
-	      case invec:
-		if  (c=='}') {
-		  state = end;
-		  break;
-		}
-		strmline.putback(c);
-		if (strmline>>temp){
-		  v.push_back(temp);
-		  N++;
-		  state = waitingforcomma;
-		  break;
-		}else {
-		  std::string extrastr = "Expecting a vector element.";
-		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
-		  return stream;
-		}
-		return stream;
-	      case waitingforcomma:
-		if  (c=='}') {
-		  state = end;
-		  break;
-		}
-		if  (c==',') {
-		  state = invec;
-		  break;
-		}else {
-		  std::string extrastr = "Expecting a comma.";
-		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
-		  return stream;
-		}
-		break;
-	      case end:
-		{
-		  std::string extrastr = "Expecting a closing brace.";
-		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
-		}
-		return stream;
-		break;
-	      default:
-		bug_report(__FILE__,__LINE__);
-		return stream;
-		break;
-	      }
-	    }
-	  }
-	  if (Nold==0) {
-	    x.resize(N);
-	  } else if (N != Nold) {
-	    vbad_input_stream_size(x.name(),line,N,Nold);
-	    return stream;
-	  }
-	}
-	break;
-      case text_nobraces: 
-	{
-	  std::string oldline = line;
-	  if (Nold==0) { // read until stream ends
-	    while( stream.getline(line,LINESZ) ){
-	      Nlines++;
-	      strmline.clear();
-	      strmline.str(line);
-	      char c;
-	      size_type Nchars=0;
-	      while(strmline.get(c)){
-		Nchars++;
-		if (isspace(c))
-		  continue;
-		if (c=='%')
-		  break; // ignore rest of line "%" signifies a comment
+      // 	      switch (state) {
+      // 	      case begin:
+      // 		if  (c=='{')  {
+      // 		  state = invec;
+      // 		  break;
+      // 		}else {
+      // 		  std::string extrastr = "Expecting an opening brace.";
+      // 		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
+      // 		  return stream;
+      // 		}
+      // 		break;
+      // 	      case invec:
+      // 		if  (c=='}') {
+      // 		  state = end;
+      // 		  break;
+      // 		}
+      // 		strmline.putback(c);
+      // 		if (strmline>>temp){
+      // 		  v.push_back(temp);
+      // 		  N++;
+      // 		  state = waitingforcomma;
+      // 		  break;
+      // 		}else {
+      // 		  std::string extrastr = "Expecting a vector element.";
+      // 		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
+      // 		  return stream;
+      // 		}
+      // 		return stream;
+      // 	      case waitingforcomma:
+      // 		if  (c=='}') {
+      // 		  state = end;
+      // 		  break;
+      // 		}
+      // 		if  (c==',') {
+      // 		  state = invec;
+      // 		  break;
+      // 		}else {
+      // 		  std::string extrastr = "Expecting a comma.";
+      // 		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
+      // 		  return stream;
+      // 		}
+      // 		break;
+      // 	      case end:
+      // 		{
+      // 		  std::string extrastr = "Expecting a closing brace.";
+      // 		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
+      // 		}
+      // 		return stream;
+      // 		break;
+      // 	      default:
+      // 		bug_report(__FILE__,__LINE__);
+      // 		return stream;
+      // 		break;
+      // 	      }
+      // 	    }
+      // 	  }
+      // 	  if (Nold==0) {
+      // 	    x.resize(N);
+      // 	  } else if (N != Nold) {
+      // 	    vbad_input_stream_size(x.name(),line,N,Nold);
+      // 	    return stream;
+      // 	  }
+      // 	}
+      // 	break;
+      // case text_nobraces: 
+      // 	{
+      // 	  std::string oldline = line;
+      // 	  if (Nold==0) { // read until stream ends
+      // 	    while( stream.getline(line,LINESZ) ){
+      // 	      Nlines++;
+      // 	      strmline.clear();
+      // 	      strmline.str(line);
+      // 	      char c;
+      // 	      size_type Nchars=0;
+      // 	      while(strmline.get(c)){
+      // 		Nchars++;
+      // 		if (isspace(c))
+      // 		  continue;
+      // 		if (c=='%')
+      // 		  break; // ignore rest of line "%" signifies a comment
 		
-		strmline.putback(c);
-		if (strmline>>temp){
-		  v.push_back(temp);
-		  N++;
-		} else { 
-		  std::string extrastr ="";
-		  if ( (c=='{') || (c=='}')||(c==','))
-		    extrastr = "Braces and commas are not allowed in 'text_nobraces' mode";
-		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
-		  return stream;
-		}
-	      }
-	    }
-	    x.resize(N);
-	  } else { // just read in N elements and stop
-	    while( (N<Nold) && stream.getline(line,LINESZ) ){
-	      Nlines++;
-	      strmline.clear();
-	      strmline.str(line);
-	      char c;
-	      size_type Nchars=0;
-	      while((N<Nold) && strmline.get(c) ){
-		Nchars++;
-		std::string stemp = strmline.str();
-		if (isspace(c))
-		  continue;
-		if (c=='%')
-		  break; // ignore rest of line "%" signifies a comment
+      // 		strmline.putback(c);
+      // 		if (strmline>>temp){
+      // 		  v.push_back(temp);
+      // 		  N++;
+      // 		} else { 
+      // 		  std::string extrastr ="";
+      // 		  if ( (c=='{') || (c=='}')||(c==','))
+      // 		    extrastr = "Braces and commas are not allowed in 'text_nobraces' mode";
+      // 		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
+      // 		  return stream;
+      // 		}
+      // 	      }
+      // 	    }
+      // 	    x.resize(N);
+      // 	  } else { // just read in N elements and stop
+      // 	    while( (N<Nold) && stream.getline(line,LINESZ) ){
+      // 	      Nlines++;
+      // 	      strmline.clear();
+      // 	      strmline.str(line);
+      // 	      char c;
+      // 	      size_type Nchars=0;
+      // 	      while((N<Nold) && strmline.get(c) ){
+      // 		Nchars++;
+      // 		std::string stemp = strmline.str();
+      // 		if (isspace(c))
+      // 		  continue;
+      // 		if (c=='%')
+      // 		  break; // ignore rest of line "%" signifies a comment
 		
-		strmline.putback(c);
-		if (strmline>>temp){
-		  v.push_back(temp);
-		  N++;
-		} else { 
-		  std::string extrastr ="";
-		  if ( (c=='{') || (c=='}')||(c==','))
-		    extrastr = "Braces and commas are not allowed in 'text_nobraces' mode";
-		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
-		  return stream;
-		}
-	      }
-	      oldline = line;
-	    }
-	    if (N != Nold) {
-	      vinput_stream_size_too_small(x.name(),oldline,N,Nold);
-	      return stream;
-	    }
-	  }
-	}
-	break;
-      default:
-	bug_report(__FILE__,__LINE__);
-	break;
-      } //switch
+      // 		strmline.putback(c);
+      // 		if (strmline>>temp){
+      // 		  v.push_back(temp);
+      // 		  N++;
+      // 		} else { 
+      // 		  std::string extrastr ="";
+      // 		  if ( (c=='{') || (c=='}')||(c==','))
+      // 		    extrastr = "Braces and commas are not allowed in 'text_nobraces' mode";
+      // 		  vsyntax_error(x.name(),line,N,Nold,Nlines,Nchars,c,extrastr,x.textformat());
+      // 		  return stream;
+      // 		}
+      // 	      }
+      // 	      oldline = line;
+      // 	    }
+      // 	    if (N != Nold) {
+      // 	      vinput_stream_size_too_small(x.name(),oldline,N,Nold);
+      // 	      return stream;
+      // 	    }
+      // 	  }
+      // 	}
+      // 	break;
+      // default:
+      // 	bug_report(__FILE__,__LINE__);
+      // 	break;
+      // } //switch
 
-      for(size_type i=0; i<N; i++)
-	x[i] = v[i];
+      // for(size_type i=0; i<N; i++)
+      // 	x[i] = v[i];
       
-      return restore_stream(stream,strmline);
-  
+      // return restore_stream(stream,strmline);
+      return stream;
     }
 
     // --------------------- FRIENDS ---------------------
 
-
-
-    
+  
 
   };
-
-
 
 
 

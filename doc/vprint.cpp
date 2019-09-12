@@ -538,6 +538,23 @@ int main()
     codeend();
   }
 
+  header2("Changing the color and style settings\n");
+  text("* In addition to the formatting discussed above, each data type has Styles that control the color and text attributes (eg boldness) of output\n");
+
+  header3("Color and style settings for floating point number types\n");
+
+  cr();cr();
+  text("| `FormatData<D>` class variable | default value | \n");
+  text("|--------------------|----------------------------|\n");
+  text("| style_for_type_name | Style(MAGENTA) | \n");
+  text("| style_for_value | Style(BLACK) | \n");
+  text("| style_for_zero | Style(GRAY1) | \n");
+  cr();cr();
+
+  header3("Color and style settings for `char`, `string`, and `bool`\n");
+
+  header3("Color and style settings for `Vector`\n");
+
   matricks_toc();
 
   return 0;

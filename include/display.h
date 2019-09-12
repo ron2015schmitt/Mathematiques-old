@@ -182,6 +182,7 @@ namespace display {
   const std::string ENCIRCLED  = ESC+"52m"; // not widely supported
   const std::string OVERLINE   = ESC+"53m";
 
+  const std::string BLACK   = FORE+"5;232m";  // in Ubuntu color=0 is sloghtly gray
   const std::string GRAY2   = ESC+"30m";      
   const std::string GRAY1  = FORE+"5;240m";      
   const std::string WHITE   = ESC+"37m";

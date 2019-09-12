@@ -124,7 +124,11 @@ int main()
 
     Style bold(BOLD); 
     Style mybold = bold + mystyle; 
-    mout << mybold.apply("Hello World") << std::endl; 
+    mout << mybold.apply("Hello World") << std::endl;
+
+    Style black(BLACK); 
+    mout <<"XXX"<< black.apply("XXX")<<"XXX" << std::endl;
+    
   }
   
   cr();cr();

@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r53).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r56).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -255,7 +255,7 @@ display::mout << mybold.apply("Hello World") << std::endl;
 * Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles
 * Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
-## Customizing the format and colors by data type
+## Customizing display format for data types
 
 
 ### Customizing number formats
@@ -566,7 +566,7 @@ v = [ ...
 
 
 
-| `**FormatDataComplex**` class variable | default value | 
+| **FormatDataComplex** class variable | default value | 
 |--------------------|----------------------------|
 | style_for_type_name | Style(GREEN) | 
 | style_for_punctuation | Style(GRAY1) | 
@@ -576,7 +576,7 @@ v = [ ...
 
 
 
-| `**FormatDataVector**` class variable | default value | 
+| **FormatDataVector** class variable | default value | 
 |--------------------|----------------------------|
 | style_for_type_name | Style(CYAN) | 
 | style_for_punctuation | Style(GRAY1) | 

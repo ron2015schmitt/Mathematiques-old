@@ -5,7 +5,7 @@ for file in $@
 do
     set -x
     rm -f ${file}{,.o,.md,.link_md}
-    git reset -- ${file}.{md}
-    git checkout -- ${file}.{md}
+    git reset -- ${file}.md
+    git checkout -- ${file}.md
     set +x
 done

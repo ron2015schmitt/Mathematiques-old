@@ -604,7 +604,7 @@ int main()
 
   header3("Color and style settings for `std::complex`\n");
   cr();cr();
-  text("| `**FormatDataComplex**` class variable | default value | ");
+  text("| **FormatDataComplex** class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(GREEN) | ");
   text("| style_for_punctuation | Style(GRAY1) | ");
@@ -612,7 +612,7 @@ int main()
   
   header3("Color and style settings for `Vector`\n");
   cr();cr();
-  text("| `**FormatDataVector**` class variable | default value | ");
+  text("| **FormatDataVector** class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(CYAN) | ");
   text("| style_for_punctuation | Style(GRAY1) | ");

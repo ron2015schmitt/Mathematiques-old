@@ -1,6 +1,6 @@
 
 # Access subsets of Vector elements in mātricks
-_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.15-r30).
+_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.15-r56).
 
 You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices
 ## Access vector elements using a `Vector` of indices

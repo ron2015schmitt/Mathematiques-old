@@ -295,7 +295,7 @@ int main()
   text("* Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)\n");
 
   
-  header2("Customizing the format and colors by data type");
+  header2("Customizing display format for data types");
   cr();cr();
   header3("Customizing number formats");
   text("You can set the number format for any of the primitive datatypes using template function `setFormatString<D>(std::string)`");

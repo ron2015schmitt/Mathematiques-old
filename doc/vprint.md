@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r31).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r32).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -249,18 +249,12 @@ display::mout << mystyle.apply("Hello World") << std::endl;
 * Style objects can added:
 
 ```C++
-int nf = 27;  // color for foreground  
-
-int nb = 227; // color for background  
-
-display::Style mystyle(nf,nb); 
-
-display::Style bold(BOLD); 
-
-display::Style mybold = bold + mystyle; 
-
+int nf = 27;  // color for foreground
+int nb = 227; // color for background
+display::Style mystyle(nf,nb);
+display::Style bold(BOLD);
+display::Style mybold = bold + mystyle;
 display::mout << mybold.apply("Hello World") << std::endl; 
-
 ```
 * Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles
 * Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)

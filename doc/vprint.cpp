@@ -283,12 +283,12 @@ int main()
 
   text("* Style objects can added:\n");
   codestart("C++");
-  text("int nf = 27;  // color for foreground  \n");
-  text("int nb = 227; // color for background  \n");
-  text("display::Style mystyle(nf,nb); \n");
-  text("display::Style bold(BOLD); \n");
-  text("display::Style mybold = bold + mystyle; \n");
-  text("display::mout << mybold.apply(\"Hello World\") << std::endl; \n");
+  text("int nf = 27;  // color for foreground");
+  text("int nb = 227; // color for background");
+  text("display::Style mystyle(nf,nb);");
+  text("display::Style bold(BOLD);");
+  text("display::Style mybold = bold + mystyle;");
+  text("display::mout << mybold.apply(\"Hello World\") << std::endl; ");
   codeend();
   text("* Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles");
   

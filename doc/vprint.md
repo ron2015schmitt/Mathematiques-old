@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r35).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r37).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -260,6 +260,8 @@ display::mout << mybold.apply("Hello World") << std::endl;
 
 ### Customizing number formats
 You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`
+
+
 **EXAMPLE 5**:  double number format
 ```C++
 using namespace display;
@@ -269,6 +271,15 @@ double x = 2.51;
 **Results**: The default format is "%g" which yields
 ```C++
   x = 2.51; 
+```
+
+```C++
+setFormatString<double>("%+18.15g");
+```
+
+**Results**: The format "%+18.15g"  yields
+```C++
+  x =              +2.51; 
 ```
 
 
@@ -288,28 +299,28 @@ std::complex<double> z(1,-2);
 Default format: `"(%s, %s)"`
 
 ```C++
-z = (1,-2); 
+z = (                +1,                -2); 
 ```
 
 
 Matlab input format `"%s + i*%s"`
 
 ```C++
-z = 1 + i*-2; 
+z =                 +1 + i*                -2; 
 ```
 
 
 Mathematica input format `"%s + I*%s"`
 
 ```C++
-z = 1 + I*-2; 
+z =                 +1 + I*                -2; 
 ```
 
 
 Matlab output format / C++14 format `"%s + %si"`
 
 ```C++
-z = 1 + -2i; 
+z =                 +1 +                 -2i; 
 ```
 ### Customizing Vector format
 **TO DO**

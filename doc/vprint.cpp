@@ -301,6 +301,7 @@ int main()
   text("You can set the number format for any of the primitive datatypes using template function  `setFormatString<D>(std::string)`");
 
     {
+      cr();cr();
       example(Nex++," double number format");
       
       codestart("C++");
@@ -310,6 +311,14 @@ int main()
       text("");
 
       resultstart3(": The default format is \"%g\" which yields");
+      resultmulti(x );
+      resultend();
+
+      codestart("C++");
+      codemulti( setFormatString<double>("%+18.15g")  );
+      codeend();
+      text("");
+      resultstart3(": The format \"%+18.15g\"  yields");
       resultmulti(x );
       resultend();
 

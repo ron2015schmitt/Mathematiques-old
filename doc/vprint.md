@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r40).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r41).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -317,13 +317,28 @@ setFormatString<int>("%10d");
 
 ```C++
 using namespace display;
-bool a = true;;
+bool a = true;
 ```
 
 **Results**: The default `bool` format which yields
 ```C++
   a = 1; 
   !a = 0; 
+```
+
+
+
+For example, we can change the bool display value to true/false as follows.
+```C++
+using namespace display;
+FormatData<bool>::string_for_true = "true";;
+FormatData<bool>::string_for_false = "false";;
+```
+
+**Results**: The above format yields
+```C++
+  a = true; 
+  !a = false; 
 ```
 
 

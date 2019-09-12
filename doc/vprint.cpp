@@ -362,11 +362,25 @@ int main()
     cr();cr();
     codestart("C++");
     codemulti( using namespace display );
-    codemulti( bool a = true;  );
+    codemulti( bool a = true );
     codeend();
     text("");
 
     resultstart3(": The default `bool` format which yields");
+    resultmulti(a);
+    resultmulti(!a);
+    resultend();
+    cr();cr();
+
+    text("For example, we can change the bool display value to true/false as follows.");
+    codestart("C++");
+    codemulti( using namespace display );
+    codemulti( FormatData<bool>::string_for_true = "true"; );
+    codemulti( FormatData<bool>::string_for_false = "false"; );
+    codeend();
+    text("");
+
+    resultstart3(": The above format yields");
     resultmulti(a);
     resultmulti(!a);
     resultend();

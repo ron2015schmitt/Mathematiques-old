@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r61).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.16-r1).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 

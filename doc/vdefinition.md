@@ -1,6 +1,6 @@
 
 # under the hood—`Vector` definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.15-r61).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.16-r1).
 
 * _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
 ### The Vector class is a wrapper

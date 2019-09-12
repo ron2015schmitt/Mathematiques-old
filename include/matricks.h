@@ -47,6 +47,7 @@
 #include "slices.h"
 
 #include "vorevorw.h"
+#include "more.hpp"
 
 #include "debug.h"
 

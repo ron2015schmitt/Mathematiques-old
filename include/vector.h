@@ -36,7 +36,7 @@ namespace matricks {
     using VectorofPtrs::addAddresses;
 
     typedef D element_type;
-    typedef typename RealVersionOfType<D>::Type DREAL;
+    typedef typename GetDataType<D>::Type DREAL;
 
 
 

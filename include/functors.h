@@ -1151,7 +1151,7 @@ namespace matricks {
 
   template <class D> class ApRoundZeros {
   public:
-    typedef typename RealVersionOfType<D>::Type DREAL;
+    typedef typename GetDataType<D>::Type DREAL;
     ApRoundZeros() { }
 
     static inline D apply(D a, const DREAL tolerance) { 

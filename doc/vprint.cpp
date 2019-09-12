@@ -541,7 +541,7 @@ int main()
   header2("Changing the color and style settings\n");
   text("* In addition to the formatting discussed above, each data type has Styles that control the color and text attributes (eg boldness) of output\n");
 
-  header3("Color and style settings for floating point number types\n");
+  header3("Color and style settings for floating point types\n");
 
   cr();cr();
   text("| `FormatData<D>` class variable | default value | ");
@@ -551,9 +551,72 @@ int main()
   text("| style_for_zero | Style(GRAY1) | ");
   cr();cr();
 
-  header3("Color and style settings for `char`, `string`, and `bool`\n");
 
+  header3("Color and style settings for signed integer types\n");
+
+  cr();cr();
+  text("| `FormatData<D>` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(MAGENTA) | ");
+  text("| style_for_value | Style(BLUE2) | ");
+  text("| style_for_zero | Style(GRAY1) | ");
+  cr();cr();
+
+  header3("Color and style settings for unsigned integer types\n");
+
+  cr();cr();
+  text("| `FormatData<D>` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(MAGENTA) | ");
+  text("| style_for_value | Style(BLUE3) | ");
+  text("| style_for_zero | Style(GRAY1) | ");
+  cr();cr();
+
+
+
+  header3("Color and style settings for `bool`\n");
+
+  cr();cr();
+  text("| `FormatData<D>` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(MAGENTA) | ");
+  text("| style_for_true | Style(GREEN1) | ");
+  text("| style_for_false | Style(GRAY1) | ");
+  cr();cr();
+
+  header3("Color and style settings for `char`\n");
+
+  cr();cr();
+  text("| `FormatData<D>` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(MAGENTA) | ");
+  text("| style_for_value | Style(BLACK) | ");
+  cr();cr();
+
+  header3("Color and style settings for `string`\n");
+
+  cr();cr();
+  text("| `FormatData<D>` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(GREEN) | ");
+  text("| style_for_value | Style(BLACK) | ");
+  cr();cr();
+
+  header3("Color and style settings for `std::complex`\n");
+  cr();cr();
+  text("| `**FormatDataComplex**` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(GREEN) | ");
+  text("| style_for_punctuation | Style(GRAY1) | ");
+  cr();cr();
+  
   header3("Color and style settings for `Vector`\n");
+  cr();cr();
+  text("| `**FormatDataVector**` class variable | default value | ");
+  text("|--------------------|----------------------------|");
+  text("| style_for_type_name | Style(CYAN) | ");
+  text("| style_for_punctuation | Style(GRAY1) | ");
+  cr();cr();
 
   matricks_toc();
 

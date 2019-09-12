@@ -140,21 +140,21 @@ namespace display {
 
   // short
   Style FormatData<short>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<short>::style_for_value = createStyle(BLUE);
+  Style FormatData<short>::style_for_value = createStyle(BLUE2);
   Style FormatData<short>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<short>::format_string_default = "%d";
   std::string FormatData<short>::format_string = format_string_default;
 
   // int
   Style FormatData<int>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<int>::style_for_value = createStyle(BLUE);
+  Style FormatData<int>::style_for_value = createStyle(BLUE2);
   Style FormatData<int>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<int>::format_string_default = "%d";
   std::string FormatData<int>::format_string = format_string_default;
 
   // long
   Style FormatData<long>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<long>::style_for_value = createStyle(BLUE);
+  Style FormatData<long>::style_for_value = createStyle(BLUE2);
   Style FormatData<long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long>::format_string_default = "%ld";
   std::string FormatData<long>::format_string = format_string_default;
@@ -163,7 +163,7 @@ namespace display {
 #if LONGLONG_EXISTS
   // long long
   Style FormatData<long long>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<long long>::style_for_value = createStyle(BLUE);
+  Style FormatData<long long>::style_for_value = createStyle(BLUE2);
   Style FormatData<long long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long long>::format_string_default = "%lld";
   std::string FormatData<long long>::format_string = format_string_default;
@@ -171,21 +171,21 @@ namespace display {
 
   // unsigned short
   Style FormatData<unsigned short>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned short>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned short>::style_for_value = createStyle(BLUE3);
   Style FormatData<unsigned short>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned short>::format_string_default = "%u";
   std::string FormatData<unsigned short>::format_string = format_string_default;
 
   // unsigned int
   Style FormatData<unsigned int>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned int>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned int>::style_for_value = createStyle(BLUE3);
   Style FormatData<unsigned int>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned int>::format_string_default = "%u";
   std::string FormatData<unsigned int>::format_string = format_string_default;
 
   // unsigned long
   Style FormatData<unsigned long>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned long>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned long>::style_for_value = createStyle(BLUE3);
   Style FormatData<unsigned long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned long>::format_string_default = "%lu";
   std::string FormatData<unsigned long>::format_string = format_string_default;
@@ -194,7 +194,7 @@ namespace display {
 #if LONGLONG_EXISTS
   // unsigned long long
   Style FormatData<unsigned long long>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<unsigned long long>::style_for_value = createStyle(CYAN);
+  Style FormatData<unsigned long long>::style_for_value = createStyle(BLUE3);
   Style FormatData<unsigned long long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned long long>::format_string_default = "%llu";
   std::string FormatData<unsigned long long>::format_string = format_string_default;
@@ -216,7 +216,7 @@ namespace display {
 
   // bool
   Style FormatData<bool>::style_for_type_name = createStyle(MAGENTA);
-  Style FormatData<bool>::style_for_true = createStyle(GREEN);
+  Style FormatData<bool>::style_for_true = createStyle(GREEN1);
   Style FormatData<bool>::style_for_false = createStyle(GRAY1);
   std::string FormatData<bool>::string_for_true = "1";
   std::string FormatData<bool>::string_for_false = "0";

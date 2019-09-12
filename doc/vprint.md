@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r51).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.15-r53).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -498,7 +498,7 @@ v = [ ...
 
 * In addition to the formatting discussed above, each data type has Styles that control the color and text attributes (eg boldness) of output
 
-### Color and style settings for floating point number types
+### Color and style settings for floating point types
 
 
 
@@ -509,9 +509,78 @@ v = [ ...
 | style_for_zero | Style(GRAY1) | 
 
 
-### Color and style settings for `char`, `string`, and `bool`
+### Color and style settings for signed integer types
+
+
+
+| `FormatData<D>` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(MAGENTA) | 
+| style_for_value | Style(BLUE2) | 
+| style_for_zero | Style(GRAY1) | 
+
+
+### Color and style settings for unsigned integer types
+
+
+
+| `FormatData<D>` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(MAGENTA) | 
+| style_for_value | Style(BLUE3) | 
+| style_for_zero | Style(GRAY1) | 
+
+
+### Color and style settings for `bool`
+
+
+
+| `FormatData<D>` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(MAGENTA) | 
+| style_for_true | Style(GREEN1) | 
+| style_for_false | Style(GRAY1) | 
+
+
+### Color and style settings for `char`
+
+
+
+| `FormatData<D>` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(MAGENTA) | 
+| style_for_value | Style(BLACK) | 
+
+
+### Color and style settings for `string`
+
+
+
+| `FormatData<D>` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(GREEN) | 
+| style_for_value | Style(BLACK) | 
+
+
+### Color and style settings for `std::complex`
+
+
+
+| `**FormatDataComplex**` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(GREEN) | 
+| style_for_punctuation | Style(GRAY1) | 
+
 
 ### Color and style settings for `Vector`
+
+
+
+| `**FormatDataVector**` class variable | default value | 
+|--------------------|----------------------------|
+| style_for_type_name | Style(CYAN) | 
+| style_for_punctuation | Style(GRAY1) | 
+
 
 
 [Table of Contents](README.md)

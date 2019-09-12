@@ -1,13 +1,13 @@
-# mātricks v2.16-r3
+# mātricks v2.16-r4
 
 ```diff
 - CURRENTLY NOT READY FOR USE.
 - Code has been upgraded/refactored for all *EXCEPT*
-  - documentation for print/display
   - file i/o
   - debugging
   - matrix operations
-- Planned Date for full functionality: 2019 Sep 20 FRI
+- Planned Date for full functionality: 2019 Oct 1
+- WORK AT MY DAY JOB HAS DELAYED THE RELEASE BUT IT WILL HAPPEN!
 ```
 
 

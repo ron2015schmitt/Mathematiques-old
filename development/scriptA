@@ -1,7 +1,0 @@
-#!/bin/bash
-
-for file in $*
-do
-cp $file "$file".old 
-sed -e 's/namespace cooll/namespace COOLL/g' "$file".old > $file
-done

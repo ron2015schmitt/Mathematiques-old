@@ -229,7 +229,7 @@ namespace matricks {
   {
     const size_type N = a.size();
 #if MATRICKS_DEBUG>0
-    std::string name=a.debugtxt();
+    std::string name=a.expression();
     name = "vcast("+name+")";
     if ( mexpr_is_size_bad(a.size()) ){ 
       mbad_expr_in_unary(a,"vcast");

@@ -55,8 +55,8 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
+    std::string expression(void) const {
+      return derived().expression();
     }
 
 
@@ -208,8 +208,8 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
+    std::string expression(void) const {
+      return derived().expression();
     }
 
 
@@ -309,7 +309,7 @@ namespace matricks {
       return equals(b);
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
     }
 
@@ -395,7 +395,7 @@ namespace matricks {
       return equals(b);
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
     }
 
@@ -523,7 +523,7 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
     }
 
@@ -648,14 +648,14 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::string s1,s2;
       if (iiptr_==0) 
-	s1= ii_.debugtxt();
+	s1= ii_.expression();
       else
 	s1= display::num2string(ii_[0]);
       if (jjptr_==0) 
-	s2= jj_.debugtxt();
+	s2= jj_.expression();
       else
 	s2= display::num2string(jj_[0]);
       return "";
@@ -759,7 +759,7 @@ namespace matricks {
       return equals(b);
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
     }
 
@@ -869,10 +869,10 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::string s;
       if (iiptr_==0) 
-	s= ii_.debugtxt();
+	s= ii_.expression();
       else
 	s= display::num2string(ii_[0]);
       return "";
@@ -993,10 +993,10 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::string s;
       if (jjptr_==0) 
-	s= jj_.debugtxt();
+	s= jj_.expression();
       else
 	s= display::num2string(jj_[0]);
       return "";
@@ -1076,8 +1076,8 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      return  a_.debugtxt() +".resize()";
+    std::string expression(void) const {
+      return  a_.expression() +".resize()";
     }
 
 
@@ -1155,7 +1155,7 @@ namespace matricks {
       return ME_MBinOp;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
     }
 
@@ -1219,14 +1219,14 @@ namespace matricks {
       return ME_MatOpScal;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::string s;
       return s;
       std::ostringstream stream;
       stream << val_;
       std::string sb = stream.str();
-      std::string sa = debugtxt_paren(a_.debugtxt(),a_.metype());
-      return OP::debugtxt(sa,sb);
+      std::string sa = expression_paren(a_.expression(),a_.metype());
+      return OP::expression(sa,sb);
     }
 
 
@@ -1286,12 +1286,12 @@ namespace matricks {
       return ME_ScalOpMat;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::ostringstream stream;
       stream << val_;
       std::string sa = stream.str();
-      std::string sb = debugtxt_paren(b_.debugtxt(),b_.metype());
-      return OP::debugtxt(sa,sb);
+      std::string sb = expression_paren(b_.expression(),b_.metype());
+      return OP::expression(sa,sb);
     }
 
 
@@ -1345,9 +1345,9 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
-      return FUNC::debugtxt(sa);
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
     }
 
 
@@ -1403,9 +1403,9 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      std::string sa =  a_.debugtxt();
-      return FUNC::debugtxt(sa);
+    std::string expression(void) const {
+      std::string sa =  a_.expression();
+      return FUNC::expression(sa);
     }
 
 
@@ -1462,9 +1462,9 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
-      return FUNC::debugtxt(sa);
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
     }
 
 

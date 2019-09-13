@@ -74,14 +74,14 @@ namespace matricks {
       return ME_MBoolBinOp;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.metype() != ME_Matrix) 
 	sa = "(" + sa + ")";
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.metype() != ME_Matrix) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -144,14 +144,14 @@ namespace matricks {
       return ME_BoolMatOpScal;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.metype() != ME_Matrix) 
 	sa = "(" + sa + ")";
       std::ostringstream stream;
       stream << val_;
       std::string sb = stream.str();
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -213,14 +213,14 @@ namespace matricks {
       return ME_BoolScalOpMat;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::ostringstream stream;
       stream << val_;
       std::string sa = stream.str();
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.metype() != ME_Matrix) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -275,9 +275,9 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
-      return FUNC::debugtxt(sa);
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
     }
 
 

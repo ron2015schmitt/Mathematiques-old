@@ -58,8 +58,8 @@ namespace matricks {
       return derived().Ncols();
     }
 
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
+    std::string expression(void) const {
+      return derived().expression();
     }
 
     inline METypes metype(void) const {

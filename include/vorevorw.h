@@ -49,8 +49,8 @@ namespace matricks {
       return derived().size();
     }
 
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
+    std::string expression(void) const {
+      return derived().expression();
     }
 
 

@@ -644,7 +644,7 @@ namespace matricks {
     }
 
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
     }
     

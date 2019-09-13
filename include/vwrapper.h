@@ -113,8 +113,8 @@ namespace matricks {
 
 
 
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
+    std::string expression(void) const {
+      return derived().expression();
     }
 
 

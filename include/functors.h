@@ -27,7 +27,7 @@ namespace matricks {
       return a+b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " + " + sb;
       return sout;
     }
@@ -46,7 +46,7 @@ namespace matricks {
       return a-b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " - " + sb;
       return sout;
     }
@@ -65,7 +65,7 @@ namespace matricks {
       return a*b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " * " + sb;
       return sout;
     }
@@ -84,7 +84,7 @@ namespace matricks {
       return a/b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " / " + sb;
       return sout;
     }
@@ -101,7 +101,7 @@ namespace matricks {
       return a && b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " && " + sb;
       return sout;
     }
@@ -119,7 +119,7 @@ namespace matricks {
       return (a || b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " || " + sb + ")";
       return sout;
     }
@@ -138,7 +138,7 @@ namespace matricks {
       return (a == b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " == " + sb + ")";
       return sout;
     }
@@ -159,7 +159,7 @@ namespace matricks {
       return (a != b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " != " + sb + ")";
       return sout;
     }
@@ -181,7 +181,7 @@ namespace matricks {
       return (a <= b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " <= " + sb + ")";
       return sout;
     }
@@ -202,7 +202,7 @@ namespace matricks {
       return (a >= b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " >= " + sb + ")";
       return sout;
     }
@@ -224,7 +224,7 @@ namespace matricks {
       return (a < b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " < " + sb + ")";
       return sout;
     }
@@ -246,7 +246,7 @@ namespace matricks {
       return (a > b); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "(" + sa + " > " + sb + ")";
       return sout;
     }
@@ -273,7 +273,7 @@ namespace matricks {
     }
 
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =std::string("op2<")+ stringify(D)+","+ stringify(F) +">(" + sa + " , " + sb + ")";
       return sout;
     }
@@ -292,7 +292,7 @@ namespace matricks {
     }
 
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "pow( " + sa + " , " + sb + " )";
       return sout;
     }
@@ -310,7 +310,7 @@ namespace matricks {
     }
 
 
-    static std::string debugtxt(const std::string& sx, const std::string& sn) {
+    static std::string expression(const std::string& sx, const std::string& sn) {
       std::string sout = sx + "^" + sn ;
       return sout;
     }
@@ -328,7 +328,7 @@ namespace matricks {
     }
 
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "atan2( " + sa + " , " + sb + " )";
       return sout;
     }
@@ -346,7 +346,7 @@ namespace matricks {
       return polar(r,phi); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "polar(" + sa + " , " + sb +  ")";
       return sout;
     }
@@ -365,7 +365,7 @@ namespace matricks {
       return std::complex<D>(x,y); 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "complex(" + sa + " , " + sb +  ")";
       return sout;
     }
@@ -386,7 +386,7 @@ namespace matricks {
       return a+b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " + " + sb;
       return sout;
     }
@@ -402,7 +402,7 @@ namespace matricks {
       return a+b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " + " + sb;
       return sout;
     }
@@ -422,7 +422,7 @@ namespace matricks {
       return a-b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " - " + sb;
       return sout;
     }
@@ -438,7 +438,7 @@ namespace matricks {
       return a-b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " - " + sb;
       return sout;
     }
@@ -458,7 +458,7 @@ namespace matricks {
       return a*b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " * " + sb;
       return sout;
     }
@@ -474,7 +474,7 @@ namespace matricks {
       return a*b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " * " + sb;
       return sout;
     }
@@ -494,7 +494,7 @@ namespace matricks {
       return a/b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " / " + sb;
       return sout;
     }
@@ -510,7 +510,7 @@ namespace matricks {
       return a/b; 
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " / " + sb;
       return sout;
     }
@@ -530,7 +530,7 @@ namespace matricks {
       using std::pow;
       return pow(a,b); 
     }
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "pow( " + sa + " , " + sb + " )";
       return sout;
     }
@@ -543,7 +543,7 @@ namespace matricks {
       using std::pow;
       return pow(a,b); 
     }
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "pow( " + sa + " , " + sb + " )";
       return sout;
     }
@@ -567,7 +567,7 @@ namespace matricks {
       return a; 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "+(" + sa + ")";
       return sout;
     }
@@ -584,7 +584,7 @@ namespace matricks {
       return (-a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "-(" + sa + ")";
       return sout;
     }
@@ -602,7 +602,7 @@ namespace matricks {
       return static_cast<D2 >(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::ostringstream stream;
       stream << typeid(D2).name();
       std::string tname = stream.str();
@@ -624,7 +624,7 @@ namespace matricks {
       return F(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout =std::string("op1<")+  typeid(D).name()+","+typeid(F).name() +">(" + sa + ")";
       return sout;
     }
@@ -644,7 +644,7 @@ namespace matricks {
       return sin(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "sin(" + sa + ")";
       return sout;
     }
@@ -663,7 +663,7 @@ namespace matricks {
       return std::cos(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "cos(" + sa + ")";
       return sout;
     }
@@ -684,7 +684,7 @@ namespace matricks {
       return std::tan(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "tan(" + sa + ")";
       return sout;
     }
@@ -703,7 +703,7 @@ namespace matricks {
       return std::sqrt(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "sqrt(" + sa + ")";
       return sout;
     }
@@ -721,7 +721,7 @@ namespace matricks {
       return (a*a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "sqr(" + sa + ")";
       return sout;
     }
@@ -739,7 +739,7 @@ namespace matricks {
       return (a*a*a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "cube(" + sa + ")";
       return sout;
     }
@@ -757,7 +757,7 @@ namespace matricks {
       return std::exp(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "exp(" + sa + ")";
       return sout;
     }
@@ -776,7 +776,7 @@ namespace matricks {
       return std::abs(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "abs(" + sa + ")";
       return sout;
     }
@@ -793,7 +793,7 @@ namespace matricks {
       return matricks::sgn(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "sgn(" + sa + ")";
       return sout;
     }
@@ -811,7 +811,7 @@ namespace matricks {
       return std::log(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "log(" + sa + ")";
       return sout;
     }
@@ -829,7 +829,7 @@ namespace matricks {
       return std::log2(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "log2(" + sa + ")";
       return sout;
     }
@@ -848,7 +848,7 @@ namespace matricks {
       return std::log10(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "log10(" + sa + ")";
       return sout;
     }
@@ -866,7 +866,7 @@ namespace matricks {
       return std::asin(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "asin(" + sa + ")";
       return sout;
     }
@@ -884,7 +884,7 @@ namespace matricks {
       return std::acos(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "acos(" + sa + ")";
       return sout;
     }
@@ -902,7 +902,7 @@ namespace matricks {
       return std::atan(a);
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "atan(" + sa + ")";
       return sout;
     }
@@ -921,7 +921,7 @@ namespace matricks {
       return std::ceil(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "ceil(" + sa + ")";
       return sout;
     }
@@ -938,7 +938,7 @@ namespace matricks {
       return std::floor(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "floor(" + sa + ")";
       return sout;
     }
@@ -954,7 +954,7 @@ namespace matricks {
       return std::round(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "round(" + sa + ")";
       return sout;
     }
@@ -971,7 +971,7 @@ namespace matricks {
       return std::sinh(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "sinh(" + sa + ")";
       return sout;
     }
@@ -988,7 +988,7 @@ namespace matricks {
       return std::cosh(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "cosh(" + sa + ")";
       return sout;
     }
@@ -1005,7 +1005,7 @@ namespace matricks {
       return std::tanh(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "tanh(" + sa + ")";
       return sout;
     }
@@ -1023,7 +1023,7 @@ namespace matricks {
       return !(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "!(" + sa + ")";
       return sout;
     }
@@ -1042,7 +1042,7 @@ namespace matricks {
       return abs(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "abs(" + sa + ")";
       return sout;
     }
@@ -1061,7 +1061,7 @@ namespace matricks {
       return arg(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "arg(" + sa + ")";
       return sout;
     }
@@ -1082,7 +1082,7 @@ namespace matricks {
       return conj(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "conj(" + sa + ")";
       return sout;
     }
@@ -1102,7 +1102,7 @@ namespace matricks {
       return real(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "real(" + sa + ")";
       return sout;
     }
@@ -1121,7 +1121,7 @@ namespace matricks {
       return imag(a); 
     }
 
-    static std::string debugtxt(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = "imag(" + sa + ")";
       return sout;
     }
@@ -1138,7 +1138,7 @@ namespace matricks {
       return matricks::round(a); 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
       std::string sout = "round(" + sa + ")";
       return sout;
     }
@@ -1158,7 +1158,7 @@ namespace matricks {
       return roundzero(a, tolerance);
     }
 
-    static std::string debugtxt(const std::string& sa, const std::string& sb) {
+    static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = "roundzero( " + sa + " , " + sb + " )";
       return sout;
     }

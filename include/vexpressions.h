@@ -108,9 +108,9 @@ namespace matricks {
 
     
     
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
-      //return debugtxt_VSubsetObj(a_.debugtxt(),ii_.debugtxt());
+      //return expression_VSubsetObj(a_.expression(),ii_.expression());
     }
 
 
@@ -174,9 +174,9 @@ namespace matricks {
     inline size_type sizetotal(void) const {
       return a_.size() +b_.size();
     }
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
-      //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
+      //      return expression_VJoinExpr(a_.expression(),ii_.expression());
     }
   };
 
@@ -270,9 +270,9 @@ namespace matricks {
 
 
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
-      //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
+      //      return expression_VJoinExpr(a_.expression(),ii_.expression());
     }
   };
 
@@ -357,9 +357,9 @@ namespace matricks {
       return this->equals(b);
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
-      //      return debugtxt_VSubMaskObj(a_.debugtxt(),ii_->debugtxt());
+      //      return expression_VSubMaskObj(a_.expression(),ii_->expression());
     }
 
 
@@ -423,8 +423,8 @@ namespace matricks {
       return a_;
     }
 
-    std::string debugtxt(void) const {
-      return  a_.debugtxt() +".resize()";
+    std::string expression(void) const {
+      return  a_.expression() +".resize()";
     }
 
 
@@ -484,9 +484,9 @@ namespace matricks {
     inline size_type sizetotal(void) const {
       return m_*a_.size();
     }
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       return "";
-      //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
+      //      return expression_VJoinExpr(a_.expression(),ii_.expression());
     }
   };
 
@@ -535,14 +535,14 @@ namespace matricks {
       return VE_VBinOp;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -614,12 +614,12 @@ namespace matricks {
       return VE_VSeriesOp;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       // TODO: get this working
-      std::string sa = a_.debugtxt();
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
-      std::string sx = x_.debugtxt();
+      std::string sx = x_.expression();
       if (x_.vetype() != VE_Vector) 
 	sx = "(" + sx + ")";
       std::string sN = printf2str("%d",N_);
@@ -690,16 +690,16 @@ namespace matricks {
       return VE_VSeriesOp2;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       // TODO: get this working
-      std::string sa = a_.debugtxt();
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
-      std::string sx = x_.debugtxt();
+      std::string sx = x_.expression();
       if (x_.vetype() != VE_Vector) 
 	sx = "(" + sx + ")";
       std::string sN = printf2str("%d",N_);
-      return OP1::debugtxt(sx);
+      return OP1::expression(sx);
     }
 
 
@@ -747,14 +747,14 @@ namespace matricks {
       return VE_VecOpScal;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
       std::ostringstream stream;
       stream << val_;
       std::string sb = stream.str();
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -807,14 +807,14 @@ namespace matricks {
       return VE_ScalOpVec;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::ostringstream stream;
       stream << val_;
       std::string sa = stream.str();
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -860,9 +860,9 @@ namespace matricks {
       return VE_VFuncOp;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
-      return FUNC::debugtxt(sa);
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
     }
 
 
@@ -915,14 +915,14 @@ namespace matricks {
       return VE_VBoolBinOp;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -978,14 +978,14 @@ namespace matricks {
       return VE_BoolVecOpScal;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
       std::ostringstream stream;
       stream << val_;
       std::string sb = stream.str();
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -1038,14 +1038,14 @@ namespace matricks {
       return VE_BoolScalOpVec;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::ostringstream stream;
       stream << val_;
       std::string sa = stream.str();
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -1091,9 +1091,9 @@ namespace matricks {
       return VE_VBoolFuncOp;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
-      return FUNC::debugtxt(sa);
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
     }
 
 
@@ -1150,14 +1150,14 @@ namespace matricks {
       return VE_CVecOpScal;
     }
 
-    std::string debugtxt(void) const {
-      std::string sa = a_.debugtxt();
+    std::string expression(void) const {
+      std::string sa = a_.expression();
       if (a_.vetype() != VE_Vector) 
 	sa = "(" + sa + ")";
       std::ostringstream stream;
       stream << val_;
       std::string sb = stream.str();
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -1205,14 +1205,14 @@ namespace matricks {
       return VE_CScalOpVec;
     }
 
-    std::string debugtxt(void) const {
+    std::string expression(void) const {
       std::ostringstream stream;
       stream << val_;
       std::string sa = stream.str();
-      std::string sb = b_.debugtxt();
+      std::string sb = b_.expression();
       if (b_.vetype() != VE_Vector) 
 	sb = "(" + sb + ")";
-      return OP::debugtxt(sa,sb);
+      return OP::expression(sa,sb);
     }
 
 
@@ -1280,9 +1280,9 @@ namespace matricks {
       return equals(b);
     }
 
-    std::string debugtxt(void) const {
-      return a_.debugtxt();
-      //      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
+    std::string expression(void) const {
+      return a_.expression();
+      //      return expression_VSliceObj(a_.expression(),start_,end_,step_);
     }
 
 

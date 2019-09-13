@@ -40,7 +40,7 @@ namespace matricks {
     // vector isn't defined yet, so just declare this here
     inline Vector<index_type>& toIndexVector(const size_type N) const;
 
-    inline std::string debugtxt() const {
+    inline std::string expression() const {
       std::stringstream  ss;
       ss << *this;
       return ss.str();

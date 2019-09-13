@@ -52,8 +52,8 @@ namespace matricks {
     std::string classname() const {
       return "Vexpr";
     }
-    std::string debugtxt(void) const {
-      return derived().debugtxt();
+    std::string expression(void) const {
+      return derived().expression();
     }
     friend std::ostream& operator<<(std::ostream &stream, const Vexpr<D,EXP>& ve) {
       Vector<D> v(ve);

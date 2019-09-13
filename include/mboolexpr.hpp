@@ -84,10 +84,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-      b_.outputglossary();
-    }
 
 
 
@@ -159,9 +155,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
 
@@ -230,9 +223,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-    void outputglossary(void) const {
-      b_.outputglossary();
-    }
 
 
   };
@@ -290,9 +280,6 @@ namespace matricks {
       return FUNC::debugtxt(sa);
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
 

@@ -113,9 +113,6 @@ namespace matricks {
       //return debugtxt_VSubsetObj(a_.debugtxt(),ii_.debugtxt());
     }
 
-    void outputglossary(void) const {
-      //outputglossary_VSubsetObj(a_.objectID(),ii_.objectID(),debugtxt(),size());
-    }
 
 
 
@@ -180,10 +177,6 @@ namespace matricks {
     std::string debugtxt(void) const {
       return "";
       //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
-    }
-    void outputglossary(void) const {
-      return ;
-      //      outputglossary_VJoinExpr(a_.objectID(),ii_.objectID(),debugtxt(),size());
     }
   };
 
@@ -281,10 +274,6 @@ namespace matricks {
       return "";
       //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
     }
-    void outputglossary(void) const {
-      return ;
-      //      outputglossary_VJoinExpr(a_.objectID(),ii_.objectID(),debugtxt(),size());
-    }
   };
 
 
@@ -373,9 +362,6 @@ namespace matricks {
       //      return debugtxt_VSubMaskObj(a_.debugtxt(),ii_->debugtxt());
     }
 
-    void outputglossary(void) const {
-      //      outputglossary_VSubMaskObj(a_.objectID(),ii_->objectID(),debugtxt(),size());
-    }
 
 
   };
@@ -441,12 +427,6 @@ namespace matricks {
       return  a_.debugtxt() +".resize()";
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
-
-
-
 
   };
 
@@ -508,10 +488,6 @@ namespace matricks {
       return "";
       //      return debugtxt_VJoinExpr(a_.debugtxt(),ii_.debugtxt());
     }
-    void outputglossary(void) const {
-      return ;
-      //      outputglossary_VJoinExpr(a_.objectID(),ii_.objectID(),debugtxt(),size());
-    }
   };
 
 
@@ -570,10 +546,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-      b_.outputglossary();
-    }
   };
 
 
@@ -655,10 +627,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-      x_.outputglossary();
-    }
   };
 
 
@@ -735,10 +703,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-      x_.outputglossary();
-    }
   };
 
 
@@ -793,10 +757,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
 
@@ -857,9 +817,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-    void outputglossary(void) const {
-      b_.outputglossary();
-    }
 
 
   };
@@ -908,9 +865,6 @@ namespace matricks {
       return FUNC::debugtxt(sa);
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
   };
@@ -972,10 +926,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-      b_.outputglossary();
-    }
 
 
 
@@ -1039,9 +989,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
 
@@ -1101,9 +1048,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-    void outputglossary(void) const {
-      b_.outputglossary();
-    }
 
 
 
@@ -1152,9 +1096,6 @@ namespace matricks {
       return FUNC::debugtxt(sa);
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
 
@@ -1220,9 +1161,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
   };
 
@@ -1277,9 +1215,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-    void outputglossary(void) const {
-      b_.outputglossary();
-    }
 
   };
 
@@ -1350,10 +1285,6 @@ namespace matricks {
       //      return debugtxt_VSliceObj(a_.debugtxt(),start_,end_,step_);
     }
 
-    void outputglossary(void) const {
-      return a_.outputglossary();
-      //      outputglossary_VSliceObj(a_.objectID(),debugtxt(),size());
-    }
 
 
 

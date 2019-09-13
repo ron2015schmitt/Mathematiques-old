@@ -53,9 +53,6 @@ namespace matricks {
       return derived().debugtxt();
     }
 
-    void outputglossary(void) const {
-      derived().outputglossary();
-    }
 
     inline VETypes vetype(void) const {
       return derived().vetype();

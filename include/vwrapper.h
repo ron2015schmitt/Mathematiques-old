@@ -117,9 +117,6 @@ namespace matricks {
       return derived().debugtxt();
     }
 
-    void outputglossary(void) const {
-      return derived().outputglossary();
-    }
 
     std::vector<const void*> getAddresses(void) const {
       return derived().getAddresses();

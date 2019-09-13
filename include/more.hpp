@@ -62,10 +62,6 @@ namespace matricks {
       return derived().debugtxt();
     }
 
-    void outputglossary(void) const {
-      derived().outputglossary();
-    }
-
     inline METypes metype(void) const {
       return derived().metype();
     }

@@ -55,9 +55,6 @@ namespace matricks {
     std::string debugtxt(void) const {
       return derived().debugtxt();
     }
-    void outputglossary(void) const {
-      derived().outputglossary();
-    }
     friend std::ostream& operator<<(std::ostream &stream, const Vexpr<D,EXP>& ve) {
       Vector<D> v(ve);
       stream << v;

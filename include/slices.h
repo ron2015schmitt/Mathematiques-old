@@ -46,9 +46,6 @@ namespace matricks {
       return ss.str();
     }
 
-    inline void outputglossary() const {
-      
-    }
 
     friend std::ostream& operator<<(std::ostream &stream, const slc& slice) {
       using namespace display;

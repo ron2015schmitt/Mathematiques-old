@@ -1009,8 +1009,6 @@ namespace matricks {
 
 
 
-    void outputglossary(void) const {
-    }
 
     // stream << operator
 

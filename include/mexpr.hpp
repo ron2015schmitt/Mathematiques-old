@@ -59,9 +59,6 @@ namespace matricks {
       return derived().debugtxt();
     }
 
-    void outputglossary(void) const {
-      derived().outputglossary();
-    }
 
 
     bool mustcopy(const void* maddr) const {
@@ -215,9 +212,6 @@ namespace matricks {
       return derived().debugtxt();
     }
 
-    void outputglossary(void) const {
-      return derived().outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return derived().mustcopy(maddr);
@@ -319,10 +313,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      a_.outputglossary();
-    }
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
     }
@@ -409,10 +399,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -541,11 +527,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      ii_.outputglossary();
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -680,14 +661,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      if (iiptr_==0) 
-	ii_.outputglossary();
-      if (jjptr_==0) 
-	jj_.outputglossary();
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -790,12 +763,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      i_.outputglossary();
-      j_.outputglossary();
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -911,13 +878,6 @@ namespace matricks {
       return "";
      }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      if (iiptr_==0) 
-	ii_.outputglossary();
-      j_.outputglossary();
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -1042,13 +1002,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      i_.outputglossary();
-      if (jjptr_==0) 
-	jj_.outputglossary();
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -1127,9 +1080,6 @@ namespace matricks {
       return  a_.debugtxt() +".resize()";
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return addrmatch(maddr);
@@ -1209,10 +1159,6 @@ namespace matricks {
       return "";
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-      b_.outputglossary();
-    }
 
 
   };
@@ -1284,9 +1230,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
 
   };
@@ -1351,9 +1294,6 @@ namespace matricks {
       return OP::debugtxt(sa,sb);
     }
 
-    void outputglossary(void) const {
-      b_.outputglossary();
-    }
 
 
   };
@@ -1410,9 +1350,6 @@ namespace matricks {
       return FUNC::debugtxt(sa);
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
   };
 
@@ -1471,9 +1408,6 @@ namespace matricks {
       return FUNC::debugtxt(sa);
     }
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
   };
 
@@ -1533,10 +1467,6 @@ namespace matricks {
       return FUNC::debugtxt(sa);
     }
 
-    void outputglossary(void) const {
-      outputglossary_M1(debugtxt(),Nrows(),Ncols(),size());
-      a_.outputglossary();
-    }
 
   };
 

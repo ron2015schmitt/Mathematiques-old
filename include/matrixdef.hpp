@@ -21,19 +21,15 @@ namespace matricks {
 
     // *********************** OBJECT DATA ***********************************
 
-    int objectID_;
     size_type Nrows_;
     size_type Ncols_;
-    size_type perline_; // for display
-    size_type width_;   // for display
     std::valarray<D>* data_;
-    mutable std::string name_;
 
   public:
 
     // ************************** CONSTRUCTOR **********************************
 
-    explicit Matrix<D>(const size_type NR, const size_type NC, const std::string name = "") {
+    explicit Matrix<D>(const size_type NR, const size_type NC) {
       // allocate store
       size_type N = NR*NC;
       bool bad=false;
@@ -53,15 +49,13 @@ namespace matricks {
 
       data_ = new std::valarray<D>(N); 
 
-      perline_ = Ncols_;
-      width_ = 0;
       
     
     }
 
     // ****************** DEFAULT CONSTRUCTOR **********************************
 
-    explicit Matrix<D>(const std::string name = "") {
+    explicit Matrix<D>() {
       size_type NR=0;
       size_type NC=0;
 
@@ -84,10 +78,6 @@ namespace matricks {
 
       data_ = new std::valarray<D>(N); 
 
-      perline_ = Ncols_;
-      width_ = 0;
-      
-      name_=name;
 
     
     }
@@ -95,7 +85,7 @@ namespace matricks {
 
     // ************************** COPY CONSTRUCTOR **********************************
 
-    Matrix<D>(const Matrix<D>& m2, const std::string name = "") {
+    Matrix<D>(const Matrix<D>& m2) {
       // allocate store
       const size_type NR = m2.Nrows();
       const size_type NC = m2.Ncols();
@@ -112,24 +102,16 @@ namespace matricks {
 	Ncols_=NC; 
       }
 
-      data_ = new std::valarray<D>(N); 
-
-      perline_ = m2.perline();
-      width_ = m2.width();
-      
-      name_=name;
-
-
       *this = m2;
     }
 
-    
 
-    // ************************** EXPRESSION CONSTRUCTOR *******************************
+    // ************************** EXPRESSION CONSTRUCTOR ****************
 
     template <class A>
-    Matrix<D>(const Mexpr<D,A>& x, const std::string name = "") {
+    Matrix<D>(const Mexpr<D,A>& x) {
 
+ 
       // allocate store
       const size_type NR = x.Nrows();
       const size_type NC = x.Ncols();
@@ -148,9 +130,6 @@ namespace matricks {
 
       data_ = new std::valarray<D>(N); 
 
-      perline_ = NC;
-      width_ = 0;
-      
 
 
       *this = x;
@@ -203,8 +182,6 @@ namespace matricks {
       if (N==this->size())
 	return *this;
       data_ = new std::valarray<D>(N); 
-      perline_ = Ncols_;
-      width_ = 0;
       return *this;
     }
 
@@ -228,8 +205,6 @@ namespace matricks {
 	Nrows_=nr;
 	Ncols_=nc; 
       }
-      perline_ = Ncols_;
-      width_ = 0;
       return *this;
     }
 
@@ -567,27 +542,11 @@ namespace matricks {
       return Ncols_;
     }
 
-    size_type objectID(void) const { 
-      return objectID_;
-    }
 
     inline static METypes metype(void)  {
       return ME_Matrix;
     }
 
-    size_type perline(const size_type Nline)  { 
-      return (perline_=Nline);
-    }
-    size_type perline(void)  const { 
-      return perline_;
-    }
-
-    size_type width(const size_type w)  { 
-      return (width_=w);
-    }
-    size_type width(void)  const { 
-      return width_;
-    }
 
     bool mustcopy(const void* maddr) const {
       return false;
@@ -686,29 +645,9 @@ namespace matricks {
 
 
     std::string debugtxt(void) const {
-      return name_;
+      return "";
     }
     
-    void debugtxt(const char* newname) const {
-      name_=newname;
-
-    }
-
-    void debugtxt(const std::string newname) const {
-      name_=newname;
-    }
-
-    std::string name(void) const {
-      return debugtxt();
-    }
-
-    void name(const char* newname) const {
-      debugtxt(newname);
-    }
-
-    void name(const std::string newname) const {
-      debugtxt(newname);
-    }
 
 
 
@@ -717,8 +656,6 @@ namespace matricks {
       return getTypeString(dummy);
     }
 
-    void outputglossary(void) const {
-    }
 
 
 

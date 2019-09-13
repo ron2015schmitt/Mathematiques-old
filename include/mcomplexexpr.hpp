@@ -66,9 +66,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      a_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return a_.mustcopy(maddr);
@@ -138,9 +135,6 @@ namespace matricks {
     }
 
 
-    void outputglossary(void) const {
-      b_.outputglossary();
-    }
 
     bool mustcopy(const void *maddr) const {
       return b_.mustcopy(maddr);

@@ -79,7 +79,7 @@
 
 #include "fileio.h"
 #include "coda.h"
-#include "md.h"
+#include "gitmd.h"
 
 
 #endif

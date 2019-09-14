@@ -19,68 +19,68 @@ namespace matricks {
   // complexmatrix + realmatrix
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApAddCR<D> > 
+  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunAddCR<D> > 
   operator+(const MorE<std::complex<D>,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApAddCR<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunAddCR<D> >(a,b);
   }
   // realmatrix + complexmatrix 
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApAddRC<D> > 
+  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunAddRC<D> > 
   operator+(const MorE<D,A>& a, const MorE<std::complex<D>,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApAddRC<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunAddRC<D> >(a,b);
   }
 
   // complexmatrix - realmatrix
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApSubtractCR<D> > 
+  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunSubtractCR<D> > 
   operator-(const MorE<std::complex<D>,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApSubtractCR<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunSubtractCR<D> >(a,b);
   }
   // realmatrix - complexmatrix 
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApSubtractRC<D> > 
+  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunSubtractRC<D> > 
   operator-(const MorE<D,A>& a, const MorE<std::complex<D>,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApSubtractRC<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunSubtractRC<D> >(a,b);
   }
   // complexmatrix * realmatrix
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApMultiplyCR<D> > 
+  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunMultiplyCR<D> > 
   operator*(const MorE<std::complex<D>,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApMultiplyCR<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunMultiplyCR<D> >(a,b);
   }
   // realmatrix * complexmatrix 
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApMultiplyRC<D> > 
+  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunMultiplyRC<D> > 
   operator*(const MorE<D,A>& a, const MorE<std::complex<D>,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApMultiplyRC<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunMultiplyRC<D> >(a,b);
   }
 
   // complexmatrix / realmatrix
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApDivideCR<D> > 
+  inline MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunDivideCR<D> > 
   operator/(const MorE<std::complex<D>,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,ApDivideCR<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<std::complex<D>,A>,MorE<D,B>,FunDivideCR<D> >(a,b);
   }
   // realmatrix / complexmatrix 
 
   template <class D, class A, class B> 
-  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApDivideRC<D> > 
+  inline MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunDivideRC<D> > 
   operator/(const MorE<D,A>& a, const MorE<std::complex<D>,B>& b)
   {
-    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,ApDivideRC<D> >(a,b);
+    return  MBinOp<std::complex<D>,MorE<D,A>,MorE<std::complex<D>,B>,FunDivideRC<D> >(a,b);
   }
 
 
@@ -210,155 +210,155 @@ namespace matricks {
 
   // realmatrix + complexscalar
   template <class D, class A> 
-  inline MatOpScal<std::complex<D>,MorE<D,A>,ApAddRC<D> > 
+  inline MatOpScal<std::complex<D>,MorE<D,A>,FunAddRC<D> > 
   operator+(const MorE<D,A>& a, const std::complex<D> b)
   {
     return  
-      MatOpScal<std::complex<D>,MorE<D,A>,ApAddRC<D> >( a,b );
+      MatOpScal<std::complex<D>,MorE<D,A>,FunAddRC<D> >( a,b );
   }
 
   // complexscalar +  realmatrix 
   template <class D, class B> 
-  inline ScalOpMat<std::complex<D>,MorE<D,B>,ApAddCR<D> > 
+  inline ScalOpMat<std::complex<D>,MorE<D,B>,FunAddCR<D> > 
   operator+(const std::complex<D> a, const MorE<D,B>& b)
   {
     return  
-      ScalOpMat<std::complex<D>,MorE<D,B>,ApAddCR<D> >( a, b );
+      ScalOpMat<std::complex<D>,MorE<D,B>,FunAddCR<D> >( a, b );
   }
   // complexmatrix + realscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApAddCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunAddCR<D> > 
   operator+(const MorE<std::complex<D>,A>& a, const D b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApAddCR<D> >(a,b);  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunAddCR<D> >(a,b);  
   }
   // complexmatrix + intscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApAddCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunAddCR<D> > 
   operator+(const MorE<std::complex<D>,A>& a, const int b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApAddCR<D> >(a,static_cast<D>(b));  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunAddCR<D> >(a,static_cast<D>(b));  
   }
   // realscalar + complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApAddRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunAddRC<D> > 
   operator+(const D a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApAddRC<D> >(a,b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunAddRC<D> >(a,b);  
   }
   // intscalar + complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApAddRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunAddRC<D> > 
   operator+(const int a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApAddRC<D > >(static_cast<D>(a),b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunAddRC<D > >(static_cast<D>(a),b);  
   }
 
 
 
   // realmatrix - complexscalar
   template <class D, class A> 
-  inline MatOpScal<std::complex<D>,MorE<D,A>,ApSubtractRC<D> > 
+  inline MatOpScal<std::complex<D>,MorE<D,A>,FunSubtractRC<D> > 
   operator-(const MorE<D,A>& a, const std::complex<D> b)
   {
     return  
-      MatOpScal<std::complex<D>,MorE<D,A>,ApSubtractRC<D> >( a,b );
+      MatOpScal<std::complex<D>,MorE<D,A>,FunSubtractRC<D> >( a,b );
   }
 
   // complexscalar -  realmatrix 
   template <class D, class B> 
-  inline ScalOpMat<std::complex<D>,MorE<D,B>,ApSubtractCR<D> > 
+  inline ScalOpMat<std::complex<D>,MorE<D,B>,FunSubtractCR<D> > 
   operator-(const std::complex<D> a, const MorE<D,B>& b)
   {
     return  
-      ScalOpMat<std::complex<D>,MorE<D,B>,ApSubtractCR<D> >( a, b );
+      ScalOpMat<std::complex<D>,MorE<D,B>,FunSubtractCR<D> >( a, b );
   }
   // complexmatrix - realscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApSubtractCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunSubtractCR<D> > 
   operator-(const MorE<std::complex<D>,A>& a, const D b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApSubtractCR<D> >(a,b);  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunSubtractCR<D> >(a,b);  
   }
   // complexmatrix - intscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApSubtractCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunSubtractCR<D> > 
   operator-(const MorE<std::complex<D>,A>& a, const int b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApSubtractCR<D> >(a,static_cast<D>(b));  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunSubtractCR<D> >(a,static_cast<D>(b));  
   }
   // realscalar - complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApSubtractRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunSubtractRC<D> > 
   operator-(const D a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApSubtractRC<D> >(a,b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunSubtractRC<D> >(a,b);  
   }
   // intscalar - complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApSubtractRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunSubtractRC<D> > 
   operator-(const int a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApSubtractRC<D > >(static_cast<D>(a),b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunSubtractRC<D > >(static_cast<D>(a),b);  
   }
 
 
   // realmatrix * complexscalar
   template <class D, class A> 
-  inline MatOpScal<std::complex<D>,MorE<D,A>,ApMultiplyRC<D> > 
+  inline MatOpScal<std::complex<D>,MorE<D,A>,FunMultiplyRC<D> > 
   operator*(const MorE<D,A>& a, const std::complex<D> b)
   {
     return  
-      MatOpScal<std::complex<D>,MorE<D,A>,ApMultiplyRC<D> >( a,b );
+      MatOpScal<std::complex<D>,MorE<D,A>,FunMultiplyRC<D> >( a,b );
   }
 
   // complexscalar *  realmatrix 
   template <class D, class B> 
-  inline ScalOpMat<std::complex<D>,MorE<D,B>,ApMultiplyCR<D> > 
+  inline ScalOpMat<std::complex<D>,MorE<D,B>,FunMultiplyCR<D> > 
   operator*(const std::complex<D> a, const MorE<D,B>& b)
   {
     return  
-      ScalOpMat<std::complex<D>,MorE<D,B>,ApMultiplyCR<D> >( a, b );
+      ScalOpMat<std::complex<D>,MorE<D,B>,FunMultiplyCR<D> >( a, b );
   }
   // complexmatrix * realscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApMultiplyCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunMultiplyCR<D> > 
   operator*(const MorE<std::complex<D>,A>& a, const D b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApMultiplyCR<D> >(a,b);  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunMultiplyCR<D> >(a,b);  
   }
   // complexmatrix * intscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApMultiplyCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunMultiplyCR<D> > 
   operator*(const MorE<std::complex<D>,A>& a, const int b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApMultiplyCR<D> >(a,static_cast<D>(b));  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunMultiplyCR<D> >(a,static_cast<D>(b));  
   }
   // realscalar * complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApMultiplyRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunMultiplyRC<D> > 
   operator*(const D a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApMultiplyRC<D> >(a,b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunMultiplyRC<D> >(a,b);  
   }
   // intscalar * complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApMultiplyRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunMultiplyRC<D> > 
   operator*(const int a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApMultiplyRC<D > >(static_cast<D>(a),b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunMultiplyRC<D > >(static_cast<D>(a),b);  
   }
 
 
@@ -366,52 +366,52 @@ namespace matricks {
 
   // realmatrix / complexscalar
   template <class D, class A> 
-  inline MatOpScal<std::complex<D>, MorE<D,A>,ApDivideRC<D> > 
+  inline MatOpScal<std::complex<D>, MorE<D,A>,FunDivideRC<D> > 
   operator/(const MorE<D,A>& a, const std::complex<D> b)
   {
     return  
-      MatOpScal<std::complex<D> ,MorE<D,A>,ApDivideRC<D> >( a,b );
+      MatOpScal<std::complex<D> ,MorE<D,A>,FunDivideRC<D> >( a,b );
   }
 
   // complexscalar /  realmatrix 
   template <class D, class B> 
-  inline ScalOpMat<std::complex<D>,MorE<D,B>,ApDivideCR<D> > 
+  inline ScalOpMat<std::complex<D>,MorE<D,B>,FunDivideCR<D> > 
   operator/(const std::complex<D> a, const MorE<D,B>& b)
   {
     return  
-      ScalOpMat<std::complex<D>,MorE<D,B>,ApDivideCR<D> >( a, b );
+      ScalOpMat<std::complex<D>,MorE<D,B>,FunDivideCR<D> >( a, b );
   }
   // complexmatrix / realscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApDivideCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunDivideCR<D> > 
   operator/(const MorE<std::complex<D>,A>& a, const D b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApDivideCR<D> >(a,b);  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunDivideCR<D> >(a,b);  
   }
   // complexmatrix / intscalar
   template <class D, class A> 
-  inline CMatOpScal<D,MorE<std::complex<D>,A>,ApDivideCR<D> > 
+  inline CMatOpScal<D,MorE<std::complex<D>,A>,FunDivideCR<D> > 
   operator/(const MorE<std::complex<D>,A>& a, const int b)
   {
     return  
-      CMatOpScal<D,MorE<std::complex<D>,A>,ApDivideCR<D> >(a,static_cast<D>(b));  
+      CMatOpScal<D,MorE<std::complex<D>,A>,FunDivideCR<D> >(a,static_cast<D>(b));  
   }
   // realscalar / complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApDivideRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunDivideRC<D> > 
   operator/(const D a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApDivideRC<D> >(a,b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunDivideRC<D> >(a,b);  
   }
   // intscalar / complexmatrix
   template <class D, class B> 
-  inline CScalOpMat<D,MorE<std::complex<D>,B>,ApDivideRC<D> > 
+  inline CScalOpMat<D,MorE<std::complex<D>,B>,FunDivideRC<D> > 
   operator/(const int a, const MorE<std::complex<D>,B>& b)
   {
     return  
-      CScalOpMat<D,MorE<std::complex<D>,B>,ApDivideRC<D > >(static_cast<D>(a),b);  
+      CScalOpMat<D,MorE<std::complex<D>,B>,FunDivideRC<D > >(static_cast<D>(a),b);  
   }
 
 

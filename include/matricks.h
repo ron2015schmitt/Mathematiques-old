@@ -52,7 +52,9 @@
 #include "debug.h"
 
 
+#ifndef MATRICKS__FUNCTORS_H
 #include "functors.h"
+#endif
 
 #include "vector.h"
 

@@ -1,29 +1,89 @@
-#ifndef FUNCTORS_H
-#define FUNCTORS_H
+#ifndef MATRICKS__FUNCTORS_H
+#define MATRICKS__FUNCTORS_H
 
 
 //  functor in C++ sense: a class that wraps a function
 //
-//  *** Compilation time could be cut drastically when in "DEBUG" mode
-// by placing all the debug functions in nontemplated fucntions.
-// see note in verror.cpp for more info
+// TODO: use non-template base classes for the debug code and place in cpp file.
+//        this speeds up compile time tremendously.
+// TODO: add bitwise functors for unsigned types
+// TODO: add const to all input vars
+
 
 namespace matricks {
 
 
-  /****************************************************************************
-   *              Binary  
-   ****************************************************************************/
+  // ************************************************************************
+  // *              Math 
+  // ************************************************************************
+
+
+
+  // unary+ operator
+
+  template <class D> class ApPlus {
+
+  public:
+    ApPlus() { }
+
+    static inline D apply(D a) { 
+      return a; 
+    }
+
+    static std::string expression(const std::string& sa) {
+      std::string sout = "+(" + sa + ")";
+      return sout;
+    }
+
+  };
+
+  // unary-
+
+  template <class D> class ApMinus {
+  public:
+    ApMinus() { }
+
+    static inline D apply(D a) { 
+      return (-a); 
+    }
+
+    static std::string expression(const std::string& sa) {
+      std::string sout = "-(" + sa + ")";
+      return sout;
+    }
+
+  };
+
+
+  // cast
+
+  template <class D1, class D2> class ApCast {
+  public:
+    ApCast() { }
+
+    static inline D2 apply(D1 a) { 
+      return static_cast<D2 >(a); 
+    }
+
+    static std::string expression(const std::string& sa) {
+      std::ostringstream stream;
+      stream << typeid(D2).name();
+      std::string tname = stream.str();
+      std::string sout = "cast<" + tname + ">(" + sa + ")";
+      return sout;
+    }
+
+  };
 
 
 
   // y = a + b
 
-  template <class DataT> class ApAdd {
+  template <class D> class ApAdd {
   public:
     ApAdd() { }
   
-    static inline DataT apply(DataT a, DataT b) { 
+    static inline D apply(D a, D b) { 
       return a+b; 
     }
 
@@ -38,11 +98,11 @@ namespace matricks {
 
   // y = a - b
 
-  template <class DataT> class ApSubtract {
+  template <class D> class ApSubtract {
   public:
     ApSubtract() { }
   
-    static inline DataT apply(DataT a, DataT b) { 
+    static inline D apply(D a, D b) { 
       return a-b; 
     }
 
@@ -57,11 +117,11 @@ namespace matricks {
 
   // y = a * b
 
-  template <class DataT> class ApMultiply {
+  template <class D> class ApMultiply {
   public:
     ApMultiply() { }
 
-    static inline DataT apply(DataT a, DataT b) { 
+    static inline D apply(D a, D b) { 
       return a*b; 
     }
 
@@ -76,205 +136,16 @@ namespace matricks {
 
   // y = a / b
 
-  template <class DataT> class ApDivide {
+  template <class D> class ApDivide {
   public:
     ApDivide() { }
 
-    static inline DataT apply(DataT a, DataT b) { 
+    static inline D apply(D a, D b) { 
       return a/b; 
     }
 
     static std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = sa + " / " + sb;
-      return sout;
-    }
-  };
-
-
-  // y = a && b
-
-  class ApAnd {
-  public:
-    ApAnd() { }
-  
-    static inline bool apply(bool a, bool b) { 
-      return a && b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " && " + sb;
-      return sout;
-    }
-
-  };
-
-
-  // y = a || b
-
-  class ApOr {
-  public:
-    ApOr() { }
-  
-    static inline bool apply(bool a, bool b) { 
-      return (a || b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " || " + sb + ")";
-      return sout;
-    }
-
-  };
-
-
-
-  // y = (a == b)
-
-  template <class DataT> class ApEqual {
-  public:
-    ApEqual() { }
-  
-    static inline bool apply(DataT a, DataT b) { 
-      return (a == b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " == " + sb + ")";
-      return sout;
-    }
-
-  };
-
- 
-
-
-
-  // y = (a != b)
-
-  template <class DataT> class ApNotEqual {
-  public:
-    ApNotEqual() { }
-  
-    static inline bool apply(DataT a, DataT b) { 
-      return (a != b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " != " + sb + ")";
-      return sout;
-    }
-
-  };
-
- 
-
-
-
-
-  // y = (a <= b)
-
-  template <class DataT> class ApLessEqual {
-  public:
-    ApLessEqual() { }
-  
-    static inline bool apply(DataT a, DataT b) { 
-      return (a <= b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " <= " + sb + ")";
-      return sout;
-    }
-
-  };
-
-
-
-
-
-  // y = (a >= b)
-
-  template <class DataT> class ApGreaterEqual {
-  public:
-    ApGreaterEqual() { }
-  
-    static inline bool apply(DataT a, DataT b) { 
-      return (a >= b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " >= " + sb + ")";
-      return sout;
-    }
-
-  };
-
- 
-
-
-
-
-  // y = (a < b)
-
-  template <class DataT> class ApLess {
-  public:
-    ApLess() { }
-  
-    static inline bool apply(DataT a, DataT b) { 
-      return (a < b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " < " + sb + ")";
-      return sout;
-    }
-
-  };
-
- 
-
-
-
-
-  // y = (a > b)
-
-  template <class DataT> class ApGreat {
-  public:
-    ApGreat() { }
-  
-    static inline bool apply(DataT a, DataT b) { 
-      return (a > b); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " > " + sb + ")";
-      return sout;
-    }
-
-  };
-
-
-
-
-
-
-  template<class D>
-    struct TypeHelper {
-      typedef D(*unary_func)(D);
-      typedef D(*binary_func)(D, D);
-    };
-
-  // y = op2<D,userfunc>(a,b)
-  template <class D, typename TypeHelper<D>::binary_func F> class ApFun2 {
-  public:
-    ApFun2() { }
-    static inline D apply(D a, D b) { 
-      return F(a,b); 
-    }
-
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =std::string("op2<")+ stringify(D)+","+ stringify(F) +">(" + sa + " , " + sb + ")";
       return sout;
     }
   };
@@ -332,303 +203,6 @@ namespace matricks {
       std::string sout = "atan2( " + sa + " , " + sb + " )";
       return sout;
     }
-  };
-
-
-  // polar(r,phi)
-
-  template <class D > class ApPolar {
-  public:
-    ApPolar() { }
-
-    static inline std::complex<D> apply(D r, D phi) { 
-      using std::polar;
-      return polar(r,phi); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "polar(" + sa + " , " + sb +  ")";
-      return sout;
-    }
-
-  };
-
- 
-
-  // complex(x,y)
-
-  template <class D > class ApComplex {
-  public:
-    ApComplex() { }
-
-    static inline std::complex<D> apply(D x, D y) { 
-      return std::complex<D>(x,y); 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "complex(" + sa + " , " + sb +  ")";
-      return sout;
-    }
-
-  };
-
-
-
-
-
-  // y = acomplex + breal
-
-  template <class DataT> class ApAddCR {
-  public:
-    ApAddCR() { }
-  
-    static inline std::complex<DataT> apply( std::complex<DataT> a, DataT b) { 
-      return a+b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " + " + sb;
-      return sout;
-    }
-
-  };
-  // y = areal + bcomplex
-
-  template <class DataT> class ApAddRC {
-  public:
-    ApAddRC() { }
-  
-    static inline std::complex<DataT> apply(DataT a, std::complex<DataT> b) { 
-      return a+b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " + " + sb;
-      return sout;
-    }
-
-  };
-
-
-
-
-  // y = acomplex - breal
-
-  template <class DataT> class ApSubtractCR {
-  public:
-    ApSubtractCR() { }
-  
-    static inline std::complex<DataT> apply( std::complex<DataT> a, DataT b) { 
-      return a-b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " - " + sb;
-      return sout;
-    }
-
-  };
-  // y = areal - bcomplex
-
-  template <class DataT> class ApSubtractRC {
-  public:
-    ApSubtractRC() { }
-  
-    static inline std::complex<DataT> apply(DataT a, std::complex<DataT> b) { 
-      return a-b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " - " + sb;
-      return sout;
-    }
-
-  };
-
-
-
-
-  // y = acomplex * breal
-
-  template <class DataT> class ApMultiplyCR {
-  public:
-    ApMultiplyCR() { }
-  
-    static inline std::complex<DataT> apply( std::complex<DataT> a, DataT b) { 
-      return a*b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " * " + sb;
-      return sout;
-    }
-
-  };
-  // y = areal * bcomplex
-
-  template <class DataT> class ApMultiplyRC {
-  public:
-    ApMultiplyRC() { }
-  
-    static inline std::complex<DataT> apply(DataT a, std::complex<DataT> b) { 
-      return a*b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " * " + sb;
-      return sout;
-    }
-
-  };
-
-
-
-
-  // y = acomplex / breal
-
-  template <class DataT> class ApDivideCR {
-  public:
-    ApDivideCR() { }
-  
-    static inline std::complex<DataT> apply( std::complex<DataT> a, DataT b) { 
-      return a/b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " / " + sb;
-      return sout;
-    }
-
-  };
-  // y = areal / bcomplex
-
-  template <class DataT> class ApDivideRC {
-  public:
-    ApDivideRC() { }
-  
-    static inline std::complex<DataT> apply(DataT a, std::complex<DataT> b) { 
-      return a/b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " / " + sb;
-      return sout;
-    }
-
-  };
-
-
-
-
-
-
-  // y = pow(acomplex,breal),  ie. a raised to the b power
-  template <class D> class ApPowCR {
-  public:
-    ApPowCR() { }
-    static inline std::complex<D> apply(std::complex<D> a, D b) { 
-      using std::pow;
-      return pow(a,b); 
-    }
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "pow( " + sa + " , " + sb + " )";
-      return sout;
-    }
-  };
-  // y = pow(areal,bcomplex),  ie. a raised to the b power
-  template <class D> class ApPowRC {
-  public:
-    ApPowRC() { }
-    static inline std::complex<D> apply( D a, std::complex<D> b) { 
-      using std::pow;
-      return pow(a,b); 
-    }
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "pow( " + sa + " , " + sb + " )";
-      return sout;
-    }
-  };
-
-
-
-  /****************************************************************************
-   *              unary 
-   ****************************************************************************/
-
-
-  // unary+
-
-  template <class DataT> class ApPlus {
-
-  public:
-    ApPlus() { }
-
-    static inline DataT apply(DataT a) { 
-      return a; 
-    }
-
-    static std::string expression(const std::string& sa) {
-      std::string sout = "+(" + sa + ")";
-      return sout;
-    }
-
-  };
-
-  // unary-
-
-  template <class DataT> class ApMinus {
-  public:
-    ApMinus() { }
-
-    static inline DataT apply(DataT a) { 
-      return (-a); 
-    }
-
-    static std::string expression(const std::string& sa) {
-      std::string sout = "-(" + sa + ")";
-      return sout;
-    }
-
-  };
-
-
-  // cast
-
-  template <class D1, class D2> class ApCast {
-  public:
-    ApCast() { }
-
-    static inline D2 apply(D1 a) { 
-      return static_cast<D2 >(a); 
-    }
-
-    static std::string expression(const std::string& sa) {
-      std::ostringstream stream;
-      stream << typeid(D2).name();
-      std::string tname = stream.str();
-      std::string sout = "cast<" + tname + ">(" + sa + ")";
-      return sout;
-    }
-
-  };
-
-
-
-  // y = op1<D,userfunc>(a)
-
-  template <class D, typename TypeHelper<D>::unary_func F> class ApFun1 {
-  public:
-    ApFun1() { }
-
-    static inline D apply(D a) { 
-      return F(a); 
-    }
-
-    static std::string expression(const std::string& sa) {
-      std::string sout =std::string("op1<")+  typeid(D).name()+","+typeid(F).name() +">(" + sa + ")";
-      return sout;
-    }
-
   };
 
 
@@ -1011,6 +585,75 @@ namespace matricks {
     }
 
   };
+  // roundzero(a,tol)
+
+  template <class D> class ApRoundZeros {
+  public:
+    typedef typename GetDataType<D>::Type DREAL;
+    ApRoundZeros() { }
+
+    static inline D apply(D a, const DREAL tolerance) { 
+      return roundzero(a, tolerance);
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "roundzero( " + sa + " , " + sb + " )";
+      return sout;
+    }
+
+  };
+
+
+  // ************************************************************************
+  // *              User Defined
+  // ************************************************************************
+
+
+  template<class D>
+    struct TypeHelper {
+      typedef D(*unary_func)(D);
+      typedef D(*binary_func)(D, D);
+    };
+
+
+  // y = op1<D,userfunc>(a)
+
+  template <class D, typename TypeHelper<D>::unary_func F> class ApFun1 {
+  public:
+    ApFun1() { }
+
+    static inline D apply(D a) { 
+      return F(a); 
+    }
+
+    static std::string expression(const std::string& sa) {
+      std::string sout =std::string("op1<")+  typeid(D).name()+","+typeid(F).name() +">(" + sa + ")";
+      return sout;
+    }
+
+  };
+
+
+  
+  // y = op2<D,userfunc>(a,b)
+  template <class D, typename TypeHelper<D>::binary_func F> class ApFun2 {
+  public:
+    ApFun2() { }
+    static inline D apply(const D a, const D b) { 
+      return F(a,b); 
+    }
+    
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =std::string("op2<")+ stringify(D)+","+ stringify(F) +">(" + sa + " , " + sb + ")";
+      return sout;
+    }
+  };
+
+
+  // ***********************************************************************
+  // *              Logic
+  // ***********************************************************************
 
 
   // !(a)
@@ -1029,6 +672,390 @@ namespace matricks {
     }
 
   };
+
+  
+  // y = a && b
+
+  class ApAnd {
+  public:
+    ApAnd() { }
+  
+    static inline bool apply(bool a, bool b) { 
+      return a && b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " && " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = a || b
+
+  class ApOr {
+  public:
+    ApOr() { }
+  
+    static inline bool apply(bool a, bool b) { 
+      return (a || b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " || " + sb + ")";
+      return sout;
+    }
+
+  };
+
+
+
+
+  // ************************************************************************
+  // *              Relational ops (return a bool from two Ds)
+  // ************************************************************************
+
+  // y = (a == b)
+
+  template <class D> class ApEqual {
+  public:
+    ApEqual() { }
+  
+    static inline bool apply(D a, D b) { 
+      return (a == b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " == " + sb + ")";
+      return sout;
+    }
+
+  };
+
+ 
+
+
+
+  // y = (a != b)
+
+  template <class D> class ApNotEqual {
+  public:
+    ApNotEqual() { }
+  
+    static inline bool apply(D a, D b) { 
+      return (a != b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " != " + sb + ")";
+      return sout;
+    }
+
+  };
+
+ 
+
+
+
+
+  // y = (a <= b)
+
+  template <class D> class ApLessEqual {
+  public:
+    ApLessEqual() { }
+  
+    static inline bool apply(D a, D b) { 
+      return (a <= b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " <= " + sb + ")";
+      return sout;
+    }
+
+  };
+
+
+
+
+
+  // y = (a >= b)
+
+  template <class D> class ApGreaterEqual {
+  public:
+    ApGreaterEqual() { }
+  
+    static inline bool apply(D a, D b) { 
+      return (a >= b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " >= " + sb + ")";
+      return sout;
+    }
+
+  };
+
+
+  // y = (a < b)
+
+  template <class D> class ApLess {
+  public:
+    ApLess() { }
+  
+    static inline bool apply(D a, D b) { 
+      return (a < b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " < " + sb + ")";
+      return sout;
+    }
+
+  };
+
+
+  // y = (a > b)
+
+  template <class D> class ApGreat {
+  public:
+    ApGreat() { }
+  
+    static inline bool apply(D a, D b) { 
+      return (a > b); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "(" + sa + " > " + sb + ")";
+      return sout;
+    }
+
+  };
+
+
+
+  // ************************************************************************
+  // *              complex numbers
+  // ************************************************************************
+
+
+
+  // polar(r,phi)
+
+  template <class D > class ApPolar {
+  public:
+    ApPolar() { }
+
+    static inline std::complex<D> apply(D r, D phi) { 
+      using std::polar;
+      return polar(r,phi); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "polar(" + sa + " , " + sb +  ")";
+      return sout;
+    }
+
+  };
+
+ 
+
+  // complex(x,y)
+
+  template <class D > class ApComplex {
+  public:
+    ApComplex() { }
+
+    static inline std::complex<D> apply(D x, D y) { 
+      return std::complex<D>(x,y); 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "complex(" + sa + " , " + sb +  ")";
+      return sout;
+    }
+
+  };
+
+
+  // y = acomplex + breal
+
+  template <class D> class ApAddCR {
+  public:
+    ApAddCR() { }
+  
+    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+      return a+b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " + " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = areal + bcomplex
+
+  template <class D> class ApAddRC {
+  public:
+    ApAddRC() { }
+  
+    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+      return a+b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " + " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = acomplex - breal
+
+  template <class D> class ApSubtractCR {
+  public:
+    ApSubtractCR() { }
+  
+    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+      return a-b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " - " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = areal - bcomplex
+
+  template <class D> class ApSubtractRC {
+  public:
+    ApSubtractRC() { }
+  
+    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+      return a-b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " - " + sb;
+      return sout;
+    }
+
+  };
+
+
+
+  // y = acomplex * breal
+
+  template <class D> class ApMultiplyCR {
+  public:
+    ApMultiplyCR() { }
+  
+    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+      return a*b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " * " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = areal * bcomplex
+
+  template <class D> class ApMultiplyRC {
+  public:
+    ApMultiplyRC() { }
+  
+    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+      return a*b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " * " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = acomplex / breal
+
+  template <class D> class ApDivideCR {
+  public:
+    ApDivideCR() { }
+  
+    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+      return a/b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " / " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = areal / bcomplex
+
+  template <class D> class ApDivideRC {
+  public:
+    ApDivideRC() { }
+  
+    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+      return a/b; 
+    }
+
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = sa + " / " + sb;
+      return sout;
+    }
+
+  };
+
+
+  // y = pow(acomplex,breal),  ie. a raised to the b power
+
+  template <class D> class ApPowCR {
+  public:
+    ApPowCR() { }
+    static inline std::complex<D> apply(std::complex<D> a, D b) { 
+      using std::pow;
+      return pow(a,b); 
+    }
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "pow( " + sa + " , " + sb + " )";
+      return sout;
+    }
+  };
+
+
+  
+  // y = pow(areal,bcomplex),  ie. a raised to the b power
+
+  template <class D> class ApPowRC {
+  public:
+    ApPowRC() { }
+    static inline std::complex<D> apply( D a, std::complex<D> b) { 
+      using std::pow;
+      return pow(a,b); 
+    }
+    static std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = "pow( " + sa + " , " + sb + " )";
+      return sout;
+    }
+  };
+
 
 
   // abs(a)
@@ -1145,25 +1172,6 @@ namespace matricks {
 
   };
 
-
-
-  // roundzero(a,tol)
-
-  template <class D> class ApRoundZeros {
-  public:
-    typedef typename GetDataType<D>::Type DREAL;
-    ApRoundZeros() { }
-
-    static inline D apply(D a, const DREAL tolerance) { 
-      return roundzero(a, tolerance);
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "roundzero( " + sa + " , " + sb + " )";
-      return sout;
-    }
-
-  };
 
 
 

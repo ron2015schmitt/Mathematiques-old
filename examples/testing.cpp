@@ -179,12 +179,73 @@ int main()
   mout << Fun_Pow<double>::expression("x","y") << endl;
 
   mout << Fun_Monomial<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << Fun_Monomial<double>::expression("x","y") << endl;
+  mout << Fun_Monomial<double>::expression("x","n") << endl;
 
   mout << Fun_Atan2<double>::classname() << getBracketedTypeName(d) << " ";
   mout << Fun_Atan2<double>::expression("x","y") << endl;
 
-  
+  mout << Fun_Sin<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Sin<double>::expression("x") << endl;
+
+  mout << Fun_Cos<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Cos<double>::expression("x") << endl;
+
+  mout << Fun_Tan<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Tan<double>::expression("x") << endl;
+
+  mout << Fun_Sqrt<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Sqrt<double>::expression("x") << endl;
+
+  mout << Fun_Sqr<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Sqr<double>::expression("x") << endl;
+
+  mout << Fun_Cube<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Cube<double>::expression("x") << endl;
+
+  mout << Fun_Exp<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Exp<double>::expression("x") << endl;
+
+  mout << Fun_Abs<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Abs<double>::expression("x") << endl;
+
+  mout << Fun_Sgn<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Sgn<double>::expression("x") << endl;
+
+  mout << Fun_Log<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Log<double>::expression("x") << endl;
+
+  mout << Fun_Log2<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Log2<double>::expression("x") << endl;
+
+  mout << Fun_Log10<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Log10<double>::expression("x") << endl;
+
+  mout << Fun_Asin<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Asin<double>::expression("x") << endl;
+
+  mout << Fun_Acos<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Acos<double>::expression("x") << endl;
+
+  mout << Fun_Atan<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Atan<double>::expression("x") << endl;
+
+  mout << Fun_Ceil<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Ceil<double>::expression("x") << endl;
+
+  mout << Fun_Round<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Round<double>::expression("x") << endl;
+
+  mout << Fun_Sinh<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Sinh<double>::expression("x") << endl;
+
+  mout << Fun_Cosh<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Cosh<double>::expression("x") << endl;
+
+  mout << Fun_Tanh<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Tanh<double>::expression("x") << endl;
+
+  mout << Fun_Roundzero<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Roundzero<double>::expression("x","y") << endl;
 
   mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
   

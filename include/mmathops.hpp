@@ -78,20 +78,20 @@ namespace matricks {
   // sin_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApSin<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Sin<D> > 
   sin_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApSin<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Sin<D> >(a);
   }
 
 
   // cos_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApCos<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Cos<D> > 
   cos_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApCos<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Cos<D> >(a);
   }
 
 
@@ -99,99 +99,99 @@ namespace matricks {
   // tan_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApTan<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Tan<D> > 
   tan_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApTan<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Tan<D> >(a);
   }
   // sqrt_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApSqrt<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Sqrt<D> > 
   sqrt_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApSqrt<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Sqrt<D> >(a);
   }
   // sqr_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApSqr<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Sqr<D> > 
   sqr_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApSqr<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Sqr<D> >(a);
   }
   // cube_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApCube<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Cube<D> > 
   cube_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApCube<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Cube<D> >(a);
   }
   // exp_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApExp<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Exp<D> > 
   exp_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApExp<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Exp<D> >(a);
   }
   // abs(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApAbs<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Abs<D> > 
   abs(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApAbs<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Abs<D> >(a);
   }
   // sgn(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApSign<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Sgn<D> > 
   sgn(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApSign<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Sgn<D> >(a);
   }
   // log_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApLog<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Log<D> > 
   log_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApLog<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Log<D> >(a);
   }
   // log10_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApLog10<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Log10<D> > 
   log10_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApLog10<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Log10<D> >(a);
   }
   // asin_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApAsin<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Asin<D> > 
   asin_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApAsin<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Asin<D> >(a);
   }
 
   // acos_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApAcos<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Acos<D> > 
   acos_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApAcos<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Acos<D> >(a);
   }
   // atan_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApAtan<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Atan<D> > 
   atan_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApAtan<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Atan<D> >(a);
   }
   // atan2_el(matrix)
 
@@ -204,50 +204,50 @@ namespace matricks {
   // ceil_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApCeil<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Ceil<D> > 
   ceil_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApCeil<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Ceil<D> >(a);
   }
   // floor_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApFloor<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Floor<D> > 
   floor_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApFloor<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Floor<D> >(a);
   }
   // round_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApRound<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Round<D> > 
   round_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApRound<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Round<D> >(a);
   }
   // sinh_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApSinh<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Sinh<D> > 
   sinh_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApSinh<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Sinh<D> >(a);
   }
   // cosh_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApCosh<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Cosh<D> > 
   cosh_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApCosh<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Cosh<D> >(a);
   }
   // tanh_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApTanh<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Tanh<D> > 
   tanh_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApTanh<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Tanh<D> >(a);
   }
 
   

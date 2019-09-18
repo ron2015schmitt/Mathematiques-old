@@ -72,7 +72,6 @@ namespace matricks {
 
   // cast - from D1 to D2
 
-
   template <class D1, class D2> class Fun_Cast {
   public:
     Fun_Cast() { }
@@ -261,25 +260,27 @@ namespace matricks {
     }
   };
 
-  ///////////////////////
-  // refactored to HERE
-  ////////////////////////
   
 
   // sin(a)
 
-  template <class D> class ApSin {
+#if MATRICKS_DEBUG>=1
+  class Fun_Sin_base {
   public:
-    ApSin() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Sin : public Fun_Sin_base {
+#else 
+    template <class D> class Fun_Sin {
+#endif
+  public:
+    Fun_Sin() { }
 
     static inline D apply(D a) { 
       using std::sin;
       return sin(a); 
-    }
-
-    static std::string expression(const std::string& sa) {
-      std::string sout = "sin(" + sa + ")";
-      return sout;
     }
 
   };
@@ -287,18 +288,23 @@ namespace matricks {
 
   // cos(a)
 
-  template <class D> class ApCos {
+#if MATRICKS_DEBUG>=1
+  class Fun_Cos_base {
   public:
-    ApCos() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Cos : public Fun_Cos_base {
+#else 
+    template <class D> class Fun_Cos {
+#endif
+  public:
+    Fun_Cos() { }
 
     static inline D apply(D a) { 
       using std::cos;
-      return std::cos(a); 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "cos(" + sa + ")";
-      return sout;
+      return cos(a); 
     }
 
   };
@@ -308,37 +314,46 @@ namespace matricks {
 
   // tan(a)
 
-  template <class D> class ApTan {
+#if MATRICKS_DEBUG>=1
+  class Fun_Tan_base {
   public:
-    ApTan() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Tan : public Fun_Tan_base {
+#else 
+    template <class D> class Fun_Tan {
+#endif
+  public:
+    Fun_Tan() { }
 
     static inline D apply(D a) { 
       using std::tan;
-      return std::tan(a); 
+      return tan(a); 
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "tan(" + sa + ")";
-      return sout;
-    }
-
   };
 
 
   // sqrt(a)
 
-  template <class D> class ApSqrt {
+#if MATRICKS_DEBUG>=1
+  class Fun_Sqrt_base {
   public:
-    ApSqrt() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Sqrt : public Fun_Sqrt_base {
+#else 
+  template <class D> class Fun_Sqrt {
+#endif
+  public:
+    Fun_Sqrt() { }
 
     static inline D apply(D a) { 
       using std::sqrt;
-      return std::sqrt(a); 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "sqrt(" + sa + ")";
-      return sout;
+      return sqrt(a); 
     }
 
   };
@@ -346,17 +361,22 @@ namespace matricks {
 
   // sqr(a)
 
-  template <class D> class ApSqr {
+#if MATRICKS_DEBUG>=1
+  class Fun_Sqr_base {
   public:
-    ApSqr() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Sqr : public Fun_Sqr_base {
+#else 
+  template <class D> class Fun_Sqr {
+#endif
+  public:
+    Fun_Sqr() { }
 
     static inline D apply(D a) { 
       return (a*a); 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "sqr(" + sa + ")";
-      return sout;
     }
 
   };
@@ -364,302 +384,409 @@ namespace matricks {
 
   // cube(a)
 
-  template <class D> class ApCube {
+#if MATRICKS_DEBUG>=1
+  class Fun_Cube_base {
   public:
-    ApCube() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Cube : public Fun_Cube_base {
+#else 
+  template <class D> class Fun_Cube {
+#endif
+  public:
+    Fun_Cube() { }
 
     static inline D apply(D a) { 
       return (a*a*a); 
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "cube(" + sa + ")";
-      return sout;
-    }
-
   };
 
 
   // exp(a)
-  template <class D> class ApExp {
+#if MATRICKS_DEBUG>=1
+  class Fun_Exp_base {
   public:
-    ApExp() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Exp : public Fun_Exp_base {
+#else 
+    template <class D> class Fun_Exp {
+#endif
+  public:
+    Fun_Exp() { }
     
     static inline D apply(D a) {
       using std::exp;
-      return std::exp(a);
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "exp(" + sa + ")";
-      return sout;
+      return exp(a);
     }
 
   };
 
+ 
 
-  // abs(a)
+    // abs(a)
 
-  template <class D> class ApAbs {
+#if MATRICKS_DEBUG>=1
+  class Fun_Abs_base {
   public:
-    ApAbs() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Abs : public Fun_Abs_base {
+#else 
+  template <class D> class Fun_Abs {
+#endif
+  public:
+    Fun_Abs() { }
 
     static inline D apply(D a) {
       using std::abs;
-      return std::abs(a);
+      return abs(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "abs(" + sa + ")";
-      return sout;
-    }
-
   };
 
+
+  
   // sgn(a)
 
-  template <class D> class ApSign {
+#if MATRICKS_DEBUG>=1
+  class Fun_Sgn_base {
   public:
-    ApSign() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Sgn : public Fun_Sgn_base {
+#else 
+  template <class D> class Fun_Sgn {
+#endif
+  public:
+    Fun_Sgn() { }
 
     static inline D apply(D a) {
       return matricks::sgn(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "sgn(" + sa + ")";
-      return sout;
-    }
-
   };
 
+
+  
   // log(a)
 
-  template <class D> class ApLog {
+#if MATRICKS_DEBUG>=1
+  class Fun_Log_base {
   public:
-    ApLog() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Log : public Fun_Log_base {
+#else 
+  template <class D> class Fun_Log {
+#endif
+  public:
+    Fun_Log() { }
 
     static inline D apply(D a) {
       using std::log;
-      return std::log(a);
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "log(" + sa + ")";
-      return sout;
+      return log(a);
     }
 
   };
 
+
+  
   // log2(a)
 
-  template <class D> class ApLog2 {
+#if MATRICKS_DEBUG>=1
+  class Fun_Log2_base {
   public:
-    ApLog2() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Log2 : public Fun_Log2_base {
+#else 
+  template <class D> class Fun_Log2 {
+#endif
+  public:
+    Fun_Log2() { }
 
     static inline D apply(D a) {
       using std::log;
-      return std::log2(a);
+      return log2(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "log2(" + sa + ")";
-      return sout;
-    }
-
   };
 
 
+  
   // log10(a)
-
-  template <class D> class ApLog10 {
+ 
+#if MATRICKS_DEBUG>=1
+  class Fun_Log10_base {
   public:
-    ApLog10() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Log10 : public Fun_Log10_base {
+#else 
+  template <class D> class Fun_Log10 {
+#endif
+  public:
+    Fun_Log10() { }
 
     static inline D apply(D a) {
       using std::log10;
-      return std::log10(a);
+      return log10(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "log10(" + sa + ")";
-      return sout;
-    }
-
   };
 
+
+ 
   // asin(a)
 
-  template <class D> class ApAsin {
+#if MATRICKS_DEBUG>=1
+  class Fun_Asin_base {
   public:
-    ApAsin() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Asin : public Fun_Asin_base {
+#else 
+  template <class D> class Fun_Asin                       {
+#endif
+  public:
+    Fun_Asin() { }
 
     static inline D apply(D a) {
       using std::asin;
-      return std::asin(a);
+      return asin(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "asin(" + sa + ")";
-      return sout;
-    }
-
   };
 
+
+  
   // acos(a)
 
-  template <class D> class ApAcos {
+#if MATRICKS_DEBUG>=1
+  class Fun_Acos_base {
   public:
-    ApAcos() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Acos : public Fun_Acos_base {
+#else 
+  template <class D> class Fun_Acos                       {
+#endif
+  public:
+    Fun_Acos() { }
 
     static inline D apply(D a) {
       using std::acos;
-      return std::acos(a);
+      return acos(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "acos(" + sa + ")";
-      return sout;
-    }
-
   };
 
+
+  
   // atan(a)
 
-  template <class D> class ApAtan {
+#if MATRICKS_DEBUG>=1
+  class Fun_Atan_base {
   public:
-    ApAtan() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Atan : public Fun_Atan_base {
+#else 
+  template <class D> class Fun_Atan {
+#endif
+  public:
+    Fun_Atan() { }
 
     static inline D apply(D a) {
       using std::atan;
-      return std::atan(a);
+      return atan(a);
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "atan(" + sa + ")";
-      return sout;
-    }
-
   };
 
 
+  
   // ceil(a)
 
-  template <class D> class ApCeil {
+#if MATRICKS_DEBUG>=1
+  class Fun_Ceil_base {
   public:
-    ApCeil() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Ceil : public Fun_Ceil_base {
+#else 
+  template <class D> class Fun_Ceil {
+#endif
+  public:
+    Fun_Ceil() { }
 
     static inline D apply(D a) { 
       using std::ceil;
-      return std::ceil(a); 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "ceil(" + sa + ")";
-      return sout;
+      return ceil(a); 
     }
 
   };
+
+
+  
   // floor(a)
 
-  template <class D> class ApFloor {
+#if MATRICKS_DEBUG>=1
+  class Fun_Floor_base {
   public:
-    ApFloor() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Floor : public Fun_Floor_base {
+#else 
+  template <class D> class Fun_Floor {
+#endif
+  public:
+    Fun_Floor() { }
 
     static inline D apply(D a) { 
       using std::floor;
-      return std::floor(a); 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "floor(" + sa + ")";
-      return sout;
+      return floor(a); 
     }
 
   };
+
+
+  
   // round(a)
 
-  template <class D> class ApRound {
+#if MATRICKS_DEBUG>=1
+  class Fun_Round_base {
   public:
-    ApRound() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Round : public Fun_Round_base {
+#else 
+  template <class D> class Fun_Round {
+#endif
+  public:
+    Fun_Round() { }
 
     static inline D apply(D a) {
-      return std::round(a); 
+      using std::round;
+      return round(a); 
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "round(" + sa + ")";
-      return sout;
-    }
-
   };
+
+
+
   // sinh(a)
 
-  template <class D> class ApSinh {
+#if MATRICKS_DEBUG>=1
+  class Fun_Sinh_base {
   public:
-    ApSinh() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Sinh : public Fun_Sinh_base {
+#else 
+  template <class D> class Fun_Sinh {
+#endif
+  public:
+    Fun_Sinh() { }
 
     static inline D apply(D a) { 
       using std::sinh;
-      return std::sinh(a); 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "sinh(" + sa + ")";
-      return sout;
+      return sinh(a); 
     }
 
   };
+
+
+
   // cosh(a)
 
-  template <class D> class ApCosh {
+#if MATRICKS_DEBUG>=1
+  class Fun_Cosh_base {
   public:
-    ApCosh() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Cosh : public Fun_Cosh_base {
+#else 
+  template <class D> class Fun_Cosh {
+#endif
+  public:
+    Fun_Cosh() { }
 
     static inline D apply(D a) { 
       using std::cosh;
-      return std::cosh(a); 
+      return cosh(a); 
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "cosh(" + sa + ")";
-      return sout;
-    }
-
   };
+
+
+  
   // tanh(a)
 
-  template <class D> class ApTanh {
+#if MATRICKS_DEBUG>=1
+  class Fun_Tanh_base {
   public:
-    ApTanh() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Tanh : public Fun_Tanh_base {
+#else 
+  template <class D> class Fun_Tanh {
+#endif
+  public:
+    Fun_Tanh() { }
 
     static inline D apply(D a) { 
       using std::tanh;
-      return std::tanh(a); 
+      return tanh(a); 
     }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = "tanh(" + sa + ")";
-      return sout;
-    }
-
   };
+
+
+  
   // roundzero(a,tol)
 
-  template <class D> class ApRoundZeros {
+#if MATRICKS_DEBUG>=1
+  class Fun_Roundzero_base {
+  public:
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_Roundzero : public Fun_Roundzero_base {
+#else 
+  template <class D> class Fun_Roundzero {
+#endif
   public:
     typedef typename GetDataType<D>::Type DREAL;
-    ApRoundZeros() { }
+    Fun_Roundzero() { }
 
     static inline D apply(D a, const DREAL tolerance) { 
-      return roundzero(a, tolerance);
+      return matricks::roundzero(a, tolerance);
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "roundzero( " + sa + " , " + sb + " )";
-      return sout;
-    }
-
   };
 
 
@@ -667,7 +794,11 @@ namespace matricks {
   // *              User Defined
   // ************************************************************************
 
+  ///////////////////////
+  // refactored to HERE
+  ////////////////////////
 
+  
   template<class D>
     struct TypeHelper {
       typedef D(*unary_func)(D);
@@ -1216,9 +1347,9 @@ namespace matricks {
 
   // round(a)
 
-  template <class D> class ApRoundCplx {
+  template <class D> class Fun_RoundCplx {
   public:
-    ApRoundCplx() { }
+    Fun_RoundCplx() { }
 
     static inline std::complex<D> apply(std::complex<D> a) {
       return matricks::round(a); 

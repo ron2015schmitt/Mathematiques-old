@@ -639,10 +639,10 @@ namespace matricks {
   // sin coefs must include a coef for n=0 even though its irrelevant
 
   template <class D, class A, class B, class X> 
-    inline  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, ApCos<D>, ApSin<D> >
+    inline  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, Fun_Cos<D>, Fun_Sin<D> >
     ifourier(const VorE<D,A>& Acos, const VorE<D,B>& Bsin, const VorE<D,X>& x, const int N, const D k1)
     {
-      return  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, ApCos<D>, ApSin<D> >(Acos,Bsin,x,N,k1);
+      return  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
     }
 
 

@@ -160,10 +160,7 @@ int main()
   mout << Fun_Minus<double>::classname() << getBracketedTypeName(d) << " ";
   mout << Fun_Minus<double>::expression("x") << endl;
 
-  s = StyledString::get(ANGLE1).get() 
-      + getTypeName(d) + "," + getTypeName(n)
-      + StyledString::get(ANGLE2).get();
-  mout << Fun_Minus<double>::classname() << s << " ";
+  mout << Fun_Cast<double,int>::classname() << " ";
   mout << Fun_Cast<double,int>::expression("n") << endl;
   
   mout << Fun_Add<double>::classname() << getBracketedTypeName(d) << " ";

@@ -22,10 +22,10 @@ namespace matricks {
   // vector + vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,VorE<D,A>,VorE<D,B>,FunAdd<D> > 
+    inline VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Add<D> > 
     operator+(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D,VorE<D,A>,VorE<D,B>,FunAdd<D> >(a,b);
+      return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Add<D> >(a,b);
     }
 
 
@@ -33,30 +33,30 @@ namespace matricks {
   // vector - vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,VorE<D,A>,VorE<D,B>,FunSubtract<D> > 
+    inline VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Subtract<D> > 
     operator-(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D,VorE<D,A>,VorE<D,B>,FunSubtract<D> >(a,b);
+      return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Subtract<D> >(a,b);
     }
 
 
   // vector * vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,VorE<D,A>,VorE<D,B>,FunMultiply<D> > 
+    inline VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Multiply<D> > 
     operator*(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D,VorE<D,A>,VorE<D,B>,FunMultiply<D> >(a,b);
+      return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Multiply<D> >(a,b);
     }
 
 
   // vector / vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,VorE<D,A>,VorE<D,B>,FunDivide<D> > 
+    inline VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Divide<D> > 
     operator/(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D,VorE<D,A>,VorE<D,B>,FunDivide<D> >(a,b);
+      return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Divide<D> >(a,b);
     }
 
 
@@ -95,67 +95,67 @@ namespace matricks {
 
   // complexvector + realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunAddCR<D> > 
+    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_AddCR<D> > 
     operator+(const VorE<std::complex<D>,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunAddCR<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_AddCR<D> >(a,b);
     }
   // realvector + complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunAddRC<D> > 
+    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const VorE<D,A>& a, const VorE<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunAddRC<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_AddRC<D> >(a,b);
     }
 
 
   // complexvector - realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunSubtractCR<D> > 
+    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_SubtractCR<D> > 
     operator-(const VorE<std::complex<D>,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunSubtractCR<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_SubtractCR<D> >(a,b);
     }
   // realvector - complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunSubtractRC<D> > 
+    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const VorE<D,A>& a, const VorE<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunSubtractRC<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);
     }
 
 
 
   // complexvector * realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunMultiplyCR<D> > 
+    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_MultiplyCR<D> > 
     operator*(const VorE<std::complex<D>,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunMultiplyCR<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_MultiplyCR<D> >(a,b);
     }
   // realvector * complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunMultiplyRC<D> > 
+    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const VorE<D,A>& a, const VorE<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunMultiplyRC<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);
     }
 
 
 
   // complexvector / realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunDivideCR<D> > 
+    inline VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_DivideCR<D> > 
     operator/(const VorE<std::complex<D>,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,FunDivideCR<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<std::complex<D>,A>,VorE<D,B>,Fun_DivideCR<D> >(a,b);
     }
   // realvector / complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunDivideRC<D> > 
+    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const VorE<D,A>& a, const VorE<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,FunDivideRC<D> >(a,b);
+      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);
     }
 
 
@@ -341,74 +341,74 @@ namespace matricks {
   // vector + scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunAdd<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Add<D> > 
     operator+(const VorE<D,A>& a, const D b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunAdd<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Add<D> >(a,b);
     }
 
   // scalar + vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunAdd<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Add<D> > 
     operator+(const D a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunAdd<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Add<D> > (a,b);
     }
 
 
   // vector - scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunSubtract<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Subtract<D> > 
     operator-(const VorE<D,A>& a, const D b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunSubtract<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Subtract<D> >(a,b);
     }
 
   // scalar - vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunSubtract<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Subtract<D> > 
     operator-(const D a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunSubtract<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Subtract<D> > (a,b);
     }
 
   // vector * scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunMultiply<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Multiply<D> > 
     operator*(const VorE<D,A>& a, const D b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunMultiply<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Multiply<D> >(a,b);
     }
 
   // scalar * vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunMultiply<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Multiply<D> > 
     operator*(const D a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunMultiply<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Multiply<D> > (a,b);
     }
 
   // vector / scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunDivide<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Divide<D> > 
     operator/(const VorE<D,A>& a, const D b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunDivide<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Divide<D> >(a,b);
     }
 
   // scalar / vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunDivide<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Divide<D> > 
     operator/(const D a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunDivide<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Divide<D> > (a,b);
     }
 
 
@@ -417,74 +417,74 @@ namespace matricks {
   // vector + (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunAdd<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Add<D> > 
     operator+(const VorE<D,A>& a, const int b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunAdd<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Add<D> >(a,b);
     }
 
   // (int scalar) + vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunAdd<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Add<D> > 
     operator+(const int a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunAdd<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Add<D> > (a,b);
     }
 
 
   // vector - (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunSubtract<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Subtract<D> > 
     operator-(const VorE<D,A>& a, const int b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunSubtract<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Subtract<D> >(a,b);
     }
 
   // (int scalar) - vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunSubtract<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Subtract<D> > 
     operator-(const int a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunSubtract<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Subtract<D> > (a,b);
     }
 
   // vector * (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunMultiply<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Multiply<D> > 
     operator*(const VorE<D,A>& a, const int b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunMultiply<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Multiply<D> >(a,b);
     }
 
   // (int scalar) * vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunMultiply<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Multiply<D> > 
     operator*(const int a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunMultiply<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Multiply<D> > (a,b);
     }
 
   // vector / (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,FunDivide<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Divide<D> > 
     operator/(const VorE<D,A>& a, const int b)
     {
-      return  VecOpScal<D,VorE<D,A>,FunDivide<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Divide<D> >(a,b);
     }
 
   // (int scalar) / vector
 
   template <class D, class B>
-    inline ScalOpVec<D,VorE<D,B>,FunDivide<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Divide<D> > 
     operator/(const int a, const VorE<D,B>& b )
     {
-      return  ScalOpVec<D,VorE<D,B>,FunDivide<D> > (a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Divide<D> > (a,b);
     }
 
 
@@ -521,155 +521,155 @@ namespace matricks {
 
   // realvector + complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,VorE<D,A>,FunAddRC<D> > 
+    inline VecOpScal< std::complex<D>,VorE<D,A>,Fun_AddRC<D> > 
     operator+(const VorE<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,VorE<D,A>,FunAddRC<D> >( a,b );
+	VecOpScal< std::complex<D>,VorE<D,A>,Fun_AddRC<D> >( a,b );
     }
 
   // complexscalar +  realvector 
   template <class D, class B> 
-    inline ScalOpVec< std::complex<D>,VorE<D,B>,FunAddCR<D> > 
+    inline ScalOpVec< std::complex<D>,VorE<D,B>,Fun_AddCR<D> > 
     operator+(const std::complex<D> a, const VorE<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,VorE<D,B>,FunAddCR<D> >( a, b );
+	ScalOpVec< std::complex<D>,VorE<D,B>,Fun_AddCR<D> >( a, b );
     }
   // complexvector + realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunAddCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_AddCR<D> > 
     operator+(const VorE<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunAddCR<D> >(a,b);  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_AddCR<D> >(a,b);  
     }
   // complexvector + intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunAddCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_AddCR<D> > 
     operator+(const VorE<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunAddCR<D> >(a,static_cast<D>(b));  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_AddCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar + complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunAddRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const D a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunAddRC<D> >(a,b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_AddRC<D> >(a,b);  
     }
   // intscalar + complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunAddRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const int a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunAddRC<D > >(static_cast<D>(a),b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_AddRC<D > >(static_cast<D>(a),b);  
     }
 
 
 
   // realvector - complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,VorE<D,A>,FunSubtractRC<D> > 
+    inline VecOpScal< std::complex<D>,VorE<D,A>,Fun_SubtractRC<D> > 
     operator-(const VorE<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,VorE<D,A>,FunSubtractRC<D> >( a,b );
+	VecOpScal< std::complex<D>,VorE<D,A>,Fun_SubtractRC<D> >( a,b );
     }
 
   // complexscalar -  realvector 
   template <class D, class B> 
-    inline ScalOpVec< std::complex<D>,VorE<D,B>,FunSubtractCR<D> > 
+    inline ScalOpVec< std::complex<D>,VorE<D,B>,Fun_SubtractCR<D> > 
     operator-(const std::complex<D> a, const VorE<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,VorE<D,B>,FunSubtractCR<D> >( a, b );
+	ScalOpVec< std::complex<D>,VorE<D,B>,Fun_SubtractCR<D> >( a, b );
     }
   // complexvector - realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunSubtractCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_SubtractCR<D> > 
     operator-(const VorE<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunSubtractCR<D> >(a,b);  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_SubtractCR<D> >(a,b);  
     }
   // complexvector - intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunSubtractCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_SubtractCR<D> > 
     operator-(const VorE<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunSubtractCR<D> >(a,static_cast<D>(b));  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_SubtractCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar - complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunSubtractRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const D a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunSubtractRC<D> >(a,b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);  
     }
   // intscalar - complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunSubtractRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const int a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunSubtractRC<D > >(static_cast<D>(a),b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_SubtractRC<D > >(static_cast<D>(a),b);  
     }
 
 
   // realvector * complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,VorE<D,A>,FunMultiplyRC<D> > 
+    inline VecOpScal< std::complex<D>,VorE<D,A>,Fun_MultiplyRC<D> > 
     operator*(const VorE<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,VorE<D,A>,FunMultiplyRC<D> >( a,b );
+	VecOpScal< std::complex<D>,VorE<D,A>,Fun_MultiplyRC<D> >( a,b );
     }
 
   // complexscalar *  realvector 
   template <class D, class B> 
-    inline ScalOpVec<std::complex<D>,VorE<D,B>,FunMultiplyCR<D> > 
+    inline ScalOpVec<std::complex<D>,VorE<D,B>,Fun_MultiplyCR<D> > 
     operator*(const std::complex<D> a, const VorE<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,VorE<D,B>,FunMultiplyCR<D> >( a, b );
+	ScalOpVec< std::complex<D>,VorE<D,B>,Fun_MultiplyCR<D> >( a, b );
     }
   // complexvector * realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunMultiplyCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_MultiplyCR<D> > 
     operator*(const VorE<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunMultiplyCR<D> >(a,b);  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,b);  
     }
   // complexvector * intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunMultiplyCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_MultiplyCR<D> > 
     operator*(const VorE<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunMultiplyCR<D> >(a,static_cast<D>(b));  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar * complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunMultiplyRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const D a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunMultiplyRC<D> >(a,b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);  
     }
   // intscalar * complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunMultiplyRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const int a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunMultiplyRC<D > >(static_cast<D>(a),b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_MultiplyRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -677,52 +677,52 @@ namespace matricks {
 
   // realvector / complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,VorE<D,A>,FunDivideRC<D> > 
+    inline VecOpScal< std::complex<D>,VorE<D,A>,Fun_DivideRC<D> > 
     operator/(const VorE<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,VorE<D,A>,FunDivideRC<D> >( a,b );
+	VecOpScal< std::complex<D>,VorE<D,A>,Fun_DivideRC<D> >( a,b );
     }
 
   // complexscalar /  realvector 
   template <class D, class B> 
-    inline ScalOpVec< std::complex<D>,VorE<D,B>,FunDivideCR<D> > 
+    inline ScalOpVec< std::complex<D>,VorE<D,B>,Fun_DivideCR<D> > 
     operator/(const std::complex<D> a, const VorE<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,VorE<D,B>,FunDivideCR<D> >( a, b );
+	ScalOpVec< std::complex<D>,VorE<D,B>,Fun_DivideCR<D> >( a, b );
     }
   // complexvector / realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunDivideCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_DivideCR<D> > 
     operator/(const VorE<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunDivideCR<D> >(a,b);  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_DivideCR<D> >(a,b);  
     }
   // complexvector / intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,FunDivideCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_DivideCR<D> > 
     operator/(const VorE<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,VorE<std::complex<D>,A>,FunDivideCR<D> >(a,static_cast<D>(b));  
+	CVecOpScal<D,VorE<std::complex<D>,A>,Fun_DivideCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar / complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunDivideRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const D a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunDivideRC<D> >(a,b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);  
     }
   // intscalar / complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,FunDivideRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const int a, const VorE<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,VorE<std::complex<D>,B>,FunDivideRC<D > >(static_cast<D>(a),b);  
+	CScalOpVec<D,VorE<std::complex<D>,B>,Fun_DivideRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -1009,20 +1009,20 @@ namespace matricks {
   // +(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,FunPlus<D> > 
+    inline VFuncOp<D,VorE<D,A>,Fun_Plus<D> > 
     operator+(const VorE<D,A>& a)
     {
-      return  VFuncOp<D,VorE<D,A>,FunPlus<D> >(a);
+      return  VFuncOp<D,VorE<D,A>,Fun_Plus<D> >(a);
     }
 
 
   // -(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,FunMinus<D> > 
+    inline VFuncOp<D,VorE<D,A>,Fun_Minus<D> > 
     operator-(const VorE<D,A>& a)
     {
-      return  VFuncOp<D,VorE<D,A>,FunMinus<D> >(a);
+      return  VFuncOp<D,VorE<D,A>,Fun_Minus<D> >(a);
     }
 
 
@@ -1043,10 +1043,10 @@ namespace matricks {
   // dcast from D1 to D2
 
   template <class D2, class D1, class A> 
-    inline VFuncOp<D2,VorE<D1,A>,FunCast<D1,D2> > 
+    inline VFuncOp<D2,VorE<D1,A>,Fun_Cast<D1,D2> > 
     dcast(const VorE<D1,A>& a)
     {
-      return  VFuncOp<D2,VorE<D1,A>,FunCast<D1,D2> >(a);
+      return  VFuncOp<D2,VorE<D1,A>,Fun_Cast<D1,D2> >(a);
     }
 
 

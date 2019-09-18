@@ -1,6 +1,6 @@
 
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in mātricks
-_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.16-r10).
+_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.16-r13).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method

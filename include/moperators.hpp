@@ -18,10 +18,10 @@ namespace matricks {
   // matrix + matrix
 
   template <class D, class A, class B> 
-  inline MBinOp<D,MorE<D,A>,MorE<D,B>,FunAdd<D> > 
+  inline MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Add<D> > 
   operator+(const MorE<D,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<D,MorE<D,A>,MorE<D,B>,FunAdd<D> >(a,b);
+    return  MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Add<D> >(a,b);
   }
 
 
@@ -29,30 +29,30 @@ namespace matricks {
   // matrix - matrix
 
   template <class D, class A, class B> 
-  inline MBinOp<D,MorE<D,A>,MorE<D,B>,FunSubtract<D> > 
+  inline MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Subtract<D> > 
   operator-(const MorE<D,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<D,MorE<D,A>,MorE<D,B>,FunSubtract<D> >(a,b);
+    return  MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Subtract<D> >(a,b);
   }
 
 
   // matrix * matrix
 
   template <class D, class A, class B> 
-  inline MBinOp<D,MorE<D,A>,MorE<D,B>,FunMultiply<D> > 
+  inline MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Multiply<D> > 
   operator*(const MorE<D,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<D,MorE<D,A>,MorE<D,B>,FunMultiply<D> >(a,b);
+    return  MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Multiply<D> >(a,b);
   }
 
 
   // matrix / matrix
 
   template <class D, class A, class B> 
-  inline MBinOp<D,MorE<D,A>,MorE<D,B>,FunDivide<D> > 
+  inline MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Divide<D> > 
   operator/(const MorE<D,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<D,MorE<D,A>,MorE<D,B>,FunDivide<D> >(a,b);
+    return  MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Divide<D> >(a,b);
   }
 
 
@@ -102,74 +102,74 @@ namespace matricks {
   // matrix + scalar
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunAdd<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Add<D> > 
   operator+(const MorE<D,A>& a, const D b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunAdd<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Add<D> >(a,b);
   }
 
   // scalar + matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunAdd<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Add<D> > 
   operator+(const D a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunAdd<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Add<D> > (a,b);
   }
 
 
   // matrix - scalar
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunSubtract<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Subtract<D> > 
   operator-(const MorE<D,A>& a, const D b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunSubtract<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Subtract<D> >(a,b);
   }
 
   // scalar - matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunSubtract<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Subtract<D> > 
   operator-(const D a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunSubtract<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Subtract<D> > (a,b);
   }
 
   // matrix * scalar
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunMultiply<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Multiply<D> > 
   operator*(const MorE<D,A>& a, const D b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunMultiply<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Multiply<D> >(a,b);
   }
 
   // scalar * matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunMultiply<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Multiply<D> > 
   operator*(const D a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunMultiply<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Multiply<D> > (a,b);
   }
 
   // matrix / scalar
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunDivide<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Divide<D> > 
   operator/(const MorE<D,A>& a, const D b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunDivide<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Divide<D> >(a,b);
   }
 
   // scalar / matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunDivide<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Divide<D> > 
   operator/(const D a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunDivide<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Divide<D> > (a,b);
   }
 
 
@@ -182,74 +182,74 @@ namespace matricks {
   // matrix + (int scalar)
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunAdd<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Add<D> > 
   operator+(const MorE<D,A>& a, const int b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunAdd<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Add<D> >(a,b);
   }
 
   // (int scalar) + matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunAdd<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Add<D> > 
   operator+(const int a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunAdd<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Add<D> > (a,b);
   }
 
 
   // matrix - (int scalar)
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunSubtract<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Subtract<D> > 
   operator-(const MorE<D,A>& a, const int b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunSubtract<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Subtract<D> >(a,b);
   }
 
   // (int scalar) - matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunSubtract<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Subtract<D> > 
   operator-(const int a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunSubtract<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Subtract<D> > (a,b);
   }
 
   // matrix * (int scalar)
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunMultiply<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Multiply<D> > 
   operator*(const MorE<D,A>& a, const int b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunMultiply<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Multiply<D> >(a,b);
   }
 
   // (int scalar) * matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunMultiply<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Multiply<D> > 
   operator*(const int a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunMultiply<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Multiply<D> > (a,b);
   }
 
   // matrix / (int scalar)
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,FunDivide<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Divide<D> > 
   operator/(const MorE<D,A>& a, const int b)
   {
-    return  MatOpScal<D,MorE<D,A>,FunDivide<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Divide<D> >(a,b);
   }
 
   // (int scalar) / matrix
 
   template <class D, class B>
-  inline ScalOpMat<D,MorE<D,B>,FunDivide<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Divide<D> > 
   operator/(const int a, const MorE<D,B>& b )
   {
-    return  ScalOpMat<D,MorE<D,B>,FunDivide<D> > (a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Divide<D> > (a,b);
   }
 
 
@@ -266,40 +266,40 @@ namespace matricks {
   // +(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,FunPlus<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Plus<D> > 
   operator+(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,FunPlus<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Plus<D> >(a);
   }
 
 
   // -(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,FunMinus<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Minus<D> > 
   operator-(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,FunMinus<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Minus<D> >(a);
   }
 
 
   // mcast(matrix)
 
   template <class D2, class D1, class A> 
-  inline MFuncOp<D2,MorE<D1,A>,FunCast<D1,D2> > 
+  inline MFuncOp<D2,MorE<D1,A>,Fun_Cast<D1,D2> > 
   mcast(const MorE<D1,A>& a)
   {
-    return  MFuncOp<D2,MorE<D1,A>,FunCast<D1,D2> >(a);
+    return  MFuncOp<D2,MorE<D1,A>,Fun_Cast<D1,D2> >(a);
   }
 
 
   // mcast(matrix,nr,nc)
 
   template <class D2, class D1, class A> 
-  inline MFuncReshape<D2,MorE<D1,A>,FunCast<D1,D2> > 
+  inline MFuncReshape<D2,MorE<D1,A>,Fun_Cast<D1,D2> > 
   mcast(const MorE<D1,A>& a, const size_type nr, const size_type nc)
   {
-    return  MFuncReshape<D2,MorE<D1,A>,FunCast<D1,D2> >(a,nr,nc);
+    return  MFuncReshape<D2,MorE<D1,A>,Fun_Cast<D1,D2> >(a,nr,nc);
   }
 
 
@@ -307,10 +307,10 @@ namespace matricks {
   // mcast(vector)
 
   template <class D2, class D1, class A> 
-  inline MFuncVec<D2,VorE<D1,A>,FunCast<D1,D2> > 
+  inline MFuncVec<D2,VorE<D1,A>,Fun_Cast<D1,D2> > 
   mcast(const VorE<D1,A>& a, const size_type NR, const size_type NC)
   {
-    return  MFuncVec<D2,VorE<D1,A>,FunCast<D1,D2> >(a,NR,NC);
+    return  MFuncVec<D2,VorE<D1,A>,Fun_Cast<D1,D2> >(a,NR,NC);
   }
 
 

@@ -31,12 +31,12 @@ namespace matricks {
     static std::string classname();
   };
   
-  template <class D> class FunPlus : public Fun_Plus_base {
+  template <class D> class Fun_Plus : public Fun_Plus_base {
 #else 
-  template <class D> class FunPlus                       {
+  template <class D> class Fun_Plus                       {
 #endif
   public:
-    FunPlus() { }
+    Fun_Plus() { }
 
     static inline D apply(const D a) { 
       return a; 
@@ -55,12 +55,12 @@ namespace matricks {
     static std::string classname();
   };
 
-  template <class D> class FunMinus : public Fun_Minus_base {
+  template <class D> class Fun_Minus : public Fun_Minus_base {
 #else
-  template <class D> class FunMinus {
+  template <class D> class Fun_Minus {
 #endif
   public:
-    FunMinus() { }
+    Fun_Minus() { }
 
     static inline D apply(const D a) { 
       return (-a); 
@@ -72,9 +72,9 @@ namespace matricks {
   // cast - from D1 to D2
 
 
-  template <class D1, class D2> class FunCast {
+  template <class D1, class D2> class Fun_Cast {
   public:
-    FunCast() { }
+    Fun_Cast() { }
 
     static inline D2 apply(const D1 a) { 
       return static_cast<D2>(a); 
@@ -89,7 +89,7 @@ namespace matricks {
     }
 
     static std::string classname() {
-      return functor_namestyle.apply("FunCast");
+      return functor_namestyle.apply("Fun_Cast");
     }
 #endif
     
@@ -106,12 +106,12 @@ namespace matricks {
     static std::string classname();
   };
 
-  template <class D> class FunAdd : public Fun_Add_base {
+  template <class D> class Fun_Add : public Fun_Add_base {
 #else 
-  template <class D> class FunAdd {
+  template <class D> class Fun_Add {
 #endif
   public:
-    FunAdd() { }
+    Fun_Add() { }
   
     static inline D apply(const D a, const D b) { 
       return a+b; 
@@ -130,12 +130,12 @@ namespace matricks {
     static std::string classname();
   };
 
-  template <class D> class FunSubtract : public Fun_Subtract_base {
+  template <class D> class Fun_Subtract : public Fun_Subtract_base {
 #else 
-  template <class D> class FunSubtract  {
+  template <class D> class Fun_Subtract  {
 #endif
   public:
-    FunSubtract() { }
+    Fun_Subtract() { }
   
     static inline D apply(const D a, const D b) { 
       return a-b; 
@@ -153,12 +153,12 @@ namespace matricks {
     static std::string classname();
   };
 
-  template <class D> class FunMultiply : public Fun_Multiply_base {
+  template <class D> class Fun_Multiply : public Fun_Multiply_base {
 #else 
-  template <class D> class FunMultiply  {
+  template <class D> class Fun_Multiply  {
 #endif
   public:
-    FunMultiply() { }
+    Fun_Multiply() { }
 
     static inline D apply(const D a, const D b) { 
       return a*b; 
@@ -178,12 +178,12 @@ namespace matricks {
     static std::string classname();
   };
 
-  template <class D> class FunDivide : public Fun_Divide_base {
+  template <class D> class Fun_Divide : public Fun_Divide_base {
 #else 
-  template <class D> class FunDivide {
+  template <class D> class Fun_Divide {
 #endif
   public:
-    FunDivide() { }
+    Fun_Divide() { }
 
     static inline D apply(const D a, const D b) { 
       return a/b; 
@@ -954,9 +954,9 @@ namespace matricks {
 
   // y = acomplex + breal
 
-  template <class D> class FunAddCR {
+  template <class D> class Fun_AddCR {
   public:
-    FunAddCR() { }
+    Fun_AddCR() { }
   
     static inline std::complex<D> apply( std::complex<D> a, D b) { 
       return a+b; 
@@ -972,9 +972,9 @@ namespace matricks {
 
   // y = areal + bcomplex
 
-  template <class D> class FunAddRC {
+  template <class D> class Fun_AddRC {
   public:
-    FunAddRC() { }
+    Fun_AddRC() { }
   
     static inline std::complex<D> apply(D a, std::complex<D> b) { 
       return a+b; 
@@ -990,9 +990,9 @@ namespace matricks {
 
   // y = acomplex - breal
 
-  template <class D> class FunSubtractCR {
+  template <class D> class Fun_SubtractCR {
   public:
-    FunSubtractCR() { }
+    Fun_SubtractCR() { }
   
     static inline std::complex<D> apply( std::complex<D> a, D b) { 
       return a-b; 
@@ -1008,9 +1008,9 @@ namespace matricks {
 
   // y = areal - bcomplex
 
-  template <class D> class FunSubtractRC {
+  template <class D> class Fun_SubtractRC {
   public:
-    FunSubtractRC() { }
+    Fun_SubtractRC() { }
   
     static inline std::complex<D> apply(D a, std::complex<D> b) { 
       return a-b; 
@@ -1027,9 +1027,9 @@ namespace matricks {
 
   // y = acomplex * breal
 
-  template <class D> class FunMultiplyCR {
+  template <class D> class Fun_MultiplyCR {
   public:
-    FunMultiplyCR() { }
+    Fun_MultiplyCR() { }
   
     static inline std::complex<D> apply( std::complex<D> a, D b) { 
       return a*b; 
@@ -1045,9 +1045,9 @@ namespace matricks {
 
   // y = areal * bcomplex
 
-  template <class D> class FunMultiplyRC {
+  template <class D> class Fun_MultiplyRC {
   public:
-    FunMultiplyRC() { }
+    Fun_MultiplyRC() { }
   
     static inline std::complex<D> apply(D a, std::complex<D> b) { 
       return a*b; 
@@ -1063,9 +1063,9 @@ namespace matricks {
 
   // y = acomplex / breal
 
-  template <class D> class FunDivideCR {
+  template <class D> class Fun_DivideCR {
   public:
-    FunDivideCR() { }
+    Fun_DivideCR() { }
   
     static inline std::complex<D> apply( std::complex<D> a, D b) { 
       return a/b; 
@@ -1081,9 +1081,9 @@ namespace matricks {
 
   // y = areal / bcomplex
 
-  template <class D> class FunDivideRC {
+  template <class D> class Fun_DivideRC {
   public:
-    FunDivideRC() { }
+    Fun_DivideRC() { }
   
     static inline std::complex<D> apply(D a, std::complex<D> b) { 
       return a/b; 

@@ -22,6 +22,7 @@ namespace matricks {
 
 
   display::Style functor_namestyle = createStyle(display::ORANGE2);
+  display::Style functor_style = createStyle(display::BOLD);
 
 
 
@@ -35,7 +36,7 @@ namespace matricks {
   // unary+ operator
   
   std::string Fun_Plus_base::expression(const std::string& sa) {
-    std::string sout = "+(" + sa + ")";
+    std::string sout = functor_style.apply("+")+"("+ sa + ")";
     return sout;
   }
 
@@ -48,7 +49,7 @@ namespace matricks {
   // unary- operator
 
   std::string Fun_Minus_base::expression(const std::string& sa) {
-    std::string sout = "-(" + sa + ")";
+    std::string sout = functor_style.apply("-")+"(" + sa + ")";
     return sout;
   }
 
@@ -60,7 +61,7 @@ namespace matricks {
   // y = a + b
 
   std::string Fun_Add_base::expression(const std::string& sa, const std::string& sb) {
-    std::string sout = "(" + sa + ")" + " + " + "(" + sb + ")";
+    std::string sout = "(" + sa + ")" + functor_style.apply("+") + "(" + sb + ")";
     return sout;
   }
 
@@ -72,7 +73,7 @@ namespace matricks {
   // y = a - b
 
   std::string Fun_Subtract_base::expression(const std::string& sa, const std::string& sb) {
-    std::string sout = "(" + sa + ")" + " - " + "(" + sb + ")";
+    std::string sout = "(" + sa + ")" + functor_style.apply("-") + "(" + sb + ")";
     return sout;
   }
 
@@ -84,7 +85,7 @@ namespace matricks {
   // y = a * b
 
   std::string Fun_Multiply_base::expression(const std::string& sa, const std::string& sb) {
-    std::string sout = "(" + sa + ")" + "*" + "(" + sb + ")";
+    std::string sout = "(" + sa + ")" + functor_style.apply("*") + "(" + sb + ")";
     return sout;
   }
 
@@ -97,7 +98,7 @@ namespace matricks {
   // y = a / b
 
   std::string Fun_Divide_base::expression(const std::string& sa, const std::string& sb) {
-    std::string sout = "(" + sa + ")" + "/" + "(" + sb + ")";
+    std::string sout = "(" + sa + ")" + functor_style.apply("/") + "(" + sb + ")";
     return sout;
   }
 
@@ -106,6 +107,46 @@ namespace matricks {
   }
 
 
+
+  
+  // y = pow(a,b)  
+  // ie. a raised to the b power
+
+  std::string Fun_Pow_base::expression(const std::string& sa, const std::string& sb) {
+    std::string sout = "(" + sa + ")" + functor_style.apply("^") +"("+ sb + ")";
+    return sout;
+  }
+
+  std::string Fun_Pow_base::classname() {
+    return functor_namestyle.apply("Fun_Pow");
+  }
+
+  
+  // y = powint(a,n)  
+  // ie. a raised to the n power
+
+  std::string Fun_Monomial_base::expression(const std::string& sa, const std::string& sb) {
+    std::string sout = "(" + sa + ")" + functor_style.apply("^") +"("+ sb + ")";
+    return sout;
+  }
+
+  std::string Fun_Monomial_base::classname() {
+    return functor_namestyle.apply("Fun_Monomial");
+  }
+
+
+  // y = atan2(a,b)  
+
+  std::string Fun_Atan2_base::expression(const std::string& sa, const std::string& sb) {
+    std::string sout = functor_style.apply("atan2") + "("+sa+", " + sb + ")";
+    return sout;
+  }
+
+  std::string Fun_Atan2_base::classname() {
+    return functor_namestyle.apply("Fun_Atan2");
+  }
+
+  
   
 };
 

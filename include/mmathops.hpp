@@ -23,10 +23,10 @@ namespace matricks {
   // pow_el(matrix,matrix)
 
   template <class D, class A, class B> 
-  inline MBinOp<D,MorE<D,A>,MorE<D,B>,ApPow<D> > 
+  inline MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Pow<D> > 
   pow_el(const MorE<D,A>& a, const MorE<D,B>& b)
   {
-    return  MBinOp<D,MorE<D,A>,MorE<D,B>,ApPow<D> >(a,b);
+    return  MBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Pow<D> >(a,b);
   }
 
 
@@ -46,19 +46,19 @@ namespace matricks {
   // pow_el(matrix,scalar)
 
   template <class D, class A> 
-  inline MatOpScal<D,MorE<D,A>,ApPow<D> > 
+  inline MatOpScal<D,MorE<D,A>,Fun_Pow<D> > 
   pow_el(const MorE<D,A>& a, const D b)
   {
-    return  MatOpScal<D,MorE<D,A>,ApPow<D> >(a,b);
+    return  MatOpScal<D,MorE<D,A>,Fun_Pow<D> >(a,b);
   }
 
   // pow_el(scalar,matrix)
 
   template <class D, class B> 
-  inline ScalOpMat<D,MorE<D,B>,ApPow<D> > 
+  inline ScalOpMat<D,MorE<D,B>,Fun_Pow<D> > 
   pow_el( const D a, const MorE<D,B>& b)
   {
-    return  ScalOpMat<D,MorE<D,B>,ApPow<D> >(a,b);
+    return  ScalOpMat<D,MorE<D,B>,Fun_Pow<D> >(a,b);
   }
 
 
@@ -196,10 +196,10 @@ namespace matricks {
   // atan2_el(matrix)
 
   template <class D, class A> 
-  inline MFuncOp<D,MorE<D,A>,ApAtan2<D> > 
+  inline MFuncOp<D,MorE<D,A>,Fun_Atan2<D> > 
   atan2_el(const MorE<D,A>& a)
   {
-    return  MFuncOp<D,MorE<D,A>,ApAtan2<D> >(a);
+    return  MFuncOp<D,MorE<D,A>,Fun_Atan2<D> >(a);
   }
   // ceil_el(matrix)
 

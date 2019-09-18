@@ -64,10 +64,10 @@ namespace matricks {
   // pow(vector,vector)
 
   template <class D, class A, class B> 
-    inline VBinOp<D,VorE<D,A>,VorE<D,B>,ApPow<D> > 
+    inline VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Pow<D> > 
     pow(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D,VorE<D,A>,VorE<D,B>,ApPow<D> >(a,b);
+      return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Pow<D> >(a,b);
     }
 
 
@@ -75,10 +75,10 @@ namespace matricks {
   // atan2(vector,vector)
 
   template <class D, class A, class B> 
-    inline VBinOp<D,VorE<D,A>,VorE<D,B>,ApAtan2<D> > 
+    inline VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Atan2<D> > 
     atan2(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D,VorE<D,A>,VorE<D,B>,ApAtan2<D> >(a,b);
+      return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Atan2<D> >(a,b);
     }
 
 
@@ -502,19 +502,19 @@ namespace matricks {
   // pow(vector,scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,ApPow<D> > 
+    inline VecOpScal<D,VorE<D,A>,Fun_Pow<D> > 
     pow(const VorE<D,A>& a, const D b)
     {
-      return  VecOpScal<D,VorE<D,A>,ApPow<D> >(a,b);
+      return  VecOpScal<D,VorE<D,A>,Fun_Pow<D> >(a,b);
     }
 
   // pow(scalar,vector)
 
   template <class D, class B> 
-    inline ScalOpVec<D,VorE<D,B>,ApPow<D> > 
+    inline ScalOpVec<D,VorE<D,B>,Fun_Pow<D> > 
     pow( const D a, const VorE<D,B>& b)
     {
-      return  ScalOpVec<D,VorE<D,B>,ApPow<D> >(a,b);
+      return  ScalOpVec<D,VorE<D,B>,Fun_Pow<D> >(a,b);
     }
 
 

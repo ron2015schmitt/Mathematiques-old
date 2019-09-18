@@ -154,31 +154,42 @@ int main()
 
   mout << Fun_Plus_base::expression("x") << endl;
 
-  mout << FunPlus<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << FunPlus<double>::expression("x") << endl;
+  mout << Fun_Plus<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Plus<double>::expression("x") << endl;
   
-  mout << FunMinus<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << FunMinus<double>::expression("x") << endl;
+  mout << Fun_Minus<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Minus<double>::expression("x") << endl;
 
   s = StyledString::get(ANGLE1).get() 
       + getTypeName(d) + "," + getTypeName(n)
       + StyledString::get(ANGLE2).get();
-  mout << FunMinus<double>::classname() << s << " ";
-  mout << FunCast<double,int>::expression("n") << endl;
+  mout << Fun_Minus<double>::classname() << s << " ";
+  mout << Fun_Cast<double,int>::expression("n") << endl;
   
-  mout << FunAdd<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << FunAdd<double>::expression("x","y") << endl;
+  mout << Fun_Add<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Add<double>::expression("x","y") << endl;
 
-  mout << FunSubtract<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << FunSubtract<double>::expression("x","y") << endl;
-  mout << FunMultiply<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << FunMultiply<double>::expression("x","y") << endl;
+  mout << Fun_Subtract<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Subtract<double>::expression("x","y") << endl;
+  mout << Fun_Multiply<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Multiply<double>::expression("x","y") << endl;
 
-  mout << FunDivide<double>::classname() << getBracketedTypeName(d) << " ";
-  mout << FunDivide<double>::expression("x","y") << endl;
+  mout << Fun_Divide<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Divide<double>::expression("x","y") << endl;
 
 
-  mout << is_instance<FunMultiply<double>, FunDivide>{} <<endl;
+  mout << Fun_Pow<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Pow<double>::expression("x","y") << endl;
+
+  mout << Fun_Monomial<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Monomial<double>::expression("x","y") << endl;
+
+  mout << Fun_Atan2<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Atan2<double>::expression("x","y") << endl;
+
+  
+
+  mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
   
   
   return 0;

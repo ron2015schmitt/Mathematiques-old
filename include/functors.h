@@ -14,6 +14,7 @@ namespace matricks {
 
 
   extern display::Style functor_namestyle;
+  extern display::Style functor_style;
 
   
   // ************************************************************************
@@ -84,7 +85,7 @@ namespace matricks {
     static inline std::string expression(const std::string& sa) {
       using namespace display;
       D2 d2;
-      std::string sout = "static_cast<" + getTypeName<D2>(d2) + ">(" + sa + ")";
+      std::string sout = functor_style.apply("static_cast")+"<" + getTypeName<D2>(d2) + ">(" + sa + ")";
       return sout;
     }
 
@@ -205,21 +206,15 @@ namespace matricks {
     static std::string classname();
   };
 
-  template <class D> class ApPow : public Fun_Pow_base {
+  template <class D> class Fun_Pow : public Fun_Pow_base {
 #else 
-  template <class D> class ApPow {
+  template <class D> class Fun_Pow {
 #endif
   public:
-    ApPow() { }
+    Fun_Pow() { }
     static inline D apply(D a, D b) { 
       using std::pow;
       return pow(a,b); 
-    }
-
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "pow( " + sa + " , " + sb + " )";
-      return sout;
     }
   };
 
@@ -233,21 +228,15 @@ namespace matricks {
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
-  template <class D> class ApMonomial : public Fun_Monomial_base {
+  template <class D> class Fun_Monomial : public Fun_Monomial_base {
 #else 
-  template <class D> class ApMonomial {
+  template <class D> class Fun_Monomial {
 #endif
   public:
-    ApMonomial() { }
+    Fun_Monomial() { }
     static inline D apply(D x, int n) { 
       using std::pow;
       return pow(x,n); 
-    }
-
-
-    static std::string expression(const std::string& sx, const std::string& sn) {
-      std::string sout = sx + "^" + sn ;
-      return sout;
     }
   };
 
@@ -260,25 +249,22 @@ namespace matricks {
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
-  template <class D> class ApAtan2 : public Fun_Atan2_base {
+  template <class D> class Fun_Atan2 : public Fun_Atan2_base {
 #else 
-  template <class D> class ApAtan2 {
+  template <class D> class Fun_Atan2 {
 #endif
   public:
-    ApAtan2() { }
+    Fun_Atan2() { }
     static inline D apply(D a, D b) { 
       using std::atan2;
       return atan2(a,b); 
     }
-
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "atan2( " + sa + " , " + sb + " )";
-      return sout;
-    }
   };
 
   ///////////////////////
+  // refactored to HERE
+  ////////////////////////
+  
 
   // sin(a)
 

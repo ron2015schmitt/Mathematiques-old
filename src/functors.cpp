@@ -27,11 +27,8 @@ namespace matricks {
 
 
   // ************************************************************************
-  // *              Math 
+  // *              Arithmetic
   // ************************************************************************
-
-
-
 
   // unary+ operator
   
@@ -107,6 +104,9 @@ namespace matricks {
   }
 
 
+  // ************************************************************************
+  // *            Powers and logs
+  // ************************************************************************
 
   
   // y = pow(a,b)  
@@ -132,67 +132,6 @@ namespace matricks {
 
   std::string Fun_Monomial_base::classname() {
     return functor_namestyle.apply("Fun_Monomial");
-  }
-
-
-  // y = atan2(a,b)  
-
-  std::string Fun_Atan2_base::expression(const std::string& sa, const std::string& sb) {
-    std::string sout = functor_style.apply("atan2") + "("+sa+", " + sb + ")";
-    return sout;
-  }
-
-  std::string Fun_Atan2_base::classname() {
-    return functor_namestyle.apply("Fun_Atan2");
-  }
-
-
-
-    // sin(a)
-
-  std::string Fun_Sin_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("sin")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Sin_base::classname() {
-    return functor_namestyle.apply("Fun_Sin");
-  }
-
-
-  // cos(a)
-
-  std::string Fun_Cos_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("cos")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Cos_base::classname() {
-    return functor_namestyle.apply("Fun_Cos");
-  }
-
-
-
-  // tan(a)
-
-  std::string Fun_Tan_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("tan")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Tan_base::classname() {
-    return functor_namestyle.apply("Fun_Tan");
-  }
-
-  // sqrt(a)
-
-  std::string Fun_Sqrt_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("sqrt")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Sqrt_base::classname() {
-    return functor_namestyle.apply("Fun_Sqrt");
   }
 
 
@@ -222,6 +161,19 @@ namespace matricks {
   }
 
 
+ 
+  // sqrt(a)
+
+  std::string Fun_Sqrt_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("sqrt")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Sqrt_base::classname() {
+    return functor_namestyle.apply("Fun_Sqrt");
+  }
+
+ 
   // exp(a)
   std::string Fun_Exp_base::expression(const std::string& sa) {
     std::string sout = functor_style.apply("exp")+"("+ sa + ")";
@@ -232,33 +184,7 @@ namespace matricks {
     return functor_namestyle.apply("Fun_Exp");
   }
 
- 
 
-    // abs(a)
-
-  std::string Fun_Abs_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("abs")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Abs_base::classname() {
-    return functor_namestyle.apply("Fun_Abs");
-  }
-
-  
-  // sgn(a)
-
-  std::string Fun_Sgn_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("sgn")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Sgn_base::classname() {
-    return functor_namestyle.apply("Fun_Sgn");
-  }
-
-
-  
   // log(a)
 
   std::string Fun_Log_base::expression(const std::string& sa) {
@@ -297,7 +223,46 @@ namespace matricks {
   }
 
 
- 
+  // ************************************************************************
+  // *            trig, inverse trig, hyperbolic trig
+  // ************************************************************************
+
+  // sin(a)
+
+  std::string Fun_Sin_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("sin")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Sin_base::classname() {
+    return functor_namestyle.apply("Fun_Sin");
+  }
+
+
+  // cos(a)
+
+  std::string Fun_Cos_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("cos")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Cos_base::classname() {
+    return functor_namestyle.apply("Fun_Cos");
+  }
+
+
+
+  // tan(a)
+
+  std::string Fun_Tan_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("tan")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Tan_base::classname() {
+    return functor_namestyle.apply("Fun_Tan");
+  }
+
   // asin(a)
 
   std::string Fun_Asin_base::expression(const std::string& sa) {
@@ -333,6 +298,81 @@ namespace matricks {
 
   std::string Fun_Atan_base::classname() {
     return functor_namestyle.apply("Fun_Atan");
+  }
+
+  // y = atan2(a,b)  
+
+  std::string Fun_Atan2_base::expression(const std::string& sa, const std::string& sb) {
+    std::string sout = functor_style.apply("atan2") + "("+sa+", " + sb + ")";
+    return sout;
+  }
+
+  std::string Fun_Atan2_base::classname() {
+    return functor_namestyle.apply("Fun_Atan2");
+  }
+
+  // sinh(a)
+
+  std::string Fun_Sinh_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("sinh")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Sinh_base::classname() {
+    return functor_namestyle.apply("Fun_Sinh");
+  }
+
+
+  // cosh(a)
+
+  std::string Fun_Cosh_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("cosh")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Cosh_base::classname() {
+    return functor_namestyle.apply("Fun_Cosh");
+  }
+
+  
+  // tanh(a)
+
+  std::string Fun_Tanh_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("tanh")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Tanh_base::classname() {
+    return functor_namestyle.apply("Fun_Tanh");
+  }
+
+
+  // ************************************************************************
+  // *            sign-related and rounding
+  // ************************************************************************
+
+ 
+    // abs(a)
+
+  std::string Fun_Abs_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("abs")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Abs_base::classname() {
+    return functor_namestyle.apply("Fun_Abs");
+  }
+
+  
+  // sgn(a)
+
+  std::string Fun_Sgn_base::expression(const std::string& sa) {
+    std::string sout = functor_style.apply("sgn")+"("+ sa + ")";
+    return sout;
+  }
+
+  std::string Fun_Sgn_base::classname() {
+    return functor_namestyle.apply("Fun_Sgn");
   }
 
 
@@ -375,45 +415,6 @@ namespace matricks {
   }
 
 
-
-  // sinh(a)
-
-  std::string Fun_Sinh_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("sinh")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Sinh_base::classname() {
-    return functor_namestyle.apply("Fun_Sinh");
-  }
-
-
-  // cosh(a)
-
-  std::string Fun_Cosh_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("cosh")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Cosh_base::classname() {
-    return functor_namestyle.apply("Fun_Cosh");
-  }
-
-  
-  // tanh(a)
-
-  std::string Fun_Tanh_base::expression(const std::string& sa) {
-    std::string sout = functor_style.apply("tanh")+"("+ sa + ")";
-    return sout;
-  }
-
-  std::string Fun_Tanh_base::classname() {
-    return functor_namestyle.apply("Fun_Tanh");
-  }
-
-
-
-  
   // roundzero(a,tol)
 
   std::string Fun_Roundzero_base::expression(const std::string& sa, const std::string& sb) {
@@ -424,6 +425,11 @@ namespace matricks {
   std::string Fun_Roundzero_base::classname() {
     return functor_namestyle.apply("Fun_Roundzero");
   }
+
+
+
+
+  
 
 
   

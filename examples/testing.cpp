@@ -1,3 +1,4 @@
+#define MATRICKS_DEBUG 1
 #include "matricks.h"
 
 #include <vector>
@@ -151,7 +152,7 @@ int main()
 
   double d;
 
-  mout << FunPlus_base::expression("x") << endl;
+  mout << Fun_Plus_base::expression("x") << endl;
 
   mout << FunPlus<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunPlus<double>::expression("x") << endl;

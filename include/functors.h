@@ -23,14 +23,18 @@ namespace matricks {
 
 
   // unary+ operator
-  
-  class FunPlus_base {
+
+#if MATRICKS_DEBUG>=1
+  class Fun_Plus_base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class FunPlus : public FunPlus_base {
+  template <class D> class FunPlus : public Fun_Plus_base {
+#else 
+  template <class D> class FunPlus                       {
+#endif
   public:
     FunPlus() { }
 
@@ -44,13 +48,17 @@ namespace matricks {
   
   // unary-
 
-  class FunMinus_base {
+#if MATRICKS_DEBUG>=1
+  class Fun_Minus_base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
 
-  template <class D> class FunMinus : public FunMinus_base {
+  template <class D> class FunMinus : public Fun_Minus_base {
+#else
+  template <class D> class FunMinus {
+#endif
   public:
     FunMinus() { }
 
@@ -72,6 +80,7 @@ namespace matricks {
       return static_cast<D2>(a); 
     }
     
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       using namespace display;
       D2 d2;
@@ -82,19 +91,25 @@ namespace matricks {
     static std::string classname() {
       return functor_namestyle.apply("FunCast");
     }
+#endif
+    
   };
 
 
 
   // y = a + b
 
-  class FunAdd_base {
+#if MATRICKS_DEBUG>=1
+  class Fun_Add_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class FunAdd : public FunAdd_base {
+  template <class D> class FunAdd : public Fun_Add_base {
+#else 
+  template <class D> class FunAdd {
+#endif
   public:
     FunAdd() { }
   
@@ -108,13 +123,17 @@ namespace matricks {
 
   // y = a - b
 
-  class FunSubtract_base {
+#if MATRICKS_DEBUG>=1
+  class Fun_Subtract_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class FunSubtract : public FunSubtract_base {
+  template <class D> class FunSubtract : public Fun_Subtract_base {
+#else 
+  template <class D> class FunSubtract  {
+#endif
   public:
     FunSubtract() { }
   
@@ -127,13 +146,17 @@ namespace matricks {
 
   // y = a * b
 
-  class FunMultiply_base {
+#if MATRICKS_DEBUG>=1
+  class Fun_Multiply_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class FunMultiply : public FunMultiply_base {
+  template <class D> class FunMultiply : public Fun_Multiply_base {
+#else 
+  template <class D> class FunMultiply  {
+#endif
   public:
     FunMultiply() { }
 
@@ -148,13 +171,17 @@ namespace matricks {
 
   // y = a / b
 
-  class FunDivide_base {
+#if MATRICKS_DEBUG>=1
+  class Fun_Divide_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class FunDivide : public FunDivide_base {
+  template <class D> class FunDivide : public Fun_Divide_base {
+#else 
+  template <class D> class FunDivide {
+#endif
   public:
     FunDivide() { }
 
@@ -171,7 +198,17 @@ namespace matricks {
   // y = pow(a,b)  
   // ie. a raised to the b power
 
+#if MATRICKS_DEBUG>=1
+  class Fun_Pow_base {
+  public:
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+
+  template <class D> class ApPow : public Fun_Pow_base {
+#else 
   template <class D> class ApPow {
+#endif
   public:
     ApPow() { }
     static inline D apply(D a, D b) { 
@@ -186,10 +223,20 @@ namespace matricks {
     }
   };
 
+  
   // y = powint(a,n)  
   // ie. a raised to the n power
 
+#if MATRICKS_DEBUG>=1
+  class Fun_Monomial_base {
+  public:
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  template <class D> class ApMonomial : public Fun_Monomial_base {
+#else 
   template <class D> class ApMonomial {
+#endif
   public:
     ApMonomial() { }
     static inline D apply(D x, int n) { 
@@ -207,7 +254,16 @@ namespace matricks {
 
   // y = atan2(a,b)  
 
+#if MATRICKS_DEBUG>=1
+  class Fun_Atan2_base {
+  public:
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  template <class D> class ApAtan2 : public Fun_Atan2_base {
+#else 
   template <class D> class ApAtan2 {
+#endif
   public:
     ApAtan2() { }
     static inline D apply(D a, D b) { 
@@ -222,7 +278,7 @@ namespace matricks {
     }
   };
 
-
+  ///////////////////////
 
   // sin(a)
 

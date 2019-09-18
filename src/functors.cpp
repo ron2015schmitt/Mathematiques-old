@@ -1,3 +1,4 @@
+#define MATRICKS_DEBUG 1
 #include "matricks.h"
 //  functor in C++ sense: a class that wraps a function
 //
@@ -33,75 +34,75 @@ namespace matricks {
 
   // unary+ operator
   
-  std::string FunPlus_base::expression(const std::string& sa) {
+  std::string Fun_Plus_base::expression(const std::string& sa) {
     std::string sout = "+(" + sa + ")";
     return sout;
   }
 
-  std::string FunPlus_base::classname() {
-    return functor_namestyle.apply("FunPlus");
+  std::string Fun_Plus_base::classname() {
+    return functor_namestyle.apply("Fun_Plus");
   }
 
 
  
   // unary- operator
 
-  std::string FunMinus_base::expression(const std::string& sa) {
+  std::string Fun_Minus_base::expression(const std::string& sa) {
     std::string sout = "-(" + sa + ")";
     return sout;
   }
 
-  std::string FunMinus_base::classname() {
-    return functor_namestyle.apply("FunMinus");
+  std::string Fun_Minus_base::classname() {
+    return functor_namestyle.apply("Fun_Minus");
   }
 
 
   // y = a + b
 
-  std::string FunAdd_base::expression(const std::string& sa, const std::string& sb) {
+  std::string Fun_Add_base::expression(const std::string& sa, const std::string& sb) {
     std::string sout = "(" + sa + ")" + " + " + "(" + sb + ")";
     return sout;
   }
 
-  std::string FunAdd_base::classname() {
-    return functor_namestyle.apply("FunAdd");
+  std::string Fun_Add_base::classname() {
+    return functor_namestyle.apply("Fun_Add");
   }
 
 
   // y = a - b
 
-  std::string FunSubtract_base::expression(const std::string& sa, const std::string& sb) {
+  std::string Fun_Subtract_base::expression(const std::string& sa, const std::string& sb) {
     std::string sout = "(" + sa + ")" + " - " + "(" + sb + ")";
     return sout;
   }
 
-  std::string FunSubtract_base::classname() {
-    return functor_namestyle.apply("FunSubtract");
+  std::string Fun_Subtract_base::classname() {
+    return functor_namestyle.apply("Fun_Subtract");
   }
 
 
   // y = a * b
 
-  std::string FunMultiply_base::expression(const std::string& sa, const std::string& sb) {
+  std::string Fun_Multiply_base::expression(const std::string& sa, const std::string& sb) {
     std::string sout = "(" + sa + ")" + "*" + "(" + sb + ")";
     return sout;
   }
 
-  std::string FunMultiply_base::classname() {
-    return functor_namestyle.apply("FunMultiply");
+  std::string Fun_Multiply_base::classname() {
+    return functor_namestyle.apply("Fun_Multiply");
   }
 
 
   
   // y = a / b
 
-  std::string FunDivide_base::expression(const std::string& sa, const std::string& sb) {
+  std::string Fun_Divide_base::expression(const std::string& sa, const std::string& sb) {
     std::string sout = "(" + sa + ")" + "/" + "(" + sb + ")";
     return sout;
   }
 
-  std::string FunDivide_base::classname() {
-    return functor_namestyle.apply("FunDivide");
+  std::string Fun_Divide_base::classname() {
+    return functor_namestyle.apply("Fun_Divide");
   }
 
 

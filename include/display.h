@@ -183,6 +183,8 @@ namespace display {
   // organized per ROYGBIV
   const std::string RED     = ESC+"31m";      
   const std::string ORANGE  = FORE+"5;208m";      
+  const std::string ORANGE1  = FORE+"5;172m";      
+  const std::string ORANGE2  = FORE+"5;166m";      
   const std::string YELLOW  = ESC+"33m";      
   const std::string YELLOWBRIGHT  = ESC+"93m";      
   const std::string GREEN   = ESC+"32m";      
@@ -293,7 +295,7 @@ namespace display {
 
   
   
-  enum SSEnum {INDENT, ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, DEBUG_LEVEL, HORLINE};
+  enum SSEnum {INDENT, ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, DEBUG_LEVEL, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
 
   class StyledString {
   private:
@@ -364,6 +366,13 @@ namespace display {
 
   template <typename T> inline std::string getTypeName(const T& var);
 
+  template <typename T> inline std::string getBracketedTypeName(const T& var){
+    return StyledString::get(ANGLE1).get() 
+      + getTypeName<T>(var)
+      + StyledString::get(ANGLE2).get();
+  }
+
+  
   class FormatBase {
     
   };

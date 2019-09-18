@@ -13,6 +13,9 @@
 namespace matricks {
 
 
+  extern display::Style functor_namestyle;
+
+  
   // ************************************************************************
   // *              Math 
   // ************************************************************************
@@ -24,6 +27,7 @@ namespace matricks {
   class FunPlus_base {
   public:
     static std::string expression(const std::string& sa);
+    static std::string classname();
   };
   
   template <class D> class FunPlus : public FunPlus_base {
@@ -35,12 +39,15 @@ namespace matricks {
     }
   };
 
+
+  
   
   // unary-
 
   class FunMinus_base {
   public:
     static std::string expression(const std::string& sa);
+    static std::string classname();
   };
 
   template <class D> class FunMinus : public FunMinus_base {
@@ -71,6 +78,10 @@ namespace matricks {
       std::string sout = "static_cast<" + getTypeName<D2>(d2) + ">(" + sa + ")";
       return sout;
     }
+
+    static std::string classname() {
+      return functor_namestyle.apply("FunCast");
+    }
   };
 
 
@@ -80,6 +91,7 @@ namespace matricks {
   class FunAdd_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
   };
 
   template <class D> class FunAdd : public FunAdd_base {
@@ -99,6 +111,7 @@ namespace matricks {
   class FunSubtract_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
   };
 
   template <class D> class FunSubtract : public FunSubtract_base {
@@ -117,6 +130,7 @@ namespace matricks {
   class FunMultiply_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
   };
 
   template <class D> class FunMultiply : public FunMultiply_base {
@@ -137,6 +151,7 @@ namespace matricks {
   class FunDivide_base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
   };
 
   template <class D> class FunDivide : public FunDivide_base {

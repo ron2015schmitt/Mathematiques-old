@@ -78,7 +78,7 @@ echo "" >> examples/Makefile
 echo "##################################################################" >>examples/Makefile
 echo "#  files/Makefile                                                #" >>examples/Makefile
 echo "##################################################################" >>examples/Makefile
-echo 'EXEC += example printing' >> examples/Makefile
+echo 'EXEC += example printing testing' >> examples/Makefile
 cat files/Makefile >> examples/Makefile
 echo "" >> examples/Makefile
 echo "" >> examples/Makefile

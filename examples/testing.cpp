@@ -6,7 +6,14 @@
 #include <initializer_list>
 #endif
 
+#include <type_traits>
+#include <string>
 
+template <class, template <class> class>
+struct is_instance : public std::false_type {};
+
+template <class T, template <class> class U>
+struct is_instance<U<T>, U> : public std::true_type {};
 
 int main()
 {
@@ -142,16 +149,36 @@ int main()
 
   using namespace std;
 
+  double d;
+
   mout << FunPlus_base::expression("x") << endl;
 
+  mout << FunPlus<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunPlus<double>::expression("x") << endl;
+  
+  mout << FunMinus<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunMinus<double>::expression("x") << endl;
+
+  s = StyledString::get(ANGLE1).get() 
+      + getTypeName(d) + "," + getTypeName(n)
+      + StyledString::get(ANGLE2).get();
+  mout << FunMinus<double>::classname() << s << " ";
   mout << FunCast<double,int>::expression("n") << endl;
   
+  mout << FunAdd<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunAdd<double>::expression("x","y") << endl;
+
+  mout << FunSubtract<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunSubtract<double>::expression("x","y") << endl;
+  mout << FunMultiply<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunMultiply<double>::expression("x","y") << endl;
+
+  mout << FunDivide<double>::classname() << getBracketedTypeName(d) << " ";
   mout << FunDivide<double>::expression("x","y") << endl;
+
+
+  mout << is_instance<FunMultiply<double>, FunDivide>{} <<endl;
+  
   
   return 0;
 }

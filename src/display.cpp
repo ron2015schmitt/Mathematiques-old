@@ -89,6 +89,38 @@ namespace display {
 
     StyledString *horline = new StyledString(createStyle(CROSSEDOUT),blankline);
     StyledString::add(SSEnum::HORLINE, *horline);
+    StyledString *angle1 = new StyledString(createStyle(GRAY1),"<");
+    StyledString::add(SSEnum::ANGLE1, *angle1);
+    StyledString *angle2 = new StyledString(createStyle(GRAY1),">");
+    StyledString::add(SSEnum::ANGLE2, *angle2);
+
+    StyledString *paren1 = new StyledString(createStyle(GRAY1),"(");
+    StyledString::add(SSEnum::PAREN1, *paren1);
+    StyledString *paren2 = new StyledString(createStyle(GRAY1),")");
+    StyledString::add(SSEnum::PAREN2, *paren2);
+
+    StyledString *bracket1 = new StyledString(createStyle(GRAY1),"[");
+    StyledString::add(SSEnum::BRACKET1, *bracket1);
+    StyledString *bracket2 = new StyledString(createStyle(GRAY1),"]");
+    StyledString::add(SSEnum::BRACKET2, *bracket2);
+
+    StyledString *brace1 = new StyledString(createStyle(GRAY1),"{");
+    StyledString::add(SSEnum::BRACE1, *brace1);
+    StyledString *brace2 = new StyledString(createStyle(GRAY1),"}");
+    StyledString::add(SSEnum::BRACE2, *brace2);
+
+    StyledString *comma = new StyledString(createStyle(GRAY1),"{");
+    StyledString::add(SSEnum::COMMA, *comma);
+
+    StyledString *colon = new StyledString(createStyle(GRAY1),"{");
+    StyledString::add(SSEnum::COLON, *colon);
+
+    StyledString *semicolon = new StyledString(createStyle(GRAY1),"{");
+    StyledString::add(SSEnum::SEMICOLON, *semicolon);
+
+    StyledString *period = new StyledString(createStyle(GRAY1),"{");
+    StyledString::add(SSEnum::PERIOD, *period);
+
     
   }
 

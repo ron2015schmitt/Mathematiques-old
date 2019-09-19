@@ -12,12 +12,29 @@ namespace matricks {
    */
 
 
-  /************************************************************
-   *               Binary Functions 
-   *
-   * D = data type, e.g. double
-   ************************************************************
-   */
+  // ************************************************************************
+  // *              Arithmetic
+  // ************************************************************************
+
+
+  // +(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Plus<D> > 
+    operator+(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Plus<D> >(a);
+    }
+
+
+  // -(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Minus<D> > 
+    operator-(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Minus<D> >(a);
+    }
 
   // vector + vector
 
@@ -59,7 +76,19 @@ namespace matricks {
       return  VBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Divide<D> >(a,b);
     }
 
+  
+  // dcast: cast data from D1 to D2
 
+  template <class D2, class D1, class A> 
+    inline VFuncOp<D2,VorE<D1,A>,Fun_Cast<D1,D2> > 
+    dcast(const VorE<D1,A>& a)
+    {
+      return  VFuncOp<D2,VorE<D1,A>,Fun_Cast<D1,D2> >(a);
+    }
+
+  // ************************************************************************
+  // *            Powers and logs
+  // ************************************************************************
 
   // pow(vector,vector)
 
@@ -71,7 +100,72 @@ namespace matricks {
     }
 
 
-  
+
+  // ************************************************************************
+  // *            trig, inverse trig, hyperbolic trig
+  // ************************************************************************
+
+  // sin(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Sin<D> > 
+    sin(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Sin<D> >(a);
+    }
+
+
+  // cos(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Cos<D> > 
+    cos(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Cos<D> >(a);
+    }
+
+
+
+  // tan(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Tan<D> > 
+    tan(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Tan<D> >(a);
+    }
+
+
+  // asin(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Asin<D> > 
+    asin(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Asin<D> >(a);
+    }
+
+
+  // acos(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Acos<D> > 
+    acos(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Acos<D> >(a);
+    }
+
+
+  // atan(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Atan<D> > 
+    atan(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Atan<D> >(a);
+    }
+
+
   // atan2(vector,vector)
 
   template <class D, class A, class B> 
@@ -82,15 +176,100 @@ namespace matricks {
     }
 
 
+  // sinh(vector)
 
-  template <class D, typename TypeHelper<D>::binary_func F, class A, class B> 
-    inline VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> > 
-    op2(const VorE<D,A>& a, const VorE<D,B>& b)
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Sinh<D> > 
+    sinh(const VorE<D,A>& a)
     {
-      return  VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> >(a,b);
+      return  VFuncOp<D,VorE<D,A>,Fun_Sinh<D> >(a);
     }
 
 
+  // cosh(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Cosh<D> > 
+    cosh(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Cosh<D> >(a);
+    }
+
+
+  // tanh(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Tanh<D> > 
+    tanh(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Tanh<D> >(a);
+    }
+
+
+  // ************************************************************************
+  // *            sign-related and rounding
+  // ************************************************************************
+
+
+  // abs(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Abs<D> > 
+    abs(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Abs<D> >(a);
+    }
+
+
+  // sgn(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Sgn<D> > 
+    sgn(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Sgn<D> >(a);
+    }
+
+
+
+  // ceil(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Ceil<D> > 
+    ceil(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Ceil<D> >(a);
+    }
+
+
+  // floor(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Floor<D> > 
+    floor(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Floor<D> >(a);
+    }
+
+
+  // round(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Round<D> > 
+    round(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Round<D> >(a);
+    }
+
+  template <class D, class A> 
+    inline VecOpScal<D,VorE<D,A>,Fun_Roundzero<D> > 
+    roundzero(const VorE<D,A>& a, const D tolerance = MatricksHelper<D>::tolerance)
+    {
+      return  VecOpScal<D,VorE<D,A>,Fun_Roundzero<D> >(a, tolerance);
+    }
+
+
+  
   
 
   // complexvector + realvector
@@ -490,12 +669,6 @@ namespace matricks {
 
 
 
-  template <class D, class A> 
-    inline VecOpScal<D,VorE<D,A>,Fun_Roundzero<D> > 
-    roundzero(const VorE<D,A>& a, const D tolerance = MatricksHelper<D>::tolerance)
-    {
-      return  VecOpScal<D,VorE<D,A>,Fun_Roundzero<D> >(a, tolerance);
-    }
 
 
 
@@ -998,32 +1171,6 @@ namespace matricks {
     }
 
 
-  /****************************************************************
-   *              Unary Operators & Unary Functions
-   *
-   * D = data type, e.g. double 
-   * A = either an Vector or a Vexpr
-   *****************************************************************
-   */
-
-  // +(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Plus<D> > 
-    operator+(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Plus<D> >(a);
-    }
-
-
-  // -(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Minus<D> > 
-    operator-(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Minus<D> >(a);
-    }
 
 
 
@@ -1040,18 +1187,17 @@ namespace matricks {
 
 
   
-  // dcast from D1 to D2
-
-  template <class D2, class D1, class A> 
-    inline VFuncOp<D2,VorE<D1,A>,Fun_Cast<D1,D2> > 
-    dcast(const VorE<D1,A>& a)
-    {
-      return  VFuncOp<D2,VorE<D1,A>,Fun_Cast<D1,D2> >(a);
-    }
 
 
 
   
+  template <class D, typename TypeHelper<D>::binary_func F, class A, class B> 
+    inline VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> > 
+    op2(const VorE<D,A>& a, const VorE<D,B>& b)
+    {
+      return  VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> >(a,b);
+    }
+
 
   // user-defined functions
   template <class D, typename TypeHelper<D>::unary_func F, class A> 
@@ -1062,45 +1208,8 @@ namespace matricks {
     }
 
 
-  // sin(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Sin<D> > 
-    sin(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Sin<D> >(a);
-    }
 
 
-  // cos(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Cos<D> > 
-    cos(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Cos<D> >(a);
-    }
-
-
-
-  // tan(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Tan<D> > 
-    tan(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Tan<D> >(a);
-    }
-
-
-  // sqrt(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Sqrt<D> > 
-    sqrt(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Sqrt<D> >(a);
-    }
 
   // sqr(vector)
 
@@ -1120,6 +1229,14 @@ namespace matricks {
       return  VFuncOp<D,VorE<D,A>,Fun_Cube<D> >(a);
     }
 
+  // sqrt(vector)
+
+  template <class D, class A> 
+    inline VFuncOp<D,VorE<D,A>,Fun_Sqrt<D> > 
+    sqrt(const VorE<D,A>& a)
+    {
+      return  VFuncOp<D,VorE<D,A>,Fun_Sqrt<D> >(a);
+    }
 
   // exp(vector)
 
@@ -1130,25 +1247,6 @@ namespace matricks {
       return  VFuncOp<D,VorE<D,A>,Fun_Exp<D> >(a);
     }
 
-
-  // abs(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Abs<D> > 
-    abs(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Abs<D> >(a);
-    }
-
-
-  // sgn(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Sgn<D> > 
-    sgn(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Sgn<D> >(a);
-    }
 
 
   // log(vector)
@@ -1182,97 +1280,9 @@ namespace matricks {
 
 
 
-  // asin(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Asin<D> > 
-    asin(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Asin<D> >(a);
-    }
-
-
-  // acos(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Acos<D> > 
-    acos(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Acos<D> >(a);
-    }
-
-
-  // atan(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Atan<D> > 
-    atan(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Atan<D> >(a);
-    }
 
 
 
-
-
-  // ceil(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Ceil<D> > 
-    ceil(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Ceil<D> >(a);
-    }
-
-
-  // floor(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Floor<D> > 
-    floor(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Floor<D> >(a);
-    }
-
-
-  // round(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Round<D> > 
-    round(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Round<D> >(a);
-    }
-
-
-  // sinh(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Sinh<D> > 
-    sinh(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Sinh<D> >(a);
-    }
-
-
-  // cosh(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Cosh<D> > 
-    cosh(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Cosh<D> >(a);
-    }
-
-
-  // tanh(vector)
-
-  template <class D, class A> 
-    inline VFuncOp<D,VorE<D,A>,Fun_Tanh<D> > 
-    tanh(const VorE<D,A>& a)
-    {
-      return  VFuncOp<D,VorE<D,A>,Fun_Tanh<D> >(a);
-    }
 
 
   // conj(complex vector)

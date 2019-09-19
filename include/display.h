@@ -364,6 +364,35 @@ namespace display {
   //****************************************************************************
 
 
+  template <class T> class TypeClass {
+  public:
+  typedef T Type;
+  static std::string name() { return typeid(TypeClass<T>::Type).name();}
+  };
+
+  template <> std::string TypeClass<char>::name();
+  template <> std::string TypeClass<short>::name();
+  template <> std::string TypeClass<int>::name();
+  template <> std::string TypeClass<long>::name();
+  template <> std::string TypeClass<long long>::name();
+  
+  template <> std::string TypeClass<unsigned char>::name();
+  template <> std::string TypeClass<unsigned short>::name();
+  template <> std::string TypeClass<unsigned int>::name();
+  template <> std::string TypeClass<unsigned long>::name();
+  template <> std::string TypeClass<unsigned long long>::name();
+  
+  template <> std::string TypeClass<float>::name();
+  template <> std::string TypeClass<double>::name();
+  template <> std::string TypeClass<long double>::name();
+
+  template <> std::string TypeClass<std::string>::name();
+  template <> std::string TypeClass<bool>::name();
+
+
+
+  
+  
   template <typename T> inline std::string getTypeName(const T& var);
 
   template <typename T> inline std::string getBracketedTypeName(const T& var){
@@ -407,16 +436,12 @@ namespace display {
   SPECIALIZE_FormatData_mathtype(short);
   SPECIALIZE_FormatData_mathtype(int);
   SPECIALIZE_FormatData_mathtype(long);
-#if LONGLONG_EXISTS
   SPECIALIZE_FormatData_mathtype(long long);
-#endif
 
   SPECIALIZE_FormatData_mathtype(unsigned short);
   SPECIALIZE_FormatData_mathtype(unsigned int);
   SPECIALIZE_FormatData_mathtype(unsigned long);
-#if LONGLONG_EXISTS
   SPECIALIZE_FormatData_mathtype(unsigned long long);
-#endif
 
 
 
@@ -518,7 +543,7 @@ namespace display {
       mout << " illegal format string";
       mout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
       mout << " passed to Format";
-      mout << "<" << display::getTypeName(x) << ">";
+      mout << "<" << display::TypeClass<typeof(x)>::name() << ">";
       mout << endl;
       mout << StyledString::get(HORLINE);
       return false;
@@ -641,7 +666,7 @@ namespace display {
   template <>								\
     inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
+    snprintf(Buffer, BUFFER_SIZE, TypeClass<TYPE >::name().c_str(), d ); \
     string sval = string(Buffer);					\
     Style style = FormatData<TYPE >::style_for_value;			\
     TYPE zero = 0;							\
@@ -655,16 +680,12 @@ namespace display {
   SPECIALIZE_mathtypes_dispval(short);
   SPECIALIZE_mathtypes_dispval(int);
   SPECIALIZE_mathtypes_dispval(long);
-#if LONGLONG_EXISTS
   SPECIALIZE_mathtypes_dispval(long long);
-#endif
 
   SPECIALIZE_mathtypes_dispval(unsigned short);
   SPECIALIZE_mathtypes_dispval(unsigned int);
   SPECIALIZE_mathtypes_dispval(unsigned long);
-#if LONGLONG_EXISTS
   SPECIALIZE_mathtypes_dispval(unsigned long long);
-#endif
 
 
 
@@ -672,7 +693,7 @@ namespace display {
   template <>								\
     inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<TYPE >().c_str(), d ); \
+    snprintf(Buffer, BUFFER_SIZE, TypeClass<TYPE >::name().c_str(), d );	\
     string sval = string(Buffer);					\
     if (FormatData<TYPE>::tens)  {					\
       sval = replaceAll(sval,"E"," 10^");				\
@@ -696,7 +717,7 @@ namespace display {
   template <>				
     inline void dispval<std::string>(const std::string& str) {
     using namespace std;
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<std::string>().c_str(), str.c_str() );
+    snprintf(Buffer, BUFFER_SIZE, TypeClass<std::string>::name().c_str(), str.c_str() );
     string s = string(Buffer);
     Style style = FormatData<std::string>::style_for_value;
     mout << style.apply(s);
@@ -706,7 +727,7 @@ namespace display {
   template <>				
     inline void dispval<char>(const char& c) {
     using namespace std;					
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<char>().c_str(), c );
+    snprintf(Buffer, BUFFER_SIZE, TypeClass<char>::name().c_str(), c );
     string s = string(Buffer);
     Style style = FormatData<char>::style_for_value;
     mout << style.apply(s);
@@ -924,9 +945,9 @@ namespace display {
     using namespace matricks;
 
     // print the real and imaginary parts to strings
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<D>().c_str(), d.real() );
+    snprintf(Buffer, BUFFER_SIZE, TypeClass<D>::name().c_str(), d.real() );
     string sr = string(Buffer);
-    snprintf(Buffer, BUFFER_SIZE, getFormatString<D>().c_str(), d.imag() );
+    snprintf(Buffer, BUFFER_SIZE, TypeClass<D>::name().c_str(), d.imag() );
     string si = string(Buffer);
 
     // decompose the format string so we can apply style to the punctuation

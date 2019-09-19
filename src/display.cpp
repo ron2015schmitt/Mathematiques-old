@@ -125,6 +125,26 @@ namespace display {
   }
 
 
+#define TypeClass_name(TYPE) template <> std::string TypeClass<TYPE>::name() {return #TYPE;}
+
+  TypeClass_name(short);
+  TypeClass_name(int);
+  TypeClass_name(long);
+  TypeClass_name(long long);
+
+  TypeClass_name(unsigned short);
+  TypeClass_name(unsigned int);
+  TypeClass_name(unsigned long);
+  TypeClass_name(unsigned long long);
+
+  TypeClass_name(float);
+  TypeClass_name(double);
+  TypeClass_name(long double);
+
+  TypeClass_name(std::string);
+  TypeClass_name(bool);
+
+  
   //****************************************************************************
   //                       FormatData
   //****************************************************************************

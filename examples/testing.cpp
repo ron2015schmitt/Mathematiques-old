@@ -3,12 +3,28 @@
 
 #include <vector>
 
+
 #if CPP11 == 1
 #include <initializer_list>
 #endif
 
 #include <type_traits>
 #include <string>
+
+
+// template bag of tricks
+
+template <class T> class Experiment {
+public:
+  typedef T Type;
+  static std::string TypeName;
+};
+
+
+template <typename T> std::string Experiment<T>::TypeName = typeid(Experiment<T>::Type).name();
+
+template <> std::string Experiment<long int>::TypeName = "long int";
+
 
 template <class, template <class> class>
 struct is_instance : public std::false_type {};
@@ -248,7 +264,35 @@ int main()
   mout << Fun_Roundzero<double>::expression("x","y") << endl;
 
   mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
+  mout << is_instance<Fun_Multiply<double>, Fun_Multiply>{} <<endl;
   
+  mout << TypeClass<short>::name() << endl;
+  mout << TypeClass<int>::name() << endl;
+  mout << TypeClass<long int>::name() << endl;
+  mout << TypeClass<long long>::name() << endl;
+
+  mout << TypeClass<float>::name() << endl;
+  mout << TypeClass<double>::name() << endl;
+  mout << TypeClass<long double>::name() << endl;
+
+  mout << TypeClass<bool>::name() << endl;
+  mout << TypeClass<std::string>::name() << endl;
+  mout << TypeClass<std::complex<double> >::name() << endl;
+
+  mout << "sizeof(char) = " << sizeof(char) << endl;
+  mout << "sizeof(short) = " << sizeof(short) << endl;
+  mout << "sizeof(int) = " << sizeof(int) << endl;
+  mout << "sizeof(long) = " << sizeof(long) << endl;
+  mout << "sizeof(long long) = " << sizeof(long long) << endl;
+  mout << endl;
+  mout << "sizeof(float) = " << sizeof(float) << endl;
+  mout << "sizeof(double) = " << sizeof(double) << endl;
+  mout << "sizeof(long double) = " << sizeof(long double) << endl;
+  mout << endl;
+  mout << "sizeof(bool) = " << sizeof(bool) << endl;
+
+  mout << "sizeof(std::complex<float>) = " << sizeof(std::complex<float>) << endl;
+
   
   return 0;
 }

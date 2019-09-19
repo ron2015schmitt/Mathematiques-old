@@ -92,8 +92,8 @@ int main()
   double xx = 5.5;
   const double xxc = 23.3;
 
-  disp(getTypeName(xx));
-  disp(getTypeName(xxc));
+  disp(TypeClass<typeid(xx)>::name());
+  disp(TypeClass<typeid(xxc)>::name());
 
 
   setFormatString<double>("%lf");

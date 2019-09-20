@@ -1,6 +1,6 @@
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.16-r16).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.16-r20).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -127,8 +127,8 @@ v = {1+1.i, 1., 1.i, 2-5.i}; // C++11 list and C++14 imag
 **Some expressions with results**: real and imaginary parts
 ```C++
   v = {(1,1), (1,0), (0,1), (2,-5)}; 
-  real(v) = {1, 1, 0, 2}; 
-  imag(v) = {1, 0, 1, -5}; 
+  real(v) = {double, double, double, double}; 
+  imag(v) = {double, double, double, double}; 
 ```
 
 
@@ -146,11 +146,11 @@ vc = vcomplex(vr, vi);
 
 **Some expressions with results**: create a complex vector from two real vectors
 ```C++
-  vr = {1, 2, 3, 4}; 
-  vi = {-1, -2, -3, -4}; 
+  vr = {double, double, double, double}; 
+  vi = {double, double, double, double}; 
   vc = {(1,-1), (2,-2), (3,-3), (4,-4)}; 
-  real(vc) = {1, 2, 3, 4}; 
-  imag(vc) = {-1, -2, -3, -4}; 
+  real(vc) = {double, double, double, double}; 
+  imag(vc) = {double, double, double, double}; 
 ```
 
 
@@ -186,8 +186,8 @@ vc = vcomplex(vr, vi);
 
 **Some expressions with results**: compute the complex conjugate of a vector
 ```C++
-  vr = {1, 2, 3}; 
-  vi = {-1, 0, 1}; 
+  vr = {double, double, double}; 
+  vi = {double, double, double}; 
   vc = {(1,-1), (2,0), (3,1)}; 
   conj(vc) = {(1,1), (2,-0), (3,-1)}; 
   ~vc = {(1,1), (2,-0), (3,-1)}; 

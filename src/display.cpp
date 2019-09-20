@@ -12,7 +12,6 @@
 namespace display {
   
   const char blankline[] = "                                                                               \n";
-  char Buffer[display::BUFFER_SIZE];
   
   
   //****************************************************************************
@@ -109,40 +108,22 @@ namespace display {
     StyledString *brace2 = new StyledString(createStyle(GRAY1),"}");
     StyledString::add(SSEnum::BRACE2, *brace2);
 
-    StyledString *comma = new StyledString(createStyle(GRAY1),"{");
+    StyledString *comma = new StyledString(createStyle(GRAY1),",");
     StyledString::add(SSEnum::COMMA, *comma);
 
-    StyledString *colon = new StyledString(createStyle(GRAY1),"{");
+    StyledString *colon = new StyledString(createStyle(GRAY1),":");
     StyledString::add(SSEnum::COLON, *colon);
 
-    StyledString *semicolon = new StyledString(createStyle(GRAY1),"{");
+    StyledString *semicolon = new StyledString(createStyle(GRAY1),";");
     StyledString::add(SSEnum::SEMICOLON, *semicolon);
 
-    StyledString *period = new StyledString(createStyle(GRAY1),"{");
+    StyledString *period = new StyledString(createStyle(GRAY1),".");
     StyledString::add(SSEnum::PERIOD, *period);
 
     
   }
 
 
-#define TypeClass_name(TYPE) template <> std::string TypeClass<TYPE>::name() {return #TYPE;}
-
-  TypeClass_name(short);
-  TypeClass_name(int);
-  TypeClass_name(long);
-  TypeClass_name(long long);
-
-  TypeClass_name(unsigned short);
-  TypeClass_name(unsigned int);
-  TypeClass_name(unsigned long);
-  TypeClass_name(unsigned long long);
-
-  TypeClass_name(float);
-  TypeClass_name(double);
-  TypeClass_name(long double);
-
-  TypeClass_name(std::string);
-  TypeClass_name(bool);
 
   
   //****************************************************************************
@@ -157,7 +138,6 @@ namespace display {
   //------------------------------------------------------------------------------
 
   // float
-  Style FormatData<float>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<float>::style_for_value = createStyle(BLACK);
   Style FormatData<float>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<float>::format_string_default = "%g";
@@ -165,7 +145,6 @@ namespace display {
   bool FormatData<float>::tens = false;
 
   // double
-  Style FormatData<double>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<double>::style_for_value = createStyle(BLACK);
   Style FormatData<double>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<double>::format_string_default = "%lg";
@@ -174,7 +153,6 @@ namespace display {
 
   
   // long double
-  Style FormatData<long double>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<long double>::style_for_value = createStyle(BLACK);
   Style FormatData<long double>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long double>::format_string_default = "%llg";
@@ -182,83 +160,68 @@ namespace display {
   bool FormatData<long double>::tens = false;
 
   // short
-  Style FormatData<short>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<short>::style_for_value = createStyle(BLUE2);
   Style FormatData<short>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<short>::format_string_default = "%d";
   std::string FormatData<short>::format_string = format_string_default;
 
   // int
-  Style FormatData<int>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<int>::style_for_value = createStyle(BLUE2);
   Style FormatData<int>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<int>::format_string_default = "%d";
   std::string FormatData<int>::format_string = format_string_default;
 
   // long
-  Style FormatData<long>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<long>::style_for_value = createStyle(BLUE2);
   Style FormatData<long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long>::format_string_default = "%ld";
   std::string FormatData<long>::format_string = format_string_default;
 
 
-#if LONGLONG_EXISTS
   // long long
-  Style FormatData<long long>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<long long>::style_for_value = createStyle(BLUE2);
   Style FormatData<long long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long long>::format_string_default = "%lld";
   std::string FormatData<long long>::format_string = format_string_default;
-#endif
 
   // unsigned short
-  Style FormatData<unsigned short>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<unsigned short>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned short>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned short>::format_string_default = "%u";
   std::string FormatData<unsigned short>::format_string = format_string_default;
 
   // unsigned int
-  Style FormatData<unsigned int>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<unsigned int>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned int>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned int>::format_string_default = "%u";
   std::string FormatData<unsigned int>::format_string = format_string_default;
 
   // unsigned long
-  Style FormatData<unsigned long>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<unsigned long>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned long>::format_string_default = "%lu";
   std::string FormatData<unsigned long>::format_string = format_string_default;
 
 
-#if LONGLONG_EXISTS
   // unsigned long long
-  Style FormatData<unsigned long long>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<unsigned long long>::style_for_value = createStyle(VIOLET1);
   Style FormatData<unsigned long long>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<unsigned long long>::format_string_default = "%llu";
   std::string FormatData<unsigned long long>::format_string = format_string_default;
-#endif
 
 
   // string
-  Style FormatData<std::string>::style_for_type_name = createStyle(GREEN);
   Style FormatData<std::string>::style_for_value = createStyle(BLACK);
   const std::string FormatData<std::string>::format_string_default = "%s";
   std::string FormatData<std::string>::format_string = format_string_default;
 
   // char
-  Style FormatData<char>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<char>::style_for_value = createStyle(BLACK);
   const std::string FormatData<char>::format_string_default = "%c";
   std::string FormatData<char>::format_string = format_string_default;
 
 
   // bool
-  Style FormatData<bool>::style_for_type_name = createStyle(MAGENTA);
   Style FormatData<bool>::style_for_true = createStyle(GREEN1);
   Style FormatData<bool>::style_for_false = createStyle(GRAY1);
   std::string FormatData<bool>::string_for_true = "1";
@@ -267,7 +230,6 @@ namespace display {
 
   // Vector
   matricks::index_type FormatDataVector::max_elements_per_line = matricks::maxsize;
-  Style FormatDataVector::style_for_type_name = createStyle(CYAN);	    
   Style FormatDataVector::style_for_punctuation = createStyle(GRAY1);
   std::string FormatDataVector::string_opening = "{";
   std::string FormatDataVector::string_delimeter = ", ";
@@ -278,7 +240,6 @@ namespace display {
   //       specialize for complex<double>
   //---------------------------------------------------------------------------------
 
-  Style FormatDataComplex::style_for_type_name = createStyle(GREEN);
   Style FormatDataComplex::style_for_punctuation = createStyle(GRAY1);
   const std::string FormatDataComplex::format_string_default = "(%s,%s)";
   std::string FormatDataComplex::format_string = format_string_default;

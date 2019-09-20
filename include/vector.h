@@ -994,11 +994,7 @@ namespace matricks {
 
 
     static std::string classname(void)  {
-      using namespace display;
-      Style style = FormatDataVector::style_for_type_name;		
-      std::string s =  style.apply("Vector");				
-      s = s+"<"+TypeClass<D>::name()+">";					
-      return s;
+      return "Vector";
     }
 
 

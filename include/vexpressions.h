@@ -622,7 +622,7 @@ namespace matricks {
       std::string sx = x_.expression();
       if (x_.vetype() != VE_Vector) 
 	sx = "(" + sx + ")";
-      std::string sN = printf2str("%d",N_);
+      std::string sN = display::printf2str("%d",N_);
       return "";
     }
 
@@ -698,7 +698,7 @@ namespace matricks {
       std::string sx = x_.expression();
       if (x_.vetype() != VE_Vector) 
 	sx = "(" + sx + ")";
-      std::string sN = printf2str("%d",N_);
+      std::string sN = display::printf2str("%d",N_);
       return OP1::expression(sx);
     }
 

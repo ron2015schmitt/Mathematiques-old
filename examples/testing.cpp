@@ -8,7 +8,7 @@
 #include <initializer_list>
 #endif
 
-#include <type_traits>
+#include "TypeTraits.h"
 #include <string>
 
 
@@ -31,6 +31,9 @@ struct is_instance : public std::false_type {};
 
 template <class T, template <class> class U>
 struct is_instance<U<T>, U> : public std::true_type {};
+
+
+
 
 int main()
 {
@@ -265,20 +268,17 @@ int main()
 
   mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
   mout << is_instance<Fun_Multiply<double>, Fun_Multiply>{} <<endl;
-  
-  mout << TypeClass<short>::name() << endl;
-  mout << TypeClass<int>::name() << endl;
-  mout << TypeClass<long int>::name() << endl;
-  mout << TypeClass<long long>::name() << endl;
 
-  mout << TypeClass<float>::name() << endl;
-  mout << TypeClass<double>::name() << endl;
-  mout << TypeClass<long double>::name() << endl;
-
-  mout << TypeClass<bool>::name() << endl;
-  mout << TypeClass<std::string>::name() << endl;
-  mout << TypeClass<std::complex<double> >::name() << endl;
-
+  short var_short;
+  int var_int;
+  long int var_long;
+  long long var_longlong;
+  std::string var_string;
+  mout << getTypeName(var_short) << endl;
+  mout << getTypeName(var_int) << endl;
+  mout << getTypeName(var_long) << endl;
+  mout << getTypeName(var_longlong) << endl;
+  mout << getTypeName(var_string) << endl;
   mout << "sizeof(char) = " << sizeof(char) << endl;
   mout << "sizeof(short) = " << sizeof(short) << endl;
   mout << "sizeof(int) = " << sizeof(int) << endl;
@@ -290,9 +290,7 @@ int main()
   mout << "sizeof(long double) = " << sizeof(long double) << endl;
   mout << endl;
   mout << "sizeof(bool) = " << sizeof(bool) << endl;
-
   mout << "sizeof(std::complex<float>) = " << sizeof(std::complex<float>) << endl;
 
-  
   return 0;
 }

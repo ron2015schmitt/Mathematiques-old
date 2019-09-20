@@ -2,7 +2,7 @@
 #define MATRICKS__DISPLAY
 
 #include <unistd.h>
-
+#include <stdarg.h>
 
 
 
@@ -45,17 +45,27 @@ namespace display {
   }
 
 
-  // THIS BUFFER IS USED THROUGHOUT THE DISPLAY CODE
-  const size_t BUFFER_SIZE = 512;
-  extern char Buffer[BUFFER_SIZE];
-
   //------------------------------------------------------------
   //                        printf2str
   //------------------------------------------------------------
 
-  // this definition is crafty, but probably better to make into a function
-  
-#define printf2str(...) ((new std::string())->erase(0*std::snprintf(display::Buffer,display::BUFFER_SIZE, __VA_ARGS__)).append(display::Buffer))
+
+  inline std::string printf2str(const char *format, ...) {
+    const size_t BUFFER_SIZE = 256;
+    static char buffer[BUFFER_SIZE];
+    va_list args;
+    va_start(args, format);
+    size_t n = vsnprintf(buffer,BUFFER_SIZE,format,args);
+    if (n<0) {
+      // TODO: format error and throw
+    } else if (n>=BUFFER_SIZE) {
+      // TODO: string too long error and throw
+    }
+    va_end(args);
+    return std::string(buffer);
+  }
+
+
 
 
 
@@ -359,47 +369,162 @@ namespace display {
 
 
 
+  //---------------------------------------------------------------------------------
+  //       getTypeStyle
+  //---------------------------------------------------------------------------------
+
+
+  template <typename T> inline Style getTypeStyle(const T& var) {
+    return createStyle(CYAN);    
+  }
+  template <> inline Style getTypeStyle(const std::string& var) {
+    return createStyle(GREEN);    
+  }
+
+  
+#define SPECIALIZE_getTypeStyle(TYPE)				\
+  template <> inline Style getTypeStyle(const TYPE& var) {	\
+    return createStyle(MAGENTA);				\
+  }
+
+  SPECIALIZE_getTypeStyle(float);
+  SPECIALIZE_getTypeStyle(double);
+  SPECIALIZE_getTypeStyle(long double);
+
+  SPECIALIZE_getTypeStyle(char);
+  SPECIALIZE_getTypeStyle(signed char);
+  SPECIALIZE_getTypeStyle(short);
+  SPECIALIZE_getTypeStyle(int);
+  SPECIALIZE_getTypeStyle(long);
+  SPECIALIZE_getTypeStyle(long long);
+
+  SPECIALIZE_getTypeStyle(unsigned char);
+  SPECIALIZE_getTypeStyle(unsigned short);
+  SPECIALIZE_getTypeStyle(unsigned int);
+  SPECIALIZE_getTypeStyle(unsigned long);
+  SPECIALIZE_getTypeStyle(unsigned long long);
+
+  SPECIALIZE_getTypeStyle(wchar_t);
+  SPECIALIZE_getTypeStyle(bool);
+
+
+  // container type
+  template <typename D, template<typename> typename C> inline Style getTypeStyle(const C<const D>& var) {
+    Style style = createStyle(CYAN); 
+    return style;    
+  }
+
+  // container type2
+  template <typename D1, typename D2, template<typename,typename> typename C> inline Style getTypeStyle(const C<const D1, const D2>& var) {
+    Style style = createStyle(BLUE); 
+    return style;    
+  }
+
+  //---------------------------------------------------------------------------------
+  //       getTypeName
+  //---------------------------------------------------------------------------------
+  
+  template <typename T> inline std::string getTypeName(const T& var) {
+    return getTypeStyle(var).apply(var.classname());
+  }
+
+  template <typename T> inline std::string getBracketedTypeName(const T& var){
+    std::string name = getTypeName<T>(var);
+    return StyledString::get(ANGLE1).get() + getTypeStyle(var).apply(name) + StyledString::get(ANGLE2).get();
+  }
+
+
+#define SPECIALIZE_getTypeName(TYPE)				\
+  template <>							\
+    inline std::string getTypeName(const TYPE& var) {		\
+    return getTypeStyle(var).apply(#TYPE);			\
+  }
+
+  SPECIALIZE_getTypeName(float);
+  SPECIALIZE_getTypeName(double);
+  SPECIALIZE_getTypeName(long double);
+
+  SPECIALIZE_getTypeName(char);
+  SPECIALIZE_getTypeName(signed char);
+  SPECIALIZE_getTypeName(short);
+  SPECIALIZE_getTypeName(int);
+  SPECIALIZE_getTypeName(long);
+  SPECIALIZE_getTypeName(long long);
+
+  SPECIALIZE_getTypeName(unsigned char);
+  SPECIALIZE_getTypeName(unsigned short);
+  SPECIALIZE_getTypeName(unsigned int);
+  SPECIALIZE_getTypeName(unsigned long);
+  SPECIALIZE_getTypeName(unsigned long long);
+
+  SPECIALIZE_getTypeName(wchar_t);
+
+  SPECIALIZE_getTypeName(std::string);
+  SPECIALIZE_getTypeName(bool);
+
+  template <class D>
+    inline std::string getTypeName(const std::complex<D> & var) {
+    std::string s = getTypeStyle(var).apply("std::complex");
+    s += getBracketedTypeName(var.real());
+    return s;
+  }
+
+  
+  // T[]
+  template <typename T, size_t N>
+    inline std::string getTypeName(const T (&a)[N]) {
+    std::string tname = getTypeName(a[0]);
+    std::ostringstream stream;
+    stream << tname << StyledString::get(BRACKET1).get() << N << StyledString::get(BRACKET2).get();
+    return stream.str();
+  }
+
+
+#define SPECIALIZE_getTypeName_CONTAINER(TYPE)			\
+  template <typename D>						\
+    inline std::string getTypeName(const TYPE<D>& var) {	\
+    std::string s = getTypeStyle(var).apply(#TYPE);		\
+    D d;							\
+    s = s+getBracketedTypeName(d);				\
+    return s;							\
+  }
+
+  SPECIALIZE_getTypeName_CONTAINER(std::vector);
+  SPECIALIZE_getTypeName_CONTAINER(std::valarray);
+  SPECIALIZE_getTypeName_CONTAINER(std::list);
+  SPECIALIZE_getTypeName_CONTAINER(std::queue);
+#if CPP11 == 1
+  SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
+#endif
+
+#define SPECIALIZE_getTypeName_CONTAINER2(TYPE)			\
+  template <typename D1, typename D2>				\
+    inline std::string getTypeName(const TYPE<D1,D2>& var) {	\
+    std::string s = getTypeStyle(var).apply(#TYPE);		\
+    D1 d1;							\
+    D2 d2;							\
+    s += StyledString::get(BRACKET1).get();			\
+    s += getTypeName(d1);					\
+    s += StyledString::get(COMMA).get();			\
+    s += getTypeName(d2);					\
+    s += StyledString::get(BRACKET2).get();			\
+    return s;							\
+  }
+
+  SPECIALIZE_getTypeName_CONTAINER2(std::map);
+
+
+  
+
+  
+  
+
   //****************************************************************************
   //                       FormatData
   //****************************************************************************
 
 
-  template <class T> class TypeClass {
-  public:
-  typedef T Type;
-  static std::string name() { return typeid(TypeClass<T>::Type).name();}
-  };
 
-  template <> std::string TypeClass<char>::name();
-  template <> std::string TypeClass<short>::name();
-  template <> std::string TypeClass<int>::name();
-  template <> std::string TypeClass<long>::name();
-  template <> std::string TypeClass<long long>::name();
-  
-  template <> std::string TypeClass<unsigned char>::name();
-  template <> std::string TypeClass<unsigned short>::name();
-  template <> std::string TypeClass<unsigned int>::name();
-  template <> std::string TypeClass<unsigned long>::name();
-  template <> std::string TypeClass<unsigned long long>::name();
-  
-  template <> std::string TypeClass<float>::name();
-  template <> std::string TypeClass<double>::name();
-  template <> std::string TypeClass<long double>::name();
-
-  template <> std::string TypeClass<std::string>::name();
-  template <> std::string TypeClass<bool>::name();
-
-
-
-  
-  
-  template <typename T> inline std::string getTypeName(const T& var);
-
-  template <typename T> inline std::string getBracketedTypeName(const T& var){
-    return StyledString::get(ANGLE1).get() 
-      + getTypeName<T>(var)
-      + StyledString::get(ANGLE2).get();
-  }
 
   
   class FormatBase {
@@ -426,7 +551,6 @@ namespace display {
 #define SPECIALIZE_FormatData_mathtype(TYPE)		\
   template <>  class FormatData<TYPE> {			\
   public:						\
-    static Style style_for_type_name;			\
     static Style style_for_value;			\
     static Style style_for_zero;			\
     const static std::string format_string_default;	\
@@ -495,7 +619,6 @@ namespace display {
   class FormatDataVector {
   public: 
     static matricks::index_type max_elements_per_line;
-    static Style style_for_type_name;	    
     static Style style_for_punctuation;
     static std::string string_opening;
     static std::string string_delimeter;
@@ -513,27 +636,27 @@ namespace display {
   template <typename D> 
     inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
     using namespace std;
+    const size_t BUFFER_SIZE = 256;
+    static char buffer[BUFFER_SIZE];
     if (formatstr.empty()) {
       return false;
     }
     
-    int ret = 0;
     bool passed = true;
+    std::string s("");
     try {
-      ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), x);
-      if (ret<0) passed = false;
+      s = printf2str(formatstr.c_str(), x);
     } catch (...) {
-      string classname = "";
+      // rethrow
       passed = false;
     }
-    string s = string(Buffer);
     size_t found = s.find("(nil)");
-    if (found!=string::npos) 	passed = false;
+    if (found != string::npos) 	passed = false;
     
     D x2 = D(0);
     D *x2ptr = &x2;
     string format = FormatData<D>::format_string_default;
-    ret = std::sscanf(Buffer, format.c_str(), x2ptr);
+    int ret = std::sscanf(buffer, format.c_str(), x2ptr);
     if (ret != 1) passed = false;
     if (x2 != x)  passed = false;
     
@@ -543,7 +666,7 @@ namespace display {
       mout << " illegal format string";
       mout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
       mout << " passed to Format";
-      mout << "<" << display::TypeClass<typeof(x)>::name() << ">";
+      mout << display::getBracketedTypeName(x);
       mout << endl;
       mout << StyledString::get(HORLINE);
       return false;
@@ -556,95 +679,14 @@ namespace display {
 
   template <typename T>
     inline void setFormatString(const std::string fstring) {
+    const size_t BUFFER_SIZE = 256;
+    static char buffer[BUFFER_SIZE];
     T* xptr = new T(25);
     bool valid = checkFormatString<T>(fstring, *xptr);
     if (valid) {
       FormatData<T>::format_string = fstring;
     }
   }
-
-
-  //---------------------------------------------------------------------------------
-  //       getTypeName
-  //---------------------------------------------------------------------------------
-
-  template <typename T>
-    inline std::string getTypeName(const T& var) {
-    return var.classname();
-  }
-
-#define SPECIALIZE_getTypeName(TYPE)				\
-  template <>							\
-    inline std::string getTypeName(const TYPE& var) {		\
-    return FormatData<TYPE>::style_for_type_name.apply(#TYPE);	\
-  }
-
-  SPECIALIZE_getTypeName(float);
-  SPECIALIZE_getTypeName(double);
-  SPECIALIZE_getTypeName(long double);
-
-  SPECIALIZE_getTypeName(short);
-  SPECIALIZE_getTypeName(int);
-  SPECIALIZE_getTypeName(long);
-#if LONGLONG_EXISTS
-  SPECIALIZE_getTypeName(long long);
-#endif
-
-  SPECIALIZE_getTypeName(unsigned short);
-  SPECIALIZE_getTypeName(unsigned int);
-  SPECIALIZE_getTypeName(unsigned long);
-#if LONGLONG_EXISTS
-  SPECIALIZE_getTypeName(unsigned long long);
-#endif
-
-
-  SPECIALIZE_getTypeName(std::string);
-  SPECIALIZE_getTypeName(char);
-  SPECIALIZE_getTypeName(bool);
-
-
-  // T[]
-  template <typename T, size_t N>
-    inline std::string getTypeName(const T (&a)[N]) {
-    std::string tname = getTypeName(a[0]);
-    std::ostringstream stream;
-    stream << tname << "[" << N << "]";
-    return stream.str();
-  }
-
-
-#define SPECIALIZE_getTypeName_CONTAINER(TYPE)			\
-  template <typename D>						\
-    inline std::string getTypeName(const TYPE<D>& var) {	\
-    Style style = createStyle(CYAN);				\
-    std::string s =  style.apply(#TYPE);			\
-    D d;							\
-    s = s+"<"+getTypeName(d)+">";				\
-    return s;							\
-  }
-
-
-
-  SPECIALIZE_getTypeName_CONTAINER(std::vector);
-  SPECIALIZE_getTypeName_CONTAINER(std::valarray);
-  SPECIALIZE_getTypeName_CONTAINER(std::list);
-  SPECIALIZE_getTypeName_CONTAINER(std::queue);
-#if CPP11 == 1
-  SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
-#endif
-
-#define SPECIALIZE_getTypeName_CONTAINER2(TYPE)			\
-  template <typename D1, typename D2>				\
-    inline std::string getTypeName(const TYPE<D1,D2>& var) {	\
-    Style style = createStyle(CYAN);				\
-    std::string s =  style.apply(#TYPE);			\
-    D1 d1;							\
-    D2 d2;							\
-    s = s+"<"+getTypeName(d1)+","+getTypeName(d2)+">";		\
-    return s;							\
-  }
-
-  SPECIALIZE_getTypeName_CONTAINER2(std::map);
 
 
 
@@ -666,8 +708,7 @@ namespace display {
   template <>								\
     inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
-    snprintf(Buffer, BUFFER_SIZE, TypeClass<TYPE >::name().c_str(), d ); \
-    string sval = string(Buffer);					\
+    string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     Style style = FormatData<TYPE >::style_for_value;			\
     TYPE zero = 0;							\
     if (d == zero) {							\
@@ -693,8 +734,10 @@ namespace display {
   template <>								\
     inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
-    snprintf(Buffer, BUFFER_SIZE, TypeClass<TYPE >::name().c_str(), d );	\
-    string sval = string(Buffer);					\
+    const size_t BUFFER_SIZE = 256;					\
+    static char buffer[BUFFER_SIZE];					\
+    snprintf(buffer, BUFFER_SIZE, getTypeName(d).c_str(), d );		\
+    string sval = string(buffer);					\
     if (FormatData<TYPE>::tens)  {					\
       sval = replaceAll(sval,"E"," 10^");				\
       sval = replaceAll(sval,"e"," 10^");				\
@@ -714,23 +757,27 @@ namespace display {
 
 
   // string
-  template <>				
-    inline void dispval<std::string>(const std::string& str) {
-    using namespace std;
-    snprintf(Buffer, BUFFER_SIZE, TypeClass<std::string>::name().c_str(), str.c_str() );
-    string s = string(Buffer);
-    Style style = FormatData<std::string>::style_for_value;
-    mout << style.apply(s);
+  template <>							
+    inline void dispval<std::string>(const std::string& str) {	
+    using namespace std;						
+    const size_t BUFFER_SIZE = 256;					
+    static char buffer[BUFFER_SIZE];					
+    snprintf(buffer, BUFFER_SIZE, getTypeName(str).c_str(), str.c_str() ); 
+    string s = string(buffer);						
+    Style style = FormatData<std::string>::style_for_value;		
+    mout << style.apply(s);						
   }
 
   // char
-  template <>				
-    inline void dispval<char>(const char& c) {
+  template <>							
+    inline void dispval<char>(const char& c) {			
     using namespace std;					
-    snprintf(Buffer, BUFFER_SIZE, TypeClass<char>::name().c_str(), c );
-    string s = string(Buffer);
-    Style style = FormatData<char>::style_for_value;
-    mout << style.apply(s);
+    const size_t BUFFER_SIZE = 256;				
+    static char buffer[BUFFER_SIZE];				
+    snprintf(buffer, BUFFER_SIZE, getTypeName(c).c_str(), c );	
+    string s = string(buffer);					
+    Style style = FormatData<char>::style_for_value;		
+    mout << style.apply(s);					
   }
 
 
@@ -853,20 +900,12 @@ namespace display {
 
   class FormatDataComplex {
   public:
-    static Style style_for_type_name;
     static Style style_for_punctuation;
     static std::string format_string;  
     const static std::string format_string_default; 
   };
 
 
-  template <class D>
-    inline std::string getTypeName(const std::complex<D> & var) {
-    std::string s = FormatDataComplex::style_for_type_name.apply("std::complex");
-    s += "<" + getTypeName(var.real())+ +"> ";
-    return s;
-  }
-  
     
 
   inline bool checkFormatStringComplex(const std::string formatstr) {
@@ -875,17 +914,15 @@ namespace display {
       return false;
     }
     
-    int ret = 0;
     bool passed = true;
     string sr = string("%f");
     string si = string("%f");
+    string s;
     try {
-      ret = snprintf(Buffer, BUFFER_SIZE, formatstr.c_str(), sr.c_str(), si.c_str());
-      if (ret<0) passed = false;
+      s = printf2str(formatstr.c_str(), sr.c_str(), si.c_str());
     } catch (...) {
       passed = false;
     }
-    string s = string(Buffer);
     size_t found = s.find("(nil)");
     if (found!=string::npos) 	passed = false;
 
@@ -893,12 +930,10 @@ namespace display {
     float xreal = 3.1415;
     float ximag = 2.72;
     try {
-      ret = snprintf(Buffer, BUFFER_SIZE, formatfloats.c_str(), xreal, ximag);
-      if (ret<0) passed = false;
+      s = printf2str(formatfloats.c_str(), xreal, ximag);
     } catch (...) {
       passed = false;
     }
-    s = string(Buffer);
     found = s.find("(nil)");
     if (found!=string::npos) 	passed = false;
 
@@ -908,7 +943,9 @@ namespace display {
 
     float xreal2 = 3.1415;
     float ximag2 = 2.72;
-    ret = std::sscanf(Buffer, formatfloats.c_str() , &xreal2, &ximag2);
+    const size_t BUFFER_SIZE = 256;	      
+    static char buffer[BUFFER_SIZE];
+    int ret = std::sscanf(buffer, formatfloats.c_str() , &xreal2, &ximag2);
     //    printf("xreal2=%f ximag2=%f\n",xreal2,ximag2);
     if (ret != 2) passed = false;
     if (xreal2 != xreal)  passed = false;
@@ -938,17 +975,14 @@ namespace display {
     }
   }
 
-  
   template <class D>
     inline void dispval(const std::complex<D>& d) {
     using namespace std;
     using namespace matricks;
 
     // print the real and imaginary parts to strings
-    snprintf(Buffer, BUFFER_SIZE, TypeClass<D>::name().c_str(), d.real() );
-    string sr = string(Buffer);
-    snprintf(Buffer, BUFFER_SIZE, TypeClass<D>::name().c_str(), d.imag() );
-    string si = string(Buffer);
+    string sr = printf2str(getFormatString<D>().c_str(), d.real() );
+    string si = printf2str(getFormatString<D>().c_str(), d.imag() );
 
     // decompose the format string so we can apply style to the punctuation
     string fs = getFormatStringComplex();

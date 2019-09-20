@@ -84,7 +84,7 @@ namespace matricks {
     static inline std::string expression(const std::string& sa) {
       using namespace display;
       D2 d2;
-      std::string sout = functor_style.apply("static_cast")+"<" + getTypeName<D2>(d2) + ">(" + sa + ")";
+      std::string sout = functor_style.apply("static_cast")+"<" + getTypeName(d2) + ">(" + sa + ")";
       return sout;
     }
 

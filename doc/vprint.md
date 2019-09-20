@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.16-r16).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.16-r20).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -292,16 +292,19 @@ double x = 2.51;
 
 **Results**: The default format is `"%g"` which yields
 ```C++
-  x = 2.51; 
+  x = double; 
 ```
 
 ```C++
 setFormatString<double>("%+18.15f");
+                                                                               
+** mātricks ERROR:    illegal format string "%+18.15f" passed to Format<double>
+                                                                               
 ```
 
 **Results**: The format `"%+18.15f"`  yields
 ```C++
-  x = +2.510000000000000; 
+  x = double; 
 ```
 
 
@@ -319,11 +322,14 @@ int n = -1024;
 
 ```C++
 setFormatString<int>("%10d");
+                                                                               
+** mātricks ERROR:    illegal format string "%10d" passed to Format<int>
+                                                                               
 ```
 
 **Results**: The format `"%10d"`  yields
 ```C++
-  n =      -1024; 
+  n = -1024; 
 ```
 
 
@@ -370,6 +376,9 @@ The format for complex numbers is set using the function `setFormatStringComplex
 
 
 
+                                                                               
+** mātricks ERROR:    illegal format string "(%s, %s)" passed to setFormatStringComplex
+                                                                               
 **EXAMPLE 8**:  complex number formats
 ```C++
 using namespace display;
@@ -380,28 +389,37 @@ std::complex<double> z(1,-2);
 Default format: `"(%s, %s)"`
 
 ```C++
-z = (1, -2); 
+z = (1,-2); 
 ```
 
 
 Matlab input format `"%s + i*%s"`
 
+                                                                               
+** mātricks ERROR:    illegal format string "%s + i*%s" passed to setFormatStringComplex
+                                                                               
 ```C++
-z = 1 + i*-2; 
+z = (1,-2); 
 ```
 
 
 Mathematica input format `"%s + I*%s"`
 
+                                                                               
+** mātricks ERROR:    illegal format string "%s + I*%s" passed to setFormatStringComplex
+                                                                               
 ```C++
-z = 1 + I*-2; 
+z = (1,-2); 
 ```
 
 
 Matlab output format / C++14 format `"%s + %si"`
 
+                                                                               
+** mātricks ERROR:    illegal format string "%s + %si" passed to setFormatStringComplex
+                                                                               
 ```C++
-z = 1 + -2i; 
+z = (1,-2); 
 ```
 
 
@@ -409,11 +427,14 @@ Note that the format of the real and imaginary parts of `complex<D>` are control
 
 ```C++
 setFormatString<double>("%9.6f");
+                                                                               
+** mātricks ERROR:    illegal format string "%9.6f" passed to Format<double>
+                                                                               
 ```
 The above statement changes the display of `z` to
 
 ```C++
-z =  1.000000 + -2.000000i; 
+z = (1,-2); 
 ```
 ### Customizing Vector format
 
@@ -430,6 +451,9 @@ The format for `matricks:Vector` output is controlled by the following static cl
 |string_closing |   "}"|
 
 
+                                                                               
+** mātricks ERROR:    illegal format string "(%s, %s)" passed to setFormatStringComplex
+                                                                               
 **EXAMPLE 9**:  default Vector format
 ```C++
 using namespace matricks;
@@ -438,7 +462,7 @@ Vector<double> v = range<double>(1001,1010);;
 The default format yields
 
 ```C++
-v = {1001,1002,1003,1004,1005,1006,1007,1008,1009,1010}; 
+v = {double,double,double,double,double,double,double,double,double,double}; 
 ```
 #### Mathematica-style Vector format
 
@@ -461,21 +485,33 @@ The function `set_mathematica_var_format()` sets these variables as follows
 
 ```C++
 setFormatString<double>("% 10.8e");
+                                                                               
+** mātricks ERROR:    illegal format string "% 10.8e" passed to Format<double>
+                                                                               
 FormatData<double>::tens = true;
 setFormatStringComplex("%s + I*%s");
+                                                                               
+** mātricks ERROR:    illegal format string "%s + I*%s" passed to setFormatStringComplex
+                                                                               
 ```
 **EXAMPLE10**:  Mathematica Vector format
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
 set_mathematica_var_format();
+                                                                               
+** mātricks ERROR:    illegal format string "% 10.8e" passed to Format<double>
+                                                                               
+                                                                               
+** mātricks ERROR:    illegal format string "%s + I*%s" passed to setFormatStringComplex
+                                                                               
 ```
 The Mathematica format yields
 
 ```C++
 v = {
-     1.00100000 10^+03,  1.00200000 10^+03,  1.00300000 10^+03,  1.00400000 10^+03,  1.00500000 10^+03, 
-     1.00600000 10^+03,  1.00700000 10^+03,  1.00800000 10^+03,  1.00900000 10^+03,  1.01000000 10^+03
+    doubl 10^, doubl 10^, doubl 10^, doubl 10^, doubl 10^, 
+    doubl 10^, doubl 10^, doubl 10^, doubl 10^, doubl 10^
 }; 
 ```
 #### Matlab-style Vector format
@@ -499,21 +535,33 @@ The function `set_matlab_var_format()` sets these varibles as follows
 
 ```C++
 setFormatString<double>("% 10.8e");
+                                                                               
+** mātricks ERROR:    illegal format string "% 10.8e" passed to Format<double>
+                                                                               
 FormatData<double>::tens = false;
 setFormatStringComplex("%s + i*%s");
+                                                                               
+** mātricks ERROR:    illegal format string "%s + i*%s" passed to setFormatStringComplex
+                                                                               
 ```
 **EXAMPLE11**:  Matlab Vector format
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
 set_matlab_var_format();
+                                                                               
+** mātricks ERROR:    illegal format string "% 10.8e" passed to Format<double>
+                                                                               
+                                                                               
+** mātricks ERROR:    illegal format string "%s + i*%s" passed to setFormatStringComplex
+                                                                               
 ```
 The Matlab format yields
 
 ```C++
 v = [ ...
-     1.00100000e+03,  1.00200000e+03,  1.00300000e+03,  1.00400000e+03,  1.00500000e+03,  ...
-     1.00600000e+03,  1.00700000e+03,  1.00800000e+03,  1.00900000e+03,  1.01000000e+03 ...
+    double, double, double, double, double,  ...
+    double, double, double, double, double ...
 ]; 
 ```
 ## Changing the color and style settings

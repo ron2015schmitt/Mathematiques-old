@@ -1,6 +1,6 @@
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.16-r16).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.16-r20).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -9,7 +9,7 @@ Vector<double> v(N);
 ```
 **The result is**
 ```C++
-  v = {0, 0, 0, 0}; 
+  v = {double, double, double, double}; 
 ```
 
 **EXAMPLE 2**: Declare `v` and initialize to a constant
@@ -18,7 +18,7 @@ Vector<double> v(4, -1 );
 ```
 **The result is**
 ```C++
-  v = {-1, -1, -1, -1}; 
+  v = {double, double, double, double}; 
 ```
 
 **EXAMPLE 3**: Declare `v` and initialize to a **C-style array** of values
@@ -29,7 +29,7 @@ Vector<double> v( 4, (const double[]) {10, 20, 30, 40} );
 ```
 **The result is**
 ```C++
-  v = {10, 20, 30, 40}; 
+  v = {double, double, double, double}; 
 ```
 
 **EXAMPLE 4**: Declare `v` and initialize directly from a list (**__C++11__**)
@@ -38,7 +38,7 @@ Vector<double> v({10, 20, 30, 40});
 ```
 **The result is**
 ```C++
-  v = {10, 20, 30, 40}; 
+  v = {double, double, double, double}; 
 ```
 
 **EXAMPLE 5**: Declare `v2` and initialize to values of `v1`
@@ -52,8 +52,8 @@ v2[0] = -2;
 ```
 **The result is**
 ```C++
-  v1 = {-1, 11, 12, 13}; 
-  v2 = {-2, 11, 12, 13}; 
+  v1 = {double, double, double, double}; 
+  v2 = {double, double, double, double}; 
 ```
 
 **EXAMPLE 6**: Declare `v2` and initialize to an expression
@@ -64,8 +64,8 @@ Vector<double> v2(10*v1+1);
 ```
 **The result is**
 ```C++
-  v1 = {10, 11, 12, 13}; 
-  v2 = {101, 111, 121, 131}; 
+  v1 = {double, double, double, double}; 
+  v2 = {double, double, double, double}; 
 ```
 
 

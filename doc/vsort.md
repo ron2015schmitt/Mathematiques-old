@@ -1,6 +1,6 @@
 
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in mātricks
-_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.16-r16).
+_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.16-r20).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method
@@ -20,9 +20,9 @@ y = y[vindex];
 
 **The result is**
 ```C++
-  t = {-1, 7, 23, 100}; 
+  t = {double, double, double, double}; 
   vindex = {1, 3, 0, 2}; 
-  y = {10, 40, 30, 20}; 
+  y = {double, double, double, double}; 
 ```
 
 ## Removing duplicate elements
@@ -42,7 +42,7 @@ vindex = t.uniq();
 
 **The result is**
 ```C++
-  t = {23, -1, 4, 3}; 
+  t = {double, double, double, double}; 
   vindex = {0, 1, 3, 7}; 
 ```
 
@@ -62,7 +62,7 @@ vindex = t.quniq();
 
 **The result is**
 ```C++
-  t = {23, -1, 23, 4, -1, 3}; 
+  t = {double, double, double, double, double, double}; 
   vindex = {0, 1, 2, 3, 6, 7}; 
 ```
 

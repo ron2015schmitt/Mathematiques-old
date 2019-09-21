@@ -28,7 +28,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("\\*Formatted and styled printing");
   matricks_preamble();
   text("* The examples in this section can be found in file_ `examples/printing.cpp`\n");

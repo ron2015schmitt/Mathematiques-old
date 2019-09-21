@@ -24,7 +24,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`)");
   matricks_preamble();
 

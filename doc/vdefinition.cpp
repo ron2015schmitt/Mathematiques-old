@@ -28,7 +28,8 @@ int main()
 
 
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("under the hood—`Vector` definition");
   matricks_preamble();
   text("* _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.");

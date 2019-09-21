@@ -23,7 +23,8 @@ int main()
   int Nex = 1;
 
 
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("Vector join operator `(v1,v2)` and `rep` function");
   matricks_preamble();
 

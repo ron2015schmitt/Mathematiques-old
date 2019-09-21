@@ -26,7 +26,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("The `range` function");
   matricks_preamble();
 

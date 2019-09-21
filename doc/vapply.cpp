@@ -100,7 +100,8 @@ int main()
 
 
     
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("Applying User-defined functions");
   matricks_preamble();
 

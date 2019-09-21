@@ -25,7 +25,8 @@ int main()
   
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("python-like access: negative indices & slices");
   matricks_preamble();
 

@@ -27,7 +27,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle0("Calculating a Taylor series and plotting the results in Mathematica");
   matricks_preamble();
 

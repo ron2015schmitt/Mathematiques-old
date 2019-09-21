@@ -24,7 +24,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("Calculus");
   matricks_preamble();
 

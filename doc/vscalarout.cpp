@@ -24,7 +24,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("Vector functions that return a scalar (dot product, sum, min, max etc)");
   matricks_preamble();
 

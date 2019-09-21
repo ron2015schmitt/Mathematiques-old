@@ -25,7 +25,8 @@ int main()
   
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle("Access subsets of Vector elements");
   matricks_preamble();
 

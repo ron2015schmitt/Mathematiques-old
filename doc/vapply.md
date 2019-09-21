@@ -1,6 +1,9 @@
 
+[Table of Contents](README.md)
+
+
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.16-r21).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.16-r23).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 

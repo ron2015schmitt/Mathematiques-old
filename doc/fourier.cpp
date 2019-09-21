@@ -27,7 +27,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  matricks_toc();
+  cr();cr();
   mdtitle0("Calculating a function via Fourier series and plotting the results in Matlab");
   matricks_preamble();
 

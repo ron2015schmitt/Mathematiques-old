@@ -636,8 +636,6 @@ namespace display {
   template <typename D> 
     inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
     using namespace std;
-    const size_t BUFFER_SIZE = 256;
-    static char buffer[BUFFER_SIZE];
     if (formatstr.empty()) {
       return false;
     }
@@ -652,11 +650,10 @@ namespace display {
     }
     size_t found = s.find("(nil)");
     if (found != string::npos) 	passed = false;
-    
     D x2 = D(0);
     D *x2ptr = &x2;
     string format = FormatData<D>::format_string_default;
-    int ret = std::sscanf(buffer, format.c_str(), x2ptr);
+    int ret = std::sscanf(s.c_str(), format.c_str(), x2ptr);
     if (ret != 1) passed = false;
     if (x2 != x)  passed = false;
     
@@ -679,8 +676,6 @@ namespace display {
 
   template <typename T>
     inline void setFormatString(const std::string fstring) {
-    const size_t BUFFER_SIZE = 256;
-    static char buffer[BUFFER_SIZE];
     T* xptr = new T(25);
     bool valid = checkFormatString<T>(fstring, *xptr);
     if (valid) {
@@ -934,9 +929,7 @@ namespace display {
 
     float xreal2 = 3.1415;
     float ximag2 = 2.72;
-    const size_t BUFFER_SIZE = 256;	      
-    static char buffer[BUFFER_SIZE];
-    int ret = std::sscanf(buffer, formatfloats.c_str() , &xreal2, &ximag2);
+    int ret = std::sscanf(s.c_str(), formatfloats.c_str() , &xreal2, &ximag2);
     //    printf("xreal2=%f ximag2=%f\n",xreal2,ximag2);
     if (ret != 2) passed = false;
     if (xreal2 != xreal)  passed = false;

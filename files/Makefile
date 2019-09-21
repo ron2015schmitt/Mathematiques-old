@@ -200,7 +200,7 @@ override COPT ?=  -Wfatal-errors
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
 %_opts.cpp:
-	@echo "char COMPILE_OPTIMIZE[512] = "'"'$(OPTIMIZE)'";' > $@
+	@echo "char COMPILE_OPTIMIZE[] = "'"'$(OPTIMIZE)'";' > $@
 	@cat $@
 
 

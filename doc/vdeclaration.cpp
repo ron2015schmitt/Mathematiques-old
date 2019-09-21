@@ -29,6 +29,7 @@ int main()
   
   cr();
   mdtitle("Vector declaration");
+  matricks_toc();
   matricks_preamble();
 
  

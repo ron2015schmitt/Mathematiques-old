@@ -27,9 +27,9 @@ int main()
   
   int Nex = 1;
   
-  cr();
-  mdtitle("Vector declaration");
   matricks_toc();
+  cr();cr();
+  mdtitle("Vector declaration");
   matricks_preamble();
 
  

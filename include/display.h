@@ -734,10 +734,7 @@ namespace display {
   template <>								\
     inline void dispval<TYPE >(const TYPE& d) {				\
     using namespace std;						\
-    const size_t BUFFER_SIZE = 256;					\
-    static char buffer[BUFFER_SIZE];					\
-    snprintf(buffer, BUFFER_SIZE, getTypeName(d).c_str(), d );		\
-    string sval = string(buffer);					\
+    string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     if (FormatData<TYPE>::tens)  {					\
       sval = replaceAll(sval,"E"," 10^");				\
       sval = replaceAll(sval,"e"," 10^");				\
@@ -760,10 +757,7 @@ namespace display {
   template <>							
     inline void dispval<std::string>(const std::string& str) {	
     using namespace std;						
-    const size_t BUFFER_SIZE = 256;					
-    static char buffer[BUFFER_SIZE];					
-    snprintf(buffer, BUFFER_SIZE, getTypeName(str).c_str(), str.c_str() ); 
-    string s = string(buffer);						
+    string s = printf2str(FormatData<std::string>::format_string.c_str(), str.c_str() ); \
     Style style = FormatData<std::string>::style_for_value;		
     mout << style.apply(s);						
   }
@@ -772,10 +766,7 @@ namespace display {
   template <>							
     inline void dispval<char>(const char& c) {			
     using namespace std;					
-    const size_t BUFFER_SIZE = 256;				
-    static char buffer[BUFFER_SIZE];				
-    snprintf(buffer, BUFFER_SIZE, getTypeName(c).c_str(), c );	
-    string s = string(buffer);					
+    string s = printf2str(FormatData<char>::format_string.c_str(), c ); \
     Style style = FormatData<char>::style_for_value;		
     mout << style.apply(s);					
   }

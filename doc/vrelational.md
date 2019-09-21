@@ -1,6 +1,6 @@
 
 # Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`) in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.16-r21).
 
 ## Relational operators
 ### Relational operators between two Vectors
@@ -16,8 +16,8 @@ Vector<double> v2( range<double>(3,1) );
 
 **Some expressions with results**
 ```C++
-  v1 = {double, double, double}; 
-  v2 = {double, double, double}; 
+  v1 = {1, 2, 3}; 
+  v2 = {3, 2, 1}; 
   v1 > v2 = {0, 0, 1}; 
   v1 >= v2 = {0, 1, 1}; 
   v1 < v2 = {1, 0, 0}; 
@@ -36,7 +36,7 @@ Vector<double> v( range<double>(1,3) );
 
 **Some expressions with results**
 ```C++
-  v = {double, double, double}; 
+  v = {1, 2, 3}; 
   v > 2 = {0, 0, 1}; 
   v >= 2 = {0, 1, 1}; 
   v < 2 = {1, 0, 0}; 
@@ -56,7 +56,7 @@ Vector<double> v( range<double>(1,5) );
 
 **Some expressions with results**
 ```C++
-  v = {double, double, double, double, double}; 
+  v = {1, 2, 3, 4, 5}; 
   (v > 2) = {0, 0, 1, 1, 1}; 
   !(v > 2) = {1, 1, 0, 0, 0}; 
   (v >= 2) && (v <= 4 ) = {0, 1, 1, 1, 0}; 
@@ -76,9 +76,9 @@ Vector<double> v( range<double>(-10,10) );
 
 **Some expressions with results**
 ```C++
-  v = {double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double}; 
+  v = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
   v > 6 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
-  v[(v > 6)] = {double, double, double, double}; 
+  v[(v > 6)] = {7, 8, 9, 10}; 
 ```
 
 
@@ -88,7 +88,7 @@ v[(v > 6)] = 6.;
 ```
 **The result is**
 ```C++
-  v = {double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double}; 
+  v = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 6, 6, 6, 6}; 
 ```
 
 
@@ -98,7 +98,7 @@ v[(v < 0)] = 0.;
 ```
 **The result is**
 ```C++
-  v = {double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double}; 
+  v = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 6, 6, 6, 6}; 
 ```
 
 
@@ -113,7 +113,7 @@ Vector<double> v( range<double>(1,5) );
 
 **Some expressions with results**
 ```C++
-  v = {double, double, double, double, double}; 
+  v = {1, 2, 3, 4, 5}; 
   (v > 2) = {0, 0, 1, 1, 1}; 
   !(v > 2) = {1, 1, 0, 0, 0}; 
   (v >= 2) && (v <= 4 ) = {0, 1, 1, 1, 0}; 
@@ -139,7 +139,7 @@ Vector<double> v( range<double>(1,3) );
 
 **Some expressions with results**
 ```C++
-  v = {double, double, double}; 
+  v = {1, 2, 3}; 
   (v > 2) = {0, 0, 1}; 
   alltrue(v > 2) = 0; 
   alltrue(v > 0) = 1; 

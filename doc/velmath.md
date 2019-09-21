@@ -1,6 +1,6 @@
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.16-r21).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -16,10 +16,10 @@ v2 = {1,2,3,4}; // C++11 list
 
 **Some expressions with results**
 ```C++
-  v1 + v2 = {double, double, double, double}; 
-  v1 - v2 = {double, double, double, double}; 
-  v1 * v2 = {double, double, double, double}; 
-  v1 / v2 = {double, double, double, double}; 
+  v1 + v2 = {11, 22, 33, 44}; 
+  v1 - v2 = {9, 18, 27, 36}; 
+  v1 * v2 = {10, 40, 90, 160}; 
+  v1 / v2 = {10, 10, 10, 10}; 
 ```
 
 ### Vector-scalar arithmetic
@@ -35,15 +35,15 @@ v1 = {10,20,30,40}; // C++11 list
 
 **Some expressions with results**
 ```C++
-  v1 + 1 = {double, double, double, double}; 
-  1 + v1 = {double, double, double, double}; 
-  v1 - 10 = {double, double, double, double}; 
-  40 - v1 = {double, double, double, double}; 
-  v1 * 2 = {double, double, double, double}; 
-  2 * v1 = {double, double, double, double}; 
-  v1 / 10 = {double, double, double, double}; 
-  120 / v1 = {double, double, double, double}; 
-  1 + 120 / v1 - 8/8 + 5*v1*2 = {double, double, double, double}; 
+  v1 + 1 = {11, 21, 31, 41}; 
+  1 + v1 = {11, 21, 31, 41}; 
+  v1 - 10 = {0, 10, 20, 30}; 
+  40 - v1 = {30, 20, 10, 0}; 
+  v1 * 2 = {20, 40, 60, 80}; 
+  2 * v1 = {20, 40, 60, 80}; 
+  v1 / 10 = {1, 2, 3, 4}; 
+  120 / v1 = {12, 6, 4, 3}; 
+  1 + 120 / v1 - 8/8 + 5*v1*2 = {112, 206, 304, 403}; 
 ```
 
 ### Vector math functions
@@ -59,11 +59,11 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 
 **Some expressions with results**: rounding and sign-related
 ```C++
-  floor(v) = {double, double, double, double, double, double, double}; 
-  ceil(v) = {double, double, double, double, double, double, double}; 
-  round(v) = {double, double, double, double, double, double, double}; 
-  sgn(v) = {double, double, double, double, double, double, double}; 
-  abs(v) = {double, double, double, double, double, double, double}; 
+  floor(v) = {-3, -3, -1, 0, 1, 2, 2}; 
+  ceil(v) = {-2, -2, -1, 0, 1, 3, 3}; 
+  round(v) = {-3, -2, -1, 0, 1, 2, 3}; 
+  sgn(v) = {-1, -1, -1, 0, 1, 1, 1}; 
+  abs(v) = {2.5, 2.25, 1, 0, 1, 2.25, 2.5}; 
 ```
 
 
@@ -77,16 +77,16 @@ v = {-1,0,1,2,4}; // C++11 list
 
 **Some expressions with results**: powers, roots, and exponentiation
 ```C++
-  pow(2., v) = {double, double, double, double, double}; 
-  pow(v, 2.) = {double, double, double, double, double}; 
-  pow(v,v) = {double, double, double, double, double}; 
-  exp(v) = {double, double, double, double, double}; 
-  log(v) = {double, double, double, double, double}; 
-  log10(v) = {double, double, double, double, double}; 
-  log2(v) = {double, double, double, double, double}; 
-  sqr(v) = {double, double, double, double, double}; 
-  cube(v) = {double, double, double, double, double}; 
-  sqrt(v) = {double, double, double, double, double}; 
+  pow(2., v) = {0.5, 1, 2, 4, 16}; 
+  pow(v, 2.) = {1, 0, 1, 4, 16}; 
+  pow(v,v) = {-1, 1, 1, 4, 256}; 
+  exp(v) = {0.367879, 1, 2.71828, 7.38906, 54.5982}; 
+  log(v) = {nan, -inf, 0, 0.693147, 1.38629}; 
+  log10(v) = {nan, -inf, 0, 0.30103, 0.60206}; 
+  log2(v) = {nan, -inf, 0, 1, 2}; 
+  sqr(v) = {1, 0, 1, 4, 16}; 
+  cube(v) = {-1, 0, 1, 8, 64}; 
+  sqrt(v) = {-nan, 0, 1, 1.41421, 2}; 
 ```
 
 
@@ -102,9 +102,9 @@ const double tol = 2e-16;
 
 **Some expressions with results**: trig
 ```C++
-  sin(v) = {double, double, double, double, double}; 
-  cos(v) = {double, double, double, double, double}; 
-  tan(v) = {double, double, double, double, double}; 
+  sin(v) = {-1.22465e-16, -1, 0, 1, 1.22465e-16}; 
+  cos(v) = {-1, 6.12323e-17, 1, 6.12323e-17, -1}; 
+  tan(v) = {1.22465e-16, -1.63312e+16, 0, 1.63312e+16, -1.22465e-16}; 
 ```
 
 
@@ -112,9 +112,9 @@ The results are cleaner, when we round to a tolerance
 
 **Some expressions with results**: trig with rounded zeros
 ```C++
-  roundzero(sin(v),tol) = {double, double, double, double, double}; 
-  roundzero(cos(v),tol) = {double, double, double, double, double}; 
-  roundzero(tan(v),tol) = {double, double, double, double, double}; 
+  roundzero(sin(v),tol) = {0, -1, 0, 1, 0}; 
+  roundzero(cos(v),tol) = {-1, 0, 1, 0, -1}; 
+  roundzero(tan(v),tol) = {0, -1.63312e+16, 0, 1.63312e+16, 0}; 
 ```
 
 
@@ -127,9 +127,9 @@ v = {-1,0,1}; // C++11 list
 
 **Some expressions with results**: hyperbolic trig
 ```C++
-  sinh(v) = {double, double, double}; 
-  cosh(v) = {double, double, double}; 
-  tanh(v) = {double, double, double}; 
+  sinh(v) = {-1.1752, 0, 1.1752}; 
+  cosh(v) = {1.54308, 1, 1.54308}; 
+  tanh(v) = {-0.761594, 0, 0.761594}; 
 ```
 
 
@@ -148,10 +148,10 @@ v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
 
 **Some expressions with results**: inverse trig
 ```C++
-  asin(v)/pi = {double, double, double}; 
-  acos(v)/pi = {double, double, double}; 
-  atan(v)/pi = {double, double, double}; 
-  atan2(v1, v2)/pi = {double, double, double, double, double, double, double, double, double}; 
+  asin(v)/pi = {-0.5, 0, 0.5}; 
+  acos(v)/pi = {1, 0.5, 0}; 
+  atan(v)/pi = {-0.25, 0, 0.25}; 
+  atan2(v1, v2)/pi = {-0.75, -0.5, -0.25, 1, 0, 0, 0.75, 0.5, 0.25}; 
 ```
 
 ### Arbitrary combinations of the above functionality are supported
@@ -170,7 +170,7 @@ v2 = {-1,-2,-3,-4}; // C++11 list
 
 **Some expressions with results**
 ```C++
-  2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = {double, double, double, double}; 
+  2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = {10, 13, 18, 25}; 
 ```
 
 

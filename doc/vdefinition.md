@@ -1,6 +1,6 @@
 
 # under the hood—`Vector` definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.16-r21).
 
 * _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
 ### The Vector class is a wrapper
@@ -20,8 +20,8 @@ valias[2] = -2;
 
 **The result is**
 ```C++
-  vec = {double, double, double, double}; 
-  valias = {double, double, double, double}; 
+  vec = {0, -1, -2, 3}; 
+  valias = {0, -1, -2, 3}; 
 ```
 
 ### Setting and getting the wrapped `valarray`
@@ -46,9 +46,9 @@ valias[2] = 2;
 
 **The result is**
 ```C++
-  *vaptr = {double, double, double, double}; 
-  vec = {double, double, double, double}; 
-  valias = {double, double, double, double}; 
+  *vaptr = {99, 1, 2, 0}; 
+  vec = {99, 1, 2, 0}; 
+  valias = {99, 1, 2, 0}; 
 ```
 
   * The above code is correct in that it does not delete the object pointed to by `vaptr`.  After calling method `setValArray`, the `Vector` takes ownership and will delete the valarray in its destrcutor.

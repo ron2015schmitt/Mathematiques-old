@@ -1,6 +1,6 @@
 
 # The `range` function in mātricks
-_This document was automatically generated from file_ **`range.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`range.cpp`** (mātricks-v2.16-r21).
 
 ### Increasing Sequences
 * The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`
@@ -8,7 +8,7 @@ _This document was automatically generated from file_ **`range.cpp`** (mātricks
 **EXAMPLE 1**: Increasing sequences using `range`
 ```C++
 range<int>(1,10) = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
-range<double>(-3,3) = {double, double, double, double, double, double, double}; 
+range<double>(-3,3) = {-3, -2, -1, 0, 1, 2, 3}; 
 ```
 ### Decreasing Sequences
 * Counting down is also supported
@@ -22,8 +22,8 @@ range<int>(10,0) = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
 **EXAMPLE 3**: Floating point sequences using `range`
 ```C++
-range<double>(1.5,5.5) = {double, double, double, double, double}; 
-range<double>(5.5,1.5) = {double, double, double, double, double}; 
+range<double>(1.5,5.5) = {1.5, 2.5, 3.5, 4.5, 5.5}; 
+range<double>(5.5,1.5) = {5.5, 4.5, 3.5, 2.5, 1.5}; 
 ```
 ### Arbitrary stride
 * The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start, start+stride, start+2*stride, ..., (end)}`
@@ -31,7 +31,7 @@ range<double>(5.5,1.5) = {double, double, double, double, double};
 **EXAMPLE 4**: Seqeunces of different strides using `range`
 ```C++
 range<int>(2,10,2) = {2, 4, 6, 8, 10}; 
-range<double>(0,10,0.5) = {double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double, double}; 
+range<double>(0,10,0.5) = {0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10}; 
 ```
 ### The end point isn't always included
 * The end point is only included when 
@@ -44,7 +44,7 @@ where `n` is an integer.
 **EXAMPLE 5**: End point is not included in certain cases
 ```C++
 range<int>(0,5,2) = {0, 2, 4}; 
-range<double>(1,3.5) = {double, double, double}; 
+range<double>(1,3.5) = {1, 2, 3}; 
 ```
 ### Initializing `Vector`'s using `range`
 
@@ -60,7 +60,7 @@ Vector<double> v3 ( range<double>(0,3));
 ```C++
   v1 = {0, 1, 2, 3}; 
   v2 = {0, 1, 2, 3}; 
-  v3 = {double, double, double, double}; 
+  v3 = {0, 1, 2, 3}; 
 ```
 
 ### Assigning `Vector`'s using `range`
@@ -75,7 +75,7 @@ v = range<double>(0,N-1);
 
 **The result is**
 ```C++
-  v = {double, double, double, double, double, double, double, double, double, double}; 
+  v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; 
 ```
 
 

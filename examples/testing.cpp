@@ -292,5 +292,16 @@ int main()
   mout << "sizeof(bool) = " << sizeof(bool) << endl;
   mout << "sizeof(std::complex<float>) = " << sizeof(std::complex<float>) << endl;
 
+  char var_char;
+  unsigned char var_unsigned_char;
+  signed char var_signed_char;
+  unsigned int var_unsigned_int;
+  signed int var_signed_int;
+  mout << (typeid(var_char) == typeid(var_unsigned_char)) << endl;
+  mout << (typeid(var_char) == typeid(var_signed_char)) << endl;
+
+  mout << (typeid(var_int) == typeid(var_unsigned_int)) << endl;
+  mout << (typeid(var_int) == typeid(var_signed_int)) << endl;
+
   return 0;
 }

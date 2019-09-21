@@ -1,6 +1,6 @@
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.16-r21).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -34,9 +34,9 @@ Vector<int> v2(range<int>(-2,2));
 
 **Some expressions with results**: Applying User-defined function `pos` via `op1`
 ```C++
-  op1<double,pos>(v1) = {double, double, double, double, double, double, double, double, double, double, double}; 
+  op1<double,pos>(v1) = {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   op1<int,pos>(v2) = {0, 0, 0, 1, 2}; 
-  2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = {double, double, double, double, double, double, double, double, double, double, double}; 
+  2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 
@@ -54,9 +54,9 @@ Vector<double> v2(11,0.25);
 
 **The result is**
 ```C++
-  v1 = {double, double, double, double, double, double, double, double, double, double, double}; 
-  v2 = {double, double, double, double, double, double, double, double, double, double, double}; 
-  op2<double,fmax>(v1,v2) = {double, double, double, double, double, double, double, double, double, double, double}; 
+  v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  v2 = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
+  op2<double,fmax>(v1,v2) = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
 ```
 
 ### Applying User-defined functions using the `valarray` inside
@@ -72,8 +72,8 @@ v2 = v1.getValArray().apply(pos);
 
 **The result is**
 ```C++
-  v1 = {double, double, double, double, double, double, double, double, double, double, double}; 
-  v2 = {double, double, double, double, double, double, double, double, double, double, double}; 
+  v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  v2 = {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
 ```
 
 
@@ -117,9 +117,9 @@ Vector<int> v2(range<int>(-2,2));
 
 **Some expressions with results**: Applying User-defined bound-in function `pos` 
 ```C++
-  pos(v1) = {double, double, double, double, double, double, double, double, double, double, double}; 
+  pos(v1) = {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   pos(v2) = {0, 0, 0, 1, 2}; 
-  2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = {double, double, double, double, double, double, double, double, double, double, double}; 
+  2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 

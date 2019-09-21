@@ -1,6 +1,6 @@
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.16-r21).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -292,7 +292,7 @@ double x = 2.51;
 
 **Results**: The default format is `"%g"` which yields
 ```C++
-  x = double; 
+  x = 2.51; 
 ```
 
 ```C++
@@ -304,7 +304,7 @@ setFormatString<double>("%+18.15f");
 
 **Results**: The format `"%+18.15f"`  yields
 ```C++
-  x = double; 
+  x = 2.51; 
 ```
 
 
@@ -462,7 +462,7 @@ Vector<double> v = range<double>(1001,1010);;
 The default format yields
 
 ```C++
-v = {double,double,double,double,double,double,double,double,double,double}; 
+v = {1001,1002,1003,1004,1005,1006,1007,1008,1009,1010}; 
 ```
 #### Mathematica-style Vector format
 
@@ -510,8 +510,8 @@ The Mathematica format yields
 
 ```C++
 v = {
-    doubl 10^, doubl 10^, doubl 10^, doubl 10^, doubl 10^, 
-    doubl 10^, doubl 10^, doubl 10^, doubl 10^, doubl 10^
+    1001, 1002, 1003, 1004, 1005, 
+    1006, 1007, 1008, 1009, 1010
 }; 
 ```
 #### Matlab-style Vector format
@@ -560,8 +560,8 @@ The Matlab format yields
 
 ```C++
 v = [ ...
-    double, double, double, double, double,  ...
-    double, double, double, double, double ...
+    1001, 1002, 1003, 1004, 1005,  ...
+    1006, 1007, 1008, 1009, 1010 ...
 ]; 
 ```
 ## Changing the color and style settings

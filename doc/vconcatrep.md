@@ -1,6 +1,6 @@
 
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.16-r20).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.16-r21).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors
@@ -16,14 +16,14 @@ Vector<double> v2( range<double>(3,4) );
 
 **The result is**
 ```C++
-  v1 = {double, double, double}; 
-  v2 = {double, double}; 
-  (v1,v2) = {double, double, double, double, double}; 
-  (v1,v2,v1) = {double, double, double, double, double, double, double, double}; 
-  (v1,v2,v1,v2) = {double, double, double, double, double, double, double, double, double, double}; 
-  (10*v1,v2) = {double, double, double, double, double}; 
-  (v1,10*v2) = {double, double, double, double, double}; 
-  (10*v1,10*v2) = {double, double, double, double, double}; 
+  v1 = {0, 1, 2}; 
+  v2 = {3, 4}; 
+  (v1,v2) = {0, 1, 2, 3, 4}; 
+  (v1,v2,v1) = {0, 1, 2, 3, 4, 0, 1, 2}; 
+  (v1,v2,v1,v2) = {0, 1, 2, 3, 4, 0, 1, 2, 3, 4}; 
+  (10*v1,v2) = {0, 10, 20, 3, 4}; 
+  (v1,10*v2) = {0, 1, 2, 30, 40}; 
+  (10*v1,10*v2) = {0, 10, 20, 30, 40}; 
 ```
 
 
@@ -37,8 +37,8 @@ Vector<double> vb(3);
 
 **The result is**
 ```C++
-  va = {double, double}; 
-  vb = {double, double, double}; 
+  va = {1, 2}; 
+  vb = {3, 4, 5}; 
 ```
 
 ```C++
@@ -49,8 +49,8 @@ Vector<double> ub(3);
 
 **The result is**
 ```C++
-  ua = {double, double}; 
-  ub = {double, double, double}; 
+  ua = {2, 1}; 
+  ub = {3, 4, 5}; 
 ```
 
 ```C++
@@ -61,8 +61,8 @@ Vector<double> wb(3);
 
 **The result is**
 ```C++
-  wa = {double, double}; 
-  wb = {double, double, double}; 
+  wa = {1, 2}; 
+  wb = {5, 4, 3}; 
 ```
 
 ```C++
@@ -73,8 +73,8 @@ Vector<double> zb(3);
 
 **The result is**
 ```C++
-  za = {double, double}; 
-  zb = {double, double, double}; 
+  za = {2, 1}; 
+  zb = {5, 4, 3}; 
 ```
 
 ### Vector `rep` function
@@ -97,11 +97,11 @@ v5 = rep((v1,v2),2);
 
 **The result is**
 ```C++
-  v1 = {double, double, double}; 
-  v2 = {double, double}; 
-  v3 = {double, double, double, double, double, double, double, double, double}; 
-  v4 = {double, double, double, double, double, double, double, double, double, double, double, double}; 
-  v5 = {double, double, double, double, double, double, double, double, double, double}; 
+  v1 = {1, 2, 3}; 
+  v2 = {4, 5}; 
+  v3 = {1, 2, 3, 1, 2, 3, 1, 2, 3}; 
+  v4 = {1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 4, 5}; 
+  v5 = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5}; 
 ```
 
 

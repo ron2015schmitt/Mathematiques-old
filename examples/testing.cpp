@@ -11,6 +11,8 @@
 #include "TypeTraits.h"
 #include <string>
 
+  
+
 
 // template bag of tricks
 
@@ -33,6 +35,13 @@ template <class T, template <class> class U>
 struct is_instance<U<T>, U> : public std::true_type {};
 
 
+  double f1(double x) {
+    return ((x>=0) ? x : 0);
+  }
+
+double f2(double x, double y) {
+    return ((x>=0) ? x : 0);
+  }
 
 
 int main()
@@ -171,7 +180,44 @@ int main()
 
   double d;
 
-  mout << Fun_Plus_base::expression("x") << endl;
+  mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
+  mout << is_instance<Fun_Multiply<double>, Fun_Multiply>{} <<endl;
+
+  short var_short;
+  int var_int;
+  long int var_long;
+  long long var_longlong;
+  std::string var_string;
+  mout << getTypeName(var_short) << endl;
+  mout << getTypeName(var_int) << endl;
+  mout << getTypeName(var_long) << endl;
+  mout << getTypeName(var_longlong) << endl;
+  mout << getTypeName(var_string) << endl;
+  mout << "sizeof(char) = " << sizeof(char) << endl;
+  mout << "sizeof(short) = " << sizeof(short) << endl;
+  mout << "sizeof(int) = " << sizeof(int) << endl;
+  mout << "sizeof(long) = " << sizeof(long) << endl;
+  mout << "sizeof(long long) = " << sizeof(long long) << endl;
+  mout << endl;
+  mout << "sizeof(float) = " << sizeof(float) << endl;
+  mout << "sizeof(double) = " << sizeof(double) << endl;
+  mout << "sizeof(long double) = " << sizeof(long double) << endl;
+  mout << endl;
+  mout << "sizeof(bool) = " << sizeof(bool) << endl;
+  mout << "sizeof(std::complex<float>) = " << sizeof(std::complex<float>) << endl;
+
+  char var_char;
+  unsigned char var_unsigned_char;
+  signed char var_signed_char;
+  unsigned int var_unsigned_int;
+  signed int var_signed_int;
+  mout << (typeid(var_char) == typeid(var_unsigned_char)) << endl;
+  mout << (typeid(var_char) == typeid(var_signed_char)) << endl;
+
+  mout << (typeid(var_int) == typeid(var_unsigned_int)) << endl;
+  mout << (typeid(var_int) == typeid(var_signed_int)) << endl;
+
+  mout << Fun_Plus_Base::expression("x") << endl;
 
   mout << Fun_Plus<double>::classname() << getBracketedTypeName(d) << " ";
   mout << Fun_Plus<double>::expression("x") << endl;
@@ -266,42 +312,38 @@ int main()
   mout << Fun_Roundzero<double>::classname() << getBracketedTypeName(d) << " ";
   mout << Fun_Roundzero<double>::expression("x","y") << endl;
 
-  mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
-  mout << is_instance<Fun_Multiply<double>, Fun_Multiply>{} <<endl;
 
-  short var_short;
-  int var_int;
-  long int var_long;
-  long long var_longlong;
-  std::string var_string;
-  mout << getTypeName(var_short) << endl;
-  mout << getTypeName(var_int) << endl;
-  mout << getTypeName(var_long) << endl;
-  mout << getTypeName(var_longlong) << endl;
-  mout << getTypeName(var_string) << endl;
-  mout << "sizeof(char) = " << sizeof(char) << endl;
-  mout << "sizeof(short) = " << sizeof(short) << endl;
-  mout << "sizeof(int) = " << sizeof(int) << endl;
-  mout << "sizeof(long) = " << sizeof(long) << endl;
-  mout << "sizeof(long long) = " << sizeof(long long) << endl;
-  mout << endl;
-  mout << "sizeof(float) = " << sizeof(float) << endl;
-  mout << "sizeof(double) = " << sizeof(double) << endl;
-  mout << "sizeof(long double) = " << sizeof(long double) << endl;
-  mout << endl;
-  mout << "sizeof(bool) = " << sizeof(bool) << endl;
-  mout << "sizeof(std::complex<float>) = " << sizeof(std::complex<float>) << endl;
+  s = StyledString::get(ANGLE1).get() + getTypeName(d) + StyledString::get(COMMA).get() + "function(.,.)" + StyledString::get(ANGLE2).get();
+  mout << Fun_UnaryUser<double,f1>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_UnaryUser<double,f1>::expression("x") << endl;
+  mout << Fun_BinaryUser<double,f2>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
 
-  char var_char;
-  unsigned char var_unsigned_char;
-  signed char var_signed_char;
-  unsigned int var_unsigned_int;
-  signed int var_signed_int;
-  mout << (typeid(var_char) == typeid(var_unsigned_char)) << endl;
-  mout << (typeid(var_char) == typeid(var_signed_char)) << endl;
 
-  mout << (typeid(var_int) == typeid(var_unsigned_int)) << endl;
-  mout << (typeid(var_int) == typeid(var_signed_int)) << endl;
+  mout << Fun_Not::classname() << getBracketedTypeName(true) << " ";
+  mout << Fun_Not::expression("x") << endl;
+  mout << Fun_And::classname() << getBracketedTypeName(true) << " ";
+  mout << Fun_And::expression("x","y") << endl;
+  mout << Fun_Or::classname() << getBracketedTypeName(true) << " ";
+  mout << Fun_Or::expression("x","y") << endl;
 
+
+  mout << Fun_Equal<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Equal<double>::expression("x","y") << endl;
+  mout << Fun_NotEqual<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_NotEqual<double>::expression("x","y") << endl;
+  mout << Fun_LessOrEqual<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_LessOrEqual<double>::expression("x","y") << endl;
+  mout << Fun_GreaterOrEqual<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_GreaterOrEqual<double>::expression("x","y") << endl;
+  mout << Fun_Less<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Less<double>::expression("x","y") << endl;
+  mout << Fun_Greater<double>::classname() << getBracketedTypeName(d) << " ";
+  mout << Fun_Greater<double>::expression("x","y") << endl;
+
+  mout << typeid(&f1).name() <<endl;
+  mout << typeid(f2).name() <<endl;
+  mout << typeid(FunctionTypes<double>::unary_func).name() <<endl;
+  mout << getTypeName(f1) <<endl;
   return 0;
 }

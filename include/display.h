@@ -3,7 +3,7 @@
 
 #include <unistd.h>
 #include <stdarg.h>
-
+#include <functional>
 
 
 namespace display {
@@ -416,15 +416,22 @@ namespace display {
 
   // container type2
   template <typename D1, typename D2, template<typename,typename> typename C> inline Style getTypeStyle(const C<const D1, const D2>& var) {
-    Style style = createStyle(BLUE); 
+    Style style = createStyle(CYAN); 
     return style;    
   }
 
+
+  inline Style getFunctionTypeStyle() {
+    return createStyle(BLUE);
+  }
+    
+
+  
   //---------------------------------------------------------------------------------
   //       getTypeName
   //---------------------------------------------------------------------------------
   
-  template <typename T> inline std::string getTypeName(const T& var) {
+  template <class T> inline std::string getTypeName(const T& var) {
     return getTypeStyle(var).apply(var.classname());
   }
 
@@ -462,6 +469,7 @@ namespace display {
   SPECIALIZE_getTypeName(std::string);
   SPECIALIZE_getTypeName(bool);
 
+  //std::complex
   template <class D>
     inline std::string getTypeName(const std::complex<D> & var) {
     std::string s = getTypeStyle(var).apply("std::complex");
@@ -478,6 +486,28 @@ namespace display {
     stream << tname << StyledString::get(BRACKET1).get() << N << StyledString::get(BRACKET2).get();
     return stream.str();
   }
+
+
+
+  // This does not overridfe the default
+  //  template <class D>
+  //  inline std::string getTypeName(typename matricks::FunctionTypes<D>::unary_func var) {
+  //  std::string s = display::getFunctionTypeStyle().apply("userfunc");
+  //  double d = 0;
+  //  std::string sd = display::getTypeName(d);
+  //  s = sd + "(*"+s+")"+"("+sd+")";
+  //  return s;
+  //}
+
+
+  // this works
+  inline std::string getTypeName(typename matricks::FunctionTypes<double>::unary_func var) {
+    std::string sfunc = display::getFunctionTypeStyle().apply("func");
+    double d;
+    std::string sd = display::getTypeName(d);
+    return sd + " "+sfunc+ StyledString::get(PAREN1).get()+sd+","+sd+StyledString::get(PAREN2).get();
+  }
+
 
 
 #define SPECIALIZE_getTypeName_CONTAINER(TYPE)			\

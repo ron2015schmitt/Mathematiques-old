@@ -454,18 +454,18 @@ namespace matricks {
   // a==b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApEqual<D> >  
+    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Equal<D> >  
     operator==( const VorE<D,A>& a, const  VorE<D,B>& b ) {
-    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApEqual<D> >(a,b);
+    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Equal<D> >(a,b);
   }
 
 
   // a!=b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApNotEqual<D> >  
+    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_NotEqual<D> >  
     operator!=( const VorE<D,A>& a, const  VorE<D,B>& b ) {
-    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApNotEqual<D> >(a,b);
+    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_NotEqual<D> >(a,b);
   }
 
 
@@ -473,36 +473,36 @@ namespace matricks {
   // a<=b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApLessEqual<D> >  
+    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_LessOrEqual<D> >  
     operator<=( const VorE<D,A>& a, const  VorE<D,B>& b ) {
-    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApLessEqual<D> >(a,b);
+    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_LessOrEqual<D> >(a,b);
   }
 
 
   // a>=b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApGreaterEqual<D> >  
+    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_GreaterOrEqual<D> >  
     operator>=( const VorE<D,A>& a, const  VorE<D,B>& b ) {
-    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApGreaterEqual<D> >(a,b);
+    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_GreaterOrEqual<D> >(a,b);
   }
 
 
   // a<b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApLess<D> >  
+    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Less<D> >  
     operator<( const VorE<D,A>& a, const  VorE<D,B>& b ) {
-    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApLess<D> >(a,b);
+    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Less<D> >(a,b);
   }
 
 
   // a>b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApGreat<D> >  
+    inline VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Greater<D> >  
     operator>( const VorE<D,A>& a, const  VorE<D,B>& b ) {
-    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,ApGreat<D> >(a,b);
+    return VBoolBinOp<D,VorE<D,A>,VorE<D,B>,Fun_Greater<D> >(a,b);
   }
 
 
@@ -904,38 +904,38 @@ namespace matricks {
   // vector && scalar
 
   template <class A> 
-    inline VecOpScal<bool,VorE<bool,A>,ApAnd > 
+    inline VecOpScal<bool,VorE<bool,A>,Fun_And > 
     operator&&(const VorE<bool,A>& a, const bool b)
     {
-      return  VecOpScal<bool,VorE<bool,A>,ApAnd >(a,b);
+      return  VecOpScal<bool,VorE<bool,A>,Fun_And >(a,b);
     }
 
   // scalar && vector
 
   template <class B> 
-    inline ScalOpVec<bool,VorE<bool,B>,ApAnd > 
+    inline ScalOpVec<bool,VorE<bool,B>,Fun_And > 
     operator&&(const bool a, const VorE<bool,B>& b)
     {
-      return  ScalOpVec<bool,VorE<bool,B>,ApAnd >(a,b);
+      return  ScalOpVec<bool,VorE<bool,B>,Fun_And >(a,b);
     }
 
   
   // vector || scalar
 
   template <class A> 
-    inline VecOpScal<bool,VorE<bool,A>,ApOr > 
+    inline VecOpScal<bool,VorE<bool,A>,Fun_Or > 
     operator||(const VorE<bool,A>& a, const bool b)
     {
-      return  VecOpScal<bool,VorE<bool,A>,ApOr >(a,b);
+      return  VecOpScal<bool,VorE<bool,A>,Fun_Or >(a,b);
     }
 
   // scalar || vector
 
   template <class B> 
-    inline ScalOpVec<bool,VorE<bool,B>,ApOr > 
+    inline ScalOpVec<bool,VorE<bool,B>,Fun_Or > 
     operator||(const bool a, const VorE<bool,B>& b)
     {
-      return  ScalOpVec<bool,VorE<bool,B>,ApOr >(a,b);
+      return  ScalOpVec<bool,VorE<bool,B>,Fun_Or >(a,b);
     }
 
 
@@ -943,105 +943,105 @@ namespace matricks {
   // vector == scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_Equal<D> > 
     operator==(const VorE<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApEqual<D> >(a,b);
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_Equal<D> >(a,b);
     }
 
   // scalar == vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_Equal<D> > 
     operator==(const D a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApEqual<D> >(a,b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_Equal<D> >(a,b);
     }
 
   // vector != scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApNotEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_NotEqual<D> > 
     operator!=(const VorE<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApNotEqual<D> >(a,b);
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_NotEqual<D> >(a,b);
     }
 
   // scalar != vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApNotEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_NotEqual<D> > 
     operator!=(const D a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApNotEqual<D> >(a,b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_NotEqual<D> >(a,b);
     }
   // vector <= scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApLessEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_LessOrEqual<D> > 
     operator<=(const VorE<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApLessEqual<D> >(a,b);
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_LessOrEqual<D> >(a,b);
     }
 
   // scalar <= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApLessEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_LessOrEqual<D> > 
     operator<=(const D a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApLessEqual<D> >(a,b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_LessOrEqual<D> >(a,b);
     }
   // vector >= scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApGreaterEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_GreaterOrEqual<D> > 
     operator>=(const VorE<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApGreaterEqual<D> >(a,b);
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_GreaterOrEqual<D> >(a,b);
     }
 
   // scalar >= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApGreaterEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_GreaterOrEqual<D> > 
     operator>=(const D a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApGreaterEqual<D> >(a,b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_GreaterOrEqual<D> >(a,b);
     }
   // vector < scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApLess<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_Less<D> > 
     operator<(const VorE<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApLess<D> >(a,b);
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_Less<D> >(a,b);
     }
 
   // scalar < vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApLess<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_Less<D> > 
     operator<(const D a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApLess<D> >(a,b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_Less<D> >(a,b);
     }
   // vector > scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApGreat<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_Greater<D> > 
     operator>(const VorE<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApGreat<D> >(a,b);
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_Greater<D> >(a,b);
     }
 
   // scalar > vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApGreat<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_Greater<D> > 
     operator>(const D a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApGreat<D> >(a,b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_Greater<D> >(a,b);
     }
 
 
@@ -1051,123 +1051,123 @@ namespace matricks {
   // vector == int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_Equal<D> > 
     operator==(const VorE<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApEqual<D> >(a,static_cast<D>(b));
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_Equal<D> >(a,static_cast<D>(b));
     }
 
   // int scalar == vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_Equal<D> > 
     operator==(const int a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApEqual<D> >(static_cast<D>(a),b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_Equal<D> >(static_cast<D>(a),b);
     }
 
   // vector != int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApNotEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_NotEqual<D> > 
     operator!=(const VorE<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApNotEqual<D> >(a,static_cast<D>(b));
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_NotEqual<D> >(a,static_cast<D>(b));
     }
 
   // int scalar != vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApNotEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_NotEqual<D> > 
     operator!=(const int a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApNotEqual<D> >(static_cast<D>(a),b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_NotEqual<D> >(static_cast<D>(a),b);
     }
   // vector <= int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApLessEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_LessOrEqual<D> > 
     operator<=(const VorE<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApLessEqual<D> >(a,static_cast<D>(b));
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_LessOrEqual<D> >(a,static_cast<D>(b));
     }
 
   // int scalar <= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApLessEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_LessOrEqual<D> > 
     operator<=(const int a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApLessEqual<D> >(static_cast<D>(a),b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_LessOrEqual<D> >(static_cast<D>(a),b);
     }
   // vector >= int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApGreaterEqual<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_GreaterOrEqual<D> > 
     operator>=(const VorE<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApGreaterEqual<D> >(a,static_cast<D>(b));
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_GreaterOrEqual<D> >(a,static_cast<D>(b));
     }
 
   // int scalar >= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApGreaterEqual<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_GreaterOrEqual<D> > 
     operator>=(const int a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApGreaterEqual<D> >(static_cast<D>(a),b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_GreaterOrEqual<D> >(static_cast<D>(a),b);
     }
   // vector < int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApLess<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_Less<D> > 
     operator<(const VorE<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApLess<D> >(a,static_cast<D>(b));
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_Less<D> >(a,static_cast<D>(b));
     }
 
   // int scalar < vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApLess<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_Less<D> > 
     operator<(const int a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApLess<D> >(static_cast<D>(a),b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_Less<D> >(static_cast<D>(a),b);
     }
   // vector > int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,VorE<D,A>,ApGreat<D> > 
+    inline BoolVecOpScal<D,VorE<D,A>,Fun_Greater<D> > 
     operator>(const VorE<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,VorE<D,A>,ApGreat<D> >(a,static_cast<D>(b));
+      return  BoolVecOpScal<D,VorE<D,A>,Fun_Greater<D> >(a,static_cast<D>(b));
     }
 
   // int scalar > vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,VorE<D,B>,ApGreat<D> > 
+    inline BoolScalOpVec<D,VorE<D,B>,Fun_Greater<D> > 
     operator>(const int a, const VorE<D,B>& b)
     {
-      return  BoolScalOpVec<D,VorE<D,B>,ApGreat<D> >(static_cast<D>(a),b);
+      return  BoolScalOpVec<D,VorE<D,B>,Fun_Greater<D> >(static_cast<D>(a),b);
     }
 
   // vector && vector
 
   template <class A, class B> 
-    inline VBinOp<bool,VorE<bool,A>,VorE<bool,B>,ApAnd > 
+    inline VBinOp<bool,VorE<bool,A>,VorE<bool,B>,Fun_And > 
     operator&&(const VorE<bool,A>& a, const VorE<bool,B>& b)
     {
-      return  VBinOp<bool,VorE<bool,A>,VorE<bool,B>,ApAnd >(a,b);
+      return  VBinOp<bool,VorE<bool,A>,VorE<bool,B>,Fun_And >(a,b);
     }
 
   // vector || vector
 
   template <class A, class B> 
-    inline VBinOp<bool,VorE<bool,A>,VorE<bool,B>,ApOr > 
+    inline VBinOp<bool,VorE<bool,A>,VorE<bool,B>,Fun_Or > 
     operator||(const VorE<bool,A>& a, const VorE<bool,B>& b)
     {
-      return  VBinOp<bool,VorE<bool,A>,VorE<bool,B>,ApOr >(a,b);
+      return  VBinOp<bool,VorE<bool,A>,VorE<bool,B>,Fun_Or >(a,b);
     }
 
 
@@ -1177,10 +1177,10 @@ namespace matricks {
   // !(vector)
 
   template <class A> 
-    inline VFuncOp<bool,VorE<bool,A>,ApNot > 
+    inline VFuncOp<bool,VorE<bool,A>,Fun_Not > 
     operator!(const VorE<bool,A>& a)
     {
-      return  VFuncOp<bool,VorE<bool,A>,ApNot >(a);
+      return  VFuncOp<bool,VorE<bool,A>,Fun_Not >(a);
     }
   
   
@@ -1191,20 +1191,20 @@ namespace matricks {
 
 
   
-  template <class D, typename TypeHelper<D>::binary_func F, class A, class B> 
-    inline VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> > 
+  template <class D, typename FunctionTypes<D>::binary_func F, class A, class B> 
+    inline VBinOp<D, VorE<D,A>, VorE<D,B>, Fun_BinaryUser<D,F> > 
     op2(const VorE<D,A>& a, const VorE<D,B>& b)
     {
-      return  VBinOp<D, VorE<D,A>, VorE<D,B>, ApFun2<D,F> >(a,b);
+      return  VBinOp<D, VorE<D,A>, VorE<D,B>, Fun_BinaryUser<D,F> >(a,b);
     }
 
 
   // user-defined functions
-  template <class D, typename TypeHelper<D>::unary_func F, class A> 
-    inline VFuncOp<D, VorE<D,A>, ApFun1<D,F> > 
+  template <class D, typename FunctionTypes<D>::unary_func F, class A> 
+    inline VFuncOp<D, VorE<D,A>, Fun_UnaryUser<D,F> > 
     op1(const VorE<D,A>& a)
     {
-      return  VFuncOp<D, VorE<D,A>, ApFun1<D,F> >(a);
+      return  VFuncOp<D, VorE<D,A>, Fun_UnaryUser<D,F> >(a);
     }
 
 

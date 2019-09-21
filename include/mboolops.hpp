@@ -21,18 +21,18 @@ namespace matricks {
   // a==b
 
   template <class D, class A, class B> 
-  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApEqual<D> >  
+  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Equal<D> >  
   operator==( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApEqual<D> >(a,b);
+    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Equal<D> >(a,b);
   }
 
 
   // a!=b
 
   template <class D, class A, class B> 
-  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApNotEqual<D> >  
+  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_NotEqual<D> >  
   operator!=( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApNotEqual<D> >(a,b);
+    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_NotEqual<D> >(a,b);
   }
 
 
@@ -40,36 +40,36 @@ namespace matricks {
   // a<=b
 
   template <class D, class A, class B> 
-  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApLessEqual<D> >  
+  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_LessOrEqual<D> >  
   operator<=( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApLessEqual<D> >(a,b);
+    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_LessOrEqual<D> >(a,b);
   }
 
 
   // a>=b
 
   template <class D, class A, class B> 
-  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApGreaterEqual<D> >  
+  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_GreaterOrEqual<D> >  
   operator>=( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApGreaterEqual<D> >(a,b);
+    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_GreaterOrEqual<D> >(a,b);
   }
 
 
   // a<b
 
   template <class D, class A, class B> 
-  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApLess<D> >  
+  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Less<D> >  
   operator<( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApLess<D> >(a,b);
+    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Less<D> >(a,b);
   }
 
 
   // a>b
 
   template <class D, class A, class B> 
-  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApGreat<D> >  
+  inline MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Greater<D> >  
   operator>( const MorE<D,A>& a, const  MorE<D,B>& b ) {
-    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,ApGreat<D> >(a,b);
+    return MboolBinOp<D,MorE<D,A>,MorE<D,B>,Fun_Greater<D> >(a,b);
   }
 
 
@@ -86,105 +86,105 @@ namespace matricks {
   // matrix == scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_Equal<D> > 
   operator==(const MorE<D,A>& a, const D b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApEqual<D> >(a,b);
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_Equal<D> >(a,b);
   }
 
   // scalar == matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_Equal<D> > 
   operator==(const D a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApEqual<D> >(a,b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_Equal<D> >(a,b);
   }
 
   // matrix != scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApNotEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_NotEqual<D> > 
   operator!=(const MorE<D,A>& a, const D b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApNotEqual<D> >(a,b);
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_NotEqual<D> >(a,b);
   }
 
   // scalar != matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApNotEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_NotEqual<D> > 
   operator!=(const D a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApNotEqual<D> >(a,b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_NotEqual<D> >(a,b);
   }
   // matrix <= scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApLessEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_LessOrEqual<D> > 
   operator<=(const MorE<D,A>& a, const D b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApLessEqual<D> >(a,b);
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_LessOrEqual<D> >(a,b);
   }
 
   // scalar <= matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApLessEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_LessOrEqual<D> > 
   operator<=(const D a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApLessEqual<D> >(a,b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_LessOrEqual<D> >(a,b);
   }
   // matrix >= scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApGreaterEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_GreaterOrEqual<D> > 
   operator>=(const MorE<D,A>& a, const D b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApGreaterEqual<D> >(a,b);
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_GreaterOrEqual<D> >(a,b);
   }
 
   // scalar >= matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApGreaterEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_GreaterOrEqual<D> > 
   operator>=(const D a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApGreaterEqual<D> >(a,b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_GreaterOrEqual<D> >(a,b);
   }
   // matrix < scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApLess<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_Less<D> > 
   operator<(const MorE<D,A>& a, const D b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApLess<D> >(a,b);
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_Less<D> >(a,b);
   }
 
   // scalar < matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApLess<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_Less<D> > 
   operator<(const D a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApLess<D> >(a,b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_Less<D> >(a,b);
   }
   // matrix > scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApGreat<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_Greater<D> > 
   operator>(const MorE<D,A>& a, const D b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApGreat<D> >(a,b);
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_Greater<D> >(a,b);
   }
 
   // scalar > matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApGreat<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_Greater<D> > 
   operator>(const D a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApGreat<D> >(a,b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_Greater<D> >(a,b);
   }
 
 
@@ -194,105 +194,105 @@ namespace matricks {
   // matrix == int scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_Equal<D> > 
   operator==(const MorE<D,A>& a, const int b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApEqual<D> >(a,static_cast<D>(b));
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_Equal<D> >(a,static_cast<D>(b));
   }
 
   // int scalar == matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_Equal<D> > 
   operator==(const int a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApEqual<D> >(static_cast<D>(a),b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_Equal<D> >(static_cast<D>(a),b);
   }
 
   // matrix != int scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApNotEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_NotEqual<D> > 
   operator!=(const MorE<D,A>& a, const int b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApNotEqual<D> >(a,static_cast<D>(b));
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_NotEqual<D> >(a,static_cast<D>(b));
   }
 
   // int scalar != matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApNotEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_NotEqual<D> > 
   operator!=(const int a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApNotEqual<D> >(static_cast<D>(a),b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_NotEqual<D> >(static_cast<D>(a),b);
   }
   // matrix <= int scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApLessEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_LessOrEqual<D> > 
   operator<=(const MorE<D,A>& a, const int b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApLessEqual<D> >(a,static_cast<D>(b));
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_LessOrEqual<D> >(a,static_cast<D>(b));
   }
 
   // int scalar <= matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApLessEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_LessOrEqual<D> > 
   operator<=(const int a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApLessEqual<D> >(static_cast<D>(a),b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_LessOrEqual<D> >(static_cast<D>(a),b);
   }
   // matrix >= int scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApGreaterEqual<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_GreaterOrEqual<D> > 
   operator>=(const MorE<D,A>& a, const int b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApGreaterEqual<D> >(a,static_cast<D>(b));
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_GreaterOrEqual<D> >(a,static_cast<D>(b));
   }
 
   // int scalar >= matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApGreaterEqual<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_GreaterOrEqual<D> > 
   operator>=(const int a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApGreaterEqual<D> >(static_cast<D>(a),b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_GreaterOrEqual<D> >(static_cast<D>(a),b);
   }
   // matrix < int scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApLess<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_Less<D> > 
   operator<(const MorE<D,A>& a, const int b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApLess<D> >(a,static_cast<D>(b));
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_Less<D> >(a,static_cast<D>(b));
   }
 
   // int scalar < matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApLess<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_Less<D> > 
   operator<(const int a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApLess<D> >(static_cast<D>(a),b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_Less<D> >(static_cast<D>(a),b);
   }
   // matrix > int scalar
 
   template <class D, class A> 
-  inline BoolMatOpScal<D,MorE<D,A>,ApGreat<D> > 
+  inline BoolMatOpScal<D,MorE<D,A>,Fun_Greater<D> > 
   operator>(const MorE<D,A>& a, const int b)
   {
-    return  BoolMatOpScal<D,MorE<D,A>,ApGreat<D> >(a,static_cast<D>(b));
+    return  BoolMatOpScal<D,MorE<D,A>,Fun_Greater<D> >(a,static_cast<D>(b));
   }
 
   // int scalar > matrix
 
   template <class D, class B> 
-  inline BoolScalOpMat<D,MorE<D,B>,ApGreat<D> > 
+  inline BoolScalOpMat<D,MorE<D,B>,Fun_Greater<D> > 
   operator>(const int a, const MorE<D,B>& b)
   {
-    return  BoolScalOpMat<D,MorE<D,B>,ApGreat<D> >(static_cast<D>(a),b);
+    return  BoolScalOpMat<D,MorE<D,B>,Fun_Greater<D> >(static_cast<D>(a),b);
   }
 
 
@@ -309,19 +309,19 @@ namespace matricks {
   // matrix && matrix
 
   template <class A, class B> 
-  inline MBinOp<bool,MorE<bool,A>,MorE<bool,B>,ApAnd > 
+  inline MBinOp<bool,MorE<bool,A>,MorE<bool,B>,Fun_And > 
   operator&&(const MorE<bool,A>& a, const MorE<bool,B>& b)
   {
-    return  MBinOp<bool,MorE<bool,A>,MorE<bool,B>,ApAnd >(a,b);
+    return  MBinOp<bool,MorE<bool,A>,MorE<bool,B>,Fun_And >(a,b);
   }
 
   // matrix || matrix
 
   template <class A, class B> 
-  inline MBinOp<bool,MorE<bool,A>,MorE<bool,B>,ApOr > 
+  inline MBinOp<bool,MorE<bool,A>,MorE<bool,B>,Fun_Or > 
   operator||(const MorE<bool,A>& a, const MorE<bool,B>& b)
   {
-    return  MBinOp<bool,MorE<bool,A>,MorE<bool,B>,ApOr >(a,b);
+    return  MBinOp<bool,MorE<bool,A>,MorE<bool,B>,Fun_Or >(a,b);
   }
 
 
@@ -344,38 +344,38 @@ namespace matricks {
   // matrix && scalar
 
   template <class A> 
-  inline MatOpScal<bool,MorE<bool,A>,ApAnd > 
+  inline MatOpScal<bool,MorE<bool,A>,Fun_And > 
   operator&&(const MorE<bool,A>& a, const bool b)
   {
-    return  MatOpScal<bool,MorE<bool,A>,ApAnd >(a,b);
+    return  MatOpScal<bool,MorE<bool,A>,Fun_And >(a,b);
   }
 
   // scalar && matrix
 
   template <class B> 
-  inline ScalOpMat<bool,MorE<bool,B>,ApAnd > 
+  inline ScalOpMat<bool,MorE<bool,B>,Fun_And > 
   operator&&(const bool a, const MorE<bool,B>& b)
   {
-    return  ScalOpMat<bool,MorE<bool,B>,ApAnd >(a,b);
+    return  ScalOpMat<bool,MorE<bool,B>,Fun_And >(a,b);
   }
 
   
   // matrix || scalar
 
   template <class A> 
-  inline MatOpScal<bool,MorE<bool,A>,ApOr > 
+  inline MatOpScal<bool,MorE<bool,A>,Fun_Or > 
   operator||(const MorE<bool,A>& a, const bool b)
   {
-    return  MatOpScal<bool,MorE<bool,A>,ApOr >(a,b);
+    return  MatOpScal<bool,MorE<bool,A>,Fun_Or >(a,b);
   }
 
   // scalar || matrix
 
   template <class B> 
-  inline ScalOpMat<bool,MorE<bool,B>,ApOr > 
+  inline ScalOpMat<bool,MorE<bool,B>,Fun_Or > 
   operator||(const bool a, const MorE<bool,B>& b)
   {
-    return  ScalOpMat<bool,MorE<bool,B>,ApOr >(a,b);
+    return  ScalOpMat<bool,MorE<bool,B>,Fun_Or >(a,b);
   }
 
 
@@ -392,10 +392,10 @@ namespace matricks {
   // !(matrix)
 
   template <class A> 
-  inline MFuncOp<bool,MorE<bool,A>,ApNot > 
+  inline MFuncOp<bool,MorE<bool,A>,Fun_Not > 
   operator!(const MorE<bool,A>& a)
   {
-    return  MFuncOp<bool,MorE<bool,A>,ApNot >(a);
+    return  MFuncOp<bool,MorE<bool,A>,Fun_Not >(a);
   }
   
 

@@ -26,13 +26,13 @@ namespace matricks {
   // unary+ operator
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Plus_base {
+  class Fun_Plus_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Plus : public Fun_Plus_base {
+  template <class D> class Fun_Plus : public Fun_Plus_Base {
 #else 
   template <class D> class Fun_Plus                       {
 #endif
@@ -50,13 +50,13 @@ namespace matricks {
   // unary-
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Minus_base {
+  class Fun_Minus_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
 
-  template <class D> class Fun_Minus : public Fun_Minus_base {
+  template <class D> class Fun_Minus : public Fun_Minus_Base {
 #else
   template <class D> class Fun_Minus {
 #endif
@@ -100,13 +100,13 @@ namespace matricks {
   // y = a + b
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Add_base {
+  class Fun_Add_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class Fun_Add : public Fun_Add_base {
+  template <class D> class Fun_Add : public Fun_Add_Base {
 #else 
   template <class D> class Fun_Add {
 #endif
@@ -124,13 +124,13 @@ namespace matricks {
   // y = a - b
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Subtract_base {
+  class Fun_Subtract_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class Fun_Subtract : public Fun_Subtract_base {
+  template <class D> class Fun_Subtract : public Fun_Subtract_Base {
 #else 
   template <class D> class Fun_Subtract  {
 #endif
@@ -147,13 +147,13 @@ namespace matricks {
   // y = a * b
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Multiply_base {
+  class Fun_Multiply_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class Fun_Multiply : public Fun_Multiply_base {
+  template <class D> class Fun_Multiply : public Fun_Multiply_Base {
 #else 
   template <class D> class Fun_Multiply  {
 #endif
@@ -172,13 +172,13 @@ namespace matricks {
   // y = a / b
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Divide_base {
+  class Fun_Divide_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class Fun_Divide : public Fun_Divide_base {
+  template <class D> class Fun_Divide : public Fun_Divide_Base {
 #else 
   template <class D> class Fun_Divide {
 #endif
@@ -203,13 +203,13 @@ namespace matricks {
   // ie. a raised to the b power
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Pow_base {
+  class Fun_Pow_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
 
-  template <class D> class Fun_Pow : public Fun_Pow_base {
+  template <class D> class Fun_Pow : public Fun_Pow_Base {
 #else 
   template <class D> class Fun_Pow {
 #endif
@@ -226,12 +226,12 @@ namespace matricks {
   // ie. a raised to the n power
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Monomial_base {
+  class Fun_Monomial_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
-  template <class D> class Fun_Monomial : public Fun_Monomial_base {
+  template <class D> class Fun_Monomial : public Fun_Monomial_Base {
 #else 
   template <class D> class Fun_Monomial {
 #endif
@@ -249,13 +249,13 @@ namespace matricks {
   // sqr(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Sqr_base {
+  class Fun_Sqr_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Sqr : public Fun_Sqr_base {
+  template <class D> class Fun_Sqr : public Fun_Sqr_Base {
 #else 
   template <class D> class Fun_Sqr {
 #endif
@@ -272,13 +272,13 @@ namespace matricks {
   // cube(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Cube_base {
+  class Fun_Cube_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Cube : public Fun_Cube_base {
+  template <class D> class Fun_Cube : public Fun_Cube_Base {
 #else 
   template <class D> class Fun_Cube {
 #endif
@@ -294,13 +294,13 @@ namespace matricks {
   // sqrt(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Sqrt_base {
+  class Fun_Sqrt_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Sqrt : public Fun_Sqrt_base {
+  template <class D> class Fun_Sqrt : public Fun_Sqrt_Base {
 #else 
   template <class D> class Fun_Sqrt {
 #endif
@@ -317,13 +317,13 @@ namespace matricks {
 
   // exp(a)
 #if MATRICKS_DEBUG>=1
-  class Fun_Exp_base {
+  class Fun_Exp_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Exp : public Fun_Exp_base {
+  template <class D> class Fun_Exp : public Fun_Exp_Base {
 #else 
     template <class D> class Fun_Exp {
 #endif
@@ -341,13 +341,13 @@ namespace matricks {
   // log(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Log_base {
+  class Fun_Log_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Log : public Fun_Log_base {
+  template <class D> class Fun_Log : public Fun_Log_Base {
 #else 
   template <class D> class Fun_Log {
 #endif
@@ -366,13 +366,13 @@ namespace matricks {
   // log2(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Log2_base {
+  class Fun_Log2_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Log2 : public Fun_Log2_base {
+  template <class D> class Fun_Log2 : public Fun_Log2_Base {
 #else 
   template <class D> class Fun_Log2 {
 #endif
@@ -390,13 +390,13 @@ namespace matricks {
   // log10(a)
  
 #if MATRICKS_DEBUG>=1
-  class Fun_Log10_base {
+  class Fun_Log10_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Log10 : public Fun_Log10_base {
+  template <class D> class Fun_Log10 : public Fun_Log10_Base {
 #else 
   template <class D> class Fun_Log10 {
 #endif
@@ -420,13 +420,13 @@ namespace matricks {
   // sin(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Sin_base {
+  class Fun_Sin_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Sin : public Fun_Sin_base {
+  template <class D> class Fun_Sin : public Fun_Sin_Base {
 #else 
     template <class D> class Fun_Sin {
 #endif
@@ -444,13 +444,13 @@ namespace matricks {
   // cos(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Cos_base {
+  class Fun_Cos_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Cos : public Fun_Cos_base {
+  template <class D> class Fun_Cos : public Fun_Cos_Base {
 #else 
     template <class D> class Fun_Cos {
 #endif
@@ -470,13 +470,13 @@ namespace matricks {
   // tan(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Tan_base {
+  class Fun_Tan_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Tan : public Fun_Tan_base {
+  template <class D> class Fun_Tan : public Fun_Tan_Base {
 #else 
     template <class D> class Fun_Tan {
 #endif
@@ -493,13 +493,13 @@ namespace matricks {
   // asin(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Asin_base {
+  class Fun_Asin_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Asin : public Fun_Asin_base {
+  template <class D> class Fun_Asin : public Fun_Asin_Base {
 #else 
   template <class D> class Fun_Asin                       {
 #endif
@@ -517,13 +517,13 @@ namespace matricks {
   // acos(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Acos_base {
+  class Fun_Acos_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Acos : public Fun_Acos_base {
+  template <class D> class Fun_Acos : public Fun_Acos_Base {
 #else 
   template <class D> class Fun_Acos                       {
 #endif
@@ -541,13 +541,13 @@ namespace matricks {
   // atan(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Atan_base {
+  class Fun_Atan_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Atan : public Fun_Atan_base {
+  template <class D> class Fun_Atan : public Fun_Atan_Base {
 #else 
   template <class D> class Fun_Atan {
 #endif
@@ -566,12 +566,12 @@ namespace matricks {
     // y = atan2(a,b)  
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Atan2_base {
+  class Fun_Atan2_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
-  template <class D> class Fun_Atan2 : public Fun_Atan2_base {
+  template <class D> class Fun_Atan2 : public Fun_Atan2_Base {
 #else 
   template <class D> class Fun_Atan2 {
 #endif
@@ -589,13 +589,13 @@ namespace matricks {
   // sinh(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Sinh_base {
+  class Fun_Sinh_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Sinh : public Fun_Sinh_base {
+  template <class D> class Fun_Sinh : public Fun_Sinh_Base {
 #else 
   template <class D> class Fun_Sinh {
 #endif
@@ -614,13 +614,13 @@ namespace matricks {
   // cosh(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Cosh_base {
+  class Fun_Cosh_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Cosh : public Fun_Cosh_base {
+  template <class D> class Fun_Cosh : public Fun_Cosh_Base {
 #else 
   template <class D> class Fun_Cosh {
 #endif
@@ -638,13 +638,13 @@ namespace matricks {
   // tanh(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Tanh_base {
+  class Fun_Tanh_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Tanh : public Fun_Tanh_base {
+  template <class D> class Fun_Tanh : public Fun_Tanh_Base {
 #else 
   template <class D> class Fun_Tanh {
 #endif
@@ -667,13 +667,13 @@ namespace matricks {
     // abs(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Abs_base {
+  class Fun_Abs_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Abs : public Fun_Abs_base {
+  template <class D> class Fun_Abs : public Fun_Abs_Base {
 #else 
   template <class D> class Fun_Abs {
 #endif
@@ -691,13 +691,13 @@ namespace matricks {
   // sgn(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Sgn_base {
+  class Fun_Sgn_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Sgn : public Fun_Sgn_base {
+  template <class D> class Fun_Sgn : public Fun_Sgn_Base {
 #else 
   template <class D> class Fun_Sgn {
 #endif
@@ -716,13 +716,13 @@ namespace matricks {
   // ceil(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Ceil_base {
+  class Fun_Ceil_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Ceil : public Fun_Ceil_base {
+  template <class D> class Fun_Ceil : public Fun_Ceil_Base {
 #else 
   template <class D> class Fun_Ceil {
 #endif
@@ -741,13 +741,13 @@ namespace matricks {
   // floor(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Floor_base {
+  class Fun_Floor_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Floor : public Fun_Floor_base {
+  template <class D> class Fun_Floor : public Fun_Floor_Base {
 #else 
   template <class D> class Fun_Floor {
 #endif
@@ -766,13 +766,13 @@ namespace matricks {
   // round(a)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Round_base {
+  class Fun_Round_Base {
   public:
     static std::string expression(const std::string& sa);
     static std::string classname();
   };
   
-  template <class D> class Fun_Round : public Fun_Round_base {
+  template <class D> class Fun_Round : public Fun_Round_Base {
 #else 
   template <class D> class Fun_Round {
 #endif
@@ -789,13 +789,13 @@ namespace matricks {
   // roundzero(a,tol)
 
 #if MATRICKS_DEBUG>=1
-  class Fun_Roundzero_base {
+  class Fun_Roundzero_Base {
   public:
     static std::string expression(const std::string& sa, const std::string& sb);
     static std::string classname();
   };
   
-  template <class D> class Fun_Roundzero : public Fun_Roundzero_base {
+  template <class D> class Fun_Roundzero : public Fun_Roundzero_Base {
 #else 
   template <class D> class Fun_Roundzero {
 #endif
@@ -813,49 +813,51 @@ namespace matricks {
   // *              User Defined
   // ************************************************************************
 
-  ///////////////////////
-  // refactored to HERE
-  ////////////////////////
-
-  
-  template<class D>
-    struct TypeHelper {
-      typedef D(*unary_func)(D);
-      typedef D(*binary_func)(D, D);
-    };
 
 
   // y = op1<D,userfunc>(a)
 
-  template <class D, typename TypeHelper<D>::unary_func F> class ApFun1 {
+#if MATRICKS_DEBUG>=1
+  class Fun_UnaryUser_Base {
   public:
-    ApFun1() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  template <class D, typename matricks::FunctionTypes<D>::unary_func F> class Fun_UnaryUser : public Fun_UnaryUser_Base {
+#else 
+  template <class D, typename matricks::FunctionTypes<D>::unary_func F> class Fun_UnaryUser {
+#endif
+  public:
+    Fun_UnaryUser() { }
 
     static inline D apply(D a) { 
       return F(a); 
     }
 
-    static std::string expression(const std::string& sa) {
-      std::string sout =std::string("op1<")+  typeid(D).name()+","+typeid(F).name() +">(" + sa + ")";
-      return sout;
-    }
 
+    
   };
 
 
   
   // y = op2<D,userfunc>(a,b)
-  template <class D, typename TypeHelper<D>::binary_func F> class ApFun2 {
+
+#if MATRICKS_DEBUG>=1
+  class Fun_BinaryUser_Base {
   public:
-    ApFun2() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  
+  template <class D, typename FunctionTypes<D>::binary_func F> class Fun_BinaryUser : public Fun_BinaryUser_Base {
+#else 
+  template <class D, typename FunctionTypes<D>::binary_func F> class Fun_BinaryUser {
+#endif
+  public:
+    Fun_BinaryUser() { }
     static inline D apply(const D a, const D b) { 
       return F(a,b); 
-    }
-    
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =std::string("op2<")+ stringify(D)+","+ stringify(F) +">(" + sa + " , " + sb + ")";
-      return sout;
     }
   };
 
@@ -867,55 +869,67 @@ namespace matricks {
 
   // !(a)
 
-  class ApNot {
+#if MATRICKS_DEBUG>=1
+  class Fun_Not_Base {
   public:
-    ApNot() { }
+    static std::string expression(const std::string& sa);
+    static std::string classname();
+  };
+  
+  class Fun_Not : public Fun_Not_Base {
+#else 
+  class Fun_Not {
+#endif
+  public:
+    Fun_Not() { }
 
     static inline bool apply(bool a) { 
       return !(a); 
     }
-
-    static std::string expression(const std::string& sa) {
-      std::string sout = "!(" + sa + ")";
-      return sout;
-    }
-
   };
 
   
   // y = a && b
 
-  class ApAnd {
+#if MATRICKS_DEBUG>=1
+  class Fun_And_Base {
   public:
-    ApAnd() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  
+  class Fun_And :public Fun_And_Base {
+#else 
+  class Fun_And {
+#endif
+  public:
+    Fun_And() { }
   
     static inline bool apply(bool a, bool b) { 
       return a && b; 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " && " + sb;
-      return sout;
-    }
-
   };
 
 
   // y = a || b
 
-  class ApOr {
+#if MATRICKS_DEBUG>=1
+  class Fun_Or_Base {
   public:
-    ApOr() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  
+  class Fun_Or : public Fun_Or_Base {
+#else 
+  class Fun_Or {
+#endif
+  public:
+    Fun_Or() { }
   
     static inline bool apply(bool a, bool b) { 
       return (a || b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " || " + sb + ")";
-      return sout;
-    }
-
   };
 
 
@@ -927,19 +941,23 @@ namespace matricks {
 
   // y = (a == b)
 
-  template <class D> class ApEqual {
+#if MATRICKS_DEBUG>=1
+  class Fun_Equal_Base {
   public:
-    ApEqual() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
   
+  template <class D> class Fun_Equal : public Fun_Equal_Base {
+#else 
+  template <class D> class Fun_Equal {
+#endif
+  public:
+    Fun_Equal() { }
+
     static inline bool apply(D a, D b) { 
       return (a == b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " == " + sb + ")";
-      return sout;
-    }
-
   };
 
  
@@ -948,19 +966,23 @@ namespace matricks {
 
   // y = (a != b)
 
-  template <class D> class ApNotEqual {
-  public:
-    ApNotEqual() { }
   
+#if MATRICKS_DEBUG>=1
+  class Fun_NotEqual_Base {
+  public:
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_NotEqual : public Fun_NotEqual_Base {
+#else 
+  template <class D> class Fun_NotEqual {
+#endif
+  public:
+    Fun_NotEqual() { }
     static inline bool apply(D a, D b) { 
       return (a != b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " != " + sb + ")";
-      return sout;
-    }
-
   };
 
  
@@ -970,19 +992,23 @@ namespace matricks {
 
   // y = (a <= b)
 
-  template <class D> class ApLessEqual {
-  public:
-    ApLessEqual() { }
   
+#if MATRICKS_DEBUG>=1
+  class Fun_LessOrEqual_Base {
+  public:
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
+  
+  template <class D> class Fun_LessOrEqual : public Fun_LessOrEqual_Base {
+#else 
+  template <class D> class Fun_LessOrEqual {
+#endif
+  public:
+    Fun_LessOrEqual() { }
     static inline bool apply(D a, D b) { 
       return (a <= b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " <= " + sb + ")";
-      return sout;
-    }
-
   };
 
 
@@ -991,55 +1017,64 @@ namespace matricks {
 
   // y = (a >= b)
 
-  template <class D> class ApGreaterEqual {
+#if MATRICKS_DEBUG>=1
+  class Fun_GreaterOrEqual_Base {
   public:
-    ApGreaterEqual() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
   
+  template <class D> class Fun_GreaterOrEqual : public Fun_GreaterOrEqual_Base {
+#else 
+  template <class D> class Fun_GreaterOrEqual {
+#endif
+  public:
+    Fun_GreaterOrEqual() { }
     static inline bool apply(D a, D b) { 
       return (a >= b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " >= " + sb + ")";
-      return sout;
-    }
-
   };
 
 
   // y = (a < b)
 
-  template <class D> class ApLess {
+#if MATRICKS_DEBUG>=1
+  class Fun_Less_Base {
   public:
-    ApLess() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
   
+  template <class D> class Fun_Less : public Fun_Less_Base {
+#else 
+  template <class D> class Fun_Less {
+#endif
+  public:
+    Fun_Less() { }
     static inline bool apply(D a, D b) { 
       return (a < b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " < " + sb + ")";
-      return sout;
-    }
-
   };
 
 
   // y = (a > b)
 
-  template <class D> class ApGreat {
+#if MATRICKS_DEBUG>=1
+  class Fun_Greater_Base {
   public:
-    ApGreat() { }
+    static std::string expression(const std::string& sa, const std::string& sb);
+    static std::string classname();
+  };
   
+  template <class D> class Fun_Greater : public Fun_Greater_Base {
+#else 
+  template <class D> class Fun_Greater {
+#endif
+  public:
+    Fun_Greater() { }
     static inline bool apply(D a, D b) { 
       return (a > b); 
     }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "(" + sa + " > " + sb + ")";
-      return sout;
-    }
-
   };
 
 
@@ -1048,6 +1083,9 @@ namespace matricks {
   // *              complex numbers
   // ************************************************************************
 
+  ///////////////////////
+  // refactored to HERE
+  ////////////////////////
 
 
   // polar(r,phi)

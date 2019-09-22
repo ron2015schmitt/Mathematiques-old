@@ -39,16 +39,8 @@ namespace matricks {
       return derived().data(index);
     }
 
-    inline size_type index(void) const {
-      return derived().index();
-    }
-
     inline size_type size(void) const {
       return derived().size();
-    }
-
-    inline VETypes vetype(void) const {
-      return derived().vetype();
     }
 
 
@@ -72,7 +64,7 @@ namespace matricks {
       const size_type N =size();
 
 
-      if ( rhs.checkAddresses(getAddresses()) ) {    
+      if ( this->getAddresses().common( rhs.getAddresses())   ) {    
 	Vector<D> y(N);
 
 	for(register size_type i=0; i<N; i++) 
@@ -96,7 +88,7 @@ namespace matricks {
       const size_type N =size();
 
 
-      if ( rhs.checkAddresses(getAddresses()) ) {    
+      if ( this->getAddresses().common( rhs.getAddresses())   ) {    
 	Vector<D> y(N);
 
 	y=rhs;
@@ -112,24 +104,19 @@ namespace matricks {
 
 
 
-
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
+      return derived().expression();
+    }
+#endif
+
+
+    std::string classname() const {
       return derived().expression();
     }
 
 
-    std::vector<const void*> getAddresses(void) const {
-      return derived().getAddresses();
-    }
-    bool checkAddresses(const std::vector<const void*> addrs) const {
-      return derived().checkAddresses(addrs);
-    }
-    void addAddress(const void* addr) {
-      derived().addAddress(addr);
-    }
-    void addAddresses(const std::vector<const void*> addrs) {
-      derived().addAddresses(addrs);
-    }
+    
     
   };
 

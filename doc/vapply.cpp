@@ -35,15 +35,20 @@ D pos(D x) {\n\
 
 namespace matricks {
 
-  template <class D> class ApPos {
+  template <class D> class Fun_Pos {
   public:
-    ApPos() { }
+    Fun_Pos() { }
 
     static inline D apply(D a) { 
       return (a>=0) ? a : 0; 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
+      std::string sout = "pos(" + sa + ")";
+      return sout;
+    }
+
+    static std::string classname( const std::string& sa) {
       std::string sout = "pos(" + sa + ")";
       return sout;
     }
@@ -52,10 +57,10 @@ namespace matricks {
 
 
   template <class D, class A> 
-  inline VFuncOp<D,VorE<D,A>,ApPos<D> > 
+  inline VFuncOp<D,VorE<D,A>,Fun_Pos<D> > 
   pos(const VorE<D,A>& a)
   {
-    return  VFuncOp<D,VorE<D,A>,ApPos<D> >(a);
+    return  VFuncOp<D,VorE<D,A>,Fun_Pos<D> >(a);
   }
 
 }
@@ -63,16 +68,20 @@ namespace matricks {
 
 char matrickspos_str[] = "\
 namespace matricks { \n\
-\n\
-  template <class D> class Ap_pos {\n\
+  template <class D> class Fun_Pos {\n\
   public:\n\
-    Ap_pos() { }\n\
+    Fun_Pos() { }\n\
 \n\
     static inline D apply(D a) { \n\
       return (a>=0) ? a : 0; \n\
     }\n\
 \n\
-    static std::string debugtxt( const std::string& sa) {\n\
+    static std::string expression( const std::string& sa) {\n\
+      std::string sout = pos(\" + sa + \")\";\n\
+      return sout;\n\
+    }\n\
+\n\
+    static std::string classname( const std::string& sa) {\n\
       std::string sout = \"pos(\" + sa + \")\";\n\
       return sout;\n\
     }\n\
@@ -80,11 +89,12 @@ namespace matricks { \n\
   };\n\
 \n\
   template <class D, class A> \n\
-  inline VFuncOp<D,VorE<D,A>,Ap_pos<D> > \n\
-  pos(const VorE<D,A>& a) {\n\
-    return  VFuncOp<D,VorE<D,A>,Ap_pos<D> >(a);\n\
+  inline VFuncOp<D,VorE<D,A>,Fun_Pos<D> > \n\
+  pos(const VorE<D,A>& a)\n\
+  {\n\
+    return  VFuncOp<D,VorE<D,A>,Fun_Pos<D> >(a);\n\
   }\n\
-}";
+};\n";
 
 
 

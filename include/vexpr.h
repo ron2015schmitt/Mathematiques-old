@@ -19,7 +19,9 @@ namespace matricks {
     inline const  EXP& derived() const {
       return static_cast<const EXP&>(*this);
     }
-
+  protected:
+    VectorofPtrs vaddresses_;
+    
   public:
 
     inline const D operator[](const size_type i) const {
@@ -30,31 +32,32 @@ namespace matricks {
       return derived().size();
     }
 
-    inline VETypes vetype(void) const {
-      return derived().vetype();
-    }
 
-
-    std::vector<const void*> getAddresses(void) const {
-      return derived().getAddresses();
+    VectorofPtrs getAddresses(void) const {
+      return vaddresses_;
     }
-    bool checkAddresses(const std::vector<const void*> addrs) const {
-      return derived().checkAddresses(addrs);
+    void initAddresses() {
+      vaddresses_ = new VectorofPtrs();
     }
     void addAddress(const void* addr) {
-      derived().addAddress(addr);
+      vaddresses_.add(addr);
     }
-    void addAddresses(const std::vector<const void*> addrs) {
-      derived().addAddresses(addrs);
+    void addAddresses(const VectorofPtrs addrs) {
+      vaddresses_.add(addrs);
     }
 
 
-    std::string classname() const {
-      return "Vexpr";
-    }
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return derived().expression();
     }
+#endif
+
+    std::string classname() const {
+      return derived().expression();
+    }
+
+
     friend std::ostream& operator<<(std::ostream &stream, const Vexpr<D,EXP>& ve) {
       Vector<D> v(ve);
       stream << v;

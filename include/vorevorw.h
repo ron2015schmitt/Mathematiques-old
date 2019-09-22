@@ -7,22 +7,6 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * Enumeration for different subclasses of VorE class
-   ****************************************************************************   
-   */
-  enum VETypes {VE_Vector, VE_VScalObj,
-		VE_VSliceExpr,
-		VE_VSliceObj, 
-		VE_VSubsetObj, VE_VSubMaskObj,
-		VE_VReconObj,
-		VE_VJoinExpr, VE_VJoinObj,
-		VE_VRepExpr, 
-		VE_VBinOp, VE_VecOpScal, VE_ScalOpVec, VE_VFuncOp,
-		VE_VSeriesOp, VE_VSeriesOp2,
-		VE_VBoolBinOp, VE_BoolVecOpScal, VE_BoolScalOpVec, VE_VBoolFuncOp,
-		VE_CVecOpScal, VE_CScalOpVec,VE_VRealFromComplex, VE_p3vector};
-
 
 
   /****************************************************************************
@@ -49,28 +33,19 @@ namespace matricks {
       return derived().size();
     }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return derived().expression();
     }
-
-
-    inline VETypes vetype(void) const {
-      return derived().vetype();
+#else
+    std::string expression(void) const {
+      return "";
     }
-
-
-    std::vector<const void*> getAddresses(void) const {
+#endif
+    VectorofPtrs getAddresses(void) const {
       return derived().getAddresses();
     }
-    bool checkAddresses(const std::vector<const void*> addrs) const {
-      return derived().checkAddresses(addrs);
-    }
-    void addAddress(const void* addr) {
-      derived().addAddress(addr);
-    }
-    void addAddresses(const std::vector<const void*> addrs) {
-      derived().addAddresses(addrs);
-    }
+
     
     friend std::ostream& operator<<(std::ostream &stream, const VorE<D,VE>& ve) {
       stream << ve.derived();

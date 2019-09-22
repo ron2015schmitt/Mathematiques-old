@@ -3,7 +3,7 @@
 
 
 # The `linspace` functions in mātricks
-_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.16-r29).
+_This document was automatically generated from file_ **`linspace.cpp`** (mātricks-v2.17-r1).
 
 ## The `linspace` function: numerical interval [a,b]
 * The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`

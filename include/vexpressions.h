@@ -19,7 +19,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class VSubsetObj :  public  VWrapper<D,VSubsetObj<D> >, public VectorofPtrs {
+    class VSubsetObj :  public  VWrapper<D,VSubsetObj<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -27,23 +27,26 @@ namespace matricks {
     const bool delete_ii_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
   VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
     : a_(a), ii_(ii), delete_ii_(false)
-      { 
-	addAddress(&a_);
-	addAddress(&ii_);
+      {
+
+	this->initAddresses();
+	this->addAddress(&a_);
+	this->addAddress(&ii_);
+
       }
 #if CPP11 == 1    
   VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
     : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
       {
-	addAddress(&a_);
-	addAddress(&ii_);
+
+	this->initAddresses();
+	this->addAddress(&a_);
+	this->addAddress(&ii_);
 	//	printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
+
       }
 #endif // C++11
     
@@ -69,10 +72,6 @@ namespace matricks {
       return ind;
     }
 
-
-    inline VETypes vetype(void) const {
-      return VE_VSubsetObj;
-    }
 
     inline size_type size(void) const {
       return ii_.size();
@@ -107,12 +106,12 @@ namespace matricks {
 
 
     
-    
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
       //return expression_VSubsetObj(a_.expression(),ii_.expression());
     }
-
+#endif
 
 
 
@@ -132,23 +131,23 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-    class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> >, public VectorofPtrs {
+    class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> > {
 
   private:
     const A& a_;
     const B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VJoinExpr(const A& a, const B& b)
     : a_(a), b_(b)
     { 
-      addAddresses(a_.getAddresses());
-      addAddresses(b_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+      this->addAddresses(b_.getAddresses());
+
     }
 
     inline const D operator[](const index_type i) const {  
@@ -165,19 +164,21 @@ namespace matricks {
     inline index_type index(index_type i) const{
       return i;
     }
-    inline VETypes vetype(void) const {
-      return VE_VJoinExpr;
-    }
     inline size_type size(void) const {
       return a_.size() +b_.size();
     }
     inline size_type sizetotal(void) const {
       return a_.size() +b_.size();
     }
+
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
       //      return expression_VJoinExpr(a_.expression(),ii_.expression());
     }
+#endif 
+
+    
   };
 
 
@@ -189,23 +190,23 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-    class VJoinObj : public  VWrapper<D,VJoinObj<D,A,B> >, public VectorofPtrs {
+    class VJoinObj : public  VWrapper<D,VJoinObj<D,A,B> > {
 
   private:
     A& a_;
     B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VJoinObj(A& a, B& b)
     : a_(a), b_(b)
     { 
-      addAddresses(a_.getAddresses());
-      addAddresses(b_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+      this->addAddresses(b_.getAddresses());
+
     }
 
 
@@ -239,9 +240,6 @@ namespace matricks {
     inline index_type index(index_type i) const{
       return i;
     }
-    inline VETypes vetype(void) const {
-      return VE_VJoinObj;
-    }
     inline size_type size(void) const {
       return a_.size() +b_.size();
     }
@@ -270,10 +268,14 @@ namespace matricks {
 
 
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
       //      return expression_VJoinExpr(a_.expression(),ii_.expression());
     }
+#endif 
+
+
   };
 
 
@@ -287,23 +289,23 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class VSubMaskObj :  public  VWrapper<D,VSubMaskObj<D> >, public VectorofPtrs {
+    class VSubMaskObj :  public  VWrapper<D,VSubMaskObj<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
     const Vector<index_type>* ii_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
     : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
       { 
-	addAddress(&a_);
-	addAddress(&ii_);
+
+	this->initAddresses();
+	this->addAddress(&a_);
+	this->addAddress(&ii_);
+
       }
 
 
@@ -323,9 +325,6 @@ namespace matricks {
       return (*ii_)[i];
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VSubMaskObj;
-    }
 
     inline size_type size(void) const {
       return ii_->size();
@@ -357,10 +356,12 @@ namespace matricks {
       return this->equals(b);
     }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
       //      return expression_VSubMaskObj(a_.expression(),ii_->expression());
     }
+#endif 
 
 
 
@@ -378,26 +379,23 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class VReconObj :  public  Vexpr<D,VReconObj<D> >, public VectorofPtrs {
+    class VReconObj :  public  Vexpr<D,VReconObj<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VReconObj(Vector<D>& a)
     : a_(a)
     { 
-      addAddress(&a_);
+
+      this->initAddresses();
+      this->addAddress(&a_);
+
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VReconObj;
-    }
 
     template <class A>
       Vector<D>& operator=(const VorE<D,A>& x) { 
@@ -423,9 +421,11 @@ namespace matricks {
       return a_;
     }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return  a_.expression() +".resize()";
     }
+#endif 
 
 
   };
@@ -445,22 +445,22 @@ namespace matricks {
    */
 
   template<class D, class A>
-    class VRepExpr : public  Vexpr<D,VRepExpr<D,A> >, public VectorofPtrs {
+    class VRepExpr : public  Vexpr<D,VRepExpr<D,A> > {
 
   private:
     const A& a_;
     const size_type m_;
     const size_type N_;
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VRepExpr(const A& a, const size_type m)
     : a_(a), m_(m), N_(a_.size())
       { 
-	addAddresses(a_.getAddresses());
+
+	this->initAddresses();
+	this->addAddresses(a_.getAddresses());
+
       }
 
     inline const D operator[](const index_type i) const {  
@@ -475,19 +475,20 @@ namespace matricks {
     inline index_type index(index_type i) const{
       return i;
     }
-    inline VETypes vetype(void) const {
-      return VE_VRepExpr;
-    }
     inline size_type size(void) const {
       return m_*a_.size();
     }
     inline size_type sizetotal(void) const {
       return m_*a_.size();
     }
+
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
       //      return expression_VJoinExpr(a_.expression(),ii_.expression());
     }
+#endif 
+
   };
 
 
@@ -500,23 +501,23 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> >, public VectorofPtrs {
+    class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> > {
 
   private:
     const A& a_;
     const B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VBinOp(const A& a, const B& b)
     : a_(a), b_(b)
     { 
-      addAddresses(a_.getAddresses());
-      addAddresses(b_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+      this->addAddresses(b_.getAddresses());
+
     }
 
     inline const D operator[](const index_type i) const {  
@@ -531,19 +532,20 @@ namespace matricks {
       }
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VBinOp;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::string sb = b_.expression();
-      if (b_.vetype() != VE_Vector) 
-	sb = "(" + sb + ")";
-      return OP::expression(sa,sb);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      // use typeof or typeid isnteadof  the above
+      return "";
     }
+#endif 
 
 
   };
@@ -560,7 +562,7 @@ namespace matricks {
    */
 
   template<class D, class A, class X>
-    class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X> >, public VectorofPtrs {
+    class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X> > {
 
   private:
     const A& a_;
@@ -569,22 +571,24 @@ namespace matricks {
     const D x0_;
     
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VSeriesOp(const A& a, const X& x, const int N, const D x0)
     : a_(a), x_(x), N_(N), x0_(x0)
     { 
-      addAddresses(a_.getAddresses());
-      addAddresses(x_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+      this->addAddresses(x_.getAddresses());
+
     }
   VSeriesOp(const A& a, const X& x, const int N)
     : a_(a), x_(x), N_(N), x0_(0)
     { 
-      addAddresses(a_.getAddresses());
-      addAddresses(x_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+      this->addAddresses(x_.getAddresses());
     }
 
     inline const D operator[](const index_type i) const {
@@ -610,21 +614,21 @@ namespace matricks {
       // TODO: check a_.size >= N
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VSeriesOp;
-    }
+  
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       // TODO: get this working
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::string sx = x_.expression();
-      if (x_.vetype() != VE_Vector) 
-	sx = "(" + sx + ")";
-      std::string sN = display::printf2str("%d",N_);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sx = x_.expression(); */
+      /* if (x_.vetype() != VE_Vector)  */
+      /* 	sx = "(" + sx + ")"; */
+      /* std::string sN = display::printf2str("%d",N_); */
       return "";
     }
+#endif 
 
 
   };
@@ -632,7 +636,7 @@ namespace matricks {
 
 
   template<class D, class A, class B, class X, class OP1, class OP2>
-    class VSeriesOp2 : public  Vexpr<D,VSeriesOp2< D, A, B, X, OP1, OP2> >, public VectorofPtrs {
+    class VSeriesOp2 : public  Vexpr<D,VSeriesOp2< D, A, B, X, OP1, OP2> > {
 
   private:
     const A& a_;
@@ -644,18 +648,18 @@ namespace matricks {
     bool initialized;
     
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
     : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N)))
       {
-	addAddresses(a_.getAddresses());
-	addAddresses(b_.getAddresses());
-	addAddresses(x_.getAddresses());
-	addAddresses(k_.getAddresses());
+
+	this->initAddresses();
+	this->addAddresses(a_.getAddresses());
+	this->addAddresses(b_.getAddresses());
+	this->addAddresses(x_.getAddresses());
+	this->addAddresses(k_.getAddresses());
+
 	for (int n = 0; n < N_ ; n++) {
 	  k_[n] = n*k1_;
 	}
@@ -686,21 +690,21 @@ namespace matricks {
       // TODO: check b_.size >= N
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VSeriesOp2;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       // TODO: get this working
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::string sx = x_.expression();
-      if (x_.vetype() != VE_Vector) 
-	sx = "(" + sx + ")";
-      std::string sN = display::printf2str("%d",N_);
-      return OP1::expression(sx);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sx = x_.expression(); */
+      /* if (x_.vetype() != VE_Vector)  */
+      /* 	sx = "(" + sx + ")"; */
+      /* std::string sN = display::printf2str("%d",N_); */
+      /* return OP1::expression(sx); */
+      return "";
     }
+#endif 
 
 
   };
@@ -717,22 +721,22 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> >, public VectorofPtrs {
+    class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
     D val_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VecOpScal(const A& a, const D b)
     : a_(a), val_(b)
     {
-      addAddresses(a_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+
     }
 
     inline const D operator[](const index_type i) const { 
@@ -743,19 +747,18 @@ namespace matricks {
       return a_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VecOpScal;
-    }
-
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::ostringstream stream;
-      stream << val_;
-      std::string sb = stream.str();
-      return OP::expression(sa,sb);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sb = stream.str(); */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
 
@@ -776,23 +779,23 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> >, public VectorofPtrs {
+    class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> > {
 
   private:
     D val_;
     const B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
 
   ScalOpVec(const D a, const B& b)
     :  val_(a), b_(b)
     {
-      addAddresses(b_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(b_.getAddresses());
+
     }
 
     inline const D operator[](const index_type i) const { 
@@ -803,19 +806,19 @@ namespace matricks {
       return b_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_ScalOpVec;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::ostringstream stream;
-      stream << val_;
-      std::string sa = stream.str();
-      std::string sb = b_.expression();
-      if (b_.vetype() != VE_Vector) 
-	sb = "(" + sb + ")";
-      return OP::expression(sa,sb);
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sa = stream.str(); */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
 
@@ -832,20 +835,20 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-    class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> >, public VectorofPtrs {
+    class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> > {
   
   private:
     const A& a_;
   
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
 
   VFuncOp(const A& a) : a_(a) {
-      addAddresses(a_.getAddresses());
+
+      this->initAddresses();
+      this->addAddresses(a_.getAddresses());
+
     }
 
 
@@ -856,15 +859,13 @@ namespace matricks {
       return a_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VFuncOp;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       std::string sa = a_.expression();
       return FUNC::expression(sa);
     }
-
+#endif
 
 
   };
@@ -887,16 +888,16 @@ namespace matricks {
     const B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VBoolBinOp(const A& a, const B& b)
     : a_(a), b_(b)
     { 
-      addAddress(&a_);
-      addAddress(&b_);
+
+      this->initAddresses();
+      this->addAddress(&a_);
+      this->addAddress(&b_);
+
     }
 
     inline bool operator[](const index_type i) const {  
@@ -911,19 +912,19 @@ namespace matricks {
       }
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VBoolBinOp;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::string sb = b_.expression();
-      if (b_.vetype() != VE_Vector) 
-	sb = "(" + sb + ")";
-      return OP::expression(sa,sb);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
 
@@ -954,16 +955,16 @@ namespace matricks {
     D val_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
 
   BoolVecOpScal(const A& a, const D b)
     : a_(a), val_(b)
     {
-      addAddress(&a_);
+
+      this->initAddresses();
+      this->addAddress(&a_);
+
     }
 
     inline bool operator[](const index_type i) const { 
@@ -974,19 +975,18 @@ namespace matricks {
       return a_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_BoolVecOpScal;
-    }
-
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::ostringstream stream;
-      stream << val_;
-      std::string sb = stream.str();
-      return OP::expression(sa,sb);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sb = stream.str(); */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
 
@@ -1015,15 +1015,15 @@ namespace matricks {
     const B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   BoolScalOpVec(const D a, const B& b)
     :  val_(a), b_(b)
     {
-      addAddress(&b_);
+
+      this->initAddresses();
+      this->addAddress(&b_);
+
     }
 
     inline bool operator[](const index_type i) const { 
@@ -1034,19 +1034,19 @@ namespace matricks {
       return b_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_BoolScalOpVec;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::ostringstream stream;
-      stream << val_;
-      std::string sa = stream.str();
-      std::string sb = b_.expression();
-      if (b_.vetype() != VE_Vector) 
-	sb = "(" + sb + ")";
-      return OP::expression(sa,sb);
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sa = stream.str(); */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
 
@@ -1070,13 +1070,13 @@ namespace matricks {
     const A& a_;
   
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VBoolFuncOp(const A& a) : a_(a) {
-      addAddress(&a_);
+
+      this->initAddresses();
+      this->addAddress(&a_);
+
     }
 
 
@@ -1087,14 +1087,13 @@ namespace matricks {
       return a_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VBoolFuncOp;
-    }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       std::string sa = a_.expression();
       return FUNC::expression(sa);
     }
+#endif 
 
 
 
@@ -1127,15 +1126,15 @@ namespace matricks {
     const D val_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   CVecOpScal(const A& a, const D b)
     : a_(a), val_(b)
     {
-      addAddress(&a_);
+
+      this->initAddresses();
+      this->addAddress(&a_);
+
     }
 
     inline const std::complex<D> operator[](const index_type i) const { 
@@ -1146,19 +1145,18 @@ namespace matricks {
       return a_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_CVecOpScal;
-    }
-
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::string sa = a_.expression();
-      if (a_.vetype() != VE_Vector) 
-	sa = "(" + sa + ")";
-      std::ostringstream stream;
-      stream << val_;
-      std::string sb = stream.str();
-      return OP::expression(sa,sb);
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sb = stream.str(); */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
 
@@ -1182,15 +1180,15 @@ namespace matricks {
     const B& b_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   CScalOpVec(const D a, const B& b)
     : val_(a), b_(b)
     {
-      addAddress(&b_);
+
+      this->initAddresses();
+      this->addAddress(&b_);
+
     }
 
     inline const std::complex<D> operator[](const index_type i) const { 
@@ -1201,19 +1199,18 @@ namespace matricks {
       return b_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_CScalOpVec;
-    }
-
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::ostringstream stream;
-      stream << val_;
-      std::string sa = stream.str();
-      std::string sb = b_.expression();
-      if (b_.vetype() != VE_Vector) 
-	sb = "(" + sb + ")";
-      return OP::expression(sa,sb);
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sa = stream.str(); */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      return "";
     }
+#endif 
 
 
   };
@@ -1234,15 +1231,15 @@ namespace matricks {
     Vector<std::complex<D> >& a_;
 
   public:
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
+
 
   VRealFromComplex(Vector<std::complex<D> >& a)
     :   a_(a)
     { 
-      addAddress(&a_);
+
+      this->initAddresses();
+      this->addAddress(&a_);
+
     }
 
     inline const D data(index_type i) const{
@@ -1266,10 +1263,6 @@ namespace matricks {
       return a_.size();
     }
 
-    inline VETypes vetype(void) const {
-      return VE_VRealFromComplex;
-    }
-
     template <class B>
       VRealFromComplex<D,OP>& operator=(const B& b) { 
       return equals(b);
@@ -1280,10 +1273,12 @@ namespace matricks {
       return equals(b);
     }
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return a_.expression();
       //      return expression_VSliceObj(a_.expression(),start_,end_,step_);
     }
+#endif 
 
 
 

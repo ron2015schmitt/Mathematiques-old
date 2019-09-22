@@ -14,21 +14,22 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public VorE<D,Vector<D> >, public VectorofPtrs, public VorW<D,Vector<D> > {
+  template <class D> class Vector : public VorE<D,Vector<D> >, public VorW<D,Vector<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
+    //
+    // do NOT declare any other storage.  that way we can subclass
+    // lightweight vectors from this class, which are not tracked by the
+    // objectManager for debugging
+    
     std::valarray<D>* data_;
 
 
   public:     
-    using VectorofPtrs::getAddresses;
-    using VectorofPtrs::checkAddresses;
-    using VectorofPtrs::addAddress;
-    using VectorofPtrs::addAddresses;
 
     typedef D element_type;
-    typedef typename GetDataType<D>::Type DREAL;
+    typedef typename GetDataType<D>::Type D_FUND;
 
 
 
@@ -138,7 +139,6 @@ namespace matricks {
     // --------------------- constructorHelper() --------------------
     
     void constructorHelper() {
-      addAddress(this);
     }
 
 
@@ -307,7 +307,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      if (x.checkAddresses(this->getAddresses())) {    
+      if (this->getAddresses().common( x.getAddresses() )  ){    
 	Vector<D> vtemp(size());
 
 	for (register index_type i = size(); i--;)
@@ -333,7 +333,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      if (x.checkAddresses(this->getAddresses())) {    
+      if (this->getAddresses().common( x.getAddresses() )  ){    
 	Vector<D> vtemp(size());
 
 	for (register index_type i = size(); i--;)
@@ -987,11 +987,17 @@ namespace matricks {
     //************************** Text and debugging ************************
     //**********************************************************************
 
-
-    inline VETypes vetype(void) const {
-      return VE_Vector;
+#if MATRICKS_DEBUG>=1
+    VectorofPtrs getAddresses(void) const  {
+      VectorofPtrs myaddr((void*)this);
+      return myaddr;
     }
+#endif
 
+
+    //**********************************************************************
+    //************************** Text and debugging ************************
+    //**********************************************************************
 
     static std::string classname(void)  {
       return "Vector";

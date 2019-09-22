@@ -175,6 +175,8 @@ namespace matricks {
    * std::vector related functions
    **************************************************************************** 
    */
+
+  // TODO: do we need these?  move inside the class
     template <typename T>
     std::vector<T> mergeVectors(const std::vector<T> v1, const std::vector<T> v2) {
     std::vector<T> v3 = v1;
@@ -195,69 +197,45 @@ namespace matricks {
    ********************************************************************** 
    */
 
-  class VectorofPtrs {
-
+  class VectorofPtrs : public std::vector<const void*> {
+   
   public:
-    std::vector<const void*> myaddrs;
-
+    typedef typename std::vector<const void*> Parent;
 
     VectorofPtrs() {
     }
     VectorofPtrs(const void* addr) {
-      addAddress(addr);
+      VectorofPtrs();
+      this->add(addr);
     }
     VectorofPtrs(const std::vector<const void*> addrs) {
-      addAddresses(addrs);
+      VectorofPtrs();
+      this->add(addrs);
     }
     
     
-    std::vector<const void*> getAddresses(void) const {
-      std::vector<const void*> vec;
-      for (std::vector<const void*>::const_iterator  it = myaddrs.begin() ; it != myaddrs.end(); ++it) {
-	vec.push_back(*it);
-      }
-      return vec;
+    
+    void add(const void* addr) {
+      this->push_back(addr);
     }
+    
+    void add(const VectorofPtrs& addrs) {
+      this->insert(this->end(), addrs.begin(), addrs.end());
+    }
+    
+  // true if this vector and another share an element in common (ie saem value)
 
-    bool checkAddresses(const std::vector<const void*> addrs) const {
+    bool common(const VectorofPtrs& addrs) const {
       for (size_type i = 0; i < addrs.size(); i++){
 	const void* addr = addrs[i];
-	if ( std::find(myaddrs.begin(), myaddrs.end(), addr) != myaddrs.end() ) {
+	if ( std::find(this->begin(), this->end(), addr) != this->end() ) {
 	  return true;
 	}
       }
       return false;
     }
-
-    void addAddress(const void* addr) {
-      myaddrs.push_back(addr);
-    }
-
-    void addAddresses(const std::vector<const void*> addrs) {
-      myaddrs.insert(myaddrs.end(), addrs.begin(), addrs.end());
-    }
     
-  };
-
-    
-  inline std::istream& restore_stream(std::istream& tostream, std::istream& fromstream) {
-    std::string s="";
-    char c;
-    while(fromstream.get(c)) 
-      s += c;
-    
-    size_t len = s.length();
-    if (len >0) {
-      if (tostream.eof())
-	tostream.clear();
-      std::ostringstream tempstrm;
-      tempstrm<<std::endl;
-      tostream.putback(tempstrm.str()[0]);
-      for (size_t i = len;i>0; i--) 
-	tostream.putback(s[i-1]);
-    }
-    return tostream;
-  }
+  };    
 
 
   //***********************************************************************

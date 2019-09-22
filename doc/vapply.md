@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.16-r29).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.17-r1).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -88,16 +88,20 @@ User-defined function can be bound into the `matricks` namespace as vector funct
 place the following code in your file:
 ```C++
 namespace matricks { 
-
-  template <class D> class Ap_pos {
+  template <class D> class Fun_Pos {
   public:
-    Ap_pos() { }
+    Fun_Pos() { }
 
     static inline D apply(D a) { 
       return (a>=0) ? a : 0; 
     }
 
-    static std::string debugtxt( const std::string& sa) {
+    static std::string expression( const std::string& sa) {
+      std::string sout = pos(" + sa + ")";
+      return sout;
+    }
+
+    static std::string classname( const std::string& sa) {
       std::string sout = "pos(" + sa + ")";
       return sout;
     }
@@ -105,11 +109,13 @@ namespace matricks {
   };
 
   template <class D, class A> 
-  inline VFuncOp<D,VorE<D,A>,Ap_pos<D> > 
-  pos(const VorE<D,A>& a) {
-    return  VFuncOp<D,VorE<D,A>,Ap_pos<D> >(a);
+  inline VFuncOp<D,VorE<D,A>,Fun_Pos<D> > 
+  pos(const VorE<D,A>& a)
+  {
+    return  VFuncOp<D,VorE<D,A>,Fun_Pos<D> >(a);
   }
-}
+};
+
 ```
 **EXAMPLE 4**: Applying User-defined function `pos`
 ```C++

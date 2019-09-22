@@ -1,4 +1,4 @@
-# mātricks v2.17-r2
+# mātricks v2.17-r3
 
 ```diff
 - CURRENTLY NOT READY FOR USE.
@@ -6,8 +6,10 @@
   - file i/o
   - debugging
   - matrix operations
-- Planned Date for full functionality: 2019 Oct 1
-- WORK AT MY DAY JOB HAS DELAYED THE RELEASE BUT IT WILL HAPPEN!
++ Planned Date for full functionality: 2019 Oct 1
++ Once refactoring is complete matricks will support tensors
+  of any rank, with a single base class
++ WORK AT MY DAY JOB HAS DELAYED THE RELEASE BUT IT WILL HAPPEN!
 ```
 
 

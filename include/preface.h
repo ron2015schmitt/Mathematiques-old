@@ -285,30 +285,47 @@ namespace matricks {
   };
   template <typename D> class GetDataType<std::complex<D> > {
   public:
-    typedef D Type;
+    typedef typename GetDataType<D>::Type Type;
+  };
+  template <typename D> class GetDataType<std::vector<D> > {
+  public:
+    typedef typename GetDataType<D>::Type Type;
   };
   template <typename D> class GetDataType<Vector<D> > {
   public:
-    typedef Vector<typename GetDataType<D>::Type> Type;
+    typedef typename GetDataType<D>::Type Type;
   };
   template <typename D> class GetDataType<Matrix<D> > {
   public:
-    typedef Matrix<typename GetDataType<D>::Type> Type;
+    typedef typename GetDataType<D>::Type Type;
   };
 
-  
+
+  //***********************************************************************
+  //     is_instance<FilledTemplateClassA, TemplateCLassB>
+  //
+  //   is_instance<Fun_Multiply<double>, Fun_Divide>{}       -> false
+  //   is_instance<Fun_Multiply<double>, Fun_Multiply>{}     -> true
+  //***********************************************************************
+
+
+  template <class, template <class> class>
+    struct is_instance : public std::false_type {};
+  template <class T, template <class> class U>
+    struct is_instance<U<T>, U> : public std::true_type {};
 
 
   //************************************************************************
-  //* Class type querying/manipulation
+  //* Basic Function types for computation
   //************************************************************************   
   template <typename D> class FunctionTypes {
   public:
+    typedef D (* zeroarg_func)();
     typedef D (* unary_func)(D);
     typedef D (* binary_func)(D, D);
+    typedef D (* tertiary_func)(D, D, D);
   };
   
-
   
 };
 

@@ -47,11 +47,6 @@ template <typename T> std::string Experiment<T>::TypeName = typeid(Experiment<T>
 template <> std::string Experiment<long int>::TypeName = "long int";
 
 
-template <class, template <class> class>
-struct is_instance : public std::false_type {};
-
-template <class T, template <class> class U>
-struct is_instance<U<T>, U> : public std::true_type {};
 
 
 double f1(double x) {
@@ -67,6 +62,10 @@ int main()
 {
   using namespace matricks;
   using namespace display;
+  using namespace std;
+  using namespace matricks;
+  using namespace display;
+
 
 
   print_matricks_info();
@@ -199,13 +198,19 @@ int main()
   
   cr();cr();
 
-  using namespace std;
-
   double d;
 
   mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
   mout << is_instance<Fun_Multiply<double>, Fun_Multiply>{} <<endl;
 
+
+  // The following causes a compiler error.
+  // I think because vector has two template arguments with the second having
+  // a default value
+  
+  //  mout <<  is_instance<std::vector<int>, std::vector>{}  << endl;
+  
+  
   short var_short;
   int var_int;
   long int var_long;
@@ -245,7 +250,9 @@ int main()
   mout << typeid(FunctionTypes<double>::unary_func).name() <<endl;
   mout << getTypeName(f1) <<endl;
 
-  
+
+
+    
   printUnary<double,Fun_Plus>();
   printUnary<double,Fun_Minus>();
   mout << Fun_Cast<double,int>::classname() << " ";

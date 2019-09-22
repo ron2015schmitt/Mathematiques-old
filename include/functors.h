@@ -5,7 +5,7 @@
 //  functor in C++ sense: a class that wraps a function
 //
 // TODO: add bitwise functors for unsigned types
-// TOOD: switch from "apply" to "operator()"?  not sure if that would help. maybe it's good to explcittly show these are functors
+// TOOD: switch from "apply" to "operator()"?  not sure if that would help. maybe it's good to explcittly show these are functors with ".apply"
 
 
 namespace matricks {

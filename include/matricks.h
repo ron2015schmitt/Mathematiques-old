@@ -46,6 +46,8 @@
 #include "util.h"
 #include "slices.h"
 
+#include "tensor.h"
+
 #include "vorevorw.h"
 #include "more.hpp"
 

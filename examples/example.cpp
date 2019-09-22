@@ -1,4 +1,3 @@
-#include <tgmath.h>
 
 #include "matricks.h"
 
@@ -10,7 +9,7 @@ int main()
   using namespace matricks;
   using namespace display;
 
-   
+  std::cout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );

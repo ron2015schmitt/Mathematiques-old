@@ -1,4 +1,4 @@
-# mātricks v2.16-r28
+# mātricks v2.16-r29
 
 ```diff
 - CURRENTLY NOT READY FOR USE.
@@ -98,7 +98,6 @@ To use the mātricks library you need to
 An example of a C++ source file (```examples/example.cpp```) is shown below
 
 ```C++
-#include <tgmath.h>
 
 #include "matricks.h"
 
@@ -110,7 +109,7 @@ int main()
   using namespace matricks;
   using namespace display;
 
-   
+  std::cout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );

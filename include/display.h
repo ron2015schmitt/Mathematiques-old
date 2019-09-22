@@ -305,7 +305,7 @@ namespace display {
 
   
   
-  enum SSEnum {INDENT, ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, DEBUG_LEVEL, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
+  enum SSEnum {INDENT, ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
 
   class StyledString {
   private:
@@ -1215,6 +1215,21 @@ namespace display {
   //****************************************************************************
 
 
+  inline void print_debug_level(void) {
+    StyledString ss;
+#if (MATRICKS_DEBUG==0)
+    ss = StyledString::get(SSEnum::DLEVEL0);
+#elif (MATRICKS_DEBUG==1)
+    ss = StyledString::get(SSEnum::DLEVEL1);
+#elif (MATRICKS_DEBUG==2)
+    ss = StyledString::get(SSEnum::DLEVEL2);
+#elif (MATRICKS_DEBUG>=3)
+    ss = StyledString::get(SSEnum::DLEVEL3);
+#endif
+    mout << "  "<< ss << " " << std::endl;
+  }
+
+
   inline void print_matricks_info(void) {
     using namespace std;
     using namespace display;
@@ -1222,8 +1237,8 @@ namespace display {
     mout << StyledString::get(MATRICKS) << " ";
     mout << StyledString::get(VERSION) << " ";
     mout << endl << endl;
-    mout << "compile-time settings:" << endl;
-    mout << "  "<<StyledString::get(DEBUG_LEVEL) << " " << endl;
+    mout << "compile-time settings" << endl;
+    print_debug_level();
     mout << createStyle(BOLD).apply("  C++ version: ");
     mout << createStyle(CYAN).apply(printf2str("%lu",__cplusplus)) << endl;
     mout << createStyle(BOLD).apply("  OPTIMIZE: ");

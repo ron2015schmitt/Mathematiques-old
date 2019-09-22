@@ -15,6 +15,7 @@ namespace matricks {
 
   display::Style functor_namestyle = createStyle(display::ORANGE2);
   display::Style functor_style = createStyle(display::BOLD);
+  display::Style userfunctor_style = createStyle(display::BOLD+display::BLUE1);
 
    
   

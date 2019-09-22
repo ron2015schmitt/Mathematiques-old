@@ -13,6 +13,9 @@ int main()
   using namespace matricks;
   using namespace display;
 
+  print_matricks_info();
+
+  
   const double pi = M_PI;
   int n = 45;
   unsigned int m = 256;

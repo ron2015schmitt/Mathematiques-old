@@ -13,6 +13,25 @@
 
   
 
+template <class D, template<typename> class F> void printUnary() {
+  mout << F<D>::classname()  << " ";
+  mout << F<D>::expression("x") << std::endl;
+}
+
+template <class F> void printUnary() {
+  mout << F::classname()  << " ";
+  mout << F::expression("x") << std::endl;
+}
+
+template <class D, template<typename> class F> void printBinary() {
+  mout << F<D>::classname()  << " ";
+  mout << F<D>::expression("x","y") << std::endl;
+}
+template <class F> void printBinary() {
+  mout << F::classname()  << " ";
+  mout << F::expression("x","y") << std::endl;
+}
+
 
 // template bag of tricks
 
@@ -35,13 +54,13 @@ template <class T, template <class> class U>
 struct is_instance<U<T>, U> : public std::true_type {};
 
 
-  double f1(double x) {
-    return ((x>=0) ? x : 0);
-  }
+double f1(double x) {
+  return ((x>=0) ? x : 0);
+}
 
 double f2(double x, double y) {
-    return ((x>=0) ? x : 0);
-  }
+  return ((x>=0) ? x : 0);
+}
 
 
 int main()
@@ -49,6 +68,10 @@ int main()
   using namespace matricks;
   using namespace display;
 
+
+  print_matricks_info();
+
+  
   const double pi = M_PI;
   int n = 45;
   unsigned int m = 256;
@@ -217,131 +240,91 @@ int main()
   mout << (typeid(var_int) == typeid(var_unsigned_int)) << endl;
   mout << (typeid(var_int) == typeid(var_signed_int)) << endl;
 
-  mout << Fun_Plus<double>::classname()  << " ";
-  mout << Fun_Plus<double>::expression("x") << endl;
-  
-  mout << Fun_Minus<double>::classname()  << " ";
-  mout << Fun_Minus<double>::expression("x") << endl;
+  mout << typeid(&f1).name() <<endl;
+  mout << typeid(f2).name() <<endl;
+  mout << typeid(FunctionTypes<double>::unary_func).name() <<endl;
+  mout << getTypeName(f1) <<endl;
 
+  
+  printUnary<double,Fun_Plus>();
+  printUnary<double,Fun_Minus>();
   mout << Fun_Cast<double,int>::classname() << " ";
   mout << Fun_Cast<double,int>::expression("n") << endl;
-  
-  mout << Fun_Add<double>::classname()  << " ";
-  mout << Fun_Add<double>::expression("x","y") << endl;
+  printBinary<double,Fun_Add>();
+  printBinary<double,Fun_Subtract>();
+  printBinary<double,Fun_Multiply>();
+  printBinary<double,Fun_Divide>();
+  printBinary<double,Fun_Pow>();
+  printBinary<double,Fun_Monomial>();
 
-  mout << Fun_Subtract<double>::classname()  << " ";
-  mout << Fun_Subtract<double>::expression("x","y") << endl;
-  mout << Fun_Multiply<double>::classname()  << " ";
-  mout << Fun_Multiply<double>::expression("x","y") << endl;
+  printUnary<double,Fun_Sqr>();
+  printUnary<double,Fun_Cube>();
+  printUnary<double,Fun_Sqrt>();
+  printUnary<double,Fun_Exp>();
+  printUnary<double,Fun_Log>();
+  printUnary<double,Fun_Log2>();
+  printUnary<double,Fun_Log10>();
+  printUnary<double,Fun_Sin>();
+  printUnary<double,Fun_Cos>();
+  printUnary<double,Fun_Tan>();
+  printUnary<double,Fun_Asin>();
+  printUnary<double,Fun_Acos>();
+  printUnary<double,Fun_Atan>();
+  printBinary<double,Fun_Atan2>();
+  printUnary<double,Fun_Sinh>();
+  printUnary<double,Fun_Cosh>();
+  printUnary<double,Fun_Tanh>();
 
-  mout << Fun_Divide<double>::classname()  << " ";
-  mout << Fun_Divide<double>::expression("x","y") << endl;
+  printUnary<double,Fun_Abs>();
+  printUnary<double,Fun_Sgn>();
+  printUnary<double,Fun_Ceil>();
+  printUnary<double,Fun_Floor>();
+  printUnary<double,Fun_Round>();
+  printBinary<double,Fun_Roundzero>();
 
+  mout << Fun_UnaryUser<double,f1>::classname()  << " ";
+  mout << Fun_UnaryUser<double,f1>::expression("x") << endl;
+  mout << Fun_BinaryUser<double,f2>::classname()  << " ";
+  mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
 
-  //  mout << Fun_Pow<double>::classname()  << " ";
-  //  mout << Fun_Pow<double>::expression("x","y") << endl;
-
-  //  mout << Fun_Monomial<double>::classname()  << " ";
-  //  mout << Fun_Monomial<double>::expression("x","n") << endl;
-
-  //  mout << Fun_Atan2<double>::classname()  << " ";
-  //  mout << Fun_Atan2<double>::expression("x","y") << endl;
-
-  mout << Fun_Sin<double>::classname()  << " ";
-  mout << Fun_Sin<double>::expression("x") << endl;
-
-  mout << Fun_Cos<double>::classname()  << " ";
-  mout << Fun_Cos<double>::expression("x") << endl;
-
-  mout << Fun_Tan<double>::classname()  << " ";
-  mout << Fun_Tan<double>::expression("x") << endl;
-
-  mout << Fun_Sqrt<double>::classname()  << " ";
-  mout << Fun_Sqrt<double>::expression("x") << endl;
-
-  mout << Fun_Sqr<double>::classname()  << " ";
-  mout << Fun_Sqr<double>::expression("x") << endl;
-
-  mout << Fun_Cube<double>::classname()  << " ";
-  mout << Fun_Cube<double>::expression("x") << endl;
-
-  mout << Fun_Exp<double>::classname()  << " ";
-  mout << Fun_Exp<double>::expression("x") << endl;
-
-  mout << Fun_Abs<double>::classname()  << " ";
-  mout << Fun_Abs<double>::expression("x") << endl;
-
-  mout << Fun_Sgn<double>::classname()  << " ";
-  mout << Fun_Sgn<double>::expression("x") << endl;
-
-  mout << Fun_Log<double>::classname()  << " ";
-  mout << Fun_Log<double>::expression("x") << endl;
-
-  mout << Fun_Log2<double>::classname()  << " ";
-  mout << Fun_Log2<double>::expression("x") << endl;
-
-  mout << Fun_Log10<double>::classname()  << " ";
-  mout << Fun_Log10<double>::expression("x") << endl;
-
-  mout << Fun_Asin<double>::classname()  << " ";
-  mout << Fun_Asin<double>::expression("x") << endl;
-
-  mout << Fun_Acos<double>::classname()  << " ";
-  mout << Fun_Acos<double>::expression("x") << endl;
-
-  mout << Fun_Atan<double>::classname()  << " ";
-  mout << Fun_Atan<double>::expression("x") << endl;
-
-  mout << Fun_Ceil<double>::classname()  << " ";
-  mout << Fun_Ceil<double>::expression("x") << endl;
-
-  mout << Fun_Round<double>::classname()  << " ";
-  mout << Fun_Round<double>::expression("x") << endl;
-
-  mout << Fun_Sinh<double>::classname()  << " ";
-  mout << Fun_Sinh<double>::expression("x") << endl;
-
-  mout << Fun_Cosh<double>::classname()  << " ";
-  mout << Fun_Cosh<double>::expression("x") << endl;
-
-  mout << Fun_Tanh<double>::classname()  << " ";
-  mout << Fun_Tanh<double>::expression("x") << endl;
-
-  mout << Fun_Roundzero<double>::classname()  << " ";
-  mout << Fun_Roundzero<double>::expression("x","y") << endl;
-
-
-  s = StyledString::get(ANGLE1).get() + getTypeName(d) + StyledString::get(COMMA).get() + "function(.,.)" + StyledString::get(ANGLE2).get();
+  // s = StyledString::get(ANGLE1).get() + getTypeName(d) + StyledString::get(COMMA).get() + "function(.,.)" + StyledString::get(ANGLE2).get();
   // mout << Fun_UnaryUser<double,f1>::classname()  << " ";
   // mout << Fun_UnaryUser<double,f1>::expression("x") << endl;
   // mout << Fun_BinaryUser<double,f2>::classname()  << " ";
   // mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
 
 
-  mout << Fun_Not::classname() << " ";
-  mout << Fun_Not::expression("x") << endl;
-  mout << Fun_And::classname() << " ";
-  mout << Fun_And::expression("x","y") << endl;
-  mout << Fun_Or::classname()  << " ";
-  mout << Fun_Or::expression("x","y") << endl;
+  printUnary<Fun_Not>();
+  printBinary<Fun_And>();
+  printBinary<Fun_Or>();
 
 
-  mout << Fun_Equal<double>::classname()  << " ";
-  mout << Fun_Equal<double>::expression("x","y") << endl;
-  mout << Fun_NotEqual<double>::classname()  << " ";
-  mout << Fun_NotEqual<double>::expression("x","y") << endl;
-  mout << Fun_LessOrEqual<double>::classname()  << " ";
-  mout << Fun_LessOrEqual<double>::expression("x","y") << endl;
-  mout << Fun_GreaterOrEqual<double>::classname()  << " ";
-  mout << Fun_GreaterOrEqual<double>::expression("x","y") << endl;
-  mout << Fun_Less<double>::classname()  << " ";
-  mout << Fun_Less<double>::expression("x","y") << endl;
-  mout << Fun_Greater<double>::classname()  << " ";
-  mout << Fun_Greater<double>::expression("x","y") << endl;
+  printBinary<double,Fun_Equal>();
+  printBinary<double,Fun_NotEqual>();
+  printBinary<double,Fun_LessOrEqual>();
+  printBinary<double,Fun_GreaterOrEqual>();
+  printBinary<double,Fun_Less>();
+  printBinary<double,Fun_Greater>();
 
-  mout << typeid(&f1).name() <<endl;
-  mout << typeid(f2).name() <<endl;
-  mout << typeid(FunctionTypes<double>::unary_func).name() <<endl;
-  mout << getTypeName(f1) <<endl;
+
+  printBinary<double,Fun_Polar>();
+  printBinary<double,Fun_Complex>();
+  printBinary<double,Fun_AddCR>();
+  printBinary<double,Fun_AddRC>();
+  printBinary<double,Fun_SubtractCR>();
+  printBinary<double,Fun_SubtractRC>();
+  printBinary<double,Fun_MultiplyCR>();
+  printBinary<double,Fun_MultiplyRC>();
+  printBinary<double,Fun_DivideCR>();
+  printBinary<double,Fun_DivideRC>();
+  printBinary<double,Fun_PowCR>();
+  printBinary<double,Fun_PowRC>();
+  printUnary<double,Fun_CAbs>();
+  printUnary<double,Fun_Arg>();
+  printUnary<double,Fun_Conj>();
+  printUnary<double,Fun_Real>();
+  printUnary<double,Fun_Imag>();
+  printUnary<double,Fun_RoundCplx>();
+  
   return 0;
 }

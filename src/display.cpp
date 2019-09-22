@@ -76,15 +76,6 @@ namespace display {
     StyledString *dlevel3 = new StyledString(createStyle(BOLD+REDBACK),"MATRICKS_DEBUG 3 (developer)");
     StyledString::add(SSEnum::DLEVEL3, *dlevel3);
     
-#if (MATRICKS_DEBUG==0)
-    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel0);
-#elif (MATRICKS_DEBUG==1)
-    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel1);
-#elif (MATRICKS_DEBUG==2)
-    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel2);
-#elif (MATRICKS_DEBUG==3)
-    StyledString::add(SSEnum::DEBUG_LEVEL, *dlevel3);
-#endif
 
     StyledString *horline = new StyledString(createStyle(CROSSEDOUT),blankline);
     StyledString::add(SSEnum::HORLINE, *horline);

@@ -345,20 +345,20 @@ namespace matricks {
   // vpolar(r,phi)
 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,ApPolar<D> > 
+    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,Fun_Polar<D> > 
     vpolar(const VorE<D,A>& r, const VorE<D,B>& phi)
     {
-      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,ApPolar<D> >(r,phi);
+      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,Fun_Polar<D> >(r,phi);
     }
 
 
   // vcomplex(x,y)
 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,ApComplex<D> > 
+    inline VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,Fun_Complex<D> > 
     vcomplex(const VorE<D,A>& x, const VorE<D,B>& y)
     {
-      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,ApComplex<D> >(x,y);
+      return  VBinOp<std::complex<D>,VorE<D,A>,VorE<D,B>,Fun_Complex<D> >(x,y);
     }
 
 
@@ -366,10 +366,10 @@ namespace matricks {
   // pow(complexvector,realscalar)
 
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,ApPowCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_PowCR<D> > 
     pow(const VorE<std::complex<D>,A>& a, const D b)
     {
-      return  CVecOpScal<D,VorE<std::complex<D>,A>,ApPowCR<D> >(a,b);
+      return  CVecOpScal<D,VorE<std::complex<D>,A>,Fun_PowCR<D> >(a,b);
     }
 
   template <class D, class A> 
@@ -383,28 +383,28 @@ namespace matricks {
   // pow(complexvector,intscalar)
 
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<std::complex<D>,A>,ApPowCR<D> > 
+    inline CVecOpScal<D,VorE<std::complex<D>,A>,Fun_PowCR<D> > 
     pow(const VorE<std::complex<D>,A>& a, const int b)
     {
-      return  CVecOpScal<D,VorE<std::complex<D>,A>,ApPowCR<D> >(a,static_cast<D>(b));
+      return  CVecOpScal<D,VorE<std::complex<D>,A>,Fun_PowCR<D> >(a,static_cast<D>(b));
     }
 
   // pow(realscalar,complexvector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,ApPowRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_PowRC<D> > 
     pow(const D a, const VorE<std::complex<D>,B>& b)
     {
-      return  CScalOpVec<D,VorE<std::complex<D>,B>,ApPowRC<D> >(a,b);
+      return  CScalOpVec<D,VorE<std::complex<D>,B>,Fun_PowRC<D> >(a,b);
     }
 
   // pow(intscalar,complexvector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<std::complex<D>,B>,ApPowRC<D> > 
+    inline CScalOpVec<D,VorE<std::complex<D>,B>,Fun_PowRC<D> > 
     pow(const int a, const VorE<std::complex<D>,B>& b)
     {
-      return  CScalOpVec<D,VorE<std::complex<D>,B>,ApPowRC<D> >(static_cast<D>(a),b);
+      return  CScalOpVec<D,VorE<std::complex<D>,B>,Fun_PowRC<D> >(static_cast<D>(a),b);
     }
 
 
@@ -414,35 +414,35 @@ namespace matricks {
 
   
   template <class D, class A, class B> 
-    inline VecOpScal<std::complex<D>, VorE<D,A>, ApComplex<D> > 
+    inline VecOpScal<std::complex<D>, VorE<D,A>, Fun_Complex<D> > 
     vcomplex(const VorE<D,A>& a, const D b)
     {
-      return  CVecOpScal<D,VorE<D,A>,ApComplex<D > >(a,b);
+      return  CVecOpScal<D,VorE<D,A>,Fun_Complex<D > >(a,b);
     }
   // vcomplex(vector,intscalar)
 
   template <class D, class A> 
-    inline CVecOpScal<D,VorE<D,A>,ApComplex<D > > 
+    inline CVecOpScal<D,VorE<D,A>,Fun_Complex<D > > 
     vcomplex(const VorE<D,A>& a, const int b)
     {
-      return  CVecOpScal<D,VorE<D,A>,ApComplex<D > >(a,static_cast<D>(b));
+      return  CVecOpScal<D,VorE<D,A>,Fun_Complex<D > >(a,static_cast<D>(b));
     }
 
   // vcomplex(realscalar,vector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<D,B>,ApComplex<D > > 
+    inline CScalOpVec<D,VorE<D,B>,Fun_Complex<D > > 
     vcomplex(const D a, const VorE<D,B>& b)
     {
-      return  CScalOpVec<D,VorE<D,B>,ApComplex<D > >(a,b);
+      return  CScalOpVec<D,VorE<D,B>,Fun_Complex<D > >(a,b);
     }
   // vcomplex(intscalar,vector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,VorE<D,B>,ApComplex<D > > 
+    inline CScalOpVec<D,VorE<D,B>,Fun_Complex<D > > 
     vcomplex(const int a, const VorE<D,B>& b)
     {
-      return  CScalOpVec<D,VorE<D,B>,ApComplex<D > >(static_cast<D>(a),b);
+      return  CScalOpVec<D,VorE<D,B>,Fun_Complex<D > >(static_cast<D>(a),b);
     }
 
 
@@ -1288,18 +1288,18 @@ namespace matricks {
   // conj(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,ApConj<D> > 
+    inline VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,Fun_Conj<D> > 
     conj(const VorE<std::complex<D>,A>& a)
     {
-      return  VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,ApConj<D> >(a);
+      return  VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,Fun_Conj<D> >(a);
     }
 
 
   template <class D, class A> 
-    inline VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,ApConj<D> > 
+    inline VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,Fun_Conj<D> > 
     operator~(const VorE<std::complex<D>,A>& a)
     {
-      return  VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,ApConj<D> >(a);
+      return  VFuncOp<std::complex<D>,VorE<std::complex<D>,A>,Fun_Conj<D> >(a);
     }
 
 
@@ -1309,20 +1309,20 @@ namespace matricks {
   // abs(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,VorE<std::complex<D>,A>,ApCAbs<D> > 
+    inline VFuncOp<D,VorE<std::complex<D>,A>,Fun_CAbs<D> > 
     abs(const VorE<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,VorE<std::complex<D>,A>,ApCAbs<D> >(a);
+      return  VFuncOp<D,VorE<std::complex<D>,A>,Fun_CAbs<D> >(a);
     }
 
 
   // arg(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,VorE<std::complex<D>,A>,ApArg<D> > 
+    inline VFuncOp<D,VorE<std::complex<D>,A>,Fun_Arg<D> > 
     arg(const VorE<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,VorE<std::complex<D>,A>,ApArg<D> >(a);
+      return  VFuncOp<D,VorE<std::complex<D>,A>,Fun_Arg<D> >(a);
     }
 
 
@@ -1331,19 +1331,19 @@ namespace matricks {
   // real(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,VorE<std::complex<D>,A>,ApReal<D> > 
+    inline VFuncOp<D,VorE<std::complex<D>,A>,Fun_Real<D> > 
     real(const VorE<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,VorE<std::complex<D>,A>,ApReal<D> >(a);
+      return  VFuncOp<D,VorE<std::complex<D>,A>,Fun_Real<D> >(a);
     }
 
   // imag(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,VorE<std::complex<D>,A>,ApImag<D> > 
+    inline VFuncOp<D,VorE<std::complex<D>,A>,Fun_Imag<D> > 
     imag(const VorE<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,VorE<std::complex<D>,A>,ApImag<D> >(a);
+      return  VFuncOp<D,VorE<std::complex<D>,A>,Fun_Imag<D> >(a);
     }
 
 

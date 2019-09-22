@@ -4,10 +4,8 @@
 
 //  functor in C++ sense: a class that wraps a function
 //
-// TODO: use non-template base classes for the debug code and place in cpp file.
-//        this speeds up compile time tremendously.
 // TODO: add bitwise functors for unsigned types
-// TODO: add const to all input vars
+// TOOD: switch from "apply" to "operator()"?  not sure if that would help. maybe it's good to explcittly show these are functors
 
 
 namespace matricks {
@@ -15,6 +13,7 @@ namespace matricks {
 
   extern display::Style functor_namestyle;
   extern display::Style functor_style;
+  extern display::Style userfunctor_style;
 
   
   // ************************************************************************
@@ -234,12 +233,22 @@ namespace matricks {
   template <class D> class Fun_Pow {
   public:
     Fun_Pow() { }
-    static inline D apply(D a, D b) { 
+    static inline D apply(const D a, const D b) { 
       using std::pow;
       return pow(a,b); 
     }
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = functor_style.apply("pow") +  "(" + sa + ","  + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_Pow")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -251,12 +260,22 @@ namespace matricks {
   template <class D> class Fun_Monomial {
   public:
     Fun_Monomial() { }
-    static inline D apply(D x, int n) { 
+    static inline D apply(const D x, const int n) { 
       using std::pow;
       return pow(x,n); 
     }
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = functor_style.apply("pow") +  "(" + sa + ","  + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_Monomial")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -270,7 +289,7 @@ namespace matricks {
   public:
     Fun_Sqr() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       return (a*a); 
     }
 
@@ -297,7 +316,7 @@ namespace matricks {
   public:
     Fun_Cube() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       return (a*a*a); 
     }
 
@@ -323,7 +342,7 @@ namespace matricks {
   public:
     Fun_Sqrt() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::sqrt;
       return sqrt(a); 
     }
@@ -350,7 +369,7 @@ namespace matricks {
   public:
     Fun_Exp() { }
     
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::exp;
       return exp(a);
     }
@@ -378,7 +397,7 @@ namespace matricks {
   public:
     Fun_Log() { }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::log;
       return log(a);
     }
@@ -394,7 +413,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Log")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -407,8 +426,8 @@ namespace matricks {
   public:
     Fun_Log2() { }
 
-    static inline D apply(D a) {
-      using std::log;
+    static inline D apply(const D a) {
+      using std::log2;
       return log2(a);
     }
 
@@ -422,7 +441,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Log2")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -436,7 +455,7 @@ namespace matricks {
     Fun_Log10() {
     }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::log10;
       return log10(a);
     }
@@ -451,7 +470,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Log10")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -470,7 +489,7 @@ namespace matricks {
   public:
     Fun_Sin() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::sin;
       return sin(a); 
     }
@@ -486,7 +505,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Sin")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -498,7 +517,7 @@ namespace matricks {
   public:
     Fun_Cos() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::cos;
       return cos(a); 
     }
@@ -514,7 +533,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Cos")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -528,7 +547,7 @@ namespace matricks {
   public:
     Fun_Tan() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::tan;
       return tan(a); 
     }
@@ -543,7 +562,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Tan")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -570,7 +589,7 @@ namespace matricks {
       using namespace display;
       D d;
       return functor_namestyle.apply("Fun_Asin")+display::getBracketedTypeName(d);
-     }
+    }
 #endif
 
   };
@@ -583,7 +602,7 @@ namespace matricks {
   public:
     Fun_Acos() { }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::acos;
       return acos(a);
     }
@@ -611,7 +630,7 @@ namespace matricks {
   public:
     Fun_Atan() { }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::atan;
       return atan(a);
     }
@@ -639,12 +658,22 @@ namespace matricks {
   template <class D> class Fun_Atan2 {
   public:
     Fun_Atan2() { }
-    static inline D apply(D a, D b) { 
+    static inline D apply(const D a, const D b) { 
       using std::atan2;
       return atan2(a,b); 
     }
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = functor_style.apply("atan2") +  "(" + sa + ","  + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_Atan2")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -658,7 +687,7 @@ namespace matricks {
   public:
     Fun_Sinh() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::sinh;
       return sinh(a); 
     }
@@ -687,7 +716,7 @@ namespace matricks {
   public:
     Fun_Cosh() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::cosh;
       return cosh(a); 
     }
@@ -715,7 +744,7 @@ namespace matricks {
   public:
     Fun_Tanh() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::tanh;
       return tanh(a); 
     }
@@ -749,7 +778,7 @@ namespace matricks {
   public:
     Fun_Abs() { }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::abs;
       return abs(a);
     }
@@ -777,7 +806,7 @@ namespace matricks {
   public:
     Fun_Sgn() { }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       return matricks::sgn(a);
     }
 
@@ -806,7 +835,7 @@ namespace matricks {
   public:
     Fun_Ceil() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::ceil;
       return ceil(a); 
     }
@@ -835,7 +864,7 @@ namespace matricks {
   public:
     Fun_Floor() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       using std::floor;
       return floor(a); 
     }
@@ -843,7 +872,7 @@ namespace matricks {
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
-      std::string sout = functor_style.apply("+")+"("+ sa + ")";
+      std::string sout = functor_style.apply("floor")+"("+ sa + ")";
       return sout;
     }
     
@@ -864,7 +893,7 @@ namespace matricks {
   public:
     Fun_Round() { }
 
-    static inline D apply(D a) {
+    static inline D apply(const D a) {
       using std::round;
       return round(a); 
     }
@@ -892,7 +921,7 @@ namespace matricks {
     typedef typename GetDataType<D>::Type DREAL;
     Fun_Roundzero() { }
 
-    static inline D apply(D a, const DREAL tolerance) { 
+    static inline D apply(const D a, const DREAL tolerance) { 
       return matricks::roundzero(a, tolerance);
     }
 
@@ -924,15 +953,23 @@ namespace matricks {
   public:
     Fun_UnaryUser() { }
 
-    static inline D apply(D a) { 
+    static inline D apply(const D a) { 
       return F(a); 
     }
 
-
-
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa) {
+      std::string sout = userfunctor_style.apply("userfunc") +  "(" + sa + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_UnaryUser")+display::getBracketedTypeName(d);
+    }
 #endif
-
+	
     
   };
 
@@ -948,6 +985,16 @@ namespace matricks {
     }
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = userfunctor_style.apply("userfunc") +  "(" + sa + ","  + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_BinaryUser")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -964,7 +1011,7 @@ namespace matricks {
   public:
     Fun_Not() { }
 
-    static inline bool apply(bool a) { 
+    static inline bool apply(const bool a) { 
       return !(a); 
     }
 
@@ -989,7 +1036,7 @@ namespace matricks {
   public:
     Fun_And() { }
   
-    static inline bool apply(bool a, bool b) { 
+    static inline bool apply(const bool a, const bool b) { 
       return a && b; 
     }
 
@@ -1014,7 +1061,7 @@ namespace matricks {
   public:
     Fun_Or() { }
   
-    static inline bool apply(bool a, bool b) { 
+    static inline bool apply(const bool a, const bool b) { 
       return (a || b); 
     }
 
@@ -1045,7 +1092,7 @@ namespace matricks {
   public:
     Fun_Equal() { }
 
-    static inline bool apply(D a, D b) { 
+    static inline bool apply(const D a, const D b) { 
       return (a == b); 
     }
 
@@ -1073,7 +1120,7 @@ namespace matricks {
   template <class D> class Fun_NotEqual {
   public:
     Fun_NotEqual() { }
-    static inline bool apply(D a, D b) { 
+    static inline bool apply(const D a, const D b) { 
       return (a != b); 
     }
 
@@ -1103,7 +1150,7 @@ namespace matricks {
   template <class D> class Fun_LessOrEqual {
   public:
     Fun_LessOrEqual() { }
-    static inline bool apply(D a, D b) { 
+    static inline bool apply(const D a, const D b) { 
       return (a <= b); 
     }
 
@@ -1131,7 +1178,7 @@ namespace matricks {
   template <class D> class Fun_GreaterOrEqual {
   public:
     Fun_GreaterOrEqual() { }
-    static inline bool apply(D a, D b) { 
+    static inline bool apply(const D a, const D b) { 
       return (a >= b); 
     }
 
@@ -1156,7 +1203,7 @@ namespace matricks {
   template <class D> class Fun_Less {
   public:
     Fun_Less() { }
-    static inline bool apply(D a, D b) { 
+    static inline bool apply(const D a, const D b) { 
       return (a < b); 
     }
 
@@ -1181,7 +1228,7 @@ namespace matricks {
   template <class D> class Fun_Greater {
   public:
     Fun_Greater() { }
-    static inline bool apply(D a, D b) { 
+    static inline bool apply(const D a, const D b) { 
       return (a > b); 
     }
 
@@ -1213,11 +1260,11 @@ namespace matricks {
 
   // polar(r,phi)
 
-  template <class D > class ApPolar {
+  template <class D > class Fun_Polar {
   public:
-    ApPolar() { }
+    Fun_Polar() { }
 
-    static inline std::complex<D> apply(D r, D phi) { 
+    static inline std::complex<D> apply(const D r, const D phi) { 
       using std::polar;
       return polar(r,phi); 
     }
@@ -1226,14 +1273,14 @@ namespace matricks {
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("+") + "(" + sb + ")";
+      std::string sout = functor_style.apply("polar") +  "(" + sa + ","  + sb + ")";
       return sout;
     }
     
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_Polar")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1243,11 +1290,11 @@ namespace matricks {
 
   // complex(x,y)
 
-  template <class D > class ApComplex {
+  template <class D > class Fun_Complex {
   public:
-    ApComplex() { }
+    Fun_Complex() { }
 
-    static inline std::complex<D> apply(D x, D y) { 
+    static inline std::complex<D> apply(const D x, const D y) { 
       return std::complex<D>(x,y); 
     }
 
@@ -1255,14 +1302,14 @@ namespace matricks {
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("+") + "(" + sb + ")";
+      std::string sout = functor_style.apply("complex") +  "(" + sa + ","  + sb + ")";
       return sout;
     }
     
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_Complex")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1275,7 +1322,7 @@ namespace matricks {
   public:
     Fun_AddCR() { }
   
-    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+    static inline std::complex<D> apply( const std::complex<D> a, const D b) { 
       return a+b; 
     }
 
@@ -1289,7 +1336,7 @@ namespace matricks {
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_AddCR")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1302,7 +1349,7 @@ namespace matricks {
   public:
     Fun_AddRC() { }
   
-    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+    static inline std::complex<D> apply(const D a, const std::complex<D> b) { 
       return a+b; 
     }
 
@@ -1317,7 +1364,7 @@ namespace matricks {
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_AddRC")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1330,17 +1377,22 @@ namespace matricks {
   public:
     Fun_SubtractCR() { }
   
-    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+    static inline std::complex<D> apply( const std::complex<D> a, const D b) { 
       return a-b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " - " + sb;
-      return sout;
     }
 
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("-") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_SubtractCR")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1352,17 +1404,22 @@ namespace matricks {
   public:
     Fun_SubtractRC() { }
   
-    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+    static inline std::complex<D> apply(const D a, const std::complex<D> b) { 
       return a-b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " - " + sb;
-      return sout;
     }
 
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("-") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_SubtractRC")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1375,17 +1432,22 @@ namespace matricks {
   public:
     Fun_MultiplyCR() { }
   
-    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+    static inline std::complex<D> apply( const std::complex<D> a, const D b) { 
       return a*b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " * " + sb;
-      return sout;
     }
 
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("*") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_MultiplyCR")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1397,17 +1459,22 @@ namespace matricks {
   public:
     Fun_MultiplyRC() { }
   
-    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+    static inline std::complex<D> apply(const D a, const std::complex<D> b) { 
       return a*b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " * " + sb;
-      return sout;
     }
 
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("*") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_MultiplyRC")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1419,17 +1486,21 @@ namespace matricks {
   public:
     Fun_DivideCR() { }
   
-    static inline std::complex<D> apply( std::complex<D> a, D b) { 
+    static inline std::complex<D> apply( const std::complex<D> a, const D b) { 
       return a/b; 
     }
 
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " / " + sb;
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("/") + "(" + sb + ")";
       return sout;
     }
-
-
-#if MATRICKS_DEBUG>=1
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_DivideCR")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1441,17 +1512,22 @@ namespace matricks {
   public:
     Fun_DivideRC() { }
   
-    static inline std::complex<D> apply(D a, std::complex<D> b) { 
+    static inline std::complex<D> apply(const D a, const std::complex<D> b) { 
       return a/b; 
-    }
-
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = sa + " / " + sb;
-      return sout;
     }
 
 
 #if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("/") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_DivideRC")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1459,19 +1535,24 @@ namespace matricks {
 
   // y = pow(acomplex,breal),  ie. a raised to the b power
 
-  template <class D> class ApPowCR {
+  template <class D> class Fun_PowCR {
   public:
-    ApPowCR() { }
-    static inline std::complex<D> apply(std::complex<D> a, D b) { 
+    Fun_PowCR() { }
+    static inline std::complex<D> apply(const std::complex<D> a, const D b) { 
       using std::pow;
       return pow(a,b); 
     }
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "pow( " + sa + " , " + sb + " )";
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = functor_style.apply("pow") +  "(" + sa + ","  + sb + ")";
       return sout;
     }
-
-#if MATRICKS_DEBUG>=1
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_PowCR")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1480,20 +1561,24 @@ namespace matricks {
   
   // y = pow(areal,bcomplex),  ie. a raised to the b power
 
-  template <class D> class ApPowRC {
+  template <class D> class Fun_PowRC {
   public:
-    ApPowRC() { }
-    static inline std::complex<D> apply( D a, std::complex<D> b) { 
+    Fun_PowRC() { }
+    static inline std::complex<D> apply( const D a, const std::complex<D> b) { 
       using std::pow;
       return pow(a,b); 
     }
-    static std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = "pow( " + sa + " , " + sb + " )";
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout = functor_style.apply("pow") +  "(" + sa + ","  + sb + ")";
       return sout;
     }
-
-
-#if MATRICKS_DEBUG>=1
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_PowRC")+display::getBracketedTypeName(d);
+    }
 #endif
 
   };
@@ -1502,11 +1587,11 @@ namespace matricks {
 
   // abs(a)
 
-  template <class D> class ApCAbs {
+  template <class D> class Fun_CAbs {
   public:
-    ApCAbs() { }
+    Fun_CAbs() { }
 
-    static inline D apply(std::complex<D> a) { 
+    static inline D apply(const std::complex<D> a) { 
       using std::abs;
       return abs(a); 
     }
@@ -1521,7 +1606,7 @@ namespace matricks {
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_CAbs")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1530,11 +1615,11 @@ namespace matricks {
 
   // arg(a)
 
-  template <class D> class ApArg {
+  template <class D> class Fun_Arg {
   public:
-    ApArg() { }
+    Fun_Arg() { }
 
-    static inline D apply(std::complex<D> a) { 
+    static inline D apply(const std::complex<D> a) { 
       using std::arg;
       return arg(a); 
     }
@@ -1548,7 +1633,7 @@ namespace matricks {
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_Arg")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1559,11 +1644,11 @@ namespace matricks {
 
   // conj(a)
 
-  template <class D > class ApConj {
+  template <class D > class Fun_Conj {
   public:
-    ApConj() { }
+    Fun_Conj() { }
 
-    static inline std::complex<D> apply(std::complex<D> a) { 
+    static inline std::complex<D> apply(const std::complex<D> a) { 
       using std::conj;
       return conj(a); 
     }
@@ -1576,7 +1661,7 @@ namespace matricks {
     
     static inline std::string classname() {
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_Conj")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1585,9 +1670,9 @@ namespace matricks {
 
   // real(a)
 
-  template <class D> class ApReal {
+  template <class D> class Fun_Real {
   public:
-    ApReal() { }
+    Fun_Real() { }
 
 
     static inline const D apply(const std::complex<D> a) { 
@@ -1606,7 +1691,7 @@ namespace matricks {
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_Real")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1615,11 +1700,11 @@ namespace matricks {
 
   // imag(a)
 
-  template <class D> class ApImag {
+  template <class D> class Fun_Imag {
   public:
-    ApImag() { }
+    Fun_Imag() { }
 
-    static inline D apply(std::complex<D> a) { 
+    static inline D apply(const std::complex<D> a) { 
       using std::imag;
       return imag(a); 
     }
@@ -1632,7 +1717,7 @@ namespace matricks {
     
     static inline std::string classname() {
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_Imag")+display::getBracketedTypeName(d);
     }
 #endif
 
@@ -1644,7 +1729,7 @@ namespace matricks {
   public:
     Fun_RoundCplx() { }
 
-    static inline std::complex<D> apply(std::complex<D> a) {
+    static inline std::complex<D> apply(const std::complex<D> a) {
       return matricks::round(a); 
     }
 
@@ -1657,7 +1742,7 @@ namespace matricks {
     static inline std::string classname() {
       using namespace display;
       D d;
-      return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
+      return functor_namestyle.apply("Fun_RoundCplx")+display::getBracketedTypeName(d);
     }
 #endif
 

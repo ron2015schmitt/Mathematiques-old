@@ -76,6 +76,12 @@ namespace matricks {
     inline size_type size(void) const {
       return ii_.size();
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
 
     inline size_type sizetotal(void) const {
       return a_.size();
@@ -167,6 +173,12 @@ namespace matricks {
     inline size_type size(void) const {
       return a_.size() +b_.size();
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
     inline size_type sizetotal(void) const {
       return a_.size() +b_.size();
     }
@@ -242,6 +254,12 @@ namespace matricks {
     }
     inline size_type size(void) const {
       return a_.size() +b_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
     inline size_type sizetotal(void) const {
       return a_.size() +b_.size();
@@ -328,6 +346,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return ii_->size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
 
     inline size_type sizetotal(void) const {
@@ -478,6 +502,12 @@ namespace matricks {
     inline size_type size(void) const {
       return m_*a_.size();
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
     inline size_type sizetotal(void) const {
       return m_*a_.size();
     }
@@ -530,6 +560,12 @@ namespace matricks {
       } else {
 	return a_.size();
       }
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
 
 
@@ -614,6 +650,12 @@ namespace matricks {
       // TODO: check a_.size >= N
     }
 
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
   
 
 #if MATRICKS_DEBUG>=1
@@ -689,6 +731,12 @@ namespace matricks {
       // TODO: check a_.size >= N
       // TODO: check b_.size >= N
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
 
 
 #if MATRICKS_DEBUG>=1
@@ -745,6 +793,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
 
 #if MATRICKS_DEBUG>=1
@@ -804,6 +858,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return b_.size();
+    }
+    size_type ndims(void) const {
+      return b_.ndims();
+    }
+    Dimensions dims(void) const {
+      return b_.dims();
     }
 
 
@@ -911,6 +971,12 @@ namespace matricks {
 	return a_.size();
       }
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
 
 
 #if MATRICKS_DEBUG>=1
@@ -974,6 +1040,12 @@ namespace matricks {
     inline size_type size(void) const {
       return a_.size();
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -1033,6 +1105,12 @@ namespace matricks {
     inline size_type size(void) const {
       return b_.size();
     }
+    size_type ndims(void) const {
+      return b_.ndims();
+    }
+    Dimensions dims(void) const {
+      return b_.dims();
+    }
 
 
 #if MATRICKS_DEBUG>=1
@@ -1085,6 +1163,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
 
 
@@ -1144,6 +1228,12 @@ namespace matricks {
     inline size_type size(void) const {
       return a_.size();
     }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -1197,6 +1287,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return b_.size();
+    }
+    size_type ndims(void) const {
+      return b_.ndims();
+    }
+    Dimensions dims(void) const {
+      return b_.dims();
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1257,6 +1353,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
 
     inline size_type asize(void) const {

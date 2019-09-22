@@ -195,6 +195,15 @@ namespace matricks {
       return data_->size();
     }
 
+    size_type ndims(void) const {
+      return 1;
+    }
+    Dimensions dims(void) const {
+      Dimensions dimensions(size());
+      return dimensions;
+    }
+
+    
     //**********************************************************************
     //************************** ACCESSS ***********************************
     //**********************************************************************
@@ -987,12 +996,10 @@ namespace matricks {
     //************************** Text and debugging ************************
     //**********************************************************************
 
-#if MATRICKS_DEBUG>=1
     VectorofPtrs getAddresses(void) const  {
       VectorofPtrs myaddr((void*)this);
       return myaddr;
     }
-#endif
 
 
     //**********************************************************************
@@ -1004,9 +1011,11 @@ namespace matricks {
     }
 
 
+#if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
     }
+#endif
 
 
 

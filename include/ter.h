@@ -30,12 +30,9 @@ namespace matricks {
       return derived().size();
     }
 
-    inline VETypes vetype(void) const {
-      return derived().vetype();
-    }
 
 
-    std::vector<const void*> getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return derived().getAddresses();
     }
     bool checkAddresses(const std::vector<const void*> addrs) const {

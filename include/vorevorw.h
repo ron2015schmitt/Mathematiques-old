@@ -14,7 +14,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D, class VE> class VorE {
+  template <class D, class VE> class VorE : public Tensor{
   public:
     inline VE& derived() {
       return static_cast<VE&>(*this);
@@ -32,6 +32,14 @@ namespace matricks {
     inline size_type size(void) const {
       return derived().size();
     }
+
+    size_type ndims(void) const {
+      return derived().ndims();
+    }
+    Dimensions dims(void) const {
+      return derived().dims();
+    }
+    
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {

@@ -14,7 +14,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D, class VE> class VorE : public Tensor{
+  template <class D, class VE> class VorE : public TensorAbstract {
   public:
     inline VE& derived() {
       return static_cast<VE&>(*this);
@@ -65,7 +65,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * Vector or Wrapper
+   * Mix-in style class
    **************************************************************************** 
    */
   

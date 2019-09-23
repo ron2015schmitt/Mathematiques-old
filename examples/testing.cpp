@@ -332,6 +332,19 @@ int main()
   printUnary<double,Fun_Real>();
   printUnary<double,Fun_Imag>();
   printUnary<double,Fun_RoundCplx>();
+
+  
+  Vector<double> vv({1,2,3});
+  disp(vv);
+  
+   Dimensions dims1(2,1,3);
+   disp(dims1);
+   disp(dims1.reduce());
+   Dimensions dims2(2,3);
+   disp(dims2);
+   disp(dims2.reduce());
+   disp(dims1 == dims2);
+   disp(dims1.reduce() == dims2.reduce());
   
   return 0;
 }

@@ -20,36 +20,77 @@ namespace matricks {
     // -------------------------------------------------------------------
   
 
-  class Dimensions : public std::valarray<size_type> {
+  class Dimensions : public std::vector<size_type> {
   public:
-    typedef typename std::valarray<size_type> Parent;
+    typedef typename std::vector<size_type> Parent;
+    typedef typename Parent::iterator Iterator;
     Dimensions() {
-      Parent(0);
     }
     Dimensions(const size_type dim1) {
-      Parent(1);
+      resize(1,0);
       (*this)[0] = dim1;
     }
     Dimensions(const size_type dim1, const size_type dim2) {
-      Parent(2);
+      resize(2,0);
       (*this)[0] = dim1;
       (*this)[1] = dim2;
      }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3) {
-      Parent(3);
+      mdisp3(dim1,dim2,dim3);
+      resize(3,0);
+      disp3(size());
       (*this)[0] = dim1;
       (*this)[1] = dim2;
       (*this)[2] = dim3;
      }
 
     //TODO: constructor for arbitrary rank
+
+
+    // return this object with size 1 dimensions removed
+    
+    Dimensions& reduce() {
+      Dimensions* v = new Dimensions();
+      for (size_type i = 0; i < this->size(); i++) {
+	if ((*this)[i] != 1) {
+	  v->push_back((*this)[i]);
+	}
+      }
+      return *v;
+    }
+    
+    inline static std::string classname() {
+      return "Dimensions";
+    }
+
+
+    inline friend std::ostream& operator<<(std::ostream &stream, const Dimensions& dims) {
+      using namespace display;
+
+      // TODO: use streamval function once written and get rid of the mout stuff
+      
+      std::ostream& os = mout;
+      display::Terminal::setmout(stream);
+
+      stream << "{";
+      for (size_type ii = 0; ii < dims.size(); ii++) {
+	if (ii>0)  stream << ", ";
+	dispval(dims[ii]);
+      }
+      stream << "}";
+
+      display::Terminal::setmout(os);
+      return stream;
+    }
+      
+
   };
 
 
 
     // -------------------------------------------------------------------
     //
-    // Tensor  - abstract class that allows us to put tensors of
+    // TensorAbstract  - abstract class that allows us to put tensors of
     //           any rank into a contianer.  Use ndims() dim()
     //           to dertermined rank (ie Scalar Vector, Matrix, Tensor)
     //  rank   Subclass Name
@@ -59,7 +100,7 @@ namespace matricks {
     //    3+   Tensor
     // -------------------------------------------------------------------
   
-  class Tensor {
+  class TensorAbstract {
     // DO NOT define any storage: we want to
     //        be able to define "light-weight" vectors and matrices
     //        light-weight in that they are small from 1 to 4 elements

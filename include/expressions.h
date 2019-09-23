@@ -1031,13 +1031,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * CTER_TensorOpScalar Operator Template 
+   * TER_Cplx_TensorOpScalar Operator Template 
    *
    * complex vector = binfunc(ComplexOrRealVector,RealScalar) binary operators 
    ****************************************************************************
    */
   template<class D, class A, class OP>
-    class CTER_TensorOpScalar : public TExpressionR<std::complex<D>, CTER_TensorOpScalar<D,A,OP> > {
+    class TER_Cplx_TensorOpScalar : public TExpressionR<std::complex<D>, TER_Cplx_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1047,13 +1047,13 @@ namespace matricks {
   public:
 
 
-  CTER_TensorOpScalar(const A& a, const D b)
+  TER_Cplx_TensorOpScalar(const A& a, const D b)
     : a_(a), val_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
     }
 
-    ~CTER_TensorOpScalar() {
+    ~TER_Cplx_TensorOpScalar() {
       delete vptrs;
     }
 
@@ -1074,7 +1074,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "CTER_TensorOpScalar";
+      return "TER_Cplx_TensorOpScalar";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1100,13 +1100,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * CTER_ScalarOpTensor Operator Template 
+   * TER_Cplx_ScalarOpTensor Operator Template 
    *
    * complex vector = binfunc(RealScalar,ComplexOrRealVector) binary operators 
    ****************************************************************************
    */
   template<class D, class B, class OP>
-    class CTER_ScalarOpTensor : public TExpressionR<std::complex<D>,CTER_ScalarOpTensor<D,B,OP> > {
+    class TER_Cplx_ScalarOpTensor : public TExpressionR<std::complex<D>,TER_Cplx_ScalarOpTensor<D,B,OP> > {
   private:
     const D val_;
     const B& b_;
@@ -1115,13 +1115,13 @@ namespace matricks {
   public:
 
 
-  CTER_ScalarOpTensor(const D a, const B& b)
+  TER_Cplx_ScalarOpTensor(const D a, const B& b)
     : val_(a), b_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(&b_);
     }
 
-    ~CTER_ScalarOpTensor() {
+    ~TER_Cplx_ScalarOpTensor() {
       delete vptrs;
     }
 
@@ -1142,7 +1142,7 @@ namespace matricks {
       return b_.dims();
     }
     static std::string classname(void)  {
-      return "CTER_ScalarOpTensor";
+      return "TER_Cplx_ScalarOpTensor";
     }
 
 #if MATRICKS_DEBUG>=1

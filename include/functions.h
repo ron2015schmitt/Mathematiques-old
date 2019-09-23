@@ -366,45 +366,45 @@ namespace matricks {
   // pow(complexvector,realscalar)
 
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
     pow(const TensorR<std::complex<D>,A>& a, const D b)
     {
-      return  CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,b);
+      return  TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,b);
     }
 
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > > 
     roundzero(const TensorR<std::complex<D>,A>& a, const D tol = MatricksHelper<D>::tolerance)
     {
-      return  CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > >(a,tol);
+      return  TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > >(a,tol);
     }
 
 
   // pow(complexvector,intscalar)
 
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
     pow(const TensorR<std::complex<D>,A>& a, const int b)
     {
-      return  CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,static_cast<D>(b));
+      return  TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,static_cast<D>(b));
     }
 
   // pow(realscalar,complexvector)
 
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
     pow(const D a, const TensorR<std::complex<D>,B>& b)
     {
-      return  CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(a,b);
+      return  TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(a,b);
     }
 
   // pow(intscalar,complexvector)
 
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
     pow(const int a, const TensorR<std::complex<D>,B>& b)
     {
-      return  CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(static_cast<D>(a),b);
+      return  TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(static_cast<D>(a),b);
     }
 
 
@@ -417,32 +417,32 @@ namespace matricks {
     inline TER_TensorOpScalar<std::complex<D>, TensorR<D,A>, Fun_Complex<D> > 
     vcomplex(const TensorR<D,A>& a, const D b)
     {
-      return  CTER_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,b);
+      return  TER_Cplx_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,b);
     }
   // vcomplex(vector,intscalar)
 
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > > 
     vcomplex(const TensorR<D,A>& a, const int b)
     {
-      return  CTER_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,static_cast<D>(b));
+      return  TER_Cplx_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,static_cast<D>(b));
     }
 
   // vcomplex(realscalar,vector)
 
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > > 
     vcomplex(const D a, const TensorR<D,B>& b)
     {
-      return  CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(a,b);
+      return  TER_Cplx_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(a,b);
     }
   // vcomplex(intscalar,vector)
 
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > > 
     vcomplex(const int a, const TensorR<D,B>& b)
     {
-      return  CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(static_cast<D>(a),b);
+      return  TER_Cplx_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(static_cast<D>(a),b);
     }
 
 
@@ -711,35 +711,35 @@ namespace matricks {
     }
   // complexvector + realscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
     operator+(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,b);  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,b);  
     }
   // complexvector + intscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
     operator+(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,static_cast<D>(b));  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar + complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);  
     }
   // intscalar + complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D > >(static_cast<D>(a),b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -763,35 +763,35 @@ namespace matricks {
     }
   // complexvector - realscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
     operator-(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,b);  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,b);  
     }
   // complexvector - intscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
     operator-(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,static_cast<D>(b));  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar - complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);  
     }
   // intscalar - complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D > >(static_cast<D>(a),b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -814,35 +814,35 @@ namespace matricks {
     }
   // complexvector * realscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
     operator*(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,b);  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,b);  
     }
   // complexvector * intscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
     operator*(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,static_cast<D>(b));  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar * complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);  
     }
   // intscalar * complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D > >(static_cast<D>(a),b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -867,35 +867,35 @@ namespace matricks {
     }
   // complexvector / realscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
     operator/(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,b);  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,b);  
     }
   // complexvector / intscalar
   template <class D, class A> 
-    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
+    inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
     operator/(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,static_cast<D>(b));  
+	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar / complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);  
     }
   // intscalar / complexvector
   template <class D, class B> 
-    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
+    inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D > >(static_cast<D>(a),b);  
+	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D > >(static_cast<D>(a),b);  
     }
 
 

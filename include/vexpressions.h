@@ -74,6 +74,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    static std::string classname(void)  {
+      return "VSubsetObj";
+    }
 
 
     VSubsetObj<D>& operator=(VReconObj<D>& b) { 
@@ -161,8 +164,8 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    inline size_type sizetotal(void) const {
-      return a_.size() +b_.size();
+    static std::string classname(void)  {
+      return "VJoinExpr";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -205,9 +208,6 @@ namespace matricks {
 
 
 
-
-
-
     inline const D operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
@@ -232,6 +232,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "VJoinObj";
     }
 
     VJoinObj<D,A,B>& operator=(VReconObj<D>& b) { 
@@ -317,6 +320,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    static std::string classname(void)  {
+      return "VSubMaskObj";
+    }
 
 
     VSubMaskObj<D>& operator=(VReconObj<D>& b) { 
@@ -381,6 +387,19 @@ namespace matricks {
 
     }
 
+    // TODO:  not sure what to use for this
+    inline size_type size(void) const {
+      return a_->size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "VReconObj";
+    }
 
     template <class A>
       Vector<D>& operator=(const VorE<D,A>& x) { 
@@ -462,6 +481,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    static std::string classname(void)  {
+      return "VRepExpr";
+    }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -517,6 +539,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "VBinOp";
     }
 
 
@@ -607,6 +632,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    static std::string classname(void)  {
+      return "VSeriesOp";
+    }
   
 
 #if MATRICKS_DEBUG>=1
@@ -688,6 +716,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    static std::string classname(void)  {
+      return "VSeriesOp2";
+    }
 
 
 #if MATRICKS_DEBUG>=1
@@ -750,6 +781,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "VecOpScal";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -816,6 +850,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return b_.dims();
     }
+    static std::string classname(void)  {
+      return "ScalOpVec";
+    }
 
 
 #if MATRICKS_DEBUG>=1
@@ -875,6 +912,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    static std::string classname(void)  {
+      return "VFuncOp";
+    }
 
 
 #if MATRICKS_DEBUG>=1
@@ -898,7 +938,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> >, VectorofPtrs {
+    class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -933,6 +973,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "VBoolBinOp";
     }
 
 
@@ -971,7 +1014,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> >, VectorofPtrs {
+    class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1002,6 +1045,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "BoolVecOpScal";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1037,7 +1083,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> >, VectorofPtrs {
+    class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> > {
 
   private:
     D val_;
@@ -1067,6 +1113,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return b_.dims();
+    }
+    static std::string classname(void)  {
+      return "BoolScalOpVec";
     }
 
 
@@ -1099,7 +1148,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-    class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >, VectorofPtrs{
+    class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >{
   
   private:
     const A& a_;
@@ -1126,6 +1175,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "VBoolFuncOp";
     }
 
 
@@ -1160,7 +1212,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class OP>
-    class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> >, VectorofPtrs {
+    class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1190,6 +1242,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "CVecOpScal";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1221,7 +1276,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class B, class OP>
-    class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> >, VectorofPtrs {
+    class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> > {
   private:
     const D val_;
     const B& b_;
@@ -1251,6 +1306,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return b_.dims();
     }
+    static std::string classname(void)  {
+      return "CScalOpVec";
+    }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -1279,7 +1337,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class OP>
-    class VRealFromComplex : public  VWrapper<D,VRealFromComplex<D,OP> >, VectorofPtrs {
+    class VRealFromComplex : public  VWrapper<D,VRealFromComplex<D,OP> > {
   private:
     Vector<std::complex<D> >& a_;
 
@@ -1313,10 +1371,10 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-
-    inline size_type asize(void) const {
-      return a_.size();
+    static std::string classname(void)  {
+      return "VRealFromComplex";
     }
+
 
     template <class B>
       VRealFromComplex<D,OP>& operator=(const B& b) { 

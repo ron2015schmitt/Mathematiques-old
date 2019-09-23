@@ -7,16 +7,122 @@ namespace matricks {
 
 
 
+    /****************************************************************************
+   * std::vector related functions
+   **************************************************************************** 
+   */
+
+  // TODO: do we need these?  move inside the class
+    template <typename T>
+    std::vector<T> mergeVectors(const std::vector<T> v1, const std::vector<T> v2) {
+    std::vector<T> v3 = v1;
+    v3.insert( v3.end(), v2.begin(), v2.end() );
+    return v3;
+  }
+
+  template <typename T>
+    std::vector<T> createVector(const T x) {
+    std::vector<T> v1;
+    v1.push_back(x);
+    return v1;
+  }
+
+
+  /**********************************************************************
+   *  VectorofPtrs
+   ********************************************************************** 
+   */
+
+  class VectorofPtrs : public std::vector<const void*> {
+   
+  public:
+    typedef typename std::vector<const void*> Parent;
+
+    VectorofPtrs() {
+    }
+    VectorofPtrs(const void* addr) {
+      VectorofPtrs();
+      this->add(addr);
+    }
+    VectorofPtrs(const std::vector<const void*> addrs) {
+      VectorofPtrs();
+      this->add(addrs);
+    }
+    
+    
+    
+    inline void add(const void* addr) {
+      this->push_back(addr);
+    }
+    
+    inline void add(const VectorofPtrs& addrs) {
+      this->insert(this->end(), addrs.begin(), addrs.end());
+    }
+    
+  // true if this vector and another share an element in common (ie same value)
+
+    inline bool common(const VectorofPtrs& addrs) const {
+      for (size_type i = 0; i < addrs.size(); i++){
+	const void* addr = addrs[i];
+	if ( std::find(this->begin(), this->end(), addr) != this->end() ) {
+	  return true;
+	}
+      }
+      return false;
+    }
+
+    inline static std::string classname() {
+      return "VectorofPtrs";
+    }
+
+    inline friend std::ostream& operator<<(std::ostream &stream, const VectorofPtrs& vptrs) {
+      using namespace display;
+
+      // TODO: use streamval function once written and get rid of the mout stuff
+      
+      std::ostream& os = mout;
+      display::Terminal::setmout(stream);
+
+      stream << "{";
+      for (size_type ii = 0; ii < vptrs.size(); ii++) {
+	if (ii>0)  stream << ", ";
+	dispval(vptrs[ii]);
+      }
+      stream << "}";
+
+      display::Terminal::setmout(os);
+      return stream;
+    }
+
+    
+  };    
+
+  // true if the two vectors have a value in common
+
+  inline bool common(const VectorofPtrs& addrs1, const VectorofPtrs& addrs2) {
+    return addrs1.common(addrs2);
+  }
+   
+  //***********************************************************************
+  //      Pair class
+  //***********************************************************************
+
+  template <class DAT> class Pair {
+  public:
+    index_type index;
+    DAT data;
+  Pair(index_type index_, DAT data_) : index(index_), data(data_) {}
+  Pair() : index(0), data(DAT(0)) {}
+    bool operator<(const Pair<DAT>& pair2) const {
+      return ((*this).data < pair2.data);
+    }
+  };
+
+
+
     // -------------------------------------------------------------------
     //
-    // Tensor  - abstract class that allows us to put tensors of
-    //           any rank into a contianer.  Use ndims() dim()
-    //           to dertermined rank (ie Scalar Vector, Matrix, Tensor)
-    //  rank   Subclass Name
-    //    0    Scalar
-    //    1    Vector
-    //    2    Matrix
-    //    3+   Tensor
+    // Dimensions - class to hold dimensions of Tensors
     // -------------------------------------------------------------------
   
 
@@ -49,7 +155,7 @@ namespace matricks {
 
     // return this object with size 1 dimensions removed
     
-    Dimensions& reduce() {
+    Dimensions& reduce() const {
       Dimensions* v = new Dimensions();
       for (size_type i = 0; i < this->size(); i++) {
 	if ((*this)[i] != 1) {
@@ -59,6 +165,11 @@ namespace matricks {
       return *v;
     }
     
+    bool equiv(const Dimensions& dims) const {
+      return (this->reduce() == dims.reduce());
+    }
+
+
     inline static std::string classname() {
       return "Dimensions";
     }
@@ -87,6 +198,12 @@ namespace matricks {
   };
 
 
+  inline bool equiv(const Dimensions& dims1, const Dimensions& dims2) {
+    return dims1.equiv(dims2);
+  }
+
+
+  
 
     // -------------------------------------------------------------------
     //

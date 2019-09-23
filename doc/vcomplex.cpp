@@ -169,7 +169,8 @@ int main()
     resultmulti(vr*vc);
     resultmulti(vr/vc);
     resultmulti(2.*vr + vc/2. + 1);
-    //    resultmulti( (1.i)*vr + (5.+2.i)*vc);
+    // C++14 complex objects are of class "__complex__ double" 
+    //    resultmulti( (1.i)*vr + (5.+2.i)*vc);  // C++14
     resultmulti( complex<double>(0,1)*vr + complex<double>(5,2)*vc);
     resultend();
   }
@@ -277,59 +278,60 @@ int main()
 
 
   
-    text("* Functions defined for complex vectors  ");
+  text("* Functions defined for complex vectors  ");
   
-    {
-      cr();
-      cr();
-      example(Nex++,"functions of complex vectors");
-      codestart("C++");
-      codemulti(const double pi = M_PI);
-      codemulti( using namespace std );
-      codemulti( Vector<complex<double> > v(3) );
-      codemulti( Vector<double> vr( range<double>(1,3) ));
-      codemulti( Vector<double> vi( range<double>(-1,1) ));
-      codemulti( v = vcomplex(vr, vi) );
-      codeend();
-      cr();
+  {
+    cr();
+    cr();
+    example(Nex++,"functions of complex vectors");
+    codestart("C++");
+    codemulti(const double pi = M_PI);
+    codemulti( using namespace std );
+    codemulti( Vector<complex<double> > v(3) );
+    codemulti( Vector<double> vr( range<double>(1,3) ));
+    codemulti( Vector<double> vi( range<double>(-1,1) ));
+    codemulti( v = vcomplex(vr, vi) );
+    codeend();
+    cr();
 
-      resultstart2(": functions of complex vectors");
-      //      resultmulti( floor(v)  );
-      //      resultmulti( ceil(v)  );
-      resultmulti( v  );
-      resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
-      //      resultmulti( sgn(v)  );
-      //      resultmulti( abs(v)  );
-      //     resultstart2(": powers, roots, and exponentiation");
-  //     resultmulti( pow(2., v)  );
-  //     resultmulti( pow(v, 2.)  );
-  //     resultmulti( pow(v,v)  );
-      resultmulti( exp(v)  );
-      resultmulti( round(exp(v))  );
-      resultmulti( v + 0.1 );
-      resultmulti( 0.1 + v );
-      resultmulti( v - 0.1 );
-      resultmulti( 0.1 - v );
-      resultmulti( roundzero(v+1e-16) );
-  //     resultmulti( log(v)  );
-  //     resultmulti( log10(v)  );
-  //     resultmulti( log2(v)  );
-  //     resultmulti( sqr(v)  );
-  //     resultmulti( cube(v)  );
-  //     resultmulti( sqrt(v)  );
-  //     resultmulti( sin(v)  );
-  //     resultmulti( cos(v)  );
-  //     resultmulti( tan(v)  );
-  //     resultmulti( sinh(v)  );
-  //     resultmulti( cosh(v)  );
-  //     resultmulti( tanh(v)  );
-  //     resultmulti( asin(v)  );
-  //     resultmulti( acos(v)  );
-  //     resultmulti( atan(v)  );
-  //     resultmulti( atan2(v1, v2)  );
-       resultend();
-       cr();
-    }
+    resultstart2(": functions of complex vectors");
+    // TODO: need to implement these for complex numbers and then for Tensors
+    //  resultmulti( floor(v)  );
+    //  resultmulti( ceil(v)  );
+    // resultmulti( sgn(v)  );
+    resultmulti( v  );
+    resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
+    resultmulti( abs(v)  );
+    resultstart2(": powers, roots, and exponentiation");
+    resultmulti( pow(2., v)  );
+    resultmulti( pow(v, 2.)  );
+    resultmulti( pow(v,v)  );
+    resultmulti( exp(v)  );
+    resultmulti( round(exp(v))  );
+    resultmulti( v + 0.1 );
+    resultmulti( 0.1 + v );
+    resultmulti( v - 0.1 );
+    resultmulti( 0.1 - v );
+    resultmulti( roundzero(v+1e-16) );
+    resultmulti( log(v)  );
+    resultmulti( log10(v)  );
+    //    resultmulti( log2(v)  );
+    resultmulti( sqr(v)  );
+    resultmulti( cube(v)  );
+    resultmulti( sqrt(v)  );
+    resultmulti( sin(v)  );
+    resultmulti( cos(v)  );
+    resultmulti( tan(v)  );
+    resultmulti( sinh(v)  );
+    resultmulti( cosh(v)  );
+    resultmulti( tanh(v)  );
+    resultmulti( asin(v)  );
+    resultmulti( acos(v)  );
+    resultmulti( atan(v)  );
+    resultmulti( atan2(vr, vi)  );
+    resultend();
+    cr();
+  }
 
 
 

@@ -19,9 +19,8 @@ namespace matricks {
 
     // *********************** OBJECT DATA ***********************************
     //
-    // do NOT declare any other storage.  that way we can subclass
-    // lightweight vectors from this class, which are not tracked by the
-    // objectManager for debugging
+    // do NOT declare any other storage.
+    // keep the instances lightweight
     
     std::valarray<D>* data_;
 

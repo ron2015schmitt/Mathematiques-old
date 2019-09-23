@@ -227,11 +227,18 @@ namespace matricks {
     virtual size_type size(void) const = 0;
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
-#if MATRICKS_DEBUG>=1
     virtual VectorofPtrs getAddresses(void) const = 0;
-#endif
   };
     
+
+  inline bool dimequiv(const TensorAbstract& tensor1, const TensorAbstract& tensor2) {
+    return equiv(tensor1.dims(), tensor2.dims());
+  }
+
+  inline bool common(const TensorAbstract& tensor1, const TensorAbstract& tensor2) {
+    return common(tensor1.getAddresses(), tensor2.getAddresses());
+  }
+
 
 
   // -------------------------------------------------------------------

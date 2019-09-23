@@ -88,11 +88,6 @@ namespace matricks {
       return this->equals(rhs);
     }
 
-    template <class B>
-      VSubsetObj<D>& operator=(const MorE<D,B>& rhs) { 
-      return this->equals(rhs);
-    }
-
     VSubsetObj<D>& operator=(const D d) { 
       return this->equals(d);
     }
@@ -247,10 +242,6 @@ namespace matricks {
       return this->equals(rhs);
     }
 
-    template <class C>
-      VJoinObj<D,A,B>& operator=(const MorE<D,C>& rhs) { 
-      return this->equals(rhs);
-    }
 
     VJoinObj<D,A,B>& operator=(const D d) { 
       return this->equals(d);
@@ -334,10 +325,6 @@ namespace matricks {
       return this->equals(rhs);
     }
 
-    template <class B>
-      VSubMaskObj<D>& operator=(const MorE<D,B>& rhs) { 
-      return this->equals(rhs);
-    }
 
     VSubMaskObj<D>& operator=(const D d) { 
       return this->equals(d);

@@ -219,33 +219,6 @@ namespace matricks {
  
 
   
-  // vcast(matrix)
-  // cast the entire matrix into a vector (row-major ordering)
-  // v1 = M11, v2 = M12, etc
-
-  template <class D2, class D1, class A> 
-    inline Vector<D2> 
-    vcast(const MorE<D1,A>& a)
-  {
-    const size_type N = a.size();
-#if MATRICKS_DEBUG>0
-    std::string name=a.expression();
-    name = "vcast("+name+")";
-    if ( mexpr_is_size_bad(a.size()) ){ 
-      mbad_expr_in_unary(a,"vcast");
-      Vector<D2> y(0,name);
-      return y;
-    }
-    Vector<D2> y(N,name);
-#else
-    Vector<D2> y(N);
-#endif
-
-    for(index_type i = 0; i<N; i++) 
-      y[i] = static_cast<D2>(a(i));
-    return y;
-  }
-
 
 
   /****************************************************************

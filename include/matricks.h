@@ -45,36 +45,13 @@
 #include "display.h"
 #include "util.h"
 #include "slices.h"
-
 #include "tensor.h"
-
-#include "more.hpp"
-
 #include "debug.h"
-
 #include "functors.h"
-
 #include "vector.h"
-
-#include "matrixdef.hpp"
-
-#include "vexpressions.h"
-
-#include "mexpr.hpp"
-#include "mboolexpr.hpp"
-#include "mcomplexexpr.hpp"
-#include "mvexpr.hpp"
-
+#include "expressions.h"
 #include "functions.h"
 #include "functions_v.h"
-
-#include "moperators.hpp"
-#include "mmathops.hpp"
-#include "mboolops.hpp"
-#include "mcomplexops.hpp"
-#include "mvoperators.hpp"
-#include "mvcomplexops.hpp"
-
 #include "fileio.h"
 #include "coda.h"
 #include "gitmd.h"

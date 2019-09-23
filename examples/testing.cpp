@@ -334,8 +334,6 @@ int main()
   printUnary<double,Fun_RoundCplx>();
 
   
-  Vector<double> vv({1,2,3});
-  disp(vv);
   
    Dimensions dims1(2,1,3);
    disp(dims1);
@@ -356,12 +354,27 @@ int main()
    disp(addrs1);
    
    VectorofPtrs addrs2((void*)&dims3);
-   addrs2.add((void*)&vv);
+   addrs2.add((void*)&x);
    disp(addrs2);
    disp(common(addrs1,addrs2));
    addrs2.add((void*)&dims1);
    disp(addrs2);
    disp(common(addrs1,addrs2));
+
+
+  Vector<double> vv({1,2,3});
+  disp(vv);
+  Vector<double> ww({0,0,0});
+  disp(ww);
+  disp(dimequiv(vv,ww));
+  disp(common(vv,ww));
+  disp(common(vv,vv));
+
+  double x1 = 1;
+  double x2 = x1 + 3e-16;
+  disp(approx(x1,x2,0.));
+  disp(approx(x1,x2,3.5e-16));
+   
    
   return 0;
 }

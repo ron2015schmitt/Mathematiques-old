@@ -77,17 +77,6 @@ namespace matricks {
   template <class D> class VReconObj;
   template <class D, class A, class X> class VSeriesOp;
 
-  template <class D> class Matrix;
-  template <class D, class A> class Mexpr;  
-  template <class D, class A> class MWrapperObj;
-  template <class D> class MSubmatObj;
-  template <class D> class MRangeObj;
-  template <class D> class MSetObj;
-  template <class D> class MDualSetObj;
-  template <class D> class MDualRangeObj;
-  template <class D> class MSetRangeObj;
-  template <class D> class MRangeSetObj;
-  template <class D> class MReconObj;
 
 
     /****************************************************************************
@@ -106,6 +95,22 @@ namespace matricks {
     
     return a;
   }
+
+
+  // roundzero
+  
+  template <typename D> D roundzero(const D& x, const D tolerance) {
+    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
+  }
+
+  // approx
+  
+  template <typename D> bool approx(const D& x, const D& y, const D tolerance) {
+    using std::abs;
+    return (roundzero(abs(x-y), tolerance) == 0);
+  }
+
+  
   
   // complex conjugate
   template <typename D> std::complex<D>
@@ -114,15 +119,13 @@ namespace matricks {
   }
 
 
-
   // complex rounding
+
   template <typename D> std::complex<D> round(const std::complex<D>& x) {
     return std::complex<D>(std::round(x.real()), std::round(x.imag()));
   }
 
-  template <typename D> D roundzero(const D& x, const D tolerance) {
-    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
-  }
+  // complex - roundzero
   template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance) {
     return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
@@ -191,10 +194,11 @@ namespace matricks {
   public:
     typedef typename GetDataType<D>::Type Type;
   };
-  template <typename D> class GetDataType<Matrix<D> > {
-  public:
-    typedef typename GetDataType<D>::Type Type;
-  };
+  
+  //  template <typename D> class GetDataType<Matrix<D> > {
+  //  public:
+  //    typedef typename GetDataType<D>::Type Type;
+  //  };
 
 
   //***********************************************************************

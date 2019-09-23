@@ -400,18 +400,6 @@ namespace matricks {
 
 
 
-    // assignment to matrix or submatrix
-    // one of the two dimensions must have single element width
-    template <class A>
-    Vector<D>& operator=(const MorE<D,A>& m) {
-
-      for(register index_type i=size(); i--;)
-	(*data_)[i] = m(i);    
-      return *this;
-    }
-
-
-
     template <class B>
     Vector<D>& operator=(const VReconObj<D>& b) { 
       return *this;

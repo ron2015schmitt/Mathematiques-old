@@ -129,13 +129,13 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class A> 
-    inline VJoinObj<D, VWrapper<D,A>, Vector<D> > 
-    operator,(const VWrapper<D,A>& a, const Vector<D>& b)
+    inline VJoinObj<D, TExpressionRW<D,A>, Vector<D> > 
+    operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)
     {
-      printf2("  VJoinObj operator,(const VWrapper<D,A>& a, const Vector<D>& b)\n");
-      VWrapper<D,A>& a_ = const_cast<VWrapper<D,A>& >(a);
+      printf2("  VJoinObj operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)\n");
+      TExpressionRW<D,A>& a_ = const_cast<TExpressionRW<D,A>& >(a);
       Vector<D>& b_ = const_cast<Vector<D>& >(b);
-      return  VJoinObj<D, VWrapper<D,A>,Vector<D> >(a_,b_);
+      return  VJoinObj<D, TExpressionRW<D,A>,Vector<D> >(a_,b_);
     }
   //--------------------------------------------
 
@@ -143,26 +143,26 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class B> 
-    inline VJoinObj<D, Vector<D>,VWrapper<D,B> > 
-    operator,(const Vector<D>& a, const VWrapper<D,B>& b)
+    inline VJoinObj<D, Vector<D>,TExpressionRW<D,B> > 
+    operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)
     {
-      printf2("  VJoinObj operator,(const Vector<D>& a, const VWrapper<D,B>& b)\n");
+      printf2("  VJoinObj operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)\n");
       Vector<D>& a_ = const_cast<Vector<D>& >(a);
-      VWrapper<D,B>& b_ = const_cast<VWrapper<D,B>& >(b);
-      return VJoinObj<D, Vector<D>,VWrapper<D,B> >(a_,b_);
+      TExpressionRW<D,B>& b_ = const_cast<TExpressionRW<D,B>& >(b);
+      return VJoinObj<D, Vector<D>,TExpressionRW<D,B> >(a_,b_);
     }
   //--------------------------------------------
 
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class A, class B> 
-    inline VJoinObj<D, VWrapper<D,A>,VWrapper<D,B> > 
-    operator,(const VWrapper<D,A>& a, const VWrapper<D,B>& b)
+    inline VJoinObj<D, TExpressionRW<D,A>,TExpressionRW<D,B> > 
+    operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)
     {
-      printf2("  VJoinObj operator,(const VWrapper<D,A>& a, const VWrapper<D,B>& b)\n");
-      VWrapper<D,A>& a_ = const_cast<VWrapper<D,A>& >(a);
-      VWrapper<D,B>& b_ = const_cast<VWrapper<D,B>& >(b);
-      return  VJoinObj<D, VWrapper<D,A>,VWrapper<D,B> >(a_,b_);
+      printf2("  VJoinObj operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)\n");
+      TExpressionRW<D,A>& a_ = const_cast<TExpressionRW<D,A>& >(a);
+      TExpressionRW<D,B>& b_ = const_cast<TExpressionRW<D,B>& >(b);
+      return  VJoinObj<D, TExpressionRW<D,A>,TExpressionRW<D,B> >(a_,b_);
     }
   //--------------------------------------------
 
@@ -179,27 +179,27 @@ namespace matricks {
     }
 
   template <class D, class B> 
-    inline const VJoinExpr<D, Vector<D>,Vexpr<D,B> > 
-    operator,(const Vector<D>& a, const Vexpr<D,B>& b)
+    inline const VJoinExpr<D, Vector<D>,TExpressionR<D,B> > 
+    operator,(const Vector<D>& a, const TExpressionR<D,B>& b)
     {
-      printf2("  VJoinExpr operator,(const Vector<D>& a, const Vexpr<D,B>& b)\n");
-      return  VJoinExpr<D,Vector<D>,Vexpr<D,B>  >(a,b);
+      printf2("  VJoinExpr operator,(const Vector<D>& a, const TExpressionR<D,B>& b)\n");
+      return  VJoinExpr<D,Vector<D>,TExpressionR<D,B>  >(a,b);
     }
 
   template <class D, class A> 
-    inline const VJoinExpr<D,Vexpr<D,A>,Vector<D> > 
-    operator,(const Vexpr<D,A>& a, const Vector<D>& b)
+    inline const VJoinExpr<D,TExpressionR<D,A>,Vector<D> > 
+    operator,(const TExpressionR<D,A>& a, const Vector<D>& b)
     {
-      printf2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vector<D>& b)\n");
-      return  VJoinExpr<D,Vexpr<D,A>,Vector<D> >(a,b);
+      printf2("  VJoinExpr operator,(const TExpressionR<D,A>& a, const Vector<D>& b)\n");
+      return  VJoinExpr<D,TExpressionR<D,A>,Vector<D> >(a,b);
     }
  
   template <class D, class A, class B> 
-    inline const VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> > 
-    operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)
+    inline const VJoinExpr<D, TExpressionR<D,A>,TExpressionR<D,B> > 
+    operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)
     {
-      printf2("  VJoinExpr operator,(const Vexpr<D,A>& a, const Vexpr<D,B>& b)\n");
-      return  VJoinExpr<D, Vexpr<D,A>,Vexpr<D,B> >(a,b);
+      printf2("  VJoinExpr operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)\n");
+      return  VJoinExpr<D, TExpressionR<D,A>,TExpressionR<D,B> >(a,b);
     }
 
 
@@ -609,8 +609,8 @@ namespace matricks {
    *               Templates for Binary+scalar Operators 
    *
    * D = data type, e.g. double
-   * A = either an Vector or a Vexpr
-   * B = either an Vector or a Vexpr
+   * A = either an Vector or a TExpressionR
+   * B = either an Vector or a TExpressionR
    * N = int
    ************************************************************
    */

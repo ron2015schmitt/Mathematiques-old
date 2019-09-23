@@ -83,7 +83,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VWrapper Expression Template 
+   * TExpressionRW Expression Template 
    *
    * abstract class 
    ****************************************************************************

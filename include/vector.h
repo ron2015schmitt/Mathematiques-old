@@ -293,7 +293,7 @@ namespace matricks {
     //************************** ASSIGNMENT **************************************
     //**********************************************************************
 
-    // Any new assignment operators should also be addedc to VWrapper for consistency.
+    // Any new assignment operators should also be addedc to TExpressionRW for consistency.
     // For this reason, in most cases, its preferred to overload the function vcast()
     // equals functions are included so that derived classes can call these functions
 
@@ -309,7 +309,7 @@ namespace matricks {
 
 
     // Assignment to a vector expression
-    template <class A>  Vector<D>& equals(const Vexpr<D,A>& x) {  
+    template <class A>  Vector<D>& equals(const TExpressionR<D,A>& x) {  
 
       // resize to avoid segmentation faults
       resize(x.size());
@@ -328,7 +328,7 @@ namespace matricks {
       return *this; 
     }
 
-    template <class A>  Vector<D>& operator=(const Vexpr<D,A>& x) {  
+    template <class A>  Vector<D>& operator=(const TExpressionR<D,A>& x) {  
       return equals(x);
     }
 

@@ -512,7 +512,7 @@ namespace matricks {
    *               vector/scalar Operators
    *
    * D = data type, e.g. double (vector and scalar must be of same data type)
-   * A = either an Vector or a Vexpr
+   * A = either an Vector or a TExpressionR
    ************************************************************
    */
 

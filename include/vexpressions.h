@@ -17,7 +17,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class VSubsetObj :  public  VWrapper<D,VSubsetObj<D> > {
+    class VSubsetObj :  public  TExpressionRW<D,VSubsetObj<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -129,7 +129,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-    class VJoinExpr : public  Vexpr<D,VJoinExpr<D,A,B> > {
+    class VJoinExpr : public  TExpressionR<D,VJoinExpr<D,A,B> > {
 
   private:
     const A& a_;
@@ -187,7 +187,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-    class VJoinObj : public  VWrapper<D,VJoinObj<D,A,B> > {
+    class VJoinObj : public  TExpressionRW<D,VJoinObj<D,A,B> > {
 
   private:
     A& a_;
@@ -279,7 +279,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class VSubMaskObj :  public  VWrapper<D,VSubMaskObj<D> > {
+    class VSubMaskObj :  public  TExpressionRW<D,VSubMaskObj<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -370,7 +370,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class VReconObj :  public  Vexpr<D,VReconObj<D> > {
+    class VReconObj :  public  TExpressionR<D,VReconObj<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -449,7 +449,7 @@ namespace matricks {
    */
 
   template<class D, class A>
-    class VRepExpr : public  Vexpr<D,VRepExpr<D,A> > {
+    class VRepExpr : public  TExpressionR<D,VRepExpr<D,A> > {
 
   private:
     const A& a_;
@@ -504,7 +504,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class VBinOp : public  Vexpr<D,VBinOp<D,A,B,OP> > {
+    class VBinOp : public  TExpressionR<D,VBinOp<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -567,14 +567,14 @@ namespace matricks {
    *               Templates for Binary+scalar Operators 
    *
    * D = data type, e.g. double
-   * A = either an Vector or a Vexpr
-   * B = either an Vector or a Vexpr
+   * A = either an Vector or a TExpressionR
+   * B = either an Vector or a TExpressionR
    * N = int
    ************************************************************
    */
 
   template<class D, class A, class X>
-    class VSeriesOp : public  Vexpr<D,VSeriesOp<D,A,X> > {
+    class VSeriesOp : public  TExpressionR<D,VSeriesOp<D,A,X> > {
 
   private:
     const A& a_;
@@ -657,7 +657,7 @@ namespace matricks {
 
 
   template<class D, class A, class B, class X, class OP1, class OP2>
-    class VSeriesOp2 : public  Vexpr<D,VSeriesOp2< D, A, B, X, OP1, OP2> > {
+    class VSeriesOp2 : public  TExpressionR<D,VSeriesOp2< D, A, B, X, OP1, OP2> > {
 
   private:
     const A& a_;
@@ -751,7 +751,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class VecOpScal : public Vexpr<D,VecOpScal<D,A,OP> > {
+    class VecOpScal : public TExpressionR<D,VecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
@@ -818,7 +818,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class ScalOpVec : public Vexpr<D,ScalOpVec<D,B,OP> > {
+    class ScalOpVec : public TExpressionR<D,ScalOpVec<D,B,OP> > {
 
   private:
     D val_;
@@ -883,7 +883,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-    class VFuncOp  : public  Vexpr<D,VFuncOp<D,A,FUNC> > {
+    class VFuncOp  : public  TExpressionR<D,VFuncOp<D,A,FUNC> > {
   
   private:
     const A& a_;
@@ -938,7 +938,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class VBoolBinOp : public  Vexpr<bool,VBoolBinOp<D,A,B,OP> > {
+    class VBoolBinOp : public  TExpressionR<bool,VBoolBinOp<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -1014,7 +1014,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class BoolVecOpScal : public Vexpr<bool,BoolVecOpScal<D,A,OP> > {
+    class BoolVecOpScal : public TExpressionR<bool,BoolVecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1083,7 +1083,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class BoolScalOpVec : public Vexpr<bool,BoolScalOpVec<D,B,OP> > {
+    class BoolScalOpVec : public TExpressionR<bool,BoolScalOpVec<D,B,OP> > {
 
   private:
     D val_;
@@ -1148,7 +1148,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-    class VBoolFuncOp  : public  Vexpr<bool,VBoolFuncOp<D,A,FUNC> >{
+    class VBoolFuncOp  : public  TExpressionR<bool,VBoolFuncOp<D,A,FUNC> >{
   
   private:
     const A& a_;
@@ -1212,7 +1212,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class OP>
-    class CVecOpScal : public Vexpr<std::complex<D>, CVecOpScal<D,A,OP> > {
+    class CVecOpScal : public TExpressionR<std::complex<D>, CVecOpScal<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1276,7 +1276,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class B, class OP>
-    class CScalOpVec : public Vexpr<std::complex<D>,CScalOpVec<D,B,OP> > {
+    class CScalOpVec : public TExpressionR<std::complex<D>,CScalOpVec<D,B,OP> > {
   private:
     const D val_;
     const B& b_;
@@ -1337,7 +1337,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class OP>
-    class VRealFromComplex : public  VWrapper<D,VRealFromComplex<D,OP> > {
+    class VRealFromComplex : public  TExpressionRW<D,VRealFromComplex<D,OP> > {
   private:
     Vector<std::complex<D> >& a_;
 

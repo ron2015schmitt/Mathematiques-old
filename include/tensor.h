@@ -357,7 +357,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
   template<class D, class EXP> 
-    class Vexpr : public TensorR<D,Vexpr<D,EXP> > {
+    class TExpressionR : public TensorR<D,TExpressionR<D,EXP> > {
   private:
     typedef  D DataT;
     inline EXP& derived() {
@@ -412,7 +412,7 @@ namespace matricks {
     }
 
 
-    friend std::ostream& operator<<(std::ostream &stream, const Vexpr<D,EXP>& ve) {
+    friend std::ostream& operator<<(std::ostream &stream, const TExpressionR<D,EXP>& ve) {
       Vector<D> v(ve);
       stream << v;
       return stream;
@@ -428,7 +428,7 @@ namespace matricks {
   //             both read and written
   // -------------------------------------------------------------------
   template <class D, class DERIVED>
-    class VWrapper : public TensorRW<D,VWrapper<D,DERIVED> > {
+    class TExpressionRW : public TensorRW<D,TExpressionRW<D,DERIVED> > {
   private:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -526,7 +526,7 @@ namespace matricks {
     }
 
 
-    friend std::ostream& operator<<(std::ostream &stream, const VWrapper<D,DERIVED>& vw) {
+    friend std::ostream& operator<<(std::ostream &stream, const TExpressionRW<D,DERIVED>& vw) {
       Vector<D> v(vw);
       stream << v;
       return stream;

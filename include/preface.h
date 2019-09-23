@@ -65,8 +65,8 @@ namespace matricks {
 
 
   template <class D> class Vector;
-  template <class D, class A> class Vexpr;  
-  template <class D, class A> class VWrapper;
+  template <class D, class A> class TExpressionR;  
+  template <class D, class A> class TExpressionRW;
   template <class D, class A> class VRepExpr;
   template <class D> class VSliceObj;
   template <class D> class VSliceExpr;

@@ -59,7 +59,7 @@ namespace matricks {
       return derived().expression(sa,sb);
     }
 
-    friend std::ostream& operator<<(std::ostream &stream, const Vexpr<D,EXP>& ve) {
+    friend std::ostream& operator<<(std::ostream &stream, const TExpressionR<D,EXP>& ve) {
       Vector<D> v(ve);
       stream << v;
       return stream;

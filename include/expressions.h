@@ -9,7 +9,6 @@ namespace matricks {
     inline Vector<index_type> findtrue( const TensorR<bool,A>& a );
 
 
-
   /****************************************************************************
    * VSubsetObj Expression Template 
    *
@@ -23,31 +22,29 @@ namespace matricks {
     Vector<D>& a_;
     const Vector<index_type>& ii_;
     const bool delete_ii_;
-
+    VectorofPtrs *vptrs;
   public:
 
   VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
-    : a_(a), ii_(ii), delete_ii_(false)
-      {
-	this->initAddresses();
-	this->addAddress(&a_);
-	this->addAddress(&ii_);
-      }
+    : a_(a), ii_(ii), delete_ii_(false) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+      vptrs->add(&ii_);
+    }
 #if CPP11 == 1    
   VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
-    : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
-      {
-	this->initAddresses();
-	this->addAddress(&a_);
-	this->addAddress(&ii_);
-	//	printf2("  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)\n");  
-
-      }
+    : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+      vptrs->add(&ii_);
+    }
 #endif // C++11
     
     ~VSubsetObj() {
       if (delete_ii_) delete &ii_;
+      delete vptrs;
     }
+
 
     inline const D operator[](const index_type i) const{
       index_type ind = ii_[i];
@@ -65,6 +62,9 @@ namespace matricks {
     }
 
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return ii_.size();
     }
@@ -95,8 +95,6 @@ namespace matricks {
     VSubsetObj<D>& operator=(const VSubsetObj<D>& b) { 
       return this->equals(b);
     }
-
-
 
     
 #if MATRICKS_DEBUG>=1
@@ -129,26 +127,33 @@ namespace matricks {
   private:
     const A& a_;
     const B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VJoinExpr(const A& a, const B& b)
-    : a_(a), b_(b)
-    { 
+    : a_(a), b_(b) { 
 
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-      this->addAddresses(b_.getAddresses());
-
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(b_.getAddresses());
+      
     }
 
+    ~VJoinExpr() {
+      delete vptrs;
+    }
+    
     inline const D operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
+    }
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
     }
     inline size_type size(void) const {
       return a_.size() +b_.size();
@@ -187,20 +192,21 @@ namespace matricks {
   private:
     A& a_;
     B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VJoinObj(A& a, B& b)
-    : a_(a), b_(b)
-    { 
-
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-      this->addAddresses(b_.getAddresses());
-
+    : a_(a), b_(b) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(b_.getAddresses());
     }
 
+    ~VJoinObj() {
+      delete vptrs;
+    }
 
 
     inline const D operator[](const index_type i) const{
@@ -219,6 +225,9 @@ namespace matricks {
     }
 
     
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size() +b_.size();
     }
@@ -247,8 +256,6 @@ namespace matricks {
       return this->equals(d);
     }
 
-
-
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
@@ -275,23 +282,23 @@ namespace matricks {
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
     const Vector<index_type>* ii_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
-    : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
-      { 
-	this->initAddresses();
-	this->addAddress(&a_);
-	this->addAddress(&ii_);
-      }
+    : a_(a), ii_(new Vector<index_type>(findtrue(mask))) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+      vptrs->add(&ii_);
+    }
 
 
-    ~VSubMaskObj()
-      { 
-	delete  ii_;
-      }
+    ~VSubMaskObj(){ 
+      delete  ii_;
+      delete vptrs;
+    }
 
     inline const D operator[](const index_type i) const{
       index_type ind = (*ii_)[i];
@@ -302,6 +309,9 @@ namespace matricks {
       return a_[ind];
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return ii_->size();
     }
@@ -324,7 +334,6 @@ namespace matricks {
       VSubMaskObj<D>& operator=(const TensorR<D,B>& rhs) { 
       return this->equals(rhs);
     }
-
 
     VSubMaskObj<D>& operator=(const D d) { 
       return this->equals(d);
@@ -361,6 +370,7 @@ namespace matricks {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
+    VectorofPtrs *vptrs;
 
   public:
 
@@ -368,12 +378,17 @@ namespace matricks {
   VReconObj(Vector<D>& a)
     : a_(a)
     { 
-
-      this->initAddresses();
-      this->addAddress(&a_);
-
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
     }
 
+    ~VReconObj() {
+      delete vptrs;
+    }
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     // TODO:  not sure what to use for this
     inline size_type size(void) const {
       return a_->size();
@@ -391,9 +406,7 @@ namespace matricks {
     template <class A>
       Vector<D>& operator=(const TensorR<D,A>& x) { 
       size_type N = x.size();
-      
-      
-      if ( x.addrmatch(&a_)) {    
+      if ( common(*this,x) ) {    
 	Vector<D> y(N);
 
 	y = x.derived();
@@ -442,22 +455,31 @@ namespace matricks {
     const A& a_;
     const size_type m_;
     const size_type N_;
+    VectorofPtrs *vptrs;
+
   public:
 
 
   VRepExpr(const A& a, const size_type m)
-    : a_(a), m_(m), N_(a_.size())
-      { 
+    : a_(a), m_(m), N_(a_.size()) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+    }
 
-	this->initAddresses();
-	this->addAddresses(a_.getAddresses());
 
-      }
+    ~VRepExpr() {
+      delete vptrs;
+    }
+
 
     inline const D operator[](const index_type i) const{
       index_type index = index_type(i % N_);
       printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
+    }
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
     }
     inline size_type size(void) const {
       return m_*a_.size();
@@ -496,24 +518,29 @@ namespace matricks {
   private:
     const A& a_;
     const B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VBinOp(const A& a, const B& b)
-    : a_(a), b_(b)
-    { 
+    : a_(a), b_(b) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(b_.getAddresses());
+    }
 
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-      this->addAddresses(b_.getAddresses());
-
+    ~VBinOp() {
+      delete vptrs;
     }
 
     inline const D operator[](const index_type i) const {  
       return OP::apply(a_[i], b_[i]); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       if ( a_.size() != b_.size() ) {
 	return badsize;
@@ -568,26 +595,26 @@ namespace matricks {
     const X& x_;
     const int N_;
     const D x0_;
+    VectorofPtrs *vptrs;
     
   public:
 
 
   VSeriesOp(const A& a, const X& x, const int N, const D x0)
-    : a_(a), x_(x), N_(N), x0_(x0)
-    { 
-
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-      this->addAddresses(x_.getAddresses());
-
+    : a_(a), x_(x), N_(N), x0_(x0) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(x_.getAddresses());
     }
   VSeriesOp(const A& a, const X& x, const int N)
-    : a_(a), x_(x), N_(N), x0_(0)
-    { 
+    : a_(a), x_(x), N_(N), x0_(0) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(x_.getAddresses());
+    }
 
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-      this->addAddresses(x_.getAddresses());
+    ~VSeriesOp() {
+      delete vptrs;
     }
 
     inline const D operator[](const index_type i) const {
@@ -608,6 +635,9 @@ namespace matricks {
       return sum; 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return x_.size();
       // TODO: check a_.size >= N
@@ -654,27 +684,29 @@ namespace matricks {
     const D k1_;
     Vector<D>& k_;
     bool initialized;
+    VectorofPtrs *vptrs;
     
   public:
 
 
   VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
-    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N)))
-      {
-
-	this->initAddresses();
-	this->addAddresses(a_.getAddresses());
-	this->addAddresses(b_.getAddresses());
-	this->addAddresses(x_.getAddresses());
-	this->addAddresses(k_.getAddresses());
-
-	for (int n = 0; n < N_ ; n++) {
-	  k_[n] = n*k1_;
-	}
+    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N))) {
+      
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(b_.getAddresses());
+      vptrs->add(x_.getAddresses());
+      vptrs->add(k_.getAddresses());
+      
+      for (int n = 0; n < N_ ; n++) {
+	k_[n] = n*k1_;
       }
+    }
     ~VSeriesOp2(){
       delete &k_;
+      delete vptrs;
     }
+
     inline const D operator[](const index_type i) const {
       D sum = 0;
       // TODO: check a_.size >= N
@@ -692,16 +724,17 @@ namespace matricks {
       return sum; 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return x_.size();
-      // TODO: check a_.size >= N
-      // TODO: check b_.size >= N
     }
     size_type ndims(void) const {
-      return a_.ndims();
+      return x_.ndims();
     }
     Dimensions dims(void) const {
-      return a_.dims();
+      return x_.dims();
     }
     static std::string classname(void)  {
       return "VSeriesOp2";
@@ -743,23 +776,28 @@ namespace matricks {
   private:
     const A& a_;
     D val_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VecOpScal(const A& a, const D b)
-    : a_(a), val_(b)
-    {
+    : a_(a), val_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+    }
 
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-
+    ~VecOpScal() {
+      delete vptrs;
     }
 
     inline const D operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size();
     }
@@ -810,24 +848,28 @@ namespace matricks {
   private:
     D val_;
     const B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
 
   ScalOpVec(const D a, const B& b)
-    :  val_(a), b_(b)
-    {
-
-      this->initAddresses();
-      this->addAddresses(b_.getAddresses());
-
+    :  val_(a), b_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(b_.getAddresses());
+    }
+    ~ScalOpVec() {
+      delete vptrs;
     }
 
     inline const D operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return b_.size();
     }
@@ -874,22 +916,27 @@ namespace matricks {
   
   private:
     const A& a_;
+    VectorofPtrs *vptrs;
   
   public:
 
 
 
   VFuncOp(const A& a) : a_(a) {
-
-      this->initAddresses();
-      this->addAddresses(a_.getAddresses());
-
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
     }
-
+    
+    ~VFuncOp() {
+      delete vptrs;
+    }
 
     inline const D operator[](const index_type i) const
     { return FUNC::apply(a_[i]); }
-
+    
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size();
     }
@@ -930,24 +977,30 @@ namespace matricks {
   private:
     const A& a_;
     const B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VBoolBinOp(const A& a, const B& b)
-    : a_(a), b_(b)
-    { 
-
-      this->initAddresses();
-      this->addAddress(&a_);
-      this->addAddress(&b_);
-
+    : a_(a), b_(b) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+      vptrs->add(&b_);
     }
+
+    ~VBoolBinOp() {
+      delete vptrs;
+    }
+
 
     inline bool operator[](const index_type i) const {  
       return OP::apply(a_[i], b_[i]); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       if ( a_.size() != b_.size() ) {
 	return badsize;
@@ -979,11 +1032,6 @@ namespace matricks {
     }
 #endif 
 
-
-
-
-
-
   };
 
 
@@ -1006,24 +1054,29 @@ namespace matricks {
   private:
     const A& a_;
     D val_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
 
   BoolVecOpScal(const A& a, const D b)
-    : a_(a), val_(b)
-    {
+    : a_(a), val_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+    }
 
-      this->initAddresses();
-      this->addAddress(&a_);
-
+    ~BoolVecOpScal() {
+      delete vptrs;
     }
 
     inline bool operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size();
     }
@@ -1050,11 +1103,6 @@ namespace matricks {
     }
 #endif 
 
-
-
-
-
-
   };
 
 
@@ -1075,23 +1123,28 @@ namespace matricks {
   private:
     D val_;
     const B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   BoolScalOpVec(const D a, const B& b)
-    :  val_(a), b_(b)
-    {
+    :  val_(a), b_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&b_);
+    }
 
-      this->initAddresses();
-      this->addAddress(&b_);
-
+    ~BoolScalOpVec() {
+      delete vptrs;
     }
 
     inline bool operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return b_.size();
     }
@@ -1139,21 +1192,26 @@ namespace matricks {
   
   private:
     const A& a_;
+    VectorofPtrs *vptrs;
   
   public:
 
 
   VBoolFuncOp(const A& a) : a_(a) {
-
-      this->initAddresses();
-      this->addAddress(&a_);
-
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
     }
 
+    ~VBoolFuncOp() {
+      delete vptrs;
+    }
 
     inline bool operator[](const index_type i) const
     { return FUNC::apply(a_[i]); }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size();
     }
@@ -1175,14 +1233,7 @@ namespace matricks {
     }
 #endif 
 
-
-
-
   };
-
-
-
-
 
 
 
@@ -1204,23 +1255,28 @@ namespace matricks {
   private:
     const A& a_;
     const D val_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   CVecOpScal(const A& a, const D b)
-    : a_(a), val_(b)
-    {
+    : a_(a), val_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+    }
 
-      this->initAddresses();
-      this->addAddress(&a_);
-
+    ~CVecOpScal() {
+      delete vptrs;
     }
 
     inline const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size();
     }
@@ -1267,23 +1323,28 @@ namespace matricks {
   private:
     const D val_;
     const B& b_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   CScalOpVec(const D a, const B& b)
-    : val_(a), b_(b)
-    {
+    : val_(a), b_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&b_);
+    }
 
-      this->initAddresses();
-      this->addAddress(&b_);
-
+    ~CScalOpVec() {
+      delete vptrs;
     }
 
     inline const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return b_.size();
     }
@@ -1327,17 +1388,19 @@ namespace matricks {
     class VRealFromComplex : public  TExpressionRW<D,VRealFromComplex<D,OP> > {
   private:
     Vector<std::complex<D> >& a_;
+    VectorofPtrs *vptrs;
 
   public:
 
 
   VRealFromComplex(Vector<std::complex<D> >& a)
-    :   a_(a)
-    { 
+    :   a_(a) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+    }
 
-      this->initAddresses();
-      this->addAddress(&a_);
-
+    ~VRealFromComplex() {
+      delete vptrs;
     }
 
     inline const D operator[](index_type i) const{
@@ -1349,6 +1412,9 @@ namespace matricks {
 
 
 
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
     inline size_type size(void) const {
       return a_.size();
     }
@@ -1379,9 +1445,6 @@ namespace matricks {
       //      return expression_VSliceObj(a_.expression(),start_,end_,step_);
     }
 #endif 
-
-
-
 
   };
 

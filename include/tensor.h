@@ -287,6 +287,9 @@ namespace matricks {
       return derived().getAddresses();
     }
 
+    static std::string classname()  {
+      return derived().classname();
+    }
     
     friend std::ostream& operator<<(std::ostream &stream, const TensorR<D,DERIVED>& ve) {
       stream << ve.derived();
@@ -348,6 +351,10 @@ namespace matricks {
     }
 
     
+    static std::string classname()  {
+      return derived().classname();
+    }
+
     friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& vw) {
       stream << vw.derived();
       return stream;
@@ -359,8 +366,8 @@ namespace matricks {
 
   // -------------------------------------------------------------------
   //
-  // TensorR -- Abstract class that represents 
-  //            either a tensor or a tensor expression that is "read only"
+  // TExpressionR -- Abstract class that represents 
+  //                 tensor expression that is "read only"
   // -------------------------------------------------------------------
 
   template<class D, class EXP> 
@@ -373,8 +380,6 @@ namespace matricks {
     inline const  EXP& derived() const {
       return static_cast<const EXP&>(*this);
     }
-  protected:
-    VectorofPtrs vaddresses_;
     
   public:
 
@@ -392,21 +397,9 @@ namespace matricks {
       return derived().dims();
     }
     
-
-
     VectorofPtrs getAddresses(void) const {
-      return vaddresses_;
+      return derived().getAddresses();
     }
-    void initAddresses() {
-      vaddresses_ = new VectorofPtrs();
-    }
-    void addAddress(const void* addr) {
-      vaddresses_.add(addr);
-    }
-    void addAddresses(const VectorofPtrs addrs) {
-      vaddresses_.add(addrs);
-    }
-
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -414,10 +407,9 @@ namespace matricks {
     }
 #endif
 
-    std::string classname() const {
-      return derived().expression();
+    static std::string classname()  {
+      return derived().classname();
     }
-
 
     friend std::ostream& operator<<(std::ostream &stream, const TExpressionR<D,EXP>& ve) {
       Vector<D> v(ve);
@@ -428,11 +420,11 @@ namespace matricks {
   };
 
 
-    // -------------------------------------------------------------------
+  // -------------------------------------------------------------------
   //
-  // TensorRW -- Abstract class that represents 
-  //             either a tensor or a tensor expression that can be
-  //             both read and written
+  // TExpressionRW -- Abstract class that represents 
+  //                  either a tensor expression that can be
+  //                  both read and written
   // -------------------------------------------------------------------
   template <class D, class DERIVED>
     class TExpressionRW : public TensorRW<D,TExpressionRW<D,DERIVED> > {
@@ -468,16 +460,7 @@ namespace matricks {
     }
     
     VectorofPtrs getAddresses(void) const {
-      return vaddresses_;
-    }
-    void initAddresses() {
-      vaddresses_ = new VectorofPtrs();
-    }
-    void addAddress(const void* addr) {
-      vaddresses_.add(addr);
-    }
-    void addAddresses(const VectorofPtrs addrs) {
-      vaddresses_.add(addrs);
+      return derived().getAddresses();
     }
 
 
@@ -501,9 +484,11 @@ namespace matricks {
       const size_type N =size();
 
 
-      if ( this->getAddresses().common( rhs.getAddresses())   ) {    
+      if ( common(*this, rhs) ) {
+	// if a vector appears on both the right hand and left hand side,
+	// we need to make a copy of the rhs first
 	Vector<D> y(N);
-
+	
 	for(register size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
 	for(register size_type i=0; i<N; i++) 
@@ -516,11 +501,6 @@ namespace matricks {
     }
 
 
-
-
-
-
-
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return derived().expression();
@@ -528,8 +508,8 @@ namespace matricks {
 #endif
 
 
-    std::string classname() const {
-      return derived().expression();
+    static std::string classname()  {
+      return derived().classname();
     }
 
 

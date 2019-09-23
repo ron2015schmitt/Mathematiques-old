@@ -10,8 +10,6 @@ namespace matricks {
 
 
 
-
-
   /****************************************************************************
    * VSubsetObj Expression Template 
    *
@@ -31,17 +29,14 @@ namespace matricks {
   VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
     : a_(a), ii_(ii), delete_ii_(false)
       {
-
 	this->initAddresses();
 	this->addAddress(&a_);
 	this->addAddress(&ii_);
-
       }
 #if CPP11 == 1    
   VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
     : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true)
       {
-
 	this->initAddresses();
 	this->addAddress(&a_);
 	this->addAddress(&ii_);
@@ -54,22 +49,19 @@ namespace matricks {
       if (delete_ii_) delete &ii_;
     }
 
-    inline const D data(const index_type i) const{
-      return a_[i];
-    }
-    inline  D& data(const index_type i) {
-      return a_[i];
-    }
-
-    inline index_type index(index_type i) const{
+    inline const D operator[](const index_type i) const{
       index_type ind = ii_[i];
-      //disp(ind);
-      //disp(sizetotal());
       if (ind < 0) {
-	ind = sizetotal() + ind;
+	ind = a_.size() + ind;
       }
-      //disp(ind);
-      return ind;
+      return a_[ind];
+    }
+    inline  D& operator[](const index_type i) {
+      index_type ind = ii_[i];
+      if (ind < 0) {
+	ind = a_.size() + ind;
+      }
+      return a_[ind];
     }
 
 
@@ -83,9 +75,6 @@ namespace matricks {
       return a_.dims();
     }
 
-    inline size_type sizetotal(void) const {
-      return a_.size();
-    }
 
     VSubsetObj<D>& operator=(VReconObj<D>& b) { 
       return this->equals(b);
@@ -156,19 +145,12 @@ namespace matricks {
 
     }
 
-    inline const D operator[](const index_type i) const {  
-      return this->data(i); 
-    }
-
-    inline const D data(const index_type i) const{
+    inline const D operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
-    }
-    inline index_type index(index_type i) const{
-      return i;
     }
     inline size_type size(void) const {
       return a_.size() +b_.size();
@@ -223,24 +205,17 @@ namespace matricks {
 
 
 
-    inline const D operator[](const index_type i) const {  
-      return this->data(i); 
-    }
-
-    inline D& operator[](const index_type i) {  
-      return this->data(i); 
-    }
 
 
 
-    inline const D data(const index_type i) const{
+    inline const D operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
     }
-    inline  D& data(const index_type i) {
+    inline  D& operator[](const index_type i) {
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
@@ -249,9 +224,6 @@ namespace matricks {
     }
 
     
-    inline index_type index(index_type i) const{
-      return i;
-    }
     inline size_type size(void) const {
       return a_.size() +b_.size();
     }
@@ -260,9 +232,6 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
-    }
-    inline size_type sizetotal(void) const {
-      return a_.size() +b_.size();
     }
 
     VJoinObj<D,A,B>& operator=(VReconObj<D>& b) { 
@@ -319,11 +288,9 @@ namespace matricks {
   VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
     : a_(a), ii_(new Vector<index_type>(findtrue(mask)))
       { 
-
 	this->initAddresses();
 	this->addAddress(&a_);
 	this->addAddress(&ii_);
-
       }
 
 
@@ -332,17 +299,14 @@ namespace matricks {
 	delete  ii_;
       }
 
-    inline const D data(const index_type i) const{
-      return a_[i];
+    inline const D operator[](const index_type i) const{
+      index_type ind = (*ii_)[i];
+      return a_[ind];
     }
-    inline  D& data(const index_type i) {
-      return a_[i];
+    inline  D& operator[](const index_type i) {
+      index_type ind = (*ii_)[i];
+      return a_[ind];
     }
-
-    inline index_type index(index_type i) const{
-      return (*ii_)[i];
-    }
-
 
     inline size_type size(void) const {
       return ii_->size();
@@ -354,9 +318,6 @@ namespace matricks {
       return a_.dims();
     }
 
-    inline size_type sizetotal(void) const {
-      return a_.size();
-    }
 
     VSubMaskObj<D>& operator=(VReconObj<D>& b) { 
       return this->equals(b);
@@ -487,17 +448,10 @@ namespace matricks {
 
       }
 
-    inline const D operator[](const index_type i) const {  
-      return this->data(i); 
-    }
-
-    inline const D data(const index_type i) const{
+    inline const D operator[](const index_type i) const{
       index_type index = index_type(i % N_);
-      printf2("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
-    }
-    inline index_type index(index_type i) const{
-      return i;
     }
     inline size_type size(void) const {
       return m_*a_.size();
@@ -507,9 +461,6 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
-    }
-    inline size_type sizetotal(void) const {
-      return m_*a_.size();
     }
 
 #if MATRICKS_DEBUG>=1
@@ -917,6 +868,12 @@ namespace matricks {
 
     inline size_type size(void) const {
       return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
     }
 
 
@@ -1338,17 +1295,13 @@ namespace matricks {
 
     }
 
-    inline const D data(index_type i) const{
+    inline const D operator[](index_type i) const{
       return OP::give(a_[i]);
     }
-    inline D& data(index_type i) {
+    inline D& operator[](index_type i) {
       return OP::give(a_[i]);
     }
 
-
-    inline index_type index(index_type i) const{
-      return i;
-    }
 
 
     inline size_type size(void) const {

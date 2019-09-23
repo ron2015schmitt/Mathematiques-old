@@ -14,7 +14,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public VorE<D,Vector<D> >, public VorW<D,Vector<D> > {
+  template <class D> class Vector : public VorW<D,Vector<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -124,11 +124,10 @@ namespace matricks {
 
 
     template <class A>
-    Vector<D>(const Vexpr<D,A>& x) 
+    Vector<D>(const VorE<D,A>& x) 
     {
-
       const size_type N = x.size();
-      data_ = new std::valarray<D>(N); 
+      data_ = new std::valarray<D>(N);
       *this = x;
       constructorHelper();
     }
@@ -338,10 +337,8 @@ namespace matricks {
 
     
     template <class A>  Vector<D>& equals(const VorE<D,A>& x) {  
-
       // resize to avoid segmentation faults
       resize(x.size());
-
       if (this->getAddresses().common( x.getAddresses() )  ){    
 	Vector<D> vtemp(size());
 
@@ -350,8 +347,9 @@ namespace matricks {
 	for (register index_type i = size(); i--;)
 	  (*data_)[i] = vtemp[i];
       } else {
-	for (register index_type i = size(); i--;)
+	for (register index_type i = size(); i--;) {
 	  (*data_)[i] = x[i];   // Inlined expression
+	}
       }
       return *this; 
     }

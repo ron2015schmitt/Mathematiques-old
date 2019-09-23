@@ -18,7 +18,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class DERIVED>
-    class VWrapper : public  Vexpr<D,VWrapper<D,DERIVED> >, public VorW<D,VWrapper<D,DERIVED> > {
+    class VWrapper : public VorW<D,VWrapper<D,DERIVED> > {
   private:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -26,21 +26,41 @@ namespace matricks {
     inline const  DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
     }
-
+  protected:
+    VectorofPtrs vaddresses_;
+    
   public:
 
     inline const D operator[](const size_type i) const {  
-      const size_type index = derived().index(i);
-      return derived().data(index);
+      return derived()[i];
     }
 
     inline D& operator[](const size_type i) {  
-      const size_type index = derived().index(i);
-      return derived().data(index);
+      return derived()[i];
     }
 
     inline size_type size(void) const {
       return derived().size();
+    }
+
+    size_type ndims(void) const {
+      return derived().ndims();
+    }
+    Dimensions dims(void) const {
+      return derived().dims();
+    }
+    
+    VectorofPtrs getAddresses(void) const {
+      return vaddresses_;
+    }
+    void initAddresses() {
+      vaddresses_ = new VectorofPtrs();
+    }
+    void addAddress(const void* addr) {
+      vaddresses_.add(addr);
+    }
+    void addAddresses(const VectorofPtrs addrs) {
+      vaddresses_.add(addrs);
     }
 
 
@@ -116,7 +136,12 @@ namespace matricks {
     }
 
 
-    
+    friend std::ostream& operator<<(std::ostream &stream, const VWrapper<D,DERIVED>& vw) {
+      Vector<D> v(vw);
+      stream << v;
+      return stream;
+    }
+
     
   };
 

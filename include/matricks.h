@@ -58,8 +58,6 @@
 
 #include "matrixdef.hpp"
 
-#include "vexpr.h"
-#include "vwrapper.h"
 #include "vexpressions.h"
 
 #include "mexpr.hpp"

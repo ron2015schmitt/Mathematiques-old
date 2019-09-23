@@ -10,13 +10,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VSubsetObj Expression Template 
+   * TERW_Subset Expression Template 
    *
    * wrapper for a vector subset
    ****************************************************************************
    */
   template<class D>
-    class VSubsetObj :  public  TExpressionRW<D,VSubsetObj<D> > {
+    class TERW_Subset :  public  TExpressionRW<D,TERW_Subset<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -25,14 +25,14 @@ namespace matricks {
     VectorofPtrs *vptrs;
   public:
 
-  VSubsetObj(Vector<D>& a, const Vector<index_type>& ii)
+  TERW_Subset(Vector<D>& a, const Vector<index_type>& ii)
     : a_(a), ii_(ii), delete_ii_(false) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
       vptrs->add(&ii_);
     }
 #if CPP11 == 1    
-  VSubsetObj(Vector<D>& a, const std::initializer_list<index_type>& list)
+  TERW_Subset(Vector<D>& a, const std::initializer_list<index_type>& list)
     : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
@@ -40,7 +40,7 @@ namespace matricks {
     }
 #endif // C++11
     
-    ~VSubsetObj() {
+    ~TERW_Subset() {
       if (delete_ii_) delete &ii_;
       delete vptrs;
     }
@@ -75,24 +75,24 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VSubsetObj";
+      return "TERW_Subset";
     }
 
 
-    VSubsetObj<D>& operator=(VReconObj<D>& b) { 
+    TERW_Subset<D>& operator=(TERW_Resize<D>& b) { 
       return this->equals(b);
     }
 
     template <class B>
-      VSubsetObj<D>& operator=(const TensorR<D,B>& rhs) { 
+      TERW_Subset<D>& operator=(const TensorR<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
-    VSubsetObj<D>& operator=(const D d) { 
+    TERW_Subset<D>& operator=(const D d) { 
       return this->equals(d);
     }
     
-    VSubsetObj<D>& operator=(const VSubsetObj<D>& b) { 
+    TERW_Subset<D>& operator=(const TERW_Subset<D>& b) { 
       return this->equals(b);
     }
 
@@ -100,7 +100,7 @@ namespace matricks {
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
-      //return expression_VSubsetObj(a_.expression(),ii_.expression());
+      //return expression_TERW_Subset(a_.expression(),ii_.expression());
     }
 #endif
 
@@ -119,13 +119,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VSubMaskObj Expression Template 
+   * TERW_Submask Expression Template 
    *
    * wrapper for a vector submask
    ****************************************************************************
    */
   template<class D>
-    class VSubMaskObj :  public  TExpressionRW<D,VSubMaskObj<D> > {
+    class TERW_Submask :  public  TExpressionRW<D,TERW_Submask<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -135,7 +135,7 @@ namespace matricks {
   public:
 
 
-  VSubMaskObj(Vector<D>& a, const Vector<bool>& mask)
+  TERW_Submask(Vector<D>& a, const Vector<bool>& mask)
     : a_(a), ii_(new Vector<index_type>(findtrue(mask))) { 
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
@@ -143,7 +143,7 @@ namespace matricks {
     }
 
 
-    ~VSubMaskObj(){ 
+    ~TERW_Submask(){ 
       delete  ii_;
       delete vptrs;
     }
@@ -170,31 +170,31 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VSubMaskObj";
+      return "TERW_Submask";
     }
 
 
-    VSubMaskObj<D>& operator=(VReconObj<D>& b) { 
+    TERW_Submask<D>& operator=(TERW_Resize<D>& b) { 
       return this->equals(b);
     }
 
     template <class B>
-      VSubMaskObj<D>& operator=(const TensorR<D,B>& rhs) { 
+      TERW_Submask<D>& operator=(const TensorR<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
-    VSubMaskObj<D>& operator=(const D d) { 
+    TERW_Submask<D>& operator=(const D d) { 
       return this->equals(d);
     }
     
-    VSubMaskObj<D>& operator=(const VSubMaskObj<D>& b) { 
+    TERW_Submask<D>& operator=(const TERW_Submask<D>& b) { 
       return this->equals(b);
     }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
-      //      return expression_VSubMaskObj(a_.expression(),ii_->expression());
+      //      return expression_TERW_Submask(a_.expression(),ii_->expression());
     }
 #endif 
 
@@ -208,13 +208,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VReconObj Expression Template 
+   * TERW_Resize Expression Template 
    *
    * reallocate store
    ****************************************************************************
    */
   template<class D>
-    class VReconObj :  public  TExpressionR<D,VReconObj<D> > {
+    class TERW_Resize :  public  TExpressionR<D,TERW_Resize<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -223,14 +223,14 @@ namespace matricks {
   public:
 
 
-  VReconObj(Vector<D>& a)
+  TERW_Resize(Vector<D>& a)
     : a_(a)
     { 
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
     }
 
-    ~VReconObj() {
+    ~TERW_Resize() {
       delete vptrs;
     }
 
@@ -248,7 +248,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VReconObj";
+      return "TERW_Resize";
     }
 
     template <class A>
@@ -268,7 +268,7 @@ namespace matricks {
       }
     }
 
-    Vector<D>& operator=(const VReconObj<D>& b) { 
+    Vector<D>& operator=(const TERW_Resize<D>& b) { 
 
       return a_;
     }
@@ -287,14 +287,14 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VFuncOp Operator Template 
+   * TER_Unary Operator Template 
    *
    * unary operators and unary function overloading
    ****************************************************************************
    */
 
   template<class D, class A, class FUNC>
-    class VFuncOp  : public  TExpressionR<D,VFuncOp<D,A,FUNC> > {
+    class TER_Unary  : public  TExpressionR<D,TER_Unary<D,A,FUNC> > {
   
   private:
     const A& a_;
@@ -304,12 +304,12 @@ namespace matricks {
 
 
 
-  VFuncOp(const A& a) : a_(a) {
+  TER_Unary(const A& a) : a_(a) {
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
     }
     
-    ~VFuncOp() {
+    ~TER_Unary() {
       delete vptrs;
     }
 
@@ -329,7 +329,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VFuncOp";
+      return "TER_Unary";
     }
 
 
@@ -350,13 +350,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VBinOp Operator Expression Template 
+   * TER_Binary Operator Expression Template 
    *
    * vector/vector binary operator expressions
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class VBinOp : public  TExpressionR<D,VBinOp<D,A,B,OP> > {
+    class TER_Binary : public  TExpressionR<D,TER_Binary<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -366,14 +366,14 @@ namespace matricks {
   public:
 
 
-  VBinOp(const A& a, const B& b)
+  TER_Binary(const A& a, const B& b)
     : a_(a), b_(b) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(b_.getAddresses());
     }
 
-    ~VBinOp() {
+    ~TER_Binary() {
       delete vptrs;
     }
 
@@ -398,7 +398,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VBinOp";
+      return "TER_Binary";
     }
 
 
@@ -431,7 +431,7 @@ namespace matricks {
    */
 
   template<class D, class A, class X>
-    class VSeriesOp : public  TExpressionR<D,VSeriesOp<D,A,X> > {
+    class TER_Series : public  TExpressionR<D,TER_Series<D,A,X> > {
 
   private:
     const A& a_;
@@ -443,20 +443,20 @@ namespace matricks {
   public:
 
 
-  VSeriesOp(const A& a, const X& x, const int N, const D x0)
+  TER_Series(const A& a, const X& x, const int N, const D x0)
     : a_(a), x_(x), N_(N), x0_(x0) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(x_.getAddresses());
     }
-  VSeriesOp(const A& a, const X& x, const int N)
+  TER_Series(const A& a, const X& x, const int N)
     : a_(a), x_(x), N_(N), x0_(0) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(x_.getAddresses());
     }
 
-    ~VSeriesOp() {
+    ~TER_Series() {
       delete vptrs;
     }
 
@@ -493,7 +493,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VSeriesOp";
+      return "TER_Series";
     }
   
 
@@ -517,7 +517,7 @@ namespace matricks {
 
 
   template<class D, class A, class B, class X, class OP1, class OP2>
-    class VSeriesOp2 : public  TExpressionR<D,VSeriesOp2< D, A, B, X, OP1, OP2> > {
+    class TER_Series2 : public  TExpressionR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
 
   private:
     const A& a_;
@@ -532,7 +532,7 @@ namespace matricks {
   public:
 
 
-  VSeriesOp2(const A& a, const A& b, const X& x, const int N, const D k1)
+  TER_Series2(const A& a, const A& b, const X& x, const int N, const D k1)
     : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N))) {
       
       vptrs = new VectorofPtrs();
@@ -545,7 +545,7 @@ namespace matricks {
 	k_[n] = n*k1_;
       }
     }
-    ~VSeriesOp2(){
+    ~TER_Series2(){
       delete &k_;
       delete vptrs;
     }
@@ -580,7 +580,7 @@ namespace matricks {
       return x_.dims();
     }
     static std::string classname(void)  {
-      return "VSeriesOp2";
+      return "TER_Series2";
     }
 
 
@@ -606,7 +606,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VecOpScal Operator Template 
+   * TER_TensorOpScalar Operator Template 
    *
    * vector/scalar binary operators
    ****************************************************************************
@@ -614,7 +614,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class VecOpScal : public TExpressionR<D,VecOpScal<D,A,OP> > {
+    class TER_TensorOpScalar : public TExpressionR<D,TER_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -624,13 +624,13 @@ namespace matricks {
   public:
 
 
-  VecOpScal(const A& a, const D b)
+  TER_TensorOpScalar(const A& a, const D b)
     : a_(a), val_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
     }
 
-    ~VecOpScal() {
+    ~TER_TensorOpScalar() {
       delete vptrs;
     }
 
@@ -651,7 +651,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VecOpScal";
+      return "TER_TensorOpScalar";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -678,7 +678,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * ScalOpVec Operator Template 
+   * TER_ScalarOpTensor Operator Template 
    *
    * scalar/vector binary operators
    ****************************************************************************
@@ -686,7 +686,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class ScalOpVec : public TExpressionR<D,ScalOpVec<D,B,OP> > {
+    class TER_ScalarOpTensor : public TExpressionR<D,TER_ScalarOpTensor<D,B,OP> > {
 
   private:
     D val_;
@@ -697,12 +697,12 @@ namespace matricks {
 
 
 
-  ScalOpVec(const D a, const B& b)
+  TER_ScalarOpTensor(const D a, const B& b)
     :  val_(a), b_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(b_.getAddresses());
     }
-    ~ScalOpVec() {
+    ~TER_ScalarOpTensor() {
       delete vptrs;
     }
 
@@ -723,7 +723,7 @@ namespace matricks {
       return b_.dims();
     }
     static std::string classname(void)  {
-      return "ScalOpVec";
+      return "TER_ScalarOpTensor";
     }
 
 
@@ -749,17 +749,75 @@ namespace matricks {
 
 
 
+  /****************************************************************************
+   * TER_Bool_Unary Operator Template 
+   *
+   * unary operators and unary function overloading
+   ****************************************************************************
+   */
+
+  template<class D, class A, class FUNC>
+    class TER_Bool_Unary  : public  TExpressionR<bool,TER_Bool_Unary<D,A,FUNC> >{
+  
+  private:
+    const A& a_;
+    VectorofPtrs *vptrs;
+  
+  public:
+
+
+  TER_Bool_Unary(const A& a) : a_(a) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+    }
+
+    ~TER_Bool_Unary() {
+      delete vptrs;
+    }
+
+    inline bool operator[](const index_type i) const
+    { return FUNC::apply(a_[i]); }
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    inline size_type size(void) const {
+      return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    static std::string classname(void)  {
+      return "TER_Bool_Unary";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
+    }
+#endif 
+
+  };
+
+
+
+
 
 
 
   /****************************************************************************
-   * VBoolBinOp Operator Expression Template 
+   * TER_Bool_Binary Operator Expression Template 
    *
    * vector/vector binary operator expressions
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class VBoolBinOp : public  TExpressionR<bool,VBoolBinOp<D,A,B,OP> > {
+    class TER_Bool_Binary : public  TExpressionR<bool,TER_Bool_Binary<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -769,14 +827,14 @@ namespace matricks {
   public:
 
 
-  VBoolBinOp(const A& a, const B& b)
+  TER_Bool_Binary(const A& a, const B& b)
     : a_(a), b_(b) { 
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
       vptrs->add(&b_);
     }
 
-    ~VBoolBinOp() {
+    ~TER_Bool_Binary() {
       delete vptrs;
     }
 
@@ -802,7 +860,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VBoolBinOp";
+      return "TER_Bool_Binary";
     }
 
 
@@ -828,7 +886,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * BoolVecOpScal Operator Template 
+   * TER_Bool_TensorOpScalar Operator Template 
    *
    * vector/scalar binary operators
    ****************************************************************************
@@ -836,7 +894,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class BoolVecOpScal : public TExpressionR<bool,BoolVecOpScal<D,A,OP> > {
+    class TER_Bool_TensorOpScalar : public TExpressionR<bool,TER_Bool_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -847,13 +905,13 @@ namespace matricks {
 
 
 
-  BoolVecOpScal(const A& a, const D b)
+  TER_Bool_TensorOpScalar(const A& a, const D b)
     : a_(a), val_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
     }
 
-    ~BoolVecOpScal() {
+    ~TER_Bool_TensorOpScalar() {
       delete vptrs;
     }
 
@@ -874,7 +932,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "BoolVecOpScal";
+      return "TER_Bool_TensorOpScalar";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -897,7 +955,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * BoolScalOpVec Operator Template 
+   * TER_Bool_ScalarOpTensor Operator Template 
    *
    * scalar/vector binary operators
    ****************************************************************************
@@ -905,7 +963,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class BoolScalOpVec : public TExpressionR<bool,BoolScalOpVec<D,B,OP> > {
+    class TER_Bool_ScalarOpTensor : public TExpressionR<bool,TER_Bool_ScalarOpTensor<D,B,OP> > {
 
   private:
     D val_;
@@ -915,13 +973,13 @@ namespace matricks {
   public:
 
 
-  BoolScalOpVec(const D a, const B& b)
+  TER_Bool_ScalarOpTensor(const D a, const B& b)
     :  val_(a), b_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(&b_);
     }
 
-    ~BoolScalOpVec() {
+    ~TER_Bool_ScalarOpTensor() {
       delete vptrs;
     }
 
@@ -942,7 +1000,7 @@ namespace matricks {
       return b_.dims();
     }
     static std::string classname(void)  {
-      return "BoolScalOpVec";
+      return "TER_Bool_ScalarOpTensor";
     }
 
 
@@ -967,77 +1025,19 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * VBoolFuncOp Operator Template 
-   *
-   * unary operators and unary function overloading
-   ****************************************************************************
-   */
-
-  template<class D, class A, class FUNC>
-    class VBoolFuncOp  : public  TExpressionR<bool,VBoolFuncOp<D,A,FUNC> >{
-  
-  private:
-    const A& a_;
-    VectorofPtrs *vptrs;
-  
-  public:
-
-
-  VBoolFuncOp(const A& a) : a_(a) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-    }
-
-    ~VBoolFuncOp() {
-      delete vptrs;
-    }
-
-    inline bool operator[](const index_type i) const
-    { return FUNC::apply(a_[i]); }
-
-    inline VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    inline size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    static std::string classname(void)  {
-      return "VBoolFuncOp";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      std::string sa = a_.expression();
-      return FUNC::expression(sa);
-    }
-#endif 
-
-  };
-
-
-
-
 
 
 
 
 
   /****************************************************************************
-   * CVecOpScal Operator Template 
+   * CTER_TensorOpScalar Operator Template 
    *
    * complex vector = binfunc(ComplexOrRealVector,RealScalar) binary operators 
    ****************************************************************************
    */
   template<class D, class A, class OP>
-    class CVecOpScal : public TExpressionR<std::complex<D>, CVecOpScal<D,A,OP> > {
+    class CTER_TensorOpScalar : public TExpressionR<std::complex<D>, CTER_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1047,13 +1047,13 @@ namespace matricks {
   public:
 
 
-  CVecOpScal(const A& a, const D b)
+  CTER_TensorOpScalar(const A& a, const D b)
     : a_(a), val_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
     }
 
-    ~CVecOpScal() {
+    ~CTER_TensorOpScalar() {
       delete vptrs;
     }
 
@@ -1074,7 +1074,7 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "CVecOpScal";
+      return "CTER_TensorOpScalar";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1100,13 +1100,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * CScalOpVec Operator Template 
+   * CTER_ScalarOpTensor Operator Template 
    *
    * complex vector = binfunc(RealScalar,ComplexOrRealVector) binary operators 
    ****************************************************************************
    */
   template<class D, class B, class OP>
-    class CScalOpVec : public TExpressionR<std::complex<D>,CScalOpVec<D,B,OP> > {
+    class CTER_ScalarOpTensor : public TExpressionR<std::complex<D>,CTER_ScalarOpTensor<D,B,OP> > {
   private:
     const D val_;
     const B& b_;
@@ -1115,13 +1115,13 @@ namespace matricks {
   public:
 
 
-  CScalOpVec(const D a, const B& b)
+  CTER_ScalarOpTensor(const D a, const B& b)
     : val_(a), b_(b) {
       vptrs = new VectorofPtrs();
       vptrs->add(&b_);
     }
 
-    ~CScalOpVec() {
+    ~CTER_ScalarOpTensor() {
       delete vptrs;
     }
 
@@ -1142,7 +1142,7 @@ namespace matricks {
       return b_.dims();
     }
     static std::string classname(void)  {
-      return "CScalOpVec";
+      return "CTER_ScalarOpTensor";
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1166,13 +1166,13 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VRealFromComplex Expression Template 
+   * TER_RealFromComplex Expression Template 
    *
    * used for accessing real/imag part of complex vector
    ****************************************************************************
    */
   template <class D, class OP>
-    class VRealFromComplex : public  TExpressionRW<D,VRealFromComplex<D,OP> > {
+    class TER_RealFromComplex : public  TExpressionRW<D,TER_RealFromComplex<D,OP> > {
   private:
     Vector<std::complex<D> >& a_;
     VectorofPtrs *vptrs;
@@ -1180,13 +1180,13 @@ namespace matricks {
   public:
 
 
-  VRealFromComplex(Vector<std::complex<D> >& a)
+  TER_RealFromComplex(Vector<std::complex<D> >& a)
     :   a_(a) { 
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
     }
 
-    ~VRealFromComplex() {
+    ~TER_RealFromComplex() {
       delete vptrs;
     }
 
@@ -1212,17 +1212,17 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VRealFromComplex";
+      return "TER_RealFromComplex";
     }
 
 
     template <class B>
-      VRealFromComplex<D,OP>& operator=(const B& b) { 
+      TER_RealFromComplex<D,OP>& operator=(const B& b) { 
       return equals(b);
     }
 
     template <class OP2>
-      VRealFromComplex<D,OP>& operator=(const VRealFromComplex<D,OP2>& b) { 
+      TER_RealFromComplex<D,OP>& operator=(const TER_RealFromComplex<D,OP2>& b) { 
       return equals(b);
     }
 

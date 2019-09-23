@@ -67,15 +67,15 @@ namespace matricks {
   template <class D> class Vector;
   template <class D, class A> class TExpressionR;  
   template <class D, class A> class TExpressionRW;
-  template <class D, class A> class VRepExpr;
+  template <class D, class A> class VER_Rep;
   template <class D> class VSliceObj;
   template <class D> class VSliceExpr;
-  template <class D> class VSubsetObj;
-  template <class D> class VSubMaskObj;
-  template <class D, class A, class B> class VJoinObj;
-  template <class D, class A, class B> class VJoinExpr;
-  template <class D> class VReconObj;
-  template <class D, class A, class X> class VSeriesOp;
+  template <class D> class TERW_Subset;
+  template <class D> class TERW_Submask;
+  template <class D, class A, class B> class VERW_Join;
+  template <class D, class A, class B> class VER_Join;
+  template <class D> class TERW_Resize;
+  template <class D, class A, class X> class TER_Series;
 
 
 

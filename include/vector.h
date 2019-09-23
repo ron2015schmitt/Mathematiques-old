@@ -167,8 +167,8 @@ namespace matricks {
 
     // *** this is used for recon by assignment ***
 
-    VReconObj<D>  resize(void) { 
-      return  VReconObj<D>(*this);
+    TERW_Resize<D>  resize(void) { 
+      return  TERW_Resize<D>(*this);
     }
 
     // *** resize from given integer *** 
@@ -242,10 +242,10 @@ namespace matricks {
 
     // Accessing a slice of values
     
-    VSubsetObj<D> operator[](const slc& slice)  { 
+    TERW_Subset<D> operator[](const slc& slice)  { 
       return (*this)[slice.toIndexVector(size())];
     }
-    const VSubsetObj<D>  operator[](const slc& slice) const  {
+    const TERW_Subset<D>  operator[](const slc& slice) const  {
       display::log3("Vector","operator[]","(const slc& slice)\n");
       return (*this)[slice.toIndexVector(size())];
     }
@@ -254,11 +254,11 @@ namespace matricks {
 
     // Accessing a SET of values using a vector of ints
 
-    VSubsetObj<D> operator[](const Vector<index_type>& ii) {
-      return VSubsetObj<D>(*this, ii);
+    TERW_Subset<D> operator[](const Vector<index_type>& ii) {
+      return TERW_Subset<D>(*this, ii);
     }
-    const VSubsetObj<D> operator[](const Vector<index_type>& ii) const {
-      return VSubsetObj<D>(*this, ii);
+    const TERW_Subset<D> operator[](const Vector<index_type>& ii) const {
+      return TERW_Subset<D>(*this, ii);
     }
 
 
@@ -266,11 +266,11 @@ namespace matricks {
     
     // Accessing a SET of values using a MASK
     
-    VSubMaskObj<D> operator[](const Vector<bool>& mask)  {
-      return  VSubMaskObj<D>(*this,mask);
+    TERW_Submask<D> operator[](const Vector<bool>& mask)  {
+      return  TERW_Submask<D>(*this,mask);
     }
-    const VSubMaskObj<D> operator[](const Vector<bool>& mask)  const {
-      return  VSubMaskObj<D>(*this,mask);
+    const TERW_Submask<D> operator[](const Vector<bool>& mask)  const {
+      return  TERW_Submask<D>(*this,mask);
     }
 
 
@@ -278,11 +278,11 @@ namespace matricks {
     //Accessing a SET of values using a list
 
 #if CPP11 == 1
-    VSubsetObj<D> operator[](const std::initializer_list<index_type>& list) {
-      return  VSubsetObj<D>(*this, list);
+    TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) {
+      return  TERW_Subset<D>(*this, list);
     }
-    const VSubsetObj<D> operator[](const std::initializer_list<index_type>& list) const {
-      return  VSubsetObj<D>(*this, list);
+    const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
+      return  TERW_Subset<D>(*this, list);
     }
 #endif // C++11
 
@@ -401,7 +401,7 @@ namespace matricks {
 
 
     template <class B>
-    Vector<D>& operator=(const VReconObj<D>& b) { 
+    Vector<D>& operator=(const TERW_Resize<D>& b) { 
       return *this;
     }
 

@@ -471,7 +471,7 @@ namespace matricks {
       return derived();
     }
     // assign to recon object (issue error)
-    DERIVED& equals(const VReconObj<D>& b) { 
+    DERIVED& equals(const TERW_Resize<D>& b) { 
       return derived();
     }
     

@@ -117,25 +117,25 @@ namespace matricks {
 
 
   template <class D> 
-    inline VJoinObj<D,Vector<D>,Vector<D> > 
+    inline VERW_Join<D,Vector<D>,Vector<D> > 
     operator,(Vector<D>& a, Vector<D>& b)
     {
     
-      printf2("  VJoinObj operator,(Vector<D>& a, Vector<D>& b)\n");
-      return  VJoinObj<D,Vector<D>,Vector<D> >(a,b);
+      printf2("  VERW_Join operator,(Vector<D>& a, Vector<D>& b)\n");
+      return  VERW_Join<D,Vector<D>,Vector<D> >(a,b);
     }
 
   //--------------------------------------------
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class A> 
-    inline VJoinObj<D, TExpressionRW<D,A>, Vector<D> > 
+    inline VERW_Join<D, TExpressionRW<D,A>, Vector<D> > 
     operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)
     {
-      printf2("  VJoinObj operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)\n");
+      printf2("  VERW_Join operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)\n");
       TExpressionRW<D,A>& a_ = const_cast<TExpressionRW<D,A>& >(a);
       Vector<D>& b_ = const_cast<Vector<D>& >(b);
-      return  VJoinObj<D, TExpressionRW<D,A>,Vector<D> >(a_,b_);
+      return  VERW_Join<D, TExpressionRW<D,A>,Vector<D> >(a_,b_);
     }
   //--------------------------------------------
 
@@ -143,26 +143,26 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class B> 
-    inline VJoinObj<D, Vector<D>,TExpressionRW<D,B> > 
+    inline VERW_Join<D, Vector<D>,TExpressionRW<D,B> > 
     operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)
     {
-      printf2("  VJoinObj operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)\n");
+      printf2("  VERW_Join operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)\n");
       Vector<D>& a_ = const_cast<Vector<D>& >(a);
       TExpressionRW<D,B>& b_ = const_cast<TExpressionRW<D,B>& >(b);
-      return VJoinObj<D, Vector<D>,TExpressionRW<D,B> >(a_,b_);
+      return VERW_Join<D, Vector<D>,TExpressionRW<D,B> >(a_,b_);
     }
   //--------------------------------------------
 
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class A, class B> 
-    inline VJoinObj<D, TExpressionRW<D,A>,TExpressionRW<D,B> > 
+    inline VERW_Join<D, TExpressionRW<D,A>,TExpressionRW<D,B> > 
     operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)
     {
-      printf2("  VJoinObj operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)\n");
+      printf2("  VERW_Join operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)\n");
       TExpressionRW<D,A>& a_ = const_cast<TExpressionRW<D,A>& >(a);
       TExpressionRW<D,B>& b_ = const_cast<TExpressionRW<D,B>& >(b);
-      return  VJoinObj<D, TExpressionRW<D,A>,TExpressionRW<D,B> >(a_,b_);
+      return  VERW_Join<D, TExpressionRW<D,A>,TExpressionRW<D,B> >(a_,b_);
     }
   //--------------------------------------------
 
@@ -171,35 +171,35 @@ namespace matricks {
   ///---------
   
   template <class D> 
-    inline const VJoinExpr<D, Vector<D>,Vector<D> > 
+    inline const VER_Join<D, Vector<D>,Vector<D> > 
     operator,(const Vector<D>& a, const Vector<D>& b)
     {
-      printf2("  VJoinExpr operator,(const Vector<D>& a, const Vector<D>& b)\n");
-      return  VJoinExpr<D,Vector<D>,Vector<D> >(a,b);
+      printf2("  VER_Join operator,(const Vector<D>& a, const Vector<D>& b)\n");
+      return  VER_Join<D,Vector<D>,Vector<D> >(a,b);
     }
 
   template <class D, class B> 
-    inline const VJoinExpr<D, Vector<D>,TExpressionR<D,B> > 
+    inline const VER_Join<D, Vector<D>,TExpressionR<D,B> > 
     operator,(const Vector<D>& a, const TExpressionR<D,B>& b)
     {
-      printf2("  VJoinExpr operator,(const Vector<D>& a, const TExpressionR<D,B>& b)\n");
-      return  VJoinExpr<D,Vector<D>,TExpressionR<D,B>  >(a,b);
+      printf2("  VER_Join operator,(const Vector<D>& a, const TExpressionR<D,B>& b)\n");
+      return  VER_Join<D,Vector<D>,TExpressionR<D,B>  >(a,b);
     }
 
   template <class D, class A> 
-    inline const VJoinExpr<D,TExpressionR<D,A>,Vector<D> > 
+    inline const VER_Join<D,TExpressionR<D,A>,Vector<D> > 
     operator,(const TExpressionR<D,A>& a, const Vector<D>& b)
     {
-      printf2("  VJoinExpr operator,(const TExpressionR<D,A>& a, const Vector<D>& b)\n");
-      return  VJoinExpr<D,TExpressionR<D,A>,Vector<D> >(a,b);
+      printf2("  VER_Join operator,(const TExpressionR<D,A>& a, const Vector<D>& b)\n");
+      return  VER_Join<D,TExpressionR<D,A>,Vector<D> >(a,b);
     }
  
   template <class D, class A, class B> 
-    inline const VJoinExpr<D, TExpressionR<D,A>,TExpressionR<D,B> > 
+    inline const VER_Join<D, TExpressionR<D,A>,TExpressionR<D,B> > 
     operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)
     {
-      printf2("  VJoinExpr operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)\n");
-      return  VJoinExpr<D, TExpressionR<D,A>,TExpressionR<D,B> >(a,b);
+      printf2("  VER_Join operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)\n");
+      return  VER_Join<D, TExpressionR<D,A>,TExpressionR<D,B> >(a,b);
     }
 
 
@@ -210,9 +210,9 @@ namespace matricks {
   // rep(v,m)
 
   template <class D, class A> 
-    inline VRepExpr<D,TensorR<D,A> >
+    inline VER_Rep<D,TensorR<D,A> >
     rep(const TensorR<D,A>& a, const size_type m) {
-    return VRepExpr<D,TensorR<D,A> >(a,m);
+    return VER_Rep<D,TensorR<D,A> >(a,m);
   }
 
   
@@ -593,29 +593,29 @@ namespace matricks {
   // maclaurin(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-    inline VSeriesOp<D, TensorR<D,A>, TensorR<D,X> > 
+    inline TER_Series<D, TensorR<D,A>, TensorR<D,X> > 
     maclaurin(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N, const D x0)
     {
-      return  VSeriesOp<D, TensorR<D,A>, TensorR<D,X> >(a,x,N,x0);
+      return  TER_Series<D, TensorR<D,A>, TensorR<D,X> >(a,x,N,x0);
     }
   
   // taylor(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-    inline VSeriesOp<D, TensorR<D,A>, TensorR<D,X> > 
+    inline TER_Series<D, TensorR<D,A>, TensorR<D,X> > 
     taylor(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N)
     {
-      return  VSeriesOp<D, TensorR<D,A>, TensorR<D,X> >(a,x,N);
+      return  TER_Series<D, TensorR<D,A>, TensorR<D,X> >(a,x,N);
     }
 
   // ifourier(vector cos coefs, vector sin coefs, vector vals, max N, k1=2pi/wavelength or 2pi/period)
   // sin coefs must include a coef for n=0 even though its irrelevant
 
   template <class D, class A, class B, class X> 
-    inline  VSeriesOp2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >
+    inline  TER_Series2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >
     ifourier(const TensorR<D,A>& Acos, const TensorR<D,B>& Bsin, const TensorR<D,X>& x, const int N, const D k1)
     {
-      return  VSeriesOp2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
+      return  TER_Series2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
     }
 
 

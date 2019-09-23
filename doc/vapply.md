@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.17-r16).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.17-r17).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -109,10 +109,10 @@ namespace matricks {
   };
 
   template <class D, class A> 
-  inline VFuncOp<D,TensorR<D,A>,Fun_Pos<D> > 
+  inline TER_Unary<D,TensorR<D,A>,Fun_Pos<D> > 
   pos(const TensorR<D,A>& a)
   {
-    return  VFuncOp<D,TensorR<D,A>,Fun_Pos<D> >(a);
+    return  TER_Unary<D,TensorR<D,A>,Fun_Pos<D> >(a);
   }
 };
 

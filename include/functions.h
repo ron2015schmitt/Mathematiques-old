@@ -20,29 +20,29 @@ namespace matricks {
   // +(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Plus<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Plus<D> > 
     operator+(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Plus<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Plus<D> >(a);
     }
 
 
   // -(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Minus<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Minus<D> > 
     operator-(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Minus<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Minus<D> >(a);
     }
 
   // vector + vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Add<D> > 
+    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Add<D> > 
     operator+(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Add<D> >(a,b);
+      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Add<D> >(a,b);
     }
 
 
@@ -50,40 +50,40 @@ namespace matricks {
   // vector - vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Subtract<D> > 
+    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Subtract<D> > 
     operator-(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Subtract<D> >(a,b);
+      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Subtract<D> >(a,b);
     }
 
 
   // vector * vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Multiply<D> > 
+    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Multiply<D> > 
     operator*(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Multiply<D> >(a,b);
+      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Multiply<D> >(a,b);
     }
 
 
   // vector / vector
 
   template <class D, class A, class B> 
-    inline VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Divide<D> > 
+    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Divide<D> > 
     operator/(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Divide<D> >(a,b);
+      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Divide<D> >(a,b);
     }
 
   
   // dcast: cast data from D1 to D2
 
   template <class D2, class D1, class A> 
-    inline VFuncOp<D2,TensorR<D1,A>,Fun_Cast<D1,D2> > 
+    inline TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D1,D2> > 
     dcast(const TensorR<D1,A>& a)
     {
-      return  VFuncOp<D2,TensorR<D1,A>,Fun_Cast<D1,D2> >(a);
+      return  TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D1,D2> >(a);
     }
 
   // ************************************************************************
@@ -93,10 +93,10 @@ namespace matricks {
   // pow(vector,vector)
 
   template <class D, class A, class B> 
-    inline VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> > 
+    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> > 
     pow(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> >(a,b);
+      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> >(a,b);
     }
 
 
@@ -108,20 +108,20 @@ namespace matricks {
   // sin(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Sin<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Sin<D> > 
     sin(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Sin<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Sin<D> >(a);
     }
 
 
   // cos(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Cos<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Cos<D> > 
     cos(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Cos<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Cos<D> >(a);
     }
 
 
@@ -129,80 +129,80 @@ namespace matricks {
   // tan(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Tan<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Tan<D> > 
     tan(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Tan<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Tan<D> >(a);
     }
 
 
   // asin(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Asin<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Asin<D> > 
     asin(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Asin<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Asin<D> >(a);
     }
 
 
   // acos(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Acos<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Acos<D> > 
     acos(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Acos<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Acos<D> >(a);
     }
 
 
   // atan(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Atan<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Atan<D> > 
     atan(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Atan<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Atan<D> >(a);
     }
 
 
   // atan2(vector,vector)
 
   template <class D, class A, class B> 
-    inline VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Atan2<D> > 
+    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Atan2<D> > 
     atan2(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Atan2<D> >(a,b);
+      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Atan2<D> >(a,b);
     }
 
 
   // sinh(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Sinh<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Sinh<D> > 
     sinh(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Sinh<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Sinh<D> >(a);
     }
 
 
   // cosh(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Cosh<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Cosh<D> > 
     cosh(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Cosh<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Cosh<D> >(a);
     }
 
 
   // tanh(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Tanh<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Tanh<D> > 
     tanh(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Tanh<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Tanh<D> >(a);
     }
 
 
@@ -214,20 +214,20 @@ namespace matricks {
   // abs(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Abs<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Abs<D> > 
     abs(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Abs<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Abs<D> >(a);
     }
 
 
   // sgn(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Sgn<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Sgn<D> > 
     sgn(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Sgn<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Sgn<D> >(a);
     }
 
 
@@ -235,37 +235,37 @@ namespace matricks {
   // ceil(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Ceil<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Ceil<D> > 
     ceil(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Ceil<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Ceil<D> >(a);
     }
 
 
   // floor(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Floor<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Floor<D> > 
     floor(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Floor<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Floor<D> >(a);
     }
 
 
   // round(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Round<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Round<D> > 
     round(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Round<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Round<D> >(a);
     }
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Roundzero<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Roundzero<D> > 
     roundzero(const TensorR<D,A>& a, const D tolerance = MatricksHelper<D>::tolerance)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Roundzero<D> >(a, tolerance);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Roundzero<D> >(a, tolerance);
     }
 
 
@@ -274,67 +274,67 @@ namespace matricks {
 
   // complexvector + realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_AddCR<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_AddCR<D> > 
     operator+(const TensorR<std::complex<D>,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_AddCR<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_AddCR<D> >(a,b);
     }
   // realvector + complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const TensorR<D,A>& a, const TensorR<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);
     }
 
 
   // complexvector - realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_SubtractCR<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_SubtractCR<D> > 
     operator-(const TensorR<std::complex<D>,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_SubtractCR<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_SubtractCR<D> >(a,b);
     }
   // realvector - complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const TensorR<D,A>& a, const TensorR<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);
     }
 
 
 
   // complexvector * realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_MultiplyCR<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_MultiplyCR<D> > 
     operator*(const TensorR<std::complex<D>,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_MultiplyCR<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_MultiplyCR<D> >(a,b);
     }
   // realvector * complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const TensorR<D,A>& a, const TensorR<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);
     }
 
 
 
   // complexvector / realvector
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_DivideCR<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_DivideCR<D> > 
     operator/(const TensorR<std::complex<D>,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_DivideCR<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<std::complex<D>,A>,TensorR<D,B>,Fun_DivideCR<D> >(a,b);
     }
   // realvector / complexvector 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const TensorR<D,A>& a, const TensorR<std::complex<D>,B>& b)
     {
-      return  VBinOp<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);
+      return  TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);
     }
 
 
@@ -345,20 +345,20 @@ namespace matricks {
   // vpolar(r,phi)
 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Polar<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Polar<D> > 
     vpolar(const TensorR<D,A>& r, const TensorR<D,B>& phi)
     {
-      return  VBinOp<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Polar<D> >(r,phi);
+      return  TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Polar<D> >(r,phi);
     }
 
 
   // vcomplex(x,y)
 
   template <class D, class A, class B> 
-    inline VBinOp<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Complex<D> > 
+    inline TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Complex<D> > 
     vcomplex(const TensorR<D,A>& x, const TensorR<D,B>& y)
     {
-      return  VBinOp<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Complex<D> >(x,y);
+      return  TER_Binary<std::complex<D>,TensorR<D,A>,TensorR<D,B>,Fun_Complex<D> >(x,y);
     }
 
 
@@ -366,45 +366,45 @@ namespace matricks {
   // pow(complexvector,realscalar)
 
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
     pow(const TensorR<std::complex<D>,A>& a, const D b)
     {
-      return  CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,b);
+      return  CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,b);
     }
 
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > > 
     roundzero(const TensorR<std::complex<D>,A>& a, const D tol = MatricksHelper<D>::tolerance)
     {
-      return  CVecOpScal<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > >(a,tol);
+      return  CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > >(a,tol);
     }
 
 
   // pow(complexvector,intscalar)
 
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> > 
     pow(const TensorR<std::complex<D>,A>& a, const int b)
     {
-      return  CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,static_cast<D>(b));
+      return  CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,static_cast<D>(b));
     }
 
   // pow(realscalar,complexvector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
     pow(const D a, const TensorR<std::complex<D>,B>& b)
     {
-      return  CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(a,b);
+      return  CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(a,b);
     }
 
   // pow(intscalar,complexvector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> > 
     pow(const int a, const TensorR<std::complex<D>,B>& b)
     {
-      return  CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(static_cast<D>(a),b);
+      return  CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(static_cast<D>(a),b);
     }
 
 
@@ -414,35 +414,35 @@ namespace matricks {
 
   
   template <class D, class A, class B> 
-    inline VecOpScal<std::complex<D>, TensorR<D,A>, Fun_Complex<D> > 
+    inline TER_TensorOpScalar<std::complex<D>, TensorR<D,A>, Fun_Complex<D> > 
     vcomplex(const TensorR<D,A>& a, const D b)
     {
-      return  CVecOpScal<D,TensorR<D,A>,Fun_Complex<D > >(a,b);
+      return  CTER_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,b);
     }
   // vcomplex(vector,intscalar)
 
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<D,A>,Fun_Complex<D > > 
+    inline CTER_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > > 
     vcomplex(const TensorR<D,A>& a, const int b)
     {
-      return  CVecOpScal<D,TensorR<D,A>,Fun_Complex<D > >(a,static_cast<D>(b));
+      return  CTER_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,static_cast<D>(b));
     }
 
   // vcomplex(realscalar,vector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<D,B>,Fun_Complex<D > > 
+    inline CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > > 
     vcomplex(const D a, const TensorR<D,B>& b)
     {
-      return  CScalOpVec<D,TensorR<D,B>,Fun_Complex<D > >(a,b);
+      return  CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(a,b);
     }
   // vcomplex(intscalar,vector)
 
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<D,B>,Fun_Complex<D > > 
+    inline CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > > 
     vcomplex(const int a, const TensorR<D,B>& b)
     {
-      return  CScalOpVec<D,TensorR<D,B>,Fun_Complex<D > >(static_cast<D>(a),b);
+      return  CTER_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(static_cast<D>(a),b);
     }
 
 
@@ -454,18 +454,18 @@ namespace matricks {
   // a==b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >  
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >  
     operator==( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >(a,b);
   }
 
 
   // a!=b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_NotEqual<D> >  
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_NotEqual<D> >  
     operator!=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_NotEqual<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_NotEqual<D> >(a,b);
   }
 
 
@@ -473,36 +473,36 @@ namespace matricks {
   // a<=b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_LessOrEqual<D> >  
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_LessOrEqual<D> >  
     operator<=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_LessOrEqual<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_LessOrEqual<D> >(a,b);
   }
 
 
   // a>=b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_GreaterOrEqual<D> >  
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_GreaterOrEqual<D> >  
     operator>=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_GreaterOrEqual<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_GreaterOrEqual<D> >(a,b);
   }
 
 
   // a<b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Less<D> >  
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Less<D> >  
     operator<( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Less<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Less<D> >(a,b);
   }
 
 
   // a>b
 
   template <class D, class A, class B> 
-    inline VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Greater<D> >  
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Greater<D> >  
     operator>( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return VBoolBinOp<D,TensorR<D,A>,TensorR<D,B>,Fun_Greater<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Greater<D> >(a,b);
   }
 
 
@@ -520,74 +520,74 @@ namespace matricks {
   // vector + scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Add<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> > 
     operator+(const TensorR<D,A>& a, const D b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Add<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> >(a,b);
     }
 
   // scalar + vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Add<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > 
     operator+(const D a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Add<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > (a,b);
     }
 
 
   // vector - scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Subtract<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> > 
     operator-(const TensorR<D,A>& a, const D b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
     }
 
   // scalar - vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Subtract<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > 
     operator-(const D a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
     }
 
   // vector * scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Multiply<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> > 
     operator*(const TensorR<D,A>& a, const D b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
     }
 
   // scalar * vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Multiply<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > 
     operator*(const D a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
     }
 
   // vector / scalar
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Divide<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> > 
     operator/(const TensorR<D,A>& a, const D b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
     }
 
   // scalar / vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Divide<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > 
     operator/(const D a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
     }
 
 
@@ -596,74 +596,74 @@ namespace matricks {
   // vector + (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Add<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> > 
     operator+(const TensorR<D,A>& a, const int b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Add<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> >(a,b);
     }
 
   // (int scalar) + vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Add<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > 
     operator+(const int a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Add<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > (a,b);
     }
 
 
   // vector - (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Subtract<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> > 
     operator-(const TensorR<D,A>& a, const int b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
     }
 
   // (int scalar) - vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Subtract<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > 
     operator-(const int a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
     }
 
   // vector * (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Multiply<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> > 
     operator*(const TensorR<D,A>& a, const int b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
     }
 
   // (int scalar) * vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Multiply<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > 
     operator*(const int a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
     }
 
   // vector / (int scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Divide<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> > 
     operator/(const TensorR<D,A>& a, const int b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
     }
 
   // (int scalar) / vector
 
   template <class D, class B>
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Divide<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > 
     operator/(const int a, const TensorR<D,B>& b )
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
     }
 
 
@@ -675,174 +675,174 @@ namespace matricks {
   // pow(vector,scalar)
 
   template <class D, class A> 
-    inline VecOpScal<D,TensorR<D,A>,Fun_Pow<D> > 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Pow<D> > 
     pow(const TensorR<D,A>& a, const D b)
     {
-      return  VecOpScal<D,TensorR<D,A>,Fun_Pow<D> >(a,b);
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Pow<D> >(a,b);
     }
 
   // pow(scalar,vector)
 
   template <class D, class B> 
-    inline ScalOpVec<D,TensorR<D,B>,Fun_Pow<D> > 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Pow<D> > 
     pow( const D a, const TensorR<D,B>& b)
     {
-      return  ScalOpVec<D,TensorR<D,B>,Fun_Pow<D> >(a,b);
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Pow<D> >(a,b);
     }
 
 
 
   // realvector + complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,TensorR<D,A>,Fun_AddRC<D> > 
+    inline TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_AddRC<D> > 
     operator+(const TensorR<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,TensorR<D,A>,Fun_AddRC<D> >( a,b );
+	TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_AddRC<D> >( a,b );
     }
 
   // complexscalar +  realvector 
   template <class D, class B> 
-    inline ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_AddCR<D> > 
+    inline TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_AddCR<D> > 
     operator+(const std::complex<D> a, const TensorR<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_AddCR<D> >( a, b );
+	TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_AddCR<D> >( a, b );
     }
   // complexvector + realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
     operator+(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,b);  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,b);  
     }
   // complexvector + intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> > 
     operator+(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,static_cast<D>(b));  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar + complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);  
     }
   // intscalar + complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
     operator+(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_AddRC<D > >(static_cast<D>(a),b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D > >(static_cast<D>(a),b);  
     }
 
 
 
   // realvector - complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,TensorR<D,A>,Fun_SubtractRC<D> > 
+    inline TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_SubtractRC<D> > 
     operator-(const TensorR<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,TensorR<D,A>,Fun_SubtractRC<D> >( a,b );
+	TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_SubtractRC<D> >( a,b );
     }
 
   // complexscalar -  realvector 
   template <class D, class B> 
-    inline ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_SubtractCR<D> > 
+    inline TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_SubtractCR<D> > 
     operator-(const std::complex<D> a, const TensorR<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_SubtractCR<D> >( a, b );
+	TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_SubtractCR<D> >( a, b );
     }
   // complexvector - realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
     operator-(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,b);  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,b);  
     }
   // complexvector - intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> > 
     operator-(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,static_cast<D>(b));  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar - complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);  
     }
   // intscalar - complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
     operator-(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D > >(static_cast<D>(a),b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D > >(static_cast<D>(a),b);  
     }
 
 
   // realvector * complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,TensorR<D,A>,Fun_MultiplyRC<D> > 
+    inline TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_MultiplyRC<D> > 
     operator*(const TensorR<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,TensorR<D,A>,Fun_MultiplyRC<D> >( a,b );
+	TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_MultiplyRC<D> >( a,b );
     }
 
   // complexscalar *  realvector 
   template <class D, class B> 
-    inline ScalOpVec<std::complex<D>,TensorR<D,B>,Fun_MultiplyCR<D> > 
+    inline TER_ScalarOpTensor<std::complex<D>,TensorR<D,B>,Fun_MultiplyCR<D> > 
     operator*(const std::complex<D> a, const TensorR<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_MultiplyCR<D> >( a, b );
+	TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_MultiplyCR<D> >( a, b );
     }
   // complexvector * realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
     operator*(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,b);  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,b);  
     }
   // complexvector * intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> > 
     operator*(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,static_cast<D>(b));  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar * complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> >(a,b);  
     }
   // intscalar * complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
     operator*(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D > >(static_cast<D>(a),b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -850,52 +850,52 @@ namespace matricks {
 
   // realvector / complexscalar
   template <class D, class A> 
-    inline VecOpScal< std::complex<D>,TensorR<D,A>,Fun_DivideRC<D> > 
+    inline TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_DivideRC<D> > 
     operator/(const TensorR<D,A>& a, const std::complex<D> b)
     {
       return  
-	VecOpScal< std::complex<D>,TensorR<D,A>,Fun_DivideRC<D> >( a,b );
+	TER_TensorOpScalar< std::complex<D>,TensorR<D,A>,Fun_DivideRC<D> >( a,b );
     }
 
   // complexscalar /  realvector 
   template <class D, class B> 
-    inline ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_DivideCR<D> > 
+    inline TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_DivideCR<D> > 
     operator/(const std::complex<D> a, const TensorR<D,B>& b)
     {
       return  
-	ScalOpVec< std::complex<D>,TensorR<D,B>,Fun_DivideCR<D> >( a, b );
+	TER_ScalarOpTensor< std::complex<D>,TensorR<D,B>,Fun_DivideCR<D> >( a, b );
     }
   // complexvector / realscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
     operator/(const TensorR<std::complex<D>,A>& a, const D b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,b);  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,b);  
     }
   // complexvector / intscalar
   template <class D, class A> 
-    inline CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
+    inline CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> > 
     operator/(const TensorR<std::complex<D>,A>& a, const int b)
     {
       return  
-	CVecOpScal<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,static_cast<D>(b));  
+	CTER_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,static_cast<D>(b));  
     }
   // realscalar / complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const D a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> >(a,b);  
     }
   // intscalar / complexvector
   template <class D, class B> 
-    inline CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
+    inline CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
     operator/(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  
-	CScalOpVec<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D > >(static_cast<D>(a),b);  
+	CTER_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D > >(static_cast<D>(a),b);  
     }
 
 
@@ -904,38 +904,38 @@ namespace matricks {
   // vector && scalar
 
   template <class A> 
-    inline VecOpScal<bool,TensorR<bool,A>,Fun_And > 
+    inline TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_And > 
     operator&&(const TensorR<bool,A>& a, const bool b)
     {
-      return  VecOpScal<bool,TensorR<bool,A>,Fun_And >(a,b);
+      return  TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_And >(a,b);
     }
 
   // scalar && vector
 
   template <class B> 
-    inline ScalOpVec<bool,TensorR<bool,B>,Fun_And > 
+    inline TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_And > 
     operator&&(const bool a, const TensorR<bool,B>& b)
     {
-      return  ScalOpVec<bool,TensorR<bool,B>,Fun_And >(a,b);
+      return  TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_And >(a,b);
     }
 
   
   // vector || scalar
 
   template <class A> 
-    inline VecOpScal<bool,TensorR<bool,A>,Fun_Or > 
+    inline TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_Or > 
     operator||(const TensorR<bool,A>& a, const bool b)
     {
-      return  VecOpScal<bool,TensorR<bool,A>,Fun_Or >(a,b);
+      return  TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_Or >(a,b);
     }
 
   // scalar || vector
 
   template <class B> 
-    inline ScalOpVec<bool,TensorR<bool,B>,Fun_Or > 
+    inline TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_Or > 
     operator||(const bool a, const TensorR<bool,B>& b)
     {
-      return  ScalOpVec<bool,TensorR<bool,B>,Fun_Or >(a,b);
+      return  TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_Or >(a,b);
     }
 
 
@@ -943,105 +943,105 @@ namespace matricks {
   // vector == scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_Equal<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> > 
     operator==(const TensorR<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_Equal<D> >(a,b);
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> >(a,b);
     }
 
   // scalar == vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_Equal<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> > 
     operator==(const D a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_Equal<D> >(a,b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> >(a,b);
     }
 
   // vector != scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_NotEqual<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> > 
     operator!=(const TensorR<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_NotEqual<D> >(a,b);
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> >(a,b);
     }
 
   // scalar != vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_NotEqual<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> > 
     operator!=(const D a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_NotEqual<D> >(a,b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> >(a,b);
     }
   // vector <= scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_LessOrEqual<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> > 
     operator<=(const TensorR<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,b);
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,b);
     }
 
   // scalar <= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_LessOrEqual<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> > 
     operator<=(const D a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_LessOrEqual<D> >(a,b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> >(a,b);
     }
   // vector >= scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_GreaterOrEqual<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> > 
     operator>=(const TensorR<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,b);
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,b);
     }
 
   // scalar >= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_GreaterOrEqual<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> > 
     operator>=(const D a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(a,b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(a,b);
     }
   // vector < scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_Less<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> > 
     operator<(const TensorR<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_Less<D> >(a,b);
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> >(a,b);
     }
 
   // scalar < vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_Less<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> > 
     operator<(const D a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_Less<D> >(a,b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> >(a,b);
     }
   // vector > scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_Greater<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> > 
     operator>(const TensorR<D,A>& a, const D b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_Greater<D> >(a,b);
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> >(a,b);
     }
 
   // scalar > vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_Greater<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> > 
     operator>(const D a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_Greater<D> >(a,b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> >(a,b);
     }
 
 
@@ -1051,123 +1051,123 @@ namespace matricks {
   // vector == int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_Equal<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> > 
     operator==(const TensorR<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_Equal<D> >(a,static_cast<D>(b));
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> >(a,static_cast<D>(b));
     }
 
   // int scalar == vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_Equal<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> > 
     operator==(const int a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_Equal<D> >(static_cast<D>(a),b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> >(static_cast<D>(a),b);
     }
 
   // vector != int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_NotEqual<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> > 
     operator!=(const TensorR<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_NotEqual<D> >(a,static_cast<D>(b));
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> >(a,static_cast<D>(b));
     }
 
   // int scalar != vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_NotEqual<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> > 
     operator!=(const int a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_NotEqual<D> >(static_cast<D>(a),b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> >(static_cast<D>(a),b);
     }
   // vector <= int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_LessOrEqual<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> > 
     operator<=(const TensorR<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,static_cast<D>(b));
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,static_cast<D>(b));
     }
 
   // int scalar <= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_LessOrEqual<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> > 
     operator<=(const int a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_LessOrEqual<D> >(static_cast<D>(a),b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> >(static_cast<D>(a),b);
     }
   // vector >= int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_GreaterOrEqual<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> > 
     operator>=(const TensorR<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,static_cast<D>(b));
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,static_cast<D>(b));
     }
 
   // int scalar >= vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_GreaterOrEqual<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> > 
     operator>=(const int a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(static_cast<D>(a),b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(static_cast<D>(a),b);
     }
   // vector < int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_Less<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> > 
     operator<(const TensorR<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_Less<D> >(a,static_cast<D>(b));
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> >(a,static_cast<D>(b));
     }
 
   // int scalar < vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_Less<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> > 
     operator<(const int a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_Less<D> >(static_cast<D>(a),b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> >(static_cast<D>(a),b);
     }
   // vector > int scalar
 
   template <class D, class A> 
-    inline BoolVecOpScal<D,TensorR<D,A>,Fun_Greater<D> > 
+    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> > 
     operator>(const TensorR<D,A>& a, const int b)
     {
-      return  BoolVecOpScal<D,TensorR<D,A>,Fun_Greater<D> >(a,static_cast<D>(b));
+      return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> >(a,static_cast<D>(b));
     }
 
   // int scalar > vector
 
   template <class D, class B> 
-    inline BoolScalOpVec<D,TensorR<D,B>,Fun_Greater<D> > 
+    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> > 
     operator>(const int a, const TensorR<D,B>& b)
     {
-      return  BoolScalOpVec<D,TensorR<D,B>,Fun_Greater<D> >(static_cast<D>(a),b);
+      return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> >(static_cast<D>(a),b);
     }
 
   // vector && vector
 
   template <class A, class B> 
-    inline VBinOp<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_And > 
+    inline TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_And > 
     operator&&(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
     {
-      return  VBinOp<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_And >(a,b);
+      return  TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_And >(a,b);
     }
 
   // vector || vector
 
   template <class A, class B> 
-    inline VBinOp<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_Or > 
+    inline TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_Or > 
     operator||(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
     {
-      return  VBinOp<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_Or >(a,b);
+      return  TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_Or >(a,b);
     }
 
 
@@ -1177,10 +1177,10 @@ namespace matricks {
   // !(vector)
 
   template <class A> 
-    inline VFuncOp<bool,TensorR<bool,A>,Fun_Not > 
+    inline TER_Unary<bool,TensorR<bool,A>,Fun_Not > 
     operator!(const TensorR<bool,A>& a)
     {
-      return  VFuncOp<bool,TensorR<bool,A>,Fun_Not >(a);
+      return  TER_Unary<bool,TensorR<bool,A>,Fun_Not >(a);
     }
   
   
@@ -1192,19 +1192,19 @@ namespace matricks {
 
   
   template <class D, typename FunctionTypes<D>::binary_func F, class A, class B> 
-    inline VBinOp<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> > 
+    inline TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> > 
     op2(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      return  VBinOp<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> >(a,b);
+      return  TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> >(a,b);
     }
 
 
   // user-defined functions
   template <class D, typename FunctionTypes<D>::unary_func F, class A> 
-    inline VFuncOp<D, TensorR<D,A>, Fun_UnaryUser<D,F> > 
+    inline TER_Unary<D, TensorR<D,A>, Fun_UnaryUser<D,F> > 
     op1(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D, TensorR<D,A>, Fun_UnaryUser<D,F> >(a);
+      return  TER_Unary<D, TensorR<D,A>, Fun_UnaryUser<D,F> >(a);
     }
 
 
@@ -1214,37 +1214,37 @@ namespace matricks {
   // sqr(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Sqr<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Sqr<D> > 
     sqr(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Sqr<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Sqr<D> >(a);
     }
 
   // cube(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Cube<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Cube<D> > 
     cube(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Cube<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Cube<D> >(a);
     }
 
   // sqrt(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Sqrt<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Sqrt<D> > 
     sqrt(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Sqrt<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Sqrt<D> >(a);
     }
 
   // exp(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Exp<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Exp<D> > 
     exp(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Exp<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Exp<D> >(a);
     }
 
 
@@ -1252,30 +1252,30 @@ namespace matricks {
   // log(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Log<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Log<D> > 
     log(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Log<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Log<D> >(a);
     }
 
 
   // log10(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Log10<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Log10<D> > 
     log10(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Log10<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Log10<D> >(a);
     }
 
 
   // log2(vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<D,A>,Fun_Log2<D> > 
+    inline TER_Unary<D,TensorR<D,A>,Fun_Log2<D> > 
     log2(const TensorR<D,A>& a)
     {
-      return  VFuncOp<D,TensorR<D,A>,Fun_Log2<D> >(a);
+      return  TER_Unary<D,TensorR<D,A>,Fun_Log2<D> >(a);
     }
 
 
@@ -1288,18 +1288,18 @@ namespace matricks {
   // conj(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
+    inline TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
     conj(const TensorR<std::complex<D>,A>& a)
     {
-      return  VFuncOp<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
+      return  TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
     }
 
 
   template <class D, class A> 
-    inline VFuncOp<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
+    inline TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
     operator~(const TensorR<std::complex<D>,A>& a)
     {
-      return  VFuncOp<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
+      return  TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
     }
 
 
@@ -1309,20 +1309,20 @@ namespace matricks {
   // abs(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<std::complex<D>,A>,Fun_CAbs<D> > 
+    inline TER_Unary<D,TensorR<std::complex<D>,A>,Fun_CAbs<D> > 
     abs(const TensorR<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,TensorR<std::complex<D>,A>,Fun_CAbs<D> >(a);
+      return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_CAbs<D> >(a);
     }
 
 
   // arg(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<std::complex<D>,A>,Fun_Arg<D> > 
+    inline TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Arg<D> > 
     arg(const TensorR<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,TensorR<std::complex<D>,A>,Fun_Arg<D> >(a);
+      return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Arg<D> >(a);
     }
 
 
@@ -1331,19 +1331,19 @@ namespace matricks {
   // real(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<std::complex<D>,A>,Fun_Real<D> > 
+    inline TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Real<D> > 
     real(const TensorR<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,TensorR<std::complex<D>,A>,Fun_Real<D> >(a);
+      return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Real<D> >(a);
     }
 
   // imag(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<D,TensorR<std::complex<D>,A>,Fun_Imag<D> > 
+    inline TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Imag<D> > 
     imag(const TensorR<std::complex<D>,A>& a)
     {
-      return  VFuncOp<D,TensorR<std::complex<D>,A>,Fun_Imag<D> >(a);
+      return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Imag<D> >(a);
     }
 
 
@@ -1351,9 +1351,9 @@ namespace matricks {
   // round(complex vector)
 
   template <class D, class A> 
-    inline VFuncOp<std::complex<D>, TensorR<std::complex<D>, A> , Fun_RoundCplx<D> > 
+    inline TER_Unary<std::complex<D>, TensorR<std::complex<D>, A> , Fun_RoundCplx<D> > 
     round(const TensorR<std::complex<D>,A>& a)  {
-    return VFuncOp<std::complex<D>, TensorR<std::complex<D>, A>, Fun_RoundCplx<D> >(a);
+    return TER_Unary<std::complex<D>, TensorR<std::complex<D>, A>, Fun_RoundCplx<D> >(a);
   }
 
 

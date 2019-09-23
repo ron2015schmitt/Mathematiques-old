@@ -7,14 +7,14 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VJoinExpr Expression Template 
+   * VER_Join Expression Template 
    *
    * expression for joining two TensorR (RHS only)
    ****************************************************************************
    */
 
   template<class D, class A, class B>
-    class VJoinExpr : public  TExpressionR<D,VJoinExpr<D,A,B> > {
+    class VER_Join : public  TExpressionR<D,VER_Join<D,A,B> > {
 
   private:
     const A& a_;
@@ -24,7 +24,7 @@ namespace matricks {
   public:
 
 
-  VJoinExpr(const A& a, const B& b)
+  VER_Join(const A& a, const B& b)
     : a_(a), b_(b) { 
 
       vptrs = new VectorofPtrs();
@@ -33,7 +33,7 @@ namespace matricks {
       
     }
 
-    ~VJoinExpr() {
+    ~VER_Join() {
       delete vptrs;
     }
     
@@ -57,13 +57,13 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VJoinExpr";
+      return "VER_Join";
     }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
-      //      return expression_VJoinExpr(a_.expression(),ii_.expression());
+      //      return expression_VER_Join(a_.expression(),ii_.expression());
     }
 #endif 
 
@@ -72,14 +72,14 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VJoinObj Expression Template 
+   * VERW_Join Expression Template 
    *
    * expression for joining two TensorR (RHS only)
    ****************************************************************************
    */
 
   template<class D, class A, class B>
-    class VJoinObj : public  TExpressionRW<D,VJoinObj<D,A,B> > {
+    class VERW_Join : public  TExpressionRW<D,VERW_Join<D,A,B> > {
 
   private:
     A& a_;
@@ -89,14 +89,14 @@ namespace matricks {
   public:
 
 
-  VJoinObj(A& a, B& b)
+  VERW_Join(A& a, B& b)
     : a_(a), b_(b) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(b_.getAddresses());
     }
 
-    ~VJoinObj() {
+    ~VERW_Join() {
       delete vptrs;
     }
 
@@ -130,28 +130,28 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VJoinObj";
+      return "VERW_Join";
     }
 
-    VJoinObj<D,A,B>& operator=(VReconObj<D>& b) { 
+    VERW_Join<D,A,B>& operator=(TERW_Resize<D>& b) { 
       return this->equals(b);
     }
 
     template <class C>
-      VJoinObj<D,A,B>& operator=(const TensorR<D,C>& rhs) { 
-      printf2("VJoinObj<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
+      VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs) { 
+      printf2("VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
       return this->equals(rhs);
     }
 
 
-    VJoinObj<D,A,B>& operator=(const D d) { 
+    VERW_Join<D,A,B>& operator=(const D d) { 
       return this->equals(d);
     }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
-      //      return expression_VJoinExpr(a_.expression(),ii_.expression());
+      //      return expression_VER_Join(a_.expression(),ii_.expression());
     }
 #endif 
 
@@ -166,14 +166,14 @@ namespace matricks {
 
 
   /****************************************************************************
-   * VRepExpr Expression Template 
+   * VER_Rep Expression Template 
    *
    * expression for repeating a TensorR (RHS only)
    ****************************************************************************
    */
 
   template<class D, class A>
-    class VRepExpr : public  TExpressionR<D,VRepExpr<D,A> > {
+    class VER_Rep : public  TExpressionR<D,VER_Rep<D,A> > {
 
   private:
     const A& a_;
@@ -184,14 +184,14 @@ namespace matricks {
   public:
 
 
-  VRepExpr(const A& a, const size_type m)
+  VER_Rep(const A& a, const size_type m)
     : a_(a), m_(m), N_(a_.size()) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
     }
 
 
-    ~VRepExpr() {
+    ~VER_Rep() {
       delete vptrs;
     }
 
@@ -215,13 +215,13 @@ namespace matricks {
       return a_.dims();
     }
     static std::string classname(void)  {
-      return "VRepExpr";
+      return "VER_Rep";
     }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
-      //      return expression_VJoinExpr(a_.expression(),ii_.expression());
+      //      return expression_VER_Join(a_.expression(),ii_.expression());
     }
 #endif 
 

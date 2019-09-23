@@ -57,10 +57,10 @@ namespace matricks {
 
 
   template <class D, class A> 
-  inline VFuncOp<D,TensorR<D,A>,Fun_Pos<D> > 
+  inline TER_Unary<D,TensorR<D,A>,Fun_Pos<D> > 
   pos(const TensorR<D,A>& a)
   {
-    return  VFuncOp<D,TensorR<D,A>,Fun_Pos<D> >(a);
+    return  TER_Unary<D,TensorR<D,A>,Fun_Pos<D> >(a);
   }
 
 }
@@ -89,10 +89,10 @@ namespace matricks { \n\
   };\n\
 \n\
   template <class D, class A> \n\
-  inline VFuncOp<D,TensorR<D,A>,Fun_Pos<D> > \n\
+  inline TER_Unary<D,TensorR<D,A>,Fun_Pos<D> > \n\
   pos(const TensorR<D,A>& a)\n\
   {\n\
-    return  VFuncOp<D,TensorR<D,A>,Fun_Pos<D> >(a);\n\
+    return  TER_Unary<D,TensorR<D,A>,Fun_Pos<D> >(a);\n\
   }\n\
 };\n";
 

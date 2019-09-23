@@ -50,6 +50,7 @@
 #include "functors.h"
 #include "vector.h"
 #include "expressions.h"
+#include "expressions_v.h"
 #include "functions.h"
 #include "functions_v.h"
 #include "fileio.h"

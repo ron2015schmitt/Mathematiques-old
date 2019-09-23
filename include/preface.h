@@ -223,7 +223,7 @@ namespace matricks {
       this->insert(this->end(), addrs.begin(), addrs.end());
     }
     
-  // true if this vector and another share an element in common (ie saem value)
+  // true if this vector and another share an element in common (ie same value)
 
     bool common(const VectorofPtrs& addrs) const {
       for (size_type i = 0; i < addrs.size(); i++){
@@ -237,7 +237,12 @@ namespace matricks {
     
   };    
 
+  // true if the two vectors have a value in common
 
+  bool common(const VectorofPtrs& addrs1, const VectorofPtrs& addrs2) {
+    return addrs1.common(addrs2);
+  }
+   
   //***********************************************************************
   //      Pair class
   //***********************************************************************
@@ -302,6 +307,7 @@ namespace matricks {
     typedef D (* unary_func)(D);
     typedef D (* binary_func)(D, D);
     typedef D (* tertiary_func)(D, D, D);
+    typedef D (* quaternary_func)(D, D, D);
   };
   
   

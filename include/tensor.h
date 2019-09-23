@@ -232,21 +232,22 @@ namespace matricks {
     
 
 
-  /****************************************************************************
-   * VorE -- Abstract class that represents either a vector or a vector expression
-   ****************************************************************************   
-   */
+  // -------------------------------------------------------------------
+  //
+  // TensorR -- Abstract class that represents 
+  //            either a tensor or a tensor expression that is "read only"
+  // -------------------------------------------------------------------
 
-  template <class D, class VE> class VorE : public TensorAbstract {
+  template <class D, class DERIVED> class VorE : public TensorAbstract {
   public:
-    inline VE& derived() {
-      return static_cast<VE&>(*this);
+    inline DERIVED& derived() {
+      return static_cast<DERIVED&>(*this);
     }
-    inline const  VE& derived() const {
-      return static_cast<const VE&>(*this);
+    inline const  DERIVED& derived() const {
+      return static_cast<const DERIVED&>(*this);
     }
 
-    typedef  D DataT;
+    typedef D DataType;
 
     inline const D operator[](const index_type i) const {
       return derived()[i];
@@ -278,7 +279,7 @@ namespace matricks {
     }
 
     
-    friend std::ostream& operator<<(std::ostream &stream, const VorE<D,VE>& ve) {
+    friend std::ostream& operator<<(std::ostream &stream, const VorE<D,DERIVED>& ve) {
       stream << ve.derived();
       return stream;
     }
@@ -287,15 +288,22 @@ namespace matricks {
 
 
 
+  // -------------------------------------------------------------------
+  //
+  // TensorRW -- Abstract class that represents 
+  //             either a tensor or a tensor expression that can be
+  //             both read and written
+  // -------------------------------------------------------------------
 
-  template <class D, class VW> class VorW : public VorE<D,VorW<D,VW> > {
+
+  template <class D, class DERIVED> class VorW : public VorE<D,VorW<D,DERIVED> > {
   public:
-    typedef  D DataT;
-    inline VW& derived() {
-      return static_cast<VW&>(*this);
+    typedef  D DataType;
+    inline DERIVED& derived() {
+      return static_cast<DERIVED&>(*this);
     }
-    inline const  VW& derived() const {
-      return static_cast<const VW&>(*this);
+    inline const  DERIVED& derived() const {
+      return static_cast<const DERIVED&>(*this);
     }
 
     inline const D operator[](const index_type i) const {
@@ -331,7 +339,7 @@ namespace matricks {
     }
 
     
-    friend std::ostream& operator<<(std::ostream &stream, const VorW<D,VW>& vw) {
+    friend std::ostream& operator<<(std::ostream &stream, const VorW<D,DERIVED>& vw) {
       stream << vw.derived();
       return stream;
     }

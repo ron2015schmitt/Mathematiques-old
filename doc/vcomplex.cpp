@@ -302,16 +302,11 @@ int main()
     resultmulti( v  );
     resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
     resultmulti( abs(v)  );
-    resultstart2(": powers, roots, and exponentiation");
     resultmulti( pow(2., v)  );
     resultmulti( pow(v, 2.)  );
     resultmulti( pow(v,v)  );
     resultmulti( exp(v)  );
     resultmulti( round(exp(v))  );
-    resultmulti( v + 0.1 );
-    resultmulti( 0.1 + v );
-    resultmulti( v - 0.1 );
-    resultmulti( 0.1 - v );
     resultmulti( roundzero(v+1e-16) );
     resultmulti( log(v)  );
     resultmulti( log10(v)  );
@@ -331,6 +326,14 @@ int main()
     resultmulti( atan2(vr, vi)  );
     resultend();
     cr();
+    resultstart3("Aritmetic with scalars");
+    resultmulti( v + 0.1 );
+    resultmulti( 0.1 + v );
+    resultmulti( v - 0.1 );
+    resultmulti( 0.1 - v );
+    resultend();
+    cr();
+
   }
 
 

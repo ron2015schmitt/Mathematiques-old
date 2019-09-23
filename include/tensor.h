@@ -238,7 +238,7 @@ namespace matricks {
   //            either a tensor or a tensor expression that is "read only"
   // -------------------------------------------------------------------
 
-  template <class D, class DERIVED> class VorE : public TensorAbstract {
+  template <class D, class DERIVED> class TensorR : public TensorAbstract {
   public:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -279,7 +279,7 @@ namespace matricks {
     }
 
     
-    friend std::ostream& operator<<(std::ostream &stream, const VorE<D,DERIVED>& ve) {
+    friend std::ostream& operator<<(std::ostream &stream, const TensorR<D,DERIVED>& ve) {
       stream << ve.derived();
       return stream;
     }
@@ -296,7 +296,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
 
-  template <class D, class DERIVED> class VorW : public VorE<D,VorW<D,DERIVED> > {
+  template <class D, class DERIVED> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
   public:
     typedef  D DataType;
     inline DERIVED& derived() {
@@ -339,7 +339,7 @@ namespace matricks {
     }
 
     
-    friend std::ostream& operator<<(std::ostream &stream, const VorW<D,DERIVED>& vw) {
+    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& vw) {
       stream << vw.derived();
       return stream;
     }

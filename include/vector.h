@@ -14,7 +14,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public VorW<D,Vector<D> > {
+  template <class D> class Vector : public TensorRW<D,Vector<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -123,7 +123,7 @@ namespace matricks {
 
 
     template <class A>
-    Vector<D>(const VorE<D,A>& x) 
+    Vector<D>(const TensorR<D,A>& x) 
     {
       const size_type N = x.size();
       data_ = new std::valarray<D>(N);
@@ -335,7 +335,7 @@ namespace matricks {
 
 
     
-    template <class A>  Vector<D>& equals(const VorE<D,A>& x) {  
+    template <class A>  Vector<D>& equals(const TensorR<D,A>& x) {  
       // resize to avoid segmentation faults
       resize(x.size());
       if (this->getAddresses().common( x.getAddresses() )  ){    
@@ -354,7 +354,7 @@ namespace matricks {
     }
 
     
-    template <class A>  Vector<D>& operator=(const VorE<D,A>& x) {  
+    template <class A>  Vector<D>& operator=(const TensorR<D,A>& x) {  
       return equals(x);
     }
 

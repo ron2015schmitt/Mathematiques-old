@@ -6,7 +6,7 @@
 namespace matricks {
 
   template <class A>
-    inline Vector<index_type> findtrue( const VorE<bool,A>& a );
+    inline Vector<index_type> findtrue( const TensorR<bool,A>& a );
 
 
 
@@ -84,7 +84,7 @@ namespace matricks {
     }
 
     template <class B>
-      VSubsetObj<D>& operator=(const VorE<D,B>& rhs) { 
+      VSubsetObj<D>& operator=(const TensorR<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
@@ -124,7 +124,7 @@ namespace matricks {
   /****************************************************************************
    * VJoinExpr Expression Template 
    *
-   * expression for joining two VorE (RHS only)
+   * expression for joining two TensorR (RHS only)
    ****************************************************************************
    */
 
@@ -182,7 +182,7 @@ namespace matricks {
   /****************************************************************************
    * VJoinObj Expression Template 
    *
-   * expression for joining two VorE (RHS only)
+   * expression for joining two TensorR (RHS only)
    ****************************************************************************
    */
 
@@ -242,8 +242,8 @@ namespace matricks {
     }
 
     template <class C>
-      VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs) { 
-      printf2("VJoinObj<D,A,B>& operator=(const VorE<D,C>& rhs)\n");
+      VJoinObj<D,A,B>& operator=(const TensorR<D,C>& rhs) { 
+      printf2("VJoinObj<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
       return this->equals(rhs);
     }
 
@@ -330,7 +330,7 @@ namespace matricks {
     }
 
     template <class B>
-      VSubMaskObj<D>& operator=(const VorE<D,B>& rhs) { 
+      VSubMaskObj<D>& operator=(const TensorR<D,B>& rhs) { 
       return this->equals(rhs);
     }
 
@@ -402,7 +402,7 @@ namespace matricks {
     }
 
     template <class A>
-      Vector<D>& operator=(const VorE<D,A>& x) { 
+      Vector<D>& operator=(const TensorR<D,A>& x) { 
       size_type N = x.size();
       
       
@@ -444,7 +444,7 @@ namespace matricks {
   /****************************************************************************
    * VRepExpr Expression Template 
    *
-   * expression for repeating a VorE (RHS only)
+   * expression for repeating a TensorR (RHS only)
    ****************************************************************************
    */
 

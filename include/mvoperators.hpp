@@ -11,7 +11,7 @@ namespace matricks {
 
   template <class D, class A, class B> 
   inline Matrix<D>
-  operator^(const VorE<D,A>& a, const VorE<D,B>& b)
+  operator^(const TensorR<D,A>& a, const TensorR<D,B>& b)
   {
     const size_type NC = a.size();
     const size_type NR = b.size();
@@ -56,7 +56,7 @@ namespace matricks {
 
   template <class D, class A> 
   inline Matrix<D>
-  diagmat(const VorE<D,A>& a)
+  diagmat(const TensorR<D,A>& a)
   {
     const size_type N = a.size();
     Matrix<D> y(N,N);
@@ -75,7 +75,7 @@ namespace matricks {
 
   template <class D, class A, class B> 
   inline Vector<D>
-  operator|( const MorE<D,A>& a, const  VorE<D,B>& b ) {
+  operator|( const MorE<D,A>& a, const  TensorR<D,B>& b ) {
     const size_type NR = a.Nrows();
     const size_type M = a.Ncols();
     const index_type C1 = NR*M;
@@ -104,7 +104,7 @@ namespace matricks {
 
   template <class D, class A, class B> 
   inline Vector<D>
-  operator|( const VorE<D,A>& a, const  MorE<D,B>& b ) {
+  operator|( const TensorR<D,A>& a, const  MorE<D,B>& b ) {
     const size_type NC = b.Ncols();
     const size_type M = b.Nrows();
 

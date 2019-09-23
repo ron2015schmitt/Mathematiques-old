@@ -70,7 +70,7 @@ namespace matricks {
     }
     // assign to vector or expression
     template <class B>
-      DERIVED& equals(const VorE<D,B>& rhs) { 
+      DERIVED& equals(const TensorR<D,B>& rhs) { 
       
       const size_type N =size();
 

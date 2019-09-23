@@ -210,9 +210,9 @@ namespace matricks {
   // rep(v,m)
 
   template <class D, class A> 
-    inline VRepExpr<D,VorE<D,A> >
-    rep(const VorE<D,A>& a, const size_type m) {
-    return VRepExpr<D,VorE<D,A> >(a,m);
+    inline VRepExpr<D,TensorR<D,A> >
+    rep(const TensorR<D,A>& a, const size_type m) {
+    return VRepExpr<D,TensorR<D,A> >(a,m);
   }
 
   
@@ -257,7 +257,7 @@ namespace matricks {
   // toCarray(v)
 
   template <class D2, class D1, class A> 
-    inline D2* toCarray(const VorE<D1,A>& v) {
+    inline D2* toCarray(const TensorR<D1,A>& v) {
     const size_type N = v.size();
     D2* dptr = new D2[N];
     for(index_type i = 0; i<N; i++) 
@@ -271,7 +271,7 @@ namespace matricks {
 
   template <class D2, class D1, class A> 
     inline std::vector<D2>
-    tostdvector(const VorE<D1,A>& v) {
+    tostdvector(const TensorR<D1,A>& v) {
     const size_type N = v.size();
     std::vector<D2> y(N);
     for(index_type i = 0; i<N; i++) 
@@ -285,7 +285,7 @@ namespace matricks {
 
   template <class D2, class D1, class A> 
     inline std::valarray<D2>
-    tovalarray(const VorE<D1,A>& v) {
+    tovalarray(const TensorR<D1,A>& v) {
     const size_type N = v.size();
     std::valarray<D2> y(N);
     for(index_type i = 0; i<N; i++) 
@@ -303,7 +303,7 @@ namespace matricks {
   // reverse
 
   template <class D, class A>
-    inline Vector<D>& reverse(const VorE<D,A>& f) {
+    inline Vector<D>& reverse(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->reverse();
@@ -314,7 +314,7 @@ namespace matricks {
   // cumsum() -- cumulative sum
 
   template <class D, class A>
-    inline Vector<D>& cumsum(const VorE<D,A>& f) {
+    inline Vector<D>& cumsum(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->cumsum();
@@ -324,7 +324,7 @@ namespace matricks {
   // cumprod()  --  cumulative product
   
   template <class D, class A>
-    inline Vector<D>& cumprod(const VorE<D,A>& f) {
+    inline Vector<D>& cumprod(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->cumprod();
@@ -335,7 +335,7 @@ namespace matricks {
   // cumtrapz() -- cumulative trapezoidal summation
   
   template <class D, class A>
-    inline Vector<D>& cumtrapz(const VorE<D,A>& f) {
+    inline Vector<D>& cumtrapz(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->cumtrapz();
@@ -347,7 +347,7 @@ namespace matricks {
   //     0  rectangular
   //     1  trapazoidal
   template <class D, class A>
-    inline Vector<D>& integrate_a2x(const VorE<D,A>& f, const D a, const D b, const int order=1) {
+    inline Vector<D>& integrate_a2x(const TensorR<D,A>& f, const D a, const D b, const int order=1) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->integrate_a2x(a,b,order);
@@ -358,7 +358,7 @@ namespace matricks {
   // cumsumrev() -- cumulative sum -- from last to first
 
   template <class D, class A>
-    inline Vector<D>& cumsum_rev(const VorE<D,A>& f) {
+    inline Vector<D>& cumsum_rev(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->cumsum_rev();
@@ -368,7 +368,7 @@ namespace matricks {
     // cumprodrev()  --  cumulative product  -- from last to first
 
   template <class D, class A>
-    inline Vector<D>& cumprod_rev(const VorE<D,A>& f) {
+    inline Vector<D>& cumprod_rev(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->cumprod_rev();
@@ -379,7 +379,7 @@ namespace matricks {
     // cumtrapz() -- cumulative trapezoidal summation -- from last to first
 
   template <class D, class A>
-    inline Vector<D>& cumtrapz_rev(const VorE<D,A>& f) {
+    inline Vector<D>& cumtrapz_rev(const TensorR<D,A>& f) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->cumtrapz_rev();
@@ -393,7 +393,7 @@ namespace matricks {
   //     0  rectangular
   //     1  trapazoidal
   template <class D, class A>
-    inline Vector<D>& integrate_x2b(const VorE<D,A>& f, const D a, const D b, const int order=1) {
+    inline Vector<D>& integrate_x2b(const TensorR<D,A>& f, const D a, const D b, const int order=1) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->integrate_x2b(a,b,order);
@@ -404,7 +404,7 @@ namespace matricks {
 
   // diff   (v[n] = v[n] - v[n-1])
   template <class D, class A>
-    inline Vector<D>& diff(const VorE<D,A>& f, const bool periodic=false) {
+    inline Vector<D>& diff(const TensorR<D,A>& f, const bool periodic=false) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->diff(periodic);
@@ -413,7 +413,7 @@ namespace matricks {
 
   // diff_rev   (v[n] = v[n+1] - v[n])
   template <class D, class A>
-    inline Vector<D>& diff_rev(const VorE<D,A>& f, const bool periodic=false) {
+    inline Vector<D>& diff_rev(const TensorR<D,A>& f, const bool periodic=false) {
     Vector<D> *g = new Vector<D>(f.size());
     *g = f;
     g->diff_rev(periodic);
@@ -425,7 +425,7 @@ namespace matricks {
   // any change in the default parameters must be likewise made in Vector.deriv(...)
   
   template <class D, class A>
-    inline Vector<D>& deriv(const VorE<D,A>& f, const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
+    inline Vector<D>& deriv(const TensorR<D,A>& f, const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
     Vector<D> *df = new Vector<D>(f.size());
     *df = f;
     df->deriv(a,b,n,Dpts,periodic);
@@ -441,7 +441,7 @@ namespace matricks {
   //     4  Boole
   
   template <class D, class A> 
-    D integrate_a2b( const VorE<D,A>& v, const D a, const D b, const int order=1 ) {
+    D integrate_a2b( const TensorR<D,A>& v, const D a, const D b, const int order=1 ) {
     
  
     const size_type N = v.size();
@@ -557,7 +557,7 @@ namespace matricks {
   // dotproduct operator (a|b)
 
   template <class D, class A, class B> 
-    inline D operator|( const VorE<D,A>& a, const  VorE<D,B>& b ) {
+    inline D operator|( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     D result = D();
     
  
@@ -571,7 +571,7 @@ namespace matricks {
   // dotproduct operator (areal|bcomplex)
 
   template <class D, class A, class B> 
-    inline std::complex<D>  operator|( const VorE<D,A>& a, const  VorE<std::complex<D>,B>& b ) {
+    inline std::complex<D>  operator|( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
  
@@ -585,7 +585,7 @@ namespace matricks {
   // dotproduct operator (acomplex|breal)
 
   template <class D, class A, class B> 
-    inline std::complex<D>  operator|( const VorE<std::complex<D>,A>& a, const  VorE<D,B>& b ) {
+    inline std::complex<D>  operator|( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
     std::complex<D> result = std::complex<D>();
     
  
@@ -620,29 +620,29 @@ namespace matricks {
   // maclaurin(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-    inline VSeriesOp<D, VorE<D,A>, VorE<D,X> > 
-    maclaurin(const VorE<D,A>& a, const VorE<D,X>& x, const int N, const D x0)
+    inline VSeriesOp<D, TensorR<D,A>, TensorR<D,X> > 
+    maclaurin(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N, const D x0)
     {
-      return  VSeriesOp<D, VorE<D,A>, VorE<D,X> >(a,x,N,x0);
+      return  VSeriesOp<D, TensorR<D,A>, TensorR<D,X> >(a,x,N,x0);
     }
   
   // taylor(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-    inline VSeriesOp<D, VorE<D,A>, VorE<D,X> > 
-    taylor(const VorE<D,A>& a, const VorE<D,X>& x, const int N)
+    inline VSeriesOp<D, TensorR<D,A>, TensorR<D,X> > 
+    taylor(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N)
     {
-      return  VSeriesOp<D, VorE<D,A>, VorE<D,X> >(a,x,N);
+      return  VSeriesOp<D, TensorR<D,A>, TensorR<D,X> >(a,x,N);
     }
 
   // ifourier(vector cos coefs, vector sin coefs, vector vals, max N, k1=2pi/wavelength or 2pi/period)
   // sin coefs must include a coef for n=0 even though its irrelevant
 
   template <class D, class A, class B, class X> 
-    inline  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, Fun_Cos<D>, Fun_Sin<D> >
-    ifourier(const VorE<D,A>& Acos, const VorE<D,B>& Bsin, const VorE<D,X>& x, const int N, const D k1)
+    inline  VSeriesOp2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >
+    ifourier(const TensorR<D,A>& Acos, const TensorR<D,B>& Bsin, const TensorR<D,X>& x, const int N, const D k1)
     {
-      return  VSeriesOp2<D, VorE<D,A>, VorE<D,B>, VorE<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
+      return  VSeriesOp2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
     }
 
 

@@ -18,7 +18,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class DERIVED>
-    class VWrapper : public VorW<D,VWrapper<D,DERIVED> > {
+    class VWrapper : public TensorRW<D,VWrapper<D,DERIVED> > {
   private:
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -79,7 +79,7 @@ namespace matricks {
 
     // assign to vector or expression
     template <class B>
-      DERIVED& equals(const VorE<D,B>& rhs) { 
+      DERIVED& equals(const TensorR<D,B>& rhs) { 
 
       const size_type N =size();
 

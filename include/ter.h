@@ -10,7 +10,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class EXP> 
-    class TER : public VorE<D, TER<D,EXP> > {
+    class TER : public TensorR<D, TER<D,EXP> > {
   private:
     typedef  D DataT;
     inline EXP& derived() {

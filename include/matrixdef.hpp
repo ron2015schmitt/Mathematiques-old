@@ -614,7 +614,7 @@ namespace matricks {
     //assign to vector(expression)
     
     template <class B>
-    Matrix<D>& operator=(const VorE<D,B>& rhs) { 
+    Matrix<D>& operator=(const TensorR<D,B>& rhs) { 
       const size_type N =size();
 
 

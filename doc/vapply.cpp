@@ -57,10 +57,10 @@ namespace matricks {
 
 
   template <class D, class A> 
-  inline VFuncOp<D,VorE<D,A>,Fun_Pos<D> > 
-  pos(const VorE<D,A>& a)
+  inline VFuncOp<D,TensorR<D,A>,Fun_Pos<D> > 
+  pos(const TensorR<D,A>& a)
   {
-    return  VFuncOp<D,VorE<D,A>,Fun_Pos<D> >(a);
+    return  VFuncOp<D,TensorR<D,A>,Fun_Pos<D> >(a);
   }
 
 }
@@ -89,10 +89,10 @@ namespace matricks { \n\
   };\n\
 \n\
   template <class D, class A> \n\
-  inline VFuncOp<D,VorE<D,A>,Fun_Pos<D> > \n\
-  pos(const VorE<D,A>& a)\n\
+  inline VFuncOp<D,TensorR<D,A>,Fun_Pos<D> > \n\
+  pos(const TensorR<D,A>& a)\n\
   {\n\
-    return  VFuncOp<D,VorE<D,A>,Fun_Pos<D> >(a);\n\
+    return  VFuncOp<D,TensorR<D,A>,Fun_Pos<D> >(a);\n\
   }\n\
 };\n";
 

@@ -1,12 +1,13 @@
 
-v2.18-r2
+v2.19
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.18
+VERSION_MATRICKS=2.19
+# V2.19 introduced a scalar type
 # V2.18 Introduced benchmark and functionality test codes
 # V2.17 Introducing Tensor class and its tensor subclassess. No more Vexpr!
 # V2.16 major refactoring functors.h: cleanup, and adding support for debugging

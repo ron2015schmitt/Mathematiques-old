@@ -10,7 +10,7 @@ namespace matricks {
   //--------------------------------------------------------------
   
   inline Vector<index_type>& slc::toIndexVector(const size_type N) const {
-    printf3("slc::toIndexVector(N=%lu)\n",N);
+    //    printf3("slc::toIndexVector(N=%lu)\n",N);
     index_type mystart = start_;
     if (mystart < 0) {
       mystart += N;

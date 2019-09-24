@@ -82,22 +82,25 @@ namespace display {
   } 
 
 
-  
+
+  //------------------------------------------------------------
+  // The scope of a macros is where it is used!!!
+  //------------------------------------------------------------
 
 #if MATRICKS_DEBUG>=1
-#define printf1(...) display::mout << printf2str(__VA_ARGS__)
+#define printf1(...) mout << display::printf2str(__VA_ARGS__)
 #else
 #define printf1(...) {}
 #endif
 
 #if MATRICKS_DEBUG>=2
-#define printf2(...) display::mout << printf2str(__VA_ARGS__)
+#define printf2(...) mout << display::printf2str(__VA_ARGS__)
 #else
 #define printf2(...) {}
 #endif
 
 #if MATRICKS_DEBUG>=3
-#define printf3(...) display::mout << printf2str(__VA_ARGS__)
+#define printf3(...) mout << display::printf2str(__VA_ARGS__)
 #else
 #define printf3(...) {}
 #endif
@@ -277,6 +280,10 @@ namespace display {
       return stylename_;
     }
 
+    inline std::string classname() const {
+      return "Style";
+    }
+
     inline Style& operator+(const Style& style2) const {
       Style* style3 = new Style(this->getStyleString() + style2.getStyleString(), this->getName() + "+"+style2.getName() );
       return *style3;
@@ -358,6 +365,9 @@ namespace display {
       return *this;
     }
 
+    inline std::string classname() const {
+      return "StyledString";
+    }
 
     inline friend std::ostream& operator<<(std::ostream &stream, const StyledString& ss) {
       stream << ss.get();
@@ -1098,7 +1108,7 @@ namespace display {
     static StyledString* terminator;
   public:
     static void initialize() {
-      log3("display","Display","initialize","()");
+      //      log3("display","Display","initialize","()");
       
       Display::isInitialized = true;
       Display::expression = new StyledString(createStyle(BOLD),"");
@@ -1113,7 +1123,7 @@ namespace display {
     template <typename X>
       static void mydisp(const X& x, const std::string name, const bool displayType, const bool issueCR) {
       using namespace std;
-      log3("display","Display","mydisp","(const X& x, const std::string name)");
+      //      log3("display","Display","mydisp","(const X& x, const std::string name)");
       if (displayType) {
 	mout << getTypeName(x) << " ";
       }

@@ -1,8 +1,7 @@
 
-//#define MATRICKS_DEBUG
+#define MATRICKS_DEBUG 0
 
 #include "matricks.h" 
-
 
 
 void printStart(const int n) {
@@ -49,6 +48,7 @@ int main()
   using namespace display;
 
   print_matricks_info();
+
   bool allpass = true;
   int testnum = 0;
   int failnum = 0;

@@ -74,7 +74,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TERW_Subset";
     }
 
@@ -169,7 +169,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TERW_Submask";
     }
 
@@ -247,7 +247,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TERW_Resize";
     }
 
@@ -307,6 +307,7 @@ namespace matricks {
   TER_Unary(const A& a) : a_(a) {
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
+      disp3(a);
     }
     
     ~TER_Unary() {
@@ -328,7 +329,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Unary";
     }
 
@@ -367,17 +368,20 @@ namespace matricks {
 
 
   TER_Binary(const A& a, const B& b)
-    : a_(a), b_(b) { 
+    : a_(a), b_(b) {
+      mdisp3(a,b);
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(b_.getAddresses());
+      disp3(*vptrs);
     }
 
     ~TER_Binary() {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const {  
+    inline const D operator[](const index_type i) const {
+      disp3(i);
       return OP::apply(a_[i], b_[i]); 
     }
 
@@ -397,7 +401,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Binary";
     }
 
@@ -492,7 +496,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Series";
     }
   
@@ -579,7 +583,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return x_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Series2";
     }
 
@@ -650,7 +654,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_TensorOpScalar";
     }
 
@@ -722,7 +726,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return b_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_ScalarOpTensor";
     }
 
@@ -790,7 +794,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Bool_Unary";
     }
 
@@ -859,7 +863,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Bool_Binary";
     }
 
@@ -931,7 +935,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Bool_TensorOpScalar";
     }
 
@@ -999,7 +1003,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return b_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Bool_ScalarOpTensor";
     }
 
@@ -1073,7 +1077,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Cplx_TensorOpScalar";
     }
 
@@ -1141,7 +1145,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return b_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_Cplx_ScalarOpTensor";
     }
 
@@ -1211,7 +1215,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "TER_RealFromComplex";
     }
 

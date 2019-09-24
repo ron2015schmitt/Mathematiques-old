@@ -56,7 +56,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "VER_Join";
     }
 
@@ -129,7 +129,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "VERW_Join";
     }
 
@@ -198,7 +198,7 @@ namespace matricks {
 
     inline const D operator[](const index_type i) const{
       index_type index = index_type(i % N_);
-      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
     }
 
@@ -214,7 +214,7 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "VER_Rep";
     }
 

@@ -15,13 +15,13 @@ namespace matricks {
     inline slc(const index_type start, const index_type end, const index_type step) 
       : start_(start), end_(end), step_(step)
     {
-      printf3("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
+      //printf3("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
     }
 
     inline slc(const index_type start, const index_type end) 
       : start_(start), end_(end), step_(1)
       {
-	printf3("slc::slc(start=%d, end=%d)\n",start, end);
+	//printf3("slc::slc(start=%d, end=%d)\n",start, end);
       }
   
 
@@ -46,6 +46,10 @@ namespace matricks {
       return ss.str();
     }
 
+    inline std::string classname() const {
+      return "slc";
+    }
+    
 
     friend std::ostream& operator<<(std::ostream &stream, const slc& slice) {
       using namespace display;

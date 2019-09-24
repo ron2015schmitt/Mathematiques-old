@@ -634,11 +634,11 @@ namespace matricks {
     // ******************************* TEXT STUFF *******************************
 
 
-    static std::string classname(void)  {
+    static std::string classname() const {
       return "Matrix";
     }
 
-    static std::string fullclassname(void) {
+    static std::string fullclassname() const {
       Matrix<D> dummy;
       return getTypeString(dummy);
     }

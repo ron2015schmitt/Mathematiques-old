@@ -48,6 +48,7 @@
 #include "tensor.h"
 #include "debug.h"
 #include "functors.h"
+#include "scalar.h"
 #include "vector.h"
 #include "expressions.h"
 #include "expressions_v.h"

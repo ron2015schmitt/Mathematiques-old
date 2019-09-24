@@ -1,5 +1,5 @@
-#ifndef VECTOR_H
-#define VECTOR_H 1
+#ifndef MATRICKS__VECTOR_H
+#define MATRICKS__VECTOR_H 1
 
 
 
@@ -246,7 +246,7 @@ namespace matricks {
       return (*this)[slice.toIndexVector(size())];
     }
     const TERW_Subset<D>  operator[](const slc& slice) const  {
-      display::log3("Vector","operator[]","(const slc& slice)\n");
+      //      display::log3("Vector","operator[]","(const slc& slice)\n");
       return (*this)[slice.toIndexVector(size())];
     }
       
@@ -991,7 +991,7 @@ namespace matricks {
     //************************** Text and debugging ************************
     //**********************************************************************
 
-    static std::string classname(void)  {
+    inline std::string classname() const {
       return "Vector";
     }
 

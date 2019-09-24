@@ -71,7 +71,7 @@ namespace matricks {
       return false;
     }
 
-    inline static std::string classname() {
+    inline std::string classname() const {
       return "VectorofPtrs";
     }
 
@@ -126,13 +126,15 @@ namespace matricks {
     //
     // Dimensions - class to hold dimensions of Tensors
     // -------------------------------------------------------------------
-  
+
+  //TODO: should check for dimension 0, which should not be passed
 
   class Dimensions : public std::vector<size_type> {
   public:
     typedef typename std::vector<size_type> Parent;
     typedef typename Parent::iterator Iterator;
     Dimensions() {
+      resize(0,0);
     }
     Dimensions(const size_type dim1) {
       resize(1,0);
@@ -144,9 +146,9 @@ namespace matricks {
       (*this)[1] = dim2;
      }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3) {
-      mdisp3(dim1,dim2,dim3);
+      //      mdisp3(dim1,dim2,dim3);
       resize(3,0);
-      disp3(size());
+      //      disp3(size());
       (*this)[0] = dim1;
       (*this)[1] = dim2;
       (*this)[2] = dim3;
@@ -172,7 +174,7 @@ namespace matricks {
     }
 
 
-    inline static std::string classname() {
+    inline std::string classname() const {
       return "Dimensions";
     }
 
@@ -287,7 +289,7 @@ namespace matricks {
       return derived().getAddresses();
     }
 
-    static std::string classname()  {
+    inline std::string classname() const {
       return derived().classname();
     }
     
@@ -353,7 +355,7 @@ namespace matricks {
     }
 
     
-    static std::string classname()  {
+    inline std::string classname() const {
       return derived().classname();
     }
 
@@ -409,7 +411,7 @@ namespace matricks {
     }
 #endif
 
-    static std::string classname()  {
+    inline std::string classname() const {
       return derived().classname();
     }
 
@@ -510,7 +512,7 @@ namespace matricks {
 #endif
 
 
-    static std::string classname()  {
+    inline std::string classname() const {
       return derived().classname();
     }
 

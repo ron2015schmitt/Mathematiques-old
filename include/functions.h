@@ -459,6 +459,41 @@ namespace matricks {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >(a,b);
   }
 
+  // -------------------------------------------------------------------
+  // equal - if two tensors are equal
+  //         checks dimensions first
+  // -------------------------------------------------------------------
+  template <class D, class A, class B>
+    inline bool equal(const TensorR<D,A>& tensor1, const TensorR<D,B>& tensor2) {
+    if (!dimequiv(tensor1,tensor2)) {
+      return false;
+    }
+    for (int ii = 0; ii < tensor1.size(); ii++) {
+      if (tensor1[ii] != tensor2[ii]) {
+	return false;
+      }
+    }
+    return true;
+  }
+
+
+  // -------------------------------------------------------------------
+  // approx - if two tensors are approximately equal
+  //          checks dimensions first
+  // -------------------------------------------------------------------
+  template <class D, class A, class B>
+    inline bool approx(const TensorR<D,A>& tensor1, const TensorR<D,B>& tensor2, const D tolerance) {
+    if (!dimequiv(tensor1,tensor2)) {
+      return false;
+    }
+    for (int ii = 0; ii < tensor1.size(); ii++) {
+      if (!approx(tensor1[ii], tensor2[ii], tolerance)) {
+	return false;
+      }
+    }
+    return true;
+  }
+
 
   // a!=b
 

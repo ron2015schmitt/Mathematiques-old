@@ -67,7 +67,7 @@ namespace matricks {
 
     // ************* C++11 initializer_list CONSTRUCTOR---------------------
 #if CPP11 == 1
-    explicit Vector<D>(const std::initializer_list<D> list) 
+    Vector<D>(const std::initializer_list<D> list) 
     {
 
       const size_type N =  list.size();
@@ -86,7 +86,7 @@ namespace matricks {
 
 
     // --------------------- valarray CONSTRUCTOR ---------------------
-    explicit Vector<D>(const std::valarray<D>& valar) 
+     Vector<D>(const std::valarray<D>& valar) 
     {
 
       data_ = new std::valarray<D>(valar); 
@@ -97,7 +97,7 @@ namespace matricks {
 
 
     // --------------------- array[]  CONSTRUCTOR ---------------------
-    explicit Vector<D>(const size_type N, const D (vals)[]) 
+    Vector<D>(const size_type N, const D (vals)[]) 
     {
 
       // allocate store

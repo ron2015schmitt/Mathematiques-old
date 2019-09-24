@@ -300,6 +300,8 @@ namespace matricks {
 
 
 
+  
+
   // -------------------------------------------------------------------
   //
   // TensorRW -- Abstract class that represents 
@@ -370,15 +372,15 @@ namespace matricks {
   //                 tensor expression that is "read only"
   // -------------------------------------------------------------------
 
-  template<class D, class EXP> 
-    class TExpressionR : public TensorR<D,TExpressionR<D,EXP> > {
+  template<class D, class DERIVED> 
+    class TExpressionR : public TensorR<D,TExpressionR<D,DERIVED> > {
   private:
     typedef  D DataT;
-    inline EXP& derived() {
-      return static_cast<EXP&>(*this);
+    inline DERIVED& derived() {
+      return static_cast<DERIVED&>(*this);
     }
-    inline const  EXP& derived() const {
-      return static_cast<const EXP&>(*this);
+    inline const  DERIVED& derived() const {
+      return static_cast<const DERIVED&>(*this);
     }
     
   public:
@@ -411,7 +413,7 @@ namespace matricks {
       return derived().classname();
     }
 
-    friend std::ostream& operator<<(std::ostream &stream, const TExpressionR<D,EXP>& ve) {
+    friend std::ostream& operator<<(std::ostream &stream, const TExpressionR<D,DERIVED>& ve) {
       Vector<D> v(ve);
       stream << v;
       return stream;

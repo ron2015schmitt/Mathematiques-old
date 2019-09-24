@@ -135,6 +135,35 @@ cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
 
 
 
+DIR_TARGET=test
+echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
+#mkdir -p ${DIR_TARGET}
+echo "#" >${DIR_TARGET}/Makefile
+echo "# ****  THIS IS AN EXAMPLE USER MAKEFILE WITH LOTS OF FEATURES***" >>${DIR_TARGET}/Makefile
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo 'EXEC += test' >>${DIR_TARGET}/Makefile
+echo ""
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+cat files/Makefile >> ${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+
+
+
 
 
 

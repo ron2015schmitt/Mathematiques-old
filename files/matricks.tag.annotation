@@ -1,5 +1,5 @@
 
-v2.18
+v2.18-r1
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
@@ -7,7 +7,7 @@ v2.18
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
 VERSION_MATRICKS=2.18
-# V2.18 Introduced benchmark test code
+# V2.18 Introduced benchmark and functionality test codes
 # V2.17 Introducing Tensor class and its tensor subclassess. No more Vexpr!
 # V2.16 major refactoring functors.h: cleanup, and adding support for debugging
 # V2.15 addign documentation for display and various functions not yet documented

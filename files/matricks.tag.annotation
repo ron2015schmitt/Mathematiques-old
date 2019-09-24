@@ -1,30 +1,31 @@
 
-v2.17-r19
+v2.18
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.17
-# V2.1 Introduced version control
-# V2.2 namespace Matricks -> matricks
-# V2.3 v[seq(start,end)] slices -- only for Vectors
-# V2.4 masks working -- only for Vectors
-# V2.5 concat and rep -- only for Vectors
-# V2.6 negative indices like python. changing all indices to index_type = int
-# V2.7 changed how addresses are stored and checked. 
-# V2.8 started migration to new debug facility
-# V2.9 (v1,v2) join now works for expressions and on LHS.
-#      Added print1, print2 functions that only get compiled if
-#      MEBUG==1,2 respectively
-#      some fixes to the new debug facility
+VERSION_MATRICKS=2.18
+# V2.18 Introduced benchmark test code
+# V2.17 Introducing Tensor class and its tensor subclassess. No more Vexpr!
+# V2.16 major refactoring functors.h: cleanup, and adding support for debugging
+# V2.15 addign documentation for display and various functions not yet documented
+# V2.14 adding cumsum,cumprod,cumtrapz and other calculus functions
+# V2.13 introducing color and styles for terminal output
+# V2.12 finished implementing slices
+# V2.11 convert sort and uniq from functions to methods
 # V2.10 check index < 0 in Vector and in VWrapper
 #       change rep to an expression
-# V2.11 convert sort and uniq from functions to methods
-# V2.12 finished implementing slices
-# V2.13 introducing color and styles for terminal output
-# V2.14 adding cumsum,cumprod,cumtrapz and other calculus functions
-# V2.15 addign documentation for display and various functions not yet documented
-# V2.16 major refactoring functors.h: cleanup, and adding support for debugging
-# V2.17 Introducing Tensor class and its tensor subclassess. No more Vexpr!
+# V2.9  (v1,v2) join now works for expressions and on LHS.
+#       Added print1, print2 functions that only get compiled if
+#       MEBUG==1,2 respectively
+#       some fixes to the new debug facility
+# V2.8  started migration to new debug facility
+# V2.7  changed how addresses are stored and checked. 
+# V2.6  negative indices like python. changing all indices to index_type = int
+# V2.5  concat and rep -- only for Vectors
+# V2.4  masks working -- only for Vectors
+# V2.3  v[seq(start,end)] slices -- only for Vectors
+# V2.2  namespace Matricks -> matricks
+# V2.1  Introduced version control

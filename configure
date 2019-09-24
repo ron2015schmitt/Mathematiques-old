@@ -40,55 +40,103 @@ fi
 # place the current path into the Makefiles
 temp=`pwd | sed -e 's/\//\\\\\//g'`
 
-echo " "
-echo "Creating Makefile ..."
-echo "# " > Makefile
-echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >>Makefile
-echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >>Makefile
-echo "" >> Makefile
-echo "" >> Makefile
-echo "##################################################################" >>Makefile
-echo "#  files/Makefile                                                #" >>Makefile
-echo "##################################################################" >>Makefile
-cat files/Makefile >> Makefile
-echo "" >> Makefile
-echo "" >> Makefile
-echo "##################################################################" >>Makefile
-echo "#  files/Makefile.matricks                                       #" >>Makefile
-echo "##################################################################" >>Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> Makefile 
-echo "" >> Makefile
-echo "" >> Makefile
-echo "##################################################################" >>Makefile
-echo "#  files/Makefile.system                                         #" >>Makefile
-echo "##################################################################" >>Makefile
-cat files/Makefile.system >> Makefile
-echo "" >> Makefile
-echo "" >> Makefile
-cp Makefile Makefile.pristine
 
+DIR_TARGET=.
 echo " "
-echo "Creating examples/Makefile ..."
-mkdir -p examples
-echo "#" > examples/Makefile
-echo "# ****  THIS IS AN EXAMPLE USER MAKEFILE WITH LOTS OF FEATURES***" >>examples/Makefile
-echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>examples/Makefile
-echo "" >> examples/Makefile
-echo "" >> examples/Makefile
-echo "##################################################################" >>examples/Makefile
-echo "#  files/Makefile                                                #" >>examples/Makefile
-echo "##################################################################" >>examples/Makefile
-echo 'EXEC += example printing testing' >> examples/Makefile
-cat files/Makefile >> examples/Makefile
-echo "" >> examples/Makefile
-echo "" >> examples/Makefile
-echo "##################################################################" >>examples/Makefile
-echo "#  files/Makefile.matricks                                       #" >>examples/Makefile
-echo "##################################################################" >>examples/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> examples/Makefile 
-echo "" >> examples/Makefile
-echo "" >> examples/Makefile
-cp examples/Makefile examples/Makefile.pristine
+echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
+echo "# " >${DIR_TARGET}/Makefile
+echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >>${DIR_TARGET}/Makefile
+echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >>${DIR_TARGET}/Makefile
+echo "" >> ${DIR_TARGET}/Makefile
+echo "" >> ${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+cat files/Makefile >> ${DIR_TARGET}/Makefile
+echo "" >> ${DIR_TARGET}/Makefile
+echo "" >> ${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> ${DIR_TARGET}/Makefile 
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.system                                         #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+cat files/Makefile.system >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+echo " "
+echo " "
+
+
+
+
+DIR_TARGET=examples
+echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
+#mkdir -p ${DIR_TARGET}
+echo "#" >${DIR_TARGET}/Makefile
+echo "# ****  THIS IS AN EXAMPLE USER MAKEFILE WITH LOTS OF FEATURES***" >>${DIR_TARGET}/Makefile
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo 'EXEC += example printing testing' >>${DIR_TARGET}/Makefile
+echo ""
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+cat files/Makefile >> ${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+echo " "
+echo " "
+
+
+
+DIR_TARGET=benchmark
+echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
+#mkdir -p ${DIR_TARGET}
+echo "#" >${DIR_TARGET}/Makefile
+echo "# ****  THIS IS AN EXAMPLE USER MAKEFILE WITH LOTS OF FEATURES***" >>${DIR_TARGET}/Makefile
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo 'EXEC += benchmark' >>${DIR_TARGET}/Makefile
+echo 'OPTIMIZE = -O3 -finline-limit=750' >>${DIR_TARGET}/Makefile
+echo ""
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+cat files/Makefile >> ${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "##################################################################" >>${DIR_TARGET}/Makefile
+sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+echo "" >>${DIR_TARGET}/Makefile
+echo "" >>${DIR_TARGET}/Makefile
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+
+
+
+
+
 
 # DO NOT MAKE A NEW TAG UNLESS SPECIFIED.
 
@@ -99,6 +147,8 @@ if [ "${1}" == "newtag" ]; then
     make newtag
 fi
   
+
+
 
 # make the object file library (libmatricks.a)
 echo " "

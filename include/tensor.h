@@ -118,6 +118,9 @@ namespace matricks {
     bool operator<(const Pair<DAT>& pair2) const {
       return ((*this).data < pair2.data);
     }
+    inline std::string classname() const {
+      return "Pair";
+    }
   };
 
 
@@ -230,6 +233,7 @@ namespace matricks {
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
     virtual VectorofPtrs getAddresses(void) const = 0;
+    virtual std::string classname(void) const = 0;  // *not* static
   };
     
 
@@ -249,16 +253,21 @@ namespace matricks {
   //            either a tensor or a tensor expression that is "read only"
   // -------------------------------------------------------------------
 
+  template <class D, class DERIVED> class TensorRW;
+  
   template <class D, class DERIVED> class TensorR : public TensorAbstract {
   public:
+    typedef D DataType;
+
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
     }
     inline const  DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
     }
-
-    typedef D DataType;
+    inline TensorRW<D,DERIVED>& spawn() const {
+      return derived().spawn();
+    }
 
     inline const D operator[](const index_type i) const {
       return derived()[i];
@@ -289,6 +298,7 @@ namespace matricks {
       return derived().getAddresses();
     }
 
+
     inline std::string classname() const {
       return derived().classname();
     }
@@ -314,12 +324,16 @@ namespace matricks {
 
   template <class D, class DERIVED> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
   public:
-    typedef  D DataType;
+    typedef D DataType;
+
     inline DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
     }
     inline const  DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
+    }
+    inline TensorRW<D,DERIVED>& spawn() const {
+      return derived().spawn();
     }
 
     inline const D operator[](const index_type i) const {
@@ -411,6 +425,10 @@ namespace matricks {
     }
 #endif
 
+    template <class A>
+      inline TensorRW<D,A>& spawn() const {
+      return derived().spawn();
+    }
     inline std::string classname() const {
       return derived().classname();
     }
@@ -512,6 +530,10 @@ namespace matricks {
 #endif
 
 
+    template <class A>
+      inline TensorRW<D,A>& spawn() const {
+      return derived().spawn();
+    }
     inline std::string classname() const {
       return derived().classname();
     }

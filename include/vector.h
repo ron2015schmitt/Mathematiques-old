@@ -26,9 +26,8 @@ namespace matricks {
 
 
   public:     
-
-    typedef D element_type;
-    typedef typename GetDataType<D>::Type D_FUND;
+    typedef D DataType;
+    typedef typename GetDataType<D>::Type PrimDataType;
 
 
 

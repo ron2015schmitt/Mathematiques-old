@@ -202,10 +202,11 @@ namespace matricks {
 
 
   //***********************************************************************
-  //     is_instance<FilledTemplateClassA, TemplateCLassB>
+  //     is_instance<FilledTemplateClassA or object, TemplateCLassB>
   //
   //   is_instance<Fun_Multiply<double>, Fun_Divide>{}       -> false
   //   is_instance<Fun_Multiply<double>, Fun_Multiply>{}     -> true
+  //   is_instance<obj, Vector>{}     -
   //***********************************************************************
 
 

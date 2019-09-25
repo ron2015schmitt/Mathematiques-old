@@ -16,7 +16,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class TERW_Subset :  public  TExpressionRW<D,TERW_Subset<D> > {
+    class TERW_Subset :  public  TensorRW<D,TERW_Subset<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -74,6 +74,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TERW_Subset";
     }
@@ -125,7 +128,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class TERW_Submask :  public  TExpressionRW<D,TERW_Submask<D> > {
+    class TERW_Submask :  public  TensorRW<D,TERW_Submask<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -168,6 +171,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "TERW_Submask";
@@ -214,7 +220,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D>
-    class TERW_Resize :  public  TExpressionR<D,TERW_Resize<D> > {
+    class TERW_Resize :  public  TensorR<D,TERW_Resize<D> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -246,6 +252,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "TERW_Resize";
@@ -294,7 +303,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-    class TER_Unary  : public  TExpressionR<D,TER_Unary<D,A,FUNC> > {
+    class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC> > {
   
   private:
     const A& a_;
@@ -329,6 +338,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Unary";
     }
@@ -357,7 +369,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class TER_Binary : public  TExpressionR<D,TER_Binary<D,A,B,OP> > {
+    class TER_Binary : public  TensorR<D,TER_Binary<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -401,6 +413,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Binary";
     }
@@ -428,14 +443,14 @@ namespace matricks {
    *               Templates for Binary+scalar Operators 
    *
    * D = data type, e.g. double
-   * A = either an Vector or a TExpressionR
-   * B = either an Vector or a TExpressionR
+   * A = either an Vector or a TensorR
+   * B = either an Vector or a TensorR
    * N = int
    ************************************************************
    */
 
   template<class D, class A, class X>
-    class TER_Series : public  TExpressionR<D,TER_Series<D,A,X> > {
+    class TER_Series : public  TensorR<D,TER_Series<D,A,X> > {
 
   private:
     const A& a_;
@@ -496,6 +511,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Series";
     }
@@ -521,7 +539,7 @@ namespace matricks {
 
 
   template<class D, class A, class B, class X, class OP1, class OP2>
-    class TER_Series2 : public  TExpressionR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
+    class TER_Series2 : public  TensorR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
 
   private:
     const A& a_;
@@ -583,6 +601,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return x_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Series2";
     }
@@ -618,7 +639,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class TER_TensorOpScalar : public TExpressionR<D,TER_TensorOpScalar<D,A,OP> > {
+    class TER_TensorOpScalar : public TensorR<D,TER_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -653,6 +674,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "TER_TensorOpScalar";
@@ -690,7 +714,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class TER_ScalarOpTensor : public TExpressionR<D,TER_ScalarOpTensor<D,B,OP> > {
+    class TER_ScalarOpTensor : public TensorR<D,TER_ScalarOpTensor<D,B,OP> > {
 
   private:
     D val_;
@@ -725,6 +749,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return b_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "TER_ScalarOpTensor";
@@ -761,7 +788,7 @@ namespace matricks {
    */
 
   template<class D, class A, class FUNC>
-    class TER_Bool_Unary  : public  TExpressionR<bool,TER_Bool_Unary<D,A,FUNC> >{
+    class TER_Bool_Unary  : public  TensorR<bool,TER_Bool_Unary<D,A,FUNC> >{
   
   private:
     const A& a_;
@@ -794,6 +821,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Bool_Unary";
     }
@@ -821,7 +851,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class B, class OP>
-    class TER_Bool_Binary : public  TExpressionR<bool,TER_Bool_Binary<D,A,B,OP> > {
+    class TER_Bool_Binary : public  TensorR<bool,TER_Bool_Binary<D,A,B,OP> > {
 
   private:
     const A& a_;
@@ -863,6 +893,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Bool_Binary";
     }
@@ -898,7 +931,7 @@ namespace matricks {
 
 
   template<class D, class A, class OP>
-    class TER_Bool_TensorOpScalar : public TExpressionR<bool,TER_Bool_TensorOpScalar<D,A,OP> > {
+    class TER_Bool_TensorOpScalar : public TensorR<bool,TER_Bool_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -935,6 +968,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Bool_TensorOpScalar";
     }
@@ -967,7 +1003,7 @@ namespace matricks {
 
 
   template<class D, class B, class OP>
-    class TER_Bool_ScalarOpTensor : public TExpressionR<bool,TER_Bool_ScalarOpTensor<D,B,OP> > {
+    class TER_Bool_ScalarOpTensor : public TensorR<bool,TER_Bool_ScalarOpTensor<D,B,OP> > {
 
   private:
     D val_;
@@ -1002,6 +1038,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return b_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "TER_Bool_ScalarOpTensor";
@@ -1041,7 +1080,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class A, class OP>
-    class TER_Cplx_TensorOpScalar : public TExpressionR<std::complex<D>, TER_Cplx_TensorOpScalar<D,A,OP> > {
+    class TER_Cplx_TensorOpScalar : public TensorR<std::complex<D>, TER_Cplx_TensorOpScalar<D,A,OP> > {
 
   private:
     const A& a_;
@@ -1077,6 +1116,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Cplx_TensorOpScalar";
     }
@@ -1110,7 +1152,7 @@ namespace matricks {
    ****************************************************************************
    */
   template<class D, class B, class OP>
-    class TER_Cplx_ScalarOpTensor : public TExpressionR<std::complex<D>,TER_Cplx_ScalarOpTensor<D,B,OP> > {
+    class TER_Cplx_ScalarOpTensor : public TensorR<std::complex<D>,TER_Cplx_ScalarOpTensor<D,B,OP> > {
   private:
     const D val_;
     const B& b_;
@@ -1145,6 +1187,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return b_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "TER_Cplx_ScalarOpTensor";
     }
@@ -1176,7 +1221,7 @@ namespace matricks {
    ****************************************************************************
    */
   template <class D, class OP>
-    class TER_RealFromComplex : public  TExpressionRW<D,TER_RealFromComplex<D,OP> > {
+    class TER_RealFromComplex : public  TensorRW<D,TER_RealFromComplex<D,OP> > {
   private:
     Vector<std::complex<D> >& a_;
     VectorofPtrs *vptrs;
@@ -1214,6 +1259,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "TER_RealFromComplex";

@@ -14,7 +14,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-    class VER_Join : public  TExpressionR<D,VER_Join<D,A,B> > {
+    class VER_Join : public  TensorR<D,VER_Join<D,A,B> > {
 
   private:
     const A& a_;
@@ -56,6 +56,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "VER_Join";
     }
@@ -79,7 +82,7 @@ namespace matricks {
    */
 
   template<class D, class A, class B>
-    class VERW_Join : public  TExpressionRW<D,VERW_Join<D,A,B> > {
+    class VERW_Join : public  TensorRW<D,VERW_Join<D,A,B> > {
 
   private:
     A& a_;
@@ -129,6 +132,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return a_.dims();
     }
+    bool isExpression(void) const {
+      return true;
+    }
     inline std::string classname() const {
       return "VERW_Join";
     }
@@ -173,7 +179,7 @@ namespace matricks {
    */
 
   template<class D, class A>
-    class VER_Rep : public  TExpressionR<D,VER_Rep<D,A> > {
+    class VER_Rep : public  TensorR<D,VER_Rep<D,A> > {
 
   private:
     const A& a_;
@@ -213,6 +219,9 @@ namespace matricks {
     }
     Dimensions dims(void) const {
       return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
     }
     inline std::string classname() const {
       return "VER_Rep";

@@ -83,7 +83,7 @@ namespace matricks {
 
 
   /****************************************************************************
-   * TExpressionRW Expression Template 
+   * TensorRW Expression Template 
    *
    * abstract class 
    ****************************************************************************

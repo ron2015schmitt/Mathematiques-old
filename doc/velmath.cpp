@@ -43,7 +43,10 @@ int main()
     codemultiNoteC11Array(v2 = CARRAY({1,2,3,4}));
     codeend();
     cr();
-
+    disp(v1);
+    disp(v1+v2);
+    //(cout << "here")<<std::end;
+    disp(v1);
    
     resultstart2("");
     resultmulti(v1 + v2);

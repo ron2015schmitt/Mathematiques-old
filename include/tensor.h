@@ -232,6 +232,7 @@ namespace matricks {
     virtual size_type size(void) const = 0;
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
+    virtual bool isExpression(void) const = 0;
     virtual VectorofPtrs getAddresses(void) const = 0;
     virtual std::string classname(void) const = 0;  // *not* static
   };
@@ -283,7 +284,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return derived().dims();
     }
-    
+    bool isExpression(void) const {
+      return derived().isExpression();
+    }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -303,8 +306,15 @@ namespace matricks {
       return derived().classname();
     }
     
-    friend std::ostream& operator<<(std::ostream &stream, const TensorR<D,DERIVED>& ve) {
-      stream << ve.derived();
+    friend std::ostream& operator<<(std::ostream &stream, const TensorR<D,DERIVED>& te) {
+      const DERIVED& td = te.derived();
+      if (td.isExpression()) {
+	// TODO: isinstance  or check dimensions
+	Vector<D> t(te);
+	stream << t;
+      } else {
+	stream << te.derived();
+      }
       return stream;
     }
     
@@ -353,6 +363,9 @@ namespace matricks {
     Dimensions dims(void) const {
       return derived().dims();
     }
+    bool isExpression(void) const {
+      return derived().isExpression();
+    }
     
 
 #if MATRICKS_DEBUG>=1
@@ -373,117 +386,17 @@ namespace matricks {
       return derived().classname();
     }
 
-    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& vw) {
-      stream << vw.derived();
-      return stream;
-    }
-    
-  };
-
-
-
-  // -------------------------------------------------------------------
-  //
-  // TExpressionR -- Abstract class that represents 
-  //                 tensor expression that is "read only"
-  // -------------------------------------------------------------------
-
-  template<class D, class DERIVED> 
-    class TExpressionR : public TensorR<D,TExpressionR<D,DERIVED> > {
-  private:
-    typedef  D DataT;
-    inline DERIVED& derived() {
-      return static_cast<DERIVED&>(*this);
-    }
-    inline const  DERIVED& derived() const {
-      return static_cast<const DERIVED&>(*this);
-    }
-    
-  public:
-
-    inline const D operator[](const size_type i) const {
-      return derived()[i];
-    }
-
-    inline size_type size(void) const {
-      return derived().size();
-    }
-    size_type ndims(void) const {
-      return derived().ndims();
-    }
-    Dimensions dims(void) const {
-      return derived().dims();
-    }
-    
-    VectorofPtrs getAddresses(void) const {
-      return derived().getAddresses();
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      return derived().expression();
-    }
-#endif
-
-    template <class A>
-      inline TensorRW<D,A>& spawn() const {
-      return derived().spawn();
-    }
-    inline std::string classname() const {
-      return derived().classname();
-    }
-
-    friend std::ostream& operator<<(std::ostream &stream, const TExpressionR<D,DERIVED>& ve) {
-      Vector<D> v(ve);
-      stream << v;
+    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& tw) {
+      if (tw.derived().isExpression()) {
+	// TODO: isinstance  or check dimensions or spawn
+	Vector<D> t(tw);
+	stream << t;
+      } else {
+	stream << tw.derived();
+      }
       return stream;
     }
 
-  };
-
-
-  // -------------------------------------------------------------------
-  //
-  // TExpressionRW -- Abstract class that represents 
-  //                  either a tensor expression that can be
-  //                  both read and written
-  // -------------------------------------------------------------------
-  template <class D, class DERIVED>
-    class TExpressionRW : public TensorRW<D,TExpressionRW<D,DERIVED> > {
-  private:
-    inline DERIVED& derived() {
-      return static_cast<DERIVED&>(*this);
-    }
-    inline const  DERIVED& derived() const {
-      return static_cast<const DERIVED&>(*this);
-    }
-  protected:
-    VectorofPtrs vaddresses_;
-    
-  public:
-
-    inline const D operator[](const size_type i) const {  
-      return derived()[i];
-    }
-
-    inline D& operator[](const size_type i) {  
-      return derived()[i];
-    }
-
-    inline size_type size(void) const {
-      return derived().size();
-    }
-
-    size_type ndims(void) const {
-      return derived().ndims();
-    }
-    Dimensions dims(void) const {
-      return derived().dims();
-    }
-    
-    VectorofPtrs getAddresses(void) const {
-      return derived().getAddresses();
-    }
 
 
     // Assign to constant value
@@ -522,31 +435,14 @@ namespace matricks {
       return derived();
     }
 
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      return derived().expression();
-    }
-#endif
-
-
-    template <class A>
-      inline TensorRW<D,A>& spawn() const {
-      return derived().spawn();
-    }
-    inline std::string classname() const {
-      return derived().classname();
-    }
-
-
-    friend std::ostream& operator<<(std::ostream &stream, const TExpressionRW<D,DERIVED>& vw) {
-      Vector<D> v(vw);
-      stream << v;
-      return stream;
-    }
-
+    
     
   };
+
+
+
+
+
 
 
   

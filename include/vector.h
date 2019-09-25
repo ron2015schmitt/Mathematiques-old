@@ -199,6 +199,9 @@ namespace matricks {
       Dimensions dimensions(size());
       return dimensions;
     }
+    bool isExpression(void) const {
+      return false;
+    }
 
     
     //**********************************************************************
@@ -292,7 +295,7 @@ namespace matricks {
     //************************** ASSIGNMENT **************************************
     //**********************************************************************
 
-    // Any new assignment operators should also be addedc to TExpressionRW for consistency.
+    // Any new assignment operators should also be addedc to TensorRW for consistency.
     // For this reason, in most cases, its preferred to overload the function vcast()
     // equals functions are included so that derived classes can call these functions
 
@@ -308,35 +311,11 @@ namespace matricks {
 
 
     // Assignment to a vector expression
-    template <class A>  Vector<D>& equals(const TExpressionR<D,A>& x) {  
-
-      // resize to avoid segmentation faults
-      resize(x.size());
-
-      if (this->getAddresses().common( x.getAddresses() )  ){    
-	Vector<D> vtemp(size());
-
-	for (register index_type i = size(); i--;)
-	  vtemp[i] = x[i];   // Inlined expression
-	for (register index_type i = size(); i--;)
-	  (*data_)[i] = vtemp[i];
-      } else {
-	for (register index_type i = size(); i--;)
-	  (*data_)[i] = x[i];   // Inlined expression
-      }
-      return *this; 
-    }
-
-    template <class A>  Vector<D>& operator=(const TExpressionR<D,A>& x) {  
-      return equals(x);
-    }
-
-
-
-    
     template <class A>  Vector<D>& equals(const TensorR<D,A>& x) {  
+
       // resize to avoid segmentation faults
       resize(x.size());
+
       if (this->getAddresses().common( x.getAddresses() )  ){    
 	Vector<D> vtemp(size());
 
@@ -345,17 +324,19 @@ namespace matricks {
 	for (register index_type i = size(); i--;)
 	  (*data_)[i] = vtemp[i];
       } else {
-	for (register index_type i = size(); i--;) {
+	for (register index_type i = size(); i--;)
 	  (*data_)[i] = x[i];   // Inlined expression
-	}
       }
       return *this; 
     }
 
-    
     template <class A>  Vector<D>& operator=(const TensorR<D,A>& x) {  
       return equals(x);
     }
+
+
+
+    
 
 
 

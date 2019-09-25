@@ -129,13 +129,13 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class A> 
-    inline VERW_Join<D, TExpressionRW<D,A>, Vector<D> > 
-    operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)
+    inline VERW_Join<D, TensorRW<D,A>, Vector<D> > 
+    operator,(const TensorRW<D,A>& a, const Vector<D>& b)
     {
-      printf2("  VERW_Join operator,(const TExpressionRW<D,A>& a, const Vector<D>& b)\n");
-      TExpressionRW<D,A>& a_ = const_cast<TExpressionRW<D,A>& >(a);
+      printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const Vector<D>& b)\n");
+      TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
       Vector<D>& b_ = const_cast<Vector<D>& >(b);
-      return  VERW_Join<D, TExpressionRW<D,A>,Vector<D> >(a_,b_);
+      return  VERW_Join<D, TensorRW<D,A>,Vector<D> >(a_,b_);
     }
   //--------------------------------------------
 
@@ -143,26 +143,26 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class B> 
-    inline VERW_Join<D, Vector<D>,TExpressionRW<D,B> > 
-    operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)
+    inline VERW_Join<D, Vector<D>,TensorRW<D,B> > 
+    operator,(const Vector<D>& a, const TensorRW<D,B>& b)
     {
-      printf2("  VERW_Join operator,(const Vector<D>& a, const TExpressionRW<D,B>& b)\n");
+      printf2("  VERW_Join operator,(const Vector<D>& a, const TensorRW<D,B>& b)\n");
       Vector<D>& a_ = const_cast<Vector<D>& >(a);
-      TExpressionRW<D,B>& b_ = const_cast<TExpressionRW<D,B>& >(b);
-      return VERW_Join<D, Vector<D>,TExpressionRW<D,B> >(a_,b_);
+      TensorRW<D,B>& b_ = const_cast<TensorRW<D,B>& >(b);
+      return VERW_Join<D, Vector<D>,TensorRW<D,B> >(a_,b_);
     }
   //--------------------------------------------
 
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class A, class B> 
-    inline VERW_Join<D, TExpressionRW<D,A>,TExpressionRW<D,B> > 
-    operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)
+    inline VERW_Join<D, TensorRW<D,A>,TensorRW<D,B> > 
+    operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)
     {
-      printf2("  VERW_Join operator,(const TExpressionRW<D,A>& a, const TExpressionRW<D,B>& b)\n");
-      TExpressionRW<D,A>& a_ = const_cast<TExpressionRW<D,A>& >(a);
-      TExpressionRW<D,B>& b_ = const_cast<TExpressionRW<D,B>& >(b);
-      return  VERW_Join<D, TExpressionRW<D,A>,TExpressionRW<D,B> >(a_,b_);
+      printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)\n");
+      TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
+      TensorRW<D,B>& b_ = const_cast<TensorRW<D,B>& >(b);
+      return  VERW_Join<D, TensorRW<D,A>,TensorRW<D,B> >(a_,b_);
     }
   //--------------------------------------------
 
@@ -179,27 +179,27 @@ namespace matricks {
     }
 
   template <class D, class B> 
-    inline const VER_Join<D, Vector<D>,TExpressionR<D,B> > 
-    operator,(const Vector<D>& a, const TExpressionR<D,B>& b)
+    inline const VER_Join<D, Vector<D>,TensorR<D,B> > 
+    operator,(const Vector<D>& a, const TensorR<D,B>& b)
     {
-      printf2("  VER_Join operator,(const Vector<D>& a, const TExpressionR<D,B>& b)\n");
-      return  VER_Join<D,Vector<D>,TExpressionR<D,B>  >(a,b);
+      printf2("  VER_Join operator,(const Vector<D>& a, const TensorR<D,B>& b)\n");
+      return  VER_Join<D,Vector<D>,TensorR<D,B>  >(a,b);
     }
 
   template <class D, class A> 
-    inline const VER_Join<D,TExpressionR<D,A>,Vector<D> > 
-    operator,(const TExpressionR<D,A>& a, const Vector<D>& b)
+    inline const VER_Join<D,TensorR<D,A>,Vector<D> > 
+    operator,(const TensorR<D,A>& a, const Vector<D>& b)
     {
-      printf2("  VER_Join operator,(const TExpressionR<D,A>& a, const Vector<D>& b)\n");
-      return  VER_Join<D,TExpressionR<D,A>,Vector<D> >(a,b);
+      printf2("  VER_Join operator,(const TensorR<D,A>& a, const Vector<D>& b)\n");
+      return  VER_Join<D,TensorR<D,A>,Vector<D> >(a,b);
     }
  
   template <class D, class A, class B> 
-    inline const VER_Join<D, TExpressionR<D,A>,TExpressionR<D,B> > 
-    operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)
+    inline const VER_Join<D, TensorR<D,A>,TensorR<D,B> > 
+    operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
-      printf2("  VER_Join operator,(const TExpressionR<D,A>& a, const TExpressionR<D,B>& b)\n");
-      return  VER_Join<D, TExpressionR<D,A>,TExpressionR<D,B> >(a,b);
+      printf2("  VER_Join operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)\n");
+      return  VER_Join<D, TensorR<D,A>,TensorR<D,B> >(a,b);
     }
 
 
@@ -582,8 +582,8 @@ namespace matricks {
    *               Templates for Binary+scalar Operators 
    *
    * D = data type, e.g. double
-   * A = either an Vector or a TExpressionR
-   * B = either an Vector or a TExpressionR
+   * A = either an Vector or a TensorR
+   * B = either an Vector or a TensorR
    * N = int
    ************************************************************
    */

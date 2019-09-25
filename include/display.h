@@ -440,6 +440,12 @@ namespace display {
   //---------------------------------------------------------------------------------
   //       getTypeName
   //---------------------------------------------------------------------------------
+
+  // TODO: implement a way to print out typeid(var).name() if classname does not
+  //       exist.  There are ways with macros, but not pretty
+  // https://stackoverflow.com/questions/87372/check-if-a-class-has-a-member-function-of-a-given-signature
+  // perhaps implement as added feature if C++11 compiler:
+  // https://stackoverflow.com/questions/41936763/type-traits-to-check-if-class-has-member-function
   
   template <class T> inline std::string getTypeName(const T& var) {
     return getTypeStyle(var).apply(var.classname());
@@ -1120,13 +1126,29 @@ namespace display {
 	Display::initialize();
       }
     }
+
+    // NOTE: do NOT try to combine mydisp_notype and mydisp_type
+    //       this wil causes compilation failure if X.classname() does not
+    //       exists, EVEN if you put getTypeName(x) inside an if clause
+    
     template <typename X>
-      static void mydisp(const X& x, const std::string name, const bool displayType, const bool issueCR) {
+      static void mydisp_notype(const X& x, const std::string name, const bool issueCR) {
       using namespace std;
       //      log3("display","Display","mydisp","(const X& x, const std::string name)");
-      if (displayType) {
-	mout << getTypeName(x) << " ";
+      expression->setString(name);
+      mout << *expression;
+      mout << *equals;
+      dispval(x);
+      mout << *terminator;
+      if (issueCR) {
+	mout << endl;
       }
+    }
+    template <typename X>
+      static void mydisp_type(const X& x, const std::string name, const bool issueCR) {
+      using namespace std;
+      //      log3("display","Display","mydisp","(const X& x, const std::string name)");
+      mout << getTypeName(x) << " ";
       expression->setString(name);
       mout << *expression;
       mout << *equals;
@@ -1139,17 +1161,22 @@ namespace display {
     template <typename X>
       static void mydisp(const X& x, const std::string name) {
       using namespace std;
-      mydisp(x, name,false, false);
+      mydisp_notype(x, name,false);
     }
     template <typename X>
       static void mydispcr(const X& x, const std::string name) {
       using namespace std;
-      mydisp(x, name,false, true);
+      mydisp_notype(x, name,true);
+    }
+    template <typename X>
+      static void tmydisp(const X& x, const std::string name) {
+      using namespace std;
+      mydisp_type(x, name, false);
     }
     template <typename X>
       static void tmydispcr(const X& x, const std::string name) {
       using namespace std;
-      mydisp(x, name, true, true);
+      mydisp_type(x, name, true);
     }
     static void issuecr() {
       mout << std::endl;

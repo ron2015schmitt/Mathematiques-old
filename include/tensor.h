@@ -5,15 +5,19 @@
 
 namespace matricks {
 
+  template <class D, class DERIVED> class TensorR;
+  template <class D, class DERIVED> class TensorRW;
+  template <class D> class Scalar;
+  template <class D> class Vector;
 
 
-    /****************************************************************************
+  /****************************************************************************
    * std::vector related functions
    **************************************************************************** 
    */
 
   // TODO: do we need these?  move inside the class
-    template <typename T>
+  template <typename T>
     std::vector<T> mergeVectors(const std::vector<T> v1, const std::vector<T> v2) {
     std::vector<T> v3 = v1;
     v3.insert( v3.end(), v2.begin(), v2.end() );
@@ -59,7 +63,7 @@ namespace matricks {
       this->insert(this->end(), addrs.begin(), addrs.end());
     }
     
-  // true if this vector and another share an element in common (ie same value)
+    // true if this vector and another share an element in common (ie same value)
 
     inline bool common(const VectorofPtrs& addrs) const {
       for (size_type i = 0; i < addrs.size(); i++){
@@ -125,10 +129,10 @@ namespace matricks {
 
 
 
-    // -------------------------------------------------------------------
-    //
-    // Dimensions - class to hold dimensions of Tensors
-    // -------------------------------------------------------------------
+  // -------------------------------------------------------------------
+  //
+  // Dimensions - class to hold dimensions of Tensors
+  // -------------------------------------------------------------------
 
   //TODO: should check for dimension 0, which should not be passed
 
@@ -147,7 +151,7 @@ namespace matricks {
       resize(2,0);
       (*this)[0] = dim1;
       (*this)[1] = dim2;
-     }
+    }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3) {
       //      mdisp3(dim1,dim2,dim3);
       resize(3,0);
@@ -155,7 +159,7 @@ namespace matricks {
       (*this)[0] = dim1;
       (*this)[1] = dim2;
       (*this)[2] = dim3;
-     }
+    }
 
     //TODO: constructor for arbitrary rank
 
@@ -212,17 +216,17 @@ namespace matricks {
 
   
 
-    // -------------------------------------------------------------------
-    //
-    // TensorAbstract  - abstract class that allows us to put tensors of
-    //           any rank into a contianer.  Use ndims() dim()
-    //           to dertermined rank (ie Scalar Vector, Matrix, Tensor)
-    //  rank   Subclass Name
-    //    0    Scalar
-    //    1    Vector
-    //    2    Matrix
-    //    3+   Tensor
-    // -------------------------------------------------------------------
+  // -------------------------------------------------------------------
+  //
+  // TensorAbstract  - abstract class that allows us to put tensors of
+  //           any rank into a contianer.  Use ndims() dim()
+  //           to dertermined rank (ie Scalar Vector, Matrix, Tensor)
+  //  rank   Subclass Name
+  //    0    Scalar
+  //    1    Vector
+  //    2    Matrix
+  //    3+   Tensor
+  // -------------------------------------------------------------------
   
   class TensorAbstract {
     // DO NOT define any storage: we want to
@@ -250,11 +254,59 @@ namespace matricks {
 
   // -------------------------------------------------------------------
   //
+  // TensorObject
+  //
+  // -------------------------------------------------------------------
+  class TensorObject {
+  public:
+  };
+  
+  
+  // -------------------------------------------------------------------
+  //
+  // printTensorExpression
+  //
+  // -------------------------------------------------------------------
+  
+
+
+  template <class D, class A>
+    std::ostream& printTensorExpression(std::ostream &stream, const TensorR<D,A>& te) {
+    const size_type ndims = te.ndims();
+    switch (ndims) {
+    case 0: {
+      Scalar<D> s = te;
+      stream << s;
+      return stream;
+      break;
+    }
+    case 1: {
+      Vector<D> v = te;
+      stream << v;
+      return stream;
+      break;
+    }
+    case 2:{
+      // TODO: add code for Matrix
+      return stream;
+      break;
+    }
+    default:{
+      // TODO: add code for Tensor
+      return stream;
+      break;
+    } // default
+    } // switch
+  }
+
+
+  
+  // -------------------------------------------------------------------
+  //
   // TensorR -- Abstract class that represents 
   //            either a tensor or a tensor expression that is "read only"
   // -------------------------------------------------------------------
 
-  template <class D, class DERIVED> class TensorRW;
   
   template <class D, class DERIVED> class TensorR : public TensorAbstract {
   public:
@@ -309,13 +361,11 @@ namespace matricks {
     friend std::ostream& operator<<(std::ostream &stream, const TensorR<D,DERIVED>& te) {
       const DERIVED& td = te.derived();
       if (td.isExpression()) {
-	// TODO: isinstance  or check dimensions
-	Vector<D> t(te);
-	stream << t;
+	return printTensorExpression(stream,te);
       } else {
 	stream << te.derived();
+	return stream;
       }
-      return stream;
     }
     
   };
@@ -386,17 +436,15 @@ namespace matricks {
       return derived().classname();
     }
 
-    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& tw) {
-      if (tw.derived().isExpression()) {
-	// TODO: isinstance  or check dimensions or spawn
-	Vector<D> t(tw);
-	stream << t;
+    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& te) {
+      const DERIVED& td = te.derived();
+      if (td.isExpression()) {
+	return printTensorExpression(stream,te);
       } else {
-	stream << tw.derived();
+	stream << te.derived();
+	return stream;
       }
-      return stream;
     }
-
 
 
     // Assign to constant value

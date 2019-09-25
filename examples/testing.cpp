@@ -375,6 +375,28 @@ int main()
   disp(approx(x1,x2,0.));
   disp(approx(x1,x2,3.5e-16));
    
-   
+
+  TensorAbstract* t = new Scalar<int>(22);
+  Scalar<int>* t2 = static_cast<Scalar<int>* >(t);
+
+  disp(*t2);
+  mout << "t="<<*t2<<endl;
+
+
+  disp(typeid(*t).name());
+  disp(typeid(*t2).name());
+  disp(is_instance<typeof(*t), Scalar>{});
+  disp(is_instance<typeof(*t2), Scalar>{});
+
+  Scalar<int> s1 = 12;
+  Scalar<int> s2 = 10;
+  disp(s1+s2);
+  tdisp(s1+s2);
+
+  Vector<int> v1 = {1,2};
+  Vector<int> v2 = {10,20};
+  disp(v1+v2);
+  tdisp(v1+v2);
+
   return 0;
 }

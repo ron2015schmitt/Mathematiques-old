@@ -5,16 +5,19 @@
 
 namespace matricks {
 
+  
+  class VectorofPtrs;
+  template <class DAT> class Pair;
   template <class D, class DERIVED> class TensorR;
   template <class D, class DERIVED> class TensorRW;
   template <class D> class Scalar;
   template <class D> class Vector;
 
 
-  /****************************************************************************
-   * std::vector related functions
-   **************************************************************************** 
-   */
+  // ****************************************************************************
+  // * std::vector related functions
+  // **************************************************************************** 
+  
 
   // TODO: do we need these?  move inside the class
   template <typename T>
@@ -108,7 +111,9 @@ namespace matricks {
   }
    
   //***********************************************************************
-  //      Pair class
+  //      Pair class:  each pair is (index, data)
+  //                   index = int
+  //                   data equals DAT
   //***********************************************************************
 
   // TODO: add classname() as well as << stream
@@ -124,6 +129,23 @@ namespace matricks {
     }
     inline std::string classname() const {
       return "Pair";
+    }
+    inline friend std::ostream& operator<<(std::ostream &stream, const Pair<DAT>& pair) {
+      using namespace display;
+
+      // TODO: use streamval function once written and get rid of the mout stuff
+      
+      std::ostream& os = mout;
+      display::Terminal::setmout(stream);
+
+      stream << "(";
+      stream << pair.index;
+      stream << " : ";
+      stream << pair.data;
+      stream << ")";
+
+      display::Terminal::setmout(os);
+      return stream;
     }
   };
 
@@ -214,13 +236,42 @@ namespace matricks {
   }
 
 
+  // -------------------------------------------------------------------
+  //
+  // Tensors enum - one enum for each actual Tensor:
+  //                Scalar, Vector, Matrix, etc. And then two expressions.
+  //                return type of getEnum
+  //
+  // TensorType struct - this returns the corresponding type for
+  //                     a given enum, which allows to create a new
+  //                     varieble that is of the same class as a variable
+  //                     that was passed to the code
+  //
+  // NOTE: by combining this enum functionality with the dims() method,
+  //       we can determine what type of tensor is returned by an expression
+  //       and even create a new object of the same type!
+  //       Another technique that can be used is the vistor design pattern,
+  //       as described below.
+  // -------------------------------------------------------------------
+
+  
+  enum Tensors {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
+  template <Tensors, class D> struct TensorType;
+
+  template <class D> struct TensorType<T_SCALAR,D> {
+    typedef Scalar<D> MyType;
+  };
+  template <class D> struct TensorType<T_VECTOR,D> {
+    typedef Vector<D> MyType;
+  };
   
 
   // -------------------------------------------------------------------
   //
   // TensorAbstract  - abstract class that allows us to put tensors of
-  //           any rank into a contianer.  Use ndims() dim()
-  //           to dertermined rank (ie Scalar Vector, Matrix, Tensor)
+  //           any rank and data type into the same contianer.
+  //           Use ndims() dim() or getEnum()
+  //           to determined rank (ie Scalar Vector, Matrix, Tensor)
   //  rank   Subclass Name
   //    0    Scalar
   //    1    Vector
@@ -236,9 +287,10 @@ namespace matricks {
     virtual size_type size(void) const = 0;
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
-    virtual bool isExpression(void) const = 0;
+    virtual bool isExpression(void) const = 0;     // NOTE: with the intrudction of getEnum, this function redundant
+    virtual Tensors getEnum(void) const = 0;
     virtual VectorofPtrs getAddresses(void) const = 0;
-    virtual std::string classname(void) const = 0;  // *not* static
+    virtual std::string classname(void) const = 0;  // NOTE: *not* static
   };
     
 
@@ -256,7 +308,11 @@ namespace matricks {
   //
   // TensorObject
   //
+  // signifies it's an object, not an expression
+  // As of V2.19  I have found no use for this, but I'll leave it in.
+  // It may bear fruit at some point.
   // -------------------------------------------------------------------
+
   class TensorObject {
   public:
   };
@@ -266,6 +322,7 @@ namespace matricks {
   //
   // printTensorExpression
   //
+  // Basically this is the vistor design pattern.
   // -------------------------------------------------------------------
   
 
@@ -318,9 +375,6 @@ namespace matricks {
     inline const  DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
     }
-    inline TensorRW<D,DERIVED>& spawn() const {
-      return derived().spawn();
-    }
 
     inline const D operator[](const index_type i) const {
       return derived()[i];
@@ -338,6 +392,9 @@ namespace matricks {
     }
     bool isExpression(void) const {
       return derived().isExpression();
+    }
+    virtual Tensors getEnum(void) const {
+      return T_EXPRESSION_R;
     }
 
 #if MATRICKS_DEBUG>=1
@@ -392,9 +449,6 @@ namespace matricks {
     inline const  DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
     }
-    inline TensorRW<D,DERIVED>& spawn() const {
-      return derived().spawn();
-    }
 
     inline const D operator[](const index_type i) const {
       return derived()[i];
@@ -415,6 +469,9 @@ namespace matricks {
     }
     bool isExpression(void) const {
       return derived().isExpression();
+    }
+    virtual Tensors getEnum(void) const {
+      return T_EXPRESSION_RW;
     }
     
 

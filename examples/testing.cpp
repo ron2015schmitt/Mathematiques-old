@@ -398,5 +398,9 @@ int main()
   disp(v1+v2);
   tdisp(v1+v2);
 
+
+  TensorType<T_SCALAR,int>::MyType s3 = s2;
+
+  disp(s3);
   return 0;
 }

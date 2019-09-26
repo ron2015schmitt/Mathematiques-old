@@ -1,16 +1,38 @@
 # mātricks __VERSION_MATRICKS__
 
-```diff
-- CURRENTLY NOT READY FOR USE.
-- Code has been upgraded/refactored for all *EXCEPT*
-  - file i/o
-  - debugging
-  - matrix operations
-+ Planned Date for full functionality: 2019 Oct 1
-+ Once refactoring is complete matricks will support tensors
-  of any rank, with a single base class
-+ WORK AT MY DAY JOB HAS DELAYED THE RELEASE BUT IT WILL HAPPEN!
+- CURRENTLY NOT READY FOR USE BUT...
++ Getting very close.  I put the last pieces together for the code to work with arbitrary rank tenors (Scalar, Vector, Matrix, etc):
+  + no boiler-plates. all are processed by the same functions
+  + no loss of elegance and simplicity in use
+  + no real-time cost
++ I started the test code. I added around 30 test cases, with a very clear and elegant output.
++ I ran benchmarks vs. a handcoded for loop. The results are impressive (-O3 optimization):
+![benchmarks](files/benchmark.png)
+
+where the second code comparision is hand-coded loop 
+```C++
+std::valarray<double> x(N);
+for(int i=0; i<N; i++)
+  x[i] = double(i)/double(N-1);
+std::valarray<double> f(N);
+start_timer();
+for(int i=0; i<N; i++)
+     f[i] = cos(2*pi + pi*sin(2*pi*x[i] + pi/6));
+stop_timer();
 ```
+
+vs matricks syntax 
+```C++
+Vector<double> x(N);
+x = linspace<double>(0,1,N);
+Vector<double> f(N);
+start();
+f = cos(2*pi + pi*sin(2*pi*x + pi/6));
+stop();
+```
+
++ Planned Date for full functionality: 2019 Oct 1
+
 
 
 mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.

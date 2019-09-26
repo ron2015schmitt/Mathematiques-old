@@ -26,19 +26,6 @@ int main()
   // TODO: add a test for every function and functionality
   //       check math with matlab or mathematica
 
-  {
-    // scalar.spawn()
-
-    printStart(++testnum);
-    Scalar<int> s1 = 1;
-    Scalar<int> expected(0);
-    Scalar<int> result = s1.spawn();
-    testtext( "spawn" );
-    bool pass = equal(result,expected);
-    printEnd(pass);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
 
   {
     // dynamic cast
@@ -46,10 +33,8 @@ int main()
     Scalar<int> s1 = 1;
     testtext( "dynamic casting" );
     TensorRW<int,Scalar<int> > &s2 = s1;
-    TensorRW<int,Scalar<int> > &s3 = s2.spawn();
     Scalar<int> *sp1 = dynamic_cast<Scalar<int>*>(&s2);
-    Scalar<int> *sp2 = dynamic_cast<Scalar<int>*>(&s3);
-    bool pass = ( (void*)sp1 == (void*)&s1 ) && ( (void*)sp2 == (void*)&s3 );
+    bool pass = ( (void*)sp1 == (void*)&s1 ) ;
     printEnd(pass);
     allpass = allpass && pass;
     failnum += (!pass);

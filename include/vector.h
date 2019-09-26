@@ -202,7 +202,9 @@ namespace matricks {
     bool isExpression(void) const {
       return false;
     }
-
+    Tensors getEnum() const {
+      return T_VECTOR;
+    }
     
     //**********************************************************************
     //************************** ACCESSS ***********************************

@@ -45,7 +45,7 @@
 #include "display.h"
 #include "util.h"
 #include "slices.h"
-#include "tensor.h"
+#include "tensors.h"
 #include "debug.h"
 #include "functors.h"
 #include "scalar.h"

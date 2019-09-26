@@ -207,7 +207,7 @@ namespace matricks {
     }
     
     //**********************************************************************
-    //************************** ACCESSS ***********************************
+    //************************** ACCESSS[] ***********************************
     //**********************************************************************
 
     // -------------------- valarray ACCESS --------------------
@@ -290,6 +290,78 @@ namespace matricks {
     }
 #endif // C++11
 
+
+    //**********************************************************************
+    //************************** ACCESS() ***********************************
+    //**********************************************************************
+
+    // -------------------- valarray ACCESS --------------------
+
+    // -------------------- ELEMENT ACCESS --------------------
+
+    // "read/write" access signed index
+    inline D& operator()(const index_type i)  {
+      index_type index = i;
+      if (i < 0) {
+	index += size();
+      }
+      return (*data_)[index]; 
+    }
+
+
+    // "read only" access igned index
+    inline const D operator()(const index_type i) const {
+      return (const D)(*data_)[i]; 
+    }
+
+
+
+
+    // Accessing a slice of values
+    
+    TERW_Subset<D> operator()(const slc& slice)  { 
+      return (*this)[slice.toIndexVector(size())];
+    }
+    const TERW_Subset<D>  operator()(const slc& slice) const  {
+      //      display::log3("Vector","operator[]","(const slc& slice)\n");
+      return (*this)[slice.toIndexVector(size())];
+    }
+      
+    
+
+    // Accessing a SET of values using a vector of ints
+
+    TERW_Subset<D> operator()(const Vector<index_type>& ii) {
+      return TERW_Subset<D>(*this, ii);
+    }
+    const TERW_Subset<D> operator()(const Vector<index_type>& ii) const {
+      return TERW_Subset<D>(*this, ii);
+    }
+
+
+
+    
+    // Accessing a SET of values using a MASK
+    
+    TERW_Submask<D> operator()(const Vector<bool>& mask)  {
+      return  TERW_Submask<D>(*this,mask);
+    }
+    const TERW_Submask<D> operator()(const Vector<bool>& mask)  const {
+      return  TERW_Submask<D>(*this,mask);
+    }
+
+
+
+    //Accessing a SET of values using a list
+
+#if CPP11 == 1
+    TERW_Subset<D> operator()(const std::initializer_list<index_type>& list) {
+      return  TERW_Subset<D>(*this, list);
+    }
+    const TERW_Subset<D> operator()(const std::initializer_list<index_type>& list) const {
+      return  TERW_Subset<D>(*this, list);
+    }
+#endif // C++11
 
 
     

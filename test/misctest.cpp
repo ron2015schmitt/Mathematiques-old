@@ -13,6 +13,9 @@ int main()
   using namespace display;
 
   print_matricks_info();
+  mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - miscellaneous tests" <<std::endl;
+  cr();
+  cr();
   bool allpass = true;
   int testnum = 0;
   int failnum = 0;

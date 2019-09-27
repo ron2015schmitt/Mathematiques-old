@@ -64,9 +64,16 @@ namespace matricks {
     }
 
 
+    // --------------------- array[]  CONSTRUCTOR ---------------------
+    Vector<D>(const size_type N, const D (vals)[]) {
+      // allocate store
+	data_ = new std::valarray<D>(vals, N); 
+	constructorHelper();
+    }
+
     // ************* C++11 initializer_list CONSTRUCTOR---------------------
 #if CPP11 == 1
-    Vector<D>(const std::initializer_list<D> list) 
+    Vector<D>(const std::initializer_list<D>& list) 
     {
 
       const size_type N =  list.size();
@@ -94,15 +101,6 @@ namespace matricks {
     }
 
 
-
-    // --------------------- array[]  CONSTRUCTOR ---------------------
-    Vector<D>(const size_type N, const D (vals)[]) 
-    {
-
-      // allocate store
-      data_ = new std::valarray<D>(vals, N); 
-      constructorHelper();
-    }
 
 
     
@@ -414,18 +412,14 @@ namespace matricks {
 
 
 
-    // assignment to an array
-    Vector<D>& equals(const D array[]) {
-      
+    // ------------------------ matrix = array[] ----------------
 
+    Vector<D>& equals(const D array[]) {
       for (index_type i; i < size(); i++)  { 
 	(*this)[i++] = array[i];
       }
-
       return *this;
     }
-
-
     Vector<D>& operator=(const D array[]) {
       return equals(array);
     }
@@ -451,40 +445,29 @@ namespace matricks {
     Vector<D>& operator=(const Vector<D>& v2) {
       return equals(v2);
     }
-
-
-
     template <class B>
     Vector<D>& operator=(const TERW_Resize<D>& b) { 
       return *this;
     }
 
 
-    Vector<D>& equals(const std::list<D> mylist) {
-      
-
+    Vector<D>& equals(const std::list<D>& mylist) {
       // resize to avoid segmentation faults
       resize(mylist.size());
-
       index_type i = 0;
       for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
 	(*this)[i++] = *it;
       }
-
       return *this;
     }
-
-
-    Vector<D>& operator=(const std::list<D> mylist) {
+    Vector<D>& operator=(const std::list<D>& mylist) {
       return equals(mylist);
     }
 
     
     // assignment to a C++11 list
 #if CPP11 == 1
-    Vector<D>& equals(const std::initializer_list<D> mylist) {
-      
-
+    Vector<D>& equals(const std::initializer_list<D>& mylist) {
       // resize to avoid segmentation faults
       resize(mylist.size());
 
@@ -496,17 +479,16 @@ namespace matricks {
 
       return *this;
     }
-#endif // C++11
-
-    Vector<D>& operator=(const std::initializer_list<D> mylist) {
+    Vector<D>& operator=(const std::initializer_list<D>& mylist) {
       return equals(mylist);
     }
+#endif // C++11
 
 
 
 
     // assignment to a std::vector
-    Vector<D>& equals(const std::vector<D> vstd) {
+    Vector<D>& equals(const std::vector<D>& vstd) {
       
 
       // resize to avoid segmentation faults
@@ -519,7 +501,7 @@ namespace matricks {
     }
 
 
-    Vector<D>& operator=(const std::vector<D> vstd) {
+    Vector<D>& operator=(const std::vector<D>& vstd) {
       return equals(vstd);
     }
 
@@ -527,7 +509,7 @@ namespace matricks {
 
     // assignment to a std::array
     template <std::size_t N>
-    Vector<D>& equals(const struct std::array<D,N> varray) {
+    Vector<D>& equals(const std::array<D,N>& varray) {
       
 
       // resize to avoid segmentation faults
@@ -541,14 +523,14 @@ namespace matricks {
 
 
     template <std::size_t N>
-    Vector<D>& operator=(const struct std::array<D,N> varray) {
+    Vector<D>& operator=(const std::array<D,N>& varray) {
       return equals(varray);
     }
 
 
 
     // assignment to a std::val_array
-    Vector<D>& equals(const std::valarray<D> varray) {
+    Vector<D>& equals(const std::valarray<D>& varray) {
       
 
       // resize to avoid segmentation faults
@@ -560,7 +542,7 @@ namespace matricks {
       return *this;
     }
 
-    Vector<D>& operator=(const std::valarray<D> varray) {
+    Vector<D>& operator=(const std::valarray<D>& varray) {
       return equals(varray);
     }
 

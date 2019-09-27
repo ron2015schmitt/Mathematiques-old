@@ -16,6 +16,10 @@ int main()
   
 
   print_matricks_info();
+  mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - scalar tests" <<std::endl;
+  cr();
+  cr();
+
   bool allpass = true;
   int testnum = 0;
   int failnum = 0;

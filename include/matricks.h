@@ -50,6 +50,7 @@
 #include "functors.h"
 #include "scalar.h"
 #include "vector.h"
+#include "matrix.h"
 #include "expressions.h"
 #include "expressions_v.h"
 #include "functions.h"

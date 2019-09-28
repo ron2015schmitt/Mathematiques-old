@@ -423,6 +423,19 @@ int main()
     Dimensions dims6({22,45,11,18,12,11});
     disp(dims6);
   }
+
+  {
+    Vector<double> q = {21,22};
+    tdisp(q);
+    double x10 = q(0);
+    double x11 = q(1);
+    mdisp(x10,x11);cr();
+    x10 = q((size_type)0);
+  }
+
+
+  disp(sizeof(size_type));
+  disp(sizeof(index_type));
   
   return 0;
 }

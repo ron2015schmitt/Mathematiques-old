@@ -201,21 +201,34 @@ namespace matricks {
     }
 
 
-    // -------------------- ELEMENT ACCESS --------------------
+    // -------------------- ELEMENT ACCESS[] --------------------
 
-    // "read/write" access signed index
-    D& operator[](const index_type i)  {
-      index_type index = i;
-      if (i < 0) {
+    // "read/write": unsigned
+    D& operator[](const size_type n)  {
+      return (*data_)[n]; 
+    }
+
+    // "read/write": signed
+    D& operator[](const index_type k)  {
+      index_type index = k;
+      if (k < 0) {
 	index += size();
       }
       return (*data_)[index]; 
     }
 
 
-    // "read only" access signed index
-    const D operator[](const index_type i) const {
-      return (const D)(*data_)[i]; 
+    // "read only": unsigned
+    inline const D operator[](const size_type n) const {
+      return (const D)(*data_)[n]; 
+    }
+    // "read only": signed
+    inline const D operator[](const index_type k) const {
+      index_type index = k;
+      if (k < 0) {
+	index += size();
+      }
+      return (const D)(*data_)[index]; 
     }
 
 
@@ -276,19 +289,32 @@ namespace matricks {
 
     // -------------------- ELEMENT ACCESS --------------------
 
-    // "read/write" access signed index
-    D& operator()(const index_type i)  {
-      index_type index = i;
-      if (i < 0) {
+    // "read/write": unsigned
+    D& operator()(const size_type n)  {
+      return (*data_)[n]; 
+    }
+
+    // "read/write": signed
+    D& operator()(const index_type k)  {
+      index_type index = k;
+      if (k < 0) {
 	index += size();
       }
       return (*data_)[index]; 
     }
 
 
-    // "read only" access igned index
-    inline const D operator()(const index_type i) const {
-      return (const D)(*data_)[i]; 
+    // "read only": unsigned
+    inline const D operator()(const size_type n) const {
+      return (const D)(*data_)[n]; 
+    }
+    // "read only": signed
+    inline const D operator()(const index_type k) const {
+      index_type index = k;
+      if (k < 0) {
+	index += size();
+      }
+      return (const D)(*data_)[index]; 
     }
 
 

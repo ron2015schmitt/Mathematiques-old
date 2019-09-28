@@ -220,16 +220,17 @@ int main()
 
   // printing to other streams
 
-  header2("Printing to other streams");
+  header2("Printing to other streams: 'send', 'sendval', 'tsend', 'msend'");
 
   text("You can also print to any output stream you like using the formatting and colors provided by matricks.");
-
+  cr();cr();
   text("| mout  | ostream |");
   text("| ------------- | ------------- |");
   text("| dispval(x)  | sendval(stream,x)  |");
   text("| disp(x)  | send(stream,x)  |");
   text("| tdisp(x)  | tsend(stream,x)  |");
   text("| mdisp(x,y,...)  | msend(stream,x,y,...)  |");
+  cr();cr();
   
 
   

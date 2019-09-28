@@ -164,14 +164,18 @@ The following types are currently supported by the display commands
 * `std::queue` C++ queues
 * `std::map` C++ maps
 * `std::initializer_list` C++11 
-## Printing to other streams
+## Printing to other streams: 'send', 'sendval', 'tsend', 'msend'
 You can also print to any output stream you like using the formatting and colors provided by matricks.
+
+
 | mout  | ostream |
 | ------------- | ------------- |
 | dispval(x)  | sendval(stream,x)  |
 | disp(x)  | send(stream,x)  |
 | tdisp(x)  | tsend(stream,x)  |
 | mdisp(x,y,...)  | msend(stream,x,y,...)  |
+
+
 ## Debug-only printing
 
 

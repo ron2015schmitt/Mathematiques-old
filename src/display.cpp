@@ -220,6 +220,7 @@ namespace display {
 
 
   // Vector
+  // TODO: this shoudl be size_type
   matricks::index_type FormatDataVector::max_elements_per_line = matricks::maxsize;
   Style FormatDataVector::style_for_punctuation = createStyle(GRAY1);
   std::string FormatDataVector::string_opening = "{";
@@ -227,6 +228,18 @@ namespace display {
   std::string FormatDataVector::string_endofline = "\n";
   std::string FormatDataVector::string_closing = "}";
 
+  //Matrix
+  // TODO: this shoudl be size_type
+  matricks::index_type FormatDataMatrix::max_elements_per_line = matricks::maxsize;
+  Style FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
+  std::string FormatDataMatrix::string_opening = "{";
+  std::string FormatDataMatrix::string_delimeter = ", ";
+  std::string FormatDataMatrix::string_row_opening = "{";
+  std::string FormatDataMatrix::string_row_closing = "}\n";
+  std::string FormatDataMatrix::string_endofline = "\n";
+  std::string FormatDataMatrix::string_closing = "}";
+
+  
   //---------------------------------------------------------------------------------
   //       specialize for complex<double>
   //---------------------------------------------------------------------------------

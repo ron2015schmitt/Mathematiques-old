@@ -672,6 +672,19 @@ namespace display {
     static std::string string_closing;
   };
 
+  // Matrix
+  class FormatDataMatrix {
+  public: 
+    static matricks::index_type max_elements_per_line;
+    static Style style_for_punctuation;
+    static std::string string_opening;
+    static std::string string_delimeter;
+    static std::string string_row_opening;
+    static std::string string_row_closing;
+    static std::string string_endofline;
+    static std::string string_closing;
+  };
+
 
   //****************************************************************************
   //       FormatString

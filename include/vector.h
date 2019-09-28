@@ -55,8 +55,7 @@ namespace matricks {
     // --------------------- Vector(N,value)  ---------------------
 
     explicit Vector<D>(const size_type N, const D val) {
-      data_ = new std::valarray<D>(N); 
-      *this = val;
+      data_ = new std::valarray<D>(val, N); 
       constructorHelper();
     }
 

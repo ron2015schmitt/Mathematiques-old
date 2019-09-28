@@ -51,6 +51,7 @@
 #include "scalar.h"
 #include "vector.h"
 #include "matrix.h"
+//#include "tensor.h"
 #include "expressions.h"
 #include "expressions_v.h"
 #include "functions.h"

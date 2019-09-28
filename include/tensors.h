@@ -185,8 +185,30 @@ namespace matricks {
       (*this)[1] = dim2;
       (*this)[2] = dim3;
     }
+    Dimensions(const size_type dim1, const size_type dim2, const size_type dim3, const size_type dim4) {
+      //      mdisp3(dim1,dim2,dim3);
+      resize(4,0);
+      //      disp3(size());
+      (*this)[0] = dim1;
+      (*this)[1] = dim2;
+      (*this)[2] = dim3;
+      (*this)[3] = dim4;
+    }
 
-    //TODO: constructor for arbitrary rank
+    // use C++11 init list for arbitrary rank
+#if CPP11 == 1
+    Dimensions(const std::initializer_list<size_type> list) 
+    {
+      const size_type N =  list.size();
+      resize(N,0);
+      index_type i = 0;
+      typename std::initializer_list<size_type>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+    }
+#endif // C++11
+
 
 
     // return this object with size 1 dimensions removed

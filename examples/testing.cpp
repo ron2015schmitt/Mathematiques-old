@@ -334,32 +334,7 @@ int main()
   printUnary<double,Fun_RoundCplx>();
 
   
-  
-   Dimensions dims1(2,1,3);
-   disp(dims1);
-   disp(dims1.reduce());
-   Dimensions dims2(2,3);
-   disp(dims2);
-   disp(dims2.reduce());
-   disp(dims1 == dims2);
-   disp(dims1.reduce() == dims2.reduce());
-   disp(equiv(dims1,dims2));
-   Dimensions dims3(2,5);
-   disp(dims3);
-   disp(equiv(dims1,dims3));
-   disp(equiv(dims2,dims3));
 
-   VectorofPtrs addrs1((void*)&dims1);
-   addrs1.add((void*)&dims2);
-   disp(addrs1);
-   
-   VectorofPtrs addrs2((void*)&dims3);
-   addrs2.add((void*)&x);
-   disp(addrs2);
-   disp(common(addrs1,addrs2));
-   addrs2.add((void*)&dims1);
-   disp(addrs2);
-   disp(common(addrs1,addrs2));
 
 
   Vector<double> vv({1,2,3});
@@ -408,6 +383,42 @@ int main()
   tdisp(A);
   A.transpose();
   tdisp(A);
+
+  {
+    Dimensions dims1(2,1,7);
+    disp(dims1);
+    disp(dims1.reduce());
+    Dimensions dims2(2,3);
+    disp(dims2);
+    disp(dims2.reduce());
+    disp(dims1 == dims2);
+    disp(dims1.reduce() == dims2.reduce());
+    disp(equiv(dims1,dims2));
+    Dimensions dims3(2,5);
+    disp(dims3);
+    disp(equiv(dims1,dims3));
+    disp(equiv(dims2,dims3));
+
+    VectorofPtrs addrs1((void*)&dims1);
+    addrs1.add((void*)&dims2);
+    disp(addrs1);
+   
+    VectorofPtrs addrs2((void*)&dims3);
+    addrs2.add((void*)&x);
+    disp(addrs2);
+    disp(common(addrs1,addrs2));
+    addrs2.add((void*)&dims1);
+    disp(addrs2);
+    disp(common(addrs1,addrs2));
+  }
+  {
+    Dimensions dims3(14,11,18);
+    disp(dims3);
+    Dimensions dims4(13,17,11,14);
+    disp(dims4);
+    Dimensions dims6({22,45,11,18,12,11});
+    disp(dims6);
+  }
   
   return 0;
 }

@@ -15,7 +15,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Tensor : public TensorRW<D,Tensor<D> > {
+  template <class D, size_type N> class Tensor : public TensorRW<D,Tensor<D,N> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -37,71 +37,23 @@ namespace matricks {
     //**********************************************************************
 
 
-    // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
-    explicit Tensor<D>() 
-    {
-      data_ = new std::valarray<D>(0); 
-      constructorHelper();
-    }
-
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
 
-    explicit Tensor<D>(const size_type N) 
-    { 
-      data_ = new std::valarray<D>(N);
+    explicit Tensor<D,N>(const Dimensions& dims) 
+    {
+      dims_ = new Dimensions(dims);
+      data_ = new std::valarray<D>(dims.size());
       constructorHelper();
     }
 
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Tensor<D>(const size_type N, const D val) 
+    explicit Tensor<D,N>>(const Dimensions& dims, const D val) 
     {
-      
-      data_ = new std::valarray<D>(N); 
-      *this = val;
-      constructorHelper();
-    }
-
-
-    // ************* C++11 initializer_list CONSTRUCTOR---------------------
-#if CPP11 == 1
-    Tensor<D>(const std::initializer_list<D> list) 
-    {
-
-      const size_type N =  list.size();
-      data_ = new std::valarray<D>(N); 
-
-      index_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
-      for (it = list.begin(); it != list.end(); ++it)  { 
-	(*this)[i++] = *it;
-      }
-
-      constructorHelper();
-    }
-#endif // C++11
-
-
-
-    // --------------------- valarray CONSTRUCTOR ---------------------
-     Tensor<D>(const std::valarray<D>& valar) 
-    {
-
-      data_ = new std::valarray<D>(valar); 
-      constructorHelper();
-
-    }
-
-
-
-    // --------------------- array[]  CONSTRUCTOR ---------------------
-    Tensor<D>(const size_type N, const D (vals)[]) 
-    {
-
-      // allocate store
-      data_ = new std::valarray<D>(vals, N); 
+      dims_ = new Dimensions(dims);
+      data_ = new std::valarray<D>(val, dims.size());
       constructorHelper();
     }
 
@@ -110,7 +62,7 @@ namespace matricks {
 
     // --------------------- COPY CONSTRUCTOR --------------------
 
-    Tensor<D>(const Tensor<D>& v2) 
+    Tensor<D,N>>(const Tensor<D,N>>& v2) 
     {
       const size_type N = v2.size();
       data_ = new std::valarray<D>(N); 
@@ -123,7 +75,7 @@ namespace matricks {
 
 
     template <class A>
-    Tensor<D>(const TensorR<D,A>& x) 
+    Tensor<D,N>>(const TensorR<D,A>& x) 
     {
       const size_type N = x.size();
       data_ = new std::valarray<D>(N);
@@ -131,6 +83,37 @@ namespace matricks {
       constructorHelper();
     }
 
+
+    // --------------------- 1D valarray CONSTRUCTOR ---------------------
+    Matrix<D>(const size_type Nr, const size_type Nc, const std::valarray<D>& valar) {
+      Nrows_ = Nr;
+      Ncols_ = Nc;
+      data_ = new std::valarray<D>(valar); 
+      constructorHelper();
+    }
+
+
+    // --------------------- 1D array[]  CONSTRUCTOR ---------------------
+    Matrix<D>(const size_type Nr, const size_type Nc, const D (vals)[]) {
+      // allocate store
+      Nrows_ = Nr;
+      Ncols_ = Nc;
+      data_ = new std::valarray<D>(vals, Nr*Nc); 
+      constructorHelper();
+    }
+
+    
+    // ************* C++11 1D initializer_list CONSTRUCTOR---------------------
+#if CPP11 == 1
+    Matrix<D>(const size_type Nr, const size_type Nc, const std::initializer_list<D>& mylist) 
+    {
+      Nrows_ = Nr;
+      Ncols_ = Nc;
+      data_ = new std::valarray<D>(Nr*Nc);
+      *this = mylist;
+      constructorHelper();
+    }
+#endif // C++11
 
 
 
@@ -149,7 +132,7 @@ namespace matricks {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~Tensor<D>() {
+    ~Tensor<D,N>>() {
       delete  data_ ;
 
       //remove from directory
@@ -173,7 +156,7 @@ namespace matricks {
 
     // *** resize from given integer *** 
     // TODO: variadic fuction
-    Tensor<D>&  resize(const size_type n) { 
+    Tensor<D,N>>&  resize(const size_type n) { 
     }
 
 
@@ -244,7 +227,7 @@ namespace matricks {
     inline std::valarray<D>& getValArray()  {
       return *data_; 
     }
-    inline Tensor<D>& setValArray(std::valarray<D>* valptr)  {
+    inline Tensor<D,N>>& setValArray(std::valarray<D>* valptr)  {
       delete  data_ ;
       const size_t N = valptr->size();
       data_ = valptr;
@@ -407,24 +390,24 @@ namespace matricks {
     // equals functions are included so that derived classes can call these functions
 
     // Assign all elements to the same constant value
-    Tensor<D>& equals(const D d) { 
+    Tensor<D,N>>& equals(const D d) { 
       for(index_type i=size(); i--;) 
 	(*data_)[i]=d; 
       return *this;
     }
-    Tensor<D>& operator=(const D d) { 
+    Tensor<D,N>>& operator=(const D d) { 
       return equals(d);
     }
 
 
     // Assignment to a vector expression
-    template <class A>  Tensor<D>& equals(const TensorR<D,A>& x) {  
+    template <class A>  Tensor<D,N>>& equals(const TensorR<D,A>& x) {  
 
       // resize to avoid segmentation faults
       resize(x.size());
 
       if (this->getAddresses().common( x.getAddresses() )  ){    
-	Tensor<D> vtemp(size());
+	Tensor<D,N>> vtemp(size());
 
 	for (register index_type i = size(); i--;)
 	  vtemp[i] = x[i];   // Inlined expression
@@ -437,7 +420,7 @@ namespace matricks {
       return *this; 
     }
 
-    template <class A>  Tensor<D>& operator=(const TensorR<D,A>& x) {  
+    template <class A>  Tensor<D,N>>& operator=(const TensorR<D,A>& x) {  
       return equals(x);
     }
 
@@ -448,7 +431,7 @@ namespace matricks {
 
 
     // assignment to an array
-    Tensor<D>& equals(const D array[]) {
+    Tensor<D,N>>& equals(const D array[]) {
       
 
       for (index_type i; i < size(); i++)  { 
@@ -459,7 +442,7 @@ namespace matricks {
     }
 
 
-    Tensor<D>& operator=(const D array[]) {
+    Tensor<D,N>>& operator=(const D array[]) {
       return equals(array);
     }
 
@@ -469,7 +452,7 @@ namespace matricks {
     
 
     // Copy asignment
-    Tensor<D>& equals(const Tensor<D>& v2) {
+    Tensor<D,N>>& equals(const Tensor<D,N>>& v2) {
 
       // resize to avoid segmentation faults
       resize(v2.size());
@@ -481,19 +464,19 @@ namespace matricks {
 
 
 
-    Tensor<D>& operator=(const Tensor<D>& v2) {
+    Tensor<D,N>>& operator=(const Tensor<D,N>>& v2) {
       return equals(v2);
     }
 
 
 
     template <class B>
-    Tensor<D>& operator=(const TERW_Resize<D>& b) { 
+    Tensor<D,N>>& operator=(const TERW_Resize<D>& b) { 
       return *this;
     }
 
 
-    Tensor<D>& equals(const std::list<D> mylist) {
+    Tensor<D,N>>& equals(const std::list<D> mylist) {
       
 
       // resize to avoid segmentation faults
@@ -508,14 +491,14 @@ namespace matricks {
     }
 
 
-    Tensor<D>& operator=(const std::list<D> mylist) {
+    Tensor<D,N>>& operator=(const std::list<D> mylist) {
       return equals(mylist);
     }
 
     
     // assignment to a C++11 list
 #if CPP11 == 1
-    Tensor<D>& equals(const std::initializer_list<D> mylist) {
+    Tensor<D,N>>& equals(const std::initializer_list<D> mylist) {
       
 
       // resize to avoid segmentation faults
@@ -531,7 +514,7 @@ namespace matricks {
     }
 #endif // C++11
 
-    Tensor<D>& operator=(const std::initializer_list<D> mylist) {
+    Tensor<D,N>>& operator=(const std::initializer_list<D> mylist) {
       return equals(mylist);
     }
 
@@ -539,7 +522,7 @@ namespace matricks {
 
 
     // assignment to a std::vector
-    Tensor<D>& equals(const std::vector<D> vstd) {
+    Tensor<D,N>>& equals(const std::vector<D> vstd) {
       
 
       // resize to avoid segmentation faults
@@ -552,7 +535,7 @@ namespace matricks {
     }
 
 
-    Tensor<D>& operator=(const std::vector<D> vstd) {
+    Tensor<D,N>>& operator=(const std::vector<D> vstd) {
       return equals(vstd);
     }
 
@@ -560,7 +543,7 @@ namespace matricks {
 
     // assignment to a std::array
     template <std::size_t N>
-    Tensor<D>& equals(const struct std::array<D,N> varray) {
+    Tensor<D,N>>& equals(const struct std::array<D,N> varray) {
       
 
       // resize to avoid segmentation faults
@@ -574,14 +557,14 @@ namespace matricks {
 
 
     template <std::size_t N>
-    Tensor<D>& operator=(const struct std::array<D,N> varray) {
+    Tensor<D,N>>& operator=(const struct std::array<D,N> varray) {
       return equals(varray);
     }
 
 
 
     // assignment to a std::val_array
-    Tensor<D>& equals(const std::valarray<D> varray) {
+    Tensor<D,N>>& equals(const std::valarray<D> varray) {
       
 
       // resize to avoid segmentation faults
@@ -593,7 +576,7 @@ namespace matricks {
       return *this;
     }
 
-    Tensor<D>& operator=(const std::valarray<D> varray) {
+    Tensor<D,N>>& operator=(const std::valarray<D> varray) {
       return equals(varray);
     }
 
@@ -605,12 +588,8 @@ namespace matricks {
     //**********************************************************************
 
     
-    Tensor<D>&  clear(void) { 
-      return resize(0);
-    }
-
     
-    Tensor<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+    Tensor<D,N>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(register index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }

@@ -457,10 +457,10 @@ namespace display {
   }
 
 
-#define SPECIALIZE_getTypeName(TYPE)				\
-  template <>							\
-    inline std::string getTypeName(const TYPE& var) {		\
-    return getTypeStyle(var).apply(#TYPE);			\
+#define SPECIALIZE_getTypeName(TYPE)			\
+  template <>						\
+    inline std::string getTypeName(const TYPE& var) {	\
+    return getTypeStyle(var).apply(#TYPE);		\
   }
 
   SPECIALIZE_getTypeName(float);
@@ -681,6 +681,7 @@ namespace display {
     static std::string string_delimeter;
     static std::string string_row_opening;
     static std::string string_row_closing;
+    static std::string string_lastrow_closing;
     static std::string string_endofline;
     static std::string string_closing;
   };
@@ -786,7 +787,7 @@ namespace display {
 
 #define SPECIALIZE_floating_sendval(TYPE)				\
   template <>								\
-    inline void sendval<TYPE >(std::ostream &stream, const TYPE& d) {				\
+    inline void sendval<TYPE >(std::ostream &stream, const TYPE& d) {	\
     using namespace std;						\
     string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     if (FormatData<TYPE>::tens)  {					\
@@ -798,7 +799,7 @@ namespace display {
     if (d == zero) {							\
       style = FormatData<TYPE >::style_for_zero;			\
     }									\
-    stream << style.apply(sval);						\
+    stream << style.apply(sval);					\
   }
   
   SPECIALIZE_floating_sendval(float);
@@ -1323,14 +1324,14 @@ namespace display {
 
     // TODO: put these into an intilization and share it here as well as in cpp file
     FormatDataMatrix::max_elements_per_line = matricks::maxsize;
-    FormatDataMatrix::string_endofline = "\n";
     FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
     FormatDataMatrix::string_opening = "{";
     FormatDataMatrix::string_delimeter = ", ";
-    FormatDataMatrix::string_row_opening = "{";
-    FormatDataMatrix::string_row_closing = "}\n";
+    FormatDataMatrix::string_row_opening = " {";
+    FormatDataMatrix::string_row_closing = "},";
+    FormatDataMatrix::string_lastrow_closing = "} ";
+    FormatDataMatrix::string_endofline = "\n";
     FormatDataMatrix::string_closing = "}";
-
     
     setFormatStringComplex("(%s, %s)");
 

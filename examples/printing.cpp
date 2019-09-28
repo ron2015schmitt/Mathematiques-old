@@ -23,6 +23,7 @@ int main()
   double vals[] = {1.1,2.2,3.3};
   bool done = true;
   Vector<double> v = range<double>(1,10);
+  Matrix<double> A(2,2, CARRAY({1,2,3,4}));
   char str[] = "hello";
   std::string s = "world";
   std::complex<double> z(1,-1);
@@ -35,6 +36,7 @@ int main()
   disp(vals);
   disp(done);
   disp(v);
+  disp(A);
   disp(str);
   disp(s);
   disp(z);
@@ -46,6 +48,7 @@ int main()
   tdisp(vals);
   tdisp(done);
   tdisp(v);
+  tdisp(A);
   tdisp(str);
   tdisp(s);
   tdisp(z);
@@ -56,6 +59,7 @@ int main()
   cr();cr();
   dispval(n);
   dispval(m);
+  dispval(A);
   
   cr();cr();
   disp(n+3);

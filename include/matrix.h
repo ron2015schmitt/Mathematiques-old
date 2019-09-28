@@ -638,9 +638,8 @@ namespace matricks {
     // --------------- matrix = initializer_list ------------------
 #if CPP11 == 1
     Matrix<D>& equals(const std::initializer_list<D>& mylist) {
-      // resize to avoid segmentation faults
-      resize(mylist.size());
 
+      // TODO: bound scheck 
       size_type i = 0;
       typename std::initializer_list<D>::iterator it; 
       for (it = mylist.begin(); it != mylist.end(); ++it)  { 
@@ -716,26 +715,33 @@ namespace matricks {
 
     friend std::ostream& operator<<(std::ostream &stream, const Matrix<D>& m) {
       using namespace display;
-      std::ostream& os = mout;
-      display::Terminal::setmout(stream);
 
-      Style& style = FormatDataVector::style_for_punctuation;
-      stream << style.apply(FormatDataVector::string_opening);
-      const matricks::index_type N = FormatDataVector::max_elements_per_line;
-      matricks::index_type k = 0;
-      for (matricks::index_type ii = 0; ii < m.size(); ii++, k++) {
-	if (k >= N)  {
-	  stream << style.apply(FormatDataVector::string_endofline);
-	  k = 0;
-	}
-	sendval(stream, m[ii]);
-	if (ii < m.size()-1)  {
-	  stream << style.apply(FormatDataVector::string_delimeter);
+      Style& style = FormatDataMatrix::style_for_punctuation;
+      stream << style.apply(FormatDataMatrix::string_opening);
+      const matricks::index_type N = FormatDataMatrix::max_elements_per_line;
+
+      for (matricks::index_type r = 0; r < m.Nrows(); r++) {
+	stream << style.apply(FormatDataMatrix::string_row_opening);
+	matricks::index_type k = 0;
+	for (matricks::index_type c = 0; c < m.Ncols(); c++, k++) {
+	  if (k >= N)  {
+	    stream << style.apply(FormatDataMatrix::string_endofline);
+	    k = 0;
+	  }
+	  sendval(stream, m(r,c));
+	  if (c < m.Ncols()-1)  {
+	    stream << style.apply(FormatDataMatrix::string_delimeter);
+	  } else {
+	    if (r < m.Nrows()-1)  {
+	      stream << style.apply(FormatDataMatrix::string_row_closing);
+	    } else {
+	      stream << style.apply(FormatDataMatrix::string_lastrow_closing);
+	    }
+	  }
 	}
       }
-      stream << style.apply(FormatDataVector::string_closing);
-
-      display::Terminal::setmout(os);
+      stream << style.apply(FormatDataMatrix::string_closing);
+      
       return stream;
     }
 

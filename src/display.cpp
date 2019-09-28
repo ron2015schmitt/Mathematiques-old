@@ -235,8 +235,9 @@ namespace display {
   Style FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
   std::string FormatDataMatrix::string_opening = "{";
   std::string FormatDataMatrix::string_delimeter = ", ";
-  std::string FormatDataMatrix::string_row_opening = "{";
-  std::string FormatDataMatrix::string_row_closing = "}\n";
+  std::string FormatDataMatrix::string_row_opening = " {";
+  std::string FormatDataMatrix::string_row_closing = "},";
+  std::string FormatDataMatrix::string_lastrow_closing = "} ";
   std::string FormatDataMatrix::string_endofline = "\n";
   std::string FormatDataMatrix::string_closing = "}";
 

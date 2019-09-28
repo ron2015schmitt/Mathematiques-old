@@ -75,7 +75,7 @@ int main()
     text("* Note that this is a _copy_ constructor.");
     text("* In fact _all_ of the `Vector` constructors are _copy_ constructors.");
     codestart("C++");
-    codemultiNoteC11Array( Vector<double> v1( CARRAY({10,11,12,13}) ) );
+    codemultiNoteC11Array( Vector<double> v1( AORLIST({10,11,12,13}) ) );
     codemulti( Vector<double> v2(v1) );
     codemulti( v1[0] = -1 );
     codemulti( v2[0] = -2 );
@@ -90,7 +90,7 @@ int main()
     example(Nex++, "Declare `v2` and initialize to an expression" );
     text("* The expression is computed without creating any intermediate objects.");  
     codestart("C++");
-    codemultiNoteC11Array( Vector<double> v1( CARRAY({10,11,12,13}) ) );
+    codemultiNoteC11Array( Vector<double> v1( AORLIST({10,11,12,13}) ) );
     codemulti( Vector<double> v2(10*v1+1) );
     codeend();
     resultstart();

@@ -74,8 +74,8 @@ int main()
     cr();
     text("Note that values are copied from `v2` to `v1`");
     codestart("C++");
-    codemultiNoteC11Array( Vector<double> v1(CARRAY({1,2,3,4})) );
-    codemultiNoteC11Array( Vector<double> v2(CARRAY({0,0,0,0})) );
+    codemultiNoteC11Array( Vector<double> v1(AORLIST({1,2,3,4})) );
+    codemultiNoteC11Array( Vector<double> v2(AORLIST({0,0,0,0})) );
     codemulti( v2 = v1 );
     codemulti( v1[0] = 100 );
     codemulti( v2[0] = 200 );
@@ -91,8 +91,8 @@ int main()
   {
     example(Nex++,"Assign from a `Vector` expression.");
     codestart("C++");
-    codemultiNoteC11Array( Vector<double> v1(CARRAY({1,2,3,4})) );
-    codemultiNoteC11Array( Vector<double> v2(CARRAY({0,0,0,0})) );
+    codemultiNoteC11Array( Vector<double> v1(AORLIST({1,2,3,4})) );
+    codemultiNoteC11Array( Vector<double> v2(AORLIST({0,0,0,0})) );
     codemulti( v2 = 2*v1 );
     codeend();
     resultstart();
@@ -106,16 +106,16 @@ int main()
   {
     example(Nex++,"Assign from `std` containers.");
     codestart("C++");
-    codemultiNoteC11Array( std::vector<double> vstd(CARRAY({1,2,3,4})) );
+    codemultiNoteC11Array( std::vector<double> vstd(AORLIST({1,2,3,4})) );
     codemulti( Vector<double> v1(4) );
     codemulti( v1 = vstd );
-    codemultiNoteC11Array( std::array<double, 3> varray = CARRAY({10,20,30}) );
+    codemultiNoteC11Array( std::array<double, 3> varray = AORLIST({10,20,30}) );
     codemulti( Vector<double> v2(3) );
     codemulti( v2 = varray );
-    codemultiNoteC11Array( std::valarray<double> myvalarray = CARRAY({100,200}) );
+    codemultiNoteC11Array( std::valarray<double> myvalarray = AORLIST({100,200}) );
     codemulti( Vector<double> v3(2) );
     codemulti( v3 = myvalarray );
-    codemultiNoteC11Array( std::list<double> mylist = CARRAY({-1,-2}); );
+    codemultiNoteC11Array( std::list<double> mylist = AORLIST({-1,-2}); );
     codemulti( Vector<double> v4(2) );
     codemulti( v4 = mylist );
     codeend();

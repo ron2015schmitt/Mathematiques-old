@@ -288,25 +288,25 @@ int main()
 
    
     resultstart2("");
-    resultmulti( v1 = CARRAY({1,4,9,16,25})  );
+    resultmulti( v1 = AORLIST({1,4,9,16,25})  );
     resultmulti( v1.cumsum()  );
-    resultmulti( v1 = CARRAY({1,4,9,16,25})  );
+    resultmulti( v1 = AORLIST({1,4,9,16,25})  );
     resultmulti( v1.cumtrapz()  );
-    resultmulti( v1 = CARRAY({1,2,3,4,5})  );
+    resultmulti( v1 = AORLIST({1,2,3,4,5})  );
     resultmulti( v1.cumprod()  );
-    resultmulti( v1 = CARRAY({1,4,9,16,25})  );
+    resultmulti( v1 = AORLIST({1,4,9,16,25})  );
     resultmulti( v1.diff()  );
-    resultmulti( v1 = CARRAY({1,4,9,16,25})  );
+    resultmulti( v1 = AORLIST({1,4,9,16,25})  );
     resultmulti( v1.diff(true)  );
-    resultmulti( v1 = CARRAY({25,16,9,4,1})  );
+    resultmulti( v1 = AORLIST({25,16,9,4,1})  );
     resultmulti( v1.cumsum_rev()  );
-    resultmulti( v1 = CARRAY({25,16,9,4,1})  );
+    resultmulti( v1 = AORLIST({25,16,9,4,1})  );
     resultmulti( v1.cumtrapz_rev()  );
-    resultmulti( v1 = CARRAY({5,4,3,2,1})  );
+    resultmulti( v1 = AORLIST({5,4,3,2,1})  );
     resultmulti( v1.cumprod_rev()  );
-    resultmulti( v1 = CARRAY({1,4,9,16,25})  );
+    resultmulti( v1 = AORLIST({1,4,9,16,25})  );
     resultmulti( v1.diff_rev()  );
-    resultmulti( v1 = CARRAY({1,4,9,16,25})  );
+    resultmulti( v1 = AORLIST({1,4,9,16,25})  );
     resultmulti( v1.diff_rev(true)  );
     resultend();
   }

@@ -11,9 +11,9 @@
 
 
 #if CPP11 == 1
-#define CARRAY(...) __VA_ARGS__
+#define AORLIST(...) __VA_ARGS__
 #else
-#define CARRAY(...)  (const double[]) __VA_ARGS__
+#define AORLIST(...)  (const double[]) __VA_ARGS__
 #endif
 
 

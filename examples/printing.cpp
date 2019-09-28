@@ -23,7 +23,7 @@ int main()
   double vals[] = {1.1,2.2,3.3};
   bool done = true;
   Vector<double> v = range<double>(1,10);
-  Matrix<double> A(2,2, CARRAY({1,2,3,4}));
+  Matrix<double> A(2,2, AORLIST({1,2,3,4}));
   char str[] = "hello";
   std::string s = "world";
   std::complex<double> z(1,-1);

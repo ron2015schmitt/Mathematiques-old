@@ -221,6 +221,7 @@ namespace display {
 
   // Vector
   // TODO: this shoudl be size_type
+  // TODO: put these into an intilization func and share it here as well as in h file
   matricks::index_type FormatDataVector::max_elements_per_line = matricks::maxsize;
   Style FormatDataVector::style_for_punctuation = createStyle(GRAY1);
   std::string FormatDataVector::string_opening = "{";

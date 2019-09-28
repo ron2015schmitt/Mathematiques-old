@@ -1301,14 +1301,28 @@ namespace display {
 
   inline void set_default_format() {
     using namespace display;
-    // TODO: include default styles
+    // TODO: include all default styles
 
+
+    // TODO: put these into an intilization and share it here as well as in cpp file
+    FormatDataVector::style_for_punctuation = createStyle(GRAY1);
+    FormatDataVector::string_endofline = "\n";
     FormatDataVector::string_opening =  "{";
     FormatDataVector::string_delimeter = ",";
     FormatDataVector::max_elements_per_line = matricks::maxsize;
-    FormatDataVector::string_endofline = "\n";
     FormatDataVector::string_closing =   "}";
 
+    // TODO: put these into an intilization and share it here as well as in cpp file
+    FormatDataMatrix::max_elements_per_line = matricks::maxsize;
+    FormatDataMatrix::string_endofline = "\n";
+    FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
+    FormatDataMatrix::string_opening = "{";
+    FormatDataMatrix::string_delimeter = ", ";
+    FormatDataMatrix::string_row_opening = "{";
+    FormatDataMatrix::string_row_closing = "}\n";
+    FormatDataMatrix::string_closing = "}";
+
+    
     setFormatStringComplex("(%s, %s)");
 
     FormatData<double>::format_string = FormatData<double>::format_string_default;

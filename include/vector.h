@@ -21,6 +21,7 @@ namespace matricks {
     //
     // do NOT declare any other storage.
     // keep the instances lightweight
+    //**********************************************************************
     
     std::valarray<D>* data_;
 
@@ -36,28 +37,24 @@ namespace matricks {
     //**********************************************************************
 
 
-    // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
-    explicit Vector<D>() 
-    {
+    // -------------------  DEFAULT  CONSTRUCTOR: Vector()  --------------------
+    explicit Vector<D>() {
       data_ = new std::valarray<D>(0); 
       constructorHelper();
     }
 
 
-    // --------------------- constant=0 CONSTRUCTOR ---------------------
+    // --------------------- Vector(N)  ---------------------
 
-    explicit Vector<D>(const size_type N) 
-    { 
+    explicit Vector<D>(const size_type N) { 
       data_ = new std::valarray<D>(N);
       constructorHelper();
     }
 
 
-    // --------------------- constant CONSTRUCTOR ---------------------
+    // --------------------- Vector(N,value)  ---------------------
 
-    explicit Vector<D>(const size_type N, const D val) 
-    {
-      
+    explicit Vector<D>(const size_type N, const D val) {
       data_ = new std::valarray<D>(N); 
       *this = val;
       constructorHelper();
@@ -73,42 +70,26 @@ namespace matricks {
 
     // ************* C++11 initializer_list CONSTRUCTOR---------------------
 #if CPP11 == 1
-    Vector<D>(const std::initializer_list<D>& list) 
-    {
-
-      const size_type N =  list.size();
+    Vector<D>(const std::initializer_list<D>& mylist) {
+      const size_type N =  mylist.size();
       data_ = new std::valarray<D>(N); 
-
-      index_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
-      for (it = list.begin(); it != list.end(); ++it)  { 
-	(*this)[i++] = *it;
-      }
-
+      *this = mylist;
       constructorHelper();
     }
 #endif // C++11
 
 
 
-    // --------------------- valarray CONSTRUCTOR ---------------------
-     Vector<D>(const std::valarray<D>& valar) 
-    {
-
+    // --------------------- Vector(valarray)  ---------------------
+     Vector<D>(const std::valarray<D>& valar) {
       data_ = new std::valarray<D>(valar); 
       constructorHelper();
-
     }
 
 
+    // --------------------- Vector(Vector) --------------------
 
-
-    
-
-    // --------------------- COPY CONSTRUCTOR --------------------
-
-    Vector<D>(const Vector<D>& v2) 
-    {
+    Vector<D>(const Vector<D>& v2) {
       const size_type N = v2.size();
       data_ = new std::valarray<D>(N); 
       *this = v2;
@@ -117,7 +98,6 @@ namespace matricks {
 
 
     // --------------------- EXPRESSION CONSTRUCTOR --------------------
-
 
     template <class A>
     Vector<D>(const TensorR<D,A>& x) 
@@ -153,39 +133,6 @@ namespace matricks {
     }
   
 
-    //**********************************************************************
-    //************************** Size related  ******************************
-    //**********************************************************************
-
-    // --------------------- RESIZE ---------------------
-
-    // These allow the user to resize a vector
-
-
-    // *** this is used for recon by assignment ***
-
-    TERW_Resize<D>  resize(void) { 
-      return  TERW_Resize<D>(*this);
-    }
-
-    // *** resize from given integer *** 
-
-    Vector<D>&  resize(const size_type n) { 
-      if (n==this->size())
-	return *this;
-      size_type N;
-      if (n>maxsize) 
-	N=0;
-      else 
-	N=n;
-      // reallocate store
-      //      delete  data_ ;
-      //      data_ = new std::valarray<D>(N);
-      data_->resize(N);
-      return *this;
-    }
-
-
     inline size_type size(void) const {
       return data_->size();
     }
@@ -203,29 +150,62 @@ namespace matricks {
     Tensors getEnum() const {
       return T_VECTOR;
     }
+    VectorofPtrs getAddresses(void) const  {
+      VectorofPtrs myaddr((void*)this);
+      return myaddr;
+    }
+
+
     
     //**********************************************************************
-    //************************** ACCESSS[] ***********************************
+    //************************** RESIZE & REHSAPCE ******************************
     //**********************************************************************
 
-    // -------------------- valarray ACCESS --------------------
+    // --------------------- .resize() ---------------------
+
+    // These allow the user to resize a vector
 
 
-    // "read/write" to the wrapped valarray
-    inline std::valarray<D>& getValArray()  {
-      return *data_; 
+    // *** this is used for resize-by-assignment ***
+    TERW_Resize<D>  resize(void) { 
+      return  TERW_Resize<D>(*this);
     }
-    inline Vector<D>& setValArray(std::valarray<D>* valptr)  {
-      delete  data_ ;
-      const size_t N = valptr->size();
-      data_ = valptr;
+
+    // this is used to empty the vector of its datastore
+    TERW_Resize<D>  resize(void) const {
+      this->resize(0);
+      return  TERW_Resize<D>(*this);
+    }
+
+    // --------------------- .resize(N) ---------------------
+
+    Vector<D>&  resize(const size_type N) { 
+      if (N==this->size())
+	return *this;
+      // reallocate store
+      //      delete  data_ ;
+      //      data_ = new std::valarray<D>(N);
+      data_->resize(N);
       return *this;
     }
+
+    // -------------------------- .reshape(nr,nc) --------------------------------
+    // morph into a matrix, pillaging this object of its data store.
+    //
+    Matrix<D>& reshape(const size_type nr, const size_type nc) { 
+      const size_type N = nr*nc;
+      // rob the data_
+      Matrix<D> m = new Matrix<D>(nr, nc, this->data_);
+      this->data_ = new std::valarray<D>(0);
+      // return the new Matrix, while we live on at zero size...
+      return *m;
+    }
+
 
     // -------------------- ELEMENT ACCESS --------------------
 
     // "read/write" access signed index
-    inline D& operator[](const index_type i)  {
+    D& operator[](const index_type i)  {
       index_type index = i;
       if (i < 0) {
 	index += size();
@@ -234,8 +214,8 @@ namespace matricks {
     }
 
 
-    // "read only" access igned index
-    inline const D operator[](const index_type i) const {
+    // "read only" access signed index
+    const D operator[](const index_type i) const {
       return (const D)(*data_)[i]; 
     }
 
@@ -298,7 +278,7 @@ namespace matricks {
     // -------------------- ELEMENT ACCESS --------------------
 
     // "read/write" access signed index
-    inline D& operator()(const index_type i)  {
+    D& operator()(const index_type i)  {
       index_type index = i;
       if (i < 0) {
 	index += size();
@@ -361,6 +341,25 @@ namespace matricks {
     }
 #endif // C++11
 
+
+
+    //**********************************************************************
+    //********************* Direct access to data_  ***********************************
+    //**********************************************************************
+
+    // -------------------- getValArray() --------------------
+    // "read/write" to the wrapped valarray
+    std::valarray<D>& getValArray()  {
+      return *data_; 
+    }
+
+    // -------------------- setValArray(*valarray) --------------------
+    Vector<D>& setValArray(std::valarray<D>* valptr)  {
+      delete  data_ ;
+      const size_t N = valptr->size();
+      data_ = valptr;
+      return *this;
+    }
 
     
     //**********************************************************************
@@ -471,10 +470,10 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(mylist.size());
 
-      size_type i = 0;
+      size_type k = 0;
       typename std::initializer_list<D>::iterator it; 
       for (it = mylist.begin(); it != mylist.end(); ++it)  { 
-	(*this)[i++] = *it;
+	(*this)[k++] = *it;
       }
 
       return *this;
@@ -553,11 +552,9 @@ namespace matricks {
     //************************** MATH **************************************
     //**********************************************************************
 
-    
-    Vector<D>&  clear(void) { 
-      return resize(0);
-    }
 
+    //----------------- .roundzero(tol) ---------------------------
+    // NOTE: in-place
     
     Vector<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(register index_type i=size(); i--;) {
@@ -1013,16 +1010,6 @@ namespace matricks {
 
 
     
-    //**********************************************************************
-    //************************** Text and debugging ************************
-    //**********************************************************************
-
-    VectorofPtrs getAddresses(void) const  {
-      VectorofPtrs myaddr((void*)this);
-      return myaddr;
-    }
-
-
     //**********************************************************************
     //************************** Text and debugging ************************
     //**********************************************************************

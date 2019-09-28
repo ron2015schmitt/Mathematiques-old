@@ -231,10 +231,17 @@ namespace matricks {
 
 
 
-    // -------------------------- LHS resize()  --------------------------------
+    // -------------------------- resize() by assigment --------------------------------
     // usage:  m.resize() = m2;
     // -----------------------------------------------------------------------
     TERW_Resize<D> resize(void) { 
+      return  TERW_Resize<D>(*this);
+    }
+    // -------------------------- resize() const --------------------------------
+    // usage:  m.resize();
+    // -----------------------------------------------------------------------
+    TERW_Resize<D> resize(void) const { 
+      this->resize(0,0);
       return  TERW_Resize<D>(*this);
     }
 
@@ -254,11 +261,23 @@ namespace matricks {
       return *this;
     }
 
+    // -------------------------- .reshape(N) --------------------------------
+    // morph into a vector, pillaging this object of its data store.
+    //
+    Vector<D>& reshape(const size_type N) {
+      // TODO: check that N==size()
+      // rob the data_
+      Vector<D> m = new Vector<D>(N, this->data_);
+      this->data_ = new std::valarray<D>(0);
+      // return the new Matrix, while we live on at zero size...
+      return *m;
+    }
 
     // -------------------------- transpose() --------------------------------
     // In-place transpose. 
-    // For square matrices this operation is quick and easy.
-    // For non-square matrices, this changes the shape and operation is time-consuming
+    // 1) For square matrices this operation is quick and easy.
+    // 2) For non-square matrices, this changes the shape and operation is time-consuming
+    //    Note: Transpose function is much quicker. only use this for when memory is critical
     Matrix<D> transpose(void) { 
       const index_type NR = Nrows_;
       const index_type NC = Ncols_;

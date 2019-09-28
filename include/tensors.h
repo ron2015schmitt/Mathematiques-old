@@ -5,13 +5,28 @@
 
 namespace matricks {
 
+  //-------------------------------------------------------------------
+  //                  Classes etc defined in this file
+  //-------------------------------------------------------------------
   
   class VectorofPtrs;
   template <class DAT> class Pair;
+  class Dimensions;
+#if  CPP11 == 1
+  enum Tensors : unsigned int;
+#endif
+  template <Tensors, class D> struct TensorType;
+  class TensorAbstract;
+  class TensorObject;
   template <class D, class DERIVED> class TensorR;
   template <class D, class DERIVED> class TensorRW;
+
+  //-------------------------------------------------------------------
+  //                  Classes defined in later files
+  //-------------------------------------------------------------------
   template <class D> class Scalar;
   template <class D> class Vector;
+  template <class D> class Matrix;
 
 
   // ****************************************************************************
@@ -255,7 +270,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
   
-  enum Tensors {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
+  enum Tensors : unsigned int {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
   template <Tensors, class D> struct TensorType;
 
   template <class D> struct TensorType<T_SCALAR,D> {
@@ -263,6 +278,9 @@ namespace matricks {
   };
   template <class D> struct TensorType<T_VECTOR,D> {
     typedef Vector<D> MyType;
+  };
+  template <class D> struct TensorType<T_MATRIX,D> {
+    typedef Matrix<D> MyType;
   };
   
 

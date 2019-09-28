@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r3).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r4).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -164,6 +164,14 @@ The following types are currently supported by the display commands
 * `std::queue` C++ queues
 * `std::map` C++ maps
 * `std::initializer_list` C++11 
+## Printing to other streams
+You can also print to any output stream you like using the formatting and colors provided by matricks.
+| mout  | ostream |
+| ------------- | ------------- |
+| dispval(x)  | sendval(stream,x)  |
+| disp(x)  | send(stream,x)  |
+| tdisp(x)  | tsend(stream,x)  |
+| mdisp(x,y,...)  | msend(stream,x,y,...)  |
 ## Debug-only printing
 
 
@@ -185,7 +193,7 @@ The display commands also have versions that only display when the code is compi
 
 * The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `mout` followed by a carriage return.
 * The functions `printf1`, `printf2`, `printf3` function like printf, but actually use sprintf and then output to the stream `mout` using C++ methodlogy.
-## Controlling the output stream and color
+## Changing the matricks output stream and controlling color
 * All output uses C++ streams (*no* `printf`)
 * By default all output is sent to `std::cout`
 * The output stream can be set using `Terminal::setmout(std::ostream&)`.

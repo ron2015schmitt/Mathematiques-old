@@ -713,7 +713,6 @@ namespace matricks {
 
     // stream << operator
 
-    // TODO: use streamval function once written and get rid of the mout stuff
 
     friend std::ostream& operator<<(std::ostream &stream, const Matrix<D>& m) {
       using namespace display;
@@ -729,7 +728,7 @@ namespace matricks {
 	  stream << style.apply(FormatDataVector::string_endofline);
 	  k = 0;
 	}
-	dispval(m[ii]);
+	sendval(stream, m[ii]);
 	if (ii < m.size()-1)  {
 	  stream << style.apply(FormatDataVector::string_delimeter);
 	}

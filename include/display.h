@@ -748,19 +748,19 @@ namespace display {
 
 
   //---------------------------------------------------------------------------------
-  //       dispval
+  //       sendval
   //---------------------------------------------------------------------------------
 
   template <typename T>
-    inline void dispval(const T& d) {
-    mout << d;
+    inline void sendval(std::ostream &stream, const T& d) {
+    stream << d;
   }
 
     
   
-#define SPECIALIZE_mathtypes_dispval(TYPE)				\
+#define SPECIALIZE_mathtypes_sendval(TYPE)				\
   template <>								\
-    inline void dispval<TYPE >(const TYPE& d) {				\
+    inline void sendval<TYPE >(std::ostream &stream, const TYPE& d) {	\
     using namespace std;						\
     string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     Style style = FormatData<TYPE >::style_for_value;			\
@@ -768,25 +768,25 @@ namespace display {
     if (d == zero) {							\
       style = FormatData<TYPE >::style_for_zero;			\
     }									\
-    mout << style.apply(sval);						\
+    stream << style.apply(sval);					\
   }
   
 
-  SPECIALIZE_mathtypes_dispval(short);
-  SPECIALIZE_mathtypes_dispval(int);
-  SPECIALIZE_mathtypes_dispval(long);
-  SPECIALIZE_mathtypes_dispval(long long);
+  SPECIALIZE_mathtypes_sendval(short);
+  SPECIALIZE_mathtypes_sendval(int);
+  SPECIALIZE_mathtypes_sendval(long);
+  SPECIALIZE_mathtypes_sendval(long long);
 
-  SPECIALIZE_mathtypes_dispval(unsigned short);
-  SPECIALIZE_mathtypes_dispval(unsigned int);
-  SPECIALIZE_mathtypes_dispval(unsigned long);
-  SPECIALIZE_mathtypes_dispval(unsigned long long);
+  SPECIALIZE_mathtypes_sendval(unsigned short);
+  SPECIALIZE_mathtypes_sendval(unsigned int);
+  SPECIALIZE_mathtypes_sendval(unsigned long);
+  SPECIALIZE_mathtypes_sendval(unsigned long long);
 
 
 
-#define SPECIALIZE_floating_dispval(TYPE)				\
+#define SPECIALIZE_floating_sendval(TYPE)				\
   template <>								\
-    inline void dispval<TYPE >(const TYPE& d) {				\
+    inline void sendval<TYPE >(std::ostream &stream, const TYPE& d) {				\
     using namespace std;						\
     string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     if (FormatData<TYPE>::tens)  {					\
@@ -798,143 +798,143 @@ namespace display {
     if (d == zero) {							\
       style = FormatData<TYPE >::style_for_zero;			\
     }									\
-    mout << style.apply(sval);						\
+    stream << style.apply(sval);						\
   }
   
-  SPECIALIZE_floating_dispval(float);
-  SPECIALIZE_floating_dispval(double);
-  SPECIALIZE_floating_dispval(long double);
+  SPECIALIZE_floating_sendval(float);
+  SPECIALIZE_floating_sendval(double);
+  SPECIALIZE_floating_sendval(long double);
 
 
 
   // string
   template <>							
-    inline void dispval<std::string>(const std::string& str) {	
+    inline void sendval<std::string>(std::ostream &stream, const std::string& str) {	
     using namespace std;						
     string s = printf2str(FormatData<std::string>::format_string.c_str(), str.c_str() ); \
     Style style = FormatData<std::string>::style_for_value;		
-    mout << style.apply(s);						
+    stream << style.apply(s);						
   }
 
   // char
   template <>							
-    inline void dispval<char>(const char& c) {			
+    inline void sendval<char>(std::ostream &stream, const char& c) {			
     using namespace std;					
     string s = printf2str(FormatData<char>::format_string.c_str(), c ); \
     Style style = FormatData<char>::style_for_value;		
-    mout << style.apply(s);					
+    stream << style.apply(s);					
   }
 
 
   // bool
   template <>				
-    inline void dispval<bool>(const bool& b) {
+    inline void sendval<bool>(std::ostream &stream, const bool& b) {
     using namespace std;
     if (b) {
       Style style = FormatData<bool>::style_for_true;
       string s = FormatData<bool>::string_for_true;
-      mout << style.apply(s);
+      stream << style.apply(s);
     } else {
       Style style = FormatData<bool>::style_for_false;
       string s = FormatData<bool>::string_for_false;
-      mout << style.apply(s);
+      stream << style.apply(s);
     }
   }
   
 
   // T[N]
   template <typename T,  size_t N>
-    inline void dispval(const T (&a)[N]) {
-    mout << "{";
+    inline void sendval(std::ostream &stream, const T (&a)[N]) {
+    stream << "{";
     for (size_t ii = 0; ii < N; ii++) {
-      if (ii>0)  mout << ", ";
-      dispval(a[ii]);
+      if (ii>0)  stream << ", ";
+      sendval(stream, a[ii]);
     }
-    mout << "}";
+    stream << "}";
   }
 
   // char[N]
   template <size_t N>
-    inline void dispval(const char (&a)[N]) {
-    mout << a;
+    inline void sendval(std::ostream &stream, const char (&a)[N]) {
+    stream << a;
   }
 
 
   // std::vector
   template <typename D>							
-    inline void dispval(const std::vector<D>& var) {
-    mout << "{";
+    inline void sendval(std::ostream &stream, const std::vector<D>& var) {
+    stream << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
-      if (ii>0)  mout << ", ";
-      dispval(var[ii]);
+      if (ii>0)  stream << ", ";
+      sendval(stream, var[ii]);
     }
-    mout << "}";
+    stream << "}";
   }
 
   // std::valarray
   template <typename D>							
-    inline void dispval(const std::valarray<D>& var) {
-    mout << "{";
+    inline void sendval(std::ostream &stream, const std::valarray<D>& var) {
+    stream << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
-      if (ii>0)  mout << ", ";
-      dispval(var[ii]);
+      if (ii>0)  stream << ", ";
+      sendval(stream, var[ii]);
     }
-    mout << "}";
+    stream << "}";
   }
 
 
   // std::list
   template <typename D>							
-    inline void dispval(const std::list<D>& var) {
-    mout << "{";
+    inline void sendval(std::ostream &stream, const std::list<D>& var) {
+    stream << "{";
     size_t ii = 0;
     for(typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
-      if (ii++>0)  mout << ", ";
-      dispval(*it);
+      if (ii++>0)  stream << ", ";
+      sendval(stream, *it);
     }
-    mout << "}";
+    stream << "}";
   }
 
   // std::initializer_list
 #if CPP11 == 1
   template <typename D>							
-    inline void dispval(const std::initializer_list<D>& var) {
-    mout << "{";
+    inline void sendval(std::ostream &stream, const std::initializer_list<D>& var) {
+    stream << "{";
     size_t ii = 0;
     for(typename std::initializer_list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
-      if (ii++>0)  mout << ", ";
-      dispval(*it);
+      if (ii++>0)  stream << ", ";
+      sendval(stream, *it);
     }
-    mout << "}";
+    stream << "}";
   }
 #endif
 
   // std::queue
   template <typename D>							
-    inline void dispval(const std::queue<D>& var) {
+    void sendval(std::ostream &stream, const std::queue<D>& var) {
     // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
     std::queue<D> myq = var;
       
-    mout << "{";
+    stream << "{";
     const size_t N = myq.size();
     for (size_t ii = 0; ii < N; ii++) {
-      if (ii>0)  mout << ", ";
+      if (ii>0)  stream << ", ";
       D val = myq.front();
       myq.pop();
-      dispval(val);
+      sendval(stream, val);
     }
-    mout << "}";
+    stream << "}";
   }
 
     
   // std::map
   template <typename D1, typename D2>					
-    inline void dispval(const std::map<D1,D2>& mymap) {
-    mout << "{" << std::endl;
+    void sendval(std::ostream &stream, const std::map<D1,D2>& mymap) {
+    stream << "{" << std::endl;
     for (typename std::map<D1,D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++ ) {
-      mout <<" "<< it->first << ":" << it->second << std::endl;
+      stream <<" "<< it->first << ":" << it->second << std::endl;
     }
-    mout << "}";
+    stream << "}";
   }
 
 
@@ -1018,8 +1018,9 @@ namespace display {
     }
   }
 
+  
   template <class D>
-    inline void dispval(const std::complex<D>& d) {
+    void sendval(std::ostream &stream, const std::complex<D>& d) {
     using namespace std;
     using namespace matricks;
 
@@ -1038,9 +1039,9 @@ namespace display {
     fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
 
     // put it all together
-    mout << printf2str(fs.c_str(), sr.c_str(), si.c_str());
+    stream << printf2str(fs.c_str(), sr.c_str(), si.c_str());
   }
-  
+
 
   
   //****************************************************************************
@@ -1145,83 +1146,91 @@ namespace display {
     //       exists, EVEN if you put getTypeName(x) inside an if clause
     
     template <typename X>
-      static void mydisp_notype(const X& x, const std::string name, const bool issueCR) {
+      static void mydisp_notype(std::ostream &stream, const X& x, const std::string name, const bool issueCR) {
       using namespace std;
       //      log3("display","Display","mydisp","(const X& x, const std::string name)");
       expression->setString(name);
-      mout << *expression;
-      mout << *equals;
-      dispval(x);
-      mout << *terminator;
+      stream << *expression;
+      stream << *equals;
+      sendval(stream, x);
+      stream << *terminator;
       if (issueCR) {
-	mout << endl;
+	stream << endl;
       }
     }
     template <typename X>
-      static void mydisp_type(const X& x, const std::string name, const bool issueCR) {
+      static void mydisp(std::ostream &stream, const X& x, const std::string name) {
+      using namespace std;
+      mydisp_notype(stream, x, name, false);
+    }
+    template <typename X>
+      static void mydispcr(std::ostream &stream, const X& x, const std::string name) {
+      using namespace std;
+      mydisp_notype(stream, x, name, true);
+    }
+
+    template <typename X>
+      static void mydisp_type(std::ostream &stream, const X& x, const std::string name, const bool issueCR) {
       using namespace std;
       //      log3("display","Display","mydisp","(const X& x, const std::string name)");
-      mout << getTypeName(x) << " ";
+      stream << getTypeName(x) << " ";
       expression->setString(name);
-      mout << *expression;
-      mout << *equals;
-      dispval(x);
-      mout << *terminator;
+      stream << *expression;
+      stream << *equals;
+      sendval(stream, x);
+      stream << *terminator;
       if (issueCR) {
-	mout << endl;
+	stream << endl;
       }
     }
     template <typename X>
-      static void mydisp(const X& x, const std::string name) {
+      static void tmydisp(std::ostream &stream, const X& x, const std::string name) {
       using namespace std;
-      mydisp_notype(x, name,false);
+      mydisp_type(stream, x, name, false);
     }
     template <typename X>
-      static void mydispcr(const X& x, const std::string name) {
+      static void tmydispcr(std::ostream &stream, const X& x, const std::string name) {
       using namespace std;
-      mydisp_notype(x, name,true);
+      mydisp_type(stream, x, name, true);
     }
-    template <typename X>
-      static void tmydisp(const X& x, const std::string name) {
-      using namespace std;
-      mydisp_type(x, name, false);
-    }
-    template <typename X>
-      static void tmydispcr(const X& x, const std::string name) {
-      using namespace std;
-      mydisp_type(x, name, true);
-    }
-    static void issuecr() {
-      mout << std::endl;
+
+    static void issuecr(std::ostream &stream) {
+      stream << std::endl;
     }
   };  // class Display
 
 
-#define disp(...) display::Display::mydispcr(__VA_ARGS__,#__VA_ARGS__)
-#define tdisp(...) display::Display::tmydispcr(__VA_ARGS__,#__VA_ARGS__)
+#define send(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define tsend(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define sendcr(stream)  display::Display::issuecr(stream)
 
-#define cr()  display::Display::issuecr()
+#define dispval(...) display::sendval(mout, __VA_ARGS__)
+#define disp(...) display::Display::mydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
+#define tdisp(...) display::Display::tmydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
+#define cr()  display::Display::issuecr(mout)
 
 
   // for how this works, refer to
   //https://stackoverflow.com/questions/3046889/optional-parameters-with-c-macros
-#define disp_0()  display::Display::issuecr()
-#define disp_1(A)  display::Display::mydisp(A,#A)
-#define disp_2(A,B)   disp_1(A);disp_1(B)
-#define disp_3(A,B,C)  disp_1(A);disp_1(B);disp_1(C)
-#define disp_4(A,B,C,D) disp_1(A);disp_1(B);disp_1(C);disp_1(D)
-#define disp_5(A,B,C,D,E) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E)
-#define disp_6(A,B,C,D,E,F) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F)
-#define disp_7(A,B,C,D,E,F,G) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G)
-#define disp_8(A,B,C,D,E,F,G,H) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G);disp_1(H)
-#define disp_9(A,B,C,D,E,F,G,H,I) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G);disp_1(H);disp_1(I)
-#define disp_10(A,B,C,D,E,F,G,H,I,J) disp_1(A);disp_1(B);disp_1(C);disp_1(D);disp_1(E);disp_1(F);disp_1(G);disp_1(H);disp_1(I);disp_1(J)
+#define disp_0(stream)  display::Display::issuecr(stream)
+#define disp_1(stream,A)  display::Display::mydisp(stream, A, #A)
+#define disp_2(stream,A,B)   disp_1(stream,A);disp_1(stream,B)
+#define disp_3(stream,A,B,C)  disp_1(stream,A);disp_1(stream,B);disp_1(stream,C)
+#define disp_4(stream,A,B,C,D) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D)
+#define disp_5(stream,A,B,C,D,E) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E)
+#define disp_6(stream,A,B,C,D,E,F) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F)
+#define disp_7(stream,A,B,C,D,E,F,G) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G)
+#define disp_8(stream,A,B,C,D,E,F,G,H) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G);disp_1(stream,H)
+#define disp_9(stream,A,B,C,D,E,F,G,H,I) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G);disp_1(stream,H);disp_1(stream,I)
+#define disp_10(stream,A,B,C,D,E,F,G,H,I,J) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G);disp_1(stream,H);disp_1(stream,I);disp_1(stream,J)
 
   // The interim macro that simply strips the excess and ends up with the required macro
-#define mdisp_X(x,A,B,C,D,E,F,G,H,I,J,FUNC, ...)    FUNC;disp_0()
+#define mdisp_X(x,A,B,C,D,E,F,G,H,I,J,FUNC, ...)    FUNC;
 
   // The macro that the programmer uses 
-#define mdisp(...)   mdisp_X(,##__VA_ARGS__, disp_10(__VA_ARGS__), disp_9(__VA_ARGS__), disp_8(__VA_ARGS__), disp_7(__VA_ARGS__), disp_6(__VA_ARGS__), disp_5(__VA_ARGS__), disp_4(__VA_ARGS__), disp_3(__VA_ARGS__), disp_2(__VA_ARGS__), disp_1(__VA_ARGS__), disp_0()) 
+#define mdisp(...)   mdisp_X(,##__VA_ARGS__, disp_10(mout,__VA_ARGS__), disp_9(mout,__VA_ARGS__), disp_8(mout,__VA_ARGS__), disp_7(mout,__VA_ARGS__), disp_6(mout,__VA_ARGS__), disp_5(mout,__VA_ARGS__), disp_4(mout,__VA_ARGS__), disp_3(mout,__VA_ARGS__), disp_2(mout,__VA_ARGS__), disp_1(mout,__VA_ARGS__), disp_0(mout)) 
+
+#define msend(stream,...)   mdisp_X(,##__VA_ARGS__, disp_10(stream,__VA_ARGS__), disp_9(stream,__VA_ARGS__), disp_8(stream,__VA_ARGS__), disp_7(stream,__VA_ARGS__), disp_6(stream,__VA_ARGS__), disp_5(stream,__VA_ARGS__), disp_4(stream,__VA_ARGS__), disp_3(stream,__VA_ARGS__), disp_2(stream,__VA_ARGS__), disp_1(stream,__VA_ARGS__), disp_0(stream)) 
 
 
 

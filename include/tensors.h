@@ -100,19 +100,13 @@ namespace matricks {
     inline friend std::ostream& operator<<(std::ostream &stream, const VectorofPtrs& vptrs) {
       using namespace display;
 
-      // TODO: use streamval function once written and get rid of the mout stuff
-      
-      std::ostream& os = mout;
-      display::Terminal::setmout(stream);
-
       stream << "{";
       for (size_type ii = 0; ii < vptrs.size(); ii++) {
 	if (ii>0)  stream << ", ";
-	dispval(vptrs[ii]);
+	sendval(stream, vptrs[ii]);
       }
       stream << "}";
 
-      display::Terminal::setmout(os);
       return stream;
     }
 
@@ -148,18 +142,12 @@ namespace matricks {
     inline friend std::ostream& operator<<(std::ostream &stream, const Pair<DAT>& pair) {
       using namespace display;
 
-      // TODO: use streamval function once written and get rid of the mout stuff
-      
-      std::ostream& os = mout;
-      display::Terminal::setmout(stream);
-
       stream << "(";
       stream << pair.index;
       stream << " : ";
       stream << pair.data;
       stream << ")";
 
-      display::Terminal::setmout(os);
       return stream;
     }
   };
@@ -226,19 +214,13 @@ namespace matricks {
     inline friend std::ostream& operator<<(std::ostream &stream, const Dimensions& dims) {
       using namespace display;
 
-      // TODO: use streamval function once written and get rid of the mout stuff
-      
-      std::ostream& os = mout;
-      display::Terminal::setmout(stream);
-
       stream << "{";
       for (size_type ii = 0; ii < dims.size(); ii++) {
 	if (ii>0)  stream << ", ";
-	dispval(dims[ii]);
+	sendval(stream, dims[ii]);
       }
       stream << "}";
 
-      display::Terminal::setmout(os);
       return stream;
     }
       

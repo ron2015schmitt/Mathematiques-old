@@ -649,7 +649,7 @@ namespace matricks {
 
     // stream << operator
 
-    // TODO: use streamval function once written and get rid of the mout stuff
+    // TODO: implement
 
     friend std::ostream& operator<<(std::ostream &stream, const Tensor<D>& v) {
       using namespace display;
@@ -665,6 +665,7 @@ namespace matricks {
 
 
     // stream >> operator
+    // TODO: implement
 
     friend std::istream& operator>>(std::istream& stream,  Tensor<D>& x) {	
       return stream;

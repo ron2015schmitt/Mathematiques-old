@@ -1030,13 +1030,8 @@ namespace matricks {
 
     // stream << operator
 
-    // TODO: use streamval function once written and get rid of the mout stuff
-
     friend std::ostream& operator<<(std::ostream &stream, const Vector<D>& v) {
       using namespace display;
-      std::ostream& os = mout;
-      display::Terminal::setmout(stream);
-
       Style& style = FormatDataVector::style_for_punctuation;
       stream << style.apply(FormatDataVector::string_opening);
       const matricks::index_type N = FormatDataVector::max_elements_per_line;
@@ -1046,14 +1041,13 @@ namespace matricks {
 	  stream << style.apply(FormatDataVector::string_endofline);
 	  k = 0;
 	}
-	dispval(v[ii]);
+	sendval(stream, v[ii]);
 	if (ii < v.size()-1)  {
 	  stream << style.apply(FormatDataVector::string_delimeter);
 	}
       }
       stream << style.apply(FormatDataVector::string_closing);
 
-      display::Terminal::setmout(os);
       return stream;
     }
 

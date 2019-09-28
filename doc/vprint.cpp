@@ -217,6 +217,22 @@ int main()
   text("* `std::initializer_list` C++11 ");
 
 
+
+  // printing to other streams
+
+  header2("Printing to other streams");
+
+  text("You can also print to any output stream you like using the formatting and colors provided by matricks.");
+
+  text("| mout  | ostream |");
+  text("| ------------- | ------------- |");
+  text("| dispval(x)  | sendval(stream,x)  |");
+  text("| disp(x)  | send(stream,x)  |");
+  text("| tdisp(x)  | tsend(stream,x)  |");
+  text("| mdisp(x,y,...)  | msend(stream,x,y,...)  |");
+  
+
+  
   // debug-only printing
 
   header2("Debug-only printing");
@@ -249,7 +265,7 @@ int main()
 
 
   
-  header2("Controlling the output stream and color");
+  header2("Changing the matricks output stream and controlling color");
   text("* All output uses C++ streams (*no* `printf`)");
   text("* By default all output is sent to `std::cout`");
   text("* The output stream can be set using `Terminal::setmout(std::ostream&)`.");

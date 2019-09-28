@@ -1015,7 +1015,7 @@ namespace matricks {
     //**********************************************************************
 
     inline std::string classname() const {
-      return "Vector";
+      return "Vector"+display::getBracketedTypeName(D(0));
     }
 
 

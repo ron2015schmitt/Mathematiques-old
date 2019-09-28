@@ -402,5 +402,12 @@ int main()
   TensorType<T_SCALAR,int>::MyType s3 = s2;
 
   disp(s3);
+
+  Matrix<double> A(2,3);
+  A= {{1,2,3},{4,5,6}};
+  tdisp(A);
+  A.transpose();
+  tdisp(A);
+  
   return 0;
 }

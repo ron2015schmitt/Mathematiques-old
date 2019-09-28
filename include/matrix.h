@@ -229,6 +229,20 @@ namespace matricks {
       return *this;
     }
 
+    // -------------------------- resize(Dimensions) --------------------------------
+    
+    Matrix<D>& resize(const Dimensions dims) {
+      // TODO: check 
+      Nrows_ = dims[0];
+      Ncols_ = dims[1];
+      
+      const size_type N = Nrows_*Ncols_;
+      if (N==this->size())
+	return *this;
+      // reallocate store
+      data_->resize(N);
+      return *this;
+    }
 
 
     // -------------------------- resize() by assigment --------------------------------
@@ -290,9 +304,9 @@ namespace matricks {
 	D temp;
 	for (r = 0; r < NR; ++r)
 	  for (c = r + 1; c < NR; ++c) {
-	    temp = (*this)(r + c * NR);
-	    (*this)(r + c * NR) = (*this)(c + r * NR);
-	    (*this)(c + r * NR) = temp;
+	    temp = (*this)[r + c * NR];
+	    (*this)[r + c * NR] = (*this)[c + r * NR];
+	    (*this)[c + r * NR] = temp;
 	  }
 	return *this;
       }
@@ -327,8 +341,8 @@ namespace matricks {
 	index_type jstartC = Nminus1 - jstart;
 	index_type j = jstart;
 	index_type jC = jstartC;
-	D dstart = (*this)(jstart);
-	D dstartC = (*this)(jstartC);
+	D dstart = (*this)[jstart];
+	D dstartC = (*this)[jstartC];
 
 	// PROCESS THE CURRENT SEQUENCE AND ITS COMPLIMENTARY SEQUENCE
 	while (1) {
@@ -340,17 +354,17 @@ namespace matricks {
 	    move[jC] = true;
 	  count += 2;
 	  if (jnext == jstart) {
-	    (*this)(j) = dstart;
-	    (*this)(jC) = dstartC;
+	    (*this)[j] = dstart;
+	    (*this)[jC] = dstartC;
 	    break;
 	  }
 	  if (jnext == jstartC) {
-	    (*this)(j) = dstartC;
-	    (*this)(jC) = dstart;
+	    (*this)[j] = dstartC;
+	    (*this)[jC] = dstart;
 	    break;
 	  }
-	  (*this)(j) = (*this)(jnext);
-	  (*this)(jC) = (*this)(jnextc);
+	  (*this)[j] = (*this)[jnext];
+	  (*this)[jC] = (*this)[jnextc];
 	  j = jnext;
 	  jC = jnextc;
 	}
@@ -526,8 +540,8 @@ namespace matricks {
 
     // ----------------- matrix = TensorR<D,A> ----------------
     template <class A>  Matrix<D>& equals(const TensorR<D,A>& x) {  
-      // resize to avoid segmentation faults
-      resize(x.size());
+      // TODO: issue warning
+      resize(x.dims());
 
       if (common(*this, x)){    
 	Matrix<D> mtemp(Nrows_,Ncols_);
@@ -573,7 +587,7 @@ namespace matricks {
     // ----------------- matrix = matrix ----------------
     Matrix<D>& equals(const Matrix<D>& m2) {
       // TODO; issue warning
-      resize(m2.size());
+      this->resize(m2.dims());
 
       for(register index_type i=size(); i--;)
 	(*data_)[i] = m2[i];    
@@ -603,7 +617,7 @@ namespace matricks {
       index_type i = 0;
       typename std::initializer_list<std::initializer_list<D> >::iterator itR; 
       for (itR = mylist.begin(); itR != mylist.end(); ++itR)  {
-	std::initializer_list<D>& row = *itR;
+	const std::initializer_list<D>& row = *itR;
 	// TODO: check that each row has same # cols
 	typename std::initializer_list<D>::iterator itC; 
 	for (itC = row.begin(); itC != row.end(); ++itC)  {
@@ -697,7 +711,7 @@ namespace matricks {
     //**********************************************************************
 
     inline std::string classname() const {
-      return "Matrix";
+      return "Matrix"+display::getBracketedTypeName(D(0));
     }
 
 

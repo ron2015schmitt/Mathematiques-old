@@ -226,7 +226,7 @@ int main()
   cr();cr();
   text("| `mout`  | `ostream` |");
   text("| ------------- | ------------- |");
-  text("| `**dispval**(x)`  | `sendval(ostream,x)`  |");
+  text("| `*dispval*(x)`  | `sendval(ostream,x)`  |");
   text("| `disp(x)`  | `send(ostream,x)`  |");
   text("| `tdisp(x)`  | `tsend(ostream,x)`  |");
   text("| `mdisp(x,y,...)`  | `msend(ostream,x,y,...)`  |");

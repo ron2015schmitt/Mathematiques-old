@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r5).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r6).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -171,7 +171,7 @@ The following types are currently supported by the display commands
 
 | `mout`  | `ostream` |
 | ------------- | ------------- |
-| `**dispval**(x)`  | `sendval(ostream,x)`  |
+| `*dispval*(x)`  | `sendval(ostream,x)`  |
 | `disp(x)`  | `send(ostream,x)`  |
 | `tdisp(x)`  | `tsend(ostream,x)`  |
 | `mdisp(x,y,...)`  | `msend(ostream,x,y,...)`  |

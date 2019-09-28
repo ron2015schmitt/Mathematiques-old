@@ -446,15 +446,13 @@ namespace display {
   // https://stackoverflow.com/questions/87372/check-if-a-class-has-a-member-function-of-a-given-signature
   // perhaps implement as added feature if C++11 compiler:
   // https://stackoverflow.com/questions/41936763/type-traits-to-check-if-class-has-member-function
+
+  template <typename T> inline std::string getBracketedTypeName(const T& var);
   
   template <class T> inline std::string getTypeName(const T& var) {
     return getTypeStyle(var).apply(var.classname());
   }
 
-  template <typename T> inline std::string getBracketedTypeName(const T& var){
-    std::string name = getTypeName<T>(var);
-    return StyledString::get(ANGLE1).get() + getTypeStyle(var).apply(name) + StyledString::get(ANGLE2).get();
-  }
 
 
 #define SPECIALIZE_getTypeName(TYPE)			\
@@ -560,8 +558,16 @@ namespace display {
   SPECIALIZE_getTypeName_CONTAINER2(std::map);
 
 
+
+    //---------------------------------------------------------------------------------
+  //       getBracketedTypeName
+  //-------------------------------------------------------------------------------
   
 
+  template <typename T> inline std::string getBracketedTypeName(const T& var){
+    std::string name = getTypeName(var);
+    return StyledString::get(ANGLE1).get() + getTypeStyle(var).apply(name) + StyledString::get(ANGLE2).get();
+  }
   
   
 

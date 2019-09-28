@@ -81,8 +81,10 @@ int main()
   char str[] = "hello";
   std::string s = "world";
   std::complex<double> z(1,-1);
-
-
+  Vector<std::complex<double> > vc(2);
+  vc[0] = std::complex<double>(2.0,3.0);
+  vc[1] = std::complex<double>(-2.0,7.0);
+  
   cr();cr();
   disp(n);
   disp(m);
@@ -90,6 +92,7 @@ int main()
   disp(vals);
   disp(done);
   disp(v);
+  disp(vc);
   disp(str);
   disp(s);
   disp(z);
@@ -101,6 +104,7 @@ int main()
   tdisp(vals);
   tdisp(done);
   tdisp(v);
+  tdisp(vc);
   tdisp(str);
   tdisp(s);
   tdisp(z);

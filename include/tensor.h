@@ -15,7 +15,7 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D, size_type N> class Tensor : public TensorRW<D,Tensor<D,N> > {
+  template <class D> class Tensor : public TensorRW<D,Tensor<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -40,7 +40,7 @@ namespace matricks {
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
 
-    explicit Tensor<D,N>(const Dimensions& dims) 
+    explicit Tensor<D>(const Dimensions& dims) 
     {
       dims_ = new Dimensions(dims);
       data_ = new std::valarray<D>(dims.size());
@@ -50,7 +50,7 @@ namespace matricks {
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Tensor<D,N>>(const Dimensions& dims, const D val) 
+    explicit Tensor<D>(const Dimensions& dims, const D val) 
     {
       dims_ = new Dimensions(dims);
       data_ = new std::valarray<D>(val, dims.size());
@@ -59,61 +59,6 @@ namespace matricks {
 
 
     
-
-    // --------------------- COPY CONSTRUCTOR --------------------
-
-    Tensor<D,N>>(const Tensor<D,N>>& v2) 
-    {
-      const size_type N = v2.size();
-      data_ = new std::valarray<D>(N); 
-      *this = v2;
-      constructorHelper();
-    }
-
-
-    // --------------------- EXPRESSION CONSTRUCTOR --------------------
-
-
-    template <class A>
-    Tensor<D,N>>(const TensorR<D,A>& x) 
-    {
-      const size_type N = x.size();
-      data_ = new std::valarray<D>(N);
-      *this = x;
-      constructorHelper();
-    }
-
-
-    // --------------------- 1D valarray CONSTRUCTOR ---------------------
-    Matrix<D>(const size_type Nr, const size_type Nc, const std::valarray<D>& valar) {
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_ = new std::valarray<D>(valar); 
-      constructorHelper();
-    }
-
-
-    // --------------------- 1D array[]  CONSTRUCTOR ---------------------
-    Matrix<D>(const size_type Nr, const size_type Nc, const D (vals)[]) {
-      // allocate store
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_ = new std::valarray<D>(vals, Nr*Nc); 
-      constructorHelper();
-    }
-
-    
-    // ************* C++11 1D initializer_list CONSTRUCTOR---------------------
-#if CPP11 == 1
-    Matrix<D>(const size_type Nr, const size_type Nc, const std::initializer_list<D>& mylist) 
-    {
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_ = new std::valarray<D>(Nr*Nc);
-      *this = mylist;
-      constructorHelper();
-    }
-#endif // C++11
 
 
 
@@ -132,7 +77,7 @@ namespace matricks {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~Tensor<D,N>>() {
+    ~Tensor<D>() {
       delete  data_ ;
 
       //remove from directory
@@ -154,10 +99,6 @@ namespace matricks {
       return  TERW_Resize<D>(*this);
     }
 
-    // *** resize from given integer *** 
-    // TODO: variadic fuction
-    Tensor<D,N>>&  resize(const size_type n) { 
-    }
 
 
     inline size_type size(void) const {
@@ -176,6 +117,11 @@ namespace matricks {
       return T_TENSOR;
     }
 
+    TensorofPtrs getAddresses(void) const  {
+      TensorofPtrs myaddr((void*)this);
+      return myaddr;
+    }
+
     // index - "row major"
     // TODO: test this code
     
@@ -192,10 +138,7 @@ namespace matricks {
       va_end(val);
       return k;
     }
-
-
-
-    
+   
     
     // indices - This is the inverse of the above function
     // TODO: test this code
@@ -252,133 +195,12 @@ namespace matricks {
     }
 
 
-    // TODO:  variadic number of slices should be possible
-    // https://en.cppreference.com/w/cpp/language/variadic_arguments
-    // " class type arguments are allowed (except class types with non-trivial
-    //   copy constructor, non-trivial move constructor, or a non-trivial
-    //   destructor, which are conditionally-supported with
-    //   implementation-defined semantics)"
-    // but need to have a slice that defines a single index
-
-    // Accessing a slice of values
-    
-    TERW_Subset<D> operator[](const slc& slice)  { 
-      return (*this)[slice.toIndexTensor(size())];
-    }
-    const TERW_Subset<D>  operator[](const slc& slice) const  {
-      //      display::log3("Tensor","operator[]","(const slc& slice)\n");
-      return (*this)[slice.toIndexTensor(size())];
-    }
-      
-    
-
-    // Accessing a SET of values using a vector of ints
-
-    TERW_Subset<D> operator[](const Tensor<index_type>& ii) {
-      return TERW_Subset<D>(*this, ii);
-    }
-    const TERW_Subset<D> operator[](const Tensor<index_type>& ii) const {
-      return TERW_Subset<D>(*this, ii);
-    }
-
-
-
-    
-    // Accessing a SET of values using a MASK
-    
-    TERW_Submask<D> operator[](const Tensor<bool>& mask)  {
-      return  TERW_Submask<D>(*this,mask);
-    }
-    const TERW_Submask<D> operator[](const Tensor<bool>& mask)  const {
-      return  TERW_Submask<D>(*this,mask);
-    }
-
-
-
-    //Accessing a SET of values using a list
-
-#if CPP11 == 1
-    TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) {
-      return  TERW_Subset<D>(*this, list);
-    }
-    const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
-      return  TERW_Subset<D>(*this, list);
-    }
-#endif // C++11
-
-
     //**********************************************************************
     //************************** ACCESS() ***********************************
     //**********************************************************************
 
-    // -------------------- valarray ACCESS --------------------
 
     // -------------------- ELEMENT ACCESS --------------------
-
-    // "read/write" access signed index
-    inline D& operator()(const index_type i)  {
-      index_type index = i;
-      if (i < 0) {
-	index += size();
-      }
-      return (*data_)[index]; 
-    }
-
-
-    // "read only" access igned index
-    inline const D operator()(const index_type i) const {
-      return (const D)(*data_)[i]; 
-    }
-
-
-
-
-    // Accessing a slice of values
-    
-    TERW_Subset<D> operator()(const slc& slice)  { 
-      return (*this)[slice.toIndexTensor(size())];
-    }
-    const TERW_Subset<D>  operator()(const slc& slice) const  {
-      //      display::log3("Tensor","operator[]","(const slc& slice)\n");
-      return (*this)[slice.toIndexTensor(size())];
-    }
-      
-    
-
-    // Accessing a SET of values using a vector of ints
-
-    TERW_Subset<D> operator()(const Tensor<index_type>& ii) {
-      return TERW_Subset<D>(*this, ii);
-    }
-    const TERW_Subset<D> operator()(const Tensor<index_type>& ii) const {
-      return TERW_Subset<D>(*this, ii);
-    }
-
-
-
-    
-    // Accessing a SET of values using a MASK
-    
-    TERW_Submask<D> operator()(const Tensor<bool>& mask)  {
-      return  TERW_Submask<D>(*this,mask);
-    }
-    const TERW_Submask<D> operator()(const Tensor<bool>& mask)  const {
-      return  TERW_Submask<D>(*this,mask);
-    }
-
-
-
-    //Accessing a SET of values using a list
-
-#if CPP11 == 1
-    TERW_Subset<D> operator()(const std::initializer_list<index_type>& list) {
-      return  TERW_Subset<D>(*this, list);
-    }
-    const TERW_Subset<D> operator()(const std::initializer_list<index_type>& list) const {
-      return  TERW_Subset<D>(*this, list);
-    }
-#endif // C++11
-
 
     
     //**********************************************************************
@@ -389,197 +211,6 @@ namespace matricks {
     // For this reason, in most cases, its preferred to overload the function vcast()
     // equals functions are included so that derived classes can call these functions
 
-    // Assign all elements to the same constant value
-    Tensor<D,N>>& equals(const D d) { 
-      for(index_type i=size(); i--;) 
-	(*data_)[i]=d; 
-      return *this;
-    }
-    Tensor<D,N>>& operator=(const D d) { 
-      return equals(d);
-    }
-
-
-    // Assignment to a vector expression
-    template <class A>  Tensor<D,N>>& equals(const TensorR<D,A>& x) {  
-
-      // resize to avoid segmentation faults
-      resize(x.size());
-
-      if (this->getAddresses().common( x.getAddresses() )  ){    
-	Tensor<D,N>> vtemp(size());
-
-	for (register index_type i = size(); i--;)
-	  vtemp[i] = x[i];   // Inlined expression
-	for (register index_type i = size(); i--;)
-	  (*data_)[i] = vtemp[i];
-      } else {
-	for (register index_type i = size(); i--;)
-	  (*data_)[i] = x[i];   // Inlined expression
-      }
-      return *this; 
-    }
-
-    template <class A>  Tensor<D,N>>& operator=(const TensorR<D,A>& x) {  
-      return equals(x);
-    }
-
-
-
-    
-
-
-
-    // assignment to an array
-    Tensor<D,N>>& equals(const D array[]) {
-      
-
-      for (index_type i; i < size(); i++)  { 
-	(*this)[i++] = array[i];
-      }
-
-      return *this;
-    }
-
-
-    Tensor<D,N>>& operator=(const D array[]) {
-      return equals(array);
-    }
-
-
-
-
-    
-
-    // Copy asignment
-    Tensor<D,N>>& equals(const Tensor<D,N>>& v2) {
-
-      // resize to avoid segmentation faults
-      resize(v2.size());
-
-      for(register index_type i=size(); i--;)
-	(*data_)[i] = v2[i];    
-      return *this;
-    }
-
-
-
-    Tensor<D,N>>& operator=(const Tensor<D,N>>& v2) {
-      return equals(v2);
-    }
-
-
-
-    template <class B>
-    Tensor<D,N>>& operator=(const TERW_Resize<D>& b) { 
-      return *this;
-    }
-
-
-    Tensor<D,N>>& equals(const std::list<D> mylist) {
-      
-
-      // resize to avoid segmentation faults
-      resize(mylist.size());
-
-      index_type i = 0;
-      for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
-	(*this)[i++] = *it;
-      }
-
-      return *this;
-    }
-
-
-    Tensor<D,N>>& operator=(const std::list<D> mylist) {
-      return equals(mylist);
-    }
-
-    
-    // assignment to a C++11 list
-#if CPP11 == 1
-    Tensor<D,N>>& equals(const std::initializer_list<D> mylist) {
-      
-
-      // resize to avoid segmentation faults
-      resize(mylist.size());
-
-      size_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
-      for (it = mylist.begin(); it != mylist.end(); ++it)  { 
-	(*this)[i++] = *it;
-      }
-
-      return *this;
-    }
-#endif // C++11
-
-    Tensor<D,N>>& operator=(const std::initializer_list<D> mylist) {
-      return equals(mylist);
-    }
-
-
-
-
-    // assignment to a std::vector
-    Tensor<D,N>>& equals(const std::vector<D> vstd) {
-      
-
-      // resize to avoid segmentation faults
-      resize(vstd.size());
-
-      for(register size_type i=size(); i--;)
-	(*data_)[i] = vstd[i];    
-
-      return *this;
-    }
-
-
-    Tensor<D,N>>& operator=(const std::vector<D> vstd) {
-      return equals(vstd);
-    }
-
-
-
-    // assignment to a std::array
-    template <std::size_t N>
-    Tensor<D,N>>& equals(const struct std::array<D,N> varray) {
-      
-
-      // resize to avoid segmentation faults
-      resize(N);
-
-      for(register size_type i=size(); i--;)
-	(*data_)[i] = varray[i];    
-
-      return *this;
-    }
-
-
-    template <std::size_t N>
-    Tensor<D,N>>& operator=(const struct std::array<D,N> varray) {
-      return equals(varray);
-    }
-
-
-
-    // assignment to a std::val_array
-    Tensor<D,N>>& equals(const std::valarray<D> varray) {
-      
-
-      // resize to avoid segmentation faults
-      resize(varray.size());
-
-      for(register size_type i=size(); i--;)
-	(*data_)[i] = varray[i];    
-
-      return *this;
-    }
-
-    Tensor<D,N>>& operator=(const std::valarray<D> varray) {
-      return equals(varray);
-    }
-
 
 
 
@@ -589,7 +220,7 @@ namespace matricks {
 
     
     
-    Tensor<D,N>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+    Tensor<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(register index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }
@@ -597,23 +228,14 @@ namespace matricks {
     }
 
 
-    
-    //**********************************************************************
-    //************************** Text and debugging ************************
-    //**********************************************************************
-
-    TensorofPtrs getAddresses(void) const  {
-      TensorofPtrs myaddr((void*)this);
-      return myaddr;
-    }
-
 
     //**********************************************************************
     //************************** Text and debugging ************************
     //**********************************************************************
 
     inline std::string classname() const {
-      return "Tensor";
+      D d;
+      return "Tensor"+getBracketedTypename(d);
     }
 
 

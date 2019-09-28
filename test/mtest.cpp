@@ -29,10 +29,10 @@ int main()
 
     printStart(++testnum);
     Vector<int> m1(2,2);
-    m1 = CARRAY({10,20,30,40});
+    m1 = AORLIST({10,20,30,40});
     Vector<int> m2(2,2);
-    m2 = CARRAY({-1,-2,-3,-4});
-    Vector<int> expected = CARRAY({9, 18, 27, 36});
+    m2 = AORLIST({-1,-2,-3,-4});
+    Vector<int> expected = AORLIST({9, 18, 27, 36});
     Vector<int> result;
     testcode( result = m1 + m2 );
     bool pass = equal(result,expected);

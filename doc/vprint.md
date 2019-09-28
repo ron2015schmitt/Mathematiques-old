@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r6).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r7).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -166,12 +166,12 @@ The following types are currently supported by the display commands
 * `std::initializer_list` C++11 
 ## Printing to other streams: `send`, `sendval`, `tsend`, `msend`
 * The default stream is `mout` (refer to next section)
-* You can also utilize all the formatting and color functionality of matricks and print to any output stream you like, including files.  The sorresponding functions are shown below.
+* You can also utilize all the formatting and color functionality of matricks and print to any output stream you like, including files.  The corresponding functions are shown below.
 
 
 | `mout`  | `ostream` |
 | ------------- | ------------- |
-| `*dispval*(x)`  | `sendval(ostream,x)`  |
+| `dispval(x)`  | `sendval(ostream,x)`  |
 | `disp(x)`  | `send(ostream,x)`  |
 | `tdisp(x)`  | `tsend(ostream,x)`  |
 | `mdisp(x,y,...)`  | `msend(ostream,x,y,...)`  |

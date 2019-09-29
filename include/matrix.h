@@ -639,8 +639,8 @@ namespace matricks {
 
     // ------------------------ matrix = array[] ----------------
     Matrix<D>& equals(const D array1[]) {
-      for (index_type i; i < size(); i++)  { 
-	(*this)[i++] = array1[i];
+      for (index_type i = 0; i < size(); i++)  { 
+	(*this)[i] = array1[i];
       }
       return *this;
     }
@@ -743,7 +743,7 @@ namespace matricks {
 	    stream << style.apply(FormatDataMatrix::string_endofline);
 	    k = 0;
 	  }
-	  sendval(stream, m(r,c));
+	  dispval_strm(stream, m(r,c));
 	  if (c < m.Ncols()-1)  {
 	    stream << style.apply(FormatDataMatrix::string_delimeter);
 	  } else {

@@ -1,5 +1,5 @@
-#ifndef MATRICKS__TENSOR_H
-#define MATRICKS__TENSOR_H
+#ifndef MATRICKS__TENSORS_H
+#define MATRICKS__TENSORS_H
 
 
 
@@ -103,7 +103,7 @@ namespace matricks {
       stream << "{";
       for (size_type ii = 0; ii < vptrs.size(); ii++) {
 	if (ii>0)  stream << ", ";
-	sendval(stream, vptrs[ii]);
+	dispval_strm(stream, vptrs[ii]);
       }
       stream << "}";
 
@@ -159,23 +159,37 @@ namespace matricks {
   // Dimensions - class to hold dimensions of Tensors
   // -------------------------------------------------------------------
 
-  //TODO: should check for dimension 0, which should not be passed
-
   class Dimensions : public std::vector<size_type> {
+  private:
+    size_type datasize_;
+
+
   public:
     typedef typename std::vector<size_type> Parent;
     typedef typename Parent::iterator Iterator;
+    typedef size_type ElementType;
+    Dimensions(const Dimensions& dims) {
+      resize(dims.rank(),0);
+      for(int k = 0; k < dims.rank(); k++) {
+	(*this)[k] = dims[k];
+      }
+      calcSize();
+    }
     Dimensions() {
       resize(0,0);
+      calcSize();
     }
     Dimensions(const size_type dim1) {
+      // TODO: make sure >0
       resize(1,0);
       (*this)[0] = dim1;
+      calcSize();
     }
     Dimensions(const size_type dim1, const size_type dim2) {
       resize(2,0);
       (*this)[0] = dim1;
       (*this)[1] = dim2;
+      calcSize();
     }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3) {
       //      mdisp3(dim1,dim2,dim3);
@@ -184,6 +198,7 @@ namespace matricks {
       (*this)[0] = dim1;
       (*this)[1] = dim2;
       (*this)[2] = dim3;
+      calcSize();
     }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3, const size_type dim4) {
       //      mdisp3(dim1,dim2,dim3);
@@ -193,8 +208,17 @@ namespace matricks {
       (*this)[1] = dim2;
       (*this)[2] = dim3;
       (*this)[3] = dim4;
+      calcSize();
     }
 
+    Dimensions(const Parent& vec) {
+      resize(vec.size(),0);
+      for(int k = 0; k < vec.size(); k++) {
+	(*this)[k] = vec[k];
+      }
+      calcSize();
+    }
+    
     // use C++11 init list for arbitrary rank
 #if CPP11 == 1
     Dimensions(const std::initializer_list<size_type> list) 
@@ -206,16 +230,15 @@ namespace matricks {
       for (it = list.begin(); it != list.end(); ++it)  { 
 	(*this)[i++] = *it;
       }
+      calcSize();
     }
 #endif // C++11
-
-
 
     // return this object with size 1 dimensions removed
     
     Dimensions& reduce() const {
       Dimensions* v = new Dimensions();
-      for (size_type i = 0; i < this->size(); i++) {
+      for (size_type i = 0; i < this->rank(); i++) {
 	if ((*this)[i] != 1) {
 	  v->push_back((*this)[i]);
 	}
@@ -227,7 +250,39 @@ namespace matricks {
       return (this->reduce() == dims.reduce());
     }
 
+    size_type rank() const {
+      return Parent(*this).size();
+    }
+    size_type ndims() const {
+      return Parent(*this).size();
+    }
+    size_type datasize() const {
+      return datasize_;
+    }
 
+
+    Iterator erase(const Iterator iterator) {
+      Iterator newit = Parent::erase(iterator);
+      this->calcSize();
+      return newit;
+    }
+
+    void push_back(const ElementType n) {
+      Parent(*this).push_back(n);
+      this->calcSize();
+    }
+    void pop_back() {
+      Parent(*this).pop_back();
+      this->calcSize();
+    }
+
+    void calcSize() {
+      datasize_ = 1;
+      for (int k = 0; k < this->rank(); k++) {
+	datasize_ *= (*this)[k];
+      }
+    }
+        
     inline std::string classname() const {
       return "Dimensions";
     }
@@ -235,11 +290,85 @@ namespace matricks {
 
     inline friend std::ostream& operator<<(std::ostream &stream, const Dimensions& dims) {
       using namespace display;
+      stream << "{";
+      for (size_type ii = 0; ii < dims.rank(); ii++) {
+	if (ii>0)  stream << ", ";
+	dispval_strm(stream, dims[ii]);
+      }
+      stream << "}";
+      return stream;
+    }
+  };
+
+
+  inline bool equiv(const Dimensions& dims1, const Dimensions& dims2) {
+    return dims1.equiv(dims2);
+  }
+
+  // -------------------------------------------------------------------
+  //
+  // Indices - class to hold dimensions of Tensors
+  // -------------------------------------------------------------------
+
+
+  class Indices : public std::vector<index_type> {
+  private:
+  public:
+    typedef typename std::vector<index_type> Parent;
+    typedef typename Parent::iterator Iterator;
+    Indices(const Indices& inds) {
+      resize(inds.size(),0);
+      for(int k = 0; k < inds.size(); k++) {
+	(*this)[k] = inds[k];
+      }
+    }
+    Indices() {
+      resize(0,0);
+    }
+    Indices(const index_type n) {
+      resize(n,0);
+    }
+    // arbitrary size. can alos use "push_back"
+    Indices(const Parent& inds) {
+      resize(inds.size(),0);
+      for(int k = 0; k < inds.size(); k++) {
+	(*this)[k] = inds[k];
+      }
+    }
+    
+    // use C++11 init list for arbitrary rank
+#if CPP11 == 1
+    Indices(const std::initializer_list<index_type> list) 
+    {
+      const index_type N =  list.size();
+      resize(N,0);
+      index_type i = 0;
+      typename std::initializer_list<index_type>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+    }
+#endif // C++11
+
+
+
+    
+    bool equiv(const Indices& inds) const {
+      return (*this == inds);
+    }
+
+    inline std::string classname() const {
+      return "Indices";
+    }
+
+
+    inline friend std::ostream& operator<<(std::ostream &stream, const Indices& inds) {
+      using namespace display;
 
       stream << "{";
-      for (size_type ii = 0; ii < dims.size(); ii++) {
+      for (index_type ii = 0; ii < inds.size(); ii++) {
 	if (ii>0)  stream << ", ";
-	sendval(stream, dims[ii]);
+	dispval_strm(stream, inds[ii]);
       }
       stream << "}";
 
@@ -250,10 +379,11 @@ namespace matricks {
   };
 
 
-  inline bool equiv(const Dimensions& dims1, const Dimensions& dims2) {
-    return dims1.equiv(dims2);
+  inline bool equiv(const Indices& inds1, const Indices& inds2) {
+    return inds1.equiv(inds2);
   }
 
+  
 
   // -------------------------------------------------------------------
   //

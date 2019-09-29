@@ -285,7 +285,6 @@ namespace matricks {
     //************************** ACCESS() ***********************************
     //**********************************************************************
 
-    // -------------------- valarray ACCESS --------------------
 
     // -------------------- ELEMENT ACCESS --------------------
 
@@ -439,8 +438,8 @@ namespace matricks {
     // ------------------------ matrix = array[] ----------------
 
     Vector<D>& equals(const D array[]) {
-      for (index_type i; i < size(); i++)  { 
-	(*this)[i++] = array[i];
+      for (index_type i = 0; i < size(); i++)  { 
+	(*this)[i] = array[i];
       }
       return *this;
     }
@@ -1067,7 +1066,7 @@ namespace matricks {
 	  stream << style.apply(FormatDataVector::string_endofline);
 	  k = 0;
 	}
-	sendval(stream, v[ii]);
+	dispval_strm(stream, v[ii]);
 	if (ii < v.size()-1)  {
 	  stream << style.apply(FormatDataVector::string_delimeter);
 	}

@@ -4,6 +4,7 @@
 
 
 #include "matricks.h"
+#include "gitmd.h"
 
 #include <iostream>
 #include <string>

@@ -2,6 +2,7 @@
 
 
 #include "matricks.h"
+#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -220,16 +221,16 @@ int main()
 
   // printing to other streams
 
-  header2("Printing to other streams: `send`, `sendval`, `tsend`, `msend`");
+  header2("Printing to other streams: `disp_strm`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`");
   text("* The default stream is `mout` (refer to next section)");
   text("* You can also utilize all the formatting and color functionality of matricks and print to any output stream you like, including files.  The corresponding functions are shown below.");
   cr();cr();
   text("| `mout`  | `ostream` |");
   text("| ------------- | ------------- |");
-  text("| `dispval(x)`  | `sendval(ostream,x)`  |");
-  text("| `disp(x)`  | `send(ostream,x)`  |");
-  text("| `tdisp(x)`  | `tsend(ostream,x)`  |");
-  text("| `mdisp(x,y,...)`  | `msend(ostream,x,y,...)`  |");
+  text("| `dispval(x)`  | `dispval_strm(ostream,x)`  |");
+  text("| `disp(x)`  | `disp_strm(ostream,x)`  |");
+  text("| `tdisp(x)`  | `tdisp_strm(ostream,x)`  |");
+  text("| `mdisp(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |");
   cr();cr();
   
 

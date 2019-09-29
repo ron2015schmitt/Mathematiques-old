@@ -416,12 +416,83 @@ int main()
     disp(common(addrs1,addrs2));
   }
   {
-    Dimensions dims3(14,11,18);
+    Dimensions dims3(2,2,2);
     disp(dims3);
+    Tensor<double> T(dims3);
+    disp(T.dims());
+    disp(T.index(0,0,0));
+    disp(T.index(0,0,1));
+    disp(T.index(0,1,0));
+    disp(T.index(0,1,1));
+    disp(T.index(1,0,0));
+    disp(T.index(1,0,1));
+    disp(T.index(1,1,0));
+    disp(T.index(1,1,1));
+
+    
+    for(int k = 0; k < T.size(); k++) {
+      mdisp(k,T.indices(k));
+      T[k] = k;
+    }
+    disp(T(0,0,0));
+    disp(T(0,0,1));
+    disp(T(0,1,0));
+    disp(T(0,1,1));
+    disp(T(1,0,0));
+    disp(T(1,0,1));
+    disp(T(1,1,0));
+    disp(T(1,1,1));
+    disp(42);
+    tdisp(T);
+    
     Dimensions dims4(13,17,11,14);
     disp(dims4);
     Dimensions dims6({22,45,11,18,12,11});
     disp(dims6);
+  }
+  {
+    Dimensions dims(3,2,1,6);
+    disp(dims);
+    double c = 0;
+    Tensor<double> T(dims);
+    for(int i = 0; i < T.dims()[0]; i++) {
+      for(int j = 0; j < T.dims()[1]; j++) {
+	for(int k = 0; k < T.dims()[2]; k++) {
+	  for(int m = 0; m < T.dims()[3]; m++) {
+	    T(i,j,k,m) = 100+c++;
+	  }
+	}
+      }
+    }
+    disp(T);
+  }
+  {
+    Dimensions dims(3,2,3,6);
+    disp(dims);
+    double c = 0;
+    Tensor<double> T(dims);
+    for(int i = 0; i < T.dims()[0]; i++) {
+      for(int j = 0; j < T.dims()[1]; j++) {
+	for(int k = 0; k < T.dims()[2]; k++) {
+	  for(int m = 0; m < T.dims()[3]; m++) {
+	    T(i,j,k,m) = c++;
+	  }
+	}
+      }
+    }
+    disp(T);
+  }
+  {
+    Dimensions dims(3,2);
+    disp(dims);
+    double c = 0;
+    Tensor<double> T(dims);
+    for(int i = 0; i < T.dims()[0]; i++) {
+      for(int j = 0; j < T.dims()[1]; j++) {
+	T(i,j) = c++;
+      }
+    }
+    disp(T);
   }
 
   {

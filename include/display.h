@@ -755,19 +755,19 @@ namespace display {
 
 
   //---------------------------------------------------------------------------------
-  //       sendval
+  //       dispvalstrm
   //---------------------------------------------------------------------------------
 
   template <typename T>
-    inline void sendval(std::ostream &stream, const T& d) {
+    inline void dispval_strm(std::ostream &stream, const T& d) {
     stream << d;
   }
 
     
   
-#define SPECIALIZE_mathtypes_sendval(TYPE)				\
+#define SPECIALIZE_mathtypes_dispval_strm(TYPE)				\
   template <>								\
-    inline void sendval<TYPE >(std::ostream &stream, const TYPE& d) {	\
+    inline void dispval_strm<TYPE >(std::ostream &stream, const TYPE& d) {	\
     using namespace std;						\
     string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     Style style = FormatData<TYPE >::style_for_value;			\
@@ -779,21 +779,21 @@ namespace display {
   }
   
 
-  SPECIALIZE_mathtypes_sendval(short);
-  SPECIALIZE_mathtypes_sendval(int);
-  SPECIALIZE_mathtypes_sendval(long);
-  SPECIALIZE_mathtypes_sendval(long long);
+  SPECIALIZE_mathtypes_dispval_strm(short);
+  SPECIALIZE_mathtypes_dispval_strm(int);
+  SPECIALIZE_mathtypes_dispval_strm(long);
+  SPECIALIZE_mathtypes_dispval_strm(long long);
 
-  SPECIALIZE_mathtypes_sendval(unsigned short);
-  SPECIALIZE_mathtypes_sendval(unsigned int);
-  SPECIALIZE_mathtypes_sendval(unsigned long);
-  SPECIALIZE_mathtypes_sendval(unsigned long long);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned short);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned int);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned long);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned long long);
 
 
 
-#define SPECIALIZE_floating_sendval(TYPE)				\
+#define SPECIALIZE_floating_dispval_strm(TYPE)				\
   template <>								\
-    inline void sendval<TYPE >(std::ostream &stream, const TYPE& d) {	\
+    inline void dispval_strm<TYPE >(std::ostream &stream, const TYPE& d) {	\
     using namespace std;						\
     string sval = printf2str(FormatData<TYPE>::format_string.c_str(), d ); \
     if (FormatData<TYPE>::tens)  {					\
@@ -808,15 +808,15 @@ namespace display {
     stream << style.apply(sval);					\
   }
   
-  SPECIALIZE_floating_sendval(float);
-  SPECIALIZE_floating_sendval(double);
-  SPECIALIZE_floating_sendval(long double);
+  SPECIALIZE_floating_dispval_strm(float);
+  SPECIALIZE_floating_dispval_strm(double);
+  SPECIALIZE_floating_dispval_strm(long double);
 
 
 
   // string
   template <>							
-    inline void sendval<std::string>(std::ostream &stream, const std::string& str) {	
+    inline void dispval_strm<std::string>(std::ostream &stream, const std::string& str) {	
     using namespace std;						
     string s = printf2str(FormatData<std::string>::format_string.c_str(), str.c_str() ); \
     Style style = FormatData<std::string>::style_for_value;		
@@ -825,7 +825,7 @@ namespace display {
 
   // char
   template <>							
-    inline void sendval<char>(std::ostream &stream, const char& c) {			
+    inline void dispval_strm<char>(std::ostream &stream, const char& c) {			
     using namespace std;					
     string s = printf2str(FormatData<char>::format_string.c_str(), c ); \
     Style style = FormatData<char>::style_for_value;		
@@ -835,7 +835,7 @@ namespace display {
 
   // bool
   template <>				
-    inline void sendval<bool>(std::ostream &stream, const bool& b) {
+    inline void dispval_strm<bool>(std::ostream &stream, const bool& b) {
     using namespace std;
     if (b) {
       Style style = FormatData<bool>::style_for_true;
@@ -851,40 +851,40 @@ namespace display {
 
   // T[N]
   template <typename T,  size_t N>
-    inline void sendval(std::ostream &stream, const T (&a)[N]) {
+    inline void dispval_strm(std::ostream &stream, const T (&a)[N]) {
     stream << "{";
     for (size_t ii = 0; ii < N; ii++) {
       if (ii>0)  stream << ", ";
-      sendval(stream, a[ii]);
+      dispval_strm(stream, a[ii]);
     }
     stream << "}";
   }
 
   // char[N]
   template <size_t N>
-    inline void sendval(std::ostream &stream, const char (&a)[N]) {
+    inline void dispval_strm(std::ostream &stream, const char (&a)[N]) {
     stream << a;
   }
 
 
   // std::vector
   template <typename D>							
-    inline void sendval(std::ostream &stream, const std::vector<D>& var) {
+    inline void dispval_strm(std::ostream &stream, const std::vector<D>& var) {
     stream << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
       if (ii>0)  stream << ", ";
-      sendval(stream, var[ii]);
+      dispval_strm(stream, var[ii]);
     }
     stream << "}";
   }
 
   // std::valarray
   template <typename D>							
-    inline void sendval(std::ostream &stream, const std::valarray<D>& var) {
+    inline void dispval_strm(std::ostream &stream, const std::valarray<D>& var) {
     stream << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
       if (ii>0)  stream << ", ";
-      sendval(stream, var[ii]);
+      dispval_strm(stream, var[ii]);
     }
     stream << "}";
   }
@@ -892,12 +892,12 @@ namespace display {
 
   // std::list
   template <typename D>							
-    inline void sendval(std::ostream &stream, const std::list<D>& var) {
+    inline void dispval_strm(std::ostream &stream, const std::list<D>& var) {
     stream << "{";
     size_t ii = 0;
     for(typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
       if (ii++>0)  stream << ", ";
-      sendval(stream, *it);
+      dispval_strm(stream, *it);
     }
     stream << "}";
   }
@@ -905,12 +905,12 @@ namespace display {
   // std::initializer_list
 #if CPP11 == 1
   template <typename D>							
-    inline void sendval(std::ostream &stream, const std::initializer_list<D>& var) {
+    inline void dispval_strm(std::ostream &stream, const std::initializer_list<D>& var) {
     stream << "{";
     size_t ii = 0;
     for(typename std::initializer_list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
       if (ii++>0)  stream << ", ";
-      sendval(stream, *it);
+      dispval_strm(stream, *it);
     }
     stream << "}";
   }
@@ -918,7 +918,7 @@ namespace display {
 
   // std::queue
   template <typename D>							
-    void sendval(std::ostream &stream, const std::queue<D>& var) {
+    void dispval_strm(std::ostream &stream, const std::queue<D>& var) {
     // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
     std::queue<D> myq = var;
       
@@ -928,7 +928,7 @@ namespace display {
       if (ii>0)  stream << ", ";
       D val = myq.front();
       myq.pop();
-      sendval(stream, val);
+      dispval_strm(stream, val);
     }
     stream << "}";
   }
@@ -936,7 +936,7 @@ namespace display {
     
   // std::map
   template <typename D1, typename D2>					
-    void sendval(std::ostream &stream, const std::map<D1,D2>& mymap) {
+    void dispval_strm(std::ostream &stream, const std::map<D1,D2>& mymap) {
     stream << "{" << std::endl;
     for (typename std::map<D1,D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++ ) {
       stream <<" "<< it->first << ":" << it->second << std::endl;
@@ -1027,7 +1027,7 @@ namespace display {
 
   
   template <class D>
-    void sendval(std::ostream &stream, const std::complex<D>& d) {
+    void dispval_strm(std::ostream &stream, const std::complex<D>& d) {
     using namespace std;
     using namespace matricks;
 
@@ -1159,7 +1159,7 @@ namespace display {
       expression->setString(name);
       stream << *expression;
       stream << *equals;
-      sendval(stream, x);
+      dispval_strm(stream, x);
       stream << *terminator;
       if (issueCR) {
 	stream << endl;
@@ -1184,7 +1184,7 @@ namespace display {
       expression->setString(name);
       stream << *expression;
       stream << *equals;
-      sendval(stream, x);
+      dispval_strm(stream, x);
       stream << *terminator;
       if (issueCR) {
 	stream << endl;
@@ -1207,11 +1207,11 @@ namespace display {
   };  // class Display
 
 
-#define send(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
-#define tsend(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
-#define sendcr(stream)  display::Display::issuecr(stream)
+#define disp_strm(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define tdisp_strm(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define cr_strm(stream)  display::Display::issuecr(stream)
 
-#define dispval(...) display::sendval(mout, __VA_ARGS__)
+#define dispval(...) display::dispval_strm(mout, __VA_ARGS__)
 #define disp(...) display::Display::mydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
 #define tdisp(...) display::Display::tmydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
 #define cr()  display::Display::issuecr(mout)
@@ -1220,16 +1220,17 @@ namespace display {
   // for how this works, refer to
   //https://stackoverflow.com/questions/3046889/optional-parameters-with-c-macros
 #define disp_0(stream)  display::Display::issuecr(stream)
-#define disp_1(stream,A)  display::Display::mydisp(stream, A, #A)
-#define disp_2(stream,A,B)   disp_1(stream,A);disp_1(stream,B)
-#define disp_3(stream,A,B,C)  disp_1(stream,A);disp_1(stream,B);disp_1(stream,C)
-#define disp_4(stream,A,B,C,D) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D)
-#define disp_5(stream,A,B,C,D,E) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E)
-#define disp_6(stream,A,B,C,D,E,F) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F)
-#define disp_7(stream,A,B,C,D,E,F,G) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G)
-#define disp_8(stream,A,B,C,D,E,F,G,H) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G);disp_1(stream,H)
-#define disp_9(stream,A,B,C,D,E,F,G,H,I) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G);disp_1(stream,H);disp_1(stream,I)
-#define disp_10(stream,A,B,C,D,E,F,G,H,I,J) disp_1(stream,A);disp_1(stream,B);disp_1(stream,C);disp_1(stream,D);disp_1(stream,E);disp_1(stream,F);disp_1(stream,G);disp_1(stream,H);disp_1(stream,I);disp_1(stream,J)
+#define dispX(stream,A)  display::Display::mydisp(stream, A, #A)
+#define disp_1(stream,A)  dispX(stream, A, #A);cr_strm(stream)
+#define disp_2(stream,A,B)   dispX(stream,A);dispX(stream,B);cr_strm(stream)
+#define disp_3(stream,A,B,C)  dispX(stream,A);dispX(stream,B);dispX(stream,C);cr_strm(stream)
+#define disp_4(stream,A,B,C,D) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);cr_strm(stream)
+#define disp_5(stream,A,B,C,D,E) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);dispX(stream,E);cr_strm(stream)
+#define disp_6(stream,A,B,C,D,E,F) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);dispX(stream,E);dispX(stream,F);cr_strm(stream)
+#define disp_7(stream,A,B,C,D,E,F,G) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);dispX(stream,E);dispX(stream,F);dispX(stream,G);cr_strm(stream)
+#define disp_8(stream,A,B,C,D,E,F,G,H) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);dispX(stream,E);dispX(stream,F);dispX(stream,G);dispX(stream,H);cr_strm(stream)
+#define disp_9(stream,A,B,C,D,E,F,G,H,I) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);dispX(stream,E);dispX(stream,F);dispX(stream,G);dispX(stream,H);dispX(stream,I);cr_strm(stream)
+#define disp_10(stream,A,B,C,D,E,F,G,H,I,J) dispX(stream,A);dispX(stream,B);dispX(stream,C);dispX(stream,D);dispX(stream,E);dispX(stream,F);dispX(stream,G);dispX(stream,H);dispX(stream,I);dispX(stream,J);cr_strm(stream)
 
   // The interim macro that simply strips the excess and ends up with the required macro
 #define mdisp_X(x,A,B,C,D,E,F,G,H,I,J,FUNC, ...)    FUNC;
@@ -1237,7 +1238,7 @@ namespace display {
   // The macro that the programmer uses 
 #define mdisp(...)   mdisp_X(,##__VA_ARGS__, disp_10(mout,__VA_ARGS__), disp_9(mout,__VA_ARGS__), disp_8(mout,__VA_ARGS__), disp_7(mout,__VA_ARGS__), disp_6(mout,__VA_ARGS__), disp_5(mout,__VA_ARGS__), disp_4(mout,__VA_ARGS__), disp_3(mout,__VA_ARGS__), disp_2(mout,__VA_ARGS__), disp_1(mout,__VA_ARGS__), disp_0(mout)) 
 
-#define msend(stream,...)   mdisp_X(,##__VA_ARGS__, disp_10(stream,__VA_ARGS__), disp_9(stream,__VA_ARGS__), disp_8(stream,__VA_ARGS__), disp_7(stream,__VA_ARGS__), disp_6(stream,__VA_ARGS__), disp_5(stream,__VA_ARGS__), disp_4(stream,__VA_ARGS__), disp_3(stream,__VA_ARGS__), disp_2(stream,__VA_ARGS__), disp_1(stream,__VA_ARGS__), disp_0(stream)) 
+#define mdisp_strm(stream,...)   mdisp_X(,##__VA_ARGS__, disp_10(stream,__VA_ARGS__), disp_9(stream,__VA_ARGS__), disp_8(stream,__VA_ARGS__), disp_7(stream,__VA_ARGS__), disp_6(stream,__VA_ARGS__), disp_5(stream,__VA_ARGS__), disp_4(stream,__VA_ARGS__), disp_3(stream,__VA_ARGS__), disp_2(stream,__VA_ARGS__), disp_1(stream,__VA_ARGS__), disp_0(stream)) 
 
 
 

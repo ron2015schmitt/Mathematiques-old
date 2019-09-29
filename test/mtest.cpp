@@ -26,14 +26,15 @@ int main()
 
   {
     // matrix + matrix
-
+    using namespace std;  // need this recognize lists
     printStart(++testnum);
-    Vector<int> m1(2,2);
+    Matrix<int> m1(2,2);
     m1 = AORLIST({10,20,30,40});
-    Vector<int> m2(2,2);
+    Matrix<int> m2(2,2);
     m2 = AORLIST({-1,-2,-3,-4});
-    Vector<int> expected = AORLIST({9, 18, 27, 36});
-    Vector<int> result;
+    Matrix<int> expected(2,2);
+    expected = AORLIST({9, 18, 27, 36});
+    Matrix<int> result;
     testcode( result = m1 + m2 );
     bool pass = equal(result,expected);
     printEnd(pass);

@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.20-r15).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.21).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -164,17 +164,17 @@ The following types are currently supported by the display commands
 * `std::queue` C++ queues
 * `std::map` C++ maps
 * `std::initializer_list` C++11 
-## Printing to other streams: `send`, `sendval`, `tsend`, `msend`
+## Printing to other streams: `disp_strm`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`
 * The default stream is `mout` (refer to next section)
 * You can also utilize all the formatting and color functionality of matricks and print to any output stream you like, including files.  The corresponding functions are shown below.
 
 
 | `mout`  | `ostream` |
 | ------------- | ------------- |
-| `dispval(x)`  | `sendval(ostream,x)`  |
-| `disp(x)`  | `send(ostream,x)`  |
-| `tdisp(x)`  | `tsend(ostream,x)`  |
-| `mdisp(x,y,...)`  | `msend(ostream,x,y,...)`  |
+| `dispval(x)`  | `dispval_strm(ostream,x)`  |
+| `disp(x)`  | `disp_strm(ostream,x)`  |
+| `tdisp(x)`  | `tdisp_strm(ostream,x)`  |
+| `mdisp(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |
 
 
 ## Debug-only printing

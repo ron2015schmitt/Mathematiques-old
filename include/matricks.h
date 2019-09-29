@@ -58,7 +58,6 @@
 #include "functions_v.h"
 #include "fileio.h"
 #include "coda.h"
-#include "gitmd.h"
 
 
 #endif

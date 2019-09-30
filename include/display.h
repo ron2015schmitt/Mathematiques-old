@@ -52,7 +52,7 @@ namespace display {
 
   inline std::string printf2str(const char *format, ...) {
     const size_t BUFFER_SIZE = 256;
-    static char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE];
     va_list args;
     va_start(args, format);
     size_t n = vsnprintf(buffer,BUFFER_SIZE,format,args);

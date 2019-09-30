@@ -38,8 +38,10 @@ int main()
     testtext( "dynamic casting" );
     TensorRW<int,Scalar<int> > &s2 = s1;
     Scalar<int> *sp1 = dynamic_cast<Scalar<int>*>(&s2);
-    bool pass = ( (void*)sp1 == (void*)&s1 ) ;
-    printEnd(pass);
+    void* result = (void*)&s1;
+    void* expected = (void*)sp1;
+    bool pass = (result==expected);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -51,13 +53,11 @@ int main()
     // 
     printStart(++testnum);
     Scalar<int> s1 = 1;
-    Scalar<double> s2 = 4.4;
-    bool result1 = is_instance<typeof(s1), Scalar>{};
-    bool result2 = is_instance<typeof(s2), Scalar>{};
-    bool result3 = is_instance<typeof(s1), Vector>{};
-    testtext( "is_instance tests" );
-    bool pass = result1 && result2 && !result3;
-    printEnd(pass);
+    testtext( "is_instance test #1" );
+    bool result = is_instance<typeof(s1), Scalar>{};
+    bool expected = true;
+    bool pass = (result==expected);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -70,8 +70,9 @@ int main()
     Scalar<int> s1 = 1;
     bool result;
     testcode( result = (s1.size()==1) && (s1.dims().size()==0) && (s1.ndims()==0) );
+    bool expected = true;
     bool pass = result;
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -86,7 +87,7 @@ int main()
     int result;
     testcode( result = s() );
     bool pass = (result==expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -99,7 +100,7 @@ int main()
     int result;
     testcode( result = s[0] );
     bool pass = (result==expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -115,7 +116,7 @@ int main()
     Scalar<int> result;
     testcode( result = s1 + s2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -129,7 +130,7 @@ int main()
     Scalar<int> result;
     testcode( result = s1 - s2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -143,7 +144,7 @@ int main()
     Scalar<int> result;
     testcode( result = s1 * s2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -157,7 +158,7 @@ int main()
     Scalar<int> result;
     testcode( result = s1 / s2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -172,7 +173,7 @@ int main()
     Scalar<double> result;
     testcode( result = +s );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -185,7 +186,7 @@ int main()
     Scalar<double> result;
     testcode( result = -s );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -198,7 +199,7 @@ int main()
     Scalar<double> result;
     testcode( result = sin(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -210,7 +211,7 @@ int main()
     Scalar<double> result;
     testcode( result = cos(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -222,7 +223,7 @@ int main()
     Scalar<double> result;
     testcode( result = tan(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -234,7 +235,7 @@ int main()
     Scalar<double> result;
     testcode( result = sinh(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -246,7 +247,7 @@ int main()
     Scalar<double> result;
     testcode( result = cosh(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -258,7 +259,7 @@ int main()
     Scalar<double> result;
     testcode( result = tanh(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -270,7 +271,7 @@ int main()
     Scalar<double> result;
     testcode( result = exp(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -282,7 +283,7 @@ int main()
     Scalar<double> result;
     testcode( result = log(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -294,7 +295,7 @@ int main()
     Scalar<double> result;
     testcode( result = log2(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -306,7 +307,7 @@ int main()
     Scalar<double> result;
     testcode( result = log10(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -319,7 +320,7 @@ int main()
     Scalar<double> result;
     testcode( result = round(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -331,7 +332,7 @@ int main()
     Scalar<double> result;
     testcode( result = floor(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -343,7 +344,7 @@ int main()
     Scalar<double> result;
     testcode( result = ceil(s) );
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -355,7 +356,7 @@ int main()
     Scalar<double> result;
     testcode( result = roundzero(s,0.01) );
     bool pass = alltrue(result==expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -371,11 +372,57 @@ int main()
     Scalar<double>  result;
     testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2.));
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
 
+
+  //-------------------COMPLEX NUMBERS----------------------------
+  
+  {
+    // conj(z)
+    using namespace std;
+    printStart(++testnum);
+    Scalar<complex<double> > z = complex<double>(1,2);
+    Scalar<complex<double> > expected = complex<double>(1,-2);
+    Scalar<complex<double> > result;
+    testcode( result = conj(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // z.conj()
+    using namespace std;
+    printStart(++testnum);
+    Scalar<complex<double> > z = complex<double>(1,2);
+    Scalar<complex<double> > expected = complex<double>(1,-2);
+    Scalar<complex<double> > result;
+    testcode( result = z.conj() );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+
+  }
+  {
+    // x.conj()
+    using namespace std;
+    printStart(++testnum);
+    Scalar<double> x = 22;
+    Scalar<double> expected = 22;
+    Scalar<double> result;
+    testcode( result = x.conj() );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+
+  }
+
+  
   printSummary(testnum, failnum);
   return failnum;
 }

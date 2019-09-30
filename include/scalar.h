@@ -194,6 +194,17 @@ namespace matricks {
     }
 
 
+    Scalar<D>&  conj() {
+      // C++ does not have "instanceof" type guarding so even if it
+      // can't get to the code it will produce a compile error
+      if (is_complex<typeof(data_)>{}) {
+	data_ = matricksconj(data_);
+      }
+      return *this;
+    }
+    
+    
+
     
     //**********************************************************************
     //************************** Adressess          ************************

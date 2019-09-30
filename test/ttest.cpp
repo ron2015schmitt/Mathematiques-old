@@ -53,7 +53,7 @@ int main()
     Tensor<int> result(dims);
     testcode( result = t1 + t2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }

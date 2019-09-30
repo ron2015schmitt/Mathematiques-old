@@ -129,6 +129,16 @@ namespace matricks {
   template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance) {
     return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
+
+
+  // C++ does not have "instanceof" type guarding so even if it
+  // can't get to the code it will produce a compile error
+  template <typename D> D matricksconj(const D& x) {
+    return x;
+  }
+  template <typename D> std::complex<D> matricksconj(const std::complex<D>& z) {
+    return std::conj(z);
+  }
   
 
   //***********************************************************************
@@ -186,21 +196,10 @@ namespace matricks {
   public:
     typedef typename GetDataType<D>::Type Type;
   };
-  template <typename D> class GetDataType<std::vector<D> > {
-  public:
-    typedef typename GetDataType<D>::Type Type;
-  };
-  template <typename D> class GetDataType<Vector<D> > {
-  public:
-    typedef typename GetDataType<D>::Type Type;
-  };
+
+  template<class T> struct is_complex : std::false_type {};
+  template<class T> struct is_complex<std::complex<T>> : std::true_type {};
   
-  //  template <typename D> class GetDataType<Matrix<D> > {
-  //  public:
-  //    typedef typename GetDataType<D>::Type Type;
-  //  };
-
-
   //***********************************************************************
   //     is_instance<FilledTemplateClassA or object, TemplateCLassB>
   //

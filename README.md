@@ -1,4 +1,4 @@
-# mātricks v2.21-r1
+# mātricks v2.21-r2
 
 - CURRENTLY NOT READY FOR USE BUT...
 + Getting very close.  I put the last pieces together for the code to work with arbitrary rank tenors (Scalar, Vector, Matrix, etc):
@@ -30,15 +30,6 @@ start();
 f = cos(2*pi + pi*sin(2*pi*x + pi/6));
 stop();
 ```
-
-+ Planned Date for full functionality: 2019 Oct 4
-+ TODO 
-  + Matrix displaying
-  + import my dot product code
-  + import my file i/o code
-  + add in the debug mode code (bounds checking etc).
-  + a few other odds and ends
-
 
 mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 

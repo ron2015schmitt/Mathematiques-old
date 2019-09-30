@@ -2,6 +2,7 @@
 #define MATRICKS__TEST_H 1
 
 
+
 void printStart(const int n) {
   using namespace display;
   std::string s = "Test#" + num2string(n)+":";
@@ -9,20 +10,28 @@ void printStart(const int n) {
   mout << createStyle(BLUE2+BOLD).apply(s);
 }
 
-void printEnd_(const bool pass, const int linenum) {
+template <class T>
+void printEnd_(const bool pass, const T& result, const T& expected, const int linenum) {
   using namespace display;
-  mout << "          ";
+  mout << "          " <<  "       = " << result <<std::endl;
   if (pass) {
+  mout << "          ";
     mout << createStyle(GREEN1+BOLD).apply("Passed")  << std::endl;
   } else {
+    mout << "          " << createStyle(BLUE2).apply("Expected");
+    std::stringstream ss;
+    ss << expected;
+    mout << " = " <<  createStyle(BOLD).apply(ss.str()) << std::endl;
+    mout << "          ";
     mout << createStyle(RED+BOLD).apply("FAILED") ;
     std::string s = createStyle(BOLD).apply(num2string(linenum));
     mout << createStyle(BLUE2).apply("  Refer to line#"+s ) << std::endl;
   }
-    mout << std::endl;
+  mout << std::endl;
+  
 }
 
-#define printEnd(pass) printEnd_(pass, __LINE__)
+#define printEnd(pass, result, expected) printEnd_(pass, result, expected,__LINE__)
 
 
 

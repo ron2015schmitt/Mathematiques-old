@@ -37,7 +37,7 @@ int main()
     Matrix<int> result;
     testcode( result = m1 + m2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }

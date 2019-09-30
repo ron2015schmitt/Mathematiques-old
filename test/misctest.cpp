@@ -31,7 +31,7 @@ int main()
     bool result = (d1==d2);
     testtext( "Dimension test 1" );
     bool pass = result==expected;
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }

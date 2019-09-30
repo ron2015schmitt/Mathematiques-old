@@ -33,7 +33,7 @@ int main()
     Vector<int> result;
     testcode( result = v1 + v2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -48,7 +48,7 @@ int main()
     Vector<int> result;
     testcode( result = v1 - v2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -63,7 +63,7 @@ int main()
     Vector<int> result;
     testcode( result = v1 * v2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -78,7 +78,7 @@ int main()
     Vector<int> result;
     testcode( result = v1 / v2 );
     bool pass = equal(result,expected);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -94,7 +94,7 @@ int main()
     Vector<double>  result;
     testcode( result = 2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.));
     bool pass = approx(result,expected,tol);
-    printEnd(pass);
+    printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }

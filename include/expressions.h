@@ -293,6 +293,78 @@ namespace matricks {
 
 
 
+  /****************************************************************************
+   * TER_RealFromComplex Expression Template 
+   *
+   * used for accessing real/imag part of complex vector
+   ****************************************************************************
+   */
+  template <class D, class OP>
+    class TER_RealFromComplex : public  TensorRW<D,TER_RealFromComplex<D,OP> > {
+  private:
+    Vector<std::complex<D> >& a_;
+    VectorofPtrs *vptrs;
+
+  public:
+
+
+  TER_RealFromComplex(Vector<std::complex<D> >& a)
+    :   a_(a) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+    }
+
+    ~TER_RealFromComplex() {
+      delete vptrs;
+    }
+
+    const D operator[](index_type i) const{
+      return OP::give(a_[i]);
+    }
+    D& operator[](index_type i) {
+      return OP::give(a_[i]);
+    }
+
+
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    inline size_type size(void) const {
+      return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    inline std::string classname() const {
+      return "TER_RealFromComplex";
+    }
+
+
+    template <class B>
+      TER_RealFromComplex<D,OP>& operator=(const B& b) { 
+      return equals(b);
+    }
+
+    template <class OP2>
+      TER_RealFromComplex<D,OP>& operator=(const TER_RealFromComplex<D,OP2>& b) { 
+      return equals(b);
+    }
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      return a_.expression();
+      //      return expression_VSliceObj(a_.expression(),start_,end_,step_);
+    }
+#endif 
+
+  };
 
 
   /****************************************************************************
@@ -323,8 +395,10 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const
-    { return FUNC::apply(a_[i]); }
+    const D operator[](const index_type i) const {
+      return FUNC::apply(a_[i]);
+    }
+
     
     inline VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -396,7 +470,6 @@ namespace matricks {
       disp3(i);
       return OP::apply(a_[i], b_[i]); 
     }
-
     inline VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
@@ -538,6 +611,9 @@ namespace matricks {
 
 
 
+
+
+  
   template<class D, class A, class B, class X, class OP1, class OP2>
     class TER_Series2 : public  TensorR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
 
@@ -1214,78 +1290,6 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * TER_RealFromComplex Expression Template 
-   *
-   * used for accessing real/imag part of complex vector
-   ****************************************************************************
-   */
-  template <class D, class OP>
-    class TER_RealFromComplex : public  TensorRW<D,TER_RealFromComplex<D,OP> > {
-  private:
-    Vector<std::complex<D> >& a_;
-    VectorofPtrs *vptrs;
-
-  public:
-
-
-  TER_RealFromComplex(Vector<std::complex<D> >& a)
-    :   a_(a) { 
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-    }
-
-    ~TER_RealFromComplex() {
-      delete vptrs;
-    }
-
-    inline const D operator[](index_type i) const{
-      return OP::give(a_[i]);
-    }
-    inline D& operator[](index_type i) {
-      return OP::give(a_[i]);
-    }
-
-
-
-    inline VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    inline size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-    inline std::string classname() const {
-      return "TER_RealFromComplex";
-    }
-
-
-    template <class B>
-      TER_RealFromComplex<D,OP>& operator=(const B& b) { 
-      return equals(b);
-    }
-
-    template <class OP2>
-      TER_RealFromComplex<D,OP>& operator=(const TER_RealFromComplex<D,OP2>& b) { 
-      return equals(b);
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      return a_.expression();
-      //      return expression_VSliceObj(a_.expression(),start_,end_,step_);
-    }
-#endif 
-
-  };
 
 
 

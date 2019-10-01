@@ -489,14 +489,14 @@ namespace matricks {
     // --------------------------- indices(k) -----------------------------
 
     // This is the inverse of the above function
-    Vector<index_type>& indices(const index_type k) const {
+    Indices& indices(const index_type k) const {
       // NOTE: a divide is between 6 to 40 times more costly than a multiply
       //       https://stackoverflow.com/questions/4125033/floating-point-division-vs-floating-point-multiplication
       //       So avoid using this whenever possible
       //       simplest way to calc is (k/Ncols_, k%Ncols_)
       //       but the following guarantees that the compution is done efficently
       //TODO: bounds check
-      Vector<index_type>& myinds = *(new Vector<index_type>(2));
+      Indices& myinds = *(new Indices(2));
       myinds[0] = k/Ncols_;      // row
       myinds[1] = k - Ncols_*myinds[0];  // column
       return myinds;

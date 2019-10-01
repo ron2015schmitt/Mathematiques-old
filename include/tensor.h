@@ -182,14 +182,7 @@ namespace matricks {
     //**********************************************************************
     
     index_type index(const Indices& inds) const {
-      const index_type M = this->ndims();
-      index_type k = 0;
-      for(index_type n = 0; n < M; n++) {
-	size_type N = (*dimensions_)[n];
-	index_type j = inds[n];
-	k = N*k + j;
-      }
-      return k;
+      return dimensions_->index(inds);
     }
 
     index_type index(index_type i, ...) const {
@@ -233,16 +226,7 @@ namespace matricks {
     // TODO: bounds check on k
     
     inline Indices& indices(const index_type k) const {
-      Indices& myinds = *(new Indices(ndims()));
-      index_type prev = k;
-      for(index_type n = ndims()-1; n > 0 ; n--) {
-	size_type N = (*dimensions_)[n];
-	index_type temp = prev/N;
-	myinds[n] = prev - N*temp;
-	prev = temp;
-      }
-      myinds[0] = prev;
-      return myinds;
+      return dimensions_->indices(k);
     }
 
 

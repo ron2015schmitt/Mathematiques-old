@@ -12,6 +12,7 @@ namespace matricks {
   class VectorofPtrs;
   template <class DAT> class Pair;
   class Dimensions;
+  class Indices;
 #if  CPP11 == 1
   enum Tensors : unsigned int;
 #endif
@@ -70,9 +71,7 @@ namespace matricks {
       VectorofPtrs();
       this->add(addrs);
     }
-    
-    
-    
+        
     inline void add(const void* addr) {
       this->push_back(addr);
     }
@@ -152,6 +151,34 @@ namespace matricks {
     }
   };
 
+  // -------------------------------------------------------------------
+  //
+  // Indices - class to hold dimensions of Tensors
+  // -------------------------------------------------------------------
+
+
+  class Indices : public std::vector<index_type> {
+  private:
+  public:
+    typedef typename std::vector<index_type> Parent;
+    typedef typename Parent::iterator Iterator;
+    Indices(const Indices& inds);
+    Indices();
+    Indices(const index_type n);
+    Indices(const Parent& inds);    
+#if CPP11 == 1
+    Indices(const std::initializer_list<index_type> list);
+#endif // C++11
+    bool equiv(const Indices& inds) const;
+    inline std::string classname() const;
+    friend std::ostream& operator<<(std::ostream &stream, const Indices& inds);
+
+  };
+
+
+  inline bool equiv(const Indices& inds1, const Indices& inds2) {
+    return inds1.equiv(inds2);
+  }
 
 
   // -------------------------------------------------------------------
@@ -222,16 +249,16 @@ namespace matricks {
     // use C++11 init list for arbitrary rank
 #if CPP11 == 1
     Dimensions(const std::initializer_list<size_type> list) 
-    {
-      const size_type N =  list.size();
-      resize(N,0);
-      index_type i = 0;
-      typename std::initializer_list<size_type>::iterator it; 
-      for (it = list.begin(); it != list.end(); ++it)  { 
-	(*this)[i++] = *it;
+      {
+	const size_type N =  list.size();
+	resize(N,0);
+	index_type i = 0;
+	typename std::initializer_list<size_type>::iterator it; 
+	for (it = list.begin(); it != list.end(); ++it)  { 
+	  (*this)[i++] = *it;
+	}
+	calcSize();
       }
-      calcSize();
-    }
 #endif // C++11
 
     // return this object with size 1 dimensions removed
@@ -251,16 +278,72 @@ namespace matricks {
     }
 
     size_type rank() const {
-      return Parent(*this).size();
+      return Parent::size();
     }
     size_type ndims() const {
-      return Parent(*this).size();
+      return Parent::size();
     }
     size_type datasize() const {
       return datasize_;
     }
 
 
+    index_type index(const Indices& inds) const {
+      const index_type M = this->ndims();
+      index_type k = 0;
+      for(index_type n = 0; n < M; n++) {
+	size_type N = (*this)[n];
+	index_type j = inds[n];
+	k = N*k + j;
+      }
+      return k;
+    }
+
+
+    inline Indices& indices(const index_type k) const {
+      cr();
+      disp(k);
+      Indices& myinds = *(new Indices(ndims()));
+      index_type prev = k;
+      // This loop must go in reverse order.  Do NOT change.
+      for(index_type n = ndims()-1; n > 0 ; n--) {
+	size_type N = (*this)[n];
+	index_type temp = prev/N;
+	myinds[n] = prev - N*temp;
+	mdisp(n,N,temp,myinds[n]);
+	prev = temp;
+      }
+      myinds[0] = prev;
+      disp(myinds[0]);
+      return myinds;
+    }
+
+    inline index_type transposeIndex(const index_type ind) const {
+      // TODO: check dimensions
+      Indices inds = this->indices(ind);
+      disp(inds);
+      index_type temp = inds[0];
+      inds[0] = inds[1];
+      inds[1] = temp;
+      disp(inds);
+      // need to create Dimesions for the transposed matrix to get index!
+      Dimensions tdims((*this)[1], (*this)[0]);
+      index_type tind = tdims.index(inds);
+      return tind;
+    }
+
+
+    Dimensions& getTranspose() const {
+      Dimensions* tdims = new Dimensions();
+      // revser
+      for(int k = this->size()-1; k >= 0 ; k--) {
+	tdims->push_back((*this)[k]);
+      }
+      mdisp(*this,*tdims);
+      return *tdims;
+    }
+
+  
     Iterator erase(const Iterator iterator) {
       Iterator newit = Parent::erase(iterator);
       this->calcSize();
@@ -268,11 +351,11 @@ namespace matricks {
     }
 
     void push_back(const ElementType n) {
-      Parent(*this).push_back(n);
+      Parent::push_back(n);
       this->calcSize();
     }
     void pop_back() {
-      Parent(*this).pop_back();
+      Parent::pop_back();
       this->calcSize();
     }
 
@@ -305,83 +388,6 @@ namespace matricks {
     return dims1.equiv(dims2);
   }
 
-  // -------------------------------------------------------------------
-  //
-  // Indices - class to hold dimensions of Tensors
-  // -------------------------------------------------------------------
-
-
-  class Indices : public std::vector<index_type> {
-  private:
-  public:
-    typedef typename std::vector<index_type> Parent;
-    typedef typename Parent::iterator Iterator;
-    Indices(const Indices& inds) {
-      resize(inds.size(),0);
-      for(int k = 0; k < inds.size(); k++) {
-	(*this)[k] = inds[k];
-      }
-    }
-    Indices() {
-      resize(0,0);
-    }
-    Indices(const index_type n) {
-      resize(n,0);
-    }
-    // arbitrary size. can alos use "push_back"
-    Indices(const Parent& inds) {
-      resize(inds.size(),0);
-      for(int k = 0; k < inds.size(); k++) {
-	(*this)[k] = inds[k];
-      }
-    }
-    
-    // use C++11 init list for arbitrary rank
-#if CPP11 == 1
-    Indices(const std::initializer_list<index_type> list) 
-    {
-      const index_type N =  list.size();
-      resize(N,0);
-      index_type i = 0;
-      typename std::initializer_list<index_type>::iterator it; 
-      for (it = list.begin(); it != list.end(); ++it)  { 
-	(*this)[i++] = *it;
-      }
-    }
-#endif // C++11
-
-
-
-    
-    bool equiv(const Indices& inds) const {
-      return (*this == inds);
-    }
-
-    inline std::string classname() const {
-      return "Indices";
-    }
-
-
-    inline friend std::ostream& operator<<(std::ostream &stream, const Indices& inds) {
-      using namespace display;
-
-      stream << "{";
-      for (index_type ii = 0; ii < inds.size(); ii++) {
-	if (ii>0)  stream << ", ";
-	dispval_strm(stream, inds[ii]);
-      }
-      stream << "}";
-
-      return stream;
-    }
-      
-
-  };
-
-
-  inline bool equiv(const Indices& inds1, const Indices& inds2) {
-    return inds1.equiv(inds2);
-  }
 
   
 
@@ -532,7 +538,7 @@ namespace matricks {
       return derived()[i];
     }
 
-    inline size_type size(void) const {
+    size_type size(void) const {
       return derived().size();
     }
 
@@ -595,21 +601,22 @@ namespace matricks {
   public:
     typedef D DataType;
 
-    inline DERIVED& derived() {
+    DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
     }
-    inline const  DERIVED& derived() const {
+    const DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
     }
 
-    inline const D operator[](const index_type i) const {
+    const D operator[](const index_type i) const {
       return derived()[i];
     }
-    inline  D& operator[](const index_type i)  {
+    D& operator[](const index_type i)  {
       return derived()[i];
     }
 
-    inline size_type size(void) const {
+
+    size_type size(void) const {
       return derived().size();
     }
 
@@ -641,7 +648,7 @@ namespace matricks {
     }
 
     
-    inline std::string classname() const {
+    std::string classname() const {
       return derived().classname();
     }
 

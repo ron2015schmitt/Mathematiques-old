@@ -1330,6 +1330,8 @@ namespace matricks {
     }
 
 
+  // ~A conjugate transpose operator
+
   template <class D, class A> 
     inline TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
     operator~(const TensorR<std::complex<D>,A>& a)

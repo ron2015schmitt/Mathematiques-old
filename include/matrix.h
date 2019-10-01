@@ -689,8 +689,10 @@ namespace matricks {
     //**********************************************************************
     //************************** MATH **************************************
     //**********************************************************************
-   
-   
+
+    //----------------- .roundzero(tol) ---------------------------
+    // NOTE: in-place
+
     Matrix<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(register index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
@@ -699,12 +701,22 @@ namespace matricks {
     }
 
 
+    //----------------- .conj() ---------------------------
+    // NOTE: in-place
+
+    Matrix<D>&  conj() {
+      // C++ does not have "instanceof" type guarding so even if it
+      // can't get to the code it will produce a compile error
+      // that's why "matrickconj" function is needed
+      if ((size() > 0) && (is_complex<typeof((*data_)[0])>{})) {
+	for(register index_type i=size(); i--;) {
+	  (*data_)[i] = matricksconj((*data_)[i]);
+	}
+      }
+      return *this;
+    }
 
 
-
-    //**********************************************************************
-    //***************** in-place modification********************************
-    //**********************************************************************
 
     //**********************************************************************
     //************************** Text and debugging ************************

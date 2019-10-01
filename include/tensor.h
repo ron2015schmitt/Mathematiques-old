@@ -37,6 +37,14 @@ namespace matricks {
     //**********************************************************************
 
 
+    // --------------------- default CONSTRUCTOR ---------------------
+
+    explicit Tensor<D>() 
+    {
+      dimensions_ = new Dimensions();
+      data_ = new std::valarray<D>(dimensions_->datasize());
+      constructorHelper();
+    }
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
 
@@ -123,6 +131,13 @@ namespace matricks {
     }
 
 
+    Tensor& resize(const Dimensions& dims) {
+      dimensions_ = new Dimensions(dims);
+      data_->resize(dimensions_->datasize());
+      return *this;
+    }
+
+    
     //**********************************************************************
     //*********************  Accesss to Internal valarray ******************
     //**********************************************************************
@@ -320,11 +335,23 @@ namespace matricks {
       return equals(d);
     }
 
+    // ----------------- tensor = TensorR<D,A> ----------------
+    Tensor<D>& equals(const Tensor<D>& x) {
+      // TODO: issue warning
+      resize(x.dims());
+      for (register index_type i = size(); i--;) {
+	  (*data_)[i] = x[i];   // Inlined expression
+      }
+      return *this; 
+    }
+    Tensor<D>& operator=(const Tensor<D>& x) {  
+      return equals(x);
+    }
 
     // ----------------- tensor = TensorR<D,A> ----------------
-    template <class A>  Tensor<D>& equals(const TensorR<D,A>& x) {  
+    template <class A>  Tensor<D>& equals(const TensorR<D,A>& x) {
       // TODO: issue warning
-      //resize(x.dims());
+      resize(x.dims());
 
       if (common(*this, x)){    
 	Tensor<D> Ttemp(this->dims());
@@ -386,7 +413,9 @@ namespace matricks {
     //**********************************************************************
 
     
-    
+    //----------------- .roundzero(tol) ---------------------------
+    // NOTE: in-place
+
     Tensor<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(register index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
@@ -394,7 +423,20 @@ namespace matricks {
       return *this;
     }
 
+    //----------------- .conj() ---------------------------
+    // NOTE: in-place
 
+    Tensor<D>&  conj() {
+      // C++ does not have "instanceof" type guarding so even if it
+      // can't get to the code it will produce a compile error
+      // that's why "matrickconj" function is needed
+      if ((size() > 0) && (is_complex<typeof((*data_)[0])>{})) {
+	for(register index_type i=size(); i--;) {
+	  (*data_)[i] = matricksconj((*data_)[i]);
+	}
+      }
+      return *this;
+    }
 
     //**********************************************************************
     //************************** Text and debugging ************************

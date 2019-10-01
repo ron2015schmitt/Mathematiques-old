@@ -107,6 +107,12 @@ namespace matricks {
     virtual Tensors getEnum(void) const {
       return T_SCALAR;
     }
+    VectorofPtrs getAddresses(void) const  {
+      VectorofPtrs myaddr((void*)this);
+      return myaddr;
+    }
+
+
 
     
     //**********************************************************************
@@ -186,17 +192,22 @@ namespace matricks {
     //************************** MATH **************************************
     //**********************************************************************
 
-    
+    //----------------- .roundzero(tol) ---------------------------
+    // NOTE: in-place
+
     
     Scalar<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       data_ = matricks::roundzero(data_, tolerance);
       return *this;
     }
 
+    //----------------- .conj() ---------------------------
+    // NOTE: in-place
 
     Scalar<D>&  conj() {
       // C++ does not have "instanceof" type guarding so even if it
       // can't get to the code it will produce a compile error
+      // that's why "matrickconj" function is needed
       if (is_complex<typeof(data_)>{}) {
 	data_ = matricksconj(data_);
       }
@@ -206,15 +217,6 @@ namespace matricks {
     
 
     
-    //**********************************************************************
-    //************************** Adressess          ************************
-    //**********************************************************************
-
-    VectorofPtrs getAddresses(void) const  {
-      VectorofPtrs myaddr((void*)this);
-      return myaddr;
-    }
-
 
     //**********************************************************************
     //************************** Text and debugging ************************

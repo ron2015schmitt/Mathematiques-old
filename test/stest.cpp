@@ -378,6 +378,36 @@ int main()
   }
 
 
+    {
+    // transpose(z)
+    using namespace std;
+    printStart(++testnum);
+    Scalar<complex<double> > z = complex<double>(1,2);
+    Scalar<complex<double> > expected = complex<double>(1,2);
+    Scalar<complex<double> > result;
+    testcode( result = transpose(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+    {
+    // transpose(x)
+    using namespace std;
+    printStart(++testnum);
+    Scalar<double> x = 25.1;
+    Scalar<double> expected = 25.1;
+    Scalar<double> result;
+    testcode( result = transpose(x) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+    }
+
+  
+
   //-------------------COMPLEX NUMBERS----------------------------
   
   {
@@ -422,6 +452,32 @@ int main()
 
   }
 
+  {
+    // adjoint(z)
+    using namespace std;
+    printStart(++testnum);
+    Scalar<complex<double> > z = complex<double>(1,2);
+    Scalar<complex<double> > expected = complex<double>(1,-2);
+    Scalar<complex<double> > result;
+    testcode( result = adjoint(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // ~z
+    using namespace std;
+    printStart(++testnum);
+    Scalar<complex<double> > z = complex<double>(1,2);
+    Scalar<complex<double> > expected = complex<double>(1,-2);
+    Scalar<complex<double> > result;
+    testcode( result = ~z );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
   
   printSummary(testnum, failnum);
   return failnum;

@@ -292,13 +292,13 @@ namespace matricks {
     // 1) For square matrices this operation is quick and easy.
     // 2) For non-square matrices, this changes the shape and operation is time-consuming
     //    Note: Transpose function is much quicker. only use this for when memory is critical
-    Matrix<D> transpose(void) { 
+    Matrix<D>& transpose(void) { 
       const index_type NR = Nrows_;
       const index_type NC = Ncols_;
       const index_type N = size();
       const index_type Nminus1 = N-1;
 
-      // symmetric matrix  
+      // square matrix  
       if (NC == NR) {
 	index_type r,c;
 	D temp;
@@ -406,7 +406,15 @@ namespace matricks {
       return *this;
     }
     
+    // -------------------------- adjoint() --------------------------------
 
+    Matrix<D>& adjoint() {
+      this->conj();
+      this->transpose();
+      return *this;
+    }
+
+    
     //**********************************************************************
     //************************** accesss[k] ***********************************
     //**********************************************************************

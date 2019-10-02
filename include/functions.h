@@ -1330,13 +1330,24 @@ namespace matricks {
     }
 
 
+
+  // adjoint(A) - conjugate transpose 
+
+  template <class D, class A> 
+    inline TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
+    adjoint(const TensorR<std::complex<D>,A>& a)
+    {
+      return  TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
+    }
+
+  
   // ~A conjugate transpose operator
 
   template <class D, class A> 
-    inline TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
+    inline TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
     operator~(const TensorR<std::complex<D>,A>& a)
     {
-      return  TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
+      return  TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
     }
 
 

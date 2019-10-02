@@ -1289,6 +1289,153 @@ namespace matricks {
 
 
 
+  /****************************************************************************
+   * TERW_Transpose
+   *
+   * 
+   ****************************************************************************
+   */
+
+  template<class D, class A, class FUNC>
+    class TERW_Transpose  : public  TensorRW<D,TERW_Transpose<D,A,FUNC> > {
+  
+  private:
+    A& a_;
+    VectorofPtrs *vptrs;
+    Dimensions *rdims;
+  public:
+
+
+
+  TERW_Transpose(A& a) : a_(a) {
+      rdims = &(a_.dims().getReverse());
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+    }
+    
+    ~TERW_Transpose() {
+      delete rdims;
+      delete vptrs;
+    }
+
+    const D operator[](const index_type index1) const {
+      const Indices inds1 = rdims->indices(index1);
+      const Indices inds2 = inds1.getReverse();
+      const index_type index2 = a_.dims().index(inds2);
+      //mdisp3(index1,inds1,inds2,index2);
+      return FUNC::apply(a_[index2]);
+    }
+    D& operator[](const index_type index1) {
+      const Indices inds1 = rdims->indices(index1);
+      const Indices inds2 = inds1.getReverse();
+      const index_type index2 = a_.dims().index(inds2);
+      //mdisp3(index1,inds1,inds2,index2);
+      return FUNC::apply(a_[index2]);
+    }
+
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return rdims->size();
+    }
+    size_type ndims(void) const {
+      return rdims->ndims();
+    }
+    Dimensions dims(void) const {
+      return *rdims;
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    std::string classname() const {
+      return "TERW_Transpose";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
+    }
+#endif
+
+
+  };
+
+
+
+
+
+  /*************************************************************************
+   * TER_Transpose
+   *
+   * 
+   *************************************************************************
+   */
+
+  template<class D, class A, class FUNC>
+    class TER_Transpose  : public  TensorR<D,TER_Transpose<D,A,FUNC> > {
+  
+  private:
+    const A& a_;
+    VectorofPtrs *vptrs;
+    Dimensions *rdims;
+  
+  public:
+
+
+
+  TER_Transpose(const A& a) : a_(a) {
+      rdims = &(a_.dims().getReverse());
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+    }
+    
+    ~TER_Transpose() {
+      delete rdims;
+      delete vptrs;
+    }
+
+    const D operator[](const index_type index1) const {
+      const Indices inds1 = rdims->indices(index1);
+      const Indices inds2 = inds1.getReverse();
+      const index_type index2 = a_.dims().index(inds2);
+      //mdisp3(index1,inds1,inds2,index2);
+      return FUNC::apply(a_[index2]);
+    }
+
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    std::string classname() const {
+      return "TER_Transpose";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
+    }
+#endif
+
+
+  };
+
+
 
 
 

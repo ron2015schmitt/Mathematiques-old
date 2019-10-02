@@ -24,17 +24,5 @@ namespace matricks {
       return TERW_Transpose<D,TensorRW<D,A>,Fun_Plus<D> >(a);
     }
 
-  // adjoint(A) - conjugate transpose (Hemititan adjoint operator)
-
-  template <class D, class A> 
-    TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
-    adjoint(const TensorR<std::complex<D>,A>& a)
-    {
-      return TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
-    }
-
-  // ~A conjugate transpose (Hemititan adjoint operator
-
-  // need to use same func defined for vectors
 };
 #endif 

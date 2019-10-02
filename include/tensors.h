@@ -170,6 +170,7 @@ namespace matricks {
     Indices(const std::initializer_list<index_type> list);
 #endif // C++11
     bool equiv(const Indices& inds) const;
+    Indices& getReverse() const;
     inline std::string classname() const;
     friend std::ostream& operator<<(std::ostream &stream, const Indices& inds);
 
@@ -301,8 +302,6 @@ namespace matricks {
 
 
     inline Indices& indices(const index_type k) const {
-      cr();
-      disp(k);
       Indices& myinds = *(new Indices(ndims()));
       index_type prev = k;
       // This loop must go in reverse order.  Do NOT change.
@@ -310,36 +309,23 @@ namespace matricks {
 	size_type N = (*this)[n];
 	index_type temp = prev/N;
 	myinds[n] = prev - N*temp;
-	mdisp(n,N,temp,myinds[n]);
 	prev = temp;
+	if (n==1) {
+	  myinds[0] = prev;
+	}
       }
-      myinds[0] = prev;
-      disp(myinds[0]);
       return myinds;
     }
 
-    inline index_type transposeIndex(const index_type ind) const {
-      // TODO: check dimensions
-      Indices inds = this->indices(ind);
-      disp(inds);
-      index_type temp = inds[0];
-      inds[0] = inds[1];
-      inds[1] = temp;
-      disp(inds);
-      // need to create Dimesions for the transposed matrix to get index!
-      Dimensions tdims((*this)[1], (*this)[0]);
-      index_type tind = tdims.index(inds);
-      return tind;
-    }
 
+    // getTranspose() - this reverses the order of the dimensions
 
-    Dimensions& getTranspose() const {
+    Dimensions& getReverse() const {
       Dimensions* tdims = new Dimensions();
-      // revser
-      for(int k = this->size()-1; k >= 0 ; k--) {
+      // reverse order
+      for(int k = this->ndims()-1; k >= 0 ; k--) {
 	tdims->push_back((*this)[k]);
       }
-      mdisp(*this,*tdims);
       return *tdims;
     }
 

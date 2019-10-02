@@ -1649,8 +1649,7 @@ namespace matricks {
     Fun_Conj() { }
 
     static inline std::complex<D> apply(const std::complex<D> a) { 
-      using std::conj;
-      return conj(a); 
+      return matricksconj(a); 
     }
 
 #if MATRICKS_DEBUG>=1

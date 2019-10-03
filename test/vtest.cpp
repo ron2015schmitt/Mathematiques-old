@@ -172,6 +172,64 @@ int main()
 
 
 
+
+  // ----------------- transpose-----------------------------
+
+  {
+    // transpose(z)
+    using namespace std;
+    printStart(++testnum);
+    Vector<complex<double> > z(2);
+    z[0] = complex<double>(1,2);
+    z[1] = complex<double>(-1.5,26.7);
+    Vector<complex<double> > expected(2);
+    expected[0] = complex<double>(1,2);
+    expected[1] = complex<double>(-1.5,26.7);
+    Vector<complex<double> > result;
+    testcode( result = transpose(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // transpose(x)
+    using namespace std;
+    printStart(++testnum);
+    Vector<double> x(2);
+    x[0] = 3.14;
+    x[1] = -45;
+    Vector<double> expected(2);
+    expected[0] = 3.14;
+    expected[1] = -45;
+    Vector<double> result;
+    testcode( result = transpose(x) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+  //-------------------adjoint ---------------------
+  {
+    // adjoint(z)
+    using namespace std;
+    printStart(++testnum);
+    Vector<complex<double> > z(2);
+    z[0] = complex<double>(1,2);
+    z[1] = complex<double>(-1.5,26.7);
+    Vector<complex<double> > expected(2);
+    expected[0] = complex<double>(1,-2);
+    expected[1] = complex<double>(-1.5,-26.7);
+    Vector<complex<double> > result;
+    testcode( result = adjoint(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
   
   printSummary(testnum, failnum);
   return failnum;

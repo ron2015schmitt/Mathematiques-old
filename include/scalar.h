@@ -161,7 +161,6 @@ namespace matricks {
 
     // Copy asignment
     Scalar<D>& equals(const Scalar<D>& s2) {
-      disp3(s2);
       data_ = s2();    
       return *this;
     }
@@ -175,7 +174,6 @@ namespace matricks {
     // TensorExpression
     template<class A> 
     Scalar<D>& equals(const TensorR<D,A>& s2) {
-      disp3(s2);
       data_ = s2[0];    
       return *this;
     }

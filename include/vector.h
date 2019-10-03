@@ -419,8 +419,9 @@ namespace matricks {
 	for (register index_type i = size(); i--;)
 	  (*data_)[i] = vtemp[i];
       } else {
-	for (register index_type i = size(); i--;)
+	for (register index_type i = size(); i--;) {
 	  (*data_)[i] = x[i];   // Inlined expression
+	}
       }
       return *this; 
     }

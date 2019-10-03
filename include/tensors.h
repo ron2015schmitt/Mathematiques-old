@@ -310,9 +310,9 @@ namespace matricks {
 	index_type temp = prev/N;
 	myinds[n] = prev - N*temp;
 	prev = temp;
-	if (n==1) {
-	  myinds[0] = prev;
-	}
+      }
+      if (ndims()>0) {
+	myinds[0] = prev;
       }
       return myinds;
     }

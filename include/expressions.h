@@ -1322,14 +1322,12 @@ namespace matricks {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
-      //mdisp3(index1,inds1,inds2,index2);
       return FUNC::apply(a_[index2]);
     }
     D& operator[](const index_type index1) {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
-      //mdisp3(index1,inds1,inds2,index2);
       return FUNC::apply(a_[index2]);
     }
 
@@ -1337,7 +1335,7 @@ namespace matricks {
       return *vptrs;
     }
     size_type size(void) const {
-      return rdims->size();
+      return rdims->datasize();
     }
     size_type ndims(void) const {
       return rdims->ndims();
@@ -1401,7 +1399,6 @@ namespace matricks {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
-      //mdisp3(index1,inds1,inds2,index2);
       return FUNC::apply(a_[index2]);
     }
 
@@ -1409,13 +1406,13 @@ namespace matricks {
       return *vptrs;
     }
     size_type size(void) const {
-      return a_.size();
+      return rdims->datasize();
     }
     size_type ndims(void) const {
-      return a_.ndims();
+      return rdims->ndims();
     }
     Dimensions dims(void) const {
-      return a_.dims();
+      return *rdims;
     }
     bool isExpression(void) const {
       return true;

@@ -58,7 +58,7 @@ int main()
     failnum += (!pass);
   }
 
-  // //-------------------COMPLEX NUMBERS----------------------------
+  //-------------------conjugate----------------------------
   
   {
     // conj(z)
@@ -144,6 +144,139 @@ int main()
   }
 
 
+  //-------------------transpose----------------------------
+  
+  {
+    // transpose(x)
+    using namespace std;
+    printStart(++testnum);
+    Dimensions dims(2,2,2);
+    Tensor<double> x(dims);
+    x[0] = 0;
+    x[1] = 1;
+    x[2] = 2;
+    x[3] = 3;
+    x[4] = 4;
+    x[5] = 5;
+    x[6] = 6;
+    x[7] = 7;
+    Tensor<double> expected(dims);
+    expected[0] = 0;
+    expected[1] = 4;
+    expected[2] = 2;
+    expected[3] = 6;
+    expected[4] = 1;
+    expected[5] = 5;
+    expected[6] = 3;
+    expected[7] = 7;
+    Tensor<double> result;
+    testcode( result = transpose(x) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  {
+    // transpose(z)
+    using namespace std;
+    printStart(++testnum);
+    Dimensions dims(2,2,2);
+    
+    Tensor<complex<double> > z(dims);
+    z[0] = complex<double>(1,2);
+    z[1] = complex<double>(-1.5,26.7);
+    z[2] = complex<double>(5,-8);
+    z[3] = complex<double>(4,-5.6);
+    z[4] = complex<double>(-1,2.122);
+    z[5] = complex<double>(-1.5,-88);
+    z[6] = complex<double>(4.3,1.1);
+    z[7] = complex<double>(2.2,-7);
+    Tensor<complex<double> > expected(dims);
+    expected[0] = complex<double>(1,2);
+    expected[1] = complex<double>(-1,2.122);
+    expected[2] = complex<double>(5,-8);
+    expected[3] = complex<double>(4.3,1.1);
+    expected[4] = complex<double>(-1.5,26.7);
+    expected[5] = complex<double>(-1.5,-88);
+    expected[6] = complex<double>(4,-5.6);
+    expected[7] = complex<double>(2.2,-7);
+    Tensor<complex<double> > result;
+    testcode( result = transpose(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+  {
+    // adjoint(z)
+    using namespace std;
+    printStart(++testnum);
+    Dimensions dims(2,2,2);
+    
+    Tensor<complex<double> > z(dims);
+    z[0] = complex<double>(1,2);
+    z[1] = complex<double>(-1.5,26.7);
+    z[2] = complex<double>(5,-8);
+    z[3] = complex<double>(4,-5.6);
+    z[4] = complex<double>(-1,2.122);
+    z[5] = complex<double>(-1.5,-88);
+    z[6] = complex<double>(4.3,1.1);
+    z[7] = complex<double>(2.2,-7);
+    Tensor<complex<double> > expected(dims);
+    expected[0] = complex<double>(1,-2);
+    expected[1] = complex<double>(-1,-2.122);
+    expected[2] = complex<double>(5,8);
+    expected[3] = complex<double>(4.3,-1.1);
+    expected[4] = complex<double>(-1.5,-26.7);
+    expected[5] = complex<double>(-1.5,88);
+    expected[6] = complex<double>(4,5.6);
+    expected[7] = complex<double>(2.2,7);
+    Tensor<complex<double> > result;
+    testcode( result = adjoint(z) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+  {
+    // ~z
+    using namespace std;
+    printStart(++testnum);
+    Dimensions dims(2,2,2);
+    
+    Tensor<complex<double> > z(dims);
+    z[0] = complex<double>(1,2);
+    z[1] = complex<double>(-1.5,26.7);
+    z[2] = complex<double>(5,-8);
+    z[3] = complex<double>(4,-5.6);
+    z[4] = complex<double>(-1,2.122);
+    z[5] = complex<double>(-1.5,-88);
+    z[6] = complex<double>(4.3,1.1);
+    z[7] = complex<double>(2.2,-7);
+    Tensor<complex<double> > expected(dims);
+    expected[0] = complex<double>(1,-2);
+    expected[1] = complex<double>(-1,-2.122);
+    expected[2] = complex<double>(5,8);
+    expected[3] = complex<double>(4.3,-1.1);
+    expected[4] = complex<double>(-1.5,-26.7);
+    expected[5] = complex<double>(-1.5,88);
+    expected[6] = complex<double>(4,5.6);
+    expected[7] = complex<double>(2.2,7);
+    Tensor<complex<double> > result;
+    testcode( result = ~z );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+  
   printSummary(testnum, failnum);
   return failnum;
 }

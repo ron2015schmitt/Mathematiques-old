@@ -27,9 +27,7 @@ int main()
   const double pi = M_PI;
 
   
-  // TODO: add a test for every function and functionality
-  //       check math with matlab or mathematica
-
+  // -------------- constructors etc ------------------------
 
   {
     // dynamic cast
@@ -49,7 +47,7 @@ int main()
 
   
 
-   {
+  {
     // 
     printStart(++testnum);
     Scalar<int> s1 = 1;
@@ -62,14 +60,51 @@ int main()
     failnum += (!pass);
   }
 
+  {
+    // 
+    printStart(++testnum);
+    Scalar<double> s1 = 1.1;
+    testtext( "is_instance test #2" );
+    bool result = is_instance<typeof(s1), Scalar>{};
+    bool expected = true;
+    bool pass = (result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // 
+    printStart(++testnum);
+    Scalar<std::complex<double> > s1 = std::complex<double>(1.1,2.2);
+    testtext( "is_instance test #3" );
+    bool result = is_instance<typeof(s1), Scalar>{};
+    bool expected = true;
+    bool pass = (result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
-   {
+  {
+    // 
+    printStart(++testnum);
+    Vector<int> s1 =AORLIST({1});
+    testtext( "is_instance test #4" );
+    bool result = is_instance<typeof(s1), Scalar>{};
+    bool expected = false;
+    bool pass = (result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  {
     //  dimensions and size
     printStart(++testnum);
 
     Scalar<int> s1 = 1;
     bool result;
-    testcode( result = (s1.size()==1) && (s1.dims().size()==0) && (s1.ndims()==0) );
+    testcode( result = (s1.size()==1) && (s1.dims().datasize()==1) && (s1.ndims()==0)&& (s1.dims().size()==0) );
     bool expected = true;
     bool pass = result;
     printEnd(pass,result,expected);
@@ -77,9 +112,10 @@ int main()
     failnum += (!pass);
   }
 
+  // -------------- element access ------------------------
 
 
-   {
+  {
     //  element access ()
     printStart(++testnum);
     Scalar<int> s = 14;
@@ -92,7 +128,7 @@ int main()
     failnum += (!pass);
   }
 
-   {
+  {
     //  element access [0]
     printStart(++testnum);
     Scalar<int> s = 24;
@@ -105,66 +141,11 @@ int main()
     failnum += (!pass);
   }
    
+  // -------------- assignment =  ------------------------
+  // TODO:
+  
+  // -------------- arithmetic ------------------------
    
-   
-  {
-    // scalar + scalar
-    printStart(++testnum);
-    Scalar<int> s1 = 10;
-    Scalar<int> s2 = -1;
-    Scalar<int> expected = 9;
-    Scalar<int> result;
-    testcode( result = s1 + s2 );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-
-  {
-    // scalar - scalar
-    printStart(++testnum);
-    Scalar<int> s1 = 10;
-    Scalar<int> s2 = -1;
-    Scalar<int> expected = 11;
-    Scalar<int> result;
-    testcode( result = s1 - s2 );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-
-  {
-    // scalar * scalar
-    printStart(++testnum);
-    Scalar<int> s1 = 10;
-    Scalar<int> s2 = 3;
-    Scalar<int> expected = 30;
-    Scalar<int> result;
-    testcode( result = s1 * s2 );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-
-  {
-    // scalar / scalar
-    printStart(++testnum);
-    Scalar<int> s1 = 27;
-    Scalar<int> s2 = 9;
-    Scalar<int> expected = 3;
-    Scalar<int> result;
-    testcode( result = s1 / s2 );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-
-
-
   {
     // +(s)
     printStart(++testnum);
@@ -190,7 +171,88 @@ int main()
     allpass = allpass && pass;
     failnum += (!pass);
   }
+  {
+    // Scalar = datacast(Scalar)
+    printStart(++testnum);
+    Scalar<int> s1 = 10;
+    Scalar<double> s2 = 10.;
+    Scalar<double> expected = 10.;
+    Scalar<double> result;
+    testcode( result = datacast<double>(s1) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
+  {
+    // Scalar + Scalar
+    printStart(++testnum);
+    Scalar<int> s1 = 10;
+    Scalar<int> s2 = -1;
+    Scalar<int> expected = 9;
+    Scalar<int> result;
+    testcode( result = s1 + s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  {
+    // Scalar - Scalar
+    printStart(++testnum);
+    Scalar<int> s1 = 10;
+    Scalar<int> s2 = -1;
+    Scalar<int> expected = 11;
+    Scalar<int> result;
+    testcode( result = s1 - s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+  {
+    // Scalar * Scalar
+    printStart(++testnum);
+    Scalar<int> s1 = 10;
+    Scalar<int> s2 = 3;
+    Scalar<int> expected = 30;
+    Scalar<int> result;
+    testcode( result = s1 * s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  {
+    // Scalar / Scalar
+    printStart(++testnum);
+    Scalar<int> s1 = 27;
+    Scalar<int> s2 = 9;
+    Scalar<int> expected = 3;
+    Scalar<int> result;
+    testcode( result = s1 / s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+
+
+
+  // --------------real math functions------------------------
+
+    // ************************************************************************
+  // *            trig, inverse trig, hyperbolic trig
+  // ************************************************************************
+
+  
   {
     // sin(s)
     printStart(++testnum);
@@ -227,6 +289,59 @@ int main()
     allpass = allpass && pass;
     failnum += (!pass);
   }
+
+  
+  {
+    // asin(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    Scalar<double> expected = 0.5;
+    Scalar<double> result;
+    testcode( result = asin(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // acos(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    Scalar<double> expected = 0.866025403784439;
+    Scalar<double> result;
+    testcode( result = acos(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // atan(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    Scalar<double> expected = 0.577350269189626;
+    Scalar<double> result;
+    testcode( result = atan(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // atan2(s1,s2)
+    printStart(++testnum);
+    Scalar<double> s1 = pi/6;
+    Scalar<double> s2 = pi/6;
+    Scalar<double> expected = 0.577350269189626;
+    Scalar<double> result;
+    testcode( result = atan2(s1,s2) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
   {
     // sinh(s)
     printStart(++testnum);
@@ -377,8 +492,9 @@ int main()
     failnum += (!pass);
   }
 
+  // -------------- transpose------------------------
 
-    {
+  {
     // transpose(z)
     using namespace std;
     printStart(++testnum);
@@ -392,7 +508,7 @@ int main()
     failnum += (!pass);
   }
 
-    {
+  {
     // transpose(x)
     using namespace std;
     printStart(++testnum);
@@ -404,7 +520,7 @@ int main()
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
-    }
+  }
 
   
 

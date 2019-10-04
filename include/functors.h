@@ -1080,6 +1080,161 @@ namespace matricks {
   };
 
 
+  // ************************************************************************
+  // *              bit-wise logical operators (for unsigned types)
+  // ************************************************************************
+
+  // y = a | b
+
+  template <class D> class Fun_BitwiseOr {
+  public:
+    Fun_BitwiseOr() { }
+  
+    static inline D apply(const D a, const D b) { 
+      return (a | b); 
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("|") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      return functor_namestyle.apply("Fun_BitwiseOr");
+    }
+#endif
+
+  };
+
+  // y = a & b
+
+  template <class D> class Fun_BitwiseAnd {
+  public:
+    Fun_BitwiseAnd() { }
+  
+    static inline D apply(const D a, const D b) { 
+      return (a & b); 
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("&") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      return functor_namestyle.apply("Fun_BitwiseAnd");
+    }
+#endif
+
+  };
+
+
+  // y = a ^ b
+
+  template <class D> class Fun_BitwiseXor {
+  public:
+    Fun_BitwiseXor() { }
+  
+    static inline D apply(const D a, const D b) { 
+      return (a ^ b); 
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("^") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      return functor_namestyle.apply("Fun_BitwiseXor");
+    }
+#endif
+
+  };
+
+
+
+  // y = ~b
+
+  template <class D> class Fun_BitwiseNot {
+  public:
+    Fun_BitwiseNot() { }
+  
+    static inline D apply(const D a) { 
+      return (~a); 
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa) {
+      std::string sout = functor_style.apply("~") + "(" + sa + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      return functor_namestyle.apply("Fun_BitwiseNot");
+    }
+#endif
+
+  };
+
+
+
+  
+  // y = a << b
+
+  template <class D> class Fun_BitwiseShiftLeft {
+  public:
+    Fun_BitwiseShiftLeft() { }
+  
+    static inline D apply(const D a, const D b) { 
+      return (a << b); 
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("<<") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      return functor_namestyle.apply("Fun_BitwiseShiftLeft");
+    }
+#endif
+
+  };
+
+
+  // y = a >> b
+
+  template <class D> class Fun_BitwiseShiftRight {
+  public:
+    Fun_BitwiseShiftRight() { }
+  
+    static inline D apply(const D a, const D b) { 
+      return (a >> b); 
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply(">>") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      return functor_namestyle.apply("Fun_BitwiseShiftRight");
+    }
+#endif
+
+  };
+
 
 
   // ************************************************************************
@@ -1140,7 +1295,6 @@ namespace matricks {
   };
 
  
-
 
 
 
@@ -1253,9 +1407,6 @@ namespace matricks {
   // *              complex numbers
   // ************************************************************************
 
-  ///////////////////////
-  // refactored to HERE
-  ////////////////////////
 
 
   // polar(r,phi)
@@ -1649,7 +1800,7 @@ namespace matricks {
     Fun_Conj() { }
 
     static inline std::complex<D> apply(const std::complex<D> a) {
-       return matricksconj(a); 
+      return matricksconj(a); 
     }
 
 #if MATRICKS_DEBUG>=1

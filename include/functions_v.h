@@ -6,10 +6,9 @@ namespace matricks {
 
 
 
-  /************************************************************
-   *          Functions thatcreate vectors
-   ************************************************************
-   */
+  // *********************************************************
+  // *          Functions that create vectors
+  // *********************************************************
 
   // The Range generating function (with step given)
 
@@ -521,73 +520,9 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * vector dot vector
-   ****************************************************************************
-   */
-
-
-  // dotproduct operator (a|b)
-
-  template <class D, class A, class B> 
-    inline D operator|( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    D result = D();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
-  }
-
-
-  // dotproduct operator (areal|bcomplex)
-
-  template <class D, class A, class B> 
-    inline std::complex<D>  operator|( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
-    std::complex<D> result = std::complex<D>();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
-  }
-
-
-  // dotproduct operator (acomplex|breal)
-
-  template <class D, class A, class B> 
-    inline std::complex<D>  operator|( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
-    std::complex<D> result = std::complex<D>();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
-  }
-
-
-
-
-
-
-
-  
-
-
-
-  /************************************************************
-   *               Templates for Binary+scalar Operators 
-   *
-   * D = data type, e.g. double
-   * A = either an Vector or a TensorR
-   * B = either an Vector or a TensorR
-   * N = int
-   ************************************************************
-   */
-
+  // *********************************************************
+  // *          Series
+  // *********************************************************
 
 
   // maclaurin(vector coefs, vector vals, max N)

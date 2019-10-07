@@ -22,6 +22,9 @@ int main()
 
   using namespace matricks;
   using namespace display;
+
+  FormatData<bool>::string_for_true = "true";
+  FormatData<bool>::string_for_false = "false";
   
 
   print_matricks_info();
@@ -149,10 +152,126 @@ int main()
     allpass = allpass && pass;
     failnum += (!pass);
   }
-   
+
+  // -------------- equal (elementwise) ------------------------
+  {
+    //  ==
+    printStart(++testnum);
+    Scalar<int> s1 = 24;
+    Scalar<int> s2 = 24;
+    Scalar<bool> expected = true;
+    Scalar<bool> result;
+    testcode( result = (s1==s2) );
+    bool pass = (result() == expected()) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    //  ==
+    printStart(++testnum);
+    Scalar<int> s1 = 24;
+    Scalar<int> s2 = -24;
+    Scalar<bool> expected = false;
+    Scalar<bool> result;
+    testcode( result = (s1==s2) );
+    bool pass = (result()==expected());
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  {
+    //  approxel
+    printStart(++testnum);
+    Scalar<double> s1 = 24;
+    Scalar<double> s2 = 24.001;
+    Scalar<bool> expected = true;
+    Scalar<bool> result;
+    testcode( result = (approxel(s1,s2,0.0011)) );
+    bool pass = (result() == expected()) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    //  approxel
+    printStart(++testnum);
+    Scalar<double> s1 = 24;
+    Scalar<double> s2 = 24.001;
+    Scalar<bool> expected = false;
+    Scalar<bool> result;
+    testcode( result = (approxel(s1,s2,0.0009)) );
+    bool pass = (result() == expected()) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+
+  // -------------- equal (all) ------------------------
+  {
+    //  equal
+    printStart(++testnum);
+    Scalar<int> s1 = 24;
+    Scalar<int> s2 = 24;
+    bool expected = true;
+    bool result;
+    testcode( result = (equal(s1,s2)) );
+    bool pass = (result == expected) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    //  equal
+    printStart(++testnum);
+    Scalar<int> s1 = 24;
+    Scalar<int> s2 = -24;
+    bool expected = false;
+    bool result;
+    testcode( result = (equal(s1,s2)) );
+    bool pass = (result == expected) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  {
+    //  approx
+    printStart(++testnum);
+    Scalar<double> s1 = 24;
+    Scalar<double> s2 = 24.001;
+    bool expected = true;
+    bool result;
+    testcode( result = approx(s1,s2,0.0011) );
+    bool pass = (result == expected) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    //  approx
+    printStart(++testnum);
+    Scalar<double> s1 = 24;
+    Scalar<double> s2 = 24.001;
+    bool expected = false;
+    bool result;
+    testcode( result = approx(s1,s2,0.0009) );
+    bool pass = (result == expected) ;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+  
+  
+  // -------------- constructors  ------------------------
+
   // -------------- assignment =  ------------------------
   // TODO:
-  
+
+
   // -------------- arithmetic ------------------------
    
   {
@@ -754,6 +873,32 @@ int main()
     allpass = allpass && pass;
     failnum += (!pass);
   }
+  {
+    // bitwise <<
+    printStart(++testnum);
+    Scalar<unsigned short> s1 = 1;
+    Scalar<unsigned short> s2 = 2;
+    Scalar<unsigned short> expected = 4;
+    Scalar<unsigned short> result;
+    testcode( result = (s1 << s2) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // bitwise >>
+    printStart(++testnum);
+    Scalar<unsigned short> s1 = 4;
+    Scalar<unsigned short> s2 = 2;
+    Scalar<unsigned short> expected = 1;
+    Scalar<unsigned short> result;
+    testcode( result = (s1 >> s2) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
   
   // ************************************************************************
@@ -1102,6 +1247,176 @@ int main()
    ****************************************************************************
    */
 
+  {
+    // sum(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    double expected = pi/6;
+    double result;
+    testcode( result = sum(s) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // prod(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    double expected = pi/6;
+    double result;
+    testcode( result = sum(s) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // norm(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    double expected = pi/6;
+    double result;
+    testcode( result = norm(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // min(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    double expected = pi/6;
+    double result;
+    testcode( result = min(s) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // max(s)
+    printStart(++testnum);
+    Scalar<double> s = pi/6;
+    double expected = pi/6;
+    double result;
+    testcode( result = max(s) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  
+  /****************************************************************************
+   * Unary Functions/Operators that bools or index_type Tensors
+   ****************************************************************************
+   */
+
+  {
+    // alltrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    bool expected = true;
+    bool result;
+    testcode( result = alltrue(s1>=s2) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // alltrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    bool expected = false;
+    bool result;
+    testcode( result = alltrue(s1>s2) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // anytrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    bool expected = true;
+    bool result;
+    testcode( result = alltrue(s1>=s2) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // anytrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    bool expected = false;
+    bool result;
+    testcode( result = alltrue(s1>s2) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // numtrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    int expected = 1;
+    int result;
+    testcode( result = numtrue(s1>=s2) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // numtrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    int expected = 0;
+    int result;
+    testcode( result = numtrue(s1>s2) );
+    bool pass = result==expected;
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // findtrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    Vector<index_type> expected(1,0);
+    Vector<index_type> result;
+    testcode( result = findtrue(s1>=s2) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // findtrue(s)
+    printStart(++testnum);
+    Scalar<int> s1 = 42;
+    Scalar<int> s2 = 42;
+    Vector<index_type> expected(0);
+    Vector<index_type> result;
+    testcode( result = findtrue(s1>s2) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
   
   
   printSummary(testnum, failnum);

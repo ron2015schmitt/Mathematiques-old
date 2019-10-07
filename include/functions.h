@@ -709,9 +709,9 @@ namespace matricks {
   // approxel(a,b,tol)
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >  
+    inline TER_Bool_Binary2<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >  
     approxel( const TensorR<D,A>& a, const  TensorR<D,B>& b, const D tol = MatricksHelper<D>::tolerance) {
-    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >(a,b,tol);
+    return TER_Bool_Binary2<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >(a,b,tol);
   }
 
   

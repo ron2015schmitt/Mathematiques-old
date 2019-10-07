@@ -996,6 +996,81 @@ namespace matricks {
 
 
 
+  /****************************************************************************
+   * TER_Bool_Binary2 Operator Expression Template 
+   *
+   * vector/vector tertiary operator expressions
+   ****************************************************************************
+   */
+  template<class D, class A, class B, class OP>
+    class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP> > {
+
+  private:
+    const A& a_;
+    const B& b_;
+    const D d_;
+    VectorofPtrs *vptrs;
+
+  public:
+
+
+  TER_Bool_Binary2(const A& a, const B& b, const D& d)
+    : a_(a), b_(b), d_(d) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(&a_);
+      vptrs->add(&b_);
+    }
+
+    ~TER_Bool_Binary2() {
+      delete vptrs;
+    }
+
+
+    inline bool operator[](const index_type i) const {  
+      return OP::apply(a_[i], b_[i], d_); 
+    }
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    inline size_type size(void) const {
+      if ( a_.size() != b_.size() ) {
+	return badsize;
+      } else {
+	return a_.size();
+      }
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    inline std::string classname() const {
+      return "TER_Bool_Binary2";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      return "";
+    }
+#endif 
+
+  };
+
+
+
 
   /****************************************************************************
    * TER_Bool_TensorOpScalar Operator Template 

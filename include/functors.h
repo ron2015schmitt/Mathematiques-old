@@ -941,6 +941,33 @@ namespace matricks {
   };
 
 
+  
+  // approx(a,tol)
+
+  template <class D> class Fun_Approx {
+  public:
+    typedef typename GetDataType<D>::Type DREAL;
+    Fun_Approx() { }
+
+    static inline D apply(const D a, const D b, const DREAL tolerance) { 
+      return matricks::approx(a, b, tolerance);
+    }
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb, const std::string& sc) {
+      std::string sout = functor_style.apply("approx") +  "(" + sa + ","  + sb + ","  + sc + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D d;
+      return functor_namestyle.apply("Fun_Approx")+display::getBracketedTypeName(d);
+    }
+#endif
+
+  };
+
   // ************************************************************************
   // *              User Defined
   // ************************************************************************

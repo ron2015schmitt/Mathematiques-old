@@ -442,21 +442,21 @@ namespace matricks {
   // ************************************************************************
 
 
-  
-  template <class D, typename FunctionTypes<D>::binary_func F, class A, class B> 
-    inline TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> > 
-    op2(const TensorR<D,A>& a, const TensorR<D,B>& b)
-    {
-      return  TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> >(a,b);
-    }
-
-
   // user-defined functions
   template <class D, typename FunctionTypes<D>::unary_func F, class A> 
     inline TER_Unary<D, TensorR<D,A>, Fun_UnaryUser<D,F> > 
     op1(const TensorR<D,A>& a)
     {
       return  TER_Unary<D, TensorR<D,A>, Fun_UnaryUser<D,F> >(a);
+    }
+
+
+  
+  template <class D, typename FunctionTypes<D>::binary_func F, class A, class B> 
+    inline TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> > 
+    op2(const TensorR<D,A>& a, const TensorR<D,B>& b)
+    {
+      return  TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> >(a,b);
     }
 
 
@@ -693,7 +693,7 @@ namespace matricks {
 
   
   // ************************************************************************
-  // *              Relational ops (return a bool from two Ds)
+  // *              Relational ops (return a bool Tensor from two D Tensors)
   // ************************************************************************
 
 
@@ -706,10 +706,17 @@ namespace matricks {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >(a,b);
   }
 
+  // approxel(a,b,tol)
+
+  template <class D, class A, class B> 
+    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >  
+    approxel( const TensorR<D,A>& a, const  TensorR<D,B>& b, const D tol = MatricksHelper<D>::tolerance) {
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >(a,b,tol);
+  }
 
   
   // -------------------------------------------------------------------
-  // equal - if two tensors are equal
+  // equal - if two tensors are equal. returns a single bool
   //         checks dimensions first
   // -------------------------------------------------------------------
   template <class D, class A, class B>
@@ -727,7 +734,7 @@ namespace matricks {
 
 
   // -------------------------------------------------------------------
-  // approx - if two tensors are approximately equal
+  // approx - if two tensors are approximately equal, returns a single bool
   //          checks dimensions first
   // -------------------------------------------------------------------
   template <class D, class A, class B>

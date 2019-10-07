@@ -5,8 +5,7 @@
 
 namespace matricks {
 
-  template <class A>
-    inline Vector<index_type> findtrue( const TensorR<bool,A>& a );
+  template <class A> Vector<index_type> findtrue( const TensorR<bool,A>& a );
 
 
   /****************************************************************************

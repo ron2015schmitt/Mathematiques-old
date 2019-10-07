@@ -981,14 +981,14 @@ namespace matricks {
   // findtrue(a)
 
   template <class A> 
-    inline Tensor<index_type> findtrue( const TensorR<bool,A>& a ) {
+    inline Vector<index_type> findtrue( const TensorR<bool,A>& a ) {
     int N = 0;
     
 
     for (register index_type i = 0; i< a.size(); i++)
       N += int(a[i]);
  
-    Tensor<index_type> y(N);
+    Vector<index_type> y(N);
 
     index_type j =0;
     for (register index_type i = 0; i< a.size(); i++)

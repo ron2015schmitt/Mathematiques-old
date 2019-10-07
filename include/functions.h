@@ -135,7 +135,7 @@ namespace matricks {
   }
 
 
-    // dot(a,b)
+  // dot(a,b)
 
   template <class D, class A, class B> 
     inline D dot( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
@@ -1091,6 +1091,15 @@ namespace matricks {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> >(a,b);
     }
 
+  // Tensor<int> + (int scalar) -- needed to avoid operator ambiguity
+
+  template <class A> 
+    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Add<int> > 
+    operator+(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Add<int> >(a,b);
+    }
+
   // (int scalar) + Tensor
 
   template <class D, class B>
@@ -1098,6 +1107,15 @@ namespace matricks {
     operator+(const int a, const TensorR<D,B>& b )
     {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > (a,b);
+    }
+
+  // (int scalar) + Tensor<int>
+
+  template <class B>
+    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Add<int> > 
+    operator+(const int a, const TensorR<int,B>& b )
+    {
+      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Add<int> > (a,b);
     }
 
 
@@ -1110,6 +1128,15 @@ namespace matricks {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
     }
 
+  // Tensor<int> - (int scalar)
+
+  template <class A> 
+    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Subtract<int> > 
+    operator-(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Subtract<int> >(a,b);
+    }
+
   // (int scalar) - Tensor
 
   template <class D, class B>
@@ -1117,6 +1144,15 @@ namespace matricks {
     operator-(const int a, const TensorR<D,B>& b )
     {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
+    }
+
+  // (int scalar) - Tensor<int>
+
+  template <class B>
+    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Subtract<int> > 
+    operator-(const int a, const TensorR<int,B>& b )
+    {
+      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Subtract<int> > (a,b);
     }
 
   // Tensor * (int scalar)
@@ -1128,6 +1164,16 @@ namespace matricks {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
     }
 
+  // Tensor<int> * (int scalar)
+
+  template <class A> 
+    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Multiply<int> > 
+    operator*(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Multiply<int> >(a,b);
+    }
+
+
   // (int scalar) * Tensor
 
   template <class D, class B>
@@ -1135,6 +1181,15 @@ namespace matricks {
     operator*(const int a, const TensorR<D,B>& b )
     {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
+    }
+
+  // (int scalar) * Tensor<int>
+
+  template <class B>
+    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Multiply<int> > 
+    operator*(const int a, const TensorR<int,B>& b )
+    {
+      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Multiply<int> > (a,b);
     }
 
   // Tensor / (int scalar)
@@ -1146,6 +1201,15 @@ namespace matricks {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
     }
 
+  // Tensor<int> / (int scalar)
+
+  template <class A> 
+    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Divide<int> > 
+    operator/(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Divide<int> >(a,b);
+    }
+
   // (int scalar) / Tensor
 
   template <class D, class B>
@@ -1155,6 +1219,14 @@ namespace matricks {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
     }
 
+  // (int scalar) / Tensor<int>
+
+  template <class B>
+    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Divide<int> > 
+    operator/(const int a, const TensorR<int,B>& b )
+    {
+      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Divide<int> > (a,b);
+    }
 
 
   //---------- Tensor scalar mix: powers and exponents -----------------
@@ -1169,6 +1241,24 @@ namespace matricks {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Pow<D> >(a,b);
     }
 
+  // pow(Tensor,int)
+
+  template <class D, class A> 
+    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Monomial<D> > 
+    pow(const TensorR<D,A>& a, const int b)
+    {
+      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Monomial<D> >(a,b);
+    }
+
+  // pow(Tensor<int>,int)
+
+  template <class A> 
+    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Monomial<int> > 
+    pow(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Monomial<int> >(a,b);
+    }
+
   // pow(scalar,Tensor)
 
   template <class D, class B> 
@@ -1176,6 +1266,22 @@ namespace matricks {
     pow( const D a, const TensorR<D,B>& b)
     {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Pow<D> >(a,b);
+    }
+  // pow(int,Tensor)
+
+  template <class D, class B> 
+    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Monomial<D> > 
+    pow( const int a, const TensorR<D,B>& b)
+    {
+      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Monomial<D> >(a,b);
+    }
+  // pow(int,Tensor<int>)
+
+  template <class B> 
+    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Pow<int> > 
+    pow( const int a, const TensorR<int,B>& b)
+    {
+      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Pow<int> >(a,b);
     }
 
 
@@ -1250,6 +1356,16 @@ namespace matricks {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> >(a,static_cast<D>(b));
     }
 
+  // Tensor<int> == int scalar
+
+  template <class A> 
+    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Equal<int> > 
+    operator==(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Equal<int> >(a,static_cast<int>(b));
+    }
+
+
   // int scalar == Tensor
 
   template <class D, class B> 
@@ -1257,6 +1373,14 @@ namespace matricks {
     operator==(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> >(static_cast<D>(a),b);
+    }
+  // int scalar == Tensor<int>
+
+  template <class B> 
+    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Equal<int> > 
+    operator==(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Equal<int> >(static_cast<int>(a),b);
     }
 
   // Tensor != scalar
@@ -1286,6 +1410,15 @@ namespace matricks {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> >(a,static_cast<D>(b));
     }
 
+  // Tensor<int> != int scalar
+
+  template <class A> 
+    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_NotEqual<int> > 
+    operator!=(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_NotEqual<int> >(a,static_cast<int>(b));
+    }
+
   // int scalar != Tensor
 
   template <class D, class B> 
@@ -1294,6 +1427,16 @@ namespace matricks {
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> >(static_cast<D>(a),b);
     }
+
+  // int scalar != Tensor<int>
+
+  template <class B> 
+    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_NotEqual<int> > 
+    operator!=(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_NotEqual<int> >(static_cast<int>(a),b);
+    }
+
 
   // Tensor <= scalar
 
@@ -1322,6 +1465,15 @@ namespace matricks {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,static_cast<D>(b));
     }
 
+  // Tensor<int> <= int scalar
+
+  template <class A> 
+    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_LessOrEqual<int> > 
+    operator<=(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_LessOrEqual<int> >(a,static_cast<int>(b));
+    }
+
   // int scalar <= Tensor
 
   template <class D, class B> 
@@ -1329,6 +1481,14 @@ namespace matricks {
     operator<=(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> >(static_cast<D>(a),b);
+    }
+  // int scalar <= Tensor<int>
+
+  template <class B> 
+    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_LessOrEqual<int> > 
+    operator<=(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_LessOrEqual<int> >(static_cast<int>(a),b);
     }
 
   // Tensor >= scalar
@@ -1357,6 +1517,14 @@ namespace matricks {
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,static_cast<D>(b));
     }
+  // Tensor >= int scalar
+
+  template <class A> 
+    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_GreaterOrEqual<int> > 
+    operator>=(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_GreaterOrEqual<int> >(a,static_cast<int>(b));
+    }
 
   // int scalar >= Tensor
 
@@ -1365,6 +1533,14 @@ namespace matricks {
     operator>=(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(static_cast<D>(a),b);
+    }
+  // int scalar >= Tensor
+
+  template <class B> 
+    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_GreaterOrEqual<int> > 
+    operator>=(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_GreaterOrEqual<int> >(static_cast<int>(a),b);
     }
 
   // Tensor < scalar
@@ -1392,6 +1568,14 @@ namespace matricks {
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> >(a,static_cast<D>(b));
     }
+  // Tensor<int> < int scalar
+
+  template <class A> 
+    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Less<int> > 
+    operator<(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Less<int> >(a,static_cast<int>(b));
+    }
 
   // int scalar < Tensor
 
@@ -1400,6 +1584,14 @@ namespace matricks {
     operator<(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> >(static_cast<D>(a),b);
+    }
+  // int scalar < Tensor<int>
+
+  template <class B> 
+    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Less<int> > 
+    operator<(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Less<int> >(static_cast<int>(a),b);
     }
 
   // Tensor > scalar
@@ -1430,6 +1622,14 @@ namespace matricks {
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> >(a,static_cast<D>(b));
     }
+  // Tensor<int> > int scalar
+
+  template <class A> 
+    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Greater<int> > 
+    operator>(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Greater<int> >(a,static_cast<int>(b));
+    }
 
   // int scalar > Tensor
 
@@ -1438,6 +1638,14 @@ namespace matricks {
     operator>(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> >(static_cast<D>(a),b);
+    }
+  // int scalar > Tensor<int>
+
+  template <class B> 
+    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Greater<int> > 
+    operator>(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Greater<int> >(static_cast<int>(a),b);
     }
 
 
@@ -1511,11 +1719,8 @@ namespace matricks {
     }
 
 
-
- 
   
   // vcomplex(Tensor,realscalar)
-
   
   template <class D, class A, class B> 
     inline TER_TensorOpScalar<std::complex<D>, TensorR<D,A>, Fun_Complex<D> > 
@@ -1523,6 +1728,8 @@ namespace matricks {
     {
       return  TER_Cplx_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,b);
     }
+
+  
   // vcomplex(Tensor,intscalar)
 
   template <class D, class A> 
@@ -1532,6 +1739,17 @@ namespace matricks {
       return  TER_Cplx_TensorOpScalar<D,TensorR<D,A>,Fun_Complex<D > >(a,static_cast<D>(b));
     }
 
+  
+  // vcomplex(Tensor<int>,intscalar)
+
+  template <class A> 
+    inline TER_Cplx_TensorOpScalar<int,TensorR<int,A>,Fun_Complex<int> > 
+    vcomplex(const TensorR<int,A>& a, const int b)
+    {
+      return  TER_Cplx_TensorOpScalar<int,TensorR<int,A>,Fun_Complex<int> >(a,static_cast<int>(b));
+    }
+
+
   // vcomplex(realscalar,Tensor)
 
   template <class D, class B> 
@@ -1540,6 +1758,7 @@ namespace matricks {
     {
       return  TER_Cplx_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(a,b);
     }
+
   // vcomplex(intscalar,Tensor)
 
   template <class D, class B> 
@@ -1547,6 +1766,16 @@ namespace matricks {
     vcomplex(const int a, const TensorR<D,B>& b)
     {
       return  TER_Cplx_ScalarOpTensor<D,TensorR<D,B>,Fun_Complex<D > >(static_cast<D>(a),b);
+    }
+
+
+  // vcomplex(intscalar,Tensor<int>)
+
+  template <class B> 
+    inline TER_Cplx_ScalarOpTensor<int,TensorR<int,B>,Fun_Complex<int> > 
+    vcomplex(const int a, const TensorR<int,B>& b)
+    {
+      return  TER_Cplx_ScalarOpTensor<int,TensorR<int,B>,Fun_Complex<int> >(static_cast<int>(a),b);
     }
 
 
@@ -1560,6 +1789,8 @@ namespace matricks {
     return TER_Unary<std::complex<D>, TensorR<std::complex<D>, A>, Fun_RoundCplx<D> >(a);
   }
 
+
+  // roundzero(complex Tensor)
   
   template <class D, class A> 
     inline TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>, Fun_Roundzero<std::complex<D> > > 
@@ -1591,6 +1822,17 @@ namespace matricks {
       return  TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_PowCR<D> >(a,static_cast<D>(b));
     }
 
+  // pow(complexTensor<int>,intscalar)
+
+  template <class A> 
+    inline TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_PowCR<int> > 
+    pow(const TensorR<std::complex<int>,A>& a, const int b)
+    {
+      return  TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_PowCR<int> >(a,static_cast<int>(b));
+    }
+
+
+
   // pow(realscalar,complexTensor)
 
   template <class D, class B> 
@@ -1607,6 +1849,15 @@ namespace matricks {
     pow(const int a, const TensorR<std::complex<D>,B>& b)
     {
       return  TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_PowRC<D> >(static_cast<D>(a),b);
+    }
+
+  // pow(intscalar,complexTensor<int>)
+
+  template <class B> 
+    inline TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_PowRC<int> > 
+    pow(const int a, const TensorR<std::complex<int>,B>& b)
+    {
+      return  TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_PowRC<int> >(static_cast<int>(a),b);
     }
 
   
@@ -1711,6 +1962,18 @@ namespace matricks {
       return  
 	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_AddCR<D> >(a,static_cast<D>(b));  
     }
+
+
+  // complexTensor<int> + intscalar
+  template <class A> 
+    inline TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_AddCR<int> > 
+    operator+(const TensorR<std::complex<int>,A>& a, const int b)
+    {
+      return  
+	TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_AddCR<int> >(a,static_cast<int>(b));  
+    }
+
+  
   // realscalar + complexTensor
   template <class D, class B> 
     inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
@@ -1719,6 +1982,8 @@ namespace matricks {
       return  
 	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> >(a,b);  
     }
+
+
   // intscalar + complexTensor
   template <class D, class B> 
     inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D> > 
@@ -1726,6 +1991,15 @@ namespace matricks {
     {
       return  
 	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_AddRC<D > >(static_cast<D>(a),b);  
+    }
+
+  // intscalar + complexTensor<int>
+  template <class B> 
+    inline TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_AddRC<int> > 
+    operator+(const int a, const TensorR<std::complex<int>,B>& b)
+    {
+      return  
+	TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_AddRC<int> >(static_cast<int>(a),b);  
     }
 
 
@@ -1777,6 +2051,17 @@ namespace matricks {
       return  
 	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_SubtractCR<D> >(a,static_cast<D>(b));  
     }
+
+  // complexTensor<int> - intscalar
+  template <class A> 
+    inline TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_SubtractCR<int> > 
+    operator-(const TensorR<std::complex<int>,A>& a, const int b)
+    {
+      return  
+	TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_SubtractCR<int> >(a,static_cast<int>(b));  
+    }
+
+
   // realscalar - complexTensor
   template <class D, class B> 
     inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
@@ -1785,6 +2070,8 @@ namespace matricks {
       return  
 	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> >(a,b);  
     }
+
+
   // intscalar - complexTensor
   template <class D, class B> 
     inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D> > 
@@ -1792,6 +2079,14 @@ namespace matricks {
     {
       return  
 	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_SubtractRC<D > >(static_cast<D>(a),b);  
+    }
+  // intscalar - complexTensor<int>
+  template <class B> 
+    inline TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_SubtractRC<int> > 
+    operator-(const int a, const TensorR<std::complex<int>,B>& b)
+    {
+      return  
+	TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_SubtractRC<int> >(static_cast<int>(a),b);  
     }
 
 
@@ -1844,6 +2139,16 @@ namespace matricks {
       return  
 	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_MultiplyCR<D> >(a,static_cast<D>(b));  
     }
+  // complexTensor<int> * intscalar
+  template <class A> 
+    inline TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_MultiplyCR<int> > 
+    operator*(const TensorR<std::complex<int>,A>& a, const int b)
+    {
+      return  
+	TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_MultiplyCR<int> >(a,static_cast<int>(b));  
+    }
+
+
   // realscalar * complexTensor
   template <class D, class B> 
     inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D> > 
@@ -1859,6 +2164,15 @@ namespace matricks {
     {
       return  
 	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_MultiplyRC<D > >(static_cast<D>(a),b);  
+    }
+
+  // intscalar * complexTensor<int>
+  template <class B> 
+    inline TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_MultiplyRC<int> > 
+    operator*(const int a, const TensorR<std::complex<int>,B>& b)
+    {
+      return  
+	TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_MultiplyRC<int> >(static_cast<int>(a),b);  
     }
 
 
@@ -1911,6 +2225,15 @@ namespace matricks {
       return  
 	TER_Cplx_TensorOpScalar<D,TensorR<std::complex<D>,A>,Fun_DivideCR<D> >(a,static_cast<D>(b));  
     }
+
+  // complexTensor<int> / intscalar
+  template <class A> 
+    inline TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_DivideCR<int> > 
+    operator/(const TensorR<std::complex<int>,A>& a, const int b)
+    {
+      return  
+	TER_Cplx_TensorOpScalar<int,TensorR<std::complex<int>,A>,Fun_DivideCR<int> >(a,static_cast<int>(b));  
+    }
   // realscalar / complexTensor
   template <class D, class B> 
     inline TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D> > 
@@ -1926,6 +2249,14 @@ namespace matricks {
     {
       return  
 	TER_Cplx_ScalarOpTensor<D,TensorR<std::complex<D>,B>,Fun_DivideRC<D > >(static_cast<D>(a),b);  
+    }
+  // intscalar / complexTensor<int>
+  template <class B> 
+    inline TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_DivideRC<int> > 
+    operator/(const int a, const TensorR<std::complex<int>,B>& b)
+    {
+      return  
+	TER_Cplx_ScalarOpTensor<int,TensorR<std::complex<int>,B>,Fun_DivideRC<int> >(static_cast<int>(a),b);  
     }
 
 

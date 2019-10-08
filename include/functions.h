@@ -907,20 +907,6 @@ namespace matricks {
 
 
 
-  // norm(a)
-
-  template <class D, class A> 
-    inline D norm( const TensorR<std::complex<D>,A>& a ) {
-    D result = D();
-    
- 
-    for (register index_type i = a.size(); i--;) {
-      D tempR = a[i].real(); 
-      D tempI = a[i].imag(); 
-      result += tempR*tempR + tempI*tempI;
-    }
-    return std::sqrt(result);
-  }
 
 
 
@@ -1657,6 +1643,27 @@ namespace matricks {
   // *              Complex numbers
   // ************************************************************************
 
+  // approxel(a,b,tol)
+
+  template <class D, class A, class B> 
+    inline TER_Bool_Binary2<
+    std::complex<D>,
+    TensorR<std::complex<D>,A>,
+    TensorR<std::complex<D>,B>,
+    Fun_Approx<std::complex<D>
+    > >  
+    approxel( const TensorR<std::complex<D>,A>& a,
+	      const TensorR<std::complex<D>,B>& b,
+	      const D tol = MatricksHelper<D>::tolerance) {
+    return TER_Bool_Binary2<
+      std::complex<D>,
+      TensorR<std::complex<D>,A>,
+      TensorR<std::complex<D>,B>,
+      Fun_Approx<std::complex<D>
+      > >(a,b,tol);
+  }
+
+
   // abs(complex Tensor)
 
   template <class D, class A> 
@@ -1666,6 +1673,20 @@ namespace matricks {
       return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_CAbs<D> >(a);
     }
 
+  // norm(a)
+
+  template <class D, class A> 
+    inline D norm( const TensorR<std::complex<D>,A>& a ) {
+    D result = D();
+    
+ 
+    for (register index_type i = a.size(); i--;) {
+      D tempR = a[i].real(); 
+      D tempI = a[i].imag(); 
+      result += tempR*tempR + tempI*tempI;
+    }
+    return std::sqrt(result);
+  }
 
   // arg(complex Tensor)
 

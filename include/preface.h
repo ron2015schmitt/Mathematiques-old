@@ -130,9 +130,17 @@ namespace matricks {
     return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
 
+    // approx - complex
+  
+  template <typename D> bool approx(const std::complex<D>& x, const std::complex<D>& y, const D tolerance) {
+    using std::abs;
+    return (roundzero(abs(x-y), tolerance) == 0);
+  }
+
 
   // C++ does not have "instanceof" type guarding so even if it
   // can't get to the code it will produce a compile error
+  // could also address this by casting where needed
   template <typename D> D matricksconj(const D& x) {
     return x;
   }

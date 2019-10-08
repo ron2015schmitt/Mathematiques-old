@@ -1005,16 +1005,20 @@ namespace matricks {
   template<class D, class A, class B, class OP>
     class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP> > {
 
+  public:
+    typedef typename GetDataType<D>::Type DREAL;
+
+    
   private:
     const A& a_;
     const B& b_;
-    const D d_;
+    const DREAL d_;
     VectorofPtrs *vptrs;
 
   public:
 
 
-  TER_Bool_Binary2(const A& a, const B& b, const D& d)
+  TER_Bool_Binary2(const A& a, const B& b, const DREAL& d)
     : a_(a), b_(b), d_(d) { 
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);

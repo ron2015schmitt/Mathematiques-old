@@ -146,7 +146,7 @@ echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo 'EXEC += misctest stest vtest mtest ttest' >>${DIR_TARGET}/Makefile
+echo 'EXEC += misctest ScalarTest ScalarTestComplex vtest mtest ttest' >>${DIR_TARGET}/Makefile
 echo ""
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile

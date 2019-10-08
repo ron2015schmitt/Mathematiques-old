@@ -942,14 +942,14 @@ namespace matricks {
 
 
   
-  // approx(a,tol)
+  // approx(a,b,tol)
 
   template <class D> class Fun_Approx {
   public:
     typedef typename GetDataType<D>::Type DREAL;
     Fun_Approx() { }
 
-    static inline D apply(const D a, const D b, const DREAL tolerance) { 
+    static inline bool apply(const D a, const D b, const DREAL tolerance) { 
       return matricks::approx(a, b, tolerance);
     }
 

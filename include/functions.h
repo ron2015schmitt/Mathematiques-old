@@ -1663,6 +1663,22 @@ namespace matricks {
       > >(a,b,tol);
   }
 
+  // -------------------------------------------------------------------
+  // approx - if two tensors are approximately equal, returns a single bool
+  //          checks dimensions first
+  // -------------------------------------------------------------------
+  template <class D, class A, class B>
+    inline bool approx(const TensorR<std::complex<D>,A>& tensor1, const TensorR<std::complex<D>,B>& tensor2, const D tolerance) {
+    if (!dimequiv(tensor1,tensor2)) {
+      return false;
+    }
+    for (int ii = 0; ii < tensor1.size(); ii++) {
+      if (!approx(tensor1[ii], tensor2[ii], tolerance)) {
+	return false;
+      }
+    }
+    return true;
+  }
 
   // abs(complex Tensor)
 

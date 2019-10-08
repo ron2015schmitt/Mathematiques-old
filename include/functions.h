@@ -80,13 +80,15 @@ namespace matricks {
   // datacast: cast data from D1 to D2
 
   template <class D2, class D1, class A> 
-    inline TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D1,D2> > 
+    inline TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D2,D1> > 
     datacast(const TensorR<D1,A>& a)
     {
-      return  TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D1,D2> >(a);
+      return  TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D2,D1> >(a);
     }
 
 
+
+  
   /****************************************************************************
    *  dot products
    ****************************************************************************

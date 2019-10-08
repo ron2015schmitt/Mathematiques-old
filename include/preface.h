@@ -110,6 +110,21 @@ namespace matricks {
     return (roundzero(abs(x-y), tolerance) == 0);
   }
 
+  // numbercast
+  
+  template <typename D2, typename D1>
+    D2 numbercast(const D1 x) {
+    return static_cast<D2>( x );
+  }
+
+  // numbercast
+  
+  template <typename D2, typename D1>
+    std::complex<D2> numbercast(const std::complex<D1>& x) {
+    using std::real;
+    using std::imag;
+    return std::complex<D2>( numbercast<D2,D1>(real(x)), numbercast<D2,D1>(imag(x)) );
+  }
   
   
   // complex conjugate

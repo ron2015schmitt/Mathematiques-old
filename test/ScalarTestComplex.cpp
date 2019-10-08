@@ -301,19 +301,18 @@ int main()
     allpass = allpass && pass;
     failnum += (!pass);
   }
-  // {
-  //   // Scalar = datacast(Scalar)
-  //   printStart(++testnum);
-  //   Scalar<ComplexInt> s1 = 10;
-  //   Scalar<ComplexDouble> s2 = 10.;
-  //   Scalar<ComplexDoubleexpected = 10.;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = datacast<double>(s1) );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // Scalar = datacast(Scalar)
+    printStart(++testnum);
+    Scalar<ComplexInt> s1 = ComplexInt(10,1);
+    Scalar<ComplexDouble> expected = ComplexDouble(10.,1.);
+    Scalar<ComplexDouble> result;
+    testcode( result = datacast<ComplexDouble>(s1) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
   // {
   //   // Scalar + Scalar

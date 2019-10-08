@@ -76,12 +76,14 @@ namespace matricks {
 
   // cast - from D1 to D2
 
-  template <class D1, class D2> class Fun_Cast {
+  template <class D2, class D1> class Fun_Cast {
   public:
     Fun_Cast() { }
 
-    static inline D2 apply(const D1 a) { 
-      return static_cast<D2>(a); 
+    static inline D2 apply(const D1 a) {
+      typedef typename GetDataType<D1>::Type DREAL1;
+      typedef typename GetDataType<D2>::Type DREAL2;
+      return numbercast<DREAL2,DREAL1>(a); 
     }
     
 
@@ -89,7 +91,7 @@ namespace matricks {
     static inline std::string expression(const std::string& sa) {
       using namespace display;
       D2 d2;
-      std::string sout = functor_style.apply("static_cast")+"<" + getTypeName(d2) + ">(" + sa + ")";
+      std::string sout = functor_style.apply("numbercast")+"<" + getTypeName(d2) + ">(" + sa + ")";
       return sout;
     }
 

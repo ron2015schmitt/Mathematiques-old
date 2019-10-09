@@ -35,7 +35,7 @@ int main()
   bool allpass = true;
   int testnum = 0;
   int failnum = 0;
-  double tol = 5e-16;
+  double tol = 5e-15;
   const double pi = M_PI;
 
   typedef std::complex<double> ComplexDouble;
@@ -203,7 +203,7 @@ int main()
     Scalar<ComplexDouble> s2 = ComplexDouble(14.01,71.);
     Scalar<bool> expected = false;
     Scalar<bool> result;
-    testcode( result = (approxel(s1,s2,0.005)) );
+    testcode( result = (approxel(s1,s2,0.0005)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -242,8 +242,8 @@ int main()
   {
     //  approx
     printStart(++testnum);
-    Scalar<ComplexDouble> s1 = ComplexDouble(24,-25);
-    Scalar<ComplexDouble> s2 = ComplexDouble(24.001,-25);
+    Scalar<ComplexDouble> s1 = ComplexDouble(1,-25);
+    Scalar<ComplexDouble> s2 = ComplexDouble(1.001,-25);
     bool expected = true;
     bool result;
     testcode( result = approx(s1,s2,0.002) );
@@ -255,8 +255,8 @@ int main()
   {
     //  approx
     printStart(++testnum);
-    Scalar<ComplexDouble> s1 = ComplexDouble(24,-25);
-    Scalar<ComplexDouble> s2 = ComplexDouble(24.001,-25);
+    Scalar<ComplexDouble> s1 = ComplexDouble(1,-25);
+    Scalar<ComplexDouble> s2 = ComplexDouble(1.001,-25);
     bool expected = false;
     bool result;
     testcode( result = approx(s1,s2,0.0005) );
@@ -314,62 +314,62 @@ int main()
     failnum += (!pass);
   }
 
-  // {
-  //   // Scalar + Scalar
-  //   printStart(++testnum);
-  //   Scalar<ComplexInt> s1 = 10;
-  //   Scalar<ComplexInt> s2 = -1;
-  //   Scalar<ComplexInt expected = 9;
-  //   Scalar<ComplexInt result;
-  //   testcode( result = s1 + s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // Scalar + Scalar
+    printStart(++testnum);
+    Scalar<ComplexInt> s1 =  ComplexInt(10,1);
+    Scalar<ComplexInt> s2 =  ComplexInt(-1,1);
+    Scalar<ComplexInt> expected =  ComplexInt(9,2);
+    Scalar<ComplexInt> result;
+    testcode( result = s1 + s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
-  // {
-  //   // Scalar - Scalar
-  //   printStart(++testnum);
-  //   Scalar<ComplexInt> s1 = 10;
-  //   Scalar<ComplexInt> s2 = -1;
-  //   Scalar<ComplexInt expected = 11;
-  //   Scalar<ComplexInt result;
-  //   testcode( result = s1 - s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // Scalar - Scalar
+    printStart(++testnum);
+    Scalar<ComplexInt> s1 =  ComplexInt(10,1);
+    Scalar<ComplexInt> s2 =  ComplexInt(-1,1);
+    Scalar<ComplexInt> expected =  ComplexInt(11,0);
+    Scalar<ComplexInt> result;
+    testcode( result = s1 - s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
 
-  // {
-  //   // Scalar * Scalar
-  //   printStart(++testnum);
-  //   Scalar<ComplexInt> s1 = 10;
-  //   Scalar<ComplexInt> s2 = 3;
-  //   Scalar<ComplexInt expected = 30;
-  //   Scalar<ComplexInt result;
-  //   testcode( result = s1 * s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // Scalar * Scalar
+    printStart(++testnum);
+    Scalar<ComplexInt> s1 =  ComplexInt(10,1);
+    Scalar<ComplexInt> s2 =  ComplexInt(-1,1);
+    Scalar<ComplexInt> expected =  ComplexInt(-11,9);
+    Scalar<ComplexInt> result;
+    testcode( result = s1 * s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
-  // {
-  //   // Scalar / Scalar
-  //   printStart(++testnum);
-  //   Scalar<ComplexInt> s1 = 27;
-  //   Scalar<ComplexInt> s2 = 9;
-  //   Scalar<ComplexInt expected = 3;
-  //   Scalar<ComplexInt result;
-  //   testcode( result = s1 / s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // Scalar / Scalar
+    printStart(++testnum);
+    Scalar<ComplexInt> s1 =  ComplexInt(20,2);
+    Scalar<ComplexInt> s2 =  ComplexInt(-1,1);
+    Scalar<ComplexInt> expected =  ComplexInt(-9,-11);
+    Scalar<ComplexInt> result;
+    testcode( result = s1 / s2 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
 
 
@@ -382,177 +382,179 @@ int main()
   // // *            Powers and logs
   // // ************************************************************************
 
-  // {
-  //   // sqr(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi;
-  //   Scalar<ComplexDoubleexpected = 9.869604401089358;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = sqr(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // cube(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 3;
-  //   Scalar<ComplexDoubleexpected = 27;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = cube(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // sqrt(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 1000;
-  //   Scalar<ComplexDoubleexpected = 31.622776601683793;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = sqrt(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // exp(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 1.688091794964469;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = exp(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // log(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = -0.647029583378655;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = log(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // log2(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = -0.933466371248838;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = log2(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // log10(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = -0.281001377689510;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = log10(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // sqr(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(90.130395598910638, 62.831853071795862);
+    Scalar<ComplexDouble> result;
+    testcode( result = sqr(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // cube(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(7.039118679673193e2, 9.114715193966381e2);
+    Scalar<ComplexDouble> result;
+    testcode( result = cube(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // sqrt(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(3.20014611167193, 0.490851439896983);
+    Scalar<ComplexDouble> result;
+    testcode( result = sqrt(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // exp(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(-22026.4657948067, 2.69746408321387e-12);
+    Scalar<ComplexDouble> result;
+    testcode( result = exp(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // log(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(2.34964712404865, 0.304395797364615);
+    Scalar<ComplexDouble> result;
+    testcode( result = log(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // log2(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(3.38982425370401, 0.439150307325372); 
+    Scalar<ComplexDouble> result;
+    testcode( result =log2(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // log10(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(1.02043878039418, 0.132197415109993);
+    Scalar<ComplexDouble> result;
+    testcode( result = log10(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
   
   // // ************************************************************************
   // // *            trig, inverse trig, hyperbolic trig
   // // ************************************************************************
 
   
-  // {
-  //   // sin(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 0.5;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = sin(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // cos(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 0.866025403784439;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = cos(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // tan(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 0.577350269189626;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = tan(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // sin(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(-6.30626729832689, -9.69021839139966);
+    Scalar<ComplexDouble> result;
+    testcode( result = sin(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // cos(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(-9.72647795987463, 6.28275801450715);
+    Scalar<ComplexDouble> result;
+    testcode( result = cos(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // tan(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(10,pi);
+    Scalar<ComplexDouble> expected = ComplexDouble(0.00340454507051446, 0.998471220959037);
+    Scalar<ComplexDouble> result;
+    testcode( result = tan(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
   
-  // {
-  //   // asin(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 0.5;
-  //   Scalar<ComplexDoubleexpected = 0.523598775598299;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = asin(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // acos(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 0.5;
-  //   Scalar<ComplexDoubleexpected = 1.047197551196598;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = acos(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // atan(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 0.5;
-  //   Scalar<ComplexDoubleexpected = 0.463647609000806;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = atan(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // asin(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(-6.30626729832689, -9.69021839139966);
+    Scalar<ComplexDouble> expected = ComplexDouble(-0.57522203923062, -3.14159265358979);
+    Scalar<ComplexDouble> result;
+    testcode( result = asin(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // acos(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(-9.72647795987463, 6.28275801450715);
+    Scalar<ComplexDouble> expected = ComplexDouble(2.56637061435917, -3.14159265358979);
+    Scalar<ComplexDouble> result;
+    testcode( result = acos(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // atan(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(0.00340454507051453, 0.998471220959037);
+    Scalar<ComplexDouble> expected = ComplexDouble(0.57522203923062028, 3.1415926535897932);
+    Scalar<ComplexDouble> result;
+    testcode( result = atan(s) );
+    bool pass = approx(result,expected, 10*tol);  // relax the tolerance for this
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+
+// complex atan2 is not part of std.  not even implemented in matlab
   // {
   //   // atan2(s1,s2)
   //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s1 = -2;
-  //   Scalar<ComplexDouble> s2 = -1;
-  //   Scalar<ComplexDoubleexpected = -2.034443935795703;
-  //   Scalar<ComplexDoubleresult;
+  //   Scalar<ComplexDouble> s1 = ComplexDouble(0.1,0.2);
+  //   Scalar<ComplexDouble> s2 = ComplexDouble(0.4,-0.1);
+  //   Scalar<ComplexDouble> expected = ComplexDouble(1,1);
+  //   Scalar<ComplexDouble> result;
   //   testcode( result = atan2(s1,s2) );
   //   bool pass = approx(result,expected,tol);
   //   printEnd(pass,result,expected);
@@ -561,127 +563,127 @@ int main()
   // }
 
 
-  // {
-  //   // sinh(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 0.547853473888040;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = sinh(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // cosh(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 1.140238321076429;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = cosh(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // tanh(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 0.480472778156452;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = tanh(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // sinh(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(0.1,pi/6);
+    Scalar<ComplexDouble> expected = ComplexDouble(0.0867469501317104, 0.502502084027902);
+    Scalar<ComplexDouble> result;
+    testcode( result = sinh(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // cosh(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(0.1,pi/6);
+    Scalar<ComplexDouble> expected = ComplexDouble(0.870359140445571, 0.050083375009922);
+    Scalar<ComplexDouble> result;
+    testcode( result = cosh(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // tanh(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(0.1,pi/6);
+    Scalar<ComplexDouble> expected = ComplexDouble(0.132452079355618, 0.569728533686492);
+    Scalar<ComplexDouble> result;
+    testcode( result = tanh(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
   // // ************************************************************************
   // // *            sign-related and rounding
   // // ************************************************************************
 
 
-  // {
-  //   // abs(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = -pi;
-  //   Scalar<ComplexDoubleexpected = pi;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = abs(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // abs(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(1,-2);
+    Scalar<double> expected = 2.23606797749979;
+    Scalar<double> result;
+    testcode( result = abs(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
-  // {
-  //   // sgn(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = -pi;
-  //   Scalar<ComplexDoubleexpected = -1;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = sgn(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // round(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 1;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = round(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // floor(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = pi/6;
-  //   Scalar<ComplexDoubleexpected = 0;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = floor(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // ceil(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 0.01;
-  //   Scalar<ComplexDoubleexpected = 1;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = ceil(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // roundzero(s,0.01)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 0.0099999999;
-  //   Scalar<ComplexDoubleexpected = 0;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = roundzero(s,0.01) );
-  //   bool pass = alltrue(result==expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // sgn(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s =  ComplexDouble(1,-2);
+    Scalar<ComplexDouble> expected =  ComplexDouble(1,-1);
+    Scalar<ComplexDouble> result;
+    testcode( result = sgn(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // round(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s =  ComplexDouble(1.5,1.4);
+    Scalar<ComplexDouble> expected = ComplexDouble(2,1);
+    Scalar<ComplexDouble> result;
+    testcode( result = round(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // floor(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s =  ComplexDouble(1.5,1.4);
+    Scalar<ComplexDouble> expected = ComplexDouble(1,1);
+    Scalar<ComplexDouble> result;
+    testcode( result = floor(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // ceil(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s =  ComplexDouble(1.01,1.99);
+    Scalar<ComplexDouble> expected = ComplexDouble(2,2);
+    Scalar<ComplexDouble> result;
+    testcode( result = ceil(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // roundzero(s,0.01)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s =  ComplexDouble(0.009,0.011);
+    Scalar<ComplexDouble> expected = ComplexDouble(0,0.011);
+    Scalar<ComplexDouble> result;
+    testcode( result = roundzero(s,0.01) );
+    bool pass = alltrue(result==expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
   // {
   //   // op1<double,clip>(s)
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 0.01;
-  //   Scalar<ComplexDoubleexpected = 0.01;
+  //   Scalar<ComplexDouble> expected = 0.01;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = op1<double,clip>(s) );
   //   bool pass = approx(result,expected,tol);
@@ -694,7 +696,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s1 = 0.01;
   //   Scalar<ComplexDouble> s2 = 4;
-  //   Scalar<ComplexDoubleexpected = 4;
+  //   Scalar<ComplexDouble> expected = 4;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = op2<double,paste>(s1,s2) );
   //   bool pass = approx(result,expected,tol);
@@ -709,9 +711,9 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s1 = 40;
   //   Scalar<ComplexDouble> s2 = -4;
-  //   Scalar<ComplexDoubleexpected = 25;
-  //   Scalar<ComplexDouble result;
-  //   testcode( result = 2*log10(abs(s1/s2)*100) + 3. + pow(-s2,2.));
+  //   Scalar<ComplexDouble> expected = 25;
+  //   Scalar<ComplexDouble> result;
+  //   testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2.));
   //   bool pass = approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
@@ -1159,7 +1161,7 @@ int main()
   //   using namespace std;
   //   printStart(++testnum);
   //   Scalar<ComplexDoublex = 25.1;
-  //   Scalar<ComplexDoubleexpected = 25.1;
+  //   Scalar<ComplexDouble> expected = 25.1;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = transpose(x) );
   //   bool pass = alltrue(result==expected);
@@ -1204,7 +1206,7 @@ int main()
   //   using namespace std;
   //   printStart(++testnum);
   //   Scalar<ComplexDoublex = 22;
-  //   Scalar<ComplexDoubleexpected = 22;
+  //   Scalar<ComplexDouble> expected = 22;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = x.conj() );
   //   bool pass = alltrue(result==expected);
@@ -1432,7 +1434,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = 40.;
+  //   Scalar<ComplexDouble> expected = 40.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s+n );
   //   bool pass = equal(result,expected);
@@ -1445,7 +1447,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   int n = -2;
-  //   Scalar<ComplexDoubleexpected = 40.;
+  //   Scalar<ComplexDouble> expected = 40.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s+n );
   //   bool pass = equal(result,expected);
@@ -1472,7 +1474,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = 40.;
+  //   Scalar<ComplexDouble> expected = 40.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n+s );
   //   bool pass = equal(result,expected);
@@ -1485,7 +1487,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   int n = -2;
-  //   Scalar<ComplexDoubleexpected = 40.;
+  //   Scalar<ComplexDouble> expected = 40.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n+s );
   //   bool pass = equal(result,expected);
@@ -1513,7 +1515,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = 44.;
+  //   Scalar<ComplexDouble> expected = 44.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s-n );
   //   bool pass = equal(result,expected);
@@ -1526,7 +1528,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   int n = -2;
-  //   Scalar<ComplexDoubleexpected = 44.;
+  //   Scalar<ComplexDouble> expected = 44.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s-n );
   //   bool pass = equal(result,expected);
@@ -1553,7 +1555,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = -44.;
+  //   Scalar<ComplexDouble> expected = -44.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n-s );
   //   bool pass = equal(result,expected);
@@ -1566,7 +1568,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   int n = -2;
-  //   Scalar<ComplexDoubleexpected = -44.;
+  //   Scalar<ComplexDouble> expected = -44.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n-s );
   //   bool pass = equal(result,expected);
@@ -1595,7 +1597,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = -84.;
+  //   Scalar<ComplexDouble> expected = -84.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s*n );
   //   bool pass = equal(result,expected);
@@ -1608,7 +1610,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   int n = -2;
-  //   Scalar<ComplexDoubleexpected = -84.;
+  //   Scalar<ComplexDouble> expected = -84.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s*n );
   //   bool pass = equal(result,expected);
@@ -1635,7 +1637,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = -84.;
+  //   Scalar<ComplexDouble> expected = -84.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n*s );
   //   bool pass = equal(result,expected);
@@ -1648,7 +1650,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   int n = -2;
-  //   Scalar<ComplexDoubleexpected = -84.;
+  //   Scalar<ComplexDouble> expected = -84.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n*s );
   //   bool pass = equal(result,expected);
@@ -1677,7 +1679,7 @@ int main()
   //   printStart(++testnum);
   //   Scalar<ComplexDouble> s = 42.;
   //   double n = -2.;
-  //   Scalar<ComplexDoubleexpected = -21.;
+  //   Scalar<ComplexDouble> expected = -21.;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = s/n );
   //   bool pass = equal(result,expected);

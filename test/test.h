@@ -13,12 +13,14 @@ void printStart(const int n) {
 template <class T>
 void printEnd_(const bool pass, const T& result, const T& expected, const int linenum) {
   using namespace display;
-  mout << "          " <<  "       = " << result <<std::endl;
   if (pass) {
-  mout << "          ";
+    mout << "          " <<  "       = " << result <<std::endl;
+    mout << "          ";
     mout << createStyle(GREEN1+BOLD).apply("Passed")  << std::endl;
   } else {
-    mout << "          " << createStyle(BLUE2).apply("Expected");
+    FormatData<double>::format_string = "%.16g";
+    mout << "          " <<  "       = " << result <<std::endl;
+    mout << "        " << createStyle(BLUE2).apply("Expected");
     std::stringstream ss;
     ss << expected;
     mout << " = " <<  createStyle(BOLD).apply(ss.str()) << std::endl;
@@ -26,6 +28,7 @@ void printEnd_(const bool pass, const T& result, const T& expected, const int li
     mout << createStyle(RED+BOLD).apply("FAILED") ;
     std::string s = createStyle(BOLD).apply(num2string(linenum));
     mout << createStyle(BLUE2).apply("  Refer to line#"+s ) << std::endl;
+    FormatData<double>::format_string = "%g";
   }
   mout << std::endl;
   

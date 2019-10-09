@@ -107,7 +107,12 @@ namespace matricks {
   
   template <typename D> bool approx(const D& x, const D& y, const D tolerance) {
     using std::abs;
-    return (roundzero(abs(x-y), tolerance) == 0);
+    D tol = tolerance;
+    D d = (abs(x)+abs(y))/2;
+    if (d > 1) {
+      tol *= d;
+    }
+    return (roundzero(abs(x-y), tol) == 0);
   }
 
   // numbercast
@@ -149,9 +154,15 @@ namespace matricks {
   
   template <typename D> bool approx(const std::complex<D>& x, const std::complex<D>& y, const D tolerance) {
     using std::abs;
-    return (roundzero(abs(x-y), tolerance) == 0);
+    return (approx(real(x),real(y),tolerance) && approx(imag(x),imag(y),tolerance));
   }
 
+  // complex log2
+  template <typename D> std::complex<D>
+  log2(const std::complex<D>& x) {
+    const D A0 = 1/log(D(2));
+    return A0*log(x);
+  }
 
   // C++ does not have "instanceof" type guarding so even if it
   // can't get to the code it will produce a compile error
@@ -188,6 +199,22 @@ namespace matricks {
 #endif
 
 
+
+  template <typename D> std::complex<D> sgn(const std::complex<D>& z) {
+    return std::complex<D>( sgn(real(z)), sgn(imag(z)) );
+  }
+
+  template <typename D> std::complex<D> floor(const std::complex<D>& z) {
+    using std::floor;
+    return std::complex<D>( floor(real(z)), floor(imag(z)) );
+  }
+
+  template <typename D> std::complex<D> ceil(const std::complex<D>& z) {
+    using std::ceil;
+    return std::complex<D>( ceil(real(z)), ceil(imag(z)) );
+  }
+
+  
   /****************************************************************************
    * tolerances
    **************************************************************************** 

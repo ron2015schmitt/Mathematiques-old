@@ -184,8 +184,8 @@ int main()
   {
     //  approxel
     printStart(++testnum);
-    Scalar<double> s1 = 24;
-    Scalar<double> s2 = 24.001;
+    Scalar<double> s1 = 1;
+    Scalar<double> s2 = 1.001;
     Scalar<bool> expected = true;
     Scalar<bool> result;
     testcode( result = (approxel(s1,s2,0.0011)) );
@@ -197,8 +197,8 @@ int main()
   {
     //  approxel
     printStart(++testnum);
-    Scalar<double> s1 = 24;
-    Scalar<double> s2 = 24.001;
+    Scalar<double> s1 = 1;
+    Scalar<double> s2 = 1.001;
     Scalar<bool> expected = false;
     Scalar<bool> result;
     testcode( result = (approxel(s1,s2,0.0009)) );
@@ -240,8 +240,8 @@ int main()
   {
     //  approx
     printStart(++testnum);
-    Scalar<double> s1 = 24;
-    Scalar<double> s2 = 24.001;
+    Scalar<double> s1 = 1;
+    Scalar<double> s2 = 1.001;
     bool expected = true;
     bool result;
     testcode( result = approx(s1,s2,0.0011) );
@@ -253,8 +253,8 @@ int main()
   {
     //  approx
     printStart(++testnum);
-    Scalar<double> s1 = 24;
-    Scalar<double> s2 = 24.001;
+    Scalar<double> s1 = 1;
+    Scalar<double> s2 = 1.001;
     bool expected = false;
     bool result;
     testcode( result = approx(s1,s2,0.0009) );
@@ -710,7 +710,7 @@ int main()
     Scalar<double> s2 = -4;
     Scalar<double> expected = 25;
     Scalar<double>  result;
-    testcode( result = 2*log10(abs(s1/s2)*100) + 3. + pow(-s2,2.));
+    testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2));
     bool pass = approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

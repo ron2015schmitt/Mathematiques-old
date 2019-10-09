@@ -430,6 +430,7 @@ namespace matricks {
 
     static inline D apply(const D a) {
       using std::log2;
+      using matricks::log2;
       return log2(a);
     }
 
@@ -839,6 +840,7 @@ namespace matricks {
 
     static inline D apply(const D a) { 
       using std::ceil;
+      using matricks::ceil; // for complex nums
       return ceil(a); 
     }
 
@@ -868,6 +870,7 @@ namespace matricks {
 
     static inline D apply(const D a) { 
       using std::floor;
+      using matricks::floor;  // for complex nums
       return floor(a); 
     }
 

@@ -504,7 +504,7 @@ namespace matricks {
 
 
   // ************************************************************************
-  // *            Bit wise operators for unisgned types
+  // *            Bit wise operators for unsigned types
   // ************************************************************************
 
 
@@ -693,6 +693,199 @@ namespace matricks {
       TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseShiftRight<unsigned long long> >(a,b);
   }
 
+
+
+  // ************************************************************************
+  // *            Bit wise operators for COMPLEX unsigned types
+  // ************************************************************************
+
+
+  // bitwise not (aka 1's complement): ~
+  // NOTE: "~" is also used for Hermitian adjoint
+  template <class A> 
+    inline TER_Unary<std::complex<unsigned char>, TensorR<std::complex<unsigned char>,A> ,Fun_BitwiseNot<std::complex<unsigned char> > >
+    operator~( const TensorR<std::complex<unsigned char>,A>& a ) {
+    return
+      TER_Unary<std::complex<unsigned char>, TensorR<std::complex<unsigned char>,A> ,Fun_BitwiseNot<std::complex<unsigned char> > >(a);
+  }
+  template <class A> 
+    inline TER_Unary<std::complex<unsigned short>, TensorR<std::complex<unsigned short>,A> ,Fun_BitwiseNot<std::complex<unsigned short> > >
+    operator~( const TensorR<std::complex<unsigned short>,A>& a ) {
+    return
+      TER_Unary<std::complex<unsigned short>, TensorR<std::complex<unsigned short>,A> ,Fun_BitwiseNot<std::complex<unsigned short> > >(a);
+  }
+  template <class A> 
+    inline TER_Unary<std::complex<unsigned int>, TensorR<std::complex<unsigned int>,A> ,Fun_BitwiseNot<std::complex<unsigned int> > >
+    operator~( const TensorR<std::complex<unsigned int>,A>& a ) {
+    return
+      TER_Unary<std::complex<unsigned int>, TensorR<std::complex<unsigned int>,A> ,Fun_BitwiseNot<std::complex<unsigned int> > >(a);
+  }
+  template <class A> 
+    inline TER_Unary<std::complex<unsigned long>, TensorR<std::complex<unsigned long>,A> ,Fun_BitwiseNot<std::complex<unsigned long> > >
+    operator~( const TensorR<std::complex<unsigned long>,A>& a ) {
+    return
+      TER_Unary<std::complex<unsigned long>, TensorR<std::complex<unsigned long>,A> ,Fun_BitwiseNot<std::complex<unsigned long> > >(a);
+  }
+  template <class A> 
+    inline TER_Unary<std::complex<unsigned long long>, TensorR<std::complex<unsigned long long>,A> ,Fun_BitwiseNot<std::complex<unsigned long long> > >
+    operator~( const TensorR<std::complex<unsigned long long>,A>& a ) {
+    return
+      TER_Unary<std::complex<unsigned long long>, TensorR<std::complex<unsigned long long>,A> ,Fun_BitwiseNot<std::complex<unsigned long long> > >(a);
+  }
+
+  
+  // Bitwise Or: |
+  // NOTE: that "|" is also used for dot product short hand 
+
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseOr<std::complex<unsigned char> > >
+    operator|( const TensorR<std::complex<unsigned char>,A>& a, const  TensorR<std::complex<unsigned char>,B>& b ) {
+    return TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseOr<std::complex<unsigned char> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseOr<std::complex<unsigned short> > >
+    operator|( const TensorR<std::complex<unsigned short>,A>& a, const  TensorR<std::complex<unsigned short>,B>& b ) {
+    return TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseOr<std::complex<unsigned short> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseOr<std::complex<unsigned int> > >
+    operator|( const TensorR<std::complex<unsigned int>,A>& a, const  TensorR<std::complex<unsigned int>,B>& b ) {
+    return TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseOr<std::complex<unsigned int> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseOr<std::complex<unsigned long> > >
+    operator|( const TensorR<std::complex<unsigned long>,A>& a, const  TensorR<std::complex<unsigned long>,B>& b ) {
+    return TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseOr<std::complex<unsigned long> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseOr<std::complex<unsigned long long> > >
+    operator|( const TensorR<std::complex<unsigned long long>,A>& a, const  TensorR<std::complex<unsigned long long>,B>& b ) {
+    return TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseOr<std::complex<unsigned long long> > >(a,b);
+  }
+
+  // Bitwise And: &
+
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseAnd<std::complex<unsigned char> > >
+    operator&( const TensorR<std::complex<unsigned char>,A>& a, const  TensorR<std::complex<unsigned char>,B>& b ) {
+    return TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseAnd<std::complex<unsigned char> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseAnd<std::complex<unsigned short> > >
+    operator&( const TensorR<std::complex<unsigned short>,A>& a, const  TensorR<std::complex<unsigned short>,B>& b ) {
+    return TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseAnd<std::complex<unsigned short> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseAnd<std::complex<unsigned int> > >
+    operator&( const TensorR<std::complex<unsigned int>,A>& a, const  TensorR<std::complex<unsigned int>,B>& b ) {
+    return TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseAnd<std::complex<unsigned int> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseAnd<std::complex<unsigned long> > >
+    operator&( const TensorR<std::complex<unsigned long>,A>& a, const  TensorR<std::complex<unsigned long>,B>& b ) {
+    return TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseAnd<std::complex<unsigned long> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseAnd<std::complex<unsigned long long> > >
+    operator&( const TensorR<std::complex<unsigned long long>,A>& a, const  TensorR<std::complex<unsigned long long>,B>& b ) {
+    return TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseAnd<std::complex<unsigned long long> > >(a,b);
+  }
+
+
+  // Bitwise Xor: ^
+  // NOTE: that "^" is also used for exterior product short hand 
+
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseXor<std::complex<unsigned char> > >
+    operator^( const TensorR<std::complex<unsigned char>,A>& a, const  TensorR<std::complex<unsigned char>,B>& b ) {
+    return TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseXor<std::complex<unsigned char> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseXor<std::complex<unsigned short> > >
+    operator^( const TensorR<std::complex<unsigned short>,A>& a, const  TensorR<std::complex<unsigned short>,B>& b ) {
+    return TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseXor<std::complex<unsigned short> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseXor<std::complex<unsigned int> > >
+    operator^( const TensorR<std::complex<unsigned int>,A>& a, const  TensorR<std::complex<unsigned int>,B>& b ) {
+    return TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseXor<std::complex<unsigned int> > >(a,b);
+  }
+  template <class A, class B> inline
+    TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseXor<std::complex<unsigned long> > >
+    operator^( const TensorR<std::complex<unsigned long>,A>& a, const  TensorR<std::complex<unsigned long>,B>& b ) {
+    return
+      TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseXor<std::complex<unsigned long> > >(a,b);
+  }
+  template <class A, class B> inline
+    TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseXor<std::complex<unsigned long long> > >
+    operator^( const TensorR<std::complex<unsigned long long>,A>& a, const  TensorR<std::complex<unsigned long long>,B>& b ) {
+    return
+      TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseXor<std::complex<unsigned long long> > >(a,b);
+  }
+
+
+  // Bitwise ShiftLeft: <<
+
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned char> > >
+    operator<<( const TensorR<std::complex<unsigned char>,A>& a, const  TensorR<std::complex<unsigned char>,B>& b ) {
+    return TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned char> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned short> > >
+    operator<<( const TensorR<std::complex<unsigned short>,A>& a, const  TensorR<std::complex<unsigned short>,B>& b ) {
+    return TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned short> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned int> > >
+    operator<<( const TensorR<std::complex<unsigned int>,A>& a, const  TensorR<std::complex<unsigned int>,B>& b ) {
+    return TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned int> > >(a,b);
+  }
+  template <class A, class B> inline
+    TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned long> > >
+    operator<<( const TensorR<std::complex<unsigned long>,A>& a, const  TensorR<std::complex<unsigned long>,B>& b ) {
+    return
+      TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned long> > >(a,b);
+  }
+  template <class A, class B> inline
+    TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned long long> > >
+    operator<<( const TensorR<std::complex<unsigned long long>,A>& a, const  TensorR<std::complex<unsigned long long>,B>& b ) {
+    return
+      TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseShiftLeft<std::complex<unsigned long long> > >(a,b);
+  }
+  
+
+  // Bitwise ShiftRight: >>
+
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseShiftRight<std::complex<unsigned char> > >
+    operator>>( const TensorR<std::complex<unsigned char>,A>& a, const  TensorR<std::complex<unsigned char>,B>& b ) {
+    return TER_Binary<std::complex<unsigned char>,TensorR<std::complex<unsigned char>,A>,TensorR<std::complex<unsigned char>,B>,Fun_BitwiseShiftRight<std::complex<unsigned char> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseShiftRight<std::complex<unsigned short> > >
+    operator>>( const TensorR<std::complex<unsigned short>,A>& a, const  TensorR<std::complex<unsigned short>,B>& b ) {
+    return TER_Binary<std::complex<unsigned short>,TensorR<std::complex<unsigned short>,A>,TensorR<std::complex<unsigned short>,B>,Fun_BitwiseShiftRight<std::complex<unsigned short> > >(a,b);
+  }
+  template <class A, class B> 
+    inline TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseShiftRight<std::complex<unsigned int> > >
+    operator>>( const TensorR<std::complex<unsigned int>,A>& a, const  TensorR<std::complex<unsigned int>,B>& b ) {
+    return TER_Binary<std::complex<unsigned int>,TensorR<std::complex<unsigned int>,A>,TensorR<std::complex<unsigned int>,B>,Fun_BitwiseShiftRight<std::complex<unsigned int> > >(a,b);
+  }
+  template <class A, class B> inline
+    TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseShiftRight<std::complex<unsigned long> > >
+    operator>>( const TensorR<std::complex<unsigned long>,A>& a, const  TensorR<std::complex<unsigned long>,B>& b ) {
+    return
+      TER_Binary<std::complex<unsigned long>,TensorR<std::complex<unsigned long>,A>,TensorR<std::complex<unsigned long>,B>,Fun_BitwiseShiftRight<std::complex<unsigned long> > >(a,b);
+  }
+  template <class A, class B> inline
+    TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseShiftRight<std::complex<unsigned long long> > >
+    operator>>( const TensorR<std::complex<unsigned long long>,A>& a, const  TensorR<std::complex<unsigned long long>,B>& b ) {
+    return
+      TER_Binary<std::complex<unsigned long long>,TensorR<std::complex<unsigned long long>,A>,TensorR<std::complex<unsigned long long>,B>,Fun_BitwiseShiftRight<std::complex<unsigned long long> > >(a,b);
+  }
+
+  
   
   // ************************************************************************
   // *              Relational ops (return a bool Tensor from two D Tensors)

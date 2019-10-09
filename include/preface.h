@@ -164,6 +164,31 @@ namespace matricks {
     return A0*log(x);
   }
 
+
+  // complex bitwise NOT ~
+  inline std::complex<unsigned char>
+  operator~(const std::complex<unsigned char>& x) {
+    return std::complex<unsigned char>( ~real(x), ~imag(x)  );
+  }
+  inline std::complex<unsigned short>
+  operator~(const std::complex<unsigned short>& x) {
+    return std::complex<unsigned short>( ~real(x), ~imag(x)  );
+  }
+  inline std::complex<unsigned int>
+  operator~(const std::complex<unsigned int>& x) {
+    return std::complex<unsigned int>( ~real(x), ~imag(x)  );
+  }
+  inline std::complex<unsigned long>
+  operator~(const std::complex<unsigned long>& x) {
+    return std::complex<unsigned long>( ~real(x), ~imag(x)  );
+  }
+  inline std::complex<unsigned long long>
+  operator~(const std::complex<unsigned long long>& x) {
+    return std::complex<unsigned long long>( ~real(x), ~imag(x)  );
+  }
+
+
+  
   // C++ does not have "instanceof" type guarding so even if it
   // can't get to the code it will produce a compile error
   // could also address this by casting where needed

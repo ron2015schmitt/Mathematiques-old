@@ -7,13 +7,14 @@
 
 
 template <class D>
-D clip(D x) {
-  return (x>=0) ? (x) : 0;
+std::complex<D> average(std::complex<D> x) {
+  D avg = (real(x) + imag(x))/2.;
+  return std::complex<D>(avg, avg);
 }
 
 template <class D>
-D paste(D x, D y) {
-  return (x>=0) ? (y) : 0;
+D average(D x, D y) {
+  return (x+y)/2.;
 }
 
 
@@ -40,6 +41,7 @@ int main()
 
   typedef std::complex<double> ComplexDouble;
   typedef std::complex<int> ComplexInt;
+  typedef std::complex<unsigned short> ComplexUnsignedShort;
   
   // -------------- constructors etc ------------------------
 
@@ -679,171 +681,82 @@ int main()
     failnum += (!pass);
   }
 
-  // {
-  //   // op1<double,clip>(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s = 0.01;
-  //   Scalar<ComplexDouble> expected = 0.01;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = op1<double,clip>(s) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // op2<double,paste>(s)
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s1 = 0.01;
-  //   Scalar<ComplexDouble> s2 = 4;
-  //   Scalar<ComplexDouble> expected = 4;
-  //   Scalar<ComplexDoubleresult;
-  //   testcode( result = op2<double,paste>(s1,s2) );
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // op1<double,clip>(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s = ComplexDouble(2,3);
+    Scalar<ComplexDouble> expected = ComplexDouble(2.5,2.5);
+    Scalar<ComplexDouble> result;
+    testcode( result = op1<ComplexDouble,average>(s) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
+  {
+    // op2<double,paste>(s)
+    printStart(++testnum);
+    Scalar<ComplexDouble> s1 = ComplexDouble(2,3);
+    Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
+    Scalar<ComplexDouble> expected = ComplexDouble(6,3);
+    Scalar<ComplexDouble> result;
+    testcode( result = op2<ComplexDouble,average>(s1,s2) );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
   
-  // {
-  //   // Test of a large scalar math expression
+  {
+    // Test of a large Scalar math expression
 
-  //   printStart(++testnum);
-  //   Scalar<ComplexDouble> s1 = 40;
-  //   Scalar<ComplexDouble> s2 = -4;
-  //   Scalar<ComplexDouble> expected = 25;
-  //   Scalar<ComplexDouble> result;
-  //   testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2.));
-  //   bool pass = approx(result,expected,tol);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+    printStart(++testnum);
+    Scalar<ComplexDouble> s1 = ComplexDouble(2,3);
+    Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
+    Scalar<ComplexDouble> expected = ComplexDouble(97.07651685436622, 60);
+    Scalar<ComplexDouble> result;
+    testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2.));
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
 
   // // ***********************************************************************
   // // *              Logic
   // // ***********************************************************************
-  // {
-  //   // !(s)
-  //   printStart(++testnum);
-  //   Scalar<bool> > s = true;
-  //   Scalar<bool> expected = false;
-  //   Scalar<bool> result;
-  //   testcode( result = !s );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // s1 && s2
-  //   printStart(++testnum);
-  //   Scalar<bool> > s1 = false;
-  //   Scalar<bool> > s2 = false;    
-  //   Scalar<bool> expected = false;
-  //   Scalar<bool> result;
-  //   testcode( result = s1 && s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // s1 && s2
-  //   printStart(++testnum);
-  //   Scalar<bool> > s1 = true;
-  //   Scalar<bool> > s2 = false;    
-  //   Scalar<bool> expected = false;
-  //   Scalar<bool> result;
-  //   testcode( result = s1 && s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // s1 && s2
-  //   printStart(++testnum);
-  //   Scalar<bool> > s1 = true;
-  //   Scalar<bool> > s2 = true;    
-  //   Scalar<bool> expected = true;
-  //   Scalar<bool> result;
-  //   testcode( result = s1 && s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
 
-  // {
-  //   // s1 || s2  #1
-  //   printStart(++testnum);
-  //   Scalar<bool> > s1 = false;
-  //   Scalar<bool> > s2 = false;    
-  //   Scalar<bool> expected = false;
-  //   Scalar<bool> result;
-  //   testcode( result = s1 || s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // s1 || s2 #2
-  //   printStart(++testnum);
-  //   Scalar<bool> > s1 = true;
-  //   Scalar<bool> > s2 = false;    
-  //   Scalar<bool> expected = true;
-  //   Scalar<bool> result;
-  //   testcode( result = s1 || s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-  // {
-  //   // s1 || s2 #3
-  //   printStart(++testnum);
-  //   Scalar<bool> > s1 = true;
-  //   Scalar<bool> > s2 = true;    
-  //   Scalar<bool> expected = true;
-  //   Scalar<bool> result;
-  //   testcode( result = s1 || s2 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
-
+  // not applicable since they require bool types
+  
 
   // // ************************************************************************
   // // *            Bit wise operators for unisgned types
   // // ************************************************************************
 
-  // cr();
-  // const unsigned short usmax = std::numeric_limits<unsigned short>::max();
-  // printf("          std::numeric_limits<unsigned short>::max() = %0x\n", usmax);
-  // cr();
-  // {
-  //   // bitwise not ~
-  //   printStart(++testnum);
-  //   Scalar<std::complex<unsigned short> > s1 = usmax-3;
-  //   Scalar<std::complex<unsigned short> expected = 3;
-  //   Scalar<std::complex<unsigned short> result;
-  //   testcode( result = ~s1 );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  cr();
+  const unsigned short usmax = std::numeric_limits<unsigned short>::max();
+  printf("          std::numeric_limits<unsigned short>::max() = %0x\n", usmax);
+  cr();
+  {
+    // bitwise not ~
+    printStart(++testnum);
+    Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(usmax-3, usmax-10);
+    Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(3, 10);
+    Scalar<ComplexUnsignedShort> result;
+    testcode( result = ~s1 );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
   // {
   //   // bitwise  OR |
   //   printStart(++testnum);
-  //   Scalar<std::complex<unsigned short> > s1 = 9;
-  //   Scalar<std::complex<unsigned short> > s2 = 7;
-  //   Scalar<std::complex<unsigned short> expected = 15;
-  //   Scalar<std::complex<unsigned short> result;
+  //   Scalar<ComplexUnsignedShort> s1 = 9;
+  //   Scalar<ComplexUnsignedShort> s2 = 7;
+  //   Scalar<ComplexUnsignedShort> expected = 15;
+  //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 | s2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);
@@ -853,10 +766,10 @@ int main()
   // {
   //   // bitwise XOR ^
   //   printStart(++testnum);
-  //   Scalar<std::complex<unsigned short> > s1 = 9;
-  //   Scalar<std::complex<unsigned short> > s2 = 7;
-  //   Scalar<std::complex<unsigned short> expected = 14;
-  //   Scalar<std::complex<unsigned short> result;
+  //   Scalar<ComplexUnsignedShort> s1 = 9;
+  //   Scalar<ComplexUnsignedShort> s2 = 7;
+  //   Scalar<ComplexUnsignedShort> expected = 14;
+  //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 ^ s2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);
@@ -866,10 +779,10 @@ int main()
   // {
   //   // bitwise AND &
   //   printStart(++testnum);
-  //   Scalar<std::complex<unsigned short> > s1 = 9;
-  //   Scalar<std::complex<unsigned short> > s2 = 7;
-  //   Scalar<std::complex<unsigned short> expected = 1;
-  //   Scalar<std::complex<unsigned short> result;
+  //   Scalar<ComplexUnsignedShort> s1 = 9;
+  //   Scalar<ComplexUnsignedShort> s2 = 7;
+  //   Scalar<ComplexUnsignedShort> expected = 1;
+  //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 & s2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);
@@ -879,10 +792,10 @@ int main()
   // {
   //   // bitwise <<
   //   printStart(++testnum);
-  //   Scalar<std::complex<unsigned short> > s1 = 1;
-  //   Scalar<std::complex<unsigned short> > s2 = 2;
-  //   Scalar<std::complex<unsigned short> expected = 4;
-  //   Scalar<std::complex<unsigned short> result;
+  //   Scalar<ComplexUnsignedShort> s1 = 1;
+  //   Scalar<ComplexUnsignedShort> s2 = 2;
+  //   Scalar<ComplexUnsignedShort> expected = 4;
+  //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 << s2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);
@@ -892,10 +805,10 @@ int main()
   // {
   //   // bitwise >>
   //   printStart(++testnum);
-  //   Scalar<std::complex<unsigned short> > s1 = 4;
-  //   Scalar<std::complex<unsigned short> > s2 = 2;
-  //   Scalar<std::complex<unsigned short> expected = 1;
-  //   Scalar<std::complex<unsigned short> result;
+  //   Scalar<ComplexUnsignedShort> s1 = 4;
+  //   Scalar<ComplexUnsignedShort> s2 = 2;
+  //   Scalar<ComplexUnsignedShort> expected = 1;
+  //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 >> > s2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);

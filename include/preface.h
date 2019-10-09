@@ -76,7 +76,6 @@ namespace matricks {
   typedef std::complex<unsigned long> ComplexUnsignedLong;
   typedef std::complex<unsigned long long> ComplexUnsignedLongLong;
 
-  
 
   // maximum subcript size for vectors and matrices (since we allow negative indexing)
   const size_type maxsize = std::numeric_limits<index_type>::max();
@@ -185,27 +184,134 @@ namespace matricks {
 
 
   // complex bitwise NOT ~
-  inline std::complex<unsigned char>
-  operator~(const std::complex<unsigned char>& x) {
-    return std::complex<unsigned char>( ~real(x), ~imag(x)  );
+  inline ComplexUnsignedChar
+  operator~(const ComplexUnsignedChar& x) {
+    return ComplexUnsignedChar( ~real(x), ~imag(x)  );
   }
-  inline std::complex<unsigned short>
-  operator~(const std::complex<unsigned short>& x) {
-    return std::complex<unsigned short>( ~real(x), ~imag(x)  );
+  inline ComplexUnsignedShort
+  operator~(const ComplexUnsignedShort& x) {
+    return ComplexUnsignedShort( ~real(x), ~imag(x)  );
   }
-  inline std::complex<unsigned int>
-  operator~(const std::complex<unsigned int>& x) {
-    return std::complex<unsigned int>( ~real(x), ~imag(x)  );
+  inline ComplexUnsignedInt
+  operator~(const ComplexUnsignedInt& x) {
+    return ComplexUnsignedInt( ~real(x), ~imag(x)  );
   }
-  inline std::complex<unsigned long>
-  operator~(const std::complex<unsigned long>& x) {
-    return std::complex<unsigned long>( ~real(x), ~imag(x)  );
+  inline ComplexUnsignedLong
+  operator~(const ComplexUnsignedLong& x) {
+    return ComplexUnsignedLong( ~real(x), ~imag(x)  );
   }
-  inline std::complex<unsigned long long>
-  operator~(const std::complex<unsigned long long>& x) {
-    return std::complex<unsigned long long>( ~real(x), ~imag(x)  );
+  inline ComplexUnsignedLongLong
+  operator~(const ComplexUnsignedLongLong& x) {
+    return ComplexUnsignedLongLong( ~real(x), ~imag(x)  );
+  }
+  // complex bitwise OR |
+  inline ComplexUnsignedChar
+    operator|(const ComplexUnsignedChar& x, const ComplexUnsignedChar& y) {
+    return ComplexUnsignedChar( real(x)|real(y), imag(x)|imag(y)  );
+  }
+  inline ComplexUnsignedShort
+  operator|(const ComplexUnsignedShort& x, const ComplexUnsignedShort& y) {
+    return ComplexUnsignedShort( real(x)|real(y), imag(x)|imag(y)  );
+  }
+  inline ComplexUnsignedInt
+  operator|(const ComplexUnsignedInt& x, const ComplexUnsignedInt& y) {
+    return ComplexUnsignedInt( real(x)|real(y), imag(x)|imag(y)  );
+  }
+  inline ComplexUnsignedLong
+  operator|(const ComplexUnsignedLong& x, const ComplexUnsignedLong& y) {
+    return ComplexUnsignedLong( real(x)|real(y), imag(x)|imag(y)  );
+  }
+  inline ComplexUnsignedLongLong
+  operator|(const ComplexUnsignedLongLong& x, const ComplexUnsignedLongLong& y) {
+    return ComplexUnsignedLongLong( real(x)|real(y), imag(x)|imag(y)  );
+  }
+  // complex bitwise XOR ^
+  inline ComplexUnsignedChar
+    operator^(const ComplexUnsignedChar& x, const ComplexUnsignedChar& y) {
+    return ComplexUnsignedChar( real(x)^real(y), imag(x)^imag(y)  );
+  }
+  inline ComplexUnsignedShort
+  operator^(const ComplexUnsignedShort& x, const ComplexUnsignedShort& y) {
+    return ComplexUnsignedShort( real(x)^real(y), imag(x)^imag(y)  );
+  }
+  inline ComplexUnsignedInt
+  operator^(const ComplexUnsignedInt& x, const ComplexUnsignedInt& y) {
+    return ComplexUnsignedInt( real(x)^real(y), imag(x)^imag(y)  );
+  }
+  inline ComplexUnsignedLong
+  operator^(const ComplexUnsignedLong& x, const ComplexUnsignedLong& y) {
+    return ComplexUnsignedLong( real(x)^real(y), imag(x)^imag(y)  );
+  }
+  inline ComplexUnsignedLongLong
+  operator^(const ComplexUnsignedLongLong& x, const ComplexUnsignedLongLong& y) {
+    return ComplexUnsignedLongLong( real(x)^real(y), imag(x)^imag(y)  );
   }
 
+  // complex bitwise AND &
+  inline ComplexUnsignedChar
+    operator&(const ComplexUnsignedChar& x, const ComplexUnsignedChar& y) {
+    return ComplexUnsignedChar( real(x)&real(y), imag(x)&imag(y)  );
+  }
+  inline ComplexUnsignedShort
+  operator&(const ComplexUnsignedShort& x, const ComplexUnsignedShort& y) {
+    return ComplexUnsignedShort( real(x)&real(y), imag(x)&imag(y)  );
+  }
+  inline ComplexUnsignedInt
+  operator&(const ComplexUnsignedInt& x, const ComplexUnsignedInt& y) {
+    return ComplexUnsignedInt( real(x)&real(y), imag(x)&imag(y)  );
+  }
+  inline ComplexUnsignedLong
+  operator&(const ComplexUnsignedLong& x, const ComplexUnsignedLong& y) {
+    return ComplexUnsignedLong( real(x)&real(y), imag(x)&imag(y)  );
+  }
+  inline ComplexUnsignedLongLong
+  operator&(const ComplexUnsignedLongLong& x, const ComplexUnsignedLongLong& y) {
+    return ComplexUnsignedLongLong( real(x)&real(y), imag(x)&imag(y)  );
+  }
+
+  // complex bitwise shoft LEFT <<
+  inline ComplexUnsignedChar
+    operator<<(const ComplexUnsignedChar& x, const unsigned short& y) {
+    return ComplexUnsignedChar( real(x)<<y, imag(x)<<y  );
+  }
+  inline ComplexUnsignedShort
+  operator<<(const ComplexUnsignedShort& x, const unsigned short& y) {
+    return ComplexUnsignedShort( real(x)<<y, imag(x)<<y  );
+  }
+  inline ComplexUnsignedInt
+  operator<<(const ComplexUnsignedInt& x, const unsigned short& y) {
+    return ComplexUnsignedInt( real(x)<<y, imag(x)<<y  );
+  }
+  inline ComplexUnsignedLong
+  operator<<(const ComplexUnsignedLong& x, const unsigned short& y) {
+    return ComplexUnsignedLong( real(x)<<y, imag(x)<<y  );
+  }
+  inline ComplexUnsignedLongLong
+  operator<<(const ComplexUnsignedLongLong& x, const unsigned short& y) {
+    return ComplexUnsignedLongLong( real(x)<<y, imag(x)<<y  );
+  }
+  
+  // complex bitwise shoft RIGHT >>
+  inline ComplexUnsignedChar
+    operator>>(const ComplexUnsignedChar& x, const unsigned short& y) {
+    return ComplexUnsignedChar( real(x)>>y, imag(x)>>y  );
+  }
+  inline ComplexUnsignedShort
+  operator>>(const ComplexUnsignedShort& x, const unsigned short& y) {
+    return ComplexUnsignedShort( real(x)>>y, imag(x)>>y  );
+  }
+  inline ComplexUnsignedInt
+  operator>>(const ComplexUnsignedInt& x, const unsigned short& y) {
+    return ComplexUnsignedInt( real(x)>>y, imag(x)>>y  );
+  }
+  inline ComplexUnsignedLong
+  operator>>(const ComplexUnsignedLong& x, const unsigned short& y) {
+    return ComplexUnsignedLong( real(x)>>y, imag(x)>>y  );
+  }
+  inline ComplexUnsignedLongLong
+  operator>>(const ComplexUnsignedLongLong& x, const unsigned short& y) {
+    return ComplexUnsignedLongLong( real(x)>>y, imag(x)>>y  );
+  }
 
   
   // C++ does not have "instanceof" type guarding so even if it

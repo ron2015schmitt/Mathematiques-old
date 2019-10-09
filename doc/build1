@@ -4,7 +4,7 @@
 for var in "$@"
 do
     rm -f ${var}{,.o,.md,link_md,_opts.cpp}
-    make ${var} && ./${var} > ${var}.md && more ${var}.md
+    make -j ${var} && ./${var} > ${var}.md && more ${var}.md
 done
 
   

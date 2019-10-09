@@ -63,6 +63,9 @@ endef
 #  SPECIAL TARGETS
 ###########################################################
 
+.PHONY: default
+default: makecleanall
+
 #prevent any default rules from being used
 .SUFFIXES:
 
@@ -207,7 +210,7 @@ OPTIMIZE ?=
 # g++ COMPILER
 # COPT provided at the command line will append to options
 #############################################################################
-CPPC = g++
+CPPC = g++ -pipe
 override COPT ?=  -Wfatal-errors
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
@@ -254,7 +257,6 @@ LFLAGS = $(OPTIMIZE) $(LOPT)
 ###########################################################
 
 info:
-
 	@echo
 	@$(call hr)
 	@$(call title,"Variables")
@@ -322,11 +324,13 @@ clean: FORCE
 
 cleanexec: FORCE
 	@command rm -f $(EXECUTABLES)
-
+FORCE:
 
 all: $(EXEC) 
 
-FORCE:
+makecleanall:
+	make -j clean
+	make -j all
 
 
 ##################################################################

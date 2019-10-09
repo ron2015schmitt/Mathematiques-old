@@ -38,7 +38,7 @@ fi
 
 if [ -e "Makefile" ]; then
     echo "deconfiguring..."
-    make fullpurge
+    make -j fullpurge
     rm -f Makefile{,.clean}
     rm -f examples/Makefile{,.clean}
 else 

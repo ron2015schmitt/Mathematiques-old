@@ -7,10 +7,10 @@ hppfiles:
 	@echo "HPPFILES = $(HPPFILES)"
 
 cleanall: clean 
-	\cd $(DIR_MATRICKS)/examples && make clean
-	\cd $(DIR_MATRICKS)/src && make clean
-	\cd $(DIR_MATRICKS)/doc && make cleandocs
-	\cd $(DIR_MATRICKS)/doc && make restore
+	\cd $(DIR_MATRICKS)/examples && make -j clean
+	\cd $(DIR_MATRICKS)/src && make -j clean
+	\cd $(DIR_MATRICKS)/doc && make -j cleandocs
+	\cd $(DIR_MATRICKS)/doc && make -j restore
 
 fullpurge: cleanall
 	\rm -f $(DIR_MATRICKS)/*~

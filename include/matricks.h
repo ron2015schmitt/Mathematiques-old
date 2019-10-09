@@ -53,11 +53,8 @@
 #include "matrix.h"
 #include "tensor.h"
 #include "expressions.h"
-#include "expressions_v.h"
-#include "expressions_m.h"
 #include "functions.h"
-#include "functions_v.h"
-#include "functions_m.h"
+#include "functions_complex.h"
 #include "fileio.h"
 #include "coda.h"
 

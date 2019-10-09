@@ -751,9 +751,9 @@ int main()
   // {
   //   // bitwise  OR |
   //   printStart(++testnum);
-  //   Scalar<ComplexUnsignedShort> s1 = 9;
-  //   Scalar<ComplexUnsignedShort> s2 = 7;
-  //   Scalar<ComplexUnsignedShort> expected = 15;
+  //   Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(9, 0);
+  //   Scalar<ComplexUnsignedShort> s2 = ComplexUnsignedShort(7, 1);
+  //   Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(15, 1);
   //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 | s2) );
   //   bool pass = equal(result,expected);
@@ -764,9 +764,9 @@ int main()
   // {
   //   // bitwise XOR ^
   //   printStart(++testnum);
-  //   Scalar<ComplexUnsignedShort> s1 = 9;
-  //   Scalar<ComplexUnsignedShort> s2 = 7;
-  //   Scalar<ComplexUnsignedShort> expected = 14;
+  //   Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(9, 3);
+  //   Scalar<ComplexUnsignedShort> s2 = ComplexUnsignedShort(7, 1);
+  //   Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(14, 2);
   //   Scalar<ComplexUnsignedShort> result;
   //   testcode( result = (s1 ^ s2) );
   //   bool pass = equal(result,expected);
@@ -774,27 +774,27 @@ int main()
   //   allpass = allpass && pass;
   //   failnum += (!pass);
   // }
-  // {
-  //   // bitwise AND &
-  //   printStart(++testnum);
-  //   Scalar<ComplexUnsignedShort> s1 = 9;
-  //   Scalar<ComplexUnsignedShort> s2 = 7;
-  //   Scalar<ComplexUnsignedShort> expected = 1;
-  //   Scalar<ComplexUnsignedShort> result;
-  //   testcode( result = (s1 & s2) );
-  //   bool pass = equal(result,expected);
-  //   printEnd(pass,result,expected);
-  //   allpass = allpass && pass;
-  //   failnum += (!pass);
-  // }
+  {
+    // bitwise AND &
+    printStart(++testnum);
+    Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(9, 3);
+    Scalar<ComplexUnsignedShort> s2 = ComplexUnsignedShort(7, 1);
+    Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(1, 1);
+    Scalar<ComplexUnsignedShort> result;
+    testcode( result = (s1 & s2) );
+    bool pass = equal(result,expected);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
   // {
   //   // bitwise <<
   //   printStart(++testnum);
-  //   Scalar<ComplexUnsignedShort> s1 = 1;
-  //   Scalar<ComplexUnsignedShort> s2 = 2;
-  //   Scalar<ComplexUnsignedShort> expected = 4;
+  //   Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(1, 3);
+  //   unsigned short n2 = 2;
+  //   Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(4, 6);
   //   Scalar<ComplexUnsignedShort> result;
-  //   testcode( result = (s1 << s2) );
+  //   testcode( result = (s1 << n2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
@@ -803,11 +803,11 @@ int main()
   // {
   //   // bitwise >>
   //   printStart(++testnum);
-  //   Scalar<ComplexUnsignedShort> s1 = 4;
-  //   Scalar<ComplexUnsignedShort> s2 = 2;
-  //   Scalar<ComplexUnsignedShort> expected = 1;
-  //   Scalar<ComplexUnsignedShort> result;
-  //   testcode( result = (s1 >> > s2) );
+  //   Scalar<ComplexUnsignedLong> s1 = ComplexUnsignedShort(4, 15);
+  //   unsigned short n2 = 2;
+  //   Scalar<ComplexUnsignedLong> expected = ComplexUnsignedShort(1, 3);
+  //   Scalar<ComplexUnsignedLong> result;
+  //   testcode( result = (s1 >> n2) );
   //   bool pass = equal(result,expected);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;

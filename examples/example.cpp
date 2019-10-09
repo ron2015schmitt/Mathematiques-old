@@ -2,14 +2,25 @@
 #include "matricks.h"
 
 
-int main()
+int main(int argc, char *argv[])
 {
   const double pi = M_PI;
+  std::string myname = argv[0];
   
   using namespace matricks;
   using namespace display;
 
-  std::cout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
+  // force color even if piped to more,less or a file
+  Terminal::setColorOverride(true);
+  Terminal::setOverrideValue(true);
+
+  cr();
+  cr();
+  mout << StyledString::get(HORLINE);
+  mout << "running: " <<createStyle(BOLD).apply(myname) << std::endl;
+
+  
+  mout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
   print_matricks_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );
@@ -31,6 +42,12 @@ int main()
   // std deviation
   double sigma2 = norm(v2-mu2)/sqrt(N-1);
   disp(sigma2);
+
+  cr();
+  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << StyledString::get(HORLINE);
+  cr();
+
   
   return 0;
 }

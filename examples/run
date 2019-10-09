@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+./example | more
+./printing | more
+./testing | more

@@ -173,7 +173,7 @@ if [ "${1}" == "newtag" ]; then
     echo " "
     echo -e "${BOLDON}${BLUE1}CREATING NEW REVISION NUMBER${DEFCLR}..."
     echo " "
-    make newtag
+    make -j newtag
 fi
   
 
@@ -183,7 +183,7 @@ fi
 echo " "
 echo "Creating libmatricks.a ..."
 cd src
-make libmatricks.a
+make -j libmatricks.a
 cd ..
 mkdir -p lib && mv src/libmatricks.a lib/
 

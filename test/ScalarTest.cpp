@@ -877,10 +877,10 @@ int main()
     // bitwise <<
     printStart(++testnum);
     Scalar<unsigned short> s1 = 1;
-    Scalar<unsigned short> s2 = 2;
+    unsigned short n2 = 2;
     Scalar<unsigned short> expected = 4;
     Scalar<unsigned short> result;
-    testcode( result = (s1 << s2) );
+    testcode( result = (s1 << n2) );
     bool pass = equal(result,expected);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -890,10 +890,10 @@ int main()
     // bitwise >>
     printStart(++testnum);
     Scalar<unsigned short> s1 = 4;
-    Scalar<unsigned short> s2 = 2;
+    unsigned short n2 = 2;
     Scalar<unsigned short> expected = 1;
     Scalar<unsigned short> result;
-    testcode( result = (s1 >> s2) );
+    testcode( result = (s1 >> n2) );
     bool pass = equal(result,expected);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

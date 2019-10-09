@@ -8,15 +8,28 @@
 
 
 
-int main()
+int main(int argc, char *argv[])
 {
+  const double pi = M_PI;
+  std::string myname = argv[0];
   using namespace matricks;
   using namespace display;
 
+  // force color even if piped to more,less or a file
+  Terminal::setColorOverride(true);
+  Terminal::setOverrideValue(true);
+
+  cr();
+  cr();
+  mout << StyledString::get(HORLINE);
+  mout << "running: " <<createStyle(BOLD).apply(myname) << std::endl;
+
+  
+  mout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
+  
   print_matricks_info();
 
   
-  const double pi = M_PI;
   int n = 45;
   unsigned int m = 256;
   double x = 3.14;
@@ -145,6 +158,12 @@ int main()
     
   }
   
-  cr();cr();
+
+  cr();
+  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << StyledString::get(HORLINE);
+  cr();
+
+  
   return 0;
 }

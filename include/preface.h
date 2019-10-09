@@ -53,11 +53,30 @@ extern char COMPILE_OPTIMIZE[];
 
 namespace matricks {
 
-
+  //*******************************************************
+  //          Typedefs
+  //*******************************************************
+  
   typedef std::vector<double>::size_type   size_type;
   typedef int index_type;
-
   typedef long double extended;
+
+  typedef std::complex<float> ComplexFloat;
+  typedef std::complex<double> ComplexDouble;
+  typedef std::complex<long double> ComplexLongDouble;
+  typedef std::complex<char> ComplexChar;
+  typedef std::complex<signed char> ComplexSignedChar;
+  typedef std::complex<short> ComplexShort;
+  typedef std::complex<int> ComplexInt;
+  typedef std::complex<long> ComplexLong;
+  typedef std::complex<long long> ComplexLongLong;
+  typedef std::complex<unsigned char> ComplexUnsignedChar;
+  typedef std::complex<unsigned short> ComplexUnsignedShort;
+  typedef std::complex<unsigned int> ComplexUnsignedInt;
+  typedef std::complex<unsigned long> ComplexUnsignedLong;
+  typedef std::complex<unsigned long long> ComplexUnsignedLongLong;
+
+  
 
   // maximum subcript size for vectors and matrices (since we allow negative indexing)
   const size_type maxsize = std::numeric_limits<index_type>::max();

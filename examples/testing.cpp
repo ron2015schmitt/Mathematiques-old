@@ -80,10 +80,10 @@ int main()
   Vector<double> v = range<double>(1,10);
   char str[] = "hello";
   std::string s = "world";
-  std::complex<double> z(1,-1);
-  Vector<std::complex<double> > vc(2);
-  vc[0] = std::complex<double>(2.0,3.0);
-  vc[1] = std::complex<double>(-2.0,7.0);
+  ComplexDouble z(1,-1);
+  Vector<ComplexDouble > vc(2);
+  vc[0] = ComplexDouble(2.0,3.0);
+  vc[1] = ComplexDouble(-2.0,7.0);
   
   cr();cr();
   disp(n);
@@ -236,7 +236,7 @@ int main()
   mout << "sizeof(long double) = " << sizeof(long double) << endl;
   mout << endl;
   mout << "sizeof(bool) = " << sizeof(bool) << endl;
-  mout << "sizeof(std::complex<float>) = " << sizeof(std::complex<float>) << endl;
+  mout << "sizeof(ComplexFloat) = " << sizeof(ComplexFloat) << endl;
 
   char var_char;
   unsigned char var_unsigned_char;

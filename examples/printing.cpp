@@ -26,7 +26,7 @@ int main()
   Matrix<double> A(2,2, AORLIST({1,2,3,4}));
   char str[] = "hello";
   std::string s = "world";
-  std::complex<double> z(1,-1);
+  ComplexDouble z(1,-1);
 
 
   cr();cr();

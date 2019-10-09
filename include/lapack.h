@@ -36,14 +36,14 @@ namespace matricks_lapack {
 		 const char*      jobvt,
 		 const FINT*       m,
 		 const FINT*       n,
-		 std::complex<double>* a,
+		 ComplexDouble* a,
 		 const FINT*       lda,
 		 double*          s,
-		 std::complex<double>* u,
+		 ComplexDouble* u,
 		 const FINT*       ldu,
-		 std::complex<double>* vt,
+		 ComplexDouble* vt,
 		 const FINT*       ldvt,
-		 std::complex<double>* work,
+		 ComplexDouble* work,
 		 const FINT*       lwork,
 		 double*          rwork,
 		 FINT*             info
@@ -66,9 +66,9 @@ namespace matricks_lapack {
   // V = NxN complex unitary matrix
 
   inline int svd(
-		 Matrix<std::complex<double> >& A, 
-		 Matrix<std::complex<double> >& U, Vector<double>& S, 
-		 Matrix<std::complex<double> >& V )  {
+		 Matrix<ComplexDouble >& A, 
+		 Matrix<ComplexDouble >& U, Vector<double>& S, 
+		 Matrix<ComplexDouble >& V )  {
 
     // place checks here
 
@@ -77,7 +77,7 @@ namespace matricks_lapack {
     const size_type N = A.Ncols();       // Dimensions of matrix.
     const size_type minMN = std::min(M,N); 
 
-    Matrix<std::complex<double> > Atemp(N,M,"Atemp");
+    Matrix<ComplexDouble > Atemp(N,M,"Atemp");
     // need to pass transpose because lapack uses col major form
     Atemp = ~A;
 
@@ -97,17 +97,17 @@ namespace matricks_lapack {
     Vector<double> Rwork(NRwork,"Rwork");
 
 
-    Vector<std::complex<double> > Work(1,"Work");
+    Vector<ComplexDouble > Work(1,"Work");
     const char jobu =  'A';
     const char jobvt = 'A';
-    std::complex<double>* aptr = &Atemp(0,0);
+    ComplexDouble* aptr = &Atemp(0,0);
     const FINT lda = Mfint;
     double* sptr = &S[0];
-    std::complex<double>* uptr = &U(0,0);
+    ComplexDouble* uptr = &U(0,0);
     const FINT ldu = Mfint;
-    std::complex<double>* vtptr = &V(0,0);
+    ComplexDouble* vtptr = &V(0,0);
     const FINT ldvt = Nfint;
-    std::complex<double>* workptr =&Work[0];
+    ComplexDouble* workptr =&Work[0];
     double* rworkptr = &Rwork[0];
     FINT info = 0;
 

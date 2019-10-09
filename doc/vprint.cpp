@@ -59,7 +59,7 @@ int main()
   codemulti( Vector<double> v = range<double>(1,10) );
   codemulti(  char str[] = "hello" );
   codemulti(  std::string s = "world"  );
-  codemulti(  std::complex<double> z(1,-1)  );
+  codemulti(  ComplexDouble z(1,-1)  );
   codeend();
 
   text("display each variable using `disp`:");
@@ -442,7 +442,7 @@ int main()
     example(Nex++," complex number formats");
     codestart("C++");
     codemulti( using namespace display );
-    codemulti( std::complex<double> z(1,-2)  );
+    codemulti( ComplexDouble z(1,-2)  );
     codeend();
       
     cr();cr();

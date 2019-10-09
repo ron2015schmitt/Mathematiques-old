@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.21-r21).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.21-r22).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -30,7 +30,7 @@ bool done = true;
 Vector<double> v = range<double>(1,10);
 char str[] = "hello";
 std::string s = "world";
-std::complex<double> z(1,-1);
+ComplexDouble z(1,-1);
 ```
 display each variable using `disp`:
 
@@ -389,7 +389,7 @@ The format for complex numbers is set using the function `setFormatStringComplex
 **EXAMPLE 8**:  complex number formats
 ```C++
 using namespace display;
-std::complex<double> z(1,-2);
+ComplexDouble z(1,-2);
 ```
 
 

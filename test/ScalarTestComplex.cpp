@@ -39,9 +39,7 @@ int main()
   double tol = 5e-15;
   const double pi = M_PI;
 
-  typedef std::complex<double> ComplexDouble;
-  typedef std::complex<int> ComplexInt;
-  typedef std::complex<unsigned short> ComplexUnsignedShort;
+
   
   // -------------- constructors etc ------------------------
 

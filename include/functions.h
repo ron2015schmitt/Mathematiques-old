@@ -88,43 +88,192 @@ namespace matricks {
 
 
 
-  
   /****************************************************************************
-   *  dot products
+   *  products: Scalar Scalar
    ****************************************************************************
    */
 
+  // --------------------  dot (inner) product --------------------------------
+  
+  // (a|b)
 
-  // dot product operator (a|b)
-
-  template <class D, class A, class B> 
-    inline D operator|( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    D result = D();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
+  template <class D> inline
+    D operator|( const Scalar<D>& a, const  Scalar<D>& b ) {
+    return a()*b();
   }
-
-
 
 
   // dot(a,b)
 
-  template <class D, class A, class B> 
-    inline D dot( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    D result = D();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
+  template <class D> inline
+    D dot( const Scalar<D>& a, const  Scalar<D>& b ) {
+    return (a|b);
   }
 
 
+  // --------------------  tensor (outer) product --------------------------------
+  
+  // (a&b)
+
+  template <class D> inline
+    D operator&( const Scalar<D>& a, const  Scalar<D>& b ) {
+    return a()*b();
+  }
+
+
+  // tprod(a,b)
+
+  template <class D> inline
+    D tprod( const Scalar<D>& a, const  Scalar<D>& b ) {
+    return (a&b);
+  }
+
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+  
+  // (a^b)
+
+  template <class D> inline
+    D operator^( const Scalar<D>& a, const  Scalar<D>& b ) {
+    return 0;
+  }
+
+
+  // wprod(a,b)
+
+  template <class D> inline
+    D wprod( const Scalar<D>& a, const  Scalar<D>& b ) {
+    return (a^b);
+  }
+
+  
+  /****************************************************************************
+   *  products: Vector Vector
+   ****************************************************************************
+   */
+
+
+  // --------------------  dot (inner) product --------------------------------
+
+  // (a|b)
+
+  template <class D> inline
+    D operator|( const Vector<D>& a, const  Vector<D>& b ) {
+
+    D result = D(0);
+    for (register index_type i = a.size(); i--;) {
+      result += a[i]*b[i];
+    }
+    return result;
+  }
+
+  // dot(a,b)
+
+  template <class D> inline
+    D dot( const Vector<D>& a, const  Vector<D>& b ) {
+    return (a|b);
+  }
+
+  // --------------------  tensor (outer) product --------------------------------
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+  /****************************************************************************
+   *  product: Matrix Matrix
+   ****************************************************************************
+   */
+
+  // --------------------  dot (inner) product --------------------------------
+  // --------------------  tensor (outer) product --------------------------------
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+  
+  /****************************************************************************
+   *  product: Matrix Vector
+   ****************************************************************************
+   */
+  // --------------------  dot (inner) product --------------------------------
+  // --------------------  tensor (outer) product --------------------------------
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+
+  /****************************************************************************
+   *  product: TensorR TensorR
+   ****************************************************************************
+   */
+  // --------------------  dot (inner) product --------------------------------
+
+
+  // (a|b)
+
+  template <class D, class A, class B> inline
+    D operator|( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+
+    // (Scalar|Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+    // (Vector|Vector)
+    if ((a.ndims() == 1) && (b.ndims() == 1)) {
+      D result = D(0);
+      for (register index_type i = a.size(); i--;) {
+	result += a[i]*b[i];
+      }
+      return result;
+    }
+  }
+
+  // dot(a,b)
+
+  template <class D, class A, class B> inline
+    D dot( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    return (a|b);
+  }
+
+  // --------------------  tensor (outer) product --------------------------------
+
+    // (a&b)
+
+  template <class D, class A, class B> inline
+    D operator&( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+
+    // (Scalar&Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+  }
+
+  // tprod(a,b)
+
+  template <class D, class A, class B> inline
+    D tprod( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    return (a&b);
+  }
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+  // (a^b)
+
+  template <class D, class A, class B> inline
+    D operator^( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+
+    // (Scalar^Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+  }
+
+  // wprod(a,b)
+
+  template <class D, class A, class B> inline
+    D wprod( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    return (a^b);
+  }
   
   // ************************************************************************
   // *            Powers and logs

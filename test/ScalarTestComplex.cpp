@@ -18,16 +18,22 @@ D average(D x, D y) {
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
-
+  std::string myname = argv[0];
+  
   using namespace matricks;
   using namespace display;
 
   FormatData<bool>::string_for_true = "true";
   FormatData<bool>::string_for_false = "false";
-  
 
+  // force color even if piped to more,less or a file
+  Terminal::setColorOverride(true);
+  Terminal::setOverrideValue(true);
+
+  cr();
+  cr();
   print_matricks_info();
   mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - Scalar-complex numbers tests" <<std::endl;
   cr();
@@ -713,7 +719,7 @@ int main()
     Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
     Scalar<ComplexDouble> expected = ComplexDouble(97.07651685436622, 60);
     Scalar<ComplexDouble> result;
-    testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2.));
+    testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2));
     bool pass = approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

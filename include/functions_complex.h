@@ -4,74 +4,329 @@
 
 namespace matricks {
 
+  /****************************************************************************
+   *  products: Scalar Scalar
+   ****************************************************************************
+   */
 
+  // --------------------  dot (inner) product --------------------------------
+  
+  // (real|complex)
+
+  template <class D> inline
+    std::complex<D>  operator|( const Scalar<D>& a, const  Scalar<std::complex<D> >& b ) {
+    return a()*b();
+  }
+
+  // dot(real, complex)
+  
+  template <class D> inline
+    std::complex<D> dot( const Scalar<D>& a, const  Scalar<std::complex<D> >& b ) {
+    return (a|b);
+  }
+
+
+  // (complex|real)
+
+  template <class D> inline
+    std::complex<D> operator|( const Scalar<std::complex<D>>& a, const  Scalar<D>& b ) {
+    return a()*b();
+  }
+
+  // dot(complex, real)
+
+  template <class D> inline
+    std::complex<D> dot( const Scalar<std::complex<D>>& a, const  Scalar<D>& b ) {
+    return (a|b);
+  }
+
+
+  // --------------------  tensor (outer) product --------------------------------
+  
+
+  // (real&complex)
+
+  template <class D> inline
+    std::complex<D> operator&( const Scalar<D>& a, const  Scalar<std::complex<D> >& b ) {
+    return a()*b();
+  }
+
+  // tprod(real, complex)
+  
+  template <class D> inline
+    std::complex<D> tprod( const Scalar<D>& a, const  Scalar<std::complex<D> >& b ) {
+    return (a&b);
+  }
+
+  // (complex&real)
+
+  template <class D> inline
+    std::complex<D> operator&( const Scalar<std::complex<D>>& a, const  Scalar<D>& b ) {
+    return 0;
+  }
+
+  // tprod(complex, real)
+
+  template <class D> inline
+    std::complex<D> tprod( const Scalar<std::complex<D> >& a, const  Scalar<D>& b ) {
+    return (a&b);
+  }
+
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+  
+  // (real^complex)
+
+  template <class D> inline
+    std::complex<D> operator^( const Scalar<D>& a, const  Scalar<std::complex<D> >& b ) {
+    return 0;
+  }
+
+  // wprod(real, complex)
+  
+  template <class D> inline
+    std::complex<D> wprod( const Scalar<D>& a, const  Scalar<std::complex<D> >& b ) {
+    return (a^b);
+  }
+
+  // (complex^real)
+
+  template <class D> inline
+    std::complex<D> operator^( const Scalar<std::complex<D>>& a, const  Scalar<D>& b ) {
+    return 0;
+  }
+
+  // wprod(complex, real)
+
+  template <class D> inline
+    std::complex<D> wprod( const Scalar<std::complex<D> >& a, const  Scalar<D>& b ) {
+    return (a^b);
+  }
 
 
   
   /****************************************************************************
-   *  dot products
+   *  products: Vector Vector
    ****************************************************************************
    */
 
 
-  // dot product operator (areal|bcomplex)
+  // --------------------  dot (inner) product --------------------------------
 
-  template <class D, class A, class B> 
-    inline std::complex<D>  operator|( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
-    std::complex<D> result = std::complex<D>();
-    
- 
-    for (register index_type i = a.size(); i--;)
+  // (areal|bcomplex)
+
+  template <class D> inline
+    std::complex<D> operator|( const Vector<D>& a, const  Vector<std::complex<D> >& b ) {
+
+    std::complex<D> result = std::complex<D>(0,0);
+    for (register index_type i = a.size(); i--;) {
       result += a[i]*b[i];
-    
+    }
     return result;
   }
-
-
-  // dot product operator (acomplex|breal)
-
-  template <class D, class A, class B> 
-    inline std::complex<D>  operator|( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
-    std::complex<D> result = std::complex<D>();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
-  }
-
-
-
 
   // dot(areal,bcomplex)
 
-  template <class D, class A, class B> 
-    inline std::complex<D>  dot( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
-    std::complex<D> result = std::complex<D>();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
+  template <class D> inline
+    std::complex<D> dot( const Vector<D>& a, const  Vector<std::complex<D> >& b ) {
+    return (a|b);
   }
 
+
+  // (acomplex|breal)
+
+  template <class D> inline
+    std::complex<D> operator|( const Vector<std::complex<D> >& a, const  Vector<D>& b ) {
+
+    std::complex<D> result = std::complex<D>(0,0);
+    for (register index_type i = a.size(); i--;) {
+      result += a[i]*b[i];
+    }
+    return result;
+  }
 
   // dot(acomplex,breal)
 
-  template <class D, class A, class B> 
-    inline std::complex<D>  dot( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
-    std::complex<D> result = std::complex<D>();
-    
- 
-    for (register index_type i = a.size(); i--;)
-      result += a[i]*b[i];
-    
-    return result;
+  template <class D> inline
+    std::complex<D> dot( const Vector<std::complex<D> >& a, const  Vector<D>& b ) {
+    return (a|b);
+  }
+
+  // --------------------  tensor (outer) product --------------------------------
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+  /****************************************************************************
+   *  product: Matrix Matrix
+   ****************************************************************************
+   */
+
+  // --------------------  dot (inner) product --------------------------------
+  // --------------------  tensor (outer) product --------------------------------
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+  
+  /****************************************************************************
+   *  product: Matrix Vector
+   ****************************************************************************
+   */
+  // --------------------  dot (inner) product --------------------------------
+  // --------------------  tensor (outer) product --------------------------------
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+
+
+  /****************************************************************************
+   *  product: TensorR TensorR
+   ****************************************************************************
+   */
+  // --------------------  dot (inner) product --------------------------------
+
+
+  // (real a|complex b)
+
+  template <class D, class A, class B> inline
+    D operator|( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
+
+    // (Scalar|Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+    // (Vector|Vector)
+    if ((a.ndims() == 1) && (b.ndims() == 1)) {
+      D result = D(0);
+      for (register index_type i = a.size(); i--;) {
+	result += a[i]*b[i];
+      }
+      return result;
+    }
+  }
+
+  // dot(real a,complex b)
+
+  template <class D, class A, class B> inline
+    D dot( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
+    return (a|b);
+  }
+
+
+  // (complex a|real b)
+
+  template <class D, class A, class B> inline
+    D operator|( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
+
+    // (Scalar|Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+    // (Vector|Vector)
+    if ((a.ndims() == 1) && (b.ndims() == 1)) {
+      D result = D(0);
+      for (register index_type i = a.size(); i--;) {
+	result += a[i]*b[i];
+      }
+      return result;
+    }
+  }
+
+  // dot(complex a,real b)
+
+  template <class D, class A, class B> inline
+    D dot( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
+    return (a|b);
   }
 
   
+  // --------------------  tensor (outer) product --------------------------------
+
+  // (real & complex)
+
+  template <class D, class A, class B> inline
+    D operator&( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
+
+    // (Scalar & Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+  }
+
+  // tprod(real,complex)
+
+  template <class D, class A, class B> inline
+    D tprod( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
+    return (a&b);
+  }
+
+
+  // (complex & real)
+
+  template <class D, class A, class B> inline
+    D operator&( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
+
+    // (Scalar & Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return a()*b();
+    }
+
+  }
+
+  // tprod(complex, real)
+
+  template <class D, class A, class B> inline
+    D tprod( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
+    return (a&b);
+  }
+
+  // -------------------- antisymmetric (wedge)  product -----------------------
+  //  a ^ b = a & b - b & a
+  // --------------------------------------------------------------------------
+  
+  // (real ^ complex)
+
+  template <class D, class A, class B> inline
+    D operator^( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
+
+    // (Scalar ^ Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return 0;
+    }
+
+  }
+
+  // wprod(real,complex)
+
+  template <class D, class A, class B> inline
+    D wprod( const TensorR<D,A>& a, const  TensorR<std::complex<D>,B>& b ) {
+    return (a^b);
+  }
+
+
+  // (complex ^ real)
+
+  template <class D, class A, class B> inline
+    D operator^( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
+
+    // (Scalar ^ Scalar)
+    if ((a.ndims() == 0) && (b.ndims() == 0)) {
+      return 0;
+    }
+
+  }
+
+  // wprod(complex, real)
+
+  template <class D, class A, class B> inline
+    D wprod( const TensorR<std::complex<D>,A>& a, const  TensorR<D,B>& b ) {
+    return (a^b);
+  }
+
+
+
+
 
   // ************************************************************************
   // *            Bit wise operators for COMPLEX unsigned types

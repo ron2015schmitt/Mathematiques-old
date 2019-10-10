@@ -191,7 +191,7 @@ namespace matricks {
 
     // (Scalar|Scalar)
     if ((a.ndims() == 0) && (b.ndims() == 0)) {
-      return a()*b();
+      return a[0]*b[0];
     }
 
     // (Vector|Vector)
@@ -219,7 +219,7 @@ namespace matricks {
 
     // (Scalar|Scalar)
     if ((a.ndims() == 0) && (b.ndims() == 0)) {
-      return a()*b();
+      return a[0]*b[0];
     }
 
     // (Vector|Vector)
@@ -249,7 +249,7 @@ namespace matricks {
 
     // (Scalar & Scalar)
     if ((a.ndims() == 0) && (b.ndims() == 0)) {
-      return a()*b();
+      return a[0]*b[0];
     }
 
   }
@@ -269,7 +269,7 @@ namespace matricks {
 
     // (Scalar & Scalar)
     if ((a.ndims() == 0) && (b.ndims() == 0)) {
-      return a()*b();
+      return a[0]*b[0];
     }
 
   }

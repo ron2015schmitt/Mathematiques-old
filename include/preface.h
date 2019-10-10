@@ -511,9 +511,9 @@ namespace matricks {
 
 
 
-  /************************************************************************
-   * Class type querying/manipulation
-   ************************************************************************      */
+  // *********************************************************************
+  // * Class type querying/manipulation
+  // ********************************************************************
   template <typename T> class GetDataType {
   public:
     typedef T Type;
@@ -525,6 +525,57 @@ namespace matricks {
 
   template<class T> struct is_complex : std::false_type {};
   template<class T> struct is_complex<std::complex<T>> : std::true_type {};
+
+  
+  // ***************************************************************************
+  // * ArithmeticType: Class that determines type of aritmetic between two types
+  // ***************************************************************************
+
+  template <typename T1, typename T2> class ArithmeticType {
+  public:
+    typename GetDataType<T1>::Type x1;
+    typename GetDataType<T2>::Type x2;
+    typedef typeof(x1+x2) Type;
+  };
+
+
+  // ***************************************************************************
+  // * Real Complex math operators of mixed base types
+  // ***************************************************************************
+
+
+  // a+b
+  
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1,D2>::Type>
+    operator+(const std::complex<D1>& x1, const std::complex<D2>& x2) {
+    D1 x1r = real(x1);
+    D1 x1i = imag(x1);
+    D2 x2r = real(x2);
+    D2 x2i = imag(x2);
+    return std::complex<typename ArithmeticType<D1,D2>::Type>(x1r+x2r, x1i+x2i);
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1,D2>::Type>
+    operator+(const std::complex<D1>& x1, const D2 x2) {
+    D1 x1r = real(x1);
+    D1 x1i = imag(x1);
+    return std::complex<typename ArithmeticType<D1,D2>::Type>(x1r+x2, x1i+x2);
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1,D2>::Type>
+    operator+(const D1 x1, const std::complex<D2>& x2) {
+    D2 x2r = real(x2);
+    D2 x2i = imag(x2);
+    return std::complex<typename ArithmeticType<D1,D2>::Type>(x1+x2r, x1+x2i);
+  }
+
+  
+  
+
+
   
   //***********************************************************************
   //     is_instance<FilledTemplateClassA or object, TemplateCLassB>

@@ -514,12 +514,101 @@ int main(int argc, char *argv[])
 
   disp(sizeof(size_type));
   disp(sizeof(index_type));
-  
 
+  {
+    ArithmeticType<double,float>::Type x;
+    tdisp(x);
+  }
+  {
+    ArithmeticType<double,int>::Type x;
+    tdisp(x);
+  }
+
+  {
+    cr();
+    std::complex<double> x;
+    std::cout << typeid(x).name() << std::endl;
+    ArithmeticType<std::complex<double>,std::complex<float> >::Type y;
+    std::cout << typeid(y).name() << std::endl;
+  }
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    ComplexFloat x = ComplexFloat(1,2);
+    tdisp(z);
+    tdisp(x);
+    tdisp((z+x));
+    ArithmeticType<ComplexDouble,ComplexFloat>::Type q;
+    tdisp(q);
+  }
+  {
+    cr();
+    ComplexFloat z = ComplexFloat(1,2);
+    float x = 10;
+    tdisp(z);
+    tdisp(x);
+    tdisp((z+x));
+    ArithmeticType<ComplexFloat,float>::Type q;
+    tdisp(q);
+  }
+  {
+    cr();
+    ComplexFloat z = ComplexFloat(1,2);
+    double x = 10;
+    tdisp(z);
+    tdisp(x);
+    tdisp((z+x));
+    ArithmeticType<ComplexFloat,double>::Type r;
+    tdisp(r);
+  }
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    float x = 10;
+    tdisp(z);
+    tdisp(x);
+    tdisp((z+x));
+    ArithmeticType<ComplexDouble,float>::Type r;
+    tdisp(r);
+  }
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    float x = 10;
+    tdisp(z);
+    tdisp(x);
+    tdisp((x+z));
+    ArithmeticType<float,ComplexDouble>::Type r;
+    tdisp(r);
+  }
+
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    int x = 10;
+    tdisp(z);
+    tdisp(x);
+    tdisp((x+z));
+    ArithmeticType<int,ComplexDouble>::Type r;
+    tdisp(r);
+  }
+  
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);
   cr();
+
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    int x = 10;
+    tdisp(z);
+    tdisp(x);
+    tdisp((x+z));
+    ArithmeticType<int,ComplexDouble>::Type r;
+    tdisp(r);
+  }
+  
 
   return 0;
 }

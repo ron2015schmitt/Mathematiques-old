@@ -592,12 +592,6 @@ int main(int argc, char *argv[])
     ArithmeticType<int,ComplexDouble>::Type r;
     tdisp(r);
   }
-  
-  cr();
-  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
-
   {
     cr();
     ComplexDouble z = ComplexDouble(1,2);
@@ -608,7 +602,23 @@ int main(int argc, char *argv[])
     ArithmeticType<int,ComplexDouble>::Type r;
     tdisp(r);
   }
-  
 
+  {
+    cr();
+    typename BaseType<int>::Type x1;
+    tdisp(x1);
+    typename BaseType<std::complex<int> >::Type x2;
+    tdisp(x2);
+    typename BaseType<std::complex<std::complex<int> >>::Type x3;
+    tdisp(x3);
+  }
+
+
+
+
+  cr();
+  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << StyledString::get(HORLINE);
+  cr();
   return 0;
 }

@@ -514,13 +514,13 @@ namespace matricks {
   // *********************************************************************
   // * Class type querying/manipulation
   // ********************************************************************
-  template <typename T> class GetDataType {
+  template <typename T> class BaseType {
   public:
     typedef T Type;
   };
-  template <typename D> class GetDataType<std::complex<D> > {
+  template <typename D> class BaseType<std::complex<D> > {
   public:
-    typedef typename GetDataType<D>::Type Type;
+    typedef typename BaseType<D>::Type Type;
   };
 
   template<class T> struct is_complex : std::false_type {};
@@ -533,8 +533,8 @@ namespace matricks {
 
   template <typename T1, typename T2> class ArithmeticType {
   public:
-    typename GetDataType<T1>::Type x1;
-    typename GetDataType<T2>::Type x2;
+    T1 x1;
+    T2 x2;
     typedef typeof(x1+x2) Type;
   };
 
@@ -557,19 +557,20 @@ namespace matricks {
   }
 
   template <typename D1, typename D2> inline
-    std::complex<typename ArithmeticType<D1,D2>::Type>
+    std::complex<typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type>
     operator+(const std::complex<D1>& x1, const D2 x2) {
     D1 x1r = real(x1);
     D1 x1i = imag(x1);
-    return std::complex<typename ArithmeticType<D1,D2>::Type>(x1r+x2, x1i+x2);
+    return
+      std::complex<typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type>(x1r+x2, x1i+x2);
   }
 
   template <typename D1, typename D2> inline
-    std::complex<typename ArithmeticType<D1,D2>::Type>
+    std::complex<typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type>
     operator+(const D1 x1, const std::complex<D2>& x2) {
     D2 x2r = real(x2);
     D2 x2i = imag(x2);
-    return std::complex<typename ArithmeticType<D1,D2>::Type>(x1+x2r, x1+x2i);
+    return std::complex<typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type>(x1+x2r, x1+x2i);
   }
 
   

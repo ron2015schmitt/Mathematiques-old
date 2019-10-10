@@ -81,8 +81,8 @@ namespace matricks {
     Fun_Cast() { }
 
     static inline D2 apply(const D1 a) {
-      typedef typename GetDataType<D1>::Type DREAL1;
-      typedef typename GetDataType<D2>::Type DREAL2;
+      typedef typename BaseType<D1>::Type DREAL1;
+      typedef typename BaseType<D2>::Type DREAL2;
       return numbercast<DREAL2,DREAL1>(a); 
     }
     
@@ -923,7 +923,7 @@ namespace matricks {
 
   template <class D> class Fun_Roundzero {
   public:
-    typedef typename GetDataType<D>::Type DREAL;
+    typedef typename BaseType<D>::Type DREAL;
     Fun_Roundzero() { }
 
     static inline D apply(const D a, const DREAL tolerance) { 
@@ -951,7 +951,7 @@ namespace matricks {
 
   template <class D> class Fun_Approx {
   public:
-    typedef typename GetDataType<D>::Type DREAL;
+    typedef typename BaseType<D>::Type DREAL;
     Fun_Approx() { }
 
     static inline bool apply(const D a, const D b, const DREAL tolerance) { 

@@ -1006,7 +1006,7 @@ namespace matricks {
     class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP> > {
 
   public:
-    typedef typename GetDataType<D>::Type DREAL;
+    typedef typename BaseType<D>::Type DREAL;
 
     
   private:

@@ -30,7 +30,7 @@ namespace matricks {
 
   public:     
     typedef D DataType;
-    typedef typename GetDataType<D>::Type PrimDataType;
+    typedef typename BaseType<D>::Type PrimDataType;
 
     
 

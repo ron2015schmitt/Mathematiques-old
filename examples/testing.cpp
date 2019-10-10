@@ -11,7 +11,8 @@
 #include "TypeTraits.h"
 #include <string>
 
-  
+
+
 
 template <class D, template<typename> class F> void printUnary() {
   mout << F<D>::classname()  << " ";
@@ -605,16 +606,246 @@ int main(int argc, char *argv[])
 
   {
     cr();
+    mout << createStyle(BOLD).apply("ContainedType usage") << std::endl;
+    typename ContainedType<int>::Type x1;
+    mout << "ContainedType<int>::Type x1 = ";
+    tdisp(x1);
+    typename ContainedType<std::complex<int> >::Type x2;
+    mout << "ContainedType<std::complex<int> >::Type x2 = ";
+    tdisp(x2);
+    typename ContainedType<std::complex<std::complex<int> > >::Type x3;
+    mout << "ContainedType<std::complex<std::complex<int> > >::Type x3 = ";
+    tdisp(x3);
+  }
+  {
+    cr();
+    mout <<  createStyle(BOLD).apply("BaseType usage") << std::endl;
     typename BaseType<int>::Type x1;
+    mout << "BaseType<int>::Type x1 =  ";
     tdisp(x1);
     typename BaseType<std::complex<int> >::Type x2;
+    mout << "BaseType<std::complex<int> >::Type x2 =  ";
     tdisp(x2);
     typename BaseType<std::complex<std::complex<int> >>::Type x3;
+    mout << "BaseType<std::complex<std::complex<int> >>::Type x3 = ";
     tdisp(x3);
   }
 
 
+  // complex mixed addition
+  {
+    cr();
+    mout <<  createStyle(BOLD).apply("complex mixed addition") << std::endl;
+    ComplexDouble x = ComplexDouble(1,2);
+    ComplexFloat y = ComplexFloat(1,2);
+    tdisp(x);
+    tdisp(y);
+    tdisp(x+y);
+    tdisp(y+x);
+  }
+  {
+    cr();
+    ComplexDouble x = ComplexDouble(1,2);
+    float y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x+y);
+    tdisp(y+x);
+  }
+  {
+    cr();
+    ComplexFloat x = ComplexFloat(1,2);
+    double y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x+y);
+    tdisp(y+x);
+  }
 
+  // complex mixed subtraction
+  {
+    cr();
+    mout <<  createStyle(BOLD).apply("complex mixed subtraction") << std::endl;
+    ComplexDouble x = ComplexDouble(1,2);
+    ComplexFloat y = ComplexFloat(1,2);
+    tdisp(x);
+    tdisp(y);
+    tdisp(x-y);
+    tdisp(y-x);
+  }
+  {
+    cr();
+    ComplexDouble x = ComplexDouble(1,2);
+    float y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x-y);
+    tdisp(y-x);
+  }
+  {
+    cr();
+    ComplexFloat x = ComplexFloat(1,2);
+    double y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x-y);
+    tdisp(y-x);
+  }
+
+  // complex mixed multiplication
+  {
+    cr();
+    mout <<  createStyle(BOLD).apply("complex mixed multiplication") << std::endl;
+    ComplexDouble x = ComplexDouble(1,2);
+    ComplexFloat y = ComplexFloat(3,-5);
+    tdisp(x);
+    tdisp(y);
+    tdisp(x*y);
+    tdisp(y*x);
+  }
+  {
+    cr();
+    ComplexDouble x = ComplexDouble(1,2);
+    float y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x*y);
+    tdisp(y*x);
+  }
+  {
+    cr();
+    ComplexFloat x = ComplexFloat(1,2);
+    double y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x*y);
+    tdisp(y*x);
+  }
+
+  // complex mixed division
+  {
+    cr();
+    mout <<  createStyle(BOLD).apply("complex mixed division") << std::endl;
+    ComplexDouble x = ComplexDouble(1,2);
+    ComplexFloat y = ComplexFloat(3,-5);
+    tdisp(x);
+    tdisp(y);
+    tdisp(x/y);
+    tdisp(y/x);
+  }
+  {
+    cr();
+    ComplexDouble x = ComplexDouble(1,2);
+    float y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x/y);
+    tdisp(y/x);
+  }
+  {
+    cr();
+    ComplexFloat x = ComplexFloat(1,2);
+    double y = 4;
+    tdisp(x);
+    tdisp(y);
+    tdisp(x/y);
+    tdisp(y/x);
+  }
+  {
+    cr();
+
+    // float 
+    cr();
+    mout << createStyle(BOLD+BLUE1).apply("float") << std::endl;
+    mout << "ContainedType" << std::endl;
+    ContainedType<float>::Type x1;
+    tdisp(x1);
+    float s2 = 0;
+    ContainedType<typeof(s2)>::Type x2;
+    tdisp(x2);
+
+    mout << "BaseType" << std::endl;
+    BaseType<float>::Type x3;
+    tdisp(x3);
+    float s4 = 0;
+    BaseType<typeof(s4)>::Type x4;
+    tdisp(x4);
+  }
+  {
+    // complex<float>
+    cr();
+    mout << createStyle(BOLD+BLUE1).apply("complex<float>") << std::endl;
+    mout << "ContainedType" << std::endl;
+    ContainedType<ComplexFloat>::Type x1;
+    tdisp(x1);
+    ComplexFloat s2 = 0;
+    ContainedType<typeof(s2)>::Type x2;
+    tdisp(x2);
+
+    mout << "BaseType" << std::endl;
+    BaseType<ComplexFloat>::Type x3;
+    tdisp(x3);
+    ComplexFloat s4 = 0;
+    BaseType<typeof(s4)>::Type x4;
+    tdisp(x4);
+  }
+  {
+    // complex<complex<float>>
+    cr();
+    mout << createStyle(BOLD+BLUE1).apply("complex<complex<float>>") << std::endl;
+    mout << "ContainedType" << std::endl;
+    ContainedType<std::complex<std::complex<float> > >::Type x1;
+    tdisp(x1);
+    std::complex<std::complex<float> >  s2;
+    ContainedType<typeof(s2)>::Type x2;
+    tdisp(x2);
+
+    mout << "BaseType" << std::endl;
+    BaseType<std::complex<std::complex<float> > >::Type x3;
+    tdisp(x3);
+    std::complex<std::complex<float> >  s4;
+    BaseType<typeof(s4)>::Type x4;
+    tdisp(x4);
+  }
+  {
+    // Vector<float>
+    cr();
+    mout << createStyle(BOLD+BLUE1).apply("Vector<float>") << std::endl;
+    mout << "ContainedType" << std::endl;
+    ContainedType<Vector<float> >::Type x1;
+    tdisp(x1);
+    Vector<float> s2;
+    ContainedType<typeof(s2)>::Type x2;
+    tdisp(x2);
+
+    mout << "BaseType" << std::endl;
+    BaseType<Vector<float> >::Type x3;
+    tdisp(x3);
+    Vector<float> s4;
+    BaseType<typeof(s4)>::Type x4;
+    tdisp(x4);
+  }
+  {
+    // Vector<complex<float>>
+    cr();
+    mout << createStyle(BOLD+BLUE1).apply("Vector<complex<float>>") << std::endl;
+    mout << "ContainedType" << std::endl;
+    ContainedType<Vector<std::complex<float> > >::Type x1;
+    tdisp(x1);
+    Vector<std::complex<float> >  s2;
+    ContainedType<typeof(s2)>::Type x2;
+    tdisp(x2);
+
+    mout << "BaseType" << std::endl;
+    BaseType<Vector<std::complex<float> > >::Type x3;
+    tdisp(x3);
+    Vector<std::complex<float> >  s4;
+    BaseType<typeof(s4)>::Type x4;
+    tdisp(x4);
+  }
+  
+
+  
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;

@@ -82,9 +82,13 @@ namespace matricks {
   const size_type badsize = std::numeric_limits<size_type>::max();
 
 
-  template <class D> class Vector;
   template <class D, class A> class TensorR;  
-  template <class D, class A> class TensorRW;
+  template <class D, class DERIVED> class TensorRW;
+  template <class D> class Scalar;
+  template <class D> class Vector;
+  template <class D> class Matrix;
+  template <class D> class Tensor;
+
   template <class D, class A> class VER_Rep;
   template <class D> class VSliceObj;
   template <class D> class VSliceExpr;
@@ -514,6 +518,30 @@ namespace matricks {
   // *********************************************************************
   // * Class type querying/manipulation
   // ********************************************************************
+
+  // ContainedType - this returns the contained type of a complex number
+  //                 this could certainly be specialized for other
+  //                 container types
+  template <typename T> class ContainedType {
+  public:
+  typedef T Type;
+  };
+  template <typename D> class ContainedType<std::complex<D> > {
+  public:
+    typedef D Type;
+  };
+  template <typename D> class ContainedType<Vector<D> > {
+  public:
+    typedef D Type;
+  };
+  template <typename D, typename A> class ContainedType<TensorR<D,A> > {
+  public:
+    typedef D Type;
+  };
+
+  /* BaseType - this operates recursively to find the base arithmetic type */
+  /*                 this could certainly be specialized for other */
+  /*                 container types */
   template <typename T> class BaseType {
   public:
     typedef T Type;
@@ -522,13 +550,25 @@ namespace matricks {
   public:
     typedef typename BaseType<D>::Type Type;
   };
+  template <typename D> class BaseType<Vector<D> > {
+  public:
+    typedef typename BaseType<D>::Type Type;
+  };
+  template <typename D, typename A> class BaseType<TensorR<D,A> > {
+  public:
+    typedef typename BaseType<D>::Type Type;
+  };
 
+
+
+  // is_complex - text is an object is complex type
   template<class T> struct is_complex : std::false_type {};
   template<class T> struct is_complex<std::complex<T>> : std::true_type {};
 
   
   // ***************************************************************************
-  // * ArithmeticType: Class that determines type of aritmetic between two types
+  // * ArithmeticType: Class that determines return type of an aritmetic
+  // *                 operation between two types
   // ***************************************************************************
 
   template <typename T1, typename T2> class ArithmeticType {
@@ -540,7 +580,7 @@ namespace matricks {
 
 
   // ***************************************************************************
-  // * Real Complex math operators of mixed base types
+  // * Real Complex math operators of mixed base types (D1,D2)
   // ***************************************************************************
 
 
@@ -549,31 +589,157 @@ namespace matricks {
   template <typename D1, typename D2> inline
     std::complex<typename ArithmeticType<D1,D2>::Type>
     operator+(const std::complex<D1>& x1, const std::complex<D2>& x2) {
-    D1 x1r = real(x1);
-    D1 x1i = imag(x1);
-    D2 x2r = real(x2);
-    D2 x2i = imag(x2);
-    return std::complex<typename ArithmeticType<D1,D2>::Type>(x1r+x2r, x1i+x2i);
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = D3(real(x1));
+    D3 y1i = D3(imag(x1));
+    T3 y1 = T3(y1r, y1i);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    T3 y2 = T3(y2r, y2i);
+    return y1+y2;
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<typename ContainedType<D1>::Type,D2>::Type>
+    operator+(const std::complex<D1>& x1, const D2 x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = real(x1);
+    D3 y1i = imag(x1);
+    D3 y2 = D3(x2);
+    return T3(y1r+y2, y1i);
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1, typename ContainedType<D2>::Type>::Type>
+    operator+(const D1 x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1 = D3(x1);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    return T3(y1+y2r, y2i);
+  }
+
+
+  // a-b
+  
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1,D2>::Type>
+    operator-(const std::complex<D1>& x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = D3(real(x1));
+    D3 y1i = D3(imag(x1));
+    T3 y1 = T3(y1r, y1i);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    T3 y2 = T3(y2r, y2i);
+    return y1-y2;
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<typename ContainedType<D1>::Type,D2>::Type>
+    operator-(const std::complex<D1>& x1, const D2 x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = real(x1);
+    D3 y1i = imag(x1);
+    D3 y2 = D3(x2);
+    return T3(y1r-y2, y1i);
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1, typename ContainedType<D2>::Type>::Type>
+    operator-(const D1 x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1 = D3(x1);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    return T3(y1-y2r, y2i);
+  }
+  
+
+  // a*b
+  
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1,D2>::Type>
+    operator*(const std::complex<D1>& x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = D3(real(x1));
+    D3 y1i = D3(imag(x1));
+    T3 y1 = T3(y1r, y1i);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    T3 y2 = T3(y2r, y2i);
+    return y1*y2;
   }
 
   template <typename D1, typename D2> inline
     std::complex<typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type>
-    operator+(const std::complex<D1>& x1, const D2 x2) {
-    D1 x1r = real(x1);
-    D1 x1i = imag(x1);
-    return
-      std::complex<typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type>(x1r+x2, x1i+x2);
+    operator*(const std::complex<D1>& x1, const D2 x2) {
+    typedef typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = real(x1);
+    D3 y1i = imag(x1);
+    D3 y2 = D3(x2);
+    return T3(y1r*y2, y1i*y2);
   }
 
   template <typename D1, typename D2> inline
     std::complex<typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type>
-    operator+(const D1 x1, const std::complex<D2>& x2) {
-    D2 x2r = real(x2);
-    D2 x2i = imag(x2);
-    return std::complex<typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type>(x1+x2r, x1+x2i);
+    operator*(const D1 x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1 = D3(x1);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    return T3(y1*y2r, y1*y2i);
   }
 
   
+  // a/b
+  
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1,D2>::Type>
+    operator/(const std::complex<D1>& x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = D3(real(x1));
+    D3 y1i = D3(imag(x1));
+    T3 y1 = T3(y1r, y1i);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    T3 y2 = T3(y2r, y2i);
+    return y1/y2;
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<typename ContainedType<D1>::Type,D2>::Type>
+    operator/(const std::complex<D1>& x1, const D2 x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1r = real(x1);
+    D3 y1i = imag(x1);
+    D3 y2 = D3(x2);
+    return T3(y1r/y2, y1i/y2);
+  }
+
+  template <typename D1, typename D2> inline
+    std::complex<typename ArithmeticType<D1, typename ContainedType<D2>::Type>::Type>
+    operator/(const D1 x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 y1 = D3(x1);
+    D3 y2r = D3(real(x2));
+    D3 y2i = D3(imag(x2));
+    T3 y2 = T3(y2r, y2i);
+
+    return y1/T3(y2r, y2i);
+  }
   
 
 

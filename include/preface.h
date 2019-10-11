@@ -187,11 +187,7 @@ namespace matricks {
   public:
   typedef T Type;
   };
-  template <typename D> class ContainedType<std::complex<D> > {
-  public:
-    typedef D Type;
-  };
-  template <typename D> class ContainedType<Vector<D> > {
+  template <template<typename> class T, typename D> class ContainedType<T<D> > {
   public:
     typedef D Type;
   };
@@ -207,11 +203,7 @@ namespace matricks {
   public:
     typedef T Type;
   };
-  template <typename D> class BaseType<std::complex<D> > {
-  public:
-    typedef typename BaseType<D>::Type Type;
-  };
-  template <typename D> class BaseType<Vector<D> > {
+  template <template<typename> class T, typename D> class BaseType<T<D> > {
   public:
     typedef typename BaseType<D>::Type Type;
   };
@@ -220,9 +212,6 @@ namespace matricks {
     typedef typename BaseType<D>::Type Type;
   };
 
-
-  template<class T> struct is_float : std::false_type {};
-  template<> struct is_float<float> : std::true_type {};
 
   
   // ***************************************************************************

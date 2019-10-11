@@ -42,6 +42,7 @@
 
 #include "matricks_version.h"
 #include "preface.h"
+#include "complexmath.h"
 #include "display.h"
 #include "slices.h"
 #include "util.h"

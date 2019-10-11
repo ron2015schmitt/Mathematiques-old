@@ -565,6 +565,9 @@ namespace matricks {
   template<class T> struct is_complex : std::false_type {};
   template<class T> struct is_complex<std::complex<T>> : std::true_type {};
 
+  template<class T> struct is_float : std::false_type {};
+  template<> struct is_float<float> : std::true_type {};
+
   
   // ***************************************************************************
   // * ArithmeticType: Class that determines return type of an aritmetic
@@ -578,6 +581,10 @@ namespace matricks {
     typedef typeof(x1+x2) Type;
   };
 
+  template <typename T1, typename T2> class TypeTest {
+  public:
+    typedef T1 Type;
+  };
 
   // ***************************************************************************
   // * Real Complex math operators of mixed base types (D1,D2)
@@ -600,10 +607,12 @@ namespace matricks {
     return y1+y2;
   }
 
-  template <typename D1, typename D2> inline
-    std::complex<typename ArithmeticType<typename ContainedType<D1>::Type,D2>::Type>
-    operator+(const std::complex<D1>& x1, const D2 x2) {
-    typedef typename ArithmeticType<D1,D2>::Type D3;
+
+
+  template <typename D1, typename T2> inline
+    std::complex<typename ArithmeticType<D1,T2>::Type>
+    operator+(const std::complex<D1>& x1, const T2 x2) {
+    typedef typename ArithmeticType<D1,T2>::Type D3;
     typedef typename std::complex<D3> T3;
     D3 y1r = real(x1);
     D3 y1i = imag(x1);
@@ -611,10 +620,10 @@ namespace matricks {
     return T3(y1r+y2, y1i);
   }
 
-  template <typename D1, typename D2> inline
-    std::complex<typename ArithmeticType<D1, typename ContainedType<D2>::Type>::Type>
-    operator+(const D1 x1, const std::complex<D2>& x2) {
-    typedef typename ArithmeticType<D1,D2>::Type D3;
+  template <class T1, class D2> inline
+    std::complex<typename ArithmeticType<T1,D2>::Type>
+    operator+(const T1 x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<T1,D2>::Type D3;
     typedef typename std::complex<D3> T3;
     D3 y1 = D3(x1);
     D3 y2r = D3(real(x2));
@@ -678,21 +687,19 @@ namespace matricks {
     return y1*y2;
   }
 
+    
   template <typename D1, typename D2> inline
-    std::complex<typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type>
+    std::complex<typename ArithmeticType<D1,D2>::Type>
     operator*(const std::complex<D1>& x1, const D2 x2) {
-    typedef typename ArithmeticType<D1, typename BaseType<D2>::Type>::Type D3;
+    typedef typename ArithmeticType<D1,D2>::Type D3;
     typedef typename std::complex<D3> T3;
-    D3 y1r = real(x1);
-    D3 y1i = imag(x1);
-    D3 y2 = D3(x2);
-    return T3(y1r*y2, y1i*y2);
+    return T3(real(x1)*x2, imag(x1)*x2);
   }
 
-  template <typename D1, typename D2> inline
-    std::complex<typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type>
-    operator*(const D1 x1, const std::complex<D2>& x2) {
-    typedef typename ArithmeticType<typename BaseType<D1>::Type,D2>::Type D3;
+  template <typename T1, typename D2> inline
+    std::complex<typename ArithmeticType<T1,D2>::Type>
+    operator*(const T1 x1, const std::complex<D2>& x2) {
+    typedef typename ArithmeticType<T1,D2>::Type D3;
     typedef typename std::complex<D3> T3;
     D3 y1 = D3(x1);
     D3 y2r = D3(real(x2));

@@ -11,7 +11,15 @@
 #include "TypeTraits.h"
 #include <string>
 
+template<typename T>
+T adder(T v) {
+  return v;
+}
 
+template<typename T, typename... Args>
+T adder(T first, Args... args) {
+  return first + adder(args...);
+}
 
 
 template <class D, template<typename> class F> void printUnary() {
@@ -843,9 +851,42 @@ int main(int argc, char *argv[])
     BaseType<typeof(s4)>::Type x4;
     tdisp(x4);
   }
-  
+
+
+  {
+    TypeTest<float,float>::Type x;
+    tdisp(x);
+  }
+
+
+  // complex mixed addition
+  // {
+  //   cr();
+  //   ComplexDouble x = ComplexDouble(1,2);
+  //   Vector<ComplexDouble> y(2);
+  //   tdisp(x);
+  //   tdisp(y);
+  //   tdisp(x*y);
+  // }
 
   
+  // complex mixed addition with vector
+  {
+    cr();
+    mout <<  createStyle(BOLD).apply("complex mixed addition with vector") << std::endl;
+    // ComplexDouble x = ComplexDouble(1,2);
+    // Vector<ComplexDouble> v(2);
+    // tdisp(x);
+    // tdisp(v);
+    // tdisp(x+v);
+  }
+
+  {
+    cr();
+    int n = 1;
+    disp(adder(n,2));
+    disp(adder());
+  }
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;

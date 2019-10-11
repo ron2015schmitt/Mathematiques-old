@@ -10,9 +10,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -142,11 +139,7 @@ int main()
     example(Nex++,"functions of a `Vector`—trig");
     codestart("C++");
     codemulti( Vector<double> v(5) );
-#if CPP11 == 1
     codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
-#else
-    codemulti( double pi = std::acos(-1) );
-#endif
     codemultiNoteC11Array(v = {-pi, -pi/2, 0, pi/2, pi});
     codemulti( const double tol = 2e-16 );
     codeend();

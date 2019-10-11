@@ -10,9 +10,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -91,11 +88,7 @@ int main()
     cr();
     example(Nex++,"`sum` the elements of a vector");
     codestart("C++");
-#if CPP11 == 1
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
-#else
-    codemulti( Vector<double> v( 4, (const double[]) {1, 2, 3, 4} )  );
-#endif
     codeend();
     cr();
 
@@ -112,11 +105,7 @@ int main()
     cr();
     example(Nex++,"`sum` the elements of a vector");
     codestart("C++");
-#if CPP11 == 1
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
-#else
-    codemulti( Vector<double> v( 4, (const double[]) {1, 2, 3, 4} )  );
-#endif
     codeend();
     cr();
 
@@ -152,11 +141,7 @@ int main()
     cr();
     example(Nex++,"Compute the _product_ of the elements of a vector");
     codestart("C++");
-#if CPP11 == 1
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
-#else
-    codemulti( Vector<double> v( 4, (const double[]) {1, 2, 3, 4} )  );
-#endif
     codeend();
     cr();
 
@@ -174,11 +159,7 @@ int main()
     cr();
     example(Nex++,"Find the _minimum_ of the elements of a vector");
     codestart("C++");
-#if CPP11 == 1
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,20,-1,0}));
-#else
-    codemulti( Vector<double> v( 4, (const double[]) {1,20,-1,0} )  );
-#endif
     codeend();
     cr();
 
@@ -197,11 +178,7 @@ int main()
     cr();
     example(Nex++,"Find the _maximum_ of the elements of a vector");
     codestart("C++");
-#if CPP11 == 1
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,20,-1,0}));
-#else
-    codemulti( Vector<double> v( 4, (const double[]) {1,20,-1,0} )  );
-#endif
     codeend();
     cr();
 

@@ -32,7 +32,6 @@ namespace matricks {
   }
     
   // use C++11 init list for arbitrary rank
-#if CPP11 == 1
   Indices::Indices(const std::initializer_list<index_type> list) 
   {
     const index_type N =  list.size();
@@ -43,7 +42,6 @@ namespace matricks {
       (*this)[i++] = *it;
     }
   }
-#endif // C++11
 
 
 

@@ -13,9 +13,7 @@ namespace matricks {
   template <class DAT> class Pair;
   class Dimensions;
   class Indices;
-#if  CPP11 == 1
   enum Tensors : unsigned int;
-#endif
   template <Tensors, class D> struct TensorType;
   class TensorAbstract;
   class TensorObject;
@@ -166,9 +164,7 @@ namespace matricks {
     Indices();
     Indices(const index_type n);
     Indices(const Parent& inds);    
-#if CPP11 == 1
     Indices(const std::initializer_list<index_type> list);
-#endif // C++11
     bool equiv(const Indices& inds) const;
     Indices& getReverse() const;
     inline std::string classname() const;
@@ -248,7 +244,6 @@ namespace matricks {
     }
     
     // use C++11 init list for arbitrary rank
-#if CPP11 == 1
     Dimensions(const std::initializer_list<size_type> list) 
       {
 	const size_type N =  list.size();
@@ -260,7 +255,6 @@ namespace matricks {
 	}
 	calcSize();
       }
-#endif // C++11
 
     // return this object with size 1 dimensions removed
     

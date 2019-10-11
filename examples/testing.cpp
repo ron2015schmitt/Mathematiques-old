@@ -3,11 +3,6 @@
 
 #include <vector>
 
-
-#if CPP11 == 1
-#include <initializer_list>
-#endif
-
 #include "TypeTraits.h"
 #include <string>
 

@@ -10,9 +10,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 int main()
 {
@@ -70,7 +67,6 @@ int main()
     resultmulti(vb);
     resultend();
 
-  #if CPP11 == 1
     codestart("C++");
     codemulti( Vector<double> ua(2) );
     codemulti( Vector<double> ub(3) );
@@ -103,7 +99,6 @@ int main()
     resultmulti(za);
     resultmulti(zb);
     resultend();
-#endif
   }    
     
 

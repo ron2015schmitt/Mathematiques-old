@@ -3,7 +3,7 @@
 
 
 # python-like access: negative indices & slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.22-r3).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.22-r4).
 
 ## Element access
 ### Positive and negative indices

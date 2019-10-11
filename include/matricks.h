@@ -27,9 +27,8 @@
 #include <valarray>
 #include <vector>
 
-#if CPP11 == 1
+// C++11
 #include <initializer_list>
-#endif
 
 
 

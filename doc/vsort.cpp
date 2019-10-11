@@ -10,9 +10,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -34,7 +31,6 @@ int main()
   text("* the indices for the sort are returned in a `Vector<index_type>`");
   cr();
   
-#if CPP11 == 1
   {
     cr();
     cr();
@@ -54,7 +50,6 @@ int main()
     resultmulti(y);
     resultend();
   }
-#endif
 
   header2("Removing duplicate elements");
   header3("The `.uniq()` method");
@@ -63,7 +58,6 @@ int main()
   text("* The indices for the unique elements are returned in a `Vector<index_type>`");
   cr();
   
-#if CPP11 == 1
   {
     cr();
     cr();
@@ -80,7 +74,6 @@ int main()
     resultmulti(vindex);
     resultend();
   }
-#endif
 
   header3("The `.quniq()` method");
   text("* The `.quniq()` method operates _in place_, removing all _adjacent_ duplicate values.");
@@ -88,7 +81,6 @@ int main()
   text("* The indices for the unique elements are returned in a `Vector<index_type>`");
   cr();
   
-#if CPP11 == 1
   {
     cr();
     cr();
@@ -105,7 +97,6 @@ int main()
     resultmulti(vindex);
     resultend();
   }
-#endif
 
   
   matricks_toc();

@@ -11,9 +11,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -68,7 +65,6 @@ int main()
 
 
 
-  #if CPP11 == 1
   header2("Access vector elements using an C++11 `initializer_list` of indices");
   header3("Element access `Vector[initializer_list]`");
 
@@ -92,7 +88,6 @@ int main()
     resultmulti( v[{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}] );
     resultend();
   }
-#endif
 
 
   matricks_toc();

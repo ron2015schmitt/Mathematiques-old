@@ -68,14 +68,12 @@ namespace matricks {
     }
 
     // ************* C++11 initializer_list CONSTRUCTOR---------------------
-#if CPP11 == 1
     Vector<D>(const std::initializer_list<D>& mylist) {
       const size_type N =  mylist.size();
       data_ = new std::valarray<D>(N); 
       *this = mylist;
       constructorHelper();
     }
-#endif // C++11
 
 
 
@@ -271,14 +269,12 @@ namespace matricks {
 
     //Accessing a SET of values using a list
 
-#if CPP11 == 1
     TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) {
       return  TERW_Subset<D>(*this, list);
     }
     const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
       return  TERW_Subset<D>(*this, list);
     }
-#endif // C++11
 
 
     //**********************************************************************
@@ -356,14 +352,12 @@ namespace matricks {
 
     //Accessing a SET of values using a list
 
-#if CPP11 == 1
     TERW_Subset<D> operator()(const std::initializer_list<index_type>& list) {
       return  TERW_Subset<D>(*this, list);
     }
     const TERW_Subset<D> operator()(const std::initializer_list<index_type>& list) const {
       return  TERW_Subset<D>(*this, list);
     }
-#endif // C++11
 
 
 
@@ -490,7 +484,6 @@ namespace matricks {
 
     
     // assignment to a C++11 list
-#if CPP11 == 1
     Vector<D>& equals(const std::initializer_list<D>& mylist) {
       // resize to avoid segmentation faults
       resize(mylist.size());
@@ -506,7 +499,6 @@ namespace matricks {
     Vector<D>& operator=(const std::initializer_list<D>& mylist) {
       return equals(mylist);
     }
-#endif // C++11
 
 
 

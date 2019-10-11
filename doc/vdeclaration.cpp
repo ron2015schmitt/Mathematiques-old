@@ -12,9 +12,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -61,7 +58,6 @@ int main()
     result(v);
   }
 
-#if CPP11 
   {
     example(Nex++, "Declare `v` and initialize directly from a list (**__C++11__**)" );
     codestart("C++");
@@ -69,7 +65,6 @@ int main()
     codeend();
     result(v);
   }
-#endif
 
   {
     example(Nex++, "Declare `v2` and initialize to values of `v1`" );

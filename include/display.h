@@ -537,9 +537,7 @@ namespace display {
   SPECIALIZE_getTypeName_CONTAINER(std::valarray);
   SPECIALIZE_getTypeName_CONTAINER(std::list);
   SPECIALIZE_getTypeName_CONTAINER(std::queue);
-#if CPP11 == 1
   SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
-#endif
 
 #define SPECIALIZE_getTypeName_CONTAINER2(TYPE)			\
   template <typename D1, typename D2>				\
@@ -903,7 +901,6 @@ namespace display {
   }
 
   // std::initializer_list
-#if CPP11 == 1
   template <typename D>							
     inline void dispval_strm(std::ostream &stream, const std::initializer_list<D>& var) {
     stream << "{";
@@ -914,7 +911,6 @@ namespace display {
     }
     stream << "}";
   }
-#endif
 
   // std::queue
   template <typename D>							

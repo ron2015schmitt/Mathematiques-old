@@ -202,7 +202,6 @@ namespace matricks {
     }
 
 
-    #if CPP11 == 1
     index_type index(const std::initializer_list<size_type> mylist) const {
       // TODO: check size
       const index_type M = this->ndims();
@@ -217,7 +216,6 @@ namespace matricks {
       }
       return k;
     }
-#endif // C++11
 
    
     
@@ -288,7 +286,6 @@ namespace matricks {
 
 
     // ---------------- tensor({i,j,...})--------------
-#if CPP11 == 1
     D& operator()(const std::initializer_list<size_type> mylist) {
       index_type k = this->index(mylist);
       return (*this)[k];
@@ -297,7 +294,6 @@ namespace matricks {
       index_type k = this->index(mylist);
       return (*this)[k];
     }
-#endif // C++11
 
     
     //**********************************************************************
@@ -373,7 +369,6 @@ namespace matricks {
 
 
     // --------------- matrix = initializer_list ------------------
-#if CPP11 == 1
     Tensor<D>& equals(const std::initializer_list<D>& mylist) {
 
       // TODO: bound scheck 
@@ -388,7 +383,6 @@ namespace matricks {
     Tensor<D>& operator=(const std::initializer_list<D>& mylist) {
       return equals(mylist);
     }
-#endif // C++11
 
 
     

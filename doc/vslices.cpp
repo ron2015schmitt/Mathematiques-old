@@ -11,9 +11,6 @@
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -59,10 +56,8 @@ int main()
     resultmulti( v[-1] );
     resultmulti( v[-2] );
     resultmulti( v[-N] );
-#if CPP11 == 1
     resultmulti( v[{0,-1}] );
     resultmulti( v[{2,2,-2,-2}] );
-#endif
     resultend();
   }
 

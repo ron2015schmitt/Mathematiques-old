@@ -30,14 +30,12 @@ namespace matricks {
       vptrs->add(&a_);
       vptrs->add(&ii_);
     }
-#if CPP11 == 1    
   TERW_Subset(Vector<D>& a, const std::initializer_list<index_type>& list)
     : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
       vptrs->add(&ii_);
     }
-#endif // C++11
     
     ~TERW_Subset() {
       if (delete_ii_) delete &ii_;

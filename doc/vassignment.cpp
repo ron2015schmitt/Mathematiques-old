@@ -12,9 +12,6 @@
 #include <vector>
 #include <list>
 
-#if CPP11 == 1
-#include <initializer_list>
-#endif
 
 
 
@@ -57,7 +54,6 @@ int main()
     result(v);
   }
 
-#if CPP11==1
   {
     example(Nex++,"Assign from a C++11 list.");
     codestart("C++");
@@ -66,10 +62,8 @@ int main()
     codeend();
     result(v);
   }
-#endif
   
 
-#if CPP11==1
   {
     example(Nex++,"Assign from another `Vector`.");
     cr();
@@ -86,9 +80,7 @@ int main()
     resultmulti(v2);
     resultend();
   }
-#endif
   
-#if CPP11==1
   {
     example(Nex++,"Assign from a `Vector` expression.");
     codestart("C++");
@@ -101,9 +93,7 @@ int main()
     resultmulti(v2);
     resultend();
   }
-#endif
   
-#if CPP11==1
   {
     example(Nex++,"Assign from `std` containers.");
     codestart("C++");
@@ -127,7 +117,6 @@ int main()
     resultmulti(v4);
     resultend();
   }
-#endif
 
 
   matricks_toc();

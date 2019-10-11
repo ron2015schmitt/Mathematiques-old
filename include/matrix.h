@@ -81,7 +81,6 @@ namespace matricks {
 
 
     // ************* C++11 initializer_list 2D CONSTRUCTOR---------------------
-#if CPP11 == 1
     Matrix<D>(const std::initializer_list<std::initializer_list<D> >& list1) {
 
       Nrows_ = list1.size();
@@ -91,7 +90,6 @@ namespace matricks {
       
       constructorHelper();
     }
-#endif // C++11
 
 
 
@@ -141,7 +139,6 @@ namespace matricks {
 
     
     // ************* C++11 1D initializer_list CONSTRUCTOR---------------------
-#if CPP11 == 1
     Matrix<D>(const size_type Nr, const size_type Nc, const std::initializer_list<D>& mylist) 
     {
       Nrows_ = Nr;
@@ -150,7 +147,6 @@ namespace matricks {
       *this = mylist;
       constructorHelper();
     }
-#endif // C++11
 
     
     // --------------------- constructorHelper() --------------------
@@ -473,14 +469,12 @@ namespace matricks {
 
     // matrix[initializer_list]
 
-#if CPP11 == 1
     TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) {
       return  TERW_Subset<D>(*this, list);
     }
     const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
       return  TERW_Subset<D>(*this, list);
     }
-#endif // C++11
 
 
     //**********************************************************************
@@ -619,7 +613,6 @@ namespace matricks {
     
 
     // ----------------- matrix = initializer_list<initializer_list>  ----------------
-#if CPP11 == 1
     Matrix<D>& equals(const std::initializer_list<std::initializer_list<D> >& mylist) {
       // TODO: size check 
       index_type i = 0;
@@ -638,7 +631,6 @@ namespace matricks {
     Matrix<D>& operator=(const std::initializer_list<std::initializer_list<D> >& mylist) {
       return equals(mylist);
     }
-#endif // C++11
 
     //*********************************************************
     //                   1D assignment
@@ -658,7 +650,6 @@ namespace matricks {
 
 
     // --------------- matrix = initializer_list ------------------
-#if CPP11 == 1
     Matrix<D>& equals(const std::initializer_list<D>& mylist) {
 
       // TODO: bound scheck 
@@ -673,7 +664,6 @@ namespace matricks {
     Matrix<D>& operator=(const std::initializer_list<D>& mylist) {
       return equals(mylist);
     }
-#endif // C++11
 
 
 

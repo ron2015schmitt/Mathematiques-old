@@ -46,7 +46,7 @@ int main()
     cr();
     codestart("C++");
     codemulti(using namespace std);
-    codemultiNoteC11Array( Vector<double> vec( AORLIST({0,1,2,3}) ) );
+    codemultiNoteC11Array( Vector<double> vec({0,1,2,3}) );
     codemulti( valarray<double>& valias = vec.getValArray() );
     codemulti( vec[1] = -1 );
     codemulti( valias[2] = -2 );

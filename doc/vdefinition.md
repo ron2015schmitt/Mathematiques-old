@@ -3,7 +3,7 @@
 
 
 # under the hood—`Vector` definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.21-r26).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.22-r3).
 
 * _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
 ### The Vector class is a wrapper
@@ -15,7 +15,7 @@ _This document was automatically generated from file_ **`vdefinition.cpp`** (mā
 
 ```C++
 using namespace std;
-Vector<double> vec( {0,1,2,3} ); // C++11 list
+Vector<double> vec({0,1,2,3}); // C++11 list
 valarray<double>& valias = vec.getValArray();
 vec[1] = -1;
 valias[2] = -2;

@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
   {
     // 
     printStart(++testnum);
-    Vector<ComplexInt> s1 =AORLIST({ComplexInt(1,1)});
+    Vector<ComplexInt> s1 = {ComplexInt(1,1)};
     testtext( "is_instance test #4" );
     bool result = is_instance<typeof(s1), Scalar>{};
     bool expected = false;
@@ -742,18 +742,18 @@ int main(int argc, char *argv[])
   const unsigned short usmax = std::numeric_limits<unsigned short>::max();
   printf("          std::numeric_limits<unsigned short>::max() = %0x\n", usmax);
   cr();
-  {
-    // bitwise not ~
-    printStart(++testnum);
-    Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(usmax-3, usmax-10);
-    Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(3, 10);
-    Scalar<ComplexUnsignedShort> result;
-    testcode( result = ~s1 );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // bitwise not ~
+  //   printStart(++testnum);
+  //   Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(usmax-3, usmax-10);
+  //   Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(3, 10);
+  //   Scalar<ComplexUnsignedShort> result;
+  //   testcode( result = ~s1 );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
   // {
   //   // bitwise  OR |
   //   printStart(++testnum);
@@ -780,19 +780,19 @@ int main(int argc, char *argv[])
   //   allpass = allpass && pass;
   //   failnum += (!pass);
   // }
-  {
-    // bitwise AND &
-    printStart(++testnum);
-    Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(9, 3);
-    Scalar<ComplexUnsignedShort> s2 = ComplexUnsignedShort(7, 1);
-    Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(1, 1);
-    Scalar<ComplexUnsignedShort> result;
-    testcode( result = (s1 & s2) );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // bitwise AND &
+  //   printStart(++testnum);
+  //   Scalar<ComplexUnsignedShort> s1 = ComplexUnsignedShort(9, 3);
+  //   Scalar<ComplexUnsignedShort> s2 = ComplexUnsignedShort(7, 1);
+  //   Scalar<ComplexUnsignedShort> expected = ComplexUnsignedShort(1, 1);
+  //   Scalar<ComplexUnsignedShort> result;
+  //   testcode( result = (s1 & s2) );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
   // {
   //   // bitwise <<
   //   printStart(++testnum);
@@ -2293,6 +2293,6 @@ int main(int argc, char *argv[])
   // }
 
   
-  printSummary(testnum, failnum);
+  printSummary(__FILE__, testnum, failnum);
   return failnum;
 }

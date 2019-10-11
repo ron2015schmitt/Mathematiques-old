@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
   double vals[] = {1.1,2.2,3.3};
   bool done = true;
   Vector<double> v = range<double>(1,10);
-  Matrix<double> A(2,2, AORLIST({1,2,3,4}));
+  Matrix<double> A(2,2,{1,2,3,4});
   char str[] = "hello";
   std::string s = "world";
   ComplexDouble z(1,-1);

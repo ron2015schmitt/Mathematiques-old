@@ -39,11 +39,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define codemulti(...)  printf("%s;\n",  stringify(__VA_ARGS__)); __VA_ARGS__
 #define codemultiwcomment(str,...)  printf("%s; // %s\n",  stringify(__VA_ARGS__),str); __VA_ARGS__
 
-#if CPP11 == 1
- #define codemultiNoteC11Array(...)  printf("%s; // C++11 list\n",  stringify(__VA_ARGS__)); __VA_ARGS__
-#else
- #define codemultiNoteC11Array(...)  printf("%s;\n",  stringify(__VA_ARGS__)); __VA_ARGS__
-#endif
+#define codemultiNoteC11Array(...)  printf("%s; // C++11 list\n",  stringify(__VA_ARGS__)); __VA_ARGS__
 
 #define codeend() printf("```\n")
 #define code(...)  codestart();codemulti(__VA_ARGS__);codeend()

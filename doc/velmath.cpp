@@ -39,9 +39,9 @@ int main()
     example(Nex++,"Element-wise `Vector` math");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
-    codemultiNoteC11Array(v1 = AORLIST({10,20,30,40}));
+    codemultiNoteC11Array(v1 = {10,20,30,40});
     codemulti( Vector<double> v2(4) );
-    codemultiNoteC11Array(v2 = AORLIST({1,2,3,4}));
+    codemultiNoteC11Array(v2 = {1,2,3,4});
     codeend();
     cr();
     disp(v1);
@@ -68,7 +68,7 @@ int main()
     example(Nex++,"math with scalars and `Vector`s");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
-    codemultiNoteC11Array(v1 = AORLIST({10,20,30,40}));
+    codemultiNoteC11Array(v1 = {10,20,30,40});
     codeend();
     cr();
 
@@ -96,7 +96,7 @@ int main()
     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(7) );
-    codemultiNoteC11Array(v = AORLIST({-2.5,-2.25,-1,0,1,2.25,2.5}));
+    codemultiNoteC11Array(v = {-2.5,-2.25,-1,0,1,2.25,2.5});
     codeend();
     cr();
 
@@ -116,7 +116,7 @@ int main()
     example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
     codestart("C++");
     codemulti( Vector<double> v(5) );
-    codemultiNoteC11Array(v = AORLIST({-1,0,1,2,4}));
+    codemultiNoteC11Array(v = {-1,0,1,2,4});
     codeend();
     cr();
     resultstart2(": powers, roots, and exponentiation");
@@ -147,7 +147,7 @@ int main()
 #else
     codemulti( double pi = std::acos(-1) );
 #endif
-    codemultiNoteC11Array(v = AORLIST({-pi, -pi/2, 0, pi/2, pi}));
+    codemultiNoteC11Array(v = {-pi, -pi/2, 0, pi/2, pi});
     codemulti( const double tol = 2e-16 );
     codeend();
     cr();
@@ -175,7 +175,7 @@ int main()
     example(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(3) );
-    codemultiNoteC11Array(v = AORLIST({-1,0,1}));
+    codemultiNoteC11Array(v = {-1,0,1});
     codeend();
     cr();
 
@@ -197,9 +197,9 @@ int main()
     codemulti( Vector<double> v(3) );
     codemulti( Vector<double> v1(9) );
     codemulti( Vector<double> v2(9) );
-    codemultiNoteC11Array(v = AORLIST({-1,0,1}));
-    codemultiNoteC11Array(v1 = AORLIST({-1,-1,-1, 0, 0, 0, 1, 1, 1}));
-    codemultiNoteC11Array(v2 = AORLIST({-1, 0, 1,-1, 0, 1,-1, 0, 1}));
+    codemultiNoteC11Array(v = {-1,0,1});
+    codemultiNoteC11Array(v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
+    codemultiNoteC11Array(v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
     codeend();
     cr();
 
@@ -225,9 +225,9 @@ int main()
     example(Nex++,"A huge expression");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
-    codemultiNoteC11Array(v1 = AORLIST({10,20,30,40}));
+    codemultiNoteC11Array(v1 = {10,20,30,40});
     codemulti( Vector<double> v2(4) );
-    codemultiNoteC11Array(v2 = AORLIST({-1,-2,-3,-4}));
+    codemultiNoteC11Array(v2 = {-1,-2,-3,-4});
     codeend();
     cr();
 

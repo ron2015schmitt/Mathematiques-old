@@ -48,14 +48,15 @@ void printCode(const std::string& str) {
 #define testtext(...)  printCode(stringify(__VA_ARGS__))
 
 
-void printSummary(const int testnum, const int failnum) {
+void printSummary(const std::string filename, const int testnum, const int failnum) {
   using namespace display;
 
   mout << StyledString::get(HORLINE);
   mout << createStyle(BLUE2+BOLD).apply("SUMMARY:");
+  mout << "  " << createStyle(BOLD+MAGENTA1).apply(filename)  <<std::endl;
   
   std::string s = printf2str("%-4d",testnum);
-  mout << "  "<< createStyle(BOLD).apply(s);
+  mout << "          "<< createStyle(BOLD).apply(s);
   mout << createStyle(BOLD).apply("TOTAL") << std::endl;
   
   s = printf2str("%-4d",(testnum-failnum));

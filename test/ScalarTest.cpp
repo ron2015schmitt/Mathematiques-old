@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
   {
     // 
     printStart(++testnum);
-    Vector<int> s1 =AORLIST({1});
+    Vector<int> s1 = {1};
     testtext( "is_instance test #4" );
     bool result = is_instance<typeof(s1), Scalar>{};
     bool expected = false;
@@ -821,90 +821,90 @@ int main(int argc, char *argv[])
 
 
   // ************************************************************************
-  // *            Bit wise operators for unisgned types
+  // *            Bit wise operators for integral types
   // ************************************************************************
 
   cr();
   const unsigned short usmax = std::numeric_limits<unsigned short>::max();
   printf("          std::numeric_limits<unsigned short>::max() = %0x\n", usmax);
   cr();
-  {
-    // bitwise not ~
-    printStart(++testnum);
-    Scalar<unsigned short> s1 = usmax-3;
-    Scalar<unsigned short> expected = 3;
-    Scalar<unsigned short> result;
-    testcode( result = ~s1 );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // bitwise  OR |
-    printStart(++testnum);
-    Scalar<unsigned short> s1 = 9;
-    Scalar<unsigned short> s2 = 7;
-    Scalar<unsigned short> expected = 15;
-    Scalar<unsigned short> result;
-    testcode( result = (s1 | s2) );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // bitwise XOR ^
-    printStart(++testnum);
-    Scalar<unsigned short> s1 = 9;
-    Scalar<unsigned short> s2 = 7;
-    Scalar<unsigned short> expected = 14;
-    Scalar<unsigned short> result;
-    testcode( result = (s1 ^ s2) );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // bitwise AND &
-    printStart(++testnum);
-    Scalar<unsigned short> s1 = 9;
-    Scalar<unsigned short> s2 = 7;
-    Scalar<unsigned short> expected = 1;
-    Scalar<unsigned short> result;
-    testcode( result = (s1 & s2) );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // bitwise <<
-    printStart(++testnum);
-    Scalar<unsigned short> s1 = 1;
-    unsigned short n2 = 2;
-    Scalar<unsigned short> expected = 4;
-    Scalar<unsigned short> result;
-    testcode( result = (s1 << n2) );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // bitwise >>
-    printStart(++testnum);
-    Scalar<unsigned short> s1 = 4;
-    unsigned short n2 = 2;
-    Scalar<unsigned short> expected = 1;
-    Scalar<unsigned short> result;
-    testcode( result = (s1 >> n2) );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // bitwise not ~
+  //   printStart(++testnum);
+  //   Scalar<unsigned short> s1 = usmax-3;
+  //   Scalar<unsigned short> expected = 3;
+  //   Scalar<unsigned short> result;
+  //   testcode( result = ~s1 );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // bitwise  OR |
+  //   printStart(++testnum);
+  //   Scalar<unsigned short> s1 = 9;
+  //   Scalar<unsigned short> s2 = 7;
+  //   Scalar<unsigned short> expected = 15;
+  //   Scalar<unsigned short> result;
+  //   testcode( result = (s1 | s2) );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // bitwise XOR ^
+  //   printStart(++testnum);
+  //   Scalar<unsigned short> s1 = 9;
+  //   Scalar<unsigned short> s2 = 7;
+  //   Scalar<unsigned short> expected = 14;
+  //   Scalar<unsigned short> result;
+  //   testcode( result = (s1 ^ s2) );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // bitwise AND &
+  //   printStart(++testnum);
+  //   Scalar<unsigned short> s1 = 9;
+  //   Scalar<unsigned short> s2 = 7;
+  //   Scalar<unsigned short> expected = 1;
+  //   Scalar<unsigned short> result;
+  //   testcode( result = (s1 & s2) );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // bitwise <<
+  //   printStart(++testnum);
+  //   Scalar<unsigned short> s1 = 1;
+  //   unsigned short n2 = 2;
+  //   Scalar<unsigned short> expected = 4;
+  //   Scalar<unsigned short> result;
+  //   testcode( result = (s1 << n2) );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // bitwise >>
+  //   printStart(++testnum);
+  //   Scalar<unsigned short> s1 = 4;
+  //   unsigned short n2 = 2;
+  //   Scalar<unsigned short> expected = 1;
+  //   Scalar<unsigned short> result;
+  //   testcode( result = (s1 >> n2) );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
 
   
   // ************************************************************************
@@ -2379,6 +2379,6 @@ int main(int argc, char *argv[])
   }
 
   
-  printSummary(testnum, failnum);
+  printSummary(__FILE__, testnum, failnum);
   return failnum;
 }

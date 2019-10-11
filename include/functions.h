@@ -97,6 +97,7 @@ namespace matricks {
   
   // (a|b)
 
+  // TODO: rewrite for only floating point base types
   template <class D> inline
     D operator|( const Scalar<D>& a, const  Scalar<D>& b ) {
     return a()*b();
@@ -114,6 +115,7 @@ namespace matricks {
   // --------------------  tensor (outer) product --------------------------------
   
   // (a&b)
+  // TODO: rewrite for only floating point base types
 
   template <class D> inline
     D operator&( const Scalar<D>& a, const  Scalar<D>& b ) {
@@ -132,6 +134,7 @@ namespace matricks {
   // -------------------- antisymmetric (wedge)  product -----------------------
   
   // (a^b)
+  // TODO: rewrite for only floating point base types
 
   template <class D> inline
     D operator^( const Scalar<D>& a, const  Scalar<D>& b ) {
@@ -156,6 +159,7 @@ namespace matricks {
   // --------------------  dot (inner) product --------------------------------
 
   // (a|b)
+  // TODO: rewrite for only floating point base types
 
   template <class D> inline
     D operator|( const Vector<D>& a, const  Vector<D>& b ) {
@@ -604,190 +608,29 @@ namespace matricks {
   // ************************************************************************
 
 
+  // TODO: rewrite for only integral types as base type
+  
   // bitwise not (aka 1's complement): ~
   // NOTE: "~" is also used for Hermitian adjoint
-  template <class A> 
-    inline TER_Unary<unsigned char, TensorR<unsigned char,A> ,Fun_BitwiseNot<unsigned char> >
-    operator~( const TensorR<unsigned char,A>& a ) {
-    return
-      TER_Unary<unsigned char, TensorR<unsigned char,A> ,Fun_BitwiseNot<unsigned char> >(a);
-  }
-  template <class A> 
-    inline TER_Unary<unsigned short, TensorR<unsigned short,A> ,Fun_BitwiseNot<unsigned short> >
-    operator~( const TensorR<unsigned short,A>& a ) {
-    return
-      TER_Unary<unsigned short, TensorR<unsigned short,A> ,Fun_BitwiseNot<unsigned short> >(a);
-  }
-  template <class A> 
-    inline TER_Unary<unsigned int, TensorR<unsigned int,A> ,Fun_BitwiseNot<unsigned int> >
-    operator~( const TensorR<unsigned int,A>& a ) {
-    return
-      TER_Unary<unsigned int, TensorR<unsigned int,A> ,Fun_BitwiseNot<unsigned int> >(a);
-  }
-  template <class A> 
-    inline TER_Unary<unsigned long, TensorR<unsigned long,A> ,Fun_BitwiseNot<unsigned long> >
-    operator~( const TensorR<unsigned long,A>& a ) {
-    return
-      TER_Unary<unsigned long, TensorR<unsigned long,A> ,Fun_BitwiseNot<unsigned long> >(a);
-  }
-  template <class A> 
-    inline TER_Unary<unsigned long long, TensorR<unsigned long long,A> ,Fun_BitwiseNot<unsigned long long> >
-    operator~( const TensorR<unsigned long long,A>& a ) {
-    return
-      TER_Unary<unsigned long long, TensorR<unsigned long long,A> ,Fun_BitwiseNot<unsigned long long> >(a);
-  }
-
   
   // Bitwise Or: |
   // NOTE: that "|" is also used for dot product short hand 
 
-  template <class A, class B> 
-    inline TER_Binary<unsigned char,TensorR<unsigned char,A>,TensorR<unsigned char,B>,Fun_BitwiseOr<unsigned char> >
-    operator|( const TensorR<unsigned char,A>& a, const  TensorR<unsigned char,B>& b ) {
-    return TER_Binary<unsigned char,TensorR<unsigned char,A>,TensorR<unsigned char,B>,Fun_BitwiseOr<unsigned char> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned short,TensorR<unsigned short,A>,TensorR<unsigned short,B>,Fun_BitwiseOr<unsigned short> >
-    operator|( const TensorR<unsigned short,A>& a, const  TensorR<unsigned short,B>& b ) {
-    return TER_Binary<unsigned short,TensorR<unsigned short,A>,TensorR<unsigned short,B>,Fun_BitwiseOr<unsigned short> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned int,TensorR<unsigned int,A>,TensorR<unsigned int,B>,Fun_BitwiseOr<unsigned int> >
-    operator|( const TensorR<unsigned int,A>& a, const  TensorR<unsigned int,B>& b ) {
-    return TER_Binary<unsigned int,TensorR<unsigned int,A>,TensorR<unsigned int,B>,Fun_BitwiseOr<unsigned int> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned long,TensorR<unsigned long,A>,TensorR<unsigned long,B>,Fun_BitwiseOr<unsigned long> >
-    operator|( const TensorR<unsigned long,A>& a, const  TensorR<unsigned long,B>& b ) {
-    return TER_Binary<unsigned long,TensorR<unsigned long,A>,TensorR<unsigned long,B>,Fun_BitwiseOr<unsigned long> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseOr<unsigned long long> >
-    operator|( const TensorR<unsigned long long,A>& a, const  TensorR<unsigned long long,B>& b ) {
-    return TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseOr<unsigned long long> >(a,b);
-  }
 
   // Bitwise And: &
-
-  template <class A, class B> 
-    inline TER_Binary<unsigned char,TensorR<unsigned char,A>,TensorR<unsigned char,B>,Fun_BitwiseAnd<unsigned char> >
-    operator&( const TensorR<unsigned char,A>& a, const  TensorR<unsigned char,B>& b ) {
-    return TER_Binary<unsigned char,TensorR<unsigned char,A>,TensorR<unsigned char,B>,Fun_BitwiseAnd<unsigned char> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned short,TensorR<unsigned short,A>,TensorR<unsigned short,B>,Fun_BitwiseAnd<unsigned short> >
-    operator&( const TensorR<unsigned short,A>& a, const  TensorR<unsigned short,B>& b ) {
-    return TER_Binary<unsigned short,TensorR<unsigned short,A>,TensorR<unsigned short,B>,Fun_BitwiseAnd<unsigned short> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned int,TensorR<unsigned int,A>,TensorR<unsigned int,B>,Fun_BitwiseAnd<unsigned int> >
-    operator&( const TensorR<unsigned int,A>& a, const  TensorR<unsigned int,B>& b ) {
-    return TER_Binary<unsigned int,TensorR<unsigned int,A>,TensorR<unsigned int,B>,Fun_BitwiseAnd<unsigned int> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned long,TensorR<unsigned long,A>,TensorR<unsigned long,B>,Fun_BitwiseAnd<unsigned long> >
-    operator&( const TensorR<unsigned long,A>& a, const  TensorR<unsigned long,B>& b ) {
-    return TER_Binary<unsigned long,TensorR<unsigned long,A>,TensorR<unsigned long,B>,Fun_BitwiseAnd<unsigned long> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseAnd<unsigned long long> >
-    operator&( const TensorR<unsigned long long,A>& a, const  TensorR<unsigned long long,B>& b ) {
-    return TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseAnd<unsigned long long> >(a,b);
-  }
 
 
   // Bitwise Xor: ^
   // NOTE: that "^" is also used for exterior product short hand 
 
-  template <class A, class B> 
-    inline TER_Binary<unsigned char,TensorR<unsigned char,A>,TensorR<unsigned char,B>,Fun_BitwiseXor<unsigned char> >
-    operator^( const TensorR<unsigned char,A>& a, const  TensorR<unsigned char,B>& b ) {
-    return TER_Binary<unsigned char,TensorR<unsigned char,A>,TensorR<unsigned char,B>,Fun_BitwiseXor<unsigned char> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned short,TensorR<unsigned short,A>,TensorR<unsigned short,B>,Fun_BitwiseXor<unsigned short> >
-    operator^( const TensorR<unsigned short,A>& a, const  TensorR<unsigned short,B>& b ) {
-    return TER_Binary<unsigned short,TensorR<unsigned short,A>,TensorR<unsigned short,B>,Fun_BitwiseXor<unsigned short> >(a,b);
-  }
-  template <class A, class B> 
-    inline TER_Binary<unsigned int,TensorR<unsigned int,A>,TensorR<unsigned int,B>,Fun_BitwiseXor<unsigned int> >
-    operator^( const TensorR<unsigned int,A>& a, const  TensorR<unsigned int,B>& b ) {
-    return TER_Binary<unsigned int,TensorR<unsigned int,A>,TensorR<unsigned int,B>,Fun_BitwiseXor<unsigned int> >(a,b);
-  }
-  template <class A, class B> inline
-    TER_Binary<unsigned long,TensorR<unsigned long,A>,TensorR<unsigned long,B>,Fun_BitwiseXor<unsigned long> >
-    operator^( const TensorR<unsigned long,A>& a, const  TensorR<unsigned long,B>& b ) {
-    return
-      TER_Binary<unsigned long,TensorR<unsigned long,A>,TensorR<unsigned long,B>,Fun_BitwiseXor<unsigned long> >(a,b);
-  }
-  template <class A, class B> inline
-    TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseXor<unsigned long long> >
-    operator^( const TensorR<unsigned long long,A>& a, const  TensorR<unsigned long long,B>& b ) {
-    return
-      TER_Binary<unsigned long long,TensorR<unsigned long long,A>,TensorR<unsigned long long,B>,Fun_BitwiseXor<unsigned long long> >(a,b);
-  }
 
 
   // Bitwise ShiftLeft: <<
 
-  template <class A> 
-    inline TER_TensorOpScalar<unsigned char,TensorR<unsigned char,A>,Fun_BitwiseShiftLeft<unsigned char> >
-    operator<<( const TensorR<unsigned char,A>& a, const unsigned short b ) {
-    return TER_TensorOpScalar<unsigned char,TensorR<unsigned char,A>,Fun_BitwiseShiftLeft<unsigned char> >(a,b);
-  }
-  template <class A> 
-    inline TER_TensorOpScalar<unsigned short,TensorR<unsigned short,A>,Fun_BitwiseShiftLeft<unsigned short> >
-    operator<<( const TensorR<unsigned short,A>& a, const unsigned short b ) {
-    return TER_TensorOpScalar<unsigned short,TensorR<unsigned short,A>,Fun_BitwiseShiftLeft<unsigned short> >(a,b);
-  }
-  template <class A> 
-    inline TER_TensorOpScalar<unsigned int,TensorR<unsigned int,A>,Fun_BitwiseShiftLeft<unsigned int> >
-    operator<<( const TensorR<unsigned int,A>& a, const unsigned short b ) {
-    return TER_TensorOpScalar<unsigned int,TensorR<unsigned int,A>,Fun_BitwiseShiftLeft<unsigned int> >(a,b);
-  }
-  template <class A> inline
-    TER_TensorOpScalar<unsigned long,TensorR<unsigned long,A>,Fun_BitwiseShiftLeft<unsigned long> >
-    operator<<( const TensorR<unsigned long,A>& a, const unsigned short b ) {
-    return
-      TER_TensorOpScalar<unsigned long,TensorR<unsigned long,A>,Fun_BitwiseShiftLeft<unsigned long> >(a,b);
-  }
-  template <class A> inline
-    TER_TensorOpScalar<unsigned long long,TensorR<unsigned long long,A>,Fun_BitwiseShiftLeft<unsigned long long> >
-    operator<<( const TensorR<unsigned long long,A>& a, unsigned short b ) {
-    return
-      TER_TensorOpScalar<unsigned long long,TensorR<unsigned long long,A>,Fun_BitwiseShiftLeft<unsigned long long> >(a,b);
-  }
   
 
   // Bitwise ShiftRight: >>
 
-  template <class A> 
-    inline TER_TensorOpScalar<unsigned char,TensorR<unsigned char,A>,Fun_BitwiseShiftRight<unsigned char> >
-    operator>>( const TensorR<unsigned char,A>& a, const unsigned short b ) {
-    return TER_TensorOpScalar<unsigned char,TensorR<unsigned char,A>,Fun_BitwiseShiftRight<unsigned char> >(a,b);
-  }
-  template <class A> 
-    inline TER_TensorOpScalar<unsigned short,TensorR<unsigned short,A>,Fun_BitwiseShiftRight<unsigned short> >
-    operator>>( const TensorR<unsigned short,A>& a, const unsigned short b ) {
-    return TER_TensorOpScalar<unsigned short,TensorR<unsigned short,A>,Fun_BitwiseShiftRight<unsigned short> >(a,b);
-  }
-  template <class A> 
-    inline TER_TensorOpScalar<unsigned int,TensorR<unsigned int,A>,Fun_BitwiseShiftRight<unsigned int> >
-    operator>>( const TensorR<unsigned int,A>& a, const unsigned short b ) {
-    return TER_TensorOpScalar<unsigned int,TensorR<unsigned int,A>,Fun_BitwiseShiftRight<unsigned int> >(a,b);
-  }
-  template <class A> inline
-    TER_TensorOpScalar<unsigned long,TensorR<unsigned long,A>,Fun_BitwiseShiftRight<unsigned long> >
-    operator>>( const TensorR<unsigned long,A>& a, const unsigned short b ) {
-    return
-      TER_TensorOpScalar<unsigned long,TensorR<unsigned long,A>,Fun_BitwiseShiftRight<unsigned long> >(a,b);
-  }
-  template <class A> inline
-    TER_TensorOpScalar<unsigned long long,TensorR<unsigned long long,A>,Fun_BitwiseShiftRight<unsigned long long> >
-    operator>>( const TensorR<unsigned long long,A>& a, const unsigned short b ) {
-    return
-      TER_TensorOpScalar<unsigned long long,TensorR<unsigned long long,A>,Fun_BitwiseShiftRight<unsigned long long> >(a,b);
-  }
 
 
 

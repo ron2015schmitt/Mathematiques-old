@@ -277,6 +277,6 @@ int main()
 
 
   
-  printSummary(testnum, failnum);
+  printSummary(__FILE__,testnum, failnum);
   return failnum;
 }

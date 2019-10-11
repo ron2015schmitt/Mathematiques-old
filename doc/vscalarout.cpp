@@ -40,7 +40,7 @@ int main()
     example(Nex++,"Dot product of two real vectors `(v1|v2)`");
     codestart("C++");
     codemulti(Vector<double> v1(range<double>(1,4)));
-    codemultiNoteC11Array(Vector<double> v2(AORLIST({1,-1,1,-1})));
+    codemultiNoteC11Array(Vector<double> v2({1,-1,1,-1}));
     codeend();
     cr();
 

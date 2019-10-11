@@ -10,12 +10,6 @@
 #define stringify(...) _stringify(__VA_ARGS__)
 
 
-#if CPP11 == 1
-#define AORLIST(...) __VA_ARGS__
-#else
-#define AORLIST(...)  (const double[]) __VA_ARGS__
-#endif
-
 
 #define DO_EXPAND(VAL)  99##VAL
 #define EXPAND(VAL)     DO_EXPAND(VAL)

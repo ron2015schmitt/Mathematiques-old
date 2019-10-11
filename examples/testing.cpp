@@ -691,345 +691,48 @@ int main(int argc, char *argv[])
     
 
 
-
-    
-  // {
-  //   cr();
-  //   ComplexDouble z = ComplexDouble(1,2);
-  //   ComplexFloat x = ComplexFloat(1,2);
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((z+x));
-  //   ArithmeticType<ComplexDouble,ComplexFloat>::Type q;
-  //   tdisp(q);
-  // }
-  // {
-  //   cr();
-  //   ComplexFloat z = ComplexFloat(1,2);
-  //   float x = 10;
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((z+x));
-  //   ArithmeticType<ComplexFloat,float>::Type q;
-  //   tdisp(q);
-  // }
-  // {
-  //   cr();
-  //   ComplexFloat z = ComplexFloat(1,2);
-  //   double x = 10;
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((z+x));
-  //   ArithmeticType<ComplexFloat,double>::Type r;
-  //   tdisp(r);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble z = ComplexDouble(1,2);
-  //   float x = 10;
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((z+x));
-  //   ArithmeticType<ComplexDouble,float>::Type r;
-  //   tdisp(r);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble z = ComplexDouble(1,2);
-  //   float x = 10;
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((x+z));
-  //   ArithmeticType<float,ComplexDouble>::Type r;
-  //   tdisp(r);
-  // }
-
-  // {
-  //   cr();
-  //   ComplexDouble z = ComplexDouble(1,2);
-  //   int x = 10;
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((x+z));
-  //   ArithmeticType<int,ComplexDouble>::Type r;
-  //   tdisp(r);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble z = ComplexDouble(1,2);
-  //   int x = 10;
-  //   tdisp(z);
-  //   tdisp(x);
-  //   tdisp((x+z));
-  //   ArithmeticType<int,ComplexDouble>::Type r;
-  //   tdisp(r);
-  // }
-
-  // {
-  //   cr();
-  //   mout << bold.apply("ContainedType usage") << std::endl;
-  //   typename ContainedType<int>::Type x1;
-  //   mout << "ContainedType<int>::Type x1 = ";
-  //   tdisp(x1);
-  //   typename ContainedType<std::complex<int> >::Type x2;
-  //   mout << "ContainedType<std::complex<int> >::Type x2 = ";
-  //   tdisp(x2);
-  //   typename ContainedType<std::complex<std::complex<int> > >::Type x3;
-  //   mout << "ContainedType<std::complex<std::complex<int> > >::Type x3 = ";
-  //   tdisp(x3);
-  // }
-  // {
-  //   cr();
-  //   mout <<  bold.apply("BaseType usage") << std::endl;
-  //   typename BaseType<int>::Type x1;
-  //   mout << "BaseType<int>::Type x1 =  ";
-  //   tdisp(x1);
-  //   typename BaseType<std::complex<int> >::Type x2;
-  //   mout << "BaseType<std::complex<int> >::Type x2 =  ";
-  //   tdisp(x2);
-  //   typename BaseType<std::complex<std::complex<int> >>::Type x3;
-  //   mout << "BaseType<std::complex<std::complex<int> >>::Type x3 = ";
-  //   tdisp(x3);
-  // }
+  // complex<D> + D : inherently suppoerd by C++
+  
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    double x = 6.5;
+    tdisp(z);
+    tdisp(x);
+    mout << bold.apply("complex<double> + double") << endl; 
+    tdisp((z+x));
+    mout << bold.apply("complex<double> + double") << endl; 
+    tdisp((x+z));
+  }
 
 
-  // // complex mixed addition
-  // {
-  //   cr();
-  //   mout <<  bold.apply("complex mixed addition") << std::endl;
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   ComplexFloat y = ComplexFloat(1,2);
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x+y);
-  //   tdisp(y+x);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   float y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x+y);
-  //   tdisp(y+x);
-  // }
-  // {
-  //   cr();
-  //   ComplexFloat x = ComplexFloat(1,2);
-  //   double y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x+y);
-  //   tdisp(y+x);
-  // }
-
-  // // complex mixed subtraction
-  // {
-  //   cr();
-  //   mout <<  bold.apply("complex mixed subtraction") << std::endl;
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   ComplexFloat y = ComplexFloat(1,2);
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x-y);
-  //   tdisp(y-x);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   float y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x-y);
-  //   tdisp(y-x);
-  // }
-  // {
-  //   cr();
-  //   ComplexFloat x = ComplexFloat(1,2);
-  //   double y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x-y);
-  //   tdisp(y-x);
-  // }
-
-  // // complex mixed multiplication
-  // {
-  //   cr();
-  //   mout <<  bold.apply("complex mixed multiplication") << std::endl;
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   ComplexFloat y = ComplexFloat(3,-5);
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x*y);
-  //   tdisp(y*x);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   float y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x*y);
-  //   tdisp(y*x);
-  // }
-  // {
-  //   cr();
-  //   ComplexFloat x = ComplexFloat(1,2);
-  //   double y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x*y);
-  //   tdisp(y*x);
-  // }
-
-  // // complex mixed division
-  // {
-  //   cr();
-  //   mout <<  bold.apply("complex mixed division") << std::endl;
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   ComplexFloat y = ComplexFloat(3,-5);
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x/y);
-  //   tdisp(y/x);
-  // }
-  // {
-  //   cr();
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   float y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x/y);
-  //   tdisp(y/x);
-  // }
-  // {
-  //   cr();
-  //   ComplexFloat x = ComplexFloat(1,2);
-  //   double y = 4;
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x/y);
-  //   tdisp(y/x);
-  // }
-  // {
-  //   cr();
-
-  //   // float 
-  //   cr();
-  //   mout << createStyle(BOLD+BLUE1).apply("float") << std::endl;
-  //   mout << "ContainedType" << std::endl;
-  //   ContainedType<float>::Type x1;
-  //   tdisp(x1);
-  //   float s2 = 0;
-  //   ContainedType<typeof(s2)>::Type x2;
-  //   tdisp(x2);
-
-  //   mout << "BaseType" << std::endl;
-  //   BaseType<float>::Type x3;
-  //   tdisp(x3);
-  //   float s4 = 0;
-  //   BaseType<typeof(s4)>::Type x4;
-  //   tdisp(x4);
-  // }
-  // {
-  //   // complex<float>
-  //   cr();
-  //   mout << createStyle(BOLD+BLUE1).apply("complex<float>") << std::endl;
-  //   mout << "ContainedType" << std::endl;
-  //   ContainedType<ComplexFloat>::Type x1;
-  //   tdisp(x1);
-  //   ComplexFloat s2 = 0;
-  //   ContainedType<typeof(s2)>::Type x2;
-  //   tdisp(x2);
-
-  //   mout << "BaseType" << std::endl;
-  //   BaseType<ComplexFloat>::Type x3;
-  //   tdisp(x3);
-  //   ComplexFloat s4 = 0;
-  //   BaseType<typeof(s4)>::Type x4;
-  //   tdisp(x4);
-  // }
-  // {
-  //   // complex<complex<float>>
-  //   cr();
-  //   mout << createStyle(BOLD+BLUE1).apply("complex<complex<float>>") << std::endl;
-  //   mout << "ContainedType" << std::endl;
-  //   ContainedType<std::complex<std::complex<float> > >::Type x1;
-  //   tdisp(x1);
-  //   std::complex<std::complex<float> >  s2;
-  //   ContainedType<typeof(s2)>::Type x2;
-  //   tdisp(x2);
-
-  //   mout << "BaseType" << std::endl;
-  //   BaseType<std::complex<std::complex<float> > >::Type x3;
-  //   tdisp(x3);
-  //   std::complex<std::complex<float> >  s4;
-  //   BaseType<typeof(s4)>::Type x4;
-  //   tdisp(x4);
-  // }
-  // {
-  //   // Vector<float>
-  //   cr();
-  //   mout << createStyle(BOLD+BLUE1).apply("Vector<float>") << std::endl;
-  //   mout << "ContainedType" << std::endl;
-  //   ContainedType<Vector<float> >::Type x1;
-  //   tdisp(x1);
-  //   Vector<float> s2;
-  //   ContainedType<typeof(s2)>::Type x2;
-  //   tdisp(x2);
-
-  //   mout << "BaseType" << std::endl;
-  //   BaseType<Vector<float> >::Type x3;
-  //   tdisp(x3);
-  //   Vector<float> s4;
-  //   BaseType<typeof(s4)>::Type x4;
-  //   tdisp(x4);
-  // }
-  // {
-  //   // Vector<complex<float>>
-  //   cr();
-  //   mout << createStyle(BOLD+BLUE1).apply("Vector<complex<float>>") << std::endl;
-  //   mout << "ContainedType" << std::endl;
-  //   ContainedType<Vector<std::complex<float> > >::Type x1;
-  //   tdisp(x1);
-  //   Vector<std::complex<float> >  s2;
-  //   ContainedType<typeof(s2)>::Type x2;
-  //   tdisp(x2);
-
-  //   mout << "BaseType" << std::endl;
-  //   BaseType<Vector<std::complex<float> > >::Type x3;
-  //   tdisp(x3);
-  //   Vector<std::complex<float> >  s4;
-  //   BaseType<typeof(s4)>::Type x4;
-  //   tdisp(x4);
-  // }
-
-
-
-  // complex mixed addition
-  // {
-  //   cr();
-  //   ComplexDouble x = ComplexDouble(1,2);
-  //   Vector<ComplexDouble> y(2);
-  //   tdisp(x);
-  //   tdisp(y);
-  //   tdisp(x*y);
-  // }
+  // complex<D1> + D2
+  
+  {
+    cr();
+    ComplexDouble z = ComplexDouble(1,2);
+    float x = 6.5;
+    tdisp(z);
+    tdisp(x);
+    mout << bold.apply("complex<double> + float") << endl; 
+    tdisp((z+x));
+    mout << bold.apply("float + complex<float>") << endl; 
+    tdisp((x+z));
+    mout << bold.apply("complex<double> - float") << endl; 
+    tdisp((z-x));
+    mout << bold.apply("float - complex<float>") << endl; 
+    tdisp((x-z));
+    mout << bold.apply("complex<double> * float") << endl; 
+    tdisp((z*x));
+    mout << bold.apply("float * complex<float>") << endl; 
+    tdisp((x*z));
+    mout << bold.apply("complex<double> / float") << endl; 
+    tdisp((z/x));
+    mout << bold.apply("float / complex<float>") << endl; 
+    tdisp((x/z));
+  }
 
   
-  // complex mixed addition with vector
-  // {
-  //   cr();
-  //   mout <<  bold.apply("complex mixed addition with vector") << std::endl;
-    // ComplexDouble x = ComplexDouble(1,2);
-    // Vector<ComplexDouble> v(2);
-    // tdisp(x);
-    // tdisp(v);
-    // tdisp(x+v);
-  //}
-
-
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);

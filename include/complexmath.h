@@ -110,7 +110,7 @@ namespace matricks {
 
 
   // ***************************************************************************
-  // * Complex math operators of mixed base types (D1,D2)
+  // * Complex math: complex<D1> OP complex<D2>
   // ***************************************************************************
 
 
@@ -127,9 +127,7 @@ namespace matricks {
     return y;
   }
 
-
-
-    // complex<D1> - complex<D2>
+  // complex<D1> - complex<D2>
   
   template <typename D1, typename D2> inline
     std::complex<typename SubType<D1,D2>::Type>
@@ -170,6 +168,111 @@ namespace matricks {
   }
 
 
+  // ***************************************************************************
+  // * Complex math: complex<D1> OP D2
+  // *                        D1 OP complex<D2>
+  // ***************************************************************************
+
+  // complex<D1> + D2
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+    std::complex<typename AddType<D1,D2>::Type>
+    operator+(const std::complex<D1>& x1, const D2& x2) {
+    typedef typename AddType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = real(x1)+x2;
+    D3 yI = imag(x1);
+    return T3(yR,yI);
+  }
+
+  // D1 + complex<D2>
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+    std::complex<typename AddType<D1,D2>::Type>
+    operator+(const D1& x1, const std::complex<D2>& x2) {
+    typedef typename AddType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = x1+real(x2);
+    D3 yI = imag(x2);
+    return T3(yR,yI);
+  }
+
+
+  // complex<D1> - D2
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+    std::complex<typename SubType<D1,D2>::Type>
+    operator-(const std::complex<D1>& x1, const D2& x2) {
+    typedef typename SubType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = real(x1)-x2;
+    D3 yI = imag(x1);
+    return T3(yR,yI);
+  }
+
+  // D1 - complex<D2>
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+    std::complex<typename SubType<D1,D2>::Type>
+    operator-(const D1& x1, const std::complex<D2>& x2) {
+    typedef typename SubType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = x1-real(x2);
+    D3 yI = -imag(x2);
+    return T3(yR,yI);
+  }
+
+
+  // complex<D1> * D2
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+    std::complex<typename MultType<D1,D2>::Type>
+    operator*(const std::complex<D1>& x1, const D2& x2) {
+    typedef typename MultType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = real(x1)*x2;
+    D3 yI = imag(x1)*x2;
+    return T3(yR,yI);
+  }
+
+  // D1 * complex<D2>
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+    std::complex<typename MultType<D1,D2>::Type>
+    operator*(const D1& x1, const std::complex<D2>& x2) {
+    typedef typename MultType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = x1*real(x2);
+    D3 yI = x1*imag(x2);
+    return T3(yR,yI);
+  }
+
+
+  // complex<D1> / D2
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+    std::complex<typename DivType<D1,D2>::Type>
+    operator/(const std::complex<D1>& x1, const D2& x2) {
+    typedef typename DivType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 yR = real(x1)/x2;
+    D3 yI = imag(x1)/x2;
+    return T3(yR,yI);
+  }
+
+  // D1 / complex<D2>
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+    std::complex<typename DivType<D1,D2>::Type>
+    operator/(const D1& x1, const std::complex<D2>& x2) {
+    typedef typename DivType<D1,D2>::Type D3;
+    typedef typename std::complex<D3> T3;
+    D3 topR = x1*real(x2);
+    D3 topI = -x1*imag(x2);
+    D3 bot = real(x2)*real(x2)+imag(x2)*imag(x2);
+    return T3(topR/bot,topI/bot);
+  }
+  
 
 
   // *********************************************************************

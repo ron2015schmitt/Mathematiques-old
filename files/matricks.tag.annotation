@@ -1,12 +1,13 @@
 
-v2.21-r28
+v2.22
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.21
+VERSION_MATRICKS=2.22
+# V2.22 refactoring.  Use C+11 from now on. Adding mixed-math operators
 # V2.21 introduced Tensor type (arbitrary rank)
 # V2.20 re-introduced Matrix type
 # V2.19 introduced Scalar type

@@ -471,12 +471,14 @@ namespace matricks {
     switch (ndims) {
     case 0: {
       Scalar<D> s = te;
+      stream << "" +display::getTypeName(s)+" ";
       stream << s;
       return stream;
       break;
     }
     case 1: {
       Vector<D> v = te;
+      stream << "" +display::getTypeName(v)+" ";
       stream << v;
       return stream;
       break;

@@ -443,20 +443,30 @@ namespace matricks {
     class TER_Binary : public  TensorR<D,TER_Binary<D,A,B,OP> > {
 
   private:
-    const A& a_;
-    const B& b_;
+    const A* a_;
+    const B* b_;
     VectorofPtrs *vptrs;
 
   public:
-
+    typedef D TypeD;
+    typedef A TypeA;
+    typedef B TypeB;
+    TER_Binary()
+      : a_(nullptr), b_(nullptr)
+      {
+	vptrs=nullptr;
+      }
 
   TER_Binary(const A& a, const B& b)
-    : a_(a), b_(b) {
-      mdisp3(a,b);
+    : a_(&a), b_(&b) {
+      tdisp(a);tdisp(b);
       vptrs = new VectorofPtrs();
-      vptrs->add(a_.getAddresses());
-      vptrs->add(b_.getAddresses());
-      disp3(*vptrs);
+      vptrs->add(a.getAddresses());
+      vptrs->add(b.getAddresses());
+      disp(*vptrs);
+      tdisp(*a_);
+      tdisp(*b_);
+      tdisp(this->size());
     }
 
     ~TER_Binary() {
@@ -464,24 +474,20 @@ namespace matricks {
     }
 
     inline const D operator[](const index_type i) const {
-      disp3(i);
-      return OP::apply(a_[i], b_[i]); 
+      mdisp(i,(*a_)[i], (*b_)[i]);
+      return OP::apply((*a_)[i], (*b_)[i]); 
     }
     inline VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
     inline size_type size(void) const {
-      if ( a_.size() != b_.size() ) {
-	return badsize;
-      } else {
-	return a_.size();
-      }
+      return (*a_).size();
     }
     size_type ndims(void) const {
-      return a_.ndims();
+      return (*a_).ndims();
     }
     Dimensions dims(void) const {
-      return a_.dims();
+      return (*a_).dims();
     }
     bool isExpression(void) const {
       return true;
@@ -703,7 +709,9 @@ namespace matricks {
 
 
 
-  /****************************************************************************
+
+
+    /****************************************************************************
    * TER_TensorOpScalar Operator Template 
    *
    * vector/scalar binary operators
@@ -849,6 +857,157 @@ namespace matricks {
   };
 
 
+
+
+  //================== NEW PARDGM  ===================================
+
+    /****************************************************************************
+   * TER_TensorOpScalar_New Operator Template 
+   *
+   * vector/scalar binary operators
+   ****************************************************************************
+   */
+
+
+  template <class DOUT, class A, class D, class OP>
+    class TER_TensorOpScalar_New : public TensorR<DOUT,TER_TensorOpScalar_New<DOUT,A,D,OP> > {
+
+  private:
+    const A& a_;
+    D val_;
+    VectorofPtrs *vptrs;
+
+  public:
+
+
+  TER_TensorOpScalar_New(const A& a, const D b)
+    : a_(a), val_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+    }
+
+    ~TER_TensorOpScalar_New() {
+      delete vptrs;
+    }
+
+    inline const DOUT operator[](const index_type i) const { 
+      return OP::apply(a_[i], val_); 
+    }
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    inline size_type size(void) const {
+      return a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    inline std::string classname() const {
+      return "TER_TensorOpScalar_New";
+    }
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sb = stream.str(); */
+      /* return OP::expression(sa,sb); */
+      return "";
+    }
+#endif 
+
+
+
+
+
+  };
+
+
+
+
+    /****************************************************************************
+   * TER_ScalarOpTensor_New Operator Template 
+   *
+   * scalar/vector binary operators
+   ****************************************************************************
+   */
+
+
+  template <class DOUT, class D, class B, class OP>
+    class TER_ScalarOpTensor_New : public TensorR<DOUT,TER_ScalarOpTensor_New<DOUT,D,B,OP> > {
+
+  private:
+    D val_;
+    const B& b_;
+    VectorofPtrs *vptrs;
+
+  public:
+
+
+
+  TER_ScalarOpTensor_New(const D a, const B& b)
+    :  val_(a), b_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(b_.getAddresses());
+    }
+    ~TER_ScalarOpTensor_New() {
+      delete vptrs;
+    }
+
+    inline const DOUT operator[](const index_type i) const { 
+      return OP::apply(val_,b_[i]); 
+    }
+
+    inline VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    inline size_type size(void) const {
+      return b_.size();
+    }
+    size_type ndims(void) const {
+      return b_.ndims();
+    }
+    Dimensions dims(void) const {
+      return b_.dims();
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    inline std::string classname() const {
+      return "TER_ScalarOpTensor_New";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      /* std::ostringstream stream; */
+      /* stream << val_; */
+      /* std::string sa = stream.str(); */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      return "";
+    }
+#endif 
+
+
+
+  };
+
+
+  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^NEW PARDIGM^^^^^^^^^^^^^^^^^^^^
+  
 
 
 

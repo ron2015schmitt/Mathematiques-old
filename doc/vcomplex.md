@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.22-r6).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.24).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -87,10 +87,51 @@ v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  v1+v2 = {(1,0), (1,0), (1,0), (1,0)}; 
-  v1-v2 = {(-1,-2), (-1,0), (1,-2), (1,2)}; 
-  v1*v2 = {(1,-1), (0,0), (1,1), (1,-1)}; 
-  v1/v2 = {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
+  {(0,-1), (0,0), (1,-1), (1,1)}+{(1,1), (1,0), (0,1), (0,-1)}...
+Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cdd0, 0x7ffe29f8cdf0}; 
+Vector<std::complex<double>> *a_ = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+v1+v2 = i = 3; (*a_)[i] = (1,1); (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = (1,-1); (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = (0,0); (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = (0,-1); (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(1,0), (1,0), (1,0), (1,0)}; 
+  Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cdd0, 0x7ffe29f8cdf0}; 
+Vector<std::complex<double>> *a_ = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+v1-v2 = i = 3; (*a_)[i] = (1,1); (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = (1,-1); (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = (0,0); (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = (0,-1); (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(-1,-2), (-1,0), (1,-2), (1,2)}; 
+  Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cdd0, 0x7ffe29f8cdf0}; 
+Vector<std::complex<double>> *a_ = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+v1*v2 = i = 3; (*a_)[i] = (1,1); (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = (1,-1); (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = (0,0); (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = (0,-1); (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(1,-1), (0,0), (1,1), (1,-1)}; 
+  Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cdd0, 0x7ffe29f8cdf0}; 
+Vector<std::complex<double>> *a_ = {(0,-1), (0,0), (1,-1), (1,1)}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+v1/v2 = i = 3; (*a_)[i] = (1,1); (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = (1,-1); (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = (0,0); (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = (0,-1); (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
 ```
 
 ### Mixed arithmetic with complex and real vectors and scalars `Vector`'s
@@ -109,12 +150,75 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  vr+vc = {(2,1), (3,0), (3,1), (4,-1)}; 
-  vr-vc = {(0,-1), (1,-0), (3,-1), (4,1)}; 
-  vr*vc = {(1,1), (2,0), (0,3), (0,-4)}; 
-  vr/vc = {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
-  2.*vr + vc/2. + 1 = {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
-  complex<double>(0,1)*vr + complex<double>(5,2)*vc = {(3,8), (5,4), (-2,8), (2,-1)}; 
+  {1, 2, 3, 4}+{(1,1), (1,0), (0,1), (0,-1)}...
+Vector<double> a = {1, 2, 3, 4}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cd50, 0x7ffe29f8cd70}; 
+Vector<double> *a_ = {1, 2, 3, 4}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+vr+vc = i = 3; (*a_)[i] = 4; (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = 3; (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = 2; (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = 1; (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(2,1), (3,0), (3,1), (4,-1)}; 
+  Vector<double> a = {1, 2, 3, 4}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cd50, 0x7ffe29f8cd70}; 
+Vector<double> *a_ = {1, 2, 3, 4}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+vr-vc = i = 3; (*a_)[i] = 4; (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = 3; (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = 2; (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = 1; (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(0,-1), (1,-0), (3,-1), (4,1)}; 
+  Vector<double> a = {1, 2, 3, 4}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cd50, 0x7ffe29f8cd70}; 
+Vector<double> *a_ = {1, 2, 3, 4}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+vr*vc = i = 3; (*a_)[i] = 4; (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = 3; (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = 2; (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = 1; (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(1,1), (2,0), (0,3), (0,-4)}; 
+  Vector<double> a = {1, 2, 3, 4}; 
+Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+*vptrs = {0x7ffe29f8cd50, 0x7ffe29f8cd70}; 
+Vector<double> *a_ = {1, 2, 3, 4}; 
+Vector<std::complex<double>> *b_ = {(1,1), (1,0), (0,1), (0,-1)}; 
+unsigned long this->size() = 4; 
+vr/vc = i = 3; (*a_)[i] = 4; (*b_)[i] = (0,-1); 
+i = 2; (*a_)[i] = 3; (*b_)[i] = (0,1); 
+i = 1; (*a_)[i] = 2; (*b_)[i] = (1,0); 
+i = 0; (*a_)[i] = 1; (*b_)[i] = (1,1); 
+Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
+  Vector<double> {2, 4, 6, 8}+Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (0,-0.5)}...
+TER_ScalarOpTensor a = Vector<double> {2, 4, 6, 8}; 
+TER_Cplx_TensorOpScalar b = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (0,-0.5)}; 
+*vptrs = {0x7ffe29f8cd50, 0x7ffe29f8cd70}; 
+TER_ScalarOpTensor *a_ = Vector<double> {2, 4, 6, 8}; 
+TER_Cplx_TensorOpScalar *b_ = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (0,-0.5)}; 
+unsigned long this->size() = 4; 
+2.*vr + vc/2. + 1 = i = 3; (*a_)[i] = 8; (*b_)[i] = (0,-0.5); 
+i = 2; (*a_)[i] = 6; (*b_)[i] = (0,0.5); 
+i = 1; (*a_)[i] = 4; (*b_)[i] = (0.5,0); 
+i = 0; (*a_)[i] = 2; (*b_)[i] = (0.5,0.5); 
+Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
+  Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}+Vector<std::complex<double>> {(3,7), (5,2), (-2,5), (2,-5)}...
+TER_ScalarOpTensor a = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
+TER_ScalarOpTensor b = Vector<std::complex<double>> {(3,7), (5,2), (-2,5), (2,-5)}; 
+*vptrs = {0x7ffe29f8cd50, 0x7ffe29f8cd70}; 
+TER_ScalarOpTensor *a_ = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
+TER_ScalarOpTensor *b_ = Vector<std::complex<double>> {(3,7), (5,2), (-2,5), (2,-5)}; 
+unsigned long this->size() = 4; 
+complex<double>(0,1)*vr + complex<double>(5,2)*vc = i = 3; (*a_)[i] = (0,4); (*b_)[i] = (2,-5); 
+i = 2; (*a_)[i] = (0,3); (*b_)[i] = (-2,5); 
+i = 1; (*a_)[i] = (0,2); (*b_)[i] = (5,2); 
+i = 0; (*a_)[i] = (0,1); (*b_)[i] = (3,7); 
+Vector<std::complex<double>> {(3,8), (5,4), (-2,8), (2,-1)}; 
 ```
 
 ### real and imag parts of `Vector`'s
@@ -130,8 +234,8 @@ v = {1+1.i, 1., 1.i, 2-5.i}; // C++11 list and C++14 imag
 **Some expressions with results**: real and imaginary parts
 ```C++
   v = {(1,1), (1,0), (0,1), (2,-5)}; 
-  real(v) = {1, 1, 0, 2}; 
-  imag(v) = {1, 0, 1, -5}; 
+  real(v) = Vector<double> {1, 1, 0, 2}; 
+  imag(v) = Vector<double> {1, 0, 1, -5}; 
 ```
 
 
@@ -145,6 +249,16 @@ Vector<complex<double> > vc(4);
 Vector<double> vr( range<double>(1,4) );
 Vector<double> vi( range<double>(-1,-4) );
 vc = vcomplex(vr, vi);
+Vector<double> a = {1, 2, 3, 4}; 
+Vector<double> b = {-1, -2, -3, -4}; 
+*vptrs = {0x7ffe29f8cdd0, 0x7ffe29f8cdf0}; 
+Vector<double> *a_ = {1, 2, 3, 4}; 
+Vector<double> *b_ = {-1, -2, -3, -4}; 
+unsigned long this->size() = 4; 
+i = 3; (*a_)[i] = 4; (*b_)[i] = -4; 
+i = 2; (*a_)[i] = 3; (*b_)[i] = -3; 
+i = 1; (*a_)[i] = 2; (*b_)[i] = -2; 
+i = 0; (*a_)[i] = 1; (*b_)[i] = -1; 
 ```
 
 **Some expressions with results**: create a complex vector from two real vectors
@@ -152,8 +266,8 @@ vc = vcomplex(vr, vi);
   vr = {1, 2, 3, 4}; 
   vi = {-1, -2, -3, -4}; 
   vc = {(1,-1), (2,-2), (3,-3), (4,-4)}; 
-  real(vc) = {1, 2, 3, 4}; 
-  imag(vc) = {-1, -2, -3, -4}; 
+  real(vc) = Vector<double> {1, 2, 3, 4}; 
+  imag(vc) = Vector<double> {-1, -2, -3, -4}; 
 ```
 
 
@@ -167,10 +281,10 @@ Vector<double> v( range<double>(1,4) );
 
 **Some expressions with results**: create a complex vector from a real vector and a scalar
 ```C++
-  vcomplex(v, 0.) = {(1,0), (2,0), (3,0), (4,0)}; 
-  vcomplex(v, 1.) = {(1,1), (2,1), (3,1), (4,1)}; 
-  vcomplex(0., v) = {(0,1), (0,2), (0,3), (0,4)}; 
-  vcomplex(1., v) = {(1,1), (1,2), (1,3), (1,4)}; 
+  vcomplex(v, 0.) = Vector<std::complex<double>> {(1,0), (2,0), (3,0), (4,0)}; 
+  vcomplex(v, 1.) = Vector<std::complex<double>> {(1,1), (2,1), (3,1), (4,1)}; 
+  vcomplex(0., v) = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
+  vcomplex(1., v) = Vector<std::complex<double>> {(1,1), (1,2), (1,3), (1,4)}; 
 ```
 
 
@@ -185,6 +299,15 @@ Vector<complex<double> > vc(3);
 Vector<double> vr( range<double>(1,3) );
 Vector<double> vi( range<double>(-1,1) );
 vc = vcomplex(vr, vi);
+Vector<double> a = {1, 2, 3}; 
+Vector<double> b = {-1, 0, 1}; 
+*vptrs = {0x7ffe29f8cdd0, 0x7ffe29f8cdf0}; 
+Vector<double> *a_ = {1, 2, 3}; 
+Vector<double> *b_ = {-1, 0, 1}; 
+unsigned long this->size() = 3; 
+i = 2; (*a_)[i] = 3; (*b_)[i] = 1; 
+i = 1; (*a_)[i] = 2; (*b_)[i] = 0; 
+i = 0; (*a_)[i] = 1; (*b_)[i] = -1; 
 ```
 
 **Some expressions with results**: compute the complex conjugate of a vector
@@ -192,8 +315,8 @@ vc = vcomplex(vr, vi);
   vr = {1, 2, 3}; 
   vi = {-1, 0, 1}; 
   vc = {(1,-1), (2,0), (3,1)}; 
-  conj(vc) = {(1,1), (2,-0), (3,-1)}; 
-  ~vc = {(1,1), (2,-0), (3,-1)}; 
+  conj(vc) = Vector<std::complex<double>> {(1,1), (2,-0), (3,-1)}; 
+  ~vc = Vector<std::complex<double>> {(1,1), (2,-0), (3,-1)}; 
 ```
 
 
@@ -208,43 +331,98 @@ Vector<complex<double> > v(3);
 Vector<double> vr( range<double>(1,3) );
 Vector<double> vi( range<double>(-1,1) );
 v = vcomplex(vr, vi);
+Vector<double> a = {1, 2, 3}; 
+Vector<double> b = {-1, 0, 1}; 
+*vptrs = {0x7ffe29f8cd10, 0x7ffe29f8cd20}; 
+Vector<double> *a_ = {1, 2, 3}; 
+Vector<double> *b_ = {-1, 0, 1}; 
+unsigned long this->size() = 3; 
+i = 2; (*a_)[i] = 3; (*b_)[i] = 1; 
+i = 1; (*a_)[i] = 2; (*b_)[i] = 0; 
+i = 0; (*a_)[i] = 1; (*b_)[i] = -1; 
 ```
 
 **Some expressions with results**: functions of complex vectors
 ```C++
   v = {(1,-1), (2,0), (3,1)}; 
-  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = {(1,-1), (2,0), (3,1)}; 
-  abs(v) = {1.41421, 2, 3.16228}; 
-  pow(2., v) = {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
-  pow(v, 2.) = {(1.22465e-16,-2), (4,0), (8,6)}; 
-  pow(v,v) = {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 
-  exp(v) = {(1.46869,-2.28736), (7.38906,0), (10.8523,16.9014)}; 
-  round(exp(v)) = {(1,-2), (7,0), (11,17)}; 
-  roundzero(v+1e-16) = {(1,-1), (2,0), (3,1)}; 
-  log(v) = {(0.346574,-0.785398), (0.693147,0), (1.15129,0.321751)}; 
-  log10(v) = {(0.150515,-0.341094), (0.30103,0), (0.5,0.139734)}; 
-  sqr(v) = {(0,-2), (4,0), (8,6)}; 
-  cube(v) = {(-2,-2), (8,0), (18,26)}; 
-  sqrt(v) = {(1.09868,-0.45509), (1.41421,0), (1.75532,0.284849)}; 
-  sin(v) = {(1.29846,-0.634964), (0.909297,-0), (0.21776,-1.16344)}; 
-  cos(v) = {(0.83373,0.988898), (-0.416147,-0), (-1.52764,-0.165844)}; 
-  tan(v) = {(0.271753,-1.08392), (-2.18504,0), (-0.0591685,0.768018)}; 
-  sinh(v) = {(0.634964,-1.29846), (3.62686,0), (5.41268,8.47165)}; 
-  cosh(v) = {(0.83373,-0.988898), (3.7622,0), (5.43958,8.42975)}; 
-  tanh(v) = {(1.08392,-0.271753), (0.964028,0), (1.00205,0.00451714)}; 
-  asin(v) = {(0.666239,-1.06128), (1.5708,1.31696), (1.2331,1.8242)}; 
-  acos(v) = {(0.904557,1.06128), (0,-1.31696), (0.337701,-1.8242)}; 
-  atan(v) = {(1.01722,-0.402359), (1.10715,0), (1.2768,0.0919312)}; 
-  atan2(vr, vi) = {2.35619, 1.5708, 1.24905}; 
+  Vector<double> {0.707107, 1, 0.948683}+Vector<std::complex<double>> {(0,-0.707107), (0,0), (0,0.316228)}...
+TER_Unary a = Vector<double> {0.707107, 1, 0.948683}; 
+TER_Cplx_ScalarOpTensor b = Vector<std::complex<double>> {(0,-0.707107), (0,0), (0,0.316228)}; 
+*vptrs = {0x7ffe29f8cd00, 0x7ffe29f8cdb0}; 
+TER_Unary *a_ = Vector<double> {0.707107, 1, 0.948683}; 
+TER_Cplx_ScalarOpTensor *b_ = Vector<std::complex<double>> {(0,-0.707107), (0,0), (0,0.316228)}; 
+unsigned long this->size() = 3; 
+TER_Unary a = Vector<double> {1.41421, 2, 3.16228}; 
+TER_Binary b = i = 2; (*a_)[i] = 0.948683; (*b_)[i] = (0,0.316228); 
+i = 1; (*a_)[i] = 1; (*b_)[i] = (0,0); 
+i = 0; (*a_)[i] = 0.707107; (*b_)[i] = (0,-0.707107); 
+Vector<std::complex<double>> {(0.707107,-0.707107), (1,0), (0.948683,0.316228)}; 
+*vptrs = {0x7ffe29f8cd00, 0x7ffe29f8cd00, 0x7ffe29f8cdb0}; 
+TER_Unary *a_ = Vector<double> {1.41421, 2, 3.16228}; 
+TER_Binary *b_ = i = 2; (*a_)[i] = 0.948683; (*b_)[i] = (0,0.316228); 
+i = 1; (*a_)[i] = 1; (*b_)[i] = (0,0); 
+i = 0; (*a_)[i] = 0.707107; (*b_)[i] = (0,-0.707107); 
+Vector<std::complex<double>> {(0.707107,-0.707107), (1,0), (0.948683,0.316228)}; 
+unsigned long this->size() = 3; 
+abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = i = 2; (*a_)[i] = 3.16228; i = 2; (*a_)[i] = 0.948683; (*b_)[i] = (0,0.316228); 
+(*b_)[i] = (0.948683,0.316228); 
+i = 2; (*a_)[i] = 0.948683; (*b_)[i] = (0,0.316228); 
+i = 1; (*a_)[i] = 2; i = 1; (*a_)[i] = 1; (*b_)[i] = (0,0); 
+(*b_)[i] = (1,0); 
+i = 1; (*a_)[i] = 1; (*b_)[i] = (0,0); 
+i = 0; (*a_)[i] = 1.41421; i = 0; (*a_)[i] = 0.707107; (*b_)[i] = (0,-0.707107); 
+(*b_)[i] = (0.707107,-0.707107); 
+i = 0; (*a_)[i] = 0.707107; (*b_)[i] = (0,-0.707107); 
+Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
+  abs(v) = Vector<double> {1.41421, 2, 3.16228}; 
+  pow(2., v) = Vector<std::complex<double>> {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
+  pow(v, 2.) = Vector<std::complex<double>> {(1.22465e-16,-2), (4,0), (8,6)}; 
+  Vector<std::complex<double>> a = {(1,-1), (2,0), (3,1)}; 
+Vector<std::complex<double>> b = {(1,-1), (2,0), (3,1)}; 
+*vptrs = {0x7ffe29f8cd00, 0x7ffe29f8cd00}; 
+Vector<std::complex<double>> *a_ = {(1,-1), (2,0), (3,1)}; 
+Vector<std::complex<double>> *b_ = {(1,-1), (2,0), (3,1)}; 
+unsigned long this->size() = 3; 
+pow(v,v) = i = 2; (*a_)[i] = (3,1); (*b_)[i] = (3,1); 
+i = 1; (*a_)[i] = (2,0); (*b_)[i] = (2,0); 
+i = 0; (*a_)[i] = (1,-1); (*b_)[i] = (1,-1); 
+Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 
+  exp(v) = Vector<std::complex<double>> {(1.46869,-2.28736), (7.38906,0), (10.8523,16.9014)}; 
+  round(exp(v)) = Vector<std::complex<double>> {(1,-2), (7,0), (11,17)}; 
+  roundzero(v+1e-16) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
+  log(v) = Vector<std::complex<double>> {(0.346574,-0.785398), (0.693147,0), (1.15129,0.321751)}; 
+  log10(v) = Vector<std::complex<double>> {(0.150515,-0.341094), (0.30103,0), (0.5,0.139734)}; 
+  sqr(v) = Vector<std::complex<double>> {(0,-2), (4,0), (8,6)}; 
+  cube(v) = Vector<std::complex<double>> {(-2,-2), (8,0), (18,26)}; 
+  sqrt(v) = Vector<std::complex<double>> {(1.09868,-0.45509), (1.41421,0), (1.75532,0.284849)}; 
+  sin(v) = Vector<std::complex<double>> {(1.29846,-0.634964), (0.909297,-0), (0.21776,-1.16344)}; 
+  cos(v) = Vector<std::complex<double>> {(0.83373,0.988898), (-0.416147,-0), (-1.52764,-0.165844)}; 
+  tan(v) = Vector<std::complex<double>> {(0.271753,-1.08392), (-2.18504,0), (-0.0591685,0.768018)}; 
+  sinh(v) = Vector<std::complex<double>> {(0.634964,-1.29846), (3.62686,0), (5.41268,8.47165)}; 
+  cosh(v) = Vector<std::complex<double>> {(0.83373,-0.988898), (3.7622,0), (5.43958,8.42975)}; 
+  tanh(v) = Vector<std::complex<double>> {(1.08392,-0.271753), (0.964028,0), (1.00205,0.00451714)}; 
+  asin(v) = Vector<std::complex<double>> {(0.666239,-1.06128), (1.5708,1.31696), (1.2331,1.8242)}; 
+  acos(v) = Vector<std::complex<double>> {(0.904557,1.06128), (0,-1.31696), (0.337701,-1.8242)}; 
+  atan(v) = Vector<std::complex<double>> {(1.01722,-0.402359), (1.10715,0), (1.2768,0.0919312)}; 
+  Vector<double> a = {1, 2, 3}; 
+Vector<double> b = {-1, 0, 1}; 
+*vptrs = {0x7ffe29f8cd10, 0x7ffe29f8cd20}; 
+Vector<double> *a_ = {1, 2, 3}; 
+Vector<double> *b_ = {-1, 0, 1}; 
+unsigned long this->size() = 3; 
+atan2(vr, vi) = i = 2; (*a_)[i] = 3; (*b_)[i] = 1; 
+i = 1; (*a_)[i] = 2; (*b_)[i] = 0; 
+i = 0; (*a_)[i] = 1; (*b_)[i] = -1; 
+Vector<double> {2.35619, 1.5708, 1.24905}; 
 ```
 
 
 **Results**Aritmetic with scalars
 ```C++
-  v + 0.1 = {(1.1,-1), (2.1,0), (3.1,1)}; 
-  0.1 + v = {(1.1,-1), (2.1,0), (3.1,1)}; 
-  v - 0.1 = {(0.9,-1), (1.9,0), (2.9,1)}; 
-  0.1 - v = {(-0.9,1), (-1.9,-0), (-2.9,-1)}; 
+  v + 0.1 = Vector<std::complex<double>> {(1.1,-1), (2.1,0), (3.1,1)}; 
+  0.1 + v = Vector<std::complex<double>> {(1.1,-1), (2.1,0), (3.1,1)}; 
+  v - 0.1 = Vector<std::complex<double>> {(0.9,-1), (1.9,0), (2.9,1)}; 
+  0.1 - v = Vector<std::complex<double>> {(-0.9,1), (-1.9,-0), (-2.9,-1)}; 
 ```
 
 

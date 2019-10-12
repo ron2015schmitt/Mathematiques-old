@@ -1,4 +1,4 @@
-# mātricks v2.23-r2
+# mātricks v2.24
 
 - CURRENTLY NOT READY FOR USE BUT...
 + Getting very close.  I put the last pieces together for the code to work with arbitrary rank tenors (Scalar, Vector, Matrix, etc):

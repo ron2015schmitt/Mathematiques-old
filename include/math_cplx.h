@@ -106,7 +106,6 @@ namespace matricks {
 
   // complex conjugate OPERTOR ~
 
-  // TODO: rewrite using type traits and only floating types
   template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > std::complex<D>
   operator~(const std::complex<D>& x) {
     return std::complex<D>(x.real(), -x.imag());

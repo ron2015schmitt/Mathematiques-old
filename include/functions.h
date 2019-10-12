@@ -36,17 +36,71 @@ namespace matricks {
       return  TER_Unary<D,TensorR<D,A>,Fun_Minus<D> >(a);
     }
 
-  // Tensor + Tensor
+  //=================================================================
+  //         NEW PARADIGM FOR ARITHMETIC
+  //=================================================================
 
-  template <class D, class A, class B> 
-    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Add<D> > 
-    operator+(const TensorR<D,A>& a, const TensorR<D,B>& b)
+  // TODO: convert all binary operator to use this paradigm
+  //       thne can get rid of functions_complex.h
+  
+  // Tensor<D1> + Tensor<D2>
+
+  template <class D1, class D2, class A, class B> 
+    inline TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> > 
+    operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
-      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Add<D> >(a,b);
+      mout<< a << "+" << b << "..." <<std::endl;
+      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
     }
 
 
+  // D1 + Tensor<D2>
 
+  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+    inline TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >
+    operator+(const D1& a, const TensorR<D2,B>& b)
+    {
+      return  TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+    }
+
+  // Tensor<D1> + D2
+
+  template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+    inline TER_TensorOpScalar_New<typename AddType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Add_New<D1,D2> >
+    operator+(const TensorR<D1,A>& a, const D2& b)
+    {
+      return TER_TensorOpScalar_New<typename AddType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Add_New<D1,D2> >(a,b);
+    }
+  
+
+
+  // T + Tensor<T>
+
+  template <class T, class B> 
+    inline TER_ScalarOpTensor_New<typename AddType<T,T>::Type,T,TensorR<T,B>,Fun_Add_New<T,T> >
+    operator+(const T& a, const TensorR<T,B>& b)
+    {
+      return TER_ScalarOpTensor_New<typename AddType<T,T>::Type,T,TensorR<T,B>,Fun_Add_New<T,T> >(a,b);
+    }
+
+  // Tensor<T> + T
+
+  template <class T, class A> 
+    inline TER_TensorOpScalar_New<typename AddType<T,T>::Type,TensorR<T,A>,T,Fun_Add_New<T,T> >
+    operator+(const TensorR<T,A>& a, const T&b)
+    {
+      return TER_TensorOpScalar_New<typename AddType<T,T>::Type,TensorR<T,A>,T,Fun_Add_New<T,T> >(a,b);
+    }
+
+  
+
+  //^^^^^^^^^^^^^^^^^^^^^^^^^NEW PARDIGM^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  
+
+
+  
+
+  
   // Tensor - Tensor
 
   template <class D, class A, class B> 
@@ -935,25 +989,6 @@ namespace matricks {
    ************************************************************
    */
 
-  //---------- Tensor scalar mix: arithmetic -----------------
-
-  // Tensor + scalar
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> > 
-    operator+(const TensorR<D,A>& a, const D b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> >(a,b);
-    }
-
-  // scalar + Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > 
-    operator+(const D a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > (a,b);
-    }
 
 
   // Tensor - scalar
@@ -1012,41 +1047,6 @@ namespace matricks {
 
 
 
-  // Tensor + (int scalar)
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> > 
-    operator+(const TensorR<D,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Add<D> >(a,b);
-    }
-
-  // Tensor<int> + (int scalar) -- needed to avoid operator ambiguity
-
-  template <class A> 
-    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Add<int> > 
-    operator+(const TensorR<int,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Add<int> >(a,b);
-    }
-
-  // (int scalar) + Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > 
-    operator+(const int a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Add<D> > (a,b);
-    }
-
-  // (int scalar) + Tensor<int>
-
-  template <class B>
-    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Add<int> > 
-    operator+(const int a, const TensorR<int,B>& b )
-    {
-      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Add<int> > (a,b);
-    }
 
 
   // Tensor - (int scalar)

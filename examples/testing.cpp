@@ -66,6 +66,10 @@ double f2(double x, double y) {
 
 int main(int argc, char *argv[])
 {
+
+
+  typedef typename matricks::Vector<double> VectorDouble;
+  
   const double pi = M_PI;
   std::string myname = argv[0];
   using namespace matricks;
@@ -905,6 +909,192 @@ int main(int argc, char *argv[])
   }
 
 
+
+  {
+    cr();
+    mout << bold.apply("Vector<double>+ Vector<double>") << std::endl;
+    Vector<double> v1 = {11,22};
+    Vector<double> v2 = {100,200};
+    tdisp(v1);
+    tdisp(v2);
+    tdisp(v1+v2);
+  }
+  {
+    cr();
+    mout << bold.apply("Vector<int>+ Vector<double>") << std::endl;
+    Vector<int> v1 = {11,22};
+    Vector<double> v2 = {0.1,0.2};
+    tdisp(v1);
+    tdisp(v2);
+    tdisp(v1+v2);
+  }
+  {
+    cr();
+    mout << bold.apply("Vector<double> + double ") << std::endl;
+    Vector<double> v = {11,22};
+    double x = 0.5;
+    tdisp(v);
+    tdisp(x);
+    tdisp(v+x);
+  }
+  {
+    cr();
+    mout << bold.apply("Vector<int> + double ") << std::endl;
+    Vector<int> vz = {11,22};
+    double x = .5;
+    tdisp(vz);
+    tdisp(x);
+    tdisp(vz+x);
+  }
+  {
+    cr();
+    mout << bold.apply("Vector<double> + int ") << std::endl;
+    Vector<double> v = {11.1,22.2};
+    int n = 900;
+    tdisp(v);
+    tdisp(n);
+    tdisp(v+n);
+  }
+
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + Vector<complex<double> >") << std::endl;
+    Vector<ComplexDouble> vz1 = {ComplexDouble(0.1,1.1),ComplexDouble(0.2,2.2)};
+    Vector<ComplexDouble> vz2 = {ComplexDouble(10.5,20.5),ComplexDouble(30.5,40.5)};
+    tdisp(vz1);
+    tdisp(vz2);
+    tdisp(vz1+vz2);
+  }
+
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + Vector<complex<int> >") << std::endl;
+    Vector<ComplexDouble> vz1 = {ComplexDouble(0.1,1.1),ComplexDouble(0.2,2.2)};
+    Vector<ComplexInt> vz2 = {ComplexInt(10,20),ComplexInt(30,40)};
+    tdisp(vz1);
+    tdisp(vz2);
+    tdisp(vz1+vz2);
+  }
+
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + Vector<double>") << std::endl;
+    Vector<ComplexDouble> vz = {ComplexDouble(0.1,0.2),ComplexDouble(0.3,2.4)};
+    Vector<double> v = {0.01,0.02};
+    tdisp(vz);
+    tdisp(v);
+    tdisp(vz+v);
+  }
+
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + Vector<int>") << std::endl;
+    Vector<ComplexDouble> vz1 = {ComplexDouble(0.1,0.2),ComplexDouble(0.3,2.4)};
+    Vector<int> vz2 = {1,2};
+    tdisp(vz1);
+    tdisp(vz2);
+    tdisp(vz1+vz2);
+  }
+
+    {
+    cr();
+    mout << bold.apply("Vector<complex<int> > + Vector<double>") << std::endl;
+    Vector<ComplexInt> vzn = {ComplexInt(10,20),ComplexInt(30,40)};
+    Vector<double> vx = {0.01,0.02};
+    tdisp(vzn);
+    tdisp(vx);
+    tdisp(vzn+vx);
+  }
+
+
+  
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + double ") << std::endl;
+    Vector<ComplexDouble> vz = {ComplexDouble(0.1,1.1),ComplexDouble(0.2,2.2)};
+    double x = 0.5;
+    tdisp(vz);
+    tdisp(x);
+    tdisp(vz+x);
+  }
+
+
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + double ") << std::endl;
+    Vector<ComplexDouble> vz = {ComplexDouble(0.1,1.1),ComplexDouble(0.2,2.2)};
+    double x = 0.5;
+    tdisp(vz);
+    tdisp(x);
+    tdisp(vz+x);
+  }
+  {
+    cr();
+    mout << bold.apply("Vector<complex<int> > + double ") << std::endl;
+    Vector<ComplexInt> vz = {ComplexInt(1,2),ComplexInt(3,4)};
+    double x = .5;
+    tdisp(vz);
+    tdisp(x);
+    tdisp(vz+x);
+  }
+  {
+    cr();
+    mout << bold.apply("Vector<complex<double> > + int ") << std::endl;
+    Vector<ComplexDouble> vz = {ComplexDouble(0.1,1.1),ComplexDouble(0.2,2.2)};
+    int n = 900;
+    tdisp(vz);
+    tdisp(n);
+    tdisp(vz+n);
+  }
+
+
+
+
+  {
+    cr();
+    mout << bold.apply("Vector<Vector<double> > testing") << std::endl;
+
+    // NOTE: no equals sign
+    std::vector<std::vector<double>> ss {{1,2},{3,4}};
+    tdisp(ss);
+    Vector<std::vector<double>> vs {{1,2},{3,4}};
+    tdisp(vs);
+    std::vector<Vector<double>> sv {{1,2},{3,4}};
+    tdisp(sv);
+    Vector<Vector<double>> vv {{1,2},{3,4}};
+    tdisp(vv);
+    Vector<Vector<double>> vv2 {{1,-1},{3,4}};
+    tdisp(vv2);
+    Vector<Vector<double>> vv3 {{1,-1},{2,4}};
+    tdisp(vv3);
+    Vector<Vector<double>> vv4 {{1,-1},{2,-2}};
+    tdisp(vv4);
+  }
+
+
+  {
+    cr();
+    mout << bold.apply("Vector<Vector<double> > + Vector<Vector<double> >") << std::endl;
+    Vector<Vector<double>> v1 {{1,2},{3,4}};
+    Vector<Vector<double>> v2 {{0.1,0.2},{0.3,0.4}};
+    tdisp(v1);
+    tdisp(v2);
+    // tdisp(v1+v2);
+    Vector<Vector<double>> v3 {{0,0},{0,0}};
+    tdisp(v3);
+    v3 = v1;
+    tdisp(v3);
+    tdisp(-v3);
+    v3 = {{0,0},{0,0}};
+    tdisp(v3);
+    cr();
+    //    typename AddType<Vector<double>,Vector<double>>::Type v4 {{6,7},{8,0}};
+    v1+v2;  // works!
+    //    disp(v1.bottom());
+    cr();
+    v3 = v1+v2;
+    //disp(v3);
+  }
   //------------------------------------------------------
   
   cr();

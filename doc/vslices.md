@@ -3,7 +3,7 @@
 
 
 # python-like access: negative indices & slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.22-r6).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.24).
 
 ## Element access
 ### Positive and negative indices
@@ -33,8 +33,8 @@ const int N = v.size();
   v[-1] = 10; 
   v[-2] = 9; 
   v[-N] = 0; 
-  v[{0,-1}] = {0, 10}; 
-  v[{2,2,-2,-2}] = {2, 2, 9, 9}; 
+  v[{0,-1}] = Vector<double> {0, 10}; 
+  v[{2,2,-2,-2}] = Vector<double> {2, 2, 9, 9}; 
 ```
 
 
@@ -83,12 +83,12 @@ Vector<double> v( range<double>(0,10) );
 
 **Some expressions with results**
 ```C++
-  v[slc(2,6)] = {2, 3, 4, 5, 6}; 
-  v[slc(0,-1)] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
-  v[slc(0,1)] = {0, 1}; 
-  v[slc(-2,-1)] = {9, 10}; 
-  v[slc(1,0)] = {}; 
-  v[slc(-1,0)] = {}; 
+  v[slc(2,6)] = Vector<double> {2, 3, 4, 5, 6}; 
+  v[slc(0,-1)] = Vector<double> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
+  v[slc(0,1)] = Vector<double> {0, 1}; 
+  v[slc(-2,-1)] = Vector<double> {9, 10}; 
+  v[slc(1,0)] = Vector<double> {}; 
+  v[slc(-1,0)] = Vector<double> {}; 
 ```
 
 ### The `(start,end,step)` slice
@@ -120,32 +120,32 @@ Vector<double> v10( range<double>(0,10) );
 
 **Some expressions with results**: reverse vectors of various lengths using the same slice
 ```C++
-  v0[slc(-1,0,-1)] = {}; 
-  v1[slc(-1,0,-1)] = {}; 
-  v2[slc(-1,0,-1)] = {1, 0}; 
-  v3[slc(-1,0,-1)] = {2, 1, 0}; 
-  v4[slc(-1,0,-1)] = {3, 2, 1, 0}; 
-  v10[slc(-1,0,-1)] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}; 
+  v0[slc(-1,0,-1)] = Vector<double> {}; 
+  v1[slc(-1,0,-1)] = Vector<double> {}; 
+  v2[slc(-1,0,-1)] = Vector<double> {1, 0}; 
+  v3[slc(-1,0,-1)] = Vector<double> {2, 1, 0}; 
+  v4[slc(-1,0,-1)] = Vector<double> {3, 2, 1, 0}; 
+  v10[slc(-1,0,-1)] = Vector<double> {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}; 
 ```
 
 **Some expressions with results**: get even-index elements of various vectors using the same slice
 ```C++
-  v0[slc(0,-1,2)] = {}; 
-  v1[slc(0,-1,2)] = {0}; 
-  v2[slc(0,-1,2)] = {0}; 
-  v3[slc(0,-1,2)] = {0, 2}; 
-  v4[slc(0,-1,2)] = {0, 2}; 
-  v10[slc(0,-1,2)] = {0, 2, 4, 6, 8, 10}; 
+  v0[slc(0,-1,2)] = Vector<double> {}; 
+  v1[slc(0,-1,2)] = Vector<double> {0}; 
+  v2[slc(0,-1,2)] = Vector<double> {0}; 
+  v3[slc(0,-1,2)] = Vector<double> {0, 2}; 
+  v4[slc(0,-1,2)] = Vector<double> {0, 2}; 
+  v10[slc(0,-1,2)] = Vector<double> {0, 2, 4, 6, 8, 10}; 
 ```
 
 **Some expressions with results**: get odd-index elements of various vectors using the same slice
 ```C++
-  v0[slc(1,-1,2)] = {}; 
-  v1[slc(1,-1,2)] = {}; 
-  v2[slc(1,-1,2)] = {1}; 
-  v3[slc(1,-1,2)] = {1}; 
-  v4[slc(1,-1,2)] = {1, 3}; 
-  v10[slc(1,-1,2)] = {1, 3, 5, 7, 9}; 
+  v0[slc(1,-1,2)] = Vector<double> {}; 
+  v1[slc(1,-1,2)] = Vector<double> {}; 
+  v2[slc(1,-1,2)] = Vector<double> {1}; 
+  v3[slc(1,-1,2)] = Vector<double> {1}; 
+  v4[slc(1,-1,2)] = Vector<double> {1, 3}; 
+  v10[slc(1,-1,2)] = Vector<double> {1, 3, 5, 7, 9}; 
 ```
 
 

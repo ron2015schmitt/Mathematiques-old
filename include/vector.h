@@ -68,7 +68,7 @@ namespace matricks {
     }
 
     // ************* C++11 initializer_list CONSTRUCTOR---------------------
-    Vector<D>(const std::initializer_list<D>& mylist) {
+    Vector<D>(std::initializer_list<D> mylist) {
       const size_type N =  mylist.size();
       data_ = new std::valarray<D>(N); 
       *this = mylist;
@@ -405,7 +405,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      if (this->getAddresses().common( x.getAddresses() )  ){    
+      if (common(*this,x)){    
 	Vector<D> vtemp(size());
 
 	for (register index_type i = size(); i--;)
@@ -426,7 +426,53 @@ namespace matricks {
 
 
 
-    
+    // doesn't work
+    //    template <class A, class B>  Vector<D>& equals(const TensorR<TensorR<D,A>,B>& x) {  
+    //    template <class A, class B>  Vector<D>& operator=(TensorR<TensorR<typename BaseType<D>::Type,A>,B>& x) {
+    //    template <class A, class B>  Vector<D>& operator=(TensorR<TensorR<D,A>,B>) {
+    //    template <class A>  Vector<D>& operator=(A& x) {
+    //    template <class A, class B>  Vector<D>& operator=(const TensorR<TensorR<typename BaseType<D>::Type,A>,B>& x) {
+    //    template <class A, class B>  Vector<D>& operator=(const TensorR<TensorR<typename BaseType<D>::Type,A>,B> x) {
+    //    template <template<class,class> class A, class B, class C>  Vector<D>& operator=(const TensorR<A<D,B>,C>& x) {
+    //    template <template<class,class> class A, class B, class C>  Vector<D>& operator=(const TensorR<A<PrimDataType,B>,C>& x) {
+   // WORKS
+    //    template <class A>  Vector<D>& operator=(A x) {
+    //    template <class A>  Vector<D>& operator=(const A x) {
+    //    template <class A>  Vector<D>& operator=(const A& x) {
+    //    template <class A, class B>  Vector<D>& operator=(const TensorR<A,B> x) {
+    //  template <class A, class B>  Vector<D>& operator=(const TensorR<A,B>& x) {
+ 
+
+    template <class X, class Y>  Vector<D>& operator=(const TensorR<X,Y>& x) {
+      mout << __FUNCTION__ << std::endl;
+      //      return *this;
+      const Y& b = x.derived();
+      disp(b.classname());
+      typename Y::TypeD::TypeD v;
+      disp(display::getTypeName(v));
+      disp("here");
+      disp(b.isExpression());
+      const typename Y::TypeD& b0 = b[0];
+      
+      disp(display::getTypeName(b0));
+      disp(b0.isExpression());
+      disp(b0.size());
+      
+      //tdisp(b0);
+      disp(b0.size());
+      for (index_type i = 0; i<size(); i--) {
+	for (index_type j = 0; j<b[i].size(); j--) {
+	  mdisp(i,j,b[i][j]);
+	}
+      }
+      return *this; 
+    }
+
+
+    std::string bottom(){
+      typename BaseType<D>::Type d;
+      return display::getTypeName(d);
+    }
 
 
 

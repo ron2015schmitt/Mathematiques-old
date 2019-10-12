@@ -199,18 +199,17 @@ namespace matricks {
     }
 
     //----------------- .conj() ---------------------------
-    // NOTE: in-place
-
-    Scalar<D>&  conj() {
-      // C++ does not have "instanceof" type guarding so even if it
-      // can't get to the code it will produce a compile error
-      // that's why "matrickconj" function is needed
-      if (is_complex<typeof(data_)>{}) {
-	data_ = matricksconj(data_);
-      }
+    // NOTE: in-place. Don't allow if not complex.
+    //----------------------------------------------------
+    template< typename T=D >
+      typename std::enable_if<is_complex<T>{}, Scalar<T>& >::type conj() {
+      using std::conj;
+      data_ = conj(data_);
       return *this;
     }
-    
+
+
+
     
 
     

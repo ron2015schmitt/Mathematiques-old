@@ -584,14 +584,11 @@ namespace matricks {
     //----------------- .conj() ---------------------------
     // NOTE: in-place
 
-    Vector<D>&  conj() {
-      // C++ does not have "instanceof" type guarding so even if it
-      // can't get to the code it will produce a compile error
-      // that's why "matrickconj" function is needed
-      if ((size() > 0) && (is_complex<typeof((*data_)[0])>{})) {
-	for(register index_type i=size(); i--;) {
-	  (*data_)[i] = matricksconj((*data_)[i]);
-	}
+    template< typename T=D >
+      typename std::enable_if<is_complex<T>{}, Vector<T>& >::type conj() {
+      using std::conj;
+      for(register index_type i=size(); i--;) {
+	(*data_)[i] = conj((*data_)[i]);
       }
       return *this;
     }

@@ -30,35 +30,72 @@ namespace matricks {
   typedef std::complex<unsigned long long> ComplexUnsignedLongLong;
 
 
-  // is_complex - text is an object is complex type
+  // is_complex - text is an object is complex type (false)
   template<class T> struct is_complex : std::false_type {};
-  template<class T> struct is_complex<std::complex<T>> : std::true_type {};
+
+  // std::complex class (true)
+  template<class D> struct is_complex<std::complex<D>> : std::true_type {};
+  
+  // T<std::complex> (true)  container holding complex
+  template<template<typename> class T, class D> struct is_complex<T<std::complex<D> > > : std::true_type {};
+
+
+  template <typename D> class Complexify {
+  public:
+    typedef std::complex<D> Type;
+  };
+  template <typename D> class Complexify<std::complex<D> > {
+  public:
+    typedef std::complex<D> Type;
+  };
+  template <template<typename> class T, typename D> class Complexify<T<D> > {
+  public:
+    typedef T<typename Complexify<D>::Type> Type;
+  };
+  template <typename D, typename A> class Complexify<TensorR<D,A> > {
+  public:
+    typedef TensorR<typename Complexify<D>::Type,A> Type;
+  };
+
+
+  template <typename D> class Realify {
+  public:
+    typedef D Type;
+  };
+  template <typename D> class Realify<std::complex<D> > {
+  public:
+    typedef D Type;
+  };
+  template <template<typename> class T, typename D> class Realify<T<D> > {
+  public:
+    typedef T<typename Realify<D>::Type> Type;
+  };
+  template <typename D, typename A> class Realify<TensorR<D,A> > {
+  public:
+    typedef TensorR<typename Realify<D>::Type,A> Type;
+  };
+
 
   
   // numbercast
   
   template <typename D2, typename D1>
     std::complex<D2> numbercast(const std::complex<D1>& x) {
-    using std::real;
-    using std::imag;
+    using namespace std;
     return std::complex<D2>( numbercast<D2,D1>(real(x)), numbercast<D2,D1>(imag(x)) );
   }
 
 
-  // C++ does not have "instanceof" type guarding so even if it
-  // can't get to the code it will produce a compile error
-  template <typename D> D matricksconj(const D& x) {
-    return x;
-  }
-  template <typename D> std::complex<D> matricksconj(const std::complex<D>& z) {
-    return std::conj(z);
-  }
 
+  /* template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > */
+  /*   D conj(D x) { */
+  /*   return x; */
+  /* } */
 
   // complex conjugate OPERTOR ~
 
   // TODO: rewrite using type traits and only floating types
-  template <typename D> std::complex<D>
+  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > std::complex<D>
   operator~(const std::complex<D>& x) {
     return std::complex<D>(x.real(), -x.imag());
   }
@@ -170,12 +207,12 @@ namespace matricks {
 
   // ***************************************************************************
   // * Complex math: complex<D1> OP D2
-  // *                        D1 OP complex<D2>
+  // *                       D1  OP complex<D2>
   // ***************************************************************************
 
   // complex<D1> + D2
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value> >inline
     std::complex<typename AddType<D1,D2>::Type>
     operator+(const std::complex<D1>& x1, const D2& x2) {
     typedef typename AddType<D1,D2>::Type D3;
@@ -187,7 +224,7 @@ namespace matricks {
 
   // D1 + complex<D2>
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value> >inline
     std::complex<typename AddType<D1,D2>::Type>
     operator+(const D1& x1, const std::complex<D2>& x2) {
     typedef typename AddType<D1,D2>::Type D3;
@@ -200,7 +237,7 @@ namespace matricks {
 
   // complex<D1> - D2
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value> >inline
     std::complex<typename SubType<D1,D2>::Type>
     operator-(const std::complex<D1>& x1, const D2& x2) {
     typedef typename SubType<D1,D2>::Type D3;
@@ -212,7 +249,7 @@ namespace matricks {
 
   // D1 - complex<D2>
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value> >inline
     std::complex<typename SubType<D1,D2>::Type>
     operator-(const D1& x1, const std::complex<D2>& x2) {
     typedef typename SubType<D1,D2>::Type D3;
@@ -225,7 +262,7 @@ namespace matricks {
 
   // complex<D1> * D2
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value> >inline
     std::complex<typename MultType<D1,D2>::Type>
     operator*(const std::complex<D1>& x1, const D2& x2) {
     typedef typename MultType<D1,D2>::Type D3;
@@ -237,7 +274,7 @@ namespace matricks {
 
   // D1 * complex<D2>
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value> >inline
     std::complex<typename MultType<D1,D2>::Type>
     operator*(const D1& x1, const std::complex<D2>& x2) {
     typedef typename MultType<D1,D2>::Type D3;
@@ -250,7 +287,7 @@ namespace matricks {
 
   // complex<D1> / D2
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D2>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value> >inline
     std::complex<typename DivType<D1,D2>::Type>
     operator/(const std::complex<D1>& x1, const D2& x2) {
     typedef typename DivType<D1,D2>::Type D3;
@@ -262,7 +299,7 @@ namespace matricks {
 
   // D1 / complex<D2>
   
-  template <typename D1, typename D2, typename = std::enable_if_t<std::is_fundamental<D1>::value> >inline
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value> >inline
     std::complex<typename DivType<D1,D2>::Type>
     operator/(const D1& x1, const std::complex<D2>& x2) {
     typedef typename DivType<D1,D2>::Type D3;
@@ -275,75 +312,6 @@ namespace matricks {
   
 
 
-  // *********************************************************************
-  // * Complex bitwise math
-  // *********************************************************************
-
-  // TODO: rewrite using type traits. integral types only
-  
-  // complex bitwise NOT ~
-  inline ComplexUnsignedChar
-  operator~(const ComplexUnsignedChar& x) {
-    return ComplexUnsignedChar( ~real(x), ~imag(x)  );
-  }
-  // complex bitwise OR |
-  inline ComplexUnsignedChar
-    operator|(const ComplexUnsignedChar& x, const ComplexUnsignedChar& y) {
-    return ComplexUnsignedChar( real(x)|real(y), imag(x)|imag(y)  );
-  }
-  // complex bitwise OR: complex Scalar | real scalar
-  inline ComplexUnsignedChar
-    operator|(const ComplexUnsignedChar& x, const unsigned char& y) {
-    return ComplexUnsignedChar( real(x)|y, imag(x)|y );
-  }
-  // complex bitwise OR: real scalar | complex Scalar
-  inline ComplexUnsignedChar
-    operator|(const unsigned char& x, const ComplexUnsignedChar& y) {
-    return ComplexUnsignedChar( x|real(y), x|imag(y) );
-  }
-  // complex bitwise XOR ^
-  inline ComplexUnsignedChar
-    operator^(const ComplexUnsignedChar& x, const ComplexUnsignedChar& y) {
-    return ComplexUnsignedChar( real(x)^real(y), imag(x)^imag(y)  );
-  }
-  // complex bitwise XOR: complex Scalar ^ real scalar
-  inline ComplexUnsignedChar
-    operator^(const ComplexUnsignedChar& x, const unsigned char& y) {
-    return ComplexUnsignedChar( real(x)^y, imag(x)^y );
-  }
-  // complex bitwise XOR: real scalar ^ complex Scalar
-  inline ComplexUnsignedChar
-    operator^(const unsigned char& x, const ComplexUnsignedChar& y) {
-    return ComplexUnsignedChar( x^real(y), x^imag(y) );
-  }
-
-  // complex bitwise AND &
-  inline ComplexUnsignedChar
-    operator&(const ComplexUnsignedChar& x, const ComplexUnsignedChar& y) {
-    return ComplexUnsignedChar( real(x)&real(y), imag(x)&imag(y)  );
-  }
-  // complex bitwise AND: complex Scalar ^ real scalar
-  inline ComplexUnsignedChar
-    operator&(const ComplexUnsignedChar& x, const unsigned char& y) {
-    return ComplexUnsignedChar( real(x)&y, imag(x)&y );
-  }
-  // complex bitwise AND: real scalar & complex Scalar
-  inline ComplexUnsignedChar
-    operator&(const unsigned char& x, const ComplexUnsignedChar& y) {
-    return ComplexUnsignedChar( x&real(y), x&imag(y) );
-  }
-
-  // complex bitwise shoft LEFT <<
-  inline ComplexUnsignedChar
-    operator<<(const ComplexUnsignedChar& x, const unsigned short& y) {
-    return ComplexUnsignedChar( real(x)<<y, imag(x)<<y  );
-  }
-  
-  // complex bitwise shoft RIGHT >>
-  inline ComplexUnsignedChar
-    operator>>(const ComplexUnsignedChar& x, const unsigned short& y) {
-    return ComplexUnsignedChar( real(x)>>y, imag(x)>>y  );
-  }
 
  
   

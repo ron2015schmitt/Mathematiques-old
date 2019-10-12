@@ -609,23 +609,6 @@ namespace matricks {
     }
   
 
-  // real(complex Tensor)
-
-  template <class D, class A> 
-    inline TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Real<D> > 
-    real(const TensorR<std::complex<D>,A>& a)
-    {
-      return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Real<D> >(a);
-    }
-
-  // imag(complex Tensor)
-
-  template <class D, class A> 
-    inline TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Imag<D> > 
-    imag(const TensorR<std::complex<D>,A>& a)
-    {
-      return  TER_Unary<D,TensorR<std::complex<D>,A>,Fun_Imag<D> >(a);
-    }
 
 
   // ------------------- vcomplex -------------------------------
@@ -782,42 +765,6 @@ namespace matricks {
     }
 
   
-  // ************************************************************************
-  // *              Conjugate and Adjoint
-  // ************************************************************************
-
-
-
-  // conj(complex Tensor)
-
-  template <class D, class A> 
-    inline TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
-    conj(const TensorR<std::complex<D>,A>& a)
-    {
-      return  TER_Unary<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
-    }
-
-  // adjoint(A) - conjugate transpose 
-
-  template <class D, class A> 
-    inline TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
-    adjoint(const TensorR<std::complex<D>,A>& a)
-    {
-      return  TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
-    }
-
-  
-  // ~A conjugate transpose operator
-
-  template <class D, class A> 
-    inline TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> > 
-    operator~(const TensorR<std::complex<D>,A>& a)
-    {
-      return  TER_Transpose<std::complex<D>,TensorR<std::complex<D>,A>,Fun_Conj<D> >(a);
-    }
-
-
-
 
 
 

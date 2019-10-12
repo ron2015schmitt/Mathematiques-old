@@ -1,5 +1,5 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H 1
+#ifndef MATRICKS__FUNCTIONS_H
+#define MATRICKS__FUNCTIONS_H 1
 
 
 namespace matricks {
@@ -1586,10 +1586,40 @@ namespace matricks {
 
   
   // ************************************************************************
-  // *              Transpose 
+  // *              Transpoe, Conjugate, Adjoint, and ~
   // ************************************************************************
 
 
+  // real(Tensor)
+
+  template <class D, class A> 
+    inline TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Real<D> > 
+    real(const TensorR<D,A>& a)
+    {
+      return TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Real<D> >(a);
+    }
+
+  // imag(Tensor)
+
+  template <class D, class A> 
+    inline TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Imag<D> > 
+    imag(const TensorR<D,A>& a)
+    {
+      return TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Imag<D> >(a);
+    }
+
+
+  // conj(Tensor)
+
+  template <class D, class A> 
+    inline TER_Unary<typename Complexify<D>::Type, TensorR<D,A>, Fun_Conj<D> > 
+    conj(const TensorR<D,A>& a)
+    {
+      return TER_Unary<typename Complexify<D>::Type, TensorR<D,A>, Fun_Conj<D> >(a);
+    }
+
+
+  
   // transpose(A) 
 
   template <class D, class A> 
@@ -1598,6 +1628,30 @@ namespace matricks {
     {
       return TERW_Transpose<D,TensorRW<D,A>,Fun_Plus<D> >(a);
     }
+
+  // adjoint(A) - conjugate transpose 
+
+  template <class D, class A> 
+    inline TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> > 
+    adjoint(const TensorR<D,A>& a)
+    {
+      return  TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> >(a);
+    }
+
+  
+  // ~A conjugate transpose operator
+
+  template <class D, class A> 
+    inline TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> > 
+    operator~(const TensorR<D,A>& a)
+    {
+      return  TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> >(a);
+    }
+
+
+
+
+
 
 
 

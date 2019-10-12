@@ -732,6 +732,88 @@ int main(int argc, char *argv[])
     tdisp((x/z));
   }
 
+
+  {
+    cr();
+    mout << bold.apply("conj(D)") << endl; 
+    ComplexDouble z = ComplexDouble(1,2);
+    double x = 6.5;
+    tdisp(z);
+    tdisp(x);
+    tdisp(conj(z));
+    tdisp(conj(x));
+    tdisp(real(x));
+    tdisp(imag(x));
+  }
+
+  cr();
+  disp(is_base_of<ComplexDouble,ComplexDouble>::value);
+  disp(is_base_of<Scalar<double>,Scalar<double> >::value);
+
+  cr();
+  disp(is_arithmetic<double>::value);
+  disp(is_arithmetic<ComplexDouble>::value);
+  disp(is_arithmetic<Scalar<double> >::value);
+
+  cr();
+  disp(is_floating_point<double>::value);
+  disp(is_floating_point<ComplexDouble>::value);
+  disp(is_floating_point<Scalar<double> >::value);
+
+  cr();
+  disp(is_complex<double>{});
+  disp(is_complex<ComplexDouble>{});
+  disp(is_complex<Scalar<double> >{});
+  disp(is_complex<Scalar<ComplexDouble> >{});
+
+
+  
+
+  {
+    cr();
+    mout << bold.apply("Complexify") << endl; 
+    Complexify<double>::Type double_;
+    tdisp(double_);
+    Complexify<std::complex<double> >::Type complexdouble_;
+    tdisp(complexdouble_);
+    Complexify<Scalar<double> >::Type scalardouble_;
+    tdisp(scalardouble_);
+    Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+    tdisp(scalarcomplexdouble_);
+  }
+
+    {
+    cr();
+    mout << bold.apply("Realify") << endl; 
+    Realify<double>::Type double_;
+    tdisp(double_);
+    Realify<std::complex<double> >::Type complexdouble_;
+    tdisp(complexdouble_);
+    Realify<Scalar<double> >::Type scalardouble_;
+    tdisp(scalardouble_);
+    Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+    tdisp(scalarcomplexdouble_);
+  }
+
+
+  {
+    cr();
+    mout << bold.apply("conj(Scalar<D>)") << endl; 
+    Scalar<ComplexDouble> z = ComplexDouble(1,2);
+    Scalar<double> x = 6.5;
+    tdisp(z);
+    tdisp(x);
+    tdisp(conj(z));
+    tdisp(conj(x));
+    tdisp(real(z));
+    tdisp(imag(z));
+    tdisp(real(x));
+    tdisp(imag(x));
+    tdisp(z.conj());
+    //tdisp(x.conj());
+  }
+
+
   
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;

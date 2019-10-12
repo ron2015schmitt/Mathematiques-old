@@ -116,33 +116,7 @@ int main()
   }
 
 
-  {
-    // x.conj()
-    using namespace std;
-    printStart(++testnum);
-    Dimensions dims(2,3);
-    Tensor<double> x(dims);
-    x[0] = 1;
-    x[1] = -1.5;
-    x[2] = 5;
-    x[3] = 4;
-    x[4] = -1;
-    x[5] = -1.5;
-    Tensor<double> expected(dims);
-    expected[0] = 1;
-    expected[1] = -1.5;
-    expected[2] = 5;
-    expected[3] = 4;
-    expected[4] = -1;
-    expected[5] = -1.5;
-    Tensor<double> result;
-    testcode( result = x.conj() );
-    bool pass = alltrue(result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-
+  // x.conj() -- does not exist 
 
   //-------------------transpose----------------------------
   

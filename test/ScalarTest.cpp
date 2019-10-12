@@ -1205,17 +1205,17 @@ int main(int argc, char *argv[])
 
   }
   {
-    // x.conj()
-    using namespace std;
-    printStart(++testnum);
-    Scalar<double> x = 22;
-    Scalar<double> expected = 22;
-    Scalar<double> result;
-    testcode( result = x.conj() );
-    bool pass = alltrue(result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+    // x.conj() - does not exist
+    // using namespace std;
+    // printStart(++testnum);
+    // Scalar<double> x = 22;
+    // Scalar<ComplexDouble> expected = ComplexDouble(22,0);
+    // Scalar<ComplexDouble> result;
+    // testcode( result = x.conj() );
+    // bool pass = alltrue(result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
 
   }
 

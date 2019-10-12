@@ -1831,8 +1831,9 @@ namespace matricks {
   public:
     Fun_Conj() { }
 
-    static inline std::complex<D> apply(const std::complex<D> a) {
-      return matricksconj(a); 
+    static inline typename Complexify<D>::Type apply(const D a) {
+      using std::conj;
+      return conj(a); 
     }
 
 #if MATRICKS_DEBUG>=1
@@ -1857,7 +1858,7 @@ namespace matricks {
     Fun_Real() { }
 
 
-    static inline const D apply(const std::complex<D> a) { 
+    static inline typename Realify<D>::Type apply(const D a) { 
       using std::real;
       return real(a); 
     }
@@ -1886,7 +1887,7 @@ namespace matricks {
   public:
     Fun_Imag() { }
 
-    static inline D apply(const std::complex<D> a) { 
+    static inline typename Realify<D>::Type apply(const D a) { 
       using std::imag;
       return imag(a); 
     }

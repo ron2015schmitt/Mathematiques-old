@@ -11,6 +11,58 @@
 using namespace std;
 
 
+// enable_if examples
+// from  http://codeofthedamned.com/index.php/enable_if
+
+// as return type
+template< typename T >
+typename std::enable_if< std::is_integral< T >::value, T >::type
+mysum(T a, T b)
+{
+  return (a+b);
+}
+
+// as function argument
+template< typename T >
+T mysum2(T a, T b,
+      typename std::enable_if< std::is_integral< T >::value, T >::type* = 0
+)
+{
+  return (a+b);
+}
+
+
+
+
+
+
+template <class D> class Box {
+private:
+  D d_;
+public:
+  Box(D d) : d_(d) {}
+
+  D value() {
+    return d_;
+  }
+
+  template< typename T=D >
+  typename std::enable_if<is_arithmetic<T>::value, T >::type
+    negate() {
+    return -d_;
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
 class Object {
 public:
   Object(){}
@@ -300,7 +352,43 @@ int main(int argc, char *argv[])
     float y = 0;
     // doesn't exist
     //    float z = x&y;
-  }  
+  }
+
+  {
+    printf("\nmysum: test of enable_if as return type\n");
+    int x = 1;
+    int y = 0;
+    int z = mysum(x,y);
+    cout<< "x=" << x << " y="<<y<<" z="<<z << endl;
+  }
+
+  {
+    float x = 1;
+    float y = 0;
+    // the following doesn;t exist
+    //float z = mysum(x,y);
+    //cout<< "x=" << x << " y="<<y<<" z="<<z << endl;
+  }
+
+  {
+    printf("\nmysum2: test of enable_if function argument\n");
+    int x = 1;
+    int y = 0;
+    int z = mysum2(x,y);
+    cout<< "x=" << x << " y="<<y<<" z="<<z << endl;
+  }
+
+
+  {
+    printf("\nBox class\n");
+    Box<int> x(1);
+    Box<string> s("hi");
+    cout<< "x=" << x.value() << " s="<<s.value()<< endl;
+    cout<< "negate(x)=" << x.negate() <<  endl;
+    //cout<< "negate(s)=" << s.negate() <<  endl;
+  }
+
+  
   return 0;
 }
 

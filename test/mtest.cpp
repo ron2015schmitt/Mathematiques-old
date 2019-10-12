@@ -179,31 +179,6 @@ int main()
   //-------------------Adjoint----------------------------
   // adjoint(x) - not defined for non-complex
   // NO TEST NEEDED
-  {
-    // x.adjoint()
-    using namespace std;
-    printStart(++testnum);
-    Matrix<double> x(2,3);
-    x[0] = 1;
-    x[1] = -2.5;
-    x[2] = 5;
-    x[3] = 4;
-    x[4] = -1;
-    x[5] = -1.5;
-    Matrix<double> expected(3,2);
-    expected[0] = 1;
-    expected[1] = 4;
-    expected[2] = -2.5;
-    expected[3] = -1;
-    expected[4] = 5;
-    expected[5] = -1.5;
-    Matrix<double> result;
-    testcode( result = x.adjoint());
-    bool pass = alltrue(result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
   // adjoint(x) -- not defined for non-complex
   //               no test needed
 

@@ -405,25 +405,27 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      if (common(*this,x)){    
+      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
+      if (common(*this,x)){
+	mout<< "  common addresses found" <<std::endl;
 	Vector<D> vtemp(size());
-
-	for (register index_type i = size(); i--;)
+	for (index_type i = 0; i < size(); i++) 
 	  vtemp[i] = x[i];   // Inlined expression
-	for (register index_type i = size(); i--;)
+	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = vtemp[i];
       } else {
-	for (register index_type i = size(); i--;) {
+	mout<< "  NO common addresses found" <<std::endl;
+	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = x[i];   // Inlined expression
-	}
       }
+      mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
       return *this; 
     }
-
+    
     template <class A>  Vector<D>& operator=(const TensorR<D,A>& x) {  
       return equals(x);
     }
-
+    
 
 
     // doesn't work
@@ -444,26 +446,23 @@ namespace matricks {
  
 
     template <class X, class Y>  Vector<D>& operator=(const TensorR<X,Y>& x) {
-      mout << __FUNCTION__ << std::endl;
+      mout << __FUNCTION__ <<" ";
       //      return *this;
-      const Y& b = x.derived();
-      disp(b.classname());
-      typename Y::TypeD::TypeD v;
-      disp(display::getTypeName(v));
-      disp("here");
-      disp(b.isExpression());
-      const typename Y::TypeD& b0 = b[0];
+      const Y& y = x.derived();
+      disp(y.classname());
+      disp(y.isExpression());
+      cr();
+      Vector<double> v(2);
+      y[0];  // dies here somewhere
       
-      disp(display::getTypeName(b0));
-      disp(b0.isExpression());
-      disp(b0.size());
-      
+      return *this;
+            
       //tdisp(b0);
-      disp(b0.size());
       for (index_type i = 0; i<size(); i--) {
-	for (index_type j = 0; j<b[i].size(); j--) {
-	  mdisp(i,j,b[i][j]);
-	}
+	//	Object<D> q = y[i];
+	//	for (index_type j = 0; j<y[i].size(); j--) {
+	//	  mdisp(i,j,q[j]);
+	//	}
       }
       return *this; 
     }

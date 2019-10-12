@@ -36,7 +36,7 @@
 
 // -------------------------------------------
 //     From loki submodule
-//#include "TypeTraits.h"
+#include "TypeTraits.h"
 // -------------------------------------------
 
 

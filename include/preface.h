@@ -45,6 +45,12 @@
 extern char COMPILE_OPTIMIZE[];
 
 
+namespace display {
+  
+  template <typename T> inline std::string getBracketedTypeName(const T& var);
+ template <typename T> inline void dispval_strm(std::ostream &stream, const T& d);
+};
+
 namespace matricks {
 
   //*******************************************************

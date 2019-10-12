@@ -746,6 +746,34 @@ int main(int argc, char *argv[])
     tdisp(imag(x));
   }
 
+
+
+  {
+    cr();
+    mout << bold.apply("Imaginary<double> + Imaginary<float>") << endl; 
+    ImDouble z = ImDouble(1.1);
+    ImFloat x = ImFloat(10.01);
+    tdisp(z);
+    tdisp(x);
+    tdisp((z+x));
+    AddType<ImDouble,ImFloat>::Type q = z+x;   // TODO: NOTICE THAT ADDTYPE WORKS FOR IMAGINARY WORKS! use for Tensor functions
+    tdisp(q);
+  }
+
+  {
+    cr();
+    mout << bold.apply("Imaginary<double> * Imaginary<float>") << endl; 
+    ImDouble z = ImDouble(1.12);
+    ImFloat x = ImFloat(100);
+    tdisp(z);
+    tdisp(x);
+    tdisp((z*x));
+    MultType<ImDouble,ImFloat>::Type q = z*x;   // TODO: NOTICE THAT ADDTYPE WORKS FOR IMAGINARY WORKS! use for Tensor functions
+    tdisp(q);
+  }
+
+
+  
   cr();
   disp(is_base_of<ComplexDouble,ComplexDouble>::value);
   disp(is_base_of<Scalar<double>,Scalar<double> >::value);
@@ -813,6 +841,43 @@ int main(int argc, char *argv[])
     //tdisp(x.conj());
   }
 
+  {
+    cr();
+    mout << bold.apply("TypeTraits<T>::ParameterType") << endl;
+    Loki::TypeTraits<int>::ParameterType n = 1;
+    tdisp(n);
+    disp(Loki::TypeTraits<decltype(n)>::isReference);
+
+    Loki::TypeTraits<long>::ParameterType longo = *(new long(123456789));
+    tdisp(longo);
+    disp(Loki::TypeTraits<decltype(longo)>::isReference);
+
+    Loki::TypeTraits<long long>::ParameterType llongo = *(new long long(12345678));
+    tdisp(llongo);
+    disp(Loki::TypeTraits<decltype(llongo)>::isReference);
+
+    Loki::TypeTraits<double>::ParameterType x = 2.13;
+    tdisp(x);
+    disp(Loki::TypeTraits<decltype(x)>::isReference);
+
+    Loki::TypeTraits<long double>::ParameterType big = 2.13;
+    tdisp(big);
+    disp(Loki::TypeTraits<decltype(big)>::isReference);
+
+    Loki::TypeTraits<std::complex<double>>::ParameterType z = *(new std::complex<double>(1.2,3.4));
+    tdisp(z);
+    disp(Loki::TypeTraits<typeof(z)>::isReference); // doesnt work
+    disp(Loki::TypeTraits<decltype(z)>::isReference); // works
+    disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double> >>::isReference);
+    disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double>>::ParameterType>::isReference);
+
+
+    Loki::TypeTraits<Imaginary<double>>::ParameterType w = *(new Imaginary<double>(1.2));
+    tdisp(w);
+    disp(Loki::TypeTraits<decltype(z)>::isReference); // works
+
+
+  }
 
   
   cr();

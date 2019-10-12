@@ -447,7 +447,6 @@ namespace display {
   // perhaps implement as added feature if C++11 compiler:
   // https://stackoverflow.com/questions/41936763/type-traits-to-check-if-class-has-member-function
 
-  template <typename T> inline std::string getBracketedTypeName(const T& var);
   
   template <class T> inline std::string getTypeName(const T& var) {
     return getTypeStyle(var).apply(var.classname());

@@ -879,6 +879,33 @@ int main(int argc, char *argv[])
 
   }
 
+
+
+  {
+    cr();
+    mout << bold.apply("initializer_list") << endl; 
+    Vector<int> v1 = {1,2,3, 4};
+    tdisp(v1);
+    int n = 5;
+    Vector<int> v2 = {1,2,3,4,n};
+    tdisp(v2);
+
+    Scalar<int> s = 5;
+
+    // DOESNT WORK
+    //    Vector<int> v3 = initializer_list<int>{1,2,3,4,s};//
+    //^^^^^^^^^^^^^^^
+
+    Vector<Scalar<int> > v3 = {1,2,3,4,s};//  TODO: use this concept with slices lists
+    //   Use lists instead of variadic
+    // make a subclass of slice that uses a list of vectors, or just has as part of slice
+    
+    
+    tdisp(v3);
+  }
+
+
+  //------------------------------------------------------
   
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;

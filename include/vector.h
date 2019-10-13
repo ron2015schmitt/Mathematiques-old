@@ -14,7 +14,8 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Vector : public TensorRW<D,Vector<D> > {
+  template <class D> class Vector :
+    public TensorRW<D,Vector<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -405,20 +406,20 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
+      //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
       if (common(*this,x)){
-	mout<< "  common addresses found" <<std::endl;
+	//mout<< "  common addresses found" <<std::endl;
 	Vector<D> vtemp(size());
 	for (index_type i = 0; i < size(); i++) 
 	  vtemp[i] = x[i];   // Inlined expression
 	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = vtemp[i];
       } else {
-	mout<< "  NO common addresses found" <<std::endl;
+	//mout<< "  NO common addresses found" <<std::endl;
 	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = x[i];   // Inlined expression
       }
-      mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
+      //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
       return *this; 
     }
     

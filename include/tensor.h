@@ -15,7 +15,8 @@ namespace matricks {
    ****************************************************************************   
    */
 
-  template <class D> class Tensor : public TensorRW<D,Tensor<D> >, public TensorObject {
+  template <class D> class Tensor :
+    public TensorRW<D,Tensor<D> > {
   private:
 
     // *********************** OBJECT DATA ***********************************

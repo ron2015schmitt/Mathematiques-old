@@ -93,7 +93,7 @@ namespace matricks {
       return TER_TensorOpScalar_New<typename AddType<T,T>::Type,TensorR<T,A>,T,Fun_Add_New<T,T> >(a,b);
     }
 
-  
+
 
   //^^^^^^^^^^^^^^^^^^^^^^^^^NEW PARDIGM^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   

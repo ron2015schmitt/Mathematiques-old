@@ -154,6 +154,26 @@ int main(int argc, char *argv[])
     NumberType<typeof(vd)>::Type d2 = 0.2;
     tdisp(d2);
   }
+  {
+    using namespace std;
+    // this work sbut disp() doesn't work because it doesn't recurse formats
+    cr();
+    mout << bold.apply("complex<Vector<double>> testing") << std::endl;
+    tdisp(NumberType<complex<Vector<double>>>::depth());
+    complex<Vector<double>> vd = complex<Vector<double>>({1.1,1.2,1.3},{2.1,2.2,2.3});
+    mout << vd << endl;
+    tdisp(FundamentalType<typeof(vd)>::depth());
+    FundamentalType<typeof(vd)>::Type d = 43;
+    tdisp(d);
+    tdisp(NumberType<typeof(vd)>::depth());
+    NumberType<typeof(vd)>::Type v2 = vd;
+    mout << v2 << endl;
+
+    //  TODO: need to define operator+=
+    //    NumberType<typeof(vd)>::Type v3 = vd+v2;
+    //    mout << v3 << endl;
+
+  }
 
     {
       cr();

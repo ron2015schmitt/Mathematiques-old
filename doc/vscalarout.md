@@ -3,7 +3,7 @@
 
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.25).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.25-r2).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -35,22 +35,12 @@ using namespace std;
 const double tol = 2e-16;
 Vector<complex<double> > v1;
 v1 = vcomplex(range<double>(1,2), 0.);
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 v1.roundzero(tol);
 Vector<complex<double> > v2;
 v2 = vcomplex(range<double>(-1,-2), range<double>(2,3));
 TER_Binary(a,b):   
     Vector<double> a = {-1, -2}; 
     Vector<double> b = {2, 3}; 
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 v2.roundzero(tol);
 ```
 
@@ -97,11 +87,6 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 ```C++
 Vector<double> v;
 v = exp(linspace<double>(-1,1,13));
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 ```
 
 **Some expressions with results** precise value to 16 digits is 2.35040238729 (via Mathematica)
@@ -136,12 +121,7 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 ```C++
   v = {1, 20, -1, 0}; 
   min(v) = -1; 
-  2*exp(v)+1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {6.43656, 9.7033e+08, 1.73576, 3}; 
+  2*exp(v)+1 = Vector<double> {6.43656, 9.7033e+08, 1.73576, 3}; 
   min(2*exp(v)+1) = 1.73576; 
 ```
 
@@ -156,12 +136,7 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 ```C++
   v = {1, 20, -1, 0}; 
   max(v) = 20; 
-  2*exp(v)+1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {6.43656, 9.7033e+08, 1.73576, 3}; 
+  2*exp(v)+1 = Vector<double> {6.43656, 9.7033e+08, 1.73576, 3}; 
   max(2*exp(v)+1) = 9.7033e+08; 
 ```
 

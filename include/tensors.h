@@ -14,9 +14,9 @@ namespace matricks {
   class Dimensions;
   class Indices;
   enum Tensors : unsigned int;
+  enum TensorOrExpression : unsigned int;
   template <Tensors, class D> struct TensorType;
   class TensorAbstract;
-  class TensorObject;
   template <class D, class DERIVED> class TensorR;
   template <class D, class DERIVED> class TensorRW;
 
@@ -389,8 +389,13 @@ namespace matricks {
   //       as described below.
   // -------------------------------------------------------------------
 
+
+  enum TensorOrExpression : unsigned int {T_TENSOR_OBJ, T_TENSOR_EXP};
+
   
   enum Tensors : unsigned int {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
+
+
   template <Tensors, class D> struct TensorType;
 
   template <class D> struct TensorType<T_SCALAR,D> {
@@ -401,6 +406,9 @@ namespace matricks {
   };
   template <class D> struct TensorType<T_MATRIX,D> {
     typedef Matrix<D> MyType;
+  };
+  template <class D> struct TensorType<T_TENSOR,D> {
+    typedef Tensor<D> MyType;
   };
   
 
@@ -440,20 +448,6 @@ namespace matricks {
     return common(tensor1.getAddresses(), tensor2.getAddresses());
   }
 
-
-
-  // -------------------------------------------------------------------
-  //
-  // TensorObject
-  //
-  // signifies it's an object, not an expression
-  // As of V2.19  I have found no use for this, but I'll leave it in.
-  // It may bear fruit at some point.
-  // -------------------------------------------------------------------
-
-  class TensorObject {
-  public:
-  };
   
   
   // -------------------------------------------------------------------

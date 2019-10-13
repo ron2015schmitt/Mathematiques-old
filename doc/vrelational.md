@@ -3,7 +3,7 @@
 
 
 # Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`) in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.25).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.25-r2).
 
 ## Relational operators
 ### Relational operators between two Vectors
@@ -21,42 +21,12 @@ Vector<double> v2( range<double>(3,1) );
 ```C++
   v1 = {1, 2, 3}; 
   v2 = {3, 2, 1}; 
-  v1 > v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 1}; 
-  v1 >= v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 1}; 
-  v1 < v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 0, 0}; 
-  v1 <= v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0}; 
-  v1 == v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 0}; 
-  v1 != v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 0, 1}; 
+  v1 > v2 = Vector<bool> {0, 0, 1}; 
+  v1 >= v2 = Vector<bool> {0, 1, 1}; 
+  v1 < v2 = Vector<bool> {1, 0, 0}; 
+  v1 <= v2 = Vector<bool> {1, 1, 0}; 
+  v1 == v2 = Vector<bool> {0, 1, 0}; 
+  v1 != v2 = Vector<bool> {1, 0, 1}; 
 ```
 
 ### Relational operators between a Vector and scalar
@@ -70,42 +40,12 @@ Vector<double> v( range<double>(1,3) );
 **Some expressions with results**
 ```C++
   v = {1, 2, 3}; 
-  v > 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 1}; 
-  v >= 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 1}; 
-  v < 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 0, 0}; 
-  v <= 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0}; 
-  v == 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 0}; 
-  v != 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 0, 1}; 
+  v > 2 = Vector<bool> {0, 0, 1}; 
+  v >= 2 = Vector<bool> {0, 1, 1}; 
+  v < 2 = Vector<bool> {1, 0, 0}; 
+  v <= 2 = Vector<bool> {1, 1, 0}; 
+  v == 2 = Vector<bool> {0, 1, 0}; 
+  v != 2 = Vector<bool> {1, 0, 1}; 
 ```
 
 ## Logical operators
@@ -120,56 +60,16 @@ Vector<double> v( range<double>(1,5) );
 **Some expressions with results**
 ```C++
   v = {1, 2, 3, 4, 5}; 
-  (v > 2) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 1, 1, 1}; 
-  !(v > 2) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0, 0, 0}; 
+  (v > 2) = Vector<bool> {0, 0, 1, 1, 1}; 
+  !(v > 2) = Vector<bool> {1, 1, 0, 0, 0}; 
   TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 1, 1, 1}; 
-    TER_Bool_TensorOpScalar b = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 1, 1, 0}; 
-(v >= 2) && (v <= 4 ) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 1, 1, 0}; 
+    TER_Bool_TensorOpScalar a = Vector<bool> {0, 1, 1, 1, 1}; 
+    TER_Bool_TensorOpScalar b = Vector<bool> {1, 1, 1, 1, 0}; 
+(v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
   TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0, 0, 0}; 
-    TER_Bool_TensorOpScalar b = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 0, 1, 1}; 
-(v <= 2) || (v >= 4 ) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0, 1, 1}; 
+    TER_Bool_TensorOpScalar a = Vector<bool> {1, 1, 0, 0, 0}; 
+    TER_Bool_TensorOpScalar b = Vector<bool> {0, 0, 0, 1, 1}; 
+(v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
 ```
 
 ## Vector mask access
@@ -186,34 +86,14 @@ Vector<double> v( range<double>(-10,10) );
 **Some expressions with results**
 ```C++
   v = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
-  v > 6 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
-  
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-v[(v > 6)] = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {7, 8, 9, 10}; 
+  v > 6 = Vector<bool> {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
+  v[(v > 6)] = Vector<double> {7, 8, 9, 10}; 
 ```
 
 
 Now set all elements that are larger than 6 to 6 (clipping)
 ```C++
 v[(v > 6)] = 6.;
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 ```
 **The result is**
 ```C++
@@ -224,11 +104,6 @@ DONE normal Vector operator=
 Now set all negative elements to zero
 ```C++
 v[(v < 0)] = 0.;
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 ```
 **The result is**
 ```C++
@@ -248,56 +123,16 @@ Vector<double> v( range<double>(1,5) );
 **Some expressions with results**
 ```C++
   v = {1, 2, 3, 4, 5}; 
-  (v > 2) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 1, 1, 1}; 
-  !(v > 2) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0, 0, 0}; 
+  (v > 2) = Vector<bool> {0, 0, 1, 1, 1}; 
+  !(v > 2) = Vector<bool> {1, 1, 0, 0, 0}; 
   TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 1, 1, 1}; 
-    TER_Bool_TensorOpScalar b = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 1, 1, 0}; 
-(v >= 2) && (v <= 4 ) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 1, 1, 1, 0}; 
+    TER_Bool_TensorOpScalar a = Vector<bool> {0, 1, 1, 1, 1}; 
+    TER_Bool_TensorOpScalar b = Vector<bool> {1, 1, 1, 1, 0}; 
+(v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
   TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0, 0, 0}; 
-    TER_Bool_TensorOpScalar b = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 0, 1, 1}; 
-(v <= 2) || (v >= 4 ) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {1, 1, 0, 1, 1}; 
+    TER_Bool_TensorOpScalar a = Vector<bool> {1, 1, 0, 0, 0}; 
+    TER_Bool_TensorOpScalar b = Vector<bool> {0, 0, 0, 1, 1}; 
+(v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
 ```
 
 ## Logical functions
@@ -320,12 +155,7 @@ Vector<double> v( range<double>(1,3) );
 **Some expressions with results**
 ```C++
   v = {1, 2, 3}; 
-  (v > 2) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<bool> {0, 0, 1}; 
+  (v > 2) = Vector<bool> {0, 0, 1}; 
   alltrue(v > 2) = 0; 
   alltrue(v > 0) = 1; 
   anytrue(v > 2) = 1; 

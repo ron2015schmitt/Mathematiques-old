@@ -3,7 +3,7 @@
 
 
 # Calculating a function via Fourier series and plotting the results in Matlab
-_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.25).
+_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.25-r2).
 
 ## Fourier Series for the Clausen Functions
 As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: 
@@ -29,11 +29,6 @@ Define the coefficient vectors:
 const size_type N = 20;
 Vector<double> k = range<double>(0,N-1);
 Vector<double> An = 1/k;
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 An[0] = 0.;
 Vector<double> Bn = Vector<double>(N,0.);
 ```
@@ -51,11 +46,6 @@ Calculate the Fourier series and store the results in vector `CL1`:
 const double T = 2*pi;
 const double omega = 2*pi/T;
 Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega );
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 ```
 
 The results `t` and `CL1` are:
@@ -121,11 +111,6 @@ const size_type N = 20;
 Vector<double> k = range<double>(0,N-1);
 Vector<double> An = Vector<double>(N,0.);
 Vector<double> Bn = 1./sqr(k);
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 Bn[0] = 0.;
 ```
 
@@ -142,11 +127,6 @@ Calculate the Fourier series and store the results in vector `CL2`:
 const double T = 2*pi;
 const double omega = 2*pi/T;
 Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega );
-
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
 ```
 
 The results `t` and `CL2` are:

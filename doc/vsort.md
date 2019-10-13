@@ -1,6 +1,6 @@
 
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in mātricks
-_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.25).
+_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.25-r2).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method
@@ -16,11 +16,6 @@ Vector<double> y( {30,10,20,40} );
 Vector<index_type> vindex;
 vindex = t.sort();
 y = y[vindex];
-
-inside normal Vector operator=
-  common addresses found
-
-DONE normal Vector operator=
 ```
 
 **The result is**

@@ -3,7 +3,7 @@
 
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.25).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.25-r2).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -21,51 +21,26 @@ v1 = {10, 20, 30, 40};
 TER_Binary(a,b):   
     Vector<double> a = {10, 20, 30, 40}; 
     Vector<double> b = {1, 2, 3, 4}; 
-v1+v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {11, 22, 33, 44}; 
+v1+v2 = Vector<double> {11, 22, 33, 44}; 
 v1 = {10, 20, 30, 40}; 
 **Some expressions with results**
 ```C++
   TER_Binary(a,b):   
     Vector<double> a = {10, 20, 30, 40}; 
     Vector<double> b = {1, 2, 3, 4}; 
-v1 + v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {11, 22, 33, 44}; 
+v1 + v2 = Vector<double> {11, 22, 33, 44}; 
   TER_Binary(a,b):   
     Vector<double> a = {10, 20, 30, 40}; 
     Vector<double> b = {1, 2, 3, 4}; 
-v1 - v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {9, 18, 27, 36}; 
+v1 - v2 = Vector<double> {9, 18, 27, 36}; 
   TER_Binary(a,b):   
     Vector<double> a = {10, 20, 30, 40}; 
     Vector<double> b = {1, 2, 3, 4}; 
-v1 * v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {10, 40, 90, 160}; 
+v1 * v2 = Vector<double> {10, 40, 90, 160}; 
   TER_Binary(a,b):   
     Vector<double> a = {10, 20, 30, 40}; 
     Vector<double> b = {1, 2, 3, 4}; 
-v1 / v2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {10, 10, 10, 10}; 
+v1 / v2 = Vector<double> {10, 10, 10, 10}; 
 ```
 
 ### Vector-scalar arithmetic
@@ -81,73 +56,18 @@ v1 = {10,20,30,40}; // C++11 list
 
 **Some expressions with results**
 ```C++
-  v1 + 1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {11, 21, 31, 41}; 
-  1 + v1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {11, 21, 31, 41}; 
-  v1 - 10 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {0, 10, 20, 30}; 
-  40 - v1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {30, 20, 10, 0}; 
-  v1 * 2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {20, 40, 60, 80}; 
-  2 * v1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {20, 40, 60, 80}; 
-  v1 / 10 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1, 2, 3, 4}; 
-  120 / v1 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {12, 6, 4, 3}; 
+  v1 + 1 = Vector<double> {11, 21, 31, 41}; 
+  1 + v1 = Vector<double> {11, 21, 31, 41}; 
+  v1 - 10 = Vector<double> {0, 10, 20, 30}; 
+  40 - v1 = Vector<double> {30, 20, 10, 0}; 
+  v1 * 2 = Vector<double> {20, 40, 60, 80}; 
+  2 * v1 = Vector<double> {20, 40, 60, 80}; 
+  v1 / 10 = Vector<double> {1, 2, 3, 4}; 
+  120 / v1 = Vector<double> {12, 6, 4, 3}; 
   TER_Binary(a,b):   
-    TER_TensorOpScalar a = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {12, 6, 4, 3}; 
-    TER_TensorOpScalar b = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {100, 200, 300, 400}; 
-1 + 120 / v1 - 8/8 + 5*v1*2 = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {112, 206, 304, 403}; 
+    TER_TensorOpScalar a = Vector<double> {12, 6, 4, 3}; 
+    TER_TensorOpScalar b = Vector<double> {100, 200, 300, 400}; 
+1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
 ```
 
 ### Vector math functions
@@ -163,36 +83,11 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 
 **Some expressions with results**: rounding and sign-related
 ```C++
-  floor(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-3, -3, -1, 0, 1, 2, 2}; 
-  ceil(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-2, -2, -1, 0, 1, 3, 3}; 
-  round(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 
-  sgn(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1, -1, -1, 0, 1, 1, 1}; 
-  abs(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {2.5, 2.25, 1, 0, 1, 2.25, 2.5}; 
+  floor(v) = Vector<double> {-3, -3, -1, 0, 1, 2, 2}; 
+  ceil(v) = Vector<double> {-2, -2, -1, 0, 1, 3, 3}; 
+  round(v) = Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 
+  sgn(v) = Vector<double> {-1, -1, -1, 0, 1, 1, 1}; 
+  abs(v) = Vector<double> {2.5, 2.25, 1, 0, 1, 2.25, 2.5}; 
 ```
 
 
@@ -206,69 +101,19 @@ v = {-1,0,1,2,4}; // C++11 list
 
 **Some expressions with results**: powers, roots, and exponentiation
 ```C++
-  pow(2., v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {0.5, 1, 2, 4, 16}; 
-  pow(v, 2.) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1, 0, 1, 4, 16}; 
+  pow(2., v) = Vector<double> {0.5, 1, 2, 4, 16}; 
+  pow(v, 2.) = Vector<double> {1, 0, 1, 4, 16}; 
   TER_Binary(a,b):   
     Vector<double> a = {-1, 0, 1, 2, 4}; 
     Vector<double> b = {-1, 0, 1, 2, 4}; 
-pow(v,v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1, 1, 1, 4, 256}; 
-  exp(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {0.367879, 1, 2.71828, 7.38906, 54.5982}; 
-  log(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {nan, -inf, 0, 0.693147, 1.38629}; 
-  log10(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {nan, -inf, 0, 0.30103, 0.60206}; 
-  log2(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {nan, -inf, 0, 1, 2}; 
-  sqr(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1, 0, 1, 4, 16}; 
-  cube(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1, 0, 1, 8, 64}; 
-  sqrt(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-nan, 0, 1, 1.41421, 2}; 
+pow(v,v) = Vector<double> {-1, 1, 1, 4, 256}; 
+  exp(v) = Vector<double> {0.367879, 1, 2.71828, 7.38906, 54.5982}; 
+  log(v) = Vector<double> {nan, -inf, 0, 0.693147, 1.38629}; 
+  log10(v) = Vector<double> {nan, -inf, 0, 0.30103, 0.60206}; 
+  log2(v) = Vector<double> {nan, -inf, 0, 1, 2}; 
+  sqr(v) = Vector<double> {1, 0, 1, 4, 16}; 
+  cube(v) = Vector<double> {-1, 0, 1, 8, 64}; 
+  sqrt(v) = Vector<double> {-nan, 0, 1, 1.41421, 2}; 
 ```
 
 
@@ -284,24 +129,9 @@ const double tol = 2e-16;
 
 **Some expressions with results**: trig
 ```C++
-  sin(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1.22465e-16, -1, 0, 1, 1.22465e-16}; 
-  cos(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1, 6.12323e-17, 1, 6.12323e-17, -1}; 
-  tan(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1.22465e-16, -1.63312e+16, 0, 1.63312e+16, -1.22465e-16}; 
+  sin(v) = Vector<double> {-1.22465e-16, -1, 0, 1, 1.22465e-16}; 
+  cos(v) = Vector<double> {-1, 6.12323e-17, 1, 6.12323e-17, -1}; 
+  tan(v) = Vector<double> {1.22465e-16, -1.63312e+16, 0, 1.63312e+16, -1.22465e-16}; 
 ```
 
 
@@ -309,24 +139,9 @@ The results are cleaner, when we round to a tolerance
 
 **Some expressions with results**: trig with rounded zeros
 ```C++
-  roundzero(sin(v),tol) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {0, -1, 0, 1, 0}; 
-  roundzero(cos(v),tol) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1, 0, 1, 0, -1}; 
-  roundzero(tan(v),tol) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {0, -1.63312e+16, 0, 1.63312e+16, 0}; 
+  roundzero(sin(v),tol) = Vector<double> {0, -1, 0, 1, 0}; 
+  roundzero(cos(v),tol) = Vector<double> {-1, 0, 1, 0, -1}; 
+  roundzero(tan(v),tol) = Vector<double> {0, -1.63312e+16, 0, 1.63312e+16, 0}; 
 ```
 
 
@@ -339,24 +154,9 @@ v = {-1,0,1}; // C++11 list
 
 **Some expressions with results**: hyperbolic trig
 ```C++
-  sinh(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-1.1752, 0, 1.1752}; 
-  cosh(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1.54308, 1, 1.54308}; 
-  tanh(v) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-0.761594, 0, 0.761594}; 
+  sinh(v) = Vector<double> {-1.1752, 0, 1.1752}; 
+  cosh(v) = Vector<double> {1.54308, 1, 1.54308}; 
+  tanh(v) = Vector<double> {-0.761594, 0, 0.761594}; 
 ```
 
 
@@ -375,33 +175,13 @@ v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
 
 **Some expressions with results**: inverse trig
 ```C++
-  asin(v)/pi = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-0.5, 0, 0.5}; 
-  acos(v)/pi = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1, 0.5, 0}; 
-  atan(v)/pi = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-0.25, 0, 0.25}; 
+  asin(v)/pi = Vector<double> {-0.5, 0, 0.5}; 
+  acos(v)/pi = Vector<double> {1, 0.5, 0}; 
+  atan(v)/pi = Vector<double> {-0.25, 0, 0.25}; 
   TER_Binary(a,b):   
     Vector<double> a = {-1, -1, -1, 0, 0, 0, 1, 1, 1}; 
     Vector<double> b = {-1, 0, 1, -1, 0, 1, -1, 0, 1}; 
-atan2(v1, v2)/pi = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {-0.75, -0.5, -0.25, 1, 0, 0, 0.75, 0.5, 0.25}; 
+atan2(v1, v2)/pi = Vector<double> {-0.75, -0.5, -0.25, 1, 0, 0, 0.75, 0.5, 0.25}; 
 ```
 
 ### Arbitrary combinations of the above functionality are supported
@@ -424,24 +204,9 @@ v2 = {-1,-2,-3,-4}; // C++11 list
     Vector<double> a = {10, 20, 30, 40}; 
     Vector<double> b = {-1, -2, -3, -4}; 
 TER_Binary(a,b):   
-    TER_TensorOpScalar_New a = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {9, 9, 9, 9}; 
-    TER_TensorOpScalar b = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {1, 4, 9, 16}; 
-2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = 
-inside normal Vector operator=
-  NO common addresses found
-
-DONE normal Vector operator=
-Vector<double> {10, 13, 18, 25}; 
+    TER_TensorOpScalar_New a = Vector<double> {9, 9, 9, 9}; 
+    TER_TensorOpScalar b = Vector<double> {1, 4, 9, 16}; 
+2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = Vector<double> {10, 13, 18, 25}; 
 ```
 
 

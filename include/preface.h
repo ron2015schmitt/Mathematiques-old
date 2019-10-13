@@ -231,26 +231,8 @@ namespace matricks {
     constexpr static int depth() {
       return 0;
     }
-  };
-  template <template<typename> class T, typename D> class NumberType<T<D> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-  };
-  template <template<typename,int> class T, typename D, int M> class NumberType<T<D,M> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-  };
-  template <typename D, typename A> class NumberType<TensorR<D,A> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
+    inline static int size(const T x) {
+      return 1;
     }
   };
   template <class D> class NumberType<std::complex<D> > {
@@ -259,12 +241,49 @@ namespace matricks {
     constexpr static int depth() {
       return 0;
     }
+    inline static int size(const D x) {
+      return 1;
+    }
   };
   template <class D> class NumberType<Imaginary<D> > {
   public:
     typedef Imaginary<D> Type;
     constexpr static int depth() {
       return 0;
+    }
+    inline static int size(const D x) {
+      return 1;
+    }
+  };
+
+  template <template<typename> class T, typename D> class NumberType<T<D> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const T<D>& x) {
+      return x.size();
+    }
+  };
+  template <template<typename,int> class T, typename D, int M> class NumberType<T<D,M> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const T<D,M>& x) {
+      return x.size();
+    }
+  };
+  template <typename D, typename A> class NumberType<TensorR<D,A> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const TensorR<D,A>& x) {
+      return x.size();
     }
   };
 

@@ -51,6 +51,7 @@
 #include "debug.h"
 #include "functors.h"
 #include "scalar.h"
+#include "newscalar.h"
 #include "vector.h"
 #include "matrix.h"
 #include "tensor.h"

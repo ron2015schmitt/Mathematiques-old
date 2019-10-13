@@ -30,7 +30,7 @@ public:
   Test2(D d): d_(d) {
   }
   constexpr inline int depth() {
-    return -1;
+    return matricks::NumberType<typeof(*this)>::depth();
   }
  
 };
@@ -201,6 +201,25 @@ int main(int argc, char *argv[])
       Test2<Test2<Test2<double>>> t2 {{2}};
       tdisp(NumberType<typeof(t2)>::depth());
       tdisp(t2.depth());
+    }
+
+
+    {
+      cr();
+      mout << bold.apply("NewScalar class testing") << std::endl;
+      NewScalar<double> t1(1.1);
+      tdisp(t1);
+      tdisp(NumberType<typeof(t1)>::depth());
+      tdisp(t1.depth());
+      tdisp(t1.size());
+      
+      mout << bold.apply("NewScalar class testing") << std::endl;
+      NewScalar<NewScalar<double>> t2 {2.2};
+      tdisp(t2);
+      tdisp(NumberType<typeof(t2)>::depth());
+      tdisp(t2.depth());
+      tdisp(t2.size());
+
     }
 
   //------------------------------------------------------

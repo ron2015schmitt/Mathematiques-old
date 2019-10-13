@@ -3,7 +3,7 @@
 
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.24-r2).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -64,6 +64,11 @@ v2[0] = -2;
 ```C++
 Vector<double> v1({10,11,12,13} ); // C++11 list
 Vector<double> v2(10*v1+1);
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 **The result is**
 ```C++

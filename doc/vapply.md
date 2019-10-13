@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.24-r2).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -37,26 +37,36 @@ Vector<int> v2(range<int>(-2,2));
 
 **Some expressions with results**: Applying User-defined function `pos` via `op1`
 ```C++
-  op1<double,pos>(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  op1<int,pos>(v2) = Vector<int> {0, 0, 0, 1, 2}; 
-  Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}+Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}...
-TER_ScalarOpTensor a = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
-TER_Unary b = Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
-*vptrs = {0x7ffdab653e10, 0x7ffdab653e10}; 
-TER_ScalarOpTensor *a_ = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
-TER_Unary *b_ = Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
-unsigned long this->size() = 11; 
-2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = i = 10; (*a_)[i] = 2; (*b_)[i] = 2.81669e-16; 
-i = 9; (*a_)[i] = 1.6; (*b_)[i] = 1.35191; 
-i = 8; (*a_)[i] = 1.2; (*b_)[i] = 2.18743; 
-i = 7; (*a_)[i] = 0.8; (*b_)[i] = 2.18743; 
-i = 6; (*a_)[i] = 0.4; (*b_)[i] = 1.35191; 
-i = 5; (*a_)[i] = 0; (*b_)[i] = 0; 
-i = 4; (*a_)[i] = -0.4; (*b_)[i] = 0; 
-i = 3; (*a_)[i] = -0.8; (*b_)[i] = 0; 
-i = 2; (*a_)[i] = -1.2; (*b_)[i] = 0; 
-i = 1; (*a_)[i] = -1.6; (*b_)[i] = 0; 
-i = 0; (*a_)[i] = -2; (*b_)[i] = 0; 
+  op1<double,pos>(v1) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  op1<int,pos>(v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<int> {0, 0, 0, 1, 2}; 
+  TER_Binary(a,b):   
+    TER_ScalarOpTensor a = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
+    TER_Unary b = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
+2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
@@ -77,23 +87,14 @@ Vector<double> v2(11,0.25);
 ```C++
   v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   v2 = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-  Vector<double> a = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-Vector<double> b = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-*vptrs = {0x7ffdab653e90, 0x7ffdab653eb0}; 
-Vector<double> *a_ = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-Vector<double> *b_ = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-unsigned long this->size() = 11; 
-op2<double,fmax>(v1,v2) = i = 10; (*a_)[i] = 1; (*b_)[i] = 0.25; 
-i = 9; (*a_)[i] = 0.8; (*b_)[i] = 0.25; 
-i = 8; (*a_)[i] = 0.6; (*b_)[i] = 0.25; 
-i = 7; (*a_)[i] = 0.4; (*b_)[i] = 0.25; 
-i = 6; (*a_)[i] = 0.2; (*b_)[i] = 0.25; 
-i = 5; (*a_)[i] = 0; (*b_)[i] = 0.25; 
-i = 4; (*a_)[i] = -0.2; (*b_)[i] = 0.25; 
-i = 3; (*a_)[i] = -0.4; (*b_)[i] = 0.25; 
-i = 2; (*a_)[i] = -0.6; (*b_)[i] = 0.25; 
-i = 1; (*a_)[i] = -0.8; (*b_)[i] = 0.25; 
-i = 0; (*a_)[i] = -1; (*b_)[i] = 0.25; 
+  TER_Binary(a,b):   
+    Vector<double> a = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+    Vector<double> b = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
+op2<double,fmax>(v1,v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
 ```
 
@@ -161,26 +162,36 @@ Vector<int> v2(range<int>(-2,2));
 
 **Some expressions with results**: Applying User-defined bound-in function `pos` 
 ```C++
-  pos(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  pos(v2) = Vector<int> {0, 0, 0, 1, 2}; 
-  Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}+Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}...
-TER_ScalarOpTensor a = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
-TER_Unary b = Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
-*vptrs = {0x7ffdab653e10, 0x7ffdab653e10}; 
-TER_ScalarOpTensor *a_ = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
-TER_Unary *b_ = Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
-unsigned long this->size() = 11; 
-2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = i = 10; (*a_)[i] = 2; (*b_)[i] = 2.81669e-16; 
-i = 9; (*a_)[i] = 1.6; (*b_)[i] = 1.35191; 
-i = 8; (*a_)[i] = 1.2; (*b_)[i] = 2.18743; 
-i = 7; (*a_)[i] = 0.8; (*b_)[i] = 2.18743; 
-i = 6; (*a_)[i] = 0.4; (*b_)[i] = 1.35191; 
-i = 5; (*a_)[i] = 0; (*b_)[i] = 0; 
-i = 4; (*a_)[i] = -0.4; (*b_)[i] = 0; 
-i = 3; (*a_)[i] = -0.8; (*b_)[i] = 0; 
-i = 2; (*a_)[i] = -1.2; (*b_)[i] = 0; 
-i = 1; (*a_)[i] = -1.6; (*b_)[i] = 0; 
-i = 0; (*a_)[i] = -2; (*b_)[i] = 0; 
+  pos(v1) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  pos(v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<int> {0, 0, 0, 1, 2}; 
+  TER_Binary(a,b):   
+    TER_ScalarOpTensor a = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
+    TER_Unary b = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
+2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 

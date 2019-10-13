@@ -3,7 +3,7 @@
 
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.24-r2).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -61,6 +61,11 @@ v2[0] = 200;
 Vector<double> v1({1,2,3,4}); // C++11 list
 Vector<double> v2({0,0,0,0}); // C++11 list
 v2 = 2*v1;
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 **The result is**
 ```C++

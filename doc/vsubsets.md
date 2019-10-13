@@ -3,7 +3,7 @@
 
 
 # Access subsets of Vector elements in mātricks
-_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.24-r2).
 
 You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices
 ## Access vector elements using a `Vector` of indices
@@ -25,15 +25,40 @@ Vector<index_type> vconst(15,1 );
 ```C++
   v = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1}; 
   veven = {0, 2, 4, 6, 8, 10}; 
-  v[veven] = Vector<double> {0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  v[veven] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0.2, 0.4, 0.6, 0.8, 1}; 
   v[veven[1]] = 0.2; 
   vodd = {1, 3, 5, 7, 9}; 
-  v[vodd] = Vector<double> {0.1, 0.3, 0.5, 0.7, 0.9}; 
+  v[vodd] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0.1, 0.3, 0.5, 0.7, 0.9}; 
   v[vodd[1]] = 0.3; 
-  v[veven,vodd] = Vector<double> {0, 0.2, 0.4, 0.6, 0.8, 1, 0.1, 0.3, 0.5, 0.7, 0.9}; 
+  
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+v[veven,vodd] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0.2, 0.4, 0.6, 0.8, 1, 0.1, 0.3, 0.5, 0.7, 0.9}; 
   v[vodd[veven[1]]] = 0.5; 
   vconst = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; 
-  v[vconst] = Vector<double> {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1}; 
+  v[vconst] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1}; 
 ```
 
 ## Access vector elements using an C++11 `initializer_list` of indices
@@ -51,11 +76,36 @@ v = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
 
 **The result is**
 ```C++
-  v[{0,4}] = Vector<double> {0, 0.4}; 
-  v[{4,0,1,4}] = Vector<double> {0.4, 0, 0.1, 0.4}; 
-  v[{1,0,2}] = Vector<double> {0.1, 0, 0.2}; 
-  v[{4,3,2,1,0}] = Vector<double> {0.4, 0.3, 0.2, 0.1, 0}; 
-  v[{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}] = Vector<double> {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}; 
+  v[{0,4}] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 0.4}; 
+  v[{4,0,1,4}] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0.4, 0, 0.1, 0.4}; 
+  v[{1,0,2}] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0.1, 0, 0.2}; 
+  v[{4,3,2,1,0}] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0.4, 0.3, 0.2, 0.1, 0}; 
+  v[{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}] = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}; 
 ```
 
 

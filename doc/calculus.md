@@ -3,7 +3,7 @@
 
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.24-r2).
 
 ## Integration
 ### Definite integrals
@@ -20,6 +20,11 @@ const double b = 1;
 Vector<double> x(linspace_ab<double>(a,b,N));
 Vector<double> f;
 f=-log(log(1/x));
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 
 Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, many points are needed to achieve even a few digits of accuracy, due to the singularities. 
@@ -77,6 +82,11 @@ const double pi = 3.14159265358979323846;
 Vector<double> x( linspace<double>(a,b,N) );
 Vector<double> gauss;
 gauss = 2/sqrt(pi)*exp(-sqr(x));
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> erf = gauss;
 erf.integrate_a2x(a,b);
 set_mathematica_var_format();
@@ -174,7 +184,12 @@ Vector<double> x( linspace<double>(a,b,N) );
 **Results**
 ```C++
   x = {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}; 
-  deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
+  
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+deriv(5*x,a,b) = {5,5,5,5,5,5,5,5,5,5,5}; 
 ```
 
 ### Differentiation: optional parameters
@@ -205,10 +220,35 @@ const double a = 0;
 const double b = 2*pi;
 Vector<double> x( linspace_b<double>(a,b,N) );
 Vector<double> f = sin(x);
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> f2 = deriv(f,a,b,4,2,true );
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> f3 = deriv(f,a,b,4,3,true );
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> f5 = deriv(f,a,b,4,5,true );
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> f7 = deriv(f,a,b,4,7,true );
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 
 ```Mathematica

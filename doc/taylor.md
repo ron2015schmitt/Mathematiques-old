@@ -3,7 +3,7 @@
 
 
 # Calculating a Taylor series and plotting the results in Mathematica
-_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`taylor.cpp`** (mātricks-v2.24-r2).
 
 ## Taylor Series for the Bessel Function J<sub>0</sub>(r)
 We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). 
@@ -53,6 +53,11 @@ Calculate the Taylor series and store the results in vector `y`:
 
 ```C++
 Vector<double> y = taylor(J0Coeffs, r, 19);
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 
 The results `r` and `y` are:
@@ -155,6 +160,11 @@ Calculate the Maclaurin series and store the results in vector `y`:
 
 ```C++
 Vector<double> y = maclaurin(J0Coeffs, r, 19, 5.);
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 
 The results `r` and `y` are:

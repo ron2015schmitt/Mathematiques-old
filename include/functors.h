@@ -147,15 +147,16 @@ namespace matricks {
     Fun_Add_New() { }
   
     static inline typename AddType<D1,D2>::Type apply(const D1 a, const D2 b) {
-      mout <<"Fun_Add::apply(a,b)"<<std::endl;
-      mout <<"       ";
-      tdisp(a);
-      mout <<"       ";
-      tdisp(b); 
-      typename AddType<D1,D2>::Type y = a+b;
-      mout <<"       ";
+      //  mout <<"Fun_Add::apply(a,b)"<<std::endl;
+      // mout <<"       ";
+      // tdisp(a);
+      // mout <<"       ";
+      // tdisp(b); 
+      // typename AddType<D1,D2>::Type y = a+b;
+      //mout <<"       ";
       //      tdisp(y);  // this produces the correct value
-      return y; 
+      // return y;
+      return a+b;
     }
 
 

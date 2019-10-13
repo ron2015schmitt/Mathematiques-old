@@ -3,7 +3,7 @@
 
 
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.24).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.24-r2).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors
@@ -21,12 +21,42 @@ Vector<double> v2( range<double>(3,4) );
 ```C++
   v1 = {0, 1, 2}; 
   v2 = {3, 4}; 
-  (v1,v2) = Vector<double> {0, 1, 2, 3, 4}; 
-  (v1,v2,v1) = Vector<double> {0, 1, 2, 3, 4, 0, 1, 2}; 
-  (v1,v2,v1,v2) = Vector<double> {0, 1, 2, 3, 4, 0, 1, 2, 3, 4}; 
-  (10*v1,v2) = Vector<double> {0, 10, 20, 3, 4}; 
-  (v1,10*v2) = Vector<double> {0, 1, 2, 30, 40}; 
-  (10*v1,10*v2) = Vector<double> {0, 10, 20, 30, 40}; 
+  (v1,v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 1, 2, 3, 4}; 
+  (v1,v2,v1) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 1, 2, 3, 4, 0, 1, 2}; 
+  (v1,v2,v1,v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 1, 2, 3, 4, 0, 1, 2, 3, 4}; 
+  (10*v1,v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 10, 20, 3, 4}; 
+  (v1,10*v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 1, 2, 30, 40}; 
+  (10*v1,10*v2) = 
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
+Vector<double> {0, 10, 20, 30, 40}; 
 ```
 
 
@@ -92,10 +122,25 @@ Vector<double> v1( range<double>(1,3) );
 Vector<double> v2( range<double>(4,5) );
 Vector<double> v3;
 v3 = rep(v1,3);
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> v4;
 v4 = (rep(v1,2), rep(v2,3));
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 Vector<double> v5;
 v5 = rep((v1,v2),2);
+
+inside normal Vector operator=
+  NO common addresses found
+
+DONE normal Vector operator=
 ```
 
 **The result is**

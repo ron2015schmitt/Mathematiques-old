@@ -474,24 +474,25 @@ namespace matricks {
     }
 
     inline const D operator[](const index_type i) const {
-      mout <<std::endl << "TER_Binary["<<i<<"]:   "<<std::endl;
-      mout << "    ";
-      tdisp(i);
-      mout << "    ";
-      tdisp((*a_)[i]);
-      mout << "    ";
-      tdisp((*b_)[i]);
+      //      mout <<std::endl << "TER_Binary["<<i<<"]:   "<<std::endl;
+      //      mout << "    ";
+      //      tdisp(i);
+      //      mout << "    ";
+      //      tdisp((*a_)[i]);
+      //      mout << "    ";
+      //      tdisp((*b_)[i]);
       //   BUG::   instead of D, we need to return a Vector Object
-      mout << "     D x = OP::apply(a_["<<i<<"]+b_["<<i<<"])" << std::endl;
-      D x = OP::apply((*a_)[i], (*b_)[i]);
-      mout << "     DONE  OP::apply(a_["<<i<<"]+b_["<<i<<"])" << std::endl;
-      mout << "    ";
-      tdisp((*a_)[i]);
-      mout << "    ";
-      tdisp((*b_)[i]);
-      mout << std::endl<< "    ";
-      tdisp(x);  // this is what crashes 
-      return x; 
+      //      mout << "     D x = OP::apply(a_["<<i<<"]+b_["<<i<<"])" << std::endl;
+      //      D x = OP::apply((*a_)[i], (*b_)[i]);
+      //      mout << "     DONE  OP::apply(a_["<<i<<"]+b_["<<i<<"])" << std::endl;
+      //      mout << "    ";
+      //      tdisp((*a_)[i]);
+      //      mout << "    ";
+      //      tdisp((*b_)[i]);
+      //      mout << std::endl<< "    ";
+      //      tdisp(x);  // this is what crashes 
+      //      return x;
+      return  OP::apply((*a_)[i], (*b_)[i]);
     }
     inline VectorofPtrs getAddresses(void) const {
       return *vptrs;

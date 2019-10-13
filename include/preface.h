@@ -203,14 +203,23 @@ namespace matricks {
   template <typename T> class FundamentalType {
   public:
     typedef T Type;
+    constexpr static int depth() {
+      return 0;
+    }
   };
   template <template<typename> class T, typename D> class FundamentalType<T<D> > {
   public:
     typedef typename FundamentalType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<D>::depth();
+    }
   };
   template <typename D, typename A> class FundamentalType<TensorR<D,A> > {
   public:
     typedef typename FundamentalType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<D>::depth();
+    }
   };
 
   /* NumberType - this operates recursively to find the base arithmetic type */
@@ -219,58 +228,47 @@ namespace matricks {
   template <typename T> class NumberType {
   public:
     typedef T Type;
+    constexpr static int depth() {
+      return 0;
+    }
   };
   template <template<typename> class T, typename D> class NumberType<T<D> > {
   public:
     typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+  };
+  template <template<typename,int> class T, typename D, int M> class NumberType<T<D,M> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
   };
   template <typename D, typename A> class NumberType<TensorR<D,A> > {
   public:
     typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
   };
   template <class D> class NumberType<std::complex<D> > {
   public:
     typedef std::complex<D> Type;
+    constexpr static int depth() {
+      return 0;
+    }
   };
   template <class D> class NumberType<Imaginary<D> > {
   public:
     typedef Imaginary<D> Type;
+    constexpr static int depth() {
+      return 0;
+    }
   };
 
 
-  /* DepthType - this operates recursively to find the base arithmetic type */
-  /*                 this could certainly be specialized for other */
-  /*                 container types */
-  template <typename T> class DepthType {
-  public:
-    static inline int value() {
-      return 1;
-    }
-  };
-  template <template<typename> class T, typename D> class DepthType<T<D>> {
-  public:
-    static inline int value() {
-      return 1+DepthType<D>::value();
-    }
-  };
-  template <typename D, typename A> class DepthType<TensorR<D,A> > {
-  public:
-    static inline int value() {
-      return 1+DepthType<D>::value();
-    }
-  };
-  template <class D> class DepthType<std::complex<D> > {
-  public:
-    static inline int value() {
-      return 1;
-    }
-  };
-  template <class D> class DepthType<Imaginary<D> > {
-  public:
-    static inline int value() {
-      return 1;
-    }
-  };
   
   // ***************************************************************************
   // * {Add,Sub,Mutl,Div}Type: Class that determines return type of an aritmetic

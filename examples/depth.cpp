@@ -7,6 +7,35 @@
 #include <string>
 
 
+
+template <typename D, int M = 1+matricks::NumberType<D>::depth()> class Test : public matricks::TensorRW<D,Test<D>> {
+public:
+  typedef D Type;
+  Test() {
+  }
+  constexpr inline int depth() {
+    return M;
+  }
+ 
+};
+
+
+
+template <typename D> class Test2 : public matricks::TensorRW<D,Test<D>> {
+public:
+  typedef D Type;
+  D d_;
+  Test2() {
+  }
+  Test2(D d): d_(d) {
+  }
+  constexpr inline int depth() {
+    return -1;
+  }
+ 
+};
+
+
 int main(int argc, char *argv[])
 {
 
@@ -87,24 +116,28 @@ int main(int argc, char *argv[])
   {
     cr();
     mout << bold.apply("Vector<double> testing") << std::endl;
+    tdisp(NumberType<double>::depth());
     Vector<double> vd {1,2,3,4};
     tdisp(vd);
-    tdisp(DepthType<double>::value());
-    tdisp(DepthType<Vector<double>>::value());
+
+    tdisp(FundamentalType<typeof(vd)>::depth());
     FundamentalType<typeof(vd)>::Type d = 0.1;
     tdisp(d);
+
+    tdisp(NumberType<typeof(vd)>::depth());
     NumberType<typeof(vd)>::Type d2 = 0.2;
     tdisp(d2);
   }
   {
     cr();
     mout << bold.apply("Vector<ComplexDouble> testing") << std::endl;
+    tdisp(NumberType<ComplexDouble>::depth());
     Vector<ComplexDouble> vd {ComplexDouble(0.1,1), ComplexDouble(0.2,2), ComplexDouble(3,0.3)};
     tdisp(vd);
-    tdisp(DepthType<ComplexDouble>::value());
-    tdisp(DepthType<Vector<ComplexDouble>>::value());
+    tdisp(FundamentalType<typeof(vd)>::depth());
     FundamentalType<typeof(vd)>::Type d = 3.14;
     tdisp(d);
+    tdisp(NumberType<typeof(vd)>::depth());
     NumberType<typeof(vd)>::Type d2 = ComplexDouble(0.1,0.2);
     tdisp(d2);
 
@@ -114,12 +147,41 @@ int main(int argc, char *argv[])
     mout << bold.apply("Vector<Vector<double> > testing") << std::endl;
     Vector<Vector<double>> vd {{1.1,1.2},{2.1,2.2},{3.1,3.2}};
     tdisp(vd);
+    tdisp(FundamentalType<typeof(vd)>::depth());
     FundamentalType<typeof(vd)>::Type d = 0.1;
     tdisp(d);
+    tdisp(NumberType<typeof(vd)>::depth());
     NumberType<typeof(vd)>::Type d2 = 0.2;
     tdisp(d2);
   }
- 
+
+    {
+      cr();
+      mout << bold.apply("Test class testing") << std::endl;
+      Test<double> t0;
+      tdisp(NumberType<typeof(t0)>::depth());
+      tdisp(t0.depth());
+      Test<Test<double>> t1;
+      tdisp(NumberType<typeof(t1)>::depth());
+      tdisp(t1.depth());
+      Test<Test<Test<double>>> t2;
+      tdisp(NumberType<typeof(t2)>::depth());
+      tdisp(t2.depth());
+    }
+
+    {
+      cr();
+      mout << bold.apply("Test2 class testing") << std::endl;
+      Test2<double> t0(0);
+      tdisp(NumberType<typeof(t0)>::depth());
+      tdisp(t0.depth());
+      Test2<Test2<double>> t1 {1};
+      tdisp(NumberType<typeof(t1)>::depth());
+      tdisp(t1.depth());
+      Test2<Test2<Test2<double>>> t2 {{2}};
+      tdisp(NumberType<typeof(t2)>::depth());
+      tdisp(t2.depth());
+    }
 
   //------------------------------------------------------
   

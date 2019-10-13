@@ -61,7 +61,8 @@ namespace matricks {
   typedef int index_type;
   typedef long double extended;
 
-
+  template <typename D> class Imaginary;
+  
   // maximum subcript size for vectors and matrices (since we allow negative indexing)
   const size_type maxsize = std::numeric_limits<index_type>::max();
   const size_type badsize = std::numeric_limits<size_type>::max();
@@ -196,26 +197,83 @@ namespace matricks {
     typedef D Type;
   };
 
-  /* BaseType - this operates recursively to find the base arithmetic type */
+  /* FundamentalType - this operates recursively to find the base arithmetic type */
   /*                 this could certainly be specialized for other */
   /*                 container types */
-  template <typename T> class BaseType {
+  template <typename T> class FundamentalType {
   public:
     typedef T Type;
   };
-  template <template<typename> class T, typename D> class BaseType<T<D> > {
+  template <template<typename> class T, typename D> class FundamentalType<T<D> > {
   public:
-    typedef typename BaseType<D>::Type Type;
+    typedef typename FundamentalType<D>::Type Type;
   };
-  template <typename D, typename A> class BaseType<TensorR<D,A> > {
+  template <typename D, typename A> class FundamentalType<TensorR<D,A> > {
   public:
-    typedef typename BaseType<D>::Type Type;
+    typedef typename FundamentalType<D>::Type Type;
+  };
+
+  /* NumberType - this operates recursively to find the base arithmetic type */
+  /*                 this could certainly be specialized for other */
+  /*                 container types */
+  template <typename T> class NumberType {
+  public:
+    typedef T Type;
+  };
+  template <template<typename> class T, typename D> class NumberType<T<D> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+  };
+  template <typename D, typename A> class NumberType<TensorR<D,A> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+  };
+  template <class D> class NumberType<std::complex<D> > {
+  public:
+    typedef std::complex<D> Type;
+  };
+  template <class D> class NumberType<Imaginary<D> > {
+  public:
+    typedef Imaginary<D> Type;
   };
 
 
+  /* DepthType - this operates recursively to find the base arithmetic type */
+  /*                 this could certainly be specialized for other */
+  /*                 container types */
+  template <typename T> class DepthType {
+  public:
+    static inline int value() {
+      return 1;
+    }
+  };
+  template <template<typename> class T, typename D> class DepthType<T<D>> {
+  public:
+    static inline int value() {
+      return 1+DepthType<D>::value();
+    }
+  };
+  template <typename D, typename A> class DepthType<TensorR<D,A> > {
+  public:
+    static inline int value() {
+      return 1+DepthType<D>::value();
+    }
+  };
+  template <class D> class DepthType<std::complex<D> > {
+  public:
+    static inline int value() {
+      return 1;
+    }
+  };
+  template <class D> class DepthType<Imaginary<D> > {
+  public:
+    static inline int value() {
+      return 1;
+    }
+  };
   
   // ***************************************************************************
-  // * ArithmeticType: Class that determines return type of an aritmetic
+  // * {Add,Sub,Mutl,Div}Type: Class that determines return type of an aritmetic
   // *                 operation between two types
   // ***************************************************************************
 

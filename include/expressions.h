@@ -1180,7 +1180,7 @@ namespace matricks {
     class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP> > {
 
   public:
-    typedef typename BaseType<D>::Type DREAL;
+    typedef typename FundamentalType<D>::Type DREAL;
 
     
   private:

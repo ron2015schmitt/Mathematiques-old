@@ -4,8 +4,9 @@
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.24
-# V2.24 new addition TensorR functions for +
+VERSION_MATRICKS=2.25
+# V2.25 BaseType->FundamentalType, Added NumberType and DepthType
+# V2.24 new addition TensorR functions for 
 # V2.23 added Imaginary<D> class
 # V2.22 refactoring.  Use C+11 from now on. Adding mixed-math operators
 # V2.21 introduced Tensor type (arbitrary rank)

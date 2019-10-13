@@ -28,7 +28,7 @@ namespace matricks {
 
   public:     
     typedef D DataType;
-    typedef typename BaseType<D>::Type PrimDataType;
+    typedef typename FundamentalType<D>::Type PrimDataType;
 
 
 
@@ -430,11 +430,11 @@ namespace matricks {
 
     // doesn't work
     //    template <class A, class B>  Vector<D>& equals(const TensorR<TensorR<D,A>,B>& x) {  
-    //    template <class A, class B>  Vector<D>& operator=(TensorR<TensorR<typename BaseType<D>::Type,A>,B>& x) {
+    //    template <class A, class B>  Vector<D>& operator=(TensorR<TensorR<typename FundamentalType<D>::Type,A>,B>& x) {
     //    template <class A, class B>  Vector<D>& operator=(TensorR<TensorR<D,A>,B>) {
     //    template <class A>  Vector<D>& operator=(A& x) {
-    //    template <class A, class B>  Vector<D>& operator=(const TensorR<TensorR<typename BaseType<D>::Type,A>,B>& x) {
-    //    template <class A, class B>  Vector<D>& operator=(const TensorR<TensorR<typename BaseType<D>::Type,A>,B> x) {
+    //    template <class A, class B>  Vector<D>& operator=(const TensorR<TensorR<typename FundamentalType<D>::Type,A>,B>& x) {
+    //    template <class A, class B>  Vector<D>& operator=(const TensorR<TensorR<typename FundamentalType<D>::Type,A>,B> x) {
     //    template <template<class,class> class A, class B, class C>  Vector<D>& operator=(const TensorR<A<D,B>,C>& x) {
     //    template <template<class,class> class A, class B, class C>  Vector<D>& operator=(const TensorR<A<PrimDataType,B>,C>& x) {
    // WORKS
@@ -469,7 +469,7 @@ namespace matricks {
 
 
     std::string bottom(){
-      typename BaseType<D>::Type d;
+      typename FundamentalType<D>::Type d;
       return display::getTypeName(d);
     }
 

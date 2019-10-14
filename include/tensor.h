@@ -320,7 +320,7 @@ namespace matricks {
     Tensor<D>& equals(const Tensor<D>& x) {
       // TODO: issue warning
       resize(x.dims());
-      for (register index_type i = size(); i--;) {
+      for (index_type i = size(); i--;) {
 	  (*data_)[i] = x[i];   // Inlined expression
       }
       return *this; 
@@ -336,12 +336,12 @@ namespace matricks {
 
       if (common(*this, x)){    
 	Tensor<D> Ttemp(this->dims());
-	for (register index_type i = size(); i--;)
+	for (index_type i = size(); i--;)
 	  Ttemp[i] = x[i];   // Inlined expression
-	for (register index_type i = size(); i--;)
+	for (index_type i = size(); i--;)
 	  (*data_)[i] = Ttemp[i];
       } else {
-	for (register index_type i = size(); i--;)
+	for (index_type i = size(); i--;)
 	  (*data_)[i] = x[i];   // Inlined expression
       }
       return *this; 
@@ -396,7 +396,7 @@ namespace matricks {
     // NOTE: in-place
 
     Tensor<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
-      for(register index_type i=size(); i--;) {
+      for(index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }
       return *this;
@@ -407,7 +407,7 @@ namespace matricks {
 
     template< typename T=D >
       typename std::enable_if<is_complex<T>{}, Tensor<T>& >::type conj() {
-      for(register index_type i=size(); i--;) {
+      for(index_type i=size(); i--;) {
 	(*data_)[i] = std::conj((*data_)[i]);
       }
       return *this;

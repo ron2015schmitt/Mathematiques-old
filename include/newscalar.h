@@ -29,7 +29,7 @@ namespace matricks {
   public:     
 
   typedef D DataType;
-  typedef typename FundamentalType<D>::Type PrimDataType;
+  typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -66,6 +66,11 @@ namespace matricks {
   }
 
 
+  // ************* C++11 initializer_list CONSTRUCTOR---------------------
+  NewScalar<D,M>(std::initializer_list<D> mylist) {
+    *this = mylist;
+    constructorHelper();
+  }
 
 
   // --------------------- constructorHelper() --------------------
@@ -92,23 +97,32 @@ namespace matricks {
 
 
   inline size_type size(void) const {
-    const size_type Nelements = this->nelements();;
-    if (M>1) {
-      return Nelements*NumberType<D>::size(data_);
-    } else {
-      return Nelements;
-    }
-  }
-  
-
-  inline size_type nelements(void) const {
     return 1;
   }
-
-  
   inline size_type depth(void) const {
     return M;
   }
+
+  inline size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return data_.size();
+    }
+  }
+  inline size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return data_.size();
+    }
+  }
+  inline size_type deepsize(void) const {
+    return (this->size())*(this->eldeepsize());
+  }
+ 
+
+  
   size_type ndims(void) const {
     return 0;
   }
@@ -129,37 +143,53 @@ namespace matricks {
 
 
   //**********************************************************************
-  //************************** CONVERSION  ***********************************
+  //************************** ACCESS() ***********************************
   //**********************************************************************
 
-    
 
-  // -------------------- ELEMENT ACCESS --------------------
+  // -------------------- NumberType access[] --------------------
+  // NOTE: indexes over [0] to [deepsize()]
+  // -------------------------------------------------------------
+  
+  // "read/write": unsigned
+  MyNumberType& operator[](const index_type n) {
+    if constexpr(M < 2) {
+      return data_;
+    } else {
+      return (*data_)[n];
+    }
+  }
 
-  // "read/write" access signed index
-  inline D& operator[](const index_type i)  {
+  // "read/write": signed
+  const MyNumberType& operator[](const index_type n)  const {
+    if constexpr(M < 2) {
+      return data_;
+    } else {
+      return (*data_)[n];
+    }
+  }
+
+
+  // -------------------- D element access() --------------------
+  // NOTE: indexes is void ie () 
+  // -------------------------------------------------------------
+
+
+  
+  // "read/write"
+  D& operator()()  {
+    return data_; 
+  }
+
+  // "read only"
+  const D& operator()()  const{
     return data_; 
   }
 
 
-  // "read only" access igned index
-  inline const D operator[](const index_type i) const {
-    return (const D)data_; 
-  }
 
 
-  // "read/write" access signed index
-  inline D& operator()()  {
-    return data_; 
-  }
-
-  // "read only" access igned index
-  inline const D operator()() const {
-    return data_; 
-  }
-
-
-
+  
   //**********************************************************************
   //************************** ASSIGNMENT **************************************
   //**********************************************************************
@@ -197,6 +227,18 @@ namespace matricks {
     return equals(s2);
   }
 
+
+  
+  NewScalar<D,M>& equals(const std::initializer_list<D>& mylist) {
+    // TODO: check size
+    typename std::initializer_list<D>::iterator it  = mylist.begin(); 
+    data_ = *it;
+
+    return *this;
+  }
+  NewScalar<D,M>& operator=(const std::initializer_list<D>& mylist) {
+    return equals(mylist);
+  }
 
 
 

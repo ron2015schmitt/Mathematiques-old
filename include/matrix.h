@@ -549,12 +549,12 @@ namespace matricks {
 
       if (common(*this, x)){    
 	Matrix<D> mtemp(Nrows_,Ncols_);
-	for (register index_type i = size(); i--;)
+	for (index_type i = size(); i--;)
 	  mtemp[i] = x[i];   // Inlined expression
-	for (register index_type i = size(); i--;)
+	for (index_type i = size(); i--;)
 	  (*data_)[i] = mtemp[i];
       } else {
-	for (register index_type i = size(); i--;)
+	for (index_type i = size(); i--;)
 	  (*data_)[i] = x[i];   // Inlined expression
       }
       return *this; 
@@ -593,7 +593,7 @@ namespace matricks {
       // TODO; issue warning
       this->resize(m2.dims());
 
-      for(register index_type i=size(); i--;)
+      for(index_type i=size(); i--;)
 	(*data_)[i] = m2[i];    
       return *this;
     }
@@ -694,7 +694,7 @@ namespace matricks {
     // NOTE: in-place
 
     Matrix<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
-      for(register index_type i=size(); i--;) {
+      for(index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }
       return *this;
@@ -706,7 +706,7 @@ namespace matricks {
 
     template< typename T=D >
       typename std::enable_if<is_complex<T>{}, Matrix<T>& >::type conj() {
-      for(register index_type i=size(); i--;) {
+      for(index_type i=size(); i--;) {
 	(*data_)[i] = std::conj((*data_)[i]);
       }
       return *this;

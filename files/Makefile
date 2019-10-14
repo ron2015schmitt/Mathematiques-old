@@ -198,7 +198,7 @@ OPTIMIZE ?=
 # g++ COMPILER
 # COPT provided at the command line will append to options
 #############################################################################
-CPPC = g++ -pipe
+CPPC = g++ -pipe --std=c++17 
 override COPT ?=  -Wfatal-errors
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 

@@ -67,13 +67,14 @@ namespace matricks {
   const size_type maxsize = std::numeric_limits<index_type>::max();
   const size_type badsize = std::numeric_limits<size_type>::max();
 
-
+  class TensorAbstract;
   template <class D, class A> class TensorR;  
   template <class D, class DERIVED> class TensorRW;
   template <class D> class Scalar;
   template <class D> class Vector;
   template <class D> class Matrix;
   template <class D> class Tensor;
+
 
   template <class D, class A> class VER_Rep;
   template <class D> class VSliceObj;
@@ -181,12 +182,21 @@ namespace matricks {
   // * Class type querying/manipulation
   // ********************************************************************
 
+
   // ContainedType - this returns the contained type of a complex number
   //                 this could certainly be specialized for other
   //                 container types
   template <typename T> class ContainedType {
   public:
-  typedef T Type;
+    typedef void Type;
+  };
+  template <typename D> class ContainedType<std::complex<D>> {
+  public:
+    typedef D Type;
+  };
+  template <typename D> class ContainedType<Imaginary<D>> {
+  public:
+    typedef D Type;
   };
   template <template<typename> class T, typename D> class ContainedType<T<D> > {
   public:
@@ -234,6 +244,9 @@ namespace matricks {
     inline static int size(const T x) {
       return 1;
     }
+    inline static int deepsize(const T& x) {
+      return 1;
+    }
   };
   template <class D> class NumberType<std::complex<D> > {
   public:
@@ -241,7 +254,10 @@ namespace matricks {
     constexpr static int depth() {
       return 0;
     }
-    inline static int size(const D x) {
+    inline static int size(const std::complex<D> x) {
+      return 1;
+    }
+    inline static int deepsize(const std::complex<D> x) {
       return 1;
     }
   };
@@ -251,7 +267,10 @@ namespace matricks {
     constexpr static int depth() {
       return 0;
     }
-    inline static int size(const D x) {
+    inline static int size(const Imaginary<D> x) {
+      return 1;
+    }
+    inline static int deepsize(const Imaginary<D> x) {
       return 1;
     }
   };
@@ -265,6 +284,9 @@ namespace matricks {
     inline static int size(const T<D>& x) {
       return x.size();
     }
+    inline static int deepsize(const T<D>& x) {
+      return x.deepsize();
+    }
   };
   template <template<typename,int> class T, typename D, int M> class NumberType<T<D,M> > {
   public:
@@ -274,6 +296,9 @@ namespace matricks {
     }
     inline static int size(const T<D,M>& x) {
       return x.size();
+    }
+    inline static int deepsize(const T<D,M>& x) {
+      return x.deepsize();
     }
   };
   template <typename D, typename A> class NumberType<TensorR<D,A> > {
@@ -285,9 +310,31 @@ namespace matricks {
     inline static int size(const TensorR<D,A>& x) {
       return x.size();
     }
+    inline static int deepsize(const TensorR<D,A>& x) {
+      return x.deepsize();
+    }
   };
 
 
+
+  template <class D>
+  inline D&& At(D&& x, index_type n) {
+    return x;
+  }
+  template <class D>
+  inline const D&& At(const D&& x, index_type n) {
+    return x;
+  }
+  template <template<class> class T, class D>
+  inline D&& At(T<D>&& x, index_type n) {
+    return x[n];
+  }
+  template <template<class> class T, class D>
+  inline const D&& At(const T<D>&& x, index_type n) {
+    return x[n];
+  }
+
+  
   
   // ***************************************************************************
   // * {Add,Sub,Mutl,Div}Type: Class that determines return type of an aritmetic
@@ -298,7 +345,7 @@ namespace matricks {
   public:
     T1 x1;
     T2 x2;
-    typedef typeof(x1+x2) Type;
+    typedef decltype(x1+x2) Type;
     static inline std::string name() {
       return typeid(Type).name();
     }
@@ -307,19 +354,19 @@ namespace matricks {
   public:
     T1 x1;
     T2 x2;
-    typedef typeof(x1-x2) Type;
+    typedef decltype(x1-x2) Type;
   };
   template <typename T1, typename T2> class MultType {
   public:
     T1 x1;
     T2 x2;
-    typedef typeof(x1*x2) Type;
+    typedef decltype(x1*x2) Type;
   };
   template <typename T1, typename T2> class DivType {
   public:
     T1 x1;
     T2 x2;
-    typedef typeof(x1/x2) Type;
+    typedef decltype(x1/x2) Type;
   };
 
 

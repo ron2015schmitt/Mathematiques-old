@@ -220,7 +220,7 @@ namespace matricks {
     D operator|( const Vector<D>& a, const  Vector<D>& b ) {
 
     D result = D(0);
-    for (register index_type i = a.size(); i--;) {
+    for (index_type i = a.size(); i--;) {
       result += a[i]*b[i];
     }
     return result;
@@ -278,7 +278,7 @@ namespace matricks {
     // (Vector|Vector)
     if ((a.ndims() == 1) && (b.ndims() == 1)) {
       D result = D(0);
-      for (register index_type i = a.size(); i--;) {
+      for (index_type i = a.size(); i--;) {
 	result += a[i]*b[i];
       }
       return result;
@@ -814,7 +814,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register index_type i = 1; i < N ; i++ )
+    for (index_type i = 1; i < N ; i++ )
       result += a[i];
     
     return result;
@@ -835,7 +835,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register index_type i = 1; i < N ; i++ )
+    for (index_type i = 1; i < N ; i++ )
       result *= a[i];
     
     return result;
@@ -857,7 +857,7 @@ namespace matricks {
 
     D result = a[0]*a[0];
 
-    for (register index_type i = 1; i < N ; i++ )
+    for (index_type i = 1; i < N ; i++ )
       result += a[i]*a[i];
     
     return std::sqrt(result);
@@ -878,7 +878,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register index_type i = 1; i < N ; i++ )
+    for (index_type i = 1; i < N ; i++ )
       result = std::min(result,a[i]);
     
     return result;
@@ -898,7 +898,7 @@ namespace matricks {
 
     D result = a[0];
 
-    for (register index_type i = 1; i < N ; i++ )
+    for (index_type i = 1; i < N ; i++ )
       result = std::max(result,a[i]);
     
     return result;
@@ -925,7 +925,7 @@ namespace matricks {
     bool result = true;
     
  
-    for (register index_type i = 0; i< a.size(); i++)
+    for (index_type i = 0; i< a.size(); i++)
       result = result && a[i];
     
     return result;
@@ -939,7 +939,7 @@ namespace matricks {
     bool result = false;
     
  
-    for (register index_type i = 0; i< a.size(); i++)
+    for (index_type i = 0; i< a.size(); i++)
       result = result || a[i];
     
     return result;
@@ -953,7 +953,7 @@ namespace matricks {
     size_type result = 0;
     
  
-    for (register index_type i = 0; i< a.size(); i++)
+    for (index_type i = 0; i< a.size(); i++)
       result += static_cast<index_type>(a[i]);
     
     return result;
@@ -970,13 +970,13 @@ namespace matricks {
     int N = 0;
     
 
-    for (register index_type i = 0; i< a.size(); i++)
+    for (index_type i = 0; i< a.size(); i++)
       N += int(a[i]);
  
     Vector<index_type> y(N);
 
     index_type j =0;
-    for (register index_type i = 0; i< a.size(); i++)
+    for (index_type i = 0; i< a.size(); i++)
       if (a[i])
 	y[j++] = i;
     
@@ -2083,14 +2083,14 @@ namespace matricks {
 
     switch (order) {
     case 0:
-      for (register index_type j = 0; j < N ; j++ ) {
+      for (index_type j = 0; j < N ; j++ ) {
 	result += v[j];
       }
       result = result * (b-a)/D(N);
       break;
     case 1:
       result += (v[0]+v[N-1])/2;
-      for (register index_type j = 1; j < N-1 ; j++ ) {
+      for (index_type j = 1; j < N-1 ; j++ ) {
 	result += v[j];
       }
       result = result * (b-a)/D(N-1);
@@ -2103,7 +2103,7 @@ namespace matricks {
 	D sodd = 0;
 	D seven = 0;
 	result += v[0]+v[N-1];
-	for (register index_type j = 1; j < N-1 ; j++ ) {
+	for (index_type j = 1; j < N-1 ; j++ ) {
 	  if (j%2==1) {
 	    sodd += v[j];
 	  } else {
@@ -2124,7 +2124,7 @@ namespace matricks {
 	D s3 = 0;
 	
 	result += v[0]+v[N-1];
-	for (register index_type j = 1; j < N-1 ; j++ ) {
+	for (index_type j = 1; j < N-1 ; j++ ) {
 	  if (j%3==1) {
 	    s1 += v[j];
 	  } else if (j%3==2) {
@@ -2148,7 +2148,7 @@ namespace matricks {
 	D s4 = 0;
 	
 	result += 7*(v[0]+v[N-1]);
-	for (register index_type j = 1; j < N-1 ; j++ ) {
+	for (index_type j = 1; j < N-1 ; j++ ) {
 	  if (j%4==1) {
 	    s1 += v[j];
 	  } else if (j%4==2) {

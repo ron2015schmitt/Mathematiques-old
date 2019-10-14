@@ -119,7 +119,7 @@ namespace matricks {
     std::complex<D> operator|( const Vector<D>& a, const  Vector<std::complex<D> >& b ) {
 
     std::complex<D> result = std::complex<D>(0,0);
-    for (register index_type i = a.size(); i--;) {
+    for (index_type i = a.size(); i--;) {
       result += a[i]*b[i];
     }
     return result;
@@ -139,7 +139,7 @@ namespace matricks {
     std::complex<D> operator|( const Vector<std::complex<D> >& a, const  Vector<D>& b ) {
 
     std::complex<D> result = std::complex<D>(0,0);
-    for (register index_type i = a.size(); i--;) {
+    for (index_type i = a.size(); i--;) {
       result += a[i]*b[i];
     }
     return result;
@@ -197,7 +197,7 @@ namespace matricks {
     // (Vector|Vector)
     if ((a.ndims() == 1) && (b.ndims() == 1)) {
       D result = D(0);
-      for (register index_type i = a.size(); i--;) {
+      for (index_type i = a.size(); i--;) {
 	result += a[i]*b[i];
       }
       return result;
@@ -225,7 +225,7 @@ namespace matricks {
     // (Vector|Vector)
     if ((a.ndims() == 1) && (b.ndims() == 1)) {
       D result = D(0);
-      for (register index_type i = a.size(); i--;) {
+      for (index_type i = a.size(); i--;) {
 	result += a[i]*b[i];
       }
       return result;
@@ -393,7 +393,7 @@ namespace matricks {
     D result = D();
     
  
-    for (register index_type i = a.size(); i--;) {
+    for (index_type i = a.size(); i--;) {
       D tempR = a[i].real(); 
       D tempI = a[i].imag(); 
       result += tempR*tempR + tempI*tempI;

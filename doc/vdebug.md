@@ -3,7 +3,7 @@
 
 
 # Vector Debugging (`MEBUG=1`) in mātricks
-_This document was automatically generated from file_ **`vdebug.cpp`** (mātricks-v2.25-r2).
+_This document was automatically generated from file_ **`vdebug.cpp`** (mātricks-v2.27).
 
 
 [Table of Contents](README.md)

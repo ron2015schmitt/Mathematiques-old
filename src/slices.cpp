@@ -65,7 +65,7 @@ namespace matricks {
   
     const size_type Nnew = indices.size();
     Vector<index_type> &indexvec = *(new Vector<index_type>(Nnew));
-    for (register index_type i = 0; i < Nnew ; i++ ) {
+    for (index_type i = 0; i < Nnew ; i++ ) {
       indexvec[i] = indices.front();
       indices.pop();
     }

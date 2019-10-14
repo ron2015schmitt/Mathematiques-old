@@ -200,7 +200,13 @@ namespace matricks {
     }
 
 
-    // -------------------- ELEMENT ACCESS[] --------------------
+
+
+    //**********************************************************************
+    //************************** ACCSS() ***********************************
+    //**********************************************************************
+
+        // -------------------- ELEMENT ACCESS[] --------------------
 
     // "read/write": unsigned
     D& operator[](const size_type n)  {
@@ -276,11 +282,6 @@ namespace matricks {
     const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
       return  TERW_Subset<D>(*this, list);
     }
-
-
-    //**********************************************************************
-    //************************** ACCESS() ***********************************
-    //**********************************************************************
 
 
     // -------------------- ELEMENT ACCESS --------------------
@@ -499,7 +500,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(v2.size());
 
-      for(register index_type i=size(); i--;)
+      for(index_type i=size(); i--;)
 	(*data_)[i] = v2[i];    
       return *this;
     }
@@ -556,7 +557,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(vstd.size());
 
-      for(register size_type i=size(); i--;)
+      for(size_type i=size(); i--;)
 	(*data_)[i] = vstd[i];    
 
       return *this;
@@ -577,7 +578,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(N);
 
-      for(register size_type i=size(); i--;)
+      for(size_type i=size(); i--;)
 	(*data_)[i] = varray[i];    
 
       return *this;
@@ -598,7 +599,7 @@ namespace matricks {
       // resize to avoid segmentation faults
       resize(varray.size());
 
-      for(register size_type i=size(); i--;)
+      for(size_type i=size(); i--;)
 	(*data_)[i] = varray[i];    
 
       return *this;
@@ -620,7 +621,7 @@ namespace matricks {
     // NOTE: in-place
     
     Vector<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
-      for(register index_type i=size(); i--;) {
+      for(index_type i=size(); i--;) {
 	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
       }
       return *this;
@@ -633,7 +634,7 @@ namespace matricks {
     template< typename T=D >
       typename std::enable_if<is_complex<T>{}, Vector<T>& >::type conj() {
       using std::conj;
-      for(register index_type i=size(); i--;) {
+      for(index_type i=size(); i--;) {
 	(*data_)[i] = conj((*data_)[i]);
       }
       return *this;
@@ -658,7 +659,7 @@ namespace matricks {
     
       std::vector<Pair<D> > temp(N);
 
-      for (register index_type i = 0; i < N ; i++ ) {
+      for (index_type i = 0; i < N ; i++ ) {
 	temp[i].index = i;
 	temp[i].data = (*data_)[i];
       }
@@ -667,7 +668,7 @@ namespace matricks {
       std::sort(temp.begin(),temp.end());
     
     
-      for (register index_type i = 0; i < N ; i++ ) {
+      for (index_type i = 0; i < N ; i++ ) {
 	ivec[i] = temp[i].index;
 	(*data_)[i] = temp[i].data;
       }
@@ -691,7 +692,7 @@ namespace matricks {
 	
       Pair<D> prevpair(0, (*data_)[0]);
       unique.push(prevpair);
-      for (register index_type i = 1; i < N ; i++ ) {
+      for (index_type i = 1; i < N ; i++ ) {
 	Pair<D> mypair(i, (*data_)[i]);
 	if (mypair.data != prevpair.data) {
 	  unique.push(mypair);
@@ -702,7 +703,7 @@ namespace matricks {
       const size_type Nnew = unique.size();
       Vector<index_type> &indexvec = *(new Vector<index_type>(Nnew));
       resize(Nnew);
-      for (register index_type i = 0; i < Nnew ; i++ ) {
+      for (index_type i = 0; i < Nnew ; i++ ) {
 	Pair<D> mypair = unique.front();
 	unique.pop();
 	indexvec[i] = mypair.index;
@@ -724,14 +725,14 @@ namespace matricks {
 	return *(new Vector<index_type>(0));
     
       std::map<index_type,D> mymap;
-      for (register index_type j = 0; j < N ; j++ ) {
+      for (index_type j = 0; j < N ; j++ ) {
 	mymap[j] = (*data_)[j];
       }
 
-      for (register index_type j = 0; j < N ; j++ ) {
+      for (index_type j = 0; j < N ; j++ ) {
 	if (mymap.find(j) == mymap.end()) continue;
 	Pair<D> pair1(j, (*data_)[j]);
-	for (register index_type k = j+1; k < N ; k++ ) {
+	for (index_type k = j+1; k < N ; k++ ) {
 	  if (mymap.find(k) == mymap.end()) continue;
 	  Pair<D> pair2(k, (*data_)[k]);
 	  if (pair1.data == pair2.data) {
@@ -759,7 +760,7 @@ namespace matricks {
       if (N==0)
 	return *this;
    
-      for (register index_type i = 0; i < N/2 ; i++ ) {
+      for (index_type i = 0; i < N/2 ; i++ ) {
 	D temp = (*data_)[i];
 	(*data_)[i] = (*data_)[N-i-1];
 	(*data_)[N-i-1] = temp;
@@ -775,7 +776,7 @@ namespace matricks {
     Vector<D>& cumsum() {
       const size_type N = size();
       D sum = 0;
-      for (register index_type i = 0; i < N ; i++ ) {
+      for (index_type i = 0; i < N ; i++ ) {
 	sum += (*data_)[i];
 	(*data_)[i] = sum;
       }
@@ -787,7 +788,7 @@ namespace matricks {
     Vector<D>& cumprod() {
       const size_type N = size();
       D prod = 1;
-      for (register index_type i = 0; i < N ; i++ ) {
+      for (index_type i = 0; i < N ; i++ ) {
 	prod *= (*data_)[i];
 	(*data_)[i] = prod;
       }
@@ -802,7 +803,7 @@ namespace matricks {
       if (N==0) return *this;
       D sum = (*data_)[0]/2;
       (*data_)[0] = 0;
-      for (register index_type i = 1; i < N ; i++ ) {
+      for (index_type i = 1; i < N ; i++ ) {
 	sum += (*data_)[i];
 	(*data_)[i] = sum - (*data_)[i]/2;
       }
@@ -821,13 +822,13 @@ namespace matricks {
       if (order == 0) {
 	this->cumsum();
 	const D dx = (b-a)/D(N);
-	for (register index_type i = 0; i < N ; i++ ) {
+	for (index_type i = 0; i < N ; i++ ) {
 	  mydata[i] *= dx;
 	}
       } else if (order == 1) {
 	this->cumtrapz();
 	const D dx = (b-a)/D(N-1);
-	for (register index_type i = 0; i < N ; i++ ) {
+	for (index_type i = 0; i < N ; i++ ) {
 	  mydata[i] *= dx;
 	}
       }  else {
@@ -844,7 +845,7 @@ namespace matricks {
       const size_type N = size();
 
       D sum = 0;
-      for (register index_type i = 0; i < N ; i++ ) {
+      for (index_type i = 0; i < N ; i++ ) {
 	sum += mydata[N-1-i];
 	mydata[N-1-i] = sum;
       }
@@ -858,7 +859,7 @@ namespace matricks {
       const size_type N = size();
 
       D prod = 1;
-      for (register index_type i = 0; i < N ; i++ ) {
+      for (index_type i = 0; i < N ; i++ ) {
 	prod *= mydata[N-1-i];
 	mydata[N-1-i] = prod;
       }
@@ -875,7 +876,7 @@ namespace matricks {
 
       D sum = mydata[N-1]/2;
       mydata[N-1] = 0;
-      for (register index_type i = 1; i < N ; i++ ) {
+      for (index_type i = 1; i < N ; i++ ) {
 	sum += mydata[N-1-i];
 	mydata[N-1-i] = sum - mydata[N-1-i]/2;
       }
@@ -895,13 +896,13 @@ namespace matricks {
       if (order == 0) {
 	this->cumsum_rev();
 	const D dx = (b-a)/(N);
-	for (register index_type i = 0; i < N ; i++ ) {
+	for (index_type i = 0; i < N ; i++ ) {
 	  mydata[N-1-i] *= dx;
 	}
       } else if (order == 1) {
 	this->cumtrapz_rev();
 	const D dx = (b-a)/(N-1);
-	for (register index_type i = 0; i < N ; i++ ) {
+	for (index_type i = 0; i < N ; i++ ) {
 	  mydata[N-1-i] *= dx;
 	}
       }  else {
@@ -925,7 +926,7 @@ namespace matricks {
 	temp = mydata[1] - mydata[0];
       }
 
-      for (register index_type i = 0; i < N-1 ; i++ ) {
+      for (index_type i = 0; i < N-1 ; i++ ) {
 	mydata[N-1-i] = mydata[N-1-i] - mydata[N-2-i];
       }
 
@@ -946,7 +947,7 @@ namespace matricks {
 	temp = mydata[N-1] - mydata[N-2];
       }
 
-      for (register index_type i = 0; i < N-1 ; i++ ) {
+      for (index_type i = 0; i < N-1 ; i++ ) {
 	mydata[i] = mydata[i+1] - mydata[i];
       }
 
@@ -973,7 +974,7 @@ namespace matricks {
 
       if (Dpts == 2) {
 	this->diff(periodic);
-	for (register index_type i = 0; i < N ; i++ ) {
+	for (index_type i = 0; i < N ; i++ ) {
 	  dat[i] /= dx;
 	}
 	
@@ -994,7 +995,7 @@ namespace matricks {
 	}
 	
 	const D c0 = 0.5/dx;
-	for (register index_type i = 1; i < N-1 ; i++ ) {
+	for (index_type i = 1; i < N-1 ; i++ ) {
 	  curr = dat[i+1] - dat[i-1];
 	  dat[i-1] = c0*prev;
 	  prev = curr;
@@ -1025,7 +1026,7 @@ namespace matricks {
 	}
 	
 	const D c0 = 1/(12*dx);
-	for (register index_type i = 2; i < N-2 ; i++ ) {
+	for (index_type i = 2; i < N-2 ; i++ ) {
 	  curr = dat[i-2] - 8*dat[i-1] + 8*dat[i+1]  - dat[i+2];
 	  dat[i-2] = c0*prev2;
 	  prev2 = prev1;
@@ -1061,7 +1062,7 @@ namespace matricks {
 	  prev1 =    2*dat[0] -  24*dat[1] -  35*dat[2] +  80*dat[3] -  30*dat[4] +  8*dat[5] -    dat[6];
 	}
 	const D c0 = 1/(60*dx);
-	for (register index_type i = 3; i < N-3 ; i++ ) {
+	for (index_type i = 3; i < N-3 ; i++ ) {
 	  curr = -dat[i-3] + 9*dat[i-2] - 45*dat[i-1] + 45*dat[i+1]  - 9*dat[i+2] + dat[i+3];
 	  dat[i-3] = c0*prev3;
 	  prev3 = prev2;

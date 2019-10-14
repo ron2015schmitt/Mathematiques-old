@@ -244,7 +244,7 @@ template <typename T1, typename T2> class ArithmeticType {
 public:
   T1 x1;
   T2 x2;
-  typedef typeof(x1+x2) Type;
+  typedef decltype(x1+x2) Type;
 };
 
 

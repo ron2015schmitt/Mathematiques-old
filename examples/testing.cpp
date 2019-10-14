@@ -384,8 +384,8 @@ int main(int argc, char *argv[])
 
   disp(typeid(*t).name());
   disp(typeid(*t2).name());
-  disp(is_instance<typeof(*t), Scalar>{});
-  disp(is_instance<typeof(*t2), Scalar>{});
+  disp(is_instance<decltype(*t), Scalar>{});
+  disp(is_instance<decltype(*t2), Scalar>{});
 
   Scalar<int> s1 = 12;
   Scalar<int> s2 = 10;
@@ -870,7 +870,7 @@ int main(int argc, char *argv[])
 
     Loki::TypeTraits<std::complex<double>>::ParameterType z = *(new std::complex<double>(1.2,3.4));
     tdisp(z);
-    disp(Loki::TypeTraits<typeof(z)>::isReference); // doesnt work
+    disp(Loki::TypeTraits<decltype(z)>::isReference); // doesnt work
     disp(Loki::TypeTraits<decltype(z)>::isReference); // works
     disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double> >>::isReference);
     disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double>>::ParameterType>::isReference);

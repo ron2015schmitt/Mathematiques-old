@@ -16,9 +16,6 @@ namespace matricks {
   enum Tensors : unsigned int;
   enum TensorOrExpression : unsigned int;
   template <Tensors, class D> struct TensorType;
-  class TensorAbstract;
-  template <class D, class DERIVED> class TensorR;
-  template <class D, class DERIVED> class TensorRW;
 
   //-------------------------------------------------------------------
   //                  Classes defined in later files
@@ -396,7 +393,6 @@ namespace matricks {
   enum Tensors : unsigned int {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
 
 
-  template <Tensors, class D> struct TensorType;
 
   template <class D> struct TensorType<T_SCALAR,D> {
     typedef Scalar<D> MyType;
@@ -664,12 +660,12 @@ namespace matricks {
 	// we need to make a copy of the rhs first
 	Vector<D> y(N);
 	
-	for(register size_type i=0; i<N; i++) 
+	for(size_type i=0; i<N; i++) 
 	  y[i] = rhs[i]; 
-	for(register size_type i=0; i<N; i++) 
+	for(size_type i=0; i<N; i++) 
 	  derived()[i] = y[i]; 
       } else {
-	for(register size_type i=0; i<N; i++) 
+	for(size_type i=0; i<N; i++) 
 	  derived()[i] = rhs[i]; 
       }
       return derived();

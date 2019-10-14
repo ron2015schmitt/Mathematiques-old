@@ -1,12 +1,14 @@
 
-v2.25-r3
+v2.27
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.25
+VERSION_MATRICKS=2.27
+# V2.27 NewScalar and NewVector classes work recursively
+# V2.26 Upped requirements to C++17 so can use static if
 # V2.25 BaseType->FundamentalType, Added NumberType and DepthType
 # V2.24 new addition TensorR functions for 
 # V2.23 added Imaginary<D> class

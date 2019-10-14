@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.25-r2).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.27).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -28,7 +28,7 @@ complex<double> z4 = 5;
   z1 = (0,1); 
   z2 = (1,1); 
   ~z2 = (1,-1); 
-  z3 = (0,-5); 
+  z3 = (-0,-5); 
   z4 = (5,0); 
 ```
 
@@ -88,20 +88,20 @@ v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 **Some expressions with results**
 ```C++
   TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 v1+v2 = Vector<std::complex<double>> {(1,0), (1,0), (1,0), (1,0)}; 
   TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 v1-v2 = Vector<std::complex<double>> {(-1,-2), (-1,0), (1,-2), (1,2)}; 
   TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 v1*v2 = Vector<std::complex<double>> {(1,-1), (0,0), (1,1), (1,-1)}; 
   TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 v1/v2 = Vector<std::complex<double>> {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
 ```
 
@@ -123,23 +123,23 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 ```C++
   TER_Binary(a,b):   
     Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 vr+vc = Vector<std::complex<double>> {(2,1), (3,0), (3,1), (4,-1)}; 
   TER_Binary(a,b):   
     Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 vr-vc = Vector<std::complex<double>> {(0,-1), (1,-0), (3,-1), (4,1)}; 
   TER_Binary(a,b):   
     Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
-vr*vc = Vector<std::complex<double>> {(1,1), (2,0), (0,3), (0,-4)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
+vr*vc = Vector<std::complex<double>> {(1,1), (2,0), (0,3), (-0,-4)}; 
   TER_Binary(a,b):   
     Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (0,-1)}; 
+    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 vr/vc = Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
   TER_Binary(a,b):   
     TER_ScalarOpTensor a = Vector<double> {2, 4, 6, 8}; 
-    TER_Cplx_TensorOpScalar b = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (0,-0.5)}; 
+    TER_Cplx_TensorOpScalar b = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (-0,-0.5)}; 
 2.*vr + vc/2. + 1 = Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
   TER_Binary(a,b):   
     TER_ScalarOpTensor a = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 

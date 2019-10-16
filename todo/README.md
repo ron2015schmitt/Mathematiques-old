@@ -10,7 +10,7 @@
 1. [Index class](index.md)
 1. [Unit Testing](unittesting.md)
 
-## Items for V5.0 -- Matrix Math via Lapack
+## Items for V4.0 -- Matrix Math via Lapack
 1. [Diagonal matrices](diagonal.md)
 1. [Matrix operations](lapack.md)
 
@@ -21,8 +21,14 @@
    1. matrix inverse
    1. matrix pseudo-inverse
 
-
-## Items for V4.0 -- Debug functionality and File I/O
+## Items for V5.0 -- File I/O
 1. [Refactor FormatData](formatdata.md)
-1. 
+1. [Tensor class FormatData](tensorformatdata.md)
+1. [Implement >> operators](inputstreams.md)
+1. [File save/load](fileio.md)
+
+## Items for V6.0 -- Debug Functionality
+
+## Items for V7.0 -- Functions and coordinate syste,s
+
   

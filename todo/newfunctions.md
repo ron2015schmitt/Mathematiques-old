@@ -4,7 +4,7 @@
 1. Can then delete file `functions_complex.h`  
 1. also: define `operator+=` etc.  These are needed for `std::complex<Vector<double>>` etc . to work properly.
 
-## `operator+` code in `functions.h`
+### `operator+` code in `functions.h`
 ```C++
   // Tensor<D1> + Tensor<D2>
 

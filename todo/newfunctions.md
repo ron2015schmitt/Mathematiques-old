@@ -1,9 +1,10 @@
 # New Methodology for arithmetic operators
 
 1. This has been trialed with the addition operator (`operator+`) and simply needs to be repeated for the other operators
-1. Can thne delete file `functions_complex.h`  
+1. Can then delete file `functions_complex.h`  
 1. also: define `operator+=` etc.  These are needed for `std::complex<Vector<double>>` etc . to work properly.
 
+## `operator+` code in `functions.h`
 ```C++
   // Tensor<D1> + Tensor<D2>
 

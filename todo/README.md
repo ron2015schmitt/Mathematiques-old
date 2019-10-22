@@ -7,7 +7,7 @@
 1. [Recursive tensors](recursive.md) (e.g. Vector<Vector<double>>)
 1. [Tensor dimensions as template parameters](templatedimensions.md) 
 1. [Tensor dot product](dotproduct.md)
-1. [Index class](index.md)
+1. [Index class and new indexing methodology](index.md)
 1. [Unit Testing](unittesting.md)
 
 ## Items for V4.0 -- Matrix Math via Lapack

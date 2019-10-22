@@ -9,8 +9,11 @@ hppfiles:
 cleanall: clean 
 	\cd $(DIR_MATRICKS)/examples && make -j clean
 	\cd $(DIR_MATRICKS)/src && make -j clean
-	\cd $(DIR_MATRICKS)/doc && make -j cleandocs
-	\cd $(DIR_MATRICKS)/doc && make -j restore
+	\cd $(DIR_MATRICKS)/benchmark && make -j clean
+	\cd $(DIR_MATRICKS)/test && make -j clean
+	\cd $(DIR_MATRICKS)/test/create && make -j clean
+	\cd $(DIR_MATRICKS)/doc && make cleandocs
+	\cd $(DIR_MATRICKS)/doc && make restore
 
 fullpurge: cleanall
 	\rm -f $(DIR_MATRICKS)/*~

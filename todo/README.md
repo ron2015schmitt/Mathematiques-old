@@ -29,7 +29,6 @@
 1. [Implement all error checking](errorchecking.md)
 
 ## Items for V7.0 -- Functions and coordinate systems in 2D and 3D
-1. [Functions: R^n -> R^m](functions.md)
 1. [2D and 3D Coordinate Systems](coordsystems.md)
-
+1. [Functions: R^n -> R^m](functions.md)
   

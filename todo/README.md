@@ -24,7 +24,12 @@
 1. [Load tensor from file](fileload.md)
 
 ## Items for V6.0 -- Debug Functionality
+1. Create Object Pool and info(tensor)
+1. [Exceptions](exceptions.md)
+1. Implement all checks
 
 ## Items for V7.0 -- Functions and coordinate systems in 2D and 3D
-
+1. Functions: R^n -> R^m
+1. Pre-defined coordinate systems
+2. Arbitrary coordinate systems
   

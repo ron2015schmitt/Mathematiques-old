@@ -19,9 +19,9 @@
 ## Items for V5.0 -- File I/O
 1. [Refactor FormatData](formatdata.md)
 1. [Tensor class FormatData](tensorformatdata.md)
-1. [File save](filesave.md)
+1. [Save tensor to file](filesave.md)
 1. [Implement >> operators](inputstreams.md)
-1. [File load](fileload.md)
+1. [Load tensor from file](fileload.md)
 
 ## Items for V6.0 -- Debug Functionality
 

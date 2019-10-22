@@ -24,7 +24,7 @@
 1. [Load tensor from file](fileload.md)
 
 ## Items for V6.0 -- Debug Functionality
-1. Create Tensor Pool and Tensor info(poolandinfo.md)
+1. [Create Tensor Pool and Tensor info](poolandinfo.md)
 1. [Exceptions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
 

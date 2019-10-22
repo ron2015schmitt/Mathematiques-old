@@ -1,3 +1,3 @@
-# Implement input streams for tensors, ``>>` operator
+# Implement input streams for tensors, `>>` operator
 
 * use FormatData definitions 

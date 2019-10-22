@@ -11,6 +11,7 @@
 1. [Unit Testing](unittesting.md)
 
 ## Items for V4.0 -- Matrix Math via Lapack
+1. [rep and join](repandjoin.md)
 1. [Diagonal matrices](diagonal.md)
 1. [Outer Product and Wedge Product](outerwedge.md)
 1. [Matrix operations](matrixlapack.md)

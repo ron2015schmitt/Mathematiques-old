@@ -32,8 +32,13 @@ template class Vector<class D, int NR = 0, int NC = 0>
 
 
 ## Tensor class
-The `Tensor<D>` class has `0 <= M` size parameters.  The new class will use variadic template parameters.
+The `Tensor<D,int R>` class with Rank `R>0` has size parameters.  The new class will use variadic template parameters.
 
 ```C++
-template class Vector<class D, int ... Dims>
+template class Vector<class D, int R = 0, int ... Dims>
 ```
+Likely don't need `R`, but may be useful for speficying if it can be resized, in which case better to change to `bool RESIZABLE`.
+
+# Expressions
+Similar to tensor class
+

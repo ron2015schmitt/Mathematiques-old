@@ -10,6 +10,8 @@
 1. [Tensor dot product](dotproduct.md)
 1. [Index class and new indexing methodology](index.md)
 1. [Unit Testing](unittesting.md)
+1. Update Documentation
+1. [Release Checklist](checklist.md)
 
 ## Items for V4.0 -- Matrix Math via Lapack
 1. [rep and join](repandjoin.md)

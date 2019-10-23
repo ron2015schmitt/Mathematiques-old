@@ -1,5 +1,6 @@
 # Unit Testing
 
+* need to purchase a new matlab license
 * have only one executable, test.cpp
 * inclue all tests as .cpp files into the main of test.cpp
 * in this manner, all tests will be summarized in one final paragraph
@@ -11,7 +12,7 @@
    
    
 * unit tests for helper types. Automate some of this.
-   * Imaginary
+   * Imaginary (use same test functions as that of Scalar, Vector etc)
    * Dimensions
    * Indices
    * Index

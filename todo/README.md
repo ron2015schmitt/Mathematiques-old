@@ -33,8 +33,12 @@
 1. [Create Tensor Pool and Tensor info](poolandinfo.md)
 1. [Exceptions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
+1. Remove `old/` directory and its files
 
 ## Items for V7.0 -- Functions and coordinate systems in 2D and 3D
 1. [2D and 3D Coordinate Systems](coordsystems.md)
 1. [Functions: R^n -> R^m](functions.md)
   
+## Other
+1. Write a short developer guide in a readme
+1. link on Wikipedia

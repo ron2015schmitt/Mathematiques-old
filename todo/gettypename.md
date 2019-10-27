@@ -101,3 +101,5 @@ int main(int argc, char *argv[])
     return 0;
 }
 ```
+
+1. Look into creating a companion function that just takes a type as its input instead of needing an instance

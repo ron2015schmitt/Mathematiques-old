@@ -13,7 +13,7 @@ namespace matricks {
   private:
     D d_;
   public:    
-    Imaginary() {
+  Imaginary() : d_(D(1)){
     }
   Imaginary(const D d) : d_(d) {
     }
@@ -36,7 +36,10 @@ namespace matricks {
 
     friend std::ostream& operator<<(std::ostream &stream, const Imaginary<D>& w) {
       using namespace display;
-      dispval_strm(stream, w.value());
+      const D val = w.value();
+      if (val != 1) {
+	dispval_strm(stream, val);
+      }
       // TODO: create style for the i
       stream << "i";
       return stream;
@@ -62,6 +65,17 @@ namespace matricks {
   
 
   // ***************************************************************************
+  // * i: th unit imaginary
+  // ***************************************************************************
+
+
+  namespace unit_imaginary {
+    const Imaginary<double> i = *(new Imaginary<double>(1));
+  };
+
+
+  
+  // ***************************************************************************
   // * Imaginary arithmetic: Imaginary<D>
   // ***************************************************************************
 
@@ -79,38 +93,6 @@ namespace matricks {
     Imaginary<D>
     operator-(const Imaginary<D>& x) {
     return x;
-  }
-
-  // Imaginary<D> + Imaginary<D>
-  
-  template <typename D> inline
-    Imaginary<D>
-    operator+(const Imaginary<D>& x1, const Imaginary<D>& x2) {
-    return Imaginary<D>(x1.value()+x2.value());
-  }
-
-  // Imaginary<D1> - Imaginary<D2>
-  
-  template <typename D> inline
-    Imaginary<D>
-    operator-(const Imaginary<D>& x1, const Imaginary<D>& x2) {
-    return Imaginary<D>(x1.value()-x2.value());
-  }
-
-  // Imaginary<D1> * Imaginary<D2>
-  
-  template <typename D> inline
-    D
-    operator*(const Imaginary<D>& x1, const Imaginary<D>& x2) {
-    return x1.value()*x2.value();
-  }
-
-  // Imaginary<D> / Imaginary<D>
-  
-  template <typename D> inline
-    D
-    operator/(const Imaginary<D>& x1, const Imaginary<D>& x2) {
-    return x1.value()*x2.value();
   }
 
 
@@ -158,7 +140,7 @@ namespace matricks {
 
 
   // ***************************************************************************
-  // * Imaginary arithmetic:  Imaginary<D1> OP R2
+  // * Imaginary-Real arithmetic:  Imaginary<D1> OP R2
   // *                                  R1  OP Imaginary<D2>
   // ***************************************************************************
 

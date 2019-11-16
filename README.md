@@ -1,13 +1,11 @@
-# mātricks v2.27-r4
+# mātricks v2.27-r5
 
 - CURRENTLY NOT READY FOR USE BUT...
-+ V3.0 is almost ready.  I put the last pieces together for the code to work with arbitrary rank tenors (Scalar, Vector, Matrix, etc):
++ Getting very close.  I put the last pieces together for the code to work with arbitrary rank tenors (Scalar, Vector, Matrix, etc):
   + no boiler-plates. all are processed by the same functions
   + no loss of elegance and simplicity in use
   + no real-time cost
-+ I started the test code. I added over 200 test cases, with a very clear and elegant output.
-+ Online [User's Guide](doc/README.md) in progress
-+ [TO-DO List](todo/README.md)
++ I started the test code. I added around 30 test cases, with a very clear and elegant output.
 + I ran benchmarks vs. a handcoded for loop. The results are impressive (-O3 optimization):
 ![benchmarks](files/benchmark.png)
 

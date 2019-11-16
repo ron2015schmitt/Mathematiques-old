@@ -42,5 +42,5 @@
 1. [Functions: R^n -> R^m](functions.md)
   
 ## Other
-1. Write a short developer guide in a readme
-1. link on Wikipedia
+1. [Developer guide](developerguide.md)
+1. link on Wikipedia C++ numerical packages

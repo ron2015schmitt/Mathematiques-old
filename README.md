@@ -86,11 +86,17 @@ The code that makes up this library is copyrighted under the *MIT license*.
 
 # REQUIREMENTS
 
-Development is being conducted in Ubuntu Linux with the ```g++``` compiler.
 
 * ```C++17``` compiler
 * ```bash```
 * ```make```
+
+Development is being conducted in Ubuntu Linux with the ```g++``` compiler:
+```bash
+$ g++ --version
+g++ (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+```
+
 
 # INSTALLATION
 

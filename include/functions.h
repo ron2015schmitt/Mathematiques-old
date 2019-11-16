@@ -40,9 +40,11 @@ namespace matricks {
   //         NEW PARADIGM FOR ARITHMETIC
   //=================================================================
 
-  // TODO: convert all binary operator to use this paradigm
-  //       thne can get rid of functions_complex.h
   
+  //----------------------------------------------
+  // Addition (+)
+  //----------------------------------------------
+
   // Tensor<D1> + Tensor<D2>
 
   template <class D1, class D2, class A, class B> 
@@ -95,44 +97,180 @@ namespace matricks {
 
 
 
-  //^^^^^^^^^^^^^^^^^^^^^^^^^NEW PARDIGM^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  
+  //----------------------------------------------
+  // Subtraction (-)
+  //----------------------------------------------
 
+  // Tensor<D1> - Tensor<D2>
 
-  
-
-  
-  // Tensor - Tensor
-
-  template <class D, class A, class B> 
-    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Subtract<D> > 
-    operator-(const TensorR<D,A>& a, const TensorR<D,B>& b)
+  template <class D1, class D2, class A, class B> 
+    inline TER_Binary<typename SubType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Subtract_New<D1,D2> > 
+    operator-(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
-      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Subtract<D> >(a,b);
+      using namespace display;
+      // mout<< a << createStyle(BOLD).apply("-") << b << std::endl;
+      return  TER_Binary<typename SubType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Subtract_New<D1,D2> >(a,b);
     }
 
 
-  // Tensor * Tensor
+  // D1 - Tensor<D2>
 
-  template <class D, class A, class B> 
-    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Multiply<D> > 
-    operator*(const TensorR<D,A>& a, const TensorR<D,B>& b)
+  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+    inline TER_ScalarOpTensor_New<typename SubType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Subtract_New<D1,D2> >
+    operator-(const D1& a, const TensorR<D2,B>& b)
     {
-      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Multiply<D> >(a,b);
+      return  TER_ScalarOpTensor_New<typename SubType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Subtract_New<D1,D2> >(a,b);
+    }
+
+  // Tensor<D1> - D2
+
+  template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+    inline TER_TensorOpScalar_New<typename SubType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Subtract_New<D1,D2> >
+    operator-(const TensorR<D1,A>& a, const D2& b)
+    {
+      return TER_TensorOpScalar_New<typename SubType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Subtract_New<D1,D2> >(a,b);
+    }
+  
+
+
+  // T - Tensor<T>
+
+  template <class T, class B> 
+    inline TER_ScalarOpTensor_New<typename SubType<T,T>::Type,T,TensorR<T,B>,Fun_Subtract_New<T,T> >
+    operator-(const T& a, const TensorR<T,B>& b)
+    {
+      return TER_ScalarOpTensor_New<typename SubType<T,T>::Type,T,TensorR<T,B>,Fun_Subtract_New<T,T> >(a,b);
+    }
+
+  // Tensor<T> - T
+
+  template <class T, class A> 
+    inline TER_TensorOpScalar_New<typename SubType<T,T>::Type,TensorR<T,A>,T,Fun_Subtract_New<T,T> >
+    operator-(const TensorR<T,A>& a, const T&b)
+    {
+      return TER_TensorOpScalar_New<typename SubType<T,T>::Type,TensorR<T,A>,T,Fun_Subtract_New<T,T> >(a,b);
     }
 
 
-  // Tensor / Tensor
 
-  template <class D, class A, class B> 
-    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Divide<D> > 
-    operator/(const TensorR<D,A>& a, const TensorR<D,B>& b)
+  //----------------------------------------------
+  // Multiplication (*)
+  //----------------------------------------------
+
+  // Tensor<D1> * Tensor<D2>
+
+  template <class D1, class D2, class A, class B> 
+    inline TER_Binary<typename MultType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Multiply_New<D1,D2> > 
+    operator*(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
-      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Divide<D> >(a,b);
+      using namespace display;
+      // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
+      return  TER_Binary<typename MultType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Multiply_New<D1,D2> >(a,b);
+    }
+
+
+  // D1 * Tensor<D2>
+
+  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+    inline TER_ScalarOpTensor_New<typename MultType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Multiply_New<D1,D2> >
+    operator*(const D1& a, const TensorR<D2,B>& b)
+    {
+      return  TER_ScalarOpTensor_New<typename MultType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Multiply_New<D1,D2> >(a,b);
+    }
+
+  // Tensor<D1> * D2
+
+  template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+    inline TER_TensorOpScalar_New<typename MultType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Multiply_New<D1,D2> >
+    operator*(const TensorR<D1,A>& a, const D2& b)
+    {
+      return TER_TensorOpScalar_New<typename MultType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Multiply_New<D1,D2> >(a,b);
+    }
+  
+
+
+  // T * Tensor<T>
+
+  template <class T, class B> 
+    inline TER_ScalarOpTensor_New<typename MultType<T,T>::Type,T,TensorR<T,B>,Fun_Multiply_New<T,T> >
+    operator*(const T& a, const TensorR<T,B>& b)
+    {
+      return TER_ScalarOpTensor_New<typename MultType<T,T>::Type,T,TensorR<T,B>,Fun_Multiply_New<T,T> >(a,b);
+    }
+
+  // Tensor<T> * T
+
+  template <class T, class A> 
+    inline TER_TensorOpScalar_New<typename MultType<T,T>::Type,TensorR<T,A>,T,Fun_Multiply_New<T,T> >
+    operator*(const TensorR<T,A>& a, const T&b)
+    {
+      return TER_TensorOpScalar_New<typename MultType<T,T>::Type,TensorR<T,A>,T,Fun_Multiply_New<T,T> >(a,b);
+    }
+
+
+  //----------------------------------------------
+  // Division (/)
+  //----------------------------------------------
+
+  // Tensor<D1> / Tensor<D2>
+  
+  template <class D1, class D2, class A, class B> 
+    inline TER_Binary<typename DivType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Divide_New<D1,D2> > 
+    operator/(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    {
+      using namespace display;
+      // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
+      return  TER_Binary<typename DivType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Divide_New<D1,D2> >(a,b);
+    }
+
+
+  // D1 / Tensor<D2>
+
+  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+    inline TER_ScalarOpTensor_New<typename DivType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Divide_New<D1,D2> >
+    operator/(const D1& a, const TensorR<D2,B>& b)
+    {
+      return  TER_ScalarOpTensor_New<typename DivType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Divide_New<D1,D2> >(a,b);
+    }
+
+  // Tensor<D1> / D2
+
+  template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+    inline TER_TensorOpScalar_New<typename DivType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Divide_New<D1,D2> >
+    operator/(const TensorR<D1,A>& a, const D2& b)
+    {
+      return TER_TensorOpScalar_New<typename DivType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Divide_New<D1,D2> >(a,b);
+    }
+  
+
+
+  // T / Tensor<T>
+
+  template <class T, class B> 
+    inline TER_ScalarOpTensor_New<typename DivType<T,T>::Type,T,TensorR<T,B>,Fun_Divide_New<T,T> >
+    operator/(const T& a, const TensorR<T,B>& b)
+    {
+      return TER_ScalarOpTensor_New<typename DivType<T,T>::Type,T,TensorR<T,B>,Fun_Divide_New<T,T> >(a,b);
+    }
+
+  // Tensor<T> / T
+
+  template <class T, class A> 
+    inline TER_TensorOpScalar_New<typename DivType<T,T>::Type,TensorR<T,A>,T,Fun_Divide_New<T,T> >
+    operator/(const TensorR<T,A>& a, const T&b)
+    {
+      return TER_TensorOpScalar_New<typename DivType<T,T>::Type,TensorR<T,A>,T,Fun_Divide_New<T,T> >(a,b);
     }
 
   
+  
+
+
+
+
+  //**************************************************************************
   // datacast: cast data from D1 to D2
+  //**************************************************************************
 
   template <class D2, class D1, class A> 
     inline TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D2,D1> > 
@@ -985,179 +1123,6 @@ namespace matricks {
 
 
 
-  /************************************************************
-   *               Tensor/scalar mix
-   ************************************************************
-   */
-
-
-
-  // Tensor - scalar
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> > 
-    operator-(const TensorR<D,A>& a, const D b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
-    }
-
-  // scalar - Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > 
-    operator-(const D a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
-    }
-
-  // Tensor * scalar
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> > 
-    operator*(const TensorR<D,A>& a, const D b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
-    }
-
-  // scalar * Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > 
-    operator*(const D a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
-    }
-
-  // Tensor / scalar
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> > 
-    operator/(const TensorR<D,A>& a, const D b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
-    }
-
-  // scalar / Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > 
-    operator/(const D a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
-    }
-
-
-
-
-
-  // Tensor - (int scalar)
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> > 
-    operator-(const TensorR<D,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Subtract<D> >(a,b);
-    }
-
-  // Tensor<int> - (int scalar)
-
-  template <class A> 
-    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Subtract<int> > 
-    operator-(const TensorR<int,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Subtract<int> >(a,b);
-    }
-
-  // (int scalar) - Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > 
-    operator-(const int a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Subtract<D> > (a,b);
-    }
-
-  // (int scalar) - Tensor<int>
-
-  template <class B>
-    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Subtract<int> > 
-    operator-(const int a, const TensorR<int,B>& b )
-    {
-      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Subtract<int> > (a,b);
-    }
-
-  // Tensor * (int scalar)
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> > 
-    operator*(const TensorR<D,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Multiply<D> >(a,b);
-    }
-
-  // Tensor<int> * (int scalar)
-
-  template <class A> 
-    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Multiply<int> > 
-    operator*(const TensorR<int,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Multiply<int> >(a,b);
-    }
-
-
-  // (int scalar) * Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > 
-    operator*(const int a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Multiply<D> > (a,b);
-    }
-
-  // (int scalar) * Tensor<int>
-
-  template <class B>
-    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Multiply<int> > 
-    operator*(const int a, const TensorR<int,B>& b )
-    {
-      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Multiply<int> > (a,b);
-    }
-
-  // Tensor / (int scalar)
-
-  template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> > 
-    operator/(const TensorR<D,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Divide<D> >(a,b);
-    }
-
-  // Tensor<int> / (int scalar)
-
-  template <class A> 
-    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Divide<int> > 
-    operator/(const TensorR<int,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Divide<int> >(a,b);
-    }
-
-  // (int scalar) / Tensor
-
-  template <class D, class B>
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > 
-    operator/(const int a, const TensorR<D,B>& b )
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Divide<D> > (a,b);
-    }
-
-  // (int scalar) / Tensor<int>
-
-  template <class B>
-    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Divide<int> > 
-    operator/(const int a, const TensorR<int,B>& b )
-    {
-      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Divide<int> > (a,b);
-    }
 
 
   //---------- Tensor scalar mix: powers and exponents -----------------
@@ -2207,19 +2172,6 @@ namespace matricks {
     {
       return  TER_Series2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

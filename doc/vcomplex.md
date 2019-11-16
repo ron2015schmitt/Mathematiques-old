@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.27).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.27-r4).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -138,12 +138,12 @@ vr*vc = Vector<std::complex<double>> {(1,1), (2,0), (0,3), (-0,-4)};
     Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
 vr/vc = Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
   TER_Binary(a,b):   
-    TER_ScalarOpTensor a = Vector<double> {2, 4, 6, 8}; 
-    TER_Cplx_TensorOpScalar b = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (-0,-0.5)}; 
+    TER_ScalarOpTensor_New a = Vector<double> {2, 4, 6, 8}; 
+    TER_TensorOpScalar_New b = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (-0,-0.5)}; 
 2.*vr + vc/2. + 1 = Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
   TER_Binary(a,b):   
-    TER_ScalarOpTensor a = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
-    TER_ScalarOpTensor b = Vector<std::complex<double>> {(3,7), (5,2), (-2,5), (2,-5)}; 
+    TER_ScalarOpTensor_New a = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
+    TER_ScalarOpTensor_New b = Vector<std::complex<double>> {(3,7), (5,2), (-2,5), (2,-5)}; 
 complex<double>(0,1)*vr + complex<double>(5,2)*vc = Vector<std::complex<double>> {(3,8), (5,4), (-2,8), (2,-1)}; 
 ```
 

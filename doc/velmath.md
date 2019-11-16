@@ -3,7 +3,7 @@
 
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.27).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.27-r4).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -65,8 +65,8 @@ v1 = {10,20,30,40}; // C++11 list
   v1 / 10 = Vector<double> {1, 2, 3, 4}; 
   120 / v1 = Vector<double> {12, 6, 4, 3}; 
   TER_Binary(a,b):   
-    TER_TensorOpScalar a = Vector<double> {12, 6, 4, 3}; 
-    TER_TensorOpScalar b = Vector<double> {100, 200, 300, 400}; 
+    TER_TensorOpScalar_New a = Vector<double> {12, 6, 4, 3}; 
+    TER_TensorOpScalar_New b = Vector<double> {100, 200, 300, 400}; 
 1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
 ```
 

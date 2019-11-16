@@ -3,7 +3,7 @@
 
 
 # Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.27).
+_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v2.27-r4).
 
 ## Integration
 ### Definite integrals

@@ -337,7 +337,7 @@ namespace matricks {
   
   
   // ***************************************************************************
-  // * {Add,Sub,Mutl,Div}Type: Class that determines return type of an aritmetic
+  // * {Add,Sub,Mult,Div}Type: Class that determines return type of an aritmetic
   // *                 operation between two types
   // ***************************************************************************
 

@@ -147,15 +147,6 @@ namespace matricks {
     Fun_Add_New() { }
   
     static inline typename AddType<D1,D2>::Type apply(const D1 a, const D2 b) {
-      //  mout <<"Fun_Add::apply(a,b)"<<std::endl;
-      // mout <<"       ";
-      // tdisp(a);
-      // mout <<"       ";
-      // tdisp(b); 
-      // typename AddType<D1,D2>::Type y = a+b;
-      //mout <<"       ";
-      //      tdisp(y);  // this produces the correct value
-      // return y;
       return a+b;
     }
 
@@ -203,6 +194,33 @@ namespace matricks {
 
   };
 
+  // NEW y = D1 - D2
+
+  template <class D1, class D2> class Fun_Subtract_New {
+  public:
+    Fun_Subtract_New() { }
+  
+    static inline typename SubType<D1,D2>::Type apply(const D1 a, const D2 b) {
+      return a-b;
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("-") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D1 d1;
+      D1 d2;
+      return functor_namestyle.apply(" <")+display::getTypeName(d1)+","+display::getTypeName(d1)+">";
+    }
+#endif
+
+  };
+  
 
   // y = a * b
 
@@ -231,6 +249,32 @@ namespace matricks {
   };
 
 
+  // NEW y = D1 * D2
+
+  template <class D1, class D2> class Fun_Multiply_New {
+  public:
+    Fun_Multiply_New() { }
+  
+    static inline typename MultType<D1,D2>::Type apply(const D1 a, const D2 b) {
+      return a*b;
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("*") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D1 d1;
+      D1 d2;
+      return functor_namestyle.apply(" <")+display::getTypeName(d1)+","+display::getTypeName(d1)+">";
+    }
+#endif
+
+  };
 
 
   // y = a / b
@@ -260,7 +304,34 @@ namespace matricks {
   };
 
 
+  // NEW y = D1 / D2
 
+  template <class D1, class D2> class Fun_Divide_New {
+  public:
+    Fun_Divide_New() { }
+  
+    static inline typename DivType<D1,D2>::Type apply(const D1 a, const D2 b) {
+      return a/b;
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    static inline std::string expression(const std::string& sa, const std::string& sb) {
+      std::string sout =  "(" + sa + ")" + functor_style.apply("/") + "(" + sb + ")";
+      return sout;
+    }
+    
+    static inline std::string classname() {
+      using namespace display;
+      D1 d1;
+      D1 d2;
+      return functor_namestyle.apply(" <")+display::getTypeName(d1)+","+display::getTypeName(d1)+">";
+    }
+#endif
+
+  };
+
+  
   // ************************************************************************
   // *            Powers and logs
   // ************************************************************************

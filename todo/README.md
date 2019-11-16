@@ -8,6 +8,7 @@
 1. [Tensor dimensions as template parameters](templatedimensions.md) 
 1. [Tensor dot product](dotproduct.md)
 1. [Index class and new indexing methodology](index.md)
+1. [Fix Bugs](bugs.md)
 1. [Unit Testing](unittesting.md)
 1. [Benchmarks](benchmarks.md)
 1. Update Documentation
@@ -21,9 +22,10 @@
 
 
 ## Items for V5.0 -- File I/O
-1. [Refactor mout](refactormout.md)
+1. [Refactor mout and dout](refactormout.md)
 1. [Refactor getTypeName](gettypename.md)
 1. [Refactor FormatData](formatdata.md)
+1. Fix Printing of ```complex<Vector<double>>>``` etc
 1. [Tensor class FormatData](tensorformatdata.md)
 1. [Save tensor to file](filesave.md)
 1. [Implement >> operators](inputstreams.md)
@@ -40,5 +42,5 @@
 1. [Functions: R^n -> R^m](functions.md)
   
 ## Other
-1. Write a short developer guide in a readme
-1. link on Wikipedia
+1. [Developer guide](developerguide.md)
+1. link on Wikipedia C++ numerical packages

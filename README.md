@@ -82,6 +82,20 @@ The code that makes up this library is copyrighted under the *MIT license*.
 
 [Read the LICENSE file for details](LICENSE).
 
+# REQUIREMENTS
+
+
+* ```C++17``` compiler
+* ```bash```
+* ```make```
+
+Development is being conducted in Ubuntu Linux with the ```g++``` compiler:
+```bash
+$ g++ --version
+g++ (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+```
+
+
 # INSTALLATION
 
 The first step is to clone the repo

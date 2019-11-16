@@ -86,7 +86,7 @@ The code that makes up this library is copyrighted under the *MIT license*.
 
 # REQUIREMENTS
 
-Development is performed in Ubuntu Linux.
+Development is being conducted in Ubuntu Linux with the ```g++``` compiler.
 
 * ```C++17``` compiler
 * ```bash```

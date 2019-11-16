@@ -4,12 +4,14 @@
 ## Items for V3.0 -- First Official Release
 
 1. [Imaginary number class](imaginary.md)
-1. [New methodology for arithmetic operators](newfunctions.md)
 1. [Recursive tensors](recursive.md) (e.g. Vector<Vector<double>>)
 1. [Tensor dimensions as template parameters](templatedimensions.md) 
 1. [Tensor dot product](dotproduct.md)
 1. [Index class and new indexing methodology](index.md)
 1. [Unit Testing](unittesting.md)
+1. [Benchmarks](benchmarks.md)
+1. Update Documentation
+1. [Release Checklist](checklist.md)
 
 ## Items for V4.0 -- Matrix Math via Lapack
 1. [rep and join](repandjoin.md)
@@ -19,6 +21,8 @@
 
 
 ## Items for V5.0 -- File I/O
+1. [Refactor mout](refactormout.md)
+1. [Refactor getTypeName](gettypename.md)
 1. [Refactor FormatData](formatdata.md)
 1. [Tensor class FormatData](tensorformatdata.md)
 1. [Save tensor to file](filesave.md)
@@ -29,8 +33,12 @@
 1. [Create Tensor Pool and Tensor info](poolandinfo.md)
 1. [Exceptions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
+1. Remove `old/` directory and its files
 
 ## Items for V7.0 -- Functions and coordinate systems in 2D and 3D
 1. [2D and 3D Coordinate Systems](coordsystems.md)
 1. [Functions: R^n -> R^m](functions.md)
   
+## Other
+1. Write a short developer guide in a readme
+1. link on Wikipedia

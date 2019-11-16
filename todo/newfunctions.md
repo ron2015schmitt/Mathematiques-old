@@ -1,5 +1,7 @@
 # New Methodology for arithmetic operators
 
++ **IMPLEMENTED IN v2.27-r4**
+
 1. This has been trialed with the addition operator (`operator+`) and simply needs to be repeated for the other operators
 1. Can then delete file `functions_complex.h`  
 1. also: define `operator+=` etc.  These are needed for `std::complex<Vector<double>>` etc . to work properly.

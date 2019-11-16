@@ -6,6 +6,7 @@
 * `A(i,j)` access simply returns 0 if not on diagonal. error if try to write to `A(i,j)` with `i!=j`
 * functions only act on diagonal (note this in doc)
 * write `inflate` function to convert to `Nr x Nc` matrix
-* vector conversion
-* write `diag(vector)` and `diag(matrix)` functions
+* write `diag(vector)` and `diag(matrix)` functions as well as vector(diag)
+* only allow assignment to other diagonal matrices, not regular mayrices
+* need to write specific `Matrix operator=(DiagMatrix)`
 

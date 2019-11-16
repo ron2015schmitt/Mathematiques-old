@@ -19,6 +19,7 @@ template class Vector<class D, int N = 0>
 * change size and dimensions methods to use `N` if `N>0`
 * use `array` instad of `valarray` if `N>0`
 * if `N <= 0`, then `valarray` is used and initial size is `abs(N)`
+* change `.reshape()` method to a function and perhaps use 
 
 ## Matrix class
 The `Matrix<D>` class has two size parameters.  The new class will be:
@@ -32,8 +33,25 @@ template class Vector<class D, int NR = 0, int NC = 0>
 
 
 ## Tensor class
-The `Tensor<D>` class has `0 <= M` size parameters.  The new class will use variadic template parameters.
+The `Tensor<D,int R>` class with Rank `R>=0` has size parameters.  Recall that R=0 is a scalar. The new class will use variadic template parameters.
 
 ```C++
-template class Vector<class D, int ... Dims>
+template class Vector<class D, int R = 0, int ... Dims>
 ```
+Likely don't need `R`, but may be useful for speficying if it can be resized, in which case better to change to `bool RESIZABLE`.
+
+If not resizable, use static if's to enable one and only one element access function, for example if `Rank=3`
+
+```C++
+D& operator()(Index i1, Index i2, Index i3) {
+  ....
+}
+```
+
+Due to this, it is probably a good idea to not allow tensor to change rank, except by creating a new Tensor, similar to rehaphing a vector into a matrix.
+
+
+
+# Expressions
+Similar to tensor class
+

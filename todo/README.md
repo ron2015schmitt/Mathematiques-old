@@ -22,9 +22,10 @@
 
 
 ## Items for V5.0 -- File I/O
-1. [Refactor mout](refactormout.md)
+1. [Refactor mout and dout](refactormout.md)
 1. [Refactor getTypeName](gettypename.md)
 1. [Refactor FormatData](formatdata.md)
+1. Fix Printing of ```complex<Vector<double>>>``` etc
 1. [Tensor class FormatData](tensorformatdata.md)
 1. [Save tensor to file](filesave.md)
 1. [Implement >> operators](inputstreams.md)

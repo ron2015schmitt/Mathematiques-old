@@ -17,6 +17,7 @@
 1. [Diagonal matrices](diagonal.md)
 1. [Outer Product and Wedge Product](outerwedge.md)
 1. [Matrix operations](matrixlapack.md)
+1. Integrals and derivatives along each of the two dimensions of a Matrix 
 
 
 ## Items for V5.0 -- File I/O
@@ -37,6 +38,7 @@
 
 ## Items for V7.0 -- Functions and coordinate systems in 2D and 3D
 1. [2D and 3D Coordinate Systems](coordsystems.md)
+1. Integrals and derivatives along each of the two dimensions of a Tensor
 1. [Functions: R^n -> R^m](functions.md)
   
 ## Other

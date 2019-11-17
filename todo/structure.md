@@ -3,6 +3,8 @@
 ## Miscellaneous
 1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`
 1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
+1. add tdims() method that provides the templated dimension values. {} for Scalar
+1. Use type traits to determine ideal qualifier types for paramters and return values
 
 ## Recursive Tensors (Tensors with Tensor elements)
 

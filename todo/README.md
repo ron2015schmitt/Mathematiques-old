@@ -3,8 +3,9 @@
 
 ## Items for V3.0 -- First Official Release
 
-1. [Recursive tensors](recursive.md) (e.g. Vector<Vector<double>>)
-1. [Tensor dimensions as template parameters](templatedimensions.md) 
+1. Structure changes. Implement both first for `Scalar` (done), then `Vector`, then `Matrix`, then `Tensor`.
+   * [Recursive tensors](recursive.md) (e.g. Vector<Vector<double>>)
+   * [Tensor dimensions as template parameters](templatedimensions.md) 
 1. [Tensor dot product](dotproduct.md)
 1. [Index class and new indexing methodology](index.md)
 1. [Fix Bugs](bugs.md)

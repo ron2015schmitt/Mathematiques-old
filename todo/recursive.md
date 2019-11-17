@@ -5,7 +5,10 @@ Implement code necessary so that mathematical operations work for recursive tens
 1. Methodology is to use `x[index]`, ie `operator[]`, for "deep indexing" that indexes from `0` to `deepsize()-1`, covering all the elements contained.  
 1. For shallow indexing, ie first level indexing, use the `operator()` operators:
     1. `Scalar()`  (done)
-    1. `Vector(i)`  (start from experimental class `NewVector`)
+    1. `Vector(i)`  (start from experimental class `NewVector`).  
+       1. implement NN fixed versus variable vector size
+       1. need to convert all `[]` usage, eg in `operator=` and expressions, to `(i)` instead. or (better)  determine how to use deep access in expressions.
+       1. derivatives for Vector<Vector><double>>?
     1. `Matrix(i,j)` 
     1. `Tensor`
-1. Repeat methodology for expressions
+

@@ -1,13 +1,14 @@
 
-v2.28-r2
+v2.29
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.28
-# V2.28 Imaginary number functionality complete
+VERSION_MATRICKS=2.29
+# V2.29 Vector restructuring
+# V2.28 Imaginary number functionality complete. Scalar restructuring
 # V2.27 NewScalar and NewVector classes work recursively
 # V2.26 Upped requirements to C++17 so can use static if
 # V2.25 BaseType->FundamentalType, Added NumberType and DepthType

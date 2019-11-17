@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.28-r1).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.29).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -28,6 +28,35 @@ double x = 3.14;
 double vals[] = {1.1,2.2,3.3};
 bool done = true;
 Vector<double> v = range<double>(1,10);
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[4] #1
+operator[5] #1
+operator[5] #1
+operator[6] #1
+operator[6] #1
+operator[7] #1
+operator[7] #1
+operator[8] #1
+operator[8] #1
+operator[9] #1
+operator[9] #2
+operator[8] #2
+operator[7] #2
+operator[6] #2
+operator[5] #2
+operator[4] #2
+operator[3] #2
+operator[2] #2
+operator[1] #2
+operator[0] #2
 char str[] = "hello";
 std::string s = "world";
 ComplexDouble z(1,-1);
@@ -450,6 +479,35 @@ The format for `matricks:Vector` output is controlled by the following static cl
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[4] #1
+operator[5] #1
+operator[5] #1
+operator[6] #1
+operator[6] #1
+operator[7] #1
+operator[7] #1
+operator[8] #1
+operator[8] #1
+operator[9] #1
+operator[9] #2
+operator[8] #2
+operator[7] #2
+operator[6] #2
+operator[5] #2
+operator[4] #2
+operator[3] #2
+operator[2] #2
+operator[1] #2
+operator[0] #2
 ```
 The default format yields
 
@@ -484,6 +542,35 @@ setFormatStringComplex("%s + I*%s");
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[4] #1
+operator[5] #1
+operator[5] #1
+operator[6] #1
+operator[6] #1
+operator[7] #1
+operator[7] #1
+operator[8] #1
+operator[8] #1
+operator[9] #1
+operator[9] #2
+operator[8] #2
+operator[7] #2
+operator[6] #2
+operator[5] #2
+operator[4] #2
+operator[3] #2
+operator[2] #2
+operator[1] #2
+operator[0] #2
 set_mathematica_var_format();
 ```
 The Mathematica format yields
@@ -522,6 +609,35 @@ setFormatStringComplex("%s + i*%s");
 ```C++
 using namespace matricks;
 Vector<double> v = range<double>(1001,1010);;
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[4] #1
+operator[5] #1
+operator[5] #1
+operator[6] #1
+operator[6] #1
+operator[7] #1
+operator[7] #1
+operator[8] #1
+operator[8] #1
+operator[9] #1
+operator[9] #2
+operator[8] #2
+operator[7] #2
+operator[6] #2
+operator[5] #2
+operator[4] #2
+operator[3] #2
+operator[2] #2
+operator[1] #2
+operator[0] #2
 set_matlab_var_format();
 ```
 The Matlab format yields

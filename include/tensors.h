@@ -391,6 +391,8 @@ namespace matricks {
   template <class D> struct TensorType<T_SCALAR,D> {
     typedef Scalar<D> MyType;
   };
+
+  // TODO: do we need to include a version with N?
   template <class D> struct TensorType<T_VECTOR,D> {
     typedef Vector<D> MyType;
   };

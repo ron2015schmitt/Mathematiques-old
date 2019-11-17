@@ -1082,17 +1082,19 @@ int main(int argc, char *argv[])
     // tdisp(v1+v2);
     Vector<Vector<double>> v3 {{0,0},{0,0}};
     tdisp(v3);
-    v3 = v1;
+    //    v3 = v1;
     tdisp(v3);
-    tdisp(-v3);
-    v3 = {{0,0},{0,0}};
+    //tdisp(-v3);
+    //    v3 = {{0,0},{0,0}};
     tdisp(v3);
     cr();
     //    typename AddType<Vector<double>,Vector<double>>::Type v4 {{6,7},{8,0}};
-    v1+v2;  // works!
+    //    v1+v2;  
     //    disp(v1.bottom());
     cr();
-    v3 = v1+v2;
+    disp(typeid(AddType<Vector<double>,Vector<double>>::Type).name());
+    // fails:
+    //    v3 = v1+v2;
     //disp(v3);
   }
   //------------------------------------------------------

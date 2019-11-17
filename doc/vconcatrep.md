@@ -3,7 +3,7 @@
 
 
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.28-r1).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.29).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors
@@ -14,19 +14,70 @@ _This document was automatically generated from file_ **`vconcatrep.cpp`** (māt
 **EXAMPLE 1**: Vector join operator `,`
 ```C++
 Vector<double> v1( range<double>(0,2) );
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #2
+operator[1] #2
+operator[0] #2
 Vector<double> v2( range<double>(3,4) );
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #2
+operator[0] #2
 ```
 
 **The result is**
 ```C++
   v1 = {0, 1, 2}; 
   v2 = {3, 4}; 
-  (v1,v2) = Vector<double> {0, 1, 2, 3, 4}; 
-  (v1,v2,v1) = Vector<double> {0, 1, 2, 3, 4, 0, 1, 2}; 
-  (v1,v2,v1,v2) = Vector<double> {0, 1, 2, 3, 4, 0, 1, 2, 3, 4}; 
-  (10*v1,v2) = Vector<double> {0, 10, 20, 3, 4}; 
-  (v1,10*v2) = Vector<double> {0, 1, 2, 30, 40}; 
-  (10*v1,10*v2) = Vector<double> {0, 10, 20, 30, 40}; 
+  (v1,v2) = operator[0] #1
+operator[1] #1
+operator[2] #1
+operator[0] #1
+operator[1] #1
+Vector<double> {0, 1, 2, 3, 4}; 
+  (v1,v2,v1) = operator[0] #1
+operator[1] #1
+operator[2] #1
+operator[0] #1
+operator[1] #1
+operator[0] #1
+operator[1] #1
+operator[2] #1
+Vector<double> {0, 1, 2, 3, 4, 0, 1, 2}; 
+  (v1,v2,v1,v2) = operator[0] #1
+operator[1] #1
+operator[2] #1
+operator[0] #1
+operator[1] #1
+operator[0] #1
+operator[1] #1
+operator[2] #1
+operator[0] #1
+operator[1] #1
+Vector<double> {0, 1, 2, 3, 4, 0, 1, 2, 3, 4}; 
+  (10*v1,v2) = operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+Vector<double> {0, 10, 20, 3, 4}; 
+  (v1,10*v2) = operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+Vector<double> {0, 1, 2, 30, 40}; 
+  (10*v1,10*v2) = operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+Vector<double> {0, 10, 20, 30, 40}; 
 ```
 
 
@@ -36,6 +87,25 @@ The following are examples usign the join operator on the left hand side
 Vector<double> va(2);
 Vector<double> vb(3);
 (va,vb) = range<double>(1,5);
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[0] #2
+operator[0] #1
+operator[1] #2
+operator[1] #1
+operator[2] #2
+operator[0] #1
+operator[3] #2
+operator[1] #1
+operator[4] #2
+operator[2] #1
 ```
 
 **The result is**
@@ -48,6 +118,27 @@ Vector<double> vb(3);
 Vector<double> ua(2);
 Vector<double> ub(3);
 (ua[{1,0}],ub) = range<double>(1,5);
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[0] #2
+operator[0] #2
+operator[1] #1
+operator[1] #2
+operator[1] #2
+operator[0] #1
+operator[2] #2
+operator[0] #1
+operator[3] #2
+operator[1] #1
+operator[4] #2
+operator[2] #1
 ```
 
 **The result is**
@@ -60,6 +151,28 @@ Vector<double> ub(3);
 Vector<double> wa(2);
 Vector<double> wb(3);
 (wa,wb[{2,1,0}]) = range<double>(1,5);
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[0] #2
+operator[0] #1
+operator[1] #2
+operator[1] #1
+operator[2] #2
+operator[0] #2
+operator[2] #1
+operator[3] #2
+operator[1] #2
+operator[1] #1
+operator[4] #2
+operator[2] #2
+operator[0] #1
 ```
 
 **The result is**
@@ -72,6 +185,30 @@ Vector<double> wb(3);
 Vector<double> za(2);
 Vector<double> zb(3);
 (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5);
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #1
+operator[3] #1
+operator[3] #1
+operator[4] #1
+operator[0] #2
+operator[0] #2
+operator[1] #1
+operator[1] #2
+operator[1] #2
+operator[0] #1
+operator[2] #2
+operator[0] #2
+operator[2] #1
+operator[3] #2
+operator[1] #2
+operator[1] #1
+operator[4] #2
+operator[2] #2
+operator[0] #1
 ```
 
 **The result is**
@@ -89,13 +226,57 @@ Vector<double> zb(3);
 **EXAMPLE 2**: Vector `rep` function
 ```C++
 Vector<double> v1( range<double>(1,3) );
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #1
+operator[2] #1
+operator[2] #2
+operator[1] #2
+operator[0] #2
 Vector<double> v2( range<double>(4,5) );
+operator[0] #1
+operator[0] #1
+operator[1] #1
+operator[1] #2
+operator[0] #2
 Vector<double> v3;
 v3 = rep(v1,3);
+operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+operator[2] #2
 Vector<double> v4;
 v4 = (rep(v1,2), rep(v2,3));
+operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+operator[2] #2
+operator[0] #2
+operator[1] #2
+operator[0] #2
+operator[1] #2
+operator[0] #2
+operator[1] #2
 Vector<double> v5;
 v5 = rep((v1,v2),2);
+operator[0] #1
+operator[1] #1
+operator[2] #1
+operator[0] #1
+operator[1] #1
+operator[0] #1
+operator[1] #1
+operator[2] #1
+operator[0] #1
+operator[1] #1
 ```
 
 **The result is**

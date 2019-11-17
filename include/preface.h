@@ -73,7 +73,7 @@ namespace matricks {
   template <class D, class A> class TensorR;  
   template <class D, class DERIVED> class TensorRW;
   template <class D, int M = 1+matricks::NumberType<D>::depth()> class Scalar;
-  template <class D> class Vector;
+  template <class D, int NN = 0, int M = 1+matricks::NumberType<D>::depth()> class Vector;
   template <class D> class Matrix;
   template <class D> class Tensor;
 

@@ -48,8 +48,8 @@ namespace matricks {
   // Tensor<D1> + Tensor<D2>
 
   template <class D1, class D2, class A, class B> 
-    inline TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> > 
-    operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    //    inline TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> > 
+    inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
       using namespace display;
       // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;

@@ -52,7 +52,6 @@
 #include "functors.h"
 #include "scalar.h"
 #include "vector.h"
-#include "newvector.h"
 #include "matrix.h"
 #include "tensor.h"
 #include "expressions.h"

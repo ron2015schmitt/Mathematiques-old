@@ -217,8 +217,8 @@ int main(int argc, char *argv[])
       tdisp(t1.deepsize());
 
       cr();
-      mout << bold.apply("NewVector<double> class testing") << std::endl;
-      NewVector<double> v {1,2,3,4};
+      mout << bold.apply("Vector<double> class testing") << std::endl;
+      Vector<double> v {1,2,3,4};
       tdisp(v);
       tdisp(NumberType<decltype(v)>::depth());
       tdisp(v.size());
@@ -237,8 +237,8 @@ int main(int argc, char *argv[])
       tdisp(t2.eldeepsize());
       tdisp(t2.deepsize());
 
-      mout << bold.apply("Scalar<NewVector<double>> class testing") << std::endl;
-      Scalar<NewVector<double>> t3 {{1,2}};
+      mout << bold.apply("Scalar<Vector<double>> class testing") << std::endl;
+      Scalar<Vector<double>> t3 {{1,2}};
       tdisp(t3);
       tdisp(NumberType<decltype(t3)>::depth());
       tdisp(t3.size());
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
       tdisp(t3.deepsize());
 
 
-      NewVector<Scalar<double>> t4(0);
+      Vector<Scalar<double>> t4(0);
       tdisp(t4);
       tdisp(NumberType<decltype(t4)>::depth());
       tdisp(t4.size());
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
       tdisp(t4.eldeepsize());
       tdisp(t4.deepsize());
 
-      NewVector<Scalar<double>> t5(3);
+      Vector<Scalar<double>> t5(3);
       tdisp(t5);    
       tdisp(t5[0]);
       tdisp(t5[1]);
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
       tdisp(t5.eldeepsize());
       tdisp(t5.deepsize());
 
-      NewVector<Scalar<double>> t6 {{1},{2}};
+      Vector<Scalar<double>> t6 {{1},{2}};
       tdisp(t6);
       tdisp(NumberType<decltype(t6)>::depth());
       tdisp(t6.size());
@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
       tdisp(t6.deepsize());
 
 
-      NewVector<NewVector<double>> t7 {{1,2,3},{4,5,6}};
+      Vector<Vector<double>> t7 {{1,2,3},{4,5,6}};
       tdisp(t7);
       tdisp(NumberType<decltype(t7)>::depth());
       tdisp(t7.size());
@@ -297,8 +297,8 @@ int main(int argc, char *argv[])
 	tdisp(t7(n));
       }
 
-      // mout << bold.apply("NewVector<NewVector<double>> class testing") << std::endl;
-      // NewVector<NewVector<double>> t5 {{1,2},{3,4},{5,6}};
+      // mout << bold.apply("Vector<Vector<double>> class testing") << std::endl;
+      // Vector<Vector<double>> t5 {{1,2},{3,4},{5,6}};
       // tdisp(t5);
       // tdisp(NumberType<decltype(t5)>::depth());
       // tdisp(t5.size());

@@ -3,7 +3,7 @@
 
 ## Items for V3.0 -- First Official Release
 
-1. Structure changes (`Scalar` implemented). Implement both first for `Vector`, then `Matrix`, then `Tensor`.
+1. Structure changes. Implement both first for `Scalar` (done), then `Vector`, then `Matrix`, then `Tensor`.
    * [Recursive tensors](recursive.md) (e.g. Vector<Vector<double>>)
    * [Tensor dimensions as template parameters](templatedimensions.md) 
 1. [Tensor dot product](dotproduct.md)

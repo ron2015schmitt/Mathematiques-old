@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29-r2).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -87,42 +87,10 @@ v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  v1+v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(1,0), (1,0), (1,0), (1,0)}; 
-  v1-v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(-1,-2), (-1,0), (1,-2), (1,2)}; 
-  v1*v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(1,-1), (0,0), (1,1), (1,-1)}; 
-  v1/v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
+  v1+v2 = Vector<std::complex<double>> {(1,0), (1,0), (1,0), (1,0)}; 
+  v1-v2 = Vector<std::complex<double>> {(-1,-2), (-1,0), (1,-2), (1,2)}; 
+  v1*v2 = Vector<std::complex<double>> {(1,-1), (0,0), (1,1), (1,-1)}; 
+  v1/v2 = Vector<std::complex<double>> {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
 ```
 
 ### Mixed arithmetic with complex and real vectors and scalars `Vector`'s
@@ -141,60 +109,12 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  vr+vc = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(2,1), (3,0), (3,1), (4,-1)}; 
-  vr-vc = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(0,-1), (1,-0), (3,-1), (4,1)}; 
-  vr*vc = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(1,1), (2,0), (0,3), (-0,-4)}; 
-  vr/vc = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
-  2.*vr + vc/2. + 1 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
-  complex<double>(0,1)*vr + complex<double>(5,2)*vc = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-Vector<std::complex<double>> {(3,8), (5,4), (-2,8), (2,-1)}; 
+  vr+vc = Vector<std::complex<double>> {(2,1), (3,0), (3,1), (4,-1)}; 
+  vr-vc = Vector<std::complex<double>> {(0,-1), (1,-0), (3,-1), (4,1)}; 
+  vr*vc = Vector<std::complex<double>> {(1,1), (2,0), (0,3), (-0,-4)}; 
+  vr/vc = Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
+  2.*vr + vc/2. + 1 = Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
+  complex<double>(0,1)*vr + complex<double>(5,2)*vc = Vector<std::complex<double>> {(3,8), (5,4), (-2,8), (2,-1)}; 
 ```
 
 ### real and imag parts of `Vector`'s
@@ -210,16 +130,8 @@ v = {1+1.i, 1., 1.i, 2-5.i}; // C++11 list and C++14 imag
 **Some expressions with results**: real and imaginary parts
 ```C++
   v = {(1,1), (1,0), (0,1), (2,-5)}; 
-  real(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<double> {1, 1, 0, 2}; 
-  imag(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<double> {1, 0, 1, -5}; 
+  real(v) = Vector<double> {1, 1, 0, 2}; 
+  imag(v) = Vector<double> {1, 0, 1, -5}; 
 ```
 
 
@@ -231,38 +143,8 @@ Vector<double> {1, 0, 1, -5};
 using namespace std;
 Vector<complex<double> > vc(4);
 Vector<double> vr( range<double>(1,4) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<double> vi( range<double>(-1,-4) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 vc = vcomplex(vr, vi);
-operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
 ```
 
 **Some expressions with results**: create a complex vector from two real vectors
@@ -270,16 +152,8 @@ operator[3] #2
   vr = {1, 2, 3, 4}; 
   vi = {-1, -2, -3, -4}; 
   vc = {(1,-1), (2,-2), (3,-3), (4,-4)}; 
-  real(vc) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<double> {1, 2, 3, 4}; 
-  imag(vc) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<double> {-1, -2, -3, -4}; 
+  real(vc) = Vector<double> {1, 2, 3, 4}; 
+  imag(vc) = Vector<double> {-1, -2, -3, -4}; 
 ```
 
 
@@ -289,41 +163,14 @@ Vector<double> {-1, -2, -3, -4};
 ```C++
 using namespace std;
 Vector<double> v( range<double>(1,4) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**: create a complex vector from a real vector and a scalar
 ```C++
-  vcomplex(v, 0.) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<std::complex<double>> {(1,0), (2,0), (3,0), (4,0)}; 
-  vcomplex(v, 1.) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<std::complex<double>> {(1,1), (2,1), (3,1), (4,1)}; 
-  vcomplex(0., v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
-  vcomplex(1., v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-Vector<std::complex<double>> {(1,1), (1,2), (1,3), (1,4)}; 
+  vcomplex(v, 0.) = Vector<std::complex<double>> {(1,0), (2,0), (3,0), (4,0)}; 
+  vcomplex(v, 1.) = Vector<std::complex<double>> {(1,1), (2,1), (3,1), (4,1)}; 
+  vcomplex(0., v) = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
+  vcomplex(1., v) = Vector<std::complex<double>> {(1,1), (1,2), (1,3), (1,4)}; 
 ```
 
 
@@ -336,30 +183,8 @@ Complex cojugation can be performed via the function `conj` or via the operator 
 using namespace std;
 Vector<complex<double> > vc(3);
 Vector<double> vr( range<double>(1,3) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<double> vi( range<double>(-1,1) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 vc = vcomplex(vr, vi);
-operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
 ```
 
 **Some expressions with results**: compute the complex conjugate of a vector
@@ -367,14 +192,8 @@ operator[2] #2
   vr = {1, 2, 3}; 
   vi = {-1, 0, 1}; 
   vc = {(1,-1), (2,0), (3,1)}; 
-  conj(vc) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1,1), (2,-0), (3,-1)}; 
-  ~vc = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1,1), (2,-0), (3,-1)}; 
+  conj(vc) = Vector<std::complex<double>> {(1,1), (2,-0), (3,-1)}; 
+  ~vc = Vector<std::complex<double>> {(1,1), (2,-0), (3,-1)}; 
 ```
 
 
@@ -387,160 +206,45 @@ const double pi = 3.14159265358979323846;
 using namespace std;
 Vector<complex<double> > v(3);
 Vector<double> vr( range<double>(1,3) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<double> vi( range<double>(-1,1) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 v = vcomplex(vr, vi);
-operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
 ```
 
 **Some expressions with results**: functions of complex vectors
 ```C++
   v = {(1,-1), (2,0), (3,1)}; 
-  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = operator[0] #2
-operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[2] #2
-Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
-  abs(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<double> {1.41421, 2, 3.16228}; 
-  pow(2., v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
-  pow(v, 2.) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.22465e-16,-2), (4,0), (8,6)}; 
-  pow(v,v) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 
-  exp(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.46869,-2.28736), (7.38906,0), (10.8523,16.9014)}; 
-  round(exp(v)) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1,-2), (7,0), (11,17)}; 
-  roundzero(v+1e-16) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
-  log(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.346574,-0.785398), (0.693147,0), (1.15129,0.321751)}; 
-  log10(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.150515,-0.341094), (0.30103,0), (0.5,0.139734)}; 
-  sqr(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0,-2), (4,0), (8,6)}; 
-  cube(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(-2,-2), (8,0), (18,26)}; 
-  sqrt(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.09868,-0.45509), (1.41421,0), (1.75532,0.284849)}; 
-  sin(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.29846,-0.634964), (0.909297,-0), (0.21776,-1.16344)}; 
-  cos(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.83373,0.988898), (-0.416147,-0), (-1.52764,-0.165844)}; 
-  tan(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.271753,-1.08392), (-2.18504,0), (-0.0591685,0.768018)}; 
-  sinh(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.634964,-1.29846), (3.62686,0), (5.41268,8.47165)}; 
-  cosh(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.83373,-0.988898), (3.7622,0), (5.43958,8.42975)}; 
-  tanh(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.08392,-0.271753), (0.964028,0), (1.00205,0.00451714)}; 
-  asin(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.666239,-1.06128), (1.5708,1.31696), (1.2331,1.8242)}; 
-  acos(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.904557,1.06128), (0,-1.31696), (0.337701,-1.8242)}; 
-  atan(v) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.01722,-0.402359), (1.10715,0), (1.2768,0.0919312)}; 
-  atan2(vr, vi) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<double> {2.35619, 1.5708, 1.24905}; 
+  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
+  abs(v) = Vector<double> {1.41421, 2, 3.16228}; 
+  pow(2., v) = Vector<std::complex<double>> {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
+  pow(v, 2.) = Vector<std::complex<double>> {(1.22465e-16,-2), (4,0), (8,6)}; 
+  pow(v,v) = Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 
+  exp(v) = Vector<std::complex<double>> {(1.46869,-2.28736), (7.38906,0), (10.8523,16.9014)}; 
+  round(exp(v)) = Vector<std::complex<double>> {(1,-2), (7,0), (11,17)}; 
+  roundzero(v+1e-16) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
+  log(v) = Vector<std::complex<double>> {(0.346574,-0.785398), (0.693147,0), (1.15129,0.321751)}; 
+  log10(v) = Vector<std::complex<double>> {(0.150515,-0.341094), (0.30103,0), (0.5,0.139734)}; 
+  sqr(v) = Vector<std::complex<double>> {(0,-2), (4,0), (8,6)}; 
+  cube(v) = Vector<std::complex<double>> {(-2,-2), (8,0), (18,26)}; 
+  sqrt(v) = Vector<std::complex<double>> {(1.09868,-0.45509), (1.41421,0), (1.75532,0.284849)}; 
+  sin(v) = Vector<std::complex<double>> {(1.29846,-0.634964), (0.909297,-0), (0.21776,-1.16344)}; 
+  cos(v) = Vector<std::complex<double>> {(0.83373,0.988898), (-0.416147,-0), (-1.52764,-0.165844)}; 
+  tan(v) = Vector<std::complex<double>> {(0.271753,-1.08392), (-2.18504,0), (-0.0591685,0.768018)}; 
+  sinh(v) = Vector<std::complex<double>> {(0.634964,-1.29846), (3.62686,0), (5.41268,8.47165)}; 
+  cosh(v) = Vector<std::complex<double>> {(0.83373,-0.988898), (3.7622,0), (5.43958,8.42975)}; 
+  tanh(v) = Vector<std::complex<double>> {(1.08392,-0.271753), (0.964028,0), (1.00205,0.00451714)}; 
+  asin(v) = Vector<std::complex<double>> {(0.666239,-1.06128), (1.5708,1.31696), (1.2331,1.8242)}; 
+  acos(v) = Vector<std::complex<double>> {(0.904557,1.06128), (0,-1.31696), (0.337701,-1.8242)}; 
+  atan(v) = Vector<std::complex<double>> {(1.01722,-0.402359), (1.10715,0), (1.2768,0.0919312)}; 
+  atan2(vr, vi) = Vector<double> {2.35619, 1.5708, 1.24905}; 
 ```
 
 
 **Results**Aritmetic with scalars
 ```C++
-  v + 0.1 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.1,-1), (2.1,0), (3.1,1)}; 
-  0.1 + v = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(1.1,-1), (2.1,0), (3.1,1)}; 
-  v - 0.1 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(0.9,-1), (1.9,0), (2.9,1)}; 
-  0.1 - v = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<std::complex<double>> {(-0.9,1), (-1.9,-0), (-2.9,-1)}; 
+  v + 0.1 = Vector<std::complex<double>> {(1.1,-1), (2.1,0), (3.1,1)}; 
+  0.1 + v = Vector<std::complex<double>> {(1.1,-1), (2.1,0), (3.1,1)}; 
+  v - 0.1 = Vector<std::complex<double>> {(0.9,-1), (1.9,0), (2.9,1)}; 
+  0.1 - v = Vector<std::complex<double>> {(-0.9,1), (-1.9,-0), (-2.9,-1)}; 
 ```
 
 

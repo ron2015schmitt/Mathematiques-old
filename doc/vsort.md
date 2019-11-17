@@ -1,6 +1,6 @@
 
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in mātricks
-_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.29).
+_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.29-r2).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method
@@ -15,31 +15,7 @@ Vector<double> t( {23,-1,100,7});
 Vector<double> y( {30,10,20,40} );
 Vector<index_type> vindex;
 vindex = t.sort();
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 y = y[vindex];
-operator[0] #2
-operator[1] #1
-operator[0] #1
-operator[1] #2
-operator[3] #1
-operator[1] #1
-operator[2] #2
-operator[0] #1
-operator[2] #1
-operator[3] #2
-operator[2] #1
-operator[3] #1
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
 ```
 
 **The result is**
@@ -62,14 +38,6 @@ operator[3] #1
 Vector<double> t( {23,-1,23,4,4,4,-1,3,3});
 Vector<index_type> vindex;
 vindex = t.uniq();
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **The result is**
@@ -90,18 +58,6 @@ operator[0] #2
 Vector<double> t( {23,-1,23,4,4,4,-1,3,3});
 Vector<index_type> vindex;
 vindex = t.quniq();
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[4] #1
-operator[5] #1
-operator[5] #2
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **The result is**

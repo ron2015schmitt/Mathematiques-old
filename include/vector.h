@@ -253,7 +253,7 @@ namespace matricks {
   // "read/write"
   MyNumberType& operator[](const index_type n) {
     using namespace::display;
-    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
     if constexpr(M < 2) {
       int k = n;
       if (k < 0) {
@@ -271,7 +271,7 @@ namespace matricks {
   // read
   const MyNumberType& operator[](const index_type n)  const {
     using namespace::display;
-    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr(M < 2) {
       int k = n;
       if (k < 0) {

@@ -3,7 +3,7 @@
 
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r2).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -50,14 +50,8 @@ Vector<double> v({10, 20, 30, 40});
 ```C++
 Vector<double> v1( {10,11,12,13} ); // C++11 list
 Vector<double> v2(v1);
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 v1[0] = -1;
-operator[0] #1
 v2[0] = -2;
-operator[0] #1
 ```
 **The result is**
 ```C++
@@ -70,10 +64,6 @@ operator[0] #1
 ```C++
 Vector<double> v1({10,11,12,13} ); // C++11 list
 Vector<double> v2(10*v1+1);
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
 ```
 **The result is**
 ```C++

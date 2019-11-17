@@ -3,7 +3,7 @@
 
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.29).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.29-r2).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -24,10 +24,6 @@ _In DEBUG mode, this generates a warning since it is a dangerous practice. Use a
 ```C++
 Vector<double> v(4);
 v = (const double[]) {1,2,3,4};
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
 ```
 **The result is**
 ```C++
@@ -51,14 +47,8 @@ Note that values are copied from `v2` to `v1`
 Vector<double> v1({1,2,3,4}); // C++11 list
 Vector<double> v2({0,0,0,0}); // C++11 list
 v2 = v1;
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 v1[0] = 100;
-operator[0] #1
 v2[0] = 200;
-operator[0] #1
 ```
 **The result is**
 ```C++
@@ -71,10 +61,6 @@ operator[0] #1
 Vector<double> v1({1,2,3,4}); // C++11 list
 Vector<double> v2({0,0,0,0}); // C++11 list
 v2 = 2*v1;
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
 ```
 **The result is**
 ```C++

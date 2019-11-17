@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.29).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.29-r2).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -32,88 +32,14 @@ D pos(D x) {
 ```C++
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[4] #1
-operator[5] #1
-operator[6] #1
-operator[7] #1
-operator[8] #1
-operator[9] #1
-operator[10] #1
-operator[10] #2
-operator[9] #2
-operator[8] #2
-operator[7] #2
-operator[6] #2
-operator[5] #2
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<int> v2(range<int>(-2,2));
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #1
-operator[4] #1
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**: Applying User-defined function `pos` via `op1`
 ```C++
-  op1<double,pos>(v1) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  op1<int,pos>(v2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-Vector<int> {0, 0, 0, 1, 2}; 
-  2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-operator[5] #2
-operator[5] #2
-operator[6] #2
-operator[6] #2
-operator[7] #2
-operator[7] #2
-operator[8] #2
-operator[8] #2
-operator[9] #2
-operator[9] #2
-operator[10] #2
-operator[10] #2
-Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
+  op1<double,pos>(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  op1<int,pos>(v2) = Vector<int> {0, 0, 0, 1, 2}; 
+  2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 
@@ -126,28 +52,6 @@ Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.9519
 ```C++
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[4] #1
-operator[5] #1
-operator[6] #1
-operator[7] #1
-operator[8] #1
-operator[9] #1
-operator[10] #1
-operator[10] #2
-operator[9] #2
-operator[8] #2
-operator[7] #2
-operator[6] #2
-operator[5] #2
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<double> v2(11,0.25);
 ```
 
@@ -155,29 +59,7 @@ Vector<double> v2(11,0.25);
 ```C++
   v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   v2 = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-  op2<double,fmax>(v1,v2) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-operator[5] #2
-operator[5] #2
-operator[6] #2
-operator[6] #2
-operator[7] #2
-operator[7] #2
-operator[8] #2
-operator[8] #2
-operator[9] #2
-operator[9] #2
-operator[10] #2
-operator[10] #2
-Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
+  op2<double,fmax>(v1,v2) = Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
 ```
 
 ### Applying User-defined functions using the `valarray` inside
@@ -187,28 +69,6 @@ Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1};
 ```C++
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[4] #1
-operator[5] #1
-operator[6] #1
-operator[7] #1
-operator[8] #1
-operator[9] #1
-operator[10] #1
-operator[10] #2
-operator[9] #2
-operator[8] #2
-operator[7] #2
-operator[6] #2
-operator[5] #2
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<double> v2;
 v2 = v1.getValArray().apply(pos);
 ```
@@ -261,88 +121,14 @@ namespace matricks {
 ```C++
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
-operator[0] #1
-operator[1] #1
-operator[2] #1
-operator[3] #1
-operator[4] #1
-operator[5] #1
-operator[6] #1
-operator[7] #1
-operator[8] #1
-operator[9] #1
-operator[10] #1
-operator[10] #2
-operator[9] #2
-operator[8] #2
-operator[7] #2
-operator[6] #2
-operator[5] #2
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<int> v2(range<int>(-2,2));
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #1
-operator[4] #1
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**: Applying User-defined bound-in function `pos` 
 ```C++
-  pos(v1) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  pos(v2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-Vector<int> {0, 0, 0, 1, 2}; 
-  2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-operator[5] #2
-operator[5] #2
-operator[6] #2
-operator[6] #2
-operator[7] #2
-operator[7] #2
-operator[8] #2
-operator[8] #2
-operator[9] #2
-operator[9] #2
-operator[10] #2
-operator[10] #2
-Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
+  pos(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  pos(v2) = Vector<int> {0, 0, 0, 1, 2}; 
+  2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 

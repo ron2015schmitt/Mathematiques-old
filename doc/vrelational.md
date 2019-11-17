@@ -3,7 +3,7 @@
 
 
 # Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`) in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.29).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.29-r2).
 
 ## Relational operators
 ### Relational operators between two Vectors
@@ -14,71 +14,19 @@ Vector relations operate element-wise, similar to arithmetic operators. Given tw
 **EXAMPLE 1**: relational operators between two vectors`
 ```C++
 Vector<double> v1( range<double>(1,3) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 Vector<double> v2( range<double>(3,1) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**
 ```C++
   v1 = {1, 2, 3}; 
   v2 = {3, 2, 1}; 
-  v1 > v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<bool> {0, 0, 1}; 
-  v1 >= v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<bool> {0, 1, 1}; 
-  v1 < v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<bool> {1, 0, 0}; 
-  v1 <= v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<bool> {1, 1, 0}; 
-  v1 == v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<bool> {0, 1, 0}; 
-  v1 != v2 = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-Vector<bool> {1, 0, 1}; 
+  v1 > v2 = Vector<bool> {0, 0, 1}; 
+  v1 >= v2 = Vector<bool> {0, 1, 1}; 
+  v1 < v2 = Vector<bool> {1, 0, 0}; 
+  v1 <= v2 = Vector<bool> {1, 1, 0}; 
+  v1 == v2 = Vector<bool> {0, 1, 0}; 
+  v1 != v2 = Vector<bool> {1, 0, 1}; 
 ```
 
 ### Relational operators between a Vector and scalar
@@ -87,43 +35,17 @@ Vector<bool> {1, 0, 1};
 **EXAMPLE 2**: relational operators between a vector and a scalar`
 ```C++
 Vector<double> v( range<double>(1,3) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**
 ```C++
   v = {1, 2, 3}; 
-  v > 2 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {0, 0, 1}; 
-  v >= 2 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {0, 1, 1}; 
-  v < 2 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {1, 0, 0}; 
-  v <= 2 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {1, 1, 0}; 
-  v == 2 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {0, 1, 0}; 
-  v != 2 = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {1, 0, 1}; 
+  v > 2 = Vector<bool> {0, 0, 1}; 
+  v >= 2 = Vector<bool> {0, 1, 1}; 
+  v < 2 = Vector<bool> {1, 0, 0}; 
+  v <= 2 = Vector<bool> {1, 1, 0}; 
+  v == 2 = Vector<bool> {0, 1, 0}; 
+  v != 2 = Vector<bool> {1, 0, 1}; 
 ```
 
 ## Logical operators
@@ -133,59 +55,15 @@ Vector<bool> {1, 0, 1};
 **EXAMPLE 3**: The element-wise logical operators
 ```C++
 Vector<double> v( range<double>(1,5) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #1
-operator[4] #1
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**
 ```C++
   v = {1, 2, 3, 4, 5}; 
-  (v > 2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-Vector<bool> {0, 0, 1, 1, 1}; 
-  !(v > 2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-Vector<bool> {1, 1, 0, 0, 0}; 
-  (v >= 2) && (v <= 4 ) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-Vector<bool> {0, 1, 1, 1, 0}; 
-  (v <= 2) || (v >= 4 ) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-Vector<bool> {1, 1, 0, 1, 1}; 
+  (v > 2) = Vector<bool> {0, 0, 1, 1, 1}; 
+  !(v > 2) = Vector<bool> {1, 1, 0, 0, 0}; 
+  (v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
+  (v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
 ```
 
 ## Vector mask access
@@ -197,252 +75,19 @@ Vector<bool> {1, 1, 0, 1, 1};
 **EXAMPLE 4**: Using vector masks
 ```C++
 Vector<double> v( range<double>(-10,10) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #1
-operator[4] #1
-operator[4] #1
-operator[5] #1
-operator[5] #1
-operator[6] #1
-operator[6] #1
-operator[7] #1
-operator[7] #1
-operator[8] #1
-operator[8] #1
-operator[9] #1
-operator[9] #1
-operator[10] #1
-operator[10] #1
-operator[11] #1
-operator[11] #1
-operator[12] #1
-operator[12] #1
-operator[13] #1
-operator[13] #1
-operator[14] #1
-operator[14] #1
-operator[15] #1
-operator[15] #1
-operator[16] #1
-operator[16] #1
-operator[17] #1
-operator[17] #1
-operator[18] #1
-operator[18] #1
-operator[19] #1
-operator[19] #1
-operator[20] #1
-operator[20] #2
-operator[19] #2
-operator[18] #2
-operator[17] #2
-operator[16] #2
-operator[15] #2
-operator[14] #2
-operator[13] #2
-operator[12] #2
-operator[11] #2
-operator[10] #2
-operator[9] #2
-operator[8] #2
-operator[7] #2
-operator[6] #2
-operator[5] #2
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**
 ```C++
   v = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
-  v > 6 = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-Vector<bool> {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[0] #1
-operator[18] #2
-operator[1] #1
-operator[19] #2
-operator[2] #1
-operator[20] #2
-operator[3] #1
-v[(v > 6)] = operator[0] #2
-operator[17] #1
-operator[1] #2
-operator[18] #1
-operator[2] #2
-operator[19] #1
-operator[3] #2
-operator[20] #1
-Vector<double> {7, 8, 9, 10}; 
+  v > 6 = Vector<bool> {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
+  v[(v > 6)] = Vector<double> {7, 8, 9, 10}; 
 ```
 
 
 Now set all elements that are larger than 6 to 6 (clipping)
 ```C++
 v[(v > 6)] = 6.;
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[0] #1
-operator[18] #2
-operator[1] #1
-operator[19] #2
-operator[2] #1
-operator[20] #2
-operator[3] #1
-operator[0] #2
-operator[17] #1
-operator[1] #2
-operator[18] #1
-operator[2] #2
-operator[19] #1
-operator[3] #2
-operator[20] #1
 ```
 **The result is**
 ```C++
@@ -453,99 +98,6 @@ operator[20] #1
 Now set all negative elements to zero
 ```C++
 v[(v < 0)] = 0.;
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-operator[5] #2
-operator[6] #2
-operator[7] #2
-operator[8] #2
-operator[9] #2
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[0] #1
-operator[1] #2
-operator[1] #1
-operator[2] #2
-operator[2] #1
-operator[3] #2
-operator[3] #1
-operator[4] #2
-operator[4] #1
-operator[5] #2
-operator[5] #1
-operator[6] #2
-operator[6] #1
-operator[7] #2
-operator[7] #1
-operator[8] #2
-operator[8] #1
-operator[9] #2
-operator[9] #1
-operator[10] #2
-operator[11] #2
-operator[12] #2
-operator[13] #2
-operator[14] #2
-operator[15] #2
-operator[16] #2
-operator[17] #2
-operator[18] #2
-operator[19] #2
-operator[20] #2
-operator[0] #2
-operator[0] #1
-operator[1] #2
-operator[1] #1
-operator[2] #2
-operator[2] #1
-operator[3] #2
-operator[3] #1
-operator[4] #2
-operator[4] #1
-operator[5] #2
-operator[5] #1
-operator[6] #2
-operator[6] #1
-operator[7] #2
-operator[7] #1
-operator[8] #2
-operator[8] #1
-operator[9] #2
-operator[9] #1
 ```
 **The result is**
 ```C++
@@ -560,59 +112,15 @@ operator[9] #1
 **EXAMPLE 5**: The element-wise logical operators
 ```C++
 Vector<double> v( range<double>(1,5) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #1
-operator[3] #1
-operator[3] #1
-operator[4] #1
-operator[4] #2
-operator[3] #2
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**
 ```C++
   v = {1, 2, 3, 4, 5}; 
-  (v > 2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-Vector<bool> {0, 0, 1, 1, 1}; 
-  !(v > 2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[3] #2
-operator[4] #2
-Vector<bool> {1, 1, 0, 0, 0}; 
-  (v >= 2) && (v <= 4 ) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-Vector<bool> {0, 1, 1, 1, 0}; 
-  (v <= 2) || (v >= 4 ) = operator[0] #2
-operator[0] #2
-operator[1] #2
-operator[1] #2
-operator[2] #2
-operator[2] #2
-operator[3] #2
-operator[3] #2
-operator[4] #2
-operator[4] #2
-Vector<bool> {1, 1, 0, 1, 1}; 
+  (v > 2) = Vector<bool> {0, 0, 1, 1, 1}; 
+  !(v > 2) = Vector<bool> {1, 1, 0, 0, 0}; 
+  (v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
+  (v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
 ```
 
 ## Logical functions
@@ -630,63 +138,20 @@ Vector<bool> {1, 1, 0, 1, 1};
 **EXAMPLE 6**: The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`
 ```C++
 Vector<double> v( range<double>(1,3) );
-operator[0] #1
-operator[0] #1
-operator[1] #1
-operator[1] #1
-operator[2] #1
-operator[2] #2
-operator[1] #2
-operator[0] #2
 ```
 
 **Some expressions with results**
 ```C++
   v = {1, 2, 3}; 
-  (v > 2) = operator[0] #2
-operator[1] #2
-operator[2] #2
-Vector<bool> {0, 0, 1}; 
-  operator[0] #2
-alltrue(v > 2) = 0; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-alltrue(v > 0) = 1; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-anytrue(v > 2) = 1; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-numtrue(v > 2) = 1; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-numtrue(!(v > 2)) = 2; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-numtrue(v > 0) = 3; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[0] #1
-findtrue(v > 2) = {2}; 
-  operator[0] #2
-operator[1] #2
-operator[2] #2
-operator[0] #2
-operator[0] #1
-operator[1] #2
-operator[1] #1
-operator[2] #2
-operator[2] #1
-findtrue(v > 0) = {0, 1, 2}; 
+  (v > 2) = Vector<bool> {0, 0, 1}; 
+  alltrue(v > 2) = 0; 
+  alltrue(v > 0) = 1; 
+  anytrue(v > 2) = 1; 
+  numtrue(v > 2) = 1; 
+  numtrue(!(v > 2)) = 2; 
+  numtrue(v > 0) = 3; 
+  findtrue(v > 2) = {2}; 
+  findtrue(v > 0) = {0, 1, 2}; 
 ```
 
 

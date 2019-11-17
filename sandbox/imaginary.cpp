@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
   const double pi = M_PI;
   std::string myname = argv[0];
 
+  using namespace std;
   using namespace matricks;
   using namespace display;
   using namespace matricks::unit_imaginary;
@@ -34,16 +35,134 @@ int main(int argc, char *argv[])
   {
     cr();
     tdisp(i);
-    Imaginary<double> x = 2;
-    tdisp(x);
-
-    tdisp(x+3*i);
-
-    tdisp(x+3*i + 1);
-
-    tdisp(i*i);
-    tdisp(x/i);
+    Imaginary<double> x(2);
+    Imaginary<int> y(3);
+    std::complex<float> z(1,1);
     
+    tdisp(x);
+    tdisp(y);
+    tdisp(numbercast<float>(y));
+
+    tdisp(+x);
+    tdisp(-x);
+
+
+    
+    tdisp(x+3*i);
+    tdisp(x-3*i);
+    tdisp(i*i);
+    tdisp(x*i);
+    tdisp(x/i);
+
+    tdisp(4*i+x);
+    tdisp(4*i-x);
+    tdisp(i*x);
+    tdisp(i/x);
+
+    tdisp(x+3);
+    tdisp(x-3);
+    tdisp(x*4);
+    tdisp(x/2);
+
+    tdisp(3+x);
+    tdisp(3-x);
+    tdisp(4*x);
+    tdisp(2/x);
+
+
+    tdisp(x+z);
+    tdisp(x-z);
+    tdisp(x*z);
+    tdisp(x/z);
+
+    tdisp(z+x);
+    tdisp(z-x);
+    tdisp(z*x);
+    tdisp(z/x);
+
+
+    
+    tdisp(x += i);
+    tdisp(x -= 2*i);
+    tdisp(x *= 4);
+    tdisp(x /= 4);
+
+    tdisp(x+=5*i);
+
+    tdisp(x+y);
+    tdisp(x-y);
+    tdisp(x*y);
+    tdisp(x/y);
+
+
+    tdisp(complexify(x));
+
+    tdisp(real(x));
+    tdisp(imag(x));
+    tdisp(arg(x));
+
+    tdisp(abs(x));
+    tdisp(norm(x));
+    tdisp(conj(x));
+    tdisp(~x);
+    tdisp(polar(x));
+
+    tdisp(exp(x));
+
+    tdisp(log(x));
+    tdisp(log10(x));
+    tdisp(log2(x));
+
+    tdisp(x);
+    tdisp(y);
+    tdisp(pow(x,y));
+    tdisp(pow(x,2));
+    tdisp(pow(2,x));
+    tdisp(pow(x,z));
+    tdisp(pow(z,x));
+
+    tdisp(sqrt(x));
+    tdisp(sqr(x));
+    tdisp(cube(x));
+
+    Imaginary <double> w(1.9);
+    tdisp(w);
+    tdisp(round(w));
+    tdisp(sgn(-w));
+    tdisp(floor(w));
+    tdisp(ceil(w));
+
+    w=0.009*i;
+    tdisp(w);
+    tdisp(roundzero(w,0.01));
+    tdisp(roundzero(w,0.001));
+    tdisp(approx(i,1.009*i, 0.01));
+    tdisp(approx(i,1.009*i, 0.001));
+
+
+    tdisp(sin(x));
+    tdisp(cos(x));
+    tdisp(tan(x));
+
+    tdisp(sinh(x));
+    tdisp(cosh(x));
+    tdisp(tanh(x));
+
+    
+    tdisp(asin(x));
+    tdisp(acos(x));
+    tdisp(atan(x));
+
+    w=0.9*i;
+    tdisp(w);
+    tdisp(atan(w));
+
+
+
+    tdisp(asinh(w));
+    tdisp(acosh(w));
+    tdisp(atanh(w));
+
   }
 
 

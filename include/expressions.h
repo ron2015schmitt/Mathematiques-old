@@ -459,11 +459,6 @@ namespace matricks {
 
   TER_Binary(const A& a, const B& b)
     : a_(&a), b_(&b) {
-      mout << "TER_Binary(a,b):   " <<std::endl;
-      mout << "    ";
-      tdisp(a);
-      mout << "    ";
-      tdisp(b);
       vptrs = new VectorofPtrs();
       vptrs->add(a.getAddresses());
       vptrs->add(b.getAddresses());

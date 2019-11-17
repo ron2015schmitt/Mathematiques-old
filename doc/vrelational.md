@@ -3,7 +3,7 @@
 
 
 # Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`) in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.27-r4).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.28).
 
 ## Relational operators
 ### Relational operators between two Vectors
@@ -62,14 +62,8 @@ Vector<double> v( range<double>(1,5) );
   v = {1, 2, 3, 4, 5}; 
   (v > 2) = Vector<bool> {0, 0, 1, 1, 1}; 
   !(v > 2) = Vector<bool> {1, 1, 0, 0, 0}; 
-  TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = Vector<bool> {0, 1, 1, 1, 1}; 
-    TER_Bool_TensorOpScalar b = Vector<bool> {1, 1, 1, 1, 0}; 
-(v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
-  TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = Vector<bool> {1, 1, 0, 0, 0}; 
-    TER_Bool_TensorOpScalar b = Vector<bool> {0, 0, 0, 1, 1}; 
-(v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
+  (v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
+  (v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
 ```
 
 ## Vector mask access
@@ -125,14 +119,8 @@ Vector<double> v( range<double>(1,5) );
   v = {1, 2, 3, 4, 5}; 
   (v > 2) = Vector<bool> {0, 0, 1, 1, 1}; 
   !(v > 2) = Vector<bool> {1, 1, 0, 0, 0}; 
-  TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = Vector<bool> {0, 1, 1, 1, 1}; 
-    TER_Bool_TensorOpScalar b = Vector<bool> {1, 1, 1, 1, 0}; 
-(v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
-  TER_Binary(a,b):   
-    TER_Bool_TensorOpScalar a = Vector<bool> {1, 1, 0, 0, 0}; 
-    TER_Bool_TensorOpScalar b = Vector<bool> {0, 0, 0, 1, 1}; 
-(v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
+  (v >= 2) && (v <= 4 ) = Vector<bool> {0, 1, 1, 1, 0}; 
+  (v <= 2) || (v >= 4 ) = Vector<bool> {1, 1, 0, 1, 1}; 
 ```
 
 ## Logical functions

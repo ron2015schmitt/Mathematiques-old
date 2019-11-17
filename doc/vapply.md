@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.27-r4).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.28).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -39,10 +39,7 @@ Vector<int> v2(range<int>(-2,2));
 ```C++
   op1<double,pos>(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   op1<int,pos>(v2) = Vector<int> {0, 0, 0, 1, 2}; 
-  TER_Binary(a,b):   
-    TER_ScalarOpTensor_New a = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
-    TER_Unary b = Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
-2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
+  2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 
@@ -62,10 +59,7 @@ Vector<double> v2(11,0.25);
 ```C++
   v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   v2 = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-    Vector<double> b = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-op2<double,fmax>(v1,v2) = Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
+  op2<double,fmax>(v1,v2) = Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
 ```
 
 ### Applying User-defined functions using the `valarray` inside
@@ -134,10 +128,7 @@ Vector<int> v2(range<int>(-2,2));
 ```C++
   pos(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   pos(v2) = Vector<int> {0, 0, 0, 1, 2}; 
-  TER_Binary(a,b):   
-    TER_ScalarOpTensor_New a = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2}; 
-    TER_Unary b = Vector<double> {0, 0, 0, 0, 0, 0, 1.35191, 2.18743, 2.18743, 1.35191, 2.81669e-16}; 
-2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
+  2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 

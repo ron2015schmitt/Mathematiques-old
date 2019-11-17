@@ -3,7 +3,7 @@
 
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.27-r4).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.28).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -18,29 +18,14 @@ v2 = {1,2,3,4}; // C++11 list
 ```
 
 v1 = {10, 20, 30, 40}; 
-TER_Binary(a,b):   
-    Vector<double> a = {10, 20, 30, 40}; 
-    Vector<double> b = {1, 2, 3, 4}; 
 v1+v2 = Vector<double> {11, 22, 33, 44}; 
 v1 = {10, 20, 30, 40}; 
 **Some expressions with results**
 ```C++
-  TER_Binary(a,b):   
-    Vector<double> a = {10, 20, 30, 40}; 
-    Vector<double> b = {1, 2, 3, 4}; 
-v1 + v2 = Vector<double> {11, 22, 33, 44}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {10, 20, 30, 40}; 
-    Vector<double> b = {1, 2, 3, 4}; 
-v1 - v2 = Vector<double> {9, 18, 27, 36}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {10, 20, 30, 40}; 
-    Vector<double> b = {1, 2, 3, 4}; 
-v1 * v2 = Vector<double> {10, 40, 90, 160}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {10, 20, 30, 40}; 
-    Vector<double> b = {1, 2, 3, 4}; 
-v1 / v2 = Vector<double> {10, 10, 10, 10}; 
+  v1 + v2 = Vector<double> {11, 22, 33, 44}; 
+  v1 - v2 = Vector<double> {9, 18, 27, 36}; 
+  v1 * v2 = Vector<double> {10, 40, 90, 160}; 
+  v1 / v2 = Vector<double> {10, 10, 10, 10}; 
 ```
 
 ### Vector-scalar arithmetic
@@ -64,10 +49,7 @@ v1 = {10,20,30,40}; // C++11 list
   2 * v1 = Vector<double> {20, 40, 60, 80}; 
   v1 / 10 = Vector<double> {1, 2, 3, 4}; 
   120 / v1 = Vector<double> {12, 6, 4, 3}; 
-  TER_Binary(a,b):   
-    TER_TensorOpScalar_New a = Vector<double> {12, 6, 4, 3}; 
-    TER_TensorOpScalar_New b = Vector<double> {100, 200, 300, 400}; 
-1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
+  1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
 ```
 
 ### Vector math functions
@@ -103,10 +85,7 @@ v = {-1,0,1,2,4}; // C++11 list
 ```C++
   pow(2., v) = Vector<double> {0.5, 1, 2, 4, 16}; 
   pow(v, 2.) = Vector<double> {1, 0, 1, 4, 16}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {-1, 0, 1, 2, 4}; 
-    Vector<double> b = {-1, 0, 1, 2, 4}; 
-pow(v,v) = Vector<double> {-1, 1, 1, 4, 256}; 
+  pow(v,v) = Vector<double> {-1, 1, 1, 4, 256}; 
   exp(v) = Vector<double> {0.367879, 1, 2.71828, 7.38906, 54.5982}; 
   log(v) = Vector<double> {nan, -inf, 0, 0.693147, 1.38629}; 
   log10(v) = Vector<double> {nan, -inf, 0, 0.30103, 0.60206}; 
@@ -178,10 +157,7 @@ v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
   asin(v)/pi = Vector<double> {-0.5, 0, 0.5}; 
   acos(v)/pi = Vector<double> {1, 0.5, 0}; 
   atan(v)/pi = Vector<double> {-0.25, 0, 0.25}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {-1, -1, -1, 0, 0, 0, 1, 1, 1}; 
-    Vector<double> b = {-1, 0, 1, -1, 0, 1, -1, 0, 1}; 
-atan2(v1, v2)/pi = Vector<double> {-0.75, -0.5, -0.25, 1, 0, 0, 0.75, 0.5, 0.25}; 
+  atan2(v1, v2)/pi = Vector<double> {-0.75, -0.5, -0.25, 1, 0, 0, 0.75, 0.5, 0.25}; 
 ```
 
 ### Arbitrary combinations of the above functionality are supported
@@ -200,13 +176,7 @@ v2 = {-1,-2,-3,-4}; // C++11 list
 
 **Some expressions with results**
 ```C++
-  TER_Binary(a,b):   
-    Vector<double> a = {10, 20, 30, 40}; 
-    Vector<double> b = {-1, -2, -3, -4}; 
-TER_Binary(a,b):   
-    TER_TensorOpScalar_New a = Vector<double> {9, 9, 9, 9}; 
-    TER_TensorOpScalar b = Vector<double> {1, 4, 9, 16}; 
-2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = Vector<double> {10, 13, 18, 25}; 
+  2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = Vector<double> {10, 13, 18, 25}; 
 ```
 
 

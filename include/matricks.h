@@ -7,7 +7,7 @@
 #define MATRICKS_H
 
 #include <ctgmath>
-//#include <cmath>
+#include <cmath>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
@@ -42,8 +42,8 @@
 
 #include "matricks_version.h"
 #include "preface.h"
-#include "math_imag.h"
 #include "math_cplx.h"
+#include "math_imag.h"
 #include "display.h"
 #include "slices.h"
 #include "util.h"

@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.27-r4).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.28).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -87,22 +87,10 @@ v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-v1+v2 = Vector<std::complex<double>> {(1,0), (1,0), (1,0), (1,0)}; 
-  TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-v1-v2 = Vector<std::complex<double>> {(-1,-2), (-1,0), (1,-2), (1,2)}; 
-  TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-v1*v2 = Vector<std::complex<double>> {(1,-1), (0,0), (1,1), (1,-1)}; 
-  TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(-0,-1), (0,0), (1,-1), (1,1)}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-v1/v2 = Vector<std::complex<double>> {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
+  v1+v2 = Vector<std::complex<double>> {(1,0), (1,0), (1,0), (1,0)}; 
+  v1-v2 = Vector<std::complex<double>> {(-1,-2), (-1,0), (1,-2), (1,2)}; 
+  v1*v2 = Vector<std::complex<double>> {(1,-1), (0,0), (1,1), (1,-1)}; 
+  v1/v2 = Vector<std::complex<double>> {(-0.5,-0.5), (0,0), (-1,-1), (-1,1)}; 
 ```
 
 ### Mixed arithmetic with complex and real vectors and scalars `Vector`'s
@@ -121,30 +109,12 @@ vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginar
 
 **Some expressions with results**
 ```C++
-  TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-vr+vc = Vector<std::complex<double>> {(2,1), (3,0), (3,1), (4,-1)}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-vr-vc = Vector<std::complex<double>> {(0,-1), (1,-0), (3,-1), (4,1)}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-vr*vc = Vector<std::complex<double>> {(1,1), (2,0), (0,3), (-0,-4)}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3, 4}; 
-    Vector<std::complex<double>> b = {(1,1), (1,0), (0,1), (-0,-1)}; 
-vr/vc = Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
-  TER_Binary(a,b):   
-    TER_ScalarOpTensor_New a = Vector<double> {2, 4, 6, 8}; 
-    TER_TensorOpScalar_New b = Vector<std::complex<double>> {(0.5,0.5), (0.5,0), (0,0.5), (-0,-0.5)}; 
-2.*vr + vc/2. + 1 = Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
-  TER_Binary(a,b):   
-    TER_ScalarOpTensor_New a = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
-    TER_ScalarOpTensor_New b = Vector<std::complex<double>> {(3,7), (5,2), (-2,5), (2,-5)}; 
-complex<double>(0,1)*vr + complex<double>(5,2)*vc = Vector<std::complex<double>> {(3,8), (5,4), (-2,8), (2,-1)}; 
+  vr+vc = Vector<std::complex<double>> {(2,1), (3,0), (3,1), (4,-1)}; 
+  vr-vc = Vector<std::complex<double>> {(0,-1), (1,-0), (3,-1), (4,1)}; 
+  vr*vc = Vector<std::complex<double>> {(1,1), (2,0), (0,3), (-0,-4)}; 
+  vr/vc = Vector<std::complex<double>> {(0.5,-0.5), (2,0), (0,-3), (-0,4)}; 
+  2.*vr + vc/2. + 1 = Vector<std::complex<double>> {(3.5,0.5), (5.5,0), (7,0.5), (9,-0.5)}; 
+  complex<double>(0,1)*vr + complex<double>(5,2)*vc = Vector<std::complex<double>> {(3,8), (5,4), (-2,8), (2,-1)}; 
 ```
 
 ### real and imag parts of `Vector`'s
@@ -175,9 +145,6 @@ Vector<complex<double> > vc(4);
 Vector<double> vr( range<double>(1,4) );
 Vector<double> vi( range<double>(-1,-4) );
 vc = vcomplex(vr, vi);
-TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3, 4}; 
-    Vector<double> b = {-1, -2, -3, -4}; 
 ```
 
 **Some expressions with results**: create a complex vector from two real vectors
@@ -218,9 +185,6 @@ Vector<complex<double> > vc(3);
 Vector<double> vr( range<double>(1,3) );
 Vector<double> vi( range<double>(-1,1) );
 vc = vcomplex(vr, vi);
-TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3}; 
-    Vector<double> b = {-1, 0, 1}; 
 ```
 
 **Some expressions with results**: compute the complex conjugate of a vector
@@ -244,28 +208,16 @@ Vector<complex<double> > v(3);
 Vector<double> vr( range<double>(1,3) );
 Vector<double> vi( range<double>(-1,1) );
 v = vcomplex(vr, vi);
-TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3}; 
-    Vector<double> b = {-1, 0, 1}; 
 ```
 
 **Some expressions with results**: functions of complex vectors
 ```C++
   v = {(1,-1), (2,0), (3,1)}; 
-  TER_Binary(a,b):   
-    TER_Unary a = Vector<double> {0.707107, 1, 0.948683}; 
-    TER_Cplx_ScalarOpTensor b = Vector<std::complex<double>> {(0,-0.707107), (0,0), (0,0.316228)}; 
-TER_Binary(a,b):   
-    TER_Unary a = Vector<double> {1.41421, 2, 3.16228}; 
-    TER_Binary b = Vector<std::complex<double>> {(0.707107,-0.707107), (1,0), (0.948683,0.316228)}; 
-abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
+  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
   abs(v) = Vector<double> {1.41421, 2, 3.16228}; 
   pow(2., v) = Vector<std::complex<double>> {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
   pow(v, 2.) = Vector<std::complex<double>> {(1.22465e-16,-2), (4,0), (8,6)}; 
-  TER_Binary(a,b):   
-    Vector<std::complex<double>> a = {(1,-1), (2,0), (3,1)}; 
-    Vector<std::complex<double>> b = {(1,-1), (2,0), (3,1)}; 
-pow(v,v) = Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 
+  pow(v,v) = Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 
   exp(v) = Vector<std::complex<double>> {(1.46869,-2.28736), (7.38906,0), (10.8523,16.9014)}; 
   round(exp(v)) = Vector<std::complex<double>> {(1,-2), (7,0), (11,17)}; 
   roundzero(v+1e-16) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
@@ -283,10 +235,7 @@ pow(v,v) = Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,
   asin(v) = Vector<std::complex<double>> {(0.666239,-1.06128), (1.5708,1.31696), (1.2331,1.8242)}; 
   acos(v) = Vector<std::complex<double>> {(0.904557,1.06128), (0,-1.31696), (0.337701,-1.8242)}; 
   atan(v) = Vector<std::complex<double>> {(1.01722,-0.402359), (1.10715,0), (1.2768,0.0919312)}; 
-  TER_Binary(a,b):   
-    Vector<double> a = {1, 2, 3}; 
-    Vector<double> b = {-1, 0, 1}; 
-atan2(vr, vi) = Vector<double> {2.35619, 1.5708, 1.24905}; 
+  atan2(vr, vi) = Vector<double> {2.35619, 1.5708, 1.24905}; 
 ```
 
 

@@ -13,26 +13,58 @@ namespace matricks {
   private:
     D d_;
   public:    
-  Imaginary() : d_(D(1)){
+  Imaginary() : d_(1){
     }
   Imaginary(const D d) : d_(d) {
     }
+
     D value() const{
       return d_;
     }
+
     Imaginary<D>& negate() {
       d_ = -d_;
       return *this;
     }
+
     D operator=(const D& y) {
       return d_ = y.value();
     }
+
     inline static std::string classname()  {
       D d;
       return "Imaginary"+display::getBracketedTypeName(d);
     }
 
-        // stream << operator
+
+
+
+    // arithmetic operators
+    Imaginary<D>& operator+=(const Imaginary<D>& y) {
+      *this = *this + y;
+      return *this;
+    }
+
+    Imaginary<D>& operator-=(const Imaginary<D>& y) {
+      *this = *this - y;
+      return *this;
+    }
+
+
+    Imaginary<D>& operator*=(const D& y) {
+      *this = *this * y;
+      return *this;
+    }
+
+    Imaginary<D>& operator/=(const D& y) {
+      *this = *this / y;
+      return *this;
+    }
+
+
+
+    
+    // stream << operator
 
     friend std::ostream& operator<<(std::ostream &stream, const Imaginary<D>& w) {
       using namespace display;
@@ -65,14 +97,36 @@ namespace matricks {
   
 
   // ***************************************************************************
-  // * i: th unit imaginary
+  // * i: the unit imaginary
   // ***************************************************************************
 
 
   namespace unit_imaginary {
-    const Imaginary<double> i = *(new Imaginary<double>(1));
+    const Imaginary<double> i(1);
   };
 
+
+
+  // ***************************************************************************
+  // numbercast
+  // ***************************************************************************
+  
+  template <typename D2, typename D1>
+    Imaginary<D2> numbercast(const Imaginary<D1>& x) {
+    using namespace std;
+    return Imaginary<D2>( numbercast<D2,D1>(x.value()) );
+  }
+
+  // ***************************************************************************
+  // complexify
+  // ***************************************************************************
+
+  
+  template <typename D> inline
+    std::complex<D>
+    complexify(const Imaginary<D>& x) {
+    return std::complex<D>(0,x.value());
+  }
 
   
   // ***************************************************************************
@@ -92,7 +146,8 @@ namespace matricks {
   template <typename D> inline
     Imaginary<D>
     operator-(const Imaginary<D>& x) {
-    return x;
+    Imaginary<D> y = x;
+    return y.negate();
   }
 
 
@@ -132,12 +187,16 @@ namespace matricks {
   // Imaginary<D1> / Imaginary<D2>
   
   template <typename D1, typename D2> inline
-    Imaginary<typename DivType<D1,D2>::Type>
+    typename DivType<D1,D2>::Type
     operator/(const Imaginary<D1>& x1, const Imaginary<D2>& x2) {
     typedef typename DivType<D1,D2>::Type D3;
     return D3(x1.value()/x2.value());
   }
 
+
+
+
+  
 
   // ***************************************************************************
   // * Imaginary-Real arithmetic:  Imaginary<D1> OP R2
@@ -343,11 +402,355 @@ namespace matricks {
 
 
 
-  // TODO:  unary functions like sin, cos, tab, round, etc
+  //*******************************************************
+  //          unary funcs
+  //*******************************************************
   
+  // real(z)
+  
+  template <typename D> inline
+    D real(const Imaginary<D>& z) {
+    return 0;
+  }
+
+  // imag(z)
+  
+  template <typename D> inline
+    D imag(const Imaginary<D>& z) {
+    return z.value();
+  }
+  
+  // arg(z)  -  this is pi/2, but let the std library calculate
+  //            since we don't know data type
+  
+  template <typename D> inline
+    D arg(const Imaginary<D>& z) {
+    using std::arg;
+    std::complex<D> dummy(0,1);
+    return arg(dummy);
+  }
+
+
+  // abs(z)
+  
+  template <typename D> inline
+    D abs(const Imaginary<D>& z) {
+    using std::abs;
+    return abs(z.value());
+  }
+
+  // norm(z) - the C++ std defines norm as magnitude squared,
+  //           going against mathematics convention
+  
+  template <typename D> inline
+    D norm(const Imaginary<D>& z) {
+    using std::abs;
+    D x = abs(z);
+    return x*x;
+  }
+
+
+  // conj(z)  - should this return a complex number?
+  //            C++ std lib returns complex number for conj(real)
+  
+  template <typename D> inline
+    Imaginary<D>
+    conj(const Imaginary<D>& z) {
+    return -z;
+  }
+
+
+
+  // complex conjugate OPERTOR ~
+
+  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > Imaginary<D>
+  operator~(const Imaginary<D>& z) {
+    return conj(z);
+  }
+
+
+
+  // polar(z)  
+
+  template <typename D> inline
+    std::complex<D>
+    polar(const Imaginary<D>& z) {
+    return std::complex(abs(z), arg(z));
+  }
+
+  // exp(z)  
+
+  template <typename D> inline
+    std::complex<D>
+    exp(const Imaginary<D>& z) {
+    const D& val = z.value(); 
+    return std::complex(cos(val), sin(val));
+  }
+
+  // log(z)  
+
+  template <typename D> inline
+    std::complex<D>
+    log(const Imaginary<D>& z) {
+    using std::log;
+    using std::arg;
+    const D& val = z.value();
+    return std::complex(log(val), arg(z) );
+  }
+
+
+  // log10
+  template <typename D>
+    std::complex<D>
+    log10(const Imaginary<D>& z) {
+    using std::log;
+    const D A0 = 1/log(D(10));
+    return A0*log(z);
+  }
+
+
+  // log2
+  template <typename D>
+    std::complex<D>
+    log2(const Imaginary<D>& z) {
+    using std::log;
+    const D A0 = 1/log(D(2));
+    return A0*log(z);
+  }
+
+
+  // pow(I1,I2)
+  template <typename D1, typename D2> inline
+    std::complex<typename MultType<D1,D2>::Type>
+    pow(const Imaginary<D1>& x1, const Imaginary<D2>& x2) {
+    using std::pow;
+    typedef typename MultType<D1,D2>::Type D3;
+    return pow(
+	       complexify(numbercast<D3>(x1)),
+	       complexify(numbercast<D3>(x2)) );
+  }
+
+
+  // pow(I1,R2)
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value> >inline
+    std::complex<typename MultType<D1,D2>::Type>
+    pow(const Imaginary<D1>& x1, const D2& x2) {
+    using std::pow;
+    typedef typename MultType<D1,D2>::Type D3;
+    return pow(
+	       complexify(numbercast<D3>(x1)),
+	       numbercast<D3>(x2) );
+  }
+
+  // pow(R1,I2)
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value> >inline
+    std::complex<typename MultType<D1,D2>::Type>
+    pow(const D1& x1, const Imaginary<D2>& x2) {
+    using std::pow;
+    typedef typename MultType<D1,D2>::Type D3;
+    return pow(
+	       numbercast<D3>(x1),
+	       complexify(numbercast<D3>(x2)) );
+  }
 
   
- 
+  // pow(I1,C2)
+  template <typename D1, typename D2> inline
+    std::complex<typename MultType<D1,D2>::Type>
+    pow(const Imaginary<D1>& x1, const std::complex<D2>& x2) {
+    using std::pow;
+    typedef typename MultType<D1,D2>::Type D3;
+    return pow(
+	       complexify(numbercast<D3>(x1)),
+	       numbercast<D3>(x2) );
+  }
+
+  // pow(C1,I2)
+  template <typename D1, typename D2> inline
+    std::complex<typename MultType<D1,D2>::Type>
+    pow(const std::complex<D1>& x1, const Imaginary<D2>& x2) {
+    using std::pow;
+    typedef typename MultType<D1,D2>::Type D3;
+    return pow(
+	       numbercast<D3>(x1),
+	       complexify(numbercast<D3>(x2)) );
+  }
+
+  
+  // sqrt
+  template <typename D>
+    std::complex<D>
+    sqrt(const Imaginary<D>& z) {
+    using std::sqrt;
+    const D A0 = sqrt(z.value()/2);
+    return A0*std::complex<D>(1,1);
+  }
+
+
+  // sqr
+  template <typename D>
+    D sqr(const Imaginary<D>& z) {
+    return -z.value()*z.value();
+  }
+
+  // cube
+  template <typename D>
+    Imaginary<D> cube(const Imaginary<D>& z) {
+    return Imaginary<D>(-z.value()*z.value()*z.value());
+  }
+
+  
+
+
+  // sin
+  template <typename D>
+    Imaginary<D>
+    sin(const Imaginary<D>& z) {
+    using std::sinh;
+    return Imaginary<D>( sinh(z.value()) );
+  }
+
+  // cos
+  template <typename D>
+    D
+    cos(const Imaginary<D>& z) {
+    using std::cosh;
+    return cosh(z.value());
+  }
+
+  // tan
+  template <typename D>
+    Imaginary<D>
+    tan(const Imaginary<D>& z) {
+    using std::tanh;
+    return Imaginary<D>( tanh(z.value()) );
+  }
+
+  // asin
+  template <typename D>
+    Imaginary<D>
+    asin(const Imaginary<D>& z) {
+    using std::asinh;
+    return Imaginary<D>( asinh(z.value()) );
+  }
+
+  // acos
+  template <typename D>
+    std::complex<D>
+    acos(const Imaginary<D>& z) {
+    using std::acos;
+    return acos(complexify(z));
+  }
+
+  // atan
+  template <typename D>
+    std::complex<D>
+    atan(const Imaginary<D>& z) {
+    using std::atan;
+    return atan(complexify(z));
+  }
+
+  // atan2
+  template <typename D>
+    std::complex<D>
+    atan2(const Imaginary<D>& z) {
+    using std::atan2;
+    return atan2(z.value(),0);
+  }
+
+
+  
+  // sinh
+  template <typename D>
+    Imaginary<D>
+    sinh(const Imaginary<D>& z) {
+    using std::sin;
+    return Imaginary<D>( sin(z.value()) );
+  }
+
+  // cosh
+  template <typename D>
+    D
+    cosh(const Imaginary<D>& z) {
+    using std::cos;
+    return cos(z.value());
+  }
+
+  // tanh
+  template <typename D>
+    Imaginary<D>
+    tanh(const Imaginary<D>& z) {
+    using std::tan;
+    return Imaginary<D>( tan(z.value()) );
+  }
+
+
+  // asinh
+  template <typename D>
+    std::complex<D>
+    asinh(const Imaginary<D>& z) {
+    using std::asinh;
+    return asinh(complexify(z));
+  }
+
+  // acosh
+  template <typename D>
+    std::complex<D>
+    acosh(const Imaginary<D>& z) {
+    using std::acosh;
+    return acosh(complexify(z));
+  }
+
+  // atanh
+  template <typename D>
+    std::complex<D>
+    atanh(const Imaginary<D>& z) {
+    using std::atanh;
+    return atanh(complexify(z));
+  }
+
+
+  
+
+  // imaginary rounding
+
+  template <typename D> Imaginary<D> round(const Imaginary<D>& x) {
+    using std::round;
+    return Imaginary<D>(round(x.value()) );
+  }
+
+  // Imaginary - sgn
+  template <typename D> Imaginary<D> sgn(const Imaginary<D>& z) {
+    return Imaginary<D>( sgn(z.value()) );
+  }
+
+  // Imaginary - floor
+  template <typename D> Imaginary<D> floor(const Imaginary<D>& z) {
+    using std::floor;
+    return Imaginary<D>( floor(z.value()) );
+  }
+
+  // Imaginary - ceil
+  template <typename D> Imaginary<D> ceil(const Imaginary<D>& z) {
+    using std::ceil;
+    return Imaginary<D>( ceil(z.value()) );
+  }
+
+
+
+  // Imaginary - roundzero
+  template <typename D> Imaginary<D> roundzero(const Imaginary<D>& x, const D tolerance) {
+    return Imaginary<D>(roundzero(x.value(),tolerance));
+  }
+
+    // approx - Imaginary
+  
+  template <typename D> bool approx(const Imaginary<D>& x, const Imaginary<D>& y, const D tolerance) {
+    return approx(x.value(),y.value(),tolerance);
+  }
+
+
+
   
 };
 

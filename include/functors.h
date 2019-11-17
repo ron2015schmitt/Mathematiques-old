@@ -146,7 +146,6 @@ namespace matricks {
   public:
     Fun_Add_New() { }
   
-    //    static inline typename AddType<D1,D2>::Type apply(const D1 a, const D2 b) {
     static inline auto apply(const D1 a, const D2 b) {
       return a+b;
     }
@@ -201,7 +200,7 @@ namespace matricks {
   public:
     Fun_Subtract_New() { }
   
-    static inline typename SubType<D1,D2>::Type apply(const D1 a, const D2 b) {
+    static inline auto apply(const D1 a, const D2 b) {
       return a-b;
     }
 
@@ -256,7 +255,7 @@ namespace matricks {
   public:
     Fun_Multiply_New() { }
   
-    static inline typename MultType<D1,D2>::Type apply(const D1 a, const D2 b) {
+    static inline auto apply(const D1 a, const D2 b) {
       return a*b;
     }
 
@@ -311,7 +310,7 @@ namespace matricks {
   public:
     Fun_Divide_New() { }
   
-    static inline typename DivType<D1,D2>::Type apply(const D1 a, const D2 b) {
+    static inline auto apply(const D1 a, const D2 b) {
       return a/b;
     }
 

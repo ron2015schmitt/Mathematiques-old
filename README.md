@@ -1,6 +1,6 @@
-# mātricks v2.29-r2
+# mātricks v2.29-r3
 
-mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
+mātricks is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 
 + V3.0, the first official release)  is almost ready.
   + Arbitrary rank tenors (Scalar, Vector, Matrix, etc)

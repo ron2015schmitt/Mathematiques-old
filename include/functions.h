@@ -20,8 +20,7 @@ namespace matricks {
   // +(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Plus<D> > 
-    operator+(const TensorR<D,A>& a)
+    inline auto operator+(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Plus<D> >(a);
     }
@@ -30,8 +29,7 @@ namespace matricks {
   // -(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Minus<D> > 
-    operator-(const TensorR<D,A>& a)
+    inline auto operator-(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Minus<D> >(a);
     }
@@ -48,7 +46,6 @@ namespace matricks {
   // Tensor<D1> + Tensor<D2>
 
   template <class D1, class D2, class A, class B> 
-    //    inline TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> > 
     inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
       using namespace display;
@@ -60,8 +57,7 @@ namespace matricks {
   // D1 + Tensor<D2>
 
   template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-    inline TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >
-    operator+(const D1& a, const TensorR<D2,B>& b)
+    inline auto operator+(const D1& a, const TensorR<D2,B>& b)
     {
       return  TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
     }
@@ -69,8 +65,7 @@ namespace matricks {
   // Tensor<D1> + D2
 
   template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
-    inline TER_TensorOpScalar_New<typename AddType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Add_New<D1,D2> >
-    operator+(const TensorR<D1,A>& a, const D2& b)
+    inline auto operator+(const TensorR<D1,A>& a, const D2& b)
     {
       return TER_TensorOpScalar_New<typename AddType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Add_New<D1,D2> >(a,b);
     }
@@ -80,8 +75,7 @@ namespace matricks {
   // T + Tensor<T>
 
   template <class T, class B> 
-    inline TER_ScalarOpTensor_New<typename AddType<T,T>::Type,T,TensorR<T,B>,Fun_Add_New<T,T> >
-    operator+(const T& a, const TensorR<T,B>& b)
+    inline auto operator+(const T& a, const TensorR<T,B>& b)
     {
       return TER_ScalarOpTensor_New<typename AddType<T,T>::Type,T,TensorR<T,B>,Fun_Add_New<T,T> >(a,b);
     }
@@ -89,8 +83,7 @@ namespace matricks {
   // Tensor<T> + T
 
   template <class T, class A> 
-    inline TER_TensorOpScalar_New<typename AddType<T,T>::Type,TensorR<T,A>,T,Fun_Add_New<T,T> >
-    operator+(const TensorR<T,A>& a, const T&b)
+    inline auto operator+(const TensorR<T,A>& a, const T&b)
     {
       return TER_TensorOpScalar_New<typename AddType<T,T>::Type,TensorR<T,A>,T,Fun_Add_New<T,T> >(a,b);
     }
@@ -104,8 +97,7 @@ namespace matricks {
   // Tensor<D1> - Tensor<D2>
 
   template <class D1, class D2, class A, class B> 
-    inline TER_Binary<typename SubType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Subtract_New<D1,D2> > 
-    operator-(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    inline auto operator-(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
       using namespace display;
       // mout<< a << createStyle(BOLD).apply("-") << b << std::endl;
@@ -116,8 +108,7 @@ namespace matricks {
   // D1 - Tensor<D2>
 
   template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-    inline TER_ScalarOpTensor_New<typename SubType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Subtract_New<D1,D2> >
-    operator-(const D1& a, const TensorR<D2,B>& b)
+    inline auto operator-(const D1& a, const TensorR<D2,B>& b)
     {
       return  TER_ScalarOpTensor_New<typename SubType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Subtract_New<D1,D2> >(a,b);
     }
@@ -125,8 +116,7 @@ namespace matricks {
   // Tensor<D1> - D2
 
   template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
-    inline TER_TensorOpScalar_New<typename SubType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Subtract_New<D1,D2> >
-    operator-(const TensorR<D1,A>& a, const D2& b)
+    inline auto operator-(const TensorR<D1,A>& a, const D2& b)
     {
       return TER_TensorOpScalar_New<typename SubType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Subtract_New<D1,D2> >(a,b);
     }
@@ -136,8 +126,7 @@ namespace matricks {
   // T - Tensor<T>
 
   template <class T, class B> 
-    inline TER_ScalarOpTensor_New<typename SubType<T,T>::Type,T,TensorR<T,B>,Fun_Subtract_New<T,T> >
-    operator-(const T& a, const TensorR<T,B>& b)
+    inline auto operator-(const T& a, const TensorR<T,B>& b)
     {
       return TER_ScalarOpTensor_New<typename SubType<T,T>::Type,T,TensorR<T,B>,Fun_Subtract_New<T,T> >(a,b);
     }
@@ -145,8 +134,7 @@ namespace matricks {
   // Tensor<T> - T
 
   template <class T, class A> 
-    inline TER_TensorOpScalar_New<typename SubType<T,T>::Type,TensorR<T,A>,T,Fun_Subtract_New<T,T> >
-    operator-(const TensorR<T,A>& a, const T&b)
+    inline auto operator-(const TensorR<T,A>& a, const T&b)
     {
       return TER_TensorOpScalar_New<typename SubType<T,T>::Type,TensorR<T,A>,T,Fun_Subtract_New<T,T> >(a,b);
     }
@@ -160,8 +148,7 @@ namespace matricks {
   // Tensor<D1> * Tensor<D2>
 
   template <class D1, class D2, class A, class B> 
-    inline TER_Binary<typename MultType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Multiply_New<D1,D2> > 
-    operator*(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    inline auto operator*(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
       using namespace display;
       // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
@@ -172,8 +159,7 @@ namespace matricks {
   // D1 * Tensor<D2>
 
   template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-    inline TER_ScalarOpTensor_New<typename MultType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Multiply_New<D1,D2> >
-    operator*(const D1& a, const TensorR<D2,B>& b)
+    inline auto operator*(const D1& a, const TensorR<D2,B>& b)
     {
       return  TER_ScalarOpTensor_New<typename MultType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Multiply_New<D1,D2> >(a,b);
     }
@@ -181,8 +167,7 @@ namespace matricks {
   // Tensor<D1> * D2
 
   template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
-    inline TER_TensorOpScalar_New<typename MultType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Multiply_New<D1,D2> >
-    operator*(const TensorR<D1,A>& a, const D2& b)
+    inline auto operator*(const TensorR<D1,A>& a, const D2& b)
     {
       return TER_TensorOpScalar_New<typename MultType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Multiply_New<D1,D2> >(a,b);
     }
@@ -192,8 +177,7 @@ namespace matricks {
   // T * Tensor<T>
 
   template <class T, class B> 
-    inline TER_ScalarOpTensor_New<typename MultType<T,T>::Type,T,TensorR<T,B>,Fun_Multiply_New<T,T> >
-    operator*(const T& a, const TensorR<T,B>& b)
+    inline auto operator*(const T& a, const TensorR<T,B>& b)
     {
       return TER_ScalarOpTensor_New<typename MultType<T,T>::Type,T,TensorR<T,B>,Fun_Multiply_New<T,T> >(a,b);
     }
@@ -201,8 +185,7 @@ namespace matricks {
   // Tensor<T> * T
 
   template <class T, class A> 
-    inline TER_TensorOpScalar_New<typename MultType<T,T>::Type,TensorR<T,A>,T,Fun_Multiply_New<T,T> >
-    operator*(const TensorR<T,A>& a, const T&b)
+    inline auto operator*(const TensorR<T,A>& a, const T&b)
     {
       return TER_TensorOpScalar_New<typename MultType<T,T>::Type,TensorR<T,A>,T,Fun_Multiply_New<T,T> >(a,b);
     }
@@ -215,11 +198,8 @@ namespace matricks {
   // Tensor<D1> / Tensor<D2>
   
   template <class D1, class D2, class A, class B> 
-    inline TER_Binary<typename DivType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Divide_New<D1,D2> > 
-    operator/(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    inline auto operator/(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
-      using namespace display;
-      // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
       return  TER_Binary<typename DivType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Divide_New<D1,D2> >(a,b);
     }
 
@@ -227,8 +207,7 @@ namespace matricks {
   // D1 / Tensor<D2>
 
   template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-    inline TER_ScalarOpTensor_New<typename DivType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Divide_New<D1,D2> >
-    operator/(const D1& a, const TensorR<D2,B>& b)
+    inline auto operator/(const D1& a, const TensorR<D2,B>& b)
     {
       return  TER_ScalarOpTensor_New<typename DivType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Divide_New<D1,D2> >(a,b);
     }
@@ -236,8 +215,7 @@ namespace matricks {
   // Tensor<D1> / D2
 
   template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
-    inline TER_TensorOpScalar_New<typename DivType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Divide_New<D1,D2> >
-    operator/(const TensorR<D1,A>& a, const D2& b)
+    inline auto operator/(const TensorR<D1,A>& a, const D2& b)
     {
       return TER_TensorOpScalar_New<typename DivType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Divide_New<D1,D2> >(a,b);
     }
@@ -247,8 +225,7 @@ namespace matricks {
   // T / Tensor<T>
 
   template <class T, class B> 
-    inline TER_ScalarOpTensor_New<typename DivType<T,T>::Type,T,TensorR<T,B>,Fun_Divide_New<T,T> >
-    operator/(const T& a, const TensorR<T,B>& b)
+    inline auto operator/(const T& a, const TensorR<T,B>& b)
     {
       return TER_ScalarOpTensor_New<typename DivType<T,T>::Type,T,TensorR<T,B>,Fun_Divide_New<T,T> >(a,b);
     }
@@ -256,8 +233,7 @@ namespace matricks {
   // Tensor<T> / T
 
   template <class T, class A> 
-    inline TER_TensorOpScalar_New<typename DivType<T,T>::Type,TensorR<T,A>,T,Fun_Divide_New<T,T> >
-    operator/(const TensorR<T,A>& a, const T&b)
+    inline auto operator/(const TensorR<T,A>& a, const T&b)
     {
       return TER_TensorOpScalar_New<typename DivType<T,T>::Type,TensorR<T,A>,T,Fun_Divide_New<T,T> >(a,b);
     }
@@ -273,8 +249,7 @@ namespace matricks {
   //**************************************************************************
 
   template <class D2, class D1, class A> 
-    inline TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D2,D1> > 
-    datacast(const TensorR<D1,A>& a)
+    inline auto datacast(const TensorR<D1,A>& a)
     {
       return  TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D2,D1> >(a);
     }
@@ -479,8 +454,7 @@ namespace matricks {
   // pow(Tensor,Tensor)
 
   template <class D, class A, class B> 
-    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> > 
-    pow(const TensorR<D,A>& a, const TensorR<D,B>& b)
+    inline auto pow(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
       return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> >(a,b);
     }
@@ -489,8 +463,7 @@ namespace matricks {
   // sqr(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Sqr<D> > 
-    sqr(const TensorR<D,A>& a)
+    inline auto sqr(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Sqr<D> >(a);
     }
@@ -498,8 +471,7 @@ namespace matricks {
   // cube(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Cube<D> > 
-    cube(const TensorR<D,A>& a)
+    inline auto cube(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Cube<D> >(a);
     }
@@ -507,8 +479,7 @@ namespace matricks {
   // sqrt(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Sqrt<D> > 
-    sqrt(const TensorR<D,A>& a)
+    inline auto sqrt(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Sqrt<D> >(a);
     }
@@ -516,8 +487,7 @@ namespace matricks {
   // exp(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Exp<D> > 
-    exp(const TensorR<D,A>& a)
+    inline auto exp(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Exp<D> >(a);
     }
@@ -527,8 +497,7 @@ namespace matricks {
   // log(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Log<D> > 
-    log(const TensorR<D,A>& a)
+    inline auto log(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Log<D> >(a);
     }
@@ -537,8 +506,7 @@ namespace matricks {
   // log10(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Log10<D> > 
-    log10(const TensorR<D,A>& a)
+    inline auto log10(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Log10<D> >(a);
     }
@@ -547,8 +515,7 @@ namespace matricks {
   // log2(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Log2<D> > 
-    log2(const TensorR<D,A>& a)
+    inline auto log2(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Log2<D> >(a);
     }
@@ -565,8 +532,7 @@ namespace matricks {
   // sin(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Sin<D> > 
-    sin(const TensorR<D,A>& a)
+    inline auto sin(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Sin<D> >(a);
     }
@@ -575,10 +541,9 @@ namespace matricks {
   // cos(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Cos<D> > 
-    cos(const TensorR<D,A>& a)
+    inline auto cos(const TensorR<D,A>& a)
     {
-      return  TER_Unary<D,TensorR<D,A>,Fun_Cos<D> >(a);
+      return TER_Unary<D,TensorR<D,A>,Fun_Cos<D> >(a);
     }
 
 
@@ -586,8 +551,7 @@ namespace matricks {
   // tan(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Tan<D> > 
-    tan(const TensorR<D,A>& a)
+    inline auto tan(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Tan<D> >(a);
     }
@@ -596,8 +560,7 @@ namespace matricks {
   // asin(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Asin<D> > 
-    asin(const TensorR<D,A>& a)
+    inline auto asin(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Asin<D> >(a);
     }
@@ -606,8 +569,7 @@ namespace matricks {
   // acos(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Acos<D> > 
-    acos(const TensorR<D,A>& a)
+    inline auto acos(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Acos<D> >(a);
     }
@@ -616,8 +578,7 @@ namespace matricks {
   // atan(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Atan<D> > 
-    atan(const TensorR<D,A>& a)
+    inline auto atan(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Atan<D> >(a);
     }
@@ -626,8 +587,7 @@ namespace matricks {
   // atan2(Tensor,Tensor)
 
   template <class D, class A, class B> 
-    inline TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Atan2<D> > 
-    atan2(const TensorR<D,A>& a, const TensorR<D,B>& b)
+    inline auto atan2(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
       return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Atan2<D> >(a,b);
     }
@@ -636,8 +596,7 @@ namespace matricks {
   // sinh(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Sinh<D> > 
-    sinh(const TensorR<D,A>& a)
+    inline auto sinh(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Sinh<D> >(a);
     }
@@ -646,8 +605,7 @@ namespace matricks {
   // cosh(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Cosh<D> > 
-    cosh(const TensorR<D,A>& a)
+    inline auto cosh(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Cosh<D> >(a);
     }
@@ -656,8 +614,7 @@ namespace matricks {
   // tanh(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Tanh<D> > 
-    tanh(const TensorR<D,A>& a)
+    inline auto tanh(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Tanh<D> >(a);
     }
@@ -671,8 +628,7 @@ namespace matricks {
   // abs(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Abs<D> > 
-    abs(const TensorR<D,A>& a)
+    inline auto abs(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Abs<D> >(a);
     }
@@ -681,8 +637,7 @@ namespace matricks {
   // sgn(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Sgn<D> > 
-    sgn(const TensorR<D,A>& a)
+    inline auto sgn(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Sgn<D> >(a);
     }
@@ -692,8 +647,7 @@ namespace matricks {
   // ceil(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Ceil<D> > 
-    ceil(const TensorR<D,A>& a)
+    inline auto ceil(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Ceil<D> >(a);
     }
@@ -702,8 +656,7 @@ namespace matricks {
   // floor(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Floor<D> > 
-    floor(const TensorR<D,A>& a)
+    inline auto floor(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Floor<D> >(a);
     }
@@ -712,8 +665,7 @@ namespace matricks {
   // round(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<D,TensorR<D,A>,Fun_Round<D> > 
-    round(const TensorR<D,A>& a)
+    inline auto round(const TensorR<D,A>& a)
     {
       return  TER_Unary<D,TensorR<D,A>,Fun_Round<D> >(a);
     }
@@ -723,8 +675,7 @@ namespace matricks {
   // roundzero(Tensor)
 
   template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Roundzero<D> > 
-    roundzero(const TensorR<D,A>& a, const D tolerance = MatricksHelper<D>::tolerance)
+    inline auto roundzero(const TensorR<D,A>& a, const D tolerance = MatricksHelper<D>::tolerance)
     {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Roundzero<D> >(a, tolerance);
     }
@@ -739,8 +690,7 @@ namespace matricks {
 
   // user-defined functions
   template <class D, typename FunctionTypes<D>::unary_func F, class A> 
-    inline TER_Unary<D, TensorR<D,A>, Fun_UnaryUser<D,F> > 
-    op1(const TensorR<D,A>& a)
+    inline auto op1(const TensorR<D,A>& a)
     {
       return  TER_Unary<D, TensorR<D,A>, Fun_UnaryUser<D,F> >(a);
     }
@@ -748,8 +698,7 @@ namespace matricks {
 
   
   template <class D, typename FunctionTypes<D>::binary_func F, class A, class B> 
-    inline TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> > 
-    op2(const TensorR<D,A>& a, const TensorR<D,B>& b)
+    inline auto op2(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
       return  TER_Binary<D, TensorR<D,A>, TensorR<D,B>, Fun_BinaryUser<D,F> >(a,b);
     }
@@ -770,8 +719,7 @@ namespace matricks {
   // !(Tensor)
 
   template <class A> 
-    inline TER_Unary<bool,TensorR<bool,A>,Fun_Not > 
-    operator!(const TensorR<bool,A>& a)
+    inline auto operator!(const TensorR<bool,A>& a)
     {
       return  TER_Unary<bool,TensorR<bool,A>,Fun_Not >(a);
     }
@@ -780,8 +728,7 @@ namespace matricks {
   // Tensor && Tensor
 
   template <class A, class B> 
-    inline TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_And > 
-    operator&&(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
+    inline auto operator&&(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
     {
       return  TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_And >(a,b);
     }
@@ -789,8 +736,7 @@ namespace matricks {
   // Tensor || Tensor
 
   template <class A, class B> 
-    inline TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_Or > 
-    operator||(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
+    inline auto operator||(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
     {
       return  TER_Binary<bool,TensorR<bool,A>,TensorR<bool,B>,Fun_Or >(a,b);
     }
@@ -835,19 +781,17 @@ namespace matricks {
 
 
 
-  // a==b
+  // a==b  elementwise
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >  
-    operator==( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    inline auto operator==( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >(a,b);
   }
 
-  // approxel(a,b,tol)
+  // approxel(a,b,tol) - element wise
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary2<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >  
-    approxel( const TensorR<D,A>& a, const  TensorR<D,B>& b, const D tol = MatricksHelper<D>::tolerance) {
+    inline auto approxel( const TensorR<D,A>& a, const  TensorR<D,B>& b, const D tol = MatricksHelper<D>::tolerance) {
     return TER_Bool_Binary2<D,TensorR<D,A>,TensorR<D,B>,Fun_Approx<D> >(a,b,tol);
   }
 
@@ -891,8 +835,7 @@ namespace matricks {
   // a!=b
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_NotEqual<D> >  
-    operator!=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    inline auto operator!=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_NotEqual<D> >(a,b);
   }
 
@@ -901,8 +844,7 @@ namespace matricks {
   // a<=b
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_LessOrEqual<D> >  
-    operator<=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    inline auto operator<=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_LessOrEqual<D> >(a,b);
   }
 
@@ -910,8 +852,7 @@ namespace matricks {
   // a>=b
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_GreaterOrEqual<D> >  
-    operator>=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    inline auto operator>=( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_GreaterOrEqual<D> >(a,b);
   }
 
@@ -919,8 +860,7 @@ namespace matricks {
   // a<b
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Less<D> >  
-    operator<( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    inline auto operator<( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Less<D> >(a,b);
   }
 
@@ -928,8 +868,7 @@ namespace matricks {
   // a>b
 
   template <class D, class A, class B> 
-    inline TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Greater<D> >  
-    operator>( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
+    inline auto operator>( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
     return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Greater<D> >(a,b);
   }
 
@@ -1131,8 +1070,7 @@ namespace matricks {
   // pow(Tensor,scalar)
 
   template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Pow<D> > 
-    pow(const TensorR<D,A>& a, const D b)
+    inline auto pow(const TensorR<D,A>& a, const D b)
     {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Pow<D> >(a,b);
     }
@@ -1140,8 +1078,7 @@ namespace matricks {
   // pow(Tensor,int)
 
   template <class D, class A> 
-    inline TER_TensorOpScalar<D,TensorR<D,A>,Fun_Monomial<D> > 
-    pow(const TensorR<D,A>& a, const int b)
+    inline auto pow(const TensorR<D,A>& a, const int b)
     {
       return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Monomial<D> >(a,b);
     }
@@ -1149,8 +1086,7 @@ namespace matricks {
   // pow(Tensor<int>,int)
 
   template <class A> 
-    inline TER_TensorOpScalar<int,TensorR<int,A>,Fun_Monomial<int> > 
-    pow(const TensorR<int,A>& a, const int b)
+    inline auto pow(const TensorR<int,A>& a, const int b)
     {
       return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Monomial<int> >(a,b);
     }
@@ -1158,24 +1094,21 @@ namespace matricks {
   // pow(scalar,Tensor)
 
   template <class D, class B> 
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Pow<D> > 
-    pow( const D a, const TensorR<D,B>& b)
+    inline auto pow( const D a, const TensorR<D,B>& b)
     {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Pow<D> >(a,b);
     }
   // pow(int,Tensor)
 
   template <class D, class B> 
-    inline TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Monomial<D> > 
-    pow( const int a, const TensorR<D,B>& b)
+    inline auto pow( const int a, const TensorR<D,B>& b)
     {
       return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Monomial<D> >(a,b);
     }
   // pow(int,Tensor<int>)
 
   template <class B> 
-    inline TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Pow<int> > 
-    pow( const int a, const TensorR<int,B>& b)
+    inline auto pow( const int a, const TensorR<int,B>& b)
     {
       return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Pow<int> >(a,b);
     }
@@ -1188,8 +1121,7 @@ namespace matricks {
   // Tensor && scalar
 
   template <class A> 
-    inline TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_And > 
-    operator&&(const TensorR<bool,A>& a, const bool b)
+    inline auto operator&&(const TensorR<bool,A>& a, const bool b)
     {
       return  TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_And >(a,b);
     }
@@ -1197,8 +1129,7 @@ namespace matricks {
   // scalar && Tensor
 
   template <class B> 
-    inline TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_And > 
-    operator&&(const bool a, const TensorR<bool,B>& b)
+    inline auto operator&&(const bool a, const TensorR<bool,B>& b)
     {
       return  TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_And >(a,b);
     }
@@ -1207,8 +1138,7 @@ namespace matricks {
   // Tensor || scalar
 
   template <class A> 
-    inline TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_Or > 
-    operator||(const TensorR<bool,A>& a, const bool b)
+    inline auto operator||(const TensorR<bool,A>& a, const bool b)
     {
       return  TER_TensorOpScalar<bool,TensorR<bool,A>,Fun_Or >(a,b);
     }
@@ -1216,8 +1146,7 @@ namespace matricks {
   // scalar || Tensor
 
   template <class B> 
-    inline TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_Or > 
-    operator||(const bool a, const TensorR<bool,B>& b)
+    inline auto operator||(const bool a, const TensorR<bool,B>& b)
     {
       return  TER_ScalarOpTensor<bool,TensorR<bool,B>,Fun_Or >(a,b);
     }
@@ -1228,8 +1157,7 @@ namespace matricks {
   // Tensor == scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> > 
-    operator==(const TensorR<D,A>& a, const D b)
+    inline auto operator==(const TensorR<D,A>& a, const D b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> >(a,b);
     }
@@ -1237,8 +1165,7 @@ namespace matricks {
   // scalar == Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> > 
-    operator==(const D a, const TensorR<D,B>& b)
+    inline auto operator==(const D a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> >(a,b);
     }
@@ -1246,8 +1173,7 @@ namespace matricks {
   // Tensor == int scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> > 
-    operator==(const TensorR<D,A>& a, const int b)
+    inline auto operator==(const TensorR<D,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Equal<D> >(a,static_cast<D>(b));
     }
@@ -1255,8 +1181,7 @@ namespace matricks {
   // Tensor<int> == int scalar
 
   template <class A> 
-    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Equal<int> > 
-    operator==(const TensorR<int,A>& a, const int b)
+    inline auto operator==(const TensorR<int,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Equal<int> >(a,static_cast<int>(b));
     }
@@ -1265,16 +1190,14 @@ namespace matricks {
   // int scalar == Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> > 
-    operator==(const int a, const TensorR<D,B>& b)
+    inline auto operator==(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Equal<D> >(static_cast<D>(a),b);
     }
   // int scalar == Tensor<int>
 
   template <class B> 
-    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Equal<int> > 
-    operator==(const int a, const TensorR<int,B>& b)
+    inline auto operator==(const int a, const TensorR<int,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Equal<int> >(static_cast<int>(a),b);
     }
@@ -1282,8 +1205,7 @@ namespace matricks {
   // Tensor != scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> > 
-    operator!=(const TensorR<D,A>& a, const D b)
+    inline auto operator!=(const TensorR<D,A>& a, const D b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> >(a,b);
     }
@@ -1291,8 +1213,7 @@ namespace matricks {
   // scalar != Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> > 
-    operator!=(const D a, const TensorR<D,B>& b)
+    inline auto operator!=(const D a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> >(a,b);
     }
@@ -1300,8 +1221,7 @@ namespace matricks {
   // Tensor != int scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> > 
-    operator!=(const TensorR<D,A>& a, const int b)
+    inline auto operator!=(const TensorR<D,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_NotEqual<D> >(a,static_cast<D>(b));
     }
@@ -1309,8 +1229,7 @@ namespace matricks {
   // Tensor<int> != int scalar
 
   template <class A> 
-    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_NotEqual<int> > 
-    operator!=(const TensorR<int,A>& a, const int b)
+    inline auto operator!=(const TensorR<int,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_NotEqual<int> >(a,static_cast<int>(b));
     }
@@ -1318,8 +1237,7 @@ namespace matricks {
   // int scalar != Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> > 
-    operator!=(const int a, const TensorR<D,B>& b)
+    inline auto operator!=(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_NotEqual<D> >(static_cast<D>(a),b);
     }
@@ -1327,8 +1245,7 @@ namespace matricks {
   // int scalar != Tensor<int>
 
   template <class B> 
-    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_NotEqual<int> > 
-    operator!=(const int a, const TensorR<int,B>& b)
+    inline auto operator!=(const int a, const TensorR<int,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_NotEqual<int> >(static_cast<int>(a),b);
     }
@@ -1337,8 +1254,7 @@ namespace matricks {
   // Tensor <= scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> > 
-    operator<=(const TensorR<D,A>& a, const D b)
+    inline auto operator<=(const TensorR<D,A>& a, const D b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,b);
     }
@@ -1346,8 +1262,7 @@ namespace matricks {
   // scalar <= Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> > 
-    operator<=(const D a, const TensorR<D,B>& b)
+    inline auto operator<=(const D a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> >(a,b);
     }
@@ -1355,8 +1270,7 @@ namespace matricks {
   // Tensor <= int scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> > 
-    operator<=(const TensorR<D,A>& a, const int b)
+    inline auto operator<=(const TensorR<D,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_LessOrEqual<D> >(a,static_cast<D>(b));
     }
@@ -1364,8 +1278,7 @@ namespace matricks {
   // Tensor<int> <= int scalar
 
   template <class A> 
-    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_LessOrEqual<int> > 
-    operator<=(const TensorR<int,A>& a, const int b)
+    inline auto operator<=(const TensorR<int,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_LessOrEqual<int> >(a,static_cast<int>(b));
     }
@@ -1373,16 +1286,14 @@ namespace matricks {
   // int scalar <= Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> > 
-    operator<=(const int a, const TensorR<D,B>& b)
+    inline auto operator<=(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_LessOrEqual<D> >(static_cast<D>(a),b);
     }
   // int scalar <= Tensor<int>
 
   template <class B> 
-    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_LessOrEqual<int> > 
-    operator<=(const int a, const TensorR<int,B>& b)
+    inline auto operator<=(const int a, const TensorR<int,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_LessOrEqual<int> >(static_cast<int>(a),b);
     }
@@ -1390,8 +1301,7 @@ namespace matricks {
   // Tensor >= scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> > 
-    operator>=(const TensorR<D,A>& a, const D b)
+    inline auto operator>=(const TensorR<D,A>& a, const D b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,b);
     }
@@ -1399,8 +1309,7 @@ namespace matricks {
   // scalar >= Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> > 
-    operator>=(const D a, const TensorR<D,B>& b)
+    inline auto operator>=(const D a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(a,b);
     }
@@ -1408,16 +1317,14 @@ namespace matricks {
   // Tensor >= int scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> > 
-    operator>=(const TensorR<D,A>& a, const int b)
+    inline auto operator>=(const TensorR<D,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_GreaterOrEqual<D> >(a,static_cast<D>(b));
     }
   // Tensor >= int scalar
 
   template <class A> 
-    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_GreaterOrEqual<int> > 
-    operator>=(const TensorR<int,A>& a, const int b)
+    inline auto operator>=(const TensorR<int,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_GreaterOrEqual<int> >(a,static_cast<int>(b));
     }
@@ -1425,16 +1332,14 @@ namespace matricks {
   // int scalar >= Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> > 
-    operator>=(const int a, const TensorR<D,B>& b)
+    inline auto operator>=(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_GreaterOrEqual<D> >(static_cast<D>(a),b);
     }
   // int scalar >= Tensor
 
   template <class B> 
-    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_GreaterOrEqual<int> > 
-    operator>=(const int a, const TensorR<int,B>& b)
+    inline auto operator>=(const int a, const TensorR<int,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_GreaterOrEqual<int> >(static_cast<int>(a),b);
     }
@@ -1442,8 +1347,7 @@ namespace matricks {
   // Tensor < scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> > 
-    operator<(const TensorR<D,A>& a, const D b)
+    inline auto operator<(const TensorR<D,A>& a, const D b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> >(a,b);
     }
@@ -1451,24 +1355,21 @@ namespace matricks {
   // scalar < Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> > 
-    operator<(const D a, const TensorR<D,B>& b)
+    inline auto operator<(const D a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> >(a,b);
     }
   // Tensor < int scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> > 
-    operator<(const TensorR<D,A>& a, const int b)
+    inline auto operator<(const TensorR<D,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Less<D> >(a,static_cast<D>(b));
     }
   // Tensor<int> < int scalar
 
   template <class A> 
-    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Less<int> > 
-    operator<(const TensorR<int,A>& a, const int b)
+    inline auto operator<(const TensorR<int,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Less<int> >(a,static_cast<int>(b));
     }
@@ -1476,16 +1377,14 @@ namespace matricks {
   // int scalar < Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> > 
-    operator<(const int a, const TensorR<D,B>& b)
+    inline auto operator<(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Less<D> >(static_cast<D>(a),b);
     }
   // int scalar < Tensor<int>
 
   template <class B> 
-    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Less<int> > 
-    operator<(const int a, const TensorR<int,B>& b)
+    inline auto operator<(const int a, const TensorR<int,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Less<int> >(static_cast<int>(a),b);
     }
@@ -1493,8 +1392,7 @@ namespace matricks {
   // Tensor > scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> > 
-    operator>(const TensorR<D,A>& a, const D b)
+    inline auto operator>(const TensorR<D,A>& a, const D b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> >(a,b);
     }
@@ -1502,8 +1400,7 @@ namespace matricks {
   // scalar > Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> > 
-    operator>(const D a, const TensorR<D,B>& b)
+    inline auto operator>(const D a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> >(a,b);
     }
@@ -1513,16 +1410,14 @@ namespace matricks {
   // Tensor > int scalar
 
   template <class D, class A> 
-    inline TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> > 
-    operator>(const TensorR<D,A>& a, const int b)
+    inline auto operator>(const TensorR<D,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<D,TensorR<D,A>,Fun_Greater<D> >(a,static_cast<D>(b));
     }
   // Tensor<int> > int scalar
 
   template <class A> 
-    inline TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Greater<int> > 
-    operator>(const TensorR<int,A>& a, const int b)
+    inline auto operator>(const TensorR<int,A>& a, const int b)
     {
       return  TER_Bool_TensorOpScalar<int,TensorR<int,A>,Fun_Greater<int> >(a,static_cast<int>(b));
     }
@@ -1530,16 +1425,14 @@ namespace matricks {
   // int scalar > Tensor
 
   template <class D, class B> 
-    inline TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> > 
-    operator>(const int a, const TensorR<D,B>& b)
+    inline auto operator>(const int a, const TensorR<D,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<D,TensorR<D,B>,Fun_Greater<D> >(static_cast<D>(a),b);
     }
   // int scalar > Tensor<int>
 
   template <class B> 
-    inline TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Greater<int> > 
-    operator>(const int a, const TensorR<int,B>& b)
+    inline auto operator>(const int a, const TensorR<int,B>& b)
     {
       return  TER_Bool_ScalarOpTensor<int,TensorR<int,B>,Fun_Greater<int> >(static_cast<int>(a),b);
     }
@@ -1559,8 +1452,7 @@ namespace matricks {
   // real(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Real<D> > 
-    real(const TensorR<D,A>& a)
+    inline auto real(const TensorR<D,A>& a)
     {
       return TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Real<D> >(a);
     }
@@ -1568,8 +1460,7 @@ namespace matricks {
   // imag(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Imag<D> > 
-    imag(const TensorR<D,A>& a)
+    inline auto imag(const TensorR<D,A>& a)
     {
       return TER_Unary<typename Realify<D>::Type, TensorR<D,A>, Fun_Imag<D> >(a);
     }
@@ -1578,8 +1469,7 @@ namespace matricks {
   // conj(Tensor)
 
   template <class D, class A> 
-    inline TER_Unary<typename Complexify<D>::Type, TensorR<D,A>, Fun_Conj<D> > 
-    conj(const TensorR<D,A>& a)
+    inline auto conj(const TensorR<D,A>& a)
     {
       return TER_Unary<typename Complexify<D>::Type, TensorR<D,A>, Fun_Conj<D> >(a);
     }
@@ -1589,8 +1479,7 @@ namespace matricks {
   // transpose(A) 
 
   template <class D, class A> 
-    TERW_Transpose<D,TensorRW<D,A>,Fun_Plus<D> > 
-    transpose(TensorRW<D,A>& a)
+    inline auto transpose(TensorRW<D,A>& a)
     {
       return TERW_Transpose<D,TensorRW<D,A>,Fun_Plus<D> >(a);
     }
@@ -1598,8 +1487,7 @@ namespace matricks {
   // adjoint(A) - conjugate transpose 
 
   template <class D, class A> 
-    inline TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> > 
-    adjoint(const TensorR<D,A>& a)
+    inline auto adjoint(const TensorR<D,A>& a)
     {
       return  TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> >(a);
     }
@@ -1608,8 +1496,7 @@ namespace matricks {
   // ~A conjugate transpose operator
 
   template <class D, class A> 
-    inline TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> > 
-    operator~(const TensorR<D,A>& a)
+    inline auto operator~(const TensorR<D,A>& a)
     {
       return  TER_Transpose<D,TensorR<D,A>,Fun_Conj<D> >(a);
     }
@@ -1736,8 +1623,7 @@ namespace matricks {
 
 
   template <class D> 
-    inline VERW_Join<D,Vector<D>,Vector<D> > 
-    operator,(Vector<D>& a, Vector<D>& b)
+    inline auto operator,(Vector<D>& a, Vector<D>& b)
     {
     
       printf2("  VERW_Join operator,(Vector<D>& a, Vector<D>& b)\n");
@@ -1748,8 +1634,7 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class A> 
-    inline VERW_Join<D, TensorRW<D,A>, Vector<D> > 
-    operator,(const TensorRW<D,A>& a, const Vector<D>& b)
+    inline auto operator,(const TensorRW<D,A>& a, const Vector<D>& b)
     {
       printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const Vector<D>& b)\n");
       TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
@@ -1762,8 +1647,7 @@ namespace matricks {
   // Need the const for compiler to find this
   // then we cast away the const
   template <class D, class B> 
-    inline VERW_Join<D, Vector<D>,TensorRW<D,B> > 
-    operator,(const Vector<D>& a, const TensorRW<D,B>& b)
+    inline auto operator,(const Vector<D>& a, const TensorRW<D,B>& b)
     {
       printf2("  VERW_Join operator,(const Vector<D>& a, const TensorRW<D,B>& b)\n");
       Vector<D>& a_ = const_cast<Vector<D>& >(a);
@@ -1775,8 +1659,7 @@ namespace matricks {
   //--------------------------------------------
   // Need the const for compiler to find this
   template <class D, class A, class B> 
-    inline VERW_Join<D, TensorRW<D,A>,TensorRW<D,B> > 
-    operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)
+    inline auto operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)
     {
       printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)\n");
       TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
@@ -1790,32 +1673,28 @@ namespace matricks {
   ///---------
   
   template <class D> 
-    inline const VER_Join<D, Vector<D>,Vector<D> > 
-    operator,(const Vector<D>& a, const Vector<D>& b)
+    inline const auto operator,(const Vector<D>& a, const Vector<D>& b)
     {
       printf2("  VER_Join operator,(const Vector<D>& a, const Vector<D>& b)\n");
       return  VER_Join<D,Vector<D>,Vector<D> >(a,b);
     }
 
   template <class D, class B> 
-    inline const VER_Join<D, Vector<D>,TensorR<D,B> > 
-    operator,(const Vector<D>& a, const TensorR<D,B>& b)
+    inline const auto operator,(const Vector<D>& a, const TensorR<D,B>& b)
     {
       printf2("  VER_Join operator,(const Vector<D>& a, const TensorR<D,B>& b)\n");
       return  VER_Join<D,Vector<D>,TensorR<D,B>  >(a,b);
     }
 
   template <class D, class A> 
-    inline const VER_Join<D,TensorR<D,A>,Vector<D> > 
-    operator,(const TensorR<D,A>& a, const Vector<D>& b)
+    inline const auto operator,(const TensorR<D,A>& a, const Vector<D>& b)
     {
       printf2("  VER_Join operator,(const TensorR<D,A>& a, const Vector<D>& b)\n");
       return  VER_Join<D,TensorR<D,A>,Vector<D> >(a,b);
     }
  
   template <class D, class A, class B> 
-    inline const VER_Join<D, TensorR<D,A>,TensorR<D,B> > 
-    operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)
+    inline const auto operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)
     {
       printf2("  VER_Join operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)\n");
       return  VER_Join<D, TensorR<D,A>,TensorR<D,B> >(a,b);
@@ -1829,8 +1708,7 @@ namespace matricks {
   // rep(v,m)
 
   template <class D, class A> 
-    inline VER_Rep<D,TensorR<D,A> >
-    rep(const TensorR<D,A>& a, const size_type m) {
+    inline auto rep(const TensorR<D,A>& a, const size_type m) {
     return VER_Rep<D,TensorR<D,A> >(a,m);
   }
 
@@ -2148,8 +2026,7 @@ namespace matricks {
   // maclaurin(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-    inline TER_Series<D, TensorR<D,A>, TensorR<D,X> > 
-    maclaurin(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N, const D x0)
+    inline auto maclaurin(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N, const D x0)
     {
       return  TER_Series<D, TensorR<D,A>, TensorR<D,X> >(a,x,N,x0);
     }
@@ -2157,8 +2034,7 @@ namespace matricks {
   // taylor(vector coefs, vector vals, max N)
 
   template <class D, class A, class X> 
-    inline TER_Series<D, TensorR<D,A>, TensorR<D,X> > 
-    taylor(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N)
+    inline auto taylor(const TensorR<D,A>& a, const TensorR<D,X>& x, const int N)
     {
       return  TER_Series<D, TensorR<D,A>, TensorR<D,X> >(a,x,N);
     }
@@ -2167,8 +2043,7 @@ namespace matricks {
   // sin coefs must include a coef for n=0 even though its irrelevant
 
   template <class D, class A, class B, class X> 
-    inline  TER_Series2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >
-    ifourier(const TensorR<D,A>& Acos, const TensorR<D,B>& Bsin, const TensorR<D,X>& x, const int N, const D k1)
+    inline auto ifourier(const TensorR<D,A>& Acos, const TensorR<D,B>& Bsin, const TensorR<D,X>& x, const int N, const D k1)
     {
       return  TER_Series2<D, TensorR<D,A>, TensorR<D,B>, TensorR<D,X>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
     }

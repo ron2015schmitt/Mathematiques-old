@@ -1,14 +1,17 @@
-# mātricks v2.29
+# mātricks v2.29-r1
 
 mātricks is numerical library for performing linear algebra in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 
 + V3.0, the first official release)  is almost ready.
   + Arbitrary rank tenors (Scalar, Vector, Matrix, etc)
+  + Each tensor type can have tensor as datatype, eg `Vector<Vector<double>>`, which can be used to represent a vector-valuedf function
   + can have fixed (uses `array`) or variable dimensions (uses `valarray`)
+  + fixed array size is ideal for small vectors, eg 2D or 3D vector
   + no boiler-plates. all are processed by the same functions
   + no loss of elegance and simplicity in use
   + no real-time cost
   + 237 unit tests (so far), with a very clear and elegant output.
+  + metacode in progress to generate full code coverage with expected results generated via meta code in C++ with calls to matlab. (matlab not required for usage of the library)
   + Online [User's Guide](doc/README.md) in progress
   + refer to [TO-DO List](todo/README.md) to monitor progress
 

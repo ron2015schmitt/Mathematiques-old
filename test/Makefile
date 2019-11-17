@@ -6,7 +6,7 @@
 ##################################################################
 #  ./configure                                                   #
 ##################################################################
-EXEC += misctest ScalarTest ScalarTestComplex vtest mtest ttest
+EXEC += misctest Recurse ScalarTest ScalarTestComplex vtest mtest ttest
 ##################################################################
 #  files/Makefile                                                #
 ##################################################################

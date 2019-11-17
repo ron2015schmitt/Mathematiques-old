@@ -7,255 +7,316 @@
 namespace matricks {
 
  
- 
+
   
   /****************************************************************************
    * Scalar -- mathematical vector class.
    ****************************************************************************   
    */
 
-  template <class D> class Scalar :
-    public TensorRW<D,Scalar<D> > {
+  // NOTE: Do NOT specify M.  The default is defined in the declaration in
+  //       preface.h
+  
+  template <class D, int M> class Scalar :
+    public TensorRW<D, Scalar<D,M> > {
   private:
 
-    // *********************** OBJECT DATA ***********************************
-    //
-    // do NOT declare any other storage.
-    // keep the instances lightweight
+  // *********************** OBJECT DATA ***********************************
+  //
+  // do NOT declare any other storage.
+  // keep the instances lightweight
     
-    D data_;
+  D data_;
 
 
   public:     
 
-    typedef D DataType;
-    typedef typename FundamentalType<D>::Type PrimDataType;
+  typedef D DataType;
+  typedef typename NumberType<D>::Type MyNumberType;
 
 
 
-    //**********************************************************************
-    //************************** CONSTRUCTORS ******************************
-    //**********************************************************************
+  //**********************************************************************
+  //************************** CONSTRUCTORS ******************************
+  //**********************************************************************
 
 
-    // -------------------  DEFAULT  CONSTRUCTOR: zero --------------------
-    Scalar<D>() 
-    {
-      data_ = D(0); 
-      constructorHelper();
-    }
+  // -------------------  DEFAULT  CONSTRUCTOR: zero --------------------
+  Scalar<D,M>() 
+  {
+    data_ = D(0); 
+    constructorHelper();
+  }
 
-    // --------------------- constant CONSTRUCTOR ---------------------
+  // --------------------- constant CONSTRUCTOR ---------------------
 
-    Scalar<D>(const D val) 
-      {
+  Scalar<D,M>(const D val) 
+  {
       
-	data_ = val;
-	constructorHelper();
-      }
+    data_ = val;
+    constructorHelper();
+  }
 
 
-    // --------------------- EXPRESSION CONSTRUCTOR --------------------
+  // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
 
-    template <class A>
-      Scalar<D>(const TensorR<D,A>& x) 
-      {
-	*this = x;
-	constructorHelper();
-      }
+  template <class A>
+  Scalar<D,M>(const TensorR<D,A>& x) 
+  {
+    *this = x;
+    constructorHelper();
+  }
 
 
+  // ************* C++11 initializer_list CONSTRUCTOR---------------------
+  Scalar<D,M>(std::initializer_list<D> mylist) {
+    *this = mylist;
+    constructorHelper();
+  }
 
 
-    // --------------------- constructorHelper() --------------------
+  // --------------------- constructorHelper() --------------------
     
-    void constructorHelper() {
-    }
+  void constructorHelper() {
+    //add to TensorPool
+  }
 
 
 
     
 
-    //**********************************************************************
-    //************************** DESTRUCTOR ******************************
-    //**********************************************************************
+  //**********************************************************************
+  //************************** DESTRUCTOR ******************************
+  //**********************************************************************
 
-    ~Scalar<D>() {
-      //remove from directory
-    }
+  ~Scalar<D,M>() {
+    //remove from TensorPool
+  }
   
 
-    //**********************************************************************
-    //************************** Size related  ******************************
-    //**********************************************************************
+  //**********************************************************************
+  //************************** Size related  ******************************
+  //**********************************************************************
 
 
-    inline size_type size(void) const {
+  inline size_type size(void) const {
+    return 1;
+  }
+  inline size_type depth(void) const {
+    return M;
+  }
+
+  inline size_type elsize(void) const {
+    if constexpr(M<2) {
       return 1;
+    } else {
+      return data_.size();
     }
+  }
+  inline size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return data_.size();
+    }
+  }
+  inline size_type deepsize(void) const {
+    return (this->size())*(this->eldeepsize());
+  }
+ 
 
-    size_type ndims(void) const {
-      return 0;
-    }
-    Dimensions dims(void) const {
-      Dimensions dimensions;
-      return dimensions;
-    }
-    bool isExpression(void) const {
-      return false;
-    }
-    virtual Tensors getEnum(void) const {
-      return T_SCALAR;
-    }
-    VectorofPtrs getAddresses(void) const  {
-      VectorofPtrs myaddr((void*)this);
-      return myaddr;
-    }
+  
+  size_type ndims(void) const {
+    return 0;
+  }
+  Dimensions dims(void) const {
+    Dimensions dimensions;
+    return dimensions;
+  }
+  bool isExpression(void) const {
+    return false;
+  }
+  virtual Tensors getEnum(void) const {
+    return T_SCALAR;
+  }
+  VectorofPtrs getAddresses(void) const  {
+    VectorofPtrs myaddr((void*)this);
+    return myaddr;
+  }
 
 
-    //**********************************************************************
-    //************************** CONVERSION  ***********************************
-    //**********************************************************************
+  //**********************************************************************
+  //************************** DEEP ACCESS ***********************************
+  //**********************************************************************
+
+
+  // -------------------- NumberType access[] --------------------
+  // NOTE: indexes over [0] to [deepsize()]
+  // -------------------------------------------------------------
+  
+  // "read/write": unsigned
+  MyNumberType& operator[](const index_type n) {
+    if constexpr(M < 2) {
+      return data_;
+    } else {
+      return (data_)[n];
+    }
+  }
+
+  // "read/write": signed
+  const MyNumberType& operator[](const index_type n)  const {
+    if constexpr(M < 2) {
+      return data_;
+    } else {
+      return (data_)[n];
+    }
+  }
+
+
+  //**********************************************************************
+  //************************** Element ACCESS ***********************************
+  //**********************************************************************
+
+
+  
+  // "read/write"
+  D& operator()()  {
+    return data_; 
+  }
+
+  // "read only"
+  const D& operator()()  const{
+    return data_; 
+  }
+
+
+
+
+  
+  //**********************************************************************
+  //************************** ASSIGNMENT **************************************
+  //**********************************************************************
+
+  Scalar<D,M>& equals(const D d) { 
+    data_=d; 
+    return *this;
+  }
+  Scalar<D,M>& operator=(const D d) {
+    return equals(d);
+  }
+    
+
+  // Copy asignment
+  Scalar<D,M>& equals(const Scalar<D,M>& s2) {
+    data_ = s2();    
+    return *this;
+  }
+
+  Scalar<D,M>& operator=(const Scalar<D,M>& s2) {
+    return equals(s2);
+  }
+
+
+
+  // TensorExpression
+  template<class A> 
+  Scalar<D,M>& equals(const TensorR<D,A>& s2) {
+    // TODO: this should be () once expressions are updated
+    data_ = s2[0];    
+    return *this;
+  }
+
+  template<class A> 
+  Scalar<D,M>& operator=(const TensorR<D,A>& s2) {
+    return equals(s2);
+  }
+
+
+  
+  Scalar<D,M>& equals(const std::initializer_list<D>& mylist) {
+    // TODO: check size
+    typename std::initializer_list<D>::iterator it  = mylist.begin(); 
+    data_ = *it;
+
+    return *this;
+  }
+  Scalar<D,M>& operator=(const std::initializer_list<D>& mylist) {
+    return equals(mylist);
+  }
+
+
+
+  //**********************************************************************
+  //************************** MATH **************************************
+  //**********************************************************************
+
+  //----------------- .roundzero(tol) ---------------------------
+  // NOTE: in-place
+
+    
+  Scalar<D,M>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+    data_ = matricks::roundzero(data_, tolerance);
+    return *this;
+  }
+
+  //----------------- .conj() ---------------------------
+  // NOTE: in-place. Don't allow if not complex.
+  //----------------------------------------------------
+  template< typename T=D >
+  typename std::enable_if<is_complex<T>{}, Scalar<T>& >::type conj() {
+    using std::conj;
+    data_ = conj(data_);
+    return *this;
+  }
+
+
 
     
 
-    // -------------------- ELEMENT ACCESS --------------------
-
-    // "read/write" access signed index
-    inline D& operator[](const index_type i)  {
-      return data_; 
-    }
-
-
-    // "read only" access igned index
-    inline const D operator[](const index_type i) const {
-      return (const D)data_; 
-    }
-
-
-    // "read/write" access signed index
-    inline D& operator()()  {
-      return data_; 
-    }
-
-    // "read only" access igned index
-    inline const D operator()() const {
-      return data_; 
-    }
-
-
-
-    //**********************************************************************
-    //************************** ASSIGNMENT **************************************
-    //**********************************************************************
-
-    Scalar<D>& equals(const D d) { 
-      data_=d; 
-      return *this;
-    }
-    Scalar<D>& operator=(const D d) {
-      return equals(d);
-    }
     
 
-    // Copy asignment
-    Scalar<D>& equals(const Scalar<D>& s2) {
-      data_ = s2();    
-      return *this;
-    }
+  //**********************************************************************
+  //************************** Text and debugging ************************
+  //**********************************************************************
 
-    Scalar<D>& operator=(const Scalar<D>& s2) {
-      return equals(s2);
-    }
-
-
-
-    // TensorExpression
-    template<class A> 
-    Scalar<D>& equals(const TensorR<D,A>& s2) {
-      data_ = s2[0];    
-      return *this;
-    }
-
-    template<class A> 
-      Scalar<D>& operator=(const TensorR<D,A>& s2) {
-      return equals(s2);
-    }
-
-
-
-
-    //**********************************************************************
-    //************************** MATH **************************************
-    //**********************************************************************
-
-    //----------------- .roundzero(tol) ---------------------------
-    // NOTE: in-place
-
-    
-    Scalar<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
-      data_ = matricks::roundzero(data_, tolerance);
-      return *this;
-    }
-
-    //----------------- .conj() ---------------------------
-    // NOTE: in-place. Don't allow if not complex.
-    //----------------------------------------------------
-    template< typename T=D >
-      typename std::enable_if<is_complex<T>{}, Scalar<T>& >::type conj() {
-      using std::conj;
-      data_ = conj(data_);
-      return *this;
-    }
-
-
-
-    
-
-    
-
-    //**********************************************************************
-    //************************** Text and debugging ************************
-    //**********************************************************************
-
-    inline std::string classname() const {
-      D d;
-      return "Scalar"+display::getBracketedTypeName(d);
-    }
+  inline std::string classname() const {
+    D d;
+    return "Scalar"+display::getBracketedTypeName(d);
+  }
 
 
 #if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      return "";
-    }
+  std::string expression(void) const {
+    return "";
+  }
 #endif
 
 
-    // stream << operator
+  // stream << operator
 
-    friend std::ostream& operator<<(std::ostream &stream, const Scalar<D>& s) {
-      using namespace display;
-      dispval_strm(stream, s());
-      return stream;
-    }
-
-
-    //template <class D>	
-    friend inline std::istream& operator>>(const std::string s,  Scalar<D>& x) {	
-      std::istringstream st(s);
-      return (st >> x);
-    }
+  friend std::ostream& operator<<(std::ostream &stream, const Scalar<D,M>& s) {
+    using namespace display;
+    dispval_strm(stream, s());
+    return stream;
+  }
 
 
-    // stream >> operator
+  //template <class D>	
+  friend inline std::istream& operator>>(const std::string s,  Scalar<D,M>& x) {	
+    std::istringstream st(s);
+    return (st >> x);
+  }
 
-    // TODO: implement this
-    friend std::istream& operator>>(std::istream& stream,  Scalar<D>& x) {	
-      return stream;
-    }
 
-    // --------------------- FRIENDS ---------------------
+  // stream >> operator
+
+  // TODO: implement this
+  friend std::istream& operator>>(std::istream& stream,  Scalar<D,M>& x) {	
+    return stream;
+  }
+
+  // --------------------- FRIENDS ---------------------
 
   
 

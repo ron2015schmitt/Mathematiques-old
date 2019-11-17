@@ -180,6 +180,9 @@ namespace matricks {
     inline size_type size(void) const {
       return data_->size();
     }
+    size_type depth(void) const {
+      return 1;
+    }
     inline size_type Nrows(void) const {
       return Nrows_;
     }

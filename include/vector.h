@@ -134,6 +134,9 @@ namespace matricks {
     inline size_type size(void) const {
       return data_->size();
     }
+    size_type depth(void) const {
+      return 1;
+    }
 
     size_type ndims(void) const {
       return 1;

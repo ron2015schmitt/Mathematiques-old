@@ -17,12 +17,6 @@ namespace matricks {
   enum TensorOrExpression : unsigned int;
   template <Tensors, class D> struct TensorType;
 
-  //-------------------------------------------------------------------
-  //                  Classes defined in later files
-  //-------------------------------------------------------------------
-  template <class D> class Scalar;
-  template <class D> class Vector;
-  template <class D> class Matrix;
 
 
   // ****************************************************************************
@@ -427,6 +421,7 @@ namespace matricks {
     //        light-weight in that they are small from 1 to 4 elements
   public:
     virtual size_type size(void) const = 0;
+    virtual size_type depth(void) const = 0;
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
     virtual bool isExpression(void) const = 0;     // NOTE: with the intrudction of getEnum, this function redundant
@@ -458,6 +453,7 @@ namespace matricks {
   template <class D, class A>
     std::ostream& printTensorExpression(std::ostream &stream, const TensorR<D,A>& te) {
     const size_type ndims = te.ndims();
+    const size_type depth = te.depth();
     switch (ndims) {
     case 0: {
       Scalar<D> s = te;
@@ -512,6 +508,10 @@ namespace matricks {
 
     size_type size(void) const {
       return derived().size();
+    }
+
+    size_type depth(void) const {
+      return 1;
     }
 
     size_type ndims(void) const {

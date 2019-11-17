@@ -67,10 +67,12 @@ namespace matricks {
   const size_type maxsize = std::numeric_limits<index_type>::max();
   const size_type badsize = std::numeric_limits<size_type>::max();
 
+  template <typename T> class NumberType;
+
   class TensorAbstract;
   template <class D, class A> class TensorR;  
   template <class D, class DERIVED> class TensorRW;
-  template <class D> class Scalar;
+  template <class D, int M = 1+matricks::NumberType<D>::depth()> class Scalar;
   template <class D> class Vector;
   template <class D> class Matrix;
   template <class D> class Tensor;

@@ -206,8 +206,8 @@ int main(int argc, char *argv[])
 
     {
       cr();
-      mout << bold.apply("NewScalar<double> class testing") << std::endl;
-      NewScalar<double> t1(1.1);
+      mout << bold.apply("Scalar<double> class testing") << std::endl;
+      Scalar<double> t1(1.1);
       tdisp(t1);
       tdisp(NumberType<decltype(t1)>::depth());
       tdisp(t1.size());
@@ -227,8 +227,8 @@ int main(int argc, char *argv[])
       tdisp(v.eldeepsize());
       tdisp(v.deepsize());
 
-      mout << bold.apply("NewScalar<NewScalar<double>> class testing") << std::endl;
-      NewScalar<NewScalar<double>> t2 {{2.2}};
+      mout << bold.apply("Scalar<Scalar<double>> class testing") << std::endl;
+      Scalar<Scalar<double>> t2 {{2.2}};
       tdisp(t2);
       tdisp(NumberType<decltype(t2)>::depth());
       tdisp(t2.size());
@@ -237,8 +237,8 @@ int main(int argc, char *argv[])
       tdisp(t2.eldeepsize());
       tdisp(t2.deepsize());
 
-      mout << bold.apply("NewScalar<NewVector<double>> class testing") << std::endl;
-      NewScalar<NewVector<double>> t3 {{1,2}};
+      mout << bold.apply("Scalar<NewVector<double>> class testing") << std::endl;
+      Scalar<NewVector<double>> t3 {{1,2}};
       tdisp(t3);
       tdisp(NumberType<decltype(t3)>::depth());
       tdisp(t3.size());
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
       tdisp(t3.deepsize());
 
 
-      NewVector<NewScalar<double>> t4(0);
+      NewVector<Scalar<double>> t4(0);
       tdisp(t4);
       tdisp(NumberType<decltype(t4)>::depth());
       tdisp(t4.size());
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
       tdisp(t4.eldeepsize());
       tdisp(t4.deepsize());
 
-      NewVector<NewScalar<double>> t5(3);
+      NewVector<Scalar<double>> t5(3);
       tdisp(t5);    
       tdisp(t5[0]);
       tdisp(t5[1]);
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
       tdisp(t5.eldeepsize());
       tdisp(t5.deepsize());
 
-      NewVector<NewScalar<double>> t6 {{1},{2}};
+      NewVector<Scalar<double>> t6 {{1},{2}};
       tdisp(t6);
       tdisp(NumberType<decltype(t6)>::depth());
       tdisp(t6.size());

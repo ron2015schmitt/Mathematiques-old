@@ -12,7 +12,8 @@ Implement code necessary so that mathematical operations work for recursive tens
     1. `Vector(i)`-- in progress  
        1. change all new valarray statements to data_.resize(N)
        1. need to convert all `[]` usage, eg in `operator=` and expressions, to `(i)` instead. or (better)  determine how to use deep access in expressions.
-       1. derivatives for Vector<Vector><double>>?
+       1. derivatives for `Vector<Vector<double>>`?
+       1. for `Vector<Vector<double>>` there are two types of dot product: 1) the default top level, or element-wise dot product. Need to support both.
     1. `Matrix(i,j)` 
     1. `Tensor(i...)`
 

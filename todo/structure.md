@@ -11,16 +11,18 @@ Implement code necessary so that mathematical operations work for recursive tens
     1. `Scalar()` ✓ complete 
     1. `Vector(i)`-- in progress  
        1. change all new valarray statements to data_.resize(N)
-       1. need to convert all `[]` usage, eg in `operator=` and expressions, to `(i)` instead. or (better)  determine how to use deep access in expressions.
-       1. derivatives for `Vector<Vector<double>>`?
-       1. for `Vector<Vector<double>>` there are two types of dot product: 1) the default top level, or element-wise dot product. Need to support both.
+       1. enable constructors and methods as required when NN==0
+       1. need to convert all `[]` usage, eg in `operator=` and expressions, to `(i)` instead. or (better)  
+       1. implement deep access in expressions.
+    
     1. `Matrix(i,j)` 
     1. `Tensor(i...)`
+    1. add .tdims() method to TensorAbstract
+    1. asVector, asMatrix wrapper function expressions
 
 ## Miscellaneous
 1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`
 1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
-1. add tdims() method that provides the templated dimension values. {} for Scalar
 1. Benchmark a large vector of 3D vectors. if slow, look into optimization
    1. Use type traits to determine ideal qualifier types for paramters and return values
 

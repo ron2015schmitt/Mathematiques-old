@@ -57,11 +57,9 @@ int main()
   }
 
 
-  header3("Setting and getting the wrapped `valarray`");
+  header3("Getting the wrapped `valarray`/`array`");
   text("* In the example below");
-  text("  * valarray `vaptr` points to a new valarray");
-  text("  * `vec` is constructed with zero size");
-  text("  * `vec` is set to wrap `vaptr`" );
+  text("  * `vec` is constructed");
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
@@ -70,24 +68,19 @@ int main()
     cr();
     codestart("C++");
     codemulti(using namespace std);
-    codemulti( valarray<double>* vaptr = new valarray<double>(4) );
-    codemulti( Vector<double> vec(0) );
-    codemulti( vec.setValArray(vaptr) );
+    codemulti( Vector<double> vec(2) );
     codemulti( valarray<double>& valias = vec.getValArray() );
-    codemulti( (*vaptr)[0] = 99 );
     codemulti( vec[1] = 1 );
     codemulti( valias[2] = 2 );
     codeend();
     cr();
     resultstart();
-    resultmulti(*vaptr);
     resultmulti(vec);
     resultmulti(valias);
     resultend();
 
   }
 
-  text("  * The above code is correct in that it does not delete the object pointed to by `vaptr`.  After calling method `setValArray`, the `Vector` takes ownership and will delete the valarray in its destrcutor.");
 
   
   matricks_toc();

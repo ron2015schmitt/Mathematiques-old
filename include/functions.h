@@ -245,11 +245,11 @@ namespace matricks {
 
 
   //**************************************************************************
-  // datacast: cast data from D1 to D2
+  // numbercast: cast data from D1 to D2
   //**************************************************************************
 
   template <class D2, class D1, class A> 
-    inline auto datacast(const TensorR<D1,A>& a)
+    inline auto numbercast(const TensorR<D1,A>& a)
     {
       return  TER_Unary<D2,TensorR<D1,A>,Fun_Cast<D2,D1> >(a);
     }

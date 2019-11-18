@@ -134,6 +134,10 @@ namespace matricks {
     Dimensions dimensions;
     return dimensions;
   }
+  Dimensions tdims(void) const {
+    Dimensions dimensions;
+    return dimensions;
+  }
   bool isExpression(void) const {
     return false;
   }
@@ -281,8 +285,18 @@ namespace matricks {
   //**********************************************************************
 
   inline std::string classname() const {
+    using namespace display;
+    std::string s = "Scalar";		
+    s += StyledString::get(ANGLE1).get();
     D d;
-    return "Scalar"+display::getBracketedTypeName(d);
+    s += getTypeName(d);
+    if (M>1) {
+      s += StyledString::get(COMMA).get();
+      s += "M=";
+      s += num2string(M);
+    }
+    s += StyledString::get(ANGLE2).get();			
+    return s;	
   }
 
 

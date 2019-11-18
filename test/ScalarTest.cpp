@@ -306,13 +306,13 @@ int main(int argc, char *argv[])
     failnum += (!pass);
   }
   {
-    // Scalar = datacast(Scalar)
+    // Scalar = numbercast(Scalar)
     printStart(++testnum);
     Scalar<int> s1 = 10;
     Scalar<double> s2 = 10.;
     Scalar<double> expected = 10.;
     Scalar<double> result;
-    testcode( result = datacast<double>(s1) );
+    testcode( result = numbercast<double>(s1) );
     bool pass = equal(result,expected);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

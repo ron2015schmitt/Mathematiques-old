@@ -19,47 +19,55 @@ namespace matricks {
 
   template <class D, int NN, int M> class Vector :
     public TensorRW<D,Vector<D,NN,M> > {
-  private:
+
+
+  public:     
+  typedef D DataType;
+  typedef typename NumberType<D>::Type MyNumberType;
+  typedef typename ArrayType<D,NN>::Type MyArrayType;
+
 
   // *********************** OBJECT DATA ***********************************
   //
   // do NOT declare any other storage.
   // keep the instances lightweight
   //**********************************************************************
+
     
-  std::valarray<D>* data_;
+  private:
+    MyArrayType data_;
 
 
-  public:     
-  typedef D DataType;
-  typedef typename NumberType<D>::Type MyNumberType;
-
-
-
+  public:
+    
   //**********************************************************************
   //************************** CONSTRUCTORS ******************************
   //**********************************************************************
 
 
+  // TODO: never use new. just resize the valarray  
+    
+
   // -------------------  DEFAULT  CONSTRUCTOR: Vector()  --------------------
   explicit Vector<D,NN,M>() {
-    data_ = new std::valarray<D>(0);
     constructorHelper();
   }
 
 
   // --------------------- Vector(N)  ---------------------
 
-  explicit Vector<D,NN,M>(const size_type N) { 
-    data_ = new std::valarray<D>(N);
-    constructorHelper();
-  }
+  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+    explicit Vector<D,NN,M>(const size_type N)
+    { 
+      data_.resize(N);
+      constructorHelper();
+    }
 
 
   // --------------------- Vector(N,value)  ---------------------
 
   explicit Vector<D,NN,M>(const size_type N, const D val) {
-    data_ = new std::valarray<D>(val, N); 
+    data_ = *(new std::valarray<D>(val, N)); 
     constructorHelper();
   }
 
@@ -67,14 +75,14 @@ namespace matricks {
   // --------------------- array[]  CONSTRUCTOR ---------------------
   Vector<D,NN,M>(const size_type N, const D (vals)[]) {
     // allocate store
-    data_ = new std::valarray<D>(vals, N); 
+    data_ = *(new std::valarray<D>(vals, N)); 
     constructorHelper();
   }
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
   Vector<D,NN,M>(std::initializer_list<D> mylist) {
     const size_type N = mylist.size();
-    data_ = new std::valarray<D>(mylist); 
+    data_ = *(new std::valarray<D>(mylist)); 
     constructorHelper();
   }
 
@@ -82,16 +90,18 @@ namespace matricks {
 
   // --------------------- Vector(valarray)  ---------------------
   Vector<D,NN,M>(const std::valarray<D>& valar) {
-    data_ = new std::valarray<D>(valar); 
+    data_ = *(new std::valarray<D>(valar)); 
     constructorHelper();
   }
+
+
 
 
   // --------------------- Vector(Vector) --------------------
 
   Vector<D,NN,M>(const Vector<D,NN,M>& v2) {
     const size_type N = v2.size();
-    data_ = new std::valarray<D>(N); 
+    data_ = *(new std::valarray<D>(N)); 
     *this = v2;
     constructorHelper();
   }
@@ -103,7 +113,7 @@ namespace matricks {
   Vector<D,NN,M>(const TensorR<D,A>& x) 
   {
     const size_type N = x.size();
-    data_ = new std::valarray<D>(N);
+    data_ = *(new std::valarray<D>(N));
     *this = x;
     constructorHelper();
   }
@@ -127,9 +137,6 @@ namespace matricks {
   //**********************************************************************
 
   ~Vector<D,NN,M>() {
-    delete  data_ ;
-
-    //remove from directory
   }
   
 
@@ -139,7 +146,7 @@ namespace matricks {
 
 
   inline size_type size(void) const {
-    return data_->size();
+    return data_.size();
   }
   
   inline size_type depth(void) const {
@@ -153,7 +160,7 @@ namespace matricks {
       if (Nelements==0) {
 	return 0;
       } else {
-	return (*data_)[0].size();
+	return data_[0].size();
       }
     }
   }
@@ -165,7 +172,7 @@ namespace matricks {
       if (Nelements==0) {
 	return 0;
       } else {
-	return (*data_)[0].deepsize();
+	return data_[0].deepsize();
       }
     }
   }
@@ -179,6 +186,10 @@ namespace matricks {
   }
   Dimensions dims(void) const {
     Dimensions dimensions(size());
+    return dimensions;
+  }
+  Dimensions tdims(void) const {
+    Dimensions dimensions(NN);
     return dimensions;
   }
   bool isExpression(void) const {
@@ -222,18 +233,19 @@ namespace matricks {
     // reallocate store
     //      delete  data_ ;
     //      data_ = new std::valarray<D>(N);
-    data_->resize(N);
+    data_.resize(N);
     return *this;
   }
 
   // -------------------------- .reshape(nr,nc) --------------------------------
   // morph into a matrix, pillaging this object of its data store.
   //
+  // TODO: probably no way to get this working now that we don;t use pointers
   Matrix<D>& reshape(const size_type nr, const size_type nc) { 
     const size_type N = nr*nc;
     // rob the data_
-    Matrix<D> m = new Matrix<D>(nr, nc, this->data_);
-    this->data_ = new std::valarray<D>(0);
+    Matrix<D> m = new Matrix<D>(nr, nc, &this->data_);
+    this->data_ = *(new std::valarray<D>(0));
     // return the new Matrix, while we live on at zero size...
     return *m;
   }
@@ -259,12 +271,12 @@ namespace matricks {
       if (k < 0) {
 	  k += size();
       }
-      return (*data_)[k];
+      return data_[k];
     } else {
       const int Ndeep = this->eldeepsize();
       const int j = n / Ndeep;
       const int k = n % Ndeep;
-      return (*data_)[j][k];
+      return data_[j][k];
     }
   }
 
@@ -277,12 +289,12 @@ namespace matricks {
       if (k < 0) {
 	  k += size();
       }
-      return (*data_)[k];
+      return data_[k];
     } else {
       const int Ndeep = this->eldeepsize();
       const int j = n / Ndeep;
       const int k = n % Ndeep;
-      return (*data_)[j][k];
+      return data_[j][k];
     }
   }
 
@@ -295,12 +307,14 @@ namespace matricks {
   
   // "read/write"
   D& operator()(const index_type n)  {
-    return (*data_)[n]; 
+    disp(n);
+    disp(data_[n]);
+    return data_[n]; 
   }
 
   // "read only"
   const D& operator()(const index_type n)  const{
-    return (*data_)[n]; 
+    return data_[n]; 
   }
 
 
@@ -356,18 +370,10 @@ namespace matricks {
   //********************* Direct access to data_  ***********************************
   //**********************************************************************
 
-  // -------------------- getValArray() --------------------
-  // "read/write" to the wrapped valarray
-  std::valarray<D>& getValArray()  {
-    return *data_; 
-  }
-
-  // -------------------- setValArray(*valarray) --------------------
-  Vector<D,NN,M>& setValArray(std::valarray<D>* valptr)  {
-    delete  data_ ;
-    const size_t N = valptr->size();
-    data_ = valptr;
-    return *this;
+  // -------------------- getArray() --------------------
+  // "read/write" to the wrapped valarray/aray
+  auto& getValArray()  {
+    return data_; 
   }
 
     
@@ -382,7 +388,7 @@ namespace matricks {
   // Assign all elements to the same constant value
   Vector<D,NN,M>& equals(const D d) { 
     for (index_type i = 0; i < size(); i++) 
-      (*data_)[i]=d; 
+      data_[i]=d; 
     return *this;
   }
   Vector<D,NN,M>& operator=(const D d) { 
@@ -403,11 +409,11 @@ namespace matricks {
       for (index_type i = 0; i < size(); i++) 
 	vtemp[i] = x[i];   // Inlined expression
       for (index_type i = 0; i < size(); i++) 
-	(*data_)[i] = vtemp[i];
+	data_[i] = vtemp[i];
     } else {
       //mout<< "  NO common addresses found" <<std::endl;
       for (index_type i = 0; i < size(); i++) 
-	(*data_)[i] = x[i];   // Inlined expression
+	data_[i] = x[i];   // Inlined expression
     }
     //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
     return *this; 
@@ -490,7 +496,7 @@ namespace matricks {
     resize(v2.size());
 
     for(index_type i=size(); i--;)
-      (*data_)[i] = v2[i];    
+      data_[i] = v2[i];    
     return *this;
   }
 
@@ -510,7 +516,7 @@ namespace matricks {
     resize(mylist.size());
     index_type i = 0;
     for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
-      (*data_)[i++] = *it;
+      data_[i++] = *it;
     }
     return *this;
   }
@@ -526,7 +532,7 @@ namespace matricks {
     size_type k = 0;
     typename std::initializer_list<D>::iterator it; 
     for (it = mylist.begin(); it != mylist.end(); ++it)  { 
-      (*data_)[k++] = *it;
+      data_[k++] = *it;
     }
 
     return *this;
@@ -546,7 +552,7 @@ namespace matricks {
     resize(vstd.size());
 
     for(size_type i=size(); i--;)
-      (*data_)[i] = vstd[i];    
+      data_[i] = vstd[i];    
 
     return *this;
   }
@@ -567,7 +573,7 @@ namespace matricks {
     resize(N);
 
     for(size_type i=size(); i--;)
-      (*data_)[i] = varray[i];    
+      data_[i] = varray[i];    
 
     return *this;
   }
@@ -588,7 +594,7 @@ namespace matricks {
     resize(varray.size());
 
     for(size_type i=size(); i--;)
-      (*data_)[i] = varray[i];    
+      data_[i] = varray[i];    
 
     return *this;
   }
@@ -610,7 +616,7 @@ namespace matricks {
     
   Vector<D,NN,M>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
     for(index_type i=size(); i--;) {
-      (*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
+      data_[i] = matricks::roundzero(data_[i], tolerance);
     }
     return *this;
   }
@@ -619,11 +625,11 @@ namespace matricks {
   //----------------- .conj() ---------------------------
   // NOTE: in-place
 
-  template< typename T=D >
-  typename std::enable_if<is_complex<T>{}, Vector<T>& >::type conj() {
+  template<typename T=D> EnableMethodIf<is_complex<T>{}, Vector<T>&> 
+    conj() {
     using std::conj;
     for(index_type i=size(); i--;) {
-      (*data_)[i] = conj((*data_)[i]);
+      data_[i] = conj(data_[i]);
     }
     return *this;
   }
@@ -649,7 +655,7 @@ namespace matricks {
 
     for (index_type i = 0; i < N ; i++ ) {
       temp[i].index = i;
-      temp[i].data = (*data_)[i];
+      temp[i].data = data_[i];
     }
     
     
@@ -658,7 +664,7 @@ namespace matricks {
     
     for (index_type i = 0; i < N ; i++ ) {
       ivec[i] = temp[i].index;
-      (*data_)[i] = temp[i].data;
+      data_[i] = temp[i].data;
     }
     
     return ivec;
@@ -678,10 +684,10 @@ namespace matricks {
     
     std::queue<Pair<D> > unique;
 	
-    Pair<D> prevpair(0, (*data_)[0]);
+    Pair<D> prevpair(0, data_[0]);
     unique.push(prevpair);
     for (index_type i = 1; i < N ; i++ ) {
-      Pair<D> mypair(i, (*data_)[i]);
+      Pair<D> mypair(i, data_[i]);
       if (mypair.data != prevpair.data) {
 	unique.push(mypair);
 	prevpair = mypair;
@@ -695,7 +701,7 @@ namespace matricks {
       Pair<D> mypair = unique.front();
       unique.pop();
       indexvec[i] = mypair.index;
-      (*data_)[i] = mypair.data;
+      data_[i] = mypair.data;
     }
 
     return indexvec;
@@ -714,15 +720,15 @@ namespace matricks {
     
     std::map<index_type,D> mymap;
     for (index_type j = 0; j < N ; j++ ) {
-      mymap[j] = (*data_)[j];
+      mymap[j] = data_[j];
     }
 
     for (index_type j = 0; j < N ; j++ ) {
       if (mymap.find(j) == mymap.end()) continue;
-      Pair<D> pair1(j, (*data_)[j]);
+      Pair<D> pair1(j, data_[j]);
       for (index_type k = j+1; k < N ; k++ ) {
 	if (mymap.find(k) == mymap.end()) continue;
-	Pair<D> pair2(k, (*data_)[k]);
+	Pair<D> pair2(k, data_[k]);
 	if (pair1.data == pair2.data) {
 	  mymap.erase(k);
 	} 
@@ -735,7 +741,7 @@ namespace matricks {
     index_type k = 0;
     for (typename std::map<index_type,D>::iterator it = mymap.begin(); it != mymap.end(); ++it) {
       indexvec[k] = it->first;
-      (*data_)[k++] = it->second;
+      data_[k++] = it->second;
     }
 
     return indexvec;
@@ -749,9 +755,9 @@ namespace matricks {
       return *this;
    
     for (index_type i = 0; i < N/2 ; i++ ) {
-      D temp = (*data_)[i];
-      (*data_)[i] = (*data_)[N-i-1];
-      (*data_)[N-i-1] = temp;
+      D temp = data_[i];
+      data_[i] = data_[N-i-1];
+      data_[N-i-1] = temp;
     }
       
     return *this;
@@ -765,8 +771,8 @@ namespace matricks {
     const size_type N = size();
     D sum = 0;
     for (index_type i = 0; i < N ; i++ ) {
-      sum += (*data_)[i];
-      (*data_)[i] = sum;
+      sum += data_[i];
+      data_[i] = sum;
     }
     return *this;
   }
@@ -777,8 +783,8 @@ namespace matricks {
     const size_type N = size();
     D prod = 1;
     for (index_type i = 0; i < N ; i++ ) {
-      prod *= (*data_)[i];
-      (*data_)[i] = prod;
+      prod *= data_[i];
+      data_[i] = prod;
     }
     return *this;
   }
@@ -789,11 +795,11 @@ namespace matricks {
   Vector<D,NN,M>& cumtrapz() {
     const size_type N = size();
     if (N==0) return *this;
-    D sum = (*data_)[0]/2;
-    (*data_)[0] = 0;
+    D sum = data_[0]/2;
+    data_[0] = 0;
     for (index_type i = 1; i < N ; i++ ) {
-      sum += (*data_)[i];
-      (*data_)[i] = sum - (*data_)[i]/2;
+      sum += data_[i];
+      data_[i] = sum - data_[i]/2;
     }
     return *this;
   }
@@ -803,7 +809,6 @@ namespace matricks {
   //     0  rectangular
   //     1  trapazoidal
   Vector<D,NN,M>& integrate_a2x(const D a, const D b, const int order=1) {
-    std::valarray<D> &mydata = *data_;
 
     const size_type N = size();
 
@@ -811,13 +816,13 @@ namespace matricks {
       this->cumsum();
       const D dx = (b-a)/D(N);
       for (index_type i = 0; i < N ; i++ ) {
-	mydata[i] *= dx;
+	data_[i] *= dx;
       }
     } else if (order == 1) {
       this->cumtrapz();
       const D dx = (b-a)/D(N-1);
       for (index_type i = 0; i < N ; i++ ) {
-	mydata[i] *= dx;
+	data_[i] *= dx;
       }
     }  else {
       //TODO: issue error
@@ -829,13 +834,12 @@ namespace matricks {
   // .cumsumrev() -- cumulative sum -- from last to first
 
   Vector<D,NN,M>& cumsum_rev() {
-    std::valarray<D> &mydata = *data_;
     const size_type N = size();
 
     D sum = 0;
     for (index_type i = 0; i < N ; i++ ) {
-      sum += mydata[N-1-i];
-      mydata[N-1-i] = sum;
+      sum += data_[N-1-i];
+      data_[N-1-i] = sum;
     }
     return *this;
   }
@@ -843,13 +847,12 @@ namespace matricks {
   // .cumprodrev()  --  cumulative product  -- from last to first
 
   Vector<D,NN,M>& cumprod_rev() {
-    std::valarray<D> &mydata = *data_;
     const size_type N = size();
 
     D prod = 1;
     for (index_type i = 0; i < N ; i++ ) {
-      prod *= mydata[N-1-i];
-      mydata[N-1-i] = prod;
+      prod *= data_[N-1-i];
+      data_[N-1-i] = prod;
     }
     return *this;
   }
@@ -858,15 +861,14 @@ namespace matricks {
   // .cumtrapz() -- cumulative trapezoidal summation -- from last to first
 
   Vector<D,NN,M>& cumtrapz_rev() {
-    std::valarray<D> &mydata = *data_;
     const size_type N = size();
     if (N==0) return *this;
 
-    D sum = mydata[N-1]/2;
-    mydata[N-1] = 0;
+    D sum = data_[N-1]/2;
+    data_[N-1] = 0;
     for (index_type i = 1; i < N ; i++ ) {
-      sum += mydata[N-1-i];
-      mydata[N-1-i] = sum - mydata[N-1-i]/2;
+      sum += data_[N-1-i];
+      data_[N-1-i] = sum - data_[N-1-i]/2;
     }
     return *this;
   }
@@ -878,20 +880,19 @@ namespace matricks {
   //     0  rectangular
   //     1  trapazoidal
   Vector<D,NN,M>& integrate_x2b(const D a, const D b, const int order=1) {
-    std::valarray<D> &mydata = *data_;
     const size_type N = size();
 
     if (order == 0) {
       this->cumsum_rev();
       const D dx = (b-a)/(N);
       for (index_type i = 0; i < N ; i++ ) {
-	mydata[N-1-i] *= dx;
+	data_[N-1-i] *= dx;
       }
     } else if (order == 1) {
       this->cumtrapz_rev();
       const D dx = (b-a)/(N-1);
       for (index_type i = 0; i < N ; i++ ) {
-	mydata[N-1-i] *= dx;
+	data_[N-1-i] *= dx;
       }
     }  else {
       //TODO: issue error
@@ -903,43 +904,41 @@ namespace matricks {
 
   // diff   (v[n] = v[n] - v[n-1])
   Vector<D,NN,M>& diff(const bool periodic=false) {
-    std::valarray<D> &mydata = *data_;
     const size_type N = size();
     if (N<=1) return *this;
 
     D temp;
     if (periodic) {
-      temp = mydata[0] - mydata[N-1];
+      temp = data_[0] - data_[N-1];
     } else {
-      temp = mydata[1] - mydata[0];
+      temp = data_[1] - data_[0];
     }
 
     for (index_type i = 0; i < N-1 ; i++ ) {
-      mydata[N-1-i] = mydata[N-1-i] - mydata[N-2-i];
+      data_[N-1-i] = data_[N-1-i] - data_[N-2-i];
     }
 
-    mydata[0] = temp;
+    data_[0] = temp;
     return *this;
   }
 
   // diff_rev   (v[n] = v[n+1] - v[n])
   Vector<D,NN,M>& diff_rev(const bool periodic=false) {
     const size_type N = size();
-    std::valarray<D> &mydata = *data_;
     if (N<=1) return *this;
 
     D temp;
     if (periodic) {
-      temp = mydata[0] - mydata[N-1];
+      temp = data_[0] - data_[N-1];
     } else {
-      temp = mydata[N-1] - mydata[N-2];
+      temp = data_[N-1] - data_[N-2];
     }
 
     for (index_type i = 0; i < N-1 ; i++ ) {
-      mydata[i] = mydata[i+1] - mydata[i];
+      data_[i] = data_[i+1] - data_[i];
     }
 
-    mydata[N-1] = temp;
+    data_[N-1] = temp;
     return *this;
   }
 
@@ -948,7 +947,6 @@ namespace matricks {
   // any change in the default parameters must be likewise made in vfunctions.h: deriv(...)
 
   Vector<D,NN,M>& deriv(const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
-    std::valarray<D> &dat = *data_;
     //mdisp(a,b,n,Dpts,periodic);
     const size_type N = size();
     if (N<=1) return *this;
@@ -963,7 +961,7 @@ namespace matricks {
     if (Dpts == 2) {
       this->diff(periodic);
       for (index_type i = 0; i < N ; i++ ) {
-	dat[i] /= dx;
+	data_[i] /= dx;
       }
 	
     } else if (Dpts == 3) {
@@ -972,24 +970,24 @@ namespace matricks {
       D last;
       if (periodic) {
 	// first point
-	prev = dat[1] - dat[N-1];
+	prev = data_[1] - data_[N-1];
 	// last
-	last = dat[0] - dat[N-2];
+	last = data_[0] - data_[N-2];
       } else {
 	// first point
-	prev = -3*dat[0] + 4*dat[1] - dat[2];
+	prev = -3*data_[0] + 4*data_[1] - data_[2];
 	// last
-	last = 3*dat[N-1] - 4*dat[N-2] + dat[N-3];
+	last = 3*data_[N-1] - 4*data_[N-2] + data_[N-3];
       }
 	
       const D c0 = 0.5/dx;
       for (index_type i = 1; i < N-1 ; i++ ) {
-	curr = dat[i+1] - dat[i-1];
-	dat[i-1] = c0*prev;
+	curr = data_[i+1] - data_[i-1];
+	data_[i-1] = c0*prev;
 	prev = curr;
       }
-      dat[N-2] = c0*prev;
-      dat[N-1] = c0*last;
+      data_[N-2] = c0*prev;
+      data_[N-1] = c0*last;
 	
     } else if (Dpts == 5) {
       D prev1;
@@ -999,31 +997,31 @@ namespace matricks {
       D lastminus1;
       if (periodic) {
 	// second to last point
-	lastminus1 = dat[N-4] - 8*dat[N-3] + 8*dat[N-1] - dat[0];
+	lastminus1 = data_[N-4] - 8*data_[N-3] + 8*data_[N-1] - data_[0];
 	// last
-	last       = dat[N-3] - 8*dat[N-2] + 8*dat[0]   - dat[1];
+	last       = data_[N-3] - 8*data_[N-2] + 8*data_[0]   - data_[1];
 	// first point
-	prev2      = dat[N-2] - 8*dat[N-1] + 8*dat[1]   - dat[2];
+	prev2      = data_[N-2] - 8*data_[N-1] + 8*data_[1]   - data_[2];
 	// second point
-	prev1      = dat[N-1] - 8*dat[0]   + 8*dat[2]   - dat[3];
+	prev1      = data_[N-1] - 8*data_[0]   + 8*data_[2]   - data_[3];
       } else {
-	lastminus1 =   -dat[N-5] +  6*dat[N-4] - 18*dat[N-3] + 10*dat[N-2] +  3*dat[N-1];
-	last       =  3*dat[N-5] - 16*dat[N-4] + 36*dat[N-3] - 48*dat[N-2] + 25*dat[N-1];
-	prev2      = -3*dat[4]   + 16*dat[3]   - 36*dat[2]   + 48*dat[1]   - 25*dat[0];
-	prev1      =    dat[4]   -  6*dat[3]   + 18*dat[2]   - 10*dat[1]   -  3*dat[0];
+	lastminus1 =   -data_[N-5] +  6*data_[N-4] - 18*data_[N-3] + 10*data_[N-2] +  3*data_[N-1];
+	last       =  3*data_[N-5] - 16*data_[N-4] + 36*data_[N-3] - 48*data_[N-2] + 25*data_[N-1];
+	prev2      = -3*data_[4]   + 16*data_[3]   - 36*data_[2]   + 48*data_[1]   - 25*data_[0];
+	prev1      =    data_[4]   -  6*data_[3]   + 18*data_[2]   - 10*data_[1]   -  3*data_[0];
       }
 	
       const D c0 = 1/(12*dx);
       for (index_type i = 2; i < N-2 ; i++ ) {
-	curr = dat[i-2] - 8*dat[i-1] + 8*dat[i+1]  - dat[i+2];
-	dat[i-2] = c0*prev2;
+	curr = data_[i-2] - 8*data_[i-1] + 8*data_[i+1]  - data_[i+2];
+	data_[i-2] = c0*prev2;
 	prev2 = prev1;
 	prev1 = curr;
       }
-      dat[N-4] = c0*prev2;
-      dat[N-3] = c0*prev1;
-      dat[N-2] = c0*lastminus1;
-      dat[N-1] = c0*last;
+      data_[N-4] = c0*prev2;
+      data_[N-3] = c0*prev1;
+      data_[N-2] = c0*lastminus1;
+      data_[N-1] = c0*last;
 	
     } else if (Dpts == 7) {
       D prev1;
@@ -1034,35 +1032,35 @@ namespace matricks {
       D lastminus1;
       D lastminus2;
       if (periodic) {
-	lastminus2 = -dat[N-6] + 9*dat[N-5] - 45*dat[N-4] + 45*dat[N-2]  - 9*dat[N-1] + dat[0];
-	lastminus1 = -dat[N-5] + 9*dat[N-4] - 45*dat[N-3] + 45*dat[N-1]  - 9*dat[0] + dat[1];
-	last  = -dat[N-4] + 9*dat[N-3] - 45*dat[N-2] + 45*dat[0]  - 9*dat[1] + dat[2];
-	prev3 = -dat[N-3] + 9*dat[N-2] - 45*dat[N-1] + 45*dat[1]  - 9*dat[2] + dat[3];
-	prev2 = -dat[N-2] + 9*dat[N-1] - 45*dat[0]   + 45*dat[2]  - 9*dat[3] + dat[4];
-	prev1 = -dat[N-1] + 9*dat[0]   - 45*dat[1]   + 45*dat[3]  - 9*dat[4] + dat[5];
+	lastminus2 = -data_[N-6] + 9*data_[N-5] - 45*data_[N-4] + 45*data_[N-2]  - 9*data_[N-1] + data_[0];
+	lastminus1 = -data_[N-5] + 9*data_[N-4] - 45*data_[N-3] + 45*data_[N-1]  - 9*data_[0] + data_[1];
+	last  = -data_[N-4] + 9*data_[N-3] - 45*data_[N-2] + 45*data_[0]  - 9*data_[1] + data_[2];
+	prev3 = -data_[N-3] + 9*data_[N-2] - 45*data_[N-1] + 45*data_[1]  - 9*data_[2] + data_[3];
+	prev2 = -data_[N-2] + 9*data_[N-1] - 45*data_[0]   + 45*data_[2]  - 9*data_[3] + data_[4];
+	prev1 = -data_[N-1] + 9*data_[0]   - 45*data_[1]   + 45*data_[3]  - 9*data_[4] + data_[5];
       } else {
-	lastminus2= -(  2*dat[N-1] - 24*dat[N-2] -  35*dat[N-3] +  80*dat[N-4] -  30*dat[N-5] +  8*dat[N-6] -    dat[N-7]);
-	lastminus1= -(-10*dat[N-1] - 77*dat[N-2] + 150*dat[N-3] - 100*dat[N-4] +  50*dat[N-5] - 15*dat[N-6] +  2*dat[N-7]);
-	last =     -(-147*dat[N-1] +360*dat[N-2]- 450*dat[N-3] + 400*dat[N-4] - 225*dat[N-5] + 72*dat[N-6] - 10*dat[N-7]);
+	lastminus2= -(  2*data_[N-1] - 24*data_[N-2] -  35*data_[N-3] +  80*data_[N-4] -  30*data_[N-5] +  8*data_[N-6] -    data_[N-7]);
+	lastminus1= -(-10*data_[N-1] - 77*data_[N-2] + 150*data_[N-3] - 100*data_[N-4] +  50*data_[N-5] - 15*data_[N-6] +  2*data_[N-7]);
+	last =     -(-147*data_[N-1] +360*data_[N-2]- 450*data_[N-3] + 400*data_[N-4] - 225*data_[N-5] + 72*data_[N-6] - 10*data_[N-7]);
 	  
-	prev3 = -147*dat[0] + 360*dat[1] - 450*dat[2] + 400*dat[3] - 225*dat[4] + 72*dat[5] - 10*dat[6];
-	prev2 =  -10*dat[0] -  77*dat[1] + 150*dat[2] - 100*dat[3] +  50*dat[4] - 15*dat[5] +  2*dat[6];
-	prev1 =    2*dat[0] -  24*dat[1] -  35*dat[2] +  80*dat[3] -  30*dat[4] +  8*dat[5] -    dat[6];
+	prev3 = -147*data_[0] + 360*data_[1] - 450*data_[2] + 400*data_[3] - 225*data_[4] + 72*data_[5] - 10*data_[6];
+	prev2 =  -10*data_[0] -  77*data_[1] + 150*data_[2] - 100*data_[3] +  50*data_[4] - 15*data_[5] +  2*data_[6];
+	prev1 =    2*data_[0] -  24*data_[1] -  35*data_[2] +  80*data_[3] -  30*data_[4] +  8*data_[5] -    data_[6];
       }
       const D c0 = 1/(60*dx);
       for (index_type i = 3; i < N-3 ; i++ ) {
-	curr = -dat[i-3] + 9*dat[i-2] - 45*dat[i-1] + 45*dat[i+1]  - 9*dat[i+2] + dat[i+3];
-	dat[i-3] = c0*prev3;
+	curr = -data_[i-3] + 9*data_[i-2] - 45*data_[i-1] + 45*data_[i+1]  - 9*data_[i+2] + data_[i+3];
+	data_[i-3] = c0*prev3;
 	prev3 = prev2;
 	prev2 = prev1;
 	prev1 = curr;
       }
-      dat[N-6] = c0*prev3;
-      dat[N-5] = c0*prev2;
-      dat[N-4] = c0*prev1;
-      dat[N-3] = c0*lastminus2;
-      dat[N-2] = c0*lastminus1;
-      dat[N-1] = c0*last;
+      data_[N-6] = c0*prev3;
+      data_[N-5] = c0*prev2;
+      data_[N-4] = c0*prev1;
+      data_[N-3] = c0*lastminus2;
+      data_[N-2] = c0*lastminus1;
+      data_[N-1] = c0*last;
 
 	
     }  else {
@@ -1081,8 +1079,23 @@ namespace matricks {
   //**********************************************************************
 
   inline std::string classname() const {
+    using namespace display;
+    std::string s = "Vector";		
+    s += StyledString::get(ANGLE1).get();
     D d;
-    return "Vector"+display::getBracketedTypeName(d);
+    s += getTypeName(d);
+    if (NN!=0) {
+      s += StyledString::get(COMMA).get();
+      s += "NN=";
+      s += num2string(NN);
+    }
+    //    if (M>1) {
+    //      s += StyledString::get(COMMA).get();
+    //      s += "M=";
+    //      s += num2string(M);
+    //    }
+    s += StyledString::get(ANGLE2).get();			
+    return s;	
   }
 
 

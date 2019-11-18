@@ -437,19 +437,42 @@ namespace display {
     
 
   
-  //---------------------------------------------------------------------------------
-  //       getTypeName
-  //---------------------------------------------------------------------------------
+  //------------------------------------------------------------------
+  //       Has_classname
+  //------------------------------------------------------------------
 
-  // TODO: implement a way to print out typeid(var).name() if classname does not
-  //       exist.  There are ways with macros, but not pretty
+  // I sued this version:
+  // https://stackoverflow.com/questions/257288/is-it-possible-to-write-a-template-to-check-for-a-functions-existence
+  // It doesn;t check the signature
+
+  // other solutions:
+  // https://stackoverflow.com/questions/36079170/how-to-check-if-a-member-name-variable-or-function-exists-in-a-class-with-or  
   // https://stackoverflow.com/questions/87372/check-if-a-class-has-a-member-function-of-a-given-signature
-  // perhaps implement as added feature if C++11 compiler:
   // https://stackoverflow.com/questions/41936763/type-traits-to-check-if-class-has-member-function
 
-  
+  template <typename T>
+    class Has_classname {
+    typedef char one;
+    struct two { char x[2]; };
+
+    template <typename C> static one test( decltype(&C::classname) ) ;
+    template <typename C> static two test(...);    
+
+  public:
+    enum { value = sizeof(test<T>(0)) == sizeof(char) };
+  };
+
+
+  //------------------------------------------------------------------
+  //       getTypeName
+  //------------------------------------------------------------------
+
   template <class T> inline std::string getTypeName(const T& var) {
-    return getTypeStyle(var).apply(var.classname());
+    std::string s = typeid(var).name();
+    if constexpr(Has_classname<T>::value) {
+      s = var.classname();
+    }
+    return getTypeStyle(var).apply(s);
   }
 
 
@@ -544,17 +567,29 @@ namespace display {
     std::string s = getTypeStyle(var).apply(#TYPE);		\
     D1 d1;							\
     D2 d2;							\
-    s += StyledString::get(BRACKET1).get();			\
+    s += StyledString::get(ANGLE1).get();			\
     s += getTypeName(d1);					\
     s += StyledString::get(COMMA).get();			\
     s += getTypeName(d2);					\
-    s += StyledString::get(BRACKET2).get();			\
+    s += StyledString::get(ANGLE2).get();			\
     return s;							\
   }
 
   SPECIALIZE_getTypeName_CONTAINER2(std::map);
 
 
+  template <typename D, unsigned long int N>
+    inline std::string getTypeName(const std::array<D,N>& var) {	
+    std::string s = getTypeStyle(var).apply("std::array");		
+    D d;							
+    s += StyledString::get(ANGLE1).get();			
+    s += getTypeName(d);
+    s += StyledString::get(COMMA).get();			
+    s += num2string(N);					
+    s += StyledString::get(ANGLE2).get();			
+    return s;							
+  }
+  
 
     //---------------------------------------------------------------------------------
   //       getBracketedTypeName
@@ -878,6 +913,17 @@ namespace display {
   // std::valarray
   template <typename D>							
     inline void dispval_strm(std::ostream &stream, const std::valarray<D>& var) {
+    stream << "{";
+    for (size_t ii = 0; ii < var.size(); ii++) {
+      if (ii>0)  stream << ", ";
+      dispval_strm(stream, var[ii]);
+    }
+    stream << "}";
+  }
+
+  // std::array
+  template <typename D, unsigned long int N>							
+    inline void dispval_strm(std::ostream &stream, const std::array<D,N>& var) {
     stream << "{";
     for (size_t ii = 0; ii < var.size(); ii++) {
       if (ii>0)  stream << ", ";

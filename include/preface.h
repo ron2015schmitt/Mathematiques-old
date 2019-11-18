@@ -128,7 +128,9 @@ namespace matricks {
 
   // numbercast
   
-  template <typename D2, typename D1>
+  template <typename D2, typename D1,
+    typename = std::enable_if_t<std::is_arithmetic<D1>::value>,
+    typename = std::enable_if_t<std::is_arithmetic<D2>::value> >
     D2 numbercast(const D1 x) {
     return static_cast<D2>( x );
   }
@@ -393,6 +395,19 @@ namespace matricks {
   template <class T, template <class> class U>
     struct is_instance<U<T>, U> : public std::true_type {};
 
+  //***********************************************************************
+  //  EnableConstructorIf - used for enabling constructors 
+  //***********************************************************************
+
+  template<bool B>
+    using EnableConstructorIf = typename std::enable_if<B, int>::type;
+
+  //***********************************************************************
+  //  EnableIf - used for enabling constructors 
+  //***********************************************************************
+
+  template<bool B, class T>
+    using EnableMethodIf = typename std::enable_if<B,T>::type;
 
   //************************************************************************
   //* Basic Function types for computation

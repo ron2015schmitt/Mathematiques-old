@@ -308,12 +308,12 @@ int main(int argc, char *argv[])
     failnum += (!pass);
   }
   {
-    // Scalar = datacast(Scalar)
+    // Scalar = numbercast(Scalar)
     printStart(++testnum);
     Scalar<ComplexInt> s1 = ComplexInt(10,1);
     Scalar<ComplexDouble> expected = ComplexDouble(10.,1.);
     Scalar<ComplexDouble> result;
-    testcode( result = datacast<ComplexDouble>(s1) );
+    testcode( result = numbercast<ComplexDouble>(s1) );
     bool pass = equal(result,expected);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

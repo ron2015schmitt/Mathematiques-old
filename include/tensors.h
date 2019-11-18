@@ -18,10 +18,24 @@ namespace matricks {
   template <Tensors, class D> struct TensorType;
 
 
-
-  // ****************************************************************************
+  // **************************************************************************
   // * std::vector related functions
-  // **************************************************************************** 
+  // ************************************************************************** 
+
+  template <class D, int NN> class ArrayType {
+  public:
+    typedef std::array<D,NN> Type;
+  };
+
+  template <class D> class ArrayType<D,0> {
+  public:
+    typedef std::valarray<D> Type;
+  };
+
+
+  // **************************************************************************
+  // * std::vector related functions
+  // ************************************************************************** 
   
 
   // TODO: do we need these?  move inside the class

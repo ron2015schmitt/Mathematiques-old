@@ -40,7 +40,9 @@
 1. [2D and 3D Coordinate Systems](coordsystems.md)
 1. Integrals and derivatives along each of the two dimensions of a Tensor
 1. [Functions: R^n -> R^m](functions.md)
-  
+
+## Items for V8.0 -- Add support for new math functions and definitions in C++11,14,17,20
+
 ## Other
 1. [Developer guide](developerguide.md)
 1. link on Wikipedia C++ numerical packages

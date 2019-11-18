@@ -44,7 +44,7 @@ template class Vector<class D, int N = 0>
 
 * change size and dimensions methods to use `N` if `N>0`
 * use `array` instad of `valarray` if `N>0`
-* if `N <= 0`, then `valarray` is used and initial size is `abs(N)`
+* if `N = 0`, then `valarray` is used and initial size is `0`
 * change `.reshape()` method to a function and perhaps use 
 
 ### Matrix class
@@ -54,7 +54,7 @@ The `Matrix<D>` class has two size parameters.  The new class will be:
 template class Vector<class D, int NR = 0, int NC = 0>
 ```
 * if `NR>0 && NC>0` then use fixed size and `array`
-* if `NR<=0 && NC<=0` then use variable size and `valarray`
+* if `NR=0 && NC=0` then use variable size and `valarray`
 * if only one of the values is greater than zero, then that dimension is fixed, but the other dimensions is variable and thus a `valarray` must be used.
 
 

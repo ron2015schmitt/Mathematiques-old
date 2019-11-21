@@ -13,13 +13,17 @@ Implement code necessary so that mathematical operations work for recursive tens
     1. Expressions
        1. add `.tdims()`
        1. change `[]` to deep access
-       1. add access functions, conditional on dimensions (will need to add M to template and then all) `functions.h`:  `()`, `(i)`, `(i,j)`, `(i,j,k)`, etc
+       1. add access operators, conditional on dimensions (will need to add M to template): `()`, `(i)`, `(i,j)`, `(i,j,k)`, etc
     1. back to `vector.h`
        1. Update two lines: `TODO: change x[i] to x(i) once implemented`
        1. verify that `operator=` and `constructors` are paired. Add others?
+    1. `functions.h`
+       1. populate new expressions template parameter M
+    1. `test`
        1. add test cases for math of recursive Vectors and scalars
     1. `Matrix(i,j)` 
     1. `Tensor(i...)`
+       1. number of dimensions must be a template parameter because it is a a template parameter of the expressions
     1. add .tdims() method to TensorAbstract
     1. asVector, asMatrix wrapper function expressions
 

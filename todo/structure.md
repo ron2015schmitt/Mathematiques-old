@@ -9,12 +9,15 @@ Implement code necessary so that mathematical operations work for recursive tens
 1. Methodology is to use `x[index]`, ie `operator[]`, for "deep indexing" that indexes from `0` to `deepsize()-1`, covering all the elements contained.  
 1. For shallow indexing, ie first level indexing, use the `operator()` operators:
     1. `Scalar()` ✓ complete 
-    1. `Vector(i)`-- in progress  
-       1. change all new valarray statements to data_.resize(N)
-       1. enable constructors and methods as required when NN==0
-       1. need to convert all `[]` usage, eg in `operator=` and expressions, to `(i)` instead. or (better)  
-       1. implement deep access in expressions.
-    
+    1. `Vector(i)`-- ✓ complete 
+    1. Expressions
+       1. add `.tdims()`
+       1. change `[]` to deep access
+       1. add access functions, conditional on dimensions (will need to add M to template and then all) `functions.h`:  `()`, `(i)`, `(i,j)`, `(i,j,k)`, etc
+    1. back to `vector.h`
+       1. Update two lines: `TODO: change x[i] to x(i) once implemented`
+       1. verify that `operator=` and `constructors` are paired. Add others?
+       1. add test cases for math of recursive Vectors and scalars
     1. `Matrix(i,j)` 
     1. `Tensor(i...)`
     1. add .tdims() method to TensorAbstract
@@ -33,9 +36,6 @@ Add template parameters for dimensions of each Tensor class.
 * If parameters are > 0, then the tensor is of fixed size and the `array` class is used for storage
 * If paramters are == 0, then the tensor is of variable size and the class `valarray` is used for storage.  
 * The static if construct,`if constexpr(expr)`, as introduced in `C++17` is used to select which code to enable, such as whether to use an `array` or `valarray`
-
-### Scalar class
-The `Scalar<D>` class has no size, so no changes are needed.
 
 ### Matrix class
 The `Matrix<D>` class has two size parameters.  The new class will be:

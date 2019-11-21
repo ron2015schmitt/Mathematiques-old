@@ -1,4 +1,4 @@
-# Structurural changes
+# Structural changes
 
 
 ## Recursive Tensors (Tensors with Tensor elements)

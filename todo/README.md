@@ -3,7 +3,7 @@
 
 ## Items for V3.0 -- First Official Release
 
-1. [Structure changes](structure.md). Implement both first for `Scalar` (done), then `Vector`, then `Matrix`, then `Tensor`.
+1. [Structure changes](structure.md)
 1. [Tensor dot product](dotproduct.md)
 1. [Index class and new indexing methodology](index.md)
 1. [Fix Bugs](bugs.md)

@@ -3,7 +3,7 @@
 
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.29-r4).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.29-r5).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -24,6 +24,14 @@ _In DEBUG mode, this generates a warning since it is a dangerous practice. Use a
 ```C++
 Vector<double> v(4);
 v = (const double[]) {1,2,3,4};
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 **The result is**
 ```C++

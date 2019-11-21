@@ -3,7 +3,7 @@
 
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r4).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r5).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -29,6 +29,14 @@ Vector<double> v(4, -1 );
 In debug mode, this produces a warning, as shown below
 ```C++
 Vector<double> v( 4, (const double[]) {10, 20, 30, 40} );
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 **The result is**
 ```C++

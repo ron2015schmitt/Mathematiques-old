@@ -405,7 +405,6 @@ namespace matricks {
   //***********************************************************************
   //  EnableIf - used for enabling constructors 
   //***********************************************************************
-
   template<bool B, class T>
     using EnableMethodIf = typename std::enable_if<B,T>::type;
 

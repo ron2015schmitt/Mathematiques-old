@@ -1403,6 +1403,7 @@ int main(int argc, char *argv[])
     Scalar<int> s1 = 42;
     Scalar<int> s2 = 42;
     Vector<index_type> expected(1,0);
+    tdisp(expected);
     Vector<index_type> result;
     testcode( result = findtrue(s1>=s2) );
     bool pass = equal(result,expected);

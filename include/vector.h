@@ -57,32 +57,48 @@ namespace matricks {
   // --------------------- Vector(N)  ---------------------
 
   template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
-    explicit Vector<D,NN,M>(const size_type N)
-    { 
-      data_.resize(N);
-      constructorHelper();
-    }
 
-
-  // --------------------- Vector(N,value)  ---------------------
-
-  explicit Vector<D,NN,M>(const size_type N, const D val) {
-    data_ = *(new std::valarray<D>(val, N)); 
+  explicit Vector<D,NN,M>(const size_type N) { 
+    data_.resize(N);
     constructorHelper();
   }
 
 
+  // --------------------- Vector(N,value)  ---------------------
+
+  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+
+    explicit Vector<D,NN,M>(const size_type N, const D val) {
+    data_.resize(N);
+    *this = val;
+    constructorHelper();
+  }
+
+  // --------------------- Vector(value)  ---------------------
+
+  template<size_t NN1 = NN, EnableConstructorIf<(NN1 > 0)> = 0>
+
+  explicit Vector<D,NN,M>(const D val) {
+    *this = val;
+    constructorHelper();
+  }
+  
+
   // --------------------- array[]  CONSTRUCTOR ---------------------
+  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+
   Vector<D,NN,M>(const size_type N, const D (vals)[]) {
-    // allocate store
-    data_ = *(new std::valarray<D>(vals, N)); 
+    data_.resize(N);
+    *this = vals;
     constructorHelper();
   }
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
   Vector<D,NN,M>(std::initializer_list<D> mylist) {
-    const size_type N = mylist.size();
-    data_ = *(new std::valarray<D>(mylist)); 
+    if constexpr(NN==0) {
+      this->resize(mylist.size());
+    }
+    *this = mylist;
     constructorHelper();
   }
 
@@ -90,7 +106,10 @@ namespace matricks {
 
   // --------------------- Vector(valarray)  ---------------------
   Vector<D,NN,M>(const std::valarray<D>& valar) {
-    data_ = *(new std::valarray<D>(valar)); 
+    if constexpr(NN==0) {
+      this->resize(valar.size());
+    }
+    *this = valar;
     constructorHelper();
   }
 
@@ -100,8 +119,9 @@ namespace matricks {
   // --------------------- Vector(Vector) --------------------
 
   Vector<D,NN,M>(const Vector<D,NN,M>& v2) {
-    const size_type N = v2.size();
-    data_ = *(new std::valarray<D>(N)); 
+    if constexpr(NN==0) {
+      this->resize(v2.size());
+    }
     *this = v2;
     constructorHelper();
   }
@@ -112,8 +132,10 @@ namespace matricks {
   template <class A>
   Vector<D,NN,M>(const TensorR<D,A>& x) 
   {
-    const size_type N = x.size();
-    data_ = *(new std::valarray<D>(N));
+    if constexpr(NN==0) {
+      this->resize(x.size());
+    }
+    
     *this = x;
     constructorHelper();
   }
@@ -152,6 +174,8 @@ namespace matricks {
   inline size_type depth(void) const {
     return M;
   }
+
+  // the size of each element
   inline size_type elsize(void) const {
     if constexpr(M<2) {
       return 1;
@@ -164,6 +188,8 @@ namespace matricks {
       }
     }
   }
+
+  // the deep size of an element: the total number of numbers in an element
   inline size_type eldeepsize(void) const {
     if constexpr(M<2) {
       return 1;
@@ -176,6 +202,8 @@ namespace matricks {
       }
     }
   }
+
+  // the total number of numbers in this data structure
   inline size_type deepsize(void) const {
     return (this->size())*(this->eldeepsize());
   }
@@ -215,11 +243,15 @@ namespace matricks {
 
 
   // *** this is used for resize-by-assignment ***
+  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+    
   TERW_Resize<D>  resize(void) { 
     return  TERW_Resize<D>(*this);
   }
 
   // this is used to empty the vector of its datastore
+  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+    
   TERW_Resize<D>  resize(void) const {
     this->resize(0);
     return  TERW_Resize<D>(*this);
@@ -227,7 +259,9 @@ namespace matricks {
 
   // --------------------- .resize(N) ---------------------
 
-  Vector<D,NN,M>&  resize(const size_type N) { 
+  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+
+    Vector<D,NN,M>&  resize(const size_type N) { 
     if (N==this->size())
       return *this;
     // reallocate store
@@ -236,20 +270,6 @@ namespace matricks {
     data_.resize(N);
     return *this;
   }
-
-  // -------------------------- .reshape(nr,nc) --------------------------------
-  // morph into a matrix, pillaging this object of its data store.
-  //
-  // TODO: probably no way to get this working now that we don;t use pointers
-  Matrix<D>& reshape(const size_type nr, const size_type nc) { 
-    const size_type N = nr*nc;
-    // rob the data_
-    Matrix<D> m = new Matrix<D>(nr, nc, &this->data_);
-    this->data_ = *(new std::valarray<D>(0));
-    // return the new Matrix, while we live on at zero size...
-    return *m;
-  }
-
 
 
 
@@ -400,19 +420,26 @@ namespace matricks {
   template <class A>  Vector<D,NN,M>& equals(const TensorR<D,A>& x) {  
 
     // resize to avoid segmentation faults
-    resize(x.size());
+    // TODO: issue warning if resize needed
+    if constexpr(NN==0) {
+	if (this->size() != x.size()) {
+	  resize(x.size());
+	}
+    }
 
     //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
     if (common(*this,x)){
       //mout<< "  common addresses found" <<std::endl;
       Vector<D,NN,M> vtemp(size());
       for (index_type i = 0; i < size(); i++) 
-	vtemp[i] = x[i];   // Inlined expression
+	// TODO: change x[i] to x(i) once implemented
+	vtemp(i) = x[i];   // Inlined expression
       for (index_type i = 0; i < size(); i++) 
-	data_[i] = vtemp[i];
+	data_[i] = vtemp(i);
     } else {
       //mout<< "  NO common addresses found" <<std::endl;
-      for (index_type i = 0; i < size(); i++) 
+      for (index_type i = 0; i < size(); i++)
+	// TODO: change x[i] to x(i) once implemented
 	data_[i] = x[i];   // Inlined expression
     }
     //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
@@ -425,24 +452,9 @@ namespace matricks {
     
 
 
-  // doesn't work
-  //    template <class A, class B>  Vector<D,NN,M>& equals(const TensorR<TensorR<D,A>,B>& x) {  
-  //    template <class A, class B>  Vector<D,NN,M>& operator=(TensorR<TensorR<typename FundamentalType<D>::Type,A>,B>& x) {
-  //    template <class A, class B>  Vector<D,NN,M>& operator=(TensorR<TensorR<D,A>,B>) {
-  //    template <class A>  Vector<D,NN,M>& operator=(A& x) {
-  //    template <class A, class B>  Vector<D,NN,M>& operator=(const TensorR<TensorR<typename FundamentalType<D>::Type,A>,B>& x) {
-  //    template <class A, class B>  Vector<D,NN,M>& operator=(const TensorR<TensorR<typename FundamentalType<D>::Type,A>,B> x) {
-  //    template <template<class,class> class A, class B, class C>  Vector<D,NN,M>& operator=(const TensorR<A<D,B>,C>& x) {
-  //    template <template<class,class> class A, class B, class C>  Vector<D,NN,M>& operator=(const TensorR<A<PrimDataType,B>,C>& x) {
-  // WORKS
-  //    template <class A>  Vector<D,NN,M>& operator=(A x) {
-  //    template <class A>  Vector<D,NN,M>& operator=(const A x) {
-  //    template <class A>  Vector<D,NN,M>& operator=(const A& x) {
-  //    template <class A, class B>  Vector<D,NN,M>& operator=(const TensorR<A,B> x) {
-  //  template <class A, class B>  Vector<D,NN,M>& operator=(const TensorR<A,B>& x) {
- 
-
   template <class X, class Y>  Vector<D,NN,M>& operator=(const TensorR<X,Y>& x) {
+    //TODO: what is the deal with this function?
+    
     mout << __FUNCTION__ <<" ";
     //      return *this;
     const Y& y = x.derived();
@@ -450,7 +462,7 @@ namespace matricks {
     disp(y.isExpression());
     cr();
     Vector<double> v(2);
-    y[0];  // dies here somewhere
+    y[0];  
       
     return *this;
             
@@ -472,11 +484,11 @@ namespace matricks {
 
 
 
-  // ------------------------ matrix = array[] ----------------
+  // ------------------------ Vector = array[] ----------------
 
   Vector<D,NN,M>& equals(const D array[]) {
     for (index_type i = 0; i < size(); i++)  { 
-      (*this)[i] = array[i];
+      (*this)(i) = array[i];
     }
     return *this;
   }
@@ -493,10 +505,14 @@ namespace matricks {
   Vector<D,NN,M>& equals(const Vector<D,NN,M>& v2) {
 
     // resize to avoid segmentation faults
-    resize(v2.size());
+    if constexpr(NN==0) {
+	if (this->size() != v2.size()) {
+	  resize(v2.size());
+	}
+    }
 
     for(index_type i=size(); i--;)
-      data_[i] = v2[i];    
+      data_[i] = v2(i);    
     return *this;
   }
 
@@ -513,7 +529,11 @@ namespace matricks {
 
   Vector<D,NN,M>& equals(const std::list<D>& mylist) {
     // resize to avoid segmentation faults
-    resize(mylist.size());
+    if constexpr(NN==0) {
+	if (this->size() != mylist.size()) {
+	  resize(mylist.size());
+	}
+    }
     index_type i = 0;
     for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
       data_[i++] = *it;
@@ -528,7 +548,11 @@ namespace matricks {
   // assignment to a C++11 list
   Vector<D,NN,M>& equals(const std::initializer_list<D>& mylist) {
     // resize to avoid segmentation faults
-    resize(mylist.size());
+    if constexpr(NN==0) {
+	if (this->size() != mylist.size()) {
+	  resize(mylist.size());
+	}
+    }
     size_type k = 0;
     typename std::initializer_list<D>::iterator it; 
     for (it = mylist.begin(); it != mylist.end(); ++it)  { 
@@ -549,7 +573,11 @@ namespace matricks {
       
 
     // resize to avoid segmentation faults
-    resize(vstd.size());
+    if constexpr(NN==0) {
+	if (this->size() != vstd.size()) {
+	  resize(vstd.size());
+	}
+    }
 
     for(size_type i=size(); i--;)
       data_[i] = vstd[i];    
@@ -570,7 +598,11 @@ namespace matricks {
       
 
     // resize to avoid segmentation faults
-    resize(N);
+    if constexpr(NN==0) {
+	if (this->size() != varray.size()) {
+	  resize(varray.size());
+	}
+    }
 
     for(size_type i=size(); i--;)
       data_[i] = varray[i];    
@@ -591,7 +623,11 @@ namespace matricks {
       
 
     // resize to avoid segmentation faults
-    resize(varray.size());
+    if constexpr(NN==0) {
+	if (this->size() != varray.size()) {
+	  resize(varray.size());
+	}
+    }
 
     for(size_type i=size(); i--;)
       data_[i] = varray[i];    
@@ -626,7 +662,8 @@ namespace matricks {
   // NOTE: in-place
 
   template<typename T=D> EnableMethodIf<is_complex<T>{}, Vector<T>&> 
-    conj() {
+
+  conj() {
     using std::conj;
     for(index_type i=size(); i--;) {
       data_[i] = conj(data_[i]);
@@ -663,7 +700,7 @@ namespace matricks {
     
     
     for (index_type i = 0; i < N ; i++ ) {
-      ivec[i] = temp[i].index;
+      ivec(i) = temp[i].index;
       data_[i] = temp[i].data;
     }
     
@@ -674,8 +711,10 @@ namespace matricks {
 
   // .quniq()
   //         removes adjacent duplicates
+  //  template<typename T=D> EnableMethodIf<is_complex<T>{}, Vector<T>&> 
+  template<typename T=index_type> EnableMethodIf<NN==0, Vector<T>& > 
 
-  Vector<index_type>& quniq() {
+  quniq() {
 
     const size_type N = size();
 
@@ -700,7 +739,7 @@ namespace matricks {
     for (index_type i = 0; i < Nnew ; i++ ) {
       Pair<D> mypair = unique.front();
       unique.pop();
-      indexvec[i] = mypair.index;
+      indexvec(i) = mypair.index;
       data_[i] = mypair.data;
     }
 
@@ -710,8 +749,9 @@ namespace matricks {
 
   // .uniq()
   //         removes all duplicates
+  template<typename T=index_type> EnableMethodIf<NN==0, Vector<T>& > 
 
-  Vector<index_type>& uniq() {
+  uniq() {
 
     const size_type N = size();
 
@@ -740,7 +780,7 @@ namespace matricks {
     resize(Nnew);
     index_type k = 0;
     for (typename std::map<index_type,D>::iterator it = mymap.begin(); it != mymap.end(); ++it) {
-      indexvec[k] = it->first;
+      indexvec(k) = it->first;
       data_[k++] = it->second;
     }
 

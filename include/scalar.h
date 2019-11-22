@@ -118,7 +118,7 @@ namespace matricks {
     if constexpr(M<2) {
       return 1;
     } else {
-      return data_.size();
+      return data_.deepsize();
     }
   }
   inline size_type deepsize(void) const {

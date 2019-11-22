@@ -185,28 +185,37 @@ namespace matricks {
     //************************** INDEXING  *********************************
     //**********************************************************************
     
-    index_type index(const Indices& inds) const {
+    index_type indexOf(const Indices& inds) const {
       return dimensions_->index(inds);
     }
 
-    index_type index(index_type i, ...) const {
-      // TODO: we can't check number of arguemnts actually passed
-      //       but we can check bounds on each index *here* and
-      //       remind user to check # of parmaters
+    /* template<typename... Ts> index_type index(int i, const Ts... args){ */
+    /* const int size = sizeof...(args); */
+    /* int argarray[size] = {args...}; */
+    /*   Indices& inds = *(new Indices(ndims())); */
+    /*   const index_type M = this->ndims(); */
+    /*   inds[0] = i;  */
+    /*   for(index_type n = 1; n < M; n++) { */
+    /* 	inds[n] = argarray[n];  */
+    /*   } */
+    /*   index_type k = this->index(inds); */
+    /*   return k; */
+    /* } */
+
+    template<typename... Ts> index_type index(const Ts... args){
+    const int size = sizeof...(args);
+    int argarray[size] = {args...};
       Indices& inds = *(new Indices(ndims()));
       const index_type M = this->ndims();
-      inds[0] = i;
-      va_list val;
-      va_start(val, i);
-      for(index_type n = 0; n < M-1; n++) {
-	inds[n+1] = va_arg(val, index_type); 
+      for(index_type n = 0; n < M; n++) {
+    	inds[n] = argarray[n]; 
       }
-      va_end(val);
-      return this->index(inds);
+      index_type k = this->indexOf(inds);
+      return k;
     }
 
-
-    index_type index(const std::initializer_list<size_type> mylist) const {
+    
+    index_type indexl(const std::initializer_list<size_type> mylist) const {
       // TODO: check size
       const index_type M = this->ndims();
       const size_type N =  mylist.size();
@@ -252,39 +261,12 @@ namespace matricks {
     
     // ---------------- tensor(i,j,...)--------------
 
-    D& operator()(index_type i, ...)  {
-      // TODO: we can't check number of arguemnts actually passed
-      //       but we can check bounds on each index *here* and
-      //       remind user to check # of parmaters
-      Indices& inds = *(new Indices(ndims()));
-      const index_type M = this->ndims();
-      inds[0] = i;
-      va_list val;
-      va_start(val, i);
-      for(index_type n = 0; n < M-1; n++) {
-	inds[n+1] = va_arg(val, index_type); 
-      }
-      va_end(val);
-      
-      index_type k = this->index(inds);
+  template<typename... Ts> D& operator()(const Ts... args){
+      index_type k = this->index(args...);
       return (*this)[k];
     }
-    const D operator()(index_type i, ...) const {
-      // TODO: we can't check number of arguemnts actually passed
-      //       but we can check bounds on each index *here* and
-      //       remind user to check # of parmaters
-      Indices& inds = *(new Indices(ndims()));
-      const index_type M = this->ndims();
-      inds[0] = i;
-      va_list val;
-      va_start(val, i);
-      for(index_type n = 0; n < M-1; n++) {
-	inds[n+1] = va_arg(val, index_type); 
-      }
-      va_end(val);
-      
-      index_type k = this->index(inds);
-      return (*this)[k];
+  template<typename... Ts> const D& operator()(const Ts... args) const {
+    return (*this)(args...);
     }
 
 

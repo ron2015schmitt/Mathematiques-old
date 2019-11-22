@@ -165,6 +165,9 @@ int main(int argc, char *argv[])
     failnum += (!pass);
   }
 
+
+
+  
   //--------------------------------------------
   // Scalar<Vector<double>>
   //--------------------------------------------
@@ -322,164 +325,164 @@ int main(int argc, char *argv[])
   // Scalar<Matrix<double>>
   //--------------------------------------------
 
-  {
-    Scalar<Matrix<double>> s { {{1.1,2.2},{3.3,4.4}} };
-    size_type expected;
-    size_type result;
-    bool pass;
+  // {
+  //   Scalar<Matrix<double>> s { {{1.1,2.2},{3.3,4.4}} };
+  //   size_type expected;
+  //   size_type result;
+  //   bool pass;
     
-    // ndims()
-    printStart(++testnum);
-    expected = 0;
-    testcode( result = s.ndims() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // ndims()
+  //   printStart(++testnum);
+  //   expected = 0;
+  //   testcode( result = s.ndims() );
+  //   pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
 
-    // dims()
-    printStart(++testnum);
-    Dimensions Dexpected;
-    Dimensions Dresult;
-    testcode( Dresult = s.dims() );
-    pass = (Dresult==Dexpected);
-    printEnd(pass,Dresult,Dexpected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // dims()
+  //   printStart(++testnum);
+  //   Dimensions Dexpected;
+  //   Dimensions Dresult;
+  //   testcode( Dresult = s.dims() );
+  //   pass = (Dresult==Dexpected);
+  //   printEnd(pass,Dresult,Dexpected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // isExpression()
-    printStart(++testnum);
-    bool bexpected = false;
-    bool bresult;
-    testcode( bresult = s.isExpression() );
-    pass = (bresult==bexpected);
-    printEnd(pass,bresult,bexpected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // isExpression()
+  //   printStart(++testnum);
+  //   bool bexpected = false;
+  //   bool bresult;
+  //   testcode( bresult = s.isExpression() );
+  //   pass = (bresult==bexpected);
+  //   printEnd(pass,bresult,bexpected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // getAddresses()
-    printStart(++testnum);
-    VectorofPtrs pexpected;
-    pexpected.add((void*)&s);
-    VectorofPtrs presult;
-    testcode( presult = s.getAddresses() );
-    pass = (presult==pexpected);
-    printEnd(pass,presult,pexpected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // getAddresses()
+  //   printStart(++testnum);
+  //   VectorofPtrs pexpected;
+  //   pexpected.add((void*)&s);
+  //   VectorofPtrs presult;
+  //   testcode( presult = s.getAddresses() );
+  //   pass = (presult==pexpected);
+  //   printEnd(pass,presult,pexpected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // getEnum()
-    printStart(++testnum);
-    Tensors Eexpected = T_SCALAR;
-    Tensors Eresult;
-    testcode( Eresult = s.getEnum() );
-    pass = (Eresult==Eexpected);
-    printEnd(pass,Eresult,Eexpected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // getEnum()
+  //   printStart(++testnum);
+  //   Tensors Eexpected = T_SCALAR;
+  //   Tensors Eresult;
+  //   testcode( Eresult = s.getEnum() );
+  //   pass = (Eresult==Eexpected);
+  //   printEnd(pass,Eresult,Eexpected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // size()
-    printStart(++testnum);
-    expected = 1;
-    testcode( result = s.size() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // size()
+  //   printStart(++testnum);
+  //   expected = 1;
+  //   testcode( result = s.size() );
+  //   pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // depth()
-    printStart(++testnum);
-    expected = 2;
-    testcode( result = s.depth() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // depth()
+  //   printStart(++testnum);
+  //   expected = 2;
+  //   testcode( result = s.depth() );
+  //   pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // elsize()
-    printStart(++testnum);
-    expected = 4;
-    testcode( result = s.elsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // elsize()
+  //   printStart(++testnum);
+  //   expected = 4;
+  //   testcode( result = s.elsize() );
+  //   pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // eldeepsize()
-    printStart(++testnum);
-    expected = 4;
-    testcode( result = s.eldeepsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // eldeepsize()
+  //   printStart(++testnum);
+  //   expected = 4;
+  //   testcode( result = s.eldeepsize() );
+  //   pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // deepsize()
-    printStart(++testnum);
-    expected = 4;
-    testcode( result = s.deepsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+  //   // deepsize()
+  //   printStart(++testnum);
+  //   expected = 4;
+  //   testcode( result = s.deepsize() );
+  //   pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
 
-    // s().dims()
-    printStart(++testnum);
-    Dexpected = *(new Dimensions(2,2));
-    Dresult;
-    testcode( Dresult = s().dims() );
-    pass = (Dresult==Dexpected);
-    printEnd(pass,Dresult,Dexpected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  //   // s().dims()
+  //   printStart(++testnum);
+  //   Dexpected = *(new Dimensions(2,2));
+  //   Dresult;
+  //   testcode( Dresult = s().dims() );
+  //   pass = (Dresult==Dexpected);
+  //   printEnd(pass,Dresult,Dexpected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
   
-  {
-    printStart(++testnum);
-    Scalar<Matrix<double>> s { {{1.1,2.2},{3.3,4.4}}};
-    Matrix<double> expected  {{1.1,2.2},{3.3,4.4}};
-    Matrix<double> result;
-    testcode( result = s() );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    printStart(++testnum);
-    Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
-    tdisp(s());
-    double expected = 2.2;
-    double result;
-    testcode( result = s()(0,1) );
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    printStart(++testnum);
-    Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
-    double expected = 1.1;
-    double result;
-    testcode( result = s[0] );
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    printStart(++testnum);
-    Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
-    double expected = 2.2;
-    double result;
-    testcode( result = s[1] );
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   printStart(++testnum);
+  //   Scalar<Matrix<double>> s { {{1.1,2.2},{3.3,4.4}}};
+  //   Matrix<double> expected  {{1.1,2.2},{3.3,4.4}};
+  //   Matrix<double> result;
+  //   testcode( result = s() );
+  //   bool pass = equal(result,expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   printStart(++testnum);
+  //   Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
+  //   tdisp(s());
+  //   double expected = 2.2;
+  //   double result;
+  //   testcode( result = s()(0,1) );
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   printStart(++testnum);
+  //   Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
+  //   double expected = 1.1;
+  //   double result;
+  //   testcode( result = s[0] );
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   printStart(++testnum);
+  //   Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
+  //   double expected = 2.2;
+  //   double result;
+  //   testcode( result = s[1] );
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
     
 
   

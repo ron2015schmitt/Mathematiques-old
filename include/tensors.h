@@ -507,7 +507,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
   
-  template <class D, class DERIVED> class TensorR : public TensorAbstract {
+  template <class D, class DERIVED, int M> class TensorR : public TensorAbstract {
   public:
     typedef D DataType;
 
@@ -585,7 +585,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
 
-  template <class D, class DERIVED> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
+  template <class D, class DERIVED, int M> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
   public:
     typedef D DataType;
 

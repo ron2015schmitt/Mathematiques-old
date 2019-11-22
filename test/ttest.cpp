@@ -11,7 +11,7 @@ int main()
   using namespace display;
 
   print_matricks_info();
-  mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - matrix tests" <<std::endl;
+  mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - tensor tests" <<std::endl;
   cr();
   cr();
   
@@ -47,6 +47,7 @@ int main()
 	}
       }
     }
+    tdisp(t2);
     int A[24] = {0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230};
     Tensor<int> expected(dims);
     expected = A;

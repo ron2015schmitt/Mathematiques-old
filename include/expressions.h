@@ -371,8 +371,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A, class FUNC>
-    class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC> > {
+  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC,M>,M> {
   
   private:
     const A& a_;
@@ -388,33 +388,85 @@ namespace matricks {
       disp3(a);
     }
     
-    ~TER_Unary() {
+  ~TER_Unary() {
       delete vptrs;
     }
 
-    const D operator[](const index_type i) const {
-      return FUNC::apply(a_[i]);
+  // -------------------- deep access[] --------------------
+  // NOTE: indexes over [0] to [deepsize()]
+  // -------------------------------------------------------------
+  
+  const D operator[](const index_type i) const {
+    if constexpr(M < 2) {
+	return FUNC::apply(a_[i]);
+    } else {
+      const int Ndeep = this->eldeepsize();
+      const int j = i / Ndeep;
+      const int k = i % Ndeep;
+      return FUNC::apply(a_[j][k]);
     }
+  }
 
+  const D operator()(void) const {
+    return FUNC::apply(a_());
+  }
+  const D operator()(const index_type i) const {
+    return FUNC::apply(a_(i));
+  }
+  const D operator()(const index_type i, const index_type j) const {
+    return FUNC::apply(a_(i,j));
+  }
+  const D operator()(const index_type i, const index_type j, const index_type k) const {
+    return FUNC::apply(a_(i,j,k));
+  }
+  template<typename... Ts> const D operator()(const Ts... args){
+    return FUNC::apply(a_(args...));
+  }
+  
     
-    inline VectorofPtrs getAddresses(void) const {
+  inline VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+  inline size_type size(void) const {
       return a_.size();
     }
-    size_type ndims(void) const {
+  size_type ndims(void) const {
       return a_.ndims();
     }
-    Dimensions dims(void) const {
+  Dimensions dims(void) const {
       return a_.dims();
     }
-    bool isExpression(void) const {
+  Dimensions tdims(void) const {
+      return this->dims();
+    }
+  bool isExpression(void) const {
       return true;
     }
-    inline std::string classname() const {
-      return "TER_Unary";
+  size_type depth(void) const {
+      return M;
     }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+  size_type deepsize(void) const {
+    return (this->size())*(this->eldeepsize());
+  }
+
+
+  std::string classname() const {
+      return "TER_Unary";
+  }
 
 
 #if MATRICKS_DEBUG>=1

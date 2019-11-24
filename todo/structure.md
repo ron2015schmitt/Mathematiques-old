@@ -23,7 +23,7 @@ Implement code necessary so that mathematical operations work for recursive tens
 1. verify that `operator=` and `constructors` are paired in `scalar.h`, `vector.h`, `matrix.h`, `tensors.h`
 1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`
 1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
-1. add access operators `()`, `(i)`, `(i,j)`, `(i,j,k)`, etc to expressions?
+1. add access operator `(ints...)` etc to expressions. This will allow e.g. Matrix expresssion to be used in dot products
 1. Benchmark a large vector of 3D vectors. if slow, look into optimization
 1. Use type traits to determine ideal qualifier types for paramters and return values?
 1. asVector, asMatrix wrapper function expressions

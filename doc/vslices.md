@@ -3,7 +3,7 @@
 
 
 # python-like access: negative indices & slices in mātricks
-_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.29-r8).
+_This document was automatically generated from file_ **`vslices.cpp`** (mātricks-v2.29-r9).
 
 ## Element access
 ### Positive and negative indices
@@ -33,8 +33,20 @@ const int N = v.size();
   v[-1] = 10; 
   v[-2] = 9; 
   v[-N] = 0; 
-  v[{0,-1}] = Vector<double> {0, 10}; 
-  v[{2,2,-2,-2}] = Vector<double> {2, 2, 9, 9}; 
+  n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+v[{0,-1}] = Vector<double> {0, 10}; 
+  n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+v[{2,2,-2,-2}] = Vector<double> {2, 2, 9, 9}; 
 ```
 
 
@@ -112,6 +124,8 @@ Vector<double> v( range<double>(0,10) );
 ```C++
 Vector<double> v0(0);
 Vector<double> v1(1,0. );
+n = 0; 
+data_[n] = 0; 
 Vector<double> v2( range<double>(0,1) );
 Vector<double> v3( range<double>(0,2) );
 Vector<double> v4( range<double>(0,3) );

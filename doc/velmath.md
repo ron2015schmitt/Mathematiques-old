@@ -3,7 +3,7 @@
 
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.29-r8).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.29-r9).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively
@@ -13,8 +13,24 @@ The operators +,-,*,/ perform element-wise addition, subtraction, multiplication
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 Vector<double> v2(4);
 v2 = {1,2,3,4}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 v1 = {10, 20, 30, 40}; 
@@ -37,6 +53,14 @@ v1 = {10, 20, 30, 40};
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**
@@ -61,6 +85,20 @@ v1 = {10,20,30,40}; // C++11 list
 ```C++
 Vector<double> v(7);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
+n = 5; 
+data_[n] = 0; 
+n = 6; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**: rounding and sign-related
@@ -79,6 +117,16 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 ```C++
 Vector<double> v(5);
 v = {-1,0,1,2,4}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**: powers, roots, and exponentiation
@@ -103,6 +151,16 @@ v = {-1,0,1,2,4}; // C++11 list
 Vector<double> v(5);
 constexpr double pi = std::acos(-1); // C++11 constexpr
 v = {-pi, -pi/2, 0, pi/2, pi}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
 const double tol = 2e-16;
 ```
 
@@ -129,6 +187,12 @@ The results are cleaner, when we round to a tolerance
 ```C++
 Vector<double> v(3);
 v = {-1,0,1}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**: hyperbolic trig
@@ -148,8 +212,50 @@ Vector<double> v(3);
 Vector<double> v1(9);
 Vector<double> v2(9);
 v = {-1,0,1}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
 v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
+n = 5; 
+data_[n] = 0; 
+n = 6; 
+data_[n] = 0; 
+n = 7; 
+data_[n] = 0; 
+n = 8; 
+data_[n] = 0; 
 v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
+n = 5; 
+data_[n] = 0; 
+n = 6; 
+data_[n] = 0; 
+n = 7; 
+data_[n] = 0; 
+n = 8; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**: inverse trig
@@ -170,8 +276,24 @@ v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1}; // C++11 list
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 Vector<double> v2(4);
 v2 = {-1,-2,-3,-4}; // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**

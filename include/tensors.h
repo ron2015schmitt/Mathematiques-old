@@ -507,7 +507,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
   
-  template <class D, class DERIVED, int M> class TensorR : public TensorAbstract {
+  template <class D, class DERIVED> class TensorR : public TensorAbstract {
   public:
     typedef D DataType;
 
@@ -526,10 +526,6 @@ namespace matricks {
       return derived().size();
     }
 
-    size_type depth(void) const {
-      return 1;
-    }
-
     size_type ndims(void) const {
       return derived().ndims();
     }
@@ -541,6 +537,18 @@ namespace matricks {
     }
     virtual Tensors getEnum(void) const {
       return T_EXPRESSION_R;
+    }
+    size_type depth(void) const {
+      return derived().depth();
+    }
+    size_type elsize(void) const {
+      return derived().elsize();
+    }
+    size_type eldeepsize(void) const {
+      return derived().eldeepsize();
+    }
+    size_type deepsize(void) const {
+      return derived().deepsize();
     }
 
 #if MATRICKS_DEBUG>=1
@@ -585,7 +593,7 @@ namespace matricks {
   // -------------------------------------------------------------------
 
 
-  template <class D, class DERIVED, int M> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
+  template <class D, class DERIVED> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
   public:
     typedef D DataType;
 
@@ -620,6 +628,18 @@ namespace matricks {
     virtual Tensors getEnum(void) const {
       return T_EXPRESSION_RW;
     }
+    size_type depth(void) const {
+      return derived().depth();
+    }
+    size_type elsize(void) const {
+      return derived().elsize();
+    }
+    size_type eldeepsize(void) const {
+      return derived().eldeepsize();
+    }
+    size_type deepsize(void) const {
+      return derived().deepsize();
+    }
     
 
 #if MATRICKS_DEBUG>=1
@@ -653,7 +673,7 @@ namespace matricks {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(size_type i=0; i<size(); i++) 
+      for(size_type i=0; i<deepsize(); i++) 
 	(*this)[i]=d; 
       return derived();
     }
@@ -668,7 +688,7 @@ namespace matricks {
     template <class B>
       DERIVED& equals(const TensorR<D,B>& rhs) { 
 
-      const size_type N =size();
+      const size_type N =deepsize();
 
 
       if ( common(*this, rhs) ) {

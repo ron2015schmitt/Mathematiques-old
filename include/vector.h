@@ -415,7 +415,7 @@ namespace matricks {
   // Assign all elements to the same constant value
   Vector<D,NN,M>& equals(const D d) { 
     for (index_type i = 0; i < size(); i++) 
-      data_[i]=d; 
+      (*this)(i)=d; 
     return *this;
   }
   Vector<D,NN,M>& operator=(const D d) { 
@@ -427,7 +427,7 @@ namespace matricks {
   template <class A>  Vector<D,NN,M>& equals(const TensorR<D,A>& x) {  
 
     // resize to avoid segmentation faults
-    // TODO: issue warning if resize needed
+    // TODO: issue warning if resize neede, deepsize()?
     if constexpr(NN==0) {
 	if (this->size() != x.size()) {
 	  resize(x.size());
@@ -437,17 +437,15 @@ namespace matricks {
     //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
     if (common(*this,x)){
       //mout<< "  common addresses found" <<std::endl;
-      Vector<D,NN,M> vtemp(size());
-      for (index_type i = 0; i < size(); i++) 
-	// TODO: change x[i] to x(i) once implemented
-	vtemp(i) = x[i];   // Inlined expression
-      for (index_type i = 0; i < size(); i++) 
-	data_[i] = vtemp(i);
+      Vector<MyNumberType> vtemp(deepsize());
+      for (index_type i = 0; i < deepsize(); i++) 
+	vtemp[i] = x[i];   
+      for (index_type i = 0; i < deepsize(); i++) 
+	(*this)[i] = vtemp[i];
     } else {
       //mout<< "  NO common addresses found" <<std::endl;
-      for (index_type i = 0; i < size(); i++)
-	// TODO: change x[i] to x(i) once implemented
-	data_[i] = x[i];   // Inlined expression
+      for (index_type i = 0; i < deepsize(); i++)
+	(*this)[i] = x[i];   
     }
     //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
     return *this; 
@@ -512,14 +510,15 @@ namespace matricks {
   Vector<D,NN,M>& equals(const Vector<D,NN,M>& v2) {
 
     // resize to avoid segmentation faults
+    // TODO: chekc deepsize
     if constexpr(NN==0) {
 	if (this->size() != v2.size()) {
 	  resize(v2.size());
 	}
     }
 
-    for(index_type i=size(); i--;)
-      data_[i] = v2(i);    
+    for(index_type i=0; i<deepsize(); i++ )
+      data_[i] = v2[i];    
     return *this;
   }
 
@@ -543,7 +542,7 @@ namespace matricks {
     }
     index_type i = 0;
     for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
-      data_[i++] = *it;
+      (*this)(i++) = *it;
     }
     return *this;
   }
@@ -563,7 +562,7 @@ namespace matricks {
     size_type k = 0;
     typename std::initializer_list<D>::iterator it; 
     for (it = mylist.begin(); it != mylist.end(); ++it)  { 
-      data_[k++] = *it;
+      (*this)(k++) = *it;
     }
 
     return *this;
@@ -586,8 +585,8 @@ namespace matricks {
 	}
     }
 
-    for(size_type i=size(); i--;)
-      data_[i] = vstd[i];    
+    for(size_type i = 0; i < size(); i++)
+      (*this)(i) = vstd[i];    
 
     return *this;
   }
@@ -611,8 +610,8 @@ namespace matricks {
 	}
     }
 
-    for(size_type i=size(); i--;)
-      data_[i] = varray[i];    
+    for(size_type i = 0; i < size(); i++)
+      (*this)(i) = varray[i];    
 
     return *this;
   }
@@ -636,8 +635,8 @@ namespace matricks {
 	}
     }
 
-    for(size_type i=size(); i--;)
-      data_[i] = varray[i];    
+    for(size_type i = 0; i < size(); i++)
+      (*this)(i) = varray[i];    
 
     return *this;
   }

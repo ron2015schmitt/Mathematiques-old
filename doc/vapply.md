@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.29-r8).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.29-r9).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -53,6 +53,28 @@ Vector<int> v2(range<int>(-2,2));
 using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
 Vector<double> v2(11,0.25);
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
+n = 5; 
+data_[n] = 0; 
+n = 6; 
+data_[n] = 0; 
+n = 7; 
+data_[n] = 0; 
+n = 8; 
+data_[n] = 0; 
+n = 9; 
+data_[n] = 0; 
+n = 10; 
+data_[n] = 0; 
 ```
 
 **The result is**
@@ -71,6 +93,28 @@ using namespace std;
 Vector<double> v1(linspace<double>(-1,1,11) );
 Vector<double> v2;
 v2 = v1.getValArray().apply(pos);
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
+n = 4; 
+data_[n] = 0; 
+n = 5; 
+data_[n] = 0; 
+n = 6; 
+data_[n] = 0; 
+n = 7; 
+data_[n] = 0; 
+n = 8; 
+data_[n] = 0; 
+n = 9; 
+data_[n] = 0; 
+n = 10; 
+data_[n] = 0; 
 ```
 
 **The result is**

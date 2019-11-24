@@ -70,8 +70,8 @@ namespace matricks {
   template <typename T> class NumberType;
 
   class TensorAbstract;
-  template <class D, class DERIVED, int M = 1+matricks::NumberType<D>::depth()> class TensorR;  
-  template <class D, class DERIVED, int M = 1+matricks::NumberType<D>::depth()> class TensorRW;
+  template <class D, class DERIVED> class TensorR;  
+  template <class D, class DERIVED> class TensorRW;
   
   template <class D, int M = 1+matricks::NumberType<D>::depth()> class Scalar;
   template <class D, int NN = 0, int M = 1+matricks::NumberType<D>::depth()> class Vector;
@@ -79,18 +79,55 @@ namespace matricks {
   template <class D> class Tensor;
 
 
-  template <class D, class A> class VER_Rep;
-  template <class D> class VSliceObj;
-  template <class D> class VSliceExpr;
-  template <class D> class TERW_Subset;
-  template <class D> class TERW_Submask;
-  template <class D, class A, class B> class VERW_Join;
-  template <class D, class A, class B> class VER_Join;
-  template <class D> class TERW_Resize;
-  template <class D, class A, class X> class TER_Series;
-
-
-
+  template <class D, int M = 1+matricks::NumberType<D>::depth()>
+    class TERW_Subset;
+  template <class D, int M = 1+matricks::NumberType<D>::depth()>
+    class TERW_Submask;
+  template <class D, int M = 1+matricks::NumberType<D>::depth()>
+    class TERW_Resize;
+  template <class D, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_RealFromComplex;
+  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Unary;
+  template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Binary;
+  template<class D, class A, class X, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Series;
+  template<class D, class A, class B, class X, class OP1, class OP2, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Series2;    
+  template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_TensorOpScalar;
+  template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_ScalarOpTensor;
+  template <class DOUT, class A, class D, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_TensorOpScalar_New;
+  template <class DOUT, class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_ScalarOpTensor_New;
+  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Bool_Unary;
+  template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Bool_Binary;
+  template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Bool_Binary2;
+  template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Bool_TensorOpScalar;
+  template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Bool_ScalarOpTensor;
+  template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Cplx_TensorOpScalar;
+  template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Cplx_ScalarOpTensor;
+  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+    class TERW_Transpose;
+  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+    class TER_Transpose;
+  template<class D, class A, class B, int M = 1+matricks::NumberType<D>::depth()>
+    class VER_Join;
+  template<class D, class A, class B, int M = 1+matricks::NumberType<D>::depth()>
+    class VERW_Join;
+  template<class D, class A, int M = 1+matricks::NumberType<D>::depth()>
+    class VER_Rep;
+  
     /****************************************************************************
    * math
    **************************************************************************** 

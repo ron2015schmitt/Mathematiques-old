@@ -14,8 +14,8 @@ namespace matricks {
    * wrapper for a vector subset
    ****************************************************************************
    */
-  template<class D>
-    class TERW_Subset :  public  TensorRW<D,TERW_Subset<D> > {
+  template<class D, int M>
+    class TERW_Subset :  public  TensorRW<D,TERW_Subset<D,M> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -74,6 +74,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TERW_Subset";
     }
@@ -124,8 +148,8 @@ namespace matricks {
    * wrapper for a vector submask
    ****************************************************************************
    */
-  template<class D>
-    class TERW_Submask :  public  TensorRW<D,TERW_Submask<D> > {
+  template<class D, int M>
+    class TERW_Submask :  public  TensorRW<D,TERW_Submask<D,M> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -172,6 +196,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TERW_Submask";
     }
@@ -216,8 +264,8 @@ namespace matricks {
    * reallocate store
    ****************************************************************************
    */
-  template<class D>
-    class TERW_Resize :  public  TensorR<D,TERW_Resize<D> > {
+  template<class D, int M>
+    class TERW_Resize :  public  TensorR<D,TERW_Resize<D,M> > {
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& a_;
@@ -252,6 +300,30 @@ namespace matricks {
     }
     bool isExpression(void) const {
       return true;
+    }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
     }
     inline std::string classname() const {
       return "TERW_Resize";
@@ -296,8 +368,8 @@ namespace matricks {
    * used for accessing real/imag part of complex vector
    ****************************************************************************
    */
-  template <class D, class OP>
-    class TER_RealFromComplex : public  TensorRW<D,TER_RealFromComplex<D,OP> > {
+  template <class D, class OP, int M>
+    class TER_RealFromComplex : public  TensorRW<D,TER_RealFromComplex<D,OP,M> > {
   private:
     Vector<std::complex<D> >& a_;
     VectorofPtrs *vptrs;
@@ -339,6 +411,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_RealFromComplex";
     }
@@ -371,8 +467,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC,M>,M> {
+  template<class D, class A, class FUNC, int M>
+    class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC,M>> {
   
   private:
     const A& a_;
@@ -479,8 +575,8 @@ namespace matricks {
    * vector/vector binary operator expressions
    ****************************************************************************
    */
-  template<class D, class A, class B, class OP>
-    class TER_Binary : public  TensorR<D,TER_Binary<D,A,B,OP> > {
+  template<class D, class A, class B, class OP, int M>
+    class TER_Binary : public  TensorR<D,TER_Binary<D,A,B,OP,M> > {
 
   private:
     const A* a_;
@@ -544,6 +640,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Binary";
     }
@@ -577,8 +697,8 @@ namespace matricks {
    ************************************************************
    */
 
-  template<class D, class A, class X>
-    class TER_Series : public  TensorR<D,TER_Series<D,A,X> > {
+  template<class D, class A, class X, int M>
+    class TER_Series : public  TensorR<D,TER_Series<D,A,X,M> > {
 
   private:
     const A& a_;
@@ -642,6 +762,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Series";
     }
@@ -669,7 +813,7 @@ namespace matricks {
 
 
   
-  template<class D, class A, class B, class X, class OP1, class OP2>
+  template<class D, class A, class B, class X, class OP1, class OP2, int M>
     class TER_Series2 : public  TensorR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
 
   private:
@@ -735,6 +879,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Series2";
     }
@@ -771,8 +939,8 @@ namespace matricks {
    */
 
 
-  template<class D, class A, class OP>
-    class TER_TensorOpScalar : public TensorR<D,TER_TensorOpScalar<D,A,OP> > {
+  template<class D, class A, class OP, int M>
+    class TER_TensorOpScalar : public TensorR<D,TER_TensorOpScalar<D,A,OP,M> > {
 
   private:
     const A& a_;
@@ -811,6 +979,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_TensorOpScalar";
     }
@@ -846,8 +1038,8 @@ namespace matricks {
    */
 
 
-  template<class D, class B, class OP>
-    class TER_ScalarOpTensor : public TensorR<D,TER_ScalarOpTensor<D,B,OP> > {
+  template<class D, class B, class OP, int M>
+    class TER_ScalarOpTensor : public TensorR<D,TER_ScalarOpTensor<D,B,OP,M> > {
 
   private:
     D val_;
@@ -886,6 +1078,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_ScalarOpTensor";
     }
@@ -921,8 +1137,8 @@ namespace matricks {
    */
 
 
-  template <class DOUT, class A, class D, class OP>
-    class TER_TensorOpScalar_New : public TensorR<DOUT,TER_TensorOpScalar_New<DOUT,A,D,OP> > {
+  template <class DOUT, class A, class D, class OP, int M>
+    class TER_TensorOpScalar_New : public TensorR<DOUT,TER_TensorOpScalar_New<DOUT,A,D,OP,M> > {
 
   private:
     const A& a_;
@@ -961,6 +1177,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_TensorOpScalar_New";
     }
@@ -995,8 +1235,8 @@ namespace matricks {
    */
 
 
-  template <class DOUT, class D, class B, class OP>
-    class TER_ScalarOpTensor_New : public TensorR<DOUT,TER_ScalarOpTensor_New<DOUT,D,B,OP> > {
+  template <class DOUT, class D, class B, class OP, int M>
+    class TER_ScalarOpTensor_New : public TensorR<DOUT,TER_ScalarOpTensor_New<DOUT,D,B,OP,M> > {
 
   private:
     D val_;
@@ -1035,6 +1275,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_ScalarOpTensor_New";
     }
@@ -1071,8 +1335,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A, class FUNC>
-    class TER_Bool_Unary  : public  TensorR<bool,TER_Bool_Unary<D,A,FUNC> >{
+  template<class D, class A, class FUNC, int M>
+    class TER_Bool_Unary  : public  TensorR<bool,TER_Bool_Unary<D,A,FUNC,M> >{
   
   private:
     const A& a_;
@@ -1108,6 +1372,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Bool_Unary";
     }
@@ -1134,8 +1422,8 @@ namespace matricks {
    * vector/vector binary operator expressions
    ****************************************************************************
    */
-  template<class D, class A, class B, class OP>
-    class TER_Bool_Binary : public  TensorR<bool,TER_Bool_Binary<D,A,B,OP> > {
+  template<class D, class A, class B, class OP, int M>
+    class TER_Bool_Binary : public  TensorR<bool,TER_Bool_Binary<D,A,B,OP,M> > {
 
   private:
     const A& a_;
@@ -1180,6 +1468,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Bool_Binary";
     }
@@ -1211,8 +1523,8 @@ namespace matricks {
    * vector/vector tertiary operator expressions
    ****************************************************************************
    */
-  template<class D, class A, class B, class OP>
-    class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP> > {
+  template<class D, class A, class B, class OP, int M>
+    class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP,M> > {
 
   public:
     typedef typename FundamentalType<D>::Type DREAL;
@@ -1262,6 +1574,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Bool_Binary2";
     }
@@ -1293,8 +1629,8 @@ namespace matricks {
    */
 
 
-  template<class D, class A, class OP>
-    class TER_Bool_TensorOpScalar : public TensorR<bool,TER_Bool_TensorOpScalar<D,A,OP> > {
+  template<class D, class A, class OP, int M>
+    class TER_Bool_TensorOpScalar : public TensorR<bool,TER_Bool_TensorOpScalar<D,A,OP,M> > {
 
   private:
     const A& a_;
@@ -1334,6 +1670,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Bool_TensorOpScalar";
     }
@@ -1365,8 +1725,8 @@ namespace matricks {
    */
 
 
-  template<class D, class B, class OP>
-    class TER_Bool_ScalarOpTensor : public TensorR<bool,TER_Bool_ScalarOpTensor<D,B,OP> > {
+  template<class D, class B, class OP, int M>
+    class TER_Bool_ScalarOpTensor : public TensorR<bool,TER_Bool_ScalarOpTensor<D,B,OP,M> > {
 
   private:
     D val_;
@@ -1405,6 +1765,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Bool_ScalarOpTensor";
     }
@@ -1442,8 +1826,8 @@ namespace matricks {
    * complex vector = binfunc(ComplexOrRealVector,RealScalar) binary operators 
    ****************************************************************************
    */
-  template<class D, class A, class OP>
-    class TER_Cplx_TensorOpScalar : public TensorR<std::complex<D>, TER_Cplx_TensorOpScalar<D,A,OP> > {
+  template<class D, class A, class OP, int M>
+    class TER_Cplx_TensorOpScalar : public TensorR<std::complex<D>, TER_Cplx_TensorOpScalar<D,A,OP,M> > {
 
   private:
     const A& a_;
@@ -1482,6 +1866,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Cplx_TensorOpScalar";
     }
@@ -1514,8 +1922,8 @@ namespace matricks {
    * complex vector = binfunc(RealScalar,ComplexOrRealVector) binary operators 
    ****************************************************************************
    */
-  template<class D, class B, class OP>
-    class TER_Cplx_ScalarOpTensor : public TensorR<std::complex<D>,TER_Cplx_ScalarOpTensor<D,B,OP> > {
+  template<class D, class B, class OP, int M>
+    class TER_Cplx_ScalarOpTensor : public TensorR<std::complex<D>,TER_Cplx_ScalarOpTensor<D,B,OP,M> > {
   private:
     const D val_;
     const B& b_;
@@ -1553,6 +1961,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return b_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "TER_Cplx_ScalarOpTensor";
     }
@@ -1583,8 +2015,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A, class FUNC>
-    class TERW_Transpose  : public  TensorRW<D,TERW_Transpose<D,A,FUNC> > {
+  template<class D, class A, class FUNC, int M>
+    class TERW_Transpose  : public  TensorRW<D,TERW_Transpose<D,A,FUNC,M> > {
   
   private:
     A& a_;
@@ -1633,6 +2065,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     std::string classname() const {
       return "TERW_Transpose";
     }
@@ -1659,8 +2115,8 @@ namespace matricks {
    *************************************************************************
    */
 
-  template<class D, class A, class FUNC>
-    class TER_Transpose  : public  TensorR<D,TER_Transpose<D,A,FUNC> > {
+  template<class D, class A, class FUNC, int M>
+    class TER_Transpose  : public  TensorR<D,TER_Transpose<D,A,FUNC,M> > {
   
   private:
     const A& a_;
@@ -1704,6 +2160,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     std::string classname() const {
       return "TER_Transpose";
     }
@@ -1728,8 +2208,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A, class B>
-    class VER_Join : public  TensorR<D,VER_Join<D,A,B> > {
+  template<class D, class A, class B, int M>
+    class VER_Join : public  TensorR<D,VER_Join<D,A,B,M> > {
 
   private:
     const A& a_;
@@ -1774,6 +2254,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "VER_Join";
     }
@@ -1796,8 +2300,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A, class B>
-    class VERW_Join : public  TensorRW<D,VERW_Join<D,A,B> > {
+  template<class D, class A, class B, int M>
+    class VERW_Join : public  TensorRW<D,VERW_Join<D,A,B,M> > {
 
   private:
     A& a_;
@@ -1850,6 +2354,30 @@ namespace matricks {
     bool isExpression(void) const {
       return true;
     }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
     inline std::string classname() const {
       return "VERW_Join";
     }
@@ -1893,8 +2421,8 @@ namespace matricks {
    ****************************************************************************
    */
 
-  template<class D, class A>
-    class VER_Rep : public  TensorR<D,VER_Rep<D,A> > {
+  template<class D, class A, int M>
+    class VER_Rep : public  TensorR<D,VER_Rep<D,A,M> > {
 
   private:
     const A& a_;
@@ -1937,6 +2465,30 @@ namespace matricks {
     }
     bool isExpression(void) const {
       return true;
+    }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
     }
     inline std::string classname() const {
       return "VER_Rep";

@@ -3,7 +3,7 @@
 
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r8).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r9).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++
@@ -18,6 +18,14 @@ Vector<double> v(N);
 **EXAMPLE 2**: Declare `v` and initialize to a constant
 ```C++
 Vector<double> v(4, -1 );
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 **The result is**
 ```C++
@@ -46,6 +54,14 @@ data_[n] = 0;
 **EXAMPLE 4**: Declare `v` and initialize directly from a list (**__C++11__**)
 ```C++
 Vector<double> v({10, 20, 30, 40});
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 **The result is**
 ```C++
@@ -57,6 +73,14 @@ Vector<double> v({10, 20, 30, 40});
 * In fact _all_ of the `Vector` constructors are _copy_ constructors.
 ```C++
 Vector<double> v1( {10,11,12,13} ); // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 Vector<double> v2(v1);
 v1[0] = -1;
 v2[0] = -2;
@@ -71,6 +95,14 @@ v2[0] = -2;
 * The expression is computed without creating any intermediate objects.
 ```C++
 Vector<double> v1({10,11,12,13} ); // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 Vector<double> v2(10*v1+1);
 ```
 **The result is**

@@ -13,7 +13,7 @@ public:
   typedef D Type;
   Test() {
   }
-  constexpr inline int depth() {
+  constexpr matricks::size_type depth() const {
     return M;
   }
  
@@ -29,7 +29,7 @@ public:
   }
   Test2(D d): d_(d) {
   }
-  constexpr inline int depth() {
+  constexpr matricks::size_type depth() const {
     return matricks::NumberType<decltype(*this)>::depth();
   }
  

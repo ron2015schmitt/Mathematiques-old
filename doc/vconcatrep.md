@@ -3,7 +3,7 @@
 
 
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.29-r8).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.29-r9).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors
@@ -48,6 +48,10 @@ Vector<double> vb(3);
 Vector<double> ua(2);
 Vector<double> ub(3);
 (ua[{1,0}],ub) = range<double>(1,5);
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
 ```
 
 **The result is**
@@ -60,6 +64,12 @@ Vector<double> ub(3);
 Vector<double> wa(2);
 Vector<double> wb(3);
 (wa,wb[{2,1,0}]) = range<double>(1,5);
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
 ```
 
 **The result is**
@@ -72,6 +82,16 @@ Vector<double> wb(3);
 Vector<double> za(2);
 Vector<double> zb(3);
 (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5);
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
 ```
 
 **The result is**

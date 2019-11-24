@@ -3,7 +3,7 @@
 
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.29-r8).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.29-r9).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -14,6 +14,14 @@ _This document was automatically generated from file_ **`vscalarout.cpp`** (māt
 ```C++
 Vector<double> v1(range<double>(1,4));
 Vector<double> v2({1,-1,1,-1}); // C++11 list
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**
@@ -57,6 +65,14 @@ v2.roundzero(tol);
 **EXAMPLE 3**: `sum` the elements of a vector
 ```C++
 Vector<double> v({1,2,3,4}); // C++11 list initialization
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**
@@ -70,6 +86,14 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 **EXAMPLE 4**: `sum` the elements of a vector
 ```C++
 Vector<double> v({1,2,3,4}); // C++11 list initialization
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**
@@ -99,6 +123,14 @@ v = exp(linspace<double>(-1,1,13));
 **EXAMPLE 6**: Compute the _product_ of the elements of a vector
 ```C++
 Vector<double> v({1,2,3,4}); // C++11 list initialization
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**
@@ -112,6 +144,14 @@ Vector<double> v({1,2,3,4}); // C++11 list initialization
 **EXAMPLE 7**: Find the _minimum_ of the elements of a vector
 ```C++
 Vector<double> v({1,20,-1,0}); // C++11 list initialization
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**
@@ -127,6 +167,14 @@ Vector<double> v({1,20,-1,0}); // C++11 list initialization
 **EXAMPLE 8**: Find the _maximum_ of the elements of a vector
 ```C++
 Vector<double> v({1,20,-1,0}); // C++11 list initialization
+n = 0; 
+data_[n] = 0; 
+n = 1; 
+data_[n] = 0; 
+n = 2; 
+data_[n] = 0; 
+n = 3; 
+data_[n] = 0; 
 ```
 
 **Some expressions with results**

@@ -202,9 +202,10 @@ namespace matricks {
     /*   return k; */
     /* } */
 
-    template<typename... Ts> index_type index(const Ts... args){
-    const int size = sizeof...(args);
-    int argarray[size] = {args...};
+    template <typename... U> typename std::enable_if<(std::is_same<U, int>::value && ...), index_type>::type index(const U... args) {
+  
+      const int size = sizeof...(args);
+      int argarray[size] = {args...};
       Indices& inds = *(new Indices(ndims()));
       const index_type M = this->ndims();
       for(index_type n = 0; n < M; n++) {
@@ -261,11 +262,11 @@ namespace matricks {
     
     // ---------------- tensor(i,j,...)--------------
 
-  template<typename... Ts> D& operator()(const Ts... args){
+    template <typename... U> typename std::enable_if<(std::is_same<U, int>::value && ...), D&>::type operator()(const U... args) {
       index_type k = this->index(args...);
       return (*this)[k];
     }
-  template<typename... Ts> const D& operator()(const Ts... args) const {
+    template <typename... U> typename std::enable_if<(std::is_same<U, int>::value && ...), const D>::type operator()(const U... args) const  {
     return (*this)(args...);
     }
 

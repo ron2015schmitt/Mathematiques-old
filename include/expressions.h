@@ -407,22 +407,6 @@ namespace matricks {
     }
   }
 
-  const D operator()(void) const {
-    return FUNC::apply(a_());
-  }
-  const D operator()(const index_type i) const {
-    return FUNC::apply(a_(i));
-  }
-  const D operator()(const index_type i, const index_type j) const {
-    return FUNC::apply(a_(i,j));
-  }
-  const D operator()(const index_type i, const index_type j, const index_type k) const {
-    return FUNC::apply(a_(i,j,k));
-  }
-  template<typename... Ts> const D operator()(const Ts... args){
-    return FUNC::apply(a_(args...));
-  }
-  
     
   inline VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -460,7 +444,11 @@ namespace matricks {
     }
   }
   size_type deepsize(void) const {
-    return (this->size())*(this->eldeepsize());
+    if constexpr(M<2) {
+      return this->size();
+    } else {
+      return (this->size())*(this->eldeepsize());
+    }
   }
 
 

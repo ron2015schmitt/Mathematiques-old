@@ -121,8 +121,12 @@ namespace matricks {
       return data_.deepsize();
     }
   }
-  inline size_type deepsize(void) const {
-    return (this->size())*(this->eldeepsize());
+  size_type deepsize(void) const {
+    if constexpr(M<2) {
+      return this->size();
+    } else {
+      return (this->size())*(this->eldeepsize());
+    }
   }
  
 

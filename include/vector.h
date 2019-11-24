@@ -167,9 +167,32 @@ namespace matricks {
   //**********************************************************************
 
 
+  bool isExpression(void) const {
+    return false;
+  }
+  Tensors getEnum() const {
+    return T_VECTOR;
+  }
+  VectorofPtrs getAddresses(void) const  {
+    VectorofPtrs myaddr((void*)this);
+    return myaddr;
+  }
+
   inline size_type size(void) const {
     return data_.size();
   }
+  size_type ndims(void) const {
+    return 1;
+  }
+  Dimensions dims(void) const {
+    Dimensions dimensions(size());
+    return dimensions;
+  }
+  Dimensions tdims(void) const {
+    Dimensions dimensions(NN);
+    return dimensions;
+  }
+
   
   inline size_type depth(void) const {
     return M;
@@ -204,32 +227,16 @@ namespace matricks {
   }
 
   // the total number of numbers in this data structure
-  inline size_type deepsize(void) const {
-    return (this->size())*(this->eldeepsize());
+  size_type deepsize(void) const {
+    if constexpr(M<2) {
+      return this->size();
+    } else {
+      return (this->size())*(this->eldeepsize());
+    }
   }
  
+ 
   
-  size_type ndims(void) const {
-    return 1;
-  }
-  Dimensions dims(void) const {
-    Dimensions dimensions(size());
-    return dimensions;
-  }
-  Dimensions tdims(void) const {
-    Dimensions dimensions(NN);
-    return dimensions;
-  }
-  bool isExpression(void) const {
-    return false;
-  }
-  Tensors getEnum() const {
-    return T_VECTOR;
-  }
-  VectorofPtrs getAddresses(void) const  {
-    VectorofPtrs myaddr((void*)this);
-    return myaddr;
-  }
 
 
     

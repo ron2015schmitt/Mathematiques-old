@@ -3,7 +3,7 @@
 
 
 # Vector assigment in mātricks
-_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.29-r9).
+_This document was automatically generated from file_ **`vassignment.cpp`** (mātricks-v2.29-r10).
 
 * Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.
 * When the right-hand side is an expression, there are _no_ intermediate objects created.
@@ -11,26 +11,6 @@ _This document was automatically generated from file_ **`vassignment.cpp`** (mā
 ```C++
 Vector<double> v(10);
 v = 78.9;
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-n = 5; 
-data_[n] = 0; 
-n = 6; 
-data_[n] = 0; 
-n = 7; 
-data_[n] = 0; 
-n = 8; 
-data_[n] = 0; 
-n = 9; 
-data_[n] = 0; 
 ```
 **The result is**
 ```C++
@@ -44,14 +24,6 @@ _In DEBUG mode, this generates a warning since it is a dangerous practice. Use a
 ```C++
 Vector<double> v(4);
 v = (const double[]) {1,2,3,4};
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 ```
 **The result is**
 ```C++
@@ -62,14 +34,6 @@ data_[n] = 0;
 ```C++
 Vector<double> v(4);
 v = {1,2,3,4};
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 ```
 **The result is**
 ```C++
@@ -81,23 +45,7 @@ data_[n] = 0;
 Note that values are copied from `v2` to `v1`
 ```C++
 Vector<double> v1({1,2,3,4}); // C++11 list
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 Vector<double> v2({0,0,0,0}); // C++11 list
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 v2 = v1;
 v1[0] = 100;
 v2[0] = 200;
@@ -111,23 +59,7 @@ v2[0] = 200;
 **EXAMPLE 5**: Assign from a `Vector` expression.
 ```C++
 Vector<double> v1({1,2,3,4}); // C++11 list
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 Vector<double> v2({0,0,0,0}); // C++11 list
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 v2 = 2*v1;
 ```
 **The result is**
@@ -141,37 +73,15 @@ v2 = 2*v1;
 std::vector<double> vstd({1,2,3,4}); // C++11 list
 Vector<double> v1(4);
 v1 = vstd;
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 std::array<double, 3> varray = {10,20,30}; // C++11 list
 Vector<double> v2(3);
 v2 = varray;
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
 std::valarray<double> myvalarray = {100,200}; // C++11 list
 Vector<double> v3(2);
 v3 = myvalarray;
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
 std::list<double> mylist = {-1,-2};; // C++11 list
 Vector<double> v4(2);
 v4 = mylist;
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
 ```
 **The result is**
 ```C++

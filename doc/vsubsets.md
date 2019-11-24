@@ -3,7 +3,7 @@
 
 
 # Access subsets of Vector elements in mātricks
-_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.29-r9).
+_This document was automatically generated from file_ **`vsubsets.cpp`** (mātricks-v2.29-r10).
 
 You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices
 ## Access vector elements using a `Vector` of indices
@@ -19,36 +19,6 @@ Vector<double> v( linspace<double>(0,1,11) );
 Vector<index_type> veven( range<index_type>(0,10,2) );
 Vector<index_type> vodd( range<index_type>(1,10,2) );
 Vector<index_type> vconst(15,1 );
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-n = 5; 
-data_[n] = 0; 
-n = 6; 
-data_[n] = 0; 
-n = 7; 
-data_[n] = 0; 
-n = 8; 
-data_[n] = 0; 
-n = 9; 
-data_[n] = 0; 
-n = 10; 
-data_[n] = 0; 
-n = 11; 
-data_[n] = 0; 
-n = 12; 
-data_[n] = 0; 
-n = 13; 
-data_[n] = 0; 
-n = 14; 
-data_[n] = 0; 
 ```
 
 **The result is**
@@ -81,105 +51,11 @@ v = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
 
 **The result is**
 ```C++
-  n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-v[{0,4}] = Vector<double> {0, 0.4}; 
-  n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-v[{4,0,1,4}] = Vector<double> {0.4, 0, 0.1, 0.4}; 
-  n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-v[{1,0,2}] = Vector<double> {0.1, 0, 0.2}; 
-  n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-v[{4,3,2,1,0}] = Vector<double> {0.4, 0.3, 0.2, 0.1, 0}; 
-  n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-n = 5; 
-data_[n] = 0; 
-n = 6; 
-data_[n] = 0; 
-n = 7; 
-data_[n] = 0; 
-n = 8; 
-data_[n] = 0; 
-n = 9; 
-data_[n] = 0; 
-n = 10; 
-data_[n] = 0; 
-n = 11; 
-data_[n] = 0; 
-n = 12; 
-data_[n] = 0; 
-n = 13; 
-data_[n] = 0; 
-n = 14; 
-data_[n] = 0; 
-n = 15; 
-data_[n] = 0; 
-n = 16; 
-data_[n] = 0; 
-n = 17; 
-data_[n] = 0; 
-n = 18; 
-data_[n] = 0; 
-n = 19; 
-data_[n] = 0; 
-n = 20; 
-data_[n] = 0; 
-n = 21; 
-data_[n] = 0; 
-n = 22; 
-data_[n] = 0; 
-n = 23; 
-data_[n] = 0; 
-n = 24; 
-data_[n] = 0; 
-n = 25; 
-data_[n] = 0; 
-n = 26; 
-data_[n] = 0; 
-n = 27; 
-data_[n] = 0; 
-n = 28; 
-data_[n] = 0; 
-n = 29; 
-data_[n] = 0; 
-n = 30; 
-data_[n] = 0; 
-n = 31; 
-data_[n] = 0; 
-n = 32; 
-data_[n] = 0; 
-v[{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}] = Vector<double> {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}; 
+  v[{0,4}] = Vector<double> {0, 0.4}; 
+  v[{4,0,1,4}] = Vector<double> {0.4, 0, 0.1, 0.4}; 
+  v[{1,0,2}] = Vector<double> {0.1, 0, 0.2}; 
+  v[{4,3,2,1,0}] = Vector<double> {0.4, 0.3, 0.2, 0.1, 0}; 
+  v[{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}] = Vector<double> {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}; 
 ```
 
 

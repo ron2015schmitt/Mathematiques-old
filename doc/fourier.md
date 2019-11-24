@@ -3,7 +3,7 @@
 
 
 # Calculating a function via Fourier series and plotting the results in Matlab
-_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.29-r9).
+_This document was automatically generated from file_ **`fourier.cpp`** (mātricks-v2.29-r10).
 
 ## Fourier Series for the Clausen Functions
 As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: 
@@ -31,46 +31,6 @@ Vector<double> k = range<double>(0,N-1);
 Vector<double> An = 1/k;
 An[0] = 0.;
 Vector<double> Bn = Vector<double>(N,0.);
-n = 0; 
-data_[n] =  0.00000000e+00; 
-n = 1; 
-data_[n] =  0.00000000e+00; 
-n = 2; 
-data_[n] =  0.00000000e+00; 
-n = 3; 
-data_[n] =  0.00000000e+00; 
-n = 4; 
-data_[n] =  0.00000000e+00; 
-n = 5; 
-data_[n] =  0.00000000e+00; 
-n = 6; 
-data_[n] =  0.00000000e+00; 
-n = 7; 
-data_[n] =  0.00000000e+00; 
-n = 8; 
-data_[n] =  0.00000000e+00; 
-n = 9; 
-data_[n] =  0.00000000e+00; 
-n = 10; 
-data_[n] =  0.00000000e+00; 
-n = 11; 
-data_[n] =  0.00000000e+00; 
-n = 12; 
-data_[n] =  0.00000000e+00; 
-n = 13; 
-data_[n] =  0.00000000e+00; 
-n = 14; 
-data_[n] =  0.00000000e+00; 
-n = 15; 
-data_[n] =  0.00000000e+00; 
-n = 16; 
-data_[n] =  0.00000000e+00; 
-n = 17; 
-data_[n] =  0.00000000e+00; 
-n = 18; 
-data_[n] =  0.00000000e+00; 
-n = 19; 
-data_[n] =  0.00000000e+00; 
 ```
 
 Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: 
@@ -150,46 +110,6 @@ Define the coefficient vectors:
 const size_type N = 20;
 Vector<double> k = range<double>(0,N-1);
 Vector<double> An = Vector<double>(N,0.);
-n = 0; 
-data_[n] =  0.00000000e+00; 
-n = 1; 
-data_[n] =  0.00000000e+00; 
-n = 2; 
-data_[n] =  0.00000000e+00; 
-n = 3; 
-data_[n] =  0.00000000e+00; 
-n = 4; 
-data_[n] =  0.00000000e+00; 
-n = 5; 
-data_[n] =  0.00000000e+00; 
-n = 6; 
-data_[n] =  0.00000000e+00; 
-n = 7; 
-data_[n] =  0.00000000e+00; 
-n = 8; 
-data_[n] =  0.00000000e+00; 
-n = 9; 
-data_[n] =  0.00000000e+00; 
-n = 10; 
-data_[n] =  0.00000000e+00; 
-n = 11; 
-data_[n] =  0.00000000e+00; 
-n = 12; 
-data_[n] =  0.00000000e+00; 
-n = 13; 
-data_[n] =  0.00000000e+00; 
-n = 14; 
-data_[n] =  0.00000000e+00; 
-n = 15; 
-data_[n] =  0.00000000e+00; 
-n = 16; 
-data_[n] =  0.00000000e+00; 
-n = 17; 
-data_[n] =  0.00000000e+00; 
-n = 18; 
-data_[n] =  0.00000000e+00; 
-n = 19; 
-data_[n] =  0.00000000e+00; 
 Vector<double> Bn = 1./sqr(k);
 Bn[0] = 0.;
 ```

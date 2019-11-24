@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29-r9).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29-r10).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -64,14 +64,6 @@ Vector<complex<double> > v(4);
 using namespace literals;
 using namespace complex_literals;
 v = { 1+1i, 1, 1i, 1-1i }; // C++11 list and C++14 literal `i` for unit imaginary 
-n = 0; 
-data_[n] = (0,0); 
-n = 1; 
-data_[n] = (0,0); 
-n = 2; 
-data_[n] = (0,0); 
-n = 3; 
-data_[n] = (0,0); 
 ```
 
 **Some expressions with results**
@@ -90,23 +82,7 @@ Vector<complex<double> > v2(4);
 using namespace literals;
 using namespace complex_literals;
 v1 = { -1i, 0, 1-1i, 1+1i }; // C++11 list and C++14 literal `i` for unit imaginary 
-n = 0; 
-data_[n] = (0,0); 
-n = 1; 
-data_[n] = (0,0); 
-n = 2; 
-data_[n] = (0,0); 
-n = 3; 
-data_[n] = (0,0); 
 v2 = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginary 
-n = 0; 
-data_[n] = (0,0); 
-n = 1; 
-data_[n] = (0,0); 
-n = 2; 
-data_[n] = (0,0); 
-n = 3; 
-data_[n] = (0,0); 
 ```
 
 **Some expressions with results**
@@ -128,23 +104,7 @@ Vector<complex<double> > vc(4);
 using namespace literals;
 using namespace complex_literals;
 vr = { 1, 2, 3, 4 }; // C++11 list 
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 vc = { 1+1i, 1, 1i, -1i }; // C++11 list and C++14 literal `i` for unit imaginary 
-n = 0; 
-data_[n] = (0,0); 
-n = 1; 
-data_[n] = (0,0); 
-n = 2; 
-data_[n] = (0,0); 
-n = 3; 
-data_[n] = (0,0); 
 ```
 
 **Some expressions with results**
@@ -165,14 +125,6 @@ data_[n] = (0,0);
 using namespace std;
 Vector<complex<double> > v(4);
 v = {1+1.i, 1., 1.i, 2-5.i}; // C++11 list and C++14 imag
-n = 0; 
-data_[n] = (0,0); 
-n = 1; 
-data_[n] = (0,0); 
-n = 2; 
-data_[n] = (0,0); 
-n = 3; 
-data_[n] = (0,0); 
 ```
 
 **Some expressions with results**: real and imaginary parts

@@ -1,6 +1,6 @@
 
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in mātricks
-_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.29-r9).
+_This document was automatically generated from file_ **`vsort.cpp`** (mātricks-v2.29-r10).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method
@@ -12,33 +12,9 @@ _This document was automatically generated from file_ **`vsort.cpp`** (mātricks
 **EXAMPLE 1**:  `Vector.sort()`
 ```C++
 Vector<double> t( {23,-1,100,7});
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 Vector<double> y( {30,10,20,40} );
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 Vector<index_type> vindex;
 vindex = t.sort();
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 y = y[vindex];
 ```
 
@@ -60,34 +36,8 @@ y = y[vindex];
 **EXAMPLE 2**: The `.uniq()` method
 ```C++
 Vector<double> t( {23,-1,23,4,4,4,-1,3,3});
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-n = 5; 
-data_[n] = 0; 
-n = 6; 
-data_[n] = 0; 
-n = 7; 
-data_[n] = 0; 
-n = 8; 
-data_[n] = 0; 
 Vector<index_type> vindex;
 vindex = t.uniq();
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
 ```
 
 **The result is**
@@ -106,38 +56,8 @@ data_[n] = 0;
 **EXAMPLE 3**: The `.quniq()` method
 ```C++
 Vector<double> t( {23,-1,23,4,4,4,-1,3,3});
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-n = 5; 
-data_[n] = 0; 
-n = 6; 
-data_[n] = 0; 
-n = 7; 
-data_[n] = 0; 
-n = 8; 
-data_[n] = 0; 
 Vector<index_type> vindex;
 vindex = t.quniq();
-n = 0; 
-data_[n] = 0; 
-n = 1; 
-data_[n] = 0; 
-n = 2; 
-data_[n] = 0; 
-n = 3; 
-data_[n] = 0; 
-n = 4; 
-data_[n] = 0; 
-n = 5; 
-data_[n] = 0; 
 ```
 
 **The result is**

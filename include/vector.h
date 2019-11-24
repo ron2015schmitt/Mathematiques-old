@@ -334,8 +334,6 @@ namespace matricks {
   
   // "read/write"
   D& operator()(const index_type n)  {
-    disp(n);
-    disp(data_[n]);
     return data_[n]; 
   }
 

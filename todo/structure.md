@@ -10,28 +10,23 @@ Implement code necessary so that mathematical operations work for recursive tens
 1. For shallow indexing, ie first level indexing, use the `operator()` operators:
     1. `Scalar()` ✓ complete 
     1. `Vector(i)` ✓ complete 
-    1. Expressions
-       1. add `.tdims()`
-       1. change `[]` to deep access
-       1. add access operators, conditional on dimensions (will need to add M to template): `()`, `(i)`, `(i,j)`, `(i,j,k)`, etc
-    1. back to `vector.h`
-       1. Update two lines: `TODO: change x[i] to x(i) once implemented`
-       1. verify that `operator=` and `constructors` are paired. Add others?
-    1. `functions.h`
-       1. populate new expressions template parameter M
+    1. Expressions ✓ complete 
     1. `test`
        1. add test cases for math of recursive Vectors and scalars
     1. `Matrix(i,j)` 
     1. `Tensor(i...)`
-       1. number of dimensions must be a template parameter because it is a a template parameter of the expressions
-    1. add .tdims() method to TensorAbstract
-    1. asVector, asMatrix wrapper function expressions
+       1. number of dimensions must be a template parameter?
+    1. add `.tdims()`, `.depth()`, `.deepsize()` etc methods to TensorAbstract
+    
 
 ## Miscellaneous
+1. verify that `operator=` and `constructors` are paired in `scalar.h`, `vector.h`, `matrix.h`, `tensors.h`
 1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`
 1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
+1. add access operators `()`, `(i)`, `(i,j)`, `(i,j,k)`, etc to expressions?
 1. Benchmark a large vector of 3D vectors. if slow, look into optimization
-   1. Use type traits to determine ideal qualifier types for paramters and return values
+1. Use type traits to determine ideal qualifier types for paramters and return values?
+1. asVector, asMatrix wrapper function expressions
 
 ## Tensor Dimensions as Template Parameters
 

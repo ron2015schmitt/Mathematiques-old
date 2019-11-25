@@ -50,7 +50,15 @@ namespace matricks {
     {
       using namespace display;
       // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
-      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+      return  TER_Binary<
+	typename AddType<D1,D2>::Type,
+	TensorR<D1,A>,
+	TensorR<D2,B>,
+	Fun_Add_New<
+	  typename NumberType<D1>::Type,
+	  typename NumberType<D2>::Type
+	>
+      >(a,b);
     }
 
 
@@ -785,7 +793,7 @@ namespace matricks {
 
   template <class D, class A, class B> 
     inline auto operator==( const TensorR<D,A>& a, const  TensorR<D,B>& b ) {
-    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<D> >(a,b);
+    return TER_Bool_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Equal<typename NumberType<D>::Type> >(a,b);
   }
 
   // approxel(a,b,tol) - element wise
@@ -805,7 +813,7 @@ namespace matricks {
     if (!dimequiv(tensor1,tensor2)) {
       return false;
     }
-    for (int ii = 0; ii < tensor1.size(); ii++) {
+    for (int ii = 0; ii < tensor1.deepsize(); ii++) {
       if (tensor1[ii] != tensor2[ii]) {
 	return false;
       }
@@ -819,11 +827,11 @@ namespace matricks {
   //          checks dimensions first
   // -------------------------------------------------------------------
   template <class D, class A, class B>
-    inline bool approx(const TensorR<D,A>& tensor1, const TensorR<D,B>& tensor2, const D tolerance) {
+    inline bool approx(const TensorR<D,A>& tensor1, const TensorR<D,B>& tensor2, typename NumberType<D>::Type tolerance) {
     if (!dimequiv(tensor1,tensor2)) {
       return false;
     }
-    for (int ii = 0; ii < tensor1.size(); ii++) {
+    for (int ii = 0; ii < tensor1.deepsize(); ii++) {
       if (!approx(tensor1[ii], tensor2[ii], tolerance)) {
 	return false;
       }

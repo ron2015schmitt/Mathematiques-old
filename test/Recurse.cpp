@@ -157,17 +157,28 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     Scalar<Scalar<double>> s {{2.2}};
     double expected = 2.2;
-    double result;
+    double result;  
     testcode( result = s()() );
     bool pass = (result==expected);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
+  {
+    printStart(++testnum);
+    Scalar<Scalar<double>> s1 {{2.2}};
+    Scalar<Scalar<double>> s2 {{1.1}};
+    Scalar<Scalar<double>> expected {{3.3}};
+    Scalar<Scalar<double>> result;
+    testcode( result = s1+s2 );
+    bool pass = approx(result,expected,tol);
+    printEnd(pass,result,expected);
+    allpass = allpass && pass;
+    failnum += (!pass);
+  }
 
 
-
-  
+   
   //--------------------------------------------
   // Scalar<Vector<double>>
   //--------------------------------------------
@@ -312,7 +323,7 @@ int main(int argc, char *argv[])
     double expected = 2.2;
     double result;
     testcode( result = s[1] );
-    bool pass = (result==expected);
+    bool pass = result==expected;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);

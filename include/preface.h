@@ -357,7 +357,37 @@ namespace matricks {
     }
   };
 
+  template <typename D, typename A> class NumberType<TensorRW<D,A> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const TensorR<D,A>& x) {
+      return x.size();
+    }
+    inline static int deepsize(const TensorR<D,A>& x) {
+      return x.deepsize();
+    }
+  };
 
+
+  template<class D, class A, class B, class OP, int M>
+    class NumberType<TER_Binary<D,A,B,OP,M> > {
+  public:
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const TensorR<D,A>& x) {
+      return x.size();
+    }
+    inline static int deepsize(const TensorR<D,A>& x) {
+      return x.deepsize();
+    }
+  };
+
+ 
 
   template <class D>
   inline D&& At(D&& x, index_type n) {

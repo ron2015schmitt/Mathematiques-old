@@ -23,6 +23,7 @@ namespace matricks {
     const bool delete_ii_;
     VectorofPtrs *vptrs;
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
   TERW_Subset(Vector<D>& a, const Vector<index_type>& ii)
     : a_(a), ii_(ii), delete_ii_(false) {
@@ -43,14 +44,14 @@ namespace matricks {
     }
 
 
-    inline const D operator[](const index_type i) const{
+    const MyNumberType operator[](const index_type i) const{
       index_type ind = ii_[i];
       if (ind < 0) {
 	ind = a_.size() + ind;
       }
       return a_[ind];
     }
-    inline  D& operator[](const index_type i) {
+     MyNumberType& operator[](const index_type i) {
       index_type ind = ii_[i];
       if (ind < 0) {
 	ind = a_.size() + ind;
@@ -59,10 +60,10 @@ namespace matricks {
     }
 
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return ii_.size();
     }
     size_type ndims(void) const {
@@ -98,7 +99,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TERW_Subset";
     }
 
@@ -157,6 +158,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TERW_Submask(Vector<D>& a, const Vector<bool>& mask)
@@ -172,19 +174,19 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const{
+    const MyNumberType operator[](const index_type i) const{
       index_type ind = (*ii_)[i];
       return a_[ind];
     }
-    inline  D& operator[](const index_type i) {
+     MyNumberType& operator[](const index_type i) {
       index_type ind = (*ii_)[i];
       return a_[ind];
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return ii_->size();
     }
     size_type ndims(void) const {
@@ -220,7 +222,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TERW_Submask";
     }
 
@@ -272,6 +274,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TERW_Resize(Vector<D>& a)
@@ -285,11 +288,11 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
     // TODO:  not sure what to use for this
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_->size();
     }
     size_type ndims(void) const {
@@ -325,7 +328,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TERW_Resize";
     }
 
@@ -375,6 +378,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_RealFromComplex(Vector<std::complex<D> >& a)
@@ -387,19 +391,19 @@ namespace matricks {
       delete vptrs;
     }
 
-    const D operator[](index_type i) const{
+    const MyNumberType operator[](index_type i) const{
       return OP::give(a_[i]);
     }
-    D& operator[](index_type i) {
+    MyNumberType& operator[](index_type i) {
       return OP::give(a_[i]);
     }
 
 
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size();
     }
     size_type ndims(void) const {
@@ -435,7 +439,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_RealFromComplex";
     }
 
@@ -475,6 +479,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
   
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -492,7 +497,7 @@ namespace matricks {
   // NOTE: indexes over [0] to [deepsize()]
   // -------------------------------------------------------------
   
-  const D operator[](const index_type i) const {
+  const MyNumberType operator[](const index_type i) const {
     if constexpr(M < 2) {
 	return FUNC::apply(a_[i]);
     } else {
@@ -504,10 +509,10 @@ namespace matricks {
   }
 
     
-  inline VectorofPtrs getAddresses(void) const {
+  VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-  inline size_type size(void) const {
+  size_type size(void) const {
       return a_.size();
     }
   size_type ndims(void) const {
@@ -584,6 +589,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
     typedef D TypeD;
     typedef A TypeA;
     typedef B TypeB;
@@ -604,31 +610,13 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const {
-      //      mout <<std::endl << "TER_Binary["<<i<<"]:   "<<std::endl;
-      //      mout << "    ";
-      //      tdisp(i);
-      //      mout << "    ";
-      //      tdisp((*a_)[i]);
-      //      mout << "    ";
-      //      tdisp((*b_)[i]);
-      //   BUG::   instead of D, we need to return a Vector Object
-      //      mout << "     D x = OP::apply(a_["<<i<<"]+b_["<<i<<"])" << std::endl;
-      //      D x = OP::apply((*a_)[i], (*b_)[i]);
-      //      mout << "     DONE  OP::apply(a_["<<i<<"]+b_["<<i<<"])" << std::endl;
-      //      mout << "    ";
-      //      tdisp((*a_)[i]);
-      //      mout << "    ";
-      //      tdisp((*b_)[i]);
-      //      mout << std::endl<< "    ";
-      //      tdisp(x);  // this is what crashes 
-      //      return x;
-      return  OP::apply((*a_)[i], (*b_)[i]);
+    const MyNumberType operator[](const index_type i) const {
+      return OP::apply((*a_)[i], (*b_)[i]);
     }
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return (*a_).size();
     }
     size_type ndims(void) const {
@@ -647,14 +635,14 @@ namespace matricks {
     if constexpr(M<2) {
       return 1;
     } else {
-      return a_.elsize();
+      return a_->elsize();
     }
   }
   size_type eldeepsize(void) const {
     if constexpr(M<2) {
       return 1;
     } else {
-      return a_.eldeepsize();
+      return a_->eldeepsize();
     }
   }
     size_type deepsize(void) const {
@@ -664,7 +652,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Binary";
     }
 
@@ -708,6 +696,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
     
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Series(const A& a, const X& x, const int N, const D x0)
@@ -727,7 +716,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const {
+    const MyNumberType operator[](const index_type i) const {
       const D x = x_[i] - x0_;
       D sum = 0;
       // TODO: check a_.size >= N
@@ -745,10 +734,10 @@ namespace matricks {
       return sum; 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return x_.size();
       // TODO: check a_.size >= N
     }
@@ -786,7 +775,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Series";
     }
   
@@ -827,6 +816,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
     
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Series2(const A& a, const A& b, const X& x, const int N, const D k1)
@@ -847,7 +837,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const {
+    const MyNumberType operator[](const index_type i) const {
       D sum = 0;
       // TODO: check a_.size >= N
       for (int n = 0; n < N_ ; n++) {
@@ -864,10 +854,10 @@ namespace matricks {
       return sum; 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return x_.size();
     }
     size_type ndims(void) const {
@@ -903,7 +893,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Series2";
     }
 
@@ -948,6 +938,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_TensorOpScalar(const A& a, const D b)
@@ -960,14 +951,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const { 
+    const MyNumberType operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size();
     }
     size_type ndims(void) const {
@@ -1003,7 +994,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_TensorOpScalar";
     }
 
@@ -1047,6 +1038,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -1059,14 +1051,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const D operator[](const index_type i) const { 
+    const MyNumberType operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return b_.size();
     }
     size_type ndims(void) const {
@@ -1102,7 +1094,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_ScalarOpTensor";
     }
 
@@ -1146,6 +1138,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_TensorOpScalar_New(const A& a, const D b)
@@ -1158,14 +1151,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const DOUT operator[](const index_type i) const { 
+    const DOUT operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size();
     }
     size_type ndims(void) const {
@@ -1201,7 +1194,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_TensorOpScalar_New";
     }
 
@@ -1244,6 +1237,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -1256,14 +1250,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const DOUT operator[](const index_type i) const { 
+    const DOUT operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return b_.size();
     }
     size_type ndims(void) const {
@@ -1299,7 +1293,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_ScalarOpTensor_New";
     }
 
@@ -1343,6 +1337,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
   
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Bool_Unary(const A& a) : a_(a) {
@@ -1354,13 +1349,13 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline bool operator[](const index_type i) const
+    bool operator[](const index_type i) const
     { return FUNC::apply(a_[i]); }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size();
     }
     size_type ndims(void) const {
@@ -1396,7 +1391,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Bool_Unary";
     }
 
@@ -1431,6 +1426,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Bool_Binary(const A& a, const B& b)
@@ -1445,14 +1441,14 @@ namespace matricks {
     }
 
 
-    inline bool operator[](const index_type i) const {  
+    bool operator[](const index_type i) const {  
       return OP::apply(a_[i], b_[i]); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       if ( a_.size() != b_.size() ) {
 	return badsize;
       } else {
@@ -1492,7 +1488,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Bool_Binary";
     }
 
@@ -1537,6 +1533,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Bool_Binary2(const A& a, const B& b, const DREAL& d)
@@ -1551,14 +1548,14 @@ namespace matricks {
     }
 
 
-    inline bool operator[](const index_type i) const {  
+    bool operator[](const index_type i) const {  
       return OP::apply(a_[i], b_[i], d_); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       if ( a_.size() != b_.size() ) {
 	return badsize;
       } else {
@@ -1598,7 +1595,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Bool_Binary2";
     }
 
@@ -1638,6 +1635,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -1651,14 +1649,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline bool operator[](const index_type i) const { 
+    bool operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size();
     }
     size_type ndims(void) const {
@@ -1694,7 +1692,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Bool_TensorOpScalar";
     }
 
@@ -1734,6 +1732,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Bool_ScalarOpTensor(const D a, const B& b)
@@ -1746,14 +1745,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline bool operator[](const index_type i) const { 
+    bool operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return b_.size();
     }
     size_type ndims(void) const {
@@ -1789,7 +1788,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Bool_ScalarOpTensor";
     }
 
@@ -1835,6 +1834,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Cplx_TensorOpScalar(const A& a, const D b)
@@ -1847,14 +1847,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const std::complex<D> operator[](const index_type i) const { 
+    const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size();
     }
     size_type ndims(void) const {
@@ -1890,7 +1890,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Cplx_TensorOpScalar";
     }
 
@@ -1930,6 +1930,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   TER_Cplx_ScalarOpTensor(const D a, const B& b)
@@ -1942,14 +1943,14 @@ namespace matricks {
       delete vptrs;
     }
 
-    inline const std::complex<D> operator[](const index_type i) const { 
+    const std::complex<D> operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return b_.size();
     }
     size_type ndims(void) const {
@@ -1985,7 +1986,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "TER_Cplx_ScalarOpTensor";
     }
 
@@ -2023,6 +2024,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
     Dimensions *rdims;
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -2037,13 +2039,13 @@ namespace matricks {
       delete vptrs;
     }
 
-    const D operator[](const index_type index1) const {
+    const MyNumberType operator[](const index_type index1) const {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
       return FUNC::apply(a_[index2]);
     }
-    D& operator[](const index_type index1) {
+    MyNumberType& operator[](const index_type index1) {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
@@ -2124,6 +2126,7 @@ namespace matricks {
     Dimensions *rdims;
   
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -2138,7 +2141,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    const D operator[](const index_type index1) const {
+    const MyNumberType operator[](const index_type index1) const {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
@@ -2217,6 +2220,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   VER_Join(const A& a, const B& b)
@@ -2232,17 +2236,17 @@ namespace matricks {
       delete vptrs;
     }
     
-    inline const D operator[](const index_type i) const{
+    const MyNumberType operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
     }
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size() +b_.size();
     }
     size_type ndims(void) const {
@@ -2278,7 +2282,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "VER_Join";
     }
 
@@ -2309,6 +2313,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   VERW_Join(A& a, B& b)
@@ -2323,14 +2328,14 @@ namespace matricks {
     }
 
 
-    inline const D operator[](const index_type i) const{
+    const MyNumberType operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
     }
-    inline  D& operator[](const index_type i) {
+     MyNumberType& operator[](const index_type i) {
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
@@ -2339,10 +2344,10 @@ namespace matricks {
     }
 
     
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return a_.size() +b_.size();
     }
     size_type ndims(void) const {
@@ -2378,7 +2383,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "VERW_Join";
     }
 
@@ -2431,6 +2436,7 @@ namespace matricks {
     VectorofPtrs *vptrs;
 
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
 
 
   VER_Rep(const A& a, const size_type m)
@@ -2445,16 +2451,16 @@ namespace matricks {
     }
 
 
-    inline const D operator[](const index_type i) const{
+    const MyNumberType operator[](const index_type i) const{
       index_type index = index_type(i % N_);
       //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
     }
 
-    inline VectorofPtrs getAddresses(void) const {
+    VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
-    inline size_type size(void) const {
+    size_type size(void) const {
       return m_*a_.size();
     }
     size_type ndims(void) const {
@@ -2490,7 +2496,7 @@ namespace matricks {
 	return (this->size())*(this->eldeepsize());
       }
     }
-    inline std::string classname() const {
+    std::string classname() const {
       return "VER_Rep";
     }
 

@@ -150,21 +150,23 @@ namespace matricks {
       return a+b;
     }
 
-
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa + ")" + functor_style.apply("+") + "(" + sb + ")";
       return sout;
     }
     
+#endif
+
+
     static inline std::string classname() {
       using namespace display;
       D1 d1;
       D1 d2;
-      return functor_namestyle.apply(" <")+display::getTypeName(d1)+","+display::getTypeName(d1)+">";
+      return functor_namestyle.apply("Fun_Add_New")+ "<"+display::getTypeName(d1)+","+display::getTypeName(d1)+">";
     }
-#endif
 
+    
   };
 
   

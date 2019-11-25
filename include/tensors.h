@@ -510,15 +510,16 @@ namespace matricks {
   template <class D, class DERIVED> class TensorR : public TensorAbstract {
   public:
     typedef D DataType;
+    typedef typename NumberType<D>::Type MyNumberType;
 
-    inline DERIVED& derived() {
+    DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
     }
-    inline const  DERIVED& derived() const {
+    const  DERIVED& derived() const {
       return static_cast<const DERIVED&>(*this);
     }
 
-    inline const D operator[](const index_type i) const {
+    const auto operator[](const index_type i) const {
       return derived()[i];
     }
 
@@ -595,6 +596,7 @@ namespace matricks {
 
   template <class D, class DERIVED> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
   public:
+    typedef typename NumberType<D>::Type MyNumberType;
     typedef D DataType;
 
     DERIVED& derived() {
@@ -604,10 +606,10 @@ namespace matricks {
       return static_cast<const DERIVED&>(*this);
     }
 
-    const D operator[](const index_type i) const {
+    const auto operator[](const index_type i) const {
       return derived()[i];
     }
-    D& operator[](const index_type i)  {
+    auto& operator[](const index_type i)  {
       return derived()[i];
     }
 

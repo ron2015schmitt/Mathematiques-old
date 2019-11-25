@@ -217,7 +217,12 @@ namespace matricks {
 
   // Copy asignment
   Scalar<D,M>& equals(const Scalar<D,M>& s2) {
-    data_ = s2();    
+    if constexpr(M<2) {
+      data_ = s2();    
+    } else {
+      for (index_type i = 0; i < deepsize(); i++) 
+	(*this)[i] = s2[i];   
+    }
     return *this;
   }
 
@@ -229,18 +234,61 @@ namespace matricks {
 
   // TensorExpression
   template<class A> 
-  Scalar<D,M>& equals(const TensorR<D,A>& s2) {
-    // TODO: this should be () once expressions are updated
-    data_ = s2[0];    
+    Scalar<D,M>& equals(const TensorR<D,A>& s2) {
+    if constexpr(M<2) {
+      data_ = s2[0];    
+    } else {
+      for (index_type i = 0; i < deepsize(); i++) 
+	(*this)[i] = s2[i];   
+    }
     return *this;
   }
 
   template<class A> 
-  Scalar<D,M>& operator=(const TensorR<D,A>& s2) {
+    Scalar<D,M>& operator=(const TensorR<D,A>& s2) {
+    return equals(s2);
+  }
+
+  // TensorExpression
+  template<class A> 
+    Scalar<D,M>& equals(const TensorRW<D,A>& s2) {
+    if constexpr(M<2) {
+      data_ = s2[0];    
+    } else {
+      for (index_type i = 0; i < deepsize(); i++) 
+	(*this)[i] = s2[i];   
+    }
+    return *this;
+  }
+
+  template<class A> 
+    Scalar<D,M>& operator=(const TensorRW<D,A>& s2) {
     return equals(s2);
   }
 
 
+  
+
+  // TensorExpression
+  template<class A, class EXP> 
+    Scalar<D,M>& equals(const TensorR<EXP,A>& s2) {
+    if constexpr(M<2) {
+      data_ = s2();    
+    } else {
+      for (index_type i = 0; i < deepsize(); i++) 
+	(*this)[i] = s2[i];   
+    }
+    return *this;
+  }
+
+  template<class A, class EXP> 
+    Scalar<D,M>& operator=(const TensorR<EXP,A>& s2) {
+    return equals(s2);
+  }
+
+
+
+  
   
   Scalar<D,M>& equals(const std::initializer_list<D>& mylist) {
     // TODO: check size

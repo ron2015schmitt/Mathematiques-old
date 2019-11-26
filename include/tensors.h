@@ -519,6 +519,17 @@ namespace matricks {
       return static_cast<const DERIVED&>(*this);
     }
 
+    //**********************************************************************
+    //************************** DEEP ACCESS *******************************
+    //**********************************************************************
+    const auto dat(const index_type i) const {
+      return derived().dat(i);
+    }
+    
+    //**********************************************************************
+    //***************** Element ACCESS as an array *************************
+    //**********************************************************************
+    
     const auto operator[](const index_type i) const {
       return derived()[i];
     }
@@ -606,6 +617,20 @@ namespace matricks {
       return static_cast<const DERIVED&>(*this);
     }
 
+
+    //**********************************************************************
+    //************************** DEEP ACCESS *******************************
+    //**********************************************************************
+    const auto dat(const index_type i) const {
+      return derived().dat(i);
+    }
+    auto& dat(const index_type i)  {
+      return derived().dat(i);
+    }
+    
+    //**********************************************************************
+    //***************** Element ACCESS as an array *************************
+    //**********************************************************************
     const auto operator[](const index_type i) const {
       return derived()[i];
     }

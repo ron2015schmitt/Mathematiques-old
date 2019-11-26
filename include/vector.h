@@ -281,7 +281,7 @@ namespace matricks {
 
 
   //**********************************************************************
-  //************************** ACCESS() ***********************************
+  //************************** DEEP ACCESS *******************************
   //**********************************************************************
 
 
@@ -289,6 +289,47 @@ namespace matricks {
   // NOTE: indexes over [0] to [deepsize()]
   // -------------------------------------------------------------
   
+  // "read/write"
+  MyNumberType& dat(const index_type n) {
+    using namespace::display;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+    if constexpr(M < 2) {
+      int k = n;
+      if (k < 0) {
+	  k += size();
+      }
+      return data_[k];
+    } else {
+      const int Ndeep = this->eldeepsize();
+      const int j = n / Ndeep;
+      const int k = n % Ndeep;
+      return data_[j][k];
+    }
+  }
+
+  // read
+  const MyNumberType& dat(const index_type n)  const {
+    using namespace::display;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
+    if constexpr(M < 2) {
+      int k = n;
+      if (k < 0) {
+	  k += size();
+      }
+      return data_[k];
+    } else {
+      const int Ndeep = this->eldeepsize();
+      const int j = n / Ndeep;
+      const int k = n % Ndeep;
+      return data_[j][k];
+    }
+  }
+
+  
+
+  //**********************************************************************
+  //***************** Element ACCESS as an array *************************
+  //**********************************************************************
   // "read/write"
   MyNumberType& operator[](const index_type n) {
     using namespace::display;
@@ -325,11 +366,10 @@ namespace matricks {
     }
   }
 
-
-  // -------------------- D element access() --------------------
-  // NOTE: indexes over (0) to (size())
-  // -------------------------------------------------------------
-
+  
+  //**********************************************************************
+  //***************** Element ACCESS as a tensor *************************
+  //**********************************************************************
 
   
   // "read/write"

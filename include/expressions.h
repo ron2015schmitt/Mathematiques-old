@@ -610,9 +610,21 @@ namespace matricks {
       delete vptrs;
     }
 
+    //**********************************************************************
+    //************************** DEEP ACCESS *******************************
+    //**********************************************************************
+    const MyNumberType dat(const index_type i) const {
+      return OP::apply((*a_).dat(i), (*b_).dat(i));
+    }
+
+    //**********************************************************************
+    //***************** Element ACCESS as an array *************************
+    //**********************************************************************
     const MyNumberType operator[](const index_type i) const {
       return OP::apply((*a_)[i], (*b_)[i]);
     }
+
+    
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }

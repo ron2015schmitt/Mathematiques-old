@@ -3,7 +3,7 @@
 
 
 # Vector declaration in mātricks
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r12).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (mātricks-v2.29-r13).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++

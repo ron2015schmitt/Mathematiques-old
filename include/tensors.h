@@ -700,7 +700,7 @@ namespace matricks {
 
     // Assign to constant value
     DERIVED& equals(const D d) { 
-      for(size_type i=0; i<deepsize(); i++) 
+      for(size_type i=0; i<size(); i++) 
 	(*this)[i]=d; 
       return derived();
     }
@@ -715,7 +715,7 @@ namespace matricks {
     template <class B>
       DERIVED& equals(const TensorR<D,B>& rhs) { 
 
-      const size_type N =deepsize();
+      const size_type N =size();
 
 
       if ( common(*this, rhs) ) {

@@ -498,14 +498,7 @@ namespace matricks {
   // -------------------------------------------------------------
   
   const MyNumberType operator[](const index_type i) const {
-    if constexpr(M < 2) {
-	return FUNC::apply(a_[i]);
-    } else {
-      const int Ndeep = this->eldeepsize();
-      const int j = i / Ndeep;
-      const int k = i % Ndeep;
-      return FUNC::apply(a_[j][k]);
-    }
+    return FUNC::apply(a_[i]);
   }
 
     

@@ -1095,7 +1095,7 @@ int main(int argc, char *argv[])
     disp(typeid(AddType<Vector<double>,Vector<double>>::Type).name());
     // fails:
     //    v3 = v1+v2;
-    //disp(v3);
+    disp(v3);
   }
   //------------------------------------------------------
   

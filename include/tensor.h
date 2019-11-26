@@ -134,6 +134,11 @@ namespace matricks {
       return myaddr;
     }
 
+    inline size_type deepsize(void) const {
+      return size();
+    }
+
+
 
     Tensor& resize(const Dimensions& dims) {
       dimensions_ = new Dimensions(dims);

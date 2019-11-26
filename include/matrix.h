@@ -208,6 +208,9 @@ namespace matricks {
       return myaddr;
     }
 
+    inline size_type deepsize(void) const {
+      return size();
+    }
 
 
 

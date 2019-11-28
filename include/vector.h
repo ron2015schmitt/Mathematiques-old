@@ -331,39 +331,21 @@ namespace matricks {
   //***************** Element ACCESS as an array *************************
   //**********************************************************************
   // "read/write"
-  MyNumberType& operator[](const index_type n) {
-    using namespace::display;
-    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
-    if constexpr(M < 2) {
-      int k = n;
-      if (k < 0) {
-	  k += size();
-      }
-      return data_[k];
-    } else {
-      const int Ndeep = this->eldeepsize();
-      const int j = n / Ndeep;
-      const int k = n % Ndeep;
-      return data_[j][k];
+  D& operator[](const index_type n) {
+    int k = n;
+    if (k < 0) {
+      k += size();
     }
+    return data_[k];
   }
 
   // read
-  const MyNumberType& operator[](const index_type n)  const {
-    using namespace::display;
-    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
-    if constexpr(M < 2) {
-      int k = n;
-      if (k < 0) {
-	  k += size();
-      }
-      return data_[k];
-    } else {
-      const int Ndeep = this->eldeepsize();
-      const int j = n / Ndeep;
-      const int k = n % Ndeep;
-      return data_[j][k];
+  const D& operator[](const index_type n)  const {
+    int k = n;
+    if (k < 0) {
+      k += size();
     }
+    return data_[k];
   }
 
   
@@ -461,6 +443,33 @@ namespace matricks {
   }
 
 
+
+  // FOR EXPERIMENTING
+  template <class A, class D2>  Vector<D,NN,M>& equals1(const TensorR<D2,A>& x) {  
+    if constexpr(M<2) {
+	for (index_type i = 0; i < size(); i++) {
+	  mout << "equals1: i="<<i << std::endl;
+	  (*this)[i] = x[i];
+	}
+    } else {
+	for (index_type i = 0; i < size(); i++) {
+	  mout << "equals1: i="<<i << std::endl;
+	  (*this)[i] = x[i];
+	}
+    }
+    return *this;
+  }
+
+  template <class A, class D2>  Vector<D,NN,M>& equals2(const TensorR<D2,A>& x) {  
+    if constexpr(M<2) {
+      for (index_type i = 0; i < size(); i++)  (*this)[i] = x[i];   
+    } else {
+      for (index_type i = 0; i < deepsize(); i++)  (*this).dat(i) = x.dat(i);       }
+    return *this;
+  }
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  
   // Assignment to a vector expression
   template <class A>  Vector<D,NN,M>& equals(const TensorR<D,A>& x) {  
 
@@ -472,18 +481,28 @@ namespace matricks {
 	}
     }
 
-    //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
-    if (common(*this,x)){
-      //mout<< "  common addresses found" <<std::endl;
-      Vector<MyNumberType> vtemp(deepsize());
-      for (index_type i = 0; i < deepsize(); i++) 
-	vtemp[i] = x[i];   
-      for (index_type i = 0; i < deepsize(); i++) 
-	(*this)[i] = vtemp[i];
+    if constexpr(M<2) {
+	//mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
+      if (common(*this,x)){
+        //mout<< "  common addresses found" <<std::endl;
+        Vector<MyNumberType> vtemp(size());
+        for (index_type i = 0; i < size(); i++) vtemp[i] = x[i];   
+        for (index_type i = 0; i < size(); i++) (*this)[i] = vtemp[i];
+      } else {
+	//mout<< "  NO common addresses found" <<std::endl;
+	for (index_type i = 0; i < size(); i++)  (*this)[i] = x[i];   
+      }
     } else {
-      //mout<< "  NO common addresses found" <<std::endl;
-      for (index_type i = 0; i < deepsize(); i++)
-	(*this)[i] = x[i];   
+      //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
+      if (common(*this,x)){
+        //mout<< "  common addresses found" <<std::endl;
+        Vector<MyNumberType> vtemp(deepsize());
+        for (index_type i = 0; i < deepsize(); i++) vtemp.dat(i) = x.dat(i);   
+        for (index_type i = 0; i < deepsize(); i++) (*this).dat(i) = vtemp.dat(i);
+      } else {
+	//mout<< "  NO common addresses found" <<std::endl;
+	for (index_type i = 0; i < deepsize(); i++)  (*this).dat(i) = x.dat(i);   
+      }
     }
     //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
     return *this; 
@@ -556,7 +575,7 @@ namespace matricks {
     }
 
     for(index_type i=0; i<deepsize(); i++ )
-      data_[i] = v2[i];    
+      this->dat(i) = v2.dat(i);    
     return *this;
   }
 

@@ -493,9 +493,9 @@ namespace matricks {
       delete vptrs;
     }
 
-  // -------------------- deep access[] --------------------
-  // NOTE: indexes over [0] to [deepsize()]
-  // -------------------------------------------------------------
+  const MyNumberType dat(const index_type i) const {
+    return FUNC::apply(a_.dat(i));
+  }
   
   const D operator[](const index_type i) const {
     return FUNC::apply(a_[i]);
@@ -598,6 +598,11 @@ namespace matricks {
       vptrs->add(a.getAddresses());
       vptrs->add(b.getAddresses());
     }
+  TER_Binary(const TER_Binary<D,A,B,OP,M>& e):a_(e.a_), b_(e.b_)  {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_->getAddresses());
+      vptrs->add(b_->getAddresses());
+    }
 
     ~TER_Binary() {
       delete vptrs;
@@ -614,6 +619,9 @@ namespace matricks {
     //***************** Element ACCESS *************************************
     //**********************************************************************
     const D operator[](const index_type i) const {
+      disp(i);
+      tdisp((*a_)[i]);
+      tdisp((*b_)[i]);
       return OP::apply((*a_)[i], (*b_)[i]);
     }
 

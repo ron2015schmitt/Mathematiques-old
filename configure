@@ -43,7 +43,7 @@ temp=`pwd | sed -e 's/\//\\\\\//g'`
 
 DIR_TARGET=.
 echo " "
-echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
+echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ... "
 echo "# " >${DIR_TARGET}/Makefile
 echo "# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********" >>${DIR_TARGET}/Makefile
 echo "# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********" >>${DIR_TARGET}/Makefile
@@ -69,13 +69,15 @@ echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
 echo " "
-echo " "
 
 
 
 
 DIR_TARGET=examples
-echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
+
+EXECS="example"
+
+echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ... "
 #mkdir -p ${DIR_TARGET}
 echo "#" >${DIR_TARGET}/Makefile
 echo "# ****  THIS IS AN EXAMPLE USER MAKEFILE WITH LOTS OF FEATURES***" >>${DIR_TARGET}/Makefile
@@ -85,8 +87,7 @@ echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo 'EXEC += example' >>${DIR_TARGET}/Makefile
-echo ""
+echo "EXEC += ${EXECS}" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
@@ -99,13 +100,28 @@ echo "##################################################################" >>${DI
 sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
+
+echo -e "Creating ${BLUE1}${DIR_TARGET}/run${DEFCLR} ..."
+echo "#!/bin/bash" > ${DIR_TARGET}/run
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/run
+for name in ${EXECS}
+do
+    echo './'$name >> ${DIR_TARGET}/run
+done
+chmod a+rx ${DIR_TARGET}/run
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
 echo " "
-echo " "
+
+
+
+
 
 
 
 DIR_TARGET=sandbox
+
+EXECS="printing testing testing2 tfoverloading depth indexing imaginary enableexperiment selfmethod parmpack recurseadd"
+
 echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
 #mkdir -p ${DIR_TARGET}
 echo "#" >${DIR_TARGET}/Makefile
@@ -116,8 +132,7 @@ echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo 'EXEC += printing testing testing2 tfoverloading depth indexing imaginary enableexperiment selfmethod parmpack' >>${DIR_TARGET}/Makefile
-echo ""
+echo "EXEC += ${EXECS}" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
@@ -130,8 +145,17 @@ echo "##################################################################" >>${DI
 sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
+
+echo -e "Creating ${BLUE1}${DIR_TARGET}/run${DEFCLR} ..."
+echo "#!/bin/bash" > ${DIR_TARGET}/run
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/run
+for name in ${EXECS}
+do
+    echo './'$name >> ${DIR_TARGET}/run
+done
+chmod a+rx ${DIR_TARGET}/run
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
-echo " "
+
 echo " "
 
 
@@ -147,9 +171,8 @@ echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo 'EXEC += benchmark' >>${DIR_TARGET}/Makefile
+echo "EXEC += benchmark" >>${DIR_TARGET}/Makefile
 echo 'OPTIMIZE = -O3 -finline-limit=750' >>${DIR_TARGET}/Makefile
-echo ""
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
@@ -163,10 +186,17 @@ sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Make
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+echo " "
+
+
+
 
 
 
 DIR_TARGET=test
+
+EXECS="misctest Recurse ScalarTest ScalarTestComplex vtest mtest ttest"
+
 echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
 #mkdir -p ${DIR_TARGET}
 echo "#" >${DIR_TARGET}/Makefile
@@ -177,8 +207,7 @@ echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo 'EXEC += misctest Recurse ScalarTest ScalarTestComplex vtest mtest ttest' >>${DIR_TARGET}/Makefile
-echo ""
+echo "EXEC += ${EXECS}" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
@@ -191,7 +220,19 @@ echo "##################################################################" >>${DI
 sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
+
+echo -e "Creating ${BLUE1}${DIR_TARGET}/run${DEFCLR} ..."
+echo "#!/bin/bash" > ${DIR_TARGET}/run
+echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/run
+for name in ${EXECS}
+do
+    echo './'${name} >> ${DIR_TARGET}/run
+done
+chmod a+rx ${DIR_TARGET}/run
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+echo " "
+
+
 
 
 
@@ -209,7 +250,6 @@ echo "##################################################################" >>${DI
 echo "#  ./configure                                                   #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo 'EXEC += createtests' >>${DIR_TARGET}/Makefile
-echo ""
 echo "##################################################################" >>${DIR_TARGET}/Makefile
 echo "#  files/Makefile                                                #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
@@ -223,6 +263,9 @@ sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Make
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+echo " "
+echo " "
+
 
 
 

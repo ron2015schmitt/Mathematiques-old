@@ -147,14 +147,14 @@ The expression template is the same, `` in `expresssions.h`
       }
       D w = (*a_)[i] + (*b_)[i];
       tdisp(w);
-      return w;   // bad_alloc here
+      //return w;   // bad_alloc here
       //return (*a_)[i] + (*b_)[i];  // bad_alloc here
-      //      return OP::apply((*a_)[i], (*b_)[i]);  // bad_alloc inside OP
+      return OP::apply((*a_)[i], (*b_)[i]);  // bad_alloc inside OP
     }
 
 
     template <class C> C& setequals(C& c, const index_type i) const {
-      c[i] = (*a_)[i] + (*b_)[i];
+      c[i] = OP::apply((*a_)[i], (*b_)[i]); 
       return c;
     }
     

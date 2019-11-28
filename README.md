@@ -2,7 +2,7 @@
 
 This is an experimential branch comparing two different methods for implemeneting addition between two vectors of type `Vector<Vector<double>>`.
 
-1. recursion ？⸺ compiles but get core dump "bad alloc" error
+1. recursion ✓ ⸺ got this working 
 1. deep indexing ✓ ⸺ got this working 
 
 ## Test code
@@ -152,6 +152,12 @@ The expression template is the same, `` in `expresssions.h`
       //      return OP::apply((*a_)[i], (*b_)[i]);  // bad_alloc inside OP
     }
 
+
+    template <class C> C& setequals(C& c, const index_type i) const {
+      c[i] = (*a_)[i] + (*b_)[i];
+      return c;
+    }
+    
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -228,7 +234,7 @@ The expression template is the same, `` in `expresssions.h`
 ```
 
 
-## Method 1: Recursion 
+## Method 1: Recursion try #1
 
 * In this method we let the compiler just compile recursive expression templates
 * This compiles, but whenever the code passes an expression template as a return value (from functor `.apply()` or expression template operator `[n]`, it core dumps a `what()? bad_alloc`.  I implementeed a copy constructor for the expression but still got the error.  Perhaps also need a copy `equals` method?
@@ -259,7 +265,28 @@ In `vector.h`  **equals1**
   
   ![bad_alloc](recursiveadd_badalloc.PNG)
 
-  
+## Method 1: Recursion try #2
+
+* Got it working by changing the equals to use `setequals` of the expresssion
+
+Modified `vector.h`  **equals1** 
+```c++
+  template <class A, class D2>  Vector<D,NN,M>& equals1(const TensorR<D2,A>& x) {  
+    if constexpr(M<2) {
+	for (index_type i = 0; i < size(); i++) {
+	  mout << "equals1: i="<<i << std::endl;
+	  (*this)[i] = x[i];
+	}
+    } else {
+	for (index_type i = 0; i < size(); i++) {
+	  mout << "equals1: i="<<i << std::endl;
+	  x.setequals( *this, i);
+	}
+    }
+    return *this;
+  }
+```
+    
   
   ## Method 2: Deep indexing
 

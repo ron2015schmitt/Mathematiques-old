@@ -255,6 +255,11 @@ In `vector.h`  **equals1**
   ```
   
   
+  Here is the output and bad_alloc error
+  
+  ![bad_alloc](recursiveadd_badalloc.PNG)
+
+  
   
   ## Method 2: Deep indexing
 

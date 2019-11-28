@@ -140,8 +140,18 @@ The expression template is the same, `` in `expresssions.h`
       disp(i);
       tdisp((*a_)[i]);
       tdisp((*b_)[i]);
-      return OP::apply((*a_)[i], (*b_)[i]);   // the return from here causes a bad_alloc
+      tdisp(*this);
+      if constexpr(M>1) {
+       Vector<double> vv = (*a_)[i] + (*b_)[i];
+       tdisp(vv);
+      }
+      D w = (*a_)[i] + (*b_)[i];
+      tdisp(w);
+      return w;   // bad_alloc here
+      //return (*a_)[i] + (*b_)[i];  // bad_alloc here
+      //      return OP::apply((*a_)[i], (*b_)[i]);  // bad_alloc inside OP
     }
+
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -182,7 +192,38 @@ The expression template is the same, `` in `expresssions.h`
 	return (this->size())*(this->eldeepsize());
       }
     }
-  };
+    std::string classname() const {
+      return "TER_Binary";
+    }
+
+  // stream << operator
+    friend std::ostream& operator<<(std::ostream &stream, const TER_Binary<D,A,B,OP,M>& v) {
+    using namespace display;
+    Style& style = FormatDataVector::style_for_punctuation;
+    stream << style.apply(FormatDataVector::string_opening);
+    const matricks::index_type N = FormatDataVector::max_elements_per_line;
+    matricks::index_type k = 0;
+    for (matricks::index_type ii = 0; ii < v.size(); ii++, k++) {
+      if (k >= N)  {
+	stream << style.apply(FormatDataVector::string_endofline);
+	k = 0;
+      }
+      if constexpr(M>1) {
+	stream << "TER_Binary + TER_Binary";
+	} else {
+	dispval_strm(stream, (*v.a_)[ii]);
+	stream << " + ";
+	dispval_strm(stream, (*v.b_)[ii]);
+      }
+      if (ii < v.size()-1)  {
+	stream << style.apply(FormatDataVector::string_delimeter);
+      }
+    }
+    stream << style.apply(FormatDataVector::string_closing);
+
+    return stream;
+  }
+};
 
 ```
 

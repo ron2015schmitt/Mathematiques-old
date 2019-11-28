@@ -329,7 +329,8 @@ In `vector.h` **equals2**
 
 ## Benchmark comparison
 
-Deep indexing is about `5.6` times faster then recursion.
+* Deep indexing is about `5.6` times faster then recursion when N1>>N2.
+* Recursion is about `1.6` times faster then Deep indexing when N2<<N1.
 
 ![benchmark](recursiveadd_benchmarks.PNG)
 

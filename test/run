@@ -1,9 +1,0 @@
-#!/bin/bash
-# ****  THIS WAS CREATED DURING  CONFIGURATION ******************
-./misctest
-./Recurse
-./ScalarTest
-./ScalarTestComplex
-./vtest
-./mtest
-./ttest

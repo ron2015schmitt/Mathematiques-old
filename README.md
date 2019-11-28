@@ -2,8 +2,8 @@
 
 This is an experimential branch comparing two different methods for implemeneting addition between two vectors of type `Vector<Vector<double>>`.
 
-1. recursion ？⸺ was not able to find way tot get this to compile
-1. deep indexing ✓ ⸺ got this working without "bad alloc" errors
+1. recursion ？⸺ compiles but get core dump "bad alloc" error
+1. deep indexing ✓ ⸺ got this working 
 
 ## Test code
 

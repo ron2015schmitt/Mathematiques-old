@@ -329,6 +329,8 @@ In `vector.h` **equals2**
 
 ## Benchmark comparison
 
+Deep indexing is about `5.6` times faster then recursion.
+
 ![benchmark](recursiveadd_benchmarks.PNG)
 
 

@@ -352,7 +352,7 @@ INCLUDES += -I $(INCDIR_LOKI)
 ###############################################################
 
 
-DIR_MATRICKS = /home/rschmitt/gits/matricks
+DIR_MATRICKS = /home/rschmitt/gits/recursiveadd
 INCDIR_MATRICKS = $(DIR_MATRICKS)/include
 LIBDIR_MATRICKS = $(DIR_MATRICKS)/lib
 LIB_MATRICKS = -lmatricks

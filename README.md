@@ -1,257 +1,104 @@
 # mātricks v2.29-r15
 
-mātricks is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
+This is an experimential branch comparing two different methods for implemeneting addition between two vectors of type `Vector<Vector<double>>`.
 
-+ V3.0, the first official release)  is almost ready.
-  + Arbitrary rank tenors (Scalar, Vector, Matrix, etc)
-  + Each tensor type can have tensor as datatype, eg `Vector<Vector<double>>`, which can be used to represent a vector-valuedf function
-  + can have fixed (uses `array`) or variable dimensions (uses `valarray`)
-  + fixed array size is ideal for small vectors, eg 2D or 3D vector
-  + no boiler-plates. all are processed by the same functions
-  + no loss of elegance and simplicity in use
-  + no real-time cost
-  + 237 unit tests (so far), with a very clear and elegant output.
-  + metacode in progress to generate full code coverage with expected results generated via meta code in C++ with calls to matlab. (matlab not required for usage of the library)
-  + Online [User's Guide](doc/README.md) in progress
-  + refer to [TO-DO List](todo/README.md) to monitor progress
+1. recursion ？was not able to find way tot get this to compile
+1. deep indexing ✓ got this working without "bad alloc" errors
 
+## Test code
 
+The test code is in file `sandbox/recurseadd.cpp`
+```c++
+    Vector<Vector<double>> v1(N1);
+    Vector<Vector<double>> v2(N1);
+    Vector<Vector<double>> v3(N1);
+    Vector<Vector<double>> v4(N1);
+    for (int i = 0; i < N1; i++) {
+      v1[i].resize(N2);
+      v1[i][0] = 1.1;
+      v1[i][1] = 2.2;
+      v1[i][2] = 3.3;
+      v2[i].resize(N2);
+      v2[i][0] = 10;
+      v2[i][1] = 20;
+      v2[i][2] = 30;
+      v3[i].resize(N2);
+      v4[i].resize(N2);
+    }
 
-
-Advantages
-+ object-oriented matrices and vectors
-+ run-time performance and memory usage on par with optimized C or and Fortran
-+ simple MATLAB-like syntactic sugar 
-  + slices of vectors and matrices
-  + add two matrices is `A+B`
-  + matrix-vector multiply is `A|x` (`|` is symbol used for inner product)
-  + extremely efficient matrix-matrix multiply `A|B`
-  + element-wise multiply is `A*B`
-  + complicated expressions supported `(A + B - 33.14*C)|(2*x + y)` *without* run-time overhead and no intermediate objects
-  + complex number support
-  + functions of matrices/vectors supported: `sin(x)`, `exp(A)` etc
-  + SVD and Eiegenvalue decomposition supported via LAPACK
-  + matrix inverse: `inv(A)`
-+ does *not* produce intermediate objects (which crush run-time performance and inflate memory usage)
-+ expressions are computed in a single for loop
-+ hand-optimized matrix multiply
-+ pretty formatted output of vectors and matrices
-+ simple file i/o of vectors and matrices
-+ Online [User's Guide](doc/README.md) in git markdown
-  + clear documentation of every feature
-  + documentation is generated from C++ code using the library itself
-+ `MEBUG` debugging compile mode produces extensive information to aid in debugging
-  + out of bounds access for vectors or matrices (e.g. x[10] where x is a
-   vector of length 6.
-  + adding/subtracting/multiplying/dividing vector or matrices of unequal
-   size
-  + invalid dot products of vector and/or matrices 
-  + other assorted errors
-
-+ I ran benchmarks vs. a handcoded for loop. The results are impressive (-O3 optimization):
-![benchmarks](files/benchmark.png)
-
-where the second code comparision is hand-coded loop 
-```C++
-std::valarray<double> x(N);
-for(int i=0; i<N; i++)
-  x[i] = double(i)/double(N-1);
-std::valarray<double> f(N);
-start_timer();
-for(int i=0; i<N; i++)
-     f[i] = cos(2*pi + pi*sin(2*pi*x[i] + pi/6));
-stop_timer();
-```
-
-vs matricks syntax 
-```C++
-Vector<double> x(N);
-x = linspace<double>(0,1,N);
-Vector<double> f(N);
-start();
-f = cos(2*pi + pi*sin(2*pi*x + pi/6));
-stop();
-```
-
----------------------------------------------------------------------------
-
-# DEVELOPMENT
-
-Development for this project originally took place during the years 2003-2008 
-
-The code resurrected in 2019, imporved, and put on github.
-
-The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) called [expression templating](https://en.wikipedia.org/wiki/Expression_templates), the library provides computational efficiency on par with C/Fortran.
-
-*Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
-
-# LICENSE 
-
-The code that makes up this library is copyrighted under the *MIT license*.
-
-[Read the LICENSE file for details](LICENSE).
-
-# INSTALLATION
-
-The first step is to clone the repo
-
-```git clone https://github.com/ron2015schmitt/matricks.git```
-
-You now have a directory with all the mātricks source code
-
-# CONFIGURATION
-
-cd into the matricks directory and execute the configure command:
+  // Recursive add
+   v3.equals1( add1(v1,v2) );
+      
+      // deep indexing
+   v4.equals2( add2(v1,v2) );
 
 ```
-cd matricks
-./configure
-```
-
-# USING THE mātricks LIBRARY
-
-To use the mātricks library you need to 
-
-1. Include the library file `include/matricks.h` in your source code
-```C++
-#include "matricks.h"
-```
-2. Include the `include/` subdirectory during compilation using the `-I` option
-
-3. Include the `lib/` subdirectory during linking using the `-L` option
-
-4. Include the option `-lmatricks` during linking
-
-## EXAMPLE CODE FILE
-
-An example of a C++ source file (```examples/example.cpp```) is shown below
-
-```C++
-
-#include "matricks.h"
 
 
-int main(int argc, char *argv[])
-{
-  const double pi = M_PI;
-  std::string myname = argv[0];
+## Recursion
+
+* In this method we let the compiler just compile recursive expression templates
+* This compiles, but whenever the code passes an expression template as a return value (from functor `.apply()` or expression template operator `[n]`, it core dumps a `what()? bad_alloc`.  I implementeed a copy constructor for the expression but still got the error.  Perhaps also need a copy `equals` method?
+
+In `vector.h`  **equals1** 
+```c++
+  // FOR EXPERIMENTING
+  template <class A, class D2>  Vector<D,NN,M>& equals1(const TensorR<D2,A>& x) {  
+    if constexpr(M<2) {
+	for (index_type i = 0; i < size(); i++) {
+	  mout << "equals1: i="<<i << std::endl;
+	  (*this)[i] = x[i];
+	}
+    } else {
+	for (index_type i = 0; i < size(); i++) {
+	  mout << "equals1: i="<<i << std::endl;
+	  (*this)[i] = x[i];
+	}
+    }
+    return *this;
+  }
+
+  }
+  ```
   
-  using namespace matricks;
-  using namespace display;
-
-  // force color even if piped to more,less or a file
-  Terminal::setColorOverride(true);
-  Terminal::setOverrideValue(true);
-
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " <<createStyle(BOLD).apply(myname) << std::endl;
-
   
-  mout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
-  print_matricks_info();
   
-  Vector<double> v1( linspace<double>(-1,1,21) );
-  Vector<double> v2;
-  v2 = 10*sin(pi/2*v1) + 10;
+  ## Deep indexing
 
-  disp(v1);
-  disp(v2);
-  disp(v1+v2);
+Refer to methods Vector.equals2()
 
-  // dot product
-  disp(v1|v2);
-
-  const double N = double(v2.size());
-  // mean
-  double mu2 = sum(v2)/N;
-  disp(mu2);
-
-  // std deviation
-  double sigma2 = norm(v2-mu2)/sqrt(N-1);
-  disp(sigma2);
-
-  cr();
-  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
-
-  
-  return 0;
-}
+* In this method we calculate the total number of elements in the entire structure and using a method `deepsize()`
+* Access these elements by utilizing method `.dat(n)`:
+```c++
+  MyNumberType& dat(const index_type n) {
+    using namespace::display;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+    if constexpr(M < 2) {
+      int k = n;
+      if (k < 0) {
+	  k += size();
+      }
+      return data_[k];
+    } else {
+      const int Ndeep = this->eldeepsize();
+      const int j = n / Ndeep;
+      const int k = n % Ndeep;
+      return data_[j][k];
+    }
+  }
 ```
 
-Compile the code and run the code using
-```bash
-g++ -I ~/matricks/include example.cpp -o example -L ~/matricks/lib -lmatricks
-./example
-```
+* when caculating an expression, loop over the entire deepsize inside the `=` operator.
 
-## EXAMPLE MAKEFILE
+In `vector.h` **equals2** 
+```c++
+  template <class A, class D2>  Vector<D,NN,M>& equals2(const TensorR<D2,A>& x) {  
+    if constexpr(M<2) {
+      for (index_type i = 0; i < size(); i++)  (*this)[i] = x[i];   
+    } else {
+      for (index_type i = 0; i < deepsize(); i++)  (*this).dat(i) = x.dat(i);       }
+    return *this;
+  }
+  ```
 
-A example makefile, ```examples/Makefile```,  is included for your convenience 
-
-*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
-
-
-# EXTENSIVE DEBUGGING SUPPORT
-
-The mātricks library provides extensive debugging operation, turned on using the flag `MEBUG`.   The word `MEBUG` was chosen over `DEBUG` to avoid clashing with other code (libraries).
-
-In this mode extensive error checking is performed to notify the user of
-
- - out of bounds access for vectors or matrices (e.g. x[10] where x is a
-   vector of length 6.
- - adding/subtracting/multiplying/dividing vector or matrices of unequal
-   size
- - invalid dot products of vector and/or matrices 
- - other assorted errors and warnings
-
-
-
-## SETTING `MEBUG` MODE
-
-There are two methods to accomplish this.
-
-### RECOMMENDED METHOD: Use the provided sample makefile and specify `MEBUG=1` on the command line
-
-example:
-
-```make clean MEBUG=1 myprogram```
-
-
-The target `clean` is not needed, but is a reccomended practice.
-
-If you want to recompile in fast mode, just use the makefile
-without specifying the `MEBUG` flag
-
-```make clean myprogram```
-
-
-### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.h` include statement
-
-```C++
-#define MEBUG 1
-#include "matricks.h"
-```
-
-
-## RECOMMENDATIONS
-
-While developing your code, use `MEBUG` mode.  When you are convinced that it is operating
-without errors or warnings, run normally.  
-
-Compile a `MEBUG` and a quick version of your code, giving the executables different names.
-This way if a segmentation fault occurs, or you otherwise suspect an error, you can quickly
-check the problem under careful mode.
-
-
-##  NOTES
-
-Compile time is also considerably slower in MEBUG mode.
-
-# DOCUMENTATION
-
-[User's Guide](doc/README.md)
 

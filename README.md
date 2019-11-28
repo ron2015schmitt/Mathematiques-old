@@ -80,15 +80,114 @@ The functor is the same, `Fun_Add_New` in `functors.h`
     static inline auto apply(const D1 a, const D2 b) {
       tdisp(a);
       tdisp(b);
-      typename AddType<D1,D2>::Type v1 = a + b;
+      typename AddType<D1,D2>::Type v1 = a + b;   // this works fine
       tdisp(v1);
-      return a+b;
+      return a+b;   // the return from here causes bad_alloc
     }
 }
 ```
 
+# Expression Template 
 
-## Recursion
+The expression template is the same, `` in `expresssions.h`
+```c++
+  template<class D, class A, class B, class OP, int M>
+    class TER_Binary : public  TensorR<D,TER_Binary<D,A,B,OP,M> > {
+
+  private:
+    const A* a_;
+    const B* b_;
+    VectorofPtrs *vptrs;
+
+  public:
+    typedef typename NumberType<D>::Type MyNumberType;
+    typedef D TypeD;
+    typedef A TypeA;
+    typedef B TypeB;
+    TER_Binary()
+      : a_(nullptr), b_(nullptr)
+      {
+	vptrs=nullptr;
+      }
+
+  TER_Binary(const A& a, const B& b)
+    : a_(&a), b_(&b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a.getAddresses());
+      vptrs->add(b.getAddresses());
+    }
+  TER_Binary(const TER_Binary<D,A,B,OP,M>& e):a_(e.a_), b_(e.b_)  {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_->getAddresses());
+      vptrs->add(b_->getAddresses());
+    }
+
+    ~TER_Binary() {
+      delete vptrs;
+    }
+
+    //**********************************************************************
+    //************************** DEEP ACCESS *******************************
+    //**********************************************************************
+    const MyNumberType dat(const index_type i) const {
+      return OP::apply((*a_).dat(i), (*b_).dat(i));
+    }
+
+    //**********************************************************************
+    //***************** Element ACCESS *************************************
+    //**********************************************************************
+    const D operator[](const index_type i) const {
+      disp(i);
+      tdisp((*a_)[i]);
+      tdisp((*b_)[i]);
+      return OP::apply((*a_)[i], (*b_)[i]);   // the return from here causes a bad_alloc
+    }
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return (*a_).size();
+    }
+    size_type ndims(void) const {
+      return (*a_).ndims();
+    }
+    Dimensions dims(void) const {
+      return (*a_).dims();
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_->elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_->eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
+  };
+
+```
+
+
+## Method 1: Recursion 
 
 * In this method we let the compiler just compile recursive expression templates
 * This compiles, but whenever the code passes an expression template as a return value (from functor `.apply()` or expression template operator `[n]`, it core dumps a `what()? bad_alloc`.  I implementeed a copy constructor for the expression but still got the error.  Perhaps also need a copy `equals` method?
@@ -116,7 +215,7 @@ In `vector.h`  **equals1**
   
   
   
-  ## Deep indexing
+  ## Method 2: Deep indexing
 
 
 * In this method we calculate the total number of elements in the entire structure and using a method `deepsize()`

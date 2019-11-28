@@ -1,4 +1,5 @@
-# mātricks v2.29-r15
+# recurseadd branch
+(from mātricks v2.29-r15)
 
 This is an experimential branch comparing two different methods for implemeneting addition between two vectors of type `Vector<Vector<double>>`.
 
@@ -324,5 +325,12 @@ In `vector.h` **equals2**
     return *this;
   }
   ```
+
+
+## Benchmark comparison
+
+![benchmark](recursiveadd_benchmarks.PNG)
+
+
 
 

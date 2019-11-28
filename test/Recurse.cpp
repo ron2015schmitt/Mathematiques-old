@@ -312,7 +312,7 @@ int main(int argc, char *argv[])
     Scalar<Vector<double>> s {{1.1,2.2}};
     double expected = 1.1;
     double result;
-    testcode( result = s[0] );
+    testcode( result = s.dat(0) );
     bool pass = (result==expected);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -323,7 +323,7 @@ int main(int argc, char *argv[])
     Scalar<Vector<double>> s {{1.1,2.2}};
     double expected = 2.2;
     double result;
-    testcode( result = s[1] );
+    testcode( result = s.dat(1) );
     bool pass = result==expected;
     printEnd(pass,result,expected);
     allpass = allpass && pass;

@@ -31,6 +31,10 @@ int main()
     Vector<int> v2 = {-1,-2,-3,-4};
     Vector<int> expected = {9, 18, 27, 36};
     Vector<int> result;
+    tdisp(v1);
+    tdisp(v2);
+    result = v1 + v2;
+    tdisp(result);
     testcode( result = v1 + v2 );
     bool pass = equal(result,expected);
     printEnd(pass,result,expected);

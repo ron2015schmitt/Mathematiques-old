@@ -23,7 +23,7 @@ fullpurge: cleanall
 	\rm -f $(DIR_MATRICKS)/*/*~
 	\rm -f $(DIR_MATRICKS)/*/*.old
 	\rm -fr $(DIR_MATRICKS)/lib
-
+	\rm -f ./run
 
 #############################################################
 # git related and versioning

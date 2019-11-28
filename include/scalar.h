@@ -189,21 +189,13 @@ namespace matricks {
   //**********************************************************************
 
   // "read/write": unsigned
-  MyNumberType& operator[](const index_type n) {
-    if constexpr(M < 2) {
-      return data_;
-    } else {
-      return (data_)[n];
-    }
+  D& operator[](const index_type n) {
+    return data_;
   }
 
   // "read/write": signed
-  const MyNumberType& operator[](const index_type n)  const {
-    if constexpr(M < 2) {
-      return data_;
-    } else {
-      return (data_)[n];
-    }
+  const D& operator[](const index_type n)  const {
+    return data_;
   }
 
   
@@ -246,7 +238,7 @@ namespace matricks {
       data_ = s2();    
     } else {
       for (index_type i = 0; i < deepsize(); i++) 
-	(*this)[i] = s2[i];   
+	(*this).dat(i) = s2.dat(i);   
     }
     return *this;
   }
@@ -264,7 +256,7 @@ namespace matricks {
       data_ = s2[0];    
     } else {
       for (index_type i = 0; i < deepsize(); i++) 
-	(*this)[i] = s2[i];   
+	(*this).dat(i) = s2.dat(i);   
     }
     return *this;
   }
@@ -281,7 +273,7 @@ namespace matricks {
       data_ = s2[0];    
     } else {
       for (index_type i = 0; i < deepsize(); i++) 
-	(*this)[i] = s2[i];   
+	(*this).dat(i) = s2.dat(i);   
     }
     return *this;
   }
@@ -301,7 +293,7 @@ namespace matricks {
       data_ = s2();    
     } else {
       for (index_type i = 0; i < deepsize(); i++) 
-	(*this)[i] = s2[i];   
+	(*this).dat(i) = s2.dat(i);   
     }
     return *this;
   }

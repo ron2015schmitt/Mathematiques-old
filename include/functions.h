@@ -9,9 +9,18 @@ namespace matricks {
   //----------------------------------------------
   // add1 experiment
   //----------------------------------------------
+  template <class D1, class D2, class A, class B> 
+    inline auto add1(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    {
+      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+    }
+
+  //----------------------------------------------
+  // add2 experiment
+  //----------------------------------------------
 
     template <class D1, class D2, class A, class B> 
-    inline auto add1(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    inline auto add2(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
       using namespace display;
       // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
@@ -24,15 +33,6 @@ namespace matricks {
 	  typename NumberType<D2>::Type
 	>
       >(a,b);
-    }
-
-  //----------------------------------------------
-  // add2 experiment
-  //----------------------------------------------
-  template <class D1, class D2, class A, class B> 
-    inline auto add2(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
-    {
-      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
     }
 
 
@@ -82,6 +82,9 @@ namespace matricks {
   template <class D1, class D2, class A, class B> 
     inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
+     
+      //using namespace display;
+      //mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
       return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
     }
 
@@ -839,7 +842,7 @@ namespace matricks {
     if (!dimequiv(tensor1,tensor2)) {
       return false;
     }
-    for (int ii = 0; ii < tensor1.deepsize(); ii++) {
+    for (int ii = 0; ii < tensor1.size(); ii++) {
       if (tensor1[ii] != tensor2[ii]) {
 	return false;
       }
@@ -857,7 +860,7 @@ namespace matricks {
     if (!dimequiv(tensor1,tensor2)) {
       return false;
     }
-    for (int ii = 0; ii < tensor1.deepsize(); ii++) {
+    for (int ii = 0; ii < tensor1.size(); ii++) {
       if (!approx(tensor1[ii], tensor2[ii], tolerance)) {
 	return false;
       }

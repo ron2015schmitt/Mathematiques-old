@@ -36,6 +36,11 @@ public:
 int main(int argc, char *argv[])
 {
   using namespace std;
+  std::string myname = argv[0];
+
+  cout << std::endl;
+  cout << "running: " <<myname << std::endl;
+  cout << std::endl;
 
   Concrete *y = new Concrete();
   cout << "y.size()="<< y->size() << endl;
@@ -60,6 +65,14 @@ int main(int argc, char *argv[])
 
   // This gives the correct resultof "Concrete"
   cout << "typeid(x->self()).name()="<<typeid(x->self()).name()  << endl;
+
+
+    //------------------------------------------------------
+  
+  cout << std::endl;
+  cout << "done: " << myname << std::endl;
+  cout << std::endl;
+  cout << std::endl;
 
   
   return 0;

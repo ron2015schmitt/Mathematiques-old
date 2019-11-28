@@ -1,6 +1,12 @@
 #!/bin/bash
-
-
-
-./printing 
-./testing 
+# ****  THIS WAS CREATED DURING  CONFIGURATION ******************
+./printing
+./testing
+./testing2
+./tfoverloading
+./depth
+./indexing
+./imaginary
+./enableexperiment
+./selfmethod
+./parmpack

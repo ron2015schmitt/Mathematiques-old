@@ -448,13 +448,14 @@ namespace matricks {
   template <class A, class D2>  Vector<D,NN,M>& equals1(const TensorR<D2,A>& x) {  
     if constexpr(M<2) {
 	for (index_type i = 0; i < size(); i++) {
-	  mout << "equals1: i="<<i << std::endl;
+	  //	  mout << "equals1: i="<<i << std::endl;
 	  (*this)[i] = x[i];
 	}
     } else {
 	for (index_type i = 0; i < size(); i++) {
-	  mout << "equals1: i="<<i << std::endl;
-	  (*this)[i] = x[i];
+	  //mout << "equals1: i="<<i << std::endl;
+	  //mdisp(i,this,(*this)[i]);
+	  x.setequals( *this, i);
 	}
     }
     return *this;

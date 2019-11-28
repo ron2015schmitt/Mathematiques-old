@@ -619,12 +619,27 @@ namespace matricks {
     //***************** Element ACCESS *************************************
     //**********************************************************************
     const D operator[](const index_type i) const {
-      disp(i);
-      tdisp((*a_)[i]);
-      tdisp((*b_)[i]);
-      return OP::apply((*a_)[i], (*b_)[i]);
+      //      disp(i);
+      //      tdisp((*a_)[i]);
+      //      tdisp((*b_)[i]);
+      //      tdisp(*this);
+      //      if constexpr(M>1) {
+      //       Vector<double> vv = (*a_)[i] + (*b_)[i];
+      //       tdisp(vv);
+      //    }
+      //    D w = (*a_)[i] + (*b_)[i];
+      //    tdisp(w);
+      //    return w;   // bad_alloc here
+      //return (*a_)[i] + (*b_)[i];  // bad_alloc here
+           return OP::apply((*a_)[i], (*b_)[i]);  // bad_alloc inside OP
     }
 
+    template <class C> C& setequals(C& c, const index_type i) const {
+      //mdisp(i, &c, c[i]);
+      //c[i]  = (*a_)[i] + (*b_)[i];   //works
+      c[i] = OP::apply((*a_)[i], (*b_)[i]);  // works
+      return c;
+    }
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -669,6 +684,33 @@ namespace matricks {
       return "TER_Binary";
     }
 
+  // stream << operator
+    friend std::ostream& operator<<(std::ostream &stream, const TER_Binary<D,A,B,OP,M>& v) {
+    using namespace display;
+    Style& style = FormatDataVector::style_for_punctuation;
+    stream << style.apply(FormatDataVector::string_opening);
+    const matricks::index_type N = FormatDataVector::max_elements_per_line;
+    matricks::index_type k = 0;
+    for (matricks::index_type ii = 0; ii < v.size(); ii++, k++) {
+      if (k >= N)  {
+	stream << style.apply(FormatDataVector::string_endofline);
+	k = 0;
+      }
+      if constexpr(M>1) {
+	stream << "TER_Binary + TER_Binary";
+	} else {
+	dispval_strm(stream, (*v.a_)[ii]);
+	stream << " + ";
+	dispval_strm(stream, (*v.b_)[ii]);
+      }
+      if (ii < v.size()-1)  {
+	stream << style.apply(FormatDataVector::string_delimeter);
+      }
+    }
+    stream << style.apply(FormatDataVector::string_closing);
+
+    return stream;
+  }
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {

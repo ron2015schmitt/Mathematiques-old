@@ -69,6 +69,23 @@ and
 
 ```
 
+# Addition functor
+
+The functor is the same, `Fun_Add_New` in `functors.h`
+```c++
+  template <class D1, class D2> class Fun_Add_New {
+  public:
+    Fun_Add_New() { }
+  
+    static inline auto apply(const D1 a, const D2 b) {
+      tdisp(a);
+      tdisp(b);
+      typename AddType<D1,D2>::Type v1 = a + b;
+      tdisp(v1);
+      return a+b;
+    }
+}
+```
 
 
 ## Recursion

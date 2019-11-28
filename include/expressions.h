@@ -44,7 +44,7 @@ namespace matricks {
     }
 
 
-    const MyNumberType operator[](const index_type i) const{
+    const D operator[](const index_type i) const{
       index_type ind = ii_[i];
       if (ind < 0) {
 	ind = a_.size() + ind;
@@ -174,11 +174,11 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type i) const{
+    const D operator[](const index_type i) const{
       index_type ind = (*ii_)[i];
       return a_[ind];
     }
-     MyNumberType& operator[](const index_type i) {
+     D& operator[](const index_type i) {
       index_type ind = (*ii_)[i];
       return a_[ind];
     }
@@ -391,10 +391,10 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](index_type i) const{
+    const D operator[](index_type i) const{
       return OP::give(a_[i]);
     }
-    MyNumberType& operator[](index_type i) {
+    D& operator[](index_type i) {
       return OP::give(a_[i]);
     }
 
@@ -497,7 +497,7 @@ namespace matricks {
   // NOTE: indexes over [0] to [deepsize()]
   // -------------------------------------------------------------
   
-  const MyNumberType operator[](const index_type i) const {
+  const D operator[](const index_type i) const {
     return FUNC::apply(a_[i]);
   }
 
@@ -611,9 +611,9 @@ namespace matricks {
     }
 
     //**********************************************************************
-    //***************** Element ACCESS as an array *************************
+    //***************** Element ACCESS *************************************
     //**********************************************************************
-    const MyNumberType operator[](const index_type i) const {
+    const D operator[](const index_type i) const {
       return OP::apply((*a_)[i], (*b_)[i]);
     }
 
@@ -721,7 +721,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type i) const {
+    const D operator[](const index_type i) const {
       const D x = x_[i] - x0_;
       D sum = 0;
       // TODO: check a_.size >= N
@@ -842,7 +842,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type i) const {
+    const D operator[](const index_type i) const {
       D sum = 0;
       // TODO: check a_.size >= N
       for (int n = 0; n < N_ ; n++) {
@@ -956,7 +956,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type i) const { 
+    const D operator[](const index_type i) const { 
       return OP::apply(a_[i], val_); 
     }
 
@@ -1056,7 +1056,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type i) const { 
+    const D operator[](const index_type i) const { 
       return OP::apply(val_,b_[i]); 
     }
 
@@ -2044,13 +2044,13 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type index1) const {
+    const D operator[](const index_type index1) const {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
       return FUNC::apply(a_[index2]);
     }
-    MyNumberType& operator[](const index_type index1) {
+    D& operator[](const index_type index1) {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
@@ -2146,7 +2146,7 @@ namespace matricks {
       delete vptrs;
     }
 
-    const MyNumberType operator[](const index_type index1) const {
+    const D operator[](const index_type index1) const {
       const Indices inds1 = rdims->indices(index1);
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
@@ -2241,7 +2241,7 @@ namespace matricks {
       delete vptrs;
     }
     
-    const MyNumberType operator[](const index_type i) const{
+    const D operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
@@ -2333,14 +2333,14 @@ namespace matricks {
     }
 
 
-    const MyNumberType operator[](const index_type i) const{
+    const D operator[](const index_type i) const{
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
 	return b_[i-a_.size()];
       }
     }
-     MyNumberType& operator[](const index_type i) {
+     D& operator[](const index_type i) {
       if ( i < a_.size() ) {
 	return a_[i];
       } else {
@@ -2456,7 +2456,7 @@ namespace matricks {
     }
 
 
-    const MyNumberType operator[](const index_type i) const{
+    const D operator[](const index_type i) const{
       index_type index = index_type(i % N_);
       //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];

@@ -65,10 +65,9 @@ In `vector.h`  **equals1**
   
   ## Deep indexing
 
-Refer to methods Vector.equals2()
 
 * In this method we calculate the total number of elements in the entire structure and using a method `deepsize()`
-* Access these elements by utilizing method `.dat(n)`:
+* Access these elements by utilizing method `.dat(n)` in `Vector`:
 ```c++
   MyNumberType& dat(const index_type n) {
     using namespace::display;

@@ -619,9 +619,6 @@ namespace matricks {
     //***************** Element ACCESS *************************************
     //**********************************************************************
     const D operator[](const index_type i) const {
-      disp(i);
-      tdisp((*a_)[i]);
-      tdisp((*b_)[i]);
       return OP::apply((*a_)[i], (*b_)[i]);
     }
 

@@ -6,35 +6,6 @@ namespace matricks {
 
 
 
-  //----------------------------------------------
-  // add1 experiment
-  //----------------------------------------------
-  template <class D1, class D2, class A, class B> 
-    inline auto add1(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
-    {
-      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
-    }
-
-  //----------------------------------------------
-  // add2 experiment
-  //----------------------------------------------
-
-    template <class D1, class D2, class A, class B> 
-    inline auto add2(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
-    {
-      using namespace display;
-      // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
-      return  TER_Binary<
-	typename AddType<D1,D2>::Type,
-	TensorR<D1,A>,
-	TensorR<D2,B>,
-	Fun_Add_New<
-	  typename NumberType<D1>::Type,
-	  typename NumberType<D2>::Type
-	>
-      >(a,b);
-    }
-
 
 
   /************************************************************
@@ -79,16 +50,31 @@ namespace matricks {
 
   // Tensor<D1> + Tensor<D2>
 
-  template <class D1, class D2, class A, class B> 
+    template <class D1, class D2, class A, class B> 
     inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
-     
-      //using namespace display;
-      //mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
-      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+      using namespace display;
+      // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
+      return  TER_Binary<
+	typename AddType<D1,D2>::Type,
+	TensorR<D1,A>,
+	TensorR<D2,B>,
+	Fun_Add_New<
+	  typename NumberType<D1>::Type,
+	  typename NumberType<D2>::Type
+	>
+      >(a,b);
     }
 
 
+  //-----------------------------------------------------
+  // add2 - recursive add - faster for certain situations
+  //-----------------------------------------------------
+  template <class D1, class D2, class A, class B> 
+    inline auto add1(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+    {
+      return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+    }
 
 
   // D1 + Tensor<D2>

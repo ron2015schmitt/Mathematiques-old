@@ -6,27 +6,26 @@
 Implement code necessary so that mathematical operations work for recursive tensors, eg. `Vector<Vector<double>>`.  This allows for the most straightforward way to implement vector and tensor functions of space and time.
 
 
-1. Methodology is to use `x[index]`, ie `operator[]`, for "deep indexing" that indexes from `0` to `deepsize()-1`, covering all the elements contained.  
+1. Methodology is to use `x.dat(index)``, for "deep indexing" that indexes from `0` to `deepsize()-1`, covering all the elements contained.  
 1. For shallow indexing, ie first level indexing, use the `operator()` operators:
     1. `Scalar()` ✓ complete 
     1. `Vector(i)` ✓ complete 
-    1. Expressions ✓ complete 
-    1. `test`
+    1. Expressions — in progress
+       1. get `Vector<Vector<double>> + Vector<double>` working
+       1. add `.dat(i)`, `.depth()`, `.deepsize()`, `setequals` vistor pattern etc methods to TensorAbstract
+       1. for each class `Scalar`, `Vector`, etc, use setquals pattern when inside equals (TensorR) and uses deep indexing
+       1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`, including use of `NumberType`
+       1. have alternate version of binary operators `addr` that uses recursion. This is faster in certain cases.
+       1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
        1. add test cases for math of recursive Vectors and scalars
-    1. `Matrix(i,j)` 
-    1. `Tensor(i...)`
+       1. add access operator `(size_type...)` etc to expressions. This will allow e.g. Matrix expresssion to be used in dot products
+       1. Use type traits to determine ideal qualifier types for paramters and return values? not needed when using visitor pattern
+       1. asVector, asMatrix wrapper function expressions
+       1. Benchmark a large vector of 3D vectors (of both types): see recursiveadd branch
+       1. verify that `operator=` and `constructors` are paired in `scalar.h`, `vector.h`
+    1. `Matrix(i,j)`  —  initiated
+    1. `Tensor(i...)`  — initiated
        1. number of dimensions must be a template parameter?
-    1. add `.tdims()`, `.depth()`, `.deepsize()` etc methods to TensorAbstract
-    
-
-## Miscellaneous
-1. verify that `operator=` and `constructors` are paired in `scalar.h`, `vector.h`, `matrix.h`, `tensors.h`
-1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`
-1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
-1. add access operator `(ints...)` etc to expressions. This will allow e.g. Matrix expresssion to be used in dot products
-1. Benchmark a large vector of 3D vectors. if slow, look into optimization
-1. Use type traits to determine ideal qualifier types for paramters and return values?
-1. asVector, asMatrix wrapper function expressions
 
 ## Tensor Dimensions as Template Parameters
 

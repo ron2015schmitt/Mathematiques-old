@@ -14,7 +14,8 @@ Implement code necessary so that mathematical operations work for recursive tens
        1. get `Vector<Vector<double>> + Vector<double>` working
        1. add `.dat(i)`, `.depth()`, `.deepsize()`, `setequals` vistor pattern etc methods to TensorAbstract
        1. for each class `Scalar`, `Vector`, etc, use setquals pattern when inside equals (TensorR) and uses deep indexing
-       1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`
+       1. convert all binary functions in `functions.h` to the new methodlogy of `operator+`, including use of `NumberType`
+       1. have alternate version of binary operators `addr` that uses recursion. This is faster in certain cases.
        1. convert all functors in `functors.h` to the new methodlogy of `New_Fun_Add` and delete old versions
        1. add test cases for math of recursive Vectors and scalars
        1. add access operator `(size_type...)` etc to expressions. This will allow e.g. Matrix expresssion to be used in dot products

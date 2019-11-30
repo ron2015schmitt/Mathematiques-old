@@ -3,7 +3,7 @@
 
 
 # Element-wise Vector math in mātricks
-_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.29-r31).
+_This document was automatically generated from file_ **`velmath.cpp`** (mātricks-v2.29-r32).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively

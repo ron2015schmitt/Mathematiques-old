@@ -135,104 +135,7 @@ namespace matricks {
   template<class D, class A, int M = 1+matricks::NumberType<D>::depth()>
     class VER_Rep;
 
-  // TODO: move to math.h
   
-    /****************************************************************************
-   * math
-   **************************************************************************** 
-   */
-  
-    // maximum subcript size for vectors and matrices (since we allow negative indexing)
-  const size_type maxsize = std::numeric_limits<index_type>::max();
-  const size_type badsize = std::numeric_limits<size_type>::max();
-
-  // TODO: C++17 has its own gcd gcf
-  
-  // GCD
-  inline int gcd(int a, int b) {
-    int r;
-    do {
-      r = a % b;
-      a = b;
-      b = r;
-    } while (r != 0);
-    
-    return a;
-  }
-
-
-  // roundzero
-  
-  template <typename D> D roundzero(const D& x, const D tolerance) {
-    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
-  }
-
-  // approx
-  
-  template <typename D> bool approx(const D& x, const D& y, const D tolerance) {
-    using std::abs;
-    D tol = tolerance;
-    D d = (abs(x)+abs(y))/2;
-    if (d > 1) {
-      tol *= d;
-    }
-    return (roundzero(abs(x-y), tol) == 0);
-  }
-
-  // numbercast
-  
-  template <typename D2, typename D1,
-    typename = std::enable_if_t<std::is_arithmetic<D1>::value>,
-    typename = std::enable_if_t<std::is_arithmetic<D2>::value> >
-    D2 numbercast(const D1 x) {
-    return static_cast<D2>( x );
-  }
-
-  
-
-  //***********************************************************************
-  //       sgn(x) function
-  //***********************************************************************
-  
-#define SGN_MACRO(D)  inline D sgn(const D x) {if (x>0) return static_cast<D>(1); else if (x<0) return static_cast<D>(-1); else return static_cast<D>(0);}
-#define SGN_MACRO_US(D)  inline D sgn(const D x) {if (x>0) return static_cast<D>(1);else return static_cast<D>(0);}
-
-  SGN_MACRO(float);
-  SGN_MACRO(double);
-  SGN_MACRO(long double);
-  SGN_MACRO(char);
-  SGN_MACRO_US(unsigned char);
-  SGN_MACRO(short);
-  SGN_MACRO_US(unsigned short);
-  SGN_MACRO(int);
-  SGN_MACRO_US(unsigned int);
-  SGN_MACRO(long);
-  SGN_MACRO_US(unsigned long);
-#if LONGLONG_EXISTS
-  SGN_MACRO(long long);
-  SGN_MACRO_US(unsigned long long);
-#endif
-
-
-  
-  /****************************************************************************
-   * tolerances
-   **************************************************************************** 
-   */
-
-  template <typename D> struct MatricksHelper {
-  public:
-    static D tolerance = D(0);
-  };
-  template <> struct MatricksHelper<double> {
-  public:
-    constexpr static double tolerance = 1.5e-16;
-  };
-  template <> struct MatricksHelper<float> {
-  public:
-    constexpr static float tolerance = 3.5e-7;
-  };
-
 
 
   // *********************************************************************
@@ -264,7 +167,7 @@ namespace matricks {
     typedef D Type;
   };
 
-  /* FundamentalType - this operates recursively to find the base arithmetic type */
+  /* FundamentalType - this operates recursively to find the primitive arithmetic type (eg int, float, double)*/
   /*                 this could certainly be specialized for other */
   /*                 container types */
   template <typename T> class FundamentalType {
@@ -289,7 +192,7 @@ namespace matricks {
     }
   };
 
-  /* NumberType - this operates recursively to find the base arithmetic type */
+  /* NumberType - this operates recursively to find the base number type (complex<double>, Imaginary<float>, int, double)*/
   /*                 this could certainly be specialized for other */
   /*                 container types */
   template <typename T> class NumberType {
@@ -332,56 +235,46 @@ namespace matricks {
     }
   };
 
-  template <template<typename> class T, typename D> class NumberType<T<D> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-    inline static int size(const T<D>& x) {
-      return x.size();
-    }
-    inline static int deepsize(const T<D>& x) {
-      return x.deepsize();
-    }
-  };
-  template <template<typename,int> class T, typename D, int M> class NumberType<T<D,M> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-    inline static int size(const T<D,M>& x) {
-      return x.size();
-    }
-    inline static int deepsize(const T<D,M>& x) {
-      return x.deepsize();
-    }
-  };
-  template <typename D, typename A> class NumberType<TensorR<D,A> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-    inline static int size(const TensorR<D,A>& x) {
-      return x.size();
-    }
-    inline static int deepsize(const TensorR<D,A>& x) {
-      return x.deepsize();
-    }
-  };
 
-  template <typename D, typename A> class NumberType<TensorRW<D,A> > {
+  template <typename D, template <typename> typename A > class NumberType<A<D>>  {
   public:
+    typedef A<D> InputType;
     typedef typename NumberType<D>::Type Type;
     constexpr static int depth() {
       return 1+NumberType<D>::depth();
     }
-    inline static int size(const TensorR<D,A>& x) {
+    inline static int size(const InputType& x) {
       return x.size();
     }
-    inline static int deepsize(const TensorR<D,A>& x) {
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+  template <typename D, class X1, template <typename,typename> typename A > class NumberType<A<D,X1>>  {
+  public:
+    typedef A<D,X1> InputType;
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+  template <typename D, class X1, class X2, template <typename,typename,typename> typename A > class NumberType<A<D,X1,X2>>  {
+  public:
+    typedef A<D,X1,X2> InputType;
+    typedef typename NumberType<D>::Type Type;
+    constexpr static int depth() {
+      return 1+NumberType<D>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
       return x.deepsize();
     }
   };

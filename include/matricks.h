@@ -42,6 +42,7 @@
 
 #include "matricks_version.h"
 #include "preface.h"
+#include "math_real.h"
 #include "math_cplx.h"
 #include "math_imag.h"
 #include "display.h"

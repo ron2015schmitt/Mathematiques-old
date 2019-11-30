@@ -83,8 +83,8 @@ v = {-1,0,1,2,4}; // C++11 list
 
 **Some expressions with results**: powers, roots, and exponentiation
 ```C++
-  pow(2., v) = Vector<double> {0.5, 1, 2, 4, 16}; 
-  pow(v, 2.) = Vector<double> {1, 0, 1, 4, 16}; 
+  pow(2, v) = Vector<double> {0.5, 1, 2, 4, 16}; 
+  pow(v, 2) = Vector<double> {1, 0, 1, 4, 16}; 
   pow(v,v) = Vector<double> {-1, 1, 1, 4, 256}; 
   exp(v) = Vector<double> {0.367879, 1, 2.71828, 7.38906, 54.5982}; 
   log(v) = Vector<double> {nan, -inf, 0, 0.693147, 1.38629}; 
@@ -176,7 +176,7 @@ v2 = {-1,-2,-3,-4}; // C++11 list
 
 **Some expressions with results**
 ```C++
-  2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) = Vector<double> {10, 13, 18, 25}; 
+  2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2) = Vector<double> {10, 13, 18, 25}; 
 ```
 
 

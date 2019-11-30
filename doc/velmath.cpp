@@ -117,8 +117,8 @@ int main()
     codeend();
     cr();
     resultstart2(": powers, roots, and exponentiation");
-    resultmulti( pow(2., v)  );
-    resultmulti( pow(v, 2.)  );
+    resultmulti( pow(2, v)  );
+    resultmulti( pow(v, 2)  );
     resultmulti( pow(v,v)  );
     resultmulti( exp(v)  );
     resultmulti( log(v)  );
@@ -226,7 +226,7 @@ int main()
 
    
     resultstart2("");
-    resultmulti(2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2.) );
+    resultmulti(2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2) );
     resultend();
   }
 

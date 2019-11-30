@@ -744,7 +744,9 @@ namespace matricks {
       } else if constexpr((M1>0)&&(M2==0)) {
 	  return OP::apply(a_.dat(i), b_);
       } else {
-	if constexpr(M1==M2+1) {
+	if constexpr(M1==M2) {
+	  return OP::apply(a_.dat(i), b_.dat(i));
+	} else if constexpr(M1==M2+1) {
 	  index_type j = i % b_.deepsize();
 	  return OP::apply(a_.dat(i), b_.dat(j));
 	} else if constexpr(M2==M1+1) {
@@ -780,7 +782,9 @@ namespace matricks {
       if constexpr((M1<2)&&(M2<2)) {
         for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
       } else {
-        for (index_type i = 0; i < deepsize(); i++)  c.dat(i) = this->dat(i);
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
       } 
       return c;
     }

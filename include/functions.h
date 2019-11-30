@@ -55,13 +55,14 @@ namespace matricks {
     {
       using namespace display;
       // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
-      return  TER_Binary<
-	typename AddType<D1,D2>::Type,
+      return  TER_NewBinary<
 	TensorR<D1,A>,
 	TensorR<D2,B>,
-	Fun_Add_New<
-	  typename NumberType<D1>::Type,
-	  typename NumberType<D2>::Type
+	D1,
+	D2,
+	Fun_Add<
+	  D1,
+	  D2
 	>
       >(a,b);
     }

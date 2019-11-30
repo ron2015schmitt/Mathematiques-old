@@ -93,7 +93,8 @@ namespace matricks {
   template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Binary;
 
-  template<class A, class B, class D1, class D2, class OP, int M1 = 1+matricks::NumberType<D1>::depth(), int M2 = 1+matricks::NumberType<D2>::depth()>
+  // Note: lack "+1" for M1,M2 is intended
+  template<class A, class B, class D1, class D2, class OP, int M1 = matricks::NumberType<A>::depth(), int M2 = matricks::NumberType<B>::depth()>
     class TER_NewBinary;
 
   template<class D, class A, class X, int M = 1+matricks::NumberType<D>::depth()>

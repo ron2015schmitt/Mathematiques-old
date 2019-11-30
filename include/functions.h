@@ -53,60 +53,43 @@ namespace matricks {
     template <class D1, class D2, class A, class B> 
     inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
-      using namespace display;
-      // mout<< a << createStyle(BOLD).apply("+") << b << std::endl;
-      return  TER_NewBinary<
-	TensorR<D1,A>,
-	TensorR<D2,B>,
-	D1,
-	D2,
-	Fun_Add<
-	  D1,
-	  D2
-	>
-      >(a,b);
+      return  TER_NewBinary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_Add<D1,D2>>(a,b);
     }
 
 
   // Tensor<D1> + D2
 
-  template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+    template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
     inline auto operator+(const TensorR<D1,A>& a, const D2& b)
     {
-      return TER_TensorOpScalar_New<typename AddType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Add_New<D1,D2> >(a,b);
+      return  TER_NewBinary<TensorR<D1,A>,D2,D1,D2,Fun_Add<D1,D2>>(a,b);
     }
+
   
   // D1 + Tensor<D2>
 
-  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-    inline auto operator+(const D1& a, const TensorR<D2,B>& b)
+    template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+      inline auto operator+(const D1& a, const TensorR<D2,B>& b)
     {
-      return  TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+      return  TER_NewBinary<D1,TensorR<D2,B>,D1,D2,Fun_Add<D1,D2>>(a,b);
     }
 
-
-  // Tensor<T> + T
-
-  template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
-    inline auto operator+(const TensorR<T,A>& a, const T&b)
+    
+    // Tensor<T> + T
+    
+    template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+      inline auto operator+(const TensorR<T,A>& a, const T& b)
     {
-      return TER_TensorOpScalar_New<
-	T,
-	TensorR<T,A>,
-	T,
-	Fun_Add_New<
-	  typename NumberType<T>::Type,
-	  typename NumberType<T>::Type
-	>
-      >(a,b);
+      return  TER_NewBinary<TensorR<T,A>,T,T,T,Fun_Add<T,T>>(a,b);
     }
+    
 
   // T + Tensor<T>
 
-  template <class T, class B> 
-    inline auto operator+(const T& a, const TensorR<T,B>& b)
+    template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+      inline auto operator+(const T& a, const TensorR<T,B>& b)
     {
-      return TER_ScalarOpTensor_New<T,T,TensorR<T,B>,Fun_Add_New<T,T> >(a,b);
+      return  TER_NewBinary<T,TensorR<T,B>,T,T,Fun_Add<T,T>>(a,b);
     }
 
 

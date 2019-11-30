@@ -724,8 +724,6 @@ namespace matricks {
   TER_NewBinary(const A& a, const B& b)
     : a_(a), b_(b) {
       vptrs = new VectorofPtrs();
-      vptrs->add(a.getAddresses());
-      vptrs->add(b.getAddresses());
     }
 
     ~TER_NewBinary() {

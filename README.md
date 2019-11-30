@@ -3,7 +3,7 @@
 
 This is an experimential branch comparing two different methods for implemeneting addition between two vectors of type `Vector<Vector<double>>`.
 
-1. recursion ✓ ⸺ got this working 
+1. recursion  ⸺ got this working for M=2 but higher will be difficult
 1. deep indexing ✓ ⸺ got this working 
 
 ## Test code
@@ -269,6 +269,7 @@ In `vector.h`  **equals1**
 ## Method 1: Recursion try #2
 
 * Got it working by changing the equals to use `setequals` of the expresssion
+- This onlt works for depth=1,2
 
 Modified `vector.h`  **equals1** 
 ```c++
@@ -287,7 +288,36 @@ Modified `vector.h`  **equals1**
     return *this;
   }
 ```
-    
+
+## Method 1: Recursion try #3
+
+* Something like the folowing would work.
+* As show below an error is caused by the OP::apply line
+* Instead of using depth, need to use M and a constexpr, that would fix the error
+* woudld need to make this a separate function
+* and would need to add M as an explicit parameter for TensorR and TensorRW
+```c++
+    template<class X, class Y, class Z> void
+      recurse(X& x, Y& y, Z& z) const {
+      for (index_type i = 0; i < y.size(); i++) {
+	if (y[i].depth()==1) {
+	  x[i] = OP::apply(y[i], z[i]);
+	} else {
+	  recurse(x[i],y[i],z[i]);
+	}
+      }
+    }
+    template<class C>  C&
+      setrecursively(C& c) const {
+      // TODO: do we need to check for same vector on left or right hand side?
+      if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+	recurse(c,*a_,*b_);
+      } 
+      return c;
+    }
+```
   
   ## Method 2: Deep indexing
 

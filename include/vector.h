@@ -440,6 +440,10 @@ namespace matricks {
     return *this;
   }
 
+  template <class D2, class A, class B, class OP>  Vector<D,NN,M>& equalsNEW(const TER_TensorOpScalar_New<D2,A,B,OP,M>& x) {  
+    x.setequals(*this);
+    return *this;
+  }
 
 
   

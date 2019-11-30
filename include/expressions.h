@@ -693,6 +693,9 @@ namespace matricks {
   };
 
 
+
+
+  
   /************************************************************
    *               Templates for Binary+scalar Operators 
    *
@@ -1169,8 +1172,46 @@ namespace matricks {
       delete vptrs;
     }
 
-    const DOUT operator[](const index_type i) const { 
-      return OP::apply(a_[i], val_); 
+    //**********************************************************************
+    //******************** DEEP ACCESS: x.dat(n) ***************************
+    //**********************************************************************
+    const MyNumberType dat(const index_type i) const {
+      if constexpr(M<2) {
+	return OP::apply(a_.dat(i), val_);
+      } else {
+	index_type j = i % val_.deepsize();
+	return OP::apply(a_.dat(i), val_.dat(j));
+      }
+    }
+
+    //**********************************************************************
+    //************* Array-style Element Access: x[n] ***********************
+    //**********************************************************************
+    const DOUT operator[](const index_type i) const {
+      if constexpr(M<2) {
+	return OP::apply(a_[i], val_);
+      } else {
+	index_type j = i % val_.size();
+	return OP::apply((*a_)[i], val_[j]);
+      }
+    }
+
+   
+
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      // TODO: do we need to check for same vector on left or right hand side?
+      if constexpr(M<2) {
+	  for (index_type i = 0; i < size(); i++)  {
+	    c[i] = (*this)[i];
+	  }
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
     }
 
     VectorofPtrs getAddresses(void) const {

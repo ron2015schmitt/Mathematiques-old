@@ -89,18 +89,24 @@ namespace matricks {
     class TER_RealFromComplex;
   template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Unary;
+
   template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Binary;
+
   template<class D, class A, class X, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Series;
   template<class D, class A, class B, class X, class OP1, class OP2, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Series2;    
+
   template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_TensorOpScalar;
+
   template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_ScalarOpTensor;
+
   template <class DOUT, class A, class D, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_TensorOpScalar_New;
+
   template <class DOUT, class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_ScalarOpTensor_New;
   template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>

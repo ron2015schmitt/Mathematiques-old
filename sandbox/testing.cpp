@@ -27,6 +27,10 @@ template <class F> void printUnary() {
   mout << F::expression("x") << std::endl;
 }
 
+template <class D1, class D2, template<typename, typename> class F> void printBinary() {
+  mout << F<D1,D2>::classname()  << " ";
+  mout << F<D1,D2>::expression("x","y") << std::endl;
+}
 template <class D, template<typename> class F> void printBinary() {
   mout << F<D>::classname()  << " ";
   mout << F<D>::expression("x","y") << std::endl;
@@ -281,7 +285,7 @@ int main(int argc, char *argv[])
   printUnary<double,Fun_Minus>();
   mout << Fun_Cast<double,int>::classname() << " ";
   mout << Fun_Cast<double,int>::expression("n") << endl;
-  printBinary<double,Fun_Add>();
+  printBinary<double,double,Fun_Add>();
   printBinary<double,Fun_Subtract>();
   printBinary<double,Fun_Multiply>();
   printBinary<double,Fun_Divide>();

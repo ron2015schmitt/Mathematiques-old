@@ -113,14 +113,18 @@ namespace matricks {
 
   // y = a + b
 
-  template <class D> class Fun_Add {
+
+  template <class A, class B> class Fun_Add {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename AddType<NA,NB>::Type Type;
+      
     Fun_Add() { }
   
-    static inline D apply(const D a, const D b) { 
-      return a+b; 
+    static inline auto apply(const NA& a, const NB& b) {
+      return a+b;
     }
-
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
@@ -128,15 +132,16 @@ namespace matricks {
       return sout;
     }
     
-    static inline std::string classname() {
-      using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Add")+display::getBracketedTypeName(d);
-    }
 #endif
 
+    static inline std::string classname() {
+      using namespace display;
+      NA d1;
+      NB d2;
+      return functor_namestyle.apply("Fun_Add")+ "<"+display::getTypeName(d1)+","+display::getTypeName(d1)+">";
+    }
+    
   };
-
 
 
 

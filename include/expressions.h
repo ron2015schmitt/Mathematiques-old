@@ -695,6 +695,181 @@ namespace matricks {
 
 
 
+
+  /****************************************************************************
+   * ****TER_NewBinary***           Operator Expression Template 
+   *  NEW
+   * vector/vector binary operator expressions
+   ****************************************************************************
+   */
+  template<class A, class B, class D1, class D2, class OP, int M1, int M2>
+    class TER_NewBinary : public  TensorR<typename OP::Type,TER_NewBinary<A,B,D1,D2,OP,M1,M2> > {
+
+  private:
+    const A& a_;
+    const B& b_;
+    VectorofPtrs *vptrs;
+
+  public:
+    typedef typename NumberType<D1>::Type NumType1;
+    typedef typename NumberType<D2>::Type NumType2;
+    typedef typename OP::Type NumTypeOut;
+    
+    TER_NewBinary()
+      : a_(nullptr), b_(nullptr)
+      {
+	vptrs=nullptr;
+      }
+
+  TER_NewBinary(const A& a, const B& b)
+    : a_(a), b_(b) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a.getAddresses());
+      vptrs->add(b.getAddresses());
+    }
+
+    ~TER_NewBinary() {
+      delete vptrs;
+    }
+
+
+    //**********************************************************************
+    //******************** DEEP ACCESS: x.dat(n) ***************************
+    //**********************************************************************
+    const NumTypeOut dat(const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)) {
+	return OP::apply(a_, b_);
+      } else if constexpr((M1==0)&&(M2>0)) {
+	  return OP::apply(a_, b_.dat(i));
+      } else if constexpr((M1>0)&&(M2==0)) {
+	  return OP::apply(a_.dat(i), b_);
+      } else {
+	if constexpr(M1==M2+1) {
+	  index_type j = i % b_.deepsize();
+	  return OP::apply(a_.dat(i), b_.dat(j));
+	} else if constexpr(M2==M1+1) {
+	  index_type j = i % a_.deepsize();
+	  return OP::apply(a_.dat(j), b_.dat(i));
+	}
+      }
+    }
+
+    //**********************************************************************
+    //************* Array-style Element Access: x[n] ***********************
+    //**********************************************************************
+    const NumTypeOut operator[](const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)) {
+	return OP::apply(a_, b_);
+      } else if constexpr((M1==0)&&(M2==1)) {
+	  return OP::apply(a_, b_[i]);
+      } else if constexpr((M1==1)&&(M2==0)) {
+	  return OP::apply(a_[i], b_);
+      } else {
+	if constexpr((M1==1)&&(M2==1)) {
+	    return OP::apply(a_[i], b_[i]);
+	} 
+      }
+    }
+
+   
+
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      // TODO: when do we need to check for same vector on left or right hand side?
+      if constexpr((M1<2)&&(M2<2)) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  c.dat(i) = this->dat(i);
+      } 
+      return c;
+    }
+
+        
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      if constexpr(M1>=M2) {
+        return a_.size();
+      } else {
+        return b_.size();
+      }
+    }
+    size_type ndims(void) const {
+      if constexpr(M1>=M2) {
+        return a_.ndims();
+      } else {
+        return b_.ndims();
+      }
+    }
+    Dimensions dims(void) const {
+      if constexpr(M1>=M2) {
+        return a_.dims();
+      } else {
+        return b_.dims();
+      }
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      if constexpr(M1>=M2) {
+        return M1;
+      } else {
+        return M2;
+      }
+    }
+    size_type elsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.elsize();
+      } else {
+        return b_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.eldeepsize();
+      } else {
+        return b_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.deepsize();
+      } else {
+        return b_.deepsize();
+      }
+    }
+
+    std::string classname() const {
+      return "TER_NewBinary";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      // use typeof or typeid isnteadof  the above
+      return "";
+    }
+#endif 
+
+
+  };
+  
+  
+
+
+
+  
   
   /************************************************************
    *               Templates for Binary+scalar Operators 

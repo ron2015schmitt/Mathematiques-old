@@ -66,14 +66,6 @@ namespace matricks {
       >(a,b);
     }
 
-    
-  // D1 + Tensor<D2>
-
-  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-    inline auto operator+(const D1& a, const TensorR<D2,B>& b)
-    {
-      return  TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
-    }
 
   // Tensor<D1> + D2
 
@@ -83,6 +75,13 @@ namespace matricks {
       return TER_TensorOpScalar_New<typename AddType<D1,D2>::Type,TensorR<D1,A>,D2,Fun_Add_New<D1,D2> >(a,b);
     }
   
+  // D1 + Tensor<D2>
+
+  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+    inline auto operator+(const D1& a, const TensorR<D2,B>& b)
+    {
+      return  TER_ScalarOpTensor_New<typename AddType<D1,D2>::Type,D1,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
+    }
 
 
   // Tensor<T> + T

@@ -564,9 +564,6 @@ namespace matricks {
 
 
 
-
-
-
   /****************************************************************************
    * TER_Binary Operator Expression Template 
    *
@@ -598,30 +595,41 @@ namespace matricks {
       vptrs->add(a.getAddresses());
       vptrs->add(b.getAddresses());
     }
-  TER_Binary(const TER_Binary<D,A,B,OP,M>& e):a_(e.a_), b_(e.b_)  {
-      vptrs = new VectorofPtrs();
-      vptrs->add(a_->getAddresses());
-      vptrs->add(b_->getAddresses());
-    }
 
     ~TER_Binary() {
       delete vptrs;
     }
 
+
     //**********************************************************************
-    //************************** DEEP ACCESS *******************************
+    //******************** DEEP ACCESS: x.dat(n) ***************************
     //**********************************************************************
     const MyNumberType dat(const index_type i) const {
       return OP::apply((*a_).dat(i), (*b_).dat(i));
     }
 
     //**********************************************************************
-    //***************** Element ACCESS *************************************
+    //************* Array-style Element Access: x[n] ***********************
     //**********************************************************************
     const D operator[](const index_type i) const {
-      return OP::apply((*a_)[i], (*b_)[i]);
+      return OP::apply((*a_)[i], (*b_)[i]);  
     }
 
+   
+
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      // TODO: do we need to check for same vector on left or right hand side?
+      if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  c.dat(i) = this->dat(i);
+      } 
+      return c;
+    }
+
+        
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;

@@ -106,8 +106,9 @@ echo "#!/bin/bash" > ${DIR_TARGET}/run
 echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/run
 for name in ${EXECS}
 do
-    echo './'$name >> ${DIR_TARGET}/run
+    printf "./$name  && " >> ${DIR_TARGET}/run
 done
+echo "echo -e \"${BLUE1}${BOLD}All executables ran succesfully${DEFCLR}\"" >> ${DIR_TARGET}/run
 chmod a+rx ${DIR_TARGET}/run
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
 echo " "
@@ -120,7 +121,7 @@ echo " "
 
 DIR_TARGET=sandbox
 
-EXECS="printing testing testing2 tfoverloading depth indexing imaginary enableexperiment selfmethod parmpack"
+EXECS="printing testing testing2 tfoverloading depth indexing imaginary enableexperiment selfmethod parmpack recurseadd"
 
 echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
 #mkdir -p ${DIR_TARGET}
@@ -151,8 +152,9 @@ echo "#!/bin/bash" > ${DIR_TARGET}/run
 echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/run
 for name in ${EXECS}
 do
-    echo './'$name >> ${DIR_TARGET}/run
+    printf "./$name  && " >> ${DIR_TARGET}/run
 done
+echo "echo -e \"${BLUE1}${BOLD}All executables ran succesfully${DEFCLR}\"" >> ${DIR_TARGET}/run
 chmod a+rx ${DIR_TARGET}/run
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
 
@@ -226,8 +228,9 @@ echo "#!/bin/bash" > ${DIR_TARGET}/run
 echo "# ****  THIS WAS CREATED DURING  CONFIGURATION ******************" >>${DIR_TARGET}/run
 for name in ${EXECS}
 do
-    echo './'${name} >> ${DIR_TARGET}/run
+    printf "./$name  && " >> ${DIR_TARGET}/run
 done
+echo "echo -e \"${BLUE1}${BOLD}All executables ran succesfully${DEFCLR}\"" >> ${DIR_TARGET}/run
 chmod a+rx ${DIR_TARGET}/run
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
 echo " "

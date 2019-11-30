@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
       tdisp(t7.deepsize());
 
       for (int n = 0; n < t7.deepsize(); n++) {
-	tdisp(t7[n]);
+	tdisp(t7.dat(n));
       }
       for (int n = 0; n < t7.size(); n++) {
 	tdisp(t7(n));

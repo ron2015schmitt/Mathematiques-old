@@ -94,34 +94,15 @@ namespace matricks {
   }
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-  Vector<D,NN,M>(std::initializer_list<D> mylist) {
-    if constexpr(NN==0) {
-      this->resize(mylist.size());
-    }
+  Vector<D,NN,M>(std::initializer_list<D> mylist)  {
     *this = mylist;
     constructorHelper();
   }
 
 
-
-  // --------------------- Vector(valarray)  ---------------------
-  Vector<D,NN,M>(const std::valarray<D>& valar) {
-    if constexpr(NN==0) {
-      this->resize(valar.size());
-    }
-    *this = valar;
-    constructorHelper();
-  }
-
-
-
-
   // --------------------- Vector(Vector) --------------------
 
   Vector<D,NN,M>(const Vector<D,NN,M>& v2) {
-    if constexpr(NN==0) {
-      this->resize(v2.size());
-    }
     *this = v2;
     constructorHelper();
   }
@@ -140,6 +121,17 @@ namespace matricks {
     constructorHelper();
   }
 
+
+
+
+  // --------------------- Vector(valarray)  ---------------------
+  Vector<D,NN,M>(const std::valarray<D>& valar) {
+    if constexpr(NN==0) {
+      this->resize(valar.size());
+    }
+    *this = valar;
+    constructorHelper();
+  }
 
 
 
@@ -281,13 +273,9 @@ namespace matricks {
 
 
   //**********************************************************************
-  //************************** DEEP ACCESS *******************************
+  //******************** DEEP ACCESS: x.dat(n) ***************************
   //**********************************************************************
-
-
-  // -------------------- deep access[] --------------------
-  // NOTE: indexes over [0] to [deepsize()]
-  // -------------------------------------------------------------
+  // NOTE: indexes over [0] to [deepsize()] and note return type
   
   // "read/write"
   MyNumberType& dat(const index_type n) {
@@ -303,7 +291,7 @@ namespace matricks {
       const int Ndeep = this->eldeepsize();
       const int j = n / Ndeep;
       const int k = n % Ndeep;
-      return data_[j][k];
+      return data_[j].dat(k);
     }
   }
 
@@ -321,15 +309,16 @@ namespace matricks {
       const int Ndeep = this->eldeepsize();
       const int j = n / Ndeep;
       const int k = n % Ndeep;
-      return data_[j][k];
+      return data_[j].dat(k);
     }
   }
 
   
 
   //**********************************************************************
-  //***************** Element ACCESS as an array *************************
+  //************* Array-style Element Access: x[n] ***********************
   //**********************************************************************
+
   // "read/write"
   D& operator[](const index_type n) {
     int k = n;
@@ -350,7 +339,7 @@ namespace matricks {
 
   
   //**********************************************************************
-  //***************** Element ACCESS as a tensor *************************
+  //***************Tensor-style Element Access: v(n) *********************
   //**********************************************************************
 
   
@@ -444,30 +433,16 @@ namespace matricks {
 
 
 
-  // FOR EXPERIMENTING
-  template <class A, class D2>  Vector<D,NN,M>& equals1(const TensorR<D2,A>& x) {  
-    if constexpr(M<2) {
-	for (index_type i = 0; i < size(); i++) {
-	  mout << "equals1: i="<<i << std::endl;
-	  (*this)[i] = x[i];
-	}
-    } else {
-	for (index_type i = 0; i < size(); i++) {
-	  mout << "equals1: i="<<i << std::endl;
-	  (*this)[i] = x[i];
-	}
-    }
+  // NEW STYLE EXPRESSION equals
+
+  template <class D2, class A, class B, class OP>  Vector<D,NN,M>& equalsNEW(const TER_Binary<D2,A,B,OP,M>& x) {  
+    x.setequals(*this);
     return *this;
   }
 
-  template <class A, class D2>  Vector<D,NN,M>& equals2(const TensorR<D2,A>& x) {  
-    if constexpr(M<2) {
-      for (index_type i = 0; i < size(); i++)  (*this)[i] = x[i];   
-    } else {
-      for (index_type i = 0; i < deepsize(); i++)  (*this).dat(i) = x.dat(i);       }
-    return *this;
-  }
-  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+  
 
   
   // Assignment to a vector expression
@@ -563,27 +538,24 @@ namespace matricks {
 
     
 
-  // Copy asignment
-  Vector<D,NN,M>& equals(const Vector<D,NN,M>& v2) {
-
-    // resize to avoid segmentation faults
-    // TODO: chekc deepsize
+  
+  Vector<D,NN,M>& resizeAndSet(const Vector<D,NN,M>& v2) {
     if constexpr(NN==0) {
+	// TODO: warn if not in constructor
 	if (this->size() != v2.size()) {
 	  resize(v2.size());
 	}
     }
-
-    for(index_type i=0; i<deepsize(); i++ )
-      this->dat(i) = v2.dat(i);    
+    for(index_type i=0; i< size(); i++ ) {
+      data_[i] = v2[i];
+    }
     return *this;
   }
-
-
-
   Vector<D,NN,M>& operator=(const Vector<D,NN,M>& v2) {
-    return equals(v2);
+    return resizeAndSet(v2);
   }
+
+
   template <class B>
   Vector<D,NN,M>& operator=(const TERW_Resize<D>& b) { 
     return *this;
@@ -591,8 +563,8 @@ namespace matricks {
 
 
   Vector<D,NN,M>& equals(const std::list<D>& mylist) {
-    // resize to avoid segmentation faults
     if constexpr(NN==0) {
+	// TODO: warn if not in constructor
 	if (this->size() != mylist.size()) {
 	  resize(mylist.size());
 	}
@@ -608,18 +580,20 @@ namespace matricks {
   }
 
     
+
   // assignment to a C++11 list
   Vector<D,NN,M>& equals(const std::initializer_list<D>& mylist) {
-    // resize to avoid segmentation faults
     if constexpr(NN==0) {
+	// TODO: warn if not in constructor
 	if (this->size() != mylist.size()) {
-	  resize(mylist.size());
+	  data_.resize(mylist.size());
 	}
     }
+    
     size_type k = 0;
     typename std::initializer_list<D>::iterator it; 
-    for (it = mylist.begin(); it != mylist.end(); ++it)  { 
-      (*this)(k++) = *it;
+    for (it = mylist.begin(); it != mylist.end(); ++it, k++)  {
+      data_[k] = *it;
     }
 
     return *this;

@@ -228,8 +228,8 @@ int main(int argc, char *argv[])
 
   double d;
 
-  mout << is_instance<Fun_Multiply<double>, Fun_Divide>{} <<endl;
-  mout << is_instance<Fun_Multiply<double>, Fun_Multiply>{} <<endl;
+  // mout << is_instance<Fun_Multiply<double,int>, Fun_Divide>{} <<endl;
+  // mout << is_instance<Fun_Multiply<double,float>, Fun_Multiply>{} <<endl;
 
 
   // The following causes a compiler error.
@@ -286,9 +286,9 @@ int main(int argc, char *argv[])
   mout << Fun_Cast<double,int>::classname() << " ";
   mout << Fun_Cast<double,int>::expression("n") << endl;
   printBinary<double,double,Fun_Add>();
-  printBinary<double,Fun_Subtract>();
-  printBinary<double,Fun_Multiply>();
-  printBinary<double,Fun_Divide>();
+  printBinary<double,double,Fun_Subtract>();
+  printBinary<double,double,Fun_Multiply>();
+  printBinary<double,float,Fun_Divide>();
   printBinary<double,Fun_Pow>();
   printBinary<double,Fun_Monomial>();
 

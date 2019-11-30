@@ -63,9 +63,6 @@ namespace matricks {
 
   template <typename D> class Imaginary;
   
-  // maximum subcript size for vectors and matrices (since we allow negative indexing)
-  const size_type maxsize = std::numeric_limits<index_type>::max();
-  const size_type badsize = std::numeric_limits<size_type>::max();
 
   template <typename T> class NumberType;
 
@@ -137,12 +134,20 @@ namespace matricks {
     class VERW_Join;
   template<class D, class A, int M = 1+matricks::NumberType<D>::depth()>
     class VER_Rep;
+
+  // TODO: move to math.h
   
     /****************************************************************************
    * math
    **************************************************************************** 
    */
+  
+    // maximum subcript size for vectors and matrices (since we allow negative indexing)
+  const size_type maxsize = std::numeric_limits<index_type>::max();
+  const size_type badsize = std::numeric_limits<size_type>::max();
 
+  // TODO: C++17 has its own gcd gcf
+  
   // GCD
   inline int gcd(int a, int b) {
     int r;
@@ -382,22 +387,15 @@ namespace matricks {
   };
 
 
-  template<class D, class A, class B, class OP, int M>
-    class NumberType<TER_Binary<D,A,B,OP,M> > {
-  public:
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-    inline static int size(const TensorR<D,A>& x) {
-      return x.size();
-    }
-    inline static int deepsize(const TensorR<D,A>& x) {
-      return x.deepsize();
-    }
-  };
 
- 
+
+
+
+  
+  // ***************************************************************************
+  // At(x,n) -  for primitives, return x
+  //            for container of any type, return x[n]
+  // ***************************************************************************
 
   template <class D>
   inline D&& At(D&& x, index_type n) {

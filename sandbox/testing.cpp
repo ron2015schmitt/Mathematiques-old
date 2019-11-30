@@ -289,8 +289,7 @@ int main(int argc, char *argv[])
   printBinary<double,double,Fun_Subtract>();
   printBinary<double,double,Fun_Multiply>();
   printBinary<double,float,Fun_Divide>();
-  printBinary<double,Fun_Pow>();
-  printBinary<double,Fun_Monomial>();
+  printBinary<double,int,Fun_Pow>();
 
   printUnary<double,Fun_Sqr>();
   printUnary<double,Fun_Cube>();
@@ -344,9 +343,6 @@ int main(int argc, char *argv[])
 
   printBinary<double,Fun_Polar>();
   printBinary<double,Fun_Complex>();
-  printBinary<double,Fun_PowCR>();
-  printBinary<double,Fun_PowRC>();
-  printUnary<double,Fun_CAbs>();
   printUnary<double,Fun_Arg>();
   printUnary<double,Fun_Conj>();
   printUnary<double,Fun_Real>();

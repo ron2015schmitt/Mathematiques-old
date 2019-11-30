@@ -617,7 +617,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> s = ComplexDouble(1,-2);
     Scalar<double> expected = 2.23606797749979;
     Scalar<double> result;
-    testcode( result = abs(s) );
+    testcode( result = real(abs(s)) );
     bool pass = approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

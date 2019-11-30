@@ -450,14 +450,53 @@ namespace matricks {
   // *            Powers and logs
   // ************************************************************************
 
-  // pow(Tensor,Tensor)
 
-  template <class D, class A, class B> 
-    inline auto pow(const TensorR<D,A>& a, const TensorR<D,B>& b)
+  // pow(Tensor<D1>,Tensor<D2>)
+
+  template <class D1, class D2, class A, class B> 
+    inline auto pow(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+  {
+    return  TER_NewBinary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_Pow<D1,D2>>(a,b);
+  }
+  
+  
+  // pow(Tensor<D1> , D2)
+  
+  template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+    inline auto pow(const TensorR<D1,A>& a, const D2& b)
     {
-      return  TER_Binary<D,TensorR<D,A>,TensorR<D,B>,Fun_Pow<D> >(a,b);
+      return  TER_NewBinary<TensorR<D1,A>,D2,D1,D2,Fun_Pow<D1,D2>>(a,b);
     }
+  
+  
+  // pow(D1 , Tensor<D2>)
+  
+  template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+    inline auto pow(const D1& a, const TensorR<D2,B>& b)
+    {
+      return  TER_NewBinary<D1,TensorR<D2,B>,D1,D2,Fun_Pow<D1,D2>>(a,b);
+    }
+  
+  
+  // pow(Tensor<T> , T)
+  
+  template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+    inline auto pow(const TensorR<T,A>& a, const T& b)
+    {
+      return  TER_NewBinary<TensorR<T,A>,T,T,T,Fun_Pow<T,T>>(a,b);
+    }
+  
+  
+  // pow(T , Tensor<T>)
+  
+  template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+    inline auto pow(const T& a, const TensorR<T,B>& b)
+    {
+      return  TER_NewBinary<T,TensorR<T,B>,T,T,Fun_Pow<T,T>>(a,b);
+    }
+  
 
+    
 
   // sqr(Tensor)
 
@@ -1062,55 +1101,6 @@ namespace matricks {
 
 
 
-
-  //---------- Tensor scalar mix: powers and exponents -----------------
-
-
-  // pow(Tensor,scalar)
-
-  template <class D, class A> 
-    inline auto pow(const TensorR<D,A>& a, const D b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Pow<D> >(a,b);
-    }
-
-  // pow(Tensor,int)
-
-  template <class D, class A> 
-    inline auto pow(const TensorR<D,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<D,TensorR<D,A>,Fun_Monomial<D> >(a,b);
-    }
-
-  // pow(Tensor<int>,int)
-
-  template <class A> 
-    inline auto pow(const TensorR<int,A>& a, const int b)
-    {
-      return  TER_TensorOpScalar<int,TensorR<int,A>,Fun_Monomial<int> >(a,b);
-    }
-
-  // pow(scalar,Tensor)
-
-  template <class D, class B> 
-    inline auto pow( const D a, const TensorR<D,B>& b)
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Pow<D> >(a,b);
-    }
-  // pow(int,Tensor)
-
-  template <class D, class B> 
-    inline auto pow( const int a, const TensorR<D,B>& b)
-    {
-      return  TER_ScalarOpTensor<D,TensorR<D,B>,Fun_Monomial<D> >(a,b);
-    }
-  // pow(int,Tensor<int>)
-
-  template <class B> 
-    inline auto pow( const int a, const TensorR<int,B>& b)
-    {
-      return  TER_ScalarOpTensor<int,TensorR<int,B>,Fun_Pow<int> >(a,b);
-    }
 
 
 

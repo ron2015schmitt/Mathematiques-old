@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29-r33).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29-r34).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -214,7 +214,7 @@ v = vcomplex(vr, vi);
 ```C++
   v = {(1,-1), (2,0), (3,1)}; 
   abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
-  abs(v) = Vector<double> {1.41421, 2, 3.16228}; 
+  abs(v) = Vector<std::complex<double>> {(1.41421,0), (2,0), (3.16228,0)}; 
   pow(2., v) = Vector<std::complex<double>> {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
   pow(v, 2.) = Vector<std::complex<double>> {(1.22465e-16,-2), (4,0), (8,6)}; 
   pow(v,v) = Vector<std::complex<double>> {(0.273957,-0.583701), (4,0), (-11.8982,19.5929)}; 

@@ -179,7 +179,7 @@ namespace matricks {
   template <typename T, typename NUM> class NumberType {
   public:
     typedef T Type;
-    typedef NUM NewType;
+    typedef NUM ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -193,7 +193,7 @@ namespace matricks {
   template <class D, typename NUM> class NumberType<std::complex<D>,NUM > {
   public:
     typedef std::complex<D> Type;
-    typedef NUM NewType;
+    typedef NUM ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -207,7 +207,7 @@ namespace matricks {
   template <class D, typename NUM> class NumberType<Imaginary<D>,NUM > {
   public:
     typedef Imaginary<D> Type;
-    typedef NUM NewType;
+    typedef NUM ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -223,7 +223,7 @@ namespace matricks {
   public:
     typedef A<D> InputType;
     typedef typename NumberType<D>::Type Type;
-    typedef A<typename NumberType<D,NUM>::NewType> NewType;
+    typedef A<typename NumberType<D,NUM>::ReplaceType> ReplaceType;
     constexpr static int depth() {
       return 1+NumberType<D,NUM>::depth();
     }
@@ -240,7 +240,7 @@ namespace matricks {
   public:
     typedef A<D,B> InputType;
     typedef typename NumberType<D>::Type Type;
-    typedef A<typename NumberType<D,NUM>::NewType, B> NewType;
+    typedef A<typename NumberType<D,NUM>::ReplaceType, B> ReplaceType;
     constexpr static int depth() {
       return 1+NumberType<D,NUM>::depth();
     }

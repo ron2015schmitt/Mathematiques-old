@@ -25,7 +25,7 @@ namespace matricks {
  
 
   template <class E, int NDIM,   typename D, int M> class Tensor :
-    public TensorRW<D,Tensor<E,NDIM,D,M> > {
+    public TensorRW<E,Tensor<E,NDIM,D,M>,D,M > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -66,7 +66,7 @@ namespace matricks {
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Tensor<E,NDIM,D,M>(const Dimensions& dims, const E val) 
+    explicit Tensor<E,NDIM,D,M>(const Dimensions& dims, const E e) 
     {
       dimensions_ = new Dimensions(dims);
       data_.resize(dimensions_->datasize());
@@ -74,7 +74,6 @@ namespace matricks {
     }
 
 
-    
 
 
 
@@ -385,15 +384,28 @@ namespace matricks {
     // equals functions are included so that derived classes can call these functions
 
 
-    // ----------------- tensor = d ----------------
-    Tensor<E,NDIM,D,M>& operator=(const E d) { 
+    // ----------------- tensor = e ----------------
+    Tensor<E,NDIM,D,M>&
+      operator=(const E e) { 
       for(index_type i=size(); i--;) 
-	data_[i]=d; 
+	data_[i]=e; 
       return *this;
     }
 
-    // ----------------- tensor = TensorR<D,A> ----------------
-    Tensor<E,NDIM,D,M>& operator=(const Tensor<E,NDIM,D,M>& x) {  
+    // ----------------- tensor = d ----------------
+    template <class T=E> 
+      typename std::enable_if<!std::is_same<T,D>::value, Tensor<T,NDIM,D,M>& >::type operator=(const D& d) { 
+    
+      for(index_type i = 0; i < deepsize(); i++) {
+	data_.dat(i) = d;
+      }
+      return *this;
+    }
+
+
+    // ----------------- tensor = TensorR<E,A,> ----------------
+    Tensor<E,NDIM,D,M>&
+      operator=(const Tensor<E,NDIM,D,M>& x) {  
       // TODO: issue warning
       resize(x.dims());
       for (index_type i = size(); i--;) {
@@ -403,7 +415,8 @@ namespace matricks {
     }
 
     // ----------------- tensor = TensorR<D,A> ----------------
-    template <class A>  Tensor<E,NDIM,D,M>& operator=(const TensorR<E,A>& x) {  
+    template <class A>  Tensor<E,NDIM,D,M>&
+      operator=(const TensorR<E,A,D,M>& x) {  
       // TODO: issue warning
       resize(x.dims());
 
@@ -428,19 +441,18 @@ namespace matricks {
 
     // ------------- tensor = array[] ----------------
     
-    Tensor<E,NDIM,D,M>& equals(const E array1[]) {
+    Tensor<E,NDIM,D,M>&
+      operator=(const E array1[]) {
       for (index_type i = 0; i < size(); i++)  {
 	(*this)[i] = array1[i];
       }
       return *this;
     }
-    Tensor<E,NDIM,D,M>& operator=(const E array1[]) {
-      return equals(array1);
-    }
 
 
     // --------------- matrix = initializer_list ------------------
-    Tensor<E,NDIM,D,M>& equals(const std::initializer_list<E>& mylist) {
+    Tensor<E,NDIM,D,M>&
+      operator=(const std::initializer_list<E>& mylist) {
 
       // TODO: bound scheck 
       size_type i = 0;
@@ -450,9 +462,6 @@ namespace matricks {
       }
 
       return *this;
-    }
-    Tensor<E,NDIM,D,M>& operator=(const std::initializer_list<E>& mylist) {
-      return equals(mylist);
     }
 
 

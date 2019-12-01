@@ -2,12 +2,7 @@
 #define MATRICKS__SCALAR_H 1
 
 
-
-
 namespace matricks {
-
- 
-
 
 
   /********************************************************************
@@ -26,7 +21,7 @@ namespace matricks {
 
     
   template <class E, typename D, int M> class Scalar :
-    public TensorRW<E, Scalar<E,D,M> > {
+    public TensorRW<E,Scalar<E,D,M>,D,M> {
   private:
 
   // *********************** OBJECT DATA ***********************************
@@ -69,7 +64,7 @@ namespace matricks {
 
 
   template <class A>
-  Scalar<E,D,M>(const TensorR<E,A>& x) 
+    Scalar<E,D,M>(const TensorR<E,A,D,M>& x) 
   {
     *this = x;
     constructorHelper();
@@ -230,10 +225,18 @@ namespace matricks {
   //************************** ASSIGNMENT **************************************
   //**********************************************************************
 
-  Scalar<E,D,M>& operator=(const E d) {
-    data_=d; 
+  Scalar<E,D,M>& operator=(const E e) {
+    data_=e; 
     return *this;
   }
+  template <class T=E> 
+    typename std::enable_if<!std::is_same<T,D>::value, Scalar<T,D,M>& >::type operator=(const D& d) { 
+    for (index_type i = 0; i < deepsize(); i++) {
+      (*this).dat(i)=d;
+    }
+    return *this;
+  }
+
 
   Scalar<E,D,M>& operator=(const Scalar<E,D,M>& s2) {
     if constexpr(M<2) {
@@ -253,8 +256,8 @@ namespace matricks {
   }
 
 
-  template<class A, class D2> 
-    Scalar<E,D,M>& operator=(const TensorR<D2,A>& y) {
+  template <class A>
+    Scalar<E,D,M>& operator=(const TensorR<E,A,D,M>& y) {
     if constexpr(M<2) {
 	 data_ = y[0];
     } else {

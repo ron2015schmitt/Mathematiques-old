@@ -52,31 +52,37 @@ namespace matricks {
   template<template<typename> class T, class D> struct is_complex<T<std::complex<D> > > : std::true_type {};
 
 
-  template <typename D> class Complexify {
+  template <typename D> class
+    Complexify {
   public:
     typedef std::complex<D> Type;
   };
-  template <typename D> class Complexify<std::complex<D> > {
+  template <typename D> class
+    Complexify<std::complex<D> > {
   public:
     typedef std::complex<D> Type;
   };
-  template <typename D, typename A> class Complexify<TensorR<D,A> > {
+  template <typename E, typename A, typename D, int M> class
+    Complexify<TensorR<E,A,D,M> > {
   public:
-    typedef TensorR<typename Complexify<D>::Type,A> Type;
+    typedef TensorR<typename Complexify<E>::Type,A,typename Complexify<D>::Type, M> Type;
   };
 
 
-  template <typename D> class Realify {
+  template <typename D> class
+    Realify {
   public:
     typedef D Type;
   };
-  template <typename D> class Realify<std::complex<D> > {
+  template <typename D> class
+    Realify<std::complex<D> > {
   public:
     typedef D Type;
   };
-  template <typename D, typename A> class Realify<TensorR<D,A> > {
+  template <typename E, typename A, typename D, int M> class
+    Realify<TensorR<E,A,D,M> > {
   public:
-    typedef TensorR<typename Realify<D>::Type,A> Type;
+    typedef TensorR<typename Realify<E>::Type,A,typename Realify<D>::Type,M> Type;
   };
 
 

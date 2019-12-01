@@ -466,20 +466,19 @@ namespace matricks {
   
 
 
-  template <class D, class A>
-    std::ostream& printTensorExpression(std::ostream &stream, const TensorR<D,A>& te) {
+  template <class E, class A, class D, int M>
+    std::ostream& printTensorExpression(std::ostream &stream, const TensorR<E,A,D,M>& te) {
     const size_type ndims = te.ndims();
-    const size_type depth = te.depth();
     switch (ndims) {
     case 0: {
-      Scalar<D> s = te;
+      Scalar<E> s = te;
       stream << "" +display::getTypeName(s)+" ";
       stream << s;
       return stream;
       break;
     }
     case 1: {
-      Vector<D> v = te;
+      Vector<E> v = te;
       stream << "" +display::getTypeName(v)+" ";
       stream << v;
       return stream;
@@ -506,11 +505,9 @@ namespace matricks {
   //            either a tensor or a tensor expression that is "read only"
   // -------------------------------------------------------------------
 
-  
-  template <class D, class DERIVED> class TensorR : public TensorAbstract {
+  template <class E, class DERIVED, typename D, int M> class
+    TensorR : public TensorAbstract {
   public:
-    typedef D DataType;
-    typedef typename NumberType<D>::Type MyNumberType;
 
     DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -522,7 +519,7 @@ namespace matricks {
     //**********************************************************************
     //************************** DEEP ACCESS *******************************
     //**********************************************************************
-    const auto dat(const index_type i) const {
+    const D dat(const index_type i) const {
       return derived().dat(i);
     }
     
@@ -530,7 +527,7 @@ namespace matricks {
     //***************** Element ACCESS as an array *************************
     //**********************************************************************
     
-    const D operator[](const index_type i) const {
+    const E operator[](const index_type i) const {
       return derived()[i];
     }
 
@@ -583,7 +580,7 @@ namespace matricks {
       return derived().classname();
     }
     
-    friend std::ostream& operator<<(std::ostream &stream, const TensorR<D,DERIVED>& te) {
+    friend std::ostream& operator<<(std::ostream &stream, const TensorR<E,DERIVED,D,M>& te) {
       const DERIVED& td = te.derived();
       if (td.isExpression()) {
 	return printTensorExpression(stream,te);
@@ -607,10 +604,9 @@ namespace matricks {
   // -------------------------------------------------------------------
 
 
-  template <class D, class DERIVED> class TensorRW : public TensorR<D,TensorRW<D,DERIVED> > {
+template <class E, class DERIVED, typename D, int M> class
+  TensorRW : public TensorR<E,TensorRW<E,DERIVED,D,M>, D,M> {
   public:
-    typedef typename NumberType<D>::Type MyNumberType;
-    typedef D DataType;
 
     DERIVED& derived() {
       return static_cast<DERIVED&>(*this);
@@ -623,20 +619,20 @@ namespace matricks {
     //**********************************************************************
     //************************** DEEP ACCESS *******************************
     //**********************************************************************
-    const auto dat(const index_type i) const {
+    const D dat(const index_type i) const {
       return derived().dat(i);
     }
-    auto& dat(const index_type i)  {
+    D& dat(const index_type i)  {
       return derived().dat(i);
     }
     
     //**********************************************************************
     //***************** Element ACCESS as an array *************************
     //**********************************************************************
-    const D operator[](const index_type i) const {
+    const E operator[](const index_type i) const {
       return derived()[i];
     }
-    D& operator[](const index_type i)  {
+    E& operator[](const index_type i)  {
       return derived()[i];
     }
 
@@ -689,7 +685,7 @@ namespace matricks {
       return derived().classname();
     }
 
-    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<D,DERIVED>& te) {
+    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<E,DERIVED,D,M>& te) {
       const DERIVED& td = te.derived();
       if (td.isExpression()) {
 	return printTensorExpression(stream,te);
@@ -701,13 +697,13 @@ namespace matricks {
 
 
     // Assign to constant value
-    DERIVED& equals(const D d) { 
+    DERIVED& equals(const E d) { 
       for(size_type i=0; i<size(); i++) 
 	(*this)[i]=d; 
       return derived();
     }
     // assign to recon object (issue error)
-    DERIVED& equals(const TERW_Resize<D>& b) { 
+    DERIVED& equals(const TERW_Resize<E>& b) { 
       return derived();
     }
     
@@ -715,7 +711,7 @@ namespace matricks {
 
     // assign to vector or expression
     template <class B>
-      DERIVED& equals(const TensorR<D,B>& rhs) { 
+      DERIVED& equals(const TensorR<E,B,D,M>& rhs) { 
 
       const size_type N =size();
 

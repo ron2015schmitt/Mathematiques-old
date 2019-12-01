@@ -48,7 +48,7 @@ extern char COMPILE_OPTIMIZE[];
 namespace display {
   
   template <typename T> inline std::string getBracketedTypeName(const T& var);
- template <typename T> inline void dispval_strm(std::ostream &stream, const T& d);
+  template <typename T> inline void dispval_strm(std::ostream &stream, const T& d);
 };
 
 namespace matricks {
@@ -63,20 +63,23 @@ namespace matricks {
 
   template <typename D> class Imaginary;
   
-
   template <typename T, typename NUM=double> class NumberType;
-
-  class TensorAbstract;
-  template <class D, class DERIVED> class TensorR;  
-  template <class D, class DERIVED> class TensorRW;
 
 
   // E = element type (int, double, complex<double>, bool, Scalar<double>, Vector<double>, Matrix<double>, etc)
   // D = number type (int, double, complex<double>, bool, etc)
   
+  class TensorAbstract;
+  template <class E, class DERIVED, typename D, int M>
+    class TensorR;  
+  template <class E, class DERIVED, typename D, int M>
+    class TensorRW;
+
+
+  
   template <class E,              typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Scalar;
-  template <class E, int NN = 0,  typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+  template <class E, int NE = 0,  typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Vector;
   template <class E, int NR = 0, int NC = 0,    typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Matrix;
@@ -135,25 +138,30 @@ namespace matricks {
   // ContainedType - this returns the contained type of a complex number
   //                 this could certainly be specialized for other
   //                 container types
-  template <typename T> class ContainedType {
+  template <typename T> class
+    ContainedType {
   public:
     typedef void Type;
   };
-  template <typename D> class ContainedType<std::complex<D>> {
+  template <typename D> class
+    ContainedType<std::complex<D>> {
   public:
     typedef D Type;
   };
-  template <typename D> class ContainedType<Imaginary<D>> {
+  template <typename D> class
+    ContainedType<Imaginary<D>> {
   public:
     typedef D Type;
   };
-  template <template<typename> class T, typename D> class ContainedType<T<D> > {
+  template <template<typename> class T, typename D> class
+    ContainedType<T<D> > {
   public:
     typedef D Type;
   };
-  template <typename D, typename A> class ContainedType<TensorR<D,A> > {
+  template <typename E, typename A,typename D, int M> class
+    ContainedType<TensorR<E,A,D,M> > {
   public:
-    typedef D Type;
+    typedef E Type;
   };
 
 
@@ -169,24 +177,24 @@ namespace matricks {
     }
   };
 
-  template <class E, template<typename> class T>
-    class FundamentalType<T<E>> {
+  template <class E, template<typename> class T> class
+    FundamentalType<T<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
       return 1+FundamentalType<E>::depth();
     }
   };
-  template <class E>
-    class FundamentalType<std::complex<E>> {
+  template <class E> class
+    FundamentalType<std::complex<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
       return 1+FundamentalType<E>::depth();
     }
   };
-  template <class E>
-    class FundamentalType<Imaginary<E>> {
+  template <class E> class
+    FundamentalType<Imaginary<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -197,8 +205,8 @@ namespace matricks {
 
   
   //  Scalar<E>
-  template <class E>
-    class FundamentalType<Scalar<E>> {
+  template <class E> class
+    FundamentalType<Scalar<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -207,8 +215,8 @@ namespace matricks {
   };
   
   //  Vector<E>
-  template <class E>
-    class FundamentalType<Vector<E>> {
+  template <class E> class
+    FundamentalType<Vector<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -218,8 +226,8 @@ namespace matricks {
 
   //  Matrix<E>
 
-  template <class E>
-    class FundamentalType<Matrix<E>> {
+  template <class E> class
+    FundamentalType<Matrix<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -229,8 +237,8 @@ namespace matricks {
 
 
   //  Tensor<E>
-  template <class E>
-    class FundamentalType<Tensor<E>> {
+  template <class E> class
+    FundamentalType<Tensor<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -239,14 +247,14 @@ namespace matricks {
   };
 
 
-  //  TensorR<E,A>
+  //  TensorR<E,A,D,M>
 
-  template <class E, class A>
-    class FundamentalType<TensorR<E,A>> {
+  template <class E, class A, class D, int M> class
+    FundamentalType<TensorR<E,A,D,M>> {
   public:
-    typedef typename FundamentalType<E>::Type Type;
+    typedef E Type;
     constexpr static int depth() {
-      return 1+FundamentalType<E>::depth();
+      return M;
     }
   };
 
@@ -255,10 +263,11 @@ namespace matricks {
   
   // NumberType - this operates recursively to find the base number type
   //              eg. complex<double>, Imaginary<float>, int, double, etc
-  template <typename T, typename NumType> class NumberType {
+  template <typename T, typename NewD> class
+    NumberType {
   public:
     typedef T Type;
-    typedef NumType ReplaceType;
+    typedef NewD ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -269,10 +278,11 @@ namespace matricks {
       return 1;
     }
   };
-  template <class D, typename NumType> class NumberType<std::complex<D>,NumType > {
+  template <class D, typename NewD> class
+    NumberType<std::complex<D>,NewD > {
   public:
     typedef std::complex<D> Type;
-    typedef NumType ReplaceType;
+    typedef NewD ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -283,10 +293,10 @@ namespace matricks {
       return 1;
     }
   };
-  template <class D, typename NumType> class NumberType<Imaginary<D>,NumType > {
+  template <class D, typename NewD> class NumberType<Imaginary<D>,NewD > {
   public:
     typedef Imaginary<D> Type;
-    typedef NumType ReplaceType;
+    typedef NewD ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -302,13 +312,14 @@ namespace matricks {
   
   //  Scalar<E>
   
-  template <class E, typename NumType> class NumberType<Scalar<E>,NumType > {
+  template <class E, typename NewD> class
+    NumberType<Scalar<E>,NewD > {
   public:
     typedef Scalar<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Scalar<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
+    typedef Scalar<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<E,NumType>::depth();
+      return 1+NumberType<E,NewD>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -321,13 +332,14 @@ namespace matricks {
 
   //  Vector<E>
 
-  template <class E, typename NumType> class NumberType<Vector<E>,NumType > {
+  template <class E, typename NewD> class
+    NumberType<Vector<E>,NewD > {
   public:
     typedef Vector<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Vector<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
+    typedef Vector<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<E,NumType>::depth();
+      return 1+NumberType<E,NewD>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -340,13 +352,14 @@ namespace matricks {
 
   //  Matrix<E>
 
-  template <class E, typename NumType> class NumberType<Matrix<E>,NumType > {
+  template <class E, typename NewD> class
+    NumberType<Matrix<E>,NewD > {
   public:
     typedef Matrix<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Matrix<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
+    typedef Matrix<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<E,NumType>::depth();
+      return 1+NumberType<E,NewD>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -359,13 +372,14 @@ namespace matricks {
 
   //  Tensor<E>
 
-  template <class E, typename NumType> class NumberType<Tensor<E>,NumType > {
+  template <class E, typename NewD> class
+    NumberType<Tensor<E>,NewD > {
   public:
     typedef Tensor<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Tensor<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
+    typedef Tensor<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<E,NumType>::depth();
+      return 1+NumberType<E,NewD>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -376,15 +390,19 @@ namespace matricks {
   };
 
 
-  //  TensorR<E,A>
+  //  TensorR<E,A,D,M>
 
-  template <class E, class A, typename NumType> class NumberType<TensorR<E,A>,NumType > {
+  template <class E, class A, class D, int M, typename NewD> class
+    NumberType<TensorR<E,A,D,M>,NewD> {
   public:
-    typedef TensorR<E,A> InputType;
-    typedef typename NumberType<E>::Type Type;
-    typedef TensorR<typename NumberType<E,NumType>::ReplaceType, A> ReplaceType;
+    typedef TensorR<E,A,D,M> InputType;
+    typedef A DerivedType;
+    typedef D OldD;
+    typedef D OldE;
+    typedef typename NumberType<E,NewD>::ReplaceType NewE;
+    typedef TensorR<NewE, A, NewD,M> Type;
     constexpr static int depth() {
-      return 1+NumberType<E,NumType>::depth();
+      return M;
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -399,7 +417,8 @@ namespace matricks {
 
   
   // DeeperType - this operates recursively to find the primitive arithmetic type
-  template <typename T1, typename T2> class DeeperType {
+  template <typename T1, typename T2> class
+    DeeperType {
   public:
     typedef typename std::conditional< NumberType<T1>::depth() >= NumberType<T2>::depth(), T1, T2>::type Type;
   };
@@ -470,13 +489,13 @@ namespace matricks {
   // ***************************************************************************
 
 
-  template <typename A, typename B, typename NumType> class ResultType {
+  template <typename A, typename B, typename NewD> class ResultType {
   public:
 
     typedef typename DeeperType<A,B>::Type DeeperType;
-    typedef typename NumberType<DeeperType,NumType>::ReplaceType TensorType;
+    typedef typename NumberType<DeeperType,NewD>::ReplaceType TensorType;
     constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, NumType, TensorType >::type Type;
+    typedef typename std::conditional<isprim, NewD, TensorType >::type Type;
   };
 
 
@@ -527,7 +546,7 @@ namespace matricks {
   // In functions.h
   ////////////////////////////////////////////////////////////
 
-  template <class A> inline Vector<index_type>& findtrue( const TensorR<bool,A>& a );
+  template <class E, class A, int M> inline Vector<index_type>& findtrue( const TensorR<E,A,bool,M>& a );
 
 };
 

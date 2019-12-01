@@ -2,11 +2,7 @@
 #define MATRICKS__VECTOR_H 1
 
 
-
-
 namespace matricks {
-
- 
  
   
   /********************************************************************
@@ -25,10 +21,8 @@ namespace matricks {
   ********************************************************************  
    */
 
-
   template <class E, int NE,   typename D, int M> class Vector :
-    public TensorRW<E,Vector<E,NE,D,M> > {
-
+    public TensorRW<E,Vector<E,NE,D,M>,D,M> {
 
   public:     
   typedef typename ArrayType<E,NE>::Type MyArrayType;
@@ -109,7 +103,8 @@ namespace matricks {
 
   // --------------------- Vector(Vector) --------------------
 
-  Vector<E,NE,D,M>(const Vector<E,NE,D,M>& v2) {
+  template <int NE2>
+  Vector<E,NE,D,M>(const Vector<E,NE2,D,M>& v2) {
     *this = v2;
     constructorHelper();
   }
@@ -118,7 +113,7 @@ namespace matricks {
   // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
   template <class A>
-  Vector<E,NE,D,M>(const TensorR<E,A>& x) 
+    Vector<E,NE,D,M>(const TensorR<E,A,D,M>& x) 
   {
     if constexpr(NE==0) {
       this->resize(x.size());
@@ -429,9 +424,18 @@ namespace matricks {
   // equals functions are included so that derived classes can call these functions
 
   // Assign all elements to the same constant value
-  Vector<E,NE,D,M>& operator=(const D& d) { 
-    for (index_type i = 0; i < size(); i++) 
-      (*this)(i)=d; 
+  Vector<E,NE,D,M>& operator=(const E& e) { 
+    for (index_type i = 0; i < size(); i++) {
+      (*this)[i]=e;
+    }
+    return *this;
+  }
+
+  template <class T=E> 
+    typename std::enable_if<!std::is_same<T,D>::value, Vector<T,NE,D,M>& >::type operator=(const D& d) { 
+    for (index_type i = 0; i < deepsize(); i++) {
+      (*this).dat(i)=d;
+    }
     return *this;
   }
 
@@ -467,7 +471,8 @@ namespace matricks {
 
   // NEW STYLE EXPRESSION equals
 
-  template <class D2,class A> Vector<E,NE,D,M>& operator=(const TensorR<D2,A>& y) {  
+  template <class A>
+    Vector<E,NE,D,M>& operator=(const TensorR<E,A,D,M>& y) {  
     if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != y.size()) {

@@ -4,7 +4,8 @@
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATRICKS=2.30
+VERSION_MATRICKS=2.31
+# V2.31 Workiogn build with recursive Tensors working
 # V2.30 Intermediate refactoring build--not-working fully
 # V2.29 Vector restructuring
 # V2.28 Imaginary number functionality complete. Scalar restructuring

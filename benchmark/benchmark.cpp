@@ -172,7 +172,45 @@ int main()
     t.stop_timer_curt();
   }
 
+  cr();
+  mout << "" << createStyle(BOLD).apply("complex numbers: sin(2*log10(abs(x/5)*100) + 3 + pow(-x,2))") << ", N="<<N<<std::endl;
+  {
+    //int N = 5;
+    mout << "  " << createStyle(BLUE2+BOLD).apply("std::valarray")<<std::endl;
+    t.start_timer_silent();
 
+    std::valarray<double> x1(N);
+    for(int i=0; i<N; i++)
+      x1[i] = double(i)/double(N-1);
+    std::valarray<double> x2(N);
+    for(int i=0; i<N; i++)
+      x2[i] = double(2*i-N+1)/double(N-1);
+    std::valarray<ComplexDouble> x(N);
+    for(int i=0; i<N; i++) {
+      x[i] = *(new ComplexDouble(x1[i],x2[i]));
+    }
+    std::valarray<ComplexDouble> f(N);
+    for(int i=0; i<N; i++) {
+      f[i] = sin(2*log10(abs(x[i]/5)*100) + 3 + pow(-x[i],2));
+    }
+    
+    t.stop_timer_curt();
+    //tdisp(f);
+  }
+  {
+    //int N = 5;
+    mout << "  " << createStyle(BLUE2+BOLD).apply("matricks::Vector") <<std::endl;
+    t.start_timer_silent();
+
+    Vector<ComplexDouble> x(N);
+    Vector<ComplexDouble> f(N);
+    x = complexify(linspace<double>(0,1,N), linspace<double>(-1,1,N));
+    f = sin(2*log10(abs(x/5)*100) + 3 + pow(-x,2));
+    
+    t.stop_timer_curt();
+    //tdisp(f);
+  }
+  
 
   tfull.stop_timer_silent();
   cr();

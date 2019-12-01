@@ -719,9 +719,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
     Scalar<ComplexDouble> expected = ComplexDouble(97.07651685436622, 60);
     Scalar<ComplexDouble> result;
-    //    testcode( result = 20*log10(abs(s1/s2)*100) + 3 + pow(-s2,2));
-    tdisp(2*s1);
-    testcode( result = 2*s1 );
+    testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2) );
     bool pass = approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;

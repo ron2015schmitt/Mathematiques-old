@@ -716,7 +716,7 @@ namespace matricks {
   // roundzero(Tensor)
 
   template <class D1, class A>
-    inline auto roundzero(const TensorR<D1,A>& a, const typename FundamentalType<D1>::Type tolerance = MatricksHelper< typename FundamentalType<D1>::Type >::tolerance)
+     auto roundzero(const TensorR<D1,A>& a, const typename FundamentalType<D1>::Type tolerance = MatricksHelper< typename FundamentalType<D1>::Type >::tolerance)
     {
       typedef typename FundamentalType<D1>::Type TOL;
       return  TER_Binary< TensorR<D1,A>,TOL, D1,TOL, Fun_Roundzero<D1,TOL> >(a, tolerance);
@@ -1205,7 +1205,7 @@ namespace matricks {
   //          checks dimensions first
   // -------------------------------------------------------------------
   template <class D, class A, class B>
-    inline bool approx(const TensorR<D,A>& tensor1, const TensorR<D,B>& tensor2, typename FundamentalType<D>::Type tolerance) {
+    inline bool approx(const TensorR<D,A>& tensor1, const TensorR<D,B>& tensor2, typename FundamentalType<D>::Type tolerance = MatricksHelper<typename FundamentalType<D>::Type>::tolerance) {
     if (!dimequiv(tensor1,tensor2)) {
       return false;
     }
@@ -1388,22 +1388,24 @@ namespace matricks {
 
   // findtrue(a)
 
-  template <class D, class A> 
-    inline Vector<index_type> findtrue( const TensorR<D,A>& a ) {
+  // NOTE: declaration in preface.h
+  
+  template <class A> 
+    inline Vector<index_type>& findtrue( const TensorR<bool,A>& a ) {
     int N = 0;
-    
+    tdisp(a);
 
-    for (index_type i = 0; i< a.deepsize(); i++)
-      N += int(a.dat(i));
+    for (index_type i = 0; i< a.size(); i++)
+      N += int(a[i]);
  
-    Vector<index_type> y(N);
+    Vector<index_type> *y = new Vector<index_type>(N);
 
     index_type j =0;
-    for (index_type i = 0; i< a.deepsize(); i++)
-      if (a.dat(i))
-	y[j++] = i;
+    for (index_type i = 0; i< a.size(); i++)
+      if (a[i])
+	(*y)[j++] = i;
     
-    return y;
+    return *y;
   }
 
     

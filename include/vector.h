@@ -444,6 +444,19 @@ namespace matricks {
     return *this;
   }
 
+  Vector<D,NN,M>& operator=(const Vector<D,NN,M>& v2) {
+    if constexpr(NN==0) {
+	// TODO: warn if not in constructor
+	if (this->size() != v2.size()) {
+	  resize(v2.size());
+	}
+    }
+    for(index_type i=0; i< size(); i++ ) {
+      data_[i] = v2[i];
+    }
+    return *this;
+  }
+
 
   // NEW STYLE EXPRESSION equals
 
@@ -454,23 +467,17 @@ namespace matricks {
 	  resize(y.size());
 	}
       } 
-    y.setequals(*this);
+    if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  {
+	  (*this)[i] = y[i];
+	}
+      } else {
+      for (index_type i = 0; i < deepsize(); i++)  {
+	this->dat(i) = y.dat(i);
+      }
+    } 
     return *this;
   }
-    
-
-  // setequals
-  template<class C>  C&
-    setequals(C& c) const {
-      if constexpr(M<2) {
-        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
-      } else {
-        for (index_type i = 0; i < deepsize(); i++)  {
-	  c.dat(i) = this->dat(i);
-	}
-      } 
-      return c;
-    }
 
 
   std::string bottom(){

@@ -986,7 +986,7 @@ namespace matricks {
 
     Fun_Roundzero() { }
 
-    static inline Type apply(const NA& a, const NB tolerance) { 
+    static inline Type apply(const NA& a, const NB tolerance) {
       return matricks::roundzero(a, tolerance);
     }
 

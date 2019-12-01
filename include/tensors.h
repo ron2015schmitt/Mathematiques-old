@@ -530,14 +530,10 @@ namespace matricks {
     //***************** Element ACCESS as an array *************************
     //**********************************************************************
     
-    const auto operator[](const index_type i) const {
+    const D operator[](const index_type i) const {
       return derived()[i];
     }
 
-
-    template<class X> X&  setequals(X& x) const{
-      return derived().setequals(x);
-    }
 
     
     size_type size(void) const {
@@ -637,16 +633,13 @@ namespace matricks {
     //**********************************************************************
     //***************** Element ACCESS as an array *************************
     //**********************************************************************
-    const auto operator[](const index_type i) const {
+    const D operator[](const index_type i) const {
       return derived()[i];
     }
-    auto& operator[](const index_type i)  {
+    D& operator[](const index_type i)  {
       return derived()[i];
     }
 
-    template<class X> X& setequals(X& x) const {
-      return derived().setequals(x);
-    }
 
     size_type size(void) const {
       return derived().size();

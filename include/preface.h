@@ -118,6 +118,7 @@ namespace matricks {
   
 
 
+
   // *********************************************************************
   // * Class type querying/manipulation
   // ********************************************************************
@@ -366,7 +367,14 @@ namespace matricks {
     typedef D (* quaternary_func)(D, D, D);
   };
   
-  
+
+
+  ////////////////////////////////////////////////////////////
+  // In functions.h
+  ////////////////////////////////////////////////////////////
+
+  template <class A> inline Vector<index_type>& findtrue( const TensorR<bool,A>& a );
+
 };
 
 

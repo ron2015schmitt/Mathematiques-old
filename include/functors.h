@@ -26,12 +26,15 @@ namespace matricks {
   // unary+ operator
 
   template <class D> class Fun_Plus {
-  public:
     Fun_Plus() {}
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       return a;
     }
+
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
@@ -53,10 +56,12 @@ namespace matricks {
   // unary-
 
   template <class D> class Fun_Minus {
-  public:
     Fun_Minus() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       return (-a); 
     }
 
@@ -78,13 +83,15 @@ namespace matricks {
   // cast - from D1 to D2
 
   template <class D2, class D1> class Fun_Cast {
-  public:
     Fun_Cast() { }
+  public:
+    typedef typename NumberType<D1>::Type TypeIn;
+    typedef typename NumberType<D2>::Type Type;
+    typedef typename FundamentalType<D1>::Type FTypeIn;
+    typedef typename FundamentalType<D2>::Type FType;
 
-    static inline D2 apply(const D1 a) {
-      typedef typename FundamentalType<D1>::Type DREAL1;
-      typedef typename FundamentalType<D2>::Type DREAL2;
-      return numbercast<DREAL2,DREAL1>(a); 
+    static inline Type apply(const TypeIn a) { 
+      return numbercast<FType,FTypeIn>(a); 
     }
     
 
@@ -119,10 +126,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Add() { }
   
@@ -162,10 +165,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename SubType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Subtract() { }
   
@@ -202,10 +201,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Multiply() { }
   
@@ -242,10 +237,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename DivType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Divide() { }
   
@@ -290,10 +281,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Pow() { }
   
@@ -327,10 +314,12 @@ namespace matricks {
   // sqr(a)
 
   template <class D> class Fun_Sqr {
-  public:
     Fun_Sqr() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       return (a*a); 
     }
 
@@ -354,10 +343,12 @@ namespace matricks {
   // cube(a)
 
   template <class D> class Fun_Cube {
-  public:
     Fun_Cube() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       return (a*a*a); 
     }
 
@@ -380,10 +371,12 @@ namespace matricks {
   // sqrt(a)
 
   template <class D> class Fun_Sqrt {
-  public:
     Fun_Sqrt() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       using std::sqrt;
       return sqrt(a); 
     }
@@ -407,10 +400,13 @@ namespace matricks {
 
   // exp(a)
   template <class D> class Fun_Exp {
-  public:
     Fun_Exp() { }
     
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::exp;
       return exp(a);
     }
@@ -435,10 +431,13 @@ namespace matricks {
   // log(a)
 
   template <class D> class Fun_Log {
-  public:
     Fun_Log() { }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::log;
       return log(a);
     }
@@ -464,10 +463,13 @@ namespace matricks {
   // log2(a)
 
   template <class D> class Fun_Log2 {
-  public:
     Fun_Log2() { }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::log2;
       using matricks::log2;
       return log2(a);
@@ -493,11 +495,14 @@ namespace matricks {
   // log10(a)
  
   template <class D> class Fun_Log10 {
-  public:
     Fun_Log10() {
     }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::log10;
       return log10(a);
     }
@@ -528,10 +533,13 @@ namespace matricks {
   // sin(a)
 
   template <class D> class Fun_Sin {
-  public:
     Fun_Sin() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::sin;
       return sin(a); 
     }
@@ -556,10 +564,12 @@ namespace matricks {
   // cos(a)
 
   template <class D> class Fun_Cos {
-  public:
     Fun_Cos() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       using std::cos;
       return cos(a); 
     }
@@ -586,10 +596,12 @@ namespace matricks {
   // tan(a)
 
   template <class D> class Fun_Tan {
-  public:
     Fun_Tan() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
 
-    static inline D apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       using std::tan;
       return tan(a); 
     }
@@ -613,10 +625,13 @@ namespace matricks {
   // asin(a)
 
   template <class D> class Fun_Asin                       {
-  public:
     Fun_Asin() { }
 
-    static inline D apply(D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::asin;
       return asin(a);
     }
@@ -641,10 +656,13 @@ namespace matricks {
   // acos(a)
 
   template <class D> class Fun_Acos                       {
-  public:
     Fun_Acos() { }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::acos;
       return acos(a);
     }
@@ -669,10 +687,13 @@ namespace matricks {
   // atan(a)
 
   template <class D> class Fun_Atan {
-  public:
     Fun_Atan() { }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::atan;
       return atan(a);
     }
@@ -702,10 +723,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Atan2() { }
   
@@ -739,10 +756,13 @@ namespace matricks {
   // sinh(a)
 
   template <class D> class Fun_Sinh {
-  public:
     Fun_Sinh() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::sinh;
       return sinh(a); 
     }
@@ -768,10 +788,13 @@ namespace matricks {
   // cosh(a)
 
   template <class D> class Fun_Cosh {
-  public:
     Fun_Cosh() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::cosh;
       return cosh(a); 
     }
@@ -796,10 +819,13 @@ namespace matricks {
   // tanh(a)
 
   template <class D> class Fun_Tanh {
-  public:
     Fun_Tanh() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::tanh;
       return tanh(a); 
     }
@@ -830,10 +856,13 @@ namespace matricks {
   // abs(a)
 
   template <class D> class Fun_Abs {
-  public:
     Fun_Abs() { }
 
-    static inline auto apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::abs;
       return abs(a);
     }
@@ -858,10 +887,13 @@ namespace matricks {
   // sgn(a)
 
   template <class D> class Fun_Sgn {
-  public:
     Fun_Sgn() { }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       return matricks::sgn(a);
     }
 
@@ -887,10 +919,13 @@ namespace matricks {
   // ceil(a)
 
   template <class D> class Fun_Ceil {
-  public:
     Fun_Ceil() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::ceil;
       using matricks::ceil; // for complex nums
       return ceil(a); 
@@ -917,10 +952,13 @@ namespace matricks {
   // floor(a)
 
   template <class D> class Fun_Floor {
-  public:
     Fun_Floor() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::floor;
       using matricks::floor;  // for complex nums
       return floor(a); 
@@ -947,10 +985,13 @@ namespace matricks {
   // round(a)
 
   template <class D> class Fun_Round {
-  public:
     Fun_Round() { }
 
-    static inline D apply(const D a) {
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::round;
       using matricks::round;
       return round(a); 
@@ -979,10 +1020,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Roundzero() { }
 
@@ -1019,10 +1056,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Approx() { }
   
@@ -1063,10 +1096,13 @@ namespace matricks {
   // y = op1<D,userfunc>(a)
 
   template <class D, typename matricks::FunctionTypes<D>::unary_func F> class Fun_UnaryUser {
-  public:
     Fun_UnaryUser() { }
 
-    static inline D apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename NumberType<D>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       return F(a); 
     }
 
@@ -1095,10 +1131,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_BinaryUser() { }
   
@@ -1138,10 +1170,13 @@ namespace matricks {
   // !(a)
 
   class Fun_Not {
-  public:
     Fun_Not() { }
 
-    static inline bool apply(const bool a) { 
+  public:
+    typedef bool TypeIn;
+    typedef  bool Type;
+
+    static inline Type apply(const TypeIn a) { 
       return !(a); 
     }
 
@@ -1245,10 +1280,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Equal() { }
 
@@ -1288,10 +1319,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_NotEqual() { }
 
@@ -1332,10 +1359,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_LessOrEqual() { }
 
@@ -1373,10 +1396,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_GreaterOrEqual() { }
 
@@ -1413,10 +1432,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
     
     Fun_Less() { }
 
@@ -1453,10 +1468,6 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Greater() { }
 
@@ -1501,10 +1512,6 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type RType;
     typedef typename std::complex<RType> Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
     
     Fun_Polar() { }
 
@@ -1547,10 +1554,6 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type RType;
     typedef typename std::complex<RType> Type;
-    typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::ReplaceType TempType;
-    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
-    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Complex() { }
 
@@ -1587,10 +1590,13 @@ namespace matricks {
   // arg(a)
 
   template <class D> class Fun_Arg {
-  public:
     Fun_Arg() { }
+  public:
+    typedef std::complex<D> TypeIn;
+    typedef D Type;
 
-    static inline D apply(const std::complex<D> a) { 
+    static inline Type apply(const TypeIn a) { 
+
       using std::arg;
       return arg(a); 
     }
@@ -1603,7 +1609,7 @@ namespace matricks {
     
     static inline std::string classname() {
       using namespace display;
-      D d;
+      TypeIn d;
       return functor_namestyle.apply("Fun_Arg")+display::getBracketedTypeName(d);
     }
 #endif
@@ -1616,10 +1622,12 @@ namespace matricks {
   // conj(a)
 
   template <class D > class Fun_Conj {
-  public:
     Fun_Conj() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename Complexify<TypeIn>::Type Type;
 
-    static inline typename Complexify<D>::Type apply(const D a) {
+    static inline Type apply(const TypeIn a) { 
       using std::conj;
       return conj(a); 
     }
@@ -1642,11 +1650,12 @@ namespace matricks {
   // real(a)
 
   template <class D> class Fun_Real {
-  public:
     Fun_Real() { }
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename Realify<TypeIn>::Type Type;
 
-
-    static inline typename Realify<D>::Type apply(const D a) { 
+    static inline Type apply(const TypeIn a) { 
       using std::real;
       return real(a); 
     }
@@ -1672,10 +1681,13 @@ namespace matricks {
   // imag(a)
 
   template <class D> class Fun_Imag {
-  public:
     Fun_Imag() { }
 
-    static inline typename Realify<D>::Type apply(const D a) { 
+  public:
+    typedef typename NumberType<D>::Type TypeIn;
+    typedef typename Realify<TypeIn>::Type Type;
+
+    static inline Type apply(const TypeIn a) { 
       using std::imag;
       return imag(a); 
     }

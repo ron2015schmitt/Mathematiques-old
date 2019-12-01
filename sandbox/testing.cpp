@@ -1097,33 +1097,6 @@ int main(int argc, char *argv[])
   }
 
 
-  {
-    Fun_Multiply<int, ComplexDouble >::Type x;
-    tdisp(x);
-    Fun_Multiply<int, ComplexDouble >::TensorType y;
-    tdisp(y);
-
-    
-    cr();
-    Fun_Multiply<int, ComplexDouble >::Type zType;
-    tdisp(zType);
-    Fun_Multiply<Scalar<int>, ComplexDouble >::DeeperType_ zDeeperType;
-    tdisp(zDeeperType);
-    Fun_Multiply<Scalar<int>, ComplexDouble >::TempType zTempType;
-    tdisp(zTempType);
-    bool zisprim= Fun_Multiply<Scalar<int>, ComplexDouble >::isprim;
-    tdisp(zisprim);
-    Fun_Multiply<Scalar<int>, ComplexDouble >::TensorType zTensorType;
-    tdisp(zTensorType);
-    cr();
-    
-    tdisp(NumberType<int>::depth());
-    tdisp(NumberType<ComplexDouble>::depth());
-    tdisp(NumberType<Scalar<int>>::depth());
-    tdisp(Fun_Multiply<int, ComplexDouble >::isprim);
-    tdisp(Fun_Multiply<Scalar<int>, ComplexDouble >::isprim);
-    tdisp(Fun_Multiply<int, Scalar<ComplexDouble> >::isprim);
-  }
 
   {
     Scalar<ComplexDouble> s1 = ComplexDouble(2,3);

@@ -62,10 +62,10 @@ int main()
     codemulti(using namespace std);
     codemulti(const double tol = 2e-16);
     codemulti(Vector<complex<double> > v1);
-    codemulti(v1 = vcomplex(range<double>(1,2), 0.));
+    codemulti(v1 = complexify(range<double>(1,2), 0.));
     codemulti(v1.roundzero(tol));
     codemulti(Vector<complex<double> > v2);
-    codemulti(v2 = vcomplex(range<double>(-1,-2), range<double>(2,3)));
+    codemulti(v2 = complexify(range<double>(-1,-2), range<double>(2,3)));
     codemulti(v2.roundzero(tol));
     codeend();
     cr();

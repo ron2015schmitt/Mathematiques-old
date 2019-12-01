@@ -283,7 +283,7 @@ namespace matricks {
   // NOTE: in-place
 
     
-  Scalar<D,M>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+  Scalar<D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
     data_ = matricks::roundzero(data_, tolerance);
     return *this;
   }

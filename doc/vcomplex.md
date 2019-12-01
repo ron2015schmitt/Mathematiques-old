@@ -3,7 +3,7 @@
 
 
 # Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.29-r34).
+_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v2.30-r2).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.
@@ -144,7 +144,7 @@ using namespace std;
 Vector<complex<double> > vc(4);
 Vector<double> vr( range<double>(1,4) );
 Vector<double> vi( range<double>(-1,-4) );
-vc = vcomplex(vr, vi);
+vc = complexify(vr, vi);
 ```
 
 **Some expressions with results**: create a complex vector from two real vectors
@@ -167,10 +167,10 @@ Vector<double> v( range<double>(1,4) );
 
 **Some expressions with results**: create a complex vector from a real vector and a scalar
 ```C++
-  vcomplex(v, 0.) = Vector<std::complex<double>> {(1,0), (2,0), (3,0), (4,0)}; 
-  vcomplex(v, 1.) = Vector<std::complex<double>> {(1,1), (2,1), (3,1), (4,1)}; 
-  vcomplex(0., v) = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
-  vcomplex(1., v) = Vector<std::complex<double>> {(1,1), (1,2), (1,3), (1,4)}; 
+  complexify(v, 0.) = Vector<std::complex<double>> {(1,0), (2,0), (3,0), (4,0)}; 
+  complexify(v, 1.) = Vector<std::complex<double>> {(1,1), (2,1), (3,1), (4,1)}; 
+  complexify(0., v) = Vector<std::complex<double>> {(0,1), (0,2), (0,3), (0,4)}; 
+  complexify(1., v) = Vector<std::complex<double>> {(1,1), (1,2), (1,3), (1,4)}; 
 ```
 
 
@@ -184,7 +184,7 @@ using namespace std;
 Vector<complex<double> > vc(3);
 Vector<double> vr( range<double>(1,3) );
 Vector<double> vi( range<double>(-1,1) );
-vc = vcomplex(vr, vi);
+vc = complexify(vr, vi);
 ```
 
 **Some expressions with results**: compute the complex conjugate of a vector
@@ -207,13 +207,13 @@ using namespace std;
 Vector<complex<double> > v(3);
 Vector<double> vr( range<double>(1,3) );
 Vector<double> vi( range<double>(-1,1) );
-v = vcomplex(vr, vi);
+v = complexify(vr, vi);
 ```
 
 **Some expressions with results**: functions of complex vectors
 ```C++
   v = {(1,-1), (2,0), (3,1)}; 
-  abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
+  abs(v)* ( cos(arg(v)) + complexify(0., sin(arg(v))) ) = Vector<std::complex<double>> {(1,-1), (2,0), (3,1)}; 
   abs(v) = Vector<std::complex<double>> {(1.41421,0), (2,0), (3.16228,0)}; 
   pow(2., v) = Vector<std::complex<double>> {(1.53848,-1.27792), (4,0), (6.15391,5.11169)}; 
   pow(v, 2.) = Vector<std::complex<double>> {(1.22465e-16,-2), (4,0), (8,6)}; 

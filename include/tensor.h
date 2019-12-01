@@ -467,7 +467,7 @@ namespace matricks {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Tensor<D,M>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+    Tensor<D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = matricks::roundzero(data_[i], tolerance);
       }

@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.29-r34).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.30-r2).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -50,7 +50,7 @@ Vector<int> v2(range<int>(-2,2));
 
 **EXAMPLE 2**: Applying `stdlib` function `fmax` via `op2`
 ```C++
-using namespace std;
+using std::fmax;
 Vector<double> v1(linspace<double>(-1,1,11) );
 Vector<double> v2(11,0.25);
 ```

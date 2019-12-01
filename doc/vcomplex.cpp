@@ -211,7 +211,7 @@ int main()
     codemulti( Vector<complex<double> > vc(4) );
     codemulti( Vector<double> vr( range<double>(1,4) ));
     codemulti( Vector<double> vi( range<double>(-1,-4) ));
-    codemulti( vc = vcomplex(vr, vi) );
+    codemulti( vc = complexify(vr, vi) );
     codeend();
     cr();
 
@@ -236,10 +236,10 @@ int main()
     cr();
 
     resultstart2(": create a complex vector from a real vector and a scalar");
-    resultmulti( vcomplex(v, 0.) );
-    resultmulti( vcomplex(v, 1.) );
-    resultmulti( vcomplex(0., v) );
-    resultmulti( vcomplex(1., v) );
+    resultmulti( complexify(v, 0.) );
+    resultmulti( complexify(v, 1.) );
+    resultmulti( complexify(0., v) );
+    resultmulti( complexify(1., v) );
     resultend();
     cr();
   }
@@ -257,7 +257,7 @@ int main()
     codemulti( Vector<complex<double> > vc(3) );
     codemulti( Vector<double> vr( range<double>(1,3) ));
     codemulti( Vector<double> vi( range<double>(-1,1) ));
-    codemulti( vc = vcomplex(vr, vi) );
+    codemulti( vc = complexify(vr, vi) );
     codeend();
     cr();
 
@@ -287,7 +287,7 @@ int main()
     codemulti( Vector<complex<double> > v(3) );
     codemulti( Vector<double> vr( range<double>(1,3) ));
     codemulti( Vector<double> vi( range<double>(-1,1) ));
-    codemulti( v = vcomplex(vr, vi) );
+    codemulti( v = complexify(vr, vi) );
     codeend();
     cr();
 
@@ -297,7 +297,7 @@ int main()
     //  resultmulti( ceil(v)  );
     // resultmulti( sgn(v)  );
     resultmulti( v  );
-    resultmulti( abs(v)* ( cos(arg(v)) + vcomplex(0., sin(arg(v))) ) );
+    resultmulti( abs(v)* ( cos(arg(v)) + complexify(0., sin(arg(v))) ) );
     resultmulti( abs(v)  );
     resultmulti( pow(2., v)  );
     resultmulti( pow(v, 2.)  );

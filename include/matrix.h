@@ -773,7 +773,7 @@ namespace matricks {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Matrix<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+    Matrix<D>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = matricks::roundzero(data_[i], tolerance);
       }

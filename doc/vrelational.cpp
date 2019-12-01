@@ -90,7 +90,6 @@ int main()
     codeend();
     cr();
     
-   
     resultstart2("");
     resultmulti( v );
     resultmulti(  (v > 2) );
@@ -143,28 +142,6 @@ int main()
     
   }
 
-
-  header2("Logical operators");
-
-  header3("The element-wise logical operatora `&&`,`||`,`!`");
-  {
-    cr();
-    cr();
-    example(Nex++,"The element-wise logical operators");
-    codestart("C++");
-    codemulti( Vector<double> v( range<double>(1,5) ) );
-    codeend();
-    cr();
-    
-   
-    resultstart2("");
-    resultmulti( v );
-    resultmulti(  (v > 2) );
-    resultmulti( !(v > 2) );
-    resultmulti( (v >= 2) && (v <= 4 ));
-    resultmulti( (v <= 2) || (v >= 4 ));
-    resultend();
-  }
 
   header2("Logical functions");
 

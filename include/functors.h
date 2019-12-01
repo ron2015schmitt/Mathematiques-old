@@ -1499,17 +1499,18 @@ namespace matricks {
   public:
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
-    typedef typename AddType<NA,NB>::Type Type;
+    typedef typename AddType<NA,NB>::Type RType;
+    typedef typename std::complex<RType> Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
     typedef typename NumberType<DeeperType_,Type>::NewType TempType;
     constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
     typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
-
+    
     Fun_Polar() { }
 
-    static inline std::complex<Type> apply(const NA& r, const NB& phi) { 
+    static inline Type apply(const NA& r, const NB& phi) { 
       using std::polar;
-      return polar((Type)r,(Type)phi); 
+      return polar((RType)r,(RType)phi); 
     }
 
 
@@ -1538,13 +1539,14 @@ namespace matricks {
 
  
 
-  // complex(x,y)
+  // complexify(x,y)
 
   template <class A, class B> class Fun_Complex {
   public:
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
-    typedef typename AddType<NA,NB>::Type Type;
+    typedef typename AddType<NA,NB>::Type RType;
+    typedef typename std::complex<RType> Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
     typedef typename NumberType<DeeperType_,Type>::NewType TempType;
     constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
@@ -1552,8 +1554,8 @@ namespace matricks {
 
     Fun_Complex() { }
 
-    static inline std::complex<Type> apply(const NA& x, const NB& y) { 
-      return std::complex<Type>((Type)x,(Type)y); 
+    static inline Type apply(const NA& x, const NB& y) { 
+      return Type((RType)x,(RType)y); 
     }
 
 

@@ -162,7 +162,7 @@ int main()
     cr();
     example(Nex++,"Applying `stdlib` function `fmax` via `op2`");
     codestart("C++");
-    codemulti(using namespace std );
+    codemulti(using std::fmax );
     codemulti( Vector<double> v1(linspace<double>(-1,1,11) ) );
     codemulti( Vector<double> v2(11,0.25) );
     codeend();

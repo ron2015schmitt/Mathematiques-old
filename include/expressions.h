@@ -136,11 +136,6 @@ namespace matricks {
     typedef typename NumberType<D2>::Type NumType2;
     typedef typename OP::Type NumTypeOut;
     
-    TER_Binary()
-      : a_(nullptr), b_(nullptr)
-      {
-	vptrs=nullptr;
-      }
 
   TER_Binary(const A& a, const B& b)
     : a_(a), b_(b) {
@@ -221,11 +216,7 @@ namespace matricks {
       }
     }
     size_type ndims(void) const {
-      if constexpr(M1>=M2) {
-        return a_.ndims();
-      } else {
-        return b_.ndims();
-      }
+      return dims().size();
     }
     Dimensions dims(void) const {
       if constexpr(M1>=M2) {
@@ -310,11 +301,6 @@ namespace matricks {
     typedef typename NumberType<D3>::Type NumType3;
     typedef typename OP::Type NumTypeOut;
     
-    TER_Ternary()
-      : a_(nullptr), b_(nullptr), c_(nullptr)
-      {
-	vptrs=nullptr;
-      }
 
   TER_Ternary(const A& a, const B& b, const C& c)
     : a_(a), b_(b), c_(c) {
@@ -476,12 +462,9 @@ namespace matricks {
   
   
 
-  /****************************************************************************
-   * TERW_Subset Expression Template 
-   *
-   * wrapper for a vector subset
-   ****************************************************************************
-   */
+  //---------------------------------------------------------------------------
+  // TERW_Subset   Subset Expression
+  //---------------------------------------------------------------------------
   template<class D, int M>
     class TERW_Subset :  public  TensorRW<D,TERW_Subset<D,M> > {
   private:
@@ -498,13 +481,13 @@ namespace matricks {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
       vptrs->add(&ii_);
-    }
+  }
   TERW_Subset(Vector<D>& a, const std::initializer_list<index_type>& list)
     : a_(a), ii_(*(new Vector<index_type>(list))), delete_ii_(true) {
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
       vptrs->add(&ii_);
-    }
+  }
     
     ~TERW_Subset() {
       if (delete_ii_) delete &ii_;
@@ -512,14 +495,29 @@ namespace matricks {
     }
 
 
-    const D operator[](const index_type i) const{
+    const MyNumberType dat(const index_type i) const {
+      index_type ind = ii_[i];
+      if (ind < 0) {
+	ind = a_.deepsize() + ind;
+      }
+      return a_.dat(ind);
+    }
+    MyNumberType& dat(const index_type i)  {
+      index_type ind = ii_[i];
+      if (ind < 0) {
+	ind = a_.deepsize() + ind;
+      }
+      return a_.dat(ind);
+    }
+  
+    const D operator[](const index_type i) const {
       index_type ind = ii_[i];
       if (ind < 0) {
 	ind = a_.size() + ind;
       }
       return a_[ind];
     }
-     MyNumberType& operator[](const index_type i) {
+    D& operator[](const index_type i)  {
       index_type ind = ii_[i];
       if (ind < 0) {
 	ind = a_.size() + ind;
@@ -527,7 +525,19 @@ namespace matricks {
       return a_[ind];
     }
 
-
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      if constexpr(M<2) {
+	  for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+	} else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
+    }
+    
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
@@ -572,24 +582,17 @@ namespace matricks {
     }
 
 
-    TERW_Subset<D>& operator=(TERW_Resize<D>& b) { 
-      return this->equals(b);
+    template <class D2, class B>
+      TERW_Subset<D>& operator=(const TensorR<D2,B>& rhs) { 
+      rhs.setequals(*this);
+      return *this;
     }
-
-    template <class B>
-      TERW_Subset<D>& operator=(const TensorR<D,B>& rhs) { 
-      return this->equals(rhs);
-    }
-
-    TERW_Subset<D>& operator=(const D d) { 
+    
+    TERW_Subset<D>& operator=(const MyNumberType d) { 
       return this->equals(d);
     }
     
-    TERW_Subset<D>& operator=(const TERW_Subset<D>& b) { 
-      return this->equals(b);
-    }
-
-    
+   
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
@@ -611,12 +614,9 @@ namespace matricks {
   
 
 
-  /****************************************************************************
-   * TERW_Submask Expression Template 
-   *
-   * wrapper for a vector submask
-   ****************************************************************************
-   */
+  //---------------------------------------------------------------------------
+  // TERW_Submask   subset of a tensor from a mask
+  //---------------------------------------------------------------------------
   template<class D, int M>
     class TERW_Submask :  public  TensorRW<D,TERW_Submask<D,M> > {
   private:
@@ -649,6 +649,27 @@ namespace matricks {
      D& operator[](const index_type i) {
       index_type ind = (*ii_)[i];
       return a_[ind];
+    }
+     const MyNumberType dat(const index_type i) const {
+       index_type ind = (*ii_)[i];
+       return a_.dat(ind);
+     }
+     MyNumberType& dat(const index_type i)  {
+       index_type ind = (*ii_)[i];
+       return a_.dat(ind);
+     }
+  
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
     }
 
     VectorofPtrs getAddresses(void) const {
@@ -695,23 +716,19 @@ namespace matricks {
     }
 
 
-    TERW_Submask<D>& operator=(TERW_Resize<D>& b) { 
-      return this->equals(b);
-    }
 
-    template <class B>
-      TERW_Submask<D>& operator=(const TensorR<D,B>& rhs) { 
-      return this->equals(rhs);
+    template <class D2, class B>
+      TERW_Submask<D>& operator=(const TensorR<D2,B>& rhs) { 
+      rhs.setequals(*this);
+      return *this;
     }
-
-    TERW_Submask<D>& operator=(const D d) { 
+    
+    TERW_Submask<D>& operator=(const MyNumberType d) { 
       return this->equals(d);
     }
     
-    TERW_Submask<D>& operator=(const TERW_Submask<D>& b) { 
-      return this->equals(b);
-    }
 
+    
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
@@ -728,119 +745,13 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * TERW_Resize Expression Template 
-   *
-   * reallocate store
-   ****************************************************************************
-   */
-  template<class D, int M>
-    class TERW_Resize :  public  TensorR<D,TERW_Resize<D,M> > {
-  private:
-    // can't be constant since we alow to be on left hand side
-    Vector<D>& a_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
 
 
-  TERW_Resize(Vector<D>& a)
-    : a_(a)
-    { 
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-    }
-
-    ~TERW_Resize() {
-      delete vptrs;
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    // TODO:  not sure what to use for this
-    size_type size(void) const {
-      return a_->size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TERW_Resize";
-    }
-
-    template <class A>
-      Vector<D>& operator=(const TensorR<D,A>& x) { 
-      size_type N = x.size();
-      if ( common(*this,x) ) {    
-	Vector<D> y(N);
-
-	y = x.derived();
-	a_.resize(N);
-	a_ = y;
-	return a_;
-      } else {
-	a_.resize(N);
-	a_ = x.derived();
-	return a_;
-      }
-    }
-
-    Vector<D>& operator=(const TERW_Resize<D>& b) { 
-
-      return a_;
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      return  a_.expression() +".resize()";
-    }
-#endif 
-
-
-  };
-
-
-
-  /****************************************************************************
-   * TER_RealFromComplex Expression Template 
-   *
-   * used for accessing real/imag part of complex vector
-   ****************************************************************************
-   */
+  //---------------------------------------------------------------------------
+  // TERW_RealFromComplex  used for accessing real/imag part of complex vector
+  //---------------------------------------------------------------------------
   template <class D, class OP, int M>
-    class TER_RealFromComplex : public  TensorRW<D,TER_RealFromComplex<D,OP,M> > {
+    class TERW_RealFromComplex : public  TensorRW<D,TERW_RealFromComplex<D,OP,M> > {
   private:
     Vector<std::complex<D> >& a_;
     VectorofPtrs *vptrs;
@@ -849,13 +760,13 @@ namespace matricks {
     typedef typename NumberType<D>::Type MyNumberType;
 
 
-  TER_RealFromComplex(Vector<std::complex<D> >& a)
+  TERW_RealFromComplex(Vector<std::complex<D> >& a)
     :   a_(a) { 
       vptrs = new VectorofPtrs();
       vptrs->add(&a_);
     }
 
-    ~TER_RealFromComplex() {
+    ~TERW_RealFromComplex() {
       delete vptrs;
     }
 
@@ -865,7 +776,25 @@ namespace matricks {
     D& operator[](index_type i) {
       return OP::give(a_[i]);
     }
+    const MyNumberType dat(const index_type i) const {
+      return OP::give(a_.dat(i));
+    }
+    MyNumberType& dat(const index_type i)  {
+      return OP::give(a_.dat(i));
+    }
 
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
+    }
 
 
     VectorofPtrs getAddresses(void) const {
@@ -908,19 +837,20 @@ namespace matricks {
       }
     }
     std::string classname() const {
-      return "TER_RealFromComplex";
+      return "TERW_RealFromComplex";
     }
 
 
-    template <class B>
-      TER_RealFromComplex<D,OP>& operator=(const B& b) { 
-      return equals(b);
+    template <class D2, class B>
+      TERW_RealFromComplex<D,OP,M>& operator=(const TensorR<D2,B>& rhs) { 
+      rhs.setequals(*this);
+      return *this;
     }
-
-    template <class OP2>
-      TER_RealFromComplex<D,OP>& operator=(const TER_RealFromComplex<D,OP2>& b) { 
-      return equals(b);
+    
+    TERW_RealFromComplex<D,OP,M>& operator=(const MyNumberType d) { 
+      return this->equals(d);
     }
+    
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -934,6 +864,9 @@ namespace matricks {
 
 
 
+  //---------------------------------------------------------------------------
+  // TER_Series    used for Taylor and Maclaurin series
+  //---------------------------------------------------------------------------
 
   template<class D, class A, class X, int M>
     class TER_Series : public  TensorR<D,TER_Series<D,A,X,M> > {
@@ -982,6 +915,13 @@ namespace matricks {
 	xpow *= x;
       }
       return sum; 
+    }
+  
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
     }
 
     VectorofPtrs getAddresses(void) const {
@@ -1050,7 +990,9 @@ namespace matricks {
 
 
 
-
+  //---------------------------------------------------------------------------
+  // TER_Series2    used for fourier series
+  //---------------------------------------------------------------------------
   
   template<class D, class A, class B, class X, class OP1, class OP2, int M>
     class TER_Series2 : public  TensorR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
@@ -1104,6 +1046,12 @@ namespace matricks {
       return sum; 
     }
 
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
+    }
+  
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
@@ -1181,13 +1129,9 @@ namespace matricks {
 
 
 
-
-  /****************************************************************************
-   * TERW_Transpose
-   *
-   * 
-   ****************************************************************************
-   */
+  //-----------------------------------------------------------------------------
+  // TERW_Transpose   tensor transpose, ie reverse the order of indices (RHS only)
+  //-----------------------------------------------------------------------------
 
   template<class D, class A, class FUNC, int M>
     class TERW_Transpose  : public  TensorRW<D,TERW_Transpose<D,A,FUNC,M> > {
@@ -1223,6 +1167,14 @@ namespace matricks {
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
       return FUNC::apply(a_[index2]);
+    }
+
+
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
     }
 
     VectorofPtrs getAddresses(void) const {
@@ -1268,6 +1220,17 @@ namespace matricks {
       return "TERW_Transpose";
     }
 
+    template <class D2, class B>
+      TERW_Submask<D>& operator=(const TensorR<D2,B>& rhs) { 
+      rhs.setequals(*this);
+      return *this;
+    }
+    
+    TERW_Submask<D>& operator=(const MyNumberType d) { 
+      return this->equals(d);
+    }
+    
+    
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -1283,12 +1246,9 @@ namespace matricks {
 
 
 
-  /*************************************************************************
-   * TER_Transpose
-   *
-   * 
-   *************************************************************************
-   */
+  //-----------------------------------------------------------------------------
+  // TER_Transpose   tensor transpose, ie reverse the order of indices (RHS only)
+  //-----------------------------------------------------------------------------
 
   template<class D, class A, class FUNC, int M>
     class TER_Transpose  : public  TensorR<D,TER_Transpose<D,A,FUNC,M> > {
@@ -1319,6 +1279,12 @@ namespace matricks {
       const Indices inds2 = inds1.getReverse();
       const index_type index2 = a_.dims().index(inds2);
       return FUNC::apply(a_[index2]);
+    }
+
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
     }
 
     VectorofPtrs getAddresses(void) const {
@@ -1377,12 +1343,9 @@ namespace matricks {
 
 
 
-  /****************************************************************************
-   * VER_Join Expression Template 
-   *
-   * expression for joining two TensorR (RHS only)
-   ****************************************************************************
-   */
+  //---------------------------------------------------------------------------
+  // VER_Join   joining two Tensors (RHS only)
+  //---------------------------------------------------------------------------
 
   template<class D, class A, class B, int M>
     class VER_Join : public  TensorR<D,VER_Join<D,A,B,M> > {
@@ -1415,6 +1378,12 @@ namespace matricks {
       } else {
 	return b_[i-a_.size()];
       }
+    }
+  
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
     }
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -1470,12 +1439,10 @@ namespace matricks {
   };
 
 
-  /****************************************************************************
-   * VERW_Join Expression Template 
-   *
-   * expression for joining two TensorR (RHS only)
-   ****************************************************************************
-   */
+  //---------------------------------------------------------------------------
+  // VERW_Join  join two tensors
+  //---------------------------------------------------------------------------
+
 
   template<class D, class A, class B, int M>
     class VERW_Join : public  TensorRW<D,VERW_Join<D,A,B,M> > {
@@ -1516,6 +1483,11 @@ namespace matricks {
       }
     }
 
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
+    }
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -1571,10 +1543,18 @@ namespace matricks {
     }
 
 
-    VERW_Join<D,A,B>& operator=(const D d) { 
+    template <class D2, class C>
+      VERW_Join<D,A,B>& operator=(const TensorR<D2,C>& rhs) { 
+      rhs.setequals(*this);
+      return *this;
+    }
+    
+    VERW_Join<D,A,B>& operator=(const MyNumberType d) { 
       return this->equals(d);
     }
+    
 
+    
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
@@ -1589,15 +1569,9 @@ namespace matricks {
   
 
 
-
-
-
-  /****************************************************************************
-   * VER_Rep Expression Template 
-   *
-   * expression for repeating a TensorR (RHS only)
-   ****************************************************************************
-   */
+  //---------------------------------------------------------------------------
+  // VER_Rep  repeat a tensor
+  //---------------------------------------------------------------------------
 
   template<class D, class A, int M>
     class VER_Rep : public  TensorR<D,VER_Rep<D,A,M> > {
@@ -1628,6 +1602,12 @@ namespace matricks {
       index_type index = index_type(i % N_);
       //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
+    }
+
+    template<class C>  C&
+      setequals(C& c) const {
+      for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      return c;
     }
 
     VectorofPtrs getAddresses(void) const {

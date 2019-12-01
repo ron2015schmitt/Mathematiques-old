@@ -715,11 +715,11 @@ namespace matricks {
 
   // roundzero(Tensor)
 
-  template <class D1, class D2, class A, typename = std::enable_if_t<std::is_floating_point<D2>::value> > 
-
-    inline auto roundzero(const TensorR<D1,A>& a, const D2 tolerance = MatricksHelper<D2>::tolerance)
+  template <class D1, class A>
+    inline auto roundzero(const TensorR<D1,A>& a, const typename FundamentalType<D1>::Type tolerance = MatricksHelper< typename FundamentalType<D1>::Type >::tolerance)
     {
-      return  TER_Binary< TensorR<D1,A>,D2, D1,D2, Fun_Roundzero<D1,D2> >(a, tolerance);
+      typedef typename FundamentalType<D1>::Type TOL;
+      return  TER_Binary< TensorR<D1,A>,TOL, D1,TOL, Fun_Roundzero<D1,TOL> >(a, tolerance);
     }
   
 
@@ -740,7 +740,7 @@ namespace matricks {
   template <class D, typename FunctionTypes<D>::binary_func F, class A, class B> 
     inline auto op2(const TensorR<D,A>& a, const TensorR<D,B>& b)
   {
-    return  TER_Binary<TensorR<D,A>,TensorR<D,B>, D,D, Fun_BinaryUser<A,B,F>>(a,b);
+    return  TER_Binary<TensorR<D,A>,TensorR<D,B>, D,D, Fun_BinaryUser<D,D,F>>(a,b);
   }
 
 
@@ -770,31 +770,51 @@ namespace matricks {
   // logical AND (&&)
   //----------------------------------------------
   
-  // Tensor<(bool)> && Tensor<(bool)>
+  // Tensor<D1> && Tensor<D2>
 
-  template <class A, class B> 
-    inline auto operator&&(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
+  template <class D1, class D2, class A, class B> 
+    inline auto operator&&(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
   {
-    return  TER_Binary<TensorR<bool,A>,TensorR<bool,B>,bool,bool,Fun_And<A,B>>(a,b);
+    return  TER_Binary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_And<D1,D2>>(a,b);
   }
 
 
-  // Tensor<(bool)> && bool
+  // Tensor<D1> && bool
 
-  template <class A>
-    inline auto operator&&(const TensorR<bool,A>& a, const bool b)
+  template <class D1, class A> 
+    inline auto operator&&(const TensorR<D1,A>& a, const bool& b)
     {
-      return  TER_Binary<TensorR<bool,A>,bool,bool,bool,Fun_And<A,bool>>(a,b);
+      return  TER_Binary<TensorR<D1,A>,bool,D1,bool,Fun_And<D1,bool>>(a,b);
     }
 
   
-  // bool && Tensor<(bool)>
+  // bool && Tensor<D2>
 
-  template <class B>
-    inline auto operator&&(const bool a, const TensorR<bool,B>& b)
+  template <class D2, class B>
+    inline auto operator&&(const bool& a, const TensorR<D2,B>& b)
     {
-      return  TER_Binary<bool,TensorR<bool,B>,bool,bool,Fun_And<bool,B>>(a,b);
+      return  TER_Binary<bool,TensorR<D2,B>,bool,D2,Fun_And<bool,D2>>(a,b);
     }
+
+    
+  // Tensor<T> && T
+    
+  template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+    inline auto operator&&(const TensorR<T,A>& a, const T& b)
+    {
+      return  TER_Binary<TensorR<T,A>,T,T,T,Fun_And<T,T>>(a,b);
+    }
+    
+
+  // T && Tensor<T>
+
+  template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+    inline auto operator&&(const T& a, const TensorR<T,B>& b)
+    {
+      return  TER_Binary<T,TensorR<T,B>,T,T,Fun_And<T,T>>(a,b);
+    }
+
+
 
 
     
@@ -802,34 +822,50 @@ namespace matricks {
   // logical OR (||)
   //----------------------------------------------
     
-  // Tensor<(bool)> || Tensor<(bool)>
+  
+  // Tensor<D1> || Tensor<D2>
 
-  template <class A, class B> 
-    inline auto operator||(const TensorR<bool,A>& a, const TensorR<bool,B>& b)
+  template <class D1, class D2, class A, class B> 
+    inline auto operator||(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
   {
-    return  TER_Binary<TensorR<bool,A>,TensorR<bool,B>,bool,bool,Fun_Or<A,B>>(a,b);
+    return  TER_Binary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_Or<D1,D2>>(a,b);
   }
 
 
-  // Tensor<(bool)> || bool
+  // Tensor<D1> || bool
 
-  template <class A>
-    inline auto operator||(const TensorR<bool,A>& a, const bool b)
+  template <class D1, class A> 
+    inline auto operator||(const TensorR<D1,A>& a, const bool& b)
     {
-      return  TER_Binary<TensorR<bool,A>,bool,bool,bool,Fun_Or<A,bool>>(a,b);
+      return  TER_Binary<TensorR<D1,A>,bool,D1,bool,Fun_Or<D1,bool>>(a,b);
     }
 
   
-  // bool || Tensor<(bool)>
+  // bool || Tensor<D2>
 
-  template <class B>
-    inline auto operator||(const bool a, const TensorR<bool,B>& b)
+  template <class D2, class B>
+    inline auto operator||(const bool& a, const TensorR<D2,B>& b)
     {
-      return  TER_Binary<bool,TensorR<bool,B>,bool,bool,Fun_Or<bool,B>>(a,b);
+      return  TER_Binary<bool,TensorR<D2,B>,bool,D2,Fun_Or<bool,D2>>(a,b);
     }
 
     
-  
+  // Tensor<T> || T
+    
+  template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+    inline auto operator||(const TensorR<T,A>& a, const T& b)
+    {
+      return  TER_Binary<TensorR<T,A>,T,T,T,Fun_Or<T,T>>(a,b);
+    }
+    
+
+  // T || Tensor<T>
+
+  template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+    inline auto operator||(const T& a, const TensorR<T,B>& b)
+    {
+      return  TER_Binary<T,TensorR<T,B>,T,T,Fun_Or<T,T>>(a,b);
+    }
 
   
   

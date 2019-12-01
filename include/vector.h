@@ -422,18 +422,16 @@ namespace matricks {
   // equals functions are included so that derived classes can call these functions
 
   // Assign all elements to the same constant value
-  Vector<D,NN,M>& equals(const D& d) { 
+  Vector<D,NN,M>& operator=(const D& d) { 
     for (index_type i = 0; i < size(); i++) 
       (*this)(i)=d; 
     return *this;
   }
-  Vector<D,NN,M>& operator=(const D& d) { 
-    return equals(d);
-  }
 
 
   // copy constuctor
-  Vector<D,NN,M>& resizeAndSet(const Vector<D,NN,M>& v2) {
+  template <int NN2>
+  Vector<D,NN,M>& operator=(const Vector<D,NN2,M>& v2) {
     if constexpr(NN==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != v2.size()) {
@@ -445,29 +443,34 @@ namespace matricks {
     }
     return *this;
   }
-  Vector<D,NN,M>& operator=(const Vector<D,NN,M>& v2) {
-    return resizeAndSet(v2);
-  }
 
 
   // NEW STYLE EXPRESSION equals
 
-  template <class A, class D2> Vector<D,NN,M>&
-    equals(const TensorR<D2,A>& y) {
-      if constexpr(NN==0) {
+  template <class D2,class A> Vector<D,NN,M>& operator=(const TensorR<D2,A>& y) {  
+    if constexpr(NN==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != y.size()) {
 	  resize(y.size());
 	}
       } 
-      y.setequals(*this);
-      return *this;
-  }
-  template <class A, class D2> Vector<D,NN,M>& operator=(const TensorR<D2,A>& y) {  
-    return equals(y);
+    y.setequals(*this);
+    return *this;
   }
     
 
+  // setequals
+  template<class C>  C&
+    setequals(C& c) const {
+      if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
+    }
 
 
   std::string bottom(){
@@ -628,7 +631,7 @@ namespace matricks {
   //----------------- .roundzero(tol) ---------------------------
   // NOTE: in-place
     
-  Vector<D,NN,M>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
+  Vector<D,NN,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
     for(index_type i=size(); i--;) {
       data_[i] = matricks::roundzero(data_[i], tolerance);
     }

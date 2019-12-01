@@ -240,7 +240,9 @@ namespace matricks {
   
   template <class D, class A>
     inline Vector<D>& deriv(const TensorR<D,A>& f, const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
+    mdisp(a,b,n,Dpts,periodic,f.size());
     Vector<D> *df = new Vector<D>(f.size());
+    tdisp(*df);
     *df = f;
     df->deriv(a,b,n,Dpts,periodic);
     return *df;

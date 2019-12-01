@@ -3,7 +3,7 @@
 
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.29-r34).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v2.30-r2).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
@@ -34,10 +34,10 @@ The complex dot product is defined such that the first vector conjugated.  In th
 using namespace std;
 const double tol = 2e-16;
 Vector<complex<double> > v1;
-v1 = vcomplex(range<double>(1,2), 0.);
+v1 = complexify(range<double>(1,2), 0.);
 v1.roundzero(tol);
 Vector<complex<double> > v2;
-v2 = vcomplex(range<double>(-1,-2), range<double>(2,3));
+v2 = complexify(range<double>(-1,-2), range<double>(2,3));
 v2.roundzero(tol);
 ```
 

@@ -32,14 +32,6 @@
 #include <type_traits> 
 
 
-
-
-// -------------------------------------------
-//     From loki submodule
-#include "TypeTraits.h"
-// -------------------------------------------
-
-
 #include "matricks_version.h"
 #include "preface.h"
 #include "math_real.h"

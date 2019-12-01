@@ -7,17 +7,28 @@
 namespace matricks {
 
 
+  /********************************************************************
+   * Matrix<E>    -- variable size matrix (valarray)
+   *                 E  = type for elements
+   * Matrix<E,NR> -- fixed number of rows (valarray)
+   *                 NR = number of rows
+   * Matrix<E,NR,NC> -- fixed number of rows and cols (array)
+   *                 NC = number of cols
+   *
+   * DO NOT SPECIFY: D,M
+   *                 The defaults are defined in the declaration in
+   *                 preface.h
+   *                 D = number type 
+   *                   = underlying algebraic field
+   *                     ex. int, double, std::complex<double>
+   *                 M = tensor depth. if E=D, then M=1.
+  ********************************************************************  
+   */
 
 
  
-  
-  /****************************************************************************
-   * Matrix -- mathematical matrix class.
-   **************************************************************************** 
-   */
-
-  template <class D, int NR, int NC, int M> class Matrix :
-    public TensorRW<D,Matrix<D,NR,NC,M> >{
+    template <class E, int NR, int NC,    typename D, int M> class Matrix :
+      public TensorRW<E,Matrix<E,NR,NC,D,M> >{
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -25,13 +36,11 @@ namespace matricks {
     // do NOT declare any other storage.
     // keep the instances lightweight
     
-    std::valarray<D> data_;
+    std::valarray<E> data_;
     index_type Nrows_;
     index_type Ncols_;
 
   public:     
-    typedef D DataType;
-    typedef typename NumberType<D>::Type MyNumberType;
 
     
 
@@ -41,7 +50,7 @@ namespace matricks {
 
 
     // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
-    explicit Matrix<D,NR,NC,M>() 
+    explicit Matrix<E,NR,NC,D,M>() 
     {
       Nrows_ = 0;
       Ncols_ = 0;
@@ -51,7 +60,7 @@ namespace matricks {
 
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
-    explicit Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc) {
+    explicit Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc) {
       Nrows_ = Nr;
       Ncols_ = Nc;
       data_.resize(Nrows_*Ncols_);
@@ -61,7 +70,7 @@ namespace matricks {
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D& val) {
+    explicit Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D& val) {
       Nrows_ = Nr;
       Ncols_ = Nc;
       data_.resize(Nrows_*Ncols_);
@@ -71,7 +80,7 @@ namespace matricks {
 
 
         // --------------------- 2D array  CONSTRUCTOR ---------------------
-    Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D **vals) {
+    Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D **vals) {
       
       Nrows_ = Nr;
       Ncols_ = Nc;
@@ -82,7 +91,7 @@ namespace matricks {
 
 
     // ************* C++11 initializer_list 2D CONSTRUCTOR---------------------
-    Matrix<D,NR,NC,M>(const std::initializer_list<std::initializer_list<D> >& list1) {
+    Matrix<E,NR,NC,D,M>(const std::initializer_list<std::initializer_list<E> >& list1) {
 
       Nrows_ = list1.size();
       Ncols_ = (*(list1.begin())).size();
@@ -98,7 +107,7 @@ namespace matricks {
 
     // --------------------- COPY CONSTRUCTOR --------------------
 
-    Matrix<D,NR,NC,M>(const Matrix<D>& m2) {
+    Matrix<E,NR,NC,D,M>(const Matrix<E>& m2) {
 	Nrows_ = m2.Nrows();
 	Ncols_ = m2.Ncols();
 	data_.resize(Nrows_*Ncols_);
@@ -110,7 +119,7 @@ namespace matricks {
     // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
 
-    template <class A> Matrix<D,NR,NC,M>(const TensorR<D,A>& x) {
+    template <class A> Matrix<E,NR,NC,D,M>(const TensorR<D,A>& x) {
       // TODO: bounds check
       Nrows_ = x.dims()[0];
       Ncols_ = x.dims()[1];
@@ -121,7 +130,7 @@ namespace matricks {
 
 
     // --------------------- 1D valarray CONSTRUCTOR ---------------------
-    Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const std::valarray<D>& valar) {
+    Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const std::valarray<E>& valar) {
       Nrows_ = Nr;
       Ncols_ = Nc;
       data_.resize(Nrows_*Ncols_);
@@ -130,7 +139,7 @@ namespace matricks {
 
 
     // --------------------- 1D array[]  CONSTRUCTOR ---------------------
-    Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D (vals)[]) {
+    Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D (vals)[]) {
       // allocate store
       Nrows_ = Nr;
       Ncols_ = Nc;
@@ -156,7 +165,7 @@ namespace matricks {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~Matrix<D,NR,NC,M>() {
+    ~Matrix<E,NR,NC,D,M>() {
       //remove from directory
     }
   
@@ -250,7 +259,7 @@ namespace matricks {
 
     // -------------------------- resize(nr,nc) --------------------------------
     
-    Matrix<D>& resize(const size_type nr, const size_type nc) {
+    Matrix<E,NR,NC,D,M>& resize(const size_type nr, const size_type nc) {
       Nrows_ = nr;
       Ncols_ = nc;
       
@@ -264,7 +273,7 @@ namespace matricks {
 
     // -------------------------- resize(Dimensions) --------------------------------
     
-    Matrix<D>& resize(const Dimensions dims) {
+    Matrix<E,NR,NC,D,M>& resize(const Dimensions dims) {
       // TODO: check 
       Nrows_ = dims[0];
       Ncols_ = dims[1];
@@ -281,22 +290,22 @@ namespace matricks {
     // -------------------------- resize() by assigment --------------------------------
     // usage:  m.resize() = m2;
     // -----------------------------------------------------------------------
-    TERW_Resize<D> resize(void) { 
-      return  TERW_Resize<D>(*this);
+    TERW_Resize<E> resize(void) { 
+      return  TERW_Resize<E>(*this);
     }
     // -------------------------- resize() const --------------------------------
     // usage:  m.resize();
     // -----------------------------------------------------------------------
-    TERW_Resize<D> resize(void) const { 
+    TERW_Resize<E> resize(void) const { 
       this->resize(0,0);
-      return  TERW_Resize<D>(*this);
+      return  TERW_Resize<E>(*this);
     }
 
     // -------------------------- reshape(nr,nc) --------------------------------
 
     // the new matrix has teh same # of entries but has different number of rows/columns
     // data is left unchanged
-    Matrix<D>& reshape(const size_type nr, const size_type nc) { 
+    Matrix<E,NR,NC,D,M>& reshape(const size_type nr, const size_type nc) { 
       const size_type nn = nr*nc;
       if (nn == 0) {
 	Nrows_ = 0;
@@ -311,11 +320,11 @@ namespace matricks {
     // -------------------------- .reshape(N) --------------------------------
     // morph into a vector, pillaging this object of its data store.
     //
-    Vector<D>& reshape(const size_type N) {
+    Vector<E>& reshape(const size_type N) {
       // TODO: check that N==size()
       // rob the data_
-      Vector<D> m = new Vector<D>(N, this->data_);
-      this->data_ = new std::valarray<D>(0);
+      Vector<E> m = new Vector<E>(N, this->data_);
+      this->data_ = new std::valarray<E>(0);
       // return the new Matrix, while we live on at zero size...
       return *m;
     }
@@ -325,7 +334,7 @@ namespace matricks {
     // 1) For square matrices this operation is quick and easy.
     // 2) For non-square matrices, this changes the shape and operation is time-consuming
     //    Note: Transpose function is much quicker. only use this for when memory is critical
-    Matrix<D>& transpose(void) { 
+    Matrix<E,NR,NC,D,M>& transpose(void) { 
       const index_type Nr = Nrows_;
       const index_type Nc = Ncols_;
       const index_type N = size();
@@ -454,7 +463,7 @@ namespace matricks {
   // NOTE: indexes over [0] to [deepsize()] and note return type
   
   // "read/write"
-  MyNumberType& dat(const index_type n) {
+  D& dat(const index_type n) {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
     if constexpr(M < 2) {
@@ -472,7 +481,7 @@ namespace matricks {
   }
 
   // read
-  const MyNumberType& dat(const index_type n)  const {
+  const D& dat(const index_type n)  const {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr(M < 2) {
@@ -496,7 +505,7 @@ namespace matricks {
   //**********************************************************************
 
   // "read/write"
-  D& operator[](const index_type n) {
+  E& operator[](const index_type n) {
     int k = n;
     if (k < 0) {
       k += size();
@@ -505,7 +514,7 @@ namespace matricks {
   }
 
   // read
-  const D& operator[](const index_type n)  const {
+  const E& operator[](const index_type n)  const {
     int k = n;
     if (k < 0) {
       k += size();
@@ -517,10 +526,10 @@ namespace matricks {
 
     // matrix[slice]
     
-    TERW_Subset<D> operator[](const slc& slice)  { 
+    TERW_Subset<E> operator[](const slc& slice)  { 
       return (*this)[slice.toIndexVector(size())];
     }
-    const TERW_Subset<D>  operator[](const slc& slice) const  {
+    const TERW_Subset<E>  operator[](const slc& slice) const  {
       return (*this)[slice.toIndexVector(size())];
     }
       
@@ -528,11 +537,11 @@ namespace matricks {
 
     // matrix[Vector<index_type>]
 
-    TERW_Subset<D> operator[](const Vector<index_type>& ii) {
-      return TERW_Subset<D>(*this, ii);
+    TERW_Subset<E> operator[](const Vector<index_type>& ii) {
+      return TERW_Subset<E>(*this, ii);
     }
-    const TERW_Subset<D> operator[](const Vector<index_type>& ii) const {
-      return TERW_Subset<D>(*this, ii);
+    const TERW_Subset<E> operator[](const Vector<index_type>& ii) const {
+      return TERW_Subset<E>(*this, ii);
     }
 
 
@@ -540,22 +549,22 @@ namespace matricks {
     
     // matrix[mask]
     
-    TERW_Submask<D> operator[](const Matrix<bool>& mask)  {
-      return  TERW_Submask<D>(*this,mask);
+    TERW_Submask<E> operator[](const Matrix<bool>& mask)  {
+      return  TERW_Submask<E>(*this,mask);
     }
-    const TERW_Submask<D> operator[](const Matrix<bool>& mask)  const {
-      return  TERW_Submask<D>(*this,mask);
+    const TERW_Submask<E> operator[](const Matrix<bool>& mask)  const {
+      return  TERW_Submask<E>(*this,mask);
     }
 
 
 
     // matrix[initializer_list]
 
-    TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) {
-      return  TERW_Subset<D>(*this, list);
+    TERW_Subset<E> operator[](const std::initializer_list<index_type>& list) {
+      return  TERW_Subset<E>(*this, list);
     }
-    const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
-      return  TERW_Subset<D>(*this, list);
+    const TERW_Subset<E> operator[](const std::initializer_list<index_type>& list) const {
+      return  TERW_Subset<E>(*this, list);
     }
 
 
@@ -612,23 +621,23 @@ namespace matricks {
     // equals functions are included so that derived classes can call these functions
 
     // ----------------- matrix = d ----------------
-    Matrix<D>& equals(const D d) { 
+    Matrix<E,NR,NC,D,M>& equals(const D d) { 
       for(index_type i=size(); i--;) 
 	data_[i]=d; 
       return *this;
     }
-    Matrix<D>& operator=(const D d) { 
+    Matrix<E,NR,NC,D,M>& operator=(const D d) { 
       return equals(d);
     }
 
 
     // ----------------- matrix = TensorR<D,A> ----------------
-    template <class A>  Matrix<D>& equals(const TensorR<D,A>& x) {  
+    template <class A>  Matrix<E,NR,NC,D,M>& equals(const TensorR<D,A>& x) {  
       // TODO: issue warning
       resize(x.dims());
 
       if (common(*this, x)){    
-	Matrix<D> mtemp(Nrows_,Ncols_);
+	Matrix<E,NR,NC,D,M> mtemp(Nrows_,Ncols_);
 	for (index_type i = size(); i--;)
 	  mtemp[i] = x[i];   // Inlined expression
 	for (index_type i = size(); i--;)
@@ -640,7 +649,7 @@ namespace matricks {
       return *this; 
     }
 
-   template <class A>  Matrix<D>& operator=(const TensorR<D,A>& x) {  
+   template <class A>  Matrix<E,NR,NC,D,M>& operator=(const TensorR<D,A>& x) {  
       return equals(x);
     }
 
@@ -650,7 +659,7 @@ namespace matricks {
 
 
     // ----------------- matrix = D[][] ----------------
-    Matrix<D>& equals(const D **array) {
+    Matrix<E,NR,NC,D,M>& equals(const D **array) {
       index_type k = 0;
       for (index_type r = 0; r < Nrows_; r++)  { 
 	for (index_type c = 0; c < Ncols_; c++)  { 
@@ -659,7 +668,7 @@ namespace matricks {
       }
       return *this;
     }
-    Matrix<D>& operator=(const D **array) {
+    Matrix<E,NR,NC,D,M>& operator=(const D **array) {
       return equals(array);
     }
 
@@ -669,7 +678,7 @@ namespace matricks {
     
 
     // ----------------- matrix = matrix ----------------
-    Matrix<D>& equals(const Matrix<D>& m2) {
+    Matrix<E,NR,NC,D,M>& equals(const Matrix<E>& m2) {
       // TODO; issue warning
       this->resize(m2.dims());
 
@@ -677,7 +686,7 @@ namespace matricks {
 	data_[i] = m2[i];    
       return *this;
     }
-    Matrix<D>& operator=(const Matrix<D>& m2) {
+    Matrix<E,NR,NC,D,M>& operator=(const Matrix<E>& m2) {
       return equals(m2);
     }
 
@@ -685,7 +694,7 @@ namespace matricks {
 
     // ----------------- matrix = matrix2.resize()  ----------------
     template <class B>
-      Matrix<D>& operator=(const TERW_Resize<D>& b) {
+      Matrix<E,NR,NC,D,M>& operator=(const TERW_Resize<E>& b) {
       // do nothing
       return *this;
     }
@@ -695,14 +704,14 @@ namespace matricks {
     
 
     // ----------------- matrix = initializer_list<initializer_list>  ----------------
-    Matrix<D>& equals(const std::initializer_list<std::initializer_list<D> >& mylist) {
+    Matrix<E,NR,NC,D,M>& equals(const std::initializer_list<std::initializer_list<E> >& mylist) {
       // TODO: size check 
       index_type i = 0;
-      typename std::initializer_list<std::initializer_list<D> >::iterator itR; 
+      typename std::initializer_list<std::initializer_list<E> >::iterator itR; 
       for (itR = mylist.begin(); itR != mylist.end(); ++itR)  {
-	const std::initializer_list<D>& row = *itR;
+	const std::initializer_list<E>& row = *itR;
 	// TODO: check that each row has same # cols
-	typename std::initializer_list<D>::iterator itC; 
+	typename std::initializer_list<E>::iterator itC; 
 	for (itC = row.begin(); itC != row.end(); ++itC)  {
 	  (*this)[i++] = *itC;
 	}
@@ -710,7 +719,7 @@ namespace matricks {
 
       return *this;
     }
-    Matrix<D>& operator=(const std::initializer_list<std::initializer_list<D> >& mylist) {
+    Matrix<E,NR,NC,D,M>& operator=(const std::initializer_list<std::initializer_list<E> >& mylist) {
       return equals(mylist);
     }
 
@@ -720,30 +729,30 @@ namespace matricks {
     
 
     // ------------------------ matrix = array[] ----------------
-    Matrix<D>& equals(const D array1[]) {
+    Matrix<E,NR,NC,D,M>& equals(const D array1[]) {
       for (index_type i = 0; i < size(); i++)  { 
 	(*this)[i] = array1[i];
       }
       return *this;
     }
-    Matrix<D>& operator=(const D array1[]) {
+    Matrix<E,NR,NC,D,M>& operator=(const D array1[]) {
       return equals(array1);
     }
 
 
     // --------------- matrix = initializer_list ------------------
-    Matrix<D>& equals(const std::initializer_list<D>& mylist) {
+    Matrix<E,NR,NC,D,M>& equals(const std::initializer_list<E>& mylist) {
 
       // TODO: bound scheck 
       size_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
+      typename std::initializer_list<E>::iterator it; 
       for (it = mylist.begin(); it != mylist.end(); ++it)  { 
 	(*this)[i++] = *it;
       }
 
       return *this;
     }
-    Matrix<D>& operator=(const std::initializer_list<D>& mylist) {
+    Matrix<E,NR,NC,D,M>& operator=(const std::initializer_list<E>& mylist) {
       return equals(mylist);
     }
 
@@ -756,10 +765,10 @@ namespace matricks {
     // -------access to the internal data valarray --------------------
 
     // "read/write" to the wrapped valarray
-    std::valarray<D>& getValArray()  {
+    std::valarray<E>& getValArray()  {
       return *data_; 
     }
-    Matrix<D>& setValArray(std::valarray<D>* valptr)  {
+    Matrix<E,NR,NC,D,M>& setValArray(std::valarray<E>* valptr)  {
       delete  data_ ;
       const size_t N = valptr->size();
       data_ = valptr;
@@ -773,7 +782,7 @@ namespace matricks {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Matrix<D>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
+    Matrix<E,NR,NC,D,M>&  roundzero(typename Realify<E>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = matricks::roundzero(data_[i], tolerance);
       }
@@ -816,7 +825,7 @@ namespace matricks {
     // stream << operator
 
 
-    friend std::ostream& operator<<(std::ostream &stream, const Matrix<D>& m) {
+    friend std::ostream& operator<<(std::ostream &stream, const Matrix<E,NR,NC,D,M>& m) {
       using namespace display;
 
       Style& style = FormatDataMatrix::style_for_punctuation;
@@ -850,7 +859,7 @@ namespace matricks {
 
 
     //template <class D>	
-    friend inline std::istream& operator>>(const std::string s,  Matrix<D>& m2) {	
+    friend inline std::istream& operator>>(const std::string s,  Matrix<E,NR,NC,D,M>& m2) {	
       std::istringstream st(s);
       return (st >> m2);
     }
@@ -858,7 +867,7 @@ namespace matricks {
 
     // stream >> operator
 
-    friend std::istream& operator>>(std::istream& stream,  Matrix<D>& m2) {	
+    friend std::istream& operator>>(std::istream& stream,  Matrix<E,NR,NC,D,M>& m2) {	
       return stream;
     }
 

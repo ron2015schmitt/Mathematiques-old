@@ -3,7 +3,6 @@
 
 #include "matricks.h"
 #include "gitmd.h"
-#include "TypeTraits.h"
 #include <iostream>
 #include <string>
 

@@ -9,22 +9,29 @@ namespace matricks {
  
  
   
-  /****************************************************************************
-   * Vector -- mathematical vector class.
-   ****************************************************************************   
+  /********************************************************************
+   * Vector<E>    -- variable size vector (valarray)
+   *                 E  = type for elements
+   * Vector<E,NE> -- fixed size vector (array)
+   *                 NE = size = number of elements [OPTIONAL]
+   *
+   * DO NOT SPECIFY: D,M
+   *                 The defaults are defined in the declaration in
+   *                 preface.h
+   *                 D = number type 
+   *                   = underlying algebraic field
+   *                     ex. int, double, std::complex<double>
+   *                 M = tensor depth. if E=D, then M=1.
+  ********************************************************************  
    */
 
-  // NOTE: Do NOT specify M.  The default is defined in the declaration in
-  //       preface.h
 
-  template <class D, int NN, int M> class Vector :
-    public TensorRW<D,Vector<D,NN,M> > {
+  template <class E, int NE,   typename D, int M> class Vector :
+    public TensorRW<E,Vector<E,NE,D,M> > {
 
 
   public:     
-  typedef D DataType;
-  typedef typename NumberType<D>::Type MyNumberType;
-  typedef typename ArrayType<D,NN>::Type MyArrayType;
+  typedef typename ArrayType<E,NE>::Type MyArrayType;
 
 
   // *********************** OBJECT DATA ***********************************
@@ -49,16 +56,16 @@ namespace matricks {
     
 
   // -------------------  DEFAULT  CONSTRUCTOR: Vector()  --------------------
-  explicit Vector<D,NN,M>() {
+  explicit Vector<E,NE,D,M>() {
     constructorHelper();
   }
 
 
   // --------------------- Vector(N)  ---------------------
 
-  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
 
-  explicit Vector<D,NN,M>(const size_type N) { 
+  explicit Vector<E,NE,D,M>(const size_type N) { 
     data_.resize(N);
     constructorHelper();
   }
@@ -66,9 +73,9 @@ namespace matricks {
 
   // --------------------- Vector(N,value)  ---------------------
 
-  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
 
-    explicit Vector<D,NN,M>(const size_type N, const D val) {
+    explicit Vector<E,NE,D,M>(const size_type N, const E val) {
     data_.resize(N);
     *this = val;
     constructorHelper();
@@ -76,25 +83,25 @@ namespace matricks {
 
   // --------------------- Vector(value)  ---------------------
 
-  template<size_t NN1 = NN, EnableConstructorIf<(NN1 > 0)> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<(NE1 > 0)> = 0>
 
-  explicit Vector<D,NN,M>(const D val) {
+  explicit Vector<E,NE,D,M>(const E val) {
     *this = val;
     constructorHelper();
   }
   
 
   // --------------------- array[]  CONSTRUCTOR ---------------------
-  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
 
-  Vector<D,NN,M>(const size_type N, const D (vals)[]) {
+  Vector<E,NE,D,M>(const size_type N, const E (vals)[]) {
     data_.resize(N);
     *this = vals;
     constructorHelper();
   }
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-  Vector<D,NN,M>(const std::initializer_list<D> mylist)  {
+  Vector<E,NE,D,M>(const std::initializer_list<E> mylist)  {
     *this = mylist;
     constructorHelper();
   }
@@ -102,7 +109,7 @@ namespace matricks {
 
   // --------------------- Vector(Vector) --------------------
 
-  Vector<D,NN,M>(const Vector<D,NN,M>& v2) {
+  Vector<E,NE,D,M>(const Vector<E,NE,D,M>& v2) {
     *this = v2;
     constructorHelper();
   }
@@ -111,9 +118,9 @@ namespace matricks {
   // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
   template <class A>
-  Vector<D,NN,M>(const TensorR<D,A>& x) 
+  Vector<E,NE,D,M>(const TensorR<E,A>& x) 
   {
-    if constexpr(NN==0) {
+    if constexpr(NE==0) {
       this->resize(x.size());
     }
     
@@ -125,8 +132,8 @@ namespace matricks {
 
 
   // --------------------- Vector(valarray)  ---------------------
-  Vector<D,NN,M>(const std::valarray<D>& valar) {
-    if constexpr(NN==0) {
+  Vector<E,NE,D,M>(const std::valarray<E>& valar) {
+    if constexpr(NE==0) {
       this->resize(valar.size());
     }
     *this = valar;
@@ -150,7 +157,7 @@ namespace matricks {
   //************************** DESTRUCTOR ******************************
   //**********************************************************************
 
-  ~Vector<D,NN,M>() {
+  ~Vector<E,NE,D,M>() {
   }
   
 
@@ -181,7 +188,7 @@ namespace matricks {
     return dimensions;
   }
   Dimensions tdims(void) const {
-    Dimensions dimensions(NN);
+    Dimensions dimensions(NE);
     return dimensions;
   }
 
@@ -195,8 +202,8 @@ namespace matricks {
     if constexpr(M<2) {
       return 1;
     } else {
-      const size_type Nelements = this->size();
-      if (Nelements==0) {
+      const size_type NElements = this->size();
+      if (NElements==0) {
 	return 0;
       } else {
 	return data_[0].size();
@@ -209,8 +216,8 @@ namespace matricks {
     if constexpr(M<2) {
       return 1;
     } else {
-      const size_type Nelements = this->size();
-      if (Nelements==0) {
+      const size_type NElements = this->size();
+      if (NElements==0) {
 	return 0;
       } else {
 	return data_[0].deepsize();
@@ -242,25 +249,25 @@ namespace matricks {
 
 
   // *** this is used for resize-by-assignment ***
-  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
     
-  TERW_Resize<D>  resize(void) { 
-    return  TERW_Resize<D>(*this);
+  TERW_Resize<E>  resize(void) { 
+    return  TERW_Resize<E>(*this);
   }
 
   // this is used to empty the vector of its datastore
-  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
     
-  TERW_Resize<D>  resize(void) const {
+  TERW_Resize<E>  resize(void) const {
     this->resize(0);
-    return  TERW_Resize<D>(*this);
+    return  TERW_Resize<E>(*this);
   }
 
   // --------------------- .resize(N) ---------------------
 
-  template<size_t NN1 = NN, EnableConstructorIf<NN1 == 0> = 0>
+  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
 
-    Vector<D,NN,M>&  resize(const size_type N) { 
+    Vector<E,NE,D,M>&  resize(const size_type N) { 
     if (N==this->size())
       return *this;
     // reallocate store
@@ -278,7 +285,7 @@ namespace matricks {
   // NOTE: indexes over [0] to [deepsize()] and note return type
   
   // "read/write"
-  MyNumberType& dat(const index_type n) {
+  D& dat(const index_type n) {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
     if constexpr(M < 2) {
@@ -296,7 +303,7 @@ namespace matricks {
   }
 
   // read
-  const MyNumberType& dat(const index_type n)  const {
+  const D& dat(const index_type n)  const {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr(M < 2) {
@@ -320,7 +327,7 @@ namespace matricks {
   //**********************************************************************
 
   // "read/write"
-  D& operator[](const index_type n) {
+  E& operator[](const index_type n) {
     int k = n;
     if (k < 0) {
       k += size();
@@ -329,7 +336,7 @@ namespace matricks {
   }
 
   // read
-  const D& operator[](const index_type n)  const {
+  const E& operator[](const index_type n)  const {
     int k = n;
     if (k < 0) {
       k += size();
@@ -344,36 +351,36 @@ namespace matricks {
 
   
   // "read/write"
-  D& operator()(const index_type n)  {
+  E& operator()(const index_type n)  {
     return data_[n]; 
   }
 
   // "read only"
-  const D& operator()(const index_type n)  const{
+  const E& operator()(const index_type n)  const{
     return data_[n]; 
   }
 
 
 
 
-    // Accessing a slice of values
-    
-    TERW_Subset<D> operator[](const slc& slice)  { 
-      return (*this)[slice.toIndexVector(size())];
-    }
-    const TERW_Subset<D>  operator[](const slc& slice) const  {
-      //      display::log3("Vector","operator[]","(const slc& slice)\n");
-      return (*this)[slice.toIndexVector(size())];
-    }
+  // Accessing a slice of values
+  
+  TERW_Subset<E> operator[](const slc& slice)  { 
+    return (*this)[slice.toIndexVector(size())];
+  }
+  const TERW_Subset<E>  operator[](const slc& slice) const  {
+    //      display::log3("Vector","operator[]","(const slc& slice)\n");
+    return (*this)[slice.toIndexVector(size())];
+  }
 
 
     // Accessing a SET of values using a vector of ints
 
-    TERW_Subset<D> operator[](const Vector<index_type>& ii) {
-      return TERW_Subset<D>(*this, ii);
+    TERW_Subset<E> operator[](const Vector<index_type>& ii) {
+      return TERW_Subset<E>(*this, ii);
     }
-    const TERW_Subset<D> operator[](const Vector<index_type>& ii) const {
-      return TERW_Subset<D>(*this, ii);
+    const TERW_Subset<E> operator[](const Vector<index_type>& ii) const {
+      return TERW_Subset<E>(*this, ii);
     }
 
 
@@ -381,21 +388,21 @@ namespace matricks {
     
     // Accessing a SET of values using a MASK
     
-    TERW_Submask<D> operator[](const Vector<bool>& mask)  {
-      return  TERW_Submask<D>(*this,mask);
+    TERW_Submask<E> operator[](const Vector<bool>& mask)  {
+      return  TERW_Submask<E>(*this,mask);
     }
-    const TERW_Submask<D> operator[](const Vector<bool>& mask)  const {
-      return  TERW_Submask<D>(*this,mask);
+    const TERW_Submask<E> operator[](const Vector<bool>& mask)  const {
+      return  TERW_Submask<E>(*this,mask);
     }
 
 
   //Accessing a SET of values using a list
 
-  TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) {
-    return  TERW_Subset<D>(*this, list);
+  TERW_Subset<E> operator[](const std::initializer_list<index_type>& list) {
+    return  TERW_Subset<E>(*this, list);
   }
-  const TERW_Subset<D> operator[](const std::initializer_list<index_type>& list) const {
-    return  TERW_Subset<D>(*this, list);
+  const TERW_Subset<E> operator[](const std::initializer_list<index_type>& list) const {
+    return  TERW_Subset<E>(*this, list);
   }
 
 
@@ -422,7 +429,7 @@ namespace matricks {
   // equals functions are included so that derived classes can call these functions
 
   // Assign all elements to the same constant value
-  Vector<D,NN,M>& operator=(const D& d) { 
+  Vector<E,NE,D,M>& operator=(const D& d) { 
     for (index_type i = 0; i < size(); i++) 
       (*this)(i)=d; 
     return *this;
@@ -430,9 +437,9 @@ namespace matricks {
 
 
   // copy constuctor
-  template <int NN2>
-  Vector<D,NN,M>& operator=(const Vector<D,NN2,M>& v2) {
-    if constexpr(NN==0) {
+  template <int NE2>
+    Vector<E,NE,D,M>& operator=(const Vector<E,NE2,D,M>& v2) {
+    if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != v2.size()) {
 	  resize(v2.size());
@@ -444,8 +451,8 @@ namespace matricks {
     return *this;
   }
 
-  Vector<D,NN,M>& operator=(const Vector<D,NN,M>& v2) {
-    if constexpr(NN==0) {
+  Vector<E,NE,D,M>& operator=(const Vector<E,NE,D,M>& v2) {
+    if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != v2.size()) {
 	  resize(v2.size());
@@ -460,8 +467,8 @@ namespace matricks {
 
   // NEW STYLE EXPRESSION equals
 
-  template <class D2,class A> Vector<D,NN,M>& operator=(const TensorR<D2,A>& y) {  
-    if constexpr(NN==0) {
+  template <class D2,class A> Vector<E,NE,D,M>& operator=(const TensorR<D2,A>& y) {  
+    if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != y.size()) {
 	  resize(y.size());
@@ -481,7 +488,7 @@ namespace matricks {
 
 
   std::string bottom(){
-    typename FundamentalType<D>::Type d;
+    typename FundamentalType<E>::Type d;
     return display::getTypeName(d);
   }
 
@@ -489,13 +496,13 @@ namespace matricks {
 
   // ------------------------ Vector = array[] ----------------
 
-  Vector<D,NN,M>& equals(const D array[]) {
+  Vector<E,NE,D,M>& equals(const E array[]) {
     for (index_type i = 0; i < size(); i++)  { 
       (*this)(i) = array[i];
     }
     return *this;
   }
-  Vector<D,NN,M>& operator=(const D array[]) {
+  Vector<E,NE,D,M>& operator=(const E array[]) {
     return equals(array);
   }
 
@@ -508,33 +515,33 @@ namespace matricks {
 
 
   template <class B>
-  Vector<D,NN,M>& operator=(const TERW_Resize<D>& b) { 
+  Vector<E,NE,D,M>& operator=(const TERW_Resize<E>& b) { 
     return *this;
   }
 
 
-  Vector<D,NN,M>& equals(const std::list<D>& mylist) {
-    if constexpr(NN==0) {
+  Vector<E,NE,D,M>& equals(const std::list<E>& mylist) {
+    if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != mylist.size()) {
 	  resize(mylist.size());
 	}
     }
     index_type i = 0;
-    for (typename std::list<D>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
+    for (typename std::list<E>::const_iterator it = mylist.begin(); it != mylist.end(); ++it)  { 
       (*this)(i++) = *it;
     }
     return *this;
   }
-  Vector<D,NN,M>& operator=(const std::list<D>& mylist) {
+  Vector<E,NE,D,M>& operator=(const std::list<E>& mylist) {
     return equals(mylist);
   }
 
     
 
   // assignment to a C++11 list
-  Vector<D,NN,M>& equals(const std::initializer_list<D>& mylist) {
-    if constexpr(NN==0) {
+  Vector<E,NE,D,M>& equals(const std::initializer_list<E>& mylist) {
+    if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != mylist.size()) {
 	  data_.resize(mylist.size());
@@ -542,14 +549,14 @@ namespace matricks {
     }
     
     size_type k = 0;
-    typename std::initializer_list<D>::iterator it; 
+    typename std::initializer_list<E>::iterator it; 
     for (it = mylist.begin(); it != mylist.end(); ++it, k++)  {
       data_[k] = *it;
     }
 
     return *this;
   }
-  Vector<D,NN,M>& operator=(const std::initializer_list<D>& mylist) {
+  Vector<E,NE,D,M>& operator=(const std::initializer_list<E>& mylist) {
     return equals(mylist);
   }
 
@@ -557,11 +564,11 @@ namespace matricks {
 
 
   // assignment to a std::vector
-  Vector<D,NN,M>& equals(const std::vector<D>& vstd) {
+  Vector<E,NE,D,M>& equals(const std::vector<E>& vstd) {
       
 
     // resize to avoid segmentation faults
-    if constexpr(NN==0) {
+    if constexpr(NE==0) {
 	if (this->size() != vstd.size()) {
 	  resize(vstd.size());
 	}
@@ -574,7 +581,7 @@ namespace matricks {
   }
 
 
-  Vector<D,NN,M>& operator=(const std::vector<D>& vstd) {
+  Vector<E,NE,D,M>& operator=(const std::vector<E>& vstd) {
     return equals(vstd);
   }
 
@@ -582,11 +589,11 @@ namespace matricks {
 
   // assignment to a std::array
   template <std::size_t N>
-  Vector<D,NN,M>& equals(const std::array<D,N>& varray) {
+  Vector<E,NE,D,M>& equals(const std::array<D,N>& varray) {
       
 
     // resize to avoid segmentation faults
-    if constexpr(NN==0) {
+    if constexpr(NE==0) {
 	if (this->size() != varray.size()) {
 	  resize(varray.size());
 	}
@@ -600,18 +607,18 @@ namespace matricks {
 
 
   template <std::size_t n>
-  Vector<D,NN,M>& operator=(const std::array<D,n>& varray) {
+  Vector<E,NE,D,M>& operator=(const std::array<D,n>& varray) {
     return equals(varray);
   }
 
 
 
   // assignment to a std::val_array
-  Vector<D,NN,M>& equals(const std::valarray<D>& varray) {
+  Vector<E,NE,D,M>& equals(const std::valarray<E>& varray) {
       
 
     // resize to avoid segmentation faults
-    if constexpr(NN==0) {
+    if constexpr(NE==0) {
 	if (this->size() != varray.size()) {
 	  resize(varray.size());
 	}
@@ -623,7 +630,7 @@ namespace matricks {
     return *this;
   }
 
-  Vector<D,NN,M>& operator=(const std::valarray<D>& varray) {
+  Vector<E,NE,D,M>& operator=(const std::valarray<E>& varray) {
     return equals(varray);
   }
 
@@ -638,7 +645,7 @@ namespace matricks {
   //----------------- .roundzero(tol) ---------------------------
   // NOTE: in-place
     
-  Vector<D,NN,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
+  Vector<E,NE,D,M>&  roundzero(typename Realify<E>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
     for(index_type i=size(); i--;) {
       data_[i] = matricks::roundzero(data_[i], tolerance);
     }
@@ -676,7 +683,7 @@ namespace matricks {
     if (N==0)
       return ivec;
     
-    std::vector<Pair<D> > temp(N);
+    std::vector<Pair<E> > temp(N);
 
     for (index_type i = 0; i < N ; i++ ) {
       temp[i].index = i;
@@ -700,7 +707,7 @@ namespace matricks {
   // .quniq()
   //         removes adjacent duplicates
   //  template<typename T=D> EnableMethodIf<is_complex<T>{}, Vector<T>&> 
-  template<typename T=index_type> EnableMethodIf<NN==0, Vector<T>& > 
+  template<typename T=index_type> EnableMethodIf<NE==0, Vector<T>& > 
 
   quniq() {
 
@@ -709,12 +716,12 @@ namespace matricks {
     if (N==0)
       return *(new Vector<index_type>(0));
     
-    std::queue<Pair<D> > unique;
+    std::queue<Pair<E> > unique;
 	
-    Pair<D> prevpair(0, data_[0]);
+    Pair<E> prevpair(0, data_[0]);
     unique.push(prevpair);
     for (index_type i = 1; i < N ; i++ ) {
-      Pair<D> mypair(i, data_[i]);
+      Pair<E> mypair(i, data_[i]);
       if (mypair.data != prevpair.data) {
 	unique.push(mypair);
 	prevpair = mypair;
@@ -725,7 +732,7 @@ namespace matricks {
     Vector<index_type> &indexvec = *(new Vector<index_type>(Nnew));
     resize(Nnew);
     for (index_type i = 0; i < Nnew ; i++ ) {
-      Pair<D> mypair = unique.front();
+      Pair<E> mypair = unique.front();
       unique.pop();
       indexvec(i) = mypair.index;
       data_[i] = mypair.data;
@@ -737,7 +744,7 @@ namespace matricks {
 
   // .uniq()
   //         removes all duplicates
-  template<typename T=index_type> EnableMethodIf<NN==0, Vector<T>& > 
+  template<typename T=index_type> EnableMethodIf<NE==0, Vector<T>& > 
 
   uniq() {
 
@@ -753,10 +760,10 @@ namespace matricks {
 
     for (index_type j = 0; j < N ; j++ ) {
       if (mymap.find(j) == mymap.end()) continue;
-      Pair<D> pair1(j, data_[j]);
+      Pair<E> pair1(j, data_[j]);
       for (index_type k = j+1; k < N ; k++ ) {
 	if (mymap.find(k) == mymap.end()) continue;
-	Pair<D> pair2(k, data_[k]);
+	Pair<E> pair2(k, data_[k]);
 	if (pair1.data == pair2.data) {
 	  mymap.erase(k);
 	} 
@@ -776,14 +783,14 @@ namespace matricks {
   }
 
 
-  Vector<D,NN,M>& reverse() {
+  Vector<E,NE,D,M>& reverse() {
 
     const size_type N = size();
     if (N==0)
       return *this;
    
     for (index_type i = 0; i < N/2 ; i++ ) {
-      D temp = data_[i];
+      E temp = data_[i];
       data_[i] = data_[N-i-1];
       data_[N-i-1] = temp;
     }
@@ -795,9 +802,9 @@ namespace matricks {
 
   // .cumsum() -- cumulative sum
 
-  Vector<D,NN,M>& cumsum() {
+  Vector<E,NE,D,M>& cumsum() {
     const size_type N = size();
-    D sum = 0;
+    E sum = 0;
     for (index_type i = 0; i < N ; i++ ) {
       sum += data_[i];
       data_[i] = sum;
@@ -807,9 +814,9 @@ namespace matricks {
 
   // .cumprod()  --  cumulative product
 
-  Vector<D,NN,M>& cumprod() {
+  Vector<E,NE,D,M>& cumprod() {
     const size_type N = size();
-    D prod = 1;
+    E prod = 1;
     for (index_type i = 0; i < N ; i++ ) {
       prod *= data_[i];
       data_[i] = prod;
@@ -820,10 +827,10 @@ namespace matricks {
 
   // .cumtrapz() -- cumulative trapezoidal summation
 
-  Vector<D,NN,M>& cumtrapz() {
+  Vector<E,NE,D,M>& cumtrapz() {
     const size_type N = size();
     if (N==0) return *this;
-    D sum = data_[0]/2;
+    E sum = data_[0]/2;
     data_[0] = 0;
     for (index_type i = 1; i < N ; i++ ) {
       sum += data_[i];
@@ -836,19 +843,19 @@ namespace matricks {
   // order  name
   //     0  rectangular
   //     1  trapazoidal
-  Vector<D,NN,M>& integrate_a2x(const D a, const D b, const int order=1) {
+  Vector<E,NE,D,M>& integrate_a2x(const E a, const E b, const int order=1) {
 
     const size_type N = size();
 
     if (order == 0) {
       this->cumsum();
-      const D dx = (b-a)/D(N);
+      const E dx = (b-a)/D(N);
       for (index_type i = 0; i < N ; i++ ) {
 	data_[i] *= dx;
       }
     } else if (order == 1) {
       this->cumtrapz();
-      const D dx = (b-a)/D(N-1);
+      const E dx = (b-a)/D(N-1);
       for (index_type i = 0; i < N ; i++ ) {
 	data_[i] *= dx;
       }
@@ -861,10 +868,10 @@ namespace matricks {
 
   // .cumsumrev() -- cumulative sum -- from last to first
 
-  Vector<D,NN,M>& cumsum_rev() {
+  Vector<E,NE,D,M>& cumsum_rev() {
     const size_type N = size();
 
-    D sum = 0;
+    E sum = 0;
     for (index_type i = 0; i < N ; i++ ) {
       sum += data_[N-1-i];
       data_[N-1-i] = sum;
@@ -874,10 +881,10 @@ namespace matricks {
 
   // .cumprodrev()  --  cumulative product  -- from last to first
 
-  Vector<D,NN,M>& cumprod_rev() {
+  Vector<E,NE,D,M>& cumprod_rev() {
     const size_type N = size();
 
-    D prod = 1;
+    E prod = 1;
     for (index_type i = 0; i < N ; i++ ) {
       prod *= data_[N-1-i];
       data_[N-1-i] = prod;
@@ -888,11 +895,11 @@ namespace matricks {
 
   // .cumtrapz() -- cumulative trapezoidal summation -- from last to first
 
-  Vector<D,NN,M>& cumtrapz_rev() {
+  Vector<E,NE,D,M>& cumtrapz_rev() {
     const size_type N = size();
     if (N==0) return *this;
 
-    D sum = data_[N-1]/2;
+    E sum = data_[N-1]/2;
     data_[N-1] = 0;
     for (index_type i = 1; i < N ; i++ ) {
       sum += data_[N-1-i];
@@ -907,18 +914,18 @@ namespace matricks {
   // order  name
   //     0  rectangular
   //     1  trapazoidal
-  Vector<D,NN,M>& integrate_x2b(const D a, const D b, const int order=1) {
+  Vector<E,NE,D,M>& integrate_x2b(const E a, const E b, const int order=1) {
     const size_type N = size();
 
     if (order == 0) {
       this->cumsum_rev();
-      const D dx = (b-a)/(N);
+      const E dx = (b-a)/(N);
       for (index_type i = 0; i < N ; i++ ) {
 	data_[N-1-i] *= dx;
       }
     } else if (order == 1) {
       this->cumtrapz_rev();
-      const D dx = (b-a)/(N-1);
+      const E dx = (b-a)/(N-1);
       for (index_type i = 0; i < N ; i++ ) {
 	data_[N-1-i] *= dx;
       }
@@ -931,11 +938,11 @@ namespace matricks {
 
 
   // diff   (v[n] = v[n] - v[n-1])
-  Vector<D,NN,M>& diff(const bool periodic=false) {
+  Vector<E,NE,D,M>& diff(const bool periodic=false) {
     const size_type N = size();
     if (N<=1) return *this;
 
-    D temp;
+    E temp;
     if (periodic) {
       temp = data_[0] - data_[N-1];
     } else {
@@ -951,11 +958,11 @@ namespace matricks {
   }
 
   // diff_rev   (v[n] = v[n+1] - v[n])
-  Vector<D,NN,M>& diff_rev(const bool periodic=false) {
+  Vector<E,NE,D,M>& diff_rev(const bool periodic=false) {
     const size_type N = size();
     if (N<=1) return *this;
 
-    D temp;
+    E temp;
     if (periodic) {
       temp = data_[0] - data_[N-1];
     } else {
@@ -974,12 +981,12 @@ namespace matricks {
   // deriv -  derivative
   // any change in the default parameters must be likewise made in vfunctions.h: deriv(...)
 
-  Vector<D,NN,M>& deriv(const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
+  Vector<E,NE,D,M>& deriv(const E a, const E b, const int n=1, int Dpts=7, const bool periodic=false) {
     //mdisp(a,b,n,Dpts,periodic);
     const size_type N = size();
     if (N<=1) return *this;
 
-    const D dx = (b-a)/D(N-1);
+    const E dx = (b-a)/D(N-1);
 
     if (Dpts > N ) {
       //TODO: error or warning
@@ -993,9 +1000,9 @@ namespace matricks {
       }
 	
     } else if (Dpts == 3) {
-      D prev;
-      D curr;
-      D last;
+      E prev;
+      E curr;
+      E last;
       if (periodic) {
 	// first point
 	prev = data_[1] - data_[N-1];
@@ -1008,7 +1015,7 @@ namespace matricks {
 	last = 3*data_[N-1] - 4*data_[N-2] + data_[N-3];
       }
 	
-      const D c0 = 0.5/dx;
+      const E c0 = 0.5/dx;
       for (index_type i = 1; i < N-1 ; i++ ) {
 	curr = data_[i+1] - data_[i-1];
 	data_[i-1] = c0*prev;
@@ -1018,11 +1025,11 @@ namespace matricks {
       data_[N-1] = c0*last;
 	
     } else if (Dpts == 5) {
-      D prev1;
-      D prev2;
-      D curr;
-      D last;
-      D lastminus1;
+      E prev1;
+      E prev2;
+      E curr;
+      E last;
+      E lastminus1;
       if (periodic) {
 	// second to last point
 	lastminus1 = data_[N-4] - 8*data_[N-3] + 8*data_[N-1] - data_[0];
@@ -1039,7 +1046,7 @@ namespace matricks {
 	prev1      =    data_[4]   -  6*data_[3]   + 18*data_[2]   - 10*data_[1]   -  3*data_[0];
       }
 	
-      const D c0 = 1/(12*dx);
+      const E c0 = 1/(12*dx);
       for (index_type i = 2; i < N-2 ; i++ ) {
 	curr = data_[i-2] - 8*data_[i-1] + 8*data_[i+1]  - data_[i+2];
 	data_[i-2] = c0*prev2;
@@ -1052,13 +1059,13 @@ namespace matricks {
       data_[N-1] = c0*last;
 	
     } else if (Dpts == 7) {
-      D prev1;
-      D prev2;
-      D prev3;
-      D curr;
-      D last;
-      D lastminus1;
-      D lastminus2;
+      E prev1;
+      E prev2;
+      E prev3;
+      E curr;
+      E last;
+      E lastminus1;
+      E lastminus2;
       if (periodic) {
 	lastminus2 = -data_[N-6] + 9*data_[N-5] - 45*data_[N-4] + 45*data_[N-2]  - 9*data_[N-1] + data_[0];
 	lastminus1 = -data_[N-5] + 9*data_[N-4] - 45*data_[N-3] + 45*data_[N-1]  - 9*data_[0] + data_[1];
@@ -1075,7 +1082,7 @@ namespace matricks {
 	prev2 =  -10*data_[0] -  77*data_[1] + 150*data_[2] - 100*data_[3] +  50*data_[4] - 15*data_[5] +  2*data_[6];
 	prev1 =    2*data_[0] -  24*data_[1] -  35*data_[2] +  80*data_[3] -  30*data_[4] +  8*data_[5] -    data_[6];
       }
-      const D c0 = 1/(60*dx);
+      const E c0 = 1/(60*dx);
       for (index_type i = 3; i < N-3 ; i++ ) {
 	curr = -data_[i-3] + 9*data_[i-2] - 45*data_[i-1] + 45*data_[i+1]  - 9*data_[i+2] + data_[i+3];
 	data_[i-3] = c0*prev3;
@@ -1110,12 +1117,12 @@ namespace matricks {
     using namespace display;
     std::string s = "Vector";		
     s += StyledString::get(ANGLE1).get();
-    D d;
+    E d;
     s += getTypeName(d);
-    if (NN!=0) {
+    if (NE!=0) {
       s += StyledString::get(COMMA).get();
-      s += "NN=";
-      s += num2string(NN);
+      s += "NE=";
+      s += num2string(NE);
     }
     //    if (M>1) {
     //      s += StyledString::get(COMMA).get();
@@ -1138,7 +1145,7 @@ namespace matricks {
 
   // stream << operator
 
-  friend std::ostream& operator<<(std::ostream &stream, const Vector<D,NN,M>& v) {
+  friend std::ostream& operator<<(std::ostream &stream, const Vector<E,NE,D,M>& v) {
     using namespace display;
     Style& style = FormatDataVector::style_for_punctuation;
     stream << style.apply(FormatDataVector::string_opening);
@@ -1160,8 +1167,7 @@ namespace matricks {
   }
 
 
-  //template <class D>	
-  friend inline std::istream& operator>>(const std::string s,  Vector<D,NN,M>& x) {	
+  friend inline std::istream& operator>>(const std::string s,  Vector<E,NE,D,M>& x) {	
     std::istringstream st(s);
     return (st >> x);
   }
@@ -1169,13 +1175,13 @@ namespace matricks {
 
   // stream >> operator
 
-  friend std::istream& operator>>(std::istream& stream,  Vector<D,NN,M>& x) {	
+  friend std::istream& operator>>(std::istream& stream,  Vector<E,NE,D,M>& x) {	
     // const size_type LINESZ = 32768;
     // char line[LINESZ];
-    // std::vector<D> v;
+    // std::vector<E> v;
     // size_type N = 0;
     // const size_type Nold = x.size();
-    // D temp;
+    // E temp;
     // size_type Nlines = 0;
     // std::istringstream strmline;
 

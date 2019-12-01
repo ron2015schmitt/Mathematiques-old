@@ -2,8 +2,6 @@
 #include "matricks.h"
 
 #include <vector>
-
-#include "TypeTraits.h"
 #include <string>
 
 

@@ -69,50 +69,58 @@ namespace matricks {
   class TensorAbstract;
   template <class D, class DERIVED> class TensorR;  
   template <class D, class DERIVED> class TensorRW;
+
+
+  // E = element type (int, double, complex<double>, bool, Scalar<double>, Vector<double>, Matrix<double>, etc)
+  // D = number type (int, double, complex<double>, bool, etc)
   
-  template <class D, int M = 1+matricks::NumberType<D>::depth()> class Scalar;
-  template <class D, int NN = 0, int M = 1+matricks::NumberType<D>::depth()> class Vector;
-  template <class D, int NR = 0, int NC = 0, int M = 1+matricks::NumberType<D>::depth()> class Matrix;
-  template <class D, int M = 1+matricks::NumberType<D>::depth()> class Tensor;
+  template <class E,              typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+    Scalar;
+  template <class E, int NN = 0,  typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+    Vector;
+  template <class E, int NR = 0, int NC = 0,    typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+    Matrix;
+  template <class E, int NDims = 0,   typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+    Tensor;
 
 
 
-  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()> class
+  template<class D, class A, class FUNC, int M = 1+NumberType<D>::depth()> class
     TER_Unary;
 
   // Note: the lack "+1" for M1,M2 is intended
-  template<class A, class B, class D1, class D2, class OP, int M1 = matricks::NumberType<A>::depth(), int M2 = matricks::NumberType<B>::depth()> class
+  template<class A, class B, class D1, class D2, class OP, int M1 = NumberType<A>::depth(), int M2 = NumberType<B>::depth()> class
     TER_Binary;
 
-  template<class A, class B, class C, class D1, class D2, class D3, class OP, int M1 = matricks::NumberType<A>::depth(), int M2 = matricks::NumberType<B>::depth(), int M3 = matricks::NumberType<C>::depth()> class
+  template<class A, class B, class C, class D1, class D2, class D3, class OP, int M1 = NumberType<A>::depth(), int M2 = NumberType<B>::depth(), int M3 = NumberType<C>::depth()> class
     TER_Ternary;
   
 
-  template <class D, int M = 1+matricks::NumberType<D>::depth()>
+  template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Subset;
-  template <class D, int M = 1+matricks::NumberType<D>::depth()>
+  template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Submask;
-  template <class D, int M = 1+matricks::NumberType<D>::depth()>
+  template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Resize;
-  template <class D, class OP, int M = 1+matricks::NumberType<D>::depth()>
+  template <class D, class OP, int M = 1+NumberType<D>::depth()>
     class TER_RealFromComplex;
 
 
-  template<class D, class A, class X, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, class X, int M = 1+NumberType<D>::depth()>
     class TER_Series;
-  template<class D, class A, class B, class X, class OP1, class OP2, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, class B, class X, class OP1, class OP2, int M = 1+NumberType<D>::depth()>
     class TER_Series2;    
 
 
-  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, class FUNC, int M = 1+NumberType<D>::depth()>
     class TERW_Transpose;
-  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, class FUNC, int M = 1+NumberType<D>::depth()>
     class TER_Transpose;
-  template<class D, class A, class B, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, class B, int M = 1+NumberType<D>::depth()>
     class VER_Join;
-  template<class D, class A, class B, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, class B, int M = 1+NumberType<D>::depth()>
     class VERW_Join;
-  template<class D, class A, int M = 1+matricks::NumberType<D>::depth()>
+  template<class D, class A, int M = 1+NumberType<D>::depth()>
     class VER_Rep;
 
   
@@ -148,31 +156,102 @@ namespace matricks {
     typedef D Type;
   };
 
+
+
   // FundamentalType - this operates recursively to find the primitive arithmetic type
   //                   eg int, float, double, ...
-  template <typename T> class FundamentalType {
+  template <typename T> class
+    FundamentalType {
   public:
     typedef T Type;
     constexpr static int depth() {
       return 0;
     }
   };
-  template <template<typename> class T, typename D> class FundamentalType<T<D> > {
+
+  template <class E, template<typename> class T>
+    class FundamentalType<T<E>> {
   public:
-    typedef typename FundamentalType<D>::Type Type;
+    typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
-      return 1+FundamentalType<D>::depth();
+      return 1+FundamentalType<E>::depth();
     }
   };
-  template <typename D, typename A> class FundamentalType<TensorR<D,A> > {
+  template <class E>
+    class FundamentalType<std::complex<E>> {
   public:
-    typedef typename FundamentalType<D>::Type Type;
+    typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
-      return 1+FundamentalType<D>::depth();
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+  template <class E>
+    class FundamentalType<Imaginary<E>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
     }
   };
 
 
+  
+  //  Scalar<E>
+  template <class E>
+    class FundamentalType<Scalar<E>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+  
+  //  Vector<E>
+  template <class E>
+    class FundamentalType<Vector<E>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+
+  //  Matrix<E>
+
+  template <class E>
+    class FundamentalType<Matrix<E>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+
+
+  //  Tensor<E>
+  template <class E>
+    class FundamentalType<Tensor<E>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+
+
+  //  TensorR<E,A>
+
+  template <class E, class A>
+    class FundamentalType<TensorR<E,A>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+
+
+  
   
   // NumberType - this operates recursively to find the base number type
   //              eg. complex<double>, Imaginary<float>, int, double, etc
@@ -219,13 +298,17 @@ namespace matricks {
     }
   };
 
-  template <typename D, template <typename> typename A , typename NumType> class NumberType<A<D>,NumType>  {
+
+  
+  //  Scalar<E>
+  
+  template <class E, typename NumType> class NumberType<Scalar<E>,NumType > {
   public:
-    typedef A<D> InputType;
-    typedef typename NumberType<D>::Type Type;
-    typedef A<typename NumberType<D,NumType>::ReplaceType> ReplaceType;
+    typedef Scalar<E> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Scalar<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<D,NumType>::depth();
+      return 1+NumberType<E,NumType>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -236,13 +319,15 @@ namespace matricks {
   };
 
 
-  template <typename D, typename B, template <typename,typename> typename A , typename NumType> class NumberType<A<D,B>,NumType>  {
+  //  Vector<E>
+
+  template <class E, typename NumType> class NumberType<Vector<E>,NumType > {
   public:
-    typedef A<D,B> InputType;
-    typedef typename NumberType<D>::Type Type;
-    typedef A<typename NumberType<D,NumType>::ReplaceType, B> ReplaceType;
+    typedef Vector<E> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Vector<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<D,NumType>::depth();
+      return 1+NumberType<E,NumType>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -251,6 +336,65 @@ namespace matricks {
       return x.deepsize();
     }
   };
+
+
+  //  Matrix<E>
+
+  template <class E, typename NumType> class NumberType<Matrix<E>,NumType > {
+  public:
+    typedef Matrix<E> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Matrix<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NumType>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
+
+  //  Tensor<E>
+
+  template <class E, typename NumType> class NumberType<Tensor<E>,NumType > {
+  public:
+    typedef Tensor<E> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Tensor<typename NumberType<E,NumType>::ReplaceType> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NumType>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
+
+  //  TensorR<E,A>
+
+  template <class E, class A, typename NumType> class NumberType<TensorR<E,A>,NumType > {
+  public:
+    typedef TensorR<E,A> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef TensorR<typename NumberType<E,NumType>::ReplaceType, A> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NumType>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
+
 
 
   

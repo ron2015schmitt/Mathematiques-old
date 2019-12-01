@@ -3,7 +3,6 @@
 
 #include <vector>
 
-#include "TypeTraits.h"
 #include <string>
 
 
@@ -75,10 +74,10 @@ int main(int argc, char *argv[])
     tdisp(double_);
     Complexify<std::complex<double> >::Type complexdouble_;
     tdisp(complexdouble_);
-    Complexify<Scalar<double> >::Type scalardouble_;
-    tdisp(scalardouble_);
-    Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-    tdisp(scalarcomplexdouble_);
+    // Complexify<Scalar<double> >::Type scalardouble_;
+    // tdisp(scalardouble_);
+    // Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+    // tdisp(scalarcomplexdouble_);
   }
 
     {
@@ -88,10 +87,10 @@ int main(int argc, char *argv[])
     tdisp(double_);
     Realify<std::complex<double> >::Type complexdouble_;
     tdisp(complexdouble_);
-    Realify<Scalar<double> >::Type scalardouble_;
-    tdisp(scalardouble_);
-    Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-    tdisp(scalarcomplexdouble_);
+    // Realify<Scalar<double> >::Type scalardouble_;
+    // tdisp(scalardouble_);
+    // Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+    // tdisp(scalarcomplexdouble_);
   }
 
 
@@ -120,13 +119,21 @@ int main(int argc, char *argv[])
     Vector<double> vd {1,2,3,4};
     tdisp(vd);
 
+    tdisp(FundamentalType<double>::depth());
+    FundamentalType<double>::Type d1 = 0.1;
+    tdisp(d1);
+    
+    tdisp(FundamentalType<ComplexDouble>::depth());
+    FundamentalType<ComplexDouble>::Type d2 = 0.1;
+    tdisp(d2);
+
     tdisp(FundamentalType<decltype(vd)>::depth());
-    FundamentalType<decltype(vd)>::Type d = 0.1;
-    tdisp(d);
+    FundamentalType<decltype(vd)>::Type d3 = 0.1;
+    tdisp(d3);
 
     tdisp(NumberType<decltype(vd)>::depth());
-    NumberType<decltype(vd)>::Type d2 = 0.2;
-    tdisp(d2);
+    NumberType<decltype(vd)>::Type d4 = 0.2;
+    tdisp(d4);
   }
   {
     cr();

@@ -8,17 +8,25 @@ namespace matricks {
 
  
 
-  
-  /****************************************************************************
-   * Scalar -- mathematical vector class.
-   ****************************************************************************   
+
+
+  /********************************************************************
+   * Scalar<E>    -- variable size vector (valarray)
+   *                 E  = type for elements
+   *
+   * DO NOT SPECIFY: D,M
+   *                 The defaults are defined in the declaration in
+   *                 preface.h
+   *                 D = number type 
+   *                   = underlying algebraic field
+   *                     ex. int, double, std::complex<double>
+   *                 M = tensor depth. if E=D, then M=1.
+  ********************************************************************  
    */
 
-  // NOTE: Do NOT specify M.  The default is defined in the declaration in
-  //       preface.h
-  
-  template <class D, int M> class Scalar :
-    public TensorRW<D, Scalar<D,M> > {
+    
+  template <class E, typename D, int M> class Scalar :
+    public TensorRW<E, Scalar<E,D,M> > {
   private:
 
   // *********************** OBJECT DATA ***********************************
@@ -26,13 +34,12 @@ namespace matricks {
   // do NOT declare any other storage.
   // keep the instances lightweight
     
-  D data_;
+  E data_;
 
 
   public:     
 
-  typedef D DataType;
-  typedef typename NumberType<D>::Type MyNumberType;
+  typedef E DataType;
 
 
 
@@ -42,15 +49,15 @@ namespace matricks {
 
 
   // -------------------  DEFAULT  CONSTRUCTOR: zero --------------------
-  Scalar<D,M>() 
+  Scalar<E,D,M>() 
   {
-    data_ = D(0); 
+    data_ = E(0); 
     constructorHelper();
   }
 
   // --------------------- constant CONSTRUCTOR ---------------------
 
-  Scalar<D,M>(const D val) 
+  Scalar<E,D,M>(const E val) 
   {
       
     data_ = val;
@@ -62,7 +69,7 @@ namespace matricks {
 
 
   template <class A>
-  Scalar<D,M>(const TensorR<D,A>& x) 
+  Scalar<E,D,M>(const TensorR<E,A>& x) 
   {
     *this = x;
     constructorHelper();
@@ -70,7 +77,7 @@ namespace matricks {
 
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-  Scalar<D,M>(std::initializer_list<D> mylist) {
+  Scalar<E,D,M>(std::initializer_list<E> mylist) {
     *this = mylist;
     constructorHelper();
   }
@@ -90,7 +97,7 @@ namespace matricks {
   //************************** DESTRUCTOR ******************************
   //**********************************************************************
 
-  ~Scalar<D,M>() {
+  ~Scalar<E,D,M>() {
     //remove from TensorPool
   }
   
@@ -158,12 +165,12 @@ namespace matricks {
   //************************** DEEP ACCESS *******************************
   //**********************************************************************
 
-  // -------------------- NumberType access[] --------------------
+  // -------------------- D access[] --------------------
   // NOTE: indexes over [0] to [deepsize()]
   // -------------------------------------------------------------
   
   // "read/write": unsigned
-  MyNumberType& dat(const index_type n) {
+  D& dat(const index_type n) {
     if constexpr(M < 2) {
       return data_;
     } else {
@@ -172,7 +179,7 @@ namespace matricks {
   }
 
   // "read/write": signed
-  const MyNumberType& dat(const index_type n)  const {
+  const D& dat(const index_type n)  const {
     if constexpr(M < 2) {
       return data_;
     } else {
@@ -189,12 +196,12 @@ namespace matricks {
   //**********************************************************************
 
   // "read/write": unsigned
-  D& operator[](const index_type n) {
+  E& operator[](const index_type n) {
     return data_;
   }
 
   // "read/write": signed
-  const D& operator[](const index_type n)  const {
+  const E& operator[](const index_type n)  const {
     return data_;
   }
 
@@ -206,12 +213,12 @@ namespace matricks {
 
   
   // "read/write"
-  D& operator()()  {
+  E& operator()()  {
     return data_; 
   }
 
   // "read only"
-  const D& operator()()  const{
+  const E& operator()()  const{
     return data_; 
   }
 
@@ -223,17 +230,12 @@ namespace matricks {
   //************************** ASSIGNMENT **************************************
   //**********************************************************************
 
-  Scalar<D,M>& equals(const D d) { 
+  Scalar<E,D,M>& operator=(const E d) {
     data_=d; 
     return *this;
   }
-  Scalar<D,M>& operator=(const D d) {
-    return equals(d);
-  }
-    
 
-
-  Scalar<D,M>& operator=(const Scalar<D,M>& s2) {
+  Scalar<E,D,M>& operator=(const Scalar<E,D,M>& s2) {
     if constexpr(M<2) {
       data_ = s2();    
     } else {
@@ -243,21 +245,16 @@ namespace matricks {
     return *this;
   }
 
-
   
-  Scalar<D,M>& operator=(const std::initializer_list<D>& mylist) {
-    // TODO: check size
-    typename std::initializer_list<D>::iterator it  = mylist.begin(); 
+  Scalar<E,D,M>& operator=(const std::initializer_list<E>& mylist) {
+    typename std::initializer_list<E>::iterator it  = mylist.begin(); 
     data_ = *it;
-
     return *this;
   }
 
-  
-  
 
   template<class A, class D2> 
-    Scalar<D,M>& operator=(const TensorR<D2,A>& y) {
+    Scalar<E,D,M>& operator=(const TensorR<D2,A>& y) {
     if constexpr(M<2) {
 	 data_ = y[0];
     } else {
@@ -277,7 +274,7 @@ namespace matricks {
   // NOTE: in-place
 
     
-  Scalar<D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
+  Scalar<E,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
     data_ = matricks::roundzero(data_, tolerance);
     return *this;
   }
@@ -292,9 +289,7 @@ namespace matricks {
     return *this;
   }
 
-
-
-    
+   
 
     
 
@@ -306,8 +301,8 @@ namespace matricks {
     using namespace display;
     std::string s = "Scalar";		
     s += StyledString::get(ANGLE1).get();
-    D d;
-    s += getTypeName(d);
+    E e;
+    s += getTypeName(e);
     if (M>1) {
       s += StyledString::get(COMMA).get();
       s += "M=";
@@ -327,7 +322,7 @@ namespace matricks {
 
   // stream << operator
 
-  friend std::ostream& operator<<(std::ostream &stream, const Scalar<D,M>& s) {
+  friend std::ostream& operator<<(std::ostream &stream, const Scalar<E,D,M>& s) {
     using namespace display;
     dispval_strm(stream, s());
     return stream;
@@ -335,7 +330,7 @@ namespace matricks {
 
 
   //template <class D>	
-  friend inline std::istream& operator>>(const std::string s,  Scalar<D,M>& x) {	
+  friend inline std::istream& operator>>(const std::string s,  Scalar<E,D,M>& x) {	
     std::istringstream st(s);
     return (st >> x);
   }
@@ -344,7 +339,7 @@ namespace matricks {
   // stream >> operator
 
   // TODO: implement this
-  friend std::istream& operator>>(std::istream& stream,  Scalar<D,M>& x) {	
+  friend std::istream& operator>>(std::istream& stream,  Scalar<E,D,M>& x) {	
     return stream;
   }
 

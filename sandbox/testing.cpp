@@ -3,7 +3,6 @@
 
 #include <vector>
 
-#include "TypeTraits.h"
 #include <string>
 
 template<typename T>
@@ -375,8 +374,8 @@ int main(int argc, char *argv[])
 
   disp(typeid(*t).name());
   disp(typeid(*t2).name());
-  disp(is_instance<decltype(*t), Scalar>{});
-  disp(is_instance<decltype(*t2), Scalar>{});
+  // disp(is_instance<decltype(*t), Scalar>{});
+  // disp(is_instance<decltype(*t2), Scalar>{});
 
   Scalar<int> s1 = 12;
   Scalar<int> s2 = 10;
@@ -786,8 +785,8 @@ int main(int argc, char *argv[])
   cr();
   disp(is_complex<double>{});
   disp(is_complex<ComplexDouble>{});
-  disp(is_complex<Scalar<double> >{});
-  disp(is_complex<Scalar<ComplexDouble> >{});
+  // disp(is_complex<Scalar<double> >{});
+  // disp(is_complex<Scalar<ComplexDouble> >{});
 
 
   
@@ -799,10 +798,10 @@ int main(int argc, char *argv[])
     tdisp(double_);
     Complexify<std::complex<double> >::Type complexdouble_;
     tdisp(complexdouble_);
-    Complexify<Scalar<double> >::Type scalardouble_;
-    tdisp(scalardouble_);
-    Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-    tdisp(scalarcomplexdouble_);
+    // Complexify<Scalar<double> >::Type scalardouble_;
+    // tdisp(scalardouble_);
+    // Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+    // tdisp(scalarcomplexdouble_);
   }
 
     {
@@ -812,10 +811,10 @@ int main(int argc, char *argv[])
     tdisp(double_);
     Realify<std::complex<double> >::Type complexdouble_;
     tdisp(complexdouble_);
-    Realify<Scalar<double> >::Type scalardouble_;
-    tdisp(scalardouble_);
-    Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-    tdisp(scalarcomplexdouble_);
+    // Realify<Scalar<double> >::Type scalardouble_;
+    // tdisp(scalardouble_);
+    // Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+    // tdisp(scalarcomplexdouble_);
   }
 
 
@@ -836,43 +835,43 @@ int main(int argc, char *argv[])
     //tdisp(x.conj());
   }
 
-  {
-    cr();
-    mout << bold.apply("TypeTraits<T>::ParameterType") << endl;
-    Loki::TypeTraits<int>::ParameterType n = 1;
-    tdisp(n);
-    disp(Loki::TypeTraits<decltype(n)>::isReference);
+  // {
+  //   cr();
+  //   mout << bold.apply("TypeTraits<T>::ParameterType") << endl;
+  //   Loki::TypeTraits<int>::ParameterType n = 1;
+  //   tdisp(n);
+  //   disp(Loki::TypeTraits<decltype(n)>::isReference);
 
-    Loki::TypeTraits<long>::ParameterType longo = *(new long(123456789));
-    tdisp(longo);
-    disp(Loki::TypeTraits<decltype(longo)>::isReference);
+  //   Loki::TypeTraits<long>::ParameterType longo = *(new long(123456789));
+  //   tdisp(longo);
+  //   disp(Loki::TypeTraits<decltype(longo)>::isReference);
 
-    Loki::TypeTraits<long long>::ParameterType llongo = *(new long long(12345678));
-    tdisp(llongo);
-    disp(Loki::TypeTraits<decltype(llongo)>::isReference);
+  //   Loki::TypeTraits<long long>::ParameterType llongo = *(new long long(12345678));
+  //   tdisp(llongo);
+  //   disp(Loki::TypeTraits<decltype(llongo)>::isReference);
 
-    Loki::TypeTraits<double>::ParameterType x = 2.13;
-    tdisp(x);
-    disp(Loki::TypeTraits<decltype(x)>::isReference);
+  //   Loki::TypeTraits<double>::ParameterType x = 2.13;
+  //   tdisp(x);
+  //   disp(Loki::TypeTraits<decltype(x)>::isReference);
 
-    Loki::TypeTraits<long double>::ParameterType big = 2.13;
-    tdisp(big);
-    disp(Loki::TypeTraits<decltype(big)>::isReference);
+  //   Loki::TypeTraits<long double>::ParameterType big = 2.13;
+  //   tdisp(big);
+  //   disp(Loki::TypeTraits<decltype(big)>::isReference);
 
-    Loki::TypeTraits<std::complex<double>>::ParameterType z = *(new std::complex<double>(1.2,3.4));
-    tdisp(z);
-    disp(Loki::TypeTraits<decltype(z)>::isReference); // doesnt work
-    disp(Loki::TypeTraits<decltype(z)>::isReference); // works
-    disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double> >>::isReference);
-    disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double>>::ParameterType>::isReference);
-
-
-    Loki::TypeTraits<Imaginary<double>>::ParameterType w = *(new Imaginary<double>(1.2));
-    tdisp(w);
-    disp(Loki::TypeTraits<decltype(z)>::isReference); // works
+  //   Loki::TypeTraits<std::complex<double>>::ParameterType z = *(new std::complex<double>(1.2,3.4));
+  //   tdisp(z);
+  //   disp(Loki::TypeTraits<decltype(z)>::isReference); // doesnt work
+  //   disp(Loki::TypeTraits<decltype(z)>::isReference); // works
+  //   disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double> >>::isReference);
+  //   disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double>>::ParameterType>::isReference);
 
 
-  }
+  //   Loki::TypeTraits<Imaginary<double>>::ParameterType w = *(new Imaginary<double>(1.2));
+  //   tdisp(w);
+  //   disp(Loki::TypeTraits<decltype(z)>::isReference); // works
+
+
+  // }
 
 
 

@@ -65,56 +65,56 @@ int main(int argc, char *argv[])
 
   
 
-  {
-    // 
-    printStart(++testnum);
-    Scalar<int> s1 = 1;
-    testtext( "is_instance test #1" );
-    bool result = is_instance<decltype(s1), Scalar>{};
-    bool expected = true;
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // 
+  //   printStart(++testnum);
+  //   Scalar<int> s1 = 1;
+  //   testtext( "is_instance test #1" );
+  //   bool result = std::is_same<decltype(s1), Scalar>;
+  //   bool expected = true;
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
 
-  {
-    // 
-    printStart(++testnum);
-    Scalar<double> s1 = 1.1;
-    testtext( "is_instance test #2" );
-    bool result = is_instance<decltype(s1), Scalar>{};
-    bool expected = true;
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // 
-    printStart(++testnum);
-    Scalar<std::complex<double> > s1 = std::complex<double>(1.1,2.2);
-    testtext( "is_instance test #3" );
-    bool result = is_instance<decltype(s1), Scalar>{};
-    bool expected = true;
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // 
+  //   printStart(++testnum);
+  //   Scalar<double> s1 = 1.1;
+  //   testtext( "is_instance test #2" );
+  //   bool result = is_instance<decltype(s1), Scalar>{};
+  //   bool expected = true;
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // 
+  //   printStart(++testnum);
+  //   Scalar<std::complex<double> > s1 = std::complex<double>(1.1,2.2);
+  //   testtext( "is_instance test #3" );
+  //   bool result = is_instance<decltype(s1), Scalar>{};
+  //   bool expected = true;
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
 
-  {
-    // 
-    printStart(++testnum);
-    Vector<int> s1 = {1};
-    testtext( "is_instance test #4" );
-    bool result = is_instance<decltype(s1), Scalar>{};
-    bool expected = false;
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // 
+  //   printStart(++testnum);
+  //   Vector<int> s1 = {1};
+  //   testtext( "is_instance test #4" );
+  //   bool result = is_instance<decltype(s1), Scalar>{};
+  //   bool expected = false;
+  //   bool pass = (result==expected);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
 
   {
     //  dimensions and size

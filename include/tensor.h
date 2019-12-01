@@ -4,19 +4,28 @@
 #include <stdarg.h>
 
 
-
 namespace matricks {
 
  
- 
-  
-  /****************************************************************************
-   * Tensor -- mathematical vector class.
-   ****************************************************************************   
+   /********************************************************************
+   * Tensor<E>      -- Tensor of 0 dimension (scalar)
+   *                   E  = type for elements
+   * Tensor<E,NDIM> -- Tensor of NDIM dimension 
+   *                   NDIM = number of dimensions (0=scalar,1=vector,2=matrix,etc)
+   *
+   * DO NOT SPECIFY: D,M
+   *                 The defaults are defined in the declaration in
+   *                 preface.h
+   *                 D = number type 
+   *                   = underlying algebraic field
+   *                     ex. int, double, std::complex<double>
+   *                 M = tensor depth. if E=D, then M=1.
+  ********************************************************************  
    */
+ 
 
-  template <class D, int M> class Tensor :
-    public TensorRW<D,Tensor<D,M> > {
+  template <class E, int NDIM,   typename D, int M> class Tensor :
+    public TensorRW<D,Tensor<E,NDIM,D,M> > {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -24,12 +33,10 @@ namespace matricks {
     // do NOT declare any other storage.
     // keep the instances lightweight
     
-    std::valarray<D> data_;
+    std::valarray<E> data_;
     Dimensions* dimensions_;
 
   public:     
-    typedef D DataType;
-    typedef typename NumberType<D>::Type MyNumberType;
 
 
 
@@ -40,7 +47,7 @@ namespace matricks {
 
     // --------------------- default CONSTRUCTOR ---------------------
 
-    explicit Tensor<D,M>() 
+    explicit Tensor<E,NDIM,D,M>() 
     {
       dimensions_ = new Dimensions();
       data_.resize(dimensions_->datasize());
@@ -49,7 +56,7 @@ namespace matricks {
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
 
-    explicit Tensor<D,M>(const Dimensions& dims) 
+    explicit Tensor<E,NDIM,D,M>(const Dimensions& dims) 
     {
       dimensions_ = new Dimensions(dims);
       data_.resize(dimensions_->datasize());
@@ -59,7 +66,7 @@ namespace matricks {
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Tensor<D,M>(const Dimensions& dims, const D val) 
+    explicit Tensor<E,NDIM,D,M>(const Dimensions& dims, const E val) 
     {
       dimensions_ = new Dimensions(dims);
       data_.resize(dimensions_->datasize());
@@ -86,7 +93,7 @@ namespace matricks {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~Tensor<D,M>() {
+    ~Tensor<E,NDIM,D,M>() {
       //remove from directory
     }
   
@@ -102,8 +109,8 @@ namespace matricks {
 
     // *** this is used for recon by assignment ***
 
-    TERW_Resize<D>  resize(void) { 
-      return  TERW_Resize<D>(*this);
+    TERW_Resize<E>  resize(void) { 
+      return  TERW_Resize<E>(*this);
     }
 
 
@@ -190,10 +197,10 @@ namespace matricks {
     //**********************************************************************
 
     // "read/write" to the wrapped valarray
-    inline std::valarray<D>& getValArray()  {
+    inline std::valarray<E>& getValArray()  {
       return *data_; 
     }
-    inline Tensor<D,M>& setValArray(std::valarray<D>* valptr)  {
+    inline Tensor<E,NDIM,D,M>& setValArray(std::valarray<E>* valptr)  {
       delete  data_ ;
       const size_t N = valptr->size();
       data_ = valptr;
@@ -206,7 +213,7 @@ namespace matricks {
   // NOTE: indexes over [0] to [deepsize()] and note return type
   
   // "read/write"
-  MyNumberType& dat(const index_type n) {
+  D& dat(const index_type n) {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
     if constexpr(M < 2) {
@@ -224,7 +231,7 @@ namespace matricks {
   }
 
   // read
-  const MyNumberType& dat(const index_type n)  const {
+  const D& dat(const index_type n)  const {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr(M < 2) {
@@ -248,7 +255,7 @@ namespace matricks {
   //**********************************************************************
 
   // "read/write"
-  D& operator[](const index_type n) {
+  E& operator[](const index_type n) {
     int k = n;
     if (k < 0) {
       k += size();
@@ -257,7 +264,7 @@ namespace matricks {
   }
 
   // read
-  const D& operator[](const index_type n)  const {
+  const E& operator[](const index_type n)  const {
     int k = n;
     if (k < 0) {
       k += size();
@@ -335,11 +342,11 @@ namespace matricks {
 
     
     // ---------------- tensor(Indices)--------------
-    D& operator()(const Indices& inds) {
+    E& operator()(const Indices& inds) {
       index_type k = this->index(inds);
       return (*this)[k];
     }
-    const D operator()(const Indices& inds) const {
+    const E operator()(const Indices& inds) const {
       index_type k = this->index(inds);
       return (*this)[k];
     }
@@ -359,11 +366,11 @@ namespace matricks {
 
 
     // ---------------- tensor({i,j,...})--------------
-    D& operator()(const std::initializer_list<size_type> mylist) {
+    E& operator()(const std::initializer_list<size_type> mylist) {
       index_type k = this->index(mylist);
       return (*this)[k];
     }
-    const D operator()(const std::initializer_list<size_type> mylist) const {
+    const E operator()(const std::initializer_list<size_type> mylist) const {
       index_type k = this->index(mylist);
       return (*this)[k];
     }
@@ -379,17 +386,14 @@ namespace matricks {
 
 
     // ----------------- tensor = d ----------------
-    Tensor<D,M>& equals(const D d) { 
+    Tensor<E,NDIM,D,M>& operator=(const E d) { 
       for(index_type i=size(); i--;) 
 	data_[i]=d; 
       return *this;
     }
-    Tensor<D,M>& operator=(const D d) { 
-      return equals(d);
-    }
 
     // ----------------- tensor = TensorR<D,A> ----------------
-    Tensor<D,M>& equals(const Tensor<D,M>& x) {
+    Tensor<E,NDIM,D,M>& operator=(const Tensor<E,NDIM,D,M>& x) {  
       // TODO: issue warning
       resize(x.dims());
       for (index_type i = size(); i--;) {
@@ -397,17 +401,14 @@ namespace matricks {
       }
       return *this; 
     }
-    Tensor<D,M>& operator=(const Tensor<D,M>& x) {  
-      return equals(x);
-    }
 
     // ----------------- tensor = TensorR<D,A> ----------------
-    template <class A>  Tensor<D,M>& equals(const TensorR<D,A>& x) {
+    template <class A>  Tensor<E,NDIM,D,M>& operator=(const TensorR<E,A>& x) {  
       // TODO: issue warning
       resize(x.dims());
 
       if (common(*this, x)){    
-	Tensor<D,M> Ttemp(this->dims());
+	Tensor<E,NDIM,D,M> Ttemp(this->dims());
 	for (index_type i = size(); i--;)
 	  Ttemp[i] = x[i];   // Inlined expression
 	for (index_type i = size(); i--;)
@@ -418,9 +419,6 @@ namespace matricks {
       }
       return *this; 
     }
-    template <class A>  Tensor<D,M>& operator=(const TensorR<D,A>& x) {  
-      return equals(x);
-    }
 
 
     //*********************************************************
@@ -430,30 +428,30 @@ namespace matricks {
 
     // ------------- tensor = array[] ----------------
     
-    Tensor<D,M>& equals(const D array1[]) {
+    Tensor<E,NDIM,D,M>& equals(const E array1[]) {
       for (index_type i = 0; i < size(); i++)  {
 	(*this)[i] = array1[i];
       }
       return *this;
     }
-    Tensor<D,M>& operator=(const D array1[]) {
+    Tensor<E,NDIM,D,M>& operator=(const E array1[]) {
       return equals(array1);
     }
 
 
     // --------------- matrix = initializer_list ------------------
-    Tensor<D,M>& equals(const std::initializer_list<D>& mylist) {
+    Tensor<E,NDIM,D,M>& equals(const std::initializer_list<E>& mylist) {
 
       // TODO: bound scheck 
       size_type i = 0;
-      typename std::initializer_list<D>::iterator it; 
+      typename std::initializer_list<E>::iterator it; 
       for (it = mylist.begin(); it != mylist.end(); ++it)  { 
 	(*this)[i++] = *it;
       }
 
       return *this;
     }
-    Tensor<D,M>& operator=(const std::initializer_list<D>& mylist) {
+    Tensor<E,NDIM,D,M>& operator=(const std::initializer_list<E>& mylist) {
       return equals(mylist);
     }
 
@@ -467,7 +465,7 @@ namespace matricks {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Tensor<D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
+    Tensor<E,NDIM,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = matricks::roundzero(data_[i], tolerance);
       }
@@ -490,7 +488,7 @@ namespace matricks {
     //**********************************************************************
 
     inline std::string classname() const {
-      D d;
+      E d;
       return "Tensor"+display::getBracketedTypeName(d);
     }
 
@@ -551,7 +549,7 @@ namespace matricks {
 
     // TODO: implement format
 
-    friend std::ostream& operator<<(std::ostream &stream, const Tensor<D,M>& t) {
+    friend std::ostream& operator<<(std::ostream &stream, const Tensor<E,NDIM,D,M>& t) {
       using namespace display;
       index_type n = 0;
       t.send(stream, n, t.dims());
@@ -560,7 +558,7 @@ namespace matricks {
 
 
     //template <class D>	
-    friend inline std::istream& operator>>(const std::string s,  Tensor<D,M>& x) {
+    friend inline std::istream& operator>>(const std::string s,  Tensor<E,NDIM,D,M>& x) {
       std::istringstream st(s);
       return (st >> x);
     }
@@ -569,7 +567,7 @@ namespace matricks {
     // stream >> operator
     // TODO: implement
 
-    friend std::istream& operator>>(std::istream& stream,  Tensor<D,M>& x) {	
+    friend std::istream& operator>>(std::istream& stream,  Tensor<E,NDIM,D,M>& x) {	
       return stream;
     }
 

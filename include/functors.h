@@ -120,7 +120,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Add() { }
   
@@ -161,7 +163,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename SubType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Subtract() { }
   
@@ -199,7 +203,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Multiply() { }
   
@@ -237,7 +243,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename DivType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Divide() { }
   
@@ -283,7 +291,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Pow() { }
   
@@ -693,7 +703,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_Atan2() { }
   
@@ -940,6 +952,7 @@ namespace matricks {
 
     static inline D apply(const D a) {
       using std::round;
+      using matricks::round;
       return round(a); 
     }
 
@@ -967,7 +980,10 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
+
     Fun_Roundzero() { }
 
     static inline Type apply(const NA& a, const NB tolerance) { 
@@ -1002,10 +1018,12 @@ namespace matricks {
   public:
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
-    typedef typename AddType<NA,NB>::Type Type;
+    typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
-      
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
+
     Fun_Approx() { }
   
     static inline auto apply(const NA& a, const NB& b, const TOL& tolerance) {
@@ -1078,7 +1096,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
       
     Fun_BinaryUser() { }
   
@@ -1226,7 +1246,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Equal() { }
 
@@ -1267,7 +1289,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_NotEqual() { }
 
@@ -1309,7 +1333,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_LessOrEqual() { }
 
@@ -1348,7 +1374,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_GreaterOrEqual() { }
 
@@ -1386,7 +1414,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
     
     Fun_Less() { }
 
@@ -1424,7 +1454,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef bool Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Greater() { }
 
@@ -1469,7 +1501,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Polar() { }
 
@@ -1512,7 +1546,9 @@ namespace matricks {
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
     typedef typename DeeperType<A,B>::Type DeeperType_;
-    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    typedef typename NumberType<DeeperType_,Type>::NewType TempType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, Type, TempType >::type TensorType;
 
     Fun_Complex() { }
 

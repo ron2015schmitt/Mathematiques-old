@@ -24,7 +24,7 @@ namespace matricks {
     // do NOT declare any other storage.
     // keep the instances lightweight
     
-    std::valarray<D>* data_;
+    std::valarray<D> data_;
     Dimensions* dimensions_;
 
   public:     
@@ -43,7 +43,7 @@ namespace matricks {
     explicit Tensor<D,M>() 
     {
       dimensions_ = new Dimensions();
-      data_ = new std::valarray<D>(dimensions_->datasize());
+      data_.resize(dimensions_->datasize());
       constructorHelper();
     }
 
@@ -52,7 +52,7 @@ namespace matricks {
     explicit Tensor<D,M>(const Dimensions& dims) 
     {
       dimensions_ = new Dimensions(dims);
-      data_ = new std::valarray<D>(dims.datasize());
+      data_.resize(dimensions_->datasize());
       constructorHelper();
     }
 
@@ -62,7 +62,7 @@ namespace matricks {
     explicit Tensor<D,M>(const Dimensions& dims, const D val) 
     {
       dimensions_ = new Dimensions(dims);
-      data_ = new std::valarray<D>(val, dims.datasize());
+      data_.resize(dimensions_->datasize());
       constructorHelper();
     }
 
@@ -87,8 +87,6 @@ namespace matricks {
     //**********************************************************************
 
     ~Tensor<D,M>() {
-      delete  data_ ;
-
       //remove from directory
     }
   
@@ -111,7 +109,7 @@ namespace matricks {
 
 
     inline size_type size(void) const {
-      return data_->size();
+      return data_.size();
     }
     size_type ndims(void) const {
       return dimensions_->ndims();
@@ -182,7 +180,7 @@ namespace matricks {
 
     Tensor& resize(const Dimensions& dims) {
       dimensions_ = new Dimensions(dims);
-      data_->resize(dimensions_->datasize());
+      data_.resize(dimensions_->datasize());
       return *this;
     }
 
@@ -383,7 +381,7 @@ namespace matricks {
     // ----------------- tensor = d ----------------
     Tensor<D,M>& equals(const D d) { 
       for(index_type i=size(); i--;) 
-	(*data_)[i]=d; 
+	data_[i]=d; 
       return *this;
     }
     Tensor<D,M>& operator=(const D d) { 
@@ -395,7 +393,7 @@ namespace matricks {
       // TODO: issue warning
       resize(x.dims());
       for (index_type i = size(); i--;) {
-	  (*data_)[i] = x[i];   // Inlined expression
+	  data_[i] = x[i];   // Inlined expression
       }
       return *this; 
     }
@@ -413,10 +411,10 @@ namespace matricks {
 	for (index_type i = size(); i--;)
 	  Ttemp[i] = x[i];   // Inlined expression
 	for (index_type i = size(); i--;)
-	  (*data_)[i] = Ttemp[i];
+	  data_[i] = Ttemp[i];
       } else {
 	for (index_type i = size(); i--;)
-	  (*data_)[i] = x[i];   // Inlined expression
+	  data_[i] = x[i];   // Inlined expression
       }
       return *this; 
     }
@@ -471,7 +469,7 @@ namespace matricks {
 
     Tensor<D,M>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(index_type i=size(); i--;) {
-	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
+	data_[i] = matricks::roundzero(data_[i], tolerance);
       }
       return *this;
     }
@@ -482,7 +480,7 @@ namespace matricks {
     template< typename T=D >
       typename std::enable_if<is_complex<T>{}, Tensor<T>& >::type conj() {
       for(index_type i=size(); i--;) {
-	(*data_)[i] = std::conj((*data_)[i]);
+	data_[i] = std::conj(data_[i]);
       }
       return *this;
     }

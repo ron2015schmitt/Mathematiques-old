@@ -25,7 +25,7 @@ namespace matricks {
     // do NOT declare any other storage.
     // keep the instances lightweight
     
-    std::valarray<D>* data_;
+    std::valarray<D> data_;
     index_type Nrows_;
     index_type Ncols_;
 
@@ -45,7 +45,7 @@ namespace matricks {
     {
       Nrows_ = 0;
       Ncols_ = 0;
-      data_ = new std::valarray<D>(0); 
+      data_.resize(Nrows_*Ncols_);
       constructorHelper();
     }
 
@@ -54,7 +54,7 @@ namespace matricks {
     explicit Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc) {
       Nrows_ = Nr;
       Ncols_ = Nc;
-      data_ = new std::valarray<D>(Nr*Nc);
+      data_.resize(Nrows_*Ncols_);
       constructorHelper();
     }
 
@@ -64,7 +64,7 @@ namespace matricks {
     explicit Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D& val) {
       Nrows_ = Nr;
       Ncols_ = Nc;
-      data_ = new std::valarray<D>(val, Nr*Nc);
+      data_.resize(Nrows_*Ncols_);
       *this = val;
       constructorHelper();
     }
@@ -75,7 +75,7 @@ namespace matricks {
       
       Nrows_ = Nr;
       Ncols_ = Nc;
-      data_ = new std::valarray<D>(Nr*Nc);
+      data_.resize(Nrows_*Ncols_);
       *this = vals;
       constructorHelper();
     }
@@ -86,7 +86,7 @@ namespace matricks {
 
       Nrows_ = list1.size();
       Ncols_ = (*(list1.begin())).size();
-      data_ = new std::valarray<D>(Nrows_*Ncols_); 
+      data_.resize(Nrows_*Ncols_);
       *this = list1;
       
       constructorHelper();
@@ -101,7 +101,7 @@ namespace matricks {
     Matrix<D,NR,NC,M>(const Matrix<D>& m2) {
 	Nrows_ = m2.Nrows();
 	Ncols_ = m2.Ncols();
-	data_ = new std::valarray<D>(m2.size());
+	data_.resize(Nrows_*Ncols_);
 	*this = m2;
 	constructorHelper();
       }
@@ -114,7 +114,7 @@ namespace matricks {
       // TODO: bounds check
       Nrows_ = x.dims()[0];
       Ncols_ = x.dims()[1];
-      data_ = new std::valarray<D>(size());
+      data_.resize(Nrows_*Ncols_);
       *this = x;
       constructorHelper();
       }
@@ -124,7 +124,7 @@ namespace matricks {
     Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const std::valarray<D>& valar) {
       Nrows_ = Nr;
       Ncols_ = Nc;
-      data_ = new std::valarray<D>(valar); 
+      data_.resize(Nrows_*Ncols_);
       constructorHelper();
     }
 
@@ -134,7 +134,7 @@ namespace matricks {
       // allocate store
       Nrows_ = Nr;
       Ncols_ = Nc;
-      data_ = new std::valarray<D>(vals, Nr*Nc); 
+      data_.resize(Nrows_*Ncols_);
       constructorHelper();
     }
 
@@ -157,8 +157,6 @@ namespace matricks {
     //**********************************************************************
 
     ~Matrix<D,NR,NC,M>() {
-      delete  data_ ;
-
       //remove from directory
     }
   
@@ -169,7 +167,7 @@ namespace matricks {
 
 
     inline size_type size(void) const {
-      return data_->size();
+      return data_.size();
     }
     inline size_type Nrows(void) const {
       return Nrows_;
@@ -260,7 +258,7 @@ namespace matricks {
       if (N==this->size())
 	return *this;
       // reallocate store
-      data_->resize(N);
+      data_.resize(N);
       return *this;
     }
 
@@ -275,7 +273,7 @@ namespace matricks {
       if (N==this->size())
 	return *this;
       // reallocate store
-      data_->resize(N);
+      data_.resize(N);
       return *this;
     }
 
@@ -595,10 +593,10 @@ namespace matricks {
 
     // ----------------- matrix(r,c) ----------------
     D& operator()(const index_type r, const index_type c) {
-      return (*data_)[index(r,c)]; 
+      return data_[index(r,c)]; 
     }
     const D operator()(const index_type r, const index_type c) const {
-      return (*data_)[index(r,c)]; 
+      return data_[index(r,c)]; 
     }
 
     // TODO: slices etc.
@@ -616,7 +614,7 @@ namespace matricks {
     // ----------------- matrix = d ----------------
     Matrix<D>& equals(const D d) { 
       for(index_type i=size(); i--;) 
-	(*data_)[i]=d; 
+	data_[i]=d; 
       return *this;
     }
     Matrix<D>& operator=(const D d) { 
@@ -634,10 +632,10 @@ namespace matricks {
 	for (index_type i = size(); i--;)
 	  mtemp[i] = x[i];   // Inlined expression
 	for (index_type i = size(); i--;)
-	  (*data_)[i] = mtemp[i];
+	  data_[i] = mtemp[i];
       } else {
 	for (index_type i = size(); i--;)
-	  (*data_)[i] = x[i];   // Inlined expression
+	  data_[i] = x[i];   // Inlined expression
       }
       return *this; 
     }
@@ -676,7 +674,7 @@ namespace matricks {
       this->resize(m2.dims());
 
       for(index_type i=size(); i--;)
-	(*data_)[i] = m2[i];    
+	data_[i] = m2[i];    
       return *this;
     }
     Matrix<D>& operator=(const Matrix<D>& m2) {
@@ -777,7 +775,7 @@ namespace matricks {
 
     Matrix<D>&  roundzero(D tolerance = MatricksHelper<D>::tolerance) { 
       for(index_type i=size(); i--;) {
-	(*data_)[i] = matricks::roundzero((*data_)[i], tolerance);
+	data_[i] = matricks::roundzero(data_[i], tolerance);
       }
       return *this;
     }
@@ -789,7 +787,7 @@ namespace matricks {
     template< typename T=D >
       typename std::enable_if<is_complex<T>{}, Matrix<T>& >::type conj() {
       for(index_type i=size(); i--;) {
-	(*data_)[i] = std::conj((*data_)[i]);
+	data_[i] = std::conj(data_[i]);
       }
       return *this;
     }

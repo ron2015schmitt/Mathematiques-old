@@ -304,7 +304,7 @@ int main(int argc, char *argv[])
   printUnary<double,Fun_Asin>();
   printUnary<double,Fun_Acos>();
   printUnary<double,Fun_Atan>();
-  printBinary<double,Fun_Atan2>();
+  printBinary<double,double,Fun_Atan2>();
   printUnary<double,Fun_Sinh>();
   printUnary<double,Fun_Cosh>();
   printUnary<double,Fun_Tanh>();
@@ -314,12 +314,12 @@ int main(int argc, char *argv[])
   printUnary<double,Fun_Ceil>();
   printUnary<double,Fun_Floor>();
   printUnary<double,Fun_Round>();
-  printBinary<double,Fun_Roundzero>();
+  printBinary<double,double,Fun_Roundzero>();
 
   mout << Fun_UnaryUser<double,f1>::classname()  << " ";
   mout << Fun_UnaryUser<double,f1>::expression("x") << endl;
-  mout << Fun_BinaryUser<double,f2>::classname()  << " ";
-  mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
+  //  mout << Fun_BinaryUser<double,f2>::classname()  << " ";
+  //  mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
 
   // s = StyledString::get(ANGLE1).get() + getTypeName(d) + StyledString::get(COMMA).get() + "function(.,.)" + StyledString::get(ANGLE2).get();
   // mout << Fun_UnaryUser<double,f1>::classname()  << " ";
@@ -329,25 +329,24 @@ int main(int argc, char *argv[])
 
 
   printUnary<Fun_Not>();
-  printBinary<Fun_And>();
-  printBinary<Fun_Or>();
+  printBinary<bool,bool,Fun_And>();
+  printBinary<bool,bool,Fun_Or>();
 
 
-  printBinary<double,Fun_Equal>();
-  printBinary<double,Fun_NotEqual>();
-  printBinary<double,Fun_LessOrEqual>();
-  printBinary<double,Fun_GreaterOrEqual>();
-  printBinary<double,Fun_Less>();
-  printBinary<double,Fun_Greater>();
+  printBinary<double,double,Fun_Equal>();
+  printBinary<double,double,Fun_NotEqual>();
+  printBinary<double,double,Fun_LessOrEqual>();
+  printBinary<double,double,Fun_GreaterOrEqual>();
+  printBinary<double,double,Fun_Less>();
+  printBinary<double,double,Fun_Greater>();
 
 
-  printBinary<double,Fun_Polar>();
-  printBinary<double,Fun_Complex>();
+  printBinary<double,double,Fun_Polar>();
+  printBinary<double,double,Fun_Complex>();
   printUnary<double,Fun_Arg>();
   printUnary<double,Fun_Conj>();
   printUnary<double,Fun_Real>();
   printUnary<double,Fun_Imag>();
-  printUnary<double,Fun_RoundCplx>();
 
   
 
@@ -1090,6 +1089,52 @@ int main(int argc, char *argv[])
     disp(v3);
   }
   //------------------------------------------------------
+
+
+  {
+    MultType<int,ComplexDouble>::Type x;
+    tdisp(x);
+  }
+
+
+  {
+    Fun_Multiply<int, ComplexDouble >::Type x;
+    tdisp(x);
+    Fun_Multiply<int, ComplexDouble >::TensorType y;
+    tdisp(y);
+
+    
+    cr();
+    Fun_Multiply<int, ComplexDouble >::Type zType;
+    tdisp(zType);
+    Fun_Multiply<Scalar<int>, ComplexDouble >::DeeperType_ zDeeperType;
+    tdisp(zDeeperType);
+    Fun_Multiply<Scalar<int>, ComplexDouble >::TempType zTempType;
+    tdisp(zTempType);
+    bool zisprim= Fun_Multiply<Scalar<int>, ComplexDouble >::isprim;
+    tdisp(zisprim);
+    Fun_Multiply<Scalar<int>, ComplexDouble >::TensorType zTensorType;
+    tdisp(zTensorType);
+    cr();
+    
+    tdisp(NumberType<int>::depth());
+    tdisp(NumberType<ComplexDouble>::depth());
+    tdisp(NumberType<Scalar<int>>::depth());
+    tdisp(Fun_Multiply<int, ComplexDouble >::isprim);
+    tdisp(Fun_Multiply<Scalar<int>, ComplexDouble >::isprim);
+    tdisp(Fun_Multiply<int, Scalar<ComplexDouble> >::isprim);
+  }
+
+  {
+    Scalar<ComplexDouble> s1 = ComplexDouble(2,3);
+    Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
+    Scalar<ComplexDouble> result;
+    //    result = 20*log10(abs(s1/s2)*100) + 3 + pow(-s2,2);
+    tdisp(s1*2.);
+    tdisp(s1*2);
+    // tdisp(2.*s1);
+    //     tdisp(2*s1);
+  }
   
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;

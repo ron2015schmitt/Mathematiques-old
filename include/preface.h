@@ -176,10 +176,10 @@ namespace matricks {
   
   // NumberType - this operates recursively to find the base number type
   //              eg. complex<double>, Imaginary<float>, int, double, etc
-  template <typename T, typename NUM> class NumberType {
+  template <typename T, typename NumType> class NumberType {
   public:
     typedef T Type;
-    typedef NUM ReplaceType;
+    typedef NumType ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -190,10 +190,10 @@ namespace matricks {
       return 1;
     }
   };
-  template <class D, typename NUM> class NumberType<std::complex<D>,NUM > {
+  template <class D, typename NumType> class NumberType<std::complex<D>,NumType > {
   public:
     typedef std::complex<D> Type;
-    typedef NUM ReplaceType;
+    typedef NumType ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -204,10 +204,10 @@ namespace matricks {
       return 1;
     }
   };
-  template <class D, typename NUM> class NumberType<Imaginary<D>,NUM > {
+  template <class D, typename NumType> class NumberType<Imaginary<D>,NumType > {
   public:
     typedef Imaginary<D> Type;
-    typedef NUM ReplaceType;
+    typedef NumType ReplaceType;
     constexpr static int depth() {
       return 0;
     }
@@ -219,13 +219,13 @@ namespace matricks {
     }
   };
 
-  template <typename D, template <typename> typename A , typename NUM> class NumberType<A<D>,NUM>  {
+  template <typename D, template <typename> typename A , typename NumType> class NumberType<A<D>,NumType>  {
   public:
     typedef A<D> InputType;
     typedef typename NumberType<D>::Type Type;
-    typedef A<typename NumberType<D,NUM>::ReplaceType> ReplaceType;
+    typedef A<typename NumberType<D,NumType>::ReplaceType> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<D,NUM>::depth();
+      return 1+NumberType<D,NumType>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -236,13 +236,13 @@ namespace matricks {
   };
 
 
-  template <typename D, typename B, template <typename,typename> typename A , typename NUM> class NumberType<A<D,B>,NUM>  {
+  template <typename D, typename B, template <typename,typename> typename A , typename NumType> class NumberType<A<D,B>,NumType>  {
   public:
     typedef A<D,B> InputType;
     typedef typename NumberType<D>::Type Type;
-    typedef A<typename NumberType<D,NUM>::ReplaceType, B> ReplaceType;
+    typedef A<typename NumberType<D,NumType>::ReplaceType, B> ReplaceType;
     constexpr static int depth() {
-      return 1+NumberType<D,NUM>::depth();
+      return 1+NumberType<D,NumType>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -321,9 +321,19 @@ namespace matricks {
   };
 
 
+    // ************************************************************************
+  // * ReturnType: Class that determines return type of two Tensors of different depths
+  // ***************************************************************************
 
 
+  template <typename A, typename B, typename NumType> class ResultType {
+  public:
 
+    typedef typename DeeperType<A,B>::Type DeeperType;
+    typedef typename NumberType<DeeperType,NumType>::ReplaceType TensorType;
+    constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
+    typedef typename std::conditional<isprim, NumType, TensorType >::type Type;
+  };
 
 
   

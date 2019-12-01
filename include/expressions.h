@@ -7,6 +7,474 @@ namespace matricks {
 
   template <class A> Vector<index_type> findtrue( const TensorR<bool,A>& a );
 
+    
+  
+
+  //---------------------------------------------------------------------------
+  // TER_Unary    unary expressions
+  //---------------------------------------------------------------------------
+
+    template<class D, class A, class FUNC, int M>
+      class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC,M>> {
+  
+  private:
+    const A& a_;
+    VectorofPtrs *vptrs;
+  
+  public:
+    typedef typename NumberType<D>::Type MyNumberType;
+
+
+
+  TER_Unary(const A& a) : a_(a) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      disp3(a);
+    }
+    
+  ~TER_Unary() {
+      delete vptrs;
+    }
+
+  const MyNumberType dat(const index_type i) const {
+    return FUNC::apply(a_.dat(i));
+  }
+  
+  const D operator[](const index_type i) const {
+    return FUNC::apply(a_[i]);
+  }
+
+    
+  VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+  size_type size(void) const {
+      return a_.size();
+    }
+  size_type ndims(void) const {
+      return a_.ndims();
+    }
+  Dimensions dims(void) const {
+      return a_.dims();
+    }
+  Dimensions tdims(void) const {
+      return this->dims();
+    }
+  bool isExpression(void) const {
+      return true;
+    }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return a_.eldeepsize();
+    }
+  }
+  size_type deepsize(void) const {
+    if constexpr(M<2) {
+      return this->size();
+    } else {
+      return (this->size())*(this->eldeepsize());
+    }
+  }
+
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      if constexpr(M<2) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
+    }
+
+
+  std::string classname() const {
+      return "TER_Unary";
+  }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      std::string sa = a_.expression();
+      return FUNC::expression(sa);
+    }
+#endif
+
+
+  };
+
+
+  //---------------------------------------------------------------------------
+  // TER_Binary    binary operator expressions
+  //               note that there is no easy way to define the first template
+  //               of TensorR<> below so use D1
+  //---------------------------------------------------------------------------
+  template<class A, class B, class D1, class D2, class OP, int M1, int M2>
+    class TER_Binary : public  TensorR<typename OP::TensorType,TER_Binary<A,B,D1,D2,OP,M1,M2> > {
+
+  private:
+    const A& a_;
+    const B& b_;
+    VectorofPtrs *vptrs;
+
+  public:
+    typedef typename NumberType<D1>::Type NumType1;
+    typedef typename NumberType<D2>::Type NumType2;
+    typedef typename OP::Type NumTypeOut;
+    
+    TER_Binary()
+      : a_(nullptr), b_(nullptr)
+      {
+	vptrs=nullptr;
+      }
+
+  TER_Binary(const A& a, const B& b)
+    : a_(a), b_(b) {
+      vptrs = new VectorofPtrs();
+    }
+
+    ~TER_Binary() {
+      delete vptrs;
+    }
+
+
+    //**********************************************************************
+    //******************** DEEP ACCESS: x.dat(n) ***************************
+    //**********************************************************************
+    const NumTypeOut dat(const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)) {
+	return OP::apply(a_, b_);
+      } else if constexpr((M1==0)&&(M2>0)) {
+	  return OP::apply(a_, b_.dat(i));
+      } else if constexpr((M1>0)&&(M2==0)) {
+	  return OP::apply(a_.dat(i), b_);
+      } else {
+	if constexpr(M1==M2) {
+	  return OP::apply(a_.dat(i), b_.dat(i));
+	} else if constexpr(M1==M2+1) {
+	  index_type j = i % b_.deepsize();
+	  return OP::apply(a_.dat(i), b_.dat(j));
+	} else if constexpr(M2==M1+1) {
+	  index_type j = i % a_.deepsize();
+	  return OP::apply(a_.dat(j), b_.dat(i));
+	}
+      }
+    }
+
+    //**********************************************************************
+    //************* Array-style Element Access: x[n] ***********************
+    //**********************************************************************
+    const NumTypeOut operator[](const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)) {
+	return OP::apply(a_, b_);
+      } else if constexpr((M1==0)&&(M2==1)) {
+	  return OP::apply(a_, b_[i]);
+      } else if constexpr((M1==1)&&(M2==0)) {
+	  return OP::apply(a_[i], b_);
+      } else {
+	if constexpr((M1==1)&&(M2==1)) {
+	    return OP::apply(a_[i], b_[i]);
+	} 
+      }
+    }
+
+   
+
+    // setequals
+    template<class C>  C&
+      setequals(C& c) const {
+      // TODO: when do we need to check for same vector on left or right hand side?
+      if constexpr((M1<2)&&(M2<2)) {
+        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  c.dat(i) = this->dat(i);
+	}
+      } 
+      return c;
+    }
+
+        
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      if constexpr(M1>=M2) {
+        return a_.size();
+      } else {
+        return b_.size();
+      }
+    }
+    size_type ndims(void) const {
+      if constexpr(M1>=M2) {
+        return a_.ndims();
+      } else {
+        return b_.ndims();
+      }
+    }
+    Dimensions dims(void) const {
+      if constexpr(M1>=M2) {
+        return a_.dims();
+      } else {
+        return b_.dims();
+      }
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      if constexpr(M1>=M2) {
+        return M1;
+      } else {
+        return M2;
+      }
+    }
+    size_type elsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.elsize();
+      } else {
+        return b_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.eldeepsize();
+      } else {
+        return b_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.deepsize();
+      } else {
+        return b_.deepsize();
+      }
+    }
+
+    std::string classname() const {
+      return "TER_Binary";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      // use typeof or typeid isnteadof  the above
+      return "";
+    }
+#endif 
+
+
+  };
+
+
+
+  //---------------------------------------------------------------------------
+  // TER_Ternary    ternary operator expressions
+  //               note that there is no easy way to define the first template
+  //               of TensorR<> below so use D1
+  //---------------------------------------------------------------------------
+  template<class A, class B, class C, class D1, class D2, class D3, class OP, int M1, int M2, int M3>
+    class TER_Ternary : public  TensorR<typename OP::TensorType,TER_Ternary<A,B,C,D1,D2,D3,OP,M1,M2,M3> > {
+
+  private:
+    const A& a_;
+    const B& b_;
+    const C& c_;
+    VectorofPtrs *vptrs;
+
+  public:
+    typedef typename NumberType<D1>::Type NumType1;
+    typedef typename NumberType<D2>::Type NumType2;
+    typedef typename NumberType<D3>::Type NumType3;
+    typedef typename OP::Type NumTypeOut;
+    
+    TER_Ternary()
+      : a_(nullptr), b_(nullptr), c_(nullptr)
+      {
+	vptrs=nullptr;
+      }
+
+  TER_Ternary(const A& a, const B& b, const C& c)
+    : a_(a), b_(b), c_(c) {
+      vptrs = new VectorofPtrs();
+    }
+
+    ~TER_Ternary() {
+      delete vptrs;
+    }
+
+
+    //**********************************************************************
+    //******************** DEEP ACCESS: x.dat(n) ***************************
+    //**********************************************************************
+
+    // TODO: below assumes c_ is a scalar. add other cases as needed
+    
+    const NumTypeOut dat(const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)) {
+	  return OP::apply(a_, b_, c_);
+      } else if constexpr((M1==0)&&(M2>0)) {
+	  return OP::apply(a_, b_.dat(i), c_);
+      } else if constexpr((M1>0)&&(M2==0)) {
+	  return OP::apply(a_.dat(i), b_, c_);
+      } else {
+	if constexpr(M1==M2) {
+	    return OP::apply(a_.dat(i), b_.dat(i), c_);
+	} else if constexpr(M1==M2+1) {
+	  index_type j = i % b_.deepsize();
+	  return OP::apply(a_.dat(i), b_.dat(j), c_);
+	} else if constexpr(M2==M1+1) {
+	  index_type j = i % a_.deepsize();
+	  return OP::apply(a_.dat(j), b_.dat(i), c_);
+	}
+      }
+    }
+
+    //**********************************************************************
+    //************* Array-style Element Access: x[n] ***********************
+    //**********************************************************************
+    // TODO: below assumes c_ is a scalar. add other cases as needed
+
+    const NumTypeOut operator[](const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)) {
+	  return OP::apply(a_, b_, c_);
+      } else if constexpr((M1==0)&&(M2==1)) {
+	  return OP::apply(a_, b_[i], c_);
+      } else if constexpr((M1==1)&&(M2==0)) {
+	  return OP::apply(a_[i], b_, c_);
+      } else {
+	if constexpr((M1==1)&&(M2==1)) {
+	    return OP::apply(a_[i], b_[i], c_);
+	} 
+      }
+    }
+
+   
+
+    // setequals
+    template<class X>  X&
+      setequals(X& x) const {
+      // TODO: when do we need to check for same vector on left or right hand side?
+      if constexpr((M1<2)&&(M2<2)) {
+        for (index_type i = 0; i < size(); i++)  x[i] = (*this)[i];   
+      } else {
+        for (index_type i = 0; i < deepsize(); i++)  {
+	  x.dat(i) = this->dat(i);
+	}
+      } 
+      return x;
+    }
+
+        
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+
+    // TODO: below assumes c_ is a scalar. add other cases as needed
+
+    size_type size(void) const {
+      if constexpr(M1>=M2) {
+        return a_.size();
+      } else {
+        return b_.size();
+      }
+    }
+    size_type ndims(void) const {
+      if constexpr(M1>=M2) {
+        return a_.ndims();
+      } else {
+        return b_.ndims();
+      }
+    }
+    Dimensions dims(void) const {
+      if constexpr(M1>=M2) {
+        return a_.dims();
+      } else {
+        return b_.dims();
+      }
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      if constexpr(M1>=M2) {
+        return M1;
+      } else {
+        return M2;
+      }
+    }
+    size_type elsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.elsize();
+      } else {
+        return b_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.eldeepsize();
+      } else {
+        return b_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(M1>=M2) {
+        return a_.deepsize();
+      } else {
+        return b_.deepsize();
+      }
+    }
+
+    std::string classname() const {
+      return "TER_Ternary";
+    }
+
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      /* std::string sa = a_.expression(); */
+      /* if (a_.vetype() != VE_Vector)  */
+      /* 	sa = "(" + sa + ")"; */
+      /* std::string sb = b_.expression(); */
+      /* if (b_.vetype() != VE_Vector)  */
+      /* 	sb = "(" + sb + ")"; */
+      /* return OP::expression(sa,sb); */
+      // use typeof or typeid isnteadof  the above
+      return "";
+    }
+#endif 
+
+
+  };
+
+
+  
+
+  
+  
 
   /****************************************************************************
    * TERW_Subset Expression Template 
@@ -464,424 +932,8 @@ namespace matricks {
   };
 
 
-  /****************************************************************************
-   * TER_Unary Operator Template 
-   *
-   * unary operators and unary function overloading
-   ****************************************************************************
-   */
-
-  template<class D, class A, class FUNC, int M>
-    class TER_Unary  : public  TensorR<D,TER_Unary<D,A,FUNC,M>> {
-  
-  private:
-    const A& a_;
-    VectorofPtrs *vptrs;
-  
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
 
 
-
-  TER_Unary(const A& a) : a_(a) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(a_.getAddresses());
-      disp3(a);
-    }
-    
-  ~TER_Unary() {
-      delete vptrs;
-    }
-
-  const MyNumberType dat(const index_type i) const {
-    return FUNC::apply(a_.dat(i));
-  }
-  
-  const D operator[](const index_type i) const {
-    return FUNC::apply(a_[i]);
-  }
-
-    
-  VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-  size_type size(void) const {
-      return a_.size();
-    }
-  size_type ndims(void) const {
-      return a_.ndims();
-    }
-  Dimensions dims(void) const {
-      return a_.dims();
-    }
-  Dimensions tdims(void) const {
-      return this->dims();
-    }
-  bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-  size_type deepsize(void) const {
-    if constexpr(M<2) {
-      return this->size();
-    } else {
-      return (this->size())*(this->eldeepsize());
-    }
-  }
-
-
-  std::string classname() const {
-      return "TER_Unary";
-  }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      std::string sa = a_.expression();
-      return FUNC::expression(sa);
-    }
-#endif
-
-
-  };
-
-
-
-
-  /****************************************************************************
-   * TER_Binary Operator Expression Template 
-   *
-   * vector/vector binary operator expressions
-   ****************************************************************************
-   */
-  template<class D, class A, class B, class OP, int M>
-    class TER_Binary : public  TensorR<D,TER_Binary<D,A,B,OP,M> > {
-
-  private:
-    const A* a_;
-    const B* b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-    typedef D TypeD;
-    typedef A TypeA;
-    typedef B TypeB;
-    TER_Binary()
-      : a_(nullptr), b_(nullptr)
-      {
-	vptrs=nullptr;
-      }
-
-  TER_Binary(const A& a, const B& b)
-    : a_(&a), b_(&b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(a.getAddresses());
-      vptrs->add(b.getAddresses());
-    }
-
-    ~TER_Binary() {
-      delete vptrs;
-    }
-
-
-    //**********************************************************************
-    //******************** DEEP ACCESS: x.dat(n) ***************************
-    //**********************************************************************
-    const MyNumberType dat(const index_type i) const {
-      return OP::apply((*a_).dat(i), (*b_).dat(i));
-    }
-
-    //**********************************************************************
-    //************* Array-style Element Access: x[n] ***********************
-    //**********************************************************************
-    const D operator[](const index_type i) const {
-      return OP::apply((*a_)[i], (*b_)[i]);  
-    }
-
-   
-
-    // setequals
-    template<class C>  C&
-      setequals(C& c) const {
-      // TODO: do we need to check for same vector on left or right hand side?
-      if constexpr(M<2) {
-        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
-      } else {
-        for (index_type i = 0; i < deepsize(); i++)  c.dat(i) = this->dat(i);
-      } 
-      return c;
-    }
-
-        
-    
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return (*a_).size();
-    }
-    size_type ndims(void) const {
-      return (*a_).ndims();
-    }
-    Dimensions dims(void) const {
-      return (*a_).dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_->elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_->eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Binary";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      // use typeof or typeid isnteadof  the above
-      return "";
-    }
-#endif 
-
-
-  };
-
-
-
-
-
-  /****************************************************************************
-   * ****TER_NewBinary***           Operator Expression Template 
-   *  NEW
-   * vector/vector binary operator expressions
-   ****************************************************************************
-   */
-  template<class A, class B, class D1, class D2, class OP, int M1, int M2>
-    class TER_NewBinary : public  TensorR<typename OP::Type,TER_NewBinary<A,B,D1,D2,OP,M1,M2> > {
-
-  private:
-    const A& a_;
-    const B& b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D1>::Type NumType1;
-    typedef typename NumberType<D2>::Type NumType2;
-    typedef typename OP::Type NumTypeOut;
-    
-    TER_NewBinary()
-      : a_(nullptr), b_(nullptr)
-      {
-	vptrs=nullptr;
-      }
-
-  TER_NewBinary(const A& a, const B& b)
-    : a_(a), b_(b) {
-      vptrs = new VectorofPtrs();
-    }
-
-    ~TER_NewBinary() {
-      delete vptrs;
-    }
-
-
-    //**********************************************************************
-    //******************** DEEP ACCESS: x.dat(n) ***************************
-    //**********************************************************************
-    const NumTypeOut dat(const index_type i) const {
-      if constexpr((M1==0)&&(M2==0)) {
-	return OP::apply(a_, b_);
-      } else if constexpr((M1==0)&&(M2>0)) {
-	  return OP::apply(a_, b_.dat(i));
-      } else if constexpr((M1>0)&&(M2==0)) {
-	  return OP::apply(a_.dat(i), b_);
-      } else {
-	if constexpr(M1==M2) {
-	  return OP::apply(a_.dat(i), b_.dat(i));
-	} else if constexpr(M1==M2+1) {
-	  index_type j = i % b_.deepsize();
-	  return OP::apply(a_.dat(i), b_.dat(j));
-	} else if constexpr(M2==M1+1) {
-	  index_type j = i % a_.deepsize();
-	  return OP::apply(a_.dat(j), b_.dat(i));
-	}
-      }
-    }
-
-    //**********************************************************************
-    //************* Array-style Element Access: x[n] ***********************
-    //**********************************************************************
-    const NumTypeOut operator[](const index_type i) const {
-      if constexpr((M1==0)&&(M2==0)) {
-	return OP::apply(a_, b_);
-      } else if constexpr((M1==0)&&(M2==1)) {
-	  return OP::apply(a_, b_[i]);
-      } else if constexpr((M1==1)&&(M2==0)) {
-	  return OP::apply(a_[i], b_);
-      } else {
-	if constexpr((M1==1)&&(M2==1)) {
-	    return OP::apply(a_[i], b_[i]);
-	} 
-      }
-    }
-
-   
-
-    // setequals
-    template<class C>  C&
-      setequals(C& c) const {
-      // TODO: when do we need to check for same vector on left or right hand side?
-      if constexpr((M1<2)&&(M2<2)) {
-        for (index_type i = 0; i < size(); i++)  c[i] = (*this)[i];   
-      } else {
-        for (index_type i = 0; i < deepsize(); i++)  {
-	  c.dat(i) = this->dat(i);
-	}
-      } 
-      return c;
-    }
-
-        
-    
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      if constexpr(M1>=M2) {
-        return a_.size();
-      } else {
-        return b_.size();
-      }
-    }
-    size_type ndims(void) const {
-      if constexpr(M1>=M2) {
-        return a_.ndims();
-      } else {
-        return b_.ndims();
-      }
-    }
-    Dimensions dims(void) const {
-      if constexpr(M1>=M2) {
-        return a_.dims();
-      } else {
-        return b_.dims();
-      }
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-    size_type depth(void) const {
-      if constexpr(M1>=M2) {
-        return M1;
-      } else {
-        return M2;
-      }
-    }
-    size_type elsize(void) const {
-      if constexpr(M1>=M2) {
-        return a_.elsize();
-      } else {
-        return b_.elsize();
-      }
-    }
-    size_type eldeepsize(void) const {
-      if constexpr(M1>=M2) {
-        return a_.eldeepsize();
-      } else {
-        return b_.eldeepsize();
-      }
-    }
-    size_type deepsize(void) const {
-      if constexpr(M1>=M2) {
-        return a_.deepsize();
-      } else {
-        return b_.deepsize();
-      }
-    }
-
-    std::string classname() const {
-      return "TER_NewBinary";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      // use typeof or typeid isnteadof  the above
-      return "";
-    }
-#endif 
-
-
-  };
-  
-  
-
-
-
-  
-  
-  /************************************************************
-   *               Templates for Binary+scalar Operators 
-   *
-   * D = data type, e.g. double
-   * A = either an Vector or a TensorR
-   * B = either an Vector or a TensorR
-   * N = int
-   ************************************************************
-   */
 
   template<class D, class A, class X, int M>
     class TER_Series : public  TensorR<D,TER_Series<D,A,X,M> > {
@@ -1119,1128 +1171,13 @@ namespace matricks {
 
 
 
-    /****************************************************************************
-   * TER_TensorOpScalar Operator Template 
-   *
-   * vector/scalar binary operators
-   ****************************************************************************
-   */
 
-
-  template<class D, class A, class OP, int M>
-    class TER_TensorOpScalar : public TensorR<D,TER_TensorOpScalar<D,A,OP,M> > {
-
-  private:
-    const A& a_;
-    D val_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_TensorOpScalar(const A& a, const D b)
-    : a_(a), val_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(a_.getAddresses());
-    }
-
-    ~TER_TensorOpScalar() {
-      delete vptrs;
-    }
-
-    const D operator[](const index_type i) const { 
-      return OP::apply(a_[i], val_); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_TensorOpScalar";
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sb = stream.str(); */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-
-
-
-  };
-
-
-
-
-
-  /****************************************************************************
-   * TER_ScalarOpTensor Operator Template 
-   *
-   * scalar/vector binary operators
-   ****************************************************************************
-   */
-
-
-  template<class D, class B, class OP, int M>
-    class TER_ScalarOpTensor : public TensorR<D,TER_ScalarOpTensor<D,B,OP,M> > {
-
-  private:
-    D val_;
-    const B& b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-
-  TER_ScalarOpTensor(const D a, const B& b)
-    :  val_(a), b_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(b_.getAddresses());
-    }
-    ~TER_ScalarOpTensor() {
-      delete vptrs;
-    }
-
-    const D operator[](const index_type i) const { 
-      return OP::apply(val_,b_[i]); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return b_.size();
-    }
-    size_type ndims(void) const {
-      return b_.ndims();
-    }
-    Dimensions dims(void) const {
-      return b_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_ScalarOpTensor";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sa = stream.str(); */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-
-  };
-
-
-
-
-  //================== NEW PARDGM  ===================================
-
-    /****************************************************************************
-   * TER_TensorOpScalar_New Operator Template 
-   *
-   * vector/scalar binary operators
-   ****************************************************************************
-   */
-
-
-  template <class DOUT, class A, class D, class OP, int M>
-    class TER_TensorOpScalar_New : public TensorR<DOUT,TER_TensorOpScalar_New<DOUT,A,D,OP,M> > {
-
-  private:
-    const A& a_;
-    D val_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_TensorOpScalar_New(const A& a, const D b)
-    : a_(a), val_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(a_.getAddresses());
-    }
-
-    ~TER_TensorOpScalar_New() {
-      delete vptrs;
-    }
-
-    //**********************************************************************
-    //******************** DEEP ACCESS: x.dat(n) ***************************
-    //**********************************************************************
-    const MyNumberType dat(const index_type i) const {
-      if constexpr(M<2) {
-	return OP::apply(a_.dat(i), val_);
-      } else {
-	index_type j = i % val_.deepsize();
-	return OP::apply(a_.dat(i), val_.dat(j));
-      }
-    }
-
-    //**********************************************************************
-    //************* Array-style Element Access: x[n] ***********************
-    //**********************************************************************
-    const DOUT operator[](const index_type i) const {
-      if constexpr(M<2) {
-	return OP::apply(a_[i], val_);
-      } else {
-	index_type j = i % val_.size();
-	return OP::apply((*a_)[i], val_[j]);
-      }
-    }
-
-   
-
-    // setequals
-    template<class C>  C&
-      setequals(C& c) const {
-      // TODO: do we need to check for same vector on left or right hand side?
-      if constexpr(M<2) {
-	  for (index_type i = 0; i < size(); i++)  {
-	    c[i] = (*this)[i];
-	  }
-      } else {
-        for (index_type i = 0; i < deepsize(); i++)  {
-	  c.dat(i) = this->dat(i);
-	}
-      } 
-      return c;
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_TensorOpScalar_New";
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sb = stream.str(); */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-
-
-
-  };
-
-
-
-
-    /****************************************************************************
-   * TER_ScalarOpTensor_New Operator Template 
-   *
-   * scalar/vector binary operators
-   ****************************************************************************
-   */
-
-
-  template <class DOUT, class D, class B, class OP, int M>
-    class TER_ScalarOpTensor_New : public TensorR<DOUT,TER_ScalarOpTensor_New<DOUT,D,B,OP,M> > {
-
-  private:
-    D val_;
-    const B& b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-
-  TER_ScalarOpTensor_New(const D a, const B& b)
-    :  val_(a), b_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(b_.getAddresses());
-    }
-    ~TER_ScalarOpTensor_New() {
-      delete vptrs;
-    }
-
-    const DOUT operator[](const index_type i) const { 
-      return OP::apply(val_,b_[i]); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return b_.size();
-    }
-    size_type ndims(void) const {
-      return b_.ndims();
-    }
-    Dimensions dims(void) const {
-      return b_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_ScalarOpTensor_New";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sa = stream.str(); */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-
-  };
-
-
-  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^NEW PARDIGM^^^^^^^^^^^^^^^^^^^^
   
 
 
 
 
-  /****************************************************************************
-   * TER_Bool_Unary Operator Template 
-   *
-   * unary operators and unary function overloading
-   ****************************************************************************
-   */
 
-  template<class D, class A, class FUNC, int M>
-    class TER_Bool_Unary  : public  TensorR<bool,TER_Bool_Unary<D,A,FUNC,M> >{
-  
-  private:
-    const A& a_;
-    VectorofPtrs *vptrs;
-  
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_Bool_Unary(const A& a) : a_(a) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-    }
-
-    ~TER_Bool_Unary() {
-      delete vptrs;
-    }
-
-    bool operator[](const index_type i) const
-    { return FUNC::apply(a_[i]); }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Bool_Unary";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      std::string sa = a_.expression();
-      return FUNC::expression(sa);
-    }
-#endif 
-
-  };
-
-
-
-
-
-
-
-  /****************************************************************************
-   * TER_Bool_Binary Operator Expression Template 
-   *
-   * vector/vector binary operator expressions
-   ****************************************************************************
-   */
-  template<class D, class A, class B, class OP, int M>
-    class TER_Bool_Binary : public  TensorR<bool,TER_Bool_Binary<D,A,B,OP,M> > {
-
-  private:
-    const A& a_;
-    const B& b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_Bool_Binary(const A& a, const B& b)
-    : a_(a), b_(b) { 
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-      vptrs->add(&b_);
-    }
-
-    ~TER_Bool_Binary() {
-      delete vptrs;
-    }
-
-
-    bool operator[](const index_type i) const {  
-      return OP::apply(a_[i], b_[i]); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      if ( a_.size() != b_.size() ) {
-	return badsize;
-      } else {
-	return a_.size();
-      }
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Bool_Binary";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-  };
-
-
-
-
-
-
-  /****************************************************************************
-   * TER_Bool_Binary2 Operator Expression Template 
-   *
-   * vector/vector tertiary operator expressions
-   ****************************************************************************
-   */
-  template<class D, class A, class B, class OP, int M>
-    class TER_Bool_Binary2 : public  TensorR<bool,TER_Bool_Binary2<D,A,B,OP,M> > {
-
-  public:
-    typedef typename FundamentalType<D>::Type DREAL;
-
-    
-  private:
-    const A& a_;
-    const B& b_;
-    const DREAL d_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_Bool_Binary2(const A& a, const B& b, const DREAL& d)
-    : a_(a), b_(b), d_(d) { 
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-      vptrs->add(&b_);
-    }
-
-    ~TER_Bool_Binary2() {
-      delete vptrs;
-    }
-
-
-    bool operator[](const index_type i) const {  
-      return OP::apply(a_[i], b_[i], d_); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      if ( a_.size() != b_.size() ) {
-	return badsize;
-      } else {
-	return a_.size();
-      }
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Bool_Binary2";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-  };
-
-
-
-
-  /****************************************************************************
-   * TER_Bool_TensorOpScalar Operator Template 
-   *
-   * vector/scalar binary operators
-   ****************************************************************************
-   */
-
-
-  template<class D, class A, class OP, int M>
-    class TER_Bool_TensorOpScalar : public TensorR<bool,TER_Bool_TensorOpScalar<D,A,OP,M> > {
-
-  private:
-    const A& a_;
-    D val_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-
-  TER_Bool_TensorOpScalar(const A& a, const D b)
-    : a_(a), val_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-    }
-
-    ~TER_Bool_TensorOpScalar() {
-      delete vptrs;
-    }
-
-    bool operator[](const index_type i) const { 
-      return OP::apply(a_[i], val_); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Bool_TensorOpScalar";
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sb = stream.str(); */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-  };
-
-
-
-
-
-  /****************************************************************************
-   * TER_Bool_ScalarOpTensor Operator Template 
-   *
-   * scalar/vector binary operators
-   ****************************************************************************
-   */
-
-
-  template<class D, class B, class OP, int M>
-    class TER_Bool_ScalarOpTensor : public TensorR<bool,TER_Bool_ScalarOpTensor<D,B,OP,M> > {
-
-  private:
-    D val_;
-    const B& b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_Bool_ScalarOpTensor(const D a, const B& b)
-    :  val_(a), b_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(&b_);
-    }
-
-    ~TER_Bool_ScalarOpTensor() {
-      delete vptrs;
-    }
-
-    bool operator[](const index_type i) const { 
-      return OP::apply(val_,b_[i]); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return b_.size();
-    }
-    size_type ndims(void) const {
-      return b_.ndims();
-    }
-    Dimensions dims(void) const {
-      return b_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Bool_ScalarOpTensor";
-    }
-
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sa = stream.str(); */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-
-
-  };
-
-
-
-
-
-
-
-
-
-  /****************************************************************************
-   * TER_Cplx_TensorOpScalar Operator Template 
-   *
-   * complex vector = binfunc(ComplexOrRealVector,RealScalar) binary operators 
-   ****************************************************************************
-   */
-  template<class D, class A, class OP, int M>
-    class TER_Cplx_TensorOpScalar : public TensorR<std::complex<D>, TER_Cplx_TensorOpScalar<D,A,OP,M> > {
-
-  private:
-    const A& a_;
-    const D val_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_Cplx_TensorOpScalar(const A& a, const D b)
-    : a_(a), val_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(&a_);
-    }
-
-    ~TER_Cplx_TensorOpScalar() {
-      delete vptrs;
-    }
-
-    const std::complex<D> operator[](const index_type i) const { 
-      return OP::apply(a_[i], val_); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return a_.size();
-    }
-    size_type ndims(void) const {
-      return a_.ndims();
-    }
-    Dimensions dims(void) const {
-      return a_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return a_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Cplx_TensorOpScalar";
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::string sa = a_.expression(); */
-      /* if (a_.vetype() != VE_Vector)  */
-      /* 	sa = "(" + sa + ")"; */
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sb = stream.str(); */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-
-  };
-
-
-
-
-
-
-  /****************************************************************************
-   * TER_Cplx_ScalarOpTensor Operator Template 
-   *
-   * complex vector = binfunc(RealScalar,ComplexOrRealVector) binary operators 
-   ****************************************************************************
-   */
-  template<class D, class B, class OP, int M>
-    class TER_Cplx_ScalarOpTensor : public TensorR<std::complex<D>,TER_Cplx_ScalarOpTensor<D,B,OP,M> > {
-  private:
-    const D val_;
-    const B& b_;
-    VectorofPtrs *vptrs;
-
-  public:
-    typedef typename NumberType<D>::Type MyNumberType;
-
-
-  TER_Cplx_ScalarOpTensor(const D a, const B& b)
-    : val_(a), b_(b) {
-      vptrs = new VectorofPtrs();
-      vptrs->add(&b_);
-    }
-
-    ~TER_Cplx_ScalarOpTensor() {
-      delete vptrs;
-    }
-
-    const std::complex<D> operator[](const index_type i) const { 
-      return OP::apply(val_,b_[i]); 
-    }
-
-    VectorofPtrs getAddresses(void) const {
-      return *vptrs;
-    }
-    size_type size(void) const {
-      return b_.size();
-    }
-    size_type ndims(void) const {
-      return b_.ndims();
-    }
-    Dimensions dims(void) const {
-      return b_.dims();
-    }
-    bool isExpression(void) const {
-      return true;
-    }
-  size_type depth(void) const {
-      return M;
-    }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.elsize();
-    }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return b_.eldeepsize();
-    }
-  }
-    size_type deepsize(void) const {
-      if constexpr(M<2) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
-      }
-    }
-    std::string classname() const {
-      return "TER_Cplx_ScalarOpTensor";
-    }
-
-#if MATRICKS_DEBUG>=1
-    std::string expression(void) const {
-      /* std::ostringstream stream; */
-      /* stream << val_; */
-      /* std::string sa = stream.str(); */
-      /* std::string sb = b_.expression(); */
-      /* if (b_.vetype() != VE_Vector)  */
-      /* 	sb = "(" + sb + ")"; */
-      /* return OP::expression(sa,sb); */
-      return "";
-    }
-#endif 
-
-
-  };
 
 
 

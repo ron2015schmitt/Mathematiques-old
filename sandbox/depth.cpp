@@ -309,6 +309,22 @@ int main(int argc, char *argv[])
 
     }
 
+    {
+      Vector<double> t1 {4,5,6};
+      tdisp(t1);
+      Vector<Vector<double>> t2 {{1,2,3},{4,5,6}};
+      tdisp(t2);
+
+      typename DeeperType<decltype(t1),decltype(t2)>::Type x;
+      tdisp(x);
+      typename DeeperType<decltype(t2),decltype(t1)>::Type y;
+      tdisp(y);
+      typename DeeperType<double,decltype(t1)>::Type z;
+      tdisp(z);
+      typename NumberType<decltype(t1),float>::NewType w;
+      tdisp(w);
+    }
+    
   //------------------------------------------------------
   
   cr();

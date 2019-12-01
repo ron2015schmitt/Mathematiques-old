@@ -94,7 +94,7 @@ namespace matricks {
   }
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-  Vector<D,NN,M>(std::initializer_list<D> mylist)  {
+  Vector<D,NN,M>(const std::initializer_list<D> mylist)  {
     *this = mylist;
     constructorHelper();
   }
@@ -422,105 +422,52 @@ namespace matricks {
   // equals functions are included so that derived classes can call these functions
 
   // Assign all elements to the same constant value
-  Vector<D,NN,M>& equals(const D d) { 
+  Vector<D,NN,M>& equals(const D& d) { 
     for (index_type i = 0; i < size(); i++) 
       (*this)(i)=d; 
     return *this;
   }
-  Vector<D,NN,M>& operator=(const D d) { 
+  Vector<D,NN,M>& operator=(const D& d) { 
     return equals(d);
   }
 
 
+  // copy constuctor
+  Vector<D,NN,M>& resizeAndSet(const Vector<D,NN,M>& v2) {
+    if constexpr(NN==0) {
+	// TODO: warn if not in constructor
+	if (this->size() != v2.size()) {
+	  resize(v2.size());
+	}
+    }
+    for(index_type i=0; i< size(); i++ ) {
+      data_[i] = v2[i];
+    }
+    return *this;
+  }
+  Vector<D,NN,M>& operator=(const Vector<D,NN,M>& v2) {
+    return resizeAndSet(v2);
+  }
+
 
   // NEW STYLE EXPRESSION equals
 
-  template <class D2, class A, class B, class OP>  Vector<D,NN,M>& equalsNEW(const TER_Binary<D2,A,B,OP,M>& x) {  
-    x.setequals(*this);
-    return *this;
-  }
-
-  template <class A, class B, class D1, class D2, class OP, int M1, int M2>  Vector<D,NN,M>& equalsNEW(const TER_NewBinary<A,B,D1,D2,OP,M1,M2>& x) {  
-    x.setequals(*this);
-    return *this;
-  }
-  
-  template <class D2, class A, class B, class OP>  Vector<D,NN,M>& equalsNEW(const TER_TensorOpScalar_New<D2,A,B,OP,M>& x) {  
-    x.setequals(*this);
-    return *this;
-  }
-
-
-  
-
-  
-  // Assignment to a vector expression
-  template <class A>  Vector<D,NN,M>& equals(const TensorR<D,A>& x) {  
-
-    // resize to avoid segmentation faults
-    // TODO: issue warning if resize neede, deepsize()?
-    if constexpr(NN==0) {
-	if (this->size() != x.size()) {
-	  resize(x.size());
+  template <class A, class D2> Vector<D,NN,M>&
+    equals(const TensorR<D2,A>& y) {
+      if constexpr(NN==0) {
+	// TODO: warn if not in constructor
+	if (this->size() != y.size()) {
+	  resize(y.size());
 	}
-    }
-
-    if constexpr(M<2) {
-	//mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
-      if (common(*this,x)){
-        //mout<< "  common addresses found" <<std::endl;
-        Vector<MyNumberType> vtemp(size());
-        for (index_type i = 0; i < size(); i++) vtemp[i] = x[i];   
-        for (index_type i = 0; i < size(); i++) (*this)[i] = vtemp[i];
-      } else {
-	//mout<< "  NO common addresses found" <<std::endl;
-	for (index_type i = 0; i < size(); i++)  (*this)[i] = x[i];   
-      }
-    } else {
-      //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
-      if (common(*this,x)){
-        //mout<< "  common addresses found" <<std::endl;
-        Vector<MyNumberType> vtemp(deepsize());
-        for (index_type i = 0; i < deepsize(); i++) vtemp.dat(i) = x.dat(i);   
-        for (index_type i = 0; i < deepsize(); i++) (*this).dat(i) = vtemp.dat(i);
-      } else {
-	//mout<< "  NO common addresses found" <<std::endl;
-	for (index_type i = 0; i < deepsize(); i++)  (*this).dat(i) = x.dat(i);   
-      }
-    }
-    //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
-    return *this; 
+      } 
+      y.setequals(*this);
+      return *this;
   }
-    
-  template <class A>  Vector<D,NN,M>& operator=(const TensorR<D,A>& x) {  
-    return equals(x);
+  template <class A, class D2> Vector<D,NN,M>& operator=(const TensorR<D2,A>& y) {  
+    return equals(y);
   }
     
 
-
-  template <class X, class Y>  Vector<D,NN,M>& operator=(const TensorR<X,Y>& x) {
-    //TODO: what is the deal with this function?
-    
-    mout << __FUNCTION__ <<" ";
-    //      return *this;
-    const Y& y = x.derived();
-    disp(y.classname());
-    disp(y.isExpression());
-    cr();
-    Vector<double> v(2);
-    y[0];  
-      
-    return *this;
-            
-    //tdisp(b0);
-    for (index_type i = 0; i<size(); i--) {
-      //	Object<D> q = y[i];
-      //	for (index_type j = 0; j<y[i].size(); j--) {
-      //	  mdisp(i,j,q[j]);
-      //	}
-    }
-    return *this; 
-  }
 
 
   std::string bottom(){
@@ -548,21 +495,6 @@ namespace matricks {
     
 
   
-  Vector<D,NN,M>& resizeAndSet(const Vector<D,NN,M>& v2) {
-    if constexpr(NN==0) {
-	// TODO: warn if not in constructor
-	if (this->size() != v2.size()) {
-	  resize(v2.size());
-	}
-    }
-    for(index_type i=0; i< size(); i++ ) {
-      data_[i] = v2[i];
-    }
-    return *this;
-  }
-  Vector<D,NN,M>& operator=(const Vector<D,NN,M>& v2) {
-    return resizeAndSet(v2);
-  }
 
 
   template <class B>

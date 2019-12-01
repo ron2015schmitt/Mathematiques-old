@@ -119,6 +119,8 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename AddType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
       
     Fun_Add() { }
   
@@ -158,6 +160,8 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename SubType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
       
     Fun_Subtract() { }
   
@@ -194,6 +198,8 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
       
     Fun_Multiply() { }
   
@@ -230,6 +236,8 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename DivType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
       
     Fun_Divide() { }
   
@@ -274,6 +282,8 @@ namespace matricks {
     typedef typename NumberType<A>::Type NA;
     typedef typename NumberType<B>::Type NB;
     typedef typename MultType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
       
     Fun_Pow() { }
   
@@ -677,31 +687,42 @@ namespace matricks {
 
   // y = atan2(a,b)  
 
-  template <class D> class Fun_Atan2 {
+  template <class A, class B> class Fun_Atan2 {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename MultType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+      
     Fun_Atan2() { }
-    static inline D apply(const D a, const D b) { 
+  
+    static inline auto apply(const NA& a, const NB& b) {
       using std::atan2;
-      return atan2(a,b); 
+      return atan2(a,b);
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = functor_style.apply("atan2") +  "(" + sa + ","  + sb + ")";
+      std::string sout =  "atan2(" + sa  + functor_style.apply(",") + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
-      using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Atan2")+display::getBracketedTypeName(d);
-    }
 #endif
 
+    static inline std::string classname() {
+      using namespace display;
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Atan2");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
+    }
+    
   };
 
-
-  
 
   // sinh(a)
 
@@ -940,12 +961,16 @@ namespace matricks {
   
   // roundzero(a,tol)
 
-  template <class D> class Fun_Roundzero {
+  template <class A, class B> class Fun_Roundzero {
   public:
-    typedef typename FundamentalType<D>::Type DREAL;
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename AddType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
     Fun_Roundzero() { }
 
-    static inline D apply(const D a, const DREAL tolerance) { 
+    static inline Type apply(const NA& a, const NB tolerance) { 
       return matricks::roundzero(a, tolerance);
     }
 
@@ -955,10 +980,15 @@ namespace matricks {
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Roundzero")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Roundzero");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
 #endif
 
@@ -968,29 +998,43 @@ namespace matricks {
   
   // approx(a,b,tol)
 
-  template <class D> class Fun_Approx {
+  template <class A, class B, typename TOL> class Fun_Approx {
   public:
-    typedef typename FundamentalType<D>::Type DREAL;
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename AddType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+      
     Fun_Approx() { }
-
-    static inline bool apply(const D a, const D b, const DREAL tolerance) { 
+  
+    static inline auto apply(const NA& a, const NB& b, const TOL& tolerance) {
       return matricks::approx(a, b, tolerance);
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb, const std::string& sc) {
-      std::string sout = functor_style.apply("approx") +  "(" + sa + ","  + sb + ","  + sc + ")";
+      std::string sout =  functor_style.apply("approx")+ "(" + sa  + "," + sb + "," + sc + ")";
       return sout;
     }
     
+
     static inline std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Approx")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      TOL d3;
+      std::string s = functor_namestyle.apply("Fun_Approx");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(COMMA).get() + getTypeName(d3);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
 #endif
-
+    
   };
+
 
   // ************************************************************************
   // *              User Defined
@@ -1028,28 +1072,43 @@ namespace matricks {
   
   // y = op2<D,userfunc>(a,b)
 
-  template <class D, typename FunctionTypes<D>::binary_func F> class Fun_BinaryUser {
+  template <class A, class B, typename FunctionTypes<typename NumberType<A>::Type>::binary_func F> class Fun_BinaryUser {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename MultType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+      
     Fun_BinaryUser() { }
-    static inline D apply(const D a, const D b) { 
+  
+    static inline auto apply(const NA& a, const NB& b) {
       return F(a,b); 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout = userfunctor_style.apply("userfunc") +  "(" + sa + ","  + sb + ")";
+      std::string sout =  "userfunc(" + sa  + functor_style.apply(",") + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
-      using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_BinaryUser")+display::getBracketedTypeName(d);
-    }
 #endif
 
+    static inline std::string classname() {
+      using namespace display;
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_BinaryUser");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
+    }
+    
   };
 
+
+  
 
   // ***********************************************************************
   // *              Logic
@@ -1083,24 +1142,35 @@ namespace matricks {
   
   // y = a && b
 
-  class Fun_And {
+  template <class A, class B> class Fun_And {
   public:
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_And() { }
   
-    static inline bool apply(const bool a, const bool b) { 
+    static inline Type apply(const bool a, const bool b) { 
       return a && b; 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("&&") + "(" + sb + ")";
+      std::string sout =  "(" + sa  + functor_style.apply("&&")  + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      return functor_namestyle.apply("Fun_And");
+      bool d1;
+      bool d2;
+      std::string s = functor_namestyle.apply("Fun_And");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1108,8 +1178,12 @@ namespace matricks {
 
   // y = a || b
 
-  class Fun_Or {
+  template <class A, class B> class Fun_Or {
   public:
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_Or() { }
   
     static inline bool apply(const bool a, const bool b) { 
@@ -1118,173 +1192,25 @@ namespace matricks {
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("||") + "(" + sb + ")";
+      std::string sout =  "(" + sa  + functor_style.apply("||") +  sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      return functor_namestyle.apply("Fun_Or");
+      bool d1;
+      bool d2;
+      std::string s = functor_namestyle.apply("Fun_Or");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
 
-
-  // ************************************************************************
-  // *              bit-wise logical operators (for unsigned types)
-  // ************************************************************************
-
-  // y = a | b
-
-  template <class D> class Fun_BitwiseOr {
-  public:
-    Fun_BitwiseOr() { }
-  
-    static inline D apply(const D a, const D b) { 
-      return (a | b); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("|") + "(" + sb + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      return functor_namestyle.apply("Fun_BitwiseOr");
-    }
-#endif
-
-  };
-
-  // y = a & b
-
-  template <class D> class Fun_BitwiseAnd {
-  public:
-    Fun_BitwiseAnd() { }
-  
-    static inline D apply(const D a, const D b) { 
-      return (a & b); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("&") + "(" + sb + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      return functor_namestyle.apply("Fun_BitwiseAnd");
-    }
-#endif
-
-  };
-
-
-  // y = a ^ b
-
-  template <class D> class Fun_BitwiseXor {
-  public:
-    Fun_BitwiseXor() { }
-  
-    static inline D apply(const D a, const D b) { 
-      return (a ^ b); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("^") + "(" + sb + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      return functor_namestyle.apply("Fun_BitwiseXor");
-    }
-#endif
-
-  };
-
-
-
-  // y = ~b
-
-  template <class D> class Fun_BitwiseNot {
-  public:
-    Fun_BitwiseNot() { }
-  
-    static inline D apply(const D a) { 
-      return (~a); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa) {
-      std::string sout = functor_style.apply("~") + "(" + sa + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      return functor_namestyle.apply("Fun_BitwiseNot");
-    }
-#endif
-
-  };
-
-
-
-  
-  // y = a << b
-
-  template <class D> class Fun_BitwiseShiftLeft {
-  public:
-    Fun_BitwiseShiftLeft() { }
-  
-    static inline D apply(const D a, const D b) { 
-      return (a << b); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("<<") + "(" + sb + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      return functor_namestyle.apply("Fun_BitwiseShiftLeft");
-    }
-#endif
-
-  };
-
-
-  // y = a >> b
-
-  template <class D> class Fun_BitwiseShiftRight {
-  public:
-    Fun_BitwiseShiftRight() { }
-  
-    static inline D apply(const D a, const D b) { 
-      return (a >> b); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply(">>") + "(" + sb + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      return functor_namestyle.apply("Fun_BitwiseShiftRight");
-    }
-#endif
-
-  };
 
 
 
@@ -1294,25 +1220,37 @@ namespace matricks {
 
   // y = (a == b)
 
-  template <class D> class Fun_Equal {
+  template <class A, class B> class Fun_Equal {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_Equal() { }
 
-    static inline bool apply(const D a, const D b) { 
+    static inline Type apply(const NA& a, const NB& b) { 
       return (a == b); 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("==") + "(" + sb + ")";
+      std::string sout =  "(" + sa + functor_style.apply("==") + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Equal")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Equal");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1323,10 +1261,17 @@ namespace matricks {
 
   // y = (a != b)
 
-  template <class D> class Fun_NotEqual {
+  template <class A, class B> class Fun_NotEqual {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_NotEqual() { }
-    static inline bool apply(const D a, const D b) { 
+
+    static inline Type apply(const NA& a, const NB& b) { 
       return (a != b); 
     }
 
@@ -1336,11 +1281,17 @@ namespace matricks {
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_NotEqual")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_NotEqual");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1352,52 +1303,76 @@ namespace matricks {
   // y = (a <= b)
 
   
-  template <class D> class Fun_LessOrEqual {
+  template <class A, class B> class Fun_LessOrEqual {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_LessOrEqual() { }
-    static inline bool apply(const D a, const D b) { 
+
+    static inline Type apply(const NA& a, const NB& b) { 
       return (a <= b); 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("<=") + "(" + sb + ")";
+      std::string sout =  "(" + sa  + functor_style.apply("<=")  + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_LessOrEqual")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_LessOrEqual");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
 
 
 
-
-
   // y = (a >= b)
 
-  template <class D> class Fun_GreaterOrEqual {
+  template <class A, class B> class Fun_GreaterOrEqual {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_GreaterOrEqual() { }
-    static inline bool apply(const D a, const D b) { 
+
+    static inline Type apply(const NA& a, const NB& b) { 
       return (a >= b); 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply(">=") + "(" + sb + ")";
+      std::string sout =  "(" + sa  + functor_style.apply(">=")  + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_GreaterOrEqual")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_GreaterOrEqual");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1405,24 +1380,37 @@ namespace matricks {
 
   // y = (a < b)
 
-  template <class D> class Fun_Less {
+  template <class A, class B> class Fun_Less {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+    
     Fun_Less() { }
-    static inline bool apply(const D a, const D b) { 
+
+    static inline Type apply(const NA& a, const NB& b) { 
       return (a < b); 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply("<") + "(" + sb + ")";
+      std::string sout =  "(" + sa  + functor_style.apply("<")  + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Less")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Less");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1430,24 +1418,37 @@ namespace matricks {
 
   // y = (a > b)
 
-  template <class D> class Fun_Greater {
-  public:
+  template <class A, class B> class Fun_Greater {
+  public: 
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef bool Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_Greater() { }
-    static inline bool apply(const D a, const D b) { 
+
+    static inline Type apply(const NA& a, const NB& b) { 
       return (a > b); 
     }
 
 #if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
-      std::string sout =  "(" + sa + ")" + functor_style.apply(">") + "(" + sb + ")";
+      std::string sout =  "(" + sa + functor_style.apply(">") + sb + ")";
       return sout;
     }
     
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Greater")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Greater");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1462,13 +1463,19 @@ namespace matricks {
 
   // polar(r,phi)
 
-  template <class D > class Fun_Polar {
+  template <class A, class B> class Fun_Polar {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename AddType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_Polar() { }
 
-    static inline std::complex<D> apply(const D r, const D phi) { 
+    static inline std::complex<Type> apply(const NA& r, const NB& phi) { 
       using std::polar;
-      return polar(r,phi); 
+      return polar((Type)r,(Type)phi); 
     }
 
 
@@ -1479,11 +1486,18 @@ namespace matricks {
       return sout;
     }
     
-    static inline std::string classname() {
+
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Polar")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Polar");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1492,12 +1506,18 @@ namespace matricks {
 
   // complex(x,y)
 
-  template <class D > class Fun_Complex {
+  template <class A, class B> class Fun_Complex {
   public:
+    typedef typename NumberType<A>::Type NA;
+    typedef typename NumberType<B>::Type NB;
+    typedef typename AddType<NA,NB>::Type Type;
+    typedef typename DeeperType<A,B>::Type DeeperType_;
+    typedef typename NumberType<DeeperType_,Type>::Type TensorType;
+
     Fun_Complex() { }
 
-    static inline std::complex<D> apply(const D x, const D y) { 
-      return std::complex<D>(x,y); 
+    static inline std::complex<Type> apply(const NA& x, const NB& y) { 
+      return std::complex<Type>((Type)x,(Type)y); 
     }
 
 
@@ -1507,12 +1527,17 @@ namespace matricks {
       std::string sout = functor_style.apply("complex") +  "(" + sa + ","  + sb + ")";
       return sout;
     }
-    
-    static inline std::string classname() {
+    static std::string classname() {
       using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_Complex")+display::getBracketedTypeName(d);
+      NA d1;
+      NB d2;
+      std::string s = functor_namestyle.apply("Fun_Complex");
+      s += StyledString::get(ANGLE1).get() + getTypeName(d1);
+      s += StyledString::get(COMMA).get() + getTypeName(d2);
+      s += StyledString::get(ANGLE2).get();
+      return s;
     }
+
 #endif
 
   };
@@ -1631,32 +1656,6 @@ namespace matricks {
 
   };
 
-
-  // TODO: can be get rid of this and use the same round function?
-  // round(a)
-
-  template <class D> class Fun_RoundCplx {
-  public:
-    Fun_RoundCplx() { }
-
-    static inline std::complex<D> apply(const std::complex<D> a) {
-      return matricks::round(a); 
-    }
-
-#if MATRICKS_DEBUG>=1
-    static inline std::string expression(const std::string& sa) {
-      std::string sout = functor_style.apply("round")+"("+ sa + ")";
-      return sout;
-    }
-    
-    static inline std::string classname() {
-      using namespace display;
-      D d;
-      return functor_namestyle.apply("Fun_RoundCplx")+display::getBracketedTypeName(d);
-    }
-#endif
-
-  };
 
 
 

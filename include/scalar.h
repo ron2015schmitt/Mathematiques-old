@@ -244,68 +244,10 @@ namespace matricks {
   }
 
   Scalar<D,M>& operator=(const Scalar<D,M>& s2) {
-    return equals(s2);
+    return this->equals(s2);
   }
 
 
-
-  // TensorExpression
-  template<class A> 
-    Scalar<D,M>& equals(const TensorR<D,A>& s2) {
-    if constexpr(M<2) {
-      data_ = s2[0];    
-    } else {
-      for (index_type i = 0; i < deepsize(); i++) 
-	(*this).dat(i) = s2.dat(i);   
-    }
-    return *this;
-  }
-
-  template<class A> 
-    Scalar<D,M>& operator=(const TensorR<D,A>& s2) {
-    return equals(s2);
-  }
-
-  // TensorExpression
-  template<class A> 
-    Scalar<D,M>& equals(const TensorRW<D,A>& s2) {
-    if constexpr(M<2) {
-      data_ = s2[0];    
-    } else {
-      for (index_type i = 0; i < deepsize(); i++) 
-	(*this).dat(i) = s2.dat(i);   
-    }
-    return *this;
-  }
-
-  template<class A> 
-    Scalar<D,M>& operator=(const TensorRW<D,A>& s2) {
-    return equals(s2);
-  }
-
-
-  
-
-  // TensorExpression
-  template<class A, class EXP> 
-    Scalar<D,M>& equals(const TensorR<EXP,A>& s2) {
-    if constexpr(M<2) {
-      data_ = s2();    
-    } else {
-      for (index_type i = 0; i < deepsize(); i++) 
-	(*this).dat(i) = s2.dat(i);   
-    }
-    return *this;
-  }
-
-  template<class A, class EXP> 
-    Scalar<D,M>& operator=(const TensorR<EXP,A>& s2) {
-    return equals(s2);
-  }
-
-
-
-  
   
   Scalar<D,M>& equals(const std::initializer_list<D>& mylist) {
     // TODO: check size
@@ -315,7 +257,20 @@ namespace matricks {
     return *this;
   }
   Scalar<D,M>& operator=(const std::initializer_list<D>& mylist) {
-    return equals(mylist);
+    return this->equals(mylist);
+  }
+
+  
+  
+
+  template<class A, class D2> 
+    Scalar<D,M>& equals(const TensorR<D2,A>& x) {    
+    x.setequals(*this);
+    return *this;
+  }
+  template<class A, class D2> 
+    Scalar<D,M>& operator=(const TensorR<D2,A>& x) {
+    return this->equals(x);
   }
 
 

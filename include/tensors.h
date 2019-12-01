@@ -534,6 +534,12 @@ namespace matricks {
       return derived()[i];
     }
 
+
+    template<class X> X&  setequals(X& x) const{
+      return derived().setequals(x);
+    }
+
+    
     size_type size(void) const {
       return derived().size();
     }
@@ -638,6 +644,9 @@ namespace matricks {
       return derived()[i];
     }
 
+    template<class X> X& setequals(X& x) const {
+      return derived().setequals(x);
+    }
 
     size_type size(void) const {
       return derived().size();

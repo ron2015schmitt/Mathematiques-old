@@ -694,19 +694,19 @@ int main(int argc, char *argv[])
     allpass = allpass && pass;
     failnum += (!pass);
   }
-  {
-    // op2<double,paste>(s)
-    printStart(++testnum);
-    Scalar<double> s1 = 0.01;
-    Scalar<double> s2 = 4;
-    Scalar<double> expected = 4;
-    Scalar<double> result;
-    testcode( result = op2<double,paste>(s1,s2) );
-    bool pass = approx(result,expected,tol);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // op2<double,paste>(s)
+  //   printStart(++testnum);
+  //   Scalar<double> s1 = 0.01;
+  //   Scalar<double> s2 = 4;
+  //   Scalar<double> expected = 4;
+  //   Scalar<double> result;
+  //   testcode( result = op2<double,paste>(s1,s2) );
+  //   bool pass = approx(result,expected,tol);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
   
   {
     // Test of a large scalar math expression

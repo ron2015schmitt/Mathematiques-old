@@ -16,8 +16,8 @@ namespace matricks {
    **************************************************************************** 
    */
 
-  template <class D> class Matrix :
-    public TensorRW<D,Matrix<D> >{
+  template <class D, int NR, int NC, int M> class Matrix :
+    public TensorRW<D,Matrix<D,NR,NC,M> >{
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -31,7 +31,7 @@ namespace matricks {
 
   public:     
     typedef D DataType;
-    typedef typename FundamentalType<D>::Type PrimDataType;
+    typedef typename NumberType<D>::Type MyNumberType;
 
     
 
@@ -41,7 +41,7 @@ namespace matricks {
 
 
     // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
-    explicit Matrix<D>() 
+    explicit Matrix<D,NR,NC,M>() 
     {
       Nrows_ = 0;
       Ncols_ = 0;
@@ -51,7 +51,7 @@ namespace matricks {
 
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
-    explicit Matrix<D>(const size_type Nr, const size_type Nc) {
+    explicit Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc) {
       Nrows_ = Nr;
       Ncols_ = Nc;
       data_ = new std::valarray<D>(Nr*Nc);
@@ -61,7 +61,7 @@ namespace matricks {
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Matrix<D>(const size_type Nr, const size_type Nc, const D& val) {
+    explicit Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D& val) {
       Nrows_ = Nr;
       Ncols_ = Nc;
       data_ = new std::valarray<D>(val, Nr*Nc);
@@ -71,7 +71,7 @@ namespace matricks {
 
 
         // --------------------- 2D array  CONSTRUCTOR ---------------------
-    Matrix<D>(const size_type Nr, const size_type Nc, const D **vals) {
+    Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D **vals) {
       
       Nrows_ = Nr;
       Ncols_ = Nc;
@@ -82,7 +82,7 @@ namespace matricks {
 
 
     // ************* C++11 initializer_list 2D CONSTRUCTOR---------------------
-    Matrix<D>(const std::initializer_list<std::initializer_list<D> >& list1) {
+    Matrix<D,NR,NC,M>(const std::initializer_list<std::initializer_list<D> >& list1) {
 
       Nrows_ = list1.size();
       Ncols_ = (*(list1.begin())).size();
@@ -98,7 +98,7 @@ namespace matricks {
 
     // --------------------- COPY CONSTRUCTOR --------------------
 
-    Matrix<D>(const Matrix<D>& m2) {
+    Matrix<D,NR,NC,M>(const Matrix<D>& m2) {
 	Nrows_ = m2.Nrows();
 	Ncols_ = m2.Ncols();
 	data_ = new std::valarray<D>(m2.size());
@@ -110,7 +110,7 @@ namespace matricks {
     // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
 
-    template <class A> Matrix<D>(const TensorR<D,A>& x) {
+    template <class A> Matrix<D,NR,NC,M>(const TensorR<D,A>& x) {
       // TODO: bounds check
       Nrows_ = x.dims()[0];
       Ncols_ = x.dims()[1];
@@ -121,7 +121,7 @@ namespace matricks {
 
 
     // --------------------- 1D valarray CONSTRUCTOR ---------------------
-    Matrix<D>(const size_type Nr, const size_type Nc, const std::valarray<D>& valar) {
+    Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const std::valarray<D>& valar) {
       Nrows_ = Nr;
       Ncols_ = Nc;
       data_ = new std::valarray<D>(valar); 
@@ -130,7 +130,7 @@ namespace matricks {
 
 
     // --------------------- 1D array[]  CONSTRUCTOR ---------------------
-    Matrix<D>(const size_type Nr, const size_type Nc, const D (vals)[]) {
+    Matrix<D,NR,NC,M>(const size_type Nr, const size_type Nc, const D (vals)[]) {
       // allocate store
       Nrows_ = Nr;
       Ncols_ = Nc;
@@ -139,15 +139,6 @@ namespace matricks {
     }
 
     
-    // ************* C++11 1D initializer_list CONSTRUCTOR---------------------
-    Matrix<D>(const size_type Nr, const size_type Nc, const std::initializer_list<D>& mylist) 
-    {
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_ = new std::valarray<D>(Nr*Nc);
-      *this = mylist;
-      constructorHelper();
-    }
 
     
     // --------------------- constructorHelper() --------------------
@@ -165,7 +156,7 @@ namespace matricks {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~Matrix<D>() {
+    ~Matrix<D,NR,NC,M>() {
       delete  data_ ;
 
       //remove from directory
@@ -179,9 +170,6 @@ namespace matricks {
 
     inline size_type size(void) const {
       return data_->size();
-    }
-    size_type depth(void) const {
-      return 1;
     }
     inline size_type Nrows(void) const {
       return Nrows_;
@@ -208,9 +196,53 @@ namespace matricks {
       return myaddr;
     }
 
-    inline size_type deepsize(void) const {
-      return size();
+    Dimensions tdims(void) const {
+      Dimensions dimensions(NR,NC);
+      return dimensions;
     }
+
+  
+    inline size_type depth(void) const {
+      return M;
+    }
+
+    // the size of each element
+    inline size_type elsize(void) const {
+      if constexpr(M<2) {
+	  return 1;
+	} else {
+	const size_type Nelements = this->size();
+	if (Nelements==0) {
+	  return 0;
+	} else {
+	  return data_[0].size();
+	}
+      }
+    }
+    
+    // the deep size of an element: the total number of numbers in an element
+    inline size_type eldeepsize(void) const {
+      if constexpr(M<2) {
+        return 1;
+      } else {
+      const size_type Nelements = this->size();
+      if (Nelements==0) {
+	return 0;
+      } else {
+	return data_[0].deepsize();
+      }
+    }
+  }
+
+  // the total number of numbers in this data structure
+  size_type deepsize(void) const {
+    if constexpr(M<2) {
+      return this->size();
+    } else {
+      return (this->size())*(this->eldeepsize());
+    }
+  }
+ 
 
 
 
@@ -296,35 +328,35 @@ namespace matricks {
     // 2) For non-square matrices, this changes the shape and operation is time-consuming
     //    Note: Transpose function is much quicker. only use this for when memory is critical
     Matrix<D>& transpose(void) { 
-      const index_type NR = Nrows_;
-      const index_type NC = Ncols_;
+      const index_type Nr = Nrows_;
+      const index_type Nc = Ncols_;
       const index_type N = size();
       const index_type Nminus1 = N-1;
 
       // square matrix  
-      if (NC == NR) {
+      if (Nc == Nr) {
 	index_type r,c;
 	D temp;
-	for (r = 0; r < NR; ++r)
-	  for (c = r + 1; c < NR; ++c) {
-	    temp = (*this)[r + c * NR];
-	    (*this)[r + c * NR] = (*this)[c + r * NR];
-	    (*this)[c + r * NR] = temp;
+	for (r = 0; r < Nr; ++r)
+	  for (c = r + 1; c < Nr; ++c) {
+	    temp = (*this)[r + c * Nr];
+	    (*this)[r + c * Nr] = (*this)[c + r * Nr];
+	    (*this)[c + r * Nr] = temp;
 	  }
 	return *this;
       }
 
-      reshape(NC,NR);
+      reshape(Nc,Nr);
 
       // for "vectors" 
-      if (NC == 1 || NR==1) {
+      if (Nc == 1 || Nr==1) {
 	return *this;
       }
 
       // boolean array to make searching faster
       // can set Nmove=1, but this will be very slow
-      // Nmove=(NR+NC)/2 is optimal
-      const bool Nmove =(NR+NC)/2;
+      // Nmove=(Nr+Nc)/2 is optimal
+      const bool Nmove =(Nr+Nc)/2;
       index_type move[Nmove];
       for (index_type i = 0; i < Nmove; ++i)
 	move[i] = false;
@@ -333,11 +365,11 @@ namespace matricks {
       // there are always at least 2 fixed points (at j=0 and j=Nminus1)
       index_type count = 2;		
       // find the rest of the fixed points
-      if (NC >= 3 && NR >= 3)
-	count += gcd(NC - 1, NR - 1) - 1;	/* # fixed points */
+      if (Nc >= 3 && Nr >= 3)
+	count += gcd(Nc - 1, Nr - 1) - 1;	/* # fixed points */
 
       index_type jstart = 1;
-      index_type magicnum = NC;
+      index_type magicnum = Nc;
 
       while (1) {
 	index_type jnext,jnextc;
@@ -347,9 +379,9 @@ namespace matricks {
 	D dstart = (*this)[jstart];
 	D dstartC = (*this)[jstartC];
 
-	// PROCESS THE CURRENT SEQUENCE AND ITS COMPLIMENTARY SEQUENCE
+	// PROCESS THE CURRENT SEQUENcE AND ITS COMPLIMENTARY SEQUENcE
 	while (1) {
-	  jnext = NC * j - Nminus1 * (j / NR);
+	  jnext = Nc * j - Nminus1 * (j / Nr);
 	  jnextc = Nminus1 - jnext;
 	  if (j < Nmove)
 	    move[j] = true;
@@ -371,19 +403,19 @@ namespace matricks {
 	  j = jnext;
 	  jC = jnextc;
 	}
-	// DONE PROCESSING SEQUENCE
+	// DONE PROCESSING SEQUENcE
 
 
 	// CHECK TO SEE IF WE'RE FINISHED
 	if (count >= N)
 	  break;	
 
-	// FIND THE START OF THE NEXT SEQUENCE
+	// FIND THE START OF THE NEXT SEQUENcE
 	while (1)  {
 	  // skip fixed points (jstart==magicnum)
 	  do  {
 	    jstart++;
-	    if ((magicnum +=NC)>Nminus1)
+	    if ((magicnum +=Nc)>Nminus1)
 	      magicnum -= Nminus1;
 	  } while (jstart==magicnum);
 	   
@@ -397,13 +429,13 @@ namespace matricks {
 	    // processed slcuences
 	    while (jnext > jstart && jnext < max) {
 	      j = jnext;
-	      jnext = NC * j - Nminus1 * (j / NR);
+	      jnext = Nc * j - Nminus1 * (j / Nr);
 	    }
 	  }
 	  if (jnext == jstart)
 	    break;
 	} 
-	// WE HAVE FOUND START OF THE NEXT SEQUENCE
+	// WE HAVE FOUND START OF THE NEXT SEQUENcE
 
       }
       return *this;
@@ -418,28 +450,72 @@ namespace matricks {
       return *this;
     }
 
-    
-    //**********************************************************************
-    //************************** accesss[k] ***********************************
-    //**********************************************************************
-
-
-    // -------------------- ELEMENT ACCESS[k] --------------------
-
-    // "read/write" [k]
-    D& operator[](const index_type k)  {
-      index_type index = k;
-      return (*data_)[index]; 
+  //**********************************************************************
+  //******************** DEEP ACCESS: x.dat(n) ***************************
+  //**********************************************************************
+  // NOTE: indexes over [0] to [deepsize()] and note return type
+  
+  // "read/write"
+  MyNumberType& dat(const index_type n) {
+    using namespace::display;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+    if constexpr(M < 2) {
+      int k = n;
+      if (k < 0) {
+	  k += size();
+      }
+      return data_[k];
+    } else {
+      const int Ndeep = this->eldeepsize();
+      const int j = n / Ndeep;
+      const int k = n % Ndeep;
+      return data_[j].dat(k);
     }
+  }
 
-
-    // "read only" [k]
-    const D operator[](const index_type k) const {
-      return (const D)(*data_)[k]; 
+  // read
+  const MyNumberType& dat(const index_type n)  const {
+    using namespace::display;
+    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
+    if constexpr(M < 2) {
+      int k = n;
+      if (k < 0) {
+	  k += size();
+      }
+      return data_[k];
+    } else {
+      const int Ndeep = this->eldeepsize();
+      const int j = n / Ndeep;
+      const int k = n % Ndeep;
+      return data_[j].dat(k);
     }
+  }
 
+  
 
+  //**********************************************************************
+  //************* Array-style Element Access: x[n] ***********************
+  //**********************************************************************
 
+  // "read/write"
+  D& operator[](const index_type n) {
+    int k = n;
+    if (k < 0) {
+      k += size();
+    }
+    return data_[k];
+  }
+
+  // read
+  const D& operator[](const index_type n)  const {
+    int k = n;
+    if (k < 0) {
+      k += size();
+    }
+    return data_[k];
+  }
+
+  
 
     // matrix[slice]
     
@@ -485,10 +561,10 @@ namespace matricks {
     }
 
 
-    //**********************************************************************
-    //************************** INDEXING  *********************************
-    //**********************************************************************
-
+  //**********************************************************************
+  //***************Tensor-style Element Access: A(r,c) *********************
+  //**********************************************************************
+    
     // --------------------------- index(r,c) -----------------------------
     
     index_type index(const index_type r, const index_type c) const {

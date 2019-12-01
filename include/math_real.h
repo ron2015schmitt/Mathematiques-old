@@ -15,6 +15,32 @@ namespace matricks {
   const size_type maxsize = std::numeric_limits<index_type>::max();
   const size_type badsize = std::numeric_limits<size_type>::max();
 
+
+ /****************************************************************************
+   * tolerances
+   **************************************************************************** 
+   */
+
+  template <typename D> struct MatricksHelper {
+  public:
+    static D tolerance = D(0);
+  };
+  template <> struct MatricksHelper<long double> {
+  public:
+    constexpr static long double tolerance = 1.5e-30;
+  };
+  template <> struct MatricksHelper<double> {
+  public:
+    constexpr static double tolerance = 1.5e-16;
+  };
+  template <> struct MatricksHelper<float> {
+  public:
+    constexpr static float tolerance = 3.5e-7;
+  };
+
+
+ 
+  
   // TODO: C++17 has its own gcd gcf
   
   // GCD
@@ -32,20 +58,21 @@ namespace matricks {
 
   // roundzero
   
-  template <typename D> D roundzero(const D& x, const D tolerance) {
-    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
+  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+    D roundzero(const D& x, const D tolerance) {
+    return (std::abs(x) < std::abs(tolerance) ? 0. : x);
   }
 
   // approx
   
-  template <typename D> bool approx(const D& x, const D& y, const D tolerance) {
+  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>> bool approx(const D& x, const D& y, const D tolerance) {
     using std::abs;
     D tol = tolerance;
-    D d = (abs(x)+abs(y))/2;
-    if (d > 1) {
+    D d = (abs(x)+abs(y))/2.;
+    if (d > 1.) {
       tol *= d;
     }
-    return (roundzero(abs(x-y), tol) == 0);
+    return (roundzero(abs(x-y), tol) == 0.);
   }
 
   // numbercast
@@ -84,25 +111,6 @@ namespace matricks {
 
 
   
-  /****************************************************************************
-   * tolerances
-   **************************************************************************** 
-   */
-
-  template <typename D> struct MatricksHelper {
-  public:
-    static D tolerance = D(0);
-  };
-  template <> struct MatricksHelper<double> {
-  public:
-    constexpr static double tolerance = 1.5e-16;
-  };
-  template <> struct MatricksHelper<float> {
-  public:
-    constexpr static float tolerance = 3.5e-7;
-  };
-
-
  
   
 };

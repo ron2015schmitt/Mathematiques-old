@@ -64,7 +64,7 @@ namespace matricks {
   template <typename D> class Imaginary;
   
 
-  template <typename T> class NumberType;
+  template <typename T, typename NUM=double> class NumberType;
 
   class TensorAbstract;
   template <class D, class DERIVED> class TensorR;  
@@ -72,9 +72,21 @@ namespace matricks {
   
   template <class D, int M = 1+matricks::NumberType<D>::depth()> class Scalar;
   template <class D, int NN = 0, int M = 1+matricks::NumberType<D>::depth()> class Vector;
-  template <class D> class Matrix;
-  template <class D> class Tensor;
+  template <class D, int NR = 0, int NC = 0, int M = 1+matricks::NumberType<D>::depth()> class Matrix;
+  template <class D, int M = 1+matricks::NumberType<D>::depth()> class Tensor;
 
+
+
+  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()> class
+    TER_Unary;
+
+  // Note: the lack "+1" for M1,M2 is intended
+  template<class A, class B, class D1, class D2, class OP, int M1 = matricks::NumberType<A>::depth(), int M2 = matricks::NumberType<B>::depth()> class
+    TER_Binary;
+
+  template<class A, class B, class C, class D1, class D2, class D3, class OP, int M1 = matricks::NumberType<A>::depth(), int M2 = matricks::NumberType<B>::depth(), int M3 = matricks::NumberType<C>::depth()> class
+    TER_Ternary;
+  
 
   template <class D, int M = 1+matricks::NumberType<D>::depth()>
     class TERW_Subset;
@@ -84,46 +96,14 @@ namespace matricks {
     class TERW_Resize;
   template <class D, class OP, int M = 1+matricks::NumberType<D>::depth()>
     class TER_RealFromComplex;
-  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Unary;
 
-  template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Binary;
-
-  // Note: lack "+1" for M1,M2 is intended
-  template<class A, class B, class D1, class D2, class OP, int M1 = matricks::NumberType<A>::depth(), int M2 = matricks::NumberType<B>::depth()>
-    class TER_NewBinary;
 
   template<class D, class A, class X, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Series;
   template<class D, class A, class B, class X, class OP1, class OP2, int M = 1+matricks::NumberType<D>::depth()>
     class TER_Series2;    
 
-  template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_TensorOpScalar;
 
-  template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_ScalarOpTensor;
-
-  template <class DOUT, class A, class D, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_TensorOpScalar_New;
-
-  template <class DOUT, class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_ScalarOpTensor_New;
-  template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Bool_Unary;
-  template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Bool_Binary;
-  template<class D, class A, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Bool_Binary2;
-  template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Bool_TensorOpScalar;
-  template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Bool_ScalarOpTensor;
-  template<class D, class A, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Cplx_TensorOpScalar;
-  template<class D, class B, class OP, int M = 1+matricks::NumberType<D>::depth()>
-    class TER_Cplx_ScalarOpTensor;
   template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
     class TERW_Transpose;
   template<class D, class A, class FUNC, int M = 1+matricks::NumberType<D>::depth()>
@@ -167,9 +147,8 @@ namespace matricks {
     typedef D Type;
   };
 
-  /* FundamentalType - this operates recursively to find the primitive arithmetic type (eg int, float, double)*/
-  /*                 this could certainly be specialized for other */
-  /*                 container types */
+  // FundamentalType - this operates recursively to find the primitive arithmetic type
+  //                   eg int, float, double, ...
   template <typename T> class FundamentalType {
   public:
     typedef T Type;
@@ -192,12 +171,14 @@ namespace matricks {
     }
   };
 
-  /* NumberType - this operates recursively to find the base number type (complex<double>, Imaginary<float>, int, double)*/
-  /*                 this could certainly be specialized for other */
-  /*                 container types */
-  template <typename T> class NumberType {
+
+  
+  // NumberType - this operates recursively to find the base number type
+  //              eg. complex<double>, Imaginary<float>, int, double, etc
+  template <typename T, typename NUM> class NumberType {
   public:
     typedef T Type;
+    typedef NUM NewType;
     constexpr static int depth() {
       return 0;
     }
@@ -208,9 +189,10 @@ namespace matricks {
       return 1;
     }
   };
-  template <class D> class NumberType<std::complex<D> > {
+  template <class D, typename NUM> class NumberType<std::complex<D>,NUM > {
   public:
     typedef std::complex<D> Type;
+    typedef NUM NewType;
     constexpr static int depth() {
       return 0;
     }
@@ -221,9 +203,10 @@ namespace matricks {
       return 1;
     }
   };
-  template <class D> class NumberType<Imaginary<D> > {
+  template <class D, typename NUM> class NumberType<Imaginary<D>,NUM > {
   public:
     typedef Imaginary<D> Type;
+    typedef NUM NewType;
     constexpr static int depth() {
       return 0;
     }
@@ -235,13 +218,13 @@ namespace matricks {
     }
   };
 
-
-  template <typename D, template <typename> typename A > class NumberType<A<D>>  {
+  template <typename D, template <typename> typename A , typename NUM> class NumberType<A<D>,NUM>  {
   public:
     typedef A<D> InputType;
     typedef typename NumberType<D>::Type Type;
+    typedef A<typename NumberType<D,NUM>::NewType> NewType;
     constexpr static int depth() {
-      return 1+NumberType<D>::depth();
+      return 1+NumberType<D,NUM>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -250,12 +233,15 @@ namespace matricks {
       return x.deepsize();
     }
   };
-  template <typename D, class X1, template <typename,typename> typename A > class NumberType<A<D,X1>>  {
+
+
+  template <typename D, typename B, template <typename,typename> typename A , typename NUM> class NumberType<A<D,B>,NUM>  {
   public:
-    typedef A<D,X1> InputType;
+    typedef A<D,B> InputType;
     typedef typename NumberType<D>::Type Type;
+    typedef A<typename NumberType<D,NUM>::NewType, B> NewType;
     constexpr static int depth() {
-      return 1+NumberType<D>::depth();
+      return 1+NumberType<D,NUM>::depth();
     }
     inline static int size(const InputType& x) {
       return x.size();
@@ -264,23 +250,14 @@ namespace matricks {
       return x.deepsize();
     }
   };
-  template <typename D, class X1, class X2, template <typename,typename,typename> typename A > class NumberType<A<D,X1,X2>>  {
+
+
+  
+  // DeeperType - this operates recursively to find the primitive arithmetic type
+  template <typename T1, typename T2> class DeeperType {
   public:
-    typedef A<D,X1,X2> InputType;
-    typedef typename NumberType<D>::Type Type;
-    constexpr static int depth() {
-      return 1+NumberType<D>::depth();
-    }
-    inline static int size(const InputType& x) {
-      return x.size();
-    }
-    inline static int deepsize(const InputType& x) {
-      return x.deepsize();
-    }
+    typedef typename std::conditional< NumberType<T1>::depth() >= NumberType<T2>::depth(), T1, T2>::type Type;
   };
-
-
-
 
 
 

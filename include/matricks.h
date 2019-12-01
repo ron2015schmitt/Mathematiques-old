@@ -57,6 +57,7 @@
 #include "tensor.h"
 #include "expressions.h"
 #include "functions.h"
+#include "functions_calculus.h"
 #include "functions_complex.h"
 #include "fileio.h"
 #include "coda.h"

@@ -53,7 +53,7 @@ cat $(TAG_ONELINE_SUMMARY_FILE) > $(TAG_ANNOTATION_FILE)
 cat $(TAG_FILE_MATHQ) >> $(TAG_ANNOTATION_FILE)
 cat  $(VERSION_FILE_MATHQ) >> $(TAG_ANNOTATION_FILE)
 echo -e "Updating "$(BLUE)"$(notdir $(VERSION_HEADER_FILE_MATHQ))"$(DEFCLR)
-$(shell echo "const char vers_mathq[] = \"`cat $(TAG_FILE_MATHQ)`\";" > $(VERSION_HEADER_FILE_MATHQ) )
+$(shell echo "inline const char vers_mathq[] = \"`cat $(TAG_FILE_MATHQ)`\";" > $(VERSION_HEADER_FILE_MATHQ) )
 echo -e "Updating project "$(BLUE)"README.md"$(DEFCLR)
 cp  $(DIR_MATHQ)/files/README.md.template  $(DIR_MATHQ)/README.md
 TAG=`cat $(TAG_FILE_MATHQ)` && echo -e " "$(BLUE)"VERSION_MATHQ"$(DEFCLR)"="$${TAG} && sed -i "s/__VERSION_MATHQ__/$${TAG}/g"  $(DIR_MATHQ)/README.md

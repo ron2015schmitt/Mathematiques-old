@@ -65,6 +65,11 @@ namespace display {
     StyledString::add(SSEnum::WARNING, *warning);
     StyledString *mathq = new StyledString(createStyle(BOLD+BLUE2),"mathq");
     StyledString::add(SSEnum::MATHQ, *mathq);
+
+    
+    StyledString *mathematiques = new StyledString(createStyle(BOLD+BLUE2),"Mathématiques");
+    StyledString::add(SSEnum::MATHEMATIQUES, *mathematiques);
+
     StyledString *version = new StyledString(createStyle(BOLD+BLUE2),vers_mathq);
     StyledString::add(SSEnum::VERSION, *version);
     StyledString *dlevel0 = new StyledString(createStyle(BOLD+GREENBACK),"MATHQ_DEBUG 0 (off/fast)");

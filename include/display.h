@@ -312,7 +312,7 @@ namespace display {
 
   
   
-  enum SSEnum {INDENT, ERROR, WARNING, MATHQ, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
+  enum SSEnum {INDENT, ERROR, WARNING, MATHQ, MATHEMATIQUES, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
 
   class StyledString {
   private:
@@ -1342,7 +1342,7 @@ namespace display {
     using namespace std;
     using namespace display;
     mout << StyledString::get(HORLINE);
-    mout << StyledString::get(MATHQ) << " ";
+    mout << StyledString::get(MATHEMATIQUES) << " ";
     mout << StyledString::get(VERSION) << " ";
     mout << endl << endl;
     mout << "compile-time settings" << endl;

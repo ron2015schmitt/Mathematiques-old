@@ -9,6 +9,7 @@ hppfiles:
 cleanall: clean 
 	\cd $(DIR_MATHQ)/examples && make -j clean
 	\cd $(DIR_MATHQ)/src && make -j clean
+	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/benchmark && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
 	\cd $(DIR_MATHQ)/test/create && make -j clean

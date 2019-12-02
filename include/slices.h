@@ -1,8 +1,8 @@
-#ifndef MATRICKS__SLICES_H
-#define MATRICKS__SLICES_H
+#ifndef MATHQ__SLICES_H
+#define MATHQ__SLICES_H
 
 
-namespace matricks {
+namespace mathq {
 
 
 
@@ -24,10 +24,10 @@ namespace matricks {
   };
 
   namespace SLC {
-    const matricks::slc all(0,-1,1);
-    const matricks::slc rev(-1,0,-1);
-    const matricks::slc even(0,-1,2);
-    const matricks::slc odd(1,-1,2);
+    const mathq::slc all(0,-1,1);
+    const mathq::slc rev(-1,0,-1);
+    const mathq::slc even(0,-1,2);
+    const mathq::slc odd(1,-1,2);
   };
 
 };

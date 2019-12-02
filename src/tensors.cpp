@@ -1,9 +1,9 @@
-#define MATRICKS_DEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 
 
 
-namespace matricks {
+namespace mathq {
 
   // -------------------------------------------------------------------
   //

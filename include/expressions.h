@@ -1,9 +1,9 @@
-#ifndef MATRICKS__EXPRESSIONS_H
-#define MATRICKS__EXPRESSIONS_H
+#ifndef MATHQ__EXPRESSIONS_H
+#define MATHQ__EXPRESSIONS_H
 
 
 
-namespace matricks {
+namespace mathq {
 
 
 
@@ -95,7 +95,7 @@ namespace matricks {
     }
 
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     std::string expression(void) const {
       std::string sx = x_.expression();
       return FUNC::expression(sx);
@@ -107,6 +107,6 @@ namespace matricks {
 
 
 
-};  //namespace matricks
+};  //namespace mathq
 
 #endif 

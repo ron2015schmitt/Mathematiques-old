@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -14,17 +14,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("Complex-valued Vectors");
-  matricks_preamble();
+  mathq_preamble();
 
   header3("Representing the unit imaginary _i_");
 
@@ -336,7 +336,7 @@ int main()
 
 
 
-  matricks_toc();
+  mathq_toc();
 
   return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef MATRICKS__TEST_H
-#define MATRICKS__TEST_H 1
+#ifndef MATHQ__TEST_H
+#define MATHQ__TEST_H 1
 
 
 

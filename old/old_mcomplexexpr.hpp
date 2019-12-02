@@ -2,7 +2,7 @@
 #define MCOMPLEXEXPR_H 1
 
 
-namespace matricks {
+namespace mathq {
 
 
 

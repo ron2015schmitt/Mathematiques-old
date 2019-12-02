@@ -1,4 +1,4 @@
-#include "matricks.h"
+#include "mathq.h"
 #include <vector>
 #include <array>
 
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 {
   const double pi = M_PI;
   std::string myname = argv[0];
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
 
   // force color even if piped to more,less or a file
@@ -91,9 +91,9 @@ int main(int argc, char *argv[])
   mout << "running: " <<createStyle(BOLD).apply(myname) << std::endl;
 
   
-  mout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
+  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   
-  print_matricks_info();
+  print_mathq_info();
 
   if constexpr(3>1) {
       int x = 5;

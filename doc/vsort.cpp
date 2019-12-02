@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -15,7 +15,7 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
@@ -24,7 +24,7 @@ int main()
   
   cr();
   mdtitle("Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`  ");
-  matricks_preamble();
+  mathq_preamble();
   header2("Sorting");
   text("* sorting is performed _in place_ via the `.sort()` method");
   cr();
@@ -99,7 +99,7 @@ int main()
   }
 
   
-  matricks_toc();
+  mathq_toc();
 
 
   return 0;

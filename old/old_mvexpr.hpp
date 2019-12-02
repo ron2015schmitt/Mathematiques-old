@@ -3,7 +3,7 @@
 
 
 
-namespace matricks {
+namespace mathq {
 
 
 

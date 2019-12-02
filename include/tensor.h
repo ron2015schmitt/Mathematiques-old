@@ -1,10 +1,10 @@
-#ifndef MATRICKS__TENSOR_H
-#define MATRICKS__TENSOR_H 1
+#ifndef MATHQ__TENSOR_H
+#define MATHQ__TENSOR_H 1
 
 #include <stdarg.h>
 
 
-namespace matricks {
+namespace mathq {
 
  
    /********************************************************************
@@ -476,7 +476,7 @@ namespace matricks {
 
     Tensor<E,R,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
-	data_[i] = matricks::roundzero(data_[i], tolerance);
+	data_[i] = mathq::roundzero(data_[i], tolerance);
       }
       return *this;
     }
@@ -502,7 +502,7 @@ namespace matricks {
     }
 
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     std::string expression(void) const {
       return "";
     }

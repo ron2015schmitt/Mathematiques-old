@@ -1,8 +1,8 @@
-#ifndef MATRICKS__CODA
-#define MATRICKS__CODA
+#ifndef MATHQ__CODA
+#define MATHQ__CODA
 
 
-namespace matricks {
+namespace mathq {
 
 
   

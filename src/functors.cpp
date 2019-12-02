@@ -1,5 +1,5 @@
-#define MATRICKS_DEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 //  functor in C++ sense: a class that wraps a function
 //
 // Use non-template base classes for the debug code and place in cpp file.
@@ -10,7 +10,7 @@
 
 
 
-namespace matricks {
+namespace mathq {
 
 
   display::Style functor_namestyle = createStyle(display::ORANGE2);

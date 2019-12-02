@@ -1,8 +1,8 @@
-#ifndef MATRICKS__MATH_REAL_H
-#define MATRICKS__MATH_REAL_H
+#ifndef MATHQ__MATH_REAL_H
+#define MATHQ__MATH_REAL_H
 
 
-namespace matricks {
+namespace mathq {
 
 
   // ***************************************************************************

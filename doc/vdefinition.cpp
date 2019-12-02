@@ -1,9 +1,9 @@
 
 // flag for run-time bounds and size checking
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -18,7 +18,7 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
@@ -26,14 +26,14 @@ int main()
 
 
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("under the hood—`Vector` definition");
-  matricks_preamble();
+  mathq_preamble();
   text("* _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.");
 
   header3("The Vector class is a wrapper");
-  text("* The `matricks::Vector` wraps a `std::valarray`");
+  text("* The `mathq::Vector` wraps a `std::valarray`");
   text("* In the example below");
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
@@ -83,7 +83,7 @@ int main()
 
 
   
-  matricks_toc();
+  mathq_toc();
   
   return 0;
 }

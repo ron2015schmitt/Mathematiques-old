@@ -2,7 +2,7 @@
 #define MVOPERATORS_H
 
 
-namespace matricks {
+namespace mathq {
 
 
 

@@ -1,8 +1,8 @@
-#ifndef MATRICKS__VECTOR_H
-#define MATRICKS__VECTOR_H 1
+#ifndef MATHQ__VECTOR_H
+#define MATHQ__VECTOR_H 1
 
 
-namespace matricks {
+namespace mathq {
  
   
   /********************************************************************
@@ -22,7 +22,7 @@ namespace matricks {
    */
 
   template <class E, int NE,   typename D, int M> class Vector :
-    public TensorRW<E,Vector<E,NE,D,M>,D,M,1> {
+    public TensorRW<Vector<E,NE,D,M>,E,D,M,1> {
 
   public:     
   typedef typename ArrayType<E,NE>::Type MyArrayType;
@@ -113,8 +113,8 @@ namespace matricks {
 
   // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
-  template <class A>
-    Vector<E,NE,D,M>(const TensorR<E,A,D,M,R>& x) 
+  template <class X>
+    Vector<E,NE,D,M>(const TensorR<X,E,D,M,R>& x) 
   {
     if constexpr(NE==0) {
       this->resize(x.size());
@@ -472,8 +472,8 @@ namespace matricks {
 
   // NEW STYLE EXPRESSION equals
 
-  template <class A>
-    Vector<E,NE,D,M>& operator=(const TensorR<E,A,D,M,R>& y) {  
+  template <class X>
+    Vector<E,NE,D,M>& operator=(const TensorR<X,E,D,M,R>& y) {  
     if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != y.size()) {
@@ -653,7 +653,7 @@ namespace matricks {
     
   Vector<E,NE,D,M>&  roundzero(typename Realify<E>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
     for(index_type i=size(); i--;) {
-      data_[i] = matricks::roundzero(data_[i], tolerance);
+      data_[i] = mathq::roundzero(data_[i], tolerance);
     }
     return *this;
   }
@@ -1140,7 +1140,7 @@ namespace matricks {
   }
 
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
   std::string expression(void) const {
     return "";
   }
@@ -1155,9 +1155,9 @@ namespace matricks {
     using namespace display;
     Style& style = FormatDataVector::style_for_punctuation;
     stream << style.apply(FormatDataVector::string_opening);
-    const matricks::index_type N = FormatDataVector::max_elements_per_line;
-    matricks::index_type k = 0;
-    for (matricks::index_type ii = 0; ii < v.size(); ii++, k++) {
+    const mathq::index_type N = FormatDataVector::max_elements_per_line;
+    mathq::index_type k = 0;
+    for (mathq::index_type ii = 0; ii < v.size(); ii++, k++) {
       if (k >= N)  {
 	stream << style.apply(FormatDataVector::string_endofline);
 	k = 0;

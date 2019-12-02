@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 #include <iostream>
 #include <string>
@@ -17,17 +17,17 @@
 int main()
 {
  
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle0("Calculating a function via Fourier series and plotting the results in Matlab");
-  matricks_preamble();
+  mathq_preamble();
 
   header2("Fourier Series for the Clausen Functions");
   text("As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: ");
@@ -196,7 +196,7 @@ int main()
 
   }
 
-  matricks_toc();
+  mathq_toc();
 
   
   return 0;

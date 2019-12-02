@@ -2,7 +2,7 @@
 #define MATRICKS__MORE_H
 
 
-namespace matricks {
+namespace mathq {
 
 
   /****************************************************************************

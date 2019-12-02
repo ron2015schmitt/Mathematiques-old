@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -19,17 +19,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("\\*Formatted and styled printing");
-  matricks_preamble();
+  mathq_preamble();
   text("* The examples in this section can be found in file_ `examples/printing.cpp`\n");
   text("* All of the functions decribed in this section are in the namespace `display`");
   text("* Practically speaking, this functionality is one of the most useful aspects of mātricks.");
@@ -195,8 +195,8 @@ int main()
 
   text("The following types are currently supported by the display commands");
   text("* **Any class** with methods `.classname()` and `operator<<` is automatically supported");
-  text("* `matricks::Vector<D>` vectors");
-  text("* `matricks::Matrix<D>` matrices");
+  text("* `mathq::Vector<D>` vectors");
+  text("* `mathq::Matrix<D>` matrices");
   text("* `bool`");
   text("* `short`, `int`, `long`, `long long`");
   text("* `unsigned short`, `unsigned int`, `unsigned long`, `unsigned long long`");
@@ -220,7 +220,7 @@ int main()
 
   header2("Printing to other streams: `disp_strm`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`");
   text("* The default stream is `mout` (refer to next section)");
-  text("* You can also utilize all the formatting and color functionality of matricks and print to any output stream you like, including files.  The corresponding functions are shown below.");
+  text("* You can also utilize all the formatting and color functionality of mathq and print to any output stream you like, including files.  The corresponding functions are shown below.");
   cr();cr();
   text("| `mout`  | `ostream` |");
   text("| ------------- | ------------- |");
@@ -240,19 +240,19 @@ int main()
   header3("Debug-only printing: `disp[123]`, `tdisp[123]`, `mdisp[123]`");
   cr();cr();
 
-  text("The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.");
+  text("The display commands also have versions that only display when the code is compiled with the debug flag `MATHQ_DEBUG` set.");
   text("* `disp1`, `tdisp1`, `mdisp1` will");
-  text("  * when `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`");
-  text("  * when `MATRICKS_DEBUG == 0` or is undefined: compile to null statements (ie no output and no real-time hit)");
+  text("  * when `MATHQ_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`");
+  text("  * when `MATHQ_DEBUG == 0` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
   text("* `disp2`, `tdisp2`, `mdisp2` will");
-  text("  * when `MATRICKS_DEBUG >= 2`: behave like `disp`, `tdisp`, `mdisp`");
-  text("  * when `MATRICKS_DEBUG < 2` or is undefined: compile to null statements (ie no output and no real-time hit)");
+  text("  * when `MATHQ_DEBUG >= 2`: behave like `disp`, `tdisp`, `mdisp`");
+  text("  * when `MATHQ_DEBUG < 2` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
 
   text("* `disp3`, `tdisp3`, `mdisp3` will");
-  text("  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
-  text("  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
+  text("  * when `MATHQ_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`");
+  text("  * when `MATHQ_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)");
 
 
   header3("Debug-only printing: `print[123]`, `printf[123]`");
@@ -264,7 +264,7 @@ int main()
 
 
   
-  header2("Changing the matricks output stream and controlling color");
+  header2("Changing the mathq output stream and controlling color");
   text("* All output uses C++ streams (*no* `printf`)");
   text("* By default all output is sent to `std::cout`");
   text("* The output stream can be set using `Terminal::setmout(std::ostream&)`.");
@@ -272,20 +272,20 @@ int main()
   text("```C++\n");
   text("Terminal::setmout(std::cerr);");
   text("```\n");
-  text("* You can use the matricks output stream via `Terminal::getmout()` or the macro `mout`");
+  text("* You can use the mathq output stream via `Terminal::getmout()` or the macro `mout`");
   text("For example, you can output a string:");
   text("```C++\n");
   text("mout << \"Hello World\" << std::endl;\n");
   text("```\n");
-  text("* By default, matricks uses color when it detects that the output stream is connected to a terminal.");
-  text("* By default, matricks disables color when it detects that the output stream is piped to a file.");
+  text("* By default, mathq uses color when it detects that the output stream is connected to a terminal.");
+  text("* By default, mathq disables color when it detects that the output stream is piped to a file.");
   text("* However, the user can override this behavior as follows\n");
-  text("To force matricks to use plain text, use the following settings:");
+  text("To force mathq to use plain text, use the following settings:");
   text("```C++\n");
   text("Terminal::setColorOverride(true);");
   text("Terminal::setOverrideValue(false);");
   text("```\n");
-  text("To force matricks to use color text, use the following settings:");
+  text("To force mathq to use color text, use the following settings:");
   text("```C++\n");
   text("Terminal::setColorOverride(true);");
   text("Terminal::setOverrideValue(true);");
@@ -295,7 +295,7 @@ int main()
   cr();cr();
   header2("The `Style` class");
   text("* Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).\n");
-  text("* matricks defines the class `Style` for applying color and other attributes, such as **bold**\n");
+  text("* mathq defines the class `Style` for applying color and other attributes, such as **bold**\n");
   text("* The predefined styles are shown below\n");
   text("![styles](displaycolors.png)\n");
   text("You can combine the styles using the `+` sign\n");
@@ -485,13 +485,13 @@ int main()
   header3("Customizing Vector format");
   cr();cr();
 
-  text("The format for `matricks:Vector` output is controlled by the following static class variables.");
+  text("The format for `mathq:Vector` output is controlled by the following static class variables.");
   cr();cr();
   text("|`FormatDataVector` class variable|default value|");
   text("|------------------|------------------------|");
   text("|string_opening| \"{\"|");
   text("|string_delimeter | \",\"|");
-  text("|max_elements_per_line | matricks::maxsize|");
+  text("|max_elements_per_line | mathq::maxsize|");
   text("|string_endofline | \"\\n\"|");
   text("|string_closing |   \"}\"|");
   cr();cr();
@@ -500,7 +500,7 @@ int main()
     set_default_format();
     example(Nex++," default Vector format");
     codestart("C++");
-    codemulti( using namespace matricks );
+    codemulti( using namespace mathq );
     codemulti( Vector<double> v = range<double>(1001,1010);  );
     codeend();
     text("The default format yields\n");
@@ -534,7 +534,7 @@ int main()
     
     example(Nex++," Mathematica Vector format");
     codestart("C++");
-    codemulti( using namespace matricks );
+    codemulti( using namespace mathq );
     codemulti( Vector<double> v = range<double>(1001,1010);  );
     codemulti( set_mathematica_var_format() );
     codeend();
@@ -569,7 +569,7 @@ int main()
     
     example(Nex++," Matlab Vector format");
     codestart("C++");
-    codemulti( using namespace matricks );
+    codemulti( using namespace mathq );
     codemulti( Vector<double> v = range<double>(1001,1010);  );
     codemulti( set_matlab_var_format() );
     codeend();
@@ -659,7 +659,7 @@ int main()
   text("| style_for_punctuation | Style(GRAY1) | ");
   cr();cr();
 
-  matricks_toc();
+  mathq_toc();
 
   return 0;
 }

@@ -1,6 +1,6 @@
 
-#ifndef MATRICKS_NR_H
-#def MATRICKS_NR_H
+#ifndef MATHQ_NR_H
+#def MATHQ_NR_H
 
 #include <nr.h>
 #include <nrutil.h>
@@ -11,7 +11,7 @@
 // between NRC matrices & vectors and C matrices and vectors.
 
 
-namespace matricks_nr {
+namespace mathq_nr {
 
 
   //

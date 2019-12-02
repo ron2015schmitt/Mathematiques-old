@@ -1,5 +1,5 @@
-#define MATRICKS_DEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 
 #include <vector>
 #include <string>
@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
   std::string myname = argv[0];
 
   using namespace std;
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
-  using namespace matricks::unit_imaginary;
+  using namespace mathq::unit_imaginary;
 
   Style bold = createStyle(BOLD);
   
@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
   mout << "running: " <<bold.apply(myname) << std::endl;
 
   
-  mout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
+  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   
-  print_matricks_info();
+  print_mathq_info();
 
 
   {

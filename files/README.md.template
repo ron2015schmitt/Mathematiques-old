@@ -1,6 +1,6 @@
-# mātricks __VERSION_MATRICKS__
+# Mathématiques __VERSION_MATHQ__
 
-mātricks is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
+Mathématiques is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
 
 + V3.0, the first official release)  is almost ready.
   + Arbitrary rank tenors (Scalar, Vector, Matrix, etc)
@@ -40,7 +40,7 @@ Advantages
 + Online [User's Guide](doc/README.md) in git markdown
   + clear documentation of every feature
   + documentation is generated from C++ code using the library itself
-+ `MEBUG` debugging compile mode produces extensive information to aid in debugging
++ `MATHQ_DEBUG` debugging compile mode produces extensive information to aid in debugging
   + out of bounds access for vectors or matrices (e.g. x[10] where x is a
    vector of length 6.
   + adding/subtracting/multiplying/dividing vector or matrices of unequal
@@ -63,7 +63,7 @@ for(int i=0; i<N; i++)
 stop_timer();
 ```
 
-vs matricks syntax 
+vs mathq syntax 
 ```C++
 Vector<double> x(N);
 x = linspace<double>(0,1,N);
@@ -95,32 +95,32 @@ The code that makes up this library is copyrighted under the *MIT license*.
 
 The first step is to clone the repo
 
-```git clone https://github.com/ron2015schmitt/matricks.git```
+```git clone https://github.com/ron2015schmitt/mathq.git```
 
-You now have a directory with all the mātricks source code
+You now have a directory with all the Mathématiques source code
 
 # CONFIGURATION
 
-cd into the matricks directory and execute the configure command:
+cd into the mathq directory and execute the configure command:
 
 ```
-cd matricks
+cd mathq
 ./configure
 ```
 
-# USING THE mātricks LIBRARY
+# USING THE Mathématiques LIBRARY
 
-To use the mātricks library you need to 
+To use the Mathématiques library you need to 
 
-1. Include the library file `include/matricks.h` in your source code
+1. Include the library file `include/mathq.h` in your source code
 ```C++
-#include "matricks.h"
+#include "mathq.h"
 ```
 2. Include the `include/` subdirectory during compilation using the `-I` option
 
 3. Include the `lib/` subdirectory during linking using the `-L` option
 
-4. Include the option `-lmatricks` during linking
+4. Include the option `-lmathq` during linking
 
 ## EXAMPLE CODE FILE
 
@@ -132,7 +132,7 @@ __EXAMPLE_CPP__
 
 Compile the code and run the code using
 ```bash
-g++ -I ~/matricks/include example.cpp -o example -L ~/matricks/lib -lmatricks
+g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 ./example
 ```
 
@@ -145,7 +145,7 @@ A example makefile, ```examples/Makefile```,  is included for your convenience
 
 # EXTENSIVE DEBUGGING SUPPORT
 
-The mātricks library provides extensive debugging operation, turned on using the flag `MEBUG`.   The word `MEBUG` was chosen over `DEBUG` to avoid clashing with other code (libraries).
+The Mathématiques library provides extensive debugging operation, turned on using the flag `MATHQ_DEBUG`.   The word `MATHQ_DEBUG` was chosen over `DEBUG` to avoid clashing with other code (libraries).
 
 In this mode extensive error checking is performed to notify the user of
 
@@ -158,46 +158,46 @@ In this mode extensive error checking is performed to notify the user of
 
 
 
-## SETTING `MEBUG` MODE
+## SETTING `MATHQ_DEBUG` MODE
 
 There are two methods to accomplish this.
 
-### RECOMMENDED METHOD: Use the provided sample makefile and specify `MEBUG=1` on the command line
+### RECOMMENDED METHOD: Use the provided sample makefile and specify `MATHQ_DEBUG=1` on the command line
 
 example:
 
-```make clean MEBUG=1 myprogram```
+```make clean MATHQ_DEBUG=1 myprogram```
 
 
 The target `clean` is not needed, but is a reccomended practice.
 
 If you want to recompile in fast mode, just use the makefile
-without specifying the `MEBUG` flag
+without specifying the `MATHQ_DEBUG` flag
 
 ```make clean myprogram```
 
 
-### EXPLICIT METHOD: Add a `#define MEBUG 1` statement BEFORE each `matricks.h` include statement
+### EXPLICIT METHOD: Add a `#define MATHQ_DEBUG 1` statement BEFORE each `mathq.h` include statement
 
 ```C++
-#define MEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 ```
 
 
 ## RECOMMENDATIONS
 
-While developing your code, use `MEBUG` mode.  When you are convinced that it is operating
+While developing your code, use `MATHQ_DEBUG` mode.  When you are convinced that it is operating
 without errors or warnings, run normally.  
 
-Compile a `MEBUG` and a quick version of your code, giving the executables different names.
+Compile a `MATHQ_DEBUG` and a quick version of your code, giving the executables different names.
 This way if a segmentation fault occurs, or you otherwise suspect an error, you can quickly
 check the problem under careful mode.
 
 
 ##  NOTES
 
-Compile time is also considerably slower in MEBUG mode.
+Compile time is also considerably slower in MATHQ_DEBUG mode.
 
 # DOCUMENTATION
 

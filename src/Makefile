@@ -4,8 +4,8 @@
 include ../Makefile
 
 
-libmatricks.a: display.o debug.o functors.o slices.o tensors.o
-	@echo "configuring MATRICKS library `cat $(TAG_FILE_MATRICKS)`"
-	ar rUuv libmatricks.a $?
+libmathq.a: display.o debug.o functors.o slices.o tensors.o
+	@echo "configuring MATHQ library `cat $(TAG_FILE_MATHQ)`"
+	ar rUuv libmathq.a $?
 
-$(EXEC): libmatricks.a
+$(EXEC): libmathq.a

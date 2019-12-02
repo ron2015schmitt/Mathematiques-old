@@ -1,9 +1,9 @@
-#define MATRICKS_DEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 
 
 
-namespace matricks {
+namespace mathq {
   
   slc::slc(const index_type start, const index_type end, const index_type step) 
     : start_(start), end_(end), step_(step)
@@ -85,7 +85,7 @@ namespace matricks {
     return "slc";
   }
     
-  std::ostream& operator<<(std::ostream &stream, const matricks::slc& slice) {
+  std::ostream& operator<<(std::ostream &stream, const mathq::slc& slice) {
     using namespace display;
     Style name_style = createStyle(CYAN);
     Style punct_style = createStyle(GRAY1);

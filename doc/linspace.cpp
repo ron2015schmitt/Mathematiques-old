@@ -1,9 +1,9 @@
 
 // flag for run-time bounds and size checking
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -16,17 +16,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("The `linspace` functions");
-  matricks_preamble();
+  mathq_preamble();
 
   header2("The `linspace` function: numerical interval [a,b]");
   text("* The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`");
@@ -68,7 +68,7 @@ int main()
   codeend();
 
   
-  matricks_toc();
+  mathq_toc();
 
   return 0;
 }

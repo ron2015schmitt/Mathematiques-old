@@ -1,10 +1,10 @@
 
 // flag for run-time bounds and size checking
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
-using namespace matricks;
+#include "mathq.h"
+using namespace mathq;
 
 #include <iostream>
 #include <iomanip>

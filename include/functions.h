@@ -1,8 +1,8 @@
-#ifndef MATRICKS__FUNCTIONS_H
-#define MATRICKS__FUNCTIONS_H 1
+#ifndef MATHQ__FUNCTIONS_H
+#define MATHQ__FUNCTIONS_H 1
 
 
-namespace matricks {
+namespace mathq {
 
 
 

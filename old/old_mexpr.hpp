@@ -3,7 +3,7 @@
 
 
 
-namespace matricks {
+namespace mathq {
 
   template <class A> 
   inline Matrix<index_type> findtrue( const MorE<bool,A>& a );

@@ -1,11 +1,11 @@
 
 
-#ifndef MATRICKSIO_H
-#define MATRICKSIO_H
+#ifndef MATHQIO_H
+#define MATHQIO_H
 
 
 
-namespace matricks {
+namespace mathq {
 
 
 

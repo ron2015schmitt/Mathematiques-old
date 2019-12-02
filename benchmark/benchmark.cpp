@@ -1,7 +1,7 @@
 
-//#define MATRICKS_DEBUG
+//#define MATHQ_DEBUG
 
-#include "matricks.h" 
+#include "mathq.h" 
 
 #include <fstream>
 
@@ -71,10 +71,10 @@ bool printMemInfo () {
 int main()
 {
 
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
 
-  print_matricks_info();
+  print_mathq_info();
 
   mout << createStyle(BLUE2+BOLD).apply("MACHINE INFO") << std::endl;
   printCPUInfo();
@@ -140,7 +140,7 @@ int main()
     t.stop_timer_curt();
   }
   {
-    mout << "  " << createStyle(BLUE2+BOLD).apply("matricks::Vector") <<std::endl;
+    mout << "  " << createStyle(BLUE2+BOLD).apply("mathq::Vector") <<std::endl;
     Vector<double> v1(N);
     t.start_timer_silent();
     for(int i=0; i<N; i++)
@@ -163,7 +163,7 @@ int main()
     t.stop_timer_curt();
   }
   {
-    mout << "  " << createStyle(BLUE2+BOLD).apply("matricks::Vector") <<std::endl;
+    mout << "  " << createStyle(BLUE2+BOLD).apply("mathq::Vector") <<std::endl;
     Vector<double> x(N);
     Vector<double> f(N);
     x = linspace<double>(0,1,N);
@@ -199,7 +199,7 @@ int main()
   }
   {
     //int N = 5;
-    mout << "  " << createStyle(BLUE2+BOLD).apply("matricks::Vector") <<std::endl;
+    mout << "  " << createStyle(BLUE2+BOLD).apply("mathq::Vector") <<std::endl;
     t.start_timer_silent();
 
     Vector<ComplexDouble> x(N);

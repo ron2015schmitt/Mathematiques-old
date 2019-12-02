@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -15,17 +15,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`)");
-  matricks_preamble();
+  mathq_preamble();
 
   header2("Relational operators");
 
@@ -178,7 +178,7 @@ int main()
     resultend();
   }
 
-  matricks_toc();
+  mathq_toc();
     
   
   return 0;

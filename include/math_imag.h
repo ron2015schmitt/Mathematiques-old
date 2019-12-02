@@ -1,8 +1,8 @@
-#ifndef MATRICKS__MATH_IMAG_H
-#define MATRICKS__MATH_IMAG_H
+#ifndef MATHQ__MATH_IMAG_H
+#define MATHQ__MATH_IMAG_H
 
 
-namespace matricks {
+namespace mathq {
 
 
 

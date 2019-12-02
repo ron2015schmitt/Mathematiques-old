@@ -1,9 +1,9 @@
-#ifndef MATRICKS__TENSORS_H
-#define MATRICKS__TENSORS_H
+#ifndef MATHQ__TENSORS_H
+#define MATHQ__TENSORS_H
 
 
 
-namespace matricks {
+namespace mathq {
 
   //-------------------------------------------------------------------
   //                  Classes etc defined in this file
@@ -568,7 +568,7 @@ namespace matricks {
       return derived().deepsize();
     }
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     std::string expression(void) const {
       return derived().expression();
     }
@@ -676,7 +676,7 @@ namespace matricks {
     }
     
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     std::string expression(void) const {
       return derived().expression();
     }

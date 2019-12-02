@@ -1,5 +1,5 @@
-#define MATRICKS_DEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 
 #include <vector>
 #include <string>
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
   
   const double pi = M_PI;
   std::string myname = argv[0];
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
   using namespace std;
   
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
   cr();
   mout << StyledString::get(HORLINE);
   mout << "running: " <<bold.apply(myname) << std::endl;
-  print_matricks_info();
+  print_mathq_info();
   
 
 

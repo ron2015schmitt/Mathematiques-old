@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 #include <iostream>
 #include <string>
@@ -16,20 +16,20 @@
 int main()
 {
  
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle0("Calculating a Taylor series and plotting the results in Mathematica");
-  matricks_preamble();
+  mathq_preamble();
 
   header2("Taylor Series for the Bessel Function J<sub>0</sub>(r)");
-  text("We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in matricks. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). ");
+  text("We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in mathq. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). ");
 
   text("The first 20 (n=0,1,...19) coefficients for  J<sub>0</sub>(r), are:\n");
 
@@ -195,7 +195,7 @@ int main()
     text("![Maclaurin Series for Jo(x)](BesselMaclaurinSeries.png)");
 
   }
-  matricks_toc();
+  mathq_toc();
   
   return 0;
 }

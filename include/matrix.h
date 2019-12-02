@@ -1,10 +1,10 @@
-#ifndef MATRICKS__MATRIX_H
-#define MATRICKS__MATRIX_H 1
+#ifndef MATHQ__MATRIX_H
+#define MATHQ__MATRIX_H 1
 
 
 
 
-namespace matricks {
+namespace mathq {
 
 
   /********************************************************************
@@ -748,7 +748,7 @@ namespace matricks {
 
     Matrix<E,NR,NC,D,M>&  roundzero(typename Realify<E>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
-	data_[i] = matricks::roundzero(data_[i], tolerance);
+	data_[i] = mathq::roundzero(data_[i], tolerance);
       }
       return *this;
     }
@@ -797,7 +797,7 @@ namespace matricks {
   }
 
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     std::string expression(void) const {
       return "";
     }
@@ -814,12 +814,12 @@ namespace matricks {
 
       Style& style = FormatDataMatrix::style_for_punctuation;
       stream << style.apply(FormatDataMatrix::string_opening);
-      const matricks::index_type N = FormatDataMatrix::max_elements_per_line;
+      const mathq::index_type N = FormatDataMatrix::max_elements_per_line;
 
-      for (matricks::index_type r = 0; r < m.Nrows(); r++) {
+      for (mathq::index_type r = 0; r < m.Nrows(); r++) {
 	stream << style.apply(FormatDataMatrix::string_row_opening);
-	matricks::index_type k = 0;
-	for (matricks::index_type c = 0; c < m.Ncols(); c++, k++) {
+	mathq::index_type k = 0;
+	for (mathq::index_type c = 0; c < m.Ncols(); c++, k++) {
 	  if (k >= N)  {
 	    stream << style.apply(FormatDataMatrix::string_endofline);
 	    k = 0;

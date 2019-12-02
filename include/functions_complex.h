@@ -2,7 +2,7 @@
 #define FUNCTIONS_COMPLEX__H 1
 
 
-namespace matricks {
+namespace mathq {
 
   
 

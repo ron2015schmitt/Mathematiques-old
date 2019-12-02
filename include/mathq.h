@@ -3,8 +3,8 @@
 // Including this file provides full vector/matrix functionality
 
 
-#ifndef MATRICKS_H
-#define MATRICKS_H
+#ifndef MATHQ_H
+#define MATHQ_H
 
 #include <ctgmath>
 #include <cmath>
@@ -32,7 +32,7 @@
 #include <type_traits> 
 
 
-#include "matricks_version.h"
+#include "version_mathq.h"  // auto generated
 #include "preface.h"
 #include "math_real.h"
 #include "math_cplx.h"

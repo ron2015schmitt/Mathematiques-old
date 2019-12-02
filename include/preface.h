@@ -1,5 +1,5 @@
-#ifndef MATRICKS__PREFACE_H
-#define MATRICKS__PREFACE_H
+#ifndef MATHQ__PREFACE_H
+#define MATHQ__PREFACE_H
 
 
 #define CPP11 (__cplusplus >= 201100L)
@@ -18,24 +18,24 @@
 #ifdef MEBUG
  #if (EXPAND(MEBUG) == 99)
   // defined but no value: set to 1
-  #define MATRICKS_DEBUG 1
+  #define MATHQ_DEBUG 1
  #else
-  #define MATRICKS_DEBUG EXPAND(MEBUG)
+  #define MATHQ_DEBUG EXPAND(MEBUG)
  #endif
 #endif
 
 
-#ifndef MATRICKS_DEBUG
+#ifndef MATHQ_DEBUG
 // not defined: set to 0
-   #define MATRICKS_DEBUG 0
-#elif (EXPAND(MATRICKS_DEBUG) == 99)
+   #define MATHQ_DEBUG 0
+#elif (EXPAND(MATHQ_DEBUG) == 99)
   // defined but no value: set to 1
-  #undef MATRICKS_DEBUG
-  #define MATRICKS_DEBUG 1
-#elif (MATRICKS_DEBUG>3)
+  #undef MATHQ_DEBUG
+  #define MATHQ_DEBUG 1
+#elif (MATHQ_DEBUG>3)
   // no modes defined above 3
-  #undef MATRICKS_DEBUG
-  #define MATRICKS_DEBUG 3
+  #undef MATHQ_DEBUG
+  #define MATHQ_DEBUG 3
 #endif
 
 
@@ -51,7 +51,7 @@ namespace display {
   template <typename T> inline void dispval_strm(std::ostream &stream, const T& d);
 };
 
-namespace matricks {
+namespace mathq {
 
 
   class Null{};

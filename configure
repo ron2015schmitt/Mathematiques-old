@@ -56,9 +56,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >> ${DIR_TARGET}/Makefile
 echo "" >> ${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >> ${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >> ${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
@@ -95,9 +95,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 
@@ -141,9 +141,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 
@@ -182,9 +182,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
@@ -217,9 +217,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 
@@ -260,9 +260,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.matricks                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATRICKS__/$temp/g" files/Makefile.matricks >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
@@ -286,11 +286,11 @@ fi
 
 
 
-# make the object file library (libmatricks.a)
+# make the object file library (libmathq.a)
 echo " "
-echo "Creating libmatricks.a ..."
+echo "Creating libmathq.a ..."
 cd src
-make -j libmatricks.a
+make -j libmathq.a
 cd ..
-mkdir -p lib && mv src/libmatricks.a lib/
+mkdir -p lib && mv src/libmathq.a lib/
 

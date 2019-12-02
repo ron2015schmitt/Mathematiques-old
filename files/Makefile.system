@@ -7,22 +7,22 @@ hppfiles:
 	@echo "HPPFILES = $(HPPFILES)"
 
 cleanall: clean 
-	\cd $(DIR_MATRICKS)/examples && make -j clean
-	\cd $(DIR_MATRICKS)/src && make -j clean
-	\cd $(DIR_MATRICKS)/benchmark && make -j clean
-	\cd $(DIR_MATRICKS)/test && make -j clean
-	\cd $(DIR_MATRICKS)/test/create && make -j clean
-	\cd $(DIR_MATRICKS)/doc && make cleandocs
-	\cd $(DIR_MATRICKS)/doc && make restore
+	\cd $(DIR_MATHQ)/examples && make -j clean
+	\cd $(DIR_MATHQ)/src && make -j clean
+	\cd $(DIR_MATHQ)/benchmark && make -j clean
+	\cd $(DIR_MATHQ)/test && make -j clean
+	\cd $(DIR_MATHQ)/test/create && make -j clean
+	\cd $(DIR_MATHQ)/doc && make cleandocs
+	\cd $(DIR_MATHQ)/doc && make restore
 
 fullpurge: cleanall
-	\rm -f $(DIR_MATRICKS)/*~
-	\rm -f $(DIR_MATRICKS)/*.gz
-	\rm -f $(DIR_MATRICKS)/*.tar
-	\rm -f $(DIR_MATRICKS)/*.old
-	\rm -f $(DIR_MATRICKS)/*/*~
-	\rm -f $(DIR_MATRICKS)/*/*.old
-	\rm -fr $(DIR_MATRICKS)/lib
+	\rm -f $(DIR_MATHQ)/*~
+	\rm -f $(DIR_MATHQ)/*.gz
+	\rm -f $(DIR_MATHQ)/*.tar
+	\rm -f $(DIR_MATHQ)/*.old
+	\rm -f $(DIR_MATHQ)/*/*~
+	\rm -f $(DIR_MATHQ)/*/*.old
+	\rm -fr $(DIR_MATHQ)/lib
 	\rm -f ./run
 
 #############################################################
@@ -30,8 +30,8 @@ fullpurge: cleanall
 #############################################################
 
 # output files
-TAG_ONELINE_SUMMARY_FILE = $(DIR_MATRICKS)/files/matricks.tag.onelinesummary
-TAG_ANNOTATION_FILE = $(DIR_MATRICKS)/files/matricks.tag.annotation
+TAG_ONELINE_SUMMARY_FILE = $(DIR_MATHQ)/files/tag.onelinesummary.mathq
+TAG_ANNOTATION_FILE = $(DIR_MATHQ)/files/tag.annotation.mathq
 
 
 
@@ -39,25 +39,25 @@ TAG_ANNOTATION_FILE = $(DIR_MATRICKS)/files/matricks.tag.annotation
 # and then calculate the revision number (number of commits since version has been changed)
 
 define newVersionTag
-. $(VERSION_FILE_MATRICKS) && \
-echo -e " "$(BLUE)"VERSION_MATRICKS"$(DEFCLR)=$(BOLDON)$${VERSION_MATRICKS}$(BOLDOFF) &&\
-TAG=v$${VERSION_MATRICKS} ;\
+. $(VERSION_FILE_MATHQ) && \
+echo -e " "$(BLUE)"VERSION_MATHQ"$(DEFCLR)=$(BOLDON)$${VERSION_MATHQ}$(BOLDOFF) &&\
+TAG=v$${VERSION_MATHQ} ;\
 VERSION_COMMIT_COUNT=`git tag -l "$$TAG*" | wc -l | tr -d ' '` &&\
 echo -e " "$(BLUE)VERSION_COMMIT_COUNT$(DEFCLR)=$(BOLDON)$${VERSION_COMMIT_COUNT}$(BOLDOFF) &&\
 if [[ $${VERSION_COMMIT_COUNT} -gt 0 ]]; then TAG=$${TAG}"-r"$${VERSION_COMMIT_COUNT}; fi ;\
 echo -e " "$(BLUE)TAG$(DEFCLR)=$(BOLDON)$${TAG}$(BOLDOFF) ;\
-echo $${TAG} > $(TAG_FILE_MATRICKS)
-echo -e "Tag for this commit: "$(BOLDON)`cat $(TAG_FILE_MATRICKS)` $(BOLDOFF)
+echo $${TAG} > $(TAG_FILE_MATHQ)
+echo -e "Tag for this commit: "$(BOLDON)`cat $(TAG_FILE_MATHQ)` $(BOLDOFF)
 echo > $(TAG_ONELINE_SUMMARY_FILE) 
 cat $(TAG_ONELINE_SUMMARY_FILE) > $(TAG_ANNOTATION_FILE)
-cat $(TAG_FILE_MATRICKS) >> $(TAG_ANNOTATION_FILE)
-cat  $(VERSION_FILE_MATRICKS) >> $(TAG_ANNOTATION_FILE)
-echo -e "Updating "$(BLUE)"$(notdir $(VERSION_HEADER_FILE_MATRICKS))"$(DEFCLR)
-$(shell echo "const char vers_matricks[] = \"`cat $(TAG_FILE_MATRICKS)`\";" > $(VERSION_HEADER_FILE_MATRICKS) )
+cat $(TAG_FILE_MATHQ) >> $(TAG_ANNOTATION_FILE)
+cat  $(VERSION_FILE_MATHQ) >> $(TAG_ANNOTATION_FILE)
+echo -e "Updating "$(BLUE)"$(notdir $(VERSION_HEADER_FILE_MATHQ))"$(DEFCLR)
+$(shell echo "const char vers_mathq[] = \"`cat $(TAG_FILE_MATHQ)`\";" > $(VERSION_HEADER_FILE_MATHQ) )
 echo -e "Updating project "$(BLUE)"README.md"$(DEFCLR)
-cp  $(DIR_MATRICKS)/files/README.md.template  $(DIR_MATRICKS)/README.md
-TAG=`cat $(TAG_FILE_MATRICKS)` && echo -e " "$(BLUE)"VERSION_MATRICKS"$(DEFCLR)"="$${TAG} && sed -i "s/__VERSION_MATRICKS__/$${TAG}/g"  $(DIR_MATRICKS)/README.md
-sed -i -e "/__EXAMPLE_CPP__/{r $(DIR_MATRICKS)/examples/example.cpp" -e 'd}' $(DIR_MATRICKS)/README.md
+cp  $(DIR_MATHQ)/files/README.md.template  $(DIR_MATHQ)/README.md
+TAG=`cat $(TAG_FILE_MATHQ)` && echo -e " "$(BLUE)"VERSION_MATHQ"$(DEFCLR)"="$${TAG} && sed -i "s/__VERSION_MATHQ__/$${TAG}/g"  $(DIR_MATHQ)/README.md
+sed -i -e "/__EXAMPLE_CPP__/{r $(DIR_MATHQ)/examples/example.cpp" -e 'd}' $(DIR_MATHQ)/README.md
 endef
 
 define commit
@@ -67,7 +67,7 @@ if [[ $$response =~ ^(|n|no)$$ ]]; then \
  echo "Exiting with no action taken" ;\
 else (\
  git commit; \
- git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim `cat $(TAG_FILE_MATRICKS)`;\
+ git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim `cat $(TAG_FILE_MATHQ)`;\
  git push --tags origin `git branch | grep '\*' | cut -f2 -d' '` );\
 fi 
 endef
@@ -88,15 +88,15 @@ git:
 	@git remote update origin
 	@if [[ $$(git fetch --dry-run) ]]; then (echo "Your local repo is NOT up-to-date: execute 'git pull' first";exit 1) ; else echo "Your local repo is up-to-date"; fi
 	@$(call newVersionTag)
-	@git add $(TAG_FILE_MATRICKS) $(TAG_ANNOTATION_FILE)
-	@git add $(VERSION_HEADER_FILE_MATRICKS)
+	@git add $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
+	@git add $(VERSION_HEADER_FILE_MATHQ)
 	@git add -u
 	@echo
 	@git status 
 	@echo 
 	@echo "THE FOLLOWING COMMANDS WILL BE EXECUTED:"
 	@echo "git commit"
-	@echo "git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim $$(tput setaf 6)`cat $(TAG_FILE_MATRICKS)`$$(tput sgr 0)"
+	@echo "git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim $$(tput setaf 6)`cat $(TAG_FILE_MATHQ)`$$(tput sgr 0)"
 	@echo "git push --tags origin $$(tput setaf 6)`git branch | grep '\*' | cut -f2 -d' '`$$(tput sgr 0)"
 	@echo 
 	@echo

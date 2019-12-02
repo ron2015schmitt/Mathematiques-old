@@ -1,8 +1,8 @@
-#ifndef MATRICKS__SCALAR_H
-#define MATRICKS__SCALAR_H 1
+#ifndef MATHQ__SCALAR_H
+#define MATHQ__SCALAR_H 1
 
 
-namespace matricks {
+namespace mathq {
 
 
   /********************************************************************
@@ -309,7 +309,7 @@ namespace matricks {
 
     
   Scalar<E,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
-    data_ = matricks::roundzero(data_, tolerance);
+    data_ = mathq::roundzero(data_, tolerance);
     return *this;
   }
 
@@ -347,7 +347,7 @@ namespace matricks {
   }
 
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
   std::string expression(void) const {
     return "";
   }

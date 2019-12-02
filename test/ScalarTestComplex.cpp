@@ -1,6 +1,6 @@
-#define MATRICKS_DEBUG 0
+#define MATHQ_DEBUG 0
 
-#include "matricks.h" 
+#include "mathq.h" 
 #include "test.h"
 
 
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 {
   std::string myname = argv[0];
   
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
 
   FormatData<bool>::string_for_true = "true";
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 
   cr();
   cr();
-  print_matricks_info();
+  print_mathq_info();
   mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - Scalar-complex numbers tests" <<std::endl;
   cr();
   cr();

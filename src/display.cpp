@@ -1,8 +1,8 @@
 
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 
 
 
@@ -59,21 +59,21 @@ namespace display {
     StyledString::isInitialized = true;
     StyledString *indent = new StyledString(createStyle(RESET), "                     ");
     StyledString::add(SSEnum::INDENT, *indent);
-    StyledString *error = new StyledString(createStyle(BOLD+RED),"** mātricks ERROR:   ");
+    StyledString *error = new StyledString(createStyle(BOLD+RED),"** mathq ERROR:   ");
     StyledString::add(SSEnum::ERROR, *error);;
-    StyledString *warning = new StyledString(createStyle(BOLD+ORANGE),"** mātricks WARNING: ");
+    StyledString *warning = new StyledString(createStyle(BOLD+ORANGE),"** mathq WARNING: ");
     StyledString::add(SSEnum::WARNING, *warning);
-    StyledString *matricks = new StyledString(createStyle(BOLD+BLUE2),"mātricks");
-    StyledString::add(SSEnum::MATRICKS, *matricks);
-    StyledString *version = new StyledString(createStyle(BOLD+BLUE2),vers_matricks);
+    StyledString *mathq = new StyledString(createStyle(BOLD+BLUE2),"mathq");
+    StyledString::add(SSEnum::MATHQ, *mathq);
+    StyledString *version = new StyledString(createStyle(BOLD+BLUE2),vers_mathq);
     StyledString::add(SSEnum::VERSION, *version);
-    StyledString *dlevel0 = new StyledString(createStyle(BOLD+GREENBACK),"MATRICKS_DEBUG 0 (off/fast)");
+    StyledString *dlevel0 = new StyledString(createStyle(BOLD+GREENBACK),"MATHQ_DEBUG 0 (off/fast)");
     StyledString::add(SSEnum::DLEVEL0, *dlevel0);
-    StyledString *dlevel1 = new StyledString(createStyle(BOLD+YELLOWBACK),"MATRICKS_DEBUG 1 (errors/warnings)");
+    StyledString *dlevel1 = new StyledString(createStyle(BOLD+YELLOWBACK),"MATHQ_DEBUG 1 (errors/warnings)");
     StyledString::add(SSEnum::DLEVEL1, *dlevel1);
-    StyledString *dlevel2 = new StyledString(createStyle(BOLD+ORANGEBACK),"MATRICKS_DEBUG 2 (verbose)");
+    StyledString *dlevel2 = new StyledString(createStyle(BOLD+ORANGEBACK),"MATHQ_DEBUG 2 (verbose)");
     StyledString::add(SSEnum::DLEVEL2, *dlevel2);
-    StyledString *dlevel3 = new StyledString(createStyle(BOLD+REDBACK),"MATRICKS_DEBUG 3 (developer)");
+    StyledString *dlevel3 = new StyledString(createStyle(BOLD+REDBACK),"MATHQ_DEBUG 3 (developer)");
     StyledString::add(SSEnum::DLEVEL3, *dlevel3);
     
 
@@ -222,7 +222,7 @@ namespace display {
   // Vector
   // TODO: this shoudl be size_type
   // TODO: put these into an intilization func and share it here as well as in h file
-  matricks::index_type FormatDataVector::max_elements_per_line = matricks::maxsize;
+  mathq::index_type FormatDataVector::max_elements_per_line = mathq::maxsize;
   Style FormatDataVector::style_for_punctuation = createStyle(GRAY1);
   std::string FormatDataVector::string_opening = "{";
   std::string FormatDataVector::string_delimeter = ", ";
@@ -231,7 +231,7 @@ namespace display {
 
   //Matrix
   // TODO: this shoudl be size_type
-  matricks::index_type FormatDataMatrix::max_elements_per_line = matricks::maxsize;
+  mathq::index_type FormatDataMatrix::max_elements_per_line = mathq::maxsize;
   Style FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
   std::string FormatDataMatrix::string_opening = "{";
   std::string FormatDataMatrix::string_delimeter = ", ";

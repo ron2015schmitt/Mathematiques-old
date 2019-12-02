@@ -1,8 +1,8 @@
-#ifndef MATRICKS__FUNCTIONS_CALCULUS_H
-#define MATRICKS__FUNCTIONS_CALCULUS_H 1
+#ifndef MATHQ__FUNCTIONS_CALCULUS_H
+#define MATHQ__FUNCTIONS_CALCULUS_H 1
 
 
-namespace matricks {
+namespace mathq {
 
 
 
@@ -353,7 +353,7 @@ namespace matricks {
       }
       break;
     default:
-#if MATRICKS_DEBUG>0
+#if MATHQ_DEBUG>0
       std::cerr << "integrate_a2b: bad order parameter order="<<order<<std::endl;   
 #endif
       break;

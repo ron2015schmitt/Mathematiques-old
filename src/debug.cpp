@@ -1,11 +1,11 @@
 
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
-#include "matricks.h"
+#include "mathq.h"
 
 
 
-namespace matricks {
+namespace mathq {
 
   namespace debug {
   };

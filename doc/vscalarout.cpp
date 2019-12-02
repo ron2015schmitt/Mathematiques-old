@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -15,17 +15,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("Vector functions that return a scalar (dot product, sum, min, max etc)");
-  matricks_preamble();
+  mathq_preamble();
 
   header3("dot product—the `|` operator");
   text("* The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.");
@@ -192,6 +192,6 @@ int main()
   }
 
   
-  matricks_toc();
+  mathq_toc();
   return 0;
 }

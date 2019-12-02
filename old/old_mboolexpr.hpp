@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-namespace matricks {
+namespace mathq {
 
 
 

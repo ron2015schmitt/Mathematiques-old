@@ -1,9 +1,9 @@
 
 // flag for run-time bounds and size checking
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -17,17 +17,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("Vector assigment");
-  matricks_preamble();
+  mathq_preamble();
 
   text("* Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.");
   text("* When the right-hand side is an expression, there are _no_ intermediate objects created.");
@@ -119,7 +119,7 @@ int main()
   }
 
 
-  matricks_toc();
+  mathq_toc();
 
   return 0;
 }

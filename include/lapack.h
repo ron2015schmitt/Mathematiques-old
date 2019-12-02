@@ -1,11 +1,11 @@
 
 
 
-#ifndef MATRICKS_LAPACK_H
-#define MATRICKS_LAPACK_H
+#ifndef MATHQ_LAPACK_H
+#define MATHQ_LAPACK_H
 
 
-#include "matricks.h"
+#include "mathq.h"
 
 
 
@@ -21,8 +21,8 @@
 //  which is the same as the STL complex datatype
 
 
-namespace matricks_lapack {
-  using namespace matricks;
+namespace mathq_lapack {
+  using namespace mathq;
 
   // shoudl probably do check that FINT is a 32 bit int.
   typedef int FINT;

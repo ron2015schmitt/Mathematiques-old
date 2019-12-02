@@ -1,5 +1,5 @@
-#ifndef MATRICKS__DISPLAY
-#define MATRICKS__DISPLAY
+#ifndef MATHQ__DISPLAY
+#define MATHQ__DISPLAY
 
 #include <unistd.h>
 #include <stdarg.h>
@@ -87,19 +87,19 @@ namespace display {
   // The scope of a macros is where it is used!!!
   //------------------------------------------------------------
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
 #define printf1(...) mout << display::printf2str(__VA_ARGS__)
 #else
 #define printf1(...) {}
 #endif
 
-#if MATRICKS_DEBUG>=2
+#if MATHQ_DEBUG>=2
 #define printf2(...) mout << display::printf2str(__VA_ARGS__)
 #else
 #define printf2(...) {}
 #endif
 
-#if MATRICKS_DEBUG>=3
+#if MATHQ_DEBUG>=3
 #define printf3(...) mout << display::printf2str(__VA_ARGS__)
 #else
 #define printf3(...) {}
@@ -312,7 +312,7 @@ namespace display {
 
   
   
-  enum SSEnum {INDENT, ERROR, WARNING, MATRICKS, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
+  enum SSEnum {INDENT, ERROR, WARNING, MATHQ, VERSION, DLEVEL0, DLEVEL1, DLEVEL2, DLEVEL3, HORLINE, ANGLE1, ANGLE2, PAREN1, PAREN2, BRACKET1, BRACKET2, BRACE1, BRACE2, COMMA, COLON, SEMICOLON, PERIOD};
 
   class StyledString {
   private:
@@ -527,7 +527,7 @@ namespace display {
 
   // This does not overridfe the default
   //  template <class D>
-  //  inline std::string getTypeName(typename matricks::FunctionTypes<D>::unary_func var) {
+  //  inline std::string getTypeName(typename mathq::FunctionTypes<D>::unary_func var) {
   //  std::string s = display::getFunctionTypeStyle().apply("userfunc");
   //  double d = 0;
   //  std::string sd = display::getTypeName(d);
@@ -537,7 +537,7 @@ namespace display {
 
 
   // this works
-  inline std::string getTypeName(typename matricks::FunctionTypes<double>::unary_func var) {
+  inline std::string getTypeName(typename mathq::FunctionTypes<double>::unary_func var) {
     std::string sfunc = display::getFunctionTypeStyle().apply("func");
     double d;
     std::string sd = display::getTypeName(d);
@@ -702,7 +702,7 @@ namespace display {
   // Vector
   class FormatDataVector {
   public: 
-    static matricks::index_type max_elements_per_line;
+    static mathq::index_type max_elements_per_line;
     static Style style_for_punctuation;
     static std::string string_opening;
     static std::string string_delimeter;
@@ -713,7 +713,7 @@ namespace display {
   // Matrix
   class FormatDataMatrix {
   public: 
-    static matricks::index_type max_elements_per_line;
+    static mathq::index_type max_elements_per_line;
     static Style style_for_punctuation;
     static std::string string_opening;
     static std::string string_delimeter;
@@ -1070,7 +1070,7 @@ namespace display {
   template <class D>
     void dispval_strm(std::ostream &stream, const std::complex<D>& d) {
     using namespace std;
-    using namespace matricks;
+    using namespace mathq;
 
     // print the real and imaginary parts to strings
     string sr = printf2str(getFormatString<D>().c_str(), d.real() );
@@ -1125,36 +1125,36 @@ namespace display {
   }
 
   inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     display::Log::log(1, spaceName, className, funcName, s);
 #endif
   }
 
   inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-#if MATRICKS_DEBUG>=2
+#if MATHQ_DEBUG>=2
     display::Log::log(2, spaceName, className, funcName, s);
 #endif
   }
 
   inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-#if MATRICKS_DEBUG>=3
+#if MATHQ_DEBUG>=3
     display::Log::log(3, spaceName, className, funcName, s);
 #endif
   }
 
 
   inline void print1(const std::string s) {
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
     display::Log::print(1,s);
 #endif
   }
   inline void print2(const std::string s) {
-#if MATRICKS_DEBUG>=2
+#if MATHQ_DEBUG>=2
     display::Log::print(2,s);
 #endif
   }
   inline void print3(const std::string s) {
-#if MATRICKS_DEBUG>=3
+#if MATHQ_DEBUG>=3
     display::Log::print(3,s);
 #endif
   }
@@ -1284,7 +1284,7 @@ namespace display {
 
 
 
-#if MATRICKS_DEBUG>=1
+#if MATHQ_DEBUG>=1
 #define mdisp1(...) mdisp(__VA_ARGS__)
 #define disp1(...) disp(__VA_ARGS__)
 #define tdisp1(...) tdisp(__VA_ARGS__)
@@ -1294,7 +1294,7 @@ namespace display {
 #define tdisp1(...) {}
 #endif
 
-#if MATRICKS_DEBUG>=2
+#if MATHQ_DEBUG>=2
 #define mdisp2(...) mdisp(__VA_ARGS__)
 #define disp2(...) disp(__VA_ARGS__)
 #define tdisp2(...) tdisp(__VA_ARGS__)
@@ -1304,7 +1304,7 @@ namespace display {
 #define tdisp2(...) {}
 #endif
 
-#if MATRICKS_DEBUG>=3
+#if MATHQ_DEBUG>=3
 #define mdisp3(...) mdisp(__VA_ARGS__)
 #define disp3(...) disp(__VA_ARGS__)
 #define tdisp3(...) tdisp(__VA_ARGS__)
@@ -1319,30 +1319,30 @@ namespace display {
 
   
   //****************************************************************************
-  //                       print_matricks_info
+  //                       print_mathq_info
   //****************************************************************************
 
 
   inline void print_debug_level(void) {
     StyledString ss;
-#if (MATRICKS_DEBUG==0)
+#if (MATHQ_DEBUG==0)
     ss = StyledString::get(SSEnum::DLEVEL0);
-#elif (MATRICKS_DEBUG==1)
+#elif (MATHQ_DEBUG==1)
     ss = StyledString::get(SSEnum::DLEVEL1);
-#elif (MATRICKS_DEBUG==2)
+#elif (MATHQ_DEBUG==2)
     ss = StyledString::get(SSEnum::DLEVEL2);
-#elif (MATRICKS_DEBUG>=3)
+#elif (MATHQ_DEBUG>=3)
     ss = StyledString::get(SSEnum::DLEVEL3);
 #endif
     mout << "  "<< ss << " " << std::endl;
   }
 
 
-  inline void print_matricks_info(void) {
+  inline void print_mathq_info(void) {
     using namespace std;
     using namespace display;
     mout << StyledString::get(HORLINE);
-    mout << StyledString::get(MATRICKS) << " ";
+    mout << StyledString::get(MATHQ) << " ";
     mout << StyledString::get(VERSION) << " ";
     mout << endl << endl;
     mout << "compile-time settings" << endl;
@@ -1367,11 +1367,11 @@ namespace display {
     FormatDataVector::string_endofline = "\n";
     FormatDataVector::string_opening =  "{";
     FormatDataVector::string_delimeter = ",";
-    FormatDataVector::max_elements_per_line = matricks::maxsize;
+    FormatDataVector::max_elements_per_line = mathq::maxsize;
     FormatDataVector::string_closing =   "}";
 
     // TODO: put these into an intilization and share it here as well as in cpp file
-    FormatDataMatrix::max_elements_per_line = matricks::maxsize;
+    FormatDataMatrix::max_elements_per_line = mathq::maxsize;
     FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
     FormatDataMatrix::string_opening = "{";
     FormatDataMatrix::string_delimeter = ", ";

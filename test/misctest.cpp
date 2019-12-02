@@ -1,5 +1,5 @@
-#define MATRICKS_DEBUG 0
-#include "matricks.h" 
+#define MATHQ_DEBUG 0
+#include "mathq.h" 
 #include "test.h" 
 
 
@@ -9,10 +9,10 @@
 int main()
 {
 
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
 
-  print_matricks_info();
+  print_mathq_info();
   mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - miscellaneous tests" <<std::endl;
   cr();
   cr();

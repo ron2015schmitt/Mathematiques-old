@@ -1,5 +1,5 @@
-#ifndef MATHQ__FUNCTORS_H
-#define MATHQ__FUNCTORS_H
+#ifndef MATRICKS__FUNCTORS_H
+#define MATRICKS__FUNCTORS_H
 
 
 //  functor in C++ sense: a class that wraps a function
@@ -8,7 +8,7 @@
 // TOOD: switch from "apply" to "operator()"?  not sure if that would help. maybe it's good to explcittly show these are functors with ".apply"
 
 
-namespace mathq {
+namespace matricks {
 
 
   extern display::Style functor_namestyle;
@@ -36,7 +36,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("+")+"("+ sa + ")";
       return sout;
@@ -65,7 +65,7 @@ namespace mathq {
       return (-a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("-")+"("+ sa + ")";
       return sout;
@@ -95,7 +95,7 @@ namespace mathq {
     }
     
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       using namespace display;
       D2 d2;
@@ -133,7 +133,7 @@ namespace mathq {
       return a+b;
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("+") + sb + ")";
       return sout;
@@ -172,7 +172,7 @@ namespace mathq {
       return a-b;
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("-") + sb + ")";
       return sout;
@@ -208,7 +208,7 @@ namespace mathq {
       return a*b;
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("*") + sb + ")";
       return sout;
@@ -244,7 +244,7 @@ namespace mathq {
       return a/b;
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("/") + sb + ")";
       return sout;
@@ -289,7 +289,7 @@ namespace mathq {
       return pow(a,b);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "pow(" + sa  + functor_style.apply(",") + sb + ")";
       return sout;
@@ -324,7 +324,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("sqr")+"("+ sa + ")";
       return sout;
@@ -352,7 +352,7 @@ namespace mathq {
       return (a*a*a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("cube")+"("+ sa + ")";
       return sout;
@@ -382,7 +382,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("sqrt")+"("+ sa + ")";
       return sout;
@@ -412,7 +412,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("exp")+"("+ sa + ")";
       return sout;
@@ -443,7 +443,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("log")+"("+ sa + ")";
       return sout;
@@ -471,11 +471,11 @@ namespace mathq {
 
     static inline Type apply(const TypeIn a) { 
       using std::log2;
-      using mathq::log2;
+      using matricks::log2;
       return log2(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("log2")+"("+ sa + ")";
       return sout;
@@ -507,7 +507,7 @@ namespace mathq {
       return log10(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("log10")+"("+ sa + ")";
       return sout;
@@ -545,7 +545,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("sin")+"("+ sa + ")";
       return sout;
@@ -575,7 +575,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("cos")+"("+ sa + ")";
       return sout;
@@ -606,7 +606,7 @@ namespace mathq {
       return tan(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("tan")+"("+ sa + ")";
       return sout;
@@ -636,7 +636,7 @@ namespace mathq {
       return asin(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("asin")+"("+ sa + ")";
       return sout;
@@ -667,7 +667,7 @@ namespace mathq {
       return acos(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("acos")+"("+ sa + ")";
       return sout;
@@ -698,7 +698,7 @@ namespace mathq {
       return atan(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("atan")+"("+ sa + ")";
       return sout;
@@ -731,7 +731,7 @@ namespace mathq {
       return atan2(a,b);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "atan2(" + sa  + functor_style.apply(",") + sb + ")";
       return sout;
@@ -768,7 +768,7 @@ namespace mathq {
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("sinh")+"("+ sa + ")";
       return sout;
@@ -799,7 +799,7 @@ namespace mathq {
       return cosh(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("cosh")+"("+ sa + ")";
       return sout;
@@ -830,7 +830,7 @@ namespace mathq {
       return tanh(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("tanh")+"("+ sa + ")";
       return sout;
@@ -867,7 +867,7 @@ namespace mathq {
       return abs(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("abs")+"("+ sa + ")";
       return sout;
@@ -894,10 +894,10 @@ namespace mathq {
     typedef typename NumberType<D>::Type Type;
 
     static inline Type apply(const TypeIn a) { 
-      return mathq::sgn(a);
+      return matricks::sgn(a);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("sgn")+"("+ sa + ")";
       return sout;
@@ -927,12 +927,12 @@ namespace mathq {
 
     static inline Type apply(const TypeIn a) { 
       using std::ceil;
-      using mathq::ceil; // for complex nums
+      using matricks::ceil; // for complex nums
       return ceil(a); 
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("ceil")+"("+ sa + ")";
       return sout;
@@ -960,12 +960,12 @@ namespace mathq {
 
     static inline Type apply(const TypeIn a) { 
       using std::floor;
-      using mathq::floor;  // for complex nums
+      using matricks::floor;  // for complex nums
       return floor(a); 
     }
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("floor")+"("+ sa + ")";
       return sout;
@@ -993,11 +993,11 @@ namespace mathq {
 
     static inline Type apply(const TypeIn a) { 
       using std::round;
-      using mathq::round;
+      using matricks::round;
       return round(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("round")+"("+ sa + ")";
       return sout;
@@ -1024,10 +1024,10 @@ namespace mathq {
     Fun_Roundzero() { }
 
     static inline Type apply(const NA& a, const NB tolerance) {
-      return mathq::roundzero(a, tolerance);
+      return matricks::roundzero(a, tolerance);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = functor_style.apply("roundzero") +  "(" + sa + ","  + sb + ")";
       return sout;
@@ -1060,10 +1060,10 @@ namespace mathq {
     Fun_Approx() { }
   
     static inline auto apply(const NA& a, const NB& b, const TOL& tolerance) {
-      return mathq::approx(a, b, tolerance);
+      return matricks::approx(a, b, tolerance);
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb, const std::string& sc) {
       std::string sout =  functor_style.apply("approx")+ "(" + sa  + "," + sb + "," + sc + ")";
       return sout;
@@ -1095,7 +1095,7 @@ namespace mathq {
 
   // y = op1<D,userfunc>(a)
 
-  template <class D, typename mathq::FunctionTypes<D>::unary_func F> class Fun_UnaryUser {
+  template <class D, typename matricks::FunctionTypes<D>::unary_func F> class Fun_UnaryUser {
     Fun_UnaryUser() { }
 
   public:
@@ -1106,7 +1106,7 @@ namespace mathq {
       return F(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = userfunctor_style.apply("userfunc") +  "(" + sa + ")";
       return sout;
@@ -1138,7 +1138,7 @@ namespace mathq {
       return F(a,b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "userfunc(" + sa  + functor_style.apply(",") + sb + ")";
       return sout;
@@ -1180,7 +1180,7 @@ namespace mathq {
       return !(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("!")+"("+ sa + ")";
       return sout;
@@ -1209,7 +1209,7 @@ namespace mathq {
       return a && b; 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("&&")  + sb + ")";
       return sout;
@@ -1245,7 +1245,7 @@ namespace mathq {
       return (a || b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("||") +  sb + ")";
       return sout;
@@ -1287,7 +1287,7 @@ namespace mathq {
       return (a == b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa + functor_style.apply("==") + sb + ")";
       return sout;
@@ -1326,7 +1326,7 @@ namespace mathq {
       return (a != b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa + ")" + functor_style.apply("!=") + "(" + sb + ")";
       return sout;
@@ -1366,7 +1366,7 @@ namespace mathq {
       return (a <= b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("<=")  + sb + ")";
       return sout;
@@ -1403,7 +1403,7 @@ namespace mathq {
       return (a >= b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply(">=")  + sb + ")";
       return sout;
@@ -1439,7 +1439,7 @@ namespace mathq {
       return (a < b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa  + functor_style.apply("<")  + sb + ")";
       return sout;
@@ -1475,7 +1475,7 @@ namespace mathq {
       return (a > b); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout =  "(" + sa + functor_style.apply(">") + sb + ")";
       return sout;
@@ -1522,7 +1522,7 @@ namespace mathq {
 
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = functor_style.apply("polar") +  "(" + sa + ","  + sb + ")";
       return sout;
@@ -1563,7 +1563,7 @@ namespace mathq {
 
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa, const std::string& sb) {
       std::string sout = functor_style.apply("complex") +  "(" + sa + ","  + sb + ")";
       return sout;
@@ -1601,7 +1601,7 @@ namespace mathq {
       return arg(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("arg")+"("+ sa + ")";
       return sout;
@@ -1632,7 +1632,7 @@ namespace mathq {
       return conj(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("conj")+"("+ sa + ")";
       return sout;
@@ -1662,7 +1662,7 @@ namespace mathq {
 
 
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("real")+"("+ sa + ")";
       return sout;
@@ -1692,7 +1692,7 @@ namespace mathq {
       return imag(a); 
     }
 
-#if MATHQ_DEBUG>=1
+#if MATRICKS_DEBUG>=1
     static inline std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("imag")+"("+ sa + ")";
       return sout;

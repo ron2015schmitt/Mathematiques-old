@@ -1,5 +1,5 @@
-#define MATRICKS_DEBUG 1
-#include "matricks.h"
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 
 #include <vector>
 
@@ -7,12 +7,12 @@
 
 
 
-template <typename D, int M = 1+matricks::NumberType<D>::depth()> class Test : public matricks::TensorRW<D,Test<D>> {
+template <typename D, int M = 1+mathq::NumberType<D>::depth()> class Test : public mathq::TensorRW<D,Test<D>> {
 public:
   typedef D Type;
   Test() {
   }
-  constexpr matricks::size_type depth() const {
+  constexpr mathq::size_type depth() const {
     return M;
   }
  
@@ -20,7 +20,7 @@ public:
 
 
 
-template <typename D> class Test2 : public matricks::TensorRW<D,Test<D>> {
+template <typename D> class Test2 : public mathq::TensorRW<D,Test<D>> {
 public:
   typedef D Type;
   D d_;
@@ -28,8 +28,8 @@ public:
   }
   Test2(D d): d_(d) {
   }
-  constexpr matricks::size_type depth() const {
-    return matricks::NumberType<decltype(*this)>::depth();
+  constexpr mathq::size_type depth() const {
+    return mathq::NumberType<decltype(*this)>::depth();
   }
  
 };
@@ -39,11 +39,11 @@ int main(int argc, char *argv[])
 {
 
 
-  typedef typename matricks::Vector<double> VectorDouble;
+  typedef typename mathq::Vector<double> VectorDouble;
   
   const double pi = M_PI;
   std::string myname = argv[0];
-  using namespace matricks;
+  using namespace mathq;
   using namespace display;
   using namespace std;
   
@@ -59,9 +59,9 @@ int main(int argc, char *argv[])
   mout << "running: " <<bold.apply(myname) << std::endl;
 
   
-  mout<< "MATRICKS_DEBUG=" << MATRICKS_DEBUG << std::endl;
+  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   
-  print_matricks_info();
+  print_mathq_info();
   
 
   

@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -16,17 +16,17 @@
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
   
   int Nex = 1;
   
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("Access subsets of Vector elements");
-  matricks_preamble();
+  mathq_preamble();
 
   text("You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices");
 
@@ -90,7 +90,7 @@ int main()
   }
 
 
-  matricks_toc();
+  mathq_toc();
 
 
   return 0;

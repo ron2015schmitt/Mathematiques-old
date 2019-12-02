@@ -2,7 +2,7 @@
 #define MMATHOPS_H
 
 
-namespace matricks {
+namespace mathq {
 
 
 

@@ -1,7 +1,7 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
+#include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
@@ -30,7 +30,7 @@ D pos(D x) {\n\
 
 
 
-namespace matricks {
+namespace mathq {
 
   template <class D> class Fun_Pos {
   public:
@@ -63,8 +63,8 @@ namespace matricks {
 }
 
 
-char matrickspos_str[] = "\
-namespace matricks { \n\
+char mathqpos_str[] = "\
+namespace mathq { \n\
   template <class D> class Fun_Pos {\n\
   public:\n\
     Fun_Pos() { }\n\
@@ -98,7 +98,7 @@ namespace matricks { \n\
 
 int main()
 {
-  using namespace matricks;
+  using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
@@ -107,10 +107,10 @@ int main()
 
 
     
-  matricks_toc();
+  mathq_toc();
   cr();cr();
   mdtitle("Applying User-defined functions");
-  matricks_preamble();
+  mathq_preamble();
 
 
   text("As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. ");
@@ -202,11 +202,11 @@ int main()
   header3("Creating new mātricks functions--Under the hood of mātricks");
   {
     cr();
-    text("User-defined function can be bound into the `matricks` namespace as vector functions.");
+    text("User-defined function can be bound into the `mathq` namespace as vector functions.");
     cr();
     text("place the following code in your file:");
     codestart("C++");
-    text(matrickspos_str);
+    text(mathqpos_str);
     codeend();
     example(Nex++,"Applying User-defined function `pos`");
     codestart("C++");
@@ -224,6 +224,6 @@ int main()
 	    
 
   
-  matricks_toc();
+  mathq_toc();
   return 0;
 }

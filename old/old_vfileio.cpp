@@ -1,8 +1,8 @@
-#define MATRICKS_DEBUG 1
+#define MATHQ_DEBUG 1
 
 
-#include "matricks.h"
-using namespace matricks;
+#include "mathq.h"
+using namespace mathq;
 
 #include <iostream>
 #include <string>
@@ -23,7 +23,7 @@ int main()
   
   cr();
   mdtitle("Vector file i/o");
-  matricks_preamble();
+  mathq_preamble();
 
 
 // // the load and save functions use the standard C++ file streams
@@ -65,7 +65,7 @@ int main()
   // disp(v2);
 
 
-  matricks_toc();
+  mathq_toc();
 
   return 0;
 }

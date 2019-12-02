@@ -4,7 +4,7 @@
 
 
 
-namespace matricks {
+namespace mathq {
 
 
 

@@ -1,8 +1,8 @@
-#ifndef MATRICKS__DEBUG_H
-#define MATRICKS__DEBUG_H
+#ifndef MATHQ__DEBUG_H
+#define MATHQ__DEBUG_H
 
 
-namespace matricks {
+namespace mathq {
 
   namespace debug {
 

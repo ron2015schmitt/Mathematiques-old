@@ -208,8 +208,8 @@ CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
 
 %.o: %.cpp 
-ifdef MEBUG
-	$(CPPC) $(CFLAGS) -D"MATRICKS_DEBUG=$(MEBUG)" -c $*.cpp -o $@
+ifdef MATHQ_DEBUG
+	$(CPPC) $(CFLAGS) -D"MATHQ_DEBUG=$(MATHQ_DEBUG)" -c $*.cpp -o $@
 else
 	$(CPPC) $(CFLAGS) -c $*.cpp -o $@
 endif

@@ -21,7 +21,15 @@ namespace matricks {
 
     
   template <class E, typename D, int M> class Scalar :
-    public TensorRW<E,Scalar<E,D,M>,D,M,0> {
+    public TensorRW< Scalar<E,D,M>, E,D,M,0> {
+  public:
+    typedef Scalar<E,D,M> XType;
+    typedef E EType;
+    typedef D DType;
+    constexpr static int Rvalue = 0;
+    constexpr static int Mvalue = M;
+    typedef typename std::conditional<M==1,E,E&>::type TypeA;
+
   private:
 
   // *********************** OBJECT DATA ***********************************
@@ -32,11 +40,9 @@ namespace matricks {
   E data_;
 
 
-  public:     
-  constexpr static int R = 0;
-  typedef E DataType;
 
 
+  public:
 
   //**********************************************************************
   //************************** CONSTRUCTORS ******************************
@@ -46,25 +52,39 @@ namespace matricks {
   // -------------------  DEFAULT  CONSTRUCTOR: zero --------------------
   Scalar<E,D,M>() 
   {
-    data_ = E(0); 
+    if constexpr(M==1) {
+	*this = 0;
+    } else {
+      data_ = *(new E());
+    }
     constructorHelper();
   }
 
   // --------------------- constant CONSTRUCTOR ---------------------
 
-  Scalar<E,D,M>(const E val) 
+  Scalar<E,D,M>(const E e) 
   {
       
-    data_ = val;
+    *this = e;
     constructorHelper();
   }
 
+  // --------------------- constant CONSTRUCTOR ---------------------
+
+  template<int M1 = M, EnableConstructorIf<(M1>1)> = 0>
+
+  Scalar<E,D,M>(const D d) 
+  {
+      
+    *this = d;
+    constructorHelper();
+  }
 
   // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
 
-  template <class A>
-    Scalar<E,D,M>(const TensorR<E,A,D,M,R>& x) 
+  template <class X>
+    Scalar<E,D,M>(const TensorR<X,E,D,M,Rvalue>& x) 
   {
     *this = x;
     constructorHelper();
@@ -229,8 +249,9 @@ namespace matricks {
     data_=e; 
     return *this;
   }
-  template <class T=E> 
-    typename std::enable_if<!std::is_same<T,D>::value, Scalar<T,D,M>& >::type operator=(const D& d) { 
+  
+  template <int M1=M> 
+    typename std::enable_if<(M1>1), Scalar<E,D,M>& >::type operator=(const D& d) { 
     for (index_type i = 0; i < deepsize(); i++) {
       (*this).dat(i)=d;
     }
@@ -256,8 +277,18 @@ namespace matricks {
   }
 
 
-  template <class A>
-    Scalar<E,D,M>& operator=(const TensorR<E,A,D,M,R>& y) {
+  template <class X>
+    Scalar<E,D,M>& operator=(const TensorR<X,E,D,M,Rvalue>& y) {
+    if constexpr(M<2) {
+	 data_ = y[0];
+    } else {
+      for (index_type i = 0; i < deepsize(); i++)  {
+	this->dat(i) = y.dat(i);
+      }
+    } 
+  }
+  template <class X>
+    Scalar<E,D,M>& operator=(const TensorRW<X,E,D,M,Rvalue>& y) {
     if constexpr(M<2) {
 	 data_ = y[0];
     } else {
@@ -306,11 +337,11 @@ namespace matricks {
     s += StyledString::get(ANGLE1).get();
     E e;
     s += getTypeName(e);
-    if (M>1) {
-      s += StyledString::get(COMMA).get();
-      s += "M=";
-      s += num2string(M);
-    }
+    //if (M>1) {
+    //  s += StyledString::get(COMMA).get();
+    //  s += "M=";
+    //  s += num2string(M);
+    //}
     s += StyledString::get(ANGLE2).get();			
     return s;	
   }

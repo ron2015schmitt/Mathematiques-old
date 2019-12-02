@@ -53,6 +53,9 @@ namespace display {
 
 namespace matricks {
 
+
+  class Null{};
+  
   //*******************************************************
   //          Typedefs
   //*******************************************************
@@ -70,9 +73,9 @@ namespace matricks {
   // D = number type (int, double, complex<double>, bool, etc)
   
   class TensorAbstract;
-  template <class E, class DERIVED, typename D, int M, int R>
+  template <class DERIVED, class E, typename D, int M, int R>
     class TensorR;  
-  template <class E, class DERIVED, typename D, int M, int R>
+  template <class DERIVED, class E, typename D, int M, int R>
     class TensorRW;
 
 
@@ -88,7 +91,7 @@ namespace matricks {
 
 
 
-  template<class E, class A, class D, int M, int R, class FUNC> class
+  template<class X, class E, class D, int M, int R, class FUNC, class A=Null, class B=Null> class
     TER_Unary;
 
   // Note: the lack "+1" for M1,M2 is intended
@@ -158,8 +161,8 @@ namespace matricks {
   public:
     typedef D Type;
   };
-  template <typename E, typename A,typename D, int M, int R> class
-    ContainedType<TensorR<E,A,D,M,R> > {
+  template <typename X, typename E, typename D, int M, int R> class
+    ContainedType<TensorR<X,E,D,M,R> > {
   public:
     typedef E Type;
   };
@@ -247,12 +250,12 @@ namespace matricks {
   };
 
 
-  //  TensorR<E,A,D,M,R>
+  //  TensorR<X,E,D,M,R>
 
-  template <class E, class A, class D, int M, int R> class
-    FundamentalType<TensorR<E,A,D,M,R>> {
+  template <class X, class E, class D, int M, int R> class
+    FundamentalType<TensorR<X,E,D,M,R>> {
   public:
-    typedef E Type;
+    typedef typename FundamentalType<D>::Type Type;
     constexpr static int depth() {
       return M;
     }
@@ -390,17 +393,16 @@ namespace matricks {
   };
 
 
-  //  TensorR<E,A,D,M,R>
+  //  TensorR<X,E,D,M,R>
 
-  template <class E, class A, class D, int M, int R, typename NewD> class
-    NumberType<TensorR<E,A,D,M,R>,NewD> {
+  template <class X, class E, class D, int M, int R, typename NewD> class
+    NumberType<TensorR<X,E,D,M,R>,NewD> {
   public:
-    typedef TensorR<E,A,D,M,R> InputType;
+    typedef TensorR<X,E,D,M,R> InputType;
     typedef D Type;
-    typedef A DerivedType;
-    typedef D OldE;
     typedef typename NumberType<E,NewD>::ReplaceType NewE;
-    typedef TensorR<NewE, A, NewD,M,R> ReplaceType;
+    typedef typename NumberType<X,NewD>::ReplaceType NewX;
+    typedef NewX ReplaceType;
     constexpr static int depth() {
       return M;
     }
@@ -546,7 +548,7 @@ namespace matricks {
   // In functions.h
   ////////////////////////////////////////////////////////////
 
-  template <class E, class A, int M, int R> inline Vector<index_type>& findtrue( const TensorR<E,A,bool,M,R>& a );
+  template <class X, class E, int M, int R> inline Vector<index_type>& findtrue( const TensorR<X,E,bool,M,R>& a );
 
 };
 

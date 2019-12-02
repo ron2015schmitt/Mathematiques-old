@@ -31,9 +31,13 @@ namespace matricks {
 
     public:
       constexpr static int R = 2;
+      static constexpr bool resizable = (NR*NC==0) ? true : false;
+      static constexpr bool resizableRows = (NR==0) ? true : false;
+      static constexpr bool resizableCols = (NC==0) ? true : false;
 
     private:
-      typedef typename ArrayType<E,NR+NC>::Type MyArrayType;
+      // if either NR or NC is 0, then we use valarray
+      typedef typename ArrayType<E,NR*NC>::Type MyArrayType;
 
     // *********************** OBJECT DATA ***********************************
     //
@@ -44,7 +48,7 @@ namespace matricks {
     index_type Nrows_;
     index_type Ncols_;
 
-  public:     
+
 
     
 
@@ -52,57 +56,47 @@ namespace matricks {
     //************************** CONSTRUCTORS ******************************
     //**********************************************************************
 
-
+    public:
+    
     // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
     explicit Matrix<E,NR,NC,D,M>() 
     {
-      Nrows_ = 0;
-      Ncols_ = 0;
-      data_.resize(Nrows_*Ncols_);
-      constructorHelper();
+      resize(0,0);
     }
 
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
+    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+
     explicit Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc) {
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_.resize(Nrows_*Ncols_);
-      constructorHelper();
+      resize(Nr,Nc);
     }
 
 
     // --------------------- constant CONSTRUCTOR ---------------------
+    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
 
     explicit Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D& val) {
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_.resize(Nrows_*Ncols_);
+      resize(Nr,Nc);
       *this = val;
-      constructorHelper();
     }
 
+    // --------------------- 2D array  CONSTRUCTOR ---------------------
+    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
 
-        // --------------------- 2D array  CONSTRUCTOR ---------------------
-    Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D **vals) {
-      
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_.resize(Nrows_*Ncols_);
+      Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D **vals) {
+      resize(Nr,Nc);
       *this = vals;
-      constructorHelper();
     }
 
 
     // ************* C++11 initializer_list 2D CONSTRUCTOR---------------------
     Matrix<E,NR,NC,D,M>(const std::initializer_list<std::initializer_list<E> >& list1) {
 
-      Nrows_ = list1.size();
-      Ncols_ = (*(list1.begin())).size();
-      data_.resize(Nrows_*Ncols_);
-      *this = list1;
-      
-      constructorHelper();
+      const int Nr = list1.size();
+      const int Nc = (*(list1.begin())).size();
+      resize(Nr,Nc);
+      *this = list1;    
     }
 
 
@@ -112,12 +106,9 @@ namespace matricks {
     // --------------------- COPY CONSTRUCTOR --------------------
 
     Matrix<E,NR,NC,D,M>(const Matrix<E>& m2) {
-	Nrows_ = m2.Nrows();
-	Ncols_ = m2.Ncols();
-	data_.resize(Nrows_*Ncols_);
-	*this = m2;
-	constructorHelper();
-      }
+      resize(m2.Nrows(), m2.Ncols());
+      *this = m2;
+    }
 
 
     // --------------------- EXPRESSION CONSTRUCTOR --------------------
@@ -125,39 +116,47 @@ namespace matricks {
 
     template <class A>
       Matrix<E,NR,NC,D,M>(const TensorR<E,A,D,M,R>& x) {
-      // TODO: bounds check
-      Nrows_ = x.dims()[0];
-      Ncols_ = x.dims()[1];
-      data_.resize(Nrows_*Ncols_);
+      resize(x.dims()[0], x.dims()[1]);
       *this = x;
-      constructorHelper();
       }
 
 
     // --------------------- 1D valarray CONSTRUCTOR ---------------------
-    Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const std::valarray<E>& valar) {
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_.resize(Nrows_*Ncols_);
-      constructorHelper();
+    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+
+      Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const std::valarray<E>& valar) {
+      resize(Nr,Nc);
+      *this = valar;
     }
 
 
     // --------------------- 1D array[]  CONSTRUCTOR ---------------------
-    Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D (vals)[]) {
-      // allocate store
-      Nrows_ = Nr;
-      Ncols_ = Nc;
-      data_.resize(Nrows_*Ncols_);
-      constructorHelper();
+    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+
+      Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D (vals)[]) {
+      resize(Nr,Nc);
+      *this = vals;
     }
 
     
 
     
-    // --------------------- constructorHelper() --------------------
+    // --------------------- resize() --------------------
     
-    void constructorHelper() {
+    void resize(const int Nr, const int Nc) {
+      if constexpr(resizableRows) {
+	Nrows_ = Nr;
+      } else {
+	Nrows_ = NR;
+      }
+      if constexpr(resizableCols) {
+	Ncols_ = Nc;
+      } else {
+	Ncols_ = NC;
+      }
+      if constexpr(resizable) {
+        data_.resize(Nrows_*Ncols_);
+      }
     }
 
 
@@ -179,6 +178,10 @@ namespace matricks {
     //************************** Size related  ******************************
     //**********************************************************************
 
+    size_type ndims(void)  const {
+      return R;
+    }
+
 
     inline size_type size(void) const {
       return data_.size();
@@ -188,9 +191,6 @@ namespace matricks {
     }
     inline size_type Ncols(void) const {
       return Ncols_;
-    }
-    size_type ndims(void) const {
-      return 2;
     }
     Dimensions dims(void) const {
       Dimensions dimensions(Nrows_,Ncols_);
@@ -214,7 +214,7 @@ namespace matricks {
     }
 
   
-    inline size_type depth(void) const {
+    constexpr size_type depth(void) const {
       return M;
     }
 
@@ -262,49 +262,16 @@ namespace matricks {
     //************************** RESIZE, RESHAPE, TRANSPOSE*****************
     //**********************************************************************
 
-    // -------------------------- resize(nr,nc) --------------------------------
-    
-    Matrix<E,NR,NC,D,M>& resize(const size_type nr, const size_type nc) {
-      Nrows_ = nr;
-      Ncols_ = nc;
-      
-      const size_type N = nr*nc;
-      if (N==this->size())
-	return *this;
-      // reallocate store
-      data_.resize(N);
-      return *this;
-    }
 
     // -------------------------- resize(Dimensions) --------------------------------
     
     Matrix<E,NR,NC,D,M>& resize(const Dimensions dims) {
       // TODO: check 
-      Nrows_ = dims[0];
-      Ncols_ = dims[1];
-      
-      const size_type N = Nrows_*Ncols_;
-      if (N==this->size())
-	return *this;
-      // reallocate store
-      data_.resize(N);
+      resize(dims[0], dims[1]);  
       return *this;
     }
 
 
-    // -------------------------- resize() by assigment --------------------------------
-    // usage:  m.resize() = m2;
-    // -----------------------------------------------------------------------
-    TERW_Resize<E> resize(void) { 
-      return  TERW_Resize<E>(*this);
-    }
-    // -------------------------- resize() const --------------------------------
-    // usage:  m.resize();
-    // -----------------------------------------------------------------------
-    TERW_Resize<E> resize(void) const { 
-      this->resize(0,0);
-      return  TERW_Resize<E>(*this);
-    }
 
     // -------------------------- reshape(nr,nc) --------------------------------
 
@@ -644,14 +611,14 @@ namespace matricks {
       return *this;
     }
 
-    // ----------------- matrix = TensorR<D,A> ----------------
+    // ----------------- matrix = TensorR<E,A,D,M,R> ----------------
     template <class A> Matrix<E,NR,NC,D,M>&
       operator=(const TensorR<E,A,D,M,R>& x) {  
       // TODO: issue warning
       resize(x.dims());
 
       if (common(*this, x)){    
-	Matrix<E,NR,NC,D,M> mtemp(Nrows_,Ncols_);
+	Matrix<E> mtemp(Nrows_,Ncols_);
 	for (index_type i = size(); i--;)
 	  mtemp[i] = x[i];   // Inlined expression
 	for (index_type i = size(); i--;)
@@ -805,9 +772,29 @@ namespace matricks {
     //**********************************************************************
 
     inline std::string classname() const {
-      E e;
-      return "Matrix"+display::getBracketedTypeName(e);
+    using namespace display;
+    std::string s = "Matrix";		
+    s += StyledString::get(ANGLE1).get();
+    E e;
+    s += getTypeName(e);
+    if (NC!=0) {
+      s += StyledString::get(COMMA).get();
+      s += "NC=";
+      s += num2string(NC);
     }
+    if (NR!=0) {
+      s += StyledString::get(COMMA).get();
+      s += "NR=";
+      s += num2string(NR);
+    }
+    //    if (M>1) {
+    //      s += StyledString::get(COMMA).get();
+    //      s += "M=";
+    //      s += num2string(M);
+    //    }
+    s += StyledString::get(ANGLE2).get();			
+    return s;	
+  }
 
 
 #if MATRICKS_DEBUG>=1

@@ -13,23 +13,25 @@ namespace matricks {
   // TER_Unary    unary expressions
   //---------------------------------------------------------------------------
     
-  template <class E, class A, class D, int M, int R, class FUNC> 
-    class TER_Unary  : public  TensorR<E, TER_Unary<E,A,D,M,R,FUNC>, D,M,R> {
+  template <class X, class E, class D, int M, int R, class FUNC, class A, class B> 
+    class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC>, E,D,M,R> {
   public:
-    typedef TensorR<E,A,D,M,R> TIN;
+    typedef X XType;
+    typedef E EType;
+    typedef D DType;
       
   private:
-    const TIN& a_;
+    const X& x_;
     VectorofPtrs *vptrs;
       
   public:
       
 
 
-  TER_Unary(const TIN& a) : a_(a) {
+  TER_Unary(const X& x) : x_(x) {
       vptrs = new VectorofPtrs();
-      vptrs->add(a_.getAddresses());
-      disp3(a);
+      vptrs->add(x_.getAddresses());
+      disp3(x);
     }
     
     ~TER_Unary() {
@@ -37,11 +39,11 @@ namespace matricks {
     }
 
     const D dat(const index_type i) const {
-      return FUNC::apply(a_.dat(i));
+      return FUNC::apply(x_.dat(i));
     }
   
     const E operator[](const index_type i) const {
-      return FUNC::apply(a_[i]);
+      return FUNC::apply(x_[i]);
     }
 
     
@@ -49,13 +51,13 @@ namespace matricks {
       return *vptrs;
     }
     size_type size(void) const {
-      return a_.size();
+      return x_.size();
     }
     size_type ndims(void) const {
       return R;
     }
     Dimensions dims(void) const {
-      return a_.dims();
+      return x_.dims();
     }
     Dimensions tdims(void) const {
       return this->dims();
@@ -70,14 +72,14 @@ namespace matricks {
       if constexpr(M<2) {
 	  return 1;
 	} else {
-	return a_.elsize();
+	return x_.elsize();
       }
     }
     size_type eldeepsize(void) const {
       if constexpr(M<2) {
 	  return 1;
 	} else {
-	return a_.eldeepsize();
+	return x_.eldeepsize();
       }
     }
     size_type deepsize(void) const {
@@ -95,8 +97,8 @@ namespace matricks {
 
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
-      std::string sa = a_.expression();
-      return FUNC::expression(sa);
+      std::string sx = x_.expression();
+      return FUNC::expression(sx);
     }
 #endif
 

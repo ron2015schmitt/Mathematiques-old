@@ -466,8 +466,8 @@ namespace matricks {
   
 
 
-  template <class E, class A, class D, int M, int R>
-    std::ostream& printTensorExpression(std::ostream &stream, const TensorR<E,A,D,M,R>& te) {
+  template <class X, class E, class D, int M, int R>
+    std::ostream& printTensorExpression(std::ostream &stream, const TensorR<X,E,D,M,R>& te) {
     switch (R) {
     case 0: {
       Scalar<E> s = te;
@@ -508,15 +508,18 @@ namespace matricks {
   //            either a tensor or a tensor expression that is "read only"
   // -------------------------------------------------------------------
 
-  template <class E, class DERIVED, typename D, int M, int R> class
+  template <class X, class E, typename D, int M, int R> class
     TensorR : public TensorAbstract {
   public:
+    typedef X XType;
+    typedef E EType;
+    typedef D DType;
 
-    DERIVED& derived() {
-      return static_cast<DERIVED&>(*this);
+    X& derived() {
+      return static_cast<X&>(*this);
     }
-    const  DERIVED& derived() const {
-      return static_cast<const DERIVED&>(*this);
+    const  X& derived() const {
+      return static_cast<const X&>(*this);
     }
 
     //**********************************************************************
@@ -583,8 +586,8 @@ namespace matricks {
       return derived().classname();
     }
     
-    friend std::ostream& operator<<(std::ostream &stream, const TensorR<E,DERIVED,D,M,R>& te) {
-      const DERIVED& td = te.derived();
+    friend std::ostream& operator<<(std::ostream &stream, const TensorR<E,X,D,M,R>& te) {
+      const X& td = te.derived();
       if (td.isExpression()) {
 	return printTensorExpression(stream,te);
       } else {
@@ -607,15 +610,18 @@ namespace matricks {
   // -------------------------------------------------------------------
 
 
-  template <class E, class DERIVED, typename D, int M, int R> class
-  TensorRW : public TensorR<E,TensorRW<E,DERIVED,D,M,R>, D,M,R> {
+  template <class X, class E, typename D, int M, int R> class
+    TensorRW : public TensorR<TensorRW<X,E,D,M,R>, E,D,M,R> {
   public:
+    typedef X XType;
+    typedef E EType;
+    typedef D DType;
 
-    DERIVED& derived() {
-      return static_cast<DERIVED&>(*this);
+    X& derived() {
+      return static_cast<X&>(*this);
     }
-    const DERIVED& derived() const {
-      return static_cast<const DERIVED&>(*this);
+    const X& derived() const {
+      return static_cast<const X&>(*this);
     }
 
 
@@ -688,8 +694,8 @@ namespace matricks {
       return derived().classname();
     }
 
-    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<E,DERIVED,D,M,R>& te) {
-      const DERIVED& td = te.derived();
+    friend std::ostream& operator<<(std::ostream &stream, const TensorRW<X,E,D,M,R>& te) {
+      const X& td = te.derived();
       if (td.isExpression()) {
 	return printTensorExpression(stream,te);
       } else {
@@ -700,21 +706,21 @@ namespace matricks {
 
 
     // Assign to constant value
-    DERIVED& equals(const E d) { 
+    X& equals(const E e) { 
       for(size_type i=0; i<size(); i++) 
-	(*this)[i]=d; 
+	(*this)[i]=e; 
       return derived();
     }
     // assign to recon object (issue error)
-    DERIVED& equals(const TERW_Resize<E>& b) { 
+    X& equals(const TERW_Resize<E>& b) { 
       return derived();
     }
     
 
 
     // assign to vector or expression
-    template <class B>
-      DERIVED& equals(const TensorR<E,B,D,M,R>& rhs) { 
+    template <class Y>
+      X& equals(const TensorR<Y,E,D,M,R>& rhs) { 
 
       const size_type N =size();
 

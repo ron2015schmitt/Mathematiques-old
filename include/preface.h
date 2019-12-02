@@ -88,7 +88,7 @@ namespace matricks {
 
 
 
-  template<class D, class A, class FUNC, int M = 1+NumberType<D>::depth()> class
+  template<class E, class A, class D, int M, class FUNC> class
     TER_Unary;
 
   // Note: the lack "+1" for M1,M2 is intended

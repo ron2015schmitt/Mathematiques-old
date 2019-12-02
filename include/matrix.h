@@ -26,9 +26,13 @@ namespace matricks {
    */
 
 
-    template <class E, int NR, int NC,    typename D, int M> class Matrix :
-      public TensorRW<E,Matrix<E,NR,NC,D,M>,D,M >{
-  private:
+    template <class E, int NR, int NC,    typename D, int M>
+      class Matrix : public TensorRW<E,Matrix<E,NR,NC,D,M>,D,M,2>{
+
+    public:
+      constexpr static int R = 2;
+
+    private:
       typedef typename ArrayType<E,NR+NC>::Type MyArrayType;
 
     // *********************** OBJECT DATA ***********************************
@@ -120,7 +124,7 @@ namespace matricks {
 
 
     template <class A>
-      Matrix<E,NR,NC,D,M>(const TensorR<E,A,D,M>& x) {
+      Matrix<E,NR,NC,D,M>(const TensorR<E,A,D,M,R>& x) {
       // TODO: bounds check
       Nrows_ = x.dims()[0];
       Ncols_ = x.dims()[1];
@@ -642,7 +646,7 @@ namespace matricks {
 
     // ----------------- matrix = TensorR<D,A> ----------------
     template <class A> Matrix<E,NR,NC,D,M>&
-      operator=(const TensorR<E,A,D,M>& x) {  
+      operator=(const TensorR<E,A,D,M,R>& x) {  
       // TODO: issue warning
       resize(x.dims());
 

@@ -21,18 +21,18 @@ namespace matricks {
 
   // +(Tensor)
 
-  template <class E, class A, class D, int M> 
-    inline auto operator+(const TensorR<E,A,D,M>& a)
+  template <class E, class A, class D, int M, int R> 
+    inline auto operator+(const TensorR<E,A,D,M,R>& x)
   {
-    return  TER_Unary<E,A,D,M, Fun_Plus<D> >(a);
+    return  TER_Unary<E,A,D,M,R, Fun_Plus<D> >(x);
   }
 
   // -(Tensor)
 
-  template <class E, class A, class D, int M> 
-    inline auto operator-(const TensorR<E,A,D,M>& a)
+  template <class E, class A, class D, int M, int R> 
+    inline auto operator-(const TensorR<E,A,D,M,R>& x)
   {
-    return  TER_Unary<E,A,D,M, Fun_Minus<D> >(a);
+    return  TER_Unary<E,A,D,M,R, Fun_Minus<D> >(x);
   }
 
 

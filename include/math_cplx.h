@@ -62,10 +62,10 @@ namespace matricks {
   public:
     typedef std::complex<D> Type;
   };
-  template <typename E, typename A, typename D, int M> class
-    Complexify<TensorR<E,A,D,M> > {
+  template <typename E, typename A, typename D, int M, int R> class
+    Complexify<TensorR<E,A,D,M,R> > {
   public:
-    typedef TensorR<typename Complexify<E>::Type,A,typename Complexify<D>::Type, M> Type;
+    typedef TensorR<typename Complexify<E>::Type,A,typename Complexify<D>::Type, M,R> Type;
   };
 
 
@@ -79,10 +79,10 @@ namespace matricks {
   public:
     typedef D Type;
   };
-  template <typename E, typename A, typename D, int M> class
-    Realify<TensorR<E,A,D,M> > {
+  template <typename E, typename A, typename D, int M, int R> class
+    Realify<TensorR<E,A,D,M,R> > {
   public:
-    typedef TensorR<typename Realify<E>::Type,A,typename Realify<D>::Type,M> Type;
+    typedef TensorR<typename Realify<E>::Type,A,typename Realify<D>::Type,M,R> Type;
   };
 
 

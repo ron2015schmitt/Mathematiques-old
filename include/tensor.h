@@ -24,8 +24,8 @@ namespace matricks {
    */
  
 
-  template <class E, int NDIM,   typename D, int M> class Tensor :
-    public TensorRW<E,Tensor<E,NDIM,D,M>,D,M > {
+  template <class E, int R,   typename D, int M> class Tensor :
+    public TensorRW<E,Tensor<E,R,D,M>,D,M,R> {
   private:
 
     // *********************** OBJECT DATA ***********************************
@@ -47,7 +47,7 @@ namespace matricks {
 
     // --------------------- default CONSTRUCTOR ---------------------
 
-    explicit Tensor<E,NDIM,D,M>() 
+    explicit Tensor<E,R,D,M>() 
     {
       dimensions_ = new Dimensions();
       data_.resize(dimensions_->datasize());
@@ -56,7 +56,7 @@ namespace matricks {
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
 
-    explicit Tensor<E,NDIM,D,M>(const Dimensions& dims) 
+    explicit Tensor<E,R,D,M>(const Dimensions& dims) 
     {
       dimensions_ = new Dimensions(dims);
       data_.resize(dimensions_->datasize());
@@ -66,7 +66,7 @@ namespace matricks {
 
     // --------------------- constant CONSTRUCTOR ---------------------
 
-    explicit Tensor<E,NDIM,D,M>(const Dimensions& dims, const E e) 
+    explicit Tensor<E,R,D,M>(const Dimensions& dims, const E e) 
     {
       dimensions_ = new Dimensions(dims);
       data_.resize(dimensions_->datasize());
@@ -92,7 +92,7 @@ namespace matricks {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~Tensor<E,NDIM,D,M>() {
+    ~Tensor<E,R,D,M>() {
       //remove from directory
     }
   
@@ -199,7 +199,7 @@ namespace matricks {
     inline std::valarray<E>& getValArray()  {
       return *data_; 
     }
-    inline Tensor<E,NDIM,D,M>& setValArray(std::valarray<E>* valptr)  {
+    inline Tensor<E,R,D,M>& setValArray(std::valarray<E>* valptr)  {
       delete  data_ ;
       const size_t N = valptr->size();
       data_ = valptr;
@@ -385,7 +385,7 @@ namespace matricks {
 
 
     // ----------------- tensor = e ----------------
-    Tensor<E,NDIM,D,M>&
+    Tensor<E,R,D,M>&
       operator=(const E e) { 
       for(index_type i=size(); i--;) 
 	data_[i]=e; 
@@ -394,7 +394,7 @@ namespace matricks {
 
     // ----------------- tensor = d ----------------
     template <class T=E> 
-      typename std::enable_if<!std::is_same<T,D>::value, Tensor<T,NDIM,D,M>& >::type operator=(const D& d) { 
+      typename std::enable_if<!std::is_same<T,D>::value, Tensor<T,R,D,M>& >::type operator=(const D& d) { 
     
       for(index_type i = 0; i < deepsize(); i++) {
 	data_.dat(i) = d;
@@ -403,9 +403,9 @@ namespace matricks {
     }
 
 
-    // ----------------- tensor = TensorR<E,A,> ----------------
-    Tensor<E,NDIM,D,M>&
-      operator=(const Tensor<E,NDIM,D,M>& x) {  
+    // ----------------- tensor = Tensor<E,R,D,M> ----------------
+    Tensor<E,R,D,M>&
+      operator=(const Tensor<E,R,D,M>& x) {  
       // TODO: issue warning
       resize(x.dims());
       for (index_type i = size(); i--;) {
@@ -415,13 +415,13 @@ namespace matricks {
     }
 
     // ----------------- tensor = TensorR<D,A> ----------------
-    template <class A>  Tensor<E,NDIM,D,M>&
-      operator=(const TensorR<E,A,D,M>& x) {  
+    template <class A>  Tensor<E,R,D,M>&
+      operator=(const TensorR<E,A,D,M,R>& x) {  
       // TODO: issue warning
       resize(x.dims());
 
       if (common(*this, x)){    
-	Tensor<E,NDIM,D,M> Ttemp(this->dims());
+	Tensor<E,R,D,M> Ttemp(this->dims());
 	for (index_type i = size(); i--;)
 	  Ttemp[i] = x[i];   // Inlined expression
 	for (index_type i = size(); i--;)
@@ -441,7 +441,7 @@ namespace matricks {
 
     // ------------- tensor = array[] ----------------
     
-    Tensor<E,NDIM,D,M>&
+    Tensor<E,R,D,M>&
       operator=(const E array1[]) {
       for (index_type i = 0; i < size(); i++)  {
 	(*this)[i] = array1[i];
@@ -451,7 +451,7 @@ namespace matricks {
 
 
     // --------------- matrix = initializer_list ------------------
-    Tensor<E,NDIM,D,M>&
+    Tensor<E,R,D,M>&
       operator=(const std::initializer_list<E>& mylist) {
 
       // TODO: bound scheck 
@@ -474,7 +474,7 @@ namespace matricks {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Tensor<E,NDIM,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
+    Tensor<E,R,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = matricks::roundzero(data_[i], tolerance);
       }
@@ -558,7 +558,7 @@ namespace matricks {
 
     // TODO: implement format
 
-    friend std::ostream& operator<<(std::ostream &stream, const Tensor<E,NDIM,D,M>& t) {
+    friend std::ostream& operator<<(std::ostream &stream, const Tensor<E,R,D,M>& t) {
       using namespace display;
       index_type n = 0;
       t.send(stream, n, t.dims());
@@ -567,7 +567,7 @@ namespace matricks {
 
 
     //template <class D>	
-    friend inline std::istream& operator>>(const std::string s,  Tensor<E,NDIM,D,M>& x) {
+    friend inline std::istream& operator>>(const std::string s,  Tensor<E,R,D,M>& x) {
       std::istringstream st(s);
       return (st >> x);
     }
@@ -576,7 +576,7 @@ namespace matricks {
     // stream >> operator
     // TODO: implement
 
-    friend std::istream& operator>>(std::istream& stream,  Tensor<E,NDIM,D,M>& x) {	
+    friend std::istream& operator>>(std::istream& stream,  Tensor<E,R,D,M>& x) {	
       return stream;
     }
 

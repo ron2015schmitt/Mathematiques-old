@@ -13,10 +13,10 @@ namespace matricks {
   // TER_Unary    unary expressions
   //---------------------------------------------------------------------------
     
-  template <class E, class A, class D, int M, class FUNC> 
-    class TER_Unary  : public  TensorR<E, TER_Unary<E,A,D,M,FUNC>, D,M> {
+  template <class E, class A, class D, int M, int R, class FUNC> 
+    class TER_Unary  : public  TensorR<E, TER_Unary<E,A,D,M,R,FUNC>, D,M,R> {
   public:
-    typedef TensorR<E,A,D,M> TIN;
+    typedef TensorR<E,A,D,M,R> TIN;
       
   private:
     const TIN& a_;
@@ -52,7 +52,7 @@ namespace matricks {
       return a_.size();
     }
     size_type ndims(void) const {
-      return a_.ndims();
+      return R;
     }
     Dimensions dims(void) const {
       return a_.dims();

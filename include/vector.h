@@ -22,10 +22,11 @@ namespace matricks {
    */
 
   template <class E, int NE,   typename D, int M> class Vector :
-    public TensorRW<E,Vector<E,NE,D,M>,D,M> {
+    public TensorRW<E,Vector<E,NE,D,M>,D,M,1> {
 
   public:     
   typedef typename ArrayType<E,NE>::Type MyArrayType;
+  constexpr static int R = 1;
 
 
   // *********************** OBJECT DATA ***********************************
@@ -113,7 +114,7 @@ namespace matricks {
   // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
   template <class A>
-    Vector<E,NE,D,M>(const TensorR<E,A,D,M>& x) 
+    Vector<E,NE,D,M>(const TensorR<E,A,D,M,R>& x) 
   {
     if constexpr(NE==0) {
       this->resize(x.size());
@@ -472,7 +473,7 @@ namespace matricks {
   // NEW STYLE EXPRESSION equals
 
   template <class A>
-    Vector<E,NE,D,M>& operator=(const TensorR<E,A,D,M>& y) {  
+    Vector<E,NE,D,M>& operator=(const TensorR<E,A,D,M,R>& y) {  
     if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != y.size()) {

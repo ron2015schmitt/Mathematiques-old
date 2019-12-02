@@ -21,7 +21,7 @@ namespace matricks {
 
     
   template <class E, typename D, int M> class Scalar :
-    public TensorRW<E,Scalar<E,D,M>,D,M> {
+    public TensorRW<E,Scalar<E,D,M>,D,M,0> {
   private:
 
   // *********************** OBJECT DATA ***********************************
@@ -33,7 +33,7 @@ namespace matricks {
 
 
   public:     
-
+  constexpr static int R = 0;
   typedef E DataType;
 
 
@@ -64,7 +64,7 @@ namespace matricks {
 
 
   template <class A>
-    Scalar<E,D,M>(const TensorR<E,A,D,M>& x) 
+    Scalar<E,D,M>(const TensorR<E,A,D,M,R>& x) 
   {
     *this = x;
     constructorHelper();
@@ -257,7 +257,7 @@ namespace matricks {
 
 
   template <class A>
-    Scalar<E,D,M>& operator=(const TensorR<E,A,D,M>& y) {
+    Scalar<E,D,M>& operator=(const TensorR<E,A,D,M,R>& y) {
     if constexpr(M<2) {
 	 data_ = y[0];
     } else {

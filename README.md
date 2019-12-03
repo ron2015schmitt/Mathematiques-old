@@ -1,9 +1,11 @@
-# Mathématiques v2.33-r6
+# Mathématiques v2.33-r7
 
-Mathématiques is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntactic sugar while also providing run-time performance and memory usage on par with hand-coded C or Fortran.
+Mathématiques is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntax while also providing run-time performance and memory usage of hand-coded C or Fortran.
+
+_This numerical library distinguishes itself from other libraries by an elegance and versatility that are only possible using the features of C++11,14, and 17._
 
 + V3.0, the first official release)  is almost ready.
-  + Arbitrary rank tenors (Scalar, Vector, Matrix, etc)
+  + Arbitrary rank tenor arrays (Scalar, Vector, Matrix, etc)
   + Each tensor type can have tensor as datatype, eg `Vector<Vector<double>>`, which can be used to represent a vector-valuedf function
   + can have fixed (uses `array`) or variable dimensions (uses `valarray`)
   + fixed array size is ideal for small vectors, eg 2D or 3D vector

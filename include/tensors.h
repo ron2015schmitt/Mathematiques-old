@@ -440,6 +440,8 @@ namespace mathq {
     virtual size_type depth(void) const = 0;
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
+    virtual std::vector<Dimensions>& deepdims(void) const = 0;
+    virtual std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const = 0;
     virtual bool isExpression(void) const = 0;     // NOTE: with the intrudction of getEnum, this function redundant
     virtual Tensors getEnum(void) const = 0;
     virtual VectorofPtrs getAddresses(void) const = 0;
@@ -549,6 +551,12 @@ namespace mathq {
     Dimensions dims(void) const {
       return derived().dims();
     }
+    std::vector<Dimensions>& deepdims(void) const {
+      return derived().deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      return derived().deepdims(parentdims);
+    }
     bool isExpression(void) const {
       return derived().isExpression();
     }
@@ -655,6 +663,12 @@ namespace mathq {
     }
     Dimensions dims(void) const {
       return derived().dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+      return derived().deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      return derived().deepdims(parentdims);
     }
     bool isExpression(void) const {
       return derived().isExpression();

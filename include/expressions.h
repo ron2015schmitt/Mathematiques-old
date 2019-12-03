@@ -62,6 +62,12 @@ namespace mathq {
     Dimensions tdims(void) const {
       return this->dims();
     }
+    std::vector<Dimensions>& deepdims(void) const {
+      return x_.deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      return x_.deepdims(parentdims);
+    }
     bool isExpression(void) const {
       return true;
     }

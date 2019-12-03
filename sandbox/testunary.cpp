@@ -47,22 +47,27 @@ int main(int argc, char *argv[])
   //------------------------------------------------------
 
   {
+    cr();
     Scalar<double> s = 1.1;
     tdisp(s);
+    tdisp(s());
     Scalar<double> s2;
     s2 = -s;
     tdisp(s2);
   }
 
   {
+    cr();
     Vector<double> v {1.1,2.2};
     tdisp(v);
+    tdisp(v(0));
     Vector<double> v2;
     v2 = -v;
     tdisp(v2);
   }
 
   {
+    cr();
     Vector<double,2> v {1.1,2.2};
     tdisp(v);
     Vector<double,2> v2;
@@ -88,14 +93,45 @@ int main(int argc, char *argv[])
   
 
   {
+    cr();
     Scalar<Scalar<double>> s {{1.1}};
     tdisp(s);
+    tdisp(s());
     Scalar<Scalar<double>> s2;
     s2 = -s;
     tdisp(s2);
   }
 
+  {
+    cr();
+    Scalar<Vector<double>> s {{1.,2.,3.}};
+    tdisp(s);
+    tdisp(s());
+    Scalar<Vector<double>> s2;
+    s2 = -s;  // doesn't work
+    tdisp(s2);  
+  }
 
+  {
+    cr();
+    Vector<Scalar<double>> v {{1.},{2.}};
+    tdisp(v);
+    tdisp(v(0));
+    Vector<Scalar<double>> v2;
+    v2 = -v;
+    tdisp(v2);
+  }
+
+  {
+    cr();
+    Vector<Vector<double>> v {{1.,2.,3.},{4.,5.,6.}};
+    tdisp(v);
+    tdisp(v(0));
+    Vector<Vector<double>> v2;
+    mout << "v2 = -v;" << endl;
+    v2 = -v; // doesn't work
+    tdisp(v2);
+  }
   
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;

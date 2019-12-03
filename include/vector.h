@@ -26,7 +26,7 @@ namespace mathq {
 
   public:     
   typedef typename ArrayType<E,NE>::Type MyArrayType;
-  constexpr static int R = 1;
+  constexpr static int Rvalue = 1;
 
 
   // *********************** OBJECT DATA ***********************************
@@ -96,7 +96,7 @@ namespace mathq {
   }
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-  Vector<E,NE,D,M>(const std::initializer_list<E> mylist)  {
+  Vector<E,NE,D,M>(const std::initializer_list<E>& mylist)  {
     *this = mylist;
     constructorHelper();
   }
@@ -114,7 +114,7 @@ namespace mathq {
   // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
   template <class X>
-    Vector<E,NE,D,M>(const TensorR<X,E,D,M,R>& x) 
+    Vector<E,NE,D,M>(const TensorR<X,E,D,M,Rvalue>& x) 
   {
     if constexpr(NE==0) {
       this->resize(x.size());
@@ -230,6 +230,20 @@ namespace mathq {
     }
   }
  
+  std::vector<Dimensions>& deepdims(void) const {
+    std::vector<Dimensions>& ddims = *(new std::vector<Dimensions>);
+    return deepdims(ddims);
+  }
+  std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+    parentdims.push_back(dims());
+    if constexpr(M>1) {
+	if (size()>0) {
+	  data_[0].deepdims(parentdims);
+	}
+    }
+    return parentdims;
+  }
+ 
  
   
 
@@ -244,20 +258,6 @@ namespace mathq {
   // These allow the user to resize a vector
 
 
-  // *** this is used for resize-by-assignment ***
-  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
-    
-  TERW_Resize<E>  resize(void) { 
-    return  TERW_Resize<E>(*this);
-  }
-
-  // this is used to empty the vector of its datastore
-  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
-    
-  TERW_Resize<E>  resize(void) const {
-    this->resize(0);
-    return  TERW_Resize<E>(*this);
-  }
 
   // --------------------- .resize(N) ---------------------
 
@@ -273,7 +273,20 @@ namespace mathq {
     return *this;
   }
 
-
+  Vector<E,NE,D,M>& resize(std::vector<Dimensions>& deepdims) {
+    Dimensions newdims = deepdims[0];
+    const size_type Nnew = newdims[0];
+    if constexpr(NE==0) {
+      resize(Nnew);
+    }
+    if constexpr(M>1) {
+      deepdims.erase(deepdims.begin());
+      for(index_type i = 0; i < size(); i++) {
+	data_[i].resize(deepdims);
+      }
+    }
+    return *this;
+  }
 
   //**********************************************************************
   //******************** DEEP ACCESS: x.dat(n) ***************************
@@ -283,7 +296,6 @@ namespace mathq {
   // "read/write"
   D& dat(const index_type n) {
     using namespace::display;
-    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
     if constexpr(M < 2) {
       int k = n;
       if (k < 0) {
@@ -301,7 +313,6 @@ namespace mathq {
   // read
   const D& dat(const index_type n)  const {
     using namespace::display;
-    //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr(M < 2) {
       int k = n;
       if (k < 0) {
@@ -443,29 +454,41 @@ namespace mathq {
 
   // copy constuctor
   template <int NE2>
-    Vector<E,NE,D,M>& operator=(const Vector<E,NE2,D,M>& v2) {
-    if constexpr(NE==0) {
-	// TODO: warn if not in constructor
-	if (this->size() != v2.size()) {
-	  resize(v2.size());
+    Vector<E,NE,D,M>& operator=(const Vector<E,NE2,D,M>& v) {
+    if constexpr(M<=1) {
+      if constexpr(NE==0) {
+	if (this->size() != v.size()) {
+	  resize(v.size());
 	}
-    }
-    for(index_type i=0; i< size(); i++ ) {
-      data_[i] = v2[i];
-    }
+      }
+      for (index_type i = 0; i < size(); i++)  {
+	(*this)[i] = v[i];
+      }
+    } else {
+      resize(v.deepdims());
+      for (index_type i = 0; i < deepsize(); i++)  {
+	 this->dat(i) = v.dat(i);
+      }
+    } 
     return *this;
   }
 
-  Vector<E,NE,D,M>& operator=(const Vector<E,NE,D,M>& v2) {
-    if constexpr(NE==0) {
-	// TODO: warn if not in constructor
-	if (this->size() != v2.size()) {
-	  resize(v2.size());
+  Vector<E,NE,D,M>& operator=(const Vector<E,NE,D,M>& v) {
+    if constexpr(M<=1) {
+      if constexpr(NE==0) {
+	if (this->size() != v.size()) {
+	  resize(v.size());
 	}
-    }
-    for(index_type i=0; i< size(); i++ ) {
-      data_[i] = v2[i];
-    }
+      }
+      for (index_type i = 0; i < size(); i++)  {
+	(*this)[i] = v[i];
+      }
+    } else {
+      resize(v.deepdims());
+      for (index_type i = 0; i < deepsize(); i++)  {
+	 this->dat(i) = v.dat(i);
+      }
+    } 
     return *this;
   }
 
@@ -473,20 +496,21 @@ namespace mathq {
   // NEW STYLE EXPRESSION equals
 
   template <class X>
-    Vector<E,NE,D,M>& operator=(const TensorR<X,E,D,M,R>& y) {  
-    if constexpr(NE==0) {
-	// TODO: warn if not in constructor
-	if (this->size() != y.size()) {
-	  resize(y.size());
+    Vector<E,NE,D,M>& operator=(const TensorR<X,E,D,M,Rvalue>& x) {  
+
+    if constexpr(M<=1) {
+      if constexpr(NE==0) {
+	if (this->size() != x.size()) {
+	  resize(x.size());
 	}
-      } 
-    if constexpr(M<2) {
-        for (index_type i = 0; i < size(); i++)  {
-	  (*this)[i] = y[i];
-	}
-      } else {
+      }
+      for (index_type i = 0; i < size(); i++)  {
+	(*this)[i] = x[i];
+      }
+    } else {
+      resize(x.deepdims());
       for (index_type i = 0; i < deepsize(); i++)  {
-	this->dat(i) = y.dat(i);
+	 this->dat(i) = x.dat(i);
       }
     } 
     return *this;
@@ -546,7 +570,7 @@ namespace mathq {
     
 
   // assignment to a C++11 list
-  Vector<E,NE,D,M>& equals(const std::initializer_list<E>& mylist) {
+  Vector<E,NE,D,M>& operator=(const std::initializer_list<E>& mylist) {
     if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != mylist.size()) {
@@ -561,9 +585,6 @@ namespace mathq {
     }
 
     return *this;
-  }
-  Vector<E,NE,D,M>& operator=(const std::initializer_list<E>& mylist) {
-    return equals(mylist);
   }
 
 

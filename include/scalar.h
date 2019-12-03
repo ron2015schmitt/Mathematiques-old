@@ -86,6 +86,7 @@ namespace mathq {
   template <class X>
     Scalar<E,D,M>(const TensorR<X,E,D,M,Rvalue>& x) 
   {
+   
     *this = x;
     constructorHelper();
   }
@@ -150,6 +151,17 @@ namespace mathq {
       return (this->size())*(this->eldeepsize());
     }
   }
+  std::vector<Dimensions>& deepdims(void) const {
+    std::vector<Dimensions>& ddims = *(new std::vector<Dimensions>);
+    return deepdims(ddims);
+  }
+  std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+    parentdims.push_back(dims());
+    if constexpr(M>1) {
+	data_.deepdims(parentdims);
+    }
+    return parentdims;
+  }
  
 
   
@@ -175,6 +187,12 @@ namespace mathq {
     return myaddr;
   }
 
+    Scalar<E,D,M>& resize(std::vector<Dimensions>& deepdims) {
+    if constexpr(M>1) {
+	deepdims.erase(deepdims.begin());
+	data_.resize(deepdims);
+    }
+  }
 
   //**********************************************************************
   //************************** DEEP ACCESS *******************************
@@ -260,11 +278,13 @@ namespace mathq {
 
 
   Scalar<E,D,M>& operator=(const Scalar<E,D,M>& s2) {
-    if constexpr(M<2) {
+    if constexpr(M<=1) {
       data_ = s2();    
     } else {
-      for (index_type i = 0; i < deepsize(); i++) 
-	(*this).dat(i) = s2.dat(i);   
+      resize(s2.deepdims()); 
+      for (index_type i = 0; i < deepsize(); i++)  {
+	(*this).dat(i) = s2.dat(i);
+      }
     }
     return *this;
   }
@@ -278,22 +298,13 @@ namespace mathq {
 
 
   template <class X>
-    Scalar<E,D,M>& operator=(const TensorR<X,E,D,M,Rvalue>& y) {
-    if constexpr(M<2) {
-	 data_ = y[0];
+    Scalar<E,D,M>& operator=(const TensorR<X,E,D,M,Rvalue>& x) {
+    if constexpr(M<=1) {
+      data_ = x[0];
     } else {
+      resize(x.deepdims());
       for (index_type i = 0; i < deepsize(); i++)  {
-	this->dat(i) = y.dat(i);
-      }
-    } 
-  }
-  template <class X>
-    Scalar<E,D,M>& operator=(const TensorRW<X,E,D,M,Rvalue>& y) {
-    if constexpr(M<2) {
-	 data_ = y[0];
-    } else {
-      for (index_type i = 0; i < deepsize(); i++)  {
-	this->dat(i) = y.dat(i);
+	this->dat(i) = x.dat(i);
       }
     } 
   }
@@ -358,7 +369,11 @@ namespace mathq {
 
   friend std::ostream& operator<<(std::ostream &stream, const Scalar<E,D,M>& s) {
     using namespace display;
+    Style& style = FormatDataVector::style_for_punctuation;
+    stream << style.apply(FormatDataVector::string_opening);
     dispval_strm(stream, s());
+    stream << style.apply(FormatDataVector::string_closing);
+   
     return stream;
   }
 

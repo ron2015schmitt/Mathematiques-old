@@ -54,21 +54,21 @@ int main(int argc, char *argv[])
     tdisp(s2);
   }
 
-  // {
-  //   Vector<double> v {1.1,2.2};
-  //   tdisp(v);
-  //   Vector<double> v2;
-  //   v2 = -v;
-  //   tdisp(v2);
-  // }
+  {
+    Vector<double> v {1.1,2.2};
+    tdisp(v);
+    Vector<double> v2;
+    v2 = -v;
+    tdisp(v2);
+  }
 
-  // {
-  //   Vector<double,2> v {1.1,2.2};
-  //   tdisp(v);
-  //   Vector<double,2> v2;
-  //   v2 = -v;
-  //   tdisp(v2);
-  // }
+  {
+    Vector<double,2> v {1.1,2.2};
+    tdisp(v);
+    Vector<double,2> v2;
+    v2 = -v;
+    tdisp(v2);
+  }
 
   // {
   //   Matrix<double> m {{1.1,2.2},{3.3},{4.4}};

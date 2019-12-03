@@ -87,6 +87,7 @@ namespace mathq {
   
 
   // --------------------- array[]  CONSTRUCTOR ---------------------
+
   template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
 
   Vector<E,NE,D,M>(const size_type N, const E (vals)[]) {
@@ -452,7 +453,10 @@ namespace mathq {
   }
 
 
-  // copy constuctor
+
+
+    // ------------------------ Vector = Vector<E,NE2,D,M> ----------------
+
   template <int NE2>
     Vector<E,NE,D,M>& operator=(const Vector<E,NE2,D,M>& v) {
     if constexpr(M<=1) {
@@ -473,27 +477,8 @@ namespace mathq {
     return *this;
   }
 
-  Vector<E,NE,D,M>& operator=(const Vector<E,NE,D,M>& v) {
-    if constexpr(M<=1) {
-      if constexpr(NE==0) {
-	if (this->size() != v.size()) {
-	  resize(v.size());
-	}
-      }
-      for (index_type i = 0; i < size(); i++)  {
-	(*this)[i] = v[i];
-      }
-    } else {
-      resize(v.deepdims());
-      for (index_type i = 0; i < deepsize(); i++)  {
-	 this->dat(i) = v.dat(i);
-      }
-    } 
-    return *this;
-  }
 
-
-  // NEW STYLE EXPRESSION equals
+  // ------------------------ Vector = TensorR ----------------
 
   template <class X>
     Vector<E,NE,D,M>& operator=(const TensorR<X,E,D,M,Rvalue>& x) {  
@@ -517,40 +502,20 @@ namespace mathq {
   }
 
 
-  std::string bottom(){
-    typename FundamentalType<E>::Type d;
-    return display::getTypeName(d);
-  }
-
-
 
   // ------------------------ Vector = array[] ----------------
 
-  Vector<E,NE,D,M>& equals(const E array[]) {
+  Vector<E,NE,D,M>& operator=(const E array[]) {
     for (index_type i = 0; i < size(); i++)  { 
       (*this)(i) = array[i];
     }
     return *this;
   }
-  Vector<E,NE,D,M>& operator=(const E array[]) {
-    return equals(array);
-  }
 
 
+  // ------------------------ Vector = list ----------------
 
-
-    
-
-  
-
-
-  template <class B>
-  Vector<E,NE,D,M>& operator=(const TERW_Resize<E>& b) { 
-    return *this;
-  }
-
-
-  Vector<E,NE,D,M>& equals(const std::list<E>& mylist) {
+  Vector<E,NE,D,M>& operator=(const std::list<E>& mylist) {
     if constexpr(NE==0) {
 	// TODO: warn if not in constructor
 	if (this->size() != mylist.size()) {
@@ -563,13 +528,10 @@ namespace mathq {
     }
     return *this;
   }
-  Vector<E,NE,D,M>& operator=(const std::list<E>& mylist) {
-    return equals(mylist);
-  }
 
     
+  // ------------------------ Vector = initializer_list ----------------
 
-  // assignment to a C++11 list
   Vector<E,NE,D,M>& operator=(const std::initializer_list<E>& mylist) {
     if constexpr(NE==0) {
 	// TODO: warn if not in constructor
@@ -590,35 +552,28 @@ namespace mathq {
 
 
 
-  // assignment to a std::vector
-  Vector<E,NE,D,M>& equals(const std::vector<E>& vstd) {
-      
+  // ------------------------ Vector = std::vector ----------------
 
+  Vector<E,NE,D,M>& operator=(const std::vector<E>& vstd) {
     // resize to avoid segmentation faults
     if constexpr(NE==0) {
 	if (this->size() != vstd.size()) {
 	  resize(vstd.size());
 	}
     }
-
     for(size_type i = 0; i < size(); i++)
       (*this)(i) = vstd[i];    
-
     return *this;
   }
 
 
-  Vector<E,NE,D,M>& operator=(const std::vector<E>& vstd) {
-    return equals(vstd);
-  }
 
 
 
-  // assignment to a std::array
+  // ------------------------ Vector = std::array ----------------
+
   template <std::size_t N>
-  Vector<E,NE,D,M>& equals(const std::array<D,N>& varray) {
-      
-
+  Vector<E,NE,D,M>& operator=(const std::array<D,N>& varray) {
     // resize to avoid segmentation faults
     if constexpr(NE==0) {
 	if (this->size() != varray.size()) {
@@ -633,32 +588,24 @@ namespace mathq {
   }
 
 
-  template <std::size_t n>
-  Vector<E,NE,D,M>& operator=(const std::array<D,n>& varray) {
-    return equals(varray);
-  }
 
 
 
-  // assignment to a std::val_array
-  Vector<E,NE,D,M>& equals(const std::valarray<E>& varray) {
-      
-
-    // resize to avoid segmentation faults
-    if constexpr(NE==0) {
-	if (this->size() != varray.size()) {
-	  resize(varray.size());
-	}
-    }
-
-    for(size_type i = 0; i < size(); i++)
-      (*this)(i) = varray[i];    
-
-    return *this;
-  }
+  // ------------------------ Vector = std::valarray ----------------
 
   Vector<E,NE,D,M>& operator=(const std::valarray<E>& varray) {
-    return equals(varray);
+ 
+    // resize to avoid segmentation faults
+    if constexpr(NE==0) {
+	if (this->size() != varray.size()) {
+	  resize(varray.size());
+	}
+    }
+
+    for(size_type i = 0; i < size(); i++)
+      (*this)(i) = varray[i];    
+
+    return *this;
   }
 
 
@@ -1139,6 +1086,11 @@ namespace mathq {
   //**********************************************************************
   //************************** Text and debugging ************************
   //**********************************************************************
+
+  std::string bottom(){
+    typename FundamentalType<E>::Type d;
+    return display::getTypeName(d);
+  }
 
   inline std::string classname() const {
     using namespace display;

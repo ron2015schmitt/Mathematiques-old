@@ -93,7 +93,7 @@ namespace mathq {
 
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-  Scalar<E,D,M>(std::initializer_list<E> mylist) {
+  Scalar<E,D,M>(const std::initializer_list<E>& mylist) {
     *this = mylist;
     constructorHelper();
   }
@@ -291,7 +291,7 @@ namespace mathq {
 
   
   Scalar<E,D,M>& operator=(const std::initializer_list<E>& mylist) {
-    typename std::initializer_list<E>::iterator it  = mylist.begin(); 
+    typename std::initializer_list<E>::iterator it  = mylist.begin();
     data_ = *it;
     return *this;
   }

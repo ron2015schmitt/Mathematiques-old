@@ -27,7 +27,7 @@ namespace mathq {
 
 
     template <class E, int NR, int NC,    typename D, int M>
-      class Matrix : public TensorRW<E,Matrix<E,NR,NC,D,M>,D,M,2>{
+      class Matrix : public TensorRW<Matrix<E,NR,NC,D,M>,E,D,M,2>{
 
     public:
       constexpr static int R = 2;
@@ -92,7 +92,6 @@ namespace mathq {
 
     // ************* C++11 initializer_list 2D CONSTRUCTOR---------------------
     Matrix<E,NR,NC,D,M>(const std::initializer_list<std::initializer_list<E> >& list1) {
-
       const int Nr = list1.size();
       const int Nc = (*(list1.begin())).size();
       resize(Nr,Nc);
@@ -105,7 +104,8 @@ namespace mathq {
 
     // --------------------- COPY CONSTRUCTOR --------------------
 
-    Matrix<E,NR,NC,D,M>(const Matrix<E>& m2) {
+    template <int NR2, int NC2>
+      Matrix<E,NR,NC,D,M>(const Matrix<E,NR2,NC2,D,M>& m2) {
       resize(m2.Nrows(), m2.Ncols());
       *this = m2;
     }
@@ -114,8 +114,8 @@ namespace mathq {
     // --------------------- EXPRESSION CONSTRUCTOR --------------------
 
 
-    template <class A>
-      Matrix<E,NR,NC,D,M>(const TensorR<E,A,D,M,R>& x) {
+    template <class X>
+      Matrix<E,NR,NC,D,M>(const TensorR<X,E,D,M,R>& x) {
       resize(x.dims()[0], x.dims()[1]);
       *this = x;
       }
@@ -141,24 +141,6 @@ namespace mathq {
     
 
     
-    // --------------------- resize() --------------------
-    
-    void resize(const int Nr, const int Nc) {
-      if constexpr(resizableRows) {
-	Nrows_ = Nr;
-      } else {
-	Nrows_ = NR;
-      }
-      if constexpr(resizableCols) {
-	Ncols_ = Nc;
-      } else {
-	Ncols_ = NC;
-      }
-      if constexpr(resizable) {
-        data_.resize(Nrows_*Ncols_);
-      }
-    }
-
 
 
 
@@ -196,6 +178,8 @@ namespace mathq {
       Dimensions dimensions(Nrows_,Ncols_);
       return dimensions;
     }
+
+
     bool isExpression(void) const {
       return false;
     }
@@ -254,6 +238,19 @@ namespace mathq {
       return (this->size())*(this->eldeepsize());
     }
   }
+  std::vector<Dimensions>& deepdims(void) const {
+    std::vector<Dimensions>& ddims = *(new std::vector<Dimensions>);
+    return deepdims(ddims);
+  }
+  std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+    parentdims.push_back(dims());
+    if constexpr(M>1) {
+	if (size()>0) {
+	  data_[0].deepdims(parentdims);
+	}
+    }
+    return parentdims;
+  }
  
 
 
@@ -261,15 +258,44 @@ namespace mathq {
     //**********************************************************************
     //************************** RESIZE, RESHAPE, TRANSPOSE*****************
     //**********************************************************************
+    // --------------------- resize() --------------------
+    
+    Matrix<E,NR,NC,D,M>&  resize(const int Nr, const int Nc) {
+      Nrows_ = NR;
+      Ncols_ = NC;
+      if constexpr(resizableRows) {
+	  Nrows_ = Nr;
+      }
+      if constexpr(resizableCols) {
+	  Ncols_ = Nc;
+      }
+      if constexpr(resizable) {
+	  data_.resize(Nrows_*Ncols_);
+      }
+      return *this;
+    }
+
 
 
     // -------------------------- resize(Dimensions) --------------------------------
     
     Matrix<E,NR,NC,D,M>& resize(const Dimensions dims) {
-      // TODO: check 
-      resize(dims[0], dims[1]);  
+      resize(dims[0], dims[1]);
       return *this;
     }
+
+
+    Matrix<E,NR,NC,D,M>& resize(std::vector<Dimensions>& deepdims) {
+    Dimensions newdims = deepdims[0];
+    resize(newdims);
+    if constexpr(M>1) {
+      deepdims.erase(deepdims.begin());
+      for(index_type i = 0; i < size(); i++) {
+	data_[i].resize(deepdims);
+      }
+    }
+    return *this;
+  }
 
 
 
@@ -279,12 +305,14 @@ namespace mathq {
     // data is left unchanged
     Matrix<E,NR,NC,D,M>& reshape(const size_type nr, const size_type nc) { 
       const size_type nn = nr*nc;
+      if (nn==size) {
       if (nn == 0) {
 	Nrows_ = 0;
 	Ncols_ = 0; 
       } else {
 	Nrows_ = nr;
 	Ncols_ = nc; 
+      }
       }
       return *this;
     }
@@ -438,7 +466,7 @@ namespace mathq {
   D& dat(const index_type n) {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
-    if constexpr(M < 2) {
+    if constexpr(M<=1) {
       int k = n;
       if (k < 0) {
 	  k += size();
@@ -456,7 +484,7 @@ namespace mathq {
   const D& dat(const index_type n)  const {
     using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
-    if constexpr(M < 2) {
+    if constexpr(M<=1) {
       int k = n;
       if (k < 0) {
 	  k += size();
@@ -573,10 +601,10 @@ namespace mathq {
 
 
     // ----------------- matrix(r,c) ----------------
-    D& operator()(const index_type r, const index_type c) {
+    E& operator()(const index_type r, const index_type c) {
       return data_[index(r,c)]; 
     }
-    const D operator()(const index_type r, const index_type c) const {
+    const E operator()(const index_type r, const index_type c) const {
       return data_[index(r,c)]; 
     }
 
@@ -611,24 +639,42 @@ namespace mathq {
       return *this;
     }
 
-    // ----------------- matrix = TensorR<E,A,D,M,R> ----------------
-    template <class A> Matrix<E,NR,NC,D,M>&
-      operator=(const TensorR<E,A,D,M,R>& x) {  
-      // TODO: issue warning
-      resize(x.dims());
+  // ----------------------Matrix = Matrix<E,NR2,NC2,D,M> ----------------
 
-      if (common(*this, x)){    
-	Matrix<E> mtemp(Nrows_,Ncols_);
-	for (index_type i = size(); i--;)
-	  mtemp[i] = x[i];   // Inlined expression
-	for (index_type i = size(); i--;)
-	  data_[i] = mtemp[i];
-      } else {
-	for (index_type i = size(); i--;)
-	  data_[i] = x[i];   // Inlined expression
+    template<int NR2, int NC2>
+  Matrix<E,NR,NC,D,M>& operator=(const Matrix<E,NR2,NC2,D,M>& m) {
+    if constexpr(M<=1) {
+      resize(m.dims());
+      for (index_type i = 0; i < size(); i++)  {
+	(*this)[i] = m[i];
       }
-      return *this; 
-    }
+    } else {
+      resize(m.deepdims());
+      for (index_type i = 0; i < deepsize(); i++)  {
+	 this->dat(i) = m.dat(i);
+      }
+    } 
+    return *this;
+  }
+
+    
+    // ----------------- matrix = TensorR<X,E,D,M,R> ----------------
+    template <class X> Matrix<E,NR,NC,D,M>&
+      operator=(const TensorR<X,E,D,M,R>& x) {  
+
+        if constexpr(M<=1) {
+	  resize(x.dims());
+          for (index_type i = 0; i < size(); i++)  {
+	    (*this)[i] = x[i];
+          }
+        } else {
+          resize(x.deepdims());
+          for (index_type i = 0; i < deepsize(); i++)  {
+	    this->dat(i) = x.dat(i);
+          }
+        } 
+        return *this;
+      }
   
 
 
@@ -647,36 +693,14 @@ namespace mathq {
 
     
 
-    // ----------------- matrix = matrix ----------------
-    Matrix<E,NR,NC,D,M>&
-      operator=(const Matrix<E,NR,NC,D,M>& m2) {
-      // TODO; issue warning
-      //      this->resize(m2.dims());
-
-      for(index_type i = 0; i<size(); i++) {
-	data_[i] = m2[i];
-      }
-      return *this;
-    }
-
-
-
-    // ----------------- matrix = matrix2.resize()  ----------------
-    template <class B>
-      Matrix<E,NR,NC,D,M>&
-      operator=(const TERW_Resize<E>& b) {
-      // do nothing
-      return *this;
-    }
-
-    
-
-    
 
     // ----------------- matrix = initializer_list<initializer_list>  ----------------
     Matrix<E,NR,NC,D,M>&
       operator=(const std::initializer_list<std::initializer_list<E> >& mylist) {
-      // TODO: size check 
+      const int Nr = mylist.size();
+      const int Nc = (*(mylist.begin())).size();
+      resize(Nr,Nc);
+      // TODO: size check
       index_type i = 0;
       typename std::initializer_list<std::initializer_list<E> >::iterator itR; 
       for (itR = mylist.begin(); itR != mylist.end(); ++itR)  {

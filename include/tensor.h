@@ -191,9 +191,7 @@ namespace mathq {
     return deepdims(ddims);
   }
   std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
-    tdisp(dims());
     parentdims.push_back(dims());
-    tdisp(parentdims);
     if constexpr(M>1) {
 	if (size()>0) {
 	  data_[0].deepdims(parentdims);

@@ -84,13 +84,13 @@ namespace mathq {
 
 
   
-  template <class E,              typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+  template <class E, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Scalar;
   template <class E, int NE = 0,  typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Vector;
-  template <class E, int NR = 0, int NC = 0,    typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+  template <class E, int NR = 0, int NC = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Matrix;
-  template <class E, int NDims = 0,   typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
+  template <class E, int R = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Tensor;
 
 
@@ -253,6 +253,15 @@ namespace mathq {
     }
   };
 
+  //  Tensor<E,R>
+  template <class E, int R> class
+    FundamentalType<Tensor<E,R>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
 
   //  TensorR<X,E,D,M,R>
 
@@ -395,6 +404,26 @@ namespace mathq {
       return x.deepsize();
     }
   };
+
+  //  Tensor<E,R>
+
+  template <class E, typename NewD, int R> class
+    NumberType<Tensor<E,R>,NewD > {
+  public:
+    typedef Tensor<E,R> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Tensor<typename NumberType<E,NewD>::ReplaceType,R> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NewD>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
 
 
   //  TensorR<X,E,D,M,R>

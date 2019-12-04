@@ -191,7 +191,9 @@ namespace mathq {
     return deepdims(ddims);
   }
   std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+    tdisp(dims());
     parentdims.push_back(dims());
+    tdisp(parentdims);
     if constexpr(M>1) {
 	if (size()>0) {
 	  data_[0].deepdims(parentdims);
@@ -208,7 +210,8 @@ namespace mathq {
     //********************* Resize ********************** ******************
     //**********************************************************************
 
-    Tensor& resize(Dimensions& dims) {
+    Tensor& resize(const Dimensions& dims_in) {
+      Dimensions dims = dims_in;
       while (dims.rank() < R) {
 	dims.push_back(0);
       }

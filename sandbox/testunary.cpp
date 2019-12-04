@@ -142,6 +142,9 @@ int main(int argc, char *argv[])
     //tdisp(t0);
     Tensor<double,3> t1;
     tdisp(t1.dims());
+    tdisp(t1.deepdims());
+    tdisp(t1.deepsize());
+    tdisp(t1.depth());
     tdisp(t1);
     Dimensions dims(3,2,5);
     Tensor<double,3> t2(dims);
@@ -178,35 +181,23 @@ int main(int argc, char *argv[])
     tdisp(t5.dims());
     tdisp(t5(2,1,3));
     tdisp(t5);
-
-    // for (int i = 0; i < t5.dims()[0]; i++) {
-    //   for (int j = 0; j < t5.dims()[1]; j++) {
-    // 	for (int k = 0; k < t5.dims()[2]; k++) {
-    // 	  mdisp(i,j,k,t5(i,j,k));
-    // 	}
-    //   }
-    // }
-    // Tensor<double> t2;
-    // tdisp(t2);
-    // t2 = -t;
-    // tdisp(t2);
-
-
   }
 
     
-  // cr();
-  // {
-  //   Tensor<double,2,2> t {{1.1,2.2},{3.3,4.4}};
-  //   tdisp(t);
-  //   Tensor<double,2,2> t2;
-  //   t2 = -t;
-  //   tdisp(t2);
-  // }
+  cr();
+  {
+    Tensor<double,2> t {{1.1,2.2},{3.3,4.4}};
+    tdisp(t);
+    Tensor<double,2> t2;
+    t2 = -t;
+    tdisp(t2);
+  }
 
 
-    
-  return 0;
+
+
+
+  
 
   // -------------------------------------------------
   // two level tests
@@ -256,6 +247,24 @@ int main(int argc, char *argv[])
     tdisp(s2);  
   }
 
+  {   
+    cr();
+    Scalar<Tensor<double,2>> s {{{1,2},{3,4}}};
+    tdisp(s);
+    tdisp(s());
+    tdisp(s()(0,1));
+    tdisp(s.dims());
+    tdisp(s.size());
+    tdisp(s().dims());
+    tdisp(s.depth());
+    tdisp(s.deepdims());
+
+    //Scalar<Tensor<double,2>> s2;
+    // s2 = -s;  
+    // tdisp(s2);
+    
+  }
+  return 0;
 
   cr();
   cr();

@@ -204,12 +204,13 @@ namespace mathq {
       }
       calcSize();
     }
+    // TODO: use parmpack instead, to handle any number of dimensions as input
+    
     Dimensions() {
       resize(0,0);
       calcSize();
     }
     Dimensions(const size_type dim1) {
-      // TODO: make sure >0
       resize(1,0);
       (*this)[0] = dim1;
       calcSize();
@@ -240,6 +241,18 @@ namespace mathq {
       calcSize();
     }
 
+    // C++11 init list 
+    Dimensions(const std::initializer_list<size_type>& list) {
+      const size_type N =  list.size();
+      resize(N,0);
+      index_type i = 0;
+      typename std::initializer_list<size_type>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+      calcSize();
+    }
+    
     Dimensions(const Parent& vec) {
       resize(vec.size(),0);
       for(int k = 0; k < vec.size(); k++) {
@@ -248,18 +261,6 @@ namespace mathq {
       calcSize();
     }
     
-    // use C++11 init list for arbitrary rank
-    Dimensions(const std::initializer_list<size_type> list) 
-      {
-	const size_type N =  list.size();
-	resize(N,0);
-	index_type i = 0;
-	typename std::initializer_list<size_type>::iterator it; 
-	for (it = list.begin(); it != list.end(); ++it)  { 
-	  (*this)[i++] = *it;
-	}
-	calcSize();
-      }
 
     // return this object with size 1 dimensions removed
     

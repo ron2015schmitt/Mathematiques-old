@@ -6,6 +6,30 @@
 
 namespace mathq {
 
+ //- Traits.
+
+template<typename T, std::size_t T_levels>
+struct NestedInitializerLists
+{
+    using type = std::initializer_list<
+        typename NestedInitializerLists<T, T_levels - 1>::type
+    >;
+};
+
+template<typename T>
+struct NestedInitializerLists<T, 0>
+{
+    using type = T;
+};
+
+
+//- Aliases.
+
+template<typename T, std::size_t T_levels>
+using NestedInitializerListsT =
+    typename NestedInitializerLists<T, T_levels>::type;
+
+
  
    /********************************************************************
    * Tensor<E>      -- Tensor of 0 dimension (scalar)
@@ -24,16 +48,19 @@ namespace mathq {
    */
  
 
-  template <class E, int R,   typename D, int M> class Tensor :
-    public TensorRW<E,Tensor<E,R,D,M>,D,M,R> {
+  template <class E, int R,   typename D, int M> class
+    Tensor : public TensorRW<Tensor<E,R,D,M>,E,D,M,R> {
   private:
 
     // *********************** OBJECT DATA ***********************************
     //
     // do NOT declare any other storage.
     // keep the instances lightweight
-    
-    std::valarray<E> data_;
+
+    // always use valarray
+    typedef typename ArrayType<E,0>::Type MyArrayType;
+
+    MyArrayType data_;
     Dimensions* dimensions_;
 
   public:     
@@ -49,10 +76,12 @@ namespace mathq {
 
     explicit Tensor<E,R,D,M>() 
     {
-      dimensions_ = new Dimensions();
+      std::vector<size_type> dv(R);
+      dimensions_ = new Dimensions(dv);
       data_.resize(dimensions_->datasize());
       constructorHelper();
     }
+
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
 
@@ -74,7 +103,22 @@ namespace mathq {
     }
 
 
+  // ************* C++11 initializer_list CONSTRUCTOR---------------------
+      Tensor<E,R,D,M>(const NestedInitializerListsT<D,R>& mylist)  {
+      std::vector<size_type> dv(R);
+      dimensions_ = new Dimensions(dv);
+      tdisp(mylist);
+      *this = mylist;
+      constructorHelper();
+    }
 
+    /* Tensor<E,R,D,M>(const std::initializer_list<E>& mylist)  { */
+    /*   std::vector<size_type> dv(R); */
+    /*   dimensions_ = new Dimensions(dv); */
+    /*   tdisp(mylist); */
+    /*   //      *this = mylist; */
+    /*   constructorHelper(); */
+    /* } */
 
 
     // --------------------- constructorHelper() --------------------
@@ -101,16 +145,7 @@ namespace mathq {
     //************************** Size related  ******************************
     //**********************************************************************
 
-    // --------------------- RESIZE ---------------------
 
-    // These allow the user to resize a vector
-
-
-    // *** this is used for recon by assignment ***
-
-    TERW_Resize<E>  resize(void) { 
-      return  TERW_Resize<E>(*this);
-    }
 
 
 
@@ -179,10 +214,27 @@ namespace mathq {
       return (this->size())*(this->eldeepsize());
     }
   }
+  std::vector<Dimensions>& deepdims(void) const {
+    std::vector<Dimensions>& ddims = *(new std::vector<Dimensions>);
+    return deepdims(ddims);
+  }
+  std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+    parentdims.push_back(dims());
+    if constexpr(M>1) {
+	if (size()>0) {
+	  data_[0].deepdims(parentdims);
+	}
+    }
+    return parentdims;
+  }
  
 
     
 
+
+    //**********************************************************************
+    //********************* Resize ********************** ******************
+    //**********************************************************************
 
     Tensor& resize(const Dimensions& dims) {
       dimensions_ = new Dimensions(dims);
@@ -190,21 +242,24 @@ namespace mathq {
       return *this;
     }
 
+    Tensor<E,R,D,M>& resize(std::vector<Dimensions>& deepdims) {
+    Dimensions newdims = deepdims[0];
+    resize(newdims);
+    if constexpr(M>1) {
+      deepdims.erase(deepdims.begin());
+      for(index_type i = 0; i < size(); i++) {
+	data_[i].resize(deepdims);
+      }
+    }
+    return *this;
+  }
+
+
     
     //**********************************************************************
     //*********************  Accesss to Internal valarray ******************
     //**********************************************************************
 
-    // "read/write" to the wrapped valarray
-    inline std::valarray<E>& getValArray()  {
-      return *data_; 
-    }
-    inline Tensor<E,R,D,M>& setValArray(std::valarray<E>* valptr)  {
-      delete  data_ ;
-      const size_t N = valptr->size();
-      data_ = valptr;
-      return *this;
-    }
 
   //**********************************************************************
   //******************** DEEP ACCESS: x.dat(n) ***************************
@@ -294,7 +349,7 @@ namespace mathq {
     /*   return k; */
     /* } */
 
-    template <typename... U> typename std::enable_if<(std::is_same<U, int>::value && ...), index_type>::type index(const U... args) {
+    template <typename... U> typename std::enable_if<(std::is_same<U, index_type>::value && ...), index_type>::type index(const U... args) {
   
       const int size = sizeof...(args);
       int argarray[size] = {args...};
@@ -308,7 +363,7 @@ namespace mathq {
     }
 
     
-    index_type indexl(const std::initializer_list<size_type> mylist) const {
+    index_type indexl(const std::initializer_list<size_type>& mylist) const {
       // TODO: check size
       const index_type NN = this->ndims();
       const size_type N =  mylist.size();
@@ -354,22 +409,26 @@ namespace mathq {
     
     // ---------------- tensor(i,j,...)--------------
 
-    template <typename... U> typename std::enable_if<(std::is_same<U, int>::value && ...), D&>::type operator()(const U... args) {
+    template <typename... U> typename std::enable_if<(std::is_same<U, index_type>::value && ...), E&>::type operator()(const U... args) {
+
+      //const int size = sizeof...(args);
+      //int argarray[size] = {args...};
       index_type k = this->index(args...);
+      
       return (*this)[k];
     }
-    template <typename... U> typename std::enable_if<(std::is_same<U, int>::value && ...), const D>::type operator()(const U... args) const  {
+    template <typename... U> typename std::enable_if<(std::is_same<U, index_type>::value && ...), const E>::type operator()(const U... args) const  {
     return (*this)(args...);
     }
 
 
 
     // ---------------- tensor({i,j,...})--------------
-    E& operator()(const std::initializer_list<size_type> mylist) {
+    E& operator()(const std::initializer_list<size_type>& mylist) {
       index_type k = this->index(mylist);
       return (*this)[k];
     }
-    const E operator()(const std::initializer_list<size_type> mylist) const {
+    const E operator()(const std::initializer_list<size_type>& mylist) const {
       index_type k = this->index(mylist);
       return (*this)[k];
     }
@@ -402,6 +461,14 @@ namespace mathq {
       return *this;
     }
 
+        // ----------------- tensor = C++11 init list
+      Tensor<E,R,D,M>& operator=(const NestedInitializerListsT<D,R>& mylist)  {
+      tdisp(mylist);
+      // need a recursive for loop
+      return *this;
+    }
+
+    
 
     // ----------------- tensor = Tensor<E,R,D,M> ----------------
     Tensor<E,R,D,M>&
@@ -415,8 +482,8 @@ namespace mathq {
     }
 
     // ----------------- tensor = TensorR<D,A> ----------------
-    template <class A>  Tensor<E,R,D,M>&
-      operator=(const TensorR<E,A,D,M,R>& x) {  
+    template <class X>  Tensor<E,R,D,M>&
+      operator=(const TensorR<X,E,D,M,R>& x) {  
       // TODO: issue warning
       resize(x.dims());
 
@@ -448,23 +515,6 @@ namespace mathq {
       }
       return *this;
     }
-
-
-    // --------------- matrix = initializer_list ------------------
-    Tensor<E,R,D,M>&
-      operator=(const std::initializer_list<E>& mylist) {
-
-      // TODO: bound scheck 
-      size_type i = 0;
-      typename std::initializer_list<E>::iterator it; 
-      for (it = mylist.begin(); it != mylist.end(); ++it)  { 
-	(*this)[i++] = *it;
-      }
-
-      return *this;
-    }
-
-
     
     //**********************************************************************
     //************************** MATH **************************************

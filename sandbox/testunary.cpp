@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 
   cr();
   cr();
-  mout << "Scalar" << endl;
+  mout << "Matrix" << endl;
   {
     cr();
     Matrix<double> m0;
@@ -112,8 +112,74 @@ int main(int argc, char *argv[])
     m2 = -m;
     tdisp(m2);
   }
-  
 
+  
+  cr();
+  cr();
+  mout << "Tensor" << endl;
+  {
+    cr();
+    Tensor<double> t0;
+    tdisp(t0.dims());
+    //tdisp(t0);
+    Tensor<double,3> t1;
+    tdisp(t1.dims());
+    tdisp(t1);
+    Dimensions dims(3,2,5);
+    Tensor<double,3> t2(dims);
+    tdisp(t2.dims());
+    tdisp(t2);
+    for (int i = 0; i < t2.size(); i++) {
+      t2[i] = double(i);
+    }
+    tdisp(t2);
+    for (int i = 0; i < t2.dims()[0]; i++) {
+      for (int j = 0; j < t2.dims()[1]; j++) {
+	for (int k = 0; k < t2.dims()[2]; k++) {
+	  t2(i,j,k) = double(100*i)+double(10*j)+double(k);
+	}
+      }
+    }
+    tdisp(t2);
+
+    Tensor<double,1> t3 {1,2,3};
+    tdisp(t3.dims());
+    tdisp(t3);
+
+
+    Tensor<double,2> t4 {{1.1,2.2},{3.3,4.4}};
+    tdisp(t4.dims());
+    tdisp(t4);
+
+    Tensor<double,3> t5 {
+      {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
+    	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
+    	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
+    
+     tdisp(t5);
+    tdisp(t5.dims());
+    // tdisp(t(1,2,3));
+    // Tensor<double> t2;
+    // tdisp(t2);
+    // t2 = -t;
+    // tdisp(t2);
+
+
+  }
+
+    
+  // cr();
+  // {
+  //   Tensor<double,2,2> t {{1.1,2.2},{3.3,4.4}};
+  //   tdisp(t);
+  //   Tensor<double,2,2> t2;
+  //   t2 = -t;
+  //   tdisp(t2);
+  // }
+
+
+    
+  return 0;
 
   // -------------------------------------------------
   // two level tests

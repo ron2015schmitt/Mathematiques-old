@@ -950,7 +950,7 @@ namespace display {
     inline void dispval_strm(std::ostream &stream, const std::initializer_list<D>& var) {
     stream << "{";
     size_t ii = 0;
-    for(typename std::initializer_list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
+    for(auto it = var.begin(); it != var.end(); ++it) {
       if (ii++>0)  stream << ", ";
       dispval_strm(stream, *it);
     }

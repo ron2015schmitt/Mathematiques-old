@@ -56,6 +56,9 @@ namespace mathq {
 
   class Null{};
   
+
+
+
   //*******************************************************
   //          Typedefs
   //*******************************************************
@@ -64,6 +67,7 @@ namespace mathq {
   typedef int index_type;
   typedef long double extended;
 
+  
   template <typename D> class Imaginary;
   
   template <typename T, typename NUM=double> class NumberType;

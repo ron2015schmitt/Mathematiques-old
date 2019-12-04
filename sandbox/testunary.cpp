@@ -46,9 +46,9 @@ int main(int argc, char *argv[])
   mout << StyledString::get(HORLINE);cr();
   //------------------------------------------------------
 
-    cr();
-    cr();
-    mout << "Scalar" << endl;
+  cr();
+  cr();
+  mout << "Scalar" << endl;
   {
     cr();
     Scalar<double> s = 1.1;
@@ -61,9 +61,9 @@ int main(int argc, char *argv[])
     tdisp(s2);
   }
 
-    cr();
-    cr();
-    mout << "Vector" << endl;
+  cr();
+  cr();
+  mout << "Vector" << endl;
   {
     cr();
     Vector<double> v {1.1,2.2};
@@ -113,7 +113,25 @@ int main(int argc, char *argv[])
     tdisp(m2);
   }
 
-  
+
+  cr();
+  cr();
+  mout << "Initializer lists" << endl;
+  {
+    cr();
+    std::initializer_list<double> x1 {1,2};
+    tdisp(x1);
+
+    std::initializer_list<std::initializer_list<double>> x2 {{1,2},{3,4}};
+    tdisp(x2);
+
+    NestedInitializerList<double,1> y1 {1,2};
+    tdisp(y1);
+
+    NestedInitializerList<double,2> y2 {{1,2},{3,4}};
+    tdisp(y2);
+  }
+
   cr();
   cr();
   mout << "Tensor" << endl;
@@ -137,12 +155,13 @@ int main(int argc, char *argv[])
       for (int j = 0; j < t2.dims()[1]; j++) {
 	for (int k = 0; k < t2.dims()[2]; k++) {
 	  t2(i,j,k) = double(100*i)+double(10*j)+double(k);
+	  // mdisp(i,j,k,t2(i,j,k));
 	}
       }
     }
     tdisp(t2);
 
-    Tensor<double,1> t3 {1,2,3};
+    Tensor<double,1> t3 {1,2,3}; 
     tdisp(t3.dims());
     tdisp(t3);
 
@@ -156,9 +175,17 @@ int main(int argc, char *argv[])
     	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
     	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
     
-     tdisp(t5);
     tdisp(t5.dims());
-    // tdisp(t(1,2,3));
+    tdisp(t5(2,1,3));
+    tdisp(t5);
+
+    // for (int i = 0; i < t5.dims()[0]; i++) {
+    //   for (int j = 0; j < t5.dims()[1]; j++) {
+    // 	for (int k = 0; k < t5.dims()[2]; k++) {
+    // 	  mdisp(i,j,k,t5(i,j,k));
+    // 	}
+    //   }
+    // }
     // Tensor<double> t2;
     // tdisp(t2);
     // t2 = -t;
@@ -185,9 +212,9 @@ int main(int argc, char *argv[])
   // two level tests
   // -------------------------------------------------
 
-    cr();
-    cr();
-    mout << "Two-Level Scalar tests" << endl;
+  cr();
+  cr();
+  mout << "Two-Level Scalar tests" << endl;
 
   {
     cr();
@@ -230,9 +257,9 @@ int main(int argc, char *argv[])
   }
 
 
-    cr();
-    cr();
-    mout << "Two-Level Vector tests" << endl;
+  cr();
+  cr();
+  mout << "Two-Level Vector tests" << endl;
   {
     cr();
     Vector<Scalar<double>> v {{1.},{2.}};
@@ -273,9 +300,9 @@ int main(int argc, char *argv[])
     tdisp(v2);
   }
 
-    cr();
-    cr();
-    mout << "Two-Level Matrix tests" << endl;
+  cr();
+  cr();
+  mout << "Two-Level Matrix tests" << endl;
   {
     cr();
     Matrix<Scalar<double>> m {{{1},{2}},{{3},{4}}};;
@@ -309,7 +336,7 @@ int main(int argc, char *argv[])
     cr();
     Matrix<Matrix<double>> m  {
       { {{1,2},{3,4}}, {{5,6},{7,8}} },
-      { {{9,10},{11,12}}, {{13,14},{15,16}} }
+	{ {{9,10},{11,12}}, {{13,14},{15,16}} }
     };
     tdisp(m);
     tdisp(m(0,0));

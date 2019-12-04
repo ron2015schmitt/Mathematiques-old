@@ -18,6 +18,7 @@ namespace mathq {
   template <Tensors, class D> struct TensorType;
 
 
+
   // **************************************************************************
   // * std::vector related functions
   // ************************************************************************** 
@@ -375,6 +376,67 @@ namespace mathq {
   }
 
 
+  //*******************************************************
+  //     NestedInitializerList  Type Definition
+  //*******************************************************
+
+
+  template<typename E, int L>
+    class NestedInitializerListDef
+    {
+    public:
+      using type = std::initializer_list<
+        typename NestedInitializerListDef<E,L-1>::type
+	>;
+      template <class D, int R, int M>
+	static void compute(Tensor<E,R,D,M>&t, const type& list, int& i) {
+	
+	for (auto nlist : list) {
+	  NestedInitializerListDef<E,L-1>::compute(t,nlist,i);
+	}
+      }
+
+      static Dimensions& dims(const type& list)  {
+	Dimensions& dims = *(new Dimensions());
+	return NestedInitializerListDef::dims(list, dims);
+      }
+      static Dimensions& dims(const type& list, Dimensions& dims) {
+	const int nl = list.size();
+	dims.push_back(nl);
+	if (nl==0) {
+	  return dims;
+	} else {
+	  return NestedInitializerListDef<E,L-1>::dims(*(list.begin()), dims);
+	}
+      }
+
+      
+    };
+
+  template<typename E>
+    class NestedInitializerListDef<E, 0>
+    {
+    public:
+      using type = E;
+
+      template <class D, int R, int M>
+	static void compute(Tensor<E,R,D,M>& t, const type& item, int& i) {
+	//tdisp(item);
+	t[i++] = item;
+      }
+
+      static Dimensions& dims(const type& item, Dimensions& dims) {
+	return dims;
+      }
+      
+    };
+
+
+  // Type to use NestedInitializerListDef<T,int>
+
+  template<typename T, int T_levels>
+    using NestedInitializerList =
+    typename NestedInitializerListDef<T, T_levels>::type;
   
 
   // -------------------------------------------------------------------

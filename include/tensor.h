@@ -6,29 +6,8 @@
 
 namespace mathq {
 
- //- Traits.
 
-template<typename T, std::size_t T_levels>
-struct NestedInitializerLists
-{
-    using type = std::initializer_list<
-        typename NestedInitializerLists<T, T_levels - 1>::type
-    >;
-};
-
-template<typename T>
-struct NestedInitializerLists<T, 0>
-{
-    using type = T;
-};
-
-
-//- Aliases.
-
-template<typename T, std::size_t T_levels>
-using NestedInitializerListsT =
-    typename NestedInitializerLists<T, T_levels>::type;
-
+  
 
  
    /********************************************************************
@@ -104,21 +83,14 @@ using NestedInitializerListsT =
 
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-      Tensor<E,R,D,M>(const NestedInitializerListsT<D,R>& mylist)  {
+    Tensor<E,R,D,M>(const NestedInitializerList<D,R>& mylist)  {
       std::vector<size_type> dv(R);
       dimensions_ = new Dimensions(dv);
-      tdisp(mylist);
+      //mout << "constructor: ";
+      //tdisp(mylist);
       *this = mylist;
       constructorHelper();
     }
-
-    /* Tensor<E,R,D,M>(const std::initializer_list<E>& mylist)  { */
-    /*   std::vector<size_type> dv(R); */
-    /*   dimensions_ = new Dimensions(dv); */
-    /*   tdisp(mylist); */
-    /*   //      *this = mylist; */
-    /*   constructorHelper(); */
-    /* } */
 
 
     // --------------------- constructorHelper() --------------------
@@ -236,7 +208,10 @@ using NestedInitializerListsT =
     //********************* Resize ********************** ******************
     //**********************************************************************
 
-    Tensor& resize(const Dimensions& dims) {
+    Tensor& resize(Dimensions& dims) {
+      while (dims.rank() < R) {
+	dims.push_back(0);
+      }
       dimensions_ = new Dimensions(dims);
       data_.resize(dimensions_->datasize());
       return *this;
@@ -461,10 +436,16 @@ using NestedInitializerListsT =
       return *this;
     }
 
-        // ----------------- tensor = C++11 init list
-      Tensor<E,R,D,M>& operator=(const NestedInitializerListsT<D,R>& mylist)  {
-      tdisp(mylist);
-      // need a recursive for loop
+
+
+    // ----------------- tensor = C++11 init list
+    Tensor<E,R,D,M>& operator=(const NestedInitializerList<D,R>& mylist)  {
+      //mout << "operator=: ";
+      //tdisp(mylist);
+      int i = 0;
+      Dimensions dims = NestedInitializerListDef<D,R>::dims(mylist);
+      resize(dims);
+      NestedInitializerListDef<D,R>::compute(*this, mylist, i);
       return *this;
     }
 

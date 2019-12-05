@@ -121,7 +121,7 @@ echo " "
 
 DIR_TARGET=sandbox
 
-EXECS="printing testing testing2 tfoverloading depth indexing imaginary enableexperiment selfmethod parmpack recurseadd testunary"
+EXECS="printing testing testing2 tfoverloading depth indexing imaginary enableexperiment selfmethod parmpack recurseadd testunary test4deep"
 
 echo -e "Creating ${BLUE1}${DIR_TARGET}/Makefile${DEFCLR} ..."
 #mkdir -p ${DIR_TARGET}

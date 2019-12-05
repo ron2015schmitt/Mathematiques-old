@@ -230,6 +230,15 @@ namespace mathq {
       return 1+FundamentalType<E>::depth();
     }
   };
+  //  Vector<E,NE>
+  template <class E, int NE> class
+    FundamentalType<Vector<E,NE>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
 
   //  Matrix<E>
 
@@ -242,6 +251,27 @@ namespace mathq {
     }
   };
 
+  //  Matrix<E,NR>
+
+  template <class E, int NR> class
+    FundamentalType<Matrix<E,NR>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
+
+  //  Matrix<E,NR,NC>
+
+  template <class E, int NR, int NC> class
+    FundamentalType<Matrix<E,NR,NC>> {
+  public:
+    typedef typename FundamentalType<E>::Type Type;
+    constexpr static int depth() {
+      return 1+FundamentalType<E>::depth();
+    }
+  };
 
   //  Tensor<E>
   template <class E> class
@@ -365,6 +395,25 @@ namespace mathq {
     }
   };
 
+  //  Vector<E,NE>
+
+  template <class E, typename NewD, int NE> class
+    NumberType<Vector<E,NE>,NewD > {
+  public:
+    typedef Vector<E,NE> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Vector<typename NumberType<E,NewD>::ReplaceType,NE> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NewD>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
 
   //  Matrix<E>
 
@@ -384,6 +433,46 @@ namespace mathq {
       return x.deepsize();
     }
   };
+  
+  //  Matrix<E,NR>
+
+  template <class E, typename NewD, int NR> class
+    NumberType<Matrix<E,NR>,NewD > {
+  public:
+    typedef Matrix<E,NR> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Matrix<typename NumberType<E,NewD>::ReplaceType,NR> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NewD>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
+
+  //  Matrix<E,NR,NC>
+
+  template <class E, typename NewD, int NR, int NC> class
+    NumberType<Matrix<E,NR,NC>,NewD > {
+  public:
+    typedef Matrix<E,NR,NC> InputType;
+    typedef typename NumberType<E>::Type Type;
+    typedef Matrix<typename NumberType<E,NewD>::ReplaceType,NR,NC> ReplaceType;
+    constexpr static int depth() {
+      return 1+NumberType<E,NewD>::depth();
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+
 
 
   //  Tensor<E>

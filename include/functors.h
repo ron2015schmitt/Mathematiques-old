@@ -31,18 +31,18 @@ namespace mathq {
     typedef typename NumberType<D>::Type TypeIn;
     typedef typename NumberType<D>::Type Type;
 
-    static inline Type apply(const TypeIn a) { 
+    static Type apply(const TypeIn a) { 
       return a;
     }
 
 
 #if MATHQ_DEBUG>=1
-    static inline std::string expression(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("+")+"("+ sa + ")";
       return sout;
     }
 
-    static inline std::string classname() {
+    static std::string classname() {
       D d;
       return functor_namestyle.apply("Fun_Plus")+display::getBracketedTypeName(d);
     }
@@ -50,28 +50,52 @@ namespace mathq {
         
   };
     
-
-  
+  template <class E, class D, int M, int R>
+    class Materialize {
+    typedef Tensor<E,R,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,0> {
+    typedef Scalar<E,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,1> {
+    typedef Vector<E,0,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,2> {
+    typedef Matrix<E,0,0,D,M> Type;
+  };
   
   // unary-
 
-  template <class D> class Fun_Minus {
-    Fun_Minus() { }
+  template <class E, class D> class Fun_Minus {
   public:
-    typedef typename NumberType<D>::Type TypeIn;
-    typedef typename NumberType<D>::Type Type;
-
-    static inline Type apply(const TypeIn a) { 
-      return (-a); 
+    typedef D DType;
+    typedef D DoutType;
+    typedef E EType;
+    typedef E EoutType;
+    
+    static DoutType apply(const DType& d) { 
+      return (-d); 
     }
-
+    
+    template <class T=E> 
+    static  typename std::enable_if<!std::is_same<T,D>::value, EoutType >::type    
+    apply(const EType& e) {
+      EType *e2 = new EType();
+      *e2 = -e;
+      return *e2; 
+    }
+    
+    
 #if MATHQ_DEBUG>=1
-    static inline std::string expression(const std::string& sa) {
+    static std::string expression(const std::string& sa) {
       std::string sout = functor_style.apply("-")+"("+ sa + ")";
       return sout;
     }
 
-    static inline std::string classname() {
+    static std::string classname() {
       D d;
       return functor_namestyle.apply("Fun_Minus")+display::getBracketedTypeName(d);
     }
@@ -90,7 +114,7 @@ namespace mathq {
     typedef typename FundamentalType<D1>::Type FTypeIn;
     typedef typename FundamentalType<D2>::Type FType;
 
-    static inline Type apply(const TypeIn a) { 
+    static Type apply(const TypeIn a) { 
       return numbercast<FType,FTypeIn>(a); 
     }
     

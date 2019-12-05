@@ -5,9 +5,7 @@
 
 namespace mathq {
 
-
-
-  
+ 
 
   //---------------------------------------------------------------------------
   // TER_Unary    unary expressions
@@ -111,9 +109,7 @@ namespace mathq {
     }
 #endif
 
-
   };
-
 
 
 };  //namespace mathq

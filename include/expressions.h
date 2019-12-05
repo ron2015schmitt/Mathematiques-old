@@ -74,6 +74,9 @@ namespace mathq {
     size_type depth(void) const {
       return M;
     }
+    Dimensions eldims(void) const {
+      return x_.eldims();
+    }
     size_type elsize(void) const {
       if constexpr(M<2) {
 	  return 1;

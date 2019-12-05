@@ -24,7 +24,11 @@ namespace mathq {
   template <class E, int NE,   typename D, int M> class Vector :
     public TensorRW<Vector<E,NE,D,M>,E,D,M,1> {
 
-  public:     
+  public:
+    typedef Vector<E,NE,D,M> XType;
+    typedef E EType;
+    typedef D DType;
+
   typedef typename ArrayType<E,NE>::Type MyArrayType;
   constexpr static int Rvalue = 1;
 
@@ -192,6 +196,17 @@ namespace mathq {
   
   inline size_type depth(void) const {
     return M;
+  }
+
+  Dimensions eldims(void) const {
+    Dimensions dimensions();
+    if constexpr(M>1) {
+	if (size()>0) {
+	  return data_[0].dims();
+	}
+    } else {
+      return *(new Dimensions());
+    }
   }
 
   // the size of each element

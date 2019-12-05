@@ -501,6 +501,7 @@ namespace mathq {
   public:
     virtual size_type size(void) const = 0;
     virtual size_type depth(void) const = 0;
+    virtual Dimensions eldims(void) const = 0;
     virtual size_type ndims(void) const = 0;
     virtual Dimensions dims(void) const = 0;
     virtual std::vector<Dimensions>& deepdims(void) const = 0;
@@ -509,6 +510,10 @@ namespace mathq {
     virtual Tensors getEnum(void) const = 0;
     virtual VectorofPtrs getAddresses(void) const = 0;
     virtual std::string classname(void) const = 0;  // NOTE: *not* static
+    virtual size_type elsize(void) const = 0;
+    virtual size_type eldeepsize(void) const = 0;
+    virtual size_type deepsize(void) const = 0;
+
   };
     
 
@@ -629,6 +634,10 @@ namespace mathq {
     size_type depth(void) const {
       return derived().depth();
     }
+    Dimensions eldims(void) const {
+      return derived().eldims();
+    }
+      
     size_type elsize(void) const {
       return derived().elsize();
     }
@@ -741,6 +750,9 @@ namespace mathq {
     }
     size_type depth(void) const {
       return derived().depth();
+    }
+    Dimensions eldims(void) const {
+      return derived().eldims();
     }
     size_type elsize(void) const {
       return derived().elsize();

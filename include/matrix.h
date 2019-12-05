@@ -34,8 +34,10 @@ namespace mathq {
       static constexpr bool resizable = (NR*NC==0) ? true : false;
       static constexpr bool resizableRows = (NR==0) ? true : false;
       static constexpr bool resizableCols = (NC==0) ? true : false;
+      typedef Matrix<E,NR,NC,D,M> XType;
+    typedef E EType;
+    typedef D DType;
 
-    private:
       // if either NR or NC is 0, then we use valarray
       typedef typename ArrayType<E,NR*NC>::Type MyArrayType;
 
@@ -43,6 +45,7 @@ namespace mathq {
     //
     // do NOT declare any other storage.
     // keep the instances lightweight
+    private:
     MyArrayType data_;
     
     index_type Nrows_;
@@ -201,10 +204,20 @@ namespace mathq {
     constexpr size_type depth(void) const {
       return M;
     }
-
+    Dimensions eldims(void) const {
+      Dimensions dimensions();
+      if constexpr(M>1) {
+	  if (size()>0) {
+	    return data_[0].dims();
+	  }
+	} else {
+	return *(new Dimensions());
+      }
+    }
+    
     // the size of each element
     inline size_type elsize(void) const {
-      if constexpr(M<2) {
+      if constexpr(M<=1) {
 	  return 1;
 	} else {
 	const size_type Nelements = this->size();

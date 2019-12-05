@@ -29,16 +29,20 @@ namespace mathq {
 
   template <class E, int R,   typename D, int M> class
     Tensor : public TensorRW<Tensor<E,R,D,M>,E,D,M,R> {
-  private:
+  public:     
 
     // *********************** OBJECT DATA ***********************************
     //
     // do NOT declare any other storage.
     // keep the instances lightweight
 
+    typedef Tensor<E,R,D,M> XType;
+    typedef E EType;
+    typedef D DType;
     // always use valarray
     typedef typename ArrayType<E,0>::Type MyArrayType;
 
+  private:
     MyArrayType data_;
     Dimensions* dimensions_;
 
@@ -56,8 +60,7 @@ namespace mathq {
     explicit Tensor<E,R,D,M>() 
     {
       std::vector<size_type> dv(R);
-      dimensions_ = new Dimensions(dv);
-      data_.resize(dimensions_->datasize());
+      resize(new Dimensions(dv));
       constructorHelper();
     }
 
@@ -66,8 +69,7 @@ namespace mathq {
 
     explicit Tensor<E,R,D,M>(const Dimensions& dims) 
     {
-      dimensions_ = new Dimensions(dims);
-      data_.resize(dimensions_->datasize());
+      resize(dims);
       constructorHelper();
     }
 
@@ -76,18 +78,13 @@ namespace mathq {
 
     explicit Tensor<E,R,D,M>(const Dimensions& dims, const E e) 
     {
-      dimensions_ = new Dimensions(dims);
-      data_.resize(dimensions_->datasize());
+      resize(dims);
       constructorHelper();
     }
 
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------
-    Tensor<E,R,D,M>(const NestedInitializerList<D,R>& mylist)  {
-      std::vector<size_type> dv(R);
-      dimensions_ = new Dimensions(dv);
-      //mout << "constructor: ";
-      //tdisp(mylist);
+    Tensor<E,R,D,M>(const NestedInitializerList<E,R>& mylist)  {
       *this = mylist;
       constructorHelper();
     }
@@ -150,7 +147,18 @@ namespace mathq {
       return M;
     }
 
-    // the size of each element
+  Dimensions eldims(void) const {
+    Dimensions dimensions();
+    if constexpr(M>1) {
+	if (size()>0) {
+	  return data_[0].dims();
+	}
+    } else {
+      return *(new Dimensions());
+    }
+  }
+
+  // the size of each element
     inline size_type elsize(void) const {
       if constexpr(M<2) {
 	  return 1;
@@ -217,6 +225,11 @@ namespace mathq {
       data_.resize(dimensions_->datasize());
       return *this;
     }
+
+    Tensor& resize(const Dimensions* dims_in) {
+      return resize(*dims_in);
+    }
+
 
     Tensor<E,R,D,M>& resize(std::vector<Dimensions>& deepdims) {
     Dimensions newdims = deepdims[0];
@@ -440,13 +453,13 @@ namespace mathq {
 
 
     // ----------------- tensor = C++11 init list
-    Tensor<E,R,D,M>& operator=(const NestedInitializerList<D,R>& mylist)  {
+    Tensor<E,R,D,M>& operator=(const NestedInitializerList<E,R>& mylist)  {
       //mout << "operator=: ";
       //tdisp(mylist);
       int i = 0;
-      Dimensions dims = NestedInitializerListDef<D,R>::dims(mylist);
+      Dimensions dims = NestedInitializerListDef<E,R>::dims(mylist);
       resize(dims);
-      NestedInitializerListDef<D,R>::compute(*this, mylist, i);
+      NestedInitializerListDef<E,R>::compute(*this, mylist, i);
       return *this;
     }
 
@@ -466,21 +479,20 @@ namespace mathq {
     // ----------------- tensor = TensorR<D,A> ----------------
     template <class X>  Tensor<E,R,D,M>&
       operator=(const TensorR<X,E,D,M,R>& x) {  
-      // TODO: issue warning
-      resize(x.dims());
 
-      if (common(*this, x)){    
-	Tensor<E,R,D,M> Ttemp(this->dims());
-	for (index_type i = size(); i--;)
-	  Ttemp[i] = x[i];   // Inlined expression
-	for (index_type i = size(); i--;)
-	  data_[i] = Ttemp[i];
-      } else {
-	for (index_type i = size(); i--;)
-	  data_[i] = x[i];   // Inlined expression
+        if constexpr(M<=1) {
+	  resize(x.dims());
+          for (index_type i = 0; i < size(); i++)  {
+	    (*this)[i] = x[i];
+          }
+        } else {
+          resize(x.deepdims());
+          for (index_type i = 0; i < deepsize(); i++)  {
+	    this->dat(i) = x.dat(i);
+          }
+        } 
+        return *this;
       }
-      return *this; 
-    }
 
 
     //*********************************************************
@@ -529,8 +541,18 @@ namespace mathq {
     //**********************************************************************
 
     inline std::string classname() const {
-      E d;
-      return "Tensor"+display::getBracketedTypeName(d);
+    using namespace display;
+    std::string s = "Tensor";		
+    s += StyledString::get(ANGLE1).get();
+    E d;
+    s += getTypeName(d);
+    if (R!=0) {
+      s += StyledString::get(COMMA).get();
+      s += "R=";
+      s += num2string(R);
+    }
+    s += StyledString::get(ANGLE2).get();			
+    return s;	
     }
 
 
@@ -544,7 +566,7 @@ namespace mathq {
     std::ostream& send(std::ostream &stream, index_type& n, const Dimensions& dim) const {
       using namespace display;
       Style& style = FormatDataVector::style_for_punctuation;
-
+      //      mdisp(n,dim);
       const int delta = this->ndims() - dim.ndims();
       if (delta == 0) {
 	stream << std::endl;
@@ -554,25 +576,26 @@ namespace mathq {
 	indent +=  "  ";
       }
       stream << indent << style.apply("{");
-      Dimensions newdim(dim);
-      newdim.erase(newdim.begin());
       
       if (dim.ndims() > 1 ) {
 	stream << std::endl;
       } 
-
-      for (index_type j = 0; j < dim[0]; j++) {
-	if (dim.ndims() > 1 ) {
-	  Dimensions newdim(dim);
-	  newdim.erase(newdim.begin());
-	  this->send(stream, n, newdim);
-	  if (j < dim[0]-1)  {
-	    stream << style.apply(",")<< std::endl;
-	  } 
-	} else {
-	  dispval_strm(stream, (*this)[n++]);
-	  if (j < dim[0]-1)  {
-	    stream << style.apply(", ");
+      if (dim.ndims() > 0) { 
+	Dimensions newdim(dim);
+	newdim.erase(newdim.begin());
+	for (index_type j = 0; j < dim[0]; j++) {
+	  if (dim.ndims() > 1 ) {
+	    Dimensions newdim(dim);
+	    newdim.erase(newdim.begin());
+	    this->send(stream, n, newdim);
+	    if (j < dim[0]-1)  {
+	      stream << style.apply(",")<< std::endl;
+	    } 
+	  } else {
+	    dispval_strm(stream, (*this)[n++]);
+	    if (j < dim[0]-1)  {
+	      stream << style.apply(", ");
+	    }
 	  }
 	}
       }

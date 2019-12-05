@@ -130,6 +130,14 @@ namespace mathq {
     return M;
   }
 
+  Dimensions eldims(void) const {
+    Dimensions dimensions();
+    if constexpr(M>1) {
+	return data_.dims();
+    } else {
+      return *(new Dimensions());
+    }
+  }
   inline size_type elsize(void) const {
     if constexpr(M<2) {
       return 1;

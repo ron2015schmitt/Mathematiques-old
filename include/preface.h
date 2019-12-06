@@ -173,8 +173,11 @@ namespace mathq {
 
 
 
+  // ***************************************************************************
   // FundamentalType - this operates recursively to find the primitive arithmetic type
   //                   eg int, float, double, ...
+  // ***************************************************************************
+
   template <typename T> class
     FundamentalType {
   public:
@@ -306,14 +309,16 @@ namespace mathq {
 
 
   
-  
+  // ***************************************************************************
   // NumberType - this operates recursively to find the base number type
   //              eg. complex<double>, Imaginary<float>, int, double, etc
+  // ***************************************************************************
+
   template <typename T, typename NewD> class
     NumberType {
   public:
     typedef T Type;
-    typedef NewD ReplaceType;
+    typedef NewD ReplaceTypeD;
     constexpr static int depth() {
       return 0;
     }
@@ -328,7 +333,7 @@ namespace mathq {
     NumberType<std::complex<D>,NewD > {
   public:
     typedef std::complex<D> Type;
-    typedef NewD ReplaceType;
+    typedef NewD ReplaceTypeD;
     constexpr static int depth() {
       return 0;
     }
@@ -342,7 +347,7 @@ namespace mathq {
   template <class D, typename NewD> class NumberType<Imaginary<D>,NewD > {
   public:
     typedef Imaginary<D> Type;
-    typedef NewD ReplaceType;
+    typedef NewD ReplaceTypeD;
     constexpr static int depth() {
       return 0;
     }
@@ -363,7 +368,8 @@ namespace mathq {
   public:
     typedef Scalar<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Scalar<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
+    typedef Scalar<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
+    typedef Scalar<NewD> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -383,7 +389,8 @@ namespace mathq {
   public:
     typedef Vector<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Vector<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
+    typedef Vector<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
+    typedef Vector<NewD> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -402,7 +409,8 @@ namespace mathq {
   public:
     typedef Vector<E,NE> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Vector<typename NumberType<E,NewD>::ReplaceType,NE> ReplaceType;
+    typedef Vector<typename NumberType<E,NewD>::ReplaceTypeD,NE> ReplaceTypeD;
+    typedef Vector<NewD,NE> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -422,7 +430,8 @@ namespace mathq {
   public:
     typedef Matrix<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Matrix<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
+    typedef Matrix<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
+    typedef Matrix<NewD> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -441,7 +450,8 @@ namespace mathq {
   public:
     typedef Matrix<E,NR> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Matrix<typename NumberType<E,NewD>::ReplaceType,NR> ReplaceType;
+    typedef Matrix<typename NumberType<E,NewD>::ReplaceTypeD,NR> ReplaceTypeD;
+    typedef Matrix<NewD,NR> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -461,7 +471,8 @@ namespace mathq {
   public:
     typedef Matrix<E,NR,NC> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Matrix<typename NumberType<E,NewD>::ReplaceType,NR,NC> ReplaceType;
+    typedef Matrix<typename NumberType<E,NewD>::ReplaceTypeD,NR,NC> ReplaceTypeD;
+    typedef Matrix<NewD,NR,NC> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -482,7 +493,8 @@ namespace mathq {
   public:
     typedef Tensor<E> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Tensor<typename NumberType<E,NewD>::ReplaceType> ReplaceType;
+    typedef Tensor<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
+    typedef Tensor<NewD> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -501,7 +513,8 @@ namespace mathq {
   public:
     typedef Tensor<E,R> InputType;
     typedef typename NumberType<E>::Type Type;
-    typedef Tensor<typename NumberType<E,NewD>::ReplaceType,R> ReplaceType;
+    typedef Tensor<typename NumberType<E,NewD>::ReplaceTypeD,R> ReplaceTypeD;
+    typedef Tensor<NewD,R> ReplaceTypeE;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -522,9 +535,10 @@ namespace mathq {
   public:
     typedef TensorR<X,E,D,M,R> InputType;
     typedef D Type;
-    typedef typename NumberType<E,NewD>::ReplaceType NewE;
-    typedef typename NumberType<X,NewD>::ReplaceType NewX;
-    typedef NewX ReplaceType;
+    typedef typename NumberType<E,NewD>::ReplaceTypeD NewE;
+    typedef typename NumberType<X,NewD>::ReplaceTypeD NewX;
+    typedef NewX ReplaceTypeD;
+    typedef TensorR<X,NewD,D,M,R> ReplaceTypeE;
     constexpr static int depth() {
       return M;
     }
@@ -538,9 +552,10 @@ namespace mathq {
 
 
 
-
-  
+  // ***************************************************************************
   // DeeperType - this operates recursively to find the primitive arithmetic type
+  // ***************************************************************************
+
   template <typename T1, typename T2> class
     DeeperType {
   public:
@@ -548,6 +563,52 @@ namespace mathq {
   };
 
 
+  // ***************************************************************************
+  // InversionType - turnt he type inside out
+  //    example:  Vector<Scalar<double>>   ->   Scalar<Vector<double>>
+  //            
+  // ***************************************************************************
+
+
+  template <class D, class C> class
+    InversionType {
+  public:
+    typedef C Type;
+  };
+  template <class D, class C> class
+    InversionType<std::complex<D>,C> {
+  public:
+    typedef C Type;
+  };
+  template <class D, class C> class
+    InversionType<Imaginary<D>,C> {
+  public:
+    typedef C Type;
+  };
+
+
+  
+  //  Scalar<E>
+  
+  template <class E, class C> class
+    InversionType<Scalar<E>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Scalar<D> TensorD;
+  typedef Scalar<C> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  Vector<E>
+  
+  template <class E, class C> class
+    InversionType<Vector<E>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Vector<D> TensorD;
+  typedef Vector<C> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
 
   
   // ***************************************************************************
@@ -617,7 +678,7 @@ namespace mathq {
   public:
 
     typedef typename DeeperType<A,B>::Type DeeperType;
-    typedef typename NumberType<DeeperType,NewD>::ReplaceType TensorType;
+    typedef typename NumberType<DeeperType,NewD>::ReplaceTypeD TensorType;
     constexpr static bool isprim = (NumberType<A>::depth() == 0)&&(NumberType<B>::depth() == 0);
     typedef typename std::conditional<isprim, NewD, TensorType >::type Type;
   };

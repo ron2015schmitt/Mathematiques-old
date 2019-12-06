@@ -328,7 +328,7 @@ int main(int argc, char *argv[])
       tdisp(y);
       typename DeeperType<double,decltype(t1)>::Type z;
       tdisp(z);
-      typename NumberType<decltype(t1),float>::ReplaceType w;
+      typename NumberType<decltype(t1),float>::ReplaceTypeD w;
       tdisp(w);
     }
     

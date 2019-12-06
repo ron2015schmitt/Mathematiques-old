@@ -13,28 +13,26 @@ namespace mathq {
    ************************************************************
    */
 
+  // TODO: convert macros to Python script
+
 
   // ************************************************************************
-  // *              Arithmetic
+  // *             UNARY MACRO
   // ************************************************************************
 
-
-  // +(Tensor)
-
-  template <class X, class E, class D, int M, int R> 
-    inline auto operator+(const TensorR<X,E,D,M,R>& x)
-  {
-    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R, Fun_Plus<D> >(x);
+#define FUN_UNARY(Function,Functor)  template <class X, class E, class D, int M, int R> \
+    inline auto Function(const TensorR<X,E,D,M,R>& x)\
+  {\
+    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R, Functor<E,D> >(x);	\
   }
 
-  // -(Tensor)
+  // ************************************************************************
+  // *             UNARY FUNCTIONS
+  // ************************************************************************
 
-  template <class X, class E, class D, int M, int R> 
-    inline auto operator-(const TensorR<X,E,D,M,R>& x)
-  {
-    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R, Fun_Minus<E,D> >(x);
-  }
-
+  
+    FUN_UNARY(operator+,FUNCTOR_plus);
+    FUN_UNARY(operator-,FUNCTOR_minus);
 
   
 

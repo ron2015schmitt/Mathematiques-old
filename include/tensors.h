@@ -480,6 +480,22 @@ namespace mathq {
     typedef Tensor<D> MyType;
   };
   
+  template <class E, class D, int M, int R>
+    class Materialize {
+    typedef Tensor<E,R,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,0> {
+    typedef Scalar<E,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,1> {
+    typedef Vector<E,0,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,2> {
+    typedef Matrix<E,0,0,D,M> Type;
+  };
 
   // -------------------------------------------------------------------
   //

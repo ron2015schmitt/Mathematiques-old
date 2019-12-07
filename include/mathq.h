@@ -6,8 +6,7 @@
 #ifndef MATHQ_H
 #define MATHQ_H
 
-#include <ctgmath>
-#include <cmath>
+
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
@@ -30,6 +29,7 @@
 // C++11
 #include <initializer_list>
 #include <type_traits> 
+#include <stdarg.h>
 
 
 #include "version_mathq.h"  // auto generated
@@ -42,13 +42,12 @@
 #include "util.h"
 #include "tensors.h"
 #include "debug.h"
-#include "functors.h"
+#include "f_unary.h"
 #include "scalar.h"
 #include "vector.h"
 #include "matrix.h"
 #include "tensor.h"
 #include "expressions.h"
-#include "functions.h"
 //#include "functions_calculus.h"
 //#include "functions_complex.h"
 #include "fileio.h"

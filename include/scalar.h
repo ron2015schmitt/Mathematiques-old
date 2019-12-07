@@ -195,11 +195,12 @@ namespace mathq {
     return myaddr;
   }
 
-    Scalar<E,D,M>& resize(std::vector<Dimensions>& deepdims) {
+  Scalar<E,D,M>& resize(std::vector<Dimensions>& deepdims) {
     if constexpr(M>1) {
 	deepdims.erase(deepdims.begin());
 	data_.resize(deepdims);
     }
+    return *this;
   }
 
   //**********************************************************************
@@ -314,7 +315,8 @@ namespace mathq {
       for (index_type i = 0; i < deepsize(); i++)  {
 	this->dat(i) = x.dat(i);
       }
-    } 
+    }
+    return *this;
   }
 
 

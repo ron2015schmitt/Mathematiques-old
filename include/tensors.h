@@ -463,22 +463,6 @@ namespace mathq {
   
   enum Tensors : unsigned int {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
 
-
-
-  template <class D> struct TensorType<T_SCALAR,D> {
-    typedef Scalar<D> MyType;
-  };
-
-  // TODO: do we need to include a version with N?
-  template <class D> struct TensorType<T_VECTOR,D> {
-    typedef Vector<D> MyType;
-  };
-  template <class D> struct TensorType<T_MATRIX,D> {
-    typedef Matrix<D> MyType;
-  };
-  template <class D> struct TensorType<T_TENSOR,D> {
-    typedef Tensor<D> MyType;
-  };
   
   template <class E, class D, int M, int R>
     class Materialize {
@@ -554,36 +538,35 @@ namespace mathq {
 
   template <class X, class E, class D, int M, int R>
     std::ostream& printTensorExpression(std::ostream &stream, const TensorR<X,E,D,M,R>& te) {
-    switch (R) {
-    case 0: {
-      Scalar<E> s = te;
+
+    if constexpr(R==0) {
+      Scalar<E> s;
+      s = te;
       stream << "" +display::getTypeName(s)+" ";
       stream << s;
       return stream;
-      break;
-    }
-    case 1: {
-      Vector<E> v = te;
+    } else
+    if constexpr(R==1) {
+      Vector<E> v;
+      v = te;
       stream << "" +display::getTypeName(v)+" ";
       stream << v;
       return stream;
-      break;
-    }
-    case 2:{
-      Matrix<E> v = te;
-      stream << "" +display::getTypeName(v)+" ";
-      stream << v;
+    } else
+    if constexpr(R==2) {
+	Matrix<E> m;
+      m = te;
+      stream << "" +display::getTypeName(m)+" ";
+      stream << m;
       return stream;
-      break;
-    }
-    default:{
-      Tensor<E,R> v = te;
-      stream << "" +display::getTypeName(v)+" ";
-      stream << v;
+    } else
+    if constexpr(R>=3) {
+      Tensor<E,R> t;
+      t = te;
+      stream << "" +display::getTypeName(t)+" ";
+      stream << t;
       return stream;
-      break;
-    } // default
-    } // switch
+    } 
   }
 
 
@@ -682,7 +665,7 @@ namespace mathq {
       return derived().classname();
     }
     
-    friend std::ostream& operator<<(std::ostream &stream, const TensorR<E,X,D,M,R>& te) {
+    friend std::ostream& operator<<(std::ostream &stream, const TensorR<X,E,D,M,R>& te) {
       const X& td = te.derived();
       if (td.isExpression()) {
 	return printTensorExpression(stream,te);
@@ -814,10 +797,6 @@ namespace mathq {
     X& equals(const E e) { 
       for(size_type i=0; i<size(); i++) 
 	(*this)[i]=e; 
-      return derived();
-    }
-    // assign to recon object (issue error)
-    X& equals(const TERW_Resize<E>& b) { 
       return derived();
     }
     

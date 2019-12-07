@@ -1,7 +1,6 @@
 #ifndef MATHQ__TENSOR_H
 #define MATHQ__TENSOR_H 1
 
-#include <stdarg.h>
 
 
 namespace mathq {
@@ -90,6 +89,17 @@ namespace mathq {
     }
 
 
+
+    // ************* Expression CONSTRUCTOR---------------------
+    
+    template <class X>
+      Tensor<E,R,D,M>(const TensorR<X,E,D,M,R>& x) {
+      *this = x;
+      constructorHelper();
+    }
+
+
+
     // --------------------- constructorHelper() --------------------
     
     void constructorHelper() {
@@ -153,9 +163,8 @@ namespace mathq {
 	if (size()>0) {
 	  return data_[0].dims();
 	}
-    } else {
-      return *(new Dimensions());
     }
+    return *(new Dimensions());
   }
 
   // the size of each element
@@ -476,7 +485,7 @@ namespace mathq {
       return *this; 
     }
 
-    // ----------------- tensor = TensorR<D,A> ----------------
+    // ----------------- tensor = TensorR<X,E,D,M,R> ----------------
     template <class X>  Tensor<E,R,D,M>&
       operator=(const TensorR<X,E,D,M,R>& x) {  
 

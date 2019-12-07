@@ -204,9 +204,8 @@ namespace mathq {
 	if (size()>0) {
 	  return data_[0].dims();
 	}
-    } else {
-      return *(new Dimensions());
     }
+    return *(new Dimensions());
   }
 
   // the size of each element

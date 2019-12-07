@@ -77,9 +77,9 @@ namespace mathq {
   // D = number type (int, double, complex<double>, bool, etc)
   
   class TensorAbstract;
-  template <class DERIVED, class E, typename D, int M, int R>
+  template <class X, class E, typename D, int M, int R>
     class TensorR;  
-  template <class DERIVED, class E, typename D, int M, int R>
+  template <class X, class E, typename D, int M, int R>
     class TensorRW;
 
 
@@ -90,50 +90,19 @@ namespace mathq {
     Vector;
   template <class E, int NR = 0, int NC = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Matrix;
+
   template <class E, int R = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
     Tensor;
-
 
 
   template<class X, class E, class D, int M, int R, class FUNC, class A=Null, class B=Null> class
     TER_Unary;
 
-  // Note: the lack "+1" for M1,M2 is intended
-  template<class A, class B, class D1, class D2, class OP, int M1 = NumberType<A>::depth(), int M2 = NumberType<B>::depth()> class
-    TER_Binary;
 
-  template<class A, class B, class C, class D1, class D2, class D3, class OP, int M1 = NumberType<A>::depth(), int M2 = NumberType<B>::depth(), int M3 = NumberType<C>::depth()> class
-    TER_Ternary;
-  
-
-  template <class D, int M = 1+NumberType<D>::depth()>
+    template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Subset;
   template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Submask;
-  template <class D, int M = 1+NumberType<D>::depth()>
-    class TERW_Resize;
-  template <class D, class OP, int M = 1+NumberType<D>::depth()>
-    class TER_RealFromComplex;
-
-
-  template<class D, class A, class X, int M = 1+NumberType<D>::depth()>
-    class TER_Series;
-  template<class D, class A, class B, class X, class OP1, class OP2, int M = 1+NumberType<D>::depth()>
-    class TER_Series2;    
-
-
-  template<class D, class A, class FUNC, int M = 1+NumberType<D>::depth()>
-    class TERW_Transpose;
-  template<class D, class A, class FUNC, int M = 1+NumberType<D>::depth()>
-    class TER_Transpose;
-  template<class D, class A, class B, int M = 1+NumberType<D>::depth()>
-    class VER_Join;
-  template<class D, class A, class B, int M = 1+NumberType<D>::depth()>
-    class VERW_Join;
-  template<class D, class A, int M = 1+NumberType<D>::depth()>
-    class VER_Rep;
-
-  
 
 
 

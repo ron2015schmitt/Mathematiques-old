@@ -304,8 +304,12 @@ namespace display {
 
 #define createStyle(...) display::Style::create(__VA_ARGS__,#__VA_ARGS__)
 
+  
+  inline Style functor_namestyle = createStyle(display::ORANGE2);
+  inline Style functor_style = createStyle(display::BOLD);
+  inline Style userfunctor_style = createStyle(display::BOLD+display::BLUE1);
 
-
+  
   //****************************************************************************
   //                       StyledString
   //****************************************************************************

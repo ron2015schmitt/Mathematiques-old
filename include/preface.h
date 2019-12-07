@@ -99,8 +99,9 @@ namespace mathq {
     TER_Unary;
 
 
-    template <class D, int M = 1+NumberType<D>::depth()>
+  template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Subset;
+  
   template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Submask;
 
@@ -576,6 +577,79 @@ namespace mathq {
   typedef typename NumberType<E>::Type D;
   typedef Vector<D> TensorD;
   typedef Vector<C> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+    //  Vector<E,NE>
+  template <class E, int NE, class C> class
+    InversionType<Vector<E,NE>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Vector<D,NE> TensorD;
+  typedef Vector<C,NE> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  Matrix<E>
+
+  template <class E, class C> class
+    InversionType<Matrix<E>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Matrix<D> TensorD;
+  typedef Matrix<C> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  Matrix<E,NR>
+
+  template <class E, int NR, class C> class
+    InversionType<Matrix<E,NR>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Matrix<D,NR> TensorD;
+  typedef Matrix<C,NR> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  Matrix<E,NR,NC>
+
+  template <class E, int NR, int NC, class C> class
+    InversionType<Matrix<E,NR,NC>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Matrix<D,NR,NC> TensorD;
+  typedef Matrix<C,NR,NC> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  Tensor<E>
+  template <class E, class C> class
+    InversionType<Tensor<E>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Tensor<D> TensorD;
+  typedef Tensor<C> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  Tensor<E,R>
+  template <class E, int R, class C> class
+    InversionType<Tensor<E,R>,C> {
+  public:
+  typedef typename NumberType<E>::Type D;
+  typedef Tensor<D,R> TensorD;
+  typedef Tensor<C,R> TensorC;
+  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+  };
+
+  //  TensorR<X,E,D,M,R>
+
+  template <class X, class E, class D, int M, int R, class C> class
+    InversionType<TensorR<X,E,D,M,R>,C> {
+  public:
+  typedef TensorR<X,D,D,M,R> TensorD;
+  typedef TensorR<X,C,D,M,R> TensorC;
   typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 

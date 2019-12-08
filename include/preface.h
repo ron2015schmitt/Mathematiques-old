@@ -95,9 +95,11 @@ namespace mathq {
     Tensor;
 
 
-  template<class X, class E, class D, int M, int R, class FUNC, class A=Null, class B=Null> class
+  template<class X, class E, class D, int M, int R, class FUNC> class
     TER_Unary;
 
+  template<class X, class E, class D, int M, int R, class FUNC, class A> class
+    TER_Unary_w1;
 
   template <class D, int M = 1+NumberType<D>::depth()>
     class TERW_Subset;

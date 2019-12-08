@@ -49,14 +49,43 @@ int main(int argc, char *argv[])
   mout << bold.apply("Scalar") << endl;
   {
     cr();
-    Scalar<double> sr = 1.1;
+    Scalar<double> sr = 0.25;
+    double x = sr();
     tdisp(sr);
     tdisp(-sr);
     tdisp(sin(sr));
     tdisp(exp(sr));
-    tdisp(expint(sr));  // C++17 special function
-    //    tdisp(conj(sr));
+    
+    tdisp(std::expint(x));  
+    tdisp(expint(sr));  
 
+    tdisp(std::comp_ellint_1(x));  
+    tdisp(comp_ellint_1(sr));  
+
+    tdisp(std::comp_ellint_2(x));  
+    tdisp(comp_ellint_2(sr));  
+
+    double k = 0.1;
+    tdisp(std::ellint_1(k,x));  
+    tdisp(ellint_1(k,sr));  
+
+    tdisp(std::ellint_2(k,x));  
+    tdisp(ellint_2(k,sr));  
+
+    tdisp(std::comp_ellint_3(k,x));  
+    tdisp(comp_ellint_3(k,sr));  
+
+
+    tdisp(std::legendre(2,x));  
+    tdisp(legendre(2,sr));  
+
+    tdisp(std::laguerre(2,x));  
+    tdisp(laguerre(2,sr));  
+
+    tdisp(std::hermite(4,x));  
+    tdisp(hermite(4,sr));  
+
+    
     cr();
     Scalar<bool> sb = true;
     tdisp(sb);

@@ -46,6 +46,28 @@ int main(int argc, char *argv[])
 
   cr();
   cr();
+  mout << bold.apply("scalar") << endl;
+  {
+    cr();
+    double x = 0.25;
+    tdisp(x);
+    tdisp(std::real(x));
+    tdisp(std::imag(x));
+    tdisp(std::conj(x));
+    tdisp(mathq::conj(x));
+    
+    std::complex<double> z(1,2);
+    tdisp(z);
+    tdisp(std::real(z));
+    tdisp(std::imag(z));
+    tdisp(std::conj(z));
+    tdisp(mathq::conj(z));
+    
+  }
+
+  
+  cr();
+  cr();
   mout << bold.apply("Scalar") << endl;
   {
     cr();
@@ -65,15 +87,19 @@ int main(int argc, char *argv[])
     tdisp(std::comp_ellint_2(x));  
     tdisp(comp_ellint_2(sr));  
 
+
     double k = 0.1;
+    double q = 0.1;
+    // tdisp(std::comp_ellint_3(k,q,x));  
+    // tdisp(comp_ellint_3(k,q,sr)); 
+    
+
     tdisp(std::ellint_1(k,x));  
     tdisp(ellint_1(k,sr));  
 
     tdisp(std::ellint_2(k,x));  
     tdisp(ellint_2(k,sr));  
 
-    tdisp(std::comp_ellint_3(k,x));  
-    tdisp(comp_ellint_3(k,sr));  
 
 
     tdisp(std::legendre(2,x));  

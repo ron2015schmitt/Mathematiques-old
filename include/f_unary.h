@@ -553,7 +553,7 @@ typedef E EIN;
 
   
 
-  
+  // uint param, double
   FUNCTOR_UNARY_W1(legendre,legendre,std,D,D,E,E,int);
   FUN_UNARY_W1(legendre,FUNCTOR_legendre,D,D,E,E,int);
 
@@ -563,37 +563,14 @@ typedef E EIN;
   FUNCTOR_UNARY_W1(hermite,hermite,std,D,D,E,E,int);
   FUN_UNARY_W1(hermite,FUNCTOR_hermite,D,D,E,E,int);
 
-  FUNCTOR_UNARY_W1(ellint_1,ellint_1,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_1,FUNCTOR_ellint_1,D,D,E,E,D);
 
-  FUNCTOR_UNARY_W1(ellint_2,ellint_2,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_2,FUNCTOR_ellint_2,D,D,E,E,D);
-
-  FUNCTOR_UNARY_W1(comp_ellint_3,comp_ellint_3,std,D,D,E,E,D);
-  FUN_UNARY_W1(comp_ellint_3,FUNCTOR_comp_ellint_3,D,D,E,E,D);
-
-  
-  /* FUNCTOR_UNARY(std::sph_legendre,sph_legendre,D,E); */
-  /* FUN_UNARY(sph_legendre,FUNCTOR_sph_legendre); */
-
-  /* FUNCTOR_UNARY(std::assoc_legendre,assoc_legendre,D,E); */
-  /* FUN_UNARY(assoc_legendre,FUNCTOR_assoc_legendre); */
-
-
-  /* FUNCTOR_UNARY(std::assoc_laguerre,assoc_laguerre,D,E); */
-  /* FUN_UNARY(assoc_laguerre,FUNCTOR_assoc_laguerre); */
-
-  
-    
-
-  /* FUNCTOR_UNARY(std::ellint_3,ellint_3,D,E); */
-  /* FUN_UNARY(ellint_3,FUNCTOR_ellint_3); */
-
-
-  
   /* FUNCTOR_UNARY(std::sph_bessel,sph_bessel,D,E); */
   /* FUN_UNARY(sph_bessel,FUNCTOR_sph_bessel); */
 
+  /* FUNCTOR_UNARY(std::sph_neumann,sph_neumann,D,E); */
+  /* FUN_UNARY(sph_neumann,FUNCTOR_sph_neumann); */
+
+  // (doubleparm,double )
   /* FUNCTOR_UNARY(std::cyl_bessel_i,cyl_bessel_i,D,E); */
   /* FUN_UNARY(cyl_bessel_i,FUNCTOR_cyl_bessel_i); */
 
@@ -603,17 +580,47 @@ typedef E EIN;
   /* FUNCTOR_UNARY(std::cyl_bessel_k,cyl_bessel_k,D,E); */
   /* FUN_UNARY(cyl_bessel_k,FUNCTOR_cyl_bessel_k); */
 
-
-
-  /* FUNCTOR_UNARY(std::sph_neumann,sph_neumann,D,E); */
-  /* FUN_UNARY(sph_neumann,FUNCTOR_sph_neumann); */
-
   /* FUNCTOR_UNARY(std::cyl_neumann,cyl_neumann,D,E); */
   /* FUN_UNARY(cyl_neumann,FUNCTOR_cyl_neumann); */
+
+
+
 
   // binary
   /* FUNCTOR_UNARY(std::beta,beta,D,E); */
   /* FUN_UNARY(beta,FUNCTOR_beta); */
+
+  
+
+  FUNCTOR_UNARY_W1(ellint_1,ellint_1,std,D,D,E,E,D);
+  FUN_UNARY_W1(ellint_1,FUNCTOR_ellint_1,D,D,E,E,D);
+
+  FUNCTOR_UNARY_W1(ellint_2,ellint_2,std,D,D,E,E,D);
+  FUN_UNARY_W1(ellint_2,FUNCTOR_ellint_2,D,D,E,E,D);
+
+  FUNCTOR_UNARY_W1(ellint_3,ellint_3,std,D,D,E,E,D);
+  FUN_UNARY_W1(ellint_3,FUNCTOR_ellint_3,D,D,E,E,D);
+
+  
+  // uint uint double
+
+  /* FUNCTOR_UNARY(std::sph_legendre,sph_legendre,D,E); */
+  /* FUN_UNARY(sph_legendre,FUNCTOR_sph_legendre); */
+
+  /* FUNCTOR_UNARY(std::assoc_legendre,assoc_legendre,D,E); */
+  /* FUN_UNARY(assoc_legendre,FUNCTOR_assoc_legendre); */
+
+  /* FUNCTOR_UNARY(std::assoc_laguerre,assoc_laguerre,D,E); */
+  /* FUN_UNARY(assoc_laguerre,FUNCTOR_assoc_laguerre); */
+
+
+  // ternary
+  
+  /* FUNCTOR_UNARY_W1(comp_ellint_3,comp_ellint_3,std,D,D,E,E,D); */
+  /* FUN_UNARY_W1(comp_ellint_3,FUNCTOR_comp_ellint_3,D,D,E,E,D); */
+
+
+
 
 };
 

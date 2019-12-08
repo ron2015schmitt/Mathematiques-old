@@ -49,57 +49,110 @@ int main(int argc, char *argv[])
   mout << bold.apply("Scalar") << endl;
   {
     cr();
-    Scalar<double> s = 1.1;
-    tdisp(s);
-    tdisp(-s);
-    tdisp(sin(s));
-    tdisp(exp(s));
-    tdisp(expint(s));  // C++17 special function
+    Scalar<double> sr = 1.1;
+    tdisp(sr);
+    tdisp(-sr);
+    tdisp(sin(sr));
+    tdisp(exp(sr));
+    tdisp(expint(sr));  // C++17 special function
+    //    tdisp(conj(sr));
+
+    cr();
+    Scalar<bool> sb = true;
+    tdisp(sb);
+    tdisp(!sb);
+
+    Scalar<ComplexDouble> sc {ComplexDouble(1,2)};
+
+
+    Scalar<Imaginary<double>> si;
+    si() = Imaginary<double>(3);
+
+    cr();
+    typename NumberType<Imaginary<double>>::Type ww;
+    tdisp(ww);
+
+    cr();
+    mout << blue.apply("Real Scalar") << endl;
+    tdisp(sr);
+    tdisp(-sr);
+    tdisp(conj(sr));
+    tdisp(real(sr));
+    tdisp(imag(sr));
+
+    cr();
+    mout << blue.apply("Imag Scalar") << endl;
+    tdisp(si);
+    tdisp(-si);
+    tdisp(conj(si));
+    tdisp(real(si));
+    tdisp(imag(si));
+
+    cr();
+    mout << blue.apply("Complex Scalar") << endl;
+    tdisp(sc);
+    tdisp(-sc);
+    tdisp(conj(sc));
+    tdisp(real(sc));
+    tdisp(imag(sc));
+
+    cr();
+    cr();
+    typename Realify<Scalar<double>>::Type qr;
+    tdisp(qr);
+
+    typename Realify<Scalar<Imaginary<double>> >::Type qi;
+    tdisp(qi);
+    
+    typename Realify<Scalar<std::complex<double>> >::Type qc;
+    tdisp(qc);
   }
+
 
   
-  cr();
-  cr();
-  mout << bold.apply("Vector") << endl;
-  {
-    cr();
-    Vector<double> v {1.1,2.2};
-    tdisp(v);
-    tdisp(-v);
-    tdisp(sin(v));
-    tdisp(exp(v));
-    tdisp(expint(v));  // C++17 special function
-  }
-
-  cr();
-  cr();
-  mout << bold.apply("Matrix") << endl;
-  {
-    Matrix<double> m {{1,2},{3,4}};
-    tdisp(m);
-    tdisp(-m);
-    tdisp(sin(m));
-    tdisp(exp(m));
-    tdisp(expint(m));  // C++17 special function
-  }
-
-
-  cr();
-  cr();
-  mout << bold.apply("Tensor") << endl;
-  {
-    cr();
-    Tensor<double,3> t {
-      {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
-    	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
-    	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
+  // cr();
+  // cr();
+  // mout << bold.apply("Vector") << endl;
+  // {
+  //   cr();
+  //   Vector<double> v {1.1,2.2};
+  //   tdisp(v);
+  //   tdisp(-v);
+  //   tdisp(sin(v));
+  //   tdisp(exp(v));
+  //   tdisp(expint(v));  // C++17 special function
     
-    tdisp(t);
-    tdisp(-t);
-    tdisp(sin(t));
-    tdisp(exp(t));
-    tdisp(expint(t));  // C++17 special function
-  }
+  // }
+
+  // cr();
+  // cr();
+  // mout << bold.apply("Matrix") << endl;
+  // {
+  //   Matrix<double> m {{1,2},{3,4}};
+  //   tdisp(m);
+  //   tdisp(-m);
+  //   tdisp(sin(m));
+  //   tdisp(exp(m));
+  //   tdisp(expint(m));  // C++17 special function
+  // }
+
+
+  // cr();
+  // cr();
+  // mout << bold.apply("Tensor") << endl;
+  // {
+  //   cr();
+  //   Tensor<double,3> t {
+  //     {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
+  //   	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
+  //   	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
+    
+  //   tdisp(t);
+  //   tdisp(-t);
+  //   tdisp(sin(t));
+  //   tdisp(exp(t));
+  //   tdisp(expint(t));  // C++17 special function
+  // }
 
 
 
@@ -109,7 +162,7 @@ int main(int argc, char *argv[])
   // cr();
 
 
-  // mout << blue.apply("Two-level tests") << endl;
+  mout << blue.apply("Two-level tests") << endl;
   
 
   // // -------------------------------------------------
@@ -119,6 +172,73 @@ int main(int argc, char *argv[])
   // cr();
   // cr();
   // mout << bold.apply("Two-Level Scalar tests") << endl;
+
+  cr();
+  cr();
+  mout << bold.apply("Scalar") << endl;
+  {
+    cr();
+    
+    Scalar<Scalar<double>> sr = {{1.1}};
+    tdisp(sr);
+    tdisp(-sr);
+    tdisp(sin(sr));
+    tdisp(exp(sr));
+    tdisp(expint(sr));  // C++17 special function
+    //    tdisp(conj(sr));
+
+    cr();
+    Scalar<Scalar<bool>> sb = true;
+    tdisp(sb);
+    tdisp(!sb);
+
+    Scalar<Scalar<ComplexDouble>> sc {{ComplexDouble(1,2)}};
+
+
+    Scalar<Scalar<Imaginary<double>>> si;
+    si()() = Imaginary<double>(3);
+
+    cr();
+    typename NumberType<Imaginary<double>>::Type ww;
+    tdisp(ww);
+
+    cr();
+    mout << blue.apply("Real Scalar") << endl;
+    tdisp(sr);
+    tdisp(-sr);
+    tdisp(conj(sr));
+    tdisp(real(sr));
+    tdisp(imag(sr));
+
+    cr();
+    mout << blue.apply("Imag Scalar") << endl;
+    tdisp(si);
+    tdisp(-si);
+    tdisp(conj(si));
+    tdisp(real(si));
+    tdisp(imag(si));
+
+    cr();
+    mout << blue.apply("Complex Scalar") << endl;
+    tdisp(sc);
+    tdisp(-sc);
+    tdisp(conj(sc));
+    tdisp(real(sc));
+    tdisp(imag(sc));
+
+    cr();
+    cr();
+
+    typename Realify<Scalar<Scalar<double>>>::Type qr;
+    tdisp(qr);
+
+    typename Realify<Scalar<Scalar<Imaginary<double>>>>::Type qi;
+    tdisp(qi);
+    
+    typename Realify<Scalar<Scalar<std::complex<double>>>>::Type qc;
+    tdisp(qc);
+  }
+
 
   // {
   //   cr();

@@ -10,9 +10,13 @@ namespace mathq {
   //---------------------------------------------------------------------------
   // TER_Unary    unary expressions
   //---------------------------------------------------------------------------
-    
+
+
+  // NOTE: D and E are the output types!
+  //       only the functor needs the input types
+  
   template <class X, class E, class D, int M, int R, class FUNC, class A, class B> 
-    class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC>, E,D,M,R> {
+    class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC,A,B>, E,D,M,R> {
   public:
     typedef X XType;
     typedef E EType;

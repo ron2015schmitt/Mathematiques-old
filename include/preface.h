@@ -289,6 +289,7 @@ namespace mathq {
   public:
     typedef T Type;
     typedef NewD ReplaceTypeD;
+    typedef NewD ReplaceTypeE; // DONT modify this
     constexpr static int depth() {
       return 0;
     }
@@ -304,6 +305,7 @@ namespace mathq {
   public:
     typedef std::complex<D> Type;
     typedef NewD ReplaceTypeD;
+    typedef NewD ReplaceTypeE; // DONT modify this
     constexpr static int depth() {
       return 0;
     }
@@ -318,6 +320,7 @@ namespace mathq {
   public:
     typedef Imaginary<D> Type;
     typedef NewD ReplaceTypeD;
+    typedef NewD ReplaceTypeE; // DONT modify this (use FundamentalType to change 
     constexpr static int depth() {
       return 0;
     }
@@ -751,7 +754,7 @@ namespace mathq {
     using EnableConstructorIf = typename std::enable_if<B, int>::type;
 
   //***********************************************************************
-  //  EnableIf - used for enabling constructors 
+  //  EnableMethodIf - used for enabling methods
   //***********************************************************************
   template<bool B, class T>
     using EnableMethodIf = typename std::enable_if<B,T>::type;

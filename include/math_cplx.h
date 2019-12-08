@@ -52,15 +52,12 @@ namespace mathq {
   template<template<typename> class T, class D> struct is_complex<T<std::complex<D> > > : std::true_type {};
 
 
-  template <typename D> class
+  template <typename T> class
     Complexify {
   public:
-    typedef std::complex<D> Type;
-  };
-  template <typename D> class
-    Complexify<std::complex<D> > {
-  public:
-    typedef std::complex<D> Type;
+    typedef typename FundamentalType<T>::Type FType;
+    typedef std::complex<FType> CType;
+    typedef typename NumberType<T,CType>::ReplaceTypeE Type;
   };
   template <typename E, typename A, typename D, int M, int R> class
     Complexify<TensorR<E,A,D,M,R> > {
@@ -69,21 +66,33 @@ namespace mathq {
   };
 
 
-  template <typename D> class
+  template <typename T> class
     Realify {
   public:
-    typedef D Type;
-  };
-  template <typename D> class
-    Realify<std::complex<D> > {
-  public:
-    typedef D Type;
+    typedef typename FundamentalType<T>::Type FType;
+    typedef typename NumberType<T,FType>::ReplaceTypeE Type;
   };
   template <typename E, typename A, typename D, int M, int R> class
     Realify<TensorR<E,A,D,M,R> > {
   public:
     typedef TensorR<typename Realify<E>::Type,A,typename Realify<D>::Type,M,R> Type;
   };
+
+
+  
+  template <typename T> class
+    Imaginarify {
+  public:
+    typedef typename FundamentalType<T>::Type FType;
+    typedef Imaginary<FType> IType;
+    typedef typename NumberType<T,IType>::ReplaceTypeE Type;
+  };
+  template <typename E, typename A, typename D, int M, int R> class
+    Imaginarify<TensorR<E,A,D,M,R> > {
+  public:
+    typedef TensorR<typename Imaginarify<E>::Type,A,typename Imaginarify<D>::Type, M,R> Type;
+  };
+
 
 
   

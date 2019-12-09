@@ -301,6 +301,39 @@ namespace mathq {
   }
 
   
+  // -------------------- auto x.dat(Indices) --------------------
+  // -------------------------------------------------------------
+
+    // "read/write": x.dat(Indices)
+  D& dat(Indices& inds) {
+    // error if (inds.size() != sum deepdims[i].rank
+    Indices mine;
+    for (int i = 0; i < ndims(); i++) {
+      mine.push_back(inds[i]);
+      inds.erase(inds.begin());
+    }
+    if constexpr(M>1) {
+	return (*this)(mine).dat(inds);
+    }  else {
+	return (*this)(mine);
+    }
+  }
+
+  // "read": x.dat(Indices)
+  const D& dat(Indices& inds)  const {
+    // error if (inds.size() != sum deepdims[i].rank
+    Indices mine;
+    for (int i = 0; i < ndims(); i++) {
+      mine.push_back(inds[i]);
+      inds.erase(inds.begin());
+    }
+    if constexpr(M>1) {
+	return (*this)(mine).dat(inds);
+    }  else {
+	return (*this)(mine);
+    }
+  }
+  
 
   //**********************************************************************
   //************* Array-style Element Access: x[n] ***********************
@@ -395,11 +428,11 @@ namespace mathq {
     
     // ---------------- tensor(Indices)--------------
     E& operator()(const Indices& inds) {
-      index_type k = this->index(inds);
+      index_type k = this->indexOf(inds);
       return (*this)[k];
     }
     const E operator()(const Indices& inds) const {
-      index_type k = this->index(inds);
+      index_type k = this->indexOf(inds);
       return (*this)[k];
     }
 

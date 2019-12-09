@@ -7,6 +7,22 @@
 
 
 
+template <class X, class E, typename D, int M, int R> 
+auto& insideout(const mathq::TensorRW<X,E,D,M,R>& te) {
+  using namespace mathq;
+  
+  typedef typename InversionType<X,Null>::Type Type;
+  Type* tout = new Type();
+  std::vector<Dimensions> ddims= te.deepdims();
+  int Nindices = 0;
+  for(int i=0; i<M; i++) {
+    Nindices += ddims[i].rank();
+  }
+  tdisp(Nindices);
+  return *tout;
+  
+}
+
 
 
 int main(int argc, char *argv[])
@@ -288,6 +304,39 @@ int main(int argc, char *argv[])
     tdisp(x.dims());
     tdisp(x.size());
     tdisp(x.deepdims());
+
+
+    Vector<Matrix<Tensor<double,3>,3,2>,4> v;
+    v = x();
+    tdisp(v);
+
+    Matrix<Tensor<double,3>,3,2> m;
+    m = x()(1);
+    tdisp(m);
+
+    Tensor<double,3> t;
+    t = x()(1)(2,1);
+    tdisp(t);
+    tdisp(t.dims());
+    tdisp(t(1,0,0));
+
+    tdisp(x()(1)(2,1)(1,0,0));
+
+    Indices inds({1,2,1,1,0,0});
+    tdisp(inds);
+    double y = x.dat(inds);
+    tdisp(y);
+
+    Vector<Scalar<double>,4> g1;
+    tdisp(g1);
+    Matrix<Vector<Scalar<double>,4>,3,2> g2;
+    tdisp(g2);
+    Tensor<Matrix<Vector<Scalar<double>,4>,3,2>,3> g3;
+    tdisp(g3);
+
+    g3 = insideout(x);
+    tdisp(g3);
+    
   }
 
   

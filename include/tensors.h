@@ -160,6 +160,7 @@ namespace mathq {
   // Indices - class to hold dimensions of Tensors
   // -------------------------------------------------------------------
 
+  inline const index_type NullIndex = std::numeric_limits<index_type>::min();
 
   class Indices : public std::vector<index_type> {
   private:
@@ -173,7 +174,7 @@ namespace mathq {
     Indices(const std::initializer_list<index_type> list);
     bool equiv(const Indices& inds) const;
     Indices& getReverse() const;
-    inline std::string classname() const;
+    std::string classname() const;
     friend std::ostream& operator<<(std::ostream &stream, const Indices& inds);
 
   };

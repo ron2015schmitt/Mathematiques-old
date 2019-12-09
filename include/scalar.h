@@ -207,7 +207,7 @@ namespace mathq {
   //************************** DEEP ACCESS *******************************
   //**********************************************************************
 
-  // -------------------- D access[] --------------------
+  // -------------------- D dat(n) --------------------
   // NOTE: indexes over [0] to [deepsize()]
   // -------------------------------------------------------------
   
@@ -229,6 +229,28 @@ namespace mathq {
     }
   }
 
+  // -------------------- auto x.dat(Indices) --------------------
+  // -------------------------------------------------------------
+  
+  // "read/write": Indices
+  D& dat(Indices& inds) {
+    // error if (inds.size() != sum deepdims[i].rank
+    if constexpr(M>1) {
+	return (*this)().dat(inds);
+    }  else {
+	return (*this)();
+    }
+  }
+
+  // "read": Indices
+  const D& dat(Indices& inds)  const {
+    // error if (inds.size() != sum deepdims[i].rank
+    if constexpr(M>1) {
+	return (*this)().dat(inds);
+    }  else {
+	return (*this)();
+    }
+  }
 
 
   

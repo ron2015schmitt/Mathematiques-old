@@ -324,7 +324,7 @@ namespace mathq {
       return data_[j].dat(k);
     }
   }
-
+  
   // read
   const D& dat(const index_type n)  const {
     using namespace::display;
@@ -342,8 +342,33 @@ namespace mathq {
     }
   }
 
+  // -------------------- auto x.dat(Indices) --------------------
+  // -------------------------------------------------------------
   
+  // "read/write": x.dat(Indices)
+  D& dat(Indices& inds) {
+    // error if (inds.size() != sum deepdims[i].rank
+    index_type n = inds[0];
+    inds.erase(inds.begin());
+    if constexpr(M>1) {
+	return (*this)(n).dat(inds);
+    }  else {
+	return (*this)(n);
+    }
+  }
 
+  // "read": x.dat(Indices)
+  const D& dat(Indices& inds)  const {
+    // error if (inds.size() != sum deepdims[i].rank
+    index_type n = inds[0];
+    inds.erase(inds.begin());
+    if constexpr(M>1) {
+	return (*this)(n).dat(inds);
+    }  else {
+	return (*this)(n);
+    }
+  }
+  
   //**********************************************************************
   //************* Array-style Element Access: x[n] ***********************
   //**********************************************************************

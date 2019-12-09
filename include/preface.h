@@ -648,15 +648,8 @@ namespace mathq {
   typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
-  //  TensorR<X,E,D,M,R>
 
-  template <class X, class E, class D, int M, int R, class C> class
-    InversionType<TensorR<X,E,D,M,R>,C> {
-  public:
-  typedef TensorR<X,D,D,M,R> TensorD;
-  typedef TensorR<X,C,D,M,R> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
-  };
+  // Can't define InversionType for TensorR nor TensorRW nor any expresssions
 
   
   // ***************************************************************************

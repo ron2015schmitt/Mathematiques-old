@@ -510,6 +510,36 @@ namespace mathq {
     }
   }
 
+  // -------------------- auto x.dat(Indices) --------------------
+  // -------------------------------------------------------------
+
+    // "read/write": x.dat(Indices)
+  D& dat(Indices& inds) {
+    // error if (inds.size() != sum deepdims[i].rank)
+    index_type n = inds[0];
+    inds.erase(inds.begin());
+    index_type m = inds[0];
+    inds.erase(inds.begin());
+    if constexpr(M>1) {
+	return (*this)(n,m).dat(inds);
+    }  else {
+      return (*this)(n,m);
+    }
+  }
+
+  // "read": x.dat(Indices)
+  const D& dat(Indices& inds)  const {
+    // error if (inds.size() != sum deepdims[i].rank)
+    index_type n = inds[0];
+    inds.erase(inds.begin());
+    index_type m = inds[0];
+    inds.erase(inds.begin());
+    if constexpr(M>1) {
+	return (*this)(n,m).dat(inds);
+    }  else {
+      return (*this)(n,m);
+    }
+  }
   
 
   //**********************************************************************

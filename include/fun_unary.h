@@ -1,5 +1,5 @@
-#ifndef MATHQ__UNARY_H
-#define MATHQ__UNARY_H 1
+#ifndef MATHQ__FUN_UNARY_H
+#define MATHQ__FUN_UNARY_H 1
 
 
 namespace mathq {
@@ -70,13 +70,9 @@ namespace mathq {
 
 #define FUN_UNARY_NEW(Function,Functor,DIN,DOUT,EIN,EOUT)  template <class X, class E, class D, int M, int R> \
     inline auto Function(const TensorR<X,EIN,DIN,M,R>& x) {		\
-  return  TER_Unary<TensorR<X,EIN,DIN,M,R>,EOUT,DOUT,M,R, Functor<E,D> >(x); \
-}
+    return  TER_Unary<TensorR<X,EIN,DIN,M,R>,EOUT,DOUT,M,R, Functor<E,D> >(x); \
+  }
 
-#define FUN_UNARY_W1(Function,Functor,DIN,DOUT,EIN,EOUT,A)  template <class X, class E, class D, int M, int R> \
-    inline auto Function(const A& a, const TensorR<X,EIN,DIN,M,R>& x) {	\
-    return  TER_Unary_w1<TensorR<X,EIN,DIN,M,R>,EOUT,DOUT,M,R, Functor<E,D>,A >(a,x); \
-}
   
   
 #define FUNCTOR_UNARY_NEW(Function,ClassName,LIB,DIN,DOUT,EIN,EOUT) template <class E, class D> class FUNCTOR_##ClassName { \
@@ -111,36 +107,6 @@ namespace mathq {
   }
 
 
-#define FUNCTOR_UNARY_W1(Function,ClassName,LIB,DIN,DOUT,EIN,EOUT,A) template <class E, class D> class FUNCTOR_##ClassName { \
-  public:								\
-    typedef DIN DType;							\
-    typedef DOUT DoutType;						\
-    typedef EIN EType;							\
-    typedef EOUT EoutType;						\
-    static DOUT apply(const A& a, const DIN d) {				\
-      using LIB::Function;						\
-      return Function(a,d);						\
-    }									\
-    template <class T=EIN>						\
-      static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type \
-      apply(const A& a, const EOUT& e) {					\
-      using LIB::Function;						\
-      EOUT *e2 = new EOUT();						\
-      *e2 = Function(a,e);						\
-      return *e2;							\
-    }									\
-    static std::string expression(const std::string& sa) {		\
-      using namespace display;						\
-      std::string sout = "";						\
-      sout = functor_style.apply(stringify(Function))+"("+ sa + ")";	\
-      return sout;							\
-    }									\
-    static std::string classname() {					\
-      using namespace display;						\
-      EIN e;								\
-      return functor_namestyle.apply(stringify(FUNTOR_##ClassName))+display::getBracketedTypeName(e); \
-    }									\
-  }
 
   
   // ************************************************************************
@@ -292,9 +258,9 @@ namespace mathq {
   //  FUNCTOR_UNARY_NEW(conj,conj,std,std::complex<D>,std::complex<D>,E,E);
   //  FUN_UNARY_NEW(conj,FUNCTOR_conj,std::complex<D>,std::complex<D>);
 
-//***************************************************************
-// conj(x)
-//***************************************************************
+  //***************************************************************
+  // conj(x)
+  //***************************************************************
 
   
   template <class E, class D> class FUNCTOR_conj { 
@@ -335,76 +301,76 @@ namespace mathq {
   template <class X, class E, class D, int M, int R> 
     EnableMethodIf<std::is_arithmetic<D>::value,const TensorR<X,E,D,M,R>&>  
     conj(const TensorR<X,E,D,M,R>& x) {
-  return x;
-}
+    return x;
+  }
 
 
   template <class X, class E, class D, int M, int R> 
     inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
-  typedef std::complex<D> DIN;
-  typedef std::complex<D> DOUT;
-  typedef E EIN;
-  typedef E EOUT;
-  return  TER_Unary<TensorR<X,EIN,DIN,M,R>,EIN,DIN,M,R,FUNCTOR_conj<E,D>>(x); 
-}
+    typedef std::complex<D> DIN;
+    typedef std::complex<D> DOUT;
+    typedef E EIN;
+    typedef E EOUT;
+    return  TER_Unary<TensorR<X,EIN,DIN,M,R>,EIN,DIN,M,R,FUNCTOR_conj<E,D>>(x); 
+  }
 
 
 
 
   template <class X, class E, class D, int M, int R> 
     inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-  typedef Imaginary<D> DIN;
-  typedef Imaginary<D> DOUT;
-  typedef E EIN;
-  typedef E EOUT;
-  return  -x; 
-}
+    typedef Imaginary<D> DIN;
+    typedef Imaginary<D> DOUT;
+    typedef E EIN;
+    typedef E EOUT;
+    return  -x; 
+  }
 
 
-//***************************************************************
-// real(x)
-//***************************************************************
+  //***************************************************************
+  // real(x)
+  //***************************************************************
 
   // real(x) x=real
   template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value,const TensorR<X,E,D,M,R>&>  
     real(const TensorR<X,E,D,M,R>& x) {
-  return x;
-}
+    return x;
+  }
 
 
   // real(x) x=complex FUNCTOR
   template <class E, class D> class FUNCTOR_real_from_complex { 
- public:
-typedef typename Realify<D>::Type DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-  static const DOUT apply(const D d) { 
-  namespace LIB = std;
-  using LIB::real;
-  return real(d);
-}
-  template <class T=EIN> 
-    static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-    apply(const EIN& e) { 
-  namespace LIB = std;
-  using LIB::real;    
-  EOUT *e2 = new EOUT(); 
-  *e2 = Function(e); 
-  return *e2; 
-}
-};
+  public:
+    typedef typename Realify<D>::Type DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+    static const DOUT apply(const D d) { 
+      namespace LIB = std;
+      using LIB::real;
+      return real(d);
+    }
+    template <class T=EIN> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
+      apply(const EIN& e) { 
+      namespace LIB = std;
+      using LIB::real;    
+      EOUT *e2 = new EOUT(); 
+      *e2 = Function(e); 
+      return *e2; 
+    }
+  };
 
   // real(x) x=complex function
 
   template <class X, class E, class D, int M, int R> 
     inline auto
     real(const TensorR<X,E,std::complex<D>,M,R>& x) {
-  typedef std::complex<D> DIN;
-  typedef D DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_complex<E,DIN>>(x); 
-}
+    typedef std::complex<D> DIN;
+    typedef D DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
+    return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_complex<E,DIN>>(x); 
+  }
 
  
 
@@ -412,25 +378,25 @@ typedef typename Realify<D>::Type DOUT;
   // real(x) x=Imaginary FUNCTOR
 
   template <class E, class D> class FUNCTOR_real_from_imag { 
- public:
-typedef typename Realify<D>::Type DOUT;
-typedef E EIN;
-  typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-  static const DOUT apply(const D d) { 
-  namespace LIB = mathq;
-  using LIB::real;
-  return real(d);
-}
-  template <class T=EIN> 
-    static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-    apply(const EIN& e) { 
-  namespace LIB = mathq;
-  using LIB::real;    
-  EOUT *e2 = new EOUT(); 
-  *e2 = Function(e); 
-  return *e2; 
-}
-};
+  public:
+    typedef typename Realify<D>::Type DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+    static const DOUT apply(const D d) { 
+      namespace LIB = mathq;
+      using LIB::real;
+      return real(d);
+    }
+    template <class T=EIN> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
+      apply(const EIN& e) { 
+      namespace LIB = mathq;
+      using LIB::real;    
+      EOUT *e2 = new EOUT(); 
+      *e2 = Function(e); 
+      return *e2; 
+    }
+  };
 
     
   // real(x) x=Imaginary function
@@ -438,76 +404,76 @@ typedef E EIN;
   template <class X, class E, class D, int M, int R> 
     inline auto
     real(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-  typedef Imaginary<D> DIN;
-  typedef D DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_imag<E,DIN>>(x); 
-}
+    typedef Imaginary<D> DIN;
+    typedef D DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
+    return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_imag<E,DIN>>(x); 
+  }
 
 
 
-//***************************************************************
-// imag(x)
-//***************************************************************
+  //***************************************************************
+  // imag(x)
+  //***************************************************************
 
   // imag(x) x=real
   template <class E, class D> class FUNCTOR_imag_from_real { 
- public:
-typedef typename Realify<D>::Type DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-  static const DOUT apply(const D d) { 
-  return 0;
-}
-  template <class T=EIN> 
-    static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-    apply(const EIN& e) { 
-  EOUT *e2 = new EOUT(); 
-  *e2 = imag(e); 
-  return *e2; 
-}
-};
+  public:
+    typedef typename Realify<D>::Type DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+    static const DOUT apply(const D d) { 
+      return 0;
+    }
+    template <class T=EIN> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
+      apply(const EIN& e) { 
+      EOUT *e2 = new EOUT(); 
+      *e2 = imag(e); 
+      return *e2; 
+    }
+  };
   template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value,TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_imag_from_real<E,D>>>  
     imag(const TensorR<X,E,D,M,R>& x) {
-  return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_imag_from_real<E,D>>(x); 
-}
+    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_imag_from_real<E,D>>(x); 
+  }
 
 
 
   // imag(x) x=complex FUNCTOR
   template <class E, class D> class FUNCTOR_imag_from_complex { 
- public:
-typedef typename Realify<D>::Type DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-  static const DOUT apply(const D d) { 
-  namespace LIB = std;
-  using LIB::imag;
-  return imag(d);
-}
-  template <class T=EIN> 
-    static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-    apply(const EIN& e) { 
-  namespace LIB = std;
-  using LIB::imag;    
-  EOUT *e2 = new EOUT(); 
-  *e2 = imag(e); 
-  return *e2; 
-}
-};
+  public:
+    typedef typename Realify<D>::Type DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+    static const DOUT apply(const D d) { 
+      namespace LIB = std;
+      using LIB::imag;
+      return imag(d);
+    }
+    template <class T=EIN> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
+      apply(const EIN& e) { 
+      namespace LIB = std;
+      using LIB::imag;    
+      EOUT *e2 = new EOUT(); 
+      *e2 = imag(e); 
+      return *e2; 
+    }
+  };
 
   // imag(x) x=complex function
 
   template <class X, class E, class D, int M, int R> 
     inline auto
     imag(const TensorR<X,E,std::complex<D>,M,R>& x) {
-  typedef std::complex<D> DIN;
-  typedef D DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_complex<E,DIN>>(x); 
-}
+    typedef std::complex<D> DIN;
+    typedef D DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
+    return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_complex<E,DIN>>(x); 
+  }
 
  
 
@@ -515,25 +481,25 @@ typedef typename Realify<D>::Type DOUT;
   // imag(x) x=Imaginary FUNCTOR
 
   template <class E, class D> class FUNCTOR_imag_from_imag { 
- public:
-typedef typename Realify<D>::Type DOUT;
-typedef E EIN;
-  typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-  static const DOUT apply(const D d) { 
-  namespace LIB = mathq;
-  using LIB::imag;
-  return imag(d);
-}
-  template <class T=EIN> 
-    static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-    apply(const EIN& e) { 
-  namespace LIB = mathq;
-  using LIB::imag;    
-  EOUT *e2 = new EOUT(); 
-  *e2 = Function(e); 
-  return *e2; 
-}
-};
+  public:
+    typedef typename Realify<D>::Type DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+    static const DOUT apply(const D d) { 
+      namespace LIB = mathq;
+      using LIB::imag;
+      return imag(d);
+    }
+    template <class T=EIN> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
+      apply(const EIN& e) { 
+      namespace LIB = mathq;
+      using LIB::imag;    
+      EOUT *e2 = new EOUT(); 
+      *e2 = Function(e); 
+      return *e2; 
+    }
+  };
 
     
   // imag(x) x=Imaginary function
@@ -541,83 +507,17 @@ typedef E EIN;
   template <class X, class E, class D, int M, int R> 
     inline auto
     imag(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-  typedef Imaginary<D> DIN;
-  typedef D DOUT;
-  typedef E EIN;
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_imag<E,DIN>>(x); 
-}
+    typedef Imaginary<D> DIN;
+    typedef D DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
+    return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_imag<E,DIN>>(x); 
+  }
 
     
   //  ~, complex abs and arg
 
   
-
-  // uint param, double
-  FUNCTOR_UNARY_W1(legendre,legendre,std,D,D,E,E,int);
-  FUN_UNARY_W1(legendre,FUNCTOR_legendre,D,D,E,E,int);
-
-  FUNCTOR_UNARY_W1(laguerre,laguerre,std,D,D,E,E,int);
-  FUN_UNARY_W1(laguerre,FUNCTOR_laguerre,D,D,E,E,int);
-
-  FUNCTOR_UNARY_W1(hermite,hermite,std,D,D,E,E,int);
-  FUN_UNARY_W1(hermite,FUNCTOR_hermite,D,D,E,E,int);
-
-
-  /* FUNCTOR_UNARY(std::sph_bessel,sph_bessel,D,E); */
-  /* FUN_UNARY(sph_bessel,FUNCTOR_sph_bessel); */
-
-  /* FUNCTOR_UNARY(std::sph_neumann,sph_neumann,D,E); */
-  /* FUN_UNARY(sph_neumann,FUNCTOR_sph_neumann); */
-
-  // (doubleparm,double )
-  /* FUNCTOR_UNARY(std::cyl_bessel_i,cyl_bessel_i,D,E); */
-  /* FUN_UNARY(cyl_bessel_i,FUNCTOR_cyl_bessel_i); */
-
-  /* FUNCTOR_UNARY(std::cyl_bessel_j,cyl_bessel_j,D,E); */
-  /* FUN_UNARY(cyl_bessel_j,FUNCTOR_cyl_bessel_j); */
-
-  /* FUNCTOR_UNARY(std::cyl_bessel_k,cyl_bessel_k,D,E); */
-  /* FUN_UNARY(cyl_bessel_k,FUNCTOR_cyl_bessel_k); */
-
-  /* FUNCTOR_UNARY(std::cyl_neumann,cyl_neumann,D,E); */
-  /* FUN_UNARY(cyl_neumann,FUNCTOR_cyl_neumann); */
-
-
-
-
-  // binary
-  /* FUNCTOR_UNARY(std::beta,beta,D,E); */
-  /* FUN_UNARY(beta,FUNCTOR_beta); */
-
-  
-
-  FUNCTOR_UNARY_W1(ellint_1,ellint_1,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_1,FUNCTOR_ellint_1,D,D,E,E,D);
-
-  FUNCTOR_UNARY_W1(ellint_2,ellint_2,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_2,FUNCTOR_ellint_2,D,D,E,E,D);
-
-  FUNCTOR_UNARY_W1(ellint_3,ellint_3,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_3,FUNCTOR_ellint_3,D,D,E,E,D);
-
-  
-  // uint uint double
-
-  /* FUNCTOR_UNARY(std::sph_legendre,sph_legendre,D,E); */
-  /* FUN_UNARY(sph_legendre,FUNCTOR_sph_legendre); */
-
-  /* FUNCTOR_UNARY(std::assoc_legendre,assoc_legendre,D,E); */
-  /* FUN_UNARY(assoc_legendre,FUNCTOR_assoc_legendre); */
-
-  /* FUNCTOR_UNARY(std::assoc_laguerre,assoc_laguerre,D,E); */
-  /* FUN_UNARY(assoc_laguerre,FUNCTOR_assoc_laguerre); */
-
-
-  // ternary
-  
-  /* FUNCTOR_UNARY_W1(comp_ellint_3,comp_ellint_3,std,D,D,E,E,D); */
-  /* FUN_UNARY_W1(comp_ellint_3,FUNCTOR_comp_ellint_3,D,D,E,E,D); */
 
 
 

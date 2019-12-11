@@ -239,14 +239,18 @@ namespace mathq {
       return resize(*dims_in);
     }
 
+      // TODO: should just pass an index and make deepdims const
 
-    Tensor<E,R,D,M>& resize(std::vector<Dimensions>& deepdims) {
+
+    Tensor<E,R,D,M>& resize(const std::vector<Dimensions>& deepdims_in) {
+      std::vector<Dimensions> deepdims(deepdims_in);
     Dimensions newdims = deepdims[0];
     resize(newdims);
     if constexpr(M>1) {
       deepdims.erase(deepdims.begin());
       for(index_type i = 0; i < size(); i++) {
-	data_[i].resize(deepdims);
+	std::vector<Dimensions> ddims(deepdims);
+	data_[i].resize(ddims);
       }
     }
     return *this;
@@ -305,30 +309,54 @@ namespace mathq {
   // -------------------------------------------------------------
 
     // "read/write": x.dat(Indices)
-  D& dat(Indices& inds) {
+  D& dat(const Indices& inds) {
+    printf("Tensor.dat(Indices)\n");
+    mout << "  ";
+    tdisp(inds.size());
+    mout << "  ";
+    tdisp(inds);
+    mout << "  ";
+    tdisp(ndims());
+    Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
     Indices mine;
     for (int i = 0; i < ndims(); i++) {
-      mine.push_back(inds[i]);
-      inds.erase(inds.begin());
+      mine.push_back(inds_next[0]);
+      inds_next.erase(inds_next.begin());
     }
+    mout << "  ";
+    tdisp(mine);
+    mout << "  ";
+    tdisp(inds_next);
     if constexpr(M>1) {
-	return (*this)(mine).dat(inds);
+	return (*this)(mine).dat(inds_next);
     }  else {
 	return (*this)(mine);
     }
   }
 
   // "read": x.dat(Indices)
-  const D& dat(Indices& inds)  const {
+  const D dat(const Indices& inds)  const {
+    printf("Tensor.dat(Indices) const\n");
+    mout << "  ";
+    tdisp(inds.size());
+    mout << "  ";
+    tdisp(inds);
+    mout << "  ";
+    tdisp(ndims());
+    Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
     Indices mine;
     for (int i = 0; i < ndims(); i++) {
-      mine.push_back(inds[i]);
-      inds.erase(inds.begin());
+      mine.push_back(inds_next[0]);
+      inds_next.erase(inds_next.begin());
     }
+    mout << "  ";
+    tdisp(mine);
+    mout << "  ";
+    tdisp(inds_next);
     if constexpr(M>1) {
-	return (*this)(mine).dat(inds);
+	return (*this)(mine).dat(inds_next);
     }  else {
 	return (*this)(mine);
     }

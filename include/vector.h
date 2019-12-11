@@ -288,7 +288,10 @@ namespace mathq {
     return *this;
   }
 
-  Vector<E,NE,D,M>& resize(std::vector<Dimensions>& deepdims) {
+  // TODO: should just pass an index and make deepdims const
+  
+  Vector<E,NE,D,M>& resize(const std::vector<Dimensions>& deepdims_in) {
+     std::vector<Dimensions> deepdims(deepdims_in);    
     Dimensions newdims = deepdims[0];
     const size_type Nnew = newdims[0];
     if constexpr(NE==0) {
@@ -297,9 +300,11 @@ namespace mathq {
     if constexpr(M>1) {
       deepdims.erase(deepdims.begin());
       for(index_type i = 0; i < size(); i++) {
-	data_[i].resize(deepdims);
+	std::vector<Dimensions> ddims(deepdims);
+	data_[i].resize(ddims);
       }
     }
+
     return *this;
   }
 
@@ -346,24 +351,29 @@ namespace mathq {
   // -------------------------------------------------------------
   
   // "read/write": x.dat(Indices)
-  D& dat(Indices& inds) {
+  D& dat(const Indices& inds) {
+    Indices inds_next(inds);
+    mout << "Vector: "<<std::endl;
     // error if (inds.size() != sum deepdims[i].rank
-    index_type n = inds[0];
-    inds.erase(inds.begin());
+    index_type n = inds_next[0];
+    mout << "  ";
+    tdisp(n);
+    inds_next.erase(inds_next.begin());
     if constexpr(M>1) {
-	return (*this)(n).dat(inds);
+	return (*this)(n).dat(inds_next);
     }  else {
 	return (*this)(n);
     }
   }
 
   // "read": x.dat(Indices)
-  const D& dat(Indices& inds)  const {
+  const D dat(const Indices& inds)  const {
+    Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
-    index_type n = inds[0];
-    inds.erase(inds.begin());
+    index_type n = inds_next[0];
+    inds_next.erase(inds_next.begin());
     if constexpr(M>1) {
-	return (*this)(n).dat(inds);
+	return (*this)(n).dat(inds_next);
     }  else {
 	return (*this)(n);
     }

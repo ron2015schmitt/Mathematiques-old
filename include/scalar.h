@@ -170,7 +170,6 @@ namespace mathq {
     }
     return parentdims;
   }
- 
 
   
   size_type ndims(void) const {
@@ -194,6 +193,10 @@ namespace mathq {
     VectorofPtrs myaddr((void*)this);
     return myaddr;
   }
+
+
+    // TODO: should just pass an index and make deepdims const
+
 
   Scalar<E,D,M>& resize(std::vector<Dimensions>& deepdims) {
     if constexpr(M>1) {
@@ -233,7 +236,7 @@ namespace mathq {
   // -------------------------------------------------------------
   
   // "read/write": Indices
-  D& dat(Indices& inds) {
+  D& dat(const Indices& inds) {
     // error if (inds.size() != sum deepdims[i].rank
     if constexpr(M>1) {
 	return (*this)().dat(inds);
@@ -243,7 +246,7 @@ namespace mathq {
   }
 
   // "read": Indices
-  const D& dat(Indices& inds)  const {
+  const D dat(const Indices& inds)  const {
     // error if (inds.size() != sum deepdims[i].rank
     if constexpr(M>1) {
 	return (*this)().dat(inds);

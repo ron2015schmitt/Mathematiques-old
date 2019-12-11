@@ -297,15 +297,21 @@ namespace mathq {
     }
 
 
-    Matrix<E,NR,NC,D,M>& resize(std::vector<Dimensions>& deepdims) {
-    Dimensions newdims = deepdims[0];
-    resize(newdims);
-    if constexpr(M>1) {
-      deepdims.erase(deepdims.begin());
-      for(index_type i = 0; i < size(); i++) {
-	data_[i].resize(deepdims);
-      }
-    }
+      // TODO: should just pass an index and make deepdims const
+
+    Matrix<E,NR,NC,D,M>& resize(const std::vector<Dimensions>& deepdims_new) {
+      std::vector<Dimensions> deepdims(deepdims_new);
+      Dimensions newdims = deepdims[0];
+      resize(newdims);
+      if constexpr(M>1) {
+	  deepdims.erase(deepdims.begin());
+	  for(index_type i = 0; i < size(); i++) {
+	    std::vector<Dimensions> ddims(deepdims);
+	    data_[i].resize(ddims);
+	  }
+	}
+      
+
     return *this;
   }
 
@@ -493,8 +499,8 @@ namespace mathq {
   }
 
   // read
-  const D& dat(const index_type n)  const {
-    using namespace::display;
+  const D& dat(const index_type n)  const { 
+   using namespace::display;
     //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr(M<=1) {
       int k = n;
@@ -514,28 +520,36 @@ namespace mathq {
   // -------------------------------------------------------------
 
     // "read/write": x.dat(Indices)
-  D& dat(Indices& inds) {
-    // error if (inds.size() != sum deepdims[i].rank)
-    index_type n = inds[0];
-    inds.erase(inds.begin());
-    index_type m = inds[0];
-    inds.erase(inds.begin());
+  D& dat(const Indices& inds) {
+    Indices inds_next(inds);
+    mout << "Matrix: "<<std::endl;
+   // error if (inds.size() != sum deepdims[i].rank)
+    index_type n = inds_next[0];
+    inds_next.erase(inds_next.begin());
+    index_type m = inds_next[0];
+    inds_next.erase(inds_next.begin());
+    mout << "  ";
+    mdisp(n,m); 
+    mout << "  ";
+    tdisp(inds_next);
+    
     if constexpr(M>1) {
-	return (*this)(n,m).dat(inds);
+	return (*this)(n,m).dat(inds_next);
     }  else {
       return (*this)(n,m);
     }
   }
 
   // "read": x.dat(Indices)
-  const D& dat(Indices& inds)  const {
+  const D dat(const Indices& inds)  const {
+    Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank)
-    index_type n = inds[0];
-    inds.erase(inds.begin());
-    index_type m = inds[0];
-    inds.erase(inds.begin());
+    index_type n = inds_next[0];
+    inds_next.erase(inds_next.begin());
+    index_type m = inds_next[0];
+    inds_next.erase(inds_next.begin());
     if constexpr(M>1) {
-	return (*this)(n,m).dat(inds);
+	return (*this)(n,m).dat(inds_next);
     }  else {
       return (*this)(n,m);
     }
@@ -843,15 +857,15 @@ namespace mathq {
     s += StyledString::get(ANGLE1).get();
     E e;
     s += getTypeName(e);
-    if (NC!=0) {
-      s += StyledString::get(COMMA).get();
-      s += "NC=";
-      s += num2string(NC);
-    }
     if (NR!=0) {
       s += StyledString::get(COMMA).get();
       s += "NR=";
       s += num2string(NR);
+    }
+    if (NC!=0) {
+      s += StyledString::get(COMMA).get();
+      s += "NC=";
+      s += num2string(NC);
     }
     //    if (M>1) {
     //      s += StyledString::get(COMMA).get();

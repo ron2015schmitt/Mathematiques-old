@@ -43,7 +43,16 @@ namespace mathq {
     }
   }
 
-
+  Indices::Indices(const std::list<index_type>& mylist) {
+    const index_type N =  mylist.size();
+    resize(N,0);
+    index_type i = 0;
+    std::list<int>::const_iterator it;
+    for (it = mylist.begin(); it != mylist.end(); ++it)  {
+      (*this)[i++] = *it;
+    }
+  }
+  
 
     
   bool Indices::equiv(const Indices& inds) const {

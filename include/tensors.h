@@ -172,6 +172,7 @@ namespace mathq {
     Indices(const index_type n);
     Indices(const Parent& inds);    
     Indices(const std::initializer_list<index_type> list);
+    Indices(const std::list<index_type>& mylist);
     bool equiv(const Indices& inds) const;
     Indices& getReverse() const;
     std::string classname() const;
@@ -254,7 +255,18 @@ namespace mathq {
       }
       calcSize();
     }
-    
+
+
+    Dimensions(const std::list<size_type>& mylist) {
+      const size_type N =  mylist.size();
+      resize(N,0);
+      index_type i = 0;
+      for (auto it = mylist.begin(); it != mylist.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+      calcSize();
+    }
+
     Dimensions(const Parent& vec) {
       resize(vec.size(),0);
       for(int k = 0; k < vec.size(); k++) {
@@ -329,6 +341,15 @@ namespace mathq {
 	tdims->push_back((*this)[k]);
       }
       return *tdims;
+    }
+
+    Dimensions& operator=(const Dimensions& dims) {
+      resize(dims.size(),0);
+      for(int k = 0; k < ndims() ; k++) {
+	(*this)[k] = dims[k];
+      }
+      calcSize();
+      return *this;
     }
 
   
@@ -831,6 +852,13 @@ namespace mathq {
   };
 
 
+
+
+
+  //  template <class X, class E, typename D, int M, int R> class TensorObject {
+  //  };
+
+  
   
 };
 #endif

@@ -5,24 +5,106 @@
 
 #include <fstream>
 
+  using namespace mathq;
 
+
+// TODO: 1. shoul define a type TensorObject that all actual tensors
+//       inherit from and use that instead of X.
+//       2. pass an index and use constant-size vectors instead of lists
 
 template <class X, class E, typename D, int M, int R> 
-auto& insideout(const mathq::TensorRW<X,E,D,M,R>& te) {
-  using namespace mathq;
+void insideout_(const TensorRW<X,E,D,M,R>& tf,
+		typename  InversionType<X,Null>::Type& tr,
+		const std::vector<index_type>& flatdims,
+		const std::vector<index_type>& flatrdims,
+		std::list<index_type>& flist,
+		std::list<index_type>& rlist		 
+		 ) {
+  const X& t = tf.derived();
+  const index_type N = flatdims.size();
+
+  mout << "insideout_: ";
+  mdisp(flist.size(), N);
+  tdisp(flatdims);
+  tdisp(flatrdims);
+  tdisp(tr.deepdims());
+
   
-  typedef typename InversionType<X,Null>::Type Type;
-  Type* tout = new Type();
-  std::vector<Dimensions> ddims= te.deepdims();
-  int Nindices = 0;
-  for(int i=0; i<M; i++) {
-    Nindices += ddims[i].rank();
+  if (flist.size() == N) {
+    mout<<"*********"<<std::endl;
+    Indices finds2(flist);
+    Indices rinds2(rlist);
+    tdisp(finds2);
+    tdisp(rinds2);
+    Indices finds(flist);
+    Indices rinds(rlist);
+    tr.dat(rinds) = t.dat(finds);
+    return;
   }
-  tdisp(Nindices);
-  return *tout;
+
+  index_type n = flatdims[flist.size()];
+  for(index_type i = 0; i < n; i++) {
+    flist.push_back(i);
+    rlist.push_front(n-i-1);
+    insideout_(t,tr,flatdims,flatrdims,flist,rlist);
+    flist.pop_back();
+    rlist.pop_front();
+  }
+
+  return;
   
 }
 
+template <class X, class E, typename D, int M, int R> 
+auto& insideout(const TensorRW<X,E,D,M,R>& t) {
+  
+  typedef typename InversionType<X,Null>::Type Type;
+  Type* tout = new Type();
+  std::vector<Dimensions> ddims= t.deepdims();
+  std::vector<Dimensions> rdims;
+
+  // need to create the reverse dimensions
+  for(int j=0; j < ddims.size(); j++) {
+    rdims.push_back(ddims[ddims.size()-j-1]);
+  }  
+  tdisp(ddims);
+  tdisp(rdims);
+  tout->resize(rdims);
+  tdisp(ddims);
+  tdisp(rdims);
+
+  
+  //  flatten sizes into one vector
+  std::vector<index_type> flatdims;
+  for(int i=0; i < M; i++) {
+    Dimensions dims = ddims[i];
+    for(int j=0; j < dims.size(); j++) {
+      flatdims.push_back(dims[j]);
+    }
+  }
+  //  flatten sizes into one vector
+  std::vector<index_type> flatrdims;
+  for(int i=0; i < M; i++) {
+    Dimensions dims = rdims[i];
+    for(int j=0; j < dims.size(); j++) {
+      flatrdims.push_back(dims[j]);
+    }
+  }
+  tdisp(ddims);
+  tdisp(rdims);
+  tdisp(flatdims);
+  tdisp(flatrdims);
+  
+  std::list<index_type> finds;
+  std::list<index_type> rinds;
+  insideout_(t.derived(),*tout,flatdims,flatrdims,finds,rinds);
+  return *tout;
+}
+
+//  int Nindices = 0;
+//  for(int i=0; i<ddims.size(); i++) {
+//    Nindices += ddims[i].rank();
+//  }
 
 
 int main(int argc, char *argv[])
@@ -333,18 +415,34 @@ int main(int argc, char *argv[])
     tdisp(g2);
     Tensor<Matrix<Vector<Scalar<double>,4>,3,2>,3> g3;
     tdisp(g3);
-
+    tdisp(x.deepdims());
+ 
     g3 = insideout(x);
     tdisp(g3);
-    
-  }
 
+    for (int h = 0; h < x().size(); h++) {
+      const index_type NR = x()(h).Nrows();
+      const index_type NC = x()(h).Ncols();
+      for (int i = 0; i < NR; i++) {
+	for (int j = 0; j < NC; j++) {
+	  Dimensions tdims =  x()(h)(i,j).dims();
+	  for (int k = 0; k < tdims[0]; k++) {
+	    for (int l = 0; l < tdims[1]; l++) {
+	      for (int m = 0; m < tdims[2]; m++) {
+		mdisp(h,i,j,k,l,m, x()(h)(i,j)(k,l,m), g3(k,l,m)(i,j)(h)());
+	      }
+	    }
+	  }
+	}
+      }
+    }
+  }
   
   
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+    cr();
+    mout << "done: " << bold.apply(myname) << std::endl;
+    mout << StyledString::get(HORLINE);
+    cr();
   
   return 0;
 }

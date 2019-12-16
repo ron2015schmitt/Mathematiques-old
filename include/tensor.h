@@ -363,6 +363,34 @@ namespace mathq {
   }
   
 
+  // -------------------- auto x.dat(DeepIndices) --------------------
+  // -------------------------------------------------------------
+
+    // "read/write": x.dat(DeepIndices)
+  D& dat(const DeepIndices& dinds) {
+    const index_type depth = dinds.size();
+    const Indices& inds = dinds[depth-M];
+    
+    if constexpr(M>1) {
+	return (*this)(inds).dat(dinds);
+    }  else {
+      return (*this)(inds);
+    }
+  }
+
+  // "read": x.dat(DeepIndices)
+  const D dat(const DeepIndices& dinds)  const {
+    const index_type depth = dinds.size();
+    const Indices& inds = dinds[depth-M];
+    
+    if constexpr(M>1) {
+	return (*this)(inds).dat(dinds);
+    }  else {
+      return (*this)(inds);
+    }
+  }
+
+  
   //**********************************************************************
   //************* Array-style Element Access: x[n] ***********************
   //**********************************************************************

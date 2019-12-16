@@ -155,28 +155,91 @@ namespace mathq {
     }
   };
 
-  // -------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   //
-  // Indices - class to hold dimensions of Tensors
-  // -------------------------------------------------------------------
+  // Indices - class to hold indices to a tensor or arbitrary depth and rank(s)
+  // ---------------------------------------------------------------------------
 
-  inline const index_type NullIndex = std::numeric_limits<index_type>::min();
 
+  
   class Indices : public std::vector<index_type> {
   private:
   public:
     typedef typename std::vector<index_type> Parent;
     typedef typename Parent::iterator Iterator;
-    Indices(const Indices& inds);
-    Indices();
-    Indices(const index_type n);
-    Indices(const Parent& inds);    
-    Indices(const std::initializer_list<index_type> list);
-    Indices(const std::list<index_type>& mylist);
-    bool equiv(const Indices& inds) const;
-    Indices& getReverse() const;
-    std::string classname() const;
-    friend std::ostream& operator<<(std::ostream &stream, const Indices& inds);
+    Indices(const Indices& inds) {
+      resize(inds.size(),0);
+      for(int k = 0; k < inds.size(); k++) {
+	(*this)[k] = inds[k];
+      }
+    }
+    Indices() {
+      resize(0,0);
+    }
+    Indices(const index_type n) {
+      resize(n,0);
+    }
+    // arbitrary size. can alos use "push_back"
+    Indices(const Parent& inds) {
+      resize(inds.size(),0);
+      for(int k = 0; k < inds.size(); k++) {
+	(*this)[k] = inds[k];
+      }
+    }
+    
+    // use C++11 init list for arbitrary rank
+    Indices(const std::initializer_list<index_type> list) {
+      const index_type N =  list.size();
+      resize(N,0);
+      index_type i = 0;
+      typename std::initializer_list<index_type>::iterator it; 
+      for (it = list.begin(); it != list.end(); ++it)  { 
+	(*this)[i++] = *it;
+      }
+    }
+
+    Indices(const std::list<index_type>& mylist) {
+      const index_type N =  mylist.size();
+      resize(N,0);
+      index_type i = 0;
+      std::list<int>::const_iterator it;
+      for (it = mylist.begin(); it != mylist.end(); ++it)  {
+	(*this)[i++] = *it;
+      }
+    }
+  
+    
+    bool equiv(const Indices& inds) const {
+      return (*this == inds);
+    }
+
+    Indices& getReverse() const {
+      Indices& revinds = *(new Indices());
+      for(int k = this->size()-1; k >= 0 ; k--) {
+	revinds.push_back((*this)[k]);
+      }
+      return revinds;
+    }
+
+  
+    std::string classname() const {
+      return "Indices";
+    }
+
+
+    inline friend std::ostream& operator<<(std::ostream &stream, const Indices& inds) {
+      using namespace display;
+    
+      stream << "{";
+      for (index_type ii = 0; ii < inds.size(); ii++) {
+	if (ii>0)  stream << ", ";
+	dispval_strm(stream, inds[ii]);
+      }
+      stream << "}";
+    
+      return stream;
+    }
+  
 
   };
 
@@ -398,6 +461,83 @@ namespace mathq {
   }
 
 
+
+  // -------------------------------------------------------------------
+  //
+  // Deepindices - class to full indices of nested Tensors
+  // -------------------------------------------------------------------
+
+  class DeepIndices : public std::vector<Indices> {
+  private:
+    std::vector<Dimensions> deepdims_;
+  public:
+
+  DeepIndices(const std::vector<Dimensions>& deepdims) : deepdims_(deepdims) {
+      this->resize(deepdims.size());
+      for (index_type i = 0; i < deepdims.size(); i++) {
+	(*this)[i].resize(deepdims[i].size());
+      }
+    }
+
+
+    DeepIndices& operator++(int dum)  {
+      const index_type N = deepdims_.size();
+      index_type m = N;
+      index_type d = 0;
+      bool done = false;
+      while (!done) {
+	m--;
+	d = 0;
+	if (m<0) {
+	  this->clear();
+	  return *this;
+	}
+	while ((*this)[m].size() == 0) {
+	  m--;
+	  if (m<0) {
+	    this->clear();
+	    return *this;
+	  }
+	}
+	Dimensions &dims = deepdims_[m];
+	Indices &inds = (*this)[m];
+	index_type n = dims.size();
+      
+	index_type sz = dims[n-d-1];
+	index_type ind = ++(inds[n-d-1]);
+	//mdisp(m,n,d,sz,ind,inds[n-d-1]);
+	while (ind >= sz) {
+	  inds[n-d-1] = 0;
+	  d++;
+	  if (d >= n) {
+	    break;
+	  }
+	  sz = dims[n-d-1];
+	  ind = ++(inds[n-d-1]);
+	}
+	if (d < n) {
+	  return *this;
+	}
+      }
+      return *this;
+    }
+  
+    inline friend std::ostream& operator<<(std::ostream &stream, const DeepIndices& dinds) {
+      using namespace display;
+      stream << "{";
+      for (size_type ii = 0; ii < dinds.size(); ii++) {
+	if (ii>0)  stream << ", ";
+	dispval_strm(stream, dinds[ii]);
+      }
+      stream << "}";
+      return stream;
+    }
+  
+    std::string classname() const {
+      return "DeepIndices";
+    }
+  };
+
   //*******************************************************
   //     NestedInitializerList  Type Definition
   //*******************************************************
@@ -405,35 +545,35 @@ namespace mathq {
 
   template<typename E, int L>
     class NestedInitializerListDef
-    {
-    public:
-      using type = std::initializer_list<
-        typename NestedInitializerListDef<E,L-1>::type
-	>;
-      template <class D, int R, int M>
-	static void compute(Tensor<E,R,D,M>&t, const type& list, int& i) {
+  {
+  public:
+    using type = std::initializer_list<
+      typename NestedInitializerListDef<E,L-1>::type
+      >;
+    template <class D, int R, int M>
+      static void compute(Tensor<E,R,D,M>&t, const type& list, int& i) {
 	
-	for (auto nlist : list) {
-	  NestedInitializerListDef<E,L-1>::compute(t,nlist,i);
-	}
+      for (auto nlist : list) {
+	NestedInitializerListDef<E,L-1>::compute(t,nlist,i);
       }
+    }
 
-      static Dimensions& dims(const type& list)  {
-	Dimensions& dims = *(new Dimensions());
-	return NestedInitializerListDef::dims(list, dims);
+    static Dimensions& dims(const type& list)  {
+      Dimensions& dims = *(new Dimensions());
+      return NestedInitializerListDef::dims(list, dims);
+    }
+    static Dimensions& dims(const type& list, Dimensions& dims) {
+      const int nl = list.size();
+      dims.push_back(nl);
+      if (nl==0) {
+	return dims;
+      } else {
+	return NestedInitializerListDef<E,L-1>::dims(*(list.begin()), dims);
       }
-      static Dimensions& dims(const type& list, Dimensions& dims) {
-	const int nl = list.size();
-	dims.push_back(nl);
-	if (nl==0) {
-	  return dims;
-	} else {
-	  return NestedInitializerListDef<E,L-1>::dims(*(list.begin()), dims);
-	}
-      }
+    }
 
       
-    };
+  };
 
   template<typename E>
     class NestedInitializerListDef<E, 0>
@@ -452,6 +592,10 @@ namespace mathq {
       }
       
     };
+
+
+
+
 
 
   // Type to use NestedInitializerListDef<T,int>
@@ -562,33 +706,33 @@ namespace mathq {
     std::ostream& printTensorExpression(std::ostream &stream, const TensorR<X,E,D,M,R>& te) {
 
     if constexpr(R==0) {
-      Scalar<E> s;
-      s = te;
-      stream << "" +display::getTypeName(s)+" ";
-      stream << s;
-      return stream;
-    } else
-    if constexpr(R==1) {
-      Vector<E> v;
-      v = te;
-      stream << "" +display::getTypeName(v)+" ";
-      stream << v;
-      return stream;
-    } else
-    if constexpr(R==2) {
-	Matrix<E> m;
-      m = te;
-      stream << "" +display::getTypeName(m)+" ";
-      stream << m;
-      return stream;
-    } else
-    if constexpr(R>=3) {
-      Tensor<E,R> t;
-      t = te;
-      stream << "" +display::getTypeName(t)+" ";
-      stream << t;
-      return stream;
-    } 
+	Scalar<E> s;
+	s = te;
+	stream << "" +display::getTypeName(s)+" ";
+	stream << s;
+	return stream;
+      } else
+      if constexpr(R==1) {
+	  Vector<E> v;
+	  v = te;
+	  stream << "" +display::getTypeName(v)+" ";
+	  stream << v;
+	  return stream;
+	} else
+	if constexpr(R==2) {
+	    Matrix<E> m;
+	    m = te;
+	    stream << "" +display::getTypeName(m)+" ";
+	    stream << m;
+	    return stream;
+	  } else
+	  if constexpr(R>=3) {
+	      Tensor<E,R> t;
+	      t = te;
+	      stream << "" +display::getTypeName(t)+" ";
+	      stream << t;
+	      return stream;
+	    } 
   }
 
 

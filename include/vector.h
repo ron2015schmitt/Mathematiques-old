@@ -347,6 +347,34 @@ namespace mathq {
     }
   }
 
+  // -------------------- auto x.dat(DeepIndices) --------------------
+  // -------------------------------------------------------------
+  
+  // "read/write": x.dat(DeepIndices)
+  D& dat(const DeepIndices& dinds) {
+    const index_type depth = dinds.size();
+    index_type n = dinds[depth-M][0];
+    
+    if constexpr(M>1) {
+	return (*this)(n).dat(dinds);
+    }  else {
+	return (*this)(n);
+    }
+  }
+
+  // "read": x.dat(DeerIndices)
+  const D dat(const DeepIndices& dinds)  const {
+    const index_type depth = dinds.size();
+    index_type n = dinds[depth-M][0];
+    
+    if constexpr(M>1) {
+	return (*this)(n).dat(dinds);
+    }  else {
+	return (*this)(n);
+    }
+  }
+
+  
   // -------------------- auto x.dat(Indices) --------------------
   // -------------------------------------------------------------
   

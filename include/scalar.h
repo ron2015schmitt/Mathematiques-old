@@ -216,21 +216,45 @@ namespace mathq {
   
   // "read/write": unsigned
   D& dat(const index_type n) {
-    if constexpr(M < 2) {
+    if constexpr(M <= 1) {
       return data_;
     } else {
-      return (data_)[n];
+      return (data_).dat(n);
     }
   }
 
   // "read/write": signed
   const D& dat(const index_type n)  const {
-    if constexpr(M < 2) {
+    if constexpr(M <= 1) {
       return data_;
     } else {
-      return (data_)[n];
+      return (data_).dat(n);
     }
   }
+
+  // -------------------- auto x.dat(DeepIndices) --------------------
+  // -------------------------------------------------------------
+  
+  // "read/write": DeepIndices
+  D& dat(const DeepIndices& dinds) {
+    // error if (inds.size() != sum deepdims[i].rank
+    if constexpr(M>1) {
+	return (*this)().dat(dinds);
+    }  else {
+	return (*this)();
+    }
+  }
+
+  // "read": DeepIndices
+  const D dat(const DeepIndices& dinds)  const {
+    // error if (inds.size() != sum deepdims[i].rank
+    if constexpr(M>1) {
+	return (*this)().dat(dinds);
+    }  else {
+	return (*this)();
+    }
+  }
+
 
   // -------------------- auto x.dat(Indices) --------------------
   // -------------------------------------------------------------

@@ -483,11 +483,8 @@ namespace mathq {
     DeepIndices& operator++(int dum)  {
       const index_type N = deepdims_.size();
       index_type m = N;
-      index_type d = 0;
-      bool done = false;
-      while (!done) {
+      while (true) {
 	m--;
-	d = 0;
 	if (m<0) {
 	  this->clear();
 	  return *this;
@@ -503,6 +500,7 @@ namespace mathq {
 	Indices &inds = (*this)[m];
 	index_type n = dims.size();
       
+	index_type d = 0;
 	index_type sz = dims[n-d-1];
 	index_type ind = ++(inds[n-d-1]);
 	//mdisp(m,n,d,sz,ind,inds[n-d-1]);
@@ -518,10 +516,25 @@ namespace mathq {
 	if (d < n) {
 	  return *this;
 	}
-      }
-      return *this;
+      } // while true
+      return *this;  // not needed
     }
-  
+
+
+    DeepIndices& getReverse() const {
+      const index_type N = size();
+      std::vector<Dimensions> rddims(N);
+      for(int k = 0; k < N; k++ ) {
+	rddims[k] = deepdims_[N-k-1];
+      }
+      DeepIndices& revinds = *(new DeepIndices(rddims));
+      for(int k = 0; k < N; k++ ) {
+	revinds[k] = (*this)[N-k-1];
+      }
+      return revinds;
+    }
+
+    
     inline friend std::ostream& operator<<(std::ostream &stream, const DeepIndices& dinds) {
       using namespace display;
       stream << "{";
@@ -604,6 +617,76 @@ namespace mathq {
     using NestedInitializerList =
     typename NestedInitializerListDef<T, T_levels>::type;
   
+
+
+  // -------------------------------------------------------------------
+  //
+  // insideout - turn a nested set of tensors inside-out
+  // -------------------------------------------------------------------
+
+
+  template <class X, class E, typename D, int M, int R> 
+    auto& insideout(const TensorRW<X,E,D,M,R>& t) {
+  
+    typedef typename InversionType<X,Null>::Type Type;
+    Type* tout = new Type();
+    const X &tin = t.derived();
+    std::vector<Dimensions> ddims= t.deepdims();
+    std::vector<Dimensions> rdims;
+
+    // need to create the reverse dimensions
+    for(int j=0; j < ddims.size(); j++) {
+      rdims.push_back(ddims[ddims.size()-j-1]);
+    }  
+    tdisp(ddims);
+    tdisp(rdims);
+    tout->resize(rdims);
+    tdisp(ddims);
+    tdisp(rdims);
+
+    const index_type Ndeep = tout->deepsize();
+  
+    //  flatten sizes into one vector
+    std::vector<index_type> flatdims;
+    for(int i=0; i < M; i++) {
+      Dimensions dims = ddims[i];
+      for(int j=0; j < dims.size(); j++) {
+	flatdims.push_back(dims[j]);
+      }
+    }
+    //  flatten sizes into one vector
+    std::vector<index_type> flatrdims;
+    for(int i=0; i < M; i++) {
+      Dimensions dims = rdims[i];
+      for(int j=0; j < dims.size(); j++) {
+	flatrdims.push_back(dims[j]);
+      }
+    }
+    std::vector<index_type> flatrinds(flatrdims.size());
+    tdisp(ddims);
+    tdisp(rdims);
+    tdisp(flatrinds);
+    tdisp(flatdims);
+    tdisp(flatrdims);
+  
+    index_type depth = 0;
+    index_type dim = 0;
+    index_type index = 0;
+    mdisp(M,Ndeep);
+    DeepIndices dinds(ddims);
+    tdisp(dinds.size());
+    tdisp(dinds);
+    for(index_type i = 0; i < Ndeep; i++) {
+      // set equal
+      mdisp(i,dinds,tin.dat(i),tin.dat(dinds));
+      DeepIndices rinds = dinds.getReverse();
+      tout->dat(rinds) = tin.dat(dinds);
+      dinds++;
+    }
+    return *tout;
+  }
+
+
 
   // -------------------------------------------------------------------
   //

@@ -12,64 +12,6 @@ using namespace mathq;
 
 
 
-template <class X, class E, typename D, int M, int R> 
-auto& insideout(const TensorRW<X,E,D,M,R>& t) {
-  
-  typedef typename InversionType<X,Null>::Type Type;
-  Type* tout = new Type();
-   const X &tin = t.derived();
-  std::vector<Dimensions> ddims= t.deepdims();
-  std::vector<Dimensions> rdims;
-
-  // need to create the reverse dimensions
-  for(int j=0; j < ddims.size(); j++) {
-    rdims.push_back(ddims[ddims.size()-j-1]);
-  }  
-  tdisp(ddims);
-  tdisp(rdims);
-  tout->resize(rdims);
-  tdisp(ddims);
-  tdisp(rdims);
-
-  const index_type Ndeep = tout->deepsize();
-  
-  //  flatten sizes into one vector
-  std::vector<index_type> flatdims;
-  for(int i=0; i < M; i++) {
-    Dimensions dims = ddims[i];
-    for(int j=0; j < dims.size(); j++) {
-      flatdims.push_back(dims[j]);
-    }
-  }
-  //  flatten sizes into one vector
-  std::vector<index_type> flatrdims;
-  for(int i=0; i < M; i++) {
-    Dimensions dims = rdims[i];
-    for(int j=0; j < dims.size(); j++) {
-      flatrdims.push_back(dims[j]);
-    }
-  }
-  std::vector<index_type> flatrinds(flatrdims.size());
-  tdisp(ddims);
-  tdisp(rdims);
-  tdisp(flatrinds);
-  tdisp(flatdims);
-  tdisp(flatrdims);
-  
-  index_type depth = 0;
-  index_type dim = 0;
-  index_type index = 0;
-  mdisp(M,Ndeep);
-  DeepIndices dinds(ddims);
-  tdisp(dinds.size());
-  tdisp(dinds);
-  for(index_type i = 0; i < Ndeep; i++) {
-    // set equal
-    mdisp(i,dinds,tin.dat(i),tin.dat(dinds));
-    dinds++;
-  }
-  return *tout;
-}
 
 //  int Nindices = 0;
 //  for(int i=0; i<ddims.size(); i++) {
@@ -393,7 +335,6 @@ int main(int argc, char *argv[])
     
 
     
-    return 0;
     tdisp(g3);
 
     for (int h = 0; h < x().size(); h++) {

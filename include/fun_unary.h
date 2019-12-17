@@ -7,59 +7,12 @@
 
 namespace mathq {
 
-  // ************************************************************************
-  // *             UNARY BOOLEAN FUNCTORS AND FUNCTIONS
-  // ************************************************************************
-
-
-  // ---------------------------------------------------------------------
-  // -            FUNCTOR_not - !(X)
-  // ---------------------------------------------------------------------
-
-  
-  template <class E> class FUNCTOR_not {		
-  public:								
-    static bool apply(const bool d) {
-      return !(d);						
-    }									
-    template <class T=E>						
-      static  typename std::enable_if<!std::is_same<T,bool>::value, E& >::type 
-      apply(const E& e) {						
-      E *e2 = new E();
-      *e2 = !(e);						
-      return *e2;							
-    }									
-    static std::string expression(const std::string& sa) {		
-      using namespace display;						
-      std::string sout = "";						
-      sout = functor_style.apply("!")+"("+ sa + ")";	
-      return sout;							
-    }									
-    static std::string classname() {					
-      using namespace display;						
-      E e;								
-      return functor_namestyle.apply(stringify(FUNTOR_not))+display::getBracketedTypeName(e); 
-    }									
-  };
-
-    
-  // ---------------------------------------------------------------------
-  // -            function - !(X)
-  // ---------------------------------------------------------------------
-
-  template <class X, class E, int M, int R>			
-    inline auto operator!(const TensorR<X,E,bool,M,R>& x) {		
-    return  TER_Unary<TensorR<X,E,bool,M,R>,E,bool,M,R, FUNCTOR_not<E> >(x); 
-  }
-
-
 
 
   // ************************************************************************
   // *              GENERAL UNARY FUNCTOR MACRO
   // ************************************************************************
 
- 
   
 #define FUNCTOR_UNARY(Function,ClassName)			\
   template <class E, class D> class FUNCTOR_##ClassName {		\
@@ -107,6 +60,8 @@ namespace mathq {
   // *             UNARY FUNCTOR / FUNCTION DEFINITIONS
   // ************************************************************************
 
+  FUNCTOR_UNARY(!,not);
+  FUNCTION_UNARY(operator!,FUNCTOR_not);
 
   FUNCTOR_UNARY(+,plus);
   FUNCTION_UNARY(operator+,FUNCTOR_plus);
@@ -254,13 +209,61 @@ namespace mathq {
   FUNCTION_UNARY(comp_ellint_2,FUNCTOR_comp_ellint_2);
 
 
+
+  
+
   // ************************************************************************
-  // *             UNARY FUNCTIONS WITH DIFFERENT OUTPUT FROM INPUT
+  // *              UNARY TYPE 2 FUNCTOR MACRO--DIFFERENT OUTPUT FROM INPUT
   // ************************************************************************
 
   
-  // FUNCTOR_UNARY(std::ilogb,ilogb,E,(typename NumberType<E,int>::ReplaceTypeE),D,int);
-  // FUNCTION_UNARY(ilogb,FUNCTOR_ilogb,E,typename NumberType<E,int>::ReplaceTypeE,D,int);
+#define FUNCTOR_UNARY_TYPE2(Function,ClassName,DOUT)				\
+  template <class E, class D> class FUNCTOR_##ClassName {		\
+  public:								\
+    typedef D DType;							\
+    typedef DOUT DoutType;						\
+    typedef E EType;							\
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EoutType;	      \
+    static DOUT apply(const D d) {					\
+      return Function(d);						\
+    }									\
+    template <class T=E>						\
+      static  typename std::enable_if<!std::is_same<T,D>::value, EoutType& >::type \
+      apply(const E& e) {						\
+      E *e2 = new E();						\
+      *e2 = Function(e);						\
+      return *e2;							\
+    }									\
+    static std::string expression(const std::string& sa) {		\
+      using namespace display;						\
+      std::string sout = "";						\
+      sout = functor_style.apply(stringify(Function))+"("+ sa + ")";	\
+      return sout;							\
+    }									\
+    static std::string classname() {					\
+      using namespace display;						\
+      E e;								\
+      return functor_namestyle.apply(stringify(FUNTOR_##ClassName))+display::getBracketedTypeName(e); \
+    }									\
+  }
+  
+  // ************************************************************************
+  // *              UNARY TYPE 2 FUNCTOR MACRO--DIFFERENT OUTPUT FROM INPUT
+  // ************************************************************************
+
+#define FUNCTION_UNARY_TYPE2(Function,Functor,DOUT)				\
+  template <class X, class E, class D, int M, int R>			\
+  inline auto Function(const TensorR<X,E,D,M,R>& x) {		\
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;		\
+    return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,DOUT,M,R, Functor<E,D>>(x); \
+    }
+  
+  // ************************************************************************
+  // *             UNARY TYPE 2 FUNCTOR / FUNCTION DEFINITIONS
+  // ************************************************************************
+  
+  FUNCTOR_UNARY_TYPE2(std::ilogb,ilogb,int);
+  FUNCTION_UNARY_TYPE2(ilogb,FUNCTOR_ilogb,int);
 
   
 
@@ -329,14 +332,14 @@ namespace mathq {
 
 
 
-  // template <class X, class E, class D, int M, int R> 
-  //   inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-  //   typedef Imaginary<D> DIN;
-  //   typedef Imaginary<D> DOUT;
-  //   typedef E EIN;
-  //   typedef E EOUT;
-  //   return  -x; 
-  // }
+  template <class X, class E, class D, int M, int R> 
+    inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
+    typedef Imaginary<D> DIN;
+    typedef Imaginary<D> DOUT;
+    typedef E EIN;
+    typedef E EOUT;
+    return  -x; 
+  }
 
 
   //***************************************************************

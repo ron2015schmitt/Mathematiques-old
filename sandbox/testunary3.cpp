@@ -24,6 +24,10 @@ int main(int argc, char *argv[])
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
+  FormatData<bool>::string_for_true = "true";
+  FormatData<bool>::string_for_false = "false";
+  
+
   cr();
   cr();
   mout << StyledString::get(HORLINE);
@@ -74,42 +78,42 @@ int main(int argc, char *argv[])
     Scalar<double> sr = 0.25;
     double x = sr();
     tdisp(sr);
-    tdisp(-sr);
-    tdisp(sin(sr));
-    tdisp(exp(sr));
+    // tdisp(-sr);
+    // tdisp(sin(sr));
+    // tdisp(exp(sr));
     
-    tdisp(std::expint(x));  
-    tdisp(expint(sr));  
+    // tdisp(std::expint(x));  
+    // tdisp(expint(sr));  
 
-    tdisp(std::comp_ellint_1(x));  
-    tdisp(comp_ellint_1(sr));  
+    // tdisp(std::comp_ellint_1(x));  
+    // tdisp(comp_ellint_1(sr));  
 
-    tdisp(std::comp_ellint_2(x));  
-    tdisp(comp_ellint_2(sr));  
+    // tdisp(std::comp_ellint_2(x));  
+    // tdisp(comp_ellint_2(sr));  
 
 
-    double k = 0.1;
-    double q = 0.1;
-    // tdisp(std::comp_ellint_3(k,q,x));  
-    // tdisp(comp_ellint_3(k,q,sr)); 
+    // double k = 0.1;
+    // double q = 0.1;
+    // // tdisp(std::comp_ellint_3(k,q,x));  
+    // // tdisp(comp_ellint_3(k,q,sr)); 
     
 
-    tdisp(std::ellint_1(k,x));  
-    tdisp(ellint_1(k,sr));  
+    // tdisp(std::ellint_1(k,x));  
+    // tdisp(ellint_1(k,sr));  
 
-    tdisp(std::ellint_2(k,x));  
-    tdisp(ellint_2(k,sr));  
+    // tdisp(std::ellint_2(k,x));  
+    // tdisp(ellint_2(k,sr));  
 
 
 
-    tdisp(std::legendre(2,x));  
-    tdisp(legendre(2,sr));  
+    // tdisp(std::legendre(2,x));  
+    // tdisp(legendre(2,sr));  
 
-    tdisp(std::laguerre(2,x));  
-    tdisp(laguerre(2,sr));  
+    // tdisp(std::laguerre(2,x));  
+    // tdisp(laguerre(2,sr));  
 
-    tdisp(std::hermite(4,x));  
-    tdisp(hermite(4,sr));  
+    // tdisp(std::hermite(4,x));  
+    // tdisp(hermite(4,sr));  
 
     
     cr();
@@ -130,26 +134,26 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Real Scalar") << endl;
     tdisp(sr);
-    tdisp(-sr);
-    tdisp(conj(sr));
-    tdisp(real(sr));
-    tdisp(imag(sr));
+    // tdisp(-sr);
+    // tdisp(conj(sr));
+    // tdisp(real(sr));
+    // tdisp(imag(sr));
 
     cr();
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
-    tdisp(-si);
-    tdisp(conj(si));
-    tdisp(real(si));
-    tdisp(imag(si));
+    //    tdisp(-si);
+    // tdisp(conj(si));
+    // tdisp(real(si));
+    // tdisp(imag(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;
     tdisp(sc);
-    tdisp(-sc);
-    tdisp(conj(sc));
-    tdisp(real(sc));
-    tdisp(imag(sc));
+    //    tdisp(-sc);
+    // tdisp(conj(sc));
+    // tdisp(real(sc));
+    // tdisp(imag(sc));
 
     cr();
     cr();
@@ -236,10 +240,10 @@ int main(int argc, char *argv[])
     
     Scalar<Scalar<double>> sr = {{1.1}};
     tdisp(sr);
-    tdisp(-sr);
-    tdisp(sin(sr));
-    tdisp(exp(sr));
-    tdisp(expint(sr));  // C++17 special function
+    // tdisp(-sr);
+    // tdisp(sin(sr));
+    // tdisp(exp(sr));
+    // tdisp(expint(sr));  // C++17 special function
     //    tdisp(conj(sr));
 
     cr();
@@ -260,26 +264,26 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Real Scalar") << endl;
     tdisp(sr);
-    tdisp(-sr);
-    tdisp(conj(sr));
-    tdisp(real(sr));
-    tdisp(imag(sr));
+    // tdisp(-sr);
+    // tdisp(conj(sr));
+    // tdisp(real(sr));
+    // tdisp(imag(sr));
 
     cr();
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
-    tdisp(-si);
-    tdisp(conj(si));
-    tdisp(real(si));
-    tdisp(imag(si));
+    // tdisp(-si);
+    // tdisp(conj(si));
+    // tdisp(real(si));
+    // tdisp(imag(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;
     tdisp(sc);
-    tdisp(-sc);
-    tdisp(conj(sc));
-    tdisp(real(sc));
-    tdisp(imag(sc));
+    // tdisp(-sc);
+    // tdisp(conj(sc));
+    // tdisp(real(sc));
+    // tdisp(imag(sc));
 
     cr();
     cr();

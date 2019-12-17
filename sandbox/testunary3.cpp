@@ -39,11 +39,6 @@ int main(int argc, char *argv[])
   print_mathq_info();
 
 
-
-  
- 
-
-
   cr();
   mout << StyledString::get(HORLINE);cr();
   //------------------------------------------------------
@@ -55,6 +50,9 @@ int main(int argc, char *argv[])
     cr();
     double x = 0.25;
     tdisp(x);
+    tdisp(+x);
+    tdisp(+(x));
+    tdisp(-x);
     tdisp(std::real(x));
     tdisp(std::imag(x));
     tdisp(std::conj(x));
@@ -74,12 +72,21 @@ int main(int argc, char *argv[])
   cr();
   mout << bold.apply("Scalar") << endl;
   {
+
+    cr();
+    Scalar<bool> sb = true;
+    tdisp(sb);
+    tdisp(!sb);
+    tdisp(operator!(sb));
+
+    
     cr();
     Scalar<double> sr = 0.25;
     double x = sr();
     tdisp(sr);
-    // tdisp(-sr);
-    // tdisp(sin(sr));
+    tdisp(+sr);
+    tdisp(-sr);
+    tdisp(sin(sr));
     // tdisp(exp(sr));
     
     // tdisp(std::expint(x));  
@@ -116,10 +123,6 @@ int main(int argc, char *argv[])
     // tdisp(hermite(4,sr));  
 
     
-    cr();
-    Scalar<bool> sb = true;
-    tdisp(sb);
-    tdisp(!sb);
 
     Scalar<ComplexDouble> sc {ComplexDouble(1,2)};
 
@@ -134,7 +137,7 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Real Scalar") << endl;
     tdisp(sr);
-    // tdisp(-sr);
+    tdisp(-sr);
     // tdisp(conj(sr));
     // tdisp(real(sr));
     // tdisp(imag(sr));
@@ -142,7 +145,7 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
-    //    tdisp(-si);
+    tdisp(-si);
     // tdisp(conj(si));
     // tdisp(real(si));
     // tdisp(imag(si));
@@ -150,7 +153,7 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Complex Scalar") << endl;
     tdisp(sc);
-    //    tdisp(-sc);
+    tdisp(-sc);
     // tdisp(conj(sc));
     // tdisp(real(sc));
     // tdisp(imag(sc));
@@ -169,56 +172,56 @@ int main(int argc, char *argv[])
 
 
   
-  // cr();
-  // cr();
-  // mout << bold.apply("Vector") << endl;
-  // {
-  //   cr();
-  //   Vector<double> v {1.1,2.2};
-  //   tdisp(v);
-  //   tdisp(-v);
-  //   tdisp(sin(v));
-  //   tdisp(exp(v));
+  cr();
+  cr();
+  mout << bold.apply("Vector") << endl;
+  {
+    cr();
+    Vector<double> v {1.1,2.2};
+    tdisp(v);
+    tdisp(-v);
+    tdisp(sin(v));
+    //   tdisp(exp(v));
   //   tdisp(expint(v));  // C++17 special function
     
-  // }
+  }
 
-  // cr();
-  // cr();
-  // mout << bold.apply("Matrix") << endl;
-  // {
-  //   Matrix<double> m {{1,2},{3,4}};
-  //   tdisp(m);
-  //   tdisp(-m);
-  //   tdisp(sin(m));
+   cr();
+   cr();
+   mout << bold.apply("Matrix") << endl;
+   {
+     Matrix<double> m {{1,2},{3,4}};
+     tdisp(m);
+     tdisp(-m);
+     tdisp(sin(m));
   //   tdisp(exp(m));
   //   tdisp(expint(m));  // C++17 special function
-  // }
+   }
 
 
-  // cr();
-  // cr();
-  // mout << bold.apply("Tensor") << endl;
-  // {
-  //   cr();
-  //   Tensor<double,3> t {
-  //     {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
-  //   	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
-  //   	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
+   cr();
+   cr();
+   mout << bold.apply("Tensor") << endl;
+   {
+     cr();
+     Tensor<double,3> t {
+       {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
+     	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
+     	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
     
-  //   tdisp(t);
-  //   tdisp(-t);
-  //   tdisp(sin(t));
+     tdisp(t);
+     tdisp(-t);
+     tdisp(sin(t));
   //   tdisp(exp(t));
   //   tdisp(expint(t));  // C++17 special function
-  // }
+   }
 
 
 
-  // cr();
-  // cr();
-  // cr();
-  // cr();
+   cr();
+   cr();
+   cr();
+   cr();
 
 
   mout << blue.apply("Two-level tests") << endl;
@@ -228,9 +231,9 @@ int main(int argc, char *argv[])
   // // two level tests
   // // -------------------------------------------------
 
-  // cr();
-  // cr();
-  // mout << bold.apply("Two-Level Scalar tests") << endl;
+  cr();
+  cr();
+  mout << bold.apply("Two-Level Scalar tests") << endl;
 
   cr();
   cr();
@@ -238,18 +241,19 @@ int main(int argc, char *argv[])
   {
     cr();
     
-    Scalar<Scalar<double>> sr = {{1.1}};
-    tdisp(sr);
-    // tdisp(-sr);
-    // tdisp(sin(sr));
-    // tdisp(exp(sr));
-    // tdisp(expint(sr));  // C++17 special function
-    //    tdisp(conj(sr));
-
     cr();
     Scalar<Scalar<bool>> sb = true;
     tdisp(sb);
     tdisp(!sb);
+
+    Scalar<Scalar<double>> sr = {{1.1}};
+    tdisp(sr);
+    tdisp(-sr);
+    tdisp(sin(sr));
+    // tdisp(exp(sr));
+    // tdisp(expint(sr));  // C++17 special function
+    //    tdisp(conj(sr));
+
 
     Scalar<Scalar<ComplexDouble>> sc {{ComplexDouble(1,2)}};
 
@@ -264,7 +268,7 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Real Scalar") << endl;
     tdisp(sr);
-    // tdisp(-sr);
+    tdisp(-sr);
     // tdisp(conj(sr));
     // tdisp(real(sr));
     // tdisp(imag(sr));
@@ -272,7 +276,7 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
-    // tdisp(-si);
+    tdisp(-si);
     // tdisp(conj(si));
     // tdisp(real(si));
     // tdisp(imag(si));
@@ -280,7 +284,7 @@ int main(int argc, char *argv[])
     cr();
     mout << blue.apply("Complex Scalar") << endl;
     tdisp(sc);
-    // tdisp(-sc);
+    tdisp(-sc);
     // tdisp(conj(sc));
     // tdisp(real(sc));
     // tdisp(imag(sc));

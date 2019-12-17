@@ -2,26 +2,21 @@
 #define MATHQ__FUN_UNARY_H 1
 
 
-namespace mathq {
-
-
-
-
-
-  /************************************************************
-   *          Functions that apply to all tensors
-   ************************************************************
-   */
-
   // TODO: convert macros to Python script
 
 
-
+namespace mathq {
 
   // ************************************************************************
   // *             UNARY BOOLEAN FUNCTORS AND FUNCTIONS
   // ************************************************************************
 
+
+  // ---------------------------------------------------------------------
+  // -            FUNCTOR_not - !(X)
+  // ---------------------------------------------------------------------
+
+  
   template <class E> class FUNCTOR_not {		
   public:								
     static bool apply(const bool d) {
@@ -48,6 +43,10 @@ namespace mathq {
   };
 
     
+  // ---------------------------------------------------------------------
+  // -            function - !(X)
+  // ---------------------------------------------------------------------
+
   template <class X, class E, int M, int R>			
     inline auto operator!(const TensorR<X,E,bool,M,R>& x) {		
     return  TER_Unary<TensorR<X,E,bool,M,R>,E,bool,M,R, FUNCTOR_not<E> >(x); 
@@ -55,36 +54,27 @@ namespace mathq {
 
 
 
-  // ************************************************************************
-  // *             UNARY FUNCTION MACRO
-  // ************************************************************************
-
-#define FUNCTION_UNARY(Function,Functor,DIN,DOUT,EIN,EOUT)		\
-  template <class X, class E, class D, int M, int R>			\
-    inline auto Function(const TensorR<X,EIN,DIN,M,R>& x) {		\
-    return  TER_Unary<TensorR<X,EIN,DIN,M,R>,EOUT,DOUT,M,R, Functor<E,D> >(x); \
-  }
 
   // ************************************************************************
-  // *              UNARY FUNCTOR MACRO
+  // *              GENERAL UNARY FUNCTOR MACRO
   // ************************************************************************
 
  
   
-#define FUNCTOR_UNARY(Function,ClassName,DIN,DOUT,EIN,EOUT)		\
+#define FUNCTOR_UNARY(Function,ClassName)			\
   template <class E, class D> class FUNCTOR_##ClassName {		\
   public:								\
-    typedef DIN DType;							\
-    typedef DOUT DoutType;						\
-    typedef EIN EType;							\
-    typedef EOUT EoutType;						\
-    static DOUT apply(const DIN d) {					\
+    typedef D DType;							\
+    typedef D DoutType;						\
+    typedef E EType;							\
+    typedef E EoutType;						\
+    static D apply(const D d) {					\
       return Function(d);						\
     }									\
-    template <class T=EIN>						\
-      static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type \
-      apply(const EOUT& e) {						\
-      EOUT *e2 = new EOUT();						\
+    template <class T=E>						\
+      static  typename std::enable_if<!std::is_same<T,D>::value, E& >::type \
+      apply(const E& e) {						\
+      E *e2 = new E();						\
       *e2 = Function(e);						\
       return *e2;							\
     }									\
@@ -96,141 +86,181 @@ namespace mathq {
     }									\
     static std::string classname() {					\
       using namespace display;						\
-      EIN e;								\
+      E e;								\
       return functor_namestyle.apply(stringify(FUNTOR_##ClassName))+display::getBracketedTypeName(e); \
     }									\
   }
   
   // ************************************************************************
-  // *             UNARY FUNCTIONS
+  // *             GENERAL UNARY FUNCTION MACRO
+  // ************************************************************************
+
+#define FUNCTION_UNARY(Function,Functor)		\
+  template <class X, class E, class D, int M, int R>			\
+  inline auto Function(const TensorR<X,E,D,M,R>& x) {		\
+    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R, Functor<E,D> >(x); \
+    }
+
+
+
+  // ************************************************************************
+  // *             UNARY FUNCTOR / FUNCTION DEFINITIONS
+  // ************************************************************************
+
+
+  FUNCTOR_UNARY(+,plus);
+  FUNCTION_UNARY(operator+,FUNCTOR_plus);
+
+  FUNCTOR_UNARY(-,minus);
+  FUNCTION_UNARY(operator-,FUNCTOR_minus);
+
+  FUNCTOR_UNARY(std::sin,sin);
+  FUNCTION_UNARY(sin,FUNCTOR_sin);
+
+  FUNCTOR_UNARY(std::cos,cos);
+  FUNCTION_UNARY(cos,FUNCTOR_cos);
+
+  FUNCTOR_UNARY(std::tan,tan);
+  FUNCTION_UNARY(tan,FUNCTOR_tan);
+
+  
+  FUNCTOR_UNARY(std::asin,asin);
+  FUNCTION_UNARY(asin,FUNCTOR_asin);
+
+  FUNCTOR_UNARY(std::acos,acos);
+  FUNCTION_UNARY(acos,FUNCTOR_acos);
+
+  FUNCTOR_UNARY(std::atan,atan);
+  FUNCTION_UNARY(atan,FUNCTOR_atan);
+
+  
+  FUNCTOR_UNARY(std::sinh,sinh);
+  FUNCTION_UNARY(sinh,FUNCTOR_sinh);
+
+  FUNCTOR_UNARY(std::cosh,cosh);
+  FUNCTION_UNARY(cosh,FUNCTOR_cosh);
+
+  FUNCTOR_UNARY(std::tanh,tanh);
+  FUNCTION_UNARY(tanh,FUNCTOR_tanh);
+
+
+  FUNCTOR_UNARY(std::asinh,asinh);
+  FUNCTION_UNARY(asinh,FUNCTOR_asinh);
+
+  FUNCTOR_UNARY(std::acosh,acosh);
+  FUNCTION_UNARY(acosh,FUNCTOR_acosh);
+
+  FUNCTOR_UNARY(std::atanh,atanh);
+  FUNCTION_UNARY(atanh,FUNCTOR_atanh);
+
+  FUNCTOR_UNARY(std::sqrt,sqrt);
+  FUNCTION_UNARY(sqrt,FUNCTOR_sqrt);
+
+ 
+  FUNCTOR_UNARY(std::cbrt,cbrt);
+  FUNCTION_UNARY(cbrt,FUNCTOR_cbrt);
+  
+  FUNCTOR_UNARY(mathq::sqr,sqr);
+  FUNCTION_UNARY(sqr,FUNCTOR_sqr);
+
+
+  FUNCTOR_UNARY(mathq::cube,cube);
+  FUNCTION_UNARY(cube,FUNCTOR_cube);
+
+
+  FUNCTOR_UNARY(std::exp,exp);
+  FUNCTION_UNARY(exp,FUNCTOR_exp);
+
+  FUNCTOR_UNARY(std::exp2,exp2);
+  FUNCTION_UNARY(exp2,FUNCTOR_exp2);
+
+
+  FUNCTOR_UNARY(std::expm1,expm1);
+  FUNCTION_UNARY(expm1,FUNCTOR_expm1);
+
+
+  FUNCTOR_UNARY(std::log,log);
+  FUNCTION_UNARY(log,FUNCTOR_log);
+
+
+  FUNCTOR_UNARY(std::log10,log10);
+  FUNCTION_UNARY(log10,FUNCTOR_log10);
+
+
+  FUNCTOR_UNARY(std::log2,log2);
+  FUNCTION_UNARY(log2,FUNCTOR_log2);
+
+
+  FUNCTOR_UNARY(std::log1p,log1p);
+  FUNCTION_UNARY(log1p,FUNCTOR_log1p);
+
+  FUNCTOR_UNARY(std::logb,logb);
+  FUNCTION_UNARY(logb,FUNCTOR_logb);
+
+
+  FUNCTOR_UNARY(std::abs,abs);
+  FUNCTION_UNARY(abs,FUNCTOR_abs);
+
+  
+  FUNCTOR_UNARY(mathq::sgn,sgn);
+  FUNCTION_UNARY(sgn,FUNCTOR_sgn);
+
+  
+  FUNCTOR_UNARY(std::ceil,ceil);
+  FUNCTION_UNARY(ceil,FUNCTOR_ceil);
+
+  
+  FUNCTOR_UNARY(std::floor,floor);
+  FUNCTION_UNARY(floor,FUNCTOR_floor);
+
+  
+  FUNCTOR_UNARY(std::round,round);
+  FUNCTION_UNARY(round,FUNCTOR_round);
+
+
+  FUNCTOR_UNARY(std::trunc,trunc);
+  FUNCTION_UNARY(trunc,FUNCTOR_trunc);
+
+
+  FUNCTOR_UNARY(std::erf,erf);
+  FUNCTION_UNARY(erf,FUNCTOR_erf);
+
+ 
+  FUNCTOR_UNARY(std::erfc,erfc);
+  FUNCTION_UNARY(erfc,FUNCTOR_erfc);
+
+  
+  FUNCTOR_UNARY(std::tgamma,tgamma);
+  FUNCTION_UNARY(tgamma,FUNCTOR_tgamma);
+
+  
+  FUNCTOR_UNARY(std::lgamma,lgamma);
+  FUNCTION_UNARY(lgamma,FUNCTOR_lgamma);
+
+
+  FUNCTOR_UNARY(std::expint,expint);
+  FUNCTION_UNARY(expint,FUNCTOR_expint);
+
+
+  FUNCTOR_UNARY(std::riemann_zeta,riemann_zeta);
+  FUNCTION_UNARY(riemann_zeta,FUNCTOR_riemann_zeta);
+
+
+  FUNCTOR_UNARY(std::comp_ellint_1,comp_ellint_1);
+  FUNCTION_UNARY(comp_ellint_1,FUNCTOR_comp_ellint_1);
+
+
+  FUNCTOR_UNARY(std::comp_ellint_2,comp_ellint_2);
+  FUNCTION_UNARY(comp_ellint_2,FUNCTOR_comp_ellint_2);
+
+
+  // ************************************************************************
+  // *             UNARY FUNCTIONS WITH DIFFERENT OUTPUT FROM INPUT
   // ************************************************************************
 
   
-  // FUNCTOR_UNARY(+,plus,D,E);
-  // FUN_UNARY_OLD(operator+,FUNCTOR_plus);
-  
-  // FUNCTOR_UNARY(-,minus,D,E);
-  // FUN_UNARY_OLD(operator-,FUNCTOR_minus);
-
-
-  // FUNCTOR_UNARY(std::sin,sin,D,E);
-  // FUN_UNARY_OLD(sin,FUNCTOR_sin);
-
-  // FUNCTOR_UNARY(std::cos,cos,D,E);
-  // FUN_UNARY_OLD(cos,FUNCTOR_cos);
-
-  // FUNCTOR_UNARY(std::tan,tan,D,E);
-  // FUN_UNARY_OLD(tan,FUNCTOR_tan);
-
-  // FUNCTOR_UNARY(std::asin,asin,D,E);
-  // FUN_UNARY_OLD(asin,FUNCTOR_asin);
-
-  // FUNCTOR_UNARY(std::acos,acos,D,E);
-  // FUN_UNARY_OLD(acos,FUNCTOR_acos);
-
-  // FUNCTOR_UNARY(std::atan,atan,D,E);
-  // FUN_UNARY_OLD(atan,FUNCTOR_atan);
-
-  
-  // FUNCTOR_UNARY(std::sinh,sinh,D,E);
-  // FUN_UNARY_OLD(sinh,FUNCTOR_sinh);
-
-  // FUNCTOR_UNARY(std::cosh,cosh,D,E);
-  // FUN_UNARY_OLD(cosh,FUNCTOR_cosh);
-
-  // FUNCTOR_UNARY(std::tanh,tanh,D,E);
-  // FUN_UNARY_OLD(tanh,FUNCTOR_tanh);
-
-  // FUNCTOR_UNARY(std::asinh,asinh,D,E);
-  // FUN_UNARY_OLD(asinh,FUNCTOR_asinh);
-
-  // FUNCTOR_UNARY(std::acosh,acosh,D,E);
-  // FUN_UNARY_OLD(acosh,FUNCTOR_acosh);
-
-  // FUNCTOR_UNARY(std::atanh,atanh,D,E);
-  // FUN_UNARY_OLD(atanh,FUNCTOR_atanh);
-
-
-  // FUNCTOR_UNARY(std::sqrt,sqrt,D,E);
-  // FUN_UNARY_OLD(sqrt,FUNCTOR_sqrt);
-  
-  // FUNCTOR_UNARY(std::cbrt,cbrt,D,E);
-  // FUN_UNARY_OLD(cbrt,FUNCTOR_cbrt);
-
-  
-  // FUNCTOR_UNARY(mathq::sqr,sqr,D,E);
-  // FUN_UNARY_OLD(sqr,FUNCTOR_sqr);
-
-  // FUNCTOR_UNARY(mathq::cube,cube,D,E);
-  // FUN_UNARY_OLD(cube,FUNCTOR_cube);
-
-  // FUNCTOR_UNARY(std::exp,exp,D,E);
-  // FUN_UNARY_OLD(exp,FUNCTOR_exp);
-
-  // FUNCTOR_UNARY(std::exp2,exp2,D,E);
-  // FUN_UNARY_OLD(exp2,FUNCTOR_exp2);
-
-  // FUNCTOR_UNARY(std::expm1,expm1,D,E);
-  // FUN_UNARY_OLD(expml,FUNCTOR_expm1);
-
-  // FUNCTOR_UNARY(std::log,log,D,E);
-  // FUN_UNARY_OLD(log,FUNCTOR_log);
-
-  // FUNCTOR_UNARY(std::log10,log10,D,E);
-  // FUN_UNARY_OLD(log10,FUNCTOR_log10);
-
-  // FUNCTOR_UNARY(std::log2,log2,D,E);
-  // FUN_UNARY_OLD(log2,FUNCTOR_log2);
-
-  // FUNCTOR_UNARY(std::log1p,log1p,D,E);
-  // FUN_UNARY_OLD(log1p,FUNCTOR_log1p);
-
-
-  // FUNCTOR_UNARY(std::abs,abs,D,E);
-  // FUN_UNARY_OLD(abs,FUNCTOR_abs);
-  
-  // FUNCTOR_UNARY(mathq::sgn,sgn,D,E);
-  // FUN_UNARY_OLD(sgn,FUNCTOR_sgn);
-
-  
-  // FUNCTOR_UNARY(std::ceil,ceil,D,E);
-  // FUN_UNARY_OLD(ceil,FUNCTOR_ceil);
-  
-  // FUNCTOR_UNARY(std::floor,floor,D,E);
-  // FUN_UNARY_OLD(floor,FUNCTOR_floor);
-  
-  // FUNCTOR_UNARY(std::round,round,D,E);
-  // FUN_UNARY_OLD(round,FUNCTOR_round);
-
-  // FUNCTOR_UNARY(std::trunc,trunc,D,E);
-  // FUN_UNARY_OLD(trunc,FUNCTOR_trunc);
-
-  // FUNCTOR_UNARY(std::erf,erf,D,E);
-  // FUN_UNARY_OLD(erf,FUNCTOR_erf);
- 
-  // FUNCTOR_UNARY(std::erfc,erfc,D,E);
-  // FUN_UNARY_OLD(erfc,FUNCTOR_erfc);
-  
-  // FUNCTOR_UNARY(std::tgamma,tgamma,D,E);
-  // FUN_UNARY_OLD(tgamma,FUNCTOR_tgamma);
-  
-  // FUNCTOR_UNARY(std::lgamma,lgamma,D,E);
-  // FUN_UNARY_OLD(lgamma,FUNCTOR_lgamma);
-
-  // FUNCTOR_UNARY(std::expint,expint,D,E);
-  // FUN_UNARY_OLD(expint,FUNCTOR_expint);
-
-  // FUNCTOR_UNARY(std::riemann_zeta,riemann_zeta,D,E);
-  // FUN_UNARY_OLD(riemann_zeta,FUNCTOR_riemann_zeta);
-
-  // FUNCTOR_UNARY(std::comp_ellint_1,comp_ellint_1,D,E);
-  // FUN_UNARY_OLD(comp_ellint_1,FUNCTOR_comp_ellint_1);
-
-  // FUNCTOR_UNARY(std::comp_ellint_2,comp_ellint_2,D,E);
-  // FUN_UNARY_OLD(comp_ellint_2,FUNCTOR_comp_ellint_2);
-
-
-  
+  // FUNCTOR_UNARY(std::ilogb,ilogb,E,(typename NumberType<E,int>::ReplaceTypeE),D,int);
+  // FUNCTION_UNARY(ilogb,FUNCTOR_ilogb,E,typename NumberType<E,int>::ReplaceTypeE,D,int);
 
   
 

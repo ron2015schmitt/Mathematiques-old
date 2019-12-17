@@ -269,7 +269,7 @@ namespace mathq {
 
 
   // ************************************************************************
-  // *             UNARY COMPLEX FUNCTIONS
+  // *             UNARY COMPLEX-ONLY FUNCTIONS
   // ************************************************************************
 
 
@@ -277,7 +277,31 @@ namespace mathq {
   // conj(x)
   //***************************************************************
 
+
+  // function: conj(x) x=real
+
+  template <class X, class E, class D, int M, int R> 
+    EnableMethodIf<std::is_arithmetic<D>::value,const TensorR<X,E,D,M,R>&>  
+    conj(const TensorR<X,E,D,M,R>& x) {
+    return x;
+  }
+
+
+  // function: conj(x) x=imag
   
+  template <class X, class E, class D, int M, int R> 
+  inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
+    typedef Imaginary<D> DIN;
+    typedef Imaginary<D> DOUT;
+    typedef E EIN;
+    typedef E EOUT;
+    return  -x; 
+  }
+  
+
+
+  // FUNCTOR: conj(x) x=complex
+
   template <class E, class D> class FUNCTOR_conj { 
   public:
     typedef std::complex<D> DIN;
@@ -313,12 +337,7 @@ namespace mathq {
 
 
 
-  template <class X, class E, class D, int M, int R> 
-    EnableMethodIf<std::is_arithmetic<D>::value,const TensorR<X,E,D,M,R>&>  
-    conj(const TensorR<X,E,D,M,R>& x) {
-    return x;
-  }
-
+  // function: conj(x) x=complex
 
   template <class X, class E, class D, int M, int R> 
     inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
@@ -332,65 +351,19 @@ namespace mathq {
 
 
 
-  template <class X, class E, class D, int M, int R> 
-    inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-    typedef Imaginary<D> DIN;
-    typedef Imaginary<D> DOUT;
-    typedef E EIN;
-    typedef E EOUT;
-    return  -x; 
-  }
-
 
   //***************************************************************
   // real(x)
   //***************************************************************
 
-  // real(x) x=real
+  // function: real(x) x=real
+  
   template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value,const TensorR<X,E,D,M,R>&>  
     real(const TensorR<X,E,D,M,R>& x) {
     return x;
   }
 
-
-  // real(x) x=complex FUNCTOR
-  template <class E, class D> class FUNCTOR_real_from_complex { 
-  public:
-    typedef typename Realify<D>::Type DOUT;
-    typedef E EIN;
-    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-    static const DOUT apply(const D d) { 
-      namespace LIB = std;
-      using LIB::real;
-      return real(d);
-    }
-    template <class T=EIN> 
-      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-      apply(const EIN& e) { 
-      namespace LIB = std;
-      using LIB::real;    
-      EOUT *e2 = new EOUT(); 
-      *e2 = Function(e); 
-      return *e2; 
-    }
-  };
-
-  // real(x) x=complex function
-
-  template <class X, class E, class D, int M, int R> 
-    inline auto
-    real(const TensorR<X,E,std::complex<D>,M,R>& x) {
-    typedef std::complex<D> DIN;
-    typedef D DOUT;
-    typedef E EIN;
-    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-    return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_complex<E,DIN>>(x); 
-  }
-
- 
-
-
-  // real(x) x=Imaginary FUNCTOR
+  // FUNCTOR: real(x) x=Imaginary 
 
   template <class E, class D> class FUNCTOR_real_from_imag { 
   public:
@@ -414,7 +387,7 @@ namespace mathq {
   };
 
     
-  // real(x) x=Imaginary function
+  // function: real(x) x=Imaginary 
  
   template <class X, class E, class D, int M, int R> 
     inline auto
@@ -427,36 +400,113 @@ namespace mathq {
   }
 
 
+  
+  // FUNCTOR: real(x) x=complex
 
-  //***************************************************************
-  // imag(x)
-  //***************************************************************
-
-  // imag(x) x=real
-  template <class E, class D> class FUNCTOR_imag_from_real { 
+  template <class E, class D> class FUNCTOR_real_from_complex { 
   public:
     typedef typename Realify<D>::Type DOUT;
     typedef E EIN;
     typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
     static const DOUT apply(const D d) { 
-      return 0;
+      namespace LIB = std;
+      using LIB::real;
+      return real(d);
     }
     template <class T=EIN> 
       static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
       apply(const EIN& e) { 
+      namespace LIB = std;
+      using LIB::real;    
       EOUT *e2 = new EOUT(); 
+      *e2 = Function(e); 
+      return *e2; 
+    }
+  };
+
+
+  // function: real(x) x=complex
+
+  template <class X, class E, class D, int M, int R> 
+    inline auto
+    real(const TensorR<X,E,std::complex<D>,M,R>& x) {
+    typedef std::complex<D> DIN;
+    typedef D DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
+    return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_complex<E,DIN>>(x); 
+  }
+
+ 
+
+
+
+
+  //***************************************************************
+  // imag(x)
+  //***************************************************************
+
+  // FUNCTOR imag(x) x=real
+
+  template <class E, class D> class FUNCTOR_imag_from_real { 
+  public:
+    static const D apply(const D d) { 
+      return 0;
+    }
+    template <class T=E> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, E& >::type  
+      apply(const E& e) { 
+      E *e2 = new E(); 
       *e2 = imag(e); 
       return *e2; 
     }
   };
+
+  // function: imag(x) x=real
+
   template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value,TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_imag_from_real<E,D>>>  
     imag(const TensorR<X,E,D,M,R>& x) {
     return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_imag_from_real<E,D>>(x); 
   }
 
+  // FUNCTOR imag(x) x=Imaginary 
+
+  template <class E, class D> class FUNCTOR_imag_from_imag { 
+  public:
+    typedef typename Realify<D>::Type DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+    static const DOUT apply(const D d) { 
+      namespace LIB = mathq;
+      using LIB::imag;
+      return imag(d);
+    }
+    template <class T=E> 
+      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
+      apply(const EIN& e) { 
+      namespace LIB = mathq;
+      using LIB::imag;    
+      EOUT *e2 = new EOUT(); 
+      *e2 = Function(e); 
+      return *e2; 
+    }
+  };
+
+    
+  // imag(x) x=Imaginary function
+ 
+  template <class X, class E, class D, int M, int R> 
+    inline auto
+    imag(const TensorR<X,E,Imaginary<D>,M,R>& x) {
+    typedef Imaginary<D> DIN;
+    typedef D DOUT;
+    typedef E EIN;
+    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
+    return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_imag<E,DIN>>(x); 
+  }
 
 
-  // imag(x) x=complex FUNCTOR
+  // FUNCTOR: imag(x) x=complex
   template <class E, class D> class FUNCTOR_imag_from_complex { 
   public:
     typedef typename Realify<D>::Type DOUT;
@@ -493,44 +543,9 @@ namespace mathq {
  
 
 
-  // imag(x) x=Imaginary FUNCTOR
-
-  template <class E, class D> class FUNCTOR_imag_from_imag { 
-  public:
-    typedef typename Realify<D>::Type DOUT;
-    typedef E EIN;
-    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
-    static const DOUT apply(const D d) { 
-      namespace LIB = mathq;
-      using LIB::imag;
-      return imag(d);
-    }
-    template <class T=EIN> 
-      static  const typename std::enable_if<!std::is_same<T,D>::value, EOUT& >::type  
-      apply(const EIN& e) { 
-      namespace LIB = mathq;
-      using LIB::imag;    
-      EOUT *e2 = new EOUT(); 
-      *e2 = Function(e); 
-      return *e2; 
-    }
-  };
 
     
-  // imag(x) x=Imaginary function
- 
-  template <class X, class E, class D, int M, int R> 
-    inline auto
-    imag(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-    typedef Imaginary<D> DIN;
-    typedef D DOUT;
-    typedef E EIN;
-    typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-    return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_imag<E,DIN>>(x); 
-  }
-
-    
-  //  ~, complex abs and arg
+  //  complex abs and arg norm, others?  
 
   
 

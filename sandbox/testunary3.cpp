@@ -107,29 +107,6 @@ int main(int argc, char *argv[])
     // tdisp(comp_ellint_2(sr));  
 
 
-    // double k = 0.1;
-    // double q = 0.1;
-    // // tdisp(std::comp_ellint_3(k,q,x));  
-    // // tdisp(comp_ellint_3(k,q,sr)); 
-    
-
-    // tdisp(std::ellint_1(k,x));  
-    // tdisp(ellint_1(k,sr));  
-
-    // tdisp(std::ellint_2(k,x));  
-    // tdisp(ellint_2(k,sr));  
-
-
-
-    // tdisp(std::legendre(2,x));  
-    // tdisp(legendre(2,sr));  
-
-    // tdisp(std::laguerre(2,x));  
-    // tdisp(laguerre(2,sr));  
-
-    // tdisp(std::hermite(4,x));  
-    // tdisp(hermite(4,sr));  
-
     
 
 
@@ -150,6 +127,28 @@ int main(int argc, char *argv[])
     tdisp(real(sr));
     tdisp(imag(sr));
 
+    tdisp(exp(sr));
+    tdisp(log(sr));
+    tdisp(log10(sr));
+    tdisp(sqrt(sr));
+
+    tdisp(sin(sr));
+    tdisp(cos(sr));
+    tdisp(tan(sr));
+
+    tdisp(asin(sr));
+    tdisp(acos(sr));
+    tdisp(atan(sr));
+
+    tdisp(sinh(sr));
+    tdisp(cosh(sr));
+    tdisp(tanh(sr));
+
+    tdisp(asinh(sr));
+    tdisp(acosh(sr));
+    tdisp(atanh(sr));
+
+    
     cr();
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
@@ -157,6 +156,7 @@ int main(int argc, char *argv[])
     tdisp(conj(si));
     tdisp(real(si));
     tdisp(imag(si));
+    // tdisp(sin(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;
@@ -166,6 +166,27 @@ int main(int argc, char *argv[])
     tdisp(conj(sc));
     tdisp(real(sc));
     tdisp(imag(sc));
+
+    tdisp(exp(sc));
+    tdisp(log(sc));
+    tdisp(log10(sc));
+    tdisp(sqrt(sc));
+
+    tdisp(sin(sc));
+    tdisp(cos(sc));
+    tdisp(tan(sc));
+
+    tdisp(asin(sc));
+    tdisp(acos(sc));
+    tdisp(atan(sc));
+
+    tdisp(sinh(sc));
+    tdisp(cosh(sc));
+    tdisp(tanh(sc));
+
+    tdisp(asinh(sc));
+    tdisp(acosh(sc));
+    tdisp(atanh(sc));
 
     cr();
     cr();

@@ -63,6 +63,13 @@ namespace mathq {
     return (std::abs(x) < std::abs(tolerance) ? 0. : x);
   }
 
+
+  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+    D zero(const D& x) {
+    return 0;
+  }
+
+  
   // approx
   
   template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>> bool approx(const D& x, const D& y, const D tolerance) {

@@ -57,7 +57,15 @@ int main(int argc, char *argv[])
     tdisp(std::imag(x));
     tdisp(std::conj(x));
     tdisp(mathq::conj(x));
+    tdisp(mathq::zero(x));
     
+    Imaginary<double> y(2);
+    tdisp(y);
+    tdisp(mathq::real(y));
+    tdisp(mathq::imag(y));
+    tdisp(mathq::conj(y));
+
+
     std::complex<double> z(1,2);
     tdisp(z);
     tdisp(std::real(z));
@@ -124,34 +132,35 @@ int main(int argc, char *argv[])
 
     
 
-    Scalar<ComplexDouble> sc {ComplexDouble(1,2)};
-
-
-    Scalar<Imaginary<double>> si;
-    si() = Imaginary<double>(3);
 
     cr();
     typename NumberType<Imaginary<double>>::Type ww;
     tdisp(ww);
 
+
+    Scalar<Imaginary<double>> si;
+    si() = Imaginary<double>(3);
+
+
     cr();
     mout << blue.apply("Real Scalar") << endl;
     tdisp(sr);
     tdisp(-sr);
-    // tdisp(conj(sr));
-    // tdisp(real(sr));
-    // tdisp(imag(sr));
+    tdisp(conj(sr));
+    tdisp(real(sr));
+    tdisp(imag(sr));
 
     cr();
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
     tdisp(-si);
     // tdisp(conj(si));
-    // tdisp(real(si));
+    //tdisp(real(si));
     // tdisp(imag(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;
+    Scalar<ComplexDouble> sc {ComplexDouble(1,2)};
     tdisp(sc);
     tdisp(-sc);
     // tdisp(conj(sc));

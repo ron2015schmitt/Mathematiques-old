@@ -742,14 +742,14 @@ namespace mathq {
     struct is_instance<U<T>, U> : public std::true_type {};
 
   //***********************************************************************
-  //  EnableConstructorIf - used for enabling constructors 
+  //  EnableConstructorIf - used for enabling constructors or methods
   //***********************************************************************
 
   template<bool B>
     using EnableConstructorIf = typename std::enable_if<B, int>::type;
 
   //***********************************************************************
-  //  EnableMethodIf - used for enabling methods
+  //  EnableMethodIf - used for enabling methods via return type give as T
   //***********************************************************************
   template<bool B, class T>
     using EnableMethodIf = typename std::enable_if<B,T>::type;

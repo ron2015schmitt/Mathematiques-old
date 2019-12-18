@@ -219,20 +219,20 @@ namespace mathq {
   // ************************************************************************
 
   
-#define FUNCTOR_UNARY_TYPE2(Function,ClassName,DOUT)				\
-  template <class E, class D> class FUNCTOR_##ClassName {		\
+#define FUNCTOR_UNARY_TYPE2(Function,ClassName)		\
+  template <class E, class DIN, class DOUT> class FUNCTOR_##ClassName {		\
   public:								\
-    typedef D DType;							\
+    typedef DIN DType;							\
     typedef DOUT DoutType;						\
     typedef E EType;							\
     typedef typename NumberType<E,DOUT>::ReplaceTypeE EoutType;	      \
-    static DOUT apply(const D d) {					\
+    static DOUT apply(const DIN d) {					\
       return Function(d);						\
     }									\
     template <class T=E>						\
-      static  typename std::enable_if<!std::is_same<T,D>::value, EoutType& >::type \
+      static  typename std::enable_if<!std::is_same<T,DIN>::value, EoutType& >::type \
       apply(const E& e) {						\
-      E *e2 = new E();						\
+      EoutType *e2 = new EoutType();						\
       *e2 = Function(e);						\
       return *e2;							\
     }									\
@@ -253,19 +253,19 @@ namespace mathq {
   // *              UNARY TYPE 2 FUNCTOR MACRO--DIFFERENT OUTPUT FROM INPUT
   // ************************************************************************
 
-#define FUNCTION_UNARY_TYPE2(Function,Functor,DOUT)				\
+#define FUNCTION_UNARY_TYPE2(Function,Functor,DIN,DOUT)			\
   template <class X, class E, class D, int M, int R>			\
-  inline auto Function(const TensorR<X,E,D,M,R>& x) {		\
+  inline auto Function(const TensorR<X,E,DIN,M,R>& x) {		\
     typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;		\
-    return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,DOUT,M,R, Functor<E,D>>(x); \
+    return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R, Functor<E,DIN,DOUT>>(x); \
     }
   
   // ************************************************************************
   // *             UNARY TYPE 2 FUNCTOR / FUNCTION DEFINITIONS
   // ************************************************************************
   
-  FUNCTOR_UNARY_TYPE2(std::ilogb,ilogb,int);
-  FUNCTION_UNARY_TYPE2(ilogb,FUNCTOR_ilogb,int);
+  FUNCTOR_UNARY_TYPE2(std::ilogb,ilogb);
+  FUNCTION_UNARY_TYPE2(ilogb,FUNCTOR_ilogb,D,int);
 
   
 
@@ -274,37 +274,6 @@ namespace mathq {
   // *             UNARY COMPLEX FUNCTIONS
   // ************************************************************************
 
-  // FUNCTOR: real output from imaginary or complex
-
-#define FUNCTOR_UNARY_TYPE_IC(Function,ClassName) \
-  template <class E, class D> class FUNCTOR_ClassName { \
-  public:\
-    typedef D DIN;\
-    typedef typename Realify<D>::Type DOUT;\
-    typedef E EIN;\
-    typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;\
-    static const DOUT apply(const D d) { \
-      return Function(d);\
-    }\
-    template <class T=E> \
-      static  const typename std::enable_if<!std::is_same<T,D>::value, E& >::type  \
-      apply(const E& e) { \
-      EOUT *e2 = new EOUT(); \
-      *e2 = Function(e); \
-      return *e2; \
-    }\
-    static std::string expression(const std::string& sa) {		\
-      using namespace display;						\
-      std::string sout = "";						\
-      sout = functor_style.apply(stringify(Function))+"("+ sa + ")";	\
-      return sout;							\
-    }									\
-    static std::string classname() {					\
-      using namespace display;						\
-      E e;								\
-      return functor_namestyle.apply(stringify(FUNCTOR_##ClassName))+display::getBracketedTypeName(e); \
-    }									\
-  };
 
   
   //***************************************************************
@@ -400,17 +369,10 @@ namespace mathq {
     
   // function: real(x) x=Imaginary
 
-  //  FUNCTOR_UNARY_TYPE3(mathq::real,real_of_Imaginary,D);
- 
-  // template <class X, class E, class D, int M, int R> 
-  //   inline auto
-  //   real(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-  //   typedef Imaginary<D> DIN;
-  //   typedef D DOUT;
-  //   typedef E EIN;
-  //   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  //   return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_of_Imaginary<E,DIN>>(x); 
-  // }
+
+  FUNCTOR_UNARY_TYPE2(mathq::real,real_from_Imaginary);
+  FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_from_Imaginary, Imaginary<D>, D);
+
 
 
   // // function: real(x) x=complex
@@ -446,6 +408,9 @@ namespace mathq {
 
     
   // imag(x) x=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::imag,imag_from_Imaginary);
+  FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_from_Imaginary, Imaginary<D>, D);
 
   // FUNCTOR_UNARY_TYPE_IC(mathq::imag,imag_of_Imaginary);
 

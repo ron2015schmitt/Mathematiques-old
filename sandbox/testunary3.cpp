@@ -155,8 +155,8 @@ int main(int argc, char *argv[])
     tdisp(si);
     tdisp(-si);
     // tdisp(conj(si));
-    //tdisp(real(si));
-    // tdisp(imag(si));
+    tdisp(real(si));
+    tdisp(imag(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;

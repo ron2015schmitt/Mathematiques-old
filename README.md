@@ -1,4 +1,4 @@
-# Mathématiques v2.33-r34
+# Mathématiques v2.33-r35
 
 Mathématiques is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntax while also providing run-time performance and memory usage of hand-coded C or Fortran.
 

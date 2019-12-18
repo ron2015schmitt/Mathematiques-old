@@ -64,8 +64,17 @@ namespace mathq {
   }
 
 
+  // zero
+  
   template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
     D zero(const D& x) {
+    return 0;
+  }
+
+  // imag
+  
+  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+    D imag(const D& x) {
     return 0;
   }
 

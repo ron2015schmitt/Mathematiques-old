@@ -164,8 +164,8 @@ int main(int argc, char *argv[])
     tdisp(sc);
     tdisp(-sc);
     // tdisp(conj(sc));
-    // tdisp(real(sc));
-    // tdisp(imag(sc));
+    tdisp(real(sc));
+    tdisp(imag(sc));
 
     cr();
     cr();
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
     tdisp(qc);
   }
 
-
+  return 0;
   
   cr();
   cr();

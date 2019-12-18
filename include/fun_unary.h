@@ -289,7 +289,7 @@ namespace mathq {
   }
 
 
-  // function: conj(x) x=imag
+  // function: conj(y) y=imag
   
   template <class X, class E, class D, int M, int R> 
   inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
@@ -302,7 +302,7 @@ namespace mathq {
   
 
 
-  // FUNCTOR: conj(x) x=complex
+  // FUNCTOR: conj(z) z=complex
 
   template <class E, class D> class FUNCTOR_conj { 
   public:
@@ -339,7 +339,7 @@ namespace mathq {
 
 
 
-  // function: conj(x) x=complex
+  // function: conj(z) z=complex
 
   template <class X, class E, class D, int M, int R> 
     inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
@@ -365,31 +365,17 @@ namespace mathq {
     return x;
   }
 
-
     
-  // function: real(x) x=Imaginary
-
+  // function: real(y) y=Imaginary
 
   FUNCTOR_UNARY_TYPE2(mathq::real,real_from_Imaginary);
   FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_from_Imaginary, Imaginary<D>, D);
 
+  
+  // function: real(z) z=complex
 
-
-  // // function: real(x) x=complex
-
-
-  // template <class X, class E, class D, int M, int R> 
-  //   inline auto
-  //   real(const TensorR<X,E,std::complex<D>,M,R>& x) {
-  //   typedef std::complex<D> DIN;
-  //   typedef D DOUT;
-  //   typedef E EIN;
-  //   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  //   return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_real_from_iorc<E,DIN>>(x); 
-  // }
-
- 
-
+  FUNCTOR_UNARY_TYPE2(std::real,real_from_complex);
+  FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_from_complex, std::complex<D>, D);
 
 
 
@@ -407,38 +393,20 @@ namespace mathq {
 
 
     
-  // imag(x) x=Imaginary function
+  // imag(y) y=Imaginary function
 
   FUNCTOR_UNARY_TYPE2(mathq::imag,imag_from_Imaginary);
   FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_from_Imaginary, Imaginary<D>, D);
 
-  // FUNCTOR_UNARY_TYPE_IC(mathq::imag,imag_of_Imaginary);
 
-  // template <class X, class E, class D, int M, int R> 
-  //   inline auto
-  //   imag(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-  //   typedef Imaginary<D> DIN;
-  //   typedef D DOUT;
-  //   typedef E EIN;
-  //   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  //   return  TER_Unary<TensorR<X,E,Imaginary<D>,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_of_Imaginary<E,DIN>>(x); 
-  // }
+
+  // // imag(z) z=complex function
+
+  FUNCTOR_UNARY_TYPE2(std::imag,imag_from_complex);
+  FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_from_complex, std::complex<D>, D);
 
 
 
-  // // imag(x) x=complex function
-
-  // template <class X, class E, class D, int M, int R> 
-  //   inline auto
-  //   imag(const TensorR<X,E,std::complex<D>,M,R>& x) {
-  //   typedef std::complex<D> DIN;
-  //   typedef D DOUT;
-  //   typedef E EIN;
-  //   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;
-  //   return  TER_Unary<TensorR<X,E,DIN,M,R>,EOUT,DOUT,M,R,FUNCTOR_imag_from_complex<E,DIN>>(x); 
-  // }
-
- 
 
 
   //***************************************************************

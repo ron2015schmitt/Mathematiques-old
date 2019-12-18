@@ -153,9 +153,6 @@ namespace mathq {
   FUNCTION_UNARY(logb,FUNCTOR_logb);
 
 
-  FUNCTOR_UNARY(std::abs,abs);
-  FUNCTION_UNARY(abs,FUNCTOR_abs);
-
   
   FUNCTOR_UNARY(mathq::sgn,sgn);
   FUNCTION_UNARY(sgn,FUNCTOR_sgn);
@@ -322,14 +319,14 @@ namespace mathq {
     
   // function: real(y) y=Imaginary
 
-  FUNCTOR_UNARY_TYPE2(mathq::real,real_from_Imaginary);
-  FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_from_Imaginary, Imaginary<D>, D);
+  FUNCTOR_UNARY_TYPE2(mathq::real,real_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_of_Imaginary, Imaginary<D>, D);
 
   
   // function: real(z) z=complex
 
-  FUNCTOR_UNARY_TYPE2(std::real,real_from_complex);
-  FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_from_complex, std::complex<D>, D);
+  FUNCTOR_UNARY_TYPE2(std::real,real_of_complex);
+  FUNCTION_UNARY_TYPE2(real,FUNCTOR_real_of_complex, std::complex<D>, D);
 
 
 
@@ -349,17 +346,41 @@ namespace mathq {
     
   // imag(y) y=Imaginary function
 
-  FUNCTOR_UNARY_TYPE2(mathq::imag,imag_from_Imaginary);
-  FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_from_Imaginary, Imaginary<D>, D);
+  FUNCTOR_UNARY_TYPE2(mathq::imag,imag_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_of_Imaginary, Imaginary<D>, D);
 
 
 
   // // imag(z) z=complex function
 
-  FUNCTOR_UNARY_TYPE2(std::imag,imag_from_complex);
-  FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_from_complex, std::complex<D>, D);
+  FUNCTOR_UNARY_TYPE2(std::imag,imag_of_complex);
+  FUNCTION_UNARY_TYPE2(imag,FUNCTOR_imag_of_complex, std::complex<D>, D);
 
 
+  //***************************************************************
+  // abs(x)
+  //***************************************************************
+
+  // function: abs(x) x=real
+  
+  FUNCTOR_UNARY(std::abs,abs_of_real);
+
+  template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value, TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_abs_of_real<E,D>>>  
+    abs(const TensorR<X,E,D,M,R>& x) {
+    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_abs_of_real<E,D>>(x); 
+  }
+
+
+  // function: abs(y) y=imaginary
+
+  FUNCTOR_UNARY_TYPE2(mathq::abs,abs_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(abs,FUNCTOR_abs_of_Imaginary, Imaginary<D>, D);
+
+    
+  // function: abs(z) z=complex
+
+  FUNCTOR_UNARY_TYPE2(std::abs,abs_of_complex);
+  FUNCTION_UNARY_TYPE2(abs,FUNCTOR_abs_of_complex, std::complex<D>, D);
 
 
 
@@ -369,15 +390,61 @@ namespace mathq {
 
   // function: arg(x) x=real
   
-  template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value,const TensorR<X,E,D,M,R>&>  
+  FUNCTOR_UNARY(std::arg,arg_of_real);
+
+  template <class X, class E, class D, int M, int R> EnableMethodIf<std::is_arithmetic<D>::value, TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_arg_of_real<E,D>>>  
     arg(const TensorR<X,E,D,M,R>& x) {
-    return x;
+    return  TER_Unary<TensorR<X,E,D,M,R>,E,D,M,R,FUNCTOR_arg_of_real<E,D>>(x); 
   }
 
 
+  // function: arg(y) y=imaginary
+
+  FUNCTOR_UNARY_TYPE2(mathq::arg,arg_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(arg,FUNCTOR_arg_of_Imaginary, Imaginary<D>, D);
 
     
+  // function: arg(z) z=complex
 
+  FUNCTOR_UNARY_TYPE2(std::arg,arg_of_complex);
+  FUNCTION_UNARY_TYPE2(arg,FUNCTOR_arg_of_complex, std::complex<D>, D);
+
+
+  //***************************************************************
+  // rproj(x)
+  //***************************************************************
+
+  // function: rproj(x) x=real
+
+ 
+  FUNCTOR_UNARY_TYPE2(std::proj,rproj_of_real);
+
+  template <class X, class E, class D, int M, int R,EnableConstructorIf<std::is_arithmetic<D>::value> = 0 > auto 
+    rproj(const TensorR<X,E,D,M,R>& x) {
+     typedef std::complex<D> DOUT;
+     typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;
+     return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,DOUT,M,R, FUNCTOR_rproj_of_real<E,D,DOUT> >(x); 
+  }
+
+
+  // function: rproj(y) y=imaginary
+
+  FUNCTOR_UNARY_TYPE2(mathq::proj,rproj_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(rproj,FUNCTOR_rproj_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+    
+  // function: rproj(z) z=complex
+
+  FUNCTOR_UNARY(std::proj,rproj_of_complex);
+
+  template <class X, class E, class D, int M, int R> 
+    inline auto rproj(const TensorR<X,E,std::complex<D>,M,R>& x) {
+    typedef std::complex<D> DIN;
+    return  TER_Unary<TensorR<X,E,DIN,M,R>,E,DIN,M,R,FUNCTOR_rproj_of_complex<E,DIN>>(x); 
+  }
+
+
+  
   //***************************************************************
   // Imaginary<D> functions
   //***************************************************************

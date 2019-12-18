@@ -433,6 +433,22 @@ namespace mathq {
   }
 
 
+  // proj(z)  -  the "projection of z onto the Riemann sphere"--NOT REALLY
+  //
+  //             For most z, std::proj(z)==z, but all complex infinities,
+  //             even the numbers where one component is infinite and the
+  //             other is NaN, become positive real infinity, (INFINITY, 0)
+  //             or (INFINITY, -0). The sign of the imaginary (zero) component
+  //             is the sign of std::imag(z).
+  
+  template <typename D> inline
+    std::complex<D> proj(const Imaginary<D>& z) {
+    using std::proj;
+    std::complex<D> c(0,z.value());
+    return proj(c);
+  }
+
+  
   // abs(z)
   
   template <typename D> inline

@@ -72,6 +72,12 @@ int main(int argc, char *argv[])
     tdisp(std::imag(z));
     tdisp(std::conj(z));
     tdisp(mathq::conj(z));
+
+    tdisp(std::proj(z));
+    tdisp(std::proj(ComplexDouble(5.0,0)));
+    tdisp(std::proj(ComplexDouble(0.2,0)));
+    tdisp(std::proj(ComplexDouble(0,5.0)));
+    tdisp(std::proj(ComplexDouble(0,0.2)));
     
   }
 
@@ -82,50 +88,30 @@ int main(int argc, char *argv[])
   {
 
     cr();
+    mout << blue.apply("Boolean Scalar") << endl;
+
+    cr();
     Scalar<bool> sb = true;
     tdisp(sb);
     tdisp(!sb);
     tdisp(operator!(sb));
+    tdisp(!(!sb));
 
     
-    cr();
-    Scalar<double> sr = 0.25;
-    double x = sr();
-    tdisp(sr);
-    tdisp(+sr);
-    tdisp(-sr);
-    tdisp(sin(sr));
-    // tdisp(exp(sr));
-    
-    // tdisp(std::expint(x));  
-    // tdisp(expint(sr));  
-
-    // tdisp(std::comp_ellint_1(x));  
-    // tdisp(comp_ellint_1(sr));  
-
-    // tdisp(std::comp_ellint_2(x));  
-    // tdisp(comp_ellint_2(sr));  
-
-
-    
-
-
-    cr();
-    typename NumberType<Imaginary<double>>::Type ww;
-    tdisp(ww);
-
-
-    Scalar<Imaginary<double>> si;
-    si() = Imaginary<double>(0.25);
 
 
     cr();
     mout << blue.apply("Real Scalar") << endl;
+
+    Scalar<double> sr = 0.25;
     tdisp(sr);
     tdisp(-sr);
     tdisp(conj(sr));
     tdisp(real(sr));
     tdisp(imag(sr));
+    tdisp(abs(sr));
+    tdisp(arg(sr));
+    tdisp(rproj(sr));
 
     tdisp(exp(sr));
     tdisp(log(sr));
@@ -151,11 +137,17 @@ int main(int argc, char *argv[])
     
     cr();
     mout << blue.apply("Imag Scalar") << endl;
+    Scalar<Imaginary<double>> si;
+    si() = Imaginary<double>(0.25);
+
     tdisp(si);
     tdisp(-si);
     tdisp(conj(si));
     tdisp(real(si));
     tdisp(imag(si));
+    tdisp(abs(si));
+    tdisp(arg(si));
+    tdisp(rproj(si));
 
     tdisp(exp(si));
     tdisp(exp(ComplexDouble(0,0.25)));
@@ -188,6 +180,9 @@ int main(int argc, char *argv[])
     tdisp(conj(sc));
     tdisp(real(sc));
     tdisp(imag(sc));
+    tdisp(abs(sc));
+    tdisp(arg(sc));
+    tdisp(rproj(sc));
 
     tdisp(exp(sc));
     tdisp(log(sc));

@@ -377,10 +377,90 @@ namespace mathq {
 
 
     
-  //  complex abs and arg norm, others?  
 
+  //***************************************************************
+  // Imaginary<D> functions
+  //***************************************************************
+
+  // exp(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::exp,exp_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(exp,FUNCTOR_exp_of_Imaginary, Imaginary<D>, std::complex<D>);
   
+  // log(y) y=Imaginary function
 
+  FUNCTOR_UNARY_TYPE2(mathq::log,log_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(log,FUNCTOR_log_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // log10(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::log10,log10_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(log10,FUNCTOR_log10_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // sqrt(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::sqrt,sqrt_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(sqrt,FUNCTOR_sqrt_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // sin(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::sin,sin_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(sin,FUNCTOR_sin_of_Imaginary, Imaginary<D>, Imaginary<D>);
+
+  // cos(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::cos,cos_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(cos,FUNCTOR_cos_of_Imaginary, Imaginary<D>, D);
+
+  // tan(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::tan,tan_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(tan,FUNCTOR_tan_of_Imaginary, Imaginary<D>, Imaginary<D>);
+
+  // asin(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::asin,asin_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(asin,FUNCTOR_asin_of_Imaginary, Imaginary<D>, Imaginary<D>);
+
+  // acos(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::acos,acos_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(acos,FUNCTOR_acos_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // atan(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::atan,atan_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(atan,FUNCTOR_atan_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // sinh(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::sinh,sinh_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(sinh,FUNCTOR_sinh_of_Imaginary, Imaginary<D>, Imaginary<D>);
+
+  // cosh(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::cosh,cosh_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(cosh,FUNCTOR_cosh_of_Imaginary, Imaginary<D>, D);
+
+  // tanh(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::tanh,tanh_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(tanh,FUNCTOR_tanh_of_Imaginary, Imaginary<D>, Imaginary<D>);
+
+  // asinh(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::asinh,asinh_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(asinh,FUNCTOR_asinh_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // acosh(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::acosh,acosh_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(acosh,FUNCTOR_acosh_of_Imaginary, Imaginary<D>, std::complex<D>);
+
+  // atanh(y) y=Imaginary function
+
+  FUNCTOR_UNARY_TYPE2(mathq::atanh,atanh_of_Imaginary);
+  FUNCTION_UNARY_TYPE2(atanh,FUNCTOR_atanh_of_Imaginary, Imaginary<D>, std::complex<D>);
 
 
 

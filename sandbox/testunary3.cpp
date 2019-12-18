@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 
 
     Scalar<Imaginary<double>> si;
-    si() = Imaginary<double>(3);
+    si() = Imaginary<double>(0.25);
 
 
     cr();
@@ -156,11 +156,33 @@ int main(int argc, char *argv[])
     tdisp(conj(si));
     tdisp(real(si));
     tdisp(imag(si));
-    // tdisp(sin(si));
 
+    tdisp(exp(si));
+    tdisp(exp(ComplexDouble(0,0.25)));
+    tdisp(log(si));
+    tdisp(log10(si));
+    tdisp(sqrt(si));
+
+    tdisp(sin(si));
+    tdisp(cos(si));
+    tdisp(tan(si));
+
+    tdisp(asin(si));
+    tdisp(acos(si));
+    tdisp(atan(si));
+
+    tdisp(sinh(si));
+    tdisp(cosh(si));
+    tdisp(tanh(si));
+
+    tdisp(asinh(si));
+    tdisp(acosh(si));
+    tdisp(atanh(si));
+
+    
     cr();
     mout << blue.apply("Complex Scalar") << endl;
-    Scalar<ComplexDouble> sc {ComplexDouble(1,2)};
+    Scalar<ComplexDouble> sc {ComplexDouble(0.25,0.5)};
     tdisp(sc);
     tdisp(-sc);
     tdisp(conj(sc));

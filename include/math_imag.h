@@ -102,7 +102,9 @@ namespace mathq {
 
 
   namespace unit_imaginary {
+    const Imaginary<float> iF(1);
     const Imaginary<double> i(1);
+    const Imaginary<long double> iL(1);
   };
 
 
@@ -450,8 +452,8 @@ namespace mathq {
   }
 
 
-  // conj(z)  - should this return a complex number?
-  //            C++ std lib returns complex number for conj(real)
+  // conj(z)  - we go against C++  convention
+  //            Note: C++ std lib returns complex number for conj(real)
   
   template <typename D> inline
     Imaginary<D>
@@ -606,32 +608,32 @@ namespace mathq {
   template <typename D>
     Imaginary<D>
     sin(const Imaginary<D>& z) {
-    using std::sinh;
-    return Imaginary<D>( sinh(z.value()) );
+    using std::sin;
+    return Imaginary<D>( sin(z.value()) );
   }
 
   // cos
   template <typename D>
     D
     cos(const Imaginary<D>& z) {
-    using std::cosh;
-    return cosh(z.value());
+    using std::cos;
+    return cos(z.value());
   }
 
   // tan
   template <typename D>
     Imaginary<D>
     tan(const Imaginary<D>& z) {
-    using std::tanh;
-    return Imaginary<D>( tanh(z.value()) );
+    using std::tan;
+    return Imaginary<D>( tan(z.value()) );
   }
 
   // asin
   template <typename D>
     Imaginary<D>
     asin(const Imaginary<D>& z) {
-    using std::asinh;
-    return Imaginary<D>( asinh(z.value()) );
+    using std::asin;
+    return Imaginary<D>( asin(z.value()) );
   }
 
   // acos
@@ -664,24 +666,24 @@ namespace mathq {
   template <typename D>
     Imaginary<D>
     sinh(const Imaginary<D>& z) {
-    using std::sin;
-    return Imaginary<D>( sin(z.value()) );
+    using std::sinh;
+    return Imaginary<D>( sinh(z.value()) );
   }
 
   // cosh
   template <typename D>
     D
     cosh(const Imaginary<D>& z) {
-    using std::cos;
-    return cos(z.value());
+    using std::cosh;
+    return cosh(z.value());
   }
 
   // tanh
   template <typename D>
     Imaginary<D>
     tanh(const Imaginary<D>& z) {
-    using std::tan;
-    return Imaginary<D>( tan(z.value()) );
+    using std::tanh;
+    return Imaginary<D>( tanh(z.value()) );
   }
 
 

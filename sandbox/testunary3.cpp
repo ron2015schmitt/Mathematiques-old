@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
     mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
     tdisp(-si);
-    // tdisp(conj(si));
+    tdisp(conj(si));
     tdisp(real(si));
     tdisp(imag(si));
 
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> sc {ComplexDouble(1,2)};
     tdisp(sc);
     tdisp(-sc);
-    // tdisp(conj(sc));
+    tdisp(conj(sc));
     tdisp(real(sc));
     tdisp(imag(sc));
 

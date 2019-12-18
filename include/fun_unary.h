@@ -293,65 +293,19 @@ namespace mathq {
   
   template <class X, class E, class D, int M, int R> 
   inline const auto conj(const TensorR<X,E,Imaginary<D>,M,R>& x) {
-    typedef Imaginary<D> DIN;
-    typedef Imaginary<D> DOUT;
-    typedef E EIN;
-    typedef E EOUT;
     return  -x; 
   }
   
 
-
-  // FUNCTOR: conj(z) z=complex
-
-  template <class E, class D> class FUNCTOR_conj { 
-  public:
-    typedef std::complex<D> DIN;
-    typedef std::complex<D> DOUT;
-    typedef E EIN;
-    typedef E EOUT;
-    static DOUT apply(const DIN d) { 
-      namespace LIB = std;
-      using LIB::conj;
-      return conj(d);
-    }
-    template <class T=EIN> 
-      static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type  
-      apply(const EOUT& e) { 
-      namespace LIB = std;
-      using LIB::conj;    
-      EOUT *e2 = new EOUT(); 
-      *e2 = Function(e); 
-      return *e2; 
-    }
-    static std::string expression(const std::string& sa) {
-      using namespace display;
-      std::string sout = "";
-      sout = functor_style.apply(stringify(Function))+"("+ sa + ")";	
-      return sout;
-    }
-    static std::string classname() {
-      using namespace display;
-      EIN e;
-      return functor_namestyle.apply(stringify(FUNCTOR_conj))+display::getBracketedTypeName(e);
-    }
-  };
-
-
-
   // function: conj(z) z=complex
+
+  FUNCTOR_UNARY(std::conj,conj_complex);
 
   template <class X, class E, class D, int M, int R> 
     inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
     typedef std::complex<D> DIN;
-    typedef std::complex<D> DOUT;
-    typedef E EIN;
-    typedef E EOUT;
-    return  TER_Unary<TensorR<X,EIN,DIN,M,R>,EIN,DIN,M,R,FUNCTOR_conj<E,D>>(x); 
+    return  TER_Unary<TensorR<X,E,DIN,M,R>,E,DIN,M,R,FUNCTOR_conj_complex<E,DIN>>(x); 
   }
-
-
-
 
 
   //***************************************************************

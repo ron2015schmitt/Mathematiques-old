@@ -217,58 +217,124 @@ int main(int argc, char *argv[])
     tdisp(qc);
   }
 
-  return 0;
   
   cr();
   cr();
   mout << bold.apply("Vector") << endl;
   {
     cr();
-    Vector<double> v {1.1,2.2};
-    tdisp(v);
-    tdisp(-v);
-    tdisp(sin(v));
-    //   tdisp(exp(v));
-  //   tdisp(expint(v));  // C++17 special function
+    mout << bold.apply("Vector") <<" - "<<blue.apply("Real Scalar") << endl;
+    cr();
+    Vector<double> vr {1.1,2.2};
+    tdisp(vr);
+    tdisp(-vr);
+    tdisp(conj(vr));
+    tdisp(real(vr));
+    tdisp(imag(vr));
+    tdisp(abs(vr));
+    tdisp(arg(vr));
+    tdisp(rproj(vr));
+
+    tdisp(exp(vr));
+    tdisp(log(vr));
+    tdisp(log10(vr));
+    tdisp(sqrt(vr));
+
+    tdisp(sin(vr));
+    tdisp(cos(vr));
+    tdisp(tan(vr));
+
+    tdisp(asin(vr));
+    tdisp(acos(vr));
+    tdisp(atan(vr));
+
+    tdisp(sinh(vr));
+    tdisp(cosh(vr));
+    tdisp(tanh(vr));
+
+    tdisp(asinh(vr));
+    tdisp(acosh(vr));
+    tdisp(atanh(vr));
     
   }
 
-   cr();
-   cr();
-   mout << bold.apply("Matrix") << endl;
-   {
-     Matrix<double> m {{1,2},{3,4}};
-     tdisp(m);
-     tdisp(-m);
-     tdisp(sin(m));
-  //   tdisp(exp(m));
-  //   tdisp(expint(m));  // C++17 special function
-   }
+  cr();
+  cr();
+  mout <<  bold.apply("Matrix") << endl;
+  {
+    cr();
+    mout <<  bold.apply("Matrix") <<" - "<<blue.apply("Real Scalar") << endl;
+    Matrix<double> mr {{1,2},{3,4}};
+    tdisp(mr);
+    tdisp(-mr);
+    tdisp(conj(mr));
+    tdisp(real(mr));
+    tdisp(imag(mr));
+    tdisp(abs(mr));
+    tdisp(arg(mr));
+    tdisp(rproj(mr));
+
+    tdisp(exp(mr));
+    tdisp(log(mr));
+    tdisp(log10(mr));
+    tdisp(sqrt(mr));
+
+    tdisp(sin(mr));
+    tdisp(cos(mr));
+    tdisp(tan(mr));
+
+    tdisp(asin(mr));
+    tdisp(acos(mr));
+    tdisp(atan(mr));
+
+    tdisp(sinh(mr));
+    tdisp(cosh(mr));
+    tdisp(tanh(mr));
+
+    tdisp(asinh(mr));
+    tdisp(acosh(mr));
+    tdisp(atanh(mr));
+  }
 
 
-   cr();
-   cr();
-   mout << bold.apply("Tensor") << endl;
-   {
-     cr();
-     Tensor<double,3> t {
-       {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
+  cr();
+  cr();
+  mout << bold.apply("Tensor") << endl;
+  {
+    cr();
+    mout <<  bold.apply("Tensor") <<" - "<<blue.apply("Real Scalar") << endl;
+    cr();
+    Tensor<double,3> tr {
+      {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
      	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
      	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
     
-     tdisp(t);
-     tdisp(-t);
-     tdisp(sin(t));
-  //   tdisp(exp(t));
-  //   tdisp(expint(t));  // C++17 special function
-   }
+    tdisp(tr);
+    tdisp(-tr);
+    tdisp(conj(tr));
+    tdisp(real(tr));
+    tdisp(imag(tr));
+    tdisp(abs(tr));
+    tdisp(arg(tr));
+    tdisp(rproj(tr));
+
+    tdisp(exp(tr));
+    tdisp(log(tr));
+    tdisp(log10(tr));
+    tdisp(sqrt(tr));
+
+    tdisp(sin(tr));
+    tdisp(cos(tr));
+    tdisp(tan(tr));
+
+  }
 
 
 
-   cr();
-   cr();
-   cr();
-   cr();
+  cr();
+  cr();
+  cr();
+  cr();
 
 
   mout << blue.apply("Two-level tests") << endl;
@@ -289,52 +355,43 @@ int main(int argc, char *argv[])
     cr();
     
     cr();
+    mout << blue.apply("Boolean Scalar") << endl;
     Scalar<Scalar<bool>> sb = true;
     tdisp(sb);
     tdisp(!sb);
 
+    cr();
+    mout << blue.apply("Real Scalar Scalar") << endl;
     Scalar<Scalar<double>> sr = {{1.1}};
     tdisp(sr);
     tdisp(-sr);
     tdisp(sin(sr));
-    // tdisp(exp(sr));
-    // tdisp(expint(sr));  // C++17 special function
-    //    tdisp(conj(sr));
+    tdisp(exp(sr));
+    tdisp(conj(sr));
 
 
-    Scalar<Scalar<ComplexDouble>> sc {{ComplexDouble(1,2)}};
-
-
+    cr();
+    mout << blue.apply("Imaginary Scalar Scalar") << endl;
     Scalar<Scalar<Imaginary<double>>> si;
     si()() = Imaginary<double>(3);
-
-    cr();
-    typename NumberType<Imaginary<double>>::Type ww;
-    tdisp(ww);
-
-    cr();
-    mout << blue.apply("Real Scalar") << endl;
-    tdisp(sr);
-    tdisp(-sr);
-    // tdisp(conj(sr));
-    // tdisp(real(sr));
-    // tdisp(imag(sr));
-
-    cr();
-    mout << blue.apply("Imag Scalar") << endl;
     tdisp(si);
     tdisp(-si);
-    // tdisp(conj(si));
-    // tdisp(real(si));
-    // tdisp(imag(si));
+    tdisp(conj(si));
+    tdisp(real(si));
+    tdisp(imag(si));
+    tdisp(sin(si));
+    tdisp(exp(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;
+    Scalar<Scalar<ComplexDouble>> sc {{ComplexDouble(1,2)}};
     tdisp(sc);
     tdisp(-sc);
-    // tdisp(conj(sc));
-    // tdisp(real(sc));
-    // tdisp(imag(sc));
+    tdisp(conj(sc));
+    tdisp(real(sc));
+    tdisp(imag(sc));
+    tdisp(sin(sc));
+    tdisp(exp(sc));
 
     cr();
     cr();
@@ -350,182 +407,158 @@ int main(int argc, char *argv[])
   }
 
 
-  // {
-  //   cr();
-  //   Scalar<Scalar<double>> s {{1.1}};
-  //   tdisp(s);
-  //   tdisp(sin(s));
-  //   tdisp(beta(s));
-  //   tdisp(exp(s));
-  //   tdisp(cyl_bessel_j(s));
-  // }
-  // {
-  //   cr();
-  //   Scalar<Vector<double>> s {{1.,2.,3.}};
-  //   tdisp(s);
-  //   tdisp(sin(s));
-  //   tdisp(beta(s));
-  //   tdisp(exp(s));
-  //   tdisp(cyl_bessel_j(s));
-  // }
-  // {   
-  //   cr();
-  //   Scalar<Matrix<double>> s {{{1,2},{3,4}}};
-  //   tdisp(s);
-  //   tdisp(sin(s));
-  //   tdisp(beta(s));
-  //   tdisp(exp(s));
-  //   tdisp(cyl_bessel_j(s));
+  {
+    cr();
+    Scalar<Scalar<double>> s {{1.1}};
+    tdisp(s);
+    tdisp(sin(s));
+    tdisp(exp(s));
+  }
+  {
+    cr();
+    Scalar<Vector<double>> s {{1.,2.,3.}};
+    tdisp(s);
+    tdisp(sin(s));
+    tdisp(exp(s));
+  }
+  {   
+    cr();
+    Scalar<Matrix<double>> s {{{1,2},{3,4}}};
+    tdisp(s);
+    tdisp(sin(s));
+    tdisp(exp(s));
 
-  // }
+  }
 
-  // {   
-  //   cr();
-  //   Scalar<Tensor<double,2>> s {{{1,2},{3,4}}};
-  //   tdisp(s);
-  //   tdisp(sin(s));
-  //   tdisp(beta(s));
-  //   tdisp(exp(s));
-  //   tdisp(cyl_bessel_j(s));
-  // }
+  {   
+    cr();
+    Scalar<Tensor<double,2>> s {{{1,2},{3,4}}};
+    tdisp(s);
+    tdisp(sin(s));
+    tdisp(exp(s));
+  }
 
-  // cr();
-  // cr();
-  // mout << bold.apply("Two-Level Vector tests") << endl;
-  // {
-  //   cr();
-  //   Vector<Scalar<double>> v {{1.},{2.}};
-  //   tdisp(v);
-  //   tdisp(sin(v));
-  //   tdisp(beta(v));
-  //   tdisp(exp(v));
-  //   tdisp(cyl_bessel_j(v));
-  // }
+  cr();
+  cr();
+  mout << bold.apply("Two-Level Vector tests") << endl;
+  {
+    cr();
+    Vector<Scalar<double>> v {{1.},{2.}};
+    tdisp(v);
+    tdisp(sin(v));
+    tdisp(exp(v));
+  }
 
-  // {
-  //   cr();
-  //   Vector<Vector<double>> v {{1.,2.,3.},{4.,5.,6.}};
-  //   tdisp(v);
-  //   tdisp(sin(v));
-  //   tdisp(beta(v));
-  //   tdisp(exp(v));
-  //   tdisp(cyl_bessel_j(v));
-  // }
-  // {
-  //   cr();
-  //   Vector<Matrix<double>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
-  //   tdisp(v);
-  //   tdisp(sin(v));
-  //   tdisp(beta(v));
-  //   tdisp(exp(v));
-  //   tdisp(cyl_bessel_j(v));
-  // }
-  // {
-  //   cr();
-  //   Vector<Tensor<double,2>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
-  //   tdisp(v);
-  //   tdisp(sin(v));
-  //   tdisp(beta(v));
-  //   tdisp(exp(v));
-  //   tdisp(cyl_bessel_j(v));
-  // }
+  {
+    cr();
+    Vector<Vector<double>> v {{1.,2.,3.},{4.,5.,6.}};
+    tdisp(v);
+    tdisp(sin(v));
+    tdisp(exp(v));
+  }
+  {
+    cr();
+    Vector<Matrix<double>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
+    tdisp(v);
+    tdisp(sin(v));
+    tdisp(exp(v));
+  }
+  {
+    cr();
+    Vector<Tensor<double,2>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
+    tdisp(v);
+    tdisp(sin(v));
+    tdisp(exp(v));
+  }
 
 
-  // cr();
-  // cr();
-  // mout << bold.apply("Two-Level Matrix tests") << endl;
-  // {
-  //   cr();
-  //   Matrix<Scalar<double>> m {{{1},{2}},{{3},{4}}};;
-  //   tdisp(m);
-  //   tdisp(sin(m));
-  //   tdisp(beta(m));
-  //   tdisp(exp(m));
-  //   tdisp(cyl_bessel_j(m));
-  // }
+  cr();
+  cr();
+  mout << bold.apply("Two-Level Matrix tests") << endl;
+  {
+    cr();
+    Matrix<Scalar<double>> m {{{1},{2}},{{3},{4}}};;
+    tdisp(m);
+    tdisp(sin(m));
+    tdisp(exp(m));
+  }
 
-  // {
-  //   cr();
-  //   Matrix<Vector<double>> m {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
-  //   tdisp(m);
-  //   tdisp(sin(m));
-  //   tdisp(beta(m));
-  //   tdisp(exp(m));
-  //   tdisp(cyl_bessel_j(m));
-  // }
+  {
+    cr();
+    Matrix<Vector<double>> m {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
+    tdisp(m);
+    tdisp(sin(m));
+    tdisp(exp(m));
+  }
 
-  // {
-  //   cr();
-  //   Matrix<Matrix<double>> m  {
-  //     { {{1,2},{3,4}}, {{5,6},{7,8}} },
-  // 	{ {{9,10},{11,12}}, {{13,14},{15,16}} }
-  //   };
-  //   tdisp(m);
-  //   tdisp(sin(m));
-  //   tdisp(beta(m));
-  //   tdisp(exp(m));
-  //   tdisp(cyl_bessel_j(m));
-  // }
+  {
+    cr();
+    Matrix<Matrix<double>> m  {
+      { {{1,2},{3,4}}, {{5,6},{7,8}} },
+  	{ {{9,10},{11,12}}, {{13,14},{15,16}} }
+    };
+    tdisp(m);
+    tdisp(sin(m));
+    tdisp(exp(m));
+  }
 
-  // {
-  //   cr();
-  //   Matrix<Tensor<double,3>,2,2> m { {
-  // 	{
-  // 	  {
-  // 	    {-0, -1},
-  // 	      {-10, -11},
-  // 		{-20, -21}
-  // 	  },
-  // 	    {
-  // 	      {-100, -101},
-  // 		{-110, -111},
-  // 		  {-120, -121}
-  // 	    }
-  // 	}, 
-  // 	  {
-  // 	    {
-  // 	      {-1000, -1001},
-  // 		{-1010, -1011},
-  // 		  {-1020, -1021}
-  // 	    },
-  // 	      {
-  // 		{-1100, -1101},
-  // 		  {-1110, -1111},
-  // 		    {-1120, -1121}
-  // 	      }
-  // 	  }}, {
-  // 	{
-  // 	  {
-  // 	    {-10000, -10001},
-  // 	      {-10010, -10011},
-  // 		{-10020, -10021}
-  // 	  },
-  // 	    {
-  // 	      {-10100, -10101},
-  // 		{-10110, -10111},
-  // 		  {-10120, -10121}
-  // 	    }
-  // 	}, 
-  // 	  {
-  // 	    {
-  // 	      {-11000, -11001},
-  // 		{-11010, -11011},
-  // 		  {-11020, -11021}
-  // 	    },
-  // 	      {
-  // 		{-11100, -11101},
-  // 		  {-11110, -11111},
-  // 		    {-11120, -11121}
-  // 	      }
-  // 	  }} };
+  {
+    cr();
+    Matrix<Tensor<double,3>,2,2> m { {
+  	{
+  	  {
+  	    {-0, -1},
+  	      {-10, -11},
+  		{-20, -21}
+  	  },
+  	    {
+  	      {-100, -101},
+  		{-110, -111},
+  		  {-120, -121}
+  	    }
+  	}, 
+  	  {
+  	    {
+  	      {-1000, -1001},
+  		{-1010, -1011},
+  		  {-1020, -1021}
+  	    },
+  	      {
+  		{-1100, -1101},
+  		  {-1110, -1111},
+  		    {-1120, -1121}
+  	      }
+  	  }}, {
+  	{
+  	  {
+  	    {-10000, -10001},
+  	      {-10010, -10011},
+  		{-10020, -10021}
+  	  },
+  	    {
+  	      {-10100, -10101},
+  		{-10110, -10111},
+  		  {-10120, -10121}
+  	    }
+  	}, 
+  	  {
+  	    {
+  	      {-11000, -11001},
+  		{-11010, -11011},
+  		  {-11020, -11021}
+  	    },
+  	      {
+  		{-11100, -11101},
+  		  {-11110, -11111},
+  		    {-11120, -11121}
+  	      }
+  	  }} };
 
-  //   tdisp(m);
-  //   tdisp(sin(m));
-  //   tdisp(beta(m));
-  //   tdisp(exp(m));
-  //   tdisp(cyl_bessel_j(m));
+    tdisp(m);
+    tdisp(sin(m));
+    tdisp(exp(m));
     
-  // }
+  }
 
   // /////////////////////////////////////////////////////////////////
 

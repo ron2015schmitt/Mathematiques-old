@@ -92,6 +92,23 @@ namespace mathq {
       *this = vals;
     }
 
+      // --------------------- Matrix(D value)  ---------------------
+
+      template<size_t NN = NR*NC, EnableConstructorIf<(NN > 0)> = 0>
+      
+      explicit Matrix<E,NR,NC,D,M>(const E val) {
+	*this = val;
+      }
+      
+
+      // --------------------- Matrix(D value)  ---------------------
+
+      template<size_t NN = NR*NC, EnableConstructorIf<(NN > 0)&&(M>1)> = 0>
+      
+      explicit Matrix<E,NR,NC,D,M>(const D val) {
+	*this = val;
+      }
+      
 
     // ************* C++11 initializer_list 2D CONSTRUCTOR---------------------
     Matrix<E,NR,NC,D,M>(const std::initializer_list<std::initializer_list<E> >& list1) {

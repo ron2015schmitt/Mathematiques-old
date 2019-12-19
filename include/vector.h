@@ -80,7 +80,7 @@ namespace mathq {
     constructorHelper();
   }
 
-  // --------------------- Vector(value)  ---------------------
+  // --------------------- Vector(E value)  ---------------------
 
   template<size_t NE1 = NE, EnableConstructorIf<(NE1 > 0)> = 0>
 
@@ -88,7 +88,16 @@ namespace mathq {
     *this = val;
     constructorHelper();
   }
-  
+
+    // --------------------- Vector(D value)  ---------------------
+
+    template<size_t NE1 = NE, EnableConstructorIf<(NE1 > 0)&&(M>1)> = 0>
+
+  explicit Vector<E,NE,D,M>(const D val) {
+    *this = val;
+    constructorHelper();
+  }
+
 
   // --------------------- array[]  CONSTRUCTOR ---------------------
 

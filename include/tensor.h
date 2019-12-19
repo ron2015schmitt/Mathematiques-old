@@ -73,13 +73,26 @@ namespace mathq {
     }
 
 
-    // --------------------- constant CONSTRUCTOR ---------------------
+    // --------------------- constant E CONSTRUCTOR ---------------------
 
-    explicit Tensor<E,R,D,M>(const Dimensions& dims, const E e) 
+    explicit Tensor<E,R,D,M>(const Dimensions& dims, const E& e) 
     {
       resize(dims);
       constructorHelper();
+      *this = e;
     }
+
+    // --------------------- constant E CONSTRUCTOR ---------------------
+
+    template<size_t M1 = M, EnableConstructorIf<(M1 > 0)> = 0>
+    
+    explicit Tensor<E,R,D,M>(const Dimensions& dims, const D d)  {
+      resize(dims);
+      constructorHelper();
+      *this = d;
+    }
+     
+    
 
 
   // ************* C++11 initializer_list CONSTRUCTOR---------------------

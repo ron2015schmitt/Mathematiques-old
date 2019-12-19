@@ -516,6 +516,8 @@ int main(int argc, char *argv[])
     tdisp(t.dims());
     tdisp(t.deepdims());
     tdisp(t.eldims());
+    decltype(t) xx;
+    tdisp(xx);
     typename decltype(t)::DType d;
     tdisp(d);
     typename decltype(t)::EType e;

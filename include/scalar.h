@@ -60,7 +60,7 @@ namespace mathq {
     constructorHelper();
   }
 
-  // --------------------- constant CONSTRUCTOR ---------------------
+  // --------------------- constant E CONSTRUCTOR ---------------------
 
   Scalar<E,D,M>(const E e) 
   {
@@ -69,7 +69,7 @@ namespace mathq {
     constructorHelper();
   }
 
-  // --------------------- constant CONSTRUCTOR ---------------------
+  // --------------------- constant D CONSTRUCTOR ---------------------
 
   template<int M1 = M, EnableConstructorIf<(M1>1)> = 0>
 

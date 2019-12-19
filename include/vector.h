@@ -62,7 +62,7 @@ namespace mathq {
 
   // --------------------- Vector(N)  ---------------------
 
-  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
+  template<size_t NE1 = NE, EnableIf<NE1 == 0> = 0>
 
   explicit Vector<E,NE,D,M>(const size_type N) { 
     data_.resize(N);
@@ -72,7 +72,7 @@ namespace mathq {
 
   // --------------------- Vector(N,value)  ---------------------
 
-  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
+  template<size_t NE1 = NE, EnableIf<NE1 == 0> = 0>
 
     explicit Vector<E,NE,D,M>(const size_type N, const E val) {
     data_.resize(N);
@@ -82,7 +82,7 @@ namespace mathq {
 
   // --------------------- Vector(E value)  ---------------------
 
-  template<size_t NE1 = NE, EnableConstructorIf<(NE1 > 0)> = 0>
+  template<size_t NE1 = NE, EnableIf<(NE1 > 0)> = 0>
 
   explicit Vector<E,NE,D,M>(const E val) {
     *this = val;
@@ -91,7 +91,7 @@ namespace mathq {
 
     // --------------------- Vector(D value)  ---------------------
 
-    template<size_t NE1 = NE, EnableConstructorIf<(NE1 > 0)&&(M>1)> = 0>
+    template<size_t NE1 = NE, EnableIf<(NE1 > 0)&&(M>1)> = 0>
 
   explicit Vector<E,NE,D,M>(const D val) {
     *this = val;
@@ -101,7 +101,7 @@ namespace mathq {
 
   // --------------------- array[]  CONSTRUCTOR ---------------------
 
-  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
+  template<size_t NE1 = NE, EnableIf<NE1 == 0> = 0>
 
   Vector<E,NE,D,M>(const size_type N, const E (vals)[]) {
     data_.resize(N);
@@ -285,7 +285,7 @@ namespace mathq {
 
   // --------------------- .resize(N) ---------------------
 
-  template<size_t NE1 = NE, EnableConstructorIf<NE1 == 0> = 0>
+  template<size_t NE1 = NE, EnableIf<NE1 == 0> = 0>
 
     Vector<E,NE,D,M>&  resize(const size_type N) { 
     if (N==this->size())

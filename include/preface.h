@@ -16,33 +16,33 @@
 
 
 #ifdef MEBUG
- #if (EXPAND(MEBUG) == 99)
-  // defined but no value: set to 1
-  #define MATHQ_DEBUG 1
- #else
-  #define MATHQ_DEBUG EXPAND(MEBUG)
- #endif
+#if (EXPAND(MEBUG) == 99)
+// defined but no value: set to 1
+#define MATHQ_DEBUG 1
+#else
+#define MATHQ_DEBUG EXPAND(MEBUG)
+#endif
 #endif
 
 
 #ifndef MATHQ_DEBUG
 // not defined: set to 0
-   #define MATHQ_DEBUG 0
+#define MATHQ_DEBUG 0
 #elif (EXPAND(MATHQ_DEBUG) == 99)
-  // defined but no value: set to 1
-  #undef MATHQ_DEBUG
-  #define MATHQ_DEBUG 1
+// defined but no value: set to 1
+#undef MATHQ_DEBUG
+#define MATHQ_DEBUG 1
 #elif (MATHQ_DEBUG>3)
-  // no modes defined above 3
-  #undef MATHQ_DEBUG
-  #define MATHQ_DEBUG 3
+// no modes defined above 3
+#undef MATHQ_DEBUG
+#define MATHQ_DEBUG 3
 #endif
 
 
 // this is created by the makefile and placed in '[exec]_opt.cpp' for
 // any executable the is compiled
 // it contains the $(OPTIMIZE) flag with all the compile optimization options
-extern char COMPILE_OPTIMIZE[];
+  extern char COMPILE_OPTIMIZE[];
 
 
 namespace display {
@@ -78,34 +78,34 @@ namespace mathq {
   
   class TensorAbstract;
   template <class X, class E, typename D, int M, int R>
-    class TensorR;  
+  class TensorR;  
   template <class X, class E, typename D, int M, int R>
-    class TensorRW;
+  class TensorRW;
 
 
   
   template <class E, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
-    Scalar;
+  Scalar;
   template <class E, int NE = 0,  typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
-    Vector;
+  Vector;
   template <class E, int NR = 0, int NC = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
-    Matrix;
+  Matrix;
 
   template <class E, int R = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
-    Tensor;
+  Tensor;
 
 
   template<class X, class E, class D, int M, int R, class FUNC> class
-    TER_Unary;
+  TER_Unary;
 
-  template<class X, class E, class D, int M, int R, class FUNC, class A> class
-    TER_Unary_w1;
+  template <class X, class Y, class E, class D, int M, int R, class FUNC> class
+  TER_Binary;
 
   template <class D, int M = 1+NumberType<D>::depth()>
-    class TERW_Subset;
+  class TERW_Subset;
   
   template <class D, int M = 1+NumberType<D>::depth()>
-    class TERW_Submask;
+  class TERW_Submask;
 
 
 
@@ -118,27 +118,27 @@ namespace mathq {
   //                 this could certainly be specialized for other
   //                 container types
   template <typename T> class
-    ContainedType {
+  ContainedType {
   public:
     typedef void Type;
   };
   template <typename D> class
-    ContainedType<std::complex<D>> {
+  ContainedType<std::complex<D>> {
   public:
     typedef D Type;
   };
   template <typename D> class
-    ContainedType<Imaginary<D>> {
+  ContainedType<Imaginary<D>> {
   public:
     typedef D Type;
   };
   template <template<typename> class T, typename D> class
-    ContainedType<T<D> > {
+  ContainedType<T<D> > {
   public:
     typedef D Type;
   };
   template <typename X, typename E, typename D, int M, int R> class
-    ContainedType<TensorR<X,E,D,M,R> > {
+  ContainedType<TensorR<X,E,D,M,R> > {
   public:
     typedef E Type;
   };
@@ -151,7 +151,7 @@ namespace mathq {
   // ***************************************************************************
 
   template <typename T> class
-    FundamentalType {
+  FundamentalType {
   public:
     typedef T Type;
     constexpr static int depth() {
@@ -160,7 +160,7 @@ namespace mathq {
   };
 
   template <class E, template<typename> class T> class
-    FundamentalType<T<E>> {
+  FundamentalType<T<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -168,7 +168,7 @@ namespace mathq {
     }
   };
   template <class E> class
-    FundamentalType<std::complex<E>> {
+  FundamentalType<std::complex<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -176,7 +176,7 @@ namespace mathq {
     }
   };
   template <class E> class
-    FundamentalType<Imaginary<E>> {
+  FundamentalType<Imaginary<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -188,7 +188,7 @@ namespace mathq {
   
   //  Scalar<E>
   template <class E> class
-    FundamentalType<Scalar<E>> {
+  FundamentalType<Scalar<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -198,7 +198,7 @@ namespace mathq {
   
   //  Vector<E>
   template <class E> class
-    FundamentalType<Vector<E>> {
+  FundamentalType<Vector<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -207,7 +207,7 @@ namespace mathq {
   };
   //  Vector<E,NE>
   template <class E, int NE> class
-    FundamentalType<Vector<E,NE>> {
+  FundamentalType<Vector<E,NE>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -218,7 +218,7 @@ namespace mathq {
   //  Matrix<E>
 
   template <class E> class
-    FundamentalType<Matrix<E>> {
+  FundamentalType<Matrix<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -229,7 +229,7 @@ namespace mathq {
   //  Matrix<E,NR>
 
   template <class E, int NR> class
-    FundamentalType<Matrix<E,NR>> {
+  FundamentalType<Matrix<E,NR>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -240,7 +240,7 @@ namespace mathq {
   //  Matrix<E,NR,NC>
 
   template <class E, int NR, int NC> class
-    FundamentalType<Matrix<E,NR,NC>> {
+  FundamentalType<Matrix<E,NR,NC>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -250,7 +250,7 @@ namespace mathq {
 
   //  Tensor<E>
   template <class E> class
-    FundamentalType<Tensor<E>> {
+  FundamentalType<Tensor<E>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -260,7 +260,7 @@ namespace mathq {
 
   //  Tensor<E,R>
   template <class E, int R> class
-    FundamentalType<Tensor<E,R>> {
+  FundamentalType<Tensor<E,R>> {
   public:
     typedef typename FundamentalType<E>::Type Type;
     constexpr static int depth() {
@@ -271,7 +271,7 @@ namespace mathq {
   //  TensorR<X,E,D,M,R>
 
   template <class X, class E, class D, int M, int R> class
-    FundamentalType<TensorR<X,E,D,M,R>> {
+  FundamentalType<TensorR<X,E,D,M,R>> {
   public:
     typedef typename FundamentalType<D>::Type Type;
     constexpr static int depth() {
@@ -287,7 +287,7 @@ namespace mathq {
   // ***************************************************************************
 
   template <typename T, typename NewD> class
-    NumberType {
+  NumberType {
   public:
     typedef T Type;
     typedef NewD ReplaceTypeD;
@@ -303,7 +303,7 @@ namespace mathq {
     }
   };
   template <class D, typename NewD> class
-    NumberType<std::complex<D>,NewD > {
+  NumberType<std::complex<D>,NewD > {
   public:
     typedef std::complex<D> Type;
     typedef NewD ReplaceTypeD;
@@ -339,7 +339,7 @@ namespace mathq {
   //  Scalar<E>
   
   template <class E, typename NewD> class
-    NumberType<Scalar<E>,NewD > {
+  NumberType<Scalar<E>,NewD > {
   public:
     typedef Scalar<E> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -360,7 +360,7 @@ namespace mathq {
   //  Vector<E>
 
   template <class E, typename NewD> class
-    NumberType<Vector<E>,NewD > {
+  NumberType<Vector<E>,NewD > {
   public:
     typedef Vector<E> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -380,7 +380,7 @@ namespace mathq {
   //  Vector<E,NE>
 
   template <class E, typename NewD, int NE> class
-    NumberType<Vector<E,NE>,NewD > {
+  NumberType<Vector<E,NE>,NewD > {
   public:
     typedef Vector<E,NE> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -401,7 +401,7 @@ namespace mathq {
   //  Matrix<E>
 
   template <class E, typename NewD> class
-    NumberType<Matrix<E>,NewD > {
+  NumberType<Matrix<E>,NewD > {
   public:
     typedef Matrix<E> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -421,7 +421,7 @@ namespace mathq {
   //  Matrix<E,NR>
 
   template <class E, typename NewD, int NR> class
-    NumberType<Matrix<E,NR>,NewD > {
+  NumberType<Matrix<E,NR>,NewD > {
   public:
     typedef Matrix<E,NR> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -442,7 +442,7 @@ namespace mathq {
   //  Matrix<E,NR,NC>
 
   template <class E, typename NewD, int NR, int NC> class
-    NumberType<Matrix<E,NR,NC>,NewD > {
+  NumberType<Matrix<E,NR,NC>,NewD > {
   public:
     typedef Matrix<E,NR,NC> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -464,7 +464,7 @@ namespace mathq {
   //  Tensor<E>
 
   template <class E, typename NewD> class
-    NumberType<Tensor<E>,NewD > {
+  NumberType<Tensor<E>,NewD > {
   public:
     typedef Tensor<E> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -484,7 +484,7 @@ namespace mathq {
   //  Tensor<E,R>
 
   template <class E, typename NewD, int R> class
-    NumberType<Tensor<E,R>,NewD > {
+  NumberType<Tensor<E,R>,NewD > {
   public:
     typedef Tensor<E,R> InputType;
     typedef typename NumberType<E>::Type Type;
@@ -506,7 +506,7 @@ namespace mathq {
   //  TensorR<X,E,D,M,R>
 
   template <class X, class E, class D, int M, int R, typename NewD> class
-    NumberType<TensorR<X,E,D,M,R>,NewD> {
+  NumberType<TensorR<X,E,D,M,R>,NewD> {
   public:
     typedef TensorR<X,E,D,M,R> InputType;
     typedef D Type;
@@ -532,7 +532,7 @@ namespace mathq {
   // ***************************************************************************
 
   template <typename T1, typename T2> class
-    DeeperType {
+  DeeperType {
   public:
     typedef typename std::conditional< NumberType<T1>::depth() >= NumberType<T2>::depth(), T1, T2>::type Type;
   };
@@ -546,17 +546,17 @@ namespace mathq {
 
 
   template <class D, class C> class
-    InversionType {
+  InversionType {
   public:
     typedef C Type;
   };
   template <class D, class C> class
-    InversionType<std::complex<D>,C> {
+  InversionType<std::complex<D>,C> {
   public:
     typedef C Type;
   };
   template <class D, class C> class
-    InversionType<Imaginary<D>,C> {
+  InversionType<Imaginary<D>,C> {
   public:
     typedef C Type;
   };
@@ -566,86 +566,86 @@ namespace mathq {
   //  Scalar<E>
   
   template <class E, class C> class
-    InversionType<Scalar<E>,C> {
+  InversionType<Scalar<E>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Scalar<D> TensorD;
-  typedef Scalar<C> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Scalar<D> TensorD;
+    typedef Scalar<C> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
   //  Vector<E>
   
   template <class E, class C> class
-    InversionType<Vector<E>,C> {
+  InversionType<Vector<E>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Vector<D> TensorD;
-  typedef Vector<C> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Vector<D> TensorD;
+    typedef Vector<C> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
-    //  Vector<E,NE>
+  //  Vector<E,NE>
   template <class E, int NE, class C> class
-    InversionType<Vector<E,NE>,C> {
+  InversionType<Vector<E,NE>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Vector<D,NE> TensorD;
-  typedef Vector<C,NE> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Vector<D,NE> TensorD;
+    typedef Vector<C,NE> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
   //  Matrix<E>
 
   template <class E, class C> class
-    InversionType<Matrix<E>,C> {
+  InversionType<Matrix<E>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Matrix<D> TensorD;
-  typedef Matrix<C> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Matrix<D> TensorD;
+    typedef Matrix<C> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
   //  Matrix<E,NR>
 
   template <class E, int NR, class C> class
-    InversionType<Matrix<E,NR>,C> {
+  InversionType<Matrix<E,NR>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Matrix<D,NR> TensorD;
-  typedef Matrix<C,NR> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Matrix<D,NR> TensorD;
+    typedef Matrix<C,NR> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
   //  Matrix<E,NR,NC>
 
   template <class E, int NR, int NC, class C> class
-    InversionType<Matrix<E,NR,NC>,C> {
+  InversionType<Matrix<E,NR,NC>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Matrix<D,NR,NC> TensorD;
-  typedef Matrix<C,NR,NC> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Matrix<D,NR,NC> TensorD;
+    typedef Matrix<C,NR,NC> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
   //  Tensor<E>
   template <class E, class C> class
-    InversionType<Tensor<E>,C> {
+  InversionType<Tensor<E>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Tensor<D> TensorD;
-  typedef Tensor<C> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Tensor<D> TensorD;
+    typedef Tensor<C> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
   //  Tensor<E,R>
   template <class E, int R, class C> class
-    InversionType<Tensor<E,R>,C> {
+  InversionType<Tensor<E,R>,C> {
   public:
-  typedef typename NumberType<E>::Type D;
-  typedef Tensor<D,R> TensorD;
-  typedef Tensor<C,R> TensorC;
-  typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
+    typedef typename NumberType<E>::Type D;
+    typedef Tensor<D,R> TensorD;
+    typedef Tensor<C,R> TensorC;
+    typedef typename std::conditional<std::is_same<C,Null>::value, typename InversionType<E,TensorD>::Type, typename InversionType<E,TensorC>::Type >::type Type;
   };
 
 
@@ -710,7 +710,7 @@ namespace mathq {
   };
 
 
-    // ************************************************************************
+  // ************************************************************************
   // * ReturnType: Class that determines return type of two Tensors of different depths
   // ***************************************************************************
 
@@ -737,22 +737,22 @@ namespace mathq {
 
 
   template <class, template <class> class>
-    struct is_instance : public std::false_type {};
+  struct is_instance : public std::false_type {};
   template <class T, template <class> class U>
-    struct is_instance<U<T>, U> : public std::true_type {};
+  struct is_instance<U<T>, U> : public std::true_type {};
 
   //***********************************************************************
-  //  EnableConstructorIf - used for enabling constructors or methods
+  //  EnableIf - used for enabling constructors or methods
   //***********************************************************************
 
   template<bool B>
-    using EnableConstructorIf = typename std::enable_if<B, int>::type;
+  using EnableIf = typename std::enable_if<B, int>::type;
 
   //***********************************************************************
   //  EnableMethodIf - used for enabling methods via return type give as T
   //***********************************************************************
   template<bool B, class T>
-    using EnableMethodIf = typename std::enable_if<B,T>::type;
+  using EnableMethodIf = typename std::enable_if<B,T>::type;
 
   //************************************************************************
   //* Basic Function types for computation

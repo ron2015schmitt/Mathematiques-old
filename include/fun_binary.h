@@ -4,93 +4,169 @@
 
 namespace mathq {
 
-#define FUN_UNARY_W1(Function,Functor,DIN,DOUT,EIN,EOUT,A)  template <class X, class E, class D, int M, int R> \
-    inline auto Function(const A& a, const TensorR<X,EIN,DIN,M,R>& x) {	\
-    return  TER_Unary_w1<TensorR<X,EIN,DIN,M,R>,EOUT,DOUT,M,R, Functor<E,D>,A >(a,x); \
-}
+  
+  // ************************************************************************
+  // *              GENERAL BINARY FUNCTOR MACRO
+  // ************************************************************************
 
-
-  #define FUNCTOR_UNARY_W1(Function,ClassName,LIB,DIN,DOUT,EIN,EOUT,A) template <class E, class D> class FUNCTOR_##ClassName { \
+  
+#define FUNCTOR_BINARY_OP(OP,ClassName)				\
+  template <class E, class D> class FUNCTOR_##ClassName {		\
   public:								\
-    typedef DIN DType;							\
-    typedef DOUT DoutType;						\
-    typedef EIN EType;							\
-    typedef EOUT EoutType;						\
-    static DOUT apply(const A& a, const DIN d) {			\
-      using LIB::Function;						\
-      return Function(a,d);						\
-    }									\
-    template <class T=EIN>						\
-      static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type \
-      apply(const A& a, const EOUT& e) {				\
-      using LIB::Function;						\
-      EOUT *e2 = new EOUT();						\
-      *e2 = Function(a,e);						\
-      return *e2;							\
-    }									\
-    static std::string expression(const std::string& sa) {		\
-      using namespace display;						\
-      std::string sout = "";						\
-      sout = functor_style.apply(stringify(Function))+"("+ sa + ")";	\
-      return sout;							\
-    }									\
-    static std::string classname() {					\
-      using namespace display;						\
-      EIN e;								\
-      return functor_namestyle.apply(stringify(FUNTOR_##ClassName))+display::getBracketedTypeName(e); \
-    }									\
+  typedef D DType;							\
+  typedef D DoutType;							\
+  typedef E EType;							\
+  typedef E EoutType;							\
+  static D apply(const D d1, const D d2) {				\
+    return d1 OP d2;						\
+  }									\
+  template <class T=E>							\
+  static  typename std::enable_if<!std::is_same<T,D>::value, E& >::type \
+  apply(const E& e1, const E& e2) {					\
+    E *e3 = new E();							\
+    *e3 = e1 OP e2;						\
+    return *e3;								\
+  }									\
+  static std::string expression(const std::string& sa, const std::string& sb) {	\
+    using namespace display;						\
+    std::string sout = "";						\
+    sout = sa + stringify(OP) + sb; \
+    return sout;							\
+  }									\
+  static std::string classname() {					\
+    using namespace display;						\
+    E e;								\
+    D d;								\
+    std::string angle1 =  StyledString::get(BRACKET1).get();		\
+    std::string comma =  StyledString::get(COMMA).get();		\
+    std::string angle2 =  StyledString::get(BRACKET2).get();		\
+    return functor_namestyle.apply(stringify(FUNCTOR_##ClassName))+angle1+display::getTypeName(e)+comma+display::getTypeName(d)+angle2; \
+  }									\
+  };
+  
+  // ************************************************************************
+  // *             GENERAL BINARY FUNCTION MACRO
+  // ************************************************************************
+
+ #define FUNCTION_BINARY(Function,Functor)				\
+  template <class X, class E, class D, int M, int R>	\
+    auto Function(const TensorR<X,E,D,M,R>& x1, const TensorR<X,E,D,M,R>& x2) { \
+    return  TER_Binary<TensorR<X,E,D,M,R>,TensorR<X,E,D,M,R>,E,D,M,R, Functor<E,D> >(x1,x2); \
   }
 
 
-  // uint param, double
-  FUNCTOR_UNARY_W1(legendre,legendre,std,D,D,E,E,int);
-  FUN_UNARY_W1(legendre,FUNCTOR_legendre,D,D,E,E,int);
-
-  FUNCTOR_UNARY_W1(laguerre,laguerre,std,D,D,E,E,int);
-  FUN_UNARY_W1(laguerre,FUNCTOR_laguerre,D,D,E,E,int);
-
-  FUNCTOR_UNARY_W1(hermite,hermite,std,D,D,E,E,int);
-  FUN_UNARY_W1(hermite,FUNCTOR_hermite,D,D,E,E,int);
+  // ************************************************************************
+  // *             BINARY FUNCTOR / FUNCTION DEFINITIONS
+  // ************************************************************************
 
 
-  /* FUNCTOR_UNARY(std::sph_bessel,sph_bessel,D,E); */
-  /* FUN_UNARY(sph_bessel,FUNCTOR_sph_bessel); */
+  // work on addition 
+  
+  
+  //----------------------------------------------
+  // Addition (+)
+  //----------------------------------------------
 
-  /* FUNCTOR_UNARY(std::sph_neumann,sph_neumann,D,E); */
-  /* FUN_UNARY(sph_neumann,FUNCTOR_sph_neumann); */
+  // // Tensor<D1> + Tensor<D2>
 
-  // (doubleparm,double )
-  /* FUNCTOR_UNARY(std::cyl_bessel_i,cyl_bessel_i,D,E); */
-  /* FUN_UNARY(cyl_bessel_i,FUNCTOR_cyl_bessel_i); */
-
-  /* FUNCTOR_UNARY(std::cyl_bessel_j,cyl_bessel_j,D,E); */
-  /* FUN_UNARY(cyl_bessel_j,FUNCTOR_cyl_bessel_j); */
-
-  /* FUNCTOR_UNARY(std::cyl_bessel_k,cyl_bessel_k,D,E); */
-  /* FUN_UNARY(cyl_bessel_k,FUNCTOR_cyl_bessel_k); */
-
-  /* FUNCTOR_UNARY(std::cyl_neumann,cyl_neumann,D,E); */
-  /* FUN_UNARY(cyl_neumann,FUNCTOR_cyl_neumann); */
+  // template <class D1, class D2, class A, class B> 
+  //   inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+  // {
+  //   return  TER_Binary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_Add<D1,D2>>(a,b);
+  // }
 
 
+  // // Tensor<D1> + D2
 
-
-  // binary
-  /* FUNCTOR_UNARY(std::beta,beta,D,E); */
-  /* FUN_UNARY(beta,FUNCTOR_beta); */
+  // template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
+  //   inline auto operator+(const TensorR<D1,A>& a, const D2& b)
+  //   {
+  //     return  TER_Binary<TensorR<D1,A>,D2,D1,D2,Fun_Add<D1,D2>>(a,b);
+  //   }
 
   
+  // // D1 + Tensor<D2>
 
-  FUNCTOR_UNARY_W1(ellint_1,ellint_1,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_1,FUNCTOR_ellint_1,D,D,E,E,D);
+  // template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
+  //   inline auto operator+(const D1& a, const TensorR<D2,B>& b)
+  //   {
+  //     return  TER_Binary<D1,TensorR<D2,B>,D1,D2,Fun_Add<D1,D2>>(a,b);
+  //   }
 
-  FUNCTOR_UNARY_W1(ellint_2,ellint_2,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_2,FUNCTOR_ellint_2,D,D,E,E,D);
+    
+  // // Tensor<T> + T
+    
+  // template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+  //   inline auto operator+(const TensorR<T,A>& a, const T& b)
+  //   {
+  //     return  TER_Binary<TensorR<T,A>,T,T,T,Fun_Add<T,T>>(a,b);
+  //   }
+    
 
-  FUNCTOR_UNARY_W1(ellint_3,ellint_3,std,D,D,E,E,D);
-  FUN_UNARY_W1(ellint_3,FUNCTOR_ellint_3,D,D,E,E,D);
+  // // T + Tensor<T>
+
+  // template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+  //   inline auto operator+(const T& a, const TensorR<T,B>& b)
+  //   {
+  //     return  TER_Binary<T,TensorR<T,B>,T,T,Fun_Add<T,T>>(a,b);
+  //   }
+
+
+  //----------------------------------------------
+  // logical AND (&&)
+  //----------------------------------------------
+
+
+  FUNCTOR_BINARY_OP(&&,and);
+  FUNCTION_BINARY(operator&&,FUNCTOR_and);
+
+
 
   
+  // // Tensor<D1> && Tensor<D2>
+
+  // template <class D1, class D2, class A, class B> 
+  //   inline auto operator&&(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
+  // {
+  //   return  TER_Binary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_And<D1,D2>>(a,b);
+  // }
+
+
+  // // Tensor<D1> && bool
+
+  // template <class D1, class A> 
+  //   inline auto operator&&(const TensorR<D1,A>& a, const bool& b)
+  //   {
+  //     return  TER_Binary<TensorR<D1,A>,bool,D1,bool,Fun_And<D1,bool>>(a,b);
+  //   }
+
+  
+  // // bool && Tensor<D2>
+
+  // template <class D2, class B>
+  //   inline auto operator&&(const bool& a, const TensorR<D2,B>& b)
+  //   {
+  //     return  TER_Binary<bool,TensorR<D2,B>,bool,D2,Fun_And<bool,D2>>(a,b);
+  //   }
+
+    
+  // // Tensor<T> && T
+    
+  // template <class T, class A, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+  //   inline auto operator&&(const TensorR<T,A>& a, const T& b)
+  //   {
+  //     return  TER_Binary<TensorR<T,A>,T,T,T,Fun_And<T,T>>(a,b);
+  //   }
+    
+
+  // // T && Tensor<T>
+
+  // template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
+  //   inline auto operator&&(const T& a, const TensorR<T,B>& b)
+  //   {
+  //     return  TER_Binary<T,TensorR<T,B>,T,T,Fun_And<T,T>>(a,b);
+  //   }
+
 
 
   

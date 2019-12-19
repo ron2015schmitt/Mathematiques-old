@@ -69,7 +69,7 @@ namespace mathq {
 
 
     // --------------------- constant=0 CONSTRUCTOR ---------------------
-    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+    template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
     explicit Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc) {
       resize(Nr,Nc);
@@ -77,7 +77,7 @@ namespace mathq {
 
 
     // --------------------- constant CONSTRUCTOR ---------------------
-    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+    template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
     explicit Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D& val) {
       resize(Nr,Nc);
@@ -85,7 +85,7 @@ namespace mathq {
     }
 
     // --------------------- 2D array  CONSTRUCTOR ---------------------
-    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+    template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
       Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D **vals) {
       resize(Nr,Nc);
@@ -94,7 +94,7 @@ namespace mathq {
 
       // --------------------- Matrix(D value)  ---------------------
 
-      template<size_t NN = NR*NC, EnableConstructorIf<(NN > 0)> = 0>
+      template<size_t NN = NR*NC, EnableIf<(NN > 0)> = 0>
       
       explicit Matrix<E,NR,NC,D,M>(const E val) {
 	*this = val;
@@ -103,7 +103,7 @@ namespace mathq {
 
       // --------------------- Matrix(D value)  ---------------------
 
-      template<size_t NN = NR*NC, EnableConstructorIf<(NN > 0)&&(M>1)> = 0>
+      template<size_t NN = NR*NC, EnableIf<(NN > 0)&&(M>1)> = 0>
       
       explicit Matrix<E,NR,NC,D,M>(const D val) {
 	*this = val;
@@ -142,7 +142,7 @@ namespace mathq {
 
 
     // --------------------- 1D valarray CONSTRUCTOR ---------------------
-    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+    template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
       Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const std::valarray<E>& valar) {
       resize(Nr,Nc);
@@ -151,7 +151,7 @@ namespace mathq {
 
 
     // --------------------- 1D array[]  CONSTRUCTOR ---------------------
-    template<size_t NN = NR*NC, EnableConstructorIf<NN == 0> = 0>
+    template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
       Matrix<E,NR,NC,D,M>(const size_type Nr, const size_type Nc, const D (vals)[]) {
       resize(Nr,Nc);

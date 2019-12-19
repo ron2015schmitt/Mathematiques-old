@@ -71,7 +71,7 @@ namespace mathq {
 
   // --------------------- constant D CONSTRUCTOR ---------------------
 
-  template<int M1 = M, EnableConstructorIf<(M1>1)> = 0>
+  template<int M1 = M, EnableIf<(M1>1)> = 0>
 
   Scalar<E,D,M>(const D d) 
   {

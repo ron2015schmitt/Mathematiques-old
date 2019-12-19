@@ -419,7 +419,7 @@ namespace mathq {
  
   FUNCTOR_UNARY_TYPE2(std::proj,rproj_of_real);
 
-  template <class X, class E, class D, int M, int R,EnableConstructorIf<std::is_arithmetic<D>::value> = 0 > auto 
+  template <class X, class E, class D, int M, int R,EnableIf<std::is_arithmetic<D>::value> = 0 > auto 
     rproj(const TensorR<X,E,D,M,R>& x) {
      typedef std::complex<D> DOUT;
      typedef typename NumberType<E,DOUT>::ReplaceTypeE EOUT;

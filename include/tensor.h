@@ -84,7 +84,7 @@ namespace mathq {
 
     // --------------------- constant E CONSTRUCTOR ---------------------
 
-    template<size_t M1 = M, EnableConstructorIf<(M1 > 0)> = 0>
+    template<size_t M1 = M, EnableIf<(M1 > 0)> = 0>
     
     explicit Tensor<E,R,D,M>(const Dimensions& dims, const D d)  {
       resize(dims);

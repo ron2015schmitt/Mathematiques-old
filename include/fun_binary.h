@@ -76,12 +76,14 @@ namespace mathq {
   // Addition (+)
   //----------------------------------------------
 
-  // Tensor<(D1)> + Tensor<(D2)>
+  // Tensor<E1(D1)> + Tensor<E2(D2)>
+
+  // TODO: realtime check that deep dimensions of E1 and E2 are the same
 
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
   auto operator+(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
     typedef typename AddType<D1,D2>::Type D3;
-    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // since M and R are equal, E1 and E2 has same form
+    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
     return  TER_Binary<TensorR<A,E1,D1,M,R>,
 		       TensorR<B,E2,D2,M,R>,
 		       E1,E2,E3,D1,D2,D3,M,M,M,R,
@@ -89,31 +91,33 @@ namespace mathq {
   }
 
 
-  // // Tensor<D1> + Tensor<D2>
+  
 
-  // template <class D1, class D2, class A, class B> 
-  //   inline auto operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
-  // {
-  //   return  TER_Binary<TensorR<D1,A>,TensorR<D2,B>,D1,D2,Fun_Add<D1,D2>>(a,b);
-  // }
+  // // Tensor<E(D1)> + D2
 
+  template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+  auto operator+(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+    typedef typename AddType<D1,D2>::Type D3;
+    typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+    return  TER_Binary<TensorR<A,E,D1,M,R>,
+		       D2,
+		       E,Null,E3,D1,D2,D3,M,0,M,R,
+		       FUNCTOR_add<E,Null,E3,D1,D2,D3> >(x1,x2); 
+  }
 
-  // // Tensor<D1> + D2
-
-  // template <class D1, class D2, class A, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D2>::value> > 
-  //   inline auto operator+(const TensorR<D1,A>& a, const D2& b)
-  //   {
-  //     return  TER_Binary<TensorR<D1,A>,D2,D1,D2,Fun_Add<D1,D2>>(a,b);
-  //   }
 
   
-  // // D1 + Tensor<D2>
+  // // D1 + Tensor<E(D2)>
 
-  // template <class D1, class D2, class B, typename = std::enable_if_t<!std::is_base_of<TensorAbstract,D1>::value> > 
-  //   inline auto operator+(const D1& a, const TensorR<D2,B>& b)
-  //   {
-  //     return  TER_Binary<D1,TensorR<D2,B>,D1,D2,Fun_Add<D1,D2>>(a,b);
-  //   }
+  template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+  auto operator+(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+    typedef typename AddType<D1,D2>::Type D3;
+    typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+    return  TER_Binary<D1,
+		       TensorR<B,E,D2,M,R>,
+		       Null,E,E3,D1,D2,D3,0,M,M,R,
+		       FUNCTOR_add<Null,E,E3,D1,D2,D3> >(x1,x2); 
+  }
 
     
   // // Tensor<T> + T
@@ -134,6 +138,8 @@ namespace mathq {
   //   }
 
 
+  //Add top level but of different depth
+  
   //----------------------------------------------
   // logical AND (&&)
   //----------------------------------------------

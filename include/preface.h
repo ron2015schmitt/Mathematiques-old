@@ -292,6 +292,7 @@ namespace mathq {
     typedef T Type;
     typedef NewD ReplaceTypeD;
     typedef NewD ReplaceTypeE; // DONT modify this
+    constexpr static bool value = true;
     constexpr static int depth() {
       return 0;
     }
@@ -308,6 +309,7 @@ namespace mathq {
     typedef std::complex<D> Type;
     typedef NewD ReplaceTypeD;
     typedef NewD ReplaceTypeE; // DONT modify this
+    constexpr static bool value = true;
     constexpr static int depth() {
       return 0;
     }
@@ -323,6 +325,7 @@ namespace mathq {
     typedef Imaginary<D> Type;
     typedef NewD ReplaceTypeD;
     typedef NewD ReplaceTypeE; // DONT modify this (use FundamentalType to change 
+    constexpr static bool value = true;
     constexpr static int depth() {
       return 0;
     }
@@ -345,6 +348,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Scalar<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
     typedef Scalar<NewD> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -366,6 +370,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Vector<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
     typedef Vector<NewD> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -386,6 +391,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Vector<typename NumberType<E,NewD>::ReplaceTypeD,NE> ReplaceTypeD;
     typedef Vector<NewD,NE> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -407,6 +413,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Matrix<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
     typedef Matrix<NewD> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -427,6 +434,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Matrix<typename NumberType<E,NewD>::ReplaceTypeD,NR> ReplaceTypeD;
     typedef Matrix<NewD,NR> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -448,6 +456,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Matrix<typename NumberType<E,NewD>::ReplaceTypeD,NR,NC> ReplaceTypeD;
     typedef Matrix<NewD,NR,NC> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -470,6 +479,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Tensor<typename NumberType<E,NewD>::ReplaceTypeD> ReplaceTypeD;
     typedef Tensor<NewD> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -490,6 +500,7 @@ namespace mathq {
     typedef typename NumberType<E>::Type Type;
     typedef Tensor<typename NumberType<E,NewD>::ReplaceTypeD,R> ReplaceTypeD;
     typedef Tensor<NewD,R> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return 1+NumberType<E,NewD>::depth();
     }
@@ -514,6 +525,7 @@ namespace mathq {
     typedef typename NumberType<X,NewD>::ReplaceTypeD NewX;
     typedef NewX ReplaceTypeD;
     typedef TensorR<X,NewD,D,M,R> ReplaceTypeE;
+    constexpr static bool value = false;
     constexpr static int depth() {
       return M;
     }

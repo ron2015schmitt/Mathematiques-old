@@ -3,9 +3,13 @@
 
 
 
+// "READ ONLY"  expressions
+
+
 namespace mathq {
 
- 
+  
+  
 
   //---------------------------------------------------------------------------
   // TER_Unary    unary expressions
@@ -149,8 +153,12 @@ namespace mathq {
 
     TER_Binary(const A& a, const B& b) : a_(a), b_(b) {
       vptrs = new VectorofPtrs();
-      vptrs->add(a_.getAddresses());
-      vptrs->add(b_.getAddresses());
+      if constexpr(M1>0) {
+        vptrs->add(a_.getAddresses());
+      }
+      if constexpr(M2>0) {
+        vptrs->add(b_.getAddresses());
+	}
       disp3(a);
       disp3(b);
     }

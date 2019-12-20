@@ -239,6 +239,14 @@ int main(int argc, char *argv[])
     tdisp(v0);
     tdisp(v1+v0);
     tdisp((v1+v0)[1]);
+    tdisp(v0+v1);
+    tdisp((v0+v1)[1]);
+    Vector<double> v00 {100,200};
+    tdisp(v00);
+    tdisp(v1+v00);
+    tdisp((v1+v00)[1]);
+    tdisp(v00+v1);
+    tdisp((v1+v00)[1]);
   }
 
   {

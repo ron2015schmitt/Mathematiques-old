@@ -185,29 +185,76 @@ namespace mathq {
 	if constexpr(M1==M2) {
 	  return OP::apply(a_.dat(i), b_.dat(i));
 	} else if constexpr(M1==M2+1) {
-	  if constexpr((M2==1)&&(R2==R1)) {
-	    index_type j = i / a_.elsize();
-	    return OP::apply(a_.dat(i), b_.dat(j));
+	  if constexpr((M2==1)&&(R2==R1)&&(R2==E1::Rvalue)) {
+	    if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
+	      return dat_el1(i); // note this is chosen by fiat
+	    } else if (a_.size() == b_.size()) {
+	      return dat_top1(i);
+	    } else if (a_.elsize() == b_.size()) {
+	      return dat_el1(i);
+	    } else {
+	      // TODO: error
+  	      return 0;
+	    }
+	  } else if constexpr((M2==1)&&(R2==R1)) {
+	    return dat_top1(i); 
 	  } else if constexpr(R2==E1::Rvalue) {
-	    index_type j = i % b_.deepsize();
-	    return OP::apply(a_.dat(i), b_.dat(j));
+	    return dat_el1(i);
 	  } else {
 	    // TODO: error
+	    return 0;
 	  }
 	} else if constexpr(M1==M2+1) {
-	  if constexpr((M1==1)&&(R1==R2)) {
-	    index_type j = i / b_.elsize();
-	    return OP::apply(a_.dat(j), b_.dat(i));
+	  if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
+	    if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
+	      return dat_top2(i); // note this is chosen by fiat
+	    } else if (a_.size() == b_.size()) {
+	      return dat_top2(i);
+	    } else if (a_.elsize() == b_.size()) {
+	      return dat_el2(i);
+	    } else {
+	      // TODO: error
+	      return 0;
+	    }
+   	  } else if constexpr((M1==1)&&(R1==R2)) {
+	    return dat_top2(i);
 	  } else if constexpr(R1==E2::Rvalue) {
-	    index_type j = i % a_.deepsize();
-	    return OP::apply(a_.dat(j), b_.dat(i));
+	    return dat_el2(i);
 	  } else {
 	    // TODO: error
+	    return 0;
 	  }
+	} else {
+	  // TODO: error
+	  return 0;
 	}
       }
     }
-      //**********************************************************************
+
+    // helper for: T<E> + T
+    const D3 dat_top1(const index_type i) const {
+      index_type j = i / a_.elsize();
+      return OP::apply(a_.dat(i), b_.dat(j));
+    }
+    // helper for: T<E> + E
+    const D3 dat_el1(const index_type i) const {
+      index_type j = i % b_.deepsize();
+      return OP::apply(a_.dat(i), b_.dat(j));
+    }
+
+    // helper for: T + T<E>
+    const D3 dat_top2(const index_type i) const {
+      index_type j = i / b_.elsize();
+      return OP::apply(a_.dat(j), b_.dat(i));
+    }
+    // helper for: E + T<E>
+    const D3 dat_el2(const index_type i) const {
+      index_type j = i % a_.deepsize();
+      return OP::apply(a_.dat(j), b_.dat(i));
+    }
+
+
+    //**********************************************************************
     //************* Array-style Element Access: x[n] ***********************
     //**********************************************************************
     const E3 operator[](const index_type i) const {

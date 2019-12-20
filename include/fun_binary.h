@@ -119,40 +119,35 @@ namespace mathq {
 		       FUNCTOR_add<Null,E,E3,D1,D2,D3> >(x1,x2); 
   }
 
-    
 
-  // rank of E can be anything. Use -1 so that this gets caught by changes to the
-  // expression template that depends on R2
+  // Tensor<E(D1)> + E(D2)
 
-  // this isn't found when using fixed vs variable length tensors
-  // template <class A, class E, class D, int M, int R, typename = std::enable_if_t<!NumberType<E>::value>>
-  // auto operator+(const TensorR<A,E,D,M,R>& x1, const E& x2) {
-  //   return  TER_Binary<TensorR<A,E,D,M,R>,
-  // 		       E,
-  // 		       E,E,E,D,D,D,M,M-1,M,R,-1,R,
-  // 		       FUNCTOR_add<E,E,E,D,D,D> >(x1,x2); 
-  // }
+  // E(D1) + Tensor<E(D2)>
 
-
-
-  // Tensor<E> + E
-
-  // TODO: check deep dimensions of E1 == deepdimensions of x2
+  // TODO: run-time check
+  //       (deep dimensions of E1 == deepdimensions of x2)
+  //       or
+  //       (deep dimensions of x1 == deepdimensions of E2)
+  
   
   template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2, typename = std::enable_if_t<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> >
   auto operator+(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
     typedef typename AddType<D1,D2>::Type D3;
-    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
-    return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+    typedef E1 E;
+    constexpr int R = R1;
+    typedef typename NumberType<E,D3>::ReplaceTypeE E3;   // see TODO note above
+    return  TER_Binary<TensorR<A,E1,D1,M1,R>,
   		       TensorR<B,E2,D2,M2,R2>,
-  		       E1,E2,E3,D1,D2,D3,M1,M2,M1,R1,R2,R1,
-  		       FUNCTOR_add<E1,E1,E3,D1,D2,D3> >(x1,x2); 
+  		       E1,E2,E3,D1,D2,D3,M1,M2,M1,R,R2,R,
+  		       FUNCTOR_add<E,E,E3,D1,D2,D3> >(x1,x2); 
   }
 
 
-  // Tensor<E(D1),R> + Tensor<D2,R>
+  // Tensor<D1,R,M> + Tensor<D2,R,1>
 
-  // TODO: check dimesions of x1  equal dimensions of x2
+  // Tensor<D1,R,1> + Tensor<D2,R,M>
+
+  // TODO: run-timecheck dimesions of x1  equal dimensions of x2
 
   template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R, typename = std::enable_if_t<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> >
   auto operator+(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
@@ -164,17 +159,12 @@ namespace mathq {
   		       FUNCTOR_add<E1,E2,E3,D1,D2,D3> >(x1,x2); 
   }
 
+
+
+
+
+
   
-  // // T + Tensor<T>
-
-  // template <class T, class B, typename = std::enable_if_t<std::is_base_of<TensorAbstract,T>::value>> 
-  //   inline auto operator+(const T& a, const TensorR<T,B>& b)
-  //   {
-  //     return  TER_Binary<T,TensorR<T,B>,T,T,Fun_Add<T,T>>(a,b);
-  //   }
-
-
-  //Add top level but of different depth
   
   //----------------------------------------------
   // logical AND (&&)

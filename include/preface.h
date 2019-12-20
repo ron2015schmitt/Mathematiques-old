@@ -98,8 +98,8 @@ namespace mathq {
   template<class X, class E, class D, int M, int R, class FUNC> class
   TER_Unary;
 
-  template <class X, class Y, class E, class D, int M, int R, class FUNC> class
-  TER_Binary;
+  template <class A, class B, class E1, class E2, class E3, class D1, class D2, class D3, int M1, int M2, int M3, int R, class OP> class
+    TER_Binary;
 
   template <class D, int M = 1+NumberType<D>::depth()>
   class TERW_Subset;

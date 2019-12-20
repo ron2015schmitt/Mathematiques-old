@@ -4,9 +4,18 @@
 
 namespace mathq {
 
+  // DUSCUSSION:
+  // It makes the most sense to put all the logic regarding types
+  //  1. in once place 
+  //  2. at the code entry point (the functions)
+  //
+  // For this reason, the type logic is placed in the functions
+  // and then passed to the Functor and the Expression template.
+  
+
   
   // ************************************************************************
-  // *              GENERAL BINARY FUNCTOR MACRO
+  // *         FUNCTOR MACRO FOR GENERAL BINARY operators
   // ************************************************************************
 
   
@@ -49,16 +58,11 @@ namespace mathq {
     return s;								\
   }									\
   };
+
+  // ************************************************************************
+  // *         FUNCTOR MACRO FOR GENERAL BINARY functions
+  // ************************************************************************
   
-  // ************************************************************************
-  // *             GENERAL BINARY FUNCTION MACRO
-  // ************************************************************************
-
-  // #define FUNCTION_BINARY(Function,Functor)
-
-
-
-
   // ************************************************************************
   // *             BINARY FUNCTOR / FUNCTION DEFINITIONS
   // ************************************************************************
@@ -71,11 +75,17 @@ namespace mathq {
   //----------------------------------------------
   // Addition (+)
   //----------------------------------------------
+
+  // Tensor<(D1)> + Tensor<(D2)>
+
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
   auto operator+(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
     typedef typename AddType<D1,D2>::Type D3;
     typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // since M and R are equal, E1 and E2 has same form
-    return  TER_Binary<TensorR<A,E1,D1,M,R>,TensorR<B,E2,D2,M,R>,E1,E2,E3,D1,D2,D3,M,M,M,R, FUNCTOR_add<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+    return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		       TensorR<B,E2,D2,M,R>,
+		       E1,E2,E3,D1,D2,D3,M,M,M,R,
+		       FUNCTOR_add<E1,E2,E3,D1,D2,D3> >(x1,x2); 
   }
 
 

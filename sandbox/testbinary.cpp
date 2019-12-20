@@ -112,7 +112,6 @@ int main(int argc, char *argv[])
     tdisp(sc);
   }
 
-  return 0;
   cr();
   cr();
   mout << bold.apply("Vector") << endl;
@@ -234,13 +233,23 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Vector<Vector<double>> v {{1.,2.,3.},{4.,5.,6.}};
-    tdisp(v);
+    Vector<Vector<double>> v1 {{1,2,3},{4,5,6}};
+    tdisp(v1);
+    Vector<double> v0 {10,20,30};
+    tdisp(v0);
+    tdisp(v1+v0);
+    tdisp((v1+v0)[1]);
   }
+
   {
     cr();
-    Vector<Matrix<double>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
-    tdisp(v);
+    Vector<Matrix<double>> v1 { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
+    tdisp(v1);
+    tdisp(v1[1]);
+    Vector<double> v0 {100,200,300};
+    tdisp(v0);
+    tdisp(v1+v0);
+    tdisp((v1+v0)[1]);
   }
   {
     cr();
@@ -260,10 +269,15 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Matrix<Vector<double>> m {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
-    tdisp(m);
+    Matrix<Vector<double>> m1 {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
+    tdisp(m1);
+    tdisp(m1[0]);
+    Vector<double> v0 {100,200,300};
+    tdisp(v0);
+    tdisp(m1+v0);
+    tdisp((m1+v0)[0]);
   }
-
+  return 0;
   {
     cr();
     Matrix<Matrix<double>> m  {

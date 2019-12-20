@@ -31,12 +31,15 @@ namespace mathq {
 
     public:
       constexpr static int R = 2;
+      constexpr static int Rvalue = 2;
+      constexpr static int Mvalue = M;
       static constexpr bool resizable = (NR*NC==0) ? true : false;
       static constexpr bool resizableRows = (NR==0) ? true : false;
       static constexpr bool resizableCols = (NC==0) ? true : false;
       typedef Matrix<E,NR,NC,D,M> XType;
-    typedef E EType;
-    typedef D DType;
+      typedef E EType;
+      typedef D DType;
+      
 
       // if either NR or NC is 0, then we use valarray
       typedef typename ArrayType<E,NR*NC>::Type MyArrayType;

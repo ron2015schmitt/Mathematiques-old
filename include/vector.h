@@ -29,9 +29,11 @@ namespace mathq {
     typedef E EType;
     typedef D DType;
 
-  typedef typename ArrayType<E,NE>::Type MyArrayType;
-  constexpr static int Rvalue = 1;
-
+    typedef typename ArrayType<E,NE>::Type MyArrayType;
+    constexpr static int R = 1;
+    constexpr static int Rvalue = 1;
+    constexpr static int Mvalue = M;
+    
 
   // *********************** OBJECT DATA ***********************************
   //

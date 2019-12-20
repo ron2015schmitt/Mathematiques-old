@@ -25,6 +25,8 @@ namespace mathq {
     typedef X XType;
     typedef E EType;
     typedef D DType;
+    constexpr static int Rvalue = R;
+    constexpr static int Mvalue = M;
       
   private:
     const X& x_;
@@ -129,14 +131,15 @@ namespace mathq {
   // TER_Binary    binary expressions
   //---------------------------------------------------------------------------
 
-  // change to allow different rank, in which case we have e.g. Tensor<T> + T
   
-  template <class A, class B, class E1, class E2, class E3, class D1, class D2, class D3, int M1, int M2, int M3, int R, class OP> 
-  class TER_Binary  : public  TensorR<TER_Binary<A,B,E1,E2,E3,D1,D2,D3,M1,M2,M3,  R,OP>, E3,D3,M3,R> {
+  template <class A, class B, class E1, class E2, class E3, class D1, class D2, class D3, int M1, int M2, int M3, int R1, int R2, int R3, class OP> 
+  class TER_Binary  : public  TensorR<TER_Binary<A,B,E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,OP>, E3,D3,M3,R3> {
   public:
     typedef E3 EType;
     typedef D3 DType;
     typedef typename ResultType<A,B,D3>::Type XType;
+    constexpr static int Mvalue = M3;
+    constexpr static int Rvalue = R3;
 
     typedef typename std::conditional<M1==0,const A,const A&>::type TypeA;
     typedef typename std::conditional<M2==0,const B,const B&>::type TypeB;
@@ -172,21 +175,35 @@ namespace mathq {
     //**********************************************************************
 
     const D3 dat(const index_type i) const {
-       if constexpr((M1==0)&&(M2==0)) {
+      if constexpr((M1==0)&&(M2==0)) {
 	return OP::apply(a_, b_);
       } else if constexpr((M1==0)&&(M2>0)) {
-	  return OP::apply(a_, b_.dat(i));
+	return OP::apply(a_, b_.dat(i));
       } else if constexpr((M1>0)&&(M2==0)) {
-	  return OP::apply(a_.dat(i), b_);
+	return OP::apply(a_.dat(i), b_);
       } else {
 	if constexpr(M1==M2) {
 	  return OP::apply(a_.dat(i), b_.dat(i));
 	} else if constexpr(M1==M2+1) {
-	  index_type j = i % b_.deepsize();
-	  return OP::apply(a_.dat(i), b_.dat(j));
-	} else if constexpr(M2==M1+1) {
-	  index_type j = i % a_.deepsize();
-	  return OP::apply(a_.dat(j), b_.dat(i));
+	  if constexpr((M2==1)&&(R2==R1)) {
+	    index_type j = i / a_.elsize();
+	    return OP::apply(a_.dat(i), b_.dat(j));
+	  } else if constexpr(R2==E1::Rvalue) {
+	    index_type j = i % b_.deepsize();
+	    return OP::apply(a_.dat(i), b_.dat(j));
+	  } else {
+	    // TODO: error
+	  }
+	} else if constexpr(M1==M2+1) {
+	  if constexpr((M1==1)&&(R1==R2)) {
+	    index_type j = i / b_.elsize();
+	    return OP::apply(a_.dat(j), b_.dat(i));
+	  } else if constexpr(R1==E2::Rvalue) {
+	    index_type j = i % a_.deepsize();
+	    return OP::apply(a_.dat(j), b_.dat(i));
+	  } else {
+	    // TODO: error
+	  }
 	}
       }
     }
@@ -196,14 +213,30 @@ namespace mathq {
     const E3 operator[](const index_type i) const {
       if constexpr((M1==0)&&(M2==0)) {
 	return OP::apply(a_, b_);
-      } else if constexpr((M1==0)&&(M2==1)) {
-	  return OP::apply(a_, b_[i]);
-      } else if constexpr((M1==1)&&(M2==0)) {
-	  return OP::apply(a_[i], b_);
+      } else if constexpr((M1==0)&&(M2>0)) {
+	return OP::apply(a_, b_[i]);
+      } else if constexpr((M1>0)&&(M2==0)) {
+	return OP::apply(a_[i], b_);
       } else {
-	if constexpr((M1==1)&&(M2==1)) {
+	if constexpr(M1==M2) {
+	  return OP::apply(a_[i], b_[i]);
+	} else if constexpr(M1==M2+1) {
+	  if constexpr((M2==1)&&(R2==R1)) {
 	    return OP::apply(a_[i], b_[i]);
-	} 
+	  } else if constexpr(R2==E1::Rvalue) {
+	      return OP::apply(a_[i], b_);
+	  } else {
+	    // TODO: error
+	  }
+	} else if constexpr(M1==M2+1) {
+	  if constexpr((M1==1)&&(R1==R2)) {
+	    return OP::apply(a_[i], b_[i]);
+	  } else if constexpr(R1==E2::Rvalue) {
+	    return OP::apply(a_, b_[i]);
+	  } else {
+	    // TODO: error
+	  }
+	}
       }
     }
 

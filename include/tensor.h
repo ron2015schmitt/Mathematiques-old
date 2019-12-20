@@ -38,6 +38,9 @@ namespace mathq {
     typedef Tensor<E,R,D,M> XType;
     typedef E EType;
     typedef D DType;
+    constexpr static int Rvalue = R;
+    constexpr static int Mvalue = M;
+
     // always use valarray
     typedef typename ArrayType<E,0>::Type MyArrayType;
 

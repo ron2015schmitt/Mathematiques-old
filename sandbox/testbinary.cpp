@@ -233,22 +233,59 @@ int main(int argc, char *argv[])
 
   {
     cr();
+    cr();
+    
     Vector<Vector<double>> v1 {{1,2,3},{4,5,6}};
-    tdisp(v1);
     Vector<double> v0 {10,20,30};
-    tdisp(v0);
-    tdisp(v1+v0);
-    tdisp((v1+v0)[1]);
-    tdisp(v0+v1);
-    tdisp((v0+v1)[1]);
+    string s;
+    mout << blue.apply("Given:") << endl;
+    mout<<"  ";tdisp(v1);
+    mout<<"  ";tdisp(v0);
+    cr();
+    mout << "By analysing the dimensions element-wise addition is chosen" << endl;
+    mout<<"  ";tdisp(v1+v0);
+    //    tdisp((v1+v0)[1]);
+    mout<<"  ";tdisp(v0+v1);
+    //    tdisp((v0+v1)[1]);
+
+    cr();
+    cr();
     Vector<double> v00 {100,200};
-    tdisp(v00);
-    tdisp(v1+v00);
-    tdisp((v1+v00)[1]);
-    tdisp(v00+v1);
-    tdisp((v1+v00)[1]);
+    mout << blue.apply("Given:") << endl;
+
+    mout<<"  ";tdisp(v1);
+    mout<<"  ";tdisp(v00);
+    cr();
+    mout << "By analysing the dimensions top-level addition is chosen" << endl;
+    mout<<"  ";tdisp(v1+v00);
+    //    tdisp((v1+v00)[1]);
+    mout<<"  ";tdisp(v00+v1);
+    //    tdisp((v00+v1)[1]);
   }
 
+
+  cr();
+    cr();
+  mout << bold.apply("When dimensions and rank are the same, the result depends on order, ie non-commutative") << endl;
+  {
+    cr();
+    Vector<Vector<double>> v1 {{1,2},{4,5}};
+    tdisp(v1);
+    Vector<double> v0 {10,20};
+    tdisp(v0);
+    cr();
+    mout << "Element-wise: add v0 to each element of v1" << endl;
+    tdisp(v1+v0);
+    tdisp((v1+v0)[1]);
+    cr();
+    mout << "Top-level: add v0[0] to vector v1[0], add v0[1] to vector v1[1]" << endl;
+    //    tdisp(v0+v1);
+    //    tdisp((v0+v1)[1]);
+    cr();
+    cr();
+  }
+
+  
   {
     cr();
     Vector<Matrix<double>> v1 { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
@@ -258,6 +295,8 @@ int main(int argc, char *argv[])
     tdisp(v0);
     tdisp(v1+v0);
     tdisp((v1+v0)[1]);
+    // tdisp(v0+v1);
+    // tdisp((v0+v1)[1]);
   }
   {
     cr();
@@ -284,6 +323,8 @@ int main(int argc, char *argv[])
     tdisp(v0);
     tdisp(m1+v0);
     tdisp((m1+v0)[0]);
+    // tdisp(v0+m1);
+    // tdisp((v0+m1)[0]);
   }
   return 0;
   {

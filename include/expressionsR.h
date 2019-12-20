@@ -204,13 +204,13 @@ namespace mathq {
 	    // TODO: error
 	    return 0;
 	  }
-	} else if constexpr(M1==M2+1) {
+	} else if constexpr(M2==M1+1) {
 	  if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
-	    if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
+	    if ((a_.size() == b_.size()) && (a_.size() == b_.elsize())) {
 	      return dat_top2(i); // note this is chosen by fiat
 	    } else if (a_.size() == b_.size()) {
 	      return dat_top2(i);
-	    } else if (a_.elsize() == b_.size()) {
+	    } else if (a_.size() == b_.elsize()) {
 	      return dat_el2(i);
 	    } else {
 	      // TODO: error

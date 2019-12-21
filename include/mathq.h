@@ -43,7 +43,7 @@
 #include "tensors.h"
 #include "debug.h"
 #include "fun_unary.h"
-#include "fun_binary.h"
+#include "fun_binary_ops_AUTO.h"
 #include "fun_ternary.h"
 #include "scalar.h"
 #include "vector.h"

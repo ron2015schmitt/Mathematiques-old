@@ -2,6 +2,8 @@
 #define MATHQ__FUN_BINARY_H 1
 
 
+#include "fun_binary_functors.hpp"
+
 namespace mathq {
 
   // DUSCUSSION:
@@ -35,7 +37,6 @@ namespace mathq {
   
 
 
-#include "fun_binary_functors.hpp"
 #include "fun_binary_functions.hpp"
 
   

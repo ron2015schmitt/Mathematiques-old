@@ -187,7 +187,12 @@ namespace mathq {
   template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
 	   EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
   auto operator+(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
-    typedef typename B::XType E2;  // this works so far...
+
+    // NOT SURE WHICH OF THE THREE IS BEST
+    //    typedef typename B::XType E2;  
+    //    typedef B E2;  
+    typedef TensorR<B,D2,D2,M2,R> E2;  
+
     typedef typename AddType<D1,D2>::Type D3;
     typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
     constexpr int M3 = M1;
@@ -208,7 +213,10 @@ namespace mathq {
   template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
 	   EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
   auto operator+(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
-    typedef typename A::XType E1;  // this works so far...
+    // NOT SURE WHICH OF THE THREE IS BEST
+    //    typedef typename A::XType E1;  
+    //    typedef A E1;  
+    typedef TensorR<A,D1,D1,M1,R> E1;  
     typedef typename AddType<D1,D2>::Type D3;
     typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
     constexpr int M3 = M2;

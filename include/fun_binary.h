@@ -26,10 +26,24 @@ namespace mathq {
     return d1 OP d2;							\
   }									\
   template <class T1=E1, class T2=E2>						\
-  static typename std::enable_if<!std::is_same<T1,D1>::value||!std::is_same<T2,D2>::value, E3& >::type \
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type \
   apply(const E1& e1, const E2& e2) {					\
     E3 *e3 = new E3();							\
     *e3 = e1 OP e2;							\
+    return *e3;								\
+  }									\
+  template <class T1=E1>						\
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type \
+  apply(const E1& e1, const D2 d2) {					\
+    E3 *e3 = new E3();							\
+    *e3 = e1 OP d2;							\
+    return *e3;								\
+  }									\
+  template <class T2=E2>						\
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type \
+  apply(const D1 d1, const E2& e2) {					\
+    E3 *e3 = new E3();							\
+    *e3 = d1 OP e2;							\
     return *e3;								\
   }									\
   static std::string expression(const std::string& sa, const std::string& sb) {	\
@@ -121,7 +135,8 @@ namespace mathq {
   }
 
 
-  // Tensor<E(D1)> + E(D2)
+  
+  // element-wise addition: x1[i] + x2
 
   // TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
   
@@ -133,7 +148,8 @@ namespace mathq {
     typedef E1 E;   // see TODO note above
     constexpr int R3 = R1;
     constexpr int M3 = M1;
-    typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+    typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+    //    mout << "A" <<std::endl;
     return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
   		       TensorR<B,E2,D2,M2,R2>,
   		       E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
@@ -141,7 +157,7 @@ namespace mathq {
   }
 
 
-  // E(D1) + Tensor<E(D2)>
+  // element-wise addition: x1 + x2[i]
 
   // TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
 
@@ -153,6 +169,7 @@ namespace mathq {
     constexpr int R3 = R2;
     constexpr int M3 = M2;
     typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+    //    mout << "B" <<std::endl;
     return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
   		       TensorR<B,E2,D2,M2,R2>,
   		       E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
@@ -161,34 +178,44 @@ namespace mathq {
 
     
   // Tensor<D1,R,M> + Tensor<D2,R,1>
+  // Depending on rank and dimensions, this may be top-level or element wise addition
+  // Note: M2==1 -> E2==D2
 
-  // TODO: run-timecheck dimesions of x1  equal dimensions of x2
+  // TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+  // TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
   
-  template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R,
+  template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
 	   EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
-  auto operator+(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  auto operator+(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+    typedef typename B::XType E2;  // this works so far...
     typedef typename AddType<D1,D2>::Type D3;
     typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
     constexpr int M3 = M1;
+    //    mout << "C" <<std::endl;
     return  TER_Binary<TensorR<A,E1,D1,M1,R>,
-  		       TensorR<B,E2,D2,M2,R>,
-  		       E1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+  		       TensorR<B,D2,D2,M2,R>,
+  		       E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
   		       FUNCTOR_add<E1,E2,E3,D1,D2,D3> >(x1,x2); 
   }
 
   // Tensor<D1,R,1> + Tensor<D2,R,M>
+  // Depending on rank and dimensions, this may be top-level or element wise addition
+  // Note: M1==1 -> E1==D1
 
-  // TODO: run-timecheck dimesions of x1  equal dimensions of x2
+  // TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+  // TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
 
-  template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R,
+  template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
 	   EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
-  auto operator+(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  auto operator+(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+    typedef typename A::XType E1;  // this works so far...
     typedef typename AddType<D1,D2>::Type D3;
     typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
     constexpr int M3 = M2;
-    return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+    //    mout << "D" <<std::endl;
+    return  TER_Binary<TensorR<A,D1,D1,M1,R>,
   		       TensorR<B,E2,D2,M2,R>,
-  		       E1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+  		       D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
   		       FUNCTOR_add<E1,E2,E3,D1,D2,D3> >(x1,x2); 
   }
 

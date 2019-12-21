@@ -22,7 +22,7 @@ namespace mathq {
   template <class X, class E, class D, int M, int R, class FUNC> 
     class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC>, E,D,M,R> {
   public:
-    typedef X XType;
+    typedef typename X::XType XType;
     typedef E EType;
     typedef D DType;
     constexpr static int Rvalue = R;
@@ -137,7 +137,9 @@ namespace mathq {
   public:
     typedef E3 EType;
     typedef D3 DType;
-    typedef typename ResultType<A,B,D3>::Type XType;
+    typedef typename std::conditional<M1==0,B,A>::type::XType TempA;
+    typedef typename std::conditional<M2==0,A,B>::type::XType TempB;
+    typedef typename ResultType<TempA,TempB,D3>::Type XType;
     constexpr static int Mvalue = M3;
     constexpr static int Rvalue = R3;
 
@@ -268,28 +270,77 @@ namespace mathq {
 	if constexpr(M1==M2) {
 	  return OP::apply(a_[i], b_[i]);
 	} else if constexpr(M1==M2+1) {
-	  if constexpr((M2==1)&&(R2==R1)) {
-	    return OP::apply(a_[i], b_[i]);
+	  if constexpr((M2==1)&&(R2==R1)&&(R2==E1::Rvalue)) {
+	    if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
+	      return el1(i); // note this is chosen by fiat
+	    } else if (a_.size() == b_.size()) {
+	      return top1(i);
+	    } else if (a_.elsize() == b_.size()) {
+	      return el1(i);
+	    } else {
+	      // TODO: error
+	      E3* e;
+  	      return *e;
+	    }
+	  } else if constexpr((M2==1)&&(R2==R1)) {
+	    return top1(i); 
 	  } else if constexpr(R2==E1::Rvalue) {
-	      return OP::apply(a_[i], b_);
+	    return el1(i);
 	  } else {
 	    // TODO: error
+	    E3* e;
+	    return *e;
 	  }
-	} else if constexpr(M1==M2+1) {
-	  if constexpr((M1==1)&&(R1==R2)) {
-	    return OP::apply(a_[i], b_[i]);
+	} else if constexpr(M2==M1+1) {
+	  if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
+	    if ((a_.size() == b_.size()) && (a_.size() == b_.elsize())) {
+	      return top2(i); // note this is chosen by fiat
+	    } else if (a_.size() == b_.size()) {
+	      return top2(i);
+	    } else if (a_.size() == b_.elsize()) {
+	      return el2(i);
+	    } else {
+	      // TODO: error
+	      E3* e;
+  	      return *e;
+	    }
+   	  } else if constexpr((M1==1)&&(R1==R2)) {
+	    return top2(i);
 	  } else if constexpr(R1==E2::Rvalue) {
-	    return OP::apply(a_, b_[i]);
+	    return el2(i);
 	  } else {
 	    // TODO: error
+	    E3* e;
+	    return *e;
 	  }
+	} else {
+	  // TODO: error
+	  E3* e;
+	  return *e;
 	}
       }
     }
 
-   
 
-       
+    // helper for: T<E> + T
+    const E3 top1(const index_type i) const {
+      return OP::apply(a_[i], b_[i]);
+    }
+    // helper for: T<E> + E
+    const E3 el1(const index_type i) const {
+      return OP::apply(a_[i], b_);
+    }
+
+    // helper for: T + T<E>
+    const E3 top2(const index_type i) const {
+      return OP::apply(a_[i], b_[i]);
+    }
+    // helper for: E + T<E>
+    const E3 el2(const index_type i) const {
+      return OP::apply(a_, b_[i]);
+    }
+
+     
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;

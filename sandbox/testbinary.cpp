@@ -193,8 +193,8 @@ int main(int argc, char *argv[])
     cr();
     mout << "Element-access:" << endl;
     mout<<"  ";tdisp(m1[0]);
-    //mout<<"  ";tdisp((m1+v0)[0]);
-    //mout<<"  ";tdisp((v0+m1)[0]);
+    mout<<"  ";tdisp((m1+v0)[0]);
+    mout<<"  ";tdisp((v0+m1)[0]);
   }
   
 
@@ -215,8 +215,8 @@ int main(int argc, char *argv[])
     cr();
     mout << "Element-access:" << endl;
     mout<<"  ";tdisp(v1[1]);
-    //mout<<"  ";tdisp((v1+v0)[1]);
-    //mout<<"  ";tdisp((v0+v1)[1]);
+    mout<<"  ";tdisp((v1+v0)[1]);
+    mout<<"  ";tdisp((v0+v1)[1]);
   }
 
 
@@ -239,8 +239,8 @@ int main(int argc, char *argv[])
     cr();
     mout << "Element-access:" << endl;
     mout<<"  ";tdisp(v1[1]);
-    //mout<<"  ";tdisp((v1+v0)[1]);
-    //mout<<"  ";tdisp((v0+v1)[1]);
+    mout<<"  ";tdisp((v1+v0)[1]);
+    mout<<"  ";tdisp((v0+v1)[1]);
 
     cr();
     cr();
@@ -257,8 +257,8 @@ int main(int argc, char *argv[])
     cr();
     mout << "Element-access:" << endl;
     mout<<"  ";tdisp(v1[1]);
-    //mout<<"  ";tdisp((v00+v1)[1]);
-    //mout<<"  ";tdisp((v1+v00)[1]);
+    mout<<"  ";tdisp((v1+v00)[1]);
+    mout<<"  ";tdisp((v00+v1)[1]);
   }
 
 
@@ -281,8 +281,8 @@ int main(int argc, char *argv[])
     cr();
     mout << "Element-access:" << endl;
     mout<<"  ";tdisp(v1[1]);
-    //mout<<"  ";tdisp((v1+v0)[1]);
-    //mout<<"  ";tdisp((v0+v1)[1]);
+    mout<<"  ";tdisp((v1+v0)[1]);
+    mout<<"  ";tdisp((v0+v1)[1]);
     cr();
   }
 

@@ -638,11 +638,7 @@ namespace mathq {
     for(int j=0; j < ddims.size(); j++) {
       rdims.push_back(ddims[ddims.size()-j-1]);
     }  
-    tdisp(ddims);
-    tdisp(rdims);
     tout->resize(rdims);
-    tdisp(ddims);
-    tdisp(rdims);
 
     const index_type Ndeep = tout->deepsize();
   
@@ -663,22 +659,14 @@ namespace mathq {
       }
     }
     std::vector<index_type> flatrinds(flatrdims.size());
-    tdisp(ddims);
-    tdisp(rdims);
-    tdisp(flatrinds);
-    tdisp(flatdims);
-    tdisp(flatrdims);
   
     index_type depth = 0;
     index_type dim = 0;
     index_type index = 0;
-    mdisp(M,Ndeep);
     DeepIndices dinds(ddims);
-    tdisp(dinds.size());
-    tdisp(dinds);
     for(index_type i = 0; i < Ndeep; i++) {
       // set equal
-      mdisp(i,dinds,tin.dat(i),tin.dat(dinds));
+      //mdisp(i,dinds,tin.dat(i),tin.dat(dinds));
       DeepIndices rinds = dinds.getReverse();
       tout->dat(rinds) = tin.dat(dinds);
       dinds++;

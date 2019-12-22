@@ -22,7 +22,7 @@ namespace mathq {
   template <class X, class E, class D, int M, int R, class FUNC> 
     class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC>, E,D,M,R> {
   public:
-    typedef typename X::XType XType;
+    typedef Materialize<E,D,M,R> XType;
     typedef E EType;
     typedef D DType;
     constexpr static int Rvalue = R;
@@ -139,7 +139,7 @@ namespace mathq {
     typedef D3 DType;
     typedef typename std::conditional<M1==0,B,A>::type::XType TempA;
     typedef typename std::conditional<M2==0,A,B>::type::XType TempB;
-    typedef typename ResultType<TempA,TempB,D3>::Type XType;
+    typedef Materialize<E3,D3,M3,R3> XType;
     constexpr static int Mvalue = M3;
     constexpr static int Rvalue = R3;
 

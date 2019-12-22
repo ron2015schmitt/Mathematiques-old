@@ -70,7 +70,7 @@ namespace mathq {
   
   template <typename D> class Imaginary;
   
-  template <typename T, typename NUM=double> class NumberType;
+  template <typename T, typename NUM=double, typename H = void> class NumberType;
 
 
   // E = element type (int, double, complex<double>, bool, Scalar<double>, Vector<double>, Matrix<double>, etc)
@@ -95,6 +95,9 @@ namespace mathq {
   Tensor;
 
 
+
+  
+
   template<class X, class E, class D, int M, int R, class FUNC> class
   TER_Unary;
 
@@ -113,10 +116,39 @@ namespace mathq {
   // * Class type querying/manipulation
   // ********************************************************************
 
+  // ***************************************************************************
+  // Materialize - this returns a concrete tensor of type specified by paramters
+  // ***************************************************************************
 
+  template <class E, class D, int M, int R>
+    class Materialize {
+    typedef Tensor<E,R,D,M> TEN;
+    typedef Matrix<E,0,0,D,M> MAT;
+    typedef Vector<E,0,D,M> VEC;
+    typedef Scalar<E,D,M> SCA;
+    typedef typename std::conditional<R==0,SCA,std::conditional<R==1,VEC,std::conditional<R==2,MAT,TEN>>>::type Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,0> {
+    typedef Scalar<E,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,1> {
+    typedef Vector<E,0,D,M> Type;
+  };
+  template <class E, class D, int M>
+    class Materialize<E,D,M,2> {
+    typedef Matrix<E,0,0,D,M> Type;
+  };
+
+
+  // ***************************************************************************
   // ContainedType - this returns the contained type of a complex number
   //                 this could certainly be specialized for other
   //                 container types
+  //                 ** USE WITH GREAT CAUTION **
+  // ***************************************************************************
+
   template <typename T> class
   ContainedType {
   public:
@@ -287,7 +319,7 @@ namespace mathq {
   // ***************************************************************************
 
   template <typename T, typename NewD> class
-  NumberType {
+  NumberType<T,NewD,typename std::enable_if<std::is_arithmetic<T>::value>::type> {
   public:
     typedef T Type;
     typedef NewD ReplaceTypeD;
@@ -537,6 +569,29 @@ namespace mathq {
     }
   };
 
+  //  TensorRW<X,E,D,M,R>
+
+  template <class X, class E, class D, int M, int R, typename NewD> class
+  NumberType<TensorRW<X,E,D,M,R>,NewD> {
+  public:
+    typedef TensorRW<X,E,D,M,R> InputType;
+    typedef D Type;
+    typedef typename NumberType<E,NewD>::ReplaceTypeD NewE;
+    typedef typename NumberType<X,NewD>::ReplaceTypeD NewX;
+    typedef NewX ReplaceTypeD;
+    typedef TensorRW<X,NewD,D,M,R> ReplaceTypeE;
+    constexpr static bool value = false;
+    constexpr static int depth() {
+      return M;
+    }
+    inline static int size(const InputType& x) {
+      return x.size();
+    }
+    inline static int deepsize(const InputType& x) {
+      return x.deepsize();
+    }
+  };
+  
 
 
   // ***************************************************************************
@@ -689,7 +744,7 @@ namespace mathq {
   
   
   // ***************************************************************************
-  // * {Add,Sub,Mult,Div,Rel}Type: Class that determines return type of an aritmetic
+  // * {Add,Sub,Mult,Div,Rel,etc}Type: Class that determines return type of an aritmetic
   // *                 operation between two types
   // ***************************************************************************
 
@@ -725,6 +780,24 @@ namespace mathq {
     T1 x1;
     T2 x2;
     typedef bool Type;
+    static inline std::string name() {
+      return typeid(Type).name();
+    }
+  };
+  template <typename T1, typename T2> class AndType {
+  public:
+    T1 x1;
+    T2 x2;
+    typedef decltype(x1&&x2) Type;
+    static inline std::string name() {
+      return typeid(Type).name();
+    }
+  };
+  template <typename T1, typename T2> class OrType {
+  public:
+    T1 x1;
+    T2 x2;
+    typedef decltype(x1||x2) Type;
     static inline std::string name() {
       return typeid(Type).name();
     }

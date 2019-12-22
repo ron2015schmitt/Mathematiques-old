@@ -77,11 +77,17 @@ int main(int argc, char *argv[])
     mout<<"  ";tdisp(Vint1 == Vint3);
     mout<<"  ";tdisp(Vint3 == Vint1);
     mout<<"  ";tdisp(Vint1 == Vint1);
-    //    mout<<"  ";tdisp(Vint1 == (Vint4+1));
-    mout<<"  ";tdisp(Vint1 == 12);
-    mout<<"  ";tdisp(Vd1 == Vd2);
     mout<<"  ";tdisp(Vd1 == Vf1);
     mout<<"  ";tdisp(Vd1 > 1);
+
+    cr();
+    mout<<"  ";tdisp(Vd1 == Vd2);
+    mout<<"  ";tdisp(Vint1 == 12);
+    mout<<"  ";tdisp( (Vd1 == Vd2) && (Vint1 == 12));
+    mout<<"  ";tdisp( (Vd1 == Vd2) || (Vint1 == 12));
+    cr();
+    mout<<"  ";tdisp(Vint1 == (Vint4+1));
+    mout<<"  ";tdisp((Vint1 + Vint2) + (Vint3 +Vint4));
 
     cr();
 

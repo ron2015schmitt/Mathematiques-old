@@ -15,7 +15,6 @@ namespace mathq {
   class Indices;
   enum Tensors : unsigned int;
   enum TensorOrExpression : unsigned int;
-  template <Tensors, class D> struct TensorType;
 
 
 
@@ -701,22 +700,6 @@ namespace mathq {
   enum Tensors : unsigned int {T_SCALAR, T_VECTOR, T_MATRIX, T_TENSOR, T_EXPRESSION_R, T_EXPRESSION_RW};
 
   
-  template <class E, class D, int M, int R>
-    class Materialize {
-    typedef Tensor<E,R,D,M> Type;
-  };
-  template <class E, class D, int M>
-    class Materialize<E,D,M,0> {
-    typedef Scalar<E,D,M> Type;
-  };
-  template <class E, class D, int M>
-    class Materialize<E,D,M,1> {
-    typedef Vector<E,0,D,M> Type;
-  };
-  template <class E, class D, int M>
-    class Materialize<E,D,M,2> {
-    typedef Matrix<E,0,0,D,M> Type;
-  };
 
   // -------------------------------------------------------------------
   //
@@ -817,9 +800,11 @@ namespace mathq {
   template <class X, class E, typename D, int M, int R> class
     TensorR : public TensorAbstract {
   public:
-    typedef X XType;
+    typedef Materialize<E,D,M,R> XType;
     typedef E EType;
     typedef D DType;
+    constexpr static int Rvalue = R;
+    constexpr static int Mvalue = M;
 
     X& derived() {
       return static_cast<X&>(*this);
@@ -929,9 +914,11 @@ namespace mathq {
   template <class X, class E, typename D, int M, int R> class
     TensorRW : public TensorR<TensorRW<X,E,D,M,R>, E,D,M,R> {
   public:
-    typedef X XType;
+    typedef Materialize<E,D,M,R> XType;
     typedef E EType;
     typedef D DType;
+    constexpr static int Rvalue = R;
+    constexpr static int Mvalue = M;
 
     X& derived() {
       return static_cast<X&>(*this);

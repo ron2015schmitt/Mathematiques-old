@@ -9,7 +9,7 @@ namespace mathq {
 
 //********************************************************************
 //--------------------------------------------------------------------
-//                           Functors
+//                        Functors
 //--------------------------------------------------------------------
 //********************************************************************
 
@@ -770,6 +770,132 @@ public:
   }									
 };
 
+  
+// ----------------------------------------------------------------
+// FUNCTOR_atan2: template class for function 'std::atan2'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_atan2 { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::atan2(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::atan2(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::atan2(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::atan2(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_atan2)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_pow: template class for function 'std::pow'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_pow { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::pow(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::pow(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::pow(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::pow(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_pow)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
 
 
 
@@ -784,9 +910,9 @@ public:
 
 // ----------------------------------------------------------------
 // Addition
-// template function classes for operator '+'
+// template function classes for '+'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -938,9 +1064,9 @@ auto operator+(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 
 // ----------------------------------------------------------------
 // Subtraction
-// template function classes for operator '-'
+// template function classes for '-'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -1092,9 +1218,9 @@ auto operator-(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 
 // ----------------------------------------------------------------
 // Multiplication
-// template function classes for operator '*'
+// template function classes for '*'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -1246,9 +1372,9 @@ auto operator*(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 
 // ----------------------------------------------------------------
 // Division
-// template function classes for operator '/'
+// template function classes for '/'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -1400,9 +1526,9 @@ auto operator/(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 
 // ----------------------------------------------------------------
 // Equal to
-// template function classes for operator '=='
+// template function classes for '=='
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -1554,9 +1680,9 @@ auto operator==(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2
 
 // ----------------------------------------------------------------
 // Not equal to
-// template function classes for operator '!='
+// template function classes for '!='
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -1708,9 +1834,9 @@ auto operator!=(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2
 
 // ----------------------------------------------------------------
 // Greater than
-// template function classes for operator '>'
+// template function classes for '>'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -1862,9 +1988,9 @@ auto operator>(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 
 // ----------------------------------------------------------------
 // Greater than or equal to
-// template function classes for operator '>='
+// template function classes for '>='
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -2016,9 +2142,9 @@ auto operator>=(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2
 
 // ----------------------------------------------------------------
 // Less than
-// template function classes for operator '<'
+// template function classes for '<'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -2170,9 +2296,9 @@ auto operator<(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 
 // ----------------------------------------------------------------
 // Less than or equal to
-// template function classes for operator '<='
+// template function classes for '<='
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -2324,9 +2450,9 @@ auto operator<=(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2
 
 // ----------------------------------------------------------------
 // And
-// template function classes for operator '&&'
+// template function classes for '&&'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -2478,9 +2604,9 @@ auto operator&&(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2
 
 // ----------------------------------------------------------------
 // Or
-// template function classes for operator '||'
+// template function classes for '||'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
@@ -2624,6 +2750,314 @@ auto operator||(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2
 		     TensorR<B,E2,D2,M2,R>,
 		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
 		     FUNCTOR_or<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// atan2
+// template function classes for 'atan2'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// atan2 (atan2)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> atan2 Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto atan2(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_atan2<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> atan2 D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto atan2(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_atan2<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 atan2 Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto atan2(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_atan2<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise atan2: x1[i] atan2 x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto atan2(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_atan2<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise atan2: x1 atan2 x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto atan2(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_atan2<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> atan2 Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise atan2
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto atan2(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_atan2<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> atan2 Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise atan2
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto atan2(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_atan2<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// pow
+// template function classes for 'pow'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// pow (pow)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> pow Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto pow(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_pow<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> pow D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto pow(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_pow<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 pow Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto pow(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_pow<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise pow: x1[i] pow x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto pow(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_pow<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise pow: x1 pow x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto pow(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_pow<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> pow Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise pow
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto pow(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_pow<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> pow Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise pow
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto pow(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_pow<E1,E2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 

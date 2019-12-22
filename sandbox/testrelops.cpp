@@ -88,8 +88,12 @@ int main(int argc, char *argv[])
     cr();
     mout<<"  ";tdisp(Vint1 == (Vint4+1));
     mout<<"  ";tdisp((Vint1 + Vint2) + (Vint3 +Vint4));
-
+    
     cr();
+    mout<<"  ";tdisp(pow(Vd1,2));
+    mout<<"  ";tdisp(pow(Vd1,2.3));
+    mout<<"  ";tdisp(pow(Vd1,Vint1));
+    mout<<"  ";tdisp(pow((Vint1 + Vint2) + (Vint3 +Vint4),2));
 
     
   }

@@ -147,6 +147,8 @@ namespace mathq {
   //                 this could certainly be specialized for other
   //                 container types
   //                 ** USE WITH GREAT CAUTION **
+  //    NOTE: THis only works for concrete tensors (and for expresssions)
+  //          C++ template paramters and specialization does not find subclasses
   // ***************************************************************************
 
   template <typename T> class
@@ -180,6 +182,8 @@ namespace mathq {
   // ***************************************************************************
   // FundamentalType - this operates recursively to find the primitive arithmetic type
   //                   eg int, float, double, ...
+  //    NOTE: THis only works for concrete tensors (and for expresssions)
+  //          C++ template paramters and specialization does not find subclasses
   // ***************************************************************************
 
   template <typename T> class
@@ -316,6 +320,9 @@ namespace mathq {
   // ***************************************************************************
   // NumberType - this operates recursively to find the base number type
   //              eg. complex<double>, Imaginary<float>, int, double, etc
+  //
+  //    NOTE: THis only works for concrete tensors (and for expresssions)
+  //          C++ template paramters and specialization does not find subclasses
   // ***************************************************************************
 
   template <typename T, typename NewD> class
@@ -608,7 +615,8 @@ namespace mathq {
   // ***************************************************************************
   // InversionType - turnt he type inside out
   //    example:  Vector<Scalar<double>>   ->   Scalar<Vector<double>>
-  //            
+  //
+  //    NOTE: THis only works for concrete tensors (and for expresssions)
   // ***************************************************************************
 
 

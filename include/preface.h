@@ -689,7 +689,7 @@ namespace mathq {
   
   
   // ***************************************************************************
-  // * {Add,Sub,Mult,Div}Type: Class that determines return type of an aritmetic
+  // * {Add,Sub,Mult,Div,Rel}Type: Class that determines return type of an aritmetic
   // *                 operation between two types
   // ***************************************************************************
 
@@ -719,6 +719,15 @@ namespace mathq {
     T1 x1;
     T2 x2;
     typedef decltype(x1/x2) Type;
+  };
+  template <typename T1, typename T2> class RelType {
+  public:
+    T1 x1;
+    T2 x2;
+    typedef bool Type;
+    static inline std::string name() {
+      return typeid(Type).name();
+    }
   };
 
 

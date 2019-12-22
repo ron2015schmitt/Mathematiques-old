@@ -8,10 +8,10 @@ fn_functor = "fun_binary_op_functor.hpp"
 fn_functions = "fun_binary_op_functions.hpp"
 fn_output = "fun_binary_ops_AUTO.h"
 
-ops = ["+", "-", "*", "/"]
-opnames = ["add", "subtract", "multiply", "divide"]
-opcomments = ["Addition", "Subtraction", "Multiplication", "Division"]
-optypeclasses = ["AddType", "SubType", "MultType", "DivType"]
+ops = ["+", "-", "*", "/", "==","!=",">",">=","<","<="]
+opnames = ["add", "subtract", "multiply", "divide","equals","notequals","greater","greatereq","less","lesseq"]
+opcomments = ["Addition", "Subtraction", "Multiplication", "Division","Equal to","Not equal to","Greater than","Greater than or equal to", "Less than","Less than or equal to"]
+optypeclasses = ["AddType", "SubType", "MultType", "DivType", "RelType", "RelType", "RelType", "RelType", "RelType", "RelType"]
 
 contents = "";
 

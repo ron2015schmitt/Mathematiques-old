@@ -95,9 +95,41 @@ int main(int argc, char *argv[])
     mout<<"  ";tdisp(pow(Vd1,Vint1));
     mout<<"  ";tdisp(pow((Vint1 + Vint2) + (Vint3 +Vint4),2));
 
+
     
   }
+  mout << bold.apply("binary function tests") << endl;
+  cr();
 
+  mout << blue.apply("Vector-Vector tests") << endl;
+  {
+    using namespace mathq::unit_imaginary;
+    cr();
+    Vector<int> Vint1 {1,2,3};
+    Vector<double> Vd1 {0.1, 0.5, 0.2};
+    Vector<double> Vd2 {0.1, 0.25, 0.4};
+
+    cr();
+    mout<<"  ";tdisp(atan2(Vd1,Vd2));
+    mout<<"  ";tdisp(beta(Vd1,Vd2));
+
+    mout<<"  ";tdisp(ellint_1(0.25,Vd2));
+    mout<<"  ";tdisp(ellint_2(0.1,Vd2));
+
+    mout<<"  ";tdisp(legendre(2,Vd2));
+    mout<<"  ";tdisp(laguerre(2,Vd2));
+    mout<<"  ";tdisp(hermite(2,Vd2));
+
+    mout<<"  ";tdisp(sph_bessel(2,Vd2));
+    mout<<"  ";tdisp(sph_neumann(2,Vd2));
+
+    mout<<"  ";tdisp(cyl_bessel_i(2,Vd2));
+    mout<<"  ";tdisp(cyl_bessel_j(2,Vd2));
+    mout<<"  ";tdisp(cyl_bessel_k(2,Vd2));
+    
+
+    
+  }
   return 0;
 
   

@@ -896,6 +896,825 @@ public:
   }									
 };
 
+  
+// ----------------------------------------------------------------
+// FUNCTOR_beta: template class for function 'std::beta'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_beta { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::beta(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::beta(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::beta(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::beta(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_beta)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_legendre: template class for function 'std::legendre'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_legendre { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::legendre(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::legendre(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::legendre(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::legendre(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_legendre)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_laguerre: template class for function 'std::laguerre'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_laguerre { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::laguerre(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::laguerre(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::laguerre(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::laguerre(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_laguerre)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_hermite: template class for function 'std::hermite'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_hermite { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::hermite(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::hermite(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::hermite(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::hermite(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_hermite)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_sph_bessel: template class for function 'std::sph_bessel'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_sph_bessel { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::sph_bessel(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::sph_bessel(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::sph_bessel(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::sph_bessel(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_sph_bessel)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_sph_neumann: template class for function 'std::sph_neumann'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_sph_neumann { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::sph_neumann(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::sph_neumann(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::sph_neumann(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::sph_neumann(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_sph_neumann)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_cyl_bessel_i: template class for function 'std::cyl_bessel_i'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_cyl_bessel_i { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::cyl_bessel_i(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_i(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_i(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_i(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_cyl_bessel_i)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_cyl_bessel_j: template class for function 'std::cyl_bessel_j'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_cyl_bessel_j { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::cyl_bessel_j(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_j(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_j(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_j(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_cyl_bessel_j)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_cyl_bessel_k: template class for function 'std::cyl_bessel_k'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_cyl_bessel_k { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::cyl_bessel_k(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_k(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_k(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_bessel_k(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_cyl_bessel_k)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_cyl_neumann: template class for function 'std::cyl_neumann'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_cyl_neumann { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::cyl_neumann(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_neumann(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_neumann(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::cyl_neumann(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_cyl_neumann)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_ellint_1: template class for function 'std::ellint_1'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_ellint_1 { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::ellint_1(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_1(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_1(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_1(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_ellint_1)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_ellint_2: template class for function 'std::ellint_2'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_ellint_2 { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::ellint_2(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_2(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_2(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_2(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_ellint_2)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_ellint_3: template class for function 'std::ellint_3'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_ellint_3 { 
+public:								
+  static D3 apply(const D1 d1, const D2 d2) {				
+    return std::ellint_3(d1 , d2);							
+  }									
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_3(e1 , e2);							
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_3(e1 , d2);							
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2) {					
+    E3 *e3 = new E3();							
+    *e3 = std::ellint_3(d1 , e2);							
+    return *e3;								
+  }									
+  static std::string expression(const std::string& sa, const std::string& sb) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb;					
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;								
+    D1 d1;								
+    D2 d2;								
+    D3 d3;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_ellint_3)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
 
 
 
@@ -3058,6 +3877,2008 @@ auto pow(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
 		     TensorR<B,E2,D2,M2,R>,
 		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
 		     FUNCTOR_pow<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// beta
+// template function classes for 'beta'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// beta (beta)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> beta Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto beta(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_beta<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> beta D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto beta(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_beta<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 beta Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto beta(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_beta<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise beta: x1[i] beta x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto beta(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_beta<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise beta: x1 beta x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto beta(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_beta<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> beta Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise beta
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto beta(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_beta<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> beta Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise beta
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto beta(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_beta<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// legendre
+// template function classes for 'legendre'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// legendre (legendre)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> legendre Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_legendre<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> legendre D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto legendre(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_legendre<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 legendre Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto legendre(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_legendre<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise legendre: x1[i] legendre x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto legendre(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_legendre<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise legendre: x1 legendre x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto legendre(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_legendre<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> legendre Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise legendre
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto legendre(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_legendre<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> legendre Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise legendre
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto legendre(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_legendre<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// laguerre
+// template function classes for 'laguerre'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// laguerre (laguerre)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> laguerre Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto laguerre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_laguerre<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> laguerre D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto laguerre(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_laguerre<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 laguerre Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto laguerre(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_laguerre<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise laguerre: x1[i] laguerre x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto laguerre(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_laguerre<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise laguerre: x1 laguerre x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto laguerre(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_laguerre<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> laguerre Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise laguerre
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto laguerre(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_laguerre<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> laguerre Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise laguerre
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto laguerre(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_laguerre<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// hermite
+// template function classes for 'hermite'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// hermite (hermite)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> hermite Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto hermite(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_hermite<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> hermite D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto hermite(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_hermite<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 hermite Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto hermite(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_hermite<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise hermite: x1[i] hermite x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto hermite(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_hermite<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise hermite: x1 hermite x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto hermite(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_hermite<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> hermite Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise hermite
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto hermite(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_hermite<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> hermite Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise hermite
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto hermite(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_hermite<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// sph_bessel
+// template function classes for 'sph_bessel'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// sph_bessel (sph_bessel)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> sph_bessel Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto sph_bessel(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_sph_bessel<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> sph_bessel D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto sph_bessel(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_sph_bessel<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 sph_bessel Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto sph_bessel(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_sph_bessel<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise sph_bessel: x1[i] sph_bessel x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto sph_bessel(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_sph_bessel<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise sph_bessel: x1 sph_bessel x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto sph_bessel(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_sph_bessel<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> sph_bessel Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise sph_bessel
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto sph_bessel(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_sph_bessel<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> sph_bessel Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise sph_bessel
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto sph_bessel(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_sph_bessel<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// sph_neumann
+// template function classes for 'sph_neumann'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// sph_neumann (sph_neumann)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> sph_neumann Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto sph_neumann(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_sph_neumann<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> sph_neumann D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto sph_neumann(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_sph_neumann<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 sph_neumann Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto sph_neumann(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_sph_neumann<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise sph_neumann: x1[i] sph_neumann x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto sph_neumann(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_sph_neumann<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise sph_neumann: x1 sph_neumann x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto sph_neumann(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_sph_neumann<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> sph_neumann Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise sph_neumann
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto sph_neumann(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_sph_neumann<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> sph_neumann Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise sph_neumann
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto sph_neumann(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_sph_neumann<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// cyl_bessel_i
+// template function classes for 'cyl_bessel_i'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// cyl_bessel_i (cyl_bessel_i)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> cyl_bessel_i Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto cyl_bessel_i(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_i<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> cyl_bessel_i D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto cyl_bessel_i(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_bessel_i<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 cyl_bessel_i Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto cyl_bessel_i(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_i<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise cyl_bessel_i: x1[i] cyl_bessel_i x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto cyl_bessel_i(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_bessel_i<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise cyl_bessel_i: x1 cyl_bessel_i x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto cyl_bessel_i(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_bessel_i<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> cyl_bessel_i Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_bessel_i
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto cyl_bessel_i(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_bessel_i<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> cyl_bessel_i Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_bessel_i
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto cyl_bessel_i(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_bessel_i<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// cyl_bessel_j
+// template function classes for 'cyl_bessel_j'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// cyl_bessel_j (cyl_bessel_j)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> cyl_bessel_j Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto cyl_bessel_j(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_j<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> cyl_bessel_j D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto cyl_bessel_j(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_bessel_j<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 cyl_bessel_j Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto cyl_bessel_j(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_j<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise cyl_bessel_j: x1[i] cyl_bessel_j x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto cyl_bessel_j(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_bessel_j<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise cyl_bessel_j: x1 cyl_bessel_j x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto cyl_bessel_j(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_bessel_j<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> cyl_bessel_j Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_bessel_j
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto cyl_bessel_j(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_bessel_j<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> cyl_bessel_j Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_bessel_j
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto cyl_bessel_j(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_bessel_j<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// cyl_bessel_k
+// template function classes for 'cyl_bessel_k'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// cyl_bessel_k (cyl_bessel_k)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> cyl_bessel_k Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto cyl_bessel_k(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_k<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> cyl_bessel_k D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto cyl_bessel_k(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_bessel_k<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 cyl_bessel_k Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto cyl_bessel_k(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_k<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise cyl_bessel_k: x1[i] cyl_bessel_k x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto cyl_bessel_k(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_bessel_k<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise cyl_bessel_k: x1 cyl_bessel_k x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto cyl_bessel_k(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_bessel_k<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> cyl_bessel_k Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_bessel_k
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto cyl_bessel_k(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_bessel_k<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> cyl_bessel_k Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_bessel_k
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto cyl_bessel_k(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_bessel_k<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// cyl_neumann
+// template function classes for 'cyl_neumann'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// cyl_neumann (cyl_neumann)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> cyl_neumann Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto cyl_neumann(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_cyl_neumann<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> cyl_neumann D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto cyl_neumann(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_neumann<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 cyl_neumann Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto cyl_neumann(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_neumann<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise cyl_neumann: x1[i] cyl_neumann x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto cyl_neumann(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_neumann<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise cyl_neumann: x1 cyl_neumann x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto cyl_neumann(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_cyl_neumann<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> cyl_neumann Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_neumann
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto cyl_neumann(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_neumann<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> cyl_neumann Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise cyl_neumann
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto cyl_neumann(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_cyl_neumann<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// ellint_1
+// template function classes for 'ellint_1'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// ellint_1 (ellint_1)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> ellint_1 Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto ellint_1(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_ellint_1<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> ellint_1 D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto ellint_1(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_ellint_1<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 ellint_1 Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto ellint_1(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_ellint_1<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise ellint_1: x1[i] ellint_1 x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto ellint_1(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_ellint_1<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise ellint_1: x1 ellint_1 x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto ellint_1(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_ellint_1<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> ellint_1 Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise ellint_1
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto ellint_1(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_ellint_1<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> ellint_1 Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise ellint_1
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto ellint_1(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_ellint_1<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// ellint_2
+// template function classes for 'ellint_2'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// ellint_2 (ellint_2)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> ellint_2 Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto ellint_2(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_ellint_2<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> ellint_2 D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto ellint_2(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_ellint_2<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 ellint_2 Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto ellint_2(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_ellint_2<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise ellint_2: x1[i] ellint_2 x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto ellint_2(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_ellint_2<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise ellint_2: x1 ellint_2 x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto ellint_2(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_ellint_2<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> ellint_2 Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise ellint_2
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto ellint_2(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_ellint_2<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> ellint_2 Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise ellint_2
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto ellint_2(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_ellint_2<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+
+
+
+// ----------------------------------------------------------------
+// ellint_3
+// template function classes for 'ellint_3'
+//
+//    Note: generated from template file 'fun_binary_functor.hpp'
+//          using Python script 'fun_binary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// ellint_3 (ellint_3)
+//----------------------------------------------
+
+// (1) Tensor<E1(D1)> ellint_3 Tensor<E2(D2)>
+
+// TODO: realtime check that deep dimensions of E1 and E2 are the same
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  return  TER_Binary<TensorR<A,E1,D1,M,R>,
+		     TensorR<B,E2,D2,M,R>,
+		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
+		     FUNCTOR_ellint_3<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+
+// (2A) Tensor<E(D1)> ellint_3 D2
+
+template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
+auto ellint_3(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<TensorR<A,E,D1,M,R>,
+		     D2,
+		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_ellint_3<E,Null,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (2B) D1 ellint_3 Tensor<E(D2)>
+
+template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
+auto ellint_3(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
+  return  TER_Binary<D1,
+		     TensorR<B,E,D2,M,R>,
+		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_ellint_3<Null,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+  
+// (3A) element-wise ellint_3: x1[i] ellint_3 x2
+
+// TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
+  
+  
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
+auto ellint_3(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E1 E;   // see TODO note above
+  constexpr int R3 = R1;
+  constexpr int M3 = M1;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;
+  //    mout << "A" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_ellint_3<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+
+// (3B) element-wise ellint_3: x1 ellint_3 x2[i]
+
+// TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
+
+template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
+	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
+auto ellint_3(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef E2 E;   // see TODO note above
+  constexpr int R3 = R2;
+  constexpr int M3 = M2;
+  typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
+  //    mout << "B" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
+		     TensorR<B,E2,D2,M2,R2>,
+		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
+		     FUNCTOR_ellint_3<E,E,E3,D1,D2,D3> >(x1,x2); 
+}
+
+    
+// (4A) Tensor<D1,R,M> ellint_3 Tensor<D2,R,1>
+
+// Depending on rank and dimensions, this may be top-level or element wise ellint_3
+// Note: M2==1 -> E2==D2
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of E1  equal dimensions of x2
+  
+template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
+auto ellint_3(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename B::XType E2;  
+  //    typedef B E2;  
+  typedef TensorR<B,D2,D2,M2,R> E2;  
+
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M1;
+  //    mout << "C" <<std::endl;
+  return  TER_Binary<TensorR<A,E1,D1,M1,R>,
+		     TensorR<B,D2,D2,M2,R>,
+		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_ellint_3<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+
+// (4B) Tensor<D1,R,1> ellint_3 Tensor<D2,R,M>
+
+// Depending on rank and dimensions, this may be top-level or element wise ellint_3
+// Note: M1==1 -> E1==D1
+
+// TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
+// TODO: if element-wise: run-timecheck dimesions of x1  equal dimensions of E2
+
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto ellint_3(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  // NOT SURE WHICH OF THE THREE IS BEST
+  //    typedef typename A::XType E1;  
+  //    typedef A E1;  
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename MultType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
+  constexpr int M3 = M2;
+  //    mout << "D" <<std::endl;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_ellint_3<E1,E2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 

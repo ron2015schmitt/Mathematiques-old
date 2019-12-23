@@ -16,9 +16,13 @@ opcomments = ["Addition", "Subtraction", "Multiplication", "Division","Equal to"
 optypeclasses = ["AddType", "SubType", "MultType", "DivType", "RelType", "RelType", "RelType", "RelType", "RelType", "RelType","AndType","OrType"]
 
 
-funcs = ["std::atan2", "std::pow"]
-funcnames = ["atan2", "pow"]
-functypeclasses = ["MultType", "MultType"]
+funcs = ["std::atan2", "std::pow", "std::beta", "std::legendre",  "std::laguerre", "std::hermite", "std::sph_bessel", "std::sph_neumann", "std::cyl_bessel_i", "std::cyl_bessel_j", "std::cyl_bessel_k", "std::cyl_neumann", "std::ellint_1", "std::ellint_2" ]
+funcnames = ["atan2", "pow", "beta", "legendre", "laguerre", "hermite", "sph_bessel", "sph_neumann", "cyl_bessel_i", "cyl_bessel_j", "cyl_bessel_k", "cyl_neumann", "ellint_1", "ellint_2"]
+functypeclasses = ["MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType", "MultType"]
+
+
+
+
 
 contents = "";
 

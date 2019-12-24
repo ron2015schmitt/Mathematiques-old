@@ -16,7 +16,7 @@ namespace mathq {
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_pos: template class for function '+'
+// FUNCTOR_##NAME##: template class for function '+'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -53,7 +53,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_neg: template class for function '-'
+// FUNCTOR_##NAME##: template class for function '-'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -90,7 +90,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_##NAME##: template class for function '!'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -127,7 +127,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_sin: template class for function 'std::sin'
+// FUNCTOR_##NAME##: template class for function 'std::sin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -164,7 +164,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_cos: template class for function 'std::cos'
+// FUNCTOR_##NAME##: template class for function 'std::cos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -201,7 +201,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_tan: template class for function 'std::tan'
+// FUNCTOR_##NAME##: template class for function 'std::tan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -238,7 +238,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_asin: template class for function 'std::asin'
+// FUNCTOR_##NAME##: template class for function 'std::asin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -275,7 +275,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_acos: template class for function 'std::acos'
+// FUNCTOR_##NAME##: template class for function 'std::acos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -312,7 +312,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_atan: template class for function 'std::atan'
+// FUNCTOR_##NAME##: template class for function 'std::atan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -349,7 +349,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_sinh: template class for function 'std::sinh'
+// FUNCTOR_##NAME##: template class for function 'std::sinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -386,7 +386,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_cosh: template class for function 'std::cosh'
+// FUNCTOR_##NAME##: template class for function 'std::cosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -423,7 +423,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_tanh: template class for function 'std::tanh'
+// FUNCTOR_##NAME##: template class for function 'std::tanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -460,7 +460,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_asinh: template class for function 'std::asinh'
+// FUNCTOR_##NAME##: template class for function 'std::asinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -497,7 +497,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_acosh: template class for function 'std::acosh'
+// FUNCTOR_##NAME##: template class for function 'std::acosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -534,7 +534,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_atanh: template class for function 'std::atanh'
+// FUNCTOR_##NAME##: template class for function 'std::atanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -571,7 +571,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_sqrt: template class for function 'std::sqrt'
+// FUNCTOR_##NAME##: template class for function 'std::sqrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -608,7 +608,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_cbrt: template class for function 'std::cbrt'
+// FUNCTOR_##NAME##: template class for function 'std::cbrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -645,7 +645,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_sqr: template class for function 'mathq::sqr'
+// FUNCTOR_##NAME##: template class for function 'mathq::sqr'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -682,7 +682,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_cube: template class for function 'mathq::cube'
+// FUNCTOR_##NAME##: template class for function 'mathq::cube'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -719,7 +719,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_exp: template class for function 'std::exp'
+// FUNCTOR_##NAME##: template class for function 'std::exp'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -756,7 +756,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_exp2: template class for function 'std::exp2'
+// FUNCTOR_##NAME##: template class for function 'std::exp2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -793,7 +793,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_expm1: template class for function 'std::expm1'
+// FUNCTOR_##NAME##: template class for function 'std::expm1'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -830,7 +830,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_log: template class for function 'std::log'
+// FUNCTOR_##NAME##: template class for function 'std::log'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -867,7 +867,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_log10: template class for function 'std::log10'
+// FUNCTOR_##NAME##: template class for function 'std::log10'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -904,7 +904,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_log2: template class for function 'std::log2'
+// FUNCTOR_##NAME##: template class for function 'std::log2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -941,7 +941,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_log1p: template class for function 'std::log1p'
+// FUNCTOR_##NAME##: template class for function 'std::log1p'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -978,7 +978,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_logb: template class for function 'std::logb'
+// FUNCTOR_##NAME##: template class for function 'std::logb'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1015,7 +1015,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_sgn: template class for function 'mathq::sgn'
+// FUNCTOR_##NAME##: template class for function 'mathq::sgn'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1052,7 +1052,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_ceil: template class for function 'std::ceil'
+// FUNCTOR_##NAME##: template class for function 'std::ceil'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1089,7 +1089,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_floor: template class for function 'std::floor'
+// FUNCTOR_##NAME##: template class for function 'std::floor'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1126,7 +1126,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_round: template class for function 'std::round'
+// FUNCTOR_##NAME##: template class for function 'std::round'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1163,7 +1163,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_trunc: template class for function 'std::trunc'
+// FUNCTOR_##NAME##: template class for function 'std::trunc'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1200,7 +1200,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_erf: template class for function 'std::erf'
+// FUNCTOR_##NAME##: template class for function 'std::erf'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1237,7 +1237,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_erfc: template class for function 'std::erfc'
+// FUNCTOR_##NAME##: template class for function 'std::erfc'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1274,7 +1274,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_tgamma: template class for function 'std::tgamma'
+// FUNCTOR_##NAME##: template class for function 'std::tgamma'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1311,7 +1311,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_lgamma: template class for function 'std::lgamma'
+// FUNCTOR_##NAME##: template class for function 'std::lgamma'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1348,7 +1348,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_expint: template class for function 'std::expint'
+// FUNCTOR_##NAME##: template class for function 'std::expint'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1385,7 +1385,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_riemann_zeta: template class for function 'std::riemann_zeta'
+// FUNCTOR_##NAME##: template class for function 'std::riemann_zeta'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1422,7 +1422,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_comp_ellint_1: template class for function 'std::comp_ellint_1'
+// FUNCTOR_##NAME##: template class for function 'std::comp_ellint_1'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1459,7 +1459,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_comp_ellint_2: template class for function 'std::comp_ellint_2'
+// FUNCTOR_##NAME##: template class for function 'std::comp_ellint_2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1496,7 +1496,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_zero: template class for function 'mathq::zero'
+// FUNCTOR_##NAME##: template class for function 'mathq::zero'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1533,7 +1533,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_ilogb: template class for function 'std::ilogb'
+// FUNCTOR_##NAME##: template class for function 'std::ilogb'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1570,7 +1570,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_imaginary: template class for function 'mathq::Imaginary'
+// FUNCTOR_##NAME##: template class for function 'mathq::Imaginary'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1607,7 +1607,1043 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_conj_real: template class for function 'mathq::conj'
+// FUNCTOR_##NAME##: template class for function 'mathq::conj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_conj_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::conj(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::conj(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::conj")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_conj_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::real'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_real_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::real(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::real(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::real")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_real_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::imag'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_imag_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::imag(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::imag(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::imag")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_imag_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::abs'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_abs_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::abs(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::abs(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::abs")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_abs_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::arg'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_arg_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::arg(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::arg(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::arg")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_arg_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::proj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_proj_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::proj(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::proj(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::proj")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_proj_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::exp'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_exp_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::exp(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::exp(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::exp")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_exp_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::log'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::log(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::log(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::log")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_log_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::log10'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log10_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::log10(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::log10(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::log10")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_log10_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::sqrt'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sqrt_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::sqrt(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::sqrt(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::sqrt")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_sqrt_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::sin'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sin_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::sin(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::sin(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::sin")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_sin_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::cos'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_cos_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::cos(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::cos(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::cos")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_cos_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::tan'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_tan_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::tan(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::tan(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::tan")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_tan_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::asin'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_asin_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::asin(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::asin(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::asin")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_asin_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::acos'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_acos_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::acos(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::acos(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::acos")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_acos_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::atan'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_atan_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::atan(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::atan(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::atan")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_atan_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::sinh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sinh_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::sinh(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::sinh(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::sinh")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_sinh_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::cosh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_cosh_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::cosh(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::cosh(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::cosh")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_cosh_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::tanh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_tanh_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::tanh(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::tanh(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::tanh")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_tanh_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::asinh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_asinh_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::asinh(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::asinh(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::asinh")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_asinh_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::acosh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_acosh_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::acosh(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::acosh(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::acosh")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_acosh_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::atanh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_atanh_imag {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::atanh(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::atanh(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::atanh")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_atanh_imag")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'std::conj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_conj_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return std::conj(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = std::conj(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("std::conj")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_conj_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'std::real'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_real_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return std::real(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = std::real(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("std::real")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_real_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'std::imag'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_imag_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return std::imag(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = std::imag(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("std::imag")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_imag_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'std::abs'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_abs_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return std::abs(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = std::abs(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("std::abs")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_abs_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'std::arg'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_arg_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return std::arg(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = std::arg(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("std::arg")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_arg_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'std::proj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_proj_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return std::proj(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = std::proj(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("std::proj")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_proj_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_##NAME##: template class for function 'mathq::conj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1644,7 +2680,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_real_real: template class for function 'mathq::real'
+// FUNCTOR_##NAME##: template class for function 'mathq::real'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1681,7 +2717,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_imag_real: template class for function 'mathq::imag'
+// FUNCTOR_##NAME##: template class for function 'mathq::imag'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1718,7 +2754,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_abs_real: template class for function 'std::abs'
+// FUNCTOR_##NAME##: template class for function 'std::abs'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1755,7 +2791,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_arg_real: template class for function 'std::arg'
+// FUNCTOR_##NAME##: template class for function 'std::arg'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1792,7 +2828,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_proj_real: template class for function 'std::proj'
+// FUNCTOR_##NAME##: template class for function 'std::proj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2660,6 +3696,538 @@ inline auto imaginary(const TensorR<X,E,D,M,R>& x) {
 // conj
 // template functions for 'conj'
 //
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// conj 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_conj_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// real
+// template functions for 'real'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// real 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// imag
+// template functions for 'imag'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// imag 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// abs
+// template functions for 'abs'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// abs 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// arg
+// template functions for 'arg'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// arg 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_arg_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// proj
+// template functions for 'proj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// proj 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// exp
+// template functions for 'exp'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// exp 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_exp_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// log
+// template functions for 'log'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// log 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// log10
+// template functions for 'log10'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// log10 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log10_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// sqrt
+// template functions for 'sqrt'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// sqrt 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_sqrt_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// sin
+// template functions for 'sin'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// sin 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_sin_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// cos
+// template functions for 'cos'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// cos 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_cos_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// tan
+// template functions for 'tan'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// tan 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_tan_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// asin
+// template functions for 'asin'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// asin 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_asin_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// acos
+// template functions for 'acos'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// acos 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_acos_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// atan
+// template functions for 'atan'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// atan 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_atan_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// sinh
+// template functions for 'sinh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// sinh 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_sinh_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// cosh
+// template functions for 'cosh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// cosh 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_cosh_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// tanh
+// template functions for 'tanh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// tanh 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_tanh_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// asinh
+// template functions for 'asinh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// asinh 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_asinh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// acosh
+// template functions for 'acosh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// acosh 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_acosh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// atanh
+// template functions for 'atanh'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// atanh 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_atanh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// conj
+// template functions for 'conj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// conj 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_conj_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// real
+// template functions for 'real'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// real 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_complex<E,EOUT,std::complex<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// imag
+// template functions for 'imag'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// imag 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_complex<E,EOUT,std::complex<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// abs
+// template functions for 'abs'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// abs 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_complex<E,EOUT,std::complex<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// arg
+// template functions for 'arg'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// arg 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_arg_complex<E,EOUT,std::complex<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// proj
+// template functions for 'proj'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// proj 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto proj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// conj
+// template functions for 'conj'
+//
 //    Note: generated from template file 'fun_unary_real_functions.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
@@ -2765,8 +4333,8 @@ inline auto arg(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto proj(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
-  return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_proj_real<E,EOUT,D,D>>(x); 
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_real<E,EOUT,D,std::complex<D>>>(x); 
 }
 }; // namespace mathq 
 #endif // MATHQ__FUN_UNARY_AUTO_H

@@ -66,7 +66,7 @@ namespace mathq {
 
   // zero
   
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D zero(const D& x) {
     return 0;
   }

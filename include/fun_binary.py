@@ -41,7 +41,7 @@ funcs = [
 ["std::cyl_neumann", "cyl_neumann", "MultType"],
 ["std::ellint_1", "ellint_1", "MultType"],
 ["std::ellint_2", "ellint_2", "MultType"],
-["mathq::complex", "complex", "ComplexType"],
+["mathq::Complex", "Complex", "ComplexType"],
 ["mathq::polar", "polar", "ComplexType"],
 ]
 

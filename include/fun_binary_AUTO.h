@@ -1654,37 +1654,37 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_complex: template class for function 'mathq::complex'
+// FUNCTOR_Complex: template class for function 'mathq::Complex'
 //
 //    Note: generated from template file 'fun_binary_functor.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
   
-template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_complex { 
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_Complex { 
 public:								
   static D3 apply(const D1 d1, const D2 d2) {				
-    return mathq::complex(d1 , d2);							
+    return mathq::Complex(d1 , d2);							
   }									
   template <class T1=E1, class T2=E2>						
   static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
   apply(const E1& e1, const E2& e2) {					
     E3 *e3 = new E3();							
-    *e3 = mathq::complex(e1 , e2);							
+    *e3 = mathq::Complex(e1 , e2);							
     return *e3;								
   }									
   template <class T1=E1>						
   static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
   apply(const E1& e1, const D2 d2) {					
     E3 *e3 = new E3();							
-    *e3 = mathq::complex(e1 , d2);							
+    *e3 = mathq::Complex(e1 , d2);							
     return *e3;								
   }									
   template <class T2=E2>						
   static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
   apply(const D1 d1, const E2& e2) {					
     E3 *e3 = new E3();							
-    *e3 = mathq::complex(d1 , e2);							
+    *e3 = mathq::Complex(d1 , e2);							
     return *e3;								
   }									
   static std::string expression(const std::string& sa, const std::string& sb) {	
@@ -1702,7 +1702,7 @@ public:
     D2 d2;								
     D3 d3;								
     std::string comma =  StyledString::get(COMMA).get();		
-    std::string s = functor_namestyle.apply(stringify(FUNCTOR_complex)); 
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_Complex)); 
     s += StyledString::get(BRACKET1).get();				
     s += getTypeName(e1);						
     s += comma + getTypeName(e2);					
@@ -5795,70 +5795,70 @@ auto ellint_2(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) 
 
 
 // ----------------------------------------------------------------
-// complex
-// template functions for 'complex'
+// Complex
+// template functions for 'Complex'
 //
 //    Note: generated from template file 'fun_binary_functions.hpp'
 //          using Python script 'fun_binary.py'
 // ----------------------------------------------------------------
 
 //----------------------------------------------
-// complex (complex)
+// Complex (Complex)
 //----------------------------------------------
 
-// (1) Tensor<E1(D1)> complex Tensor<E2(D2)>
+// (1) Tensor<E1(D1)> Complex Tensor<E2(D2)>
 
 // TODO: realtime check that deep dimensions of E1 and E2 are the same
 
 template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
-auto complex(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
+auto Complex(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2) {
   typedef typename ComplexType<D1,D2>::Type D3;
   typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
   return  TER_Binary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     E1,E2,E3,D1,D2,D3,M,M,M,R,R,R,
-		     FUNCTOR_complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
   
 
-// (2A) Tensor<E(D1)> complex D2
+// (2A) Tensor<E(D1)> Complex D2
 
 template <class A, class D2, class E, class D1, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
-auto complex(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
+auto Complex(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename ComplexType<D1,D2>::Type D3;
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
 		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_complex<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<E,Null,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
   
-// (2B) D1 complex Tensor<E(D2)>
+// (2B) D1 Complex Tensor<E(D2)>
 
 template <class D1, class B, class E, class D2, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
-auto complex(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
+auto Complex(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename ComplexType<D1,D2>::Type D3;
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
 		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_complex<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<Null,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
   
-// (3A) element-wise complex: x1[i] complex x2
+// (3A) element-wise Complex: x1[i] Complex x2
 
 // TODO: run-time check (deep dimensions of E1 == deepdimensions of x2)
   
   
 template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
 	  EnableIf<(M1==M2+1)&&(std::is_base_of<TensorAbstract,E1>::value)&&(E1::Rvalue==R2)> = 0 >
-auto complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+auto Complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
   typedef typename ComplexType<D1,D2>::Type D3;
   typedef E1 E;   // see TODO note above
   constexpr int R3 = R1;
@@ -5868,17 +5868,17 @@ auto complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2)
   return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
 		     TensorR<B,E2,D2,M2,R2>,
 		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
-		     FUNCTOR_complex<E,E,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<E,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
-// (3B) element-wise complex: x1 complex x2[i]
+// (3B) element-wise Complex: x1 Complex x2[i]
 
 // TODO: run-time check (deep dimensions of x1 == deepdimensions of E2)
 
 template <class A, class B, class E1, class E2, class D1, class D2, int M1, int M2, int R1, int R2,
 	  EnableIf<(M1+1==M2)&&(std::is_base_of<TensorAbstract,E2>::value)&&(E2::Rvalue==R1)> = 0 >
-auto complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
+auto Complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2) {
   typedef typename ComplexType<D1,D2>::Type D3;
   typedef E2 E;   // see TODO note above
   constexpr int R3 = R2;
@@ -5888,13 +5888,13 @@ auto complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2)
   return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
 		     TensorR<B,E2,D2,M2,R2>,
 		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
-		     FUNCTOR_complex<E,E,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<E,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
     
-// (4A) Tensor<D1,R,M> complex Tensor<D2,R,1>
+// (4A) Tensor<D1,R,M> Complex Tensor<D2,R,1>
 
-// Depending on rank and dimensions, this may be top-level or element wise complex
+// Depending on rank and dimensions, this may be top-level or element wise Complex
 // Note: M2==1 -> E2==D2
 
 // TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
@@ -5902,7 +5902,7 @@ auto complex(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x2)
   
 template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
 	  EnableIf<(M1>=2)&&(M2==1)&&(std::is_base_of<TensorAbstract,E1>::value)> = 0  >
-auto complex(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
+auto Complex(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
 
   // NOT SURE WHICH OF THE THREE IS BEST
   //    typedef typename B::XType E2;  
@@ -5916,12 +5916,12 @@ auto complex(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
   return  TER_Binary<TensorR<A,E1,D1,M1,R>,
 		     TensorR<B,D2,D2,M2,R>,
 		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
-		     FUNCTOR_complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
 }
 
-// (4B) Tensor<D1,R,1> complex Tensor<D2,R,M>
+// (4B) Tensor<D1,R,1> Complex Tensor<D2,R,M>
 
-// Depending on rank and dimensions, this may be top-level or element wise complex
+// Depending on rank and dimensions, this may be top-level or element wise Complex
 // Note: M1==1 -> E1==D1
 
 // TODO: if top-level: run-timecheck dimesions of x1  equal dimensions of x2
@@ -5929,7 +5929,7 @@ auto complex(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2) {
 
 template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
 	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
-auto complex(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+auto Complex(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
   // NOT SURE WHICH OF THE THREE IS BEST
   //    typedef typename A::XType E1;  
   //    typedef A E1;  
@@ -5941,7 +5941,7 @@ auto complex(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
   return  TER_Binary<TensorR<A,D1,D1,M1,R>,
 		     TensorR<B,E2,D2,M2,R>,
 		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
-		     FUNCTOR_complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+		     FUNCTOR_Complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 

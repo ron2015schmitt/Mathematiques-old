@@ -6,7 +6,7 @@
 //          using Python script '##SCRIPTNAME##'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_##NAME## {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_##FUNCTORNAME## {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
@@ -31,7 +31,7 @@ public:
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_##NAME##")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_##FUNCTORNAME##")+display::getBracketedTypeName(e); 
   }									
 };
 

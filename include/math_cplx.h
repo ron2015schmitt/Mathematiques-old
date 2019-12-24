@@ -171,10 +171,10 @@ namespace mathq {
   }
 
 
-  // complex(D1,D2)
+  // Complex(D1,D2)
   
   template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value&&std::is_arithmetic<D2>::value>> auto
-    complex(const D1& xr, const D2& xi) {
+    Complex(const D1& xr, const D2& xi) {
     typedef typename AddType<D1,D2>::Type D3;
     return std::complex<D3>((D3)xr, (D3)xi);
   }

@@ -429,6 +429,164 @@ namespace mathq {
 
 
   
+
+  //---------------------------------------------------------------------------
+  // TER_Ternary    ternary expressions
+  //---------------------------------------------------------------------------
+
+  
+  template <class A, class B, class C, class E1, class E2, class E3, class E4, class D1, class D2, class D3, class D4, int M1, int M2, int M3, int M4, int R1, int R2, int R3, int R4, class OP> 
+  class TER_Ternary  : public  TensorR<TER_Ternary<A,B,C,E1,E2,E3,E4,D1,D2,D3,D4,M1,M2,M3,M4,R1,R2,R3,R4,OP>, E4,D4,M4,R4> {
+  public:
+    typedef E4 EType;
+    typedef D4 DType;
+    typedef Materialize<E4,D4,M4,R4> XType;
+    constexpr static int Mvalue = M4;
+    constexpr static int Rvalue = R4;
+
+    typedef typename std::conditional<M1==0,const A,const A&>::type TypeA;
+    typedef typename std::conditional<M2==0,const B,const B&>::type TypeB;
+    typedef typename std::conditional<M3==0,const C,const C&>::type TypeC;
+
+      
+  private:
+    TypeA a_;
+    TypeB b_;
+    TypeC c_;
+    VectorofPtrs *vptrs;
+      
+  public:
+  
+
+
+    TER_Ternary(const A& a, const B& b, const C& c) : a_(a), b_(b), c_(c) {
+      vptrs = new VectorofPtrs();
+      if constexpr(M1>0) {
+        vptrs->add(a_.getAddresses());
+      }
+      if constexpr(M2>0) {
+        vptrs->add(b_.getAddresses());
+	}
+      if constexpr(M3>0) {
+        vptrs->add(c_.getAddresses());
+	}
+      disp3(a);
+      disp3(b);
+      disp3(c);
+    }
+    
+    ~TER_Ternary() {
+      delete vptrs;
+    }
+
+    //**********************************************************************
+    //******************** DEEP ACCESS: x.dat(n) ***************************
+    //**********************************************************************
+
+    const D4 dat(const index_type i) const {
+      D1* d1;
+      if constexpr(M1==0) {
+        d1 = &a_;
+      } else {
+	d1 = a_.dat(i);
+      }	
+      D2& d2;
+      if constexpr(M2==0) {
+        d2 = b_;
+      } else {
+	d2 = b_.dat(i);
+      }	
+      D3& d3;
+      if constexpr(M3==0) {
+        d3 = c_;
+      } else {
+	d3 = c_.dat(i);
+      }	
+      return OP::apply(d1,d2,d3);
+    }
+
+
+
+    //**********************************************************************
+    //************* Array-style Element Access: x[n] ***********************
+    //**********************************************************************
+    const E4 operator[](const index_type i) const {
+      if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      } else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      }	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
+        return OP::apply(a_[i],b_[i],c_[i]);
+      }
+    }
+
+
+    
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+        return a_.size();
+    }
+    size_type ndims(void) const {
+      return dims().size();
+    }
+    Dimensions dims(void) const {
+        return a_.dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+        return a_.deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+        return a_.deepdims(parentdims);
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+        return M1;
+    }
+    size_type elsize(void) const {
+        return a_.elsize();
+    }
+    size_type eldeepsize(void) const {
+        return a_.eldeepsize();
+    }
+    size_type deepsize(void) const {
+        return a_.deepsize();
+    }
+
+    std::string classname() const {
+      return "TER_Ternary";
+    }
+
+
+#if MATHQ_DEBUG>=1
+    std::string expression(void) const {
+      std::string sx = a_.expression();
+      std::string sy = b_.expression();
+      std::string sz = c_.expression();
+      return OP::expression(sx,sy,sz);
+    }
+#endif
+
+  };
+
+
+
+
+  
 };  //namespace mathq
 
 #endif 

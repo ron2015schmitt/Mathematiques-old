@@ -104,6 +104,9 @@ namespace mathq {
   template <class A, class B, class E1, class E2, class E3, class D1, class D2, class D3, int M1, int M2, int M3, int R1, int R2, int R3, class OP> class
     TER_Binary;
 
+  template <class A, class B, class C, class E1, class E2, class E3, class E4, class D1, class D2, class D3, class D4, int M1, int M2, int M3, int M4, int R1, int R2, int R3, int R4, class OP> class
+    TER_Ternary;
+
   template <class D, int M = 1+NumberType<D>::depth()>
   class TERW_Subset;
   

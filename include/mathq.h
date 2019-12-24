@@ -44,7 +44,7 @@
 #include "debug.h"
 #include "fun_unary_AUTO.h"
 #include "fun_binary_AUTO.h"
-//#include "fun_ternary_AUTO.h"
+#include "fun_ternary_AUTO.h"
 #include "scalar.h"
 #include "vector.h"
 #include "matrix.h"

@@ -53,11 +53,13 @@ int main(int argc, char *argv[])
     tdisp(+x);
     tdisp(+(x));
     tdisp(-x);
-    tdisp(std::real(x));
-    tdisp(std::imag(x));
-    tdisp(std::conj(x));
+    tdisp(mathq::real(x));
+    tdisp(mathq::imag(x));
     tdisp(mathq::conj(x));
     tdisp(mathq::zero(x));
+    tdisp(std::abs(x));
+    tdisp(std::arg(x));
+    tdisp(std::proj(x));
     
     Imaginary<double> y(2);
     tdisp(y);
@@ -111,7 +113,7 @@ int main(int argc, char *argv[])
     tdisp(imag(sr));
     tdisp(abs(sr));
     tdisp(arg(sr));
-    tdisp(rproj(sr));
+    //    tdisp(proj(sr));
 
     tdisp(exp(sr));
     tdisp(log(sr));
@@ -142,34 +144,34 @@ int main(int argc, char *argv[])
 
     tdisp(si);
     tdisp(-si);
-    tdisp(conj(si));
-    tdisp(real(si));
-    tdisp(imag(si));
-    tdisp(abs(si));
-    tdisp(arg(si));
-    tdisp(rproj(si));
+    // tdisp(conj(si));
+    // tdisp(real(si));
+    // tdisp(imag(si));
+    // tdisp(abs(si));
+    // tdisp(arg(si));
+    // tdisp(rproj(si));
 
-    tdisp(exp(si));
-    tdisp(exp(ComplexDouble(0,0.25)));
-    tdisp(log(si));
-    tdisp(log10(si));
-    tdisp(sqrt(si));
+    // tdisp(exp(si));
+    // tdisp(exp(ComplexDouble(0,0.25)));
+    // tdisp(log(si));
+    // tdisp(log10(si));
+    // tdisp(sqrt(si));
 
-    tdisp(sin(si));
-    tdisp(cos(si));
-    tdisp(tan(si));
+    // tdisp(sin(si));
+    // tdisp(cos(si));
+    // tdisp(tan(si));
 
-    tdisp(asin(si));
-    tdisp(acos(si));
-    tdisp(atan(si));
+    // tdisp(asin(si));
+    // tdisp(acos(si));
+    // tdisp(atan(si));
 
-    tdisp(sinh(si));
-    tdisp(cosh(si));
-    tdisp(tanh(si));
+    // tdisp(sinh(si));
+    // tdisp(cosh(si));
+    // tdisp(tanh(si));
 
-    tdisp(asinh(si));
-    tdisp(acosh(si));
-    tdisp(atanh(si));
+    // tdisp(asinh(si));
+    // tdisp(acosh(si));
+    // tdisp(atanh(si));
 
     
     cr();
@@ -177,12 +179,12 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> sc {ComplexDouble(0.25,0.5)};
     tdisp(sc);
     tdisp(-sc);
-    tdisp(conj(sc));
-    tdisp(real(sc));
-    tdisp(imag(sc));
-    tdisp(abs(sc));
-    tdisp(arg(sc));
-    tdisp(rproj(sc));
+    // tdisp(conj(sc));
+    // tdisp(real(sc));
+    // tdisp(imag(sc));
+    // tdisp(abs(sc));
+    // tdisp(arg(sc));
+    // tdisp(rproj(sc));
 
     tdisp(exp(sc));
     tdisp(log(sc));
@@ -229,11 +231,11 @@ int main(int argc, char *argv[])
     tdisp(vr);
     tdisp(-vr);
     tdisp(conj(vr));
-    tdisp(real(vr));
-    tdisp(imag(vr));
-    tdisp(abs(vr));
-    tdisp(arg(vr));
-    tdisp(rproj(vr));
+    // tdisp(real(vr));
+    // tdisp(imag(vr));
+    // tdisp(abs(vr));
+    // tdisp(arg(vr));
+    // tdisp(rproj(vr));
 
     tdisp(exp(vr));
     tdisp(log(vr));
@@ -268,11 +270,11 @@ int main(int argc, char *argv[])
     tdisp(mr);
     tdisp(-mr);
     tdisp(conj(mr));
-    tdisp(real(mr));
-    tdisp(imag(mr));
-    tdisp(abs(mr));
-    tdisp(arg(mr));
-    tdisp(rproj(mr));
+    // tdisp(real(mr));
+    // tdisp(imag(mr));
+    // tdisp(abs(mr));
+    // tdisp(arg(mr));
+    // tdisp(rproj(mr));
 
     tdisp(exp(mr));
     tdisp(log(mr));
@@ -296,6 +298,7 @@ int main(int argc, char *argv[])
     tdisp(atanh(mr));
   }
 
+  return 0;
 
   cr();
   cr();
@@ -312,11 +315,11 @@ int main(int argc, char *argv[])
     tdisp(tr);
     tdisp(-tr);
     tdisp(conj(tr));
-    tdisp(real(tr));
-    tdisp(imag(tr));
-    tdisp(abs(tr));
-    tdisp(arg(tr));
-    tdisp(rproj(tr));
+    // tdisp(real(tr));
+    // tdisp(imag(tr));
+    // tdisp(abs(tr));
+    // tdisp(arg(tr));
+    // tdisp(rproj(tr));
 
     tdisp(exp(tr));
     tdisp(log(tr));
@@ -339,7 +342,6 @@ int main(int argc, char *argv[])
 
   mout << blue.apply("Two-level tests") << endl;
   
-
   // // -------------------------------------------------
   // // two level tests
   // // -------------------------------------------------
@@ -376,22 +378,22 @@ int main(int argc, char *argv[])
     si()() = Imaginary<double>(3);
     tdisp(si);
     tdisp(-si);
-    tdisp(conj(si));
-    tdisp(real(si));
-    tdisp(imag(si));
-    tdisp(sin(si));
-    tdisp(exp(si));
+    //tdisp(conj(si));
+    // tdisp(real(si));
+    // tdisp(imag(si));
+    // tdisp(sin(si));
+    // tdisp(exp(si));
 
     cr();
     mout << blue.apply("Complex Scalar") << endl;
     Scalar<Scalar<ComplexDouble>> sc {{ComplexDouble(1,2)}};
     tdisp(sc);
     tdisp(-sc);
-    tdisp(conj(sc));
-    tdisp(real(sc));
-    tdisp(imag(sc));
-    tdisp(sin(sc));
-    tdisp(exp(sc));
+    //tdisp(conj(sc));
+    // tdisp(real(sc));
+    // tdisp(imag(sc));
+    // tdisp(sin(sc));
+    // tdisp(exp(sc));
 
     cr();
     cr();

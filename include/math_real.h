@@ -71,6 +71,23 @@ namespace mathq {
     return 0;
   }
 
+  // conj
+  // complex conjugate: real numbers
+  //                    note this is different from std::conj,
+  //                    which returns a complex number
+
+    template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > D
+  conj(const D& x) {
+    return x;
+  }
+
+  // imag
+  
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > D
+  real(const D& x) {
+    return x;
+  }
+
   // imag
   
   template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>

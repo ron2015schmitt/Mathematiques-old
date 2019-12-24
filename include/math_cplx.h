@@ -109,15 +109,8 @@ namespace mathq {
   //          unary math functions
   //*******************************************************
 
-  // complex conjugate: real numbers
-  //                    note this is different from std::conj,
-  //                    which returns a complex number
 
-  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > D
-  conj(const D& x) {
-    return x;
-  }
-
+  
   // complex conjugate: complex numbers
 
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > std::complex<D>

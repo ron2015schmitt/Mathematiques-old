@@ -6,6 +6,7 @@ from string import Template
 myname = os.path.basename(__file__)
 fn_functor = "fun_unary_functor.hpp"
 fn_functions = "fun_unary_functions.hpp"
+fn_realonly_functions = "fun_unary_real_functions.hpp"
 fn_output = "fun_unary_AUTO.h"
 namespace = "mathq"
 
@@ -60,6 +61,15 @@ funcs = [
 ]
 
 
+rfuncs = [
+["mathq::conj", "conj", "D", "D"],
+["mathq::real", "real", "D", "D"],
+["mathq::imag", "imag", "D", "D"],
+["std::abs", "abs", "D", "D"],
+["std::arg", "arg", "D", "D"],
+["std::proj", "proj", "D", "D"],
+]
+
 
 
 contents = "";
@@ -109,6 +119,15 @@ for func in funcs:
     contents += fun
     count += 1
 
+count = 0;
+for func in rfuncs:
+    function = func[0]
+    name = func[1]
+    fun = contents0
+    fun = fun.replace("##FUNCTION##",function);
+    fun = fun.replace("##NAME##",name+"_real");
+    contents += fun
+    count += 1
     
 
 # -----------------------------------------------------
@@ -163,6 +182,29 @@ for func in funcs:
     contents += fun
     count += 1
 
+
+with open(fn_realonly_functions, 'r') as file_functions:
+    contents0 = file_functions.read();
+
+contents0 = contents0.replace("##MYFILENAME##",fn_realonly_functions);
+contents0 = contents0.replace("##SCRIPTNAME##",myname);
+
+count = 0;
+for func in rfuncs:
+    function = func[0]
+    name = func[1]
+    typeIN = func[2]
+    typeOUT = func[3]
+    fun = contents0
+    fun = fun.replace("##FUNCTION##",name);
+    fun = fun.replace("##NAME##",name);
+    fun = fun.replace("##COMMENTNAME##",name);
+    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+name+"_real");
+    fun = fun.replace("##DIN##",typeIN);
+    fun = fun.replace("##DOUT##",typeOUT);
+    contents += fun
+    count += 1
+    
 
     
 # -----------------------------------------------------

@@ -113,21 +113,21 @@ namespace mathq {
   //                    note this is different from std::conj,
   //                    which returns a complex number
 
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > D
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > D
   conj(const D& x) {
     return x;
   }
 
   // complex conjugate: complex numbers
 
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > std::complex<D>
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > std::complex<D>
   conj(const std::complex<D>& x) {
     return std::complex<D>(x.real(), -x.imag());
   }
 
   // complex conjugate OPERTOR ~
 
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value> > std::complex<D>
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > std::complex<D>
   operator~(const std::complex<D>& x) {
     return std::complex<D>(x.real(), -x.imag());
   }
@@ -178,10 +178,26 @@ namespace mathq {
   }
 
 
+  // complex(D1,D2)
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value&&std::is_arithmetic<D2>::value>> auto
+    complex(const D1& xr, const D2& xi) {
+    typedef typename AddType<D1,D2>::Type D3;
+    return std::complex<D3>((D3)xr, (D3)xi);
+  }
+
+
+  // polar(D1,D2)
+  
+  template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value&&std::is_arithmetic<D2>::value>> auto
+    polar(const D1& r, const D2& theta) {
+    typedef typename AddType<D1,D2>::Type D3;
+    return std::polar<D3>((D3)r, (D3)theta);
+  }
+
   // ***************************************************************************
   // * Complex arithmetic: complex<D1> OP complex<D2>
   // ***************************************************************************
-
 
   // complex<D1> + complex<D2>
   

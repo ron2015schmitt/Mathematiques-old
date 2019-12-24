@@ -127,1444 +127,1481 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_sin: template class for function 'std::sin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sin {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::sin(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::sin(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::sin")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_sin")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_cos: template class for function 'std::cos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_cos {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::cos(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::cos(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::cos")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_cos")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_tan: template class for function 'std::tan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_tan {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::tan(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::tan(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::tan")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_tan")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_asin: template class for function 'std::asin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_asin {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::asin(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::asin(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::asin")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_asin")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_acos: template class for function 'std::acos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_acos {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::acos(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::acos(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::acos")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_acos")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_atan: template class for function 'std::atan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_atan {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::atan(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::atan(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::atan")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_atan")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_sinh: template class for function 'std::sinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sinh {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::sinh(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::sinh(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::sinh")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_sinh")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_cosh: template class for function 'std::cosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_cosh {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::cosh(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::cosh(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::cosh")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_cosh")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_tanh: template class for function 'std::tanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_tanh {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::tanh(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::tanh(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::tanh")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_tanh")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_asinh: template class for function 'std::asinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_asinh {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::asinh(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::asinh(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::asinh")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_asinh")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_acosh: template class for function 'std::acosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_acosh {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::acosh(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::acosh(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::acosh")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_acosh")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_atanh: template class for function 'std::atanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_atanh {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::atanh(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::atanh(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::atanh")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_atanh")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_sqrt: template class for function 'std::sqrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sqrt {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::sqrt(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::sqrt(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::sqrt")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_sqrt")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_cbrt: template class for function 'std::cbrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_cbrt {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::cbrt(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::cbrt(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::cbrt")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_cbrt")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_sqr: template class for function 'mathq::sqr'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sqr {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return mathq::sqr(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = mathq::sqr(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("mathq::sqr")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_sqr")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_cube: template class for function 'mathq::cube'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_cube {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return mathq::cube(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = mathq::cube(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("mathq::cube")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_cube")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_exp: template class for function 'std::exp'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_exp {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::exp(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::exp(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::exp")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_exp")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_exp2: template class for function 'std::exp2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_exp2 {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::exp2(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::exp2(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::exp2")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_exp2")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_expm1: template class for function 'std::expm1'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_expm1 {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::expm1(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::expm1(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::expm1")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_expm1")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_log: template class for function 'std::log'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::log(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::log(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::log")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_log")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_log10: template class for function 'std::log10'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log10 {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::log10(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::log10(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::log10")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_log10")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_log2: template class for function 'std::log2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log2 {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::log2(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::log2(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::log2")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_log2")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_log1p: template class for function 'std::log1p'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log1p {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::log1p(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::log1p(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::log1p")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_log1p")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_logb: template class for function 'std::logb'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_logb {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::logb(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::logb(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::logb")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_logb")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_sgn: template class for function 'mathq::sgn'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_sgn {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return mathq::sgn(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = mathq::sgn(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("mathq::sgn")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_sgn")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_ceil: template class for function 'std::ceil'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_ceil {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::ceil(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::ceil(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::ceil")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_ceil")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_floor: template class for function 'std::floor'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_floor {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::floor(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::floor(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::floor")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_floor")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_round: template class for function 'std::round'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_round {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::round(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::round(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::round")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_round")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_trunc: template class for function 'std::trunc'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_trunc {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::trunc(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::trunc(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::trunc")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_trunc")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_erf: template class for function 'std::erf'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_erf {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::erf(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::erf(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::erf")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_erf")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_erfc: template class for function 'std::erfc'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_erfc {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::erfc(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::erfc(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::erfc")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_erfc")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_tgamma: template class for function 'std::tgamma'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_tgamma {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::tgamma(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::tgamma(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::tgamma")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_tgamma")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_lgamma: template class for function 'std::lgamma'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_lgamma {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::lgamma(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::lgamma(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::lgamma")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_lgamma")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_expint: template class for function 'std::expint'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_expint {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::expint(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::expint(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::expint")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_expint")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_riemann_zeta: template class for function 'std::riemann_zeta'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_riemann_zeta {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::riemann_zeta(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::riemann_zeta(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::riemann_zeta")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_riemann_zeta")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_comp_ellint_1: template class for function 'std::comp_ellint_1'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_comp_ellint_1 {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::comp_ellint_1(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::comp_ellint_1(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::comp_ellint_1")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_comp_ellint_1")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_comp_ellint_2: template class for function 'std::comp_ellint_2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_comp_ellint_2 {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::comp_ellint_2(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::comp_ellint_2(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::comp_ellint_2")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_comp_ellint_2")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_zero: template class for function 'mathq::zero'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_zero {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return mathq::zero(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = mathq::zero(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("mathq::zero")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_zero")+display::getBracketedTypeName(e); 
   }									
 };
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_not: template class for function '!'
+// FUNCTOR_ilogb: template class for function 'std::ilogb'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
-template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_not {	
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_ilogb {	
 public:								
   typedef DIN DType;							
   typedef DOUT DoutType;						
   typedef E EType;							
   typedef EOUT EoutType;
   static DOUT apply(const DIN d) {					
-    return !(d);		
+    return std::ilogb(d);		
   }									
   template <class T=E>						
   static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
   apply(const E& e) {						
     EOUT *e2 = new EOUT();						
-    *e2 = !(e);						
+    *e2 = std::ilogb(e);						
     return *e2;							
   }									
   static std::string expression(const std::string& sa) {		
     using namespace display;						
     std::string sout = "";						
-    sout = functor_style.apply("!")+"("+ sa + ")";	
+    sout = functor_style.apply("std::ilogb")+"("+ sa + ")";	
     return sout;							
   }									
   static std::string classname() {					
     using namespace display;						
     E e;								
-    return functor_namestyle.apply("FUNCTOR_not")+display::getBracketedTypeName(e); 
+    return functor_namestyle.apply("FUNCTOR_ilogb")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// FUNCTOR_imaginary: template class for function 'mathq::Imaginary'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_imaginary {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::Imaginary(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::Imaginary(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::Imaginary")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_imaginary")+display::getBracketedTypeName(e); 
   }									
 };
 
@@ -1650,7 +1687,7 @@ inline auto operator!(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::sin(const TensorR<X,E,D,M,R>& x) {		
+inline auto sin(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sin<E,EOUT,D,D>>(x); 
 }
@@ -1669,7 +1706,7 @@ inline auto operatorstd::sin(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::cos(const TensorR<X,E,D,M,R>& x) {		
+inline auto cos(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cos<E,EOUT,D,D>>(x); 
 }
@@ -1688,7 +1725,7 @@ inline auto operatorstd::cos(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::tan(const TensorR<X,E,D,M,R>& x) {		
+inline auto tan(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tan<E,EOUT,D,D>>(x); 
 }
@@ -1707,7 +1744,7 @@ inline auto operatorstd::tan(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::asin(const TensorR<X,E,D,M,R>& x) {		
+inline auto asin(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asin<E,EOUT,D,D>>(x); 
 }
@@ -1726,7 +1763,7 @@ inline auto operatorstd::asin(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::acos(const TensorR<X,E,D,M,R>& x) {		
+inline auto acos(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_acos<E,EOUT,D,D>>(x); 
 }
@@ -1745,7 +1782,7 @@ inline auto operatorstd::acos(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::atan(const TensorR<X,E,D,M,R>& x) {		
+inline auto atan(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_atan<E,EOUT,D,D>>(x); 
 }
@@ -1764,7 +1801,7 @@ inline auto operatorstd::atan(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::sinh(const TensorR<X,E,D,M,R>& x) {		
+inline auto sinh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sinh<E,EOUT,D,D>>(x); 
 }
@@ -1783,7 +1820,7 @@ inline auto operatorstd::sinh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::cosh(const TensorR<X,E,D,M,R>& x) {		
+inline auto cosh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cosh<E,EOUT,D,D>>(x); 
 }
@@ -1802,28 +1839,28 @@ inline auto operatorstd::cosh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::tanh(const TensorR<X,E,D,M,R>& x) {		
+inline auto tanh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tanh<E,EOUT,D,D>>(x); 
 }
 
 
 // ----------------------------------------------------------------
-// asin
-// template functions for 'asin'
+// asinh
+// template functions for 'asinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
 //----------------------------------------------
-// asin 
+// asinh 
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::asinh(const TensorR<X,E,D,M,R>& x) {		
+inline auto asinh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
-  return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asin<E,EOUT,D,D>>(x); 
+  return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asinh<E,EOUT,D,D>>(x); 
 }
 
 
@@ -1840,7 +1877,7 @@ inline auto operatorstd::asinh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::acosh(const TensorR<X,E,D,M,R>& x) {		
+inline auto acosh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_acosh<E,EOUT,D,D>>(x); 
 }
@@ -1859,7 +1896,7 @@ inline auto operatorstd::acosh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::atanh(const TensorR<X,E,D,M,R>& x) {		
+inline auto atanh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_atanh<E,EOUT,D,D>>(x); 
 }
@@ -1878,7 +1915,7 @@ inline auto operatorstd::atanh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::sqrt(const TensorR<X,E,D,M,R>& x) {		
+inline auto sqrt(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sqrt<E,EOUT,D,D>>(x); 
 }
@@ -1897,7 +1934,7 @@ inline auto operatorstd::sqrt(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::cbrt(const TensorR<X,E,D,M,R>& x) {		
+inline auto cbrt(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cbrt<E,EOUT,D,D>>(x); 
 }
@@ -1916,7 +1953,7 @@ inline auto operatorstd::cbrt(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatormathq::sqr(const TensorR<X,E,D,M,R>& x) {		
+inline auto sqr(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sqr<E,EOUT,D,D>>(x); 
 }
@@ -1935,7 +1972,7 @@ inline auto operatormathq::sqr(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatormathq::cube(const TensorR<X,E,D,M,R>& x) {		
+inline auto cube(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cube<E,EOUT,D,D>>(x); 
 }
@@ -1954,7 +1991,7 @@ inline auto operatormathq::cube(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::exp(const TensorR<X,E,D,M,R>& x) {		
+inline auto exp(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_exp<E,EOUT,D,D>>(x); 
 }
@@ -1973,7 +2010,7 @@ inline auto operatorstd::exp(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::exp2(const TensorR<X,E,D,M,R>& x) {		
+inline auto exp2(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_exp2<E,EOUT,D,D>>(x); 
 }
@@ -1992,7 +2029,7 @@ inline auto operatorstd::exp2(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::expm1(const TensorR<X,E,D,M,R>& x) {		
+inline auto expm1(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_expm1<E,EOUT,D,D>>(x); 
 }
@@ -2011,7 +2048,7 @@ inline auto operatorstd::expm1(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::log(const TensorR<X,E,D,M,R>& x) {		
+inline auto log(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log<E,EOUT,D,D>>(x); 
 }
@@ -2030,7 +2067,7 @@ inline auto operatorstd::log(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::log10(const TensorR<X,E,D,M,R>& x) {		
+inline auto log10(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log10<E,EOUT,D,D>>(x); 
 }
@@ -2049,7 +2086,7 @@ inline auto operatorstd::log10(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::log2(const TensorR<X,E,D,M,R>& x) {		
+inline auto log2(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log2<E,EOUT,D,D>>(x); 
 }
@@ -2068,7 +2105,7 @@ inline auto operatorstd::log2(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::log1p(const TensorR<X,E,D,M,R>& x) {		
+inline auto log1p(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log1p<E,EOUT,D,D>>(x); 
 }
@@ -2087,7 +2124,7 @@ inline auto operatorstd::log1p(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::logb(const TensorR<X,E,D,M,R>& x) {		
+inline auto logb(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_logb<E,EOUT,D,D>>(x); 
 }
@@ -2106,7 +2143,7 @@ inline auto operatorstd::logb(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatormathq::sgn(const TensorR<X,E,D,M,R>& x) {		
+inline auto sgn(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sgn<E,EOUT,D,D>>(x); 
 }
@@ -2125,7 +2162,7 @@ inline auto operatormathq::sgn(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::ceil(const TensorR<X,E,D,M,R>& x) {		
+inline auto ceil(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_ceil<E,EOUT,D,D>>(x); 
 }
@@ -2144,7 +2181,7 @@ inline auto operatorstd::ceil(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::floor(const TensorR<X,E,D,M,R>& x) {		
+inline auto floor(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_floor<E,EOUT,D,D>>(x); 
 }
@@ -2163,7 +2200,7 @@ inline auto operatorstd::floor(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::round(const TensorR<X,E,D,M,R>& x) {		
+inline auto round(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_round<E,EOUT,D,D>>(x); 
 }
@@ -2182,7 +2219,7 @@ inline auto operatorstd::round(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::trunc(const TensorR<X,E,D,M,R>& x) {		
+inline auto trunc(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_trunc<E,EOUT,D,D>>(x); 
 }
@@ -2201,7 +2238,7 @@ inline auto operatorstd::trunc(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::erf(const TensorR<X,E,D,M,R>& x) {		
+inline auto erf(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_erf<E,EOUT,D,D>>(x); 
 }
@@ -2220,7 +2257,7 @@ inline auto operatorstd::erf(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::erfc(const TensorR<X,E,D,M,R>& x) {		
+inline auto erfc(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_erfc<E,EOUT,D,D>>(x); 
 }
@@ -2239,7 +2276,7 @@ inline auto operatorstd::erfc(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::tgamma(const TensorR<X,E,D,M,R>& x) {		
+inline auto tgamma(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tgamma<E,EOUT,D,D>>(x); 
 }
@@ -2258,7 +2295,7 @@ inline auto operatorstd::tgamma(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::lgamma(const TensorR<X,E,D,M,R>& x) {		
+inline auto lgamma(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_lgamma<E,EOUT,D,D>>(x); 
 }
@@ -2277,7 +2314,7 @@ inline auto operatorstd::lgamma(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::expint(const TensorR<X,E,D,M,R>& x) {		
+inline auto expint(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_expint<E,EOUT,D,D>>(x); 
 }
@@ -2296,7 +2333,7 @@ inline auto operatorstd::expint(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::riemann_zeta(const TensorR<X,E,D,M,R>& x) {		
+inline auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_riemann_zeta<E,EOUT,D,D>>(x); 
 }
@@ -2315,7 +2352,7 @@ inline auto operatorstd::riemann_zeta(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::comp_ellint_1(const TensorR<X,E,D,M,R>& x) {		
+inline auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_comp_ellint_1<E,EOUT,D,D>>(x); 
 }
@@ -2334,7 +2371,7 @@ inline auto operatorstd::comp_ellint_1(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::comp_ellint_2(const TensorR<X,E,D,M,R>& x) {		
+inline auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_comp_ellint_2<E,EOUT,D,D>>(x); 
 }
@@ -2353,7 +2390,7 @@ inline auto operatorstd::comp_ellint_2(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatormathq::zero(const TensorR<X,E,D,M,R>& x) {		
+inline auto zero(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_zero<E,EOUT,D,D>>(x); 
 }
@@ -2372,9 +2409,28 @@ inline auto operatormathq::zero(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operatorstd::ilogb(const TensorR<X,E,D,M,R>& x) {		
+inline auto ilogb(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,int>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,int,M,R, FUNCTOR_ilogb<E,EOUT,D,int>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// imaginary
+// template functions for 'imaginary'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// imaginary 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+inline auto imaginary(const TensorR<X,E,D,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_imaginary<E,EOUT,D,mathq::Imaginary<D>>>(x); 
 }
 }; // namespace mathq 
 #endif // MATHQ__FUN_UNARY_AUTO_H

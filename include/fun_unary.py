@@ -26,7 +26,7 @@ funcs = [
 ["std::sinh", "sinh", "D", "D"],
 ["std::cosh", "cosh", "D", "D"],
 ["std::tanh", "tanh", "D", "D"],
-["std::asinh", "asin", "D", "D"],
+["std::asinh", "asinh", "D", "D"],
 ["std::acosh", "acosh", "D", "D"],
 ["std::atanh", "atanh", "D", "D"],
 ["std::sqrt", "sqrt", "D", "D"],
@@ -55,7 +55,8 @@ funcs = [
 ["std::comp_ellint_1", "comp_ellint_1", "D", "D"],
 ["std::comp_ellint_2", "comp_ellint_2", "D", "D"],
 ["mathq::zero", "zero", "D", "D"],
-["std::ilogb", "ilogb", "D", "int"]
+    ["std::ilogb", "ilogb", "D", "int"],
+["mathq::Imaginary", "imaginary", "D", "mathq::Imaginary<D>"]
 ]
 
 
@@ -100,8 +101,8 @@ contents0 = contents0.replace("##SCRIPTNAME##",myname);
     
 count = 0;
 for func in funcs:
-    function = op[0]
-    name = op[1]
+    function = func[0]
+    name = func[1]
     fun = contents0
     fun = fun.replace("##FUNCTION##",function);
     fun = fun.replace("##NAME##",name);
@@ -132,12 +133,12 @@ contents0 = contents0.replace("##SCRIPTNAME##",myname);
 
 count = 0;
 for op in ops:
-    function = op[0]
+    function = "operator"+op[0]
     name = op[1]
     typeIN = op[2]
     typeOUT = op[3]
     fun = contents0
-    fun = fun.replace("##FUNCTION##","operator"+function);
+    fun = fun.replace("##FUNCTION##",function);
     fun = fun.replace("##NAME##",name);
     fun = fun.replace("##COMMENTNAME##",name);
     fun = fun.replace("##FUNCTOR##","FUNCTOR_"+name);
@@ -153,7 +154,7 @@ for func in funcs:
     typeIN = func[2]
     typeOUT = func[3]
     fun = contents0
-    fun = fun.replace("##FUNCTION##","operator"+function);
+    fun = fun.replace("##FUNCTION##",name);
     fun = fun.replace("##NAME##",name);
     fun = fun.replace("##COMMENTNAME##",name);
     fun = fun.replace("##FUNCTOR##","FUNCTOR_"+name);

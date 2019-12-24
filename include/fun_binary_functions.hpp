@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------
 // ##COMMENTNAME##
-// template function for '##OP##'
+// template functions for '##OP##'
 //
 //    Note: generated from template file '##MYFILENAME##'
 //          using Python script '##SCRIPTNAME##'

@@ -810,6 +810,16 @@ namespace mathq {
       return typeid(Type).name();
     }
   };
+  template <typename T1, typename T2> class ComplexType {
+  public:
+    T1 x1;
+    T2 x2;
+    typedef decltype(x1+x2) TType;
+    typedef std::complex<TType> Type;
+    static inline std::string name() {
+      return typeid(Type).name();
+    }
+  };
 
 
   // ************************************************************************

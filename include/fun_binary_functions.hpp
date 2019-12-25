@@ -37,8 +37,8 @@ auto ##FUNCTION##(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_##NAME##<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_##NAME##<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -51,8 +51,8 @@ auto ##FUNCTION##(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_##NAME##<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_##NAME##<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 

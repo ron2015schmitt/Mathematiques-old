@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     Vector<int> Vint2 {11,12,-100};
     Vector<long> vLong {1000,2000,-3000};
     Vector<unsigned> Vunsigned {70,80,90};
-    Vector<unsigned> Vl {1,2,3};
+    Vector<unsigned> Vl {3,2,4};
     Vector<int> Vm {0,1,3};
     Vector<double> Vdouble1 {1.1,0.5,M_PI/4};
     Vector<double> Vdouble2 {1,2,3};
@@ -91,6 +91,13 @@ int main(int argc, char *argv[])
     mout << blue.apply("Vector,Vector,Vector") << endl;
     tdisp(std::sph_legendre(3,0,1.2345));
     tdisp(sph_legendre(Vl,Vm,Vdouble1));
+    tdisp(sph_legendre(Vl,Vm,1.2345));
+    tdisp(sph_legendre(Vl,0,Vdouble1));
+    tdisp(sph_legendre(Vl,3,1.2345));
+    tdisp(sph_legendre(3,Vm,Vdouble1));
+    tdisp(sph_legendre(3,0,Vdouble1));
+    tdisp(sph_legendre(3,Vm,1.2345));
+    //    tdisp(sph_legendre(3,Vm,Vdouble1));
     cr();
 
     short sh = 2;

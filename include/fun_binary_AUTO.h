@@ -1827,8 +1827,8 @@ auto operator+(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_add<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_add<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -1841,8 +1841,8 @@ auto operator+(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_add<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_add<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -1981,8 +1981,8 @@ auto operator-(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_subtract<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_subtract<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -1995,8 +1995,8 @@ auto operator-(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_subtract<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_subtract<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2135,8 +2135,8 @@ auto operator*(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_multiply<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_multiply<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2149,8 +2149,8 @@ auto operator*(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_multiply<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_multiply<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2289,8 +2289,8 @@ auto operator/(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_divide<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_divide<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2303,8 +2303,8 @@ auto operator/(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_divide<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_divide<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2443,8 +2443,8 @@ auto operator==(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_equals<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_equals<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2457,8 +2457,8 @@ auto operator==(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_equals<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_equals<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2597,8 +2597,8 @@ auto operator!=(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_notequals<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_notequals<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2611,8 +2611,8 @@ auto operator!=(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_notequals<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_notequals<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2751,8 +2751,8 @@ auto operator>(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_greater<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_greater<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2765,8 +2765,8 @@ auto operator>(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_greater<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_greater<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2905,8 +2905,8 @@ auto operator>=(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_greatereq<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_greatereq<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -2919,8 +2919,8 @@ auto operator>=(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_greatereq<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_greatereq<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3059,8 +3059,8 @@ auto operator<(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_less<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_less<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3073,8 +3073,8 @@ auto operator<(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_less<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_less<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3213,8 +3213,8 @@ auto operator<=(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_lesseq<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_lesseq<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3227,8 +3227,8 @@ auto operator<=(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_lesseq<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_lesseq<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3367,8 +3367,8 @@ auto operator&&(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_and<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_and<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3381,8 +3381,8 @@ auto operator&&(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_and<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_and<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3521,8 +3521,8 @@ auto operator||(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_or<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_or<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3535,8 +3535,8 @@ auto operator||(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_or<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_or<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3675,8 +3675,8 @@ auto atan2(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_atan2<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_atan2<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3689,8 +3689,8 @@ auto atan2(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_atan2<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_atan2<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3829,8 +3829,8 @@ auto pow(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_pow<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_pow<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3843,8 +3843,8 @@ auto pow(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_pow<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_pow<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3983,8 +3983,8 @@ auto beta(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_beta<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_beta<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -3997,8 +3997,8 @@ auto beta(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_beta<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_beta<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4137,8 +4137,8 @@ auto legendre(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_legendre<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_legendre<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4151,8 +4151,8 @@ auto legendre(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_legendre<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_legendre<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4291,8 +4291,8 @@ auto laguerre(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_laguerre<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_laguerre<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4305,8 +4305,8 @@ auto laguerre(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_laguerre<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_laguerre<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4445,8 +4445,8 @@ auto hermite(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_hermite<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_hermite<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4459,8 +4459,8 @@ auto hermite(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_hermite<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_hermite<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4599,8 +4599,8 @@ auto sph_bessel(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_sph_bessel<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_sph_bessel<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4613,8 +4613,8 @@ auto sph_bessel(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_sph_bessel<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_sph_bessel<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4753,8 +4753,8 @@ auto sph_neumann(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_sph_neumann<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_sph_neumann<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4767,8 +4767,8 @@ auto sph_neumann(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_sph_neumann<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_sph_neumann<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4907,8 +4907,8 @@ auto cyl_bessel_i(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_cyl_bessel_i<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_bessel_i<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -4921,8 +4921,8 @@ auto cyl_bessel_i(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_cyl_bessel_i<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_i<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5061,8 +5061,8 @@ auto cyl_bessel_j(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_cyl_bessel_j<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_bessel_j<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5075,8 +5075,8 @@ auto cyl_bessel_j(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_cyl_bessel_j<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_j<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5215,8 +5215,8 @@ auto cyl_bessel_k(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_cyl_bessel_k<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_bessel_k<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5229,8 +5229,8 @@ auto cyl_bessel_k(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_cyl_bessel_k<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_bessel_k<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5369,8 +5369,8 @@ auto cyl_neumann(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_cyl_neumann<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_cyl_neumann<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5383,8 +5383,8 @@ auto cyl_neumann(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_cyl_neumann<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_cyl_neumann<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5523,8 +5523,8 @@ auto ellint_1(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_ellint_1<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_ellint_1<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5537,8 +5537,8 @@ auto ellint_1(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_ellint_1<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_ellint_1<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5677,8 +5677,8 @@ auto ellint_2(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_ellint_2<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_ellint_2<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5691,8 +5691,8 @@ auto ellint_2(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_ellint_2<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_ellint_2<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5831,8 +5831,8 @@ auto Complex(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_Complex<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_Complex<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5845,8 +5845,8 @@ auto Complex(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_Complex<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_Complex<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5985,8 +5985,8 @@ auto polar(const TensorR<A,E,D1,M,R>& x1, const D2& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<TensorR<A,E,D1,M,R>,
 		     D2,
-		     E,Null,E3,D1,D2,D3,M,0,M,R,R,R,
-		     FUNCTOR_polar<E,Null,E3,D1,D2,D3> >(x1,x2); 
+		     E,D2,E3,D1,D2,D3,M,0,M,R,R,R,
+		     FUNCTOR_polar<E,D2,E3,D1,D2,D3> >(x1,x2); 
 }
 
 
@@ -5999,8 +5999,8 @@ auto polar(const D1& x1, const TensorR<B,E,D2,M,R>& x2) {
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;   
   return  TER_Binary<D1,
 		     TensorR<B,E,D2,M,R>,
-		     Null,E,E3,D1,D2,D3,0,M,M,R,R,R,
-		     FUNCTOR_polar<Null,E,E3,D1,D2,D3> >(x1,x2); 
+		     D1,E,E3,D1,D2,D3,0,M,M,R,R,R,
+		     FUNCTOR_polar<D1,E,E3,D1,D2,D3> >(x1,x2); 
 }
 
 

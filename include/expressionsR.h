@@ -468,7 +468,7 @@ namespace mathq {
         vptrs->add(b_.getAddresses());
 	}
       if constexpr(M3>0) {
-        vptrs->add(c_.getAddresses());
+	  //vptrs->add(c_.getAddresses());
 	}
       disp3(a);
       disp3(b);
@@ -484,25 +484,23 @@ namespace mathq {
     //**********************************************************************
 
     const D4 dat(const index_type i) const {
-      D1* d1;
-      if constexpr(M1==0) {
-        d1 = &a_;
-      } else {
-	d1 = a_.dat(i);
-      }	
-      D2& d2;
-      if constexpr(M2==0) {
-        d2 = b_;
-      } else {
-	d2 = b_.dat(i);
-      }	
-      D3& d3;
-      if constexpr(M3==0) {
-        d3 = c_;
-      } else {
-	d3 = c_.dat(i);
-      }	
-      return OP::apply(d1,d2,d3);
+      if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_,b_,c_);
+      } else if constexpr((M1==0)&&(M2==0)&&(M3>0)) {
+        return OP::apply(a_,b_,c_.dat(i));
+      }	else if constexpr((M1==0)&&(M2>0)&&(M3==0)) {
+        return OP::apply(a_,b_.dat(i),c_);
+      }	else if constexpr((M1==0)&&(M2>0)&&(M3>0)) {
+        return OP::apply(a_,b_.dat(i),c_.dat(i));
+      }	else if constexpr((M1>0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_.dat(i),b_,c_);
+      }	else if constexpr((M1>0)&&(M2==0)&&(M3>0)) {
+        return OP::apply(a_.dat(i),b_,c_.dat(i));
+      }	else if constexpr((M1>0)&&(M2>0)&&(M3==0)) {
+        return OP::apply(a_.dat(i),b_.dat(i),c_);
+      }	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
+        return OP::apply(a_.dat(i),b_.dat(i),c_.dat(i));
+      }
     }
 
 
@@ -513,18 +511,18 @@ namespace mathq {
     const E4 operator[](const index_type i) const {
       if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
         return OP::apply(a_,b_,c_);
-      } else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      }	else if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
+      } else if constexpr((M1==0)&&(M2==0)&&(M3>0)) {
+        return OP::apply(a_,b_,c_[i]);
+      }	else if constexpr((M1==0)&&(M2>0)&&(M3==0)) {
+        return OP::apply(a_,b_[i],c_);
+      }	else if constexpr((M1==0)&&(M2>0)&&(M3>0)) {
+        return OP::apply(a_,b_[i],c_[i]);
+      }	else if constexpr((M1>0)&&(M2==0)&&(M3==0)) {
+        return OP::apply(a_[i],b_,c_);
+      }	else if constexpr((M1>0)&&(M2==0)&&(M3>0)) {
+        return OP::apply(a_[i],b_,c_[i]);
+      }	else if constexpr((M1>0)&&(M2>0)&&(M3==0)) {
+        return OP::apply(a_[i],b_[i],c_);
       }	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
         return OP::apply(a_[i],b_[i],c_[i]);
       }
@@ -537,34 +535,82 @@ namespace mathq {
       return *vptrs;
     }
     size_type size(void) const {
+      if constexpr(M1>0) {
         return a_.size();
+      } else if constexpr(M2>0) {
+        return b_.size();
+      } else {
+        return c_.size();
+      }
     }
     size_type ndims(void) const {
       return dims().size();
     }
     Dimensions dims(void) const {
+      if constexpr(M1>0) {
         return a_.dims();
+      } else if constexpr(M2>0) {
+        return b_.dims();
+      } else {
+        return c_.dims();
+      }
     }
     std::vector<Dimensions>& deepdims(void) const {
+      if constexpr(M1>0) {
         return a_.deepdims();
+      } else if constexpr(M2>0) {
+        return b_.deepdims();
+      } else {
+        return c_.deepdims();
+      }
     }
     std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      if constexpr(M1>0) {
         return a_.deepdims(parentdims);
+      } else if constexpr(M2>0) {
+        return b_.deepdims(parentdims);
+      } else {
+        return c_.deepdims(parentdims);
+      }
     }
     bool isExpression(void) const {
       return true;
     }
     size_type depth(void) const {
-        return M1;
+      if constexpr(M1>0) {
+        return a_.depth();
+      } else if constexpr(M2>0) {
+        return b_.depth();
+      } else {
+        return c_.depth();
+      }
     }
     size_type elsize(void) const {
+      if constexpr(M1>0) {
         return a_.elsize();
+      } else if constexpr(M2>0) {
+        return b_.elsize();
+      } else {
+        return c_.elsize();
+      }
     }
     size_type eldeepsize(void) const {
+      if constexpr(M1>0) {
         return a_.eldeepsize();
+      } else if constexpr(M2>0) {
+        return b_.eldeepsize();
+      } else {
+        return c_.eldeepsize();
+      }
     }
     size_type deepsize(void) const {
+      if constexpr(M1>0) {
         return a_.deepsize();
+      } else if constexpr(M2>0) {
+        return b_.deepsize();
+      } else {
+        return c_.deepsize();
+      }
     }
 
     std::string classname() const {

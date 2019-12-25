@@ -19,6 +19,48 @@ public:
     *e4 = ##FUNCTION##(e1, e2, e3);
     return *e4;	
   }									
+  template <class T1=E1, class T2=E2, class T3=E3>
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value&&std::is_same<T3,D3>::value, E4& >::type 
+  apply(const E1& e1, const E2& e2, const D3 d3) { 
+    E4 *e4 = new E4();							
+    *e4 = ##FUNCTION##(e1, e2, d3);
+    return *e4;	
+  }									
+  template <class T1=E1, class T2=E2, class T3=E3>
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&std::is_same<T2,D2>::value&&!std::is_same<T3,D3>::value, E4& >::type 
+  apply(const E1& e1, const D2 d2, const E3& e3) { 
+    E4 *e4 = new E4();							
+    *e4 = ##FUNCTION##(e1, d2, e3);
+    return *e4;	
+  }									
+  template <class T1=E1, class T2=E2, class T3=E3>
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&std::is_same<T2,D2>::value&&std::is_same<T3,D3>::value, E4& >::type 
+  apply(const E1& e1, const D2 d2, const D3 d3) { 
+    E4 *e4 = new E4();							
+    *e4 = ##FUNCTION##(e1, d2, d3);
+    return *e4;	
+  }									
+  template <class T1=E1, class T2=E2, class T3=E3>
+  static typename std::enable_if<std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value&&!std::is_same<T3,D3>::value, E4& >::type 
+  apply(const D1 d1, const E2& e2, const E3& e3) { 
+    E4 *e4 = new E4();							
+    *e4 = ##FUNCTION##(d1, e2, e3);
+    return *e4;	
+  }									
+  template <class T1=E1, class T2=E2, class T3=E3>
+  static typename std::enable_if<std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value&&std::is_same<T3,D3>::value, E4& >::type 
+  apply(const D1 d1, const E2& e2, const D3 d3) { 
+    E4 *e4 = new E4();							
+    *e4 = ##FUNCTION##(d1, e2, d3);
+    return *e4;	
+  }									
+  template <class T1=E1, class T2=E2, class T3=E3>
+  static typename std::enable_if<std::is_same<T1,D1>::value&&std::is_same<T2,D2>::value&&!std::is_same<T3,D3>::value, E4& >::type 
+  apply(const D1 d1, const D2 d2, const E3& e3) { 
+    E4 *e4 = new E4();							
+    *e4 = ##FUNCTION##(d1, d2, e3);
+    return *e4;	
+  }									
   static std::string expression(const std::string& sa, const std::string& sb, const std::string& sc) {	
     using namespace display;						
     std::string sout = "";						

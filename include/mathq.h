@@ -51,7 +51,7 @@
 #include "tensor.h"
 #include "expressionsR.h"
 #include "expressionsRW.h"
-#include "functions_nottemplated.h"
+#include "functions_misc.h"
 #include "functions_products.h"
 #include "fileio.h"
 #include "coda.h"

@@ -37,7 +37,49 @@ namespace mathq {
   public:
     constexpr static float tolerance = 3.5e-7;
   };
+  
+  template <> struct MatricksHelper<char> {
+  public:
+    constexpr static char tolerance = 0;
+  };
+  template <> struct MatricksHelper<short> {
+  public:
+    constexpr static short tolerance = 0;
+  };
+  template <> struct MatricksHelper<int> {
+  public:
+    constexpr static int tolerance = 0;
+  };
+  template <> struct MatricksHelper<long> {
+  public:
+    constexpr static long tolerance = 0;
+  };
+  template <> struct MatricksHelper<long long> {
+  public:
+    constexpr static long long tolerance = 0;
+  };
 
+  template <> struct MatricksHelper<unsigned char> {
+  public:
+    constexpr static unsigned char tolerance = 0;
+  };
+  template <> struct MatricksHelper<unsigned short> {
+  public:
+    constexpr static unsigned short tolerance = 0;
+  };
+  template <> struct MatricksHelper<unsigned int> {
+  public:
+    constexpr static unsigned int tolerance = 0;
+  };
+  template <> struct MatricksHelper<unsigned long> {
+  public:
+    constexpr static unsigned long tolerance = 0;
+  };
+  template <> struct MatricksHelper<unsigned long long> {
+  public:
+    constexpr static unsigned long long tolerance = 0;
+  };
+  
 
  
   
@@ -59,8 +101,8 @@ namespace mathq {
   // roundzero
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
-    D roundzero(const D& x, const D tolerance) {
-    return (std::abs(x) < std::abs(tolerance) ? 0. : x);
+    D roundzero(const D& x, const D tolerance =  MatricksHelper<D>::tolerance) {
+    return (std::abs(x) < std::abs(tolerance) ? 0 : x);
   }
 
 
@@ -105,15 +147,16 @@ namespace mathq {
 
   
   // approx
+
+  // TODO: use std::frexp() instead ?
   
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>> bool approx(const D& x, const D& y, const D tolerance) {
-    using std::abs;
-    D tol = tolerance;
-    D d = (abs(x)+abs(y))/2.;
-    if (d > 1.) {
+  template <typename D1, typename D2>
+  bool approx(const D1& x, const D2& y, const typename AddType<D1,D2>::Type tol = MatricksHelper<typename AddType<D1,D2>::Type>::tolerance) {
+    typename AddType<D1,D2>::Type d = std::max(x,y);
+    if (d > 1) {
       tol *= d;
     }
-    return (roundzero(abs(x-y), tol) == 0.);
+    return (roundzero(std::abs(x-y), tol) == 0);
   }
 
   // numbercast

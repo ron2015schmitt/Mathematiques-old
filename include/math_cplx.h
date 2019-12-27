@@ -158,15 +158,15 @@ namespace mathq {
 
 
   // complex - roundzero
-  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance) {
+  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance = MatricksHelper<D>::tolerance) {
     return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
 
-    // approx - complex
-  
-  template <typename D> bool approx(const std::complex<D>& x, const std::complex<D>& y, const D tolerance) {
-    using std::abs;
-    return (approx(real(x),real(y),tolerance) && approx(imag(x),imag(y),tolerance));
+  // approx - complex
+
+  template <typename D1, typename D2>
+  bool approx(const std::complex<D1>& x, const std::complex<D2>& y, const typename AddType<D1,D2>::Type tol = MatricksHelper<typename AddType<D1,D2>::Type>::tolerance) {
+    return (mathq::approx(real(x),real(y),tol) && mathq::approx(imag(x),imag(y),tol));
   }
 
   // complex log2

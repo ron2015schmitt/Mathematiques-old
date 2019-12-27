@@ -884,10 +884,11 @@ namespace mathq {
 
 
   ////////////////////////////////////////////////////////////
-  // In functions.h
+  // In functions_misc.h
   ////////////////////////////////////////////////////////////
 
-  template <class X, class E, int M, int R> inline Vector<index_type>& findtrue( const TensorR<X,E,bool,M,R>& a );
+  template <class X, class E, class D, int M, int R> 
+  EnableMethodIf<std::is_same<D,bool>::value,Vector<index_type>&> findtrue( const TensorR<X,E,D,M,R>& v );
 
 };
 

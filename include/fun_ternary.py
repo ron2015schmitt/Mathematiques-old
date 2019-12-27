@@ -15,7 +15,8 @@ funcs = [
 ["std::assoc_legendre","assoc_legendre", "MultType"],
 ["std::assoc_laguerre","assoc_laguerre", "MultType"],
 ["std::ellint_3","ellint_3", "MultType"],
-["std::comp_ellint_3","comp_ellint_3", "MultType"]
+["std::comp_ellint_3","comp_ellint_3", "MultType"],
+["mathq::approx","approx", "AddType"]
 ]
 
 

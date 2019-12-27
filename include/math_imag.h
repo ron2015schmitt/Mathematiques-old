@@ -457,14 +457,11 @@ namespace mathq {
     return abs(z.value());
   }
 
-  // norm(z) - the C++ std defines norm as magnitude squared,
-  //           going against mathematics convention
+  // normsqr(z) - 
   
   template <typename D> inline
-    D norm(const Imaginary<D>& z) {
-    using std::abs;
-    D x = abs(z);
-    return x*x;
+    D normsqr(const Imaginary<D>& z) {
+    return z.value()*z.value();
   }
 
 

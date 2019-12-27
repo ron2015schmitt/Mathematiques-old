@@ -204,7 +204,7 @@ int main()
 
     Vector<ComplexDouble> x(N);
     Vector<ComplexDouble> f(N);
-    x = complexify(linspace<double>(0,1,N), linspace<double>(-1,1,N));
+    x = Complex(linspace<double>(0,1,N), linspace<double>(-1,1,N));
     f = sin(2*log10(abs(x/5)*100) + 3 + pow(-x,2));
     
     t.stop_timer_curt();

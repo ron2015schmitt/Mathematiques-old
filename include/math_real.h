@@ -58,7 +58,7 @@ namespace mathq {
 
   // roundzero
   
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D roundzero(const D& x, const D tolerance) {
     return (std::abs(x) < std::abs(tolerance) ? 0. : x);
   }
@@ -90,9 +90,17 @@ namespace mathq {
 
   // imag
   
-  template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D imag(const D& x) {
     return 0;
+  }
+
+
+  // normsqr(z) - 
+  
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
+    D normsqr(const D& x) {
+    return x*x;
   }
 
   

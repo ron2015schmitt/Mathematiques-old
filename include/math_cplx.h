@@ -125,7 +125,12 @@ namespace mathq {
     return std::complex<D>(x.real(), -x.imag());
   }
 
+  // complex - normsqr
+  template <typename D> D normsqr(const std::complex<D>& z) {
+    return z.real()*z.real() + z.imag()*z.imag();
+  }
 
+  
   // complex rounding
 
   template <typename D> std::complex<D> round(const std::complex<D>& x) {
@@ -136,6 +141,7 @@ namespace mathq {
   template <typename D> std::complex<D> sgn(const std::complex<D>& z) {
     return std::complex<D>( sgn(real(z)), sgn(imag(z)) );
   }
+  
 
   // complex - floor
   template <typename D> std::complex<D> floor(const std::complex<D>& z) {

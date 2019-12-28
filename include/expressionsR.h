@@ -20,7 +20,7 @@ namespace mathq {
   //       only the function/functor needs the input types
   
   template <class X, class E, class D, int M, int R, class FUNC> 
-    class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC>, E,D,M,R> {
+  class TER_Unary  : public  TensorR<TER_Unary<X,E,D,M,R,FUNC>, E,D,M,R> {
   public:
     typedef Materialize<E,D,M,R> XType;
     typedef E EType;
@@ -36,7 +36,7 @@ namespace mathq {
       
 
 
-  TER_Unary(const X& x) : x_(x) {
+    TER_Unary(const X& x) : x_(x) {
       vptrs = new VectorofPtrs();
       vptrs->add(x_.getAddresses());
       disp3(x);
@@ -159,10 +159,10 @@ namespace mathq {
     TER_Binary(const A& a, const B& b) : a_(a), b_(b) {
       vptrs = new VectorofPtrs();
       if constexpr(M1>0) {
-        vptrs->add(a_.getAddresses());
-      }
+	  vptrs->add(a_.getAddresses());
+	}
       if constexpr(M2>0) {
-        vptrs->add(b_.getAddresses());
+	  vptrs->add(b_.getAddresses());
 	}
       disp3(a);
       disp3(b);
@@ -178,55 +178,55 @@ namespace mathq {
 
     const D3 dat(const index_type i) const {
       if constexpr((M1==0)&&(M2==0)) {
-	return OP::apply(a_, b_);
-      } else if constexpr((M1==0)&&(M2>0)) {
-	return OP::apply(a_, b_.dat(i));
-      } else if constexpr((M1>0)&&(M2==0)) {
-	return OP::apply(a_.dat(i), b_);
-      } else {
+	  return OP::apply(a_, b_);
+	} else if constexpr((M1==0)&&(M2>0)) {
+	  return OP::apply(a_, b_.dat(i));
+	} else if constexpr((M1>0)&&(M2==0)) {
+	  return OP::apply(a_.dat(i), b_);
+	} else {
 	if constexpr(M1==M2) {
-	  return OP::apply(a_.dat(i), b_.dat(i));
-	} else if constexpr(M1==M2+1) {
-	  if constexpr((M2==1)&&(R2==R1)&&(R2==E1::Rvalue)) {
-	    if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
-	      return dat_el1(i); // note this is chosen by fiat
-	    } else if (a_.size() == b_.size()) {
-	      return dat_top1(i);
-	    } else if (a_.elsize() == b_.size()) {
-	      return dat_el1(i);
-	    } else {
-	      // TODO: error
-  	      return 0;
-	    }
-	  } else if constexpr((M2==1)&&(R2==R1)) {
-	    return dat_top1(i); 
-	  } else if constexpr(R2==E1::Rvalue) {
-	    return dat_el1(i);
-	  } else {
-	    // TODO: error
-	    return 0;
-	  }
-	} else if constexpr(M2==M1+1) {
-	  if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
-	    if ((a_.size() == b_.size()) && (a_.size() == b_.elsize())) {
-	      return dat_top2(i); // note this is chosen by fiat
-	    } else if (a_.size() == b_.size()) {
-	      return dat_top2(i);
-	    } else if (a_.size() == b_.elsize()) {
-	      return dat_el2(i);
-	    } else {
+	    return OP::apply(a_.dat(i), b_.dat(i));
+	  } else if constexpr(M1==M2+1) {
+	    if constexpr((M2==1)&&(R2==R1)&&(R2==E1::Rvalue)) {
+		if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
+		  return dat_el1(i); // note this is chosen by fiat
+		} else if (a_.size() == b_.size()) {
+		  return dat_top1(i);
+		} else if (a_.elsize() == b_.size()) {
+		  return dat_el1(i);
+		} else {
+		  // TODO: error
+		  return 0;
+		}
+	      } else if constexpr((M2==1)&&(R2==R1)) {
+		return dat_top1(i); 
+	      } else if constexpr(R2==E1::Rvalue) {
+		return dat_el1(i);
+	      } else {
 	      // TODO: error
 	      return 0;
 	    }
-   	  } else if constexpr((M1==1)&&(R1==R2)) {
-	    return dat_top2(i);
-	  } else if constexpr(R1==E2::Rvalue) {
-	    return dat_el2(i);
+	  } else if constexpr(M2==M1+1) {
+	    if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
+		if ((a_.size() == b_.size()) && (a_.size() == b_.elsize())) {
+		  return dat_top2(i); // note this is chosen by fiat
+		} else if (a_.size() == b_.size()) {
+		  return dat_top2(i);
+		} else if (a_.size() == b_.elsize()) {
+		  return dat_el2(i);
+		} else {
+		  // TODO: error
+		  return 0;
+		}
+	      } else if constexpr((M1==1)&&(R1==R2)) {
+		return dat_top2(i);
+	      } else if constexpr(R1==E2::Rvalue) {
+		return dat_el2(i);
+	      } else {
+	      // TODO: error
+	      return 0;
+	    }
 	  } else {
-	    // TODO: error
-	    return 0;
-	  }
-	} else {
 	  // TODO: error
 	  return 0;
 	}
@@ -261,59 +261,59 @@ namespace mathq {
     //**********************************************************************
     const E3 operator[](const index_type i) const {
       if constexpr((M1==0)&&(M2==0)) {
-	return OP::apply(a_, b_);
-      } else if constexpr((M1==0)&&(M2>0)) {
-	return OP::apply(a_, b_[i]);
-      } else if constexpr((M1>0)&&(M2==0)) {
-	return OP::apply(a_[i], b_);
-      } else {
-	if constexpr(M1==M2) {
-	  return OP::apply(a_[i], b_[i]);
-	} else if constexpr(M1==M2+1) {
-	  if constexpr((M2==1)&&(R2==R1)&&(R2==E1::Rvalue)) {
-	    if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
-	      return el1(i); // note this is chosen by fiat
-	    } else if (a_.size() == b_.size()) {
-	      return top1(i);
-	    } else if (a_.elsize() == b_.size()) {
-	      return el1(i);
-	    } else {
-	      // TODO: error
-	      E3* e;
-  	      return *e;
-	    }
-	  } else if constexpr((M2==1)&&(R2==R1)) {
-	    return top1(i); 
-	  } else if constexpr(R2==E1::Rvalue) {
-	    return el1(i);
-	  } else {
-	    // TODO: error
-	    E3* e;
-	    return *e;
-	  }
-	} else if constexpr(M2==M1+1) {
-	  if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
-	    if ((a_.size() == b_.size()) && (a_.size() == b_.elsize())) {
-	      return top2(i); // note this is chosen by fiat
-	    } else if (a_.size() == b_.size()) {
-	      return top2(i);
-	    } else if (a_.size() == b_.elsize()) {
-	      return el2(i);
-	    } else {
-	      // TODO: error
-	      E3* e;
-  	      return *e;
-	    }
-   	  } else if constexpr((M1==1)&&(R1==R2)) {
-	    return top2(i);
-	  } else if constexpr(R1==E2::Rvalue) {
-	    return el2(i);
-	  } else {
-	    // TODO: error
-	    E3* e;
-	    return *e;
-	  }
+	  return OP::apply(a_, b_);
+	} else if constexpr((M1==0)&&(M2>0)) {
+	  return OP::apply(a_, b_[i]);
+	} else if constexpr((M1>0)&&(M2==0)) {
+	  return OP::apply(a_[i], b_);
 	} else {
+	if constexpr(M1==M2) {
+	    return OP::apply(a_[i], b_[i]);
+	  } else if constexpr(M1==M2+1) {
+	    if constexpr((M2==1)&&(R2==R1)&&(R2==E1::Rvalue)) {
+		if ((a_.size() == b_.size()) && (a_.elsize() == b_.size())) {
+		  return el1(i); // note this is chosen by fiat
+		} else if (a_.size() == b_.size()) {
+		  return top1(i);
+		} else if (a_.elsize() == b_.size()) {
+		  return el1(i);
+		} else {
+		  // TODO: error
+		  E3* e;
+		  return *e;
+		}
+	      } else if constexpr((M2==1)&&(R2==R1)) {
+		return top1(i); 
+	      } else if constexpr(R2==E1::Rvalue) {
+		return el1(i);
+	      } else {
+	      // TODO: error
+	      E3* e;
+	      return *e;
+	    }
+	  } else if constexpr(M2==M1+1) {
+	    if constexpr((M1==1)&&(R1==R2)&&(R1==E2::Rvalue)) {
+		if ((a_.size() == b_.size()) && (a_.size() == b_.elsize())) {
+		  return top2(i); // note this is chosen by fiat
+		} else if (a_.size() == b_.size()) {
+		  return top2(i);
+		} else if (a_.size() == b_.elsize()) {
+		  return el2(i);
+		} else {
+		  // TODO: error
+		  E3* e;
+		  return *e;
+		}
+	      } else if constexpr((M1==1)&&(R1==R2)) {
+		return top2(i);
+	      } else if constexpr(R1==E2::Rvalue) {
+		return el2(i);
+	      } else {
+	      // TODO: error
+	      E3* e;
+	      return *e;
+	    }
+	  } else {
 	  // TODO: error
 	  E3* e;
 	  return *e;
@@ -347,8 +347,8 @@ namespace mathq {
     }
     size_type size(void) const {
       if constexpr(M1>=M2) {
-        return a_.size();
-      } else {
+	  return a_.size();
+	} else {
         return b_.size();
       }
     }
@@ -357,22 +357,22 @@ namespace mathq {
     }
     Dimensions dims(void) const {
       if constexpr(M1>=M2) {
-        return a_.dims();
-      } else {
+	  return a_.dims();
+	} else {
         return b_.dims();
       }
     }
     std::vector<Dimensions>& deepdims(void) const {
       if constexpr(M1>=M2) {
-        return a_.deepdims();
-      } else {
+	  return a_.deepdims();
+	} else {
         return b_.deepdims();
       }
     }
     std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
       if constexpr(M1>=M2) {
-        return a_.deepdims(parentdims);
-      } else {
+	  return a_.deepdims(parentdims);
+	} else {
         return b_.deepdims(parentdims);
       }
     }
@@ -381,29 +381,29 @@ namespace mathq {
     }
     size_type depth(void) const {
       if constexpr(M1>=M2) {
-        return M1;
-      } else {
+	  return M1;
+	} else {
         return M2;
       }
     }
     size_type elsize(void) const {
       if constexpr(M1>=M2) {
-        return a_.elsize();
-      } else {
+	  return a_.elsize();
+	} else {
         return b_.elsize();
       }
     }
     size_type eldeepsize(void) const {
       if constexpr(M1>=M2) {
-        return a_.eldeepsize();
-      } else {
+	  return a_.eldeepsize();
+	} else {
         return b_.eldeepsize();
       }
     }
     size_type deepsize(void) const {
       if constexpr(M1>=M2) {
-        return a_.deepsize();
-      } else {
+	  return a_.deepsize();
+	} else {
         return b_.deepsize();
       }
     }
@@ -462,10 +462,10 @@ namespace mathq {
     TER_Ternary(const A& a, const B& b, const C& c) : a_(a), b_(b), c_(c) {
       vptrs = new VectorofPtrs();
       if constexpr(M1>0) {
-        vptrs->add(a_.getAddresses());
-      }
+	  vptrs->add(a_.getAddresses());
+	}
       if constexpr(M2>0) {
-        vptrs->add(b_.getAddresses());
+	  vptrs->add(b_.getAddresses());
 	}
       if constexpr(M3>0) {
 	  //vptrs->add(c_.getAddresses());
@@ -485,22 +485,22 @@ namespace mathq {
 
     const D4 dat(const index_type i) const {
       if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      } else if constexpr((M1==0)&&(M2==0)&&(M3>0)) {
-        return OP::apply(a_,b_,c_.dat(i));
-      }	else if constexpr((M1==0)&&(M2>0)&&(M3==0)) {
-        return OP::apply(a_,b_.dat(i),c_);
-      }	else if constexpr((M1==0)&&(M2>0)&&(M3>0)) {
-        return OP::apply(a_,b_.dat(i),c_.dat(i));
-      }	else if constexpr((M1>0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_.dat(i),b_,c_);
-      }	else if constexpr((M1>0)&&(M2==0)&&(M3>0)) {
-        return OP::apply(a_.dat(i),b_,c_.dat(i));
-      }	else if constexpr((M1>0)&&(M2>0)&&(M3==0)) {
-        return OP::apply(a_.dat(i),b_.dat(i),c_);
-      }	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
-        return OP::apply(a_.dat(i),b_.dat(i),c_.dat(i));
-      }
+	  return OP::apply(a_,b_,c_);
+	} else if constexpr((M1==0)&&(M2==0)&&(M3>0)) {
+	  return OP::apply(a_,b_,c_.dat(i));
+	}	else if constexpr((M1==0)&&(M2>0)&&(M3==0)) {
+	  return OP::apply(a_,b_.dat(i),c_);
+	}	else if constexpr((M1==0)&&(M2>0)&&(M3>0)) {
+	  return OP::apply(a_,b_.dat(i),c_.dat(i));
+	}	else if constexpr((M1>0)&&(M2==0)&&(M3==0)) {
+	  return OP::apply(a_.dat(i),b_,c_);
+	}	else if constexpr((M1>0)&&(M2==0)&&(M3>0)) {
+	  return OP::apply(a_.dat(i),b_,c_.dat(i));
+	}	else if constexpr((M1>0)&&(M2>0)&&(M3==0)) {
+	  return OP::apply(a_.dat(i),b_.dat(i),c_);
+	}	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
+	  return OP::apply(a_.dat(i),b_.dat(i),c_.dat(i));
+	}
     }
 
 
@@ -510,22 +510,22 @@ namespace mathq {
     //**********************************************************************
     const E4 operator[](const index_type i) const {
       if constexpr((M1==0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_,b_,c_);
-      } else if constexpr((M1==0)&&(M2==0)&&(M3>0)) {
-        return OP::apply(a_,b_,c_[i]);
-      }	else if constexpr((M1==0)&&(M2>0)&&(M3==0)) {
-        return OP::apply(a_,b_[i],c_);
-      }	else if constexpr((M1==0)&&(M2>0)&&(M3>0)) {
-        return OP::apply(a_,b_[i],c_[i]);
-      }	else if constexpr((M1>0)&&(M2==0)&&(M3==0)) {
-        return OP::apply(a_[i],b_,c_);
-      }	else if constexpr((M1>0)&&(M2==0)&&(M3>0)) {
-        return OP::apply(a_[i],b_,c_[i]);
-      }	else if constexpr((M1>0)&&(M2>0)&&(M3==0)) {
-        return OP::apply(a_[i],b_[i],c_);
-      }	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
-        return OP::apply(a_[i],b_[i],c_[i]);
-      }
+	  return OP::apply(a_,b_,c_);
+	} else if constexpr((M1==0)&&(M2==0)&&(M3>0)) {
+	  return OP::apply(a_,b_,c_[i]);
+	}	else if constexpr((M1==0)&&(M2>0)&&(M3==0)) {
+	  return OP::apply(a_,b_[i],c_);
+	}	else if constexpr((M1==0)&&(M2>0)&&(M3>0)) {
+	  return OP::apply(a_,b_[i],c_[i]);
+	}	else if constexpr((M1>0)&&(M2==0)&&(M3==0)) {
+	  return OP::apply(a_[i],b_,c_);
+	}	else if constexpr((M1>0)&&(M2==0)&&(M3>0)) {
+	  return OP::apply(a_[i],b_,c_[i]);
+	}	else if constexpr((M1>0)&&(M2>0)&&(M3==0)) {
+	  return OP::apply(a_[i],b_[i],c_);
+	}	else if constexpr((M1>0)&&(M2>0)&&(M3>0)) {
+	  return OP::apply(a_[i],b_[i],c_[i]);
+	}
     }
 
 
@@ -536,10 +536,10 @@ namespace mathq {
     }
     size_type size(void) const {
       if constexpr(M1>0) {
-        return a_.size();
-      } else if constexpr(M2>0) {
-        return b_.size();
-      } else {
+	  return a_.size();
+	} else if constexpr(M2>0) {
+	  return b_.size();
+	} else {
         return c_.size();
       }
     }
@@ -548,28 +548,28 @@ namespace mathq {
     }
     Dimensions dims(void) const {
       if constexpr(M1>0) {
-        return a_.dims();
-      } else if constexpr(M2>0) {
-        return b_.dims();
-      } else {
+	  return a_.dims();
+	} else if constexpr(M2>0) {
+	  return b_.dims();
+	} else {
         return c_.dims();
       }
     }
     std::vector<Dimensions>& deepdims(void) const {
       if constexpr(M1>0) {
-        return a_.deepdims();
-      } else if constexpr(M2>0) {
-        return b_.deepdims();
-      } else {
+	  return a_.deepdims();
+	} else if constexpr(M2>0) {
+	  return b_.deepdims();
+	} else {
         return c_.deepdims();
       }
     }
     std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
       if constexpr(M1>0) {
-        return a_.deepdims(parentdims);
-      } else if constexpr(M2>0) {
-        return b_.deepdims(parentdims);
-      } else {
+	  return a_.deepdims(parentdims);
+	} else if constexpr(M2>0) {
+	  return b_.deepdims(parentdims);
+	} else {
         return c_.deepdims(parentdims);
       }
     }
@@ -578,37 +578,37 @@ namespace mathq {
     }
     size_type depth(void) const {
       if constexpr(M1>0) {
-        return a_.depth();
-      } else if constexpr(M2>0) {
-        return b_.depth();
-      } else {
+	  return a_.depth();
+	} else if constexpr(M2>0) {
+	  return b_.depth();
+	} else {
         return c_.depth();
       }
     }
     size_type elsize(void) const {
       if constexpr(M1>0) {
-        return a_.elsize();
-      } else if constexpr(M2>0) {
-        return b_.elsize();
-      } else {
+	  return a_.elsize();
+	} else if constexpr(M2>0) {
+	  return b_.elsize();
+	} else {
         return c_.elsize();
       }
     }
     size_type eldeepsize(void) const {
       if constexpr(M1>0) {
-        return a_.eldeepsize();
-      } else if constexpr(M2>0) {
-        return b_.eldeepsize();
-      } else {
+	  return a_.eldeepsize();
+	} else if constexpr(M2>0) {
+	  return b_.eldeepsize();
+	} else {
         return c_.eldeepsize();
       }
     }
     size_type deepsize(void) const {
       if constexpr(M1>0) {
-        return a_.deepsize();
-      } else if constexpr(M2>0) {
-        return b_.deepsize();
-      } else {
+	  return a_.deepsize();
+	} else if constexpr(M2>0) {
+	  return b_.deepsize();
+	} else {
         return c_.deepsize();
       }
     }
@@ -655,14 +655,14 @@ namespace mathq {
   public:
       
 
-  TER_Series(const A& a, const X& x, const int N, const D x0)
-    : a_(a), x_(x), N_(N), x0_(x0) { 
+    TER_Series(const A& a, const X& x, const int N, const D x0)
+      : a_(a), x_(x), N_(N), x0_(x0) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(x_.getAddresses());
     }
-  TER_Series(const A& a, const X& x, const int N)
-    : a_(a), x_(x), N_(N), x0_(0) { 
+    TER_Series(const A& a, const X& x, const int N)
+      : a_(a), x_(x), N_(N), x0_(0) { 
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
       vptrs->add(x_.getAddresses());
@@ -804,7 +804,7 @@ namespace mathq {
   public:
 
     TER_Series2(const A& a, const A& b, const X& x, const int N, const D k1)
-    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N))) {
+      : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N))) {
       
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
@@ -922,7 +922,7 @@ namespace mathq {
   //-----------------------------------------------------------------------------
 
   template <class X, class E, class D, int M, int R, class FUNC> 
-    class TER_Transpose : public  TensorR<TER_Transpose<X,E,D,M,R,FUNC>, E,D,M,R> {
+  class TER_Transpose : public  TensorR<TER_Transpose<X,E,D,M,R,FUNC>, E,D,M,R> {
   public:
     typedef Materialize<E,D,M,R> XType;
     typedef E EType;
@@ -936,7 +936,7 @@ namespace mathq {
     Dimensions *rdims;
   
   public:
-  TER_Transpose(const X& x) : x_(x) {
+    TER_Transpose(const X& x) : x_(x) {
       rdims = &(x_.dims().getReverse());
       vptrs = new VectorofPtrs();
       vptrs->add(x_.getAddresses());
@@ -949,8 +949,8 @@ namespace mathq {
 
     const D dat(const index_type i) const {
       if constexpr(M<=1) {
-	return (*this[i]);
-      } else {
+	  return (*this[i]);
+	} else {
 	index_type j = i / x_.elsize();
 	index_type k = i % x_.elsize();
 	return (*this[j][k]);
@@ -979,23 +979,23 @@ namespace mathq {
     bool isExpression(void) const {
       return true;
     }
-  size_type depth(void) const {
+    size_type depth(void) const {
       return M;
     }
-  size_type elsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return x_.elsize();
+    size_type elsize(void) const {
+      if constexpr(M<2) {
+	  return 1;
+	} else {
+	return x_.elsize();
+      }
     }
-  }
-  size_type eldeepsize(void) const {
-    if constexpr(M<2) {
-      return 1;
-    } else {
-      return x_.eldeepsize();
+    size_type eldeepsize(void) const {
+      if constexpr(M<2) {
+	  return 1;
+	} else {
+	return x_.eldeepsize();
+      }
     }
-  }
     size_type deepsize(void) const {
       if constexpr(M<2) {
 	  return this->size();
@@ -1020,190 +1020,203 @@ namespace mathq {
 
 
 
-//   //---------------------------------------------------------------------------
-//   // VER_Join   joining two Tensors (RHS only)
-//   //---------------------------------------------------------------------------
+  //   //---------------------------------------------------------------------------
+  //   // VER_Join   joining two Tensors (RHS only)
+  //   //---------------------------------------------------------------------------
 
-//   template<class D, class A, class B, int M>
-//     class VER_Join : public  TensorR<D,VER_Join<D,A,B,M> > {
+  //   template<class D, class A, class B, int M>
+  //     class VER_Join : public  TensorR<D,VER_Join<D,A,B,M> > {
 
-//   private:
-//     const A& a_;
-//     const B& b_;
-//     VectorofPtrs *vptrs;
+  //   private:
+  //     const A& a_;
+  //     const B& b_;
+  //     VectorofPtrs *vptrs;
 
-//   public:
-//     typedef typename NumberType<D>::Type MyNumberType;
+  //   public:
+  //     typedef typename NumberType<D>::Type MyNumberType;
 
 
-//   VER_Join(const A& a, const B& b)
-//     : a_(a), b_(b) { 
+  //   VER_Join(const A& a, const B& b)
+  //     : a_(a), b_(b) { 
 
-//       vptrs = new VectorofPtrs();
-//       vptrs->add(a_.getAddresses());
-//       vptrs->add(b_.getAddresses());
+  //       vptrs = new VectorofPtrs();
+  //       vptrs->add(a_.getAddresses());
+  //       vptrs->add(b_.getAddresses());
       
-//     }
+  //     }
 
-//     ~VER_Join() {
-//       delete vptrs;
-//     }
+  //     ~VER_Join() {
+  //       delete vptrs;
+  //     }
     
-//     const D operator[](const index_type i) const{
-//       if ( i < a_.size() ) {
-// 	return a_[i];
-//       } else {
-// 	return b_[i-a_.size()];
-//       }
-//     }
+  //     const D operator[](const index_type i) const{
+  //       if ( i < a_.size() ) {
+  // 	return a_[i];
+  //       } else {
+  // 	return b_[i-a_.size()];
+  //       }
+  //     }
   
-//     VectorofPtrs getAddresses(void) const {
-//       return *vptrs;
-//     }
-//     size_type size(void) const {
-//       return a_.size() +b_.size();
-//     }
-//     size_type ndims(void) const {
-//       return a_.ndims();
-//     }
-//     Dimensions dims(void) const {
-//       return a_.dims();
-//     }
-//     bool isExpression(void) const {
-//       return true;
-//     }
-//   size_type depth(void) const {
-//       return M;
-//     }
-//   size_type elsize(void) const {
-//     if constexpr(M<2) {
-//       return 1;
-//     } else {
-//       return a_.elsize();
-//     }
-//   }
-//   size_type eldeepsize(void) const {
-//     if constexpr(M<2) {
-//       return 1;
-//     } else {
-//       return a_.eldeepsize();
-//     }
-//   }
-//     size_type deepsize(void) const {
-//       if constexpr(M<2) {
-// 	  return this->size();
-// 	} else {
-// 	return (this->size())*(this->eldeepsize());
-//       }
-//     }
-//     std::string classname() const {
-//       return "VER_Join";
-//     }
+  //     VectorofPtrs getAddresses(void) const {
+  //       return *vptrs;
+  //     }
+  //     size_type size(void) const {
+  //       return a_.size() +b_.size();
+  //     }
+  //     size_type ndims(void) const {
+  //       return a_.ndims();
+  //     }
+  //     Dimensions dims(void) const {
+  //       return a_.dims();
+  //     }
+  //     bool isExpression(void) const {
+  //       return true;
+  //     }
+  //   size_type depth(void) const {
+  //       return M;
+  //     }
+  //   size_type elsize(void) const {
+  //     if constexpr(M<2) {
+  //       return 1;
+  //     } else {
+  //       return a_.elsize();
+  //     }
+  //   }
+  //   size_type eldeepsize(void) const {
+  //     if constexpr(M<2) {
+  //       return 1;
+  //     } else {
+  //       return a_.eldeepsize();
+  //     }
+  //   }
+  //     size_type deepsize(void) const {
+  //       if constexpr(M<2) {
+  // 	  return this->size();
+  // 	} else {
+  // 	return (this->size())*(this->eldeepsize());
+  //       }
+  //     }
+  //     std::string classname() const {
+  //       return "VER_Join";
+  //     }
 
-// #if MATRICKS_DEBUG>=1
-//     std::string expression(void) const {
-//       return "";
-//       //      return expression_VER_Join(a_.expression(),ii_.expression());
-//     }
-// #endif 
+  // #if MATRICKS_DEBUG>=1
+  //     std::string expression(void) const {
+  //       return "";
+  //       //      return expression_VER_Join(a_.expression(),ii_.expression());
+  //     }
+  // #endif 
 
     
-//   };
+  //   };
 
 
 
-//   //---------------------------------------------------------------------------
-//   // VER_Rep  repeat a tensor
-//   //---------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
+  // TER_Rep  repeat a tensor
+  //---------------------------------------------------------------------------
 
-//   template<class D, class A, int M>
-//     class VER_Rep : public  TensorR<D,VER_Rep<D,A,M> > {
+  template<class A, class D>
+  class TER_Rep : public  TensorR<TER_Rep<A,D>, D,D,1,1> {
+  public:
+    constexpr static int Rvalue = 1;
+    constexpr static int Mvalue = 1;
+    typedef Materialize<D,D,1,1> XType;
+    typedef D EType;
+    typedef D DType;
 
-//   private:
-//     const A& a_;
-//     const size_type m_;
-//     const size_type N_;
-//     VectorofPtrs *vptrs;
+  private:
+    const A& a_;
+    const size_type m_;
+    const size_type N_;
+    VectorofPtrs *vptrs;
 
-//   public:
-//     typedef typename NumberType<D>::Type MyNumberType;
+  public:
+    TER_Rep(const A& a, const size_type m)
+      : a_(a), m_(m), N_(a_.size()) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+    }
+    
 
-
-//   VER_Rep(const A& a, const size_type m)
-//     : a_(a), m_(m), N_(a_.size()) { 
-//       vptrs = new VectorofPtrs();
-//       vptrs->add(a_.getAddresses());
-//     }
-
-
-//     ~VER_Rep() {
-//       delete vptrs;
-//     }
-
-
-//     const D operator[](const index_type i) const{
-//       index_type index = index_type(i % N_);
-//       //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
-//       return a_[index];
-//     }
+    ~TER_Rep() {
+      delete vptrs;
+    }
 
 
-//     VectorofPtrs getAddresses(void) const {
-//       return *vptrs;
-//     }
-//     size_type size(void) const {
-//       return m_*a_.size();
-//     }
-//     size_type ndims(void) const {
-//       return a_.ndims();
-//     }
-//     Dimensions dims(void) const {
-//       return a_.dims();
-//     }
-//     bool isExpression(void) const {
-//       return true;
-//     }
-//   size_type depth(void) const {
-//       return M;
-//     }
-//   size_type elsize(void) const {
-//     if constexpr(M<2) {
-//       return 1;
-//     } else {
-//       return a_.elsize();
-//     }
-//   }
-//   size_type eldeepsize(void) const {
-//     if constexpr(M<2) {
-//       return 1;
-//     } else {
-//       return a_.eldeepsize();
-//     }
-//   }
-//     size_type deepsize(void) const {
-//       if constexpr(M<2) {
-// 	  return this->size();
-// 	} else {
-// 	return (this->size())*(this->eldeepsize());
-//       }
-//     }
-//     std::string classname() const {
-//       return "VER_Rep";
-//     }
+    const D operator[](const index_type i) const{
+      index_type index = index_type(i % N_);
+      //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      return a_[index];
+    }
 
-// #if MATRICKS_DEBUG>=1
-//     std::string expression(void) const {
-//       return "";
-//       //      return expression_VER_Join(a_.expression(),ii_.expression());
-//     }
-// #endif 
 
-//   };
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return m_*a_.size();
+    }
+    size_type ndims(void) const {
+      return a_.ndims();
+    }
+    Dimensions dims(void) const {
+      return a_.dims();
+    }
+    Dimensions tdims(void) const {
+      return this->dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+      return a_.deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      return a_.deepdims(parentdims);
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      return Mvalue;
+    }
+    size_type elsize(void) const {
+      if constexpr(Mvalue<=1) {
+	  return 1;
+	} else {
+	return a_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(Mvalue<=1) {
+	  return 1;
+	} else {
+	return a_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(Mvalue<=1) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
+    std::string classname() const {
+      return "TER_Rep";
+    }
+
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      return "";
+      //      return expression_VER_Join(a_.expression(),ii_.expression());
+    }
+#endif 
+
+  };
+
+
 
 
   
-};  //namespace mathq
-
+}; 
 #endif 
 
 

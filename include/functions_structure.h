@@ -63,78 +63,78 @@ namespace mathq {
 
 
   // template <class D> 
-  //   inline auto operator,(Vector<D>& a, Vector<D>& b)
+  //    auto operator,(Vector<D>& a, Vector<D>& b)
   //   {
     
   //     printf2("  VERW_Join operator,(Vector<D>& a, Vector<D>& b)\n");
   //     return  VERW_Join<D,Vector<D>,Vector<D> >(a,b);
   //   }
 
-  // //--------------------------------------------
-  // // Need the const for compiler to find this
-  // // then we cast away the const
+  // // //--------------------------------------------
+  // // // Need the const for compiler to find this
+  // // // then we cast away the const
   // template <class D, class A> 
-  //   inline auto operator,(const TensorRW<D,A>& a, const Vector<D>& b)
+  //    auto operator,(const TensorRW<D,A>& a, const Vector<D>& b)
   //   {
   //     printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const Vector<D>& b)\n");
   //     TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
   //     Vector<D>& b_ = const_cast<Vector<D>& >(b);
   //     return  VERW_Join<D, TensorRW<D,A>,Vector<D> >(a_,b_);
   //   }
-  // //--------------------------------------------
+  // // //--------------------------------------------
 
-  // //--------------------------------------------
-  // // Need the const for compiler to find this
-  // // then we cast away the const
+  // // //--------------------------------------------
+  // // // Need the const for compiler to find this
+  // // // then we cast away the const
   // template <class D, class B> 
-  //   inline auto operator,(const Vector<D>& a, const TensorRW<D,B>& b)
+  //    auto operator,(const Vector<D>& a, const TensorRW<D,B>& b)
   //   {
   //     printf2("  VERW_Join operator,(const Vector<D>& a, const TensorRW<D,B>& b)\n");
   //     Vector<D>& a_ = const_cast<Vector<D>& >(a);
   //     TensorRW<D,B>& b_ = const_cast<TensorRW<D,B>& >(b);
   //     return VERW_Join<D, Vector<D>,TensorRW<D,B> >(a_,b_);
   //   }
-  // //--------------------------------------------
+  // // //--------------------------------------------
 
-  // //--------------------------------------------
-  // // Need the const for compiler to find this
+  // // //--------------------------------------------
+  // // // Need the const for compiler to find this
   // template <class D, class A, class B> 
-  //   inline auto operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)
+  //    auto operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)
   //   {
   //     printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)\n");
   //     TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
   //     TensorRW<D,B>& b_ = const_cast<TensorRW<D,B>& >(b);
   //     return  VERW_Join<D, TensorRW<D,A>,TensorRW<D,B> >(a_,b_);
   //   }
-  // //--------------------------------------------
+  // // //--------------------------------------------
 
 
   
-  // ///---------
+  // // ///---------
   
   // template <class D> 
-  //   inline const auto operator,(const Vector<D>& a, const Vector<D>& b)
+  //    const auto operator,(const Vector<D>& a, const Vector<D>& b)
   //   {
   //     printf2("  VER_Join operator,(const Vector<D>& a, const Vector<D>& b)\n");
   //     return  VER_Join<D,Vector<D>,Vector<D> >(a,b);
   //   }
 
   // template <class D, class B> 
-  //   inline const auto operator,(const Vector<D>& a, const TensorR<D,B>& b)
+  //    const auto operator,(const Vector<D>& a, const TensorR<D,B>& b)
   //   {
   //     printf2("  VER_Join operator,(const Vector<D>& a, const TensorR<D,B>& b)\n");
   //     return  VER_Join<D,Vector<D>,TensorR<D,B>  >(a,b);
   //   }
 
   // template <class D, class A> 
-  //   inline const auto operator,(const TensorR<D,A>& a, const Vector<D>& b)
+  //    const auto operator,(const TensorR<D,A>& a, const Vector<D>& b)
   //   {
   //     printf2("  VER_Join operator,(const TensorR<D,A>& a, const Vector<D>& b)\n");
   //     return  VER_Join<D,TensorR<D,A>,Vector<D> >(a,b);
   //   }
  
   // template <class D, class A, class B> 
-  //   inline const auto operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)
+  //    const auto operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)
   //   {
   //     printf2("  VER_Join operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)\n");
   //     return  VER_Join<D, TensorR<D,A>,TensorR<D,B> >(a,b);
@@ -145,12 +145,12 @@ namespace mathq {
 
 
 
-  // // rep(v,m)
+  // rep(v,m)
 
-  // template <class D, class A> 
-  //   inline auto rep(const TensorR<D,A>& a, const size_type m) {
-  //   return VER_Rep<D,TensorR<D,A> >(a,m);
-  // }
+  template <class A, class D> 
+   auto rep(const TensorR<A,D,D,1,1>& a, const size_type m) {
+    return TER_Rep<TensorR<A,D,D,1,1>,D>(a,m);
+  }
 
   
 

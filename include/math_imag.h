@@ -113,11 +113,14 @@ namespace mathq {
   // numbercast
   // ***************************************************************************
   
-  template <typename D2, typename D1>
-    Imaginary<D2> numbercast(const Imaginary<D1>& x) {
-    using namespace std;
-    return Imaginary<D2>( numbercast<D2,D1>(x.value()) );
+  
+  template <typename I2, typename F1> EnableMethodIf<IsImaginary<I2>::value, I2>
+    numbercast(const Imaginary<F1>& y) {
+    typedef typename IsImaginary<I2>::RealType F2;
+    F2 val = numbercast<F2>(y.value());
+    return Imaginary<F2>(val);
   }
+
 
   // ***************************************************************************
   // Complex

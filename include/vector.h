@@ -461,13 +461,13 @@ namespace mathq {
 
   // Accessing a slice of values
   
-  TERW_Subset<E> operator[](const slc& slice)  { 
-    return (*this)[slice.toIndexVector(size())];
-  }
-  const TERW_Subset<E>  operator[](const slc& slice) const  {
-    //      display::log3("Vector","operator[]","(const slc& slice)\n");
-    return (*this)[slice.toIndexVector(size())];
-  }
+    TERW_Subset<E> operator[](const slc& slice)  { 
+      return (*this)[slice.toIndexVector(size())];
+    }
+    const TERW_Subset<E>  operator[](const slc& slice) const  {
+      //      display::log3("Vector","operator[]","(const slc& slice)\n");
+      return (*this)[slice.toIndexVector(size())];
+    }
 
 
     // Accessing a SET of values using a vector of ints

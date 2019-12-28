@@ -176,9 +176,7 @@ namespace mathq {
   template <typename D1, typename D2>
   bool approx(const D1& x, const D2& y, typename AddType<D1,D2>::Type tol = Helper<typename AddType<D1,D2>::Type>::tolerance) {
     typename AddType<D1,D2>::Type d = std::max(x,y);
-    if (d > 1) {
-      tol *= d;
-    }
+    tol *= d;
     return (roundzero(std::abs(x-y), tol) == 0);
   }
 

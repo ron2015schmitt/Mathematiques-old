@@ -95,6 +95,9 @@ namespace mathq {
   Tensor;
 
 
+  // *********************************************************************
+  // * Expressions
+  // ********************************************************************
 
   
 
@@ -102,19 +105,27 @@ namespace mathq {
   TER_Unary;
 
   template <class A, class B, class E1, class E2, class E3, class D1, class D2, class D3, int M1, int M2, int M3, int R1, int R2, int R3, class OP> class
-    TER_Binary;
+  TER_Binary;
 
   template <class A, class B, class C, class E1, class E2, class E3, class E4, class D1, class D2, class D3, class D4, int M1, int M2, int M3, int M4, int R1, int R2, int R3, int R4, class OP> class
-    TER_Ternary;
+  TER_Ternary;
 
-  template <class D, int M = 1+NumberType<D>::depth()>
+  template <class A, class X, class E, class D, int M, int R> 
+  class TER_Series;
+  template <class A, class B, class X, class D, class OP1, class OP2> 
+  class TER_Series2;
+  template <class X, class E, class D, int M, int R, class FUNC> 
+  class TER_Transpose;
+
+  template<class D>
   class TERW_Subset;
-  
-  template <class D, int M = 1+NumberType<D>::depth()>
+
+  template<class D>
   class TERW_Submask;
 
-
-
+  template<class A, class D>
+  class TER_Rep;
+  
   // *********************************************************************
   // * Class type querying/manipulation
   // ********************************************************************
@@ -190,13 +201,31 @@ namespace mathq {
   IsComplex {
   public:
     constexpr static bool value = false;
-    typedef void Type;
+    typedef void RealType;
   };
   template <typename D> class
   IsComplex<std::complex<D>> {
   public:
     constexpr static bool value = true;
-    typedef D Type;
+    typedef D RealType;
+  };
+
+  // ***************************************************************************
+  //  IsImaginary<T>
+  // ***************************************************************************
+
+
+  template <typename T> class
+  IsImaginary {
+  public:
+    constexpr static bool value = false;
+    typedef void RealType;
+  };
+  template <typename D> class
+  IsImaginary<mathq::Imaginary<D>> {
+  public:
+    constexpr static bool value = true;
+    typedef D RealType;
   };
 
   

@@ -98,9 +98,10 @@ namespace mathq {
   
   // numbercast
   
-  template <typename D2, typename D1, typename = EnableIf<IsComplex<D1>::value&&IsComplex<D2>::value>>
-    D2 numbercast(const D1& x) {
-    typedef typename IsComplex<D2>::Type F2;
+  
+  template <typename C2, typename F1> EnableMethodIf<IsComplex<C2>::value, C2>
+    numbercast(const std::complex<F1>& x) {
+    typedef typename IsComplex<C2>::RealType F2;
     F2 re = numbercast<F2>(real(x));
     F2 im = numbercast<F2>(imag(x));
     return std::complex<F2>(re,im);

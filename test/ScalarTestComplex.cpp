@@ -48,20 +48,21 @@ int main(int argc, char *argv[])
 
   
   // -------------- constructors etc ------------------------
+    // just use Material for expressions and typedecl() forconcrete
 
   {
     // dynamic cast
-    printStart(++testnum);
-    Scalar<ComplexInt> s1 = ComplexInt(1,1);
-    testtext( "dynamic casting" );
-    TensorRW<ComplexInt, Scalar<ComplexInt> > &s2 = s1;
-    Scalar<ComplexInt> *sp1 = dynamic_cast< Scalar<ComplexInt>* >(&s2);
-    void* result = (void*)&s1;
-    void* expected = (void*)sp1;
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+    // printStart(++testnum);
+    // Scalar<ComplexInt> s1 = ComplexInt(1,1);
+    // testtext( "dynamic casting" );
+    // TensorRW<ComplexInt, Scalar<ComplexInt> > &s2 = s1;
+    // Scalar<ComplexInt> *sp1 = dynamic_cast< Scalar<ComplexInt>* >(&s2);
+    // void* result = (void*)&s1;
+    // void* expected = (void*)sp1;
+    // bool pass = (result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
   }
 
 
@@ -190,26 +191,26 @@ int main(int argc, char *argv[])
   }
 
   {
-    //  equal_approxel
+    //  approx
     printStart(++testnum);
     Scalar<ComplexDouble> s1 = ComplexDouble(14.,71.);
     Scalar<ComplexDouble> s2 = ComplexDouble(14.01,71.);
     Scalar<bool> expected = true;
     Scalar<bool> result;
-    testcode( result = (equal_approxel(s1,s2,0.015)) );
+    testcode( result = (approx(s1,s2,0.015)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
-    //  equal_approxel
+    //  approx
     printStart(++testnum);
     Scalar<ComplexDouble> s1 = ComplexDouble(14.,71.);
     Scalar<ComplexDouble> s2 = ComplexDouble(14.01,71.);
     Scalar<bool> expected = false;
     Scalar<bool> result;
-    testcode( result = (equal_approxel(s1,s2,0.0005)) );
+    testcode( result = (approx(s1,s2,0.0005)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -685,31 +686,31 @@ int main(int argc, char *argv[])
     failnum += (!pass);
   }
 
-  {
-    // op1<double,clip>(s)
-    printStart(++testnum);
-    Scalar<ComplexDouble> s = ComplexDouble(2,3);
-    Scalar<ComplexDouble> expected = ComplexDouble(2.5,2.5);
-    Scalar<ComplexDouble> result;
-    testcode( result = op1<ComplexDouble,average>(s) );
-    bool pass = equal_approx(result,expected,tol);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // op2<double,paste>(s)
-    printStart(++testnum);
-    Scalar<ComplexDouble> s1 = ComplexDouble(2,3);
-    Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
-    Scalar<ComplexDouble> expected = ComplexDouble(6,3);
-    Scalar<ComplexDouble> result;
-    testcode( result = op2<ComplexDouble,average>(s1,s2) );
-    bool pass = equal_approx(result,expected,tol);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // op1<double,clip>(s)
+  //   printStart(++testnum);
+  //   Scalar<ComplexDouble> s = ComplexDouble(2,3);
+  //   Scalar<ComplexDouble> expected = ComplexDouble(2.5,2.5);
+  //   Scalar<ComplexDouble> result;
+  //   testcode( result = op1<ComplexDouble,average>(s) );
+  //   bool pass = equal_approx(result,expected,tol);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // op2<double,paste>(s)
+  //   printStart(++testnum);
+  //   Scalar<ComplexDouble> s1 = ComplexDouble(2,3);
+  //   Scalar<ComplexDouble> s2 = ComplexDouble(10,3);
+  //   Scalar<ComplexDouble> expected = ComplexDouble(6,3);
+  //   Scalar<ComplexDouble> result;
+  //   testcode( result = op2<ComplexDouble,average>(s1,s2) );
+  //   bool pass = equal_approx(result,expected,tol);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
   
   {
     // Test of a large Scalar math expression

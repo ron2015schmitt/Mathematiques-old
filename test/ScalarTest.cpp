@@ -49,17 +49,18 @@ int main(int argc, char *argv[])
 
   {
     // dynamic cast
-    printStart(++testnum);
-    Scalar<int> s1 = 1;
-    testtext( "dynamic casting" );
-    TensorRW<int,Scalar<int> > &s2 = s1;
-    Scalar<int> *sp1 = dynamic_cast<Scalar<int>*>(&s2);
-    void* result = (void*)&s1;
-    void* expected = (void*)sp1;
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
+    // just use Material for expressions and typedecl() forconcrete
+    // printStart(++testnum);
+    // Scalar<int> s1 = 1;
+    // testtext( "dynamic casting" );
+    // TensorRW<int,Scalar<int> > &s2 = s1;
+    // Scalar<int> *sp1 = dynamic_cast<Scalar<int>*>(&s2);
+    // void* result = (void*)&s1;
+    // void* expected = (void*)sp1;
+    // bool pass = (result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
   }
 
 
@@ -188,26 +189,26 @@ int main(int argc, char *argv[])
   }
 
   {
-    //  equal_approxel
+    //  approx
     printStart(++testnum);
     Scalar<double> s1 = 1;
     Scalar<double> s2 = 1.001;
     Scalar<bool> expected = true;
     Scalar<bool> result;
-    testcode( result = (equal_approxel(s1,s2,0.0011)) );
+    testcode( result = (approx(s1,s2,0.0011)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
-    //  equal_approxel
+    //  approx
     printStart(++testnum);
     Scalar<double> s1 = 1;
     Scalar<double> s2 = 1.001;
     Scalar<bool> expected = false;
     Scalar<bool> result;
-    testcode( result = (equal_approxel(s1,s2,0.0009)) );
+    testcode( result = (approx(s1,s2,0.0009)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -681,31 +682,31 @@ int main(int argc, char *argv[])
     allpass = allpass && pass;
     failnum += (!pass);
   }
-  {
-    // op1<double,clip>(s)
-    printStart(++testnum);
-    Scalar<double> s = 0.01;
-    Scalar<double> expected = 0.01;
-    Scalar<double> result;
-    testcode( result = op1<double,clip>(s) );
-    bool pass = equal_approx(result,expected,tol);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
-  {
-    // op2<double,paste>(s)
-    printStart(++testnum);
-    Scalar<double> s1 = 0.01;
-    Scalar<double> s2 = 4;
-    Scalar<double> expected = 4;
-    Scalar<double> result;
-    testcode( result = op2<double,paste>(s1,s2) );
-    bool pass = equal_approx(result,expected,tol);
-    printEnd(pass,result,expected);
-    allpass = allpass && pass;
-    failnum += (!pass);
-  }
+  // {
+  //   // op1<double,clip>(s)
+  //   printStart(++testnum);
+  //   Scalar<double> s = 0.01;
+  //   Scalar<double> expected = 0.01;
+  //   Scalar<double> result;
+  //   testcode( result = op1<double,clip>(s) );
+  //   bool pass = equal_approx(result,expected,tol);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
+  // {
+  //   // op2<double,paste>(s)
+  //   printStart(++testnum);
+  //   Scalar<double> s1 = 0.01;
+  //   Scalar<double> s2 = 4;
+  //   Scalar<double> expected = 4;
+  //   Scalar<double> result;
+  //   testcode( result = op2<double,paste>(s1,s2) );
+  //   bool pass = equal_approx(result,expected,tol);
+  //   printEnd(pass,result,expected);
+  //   allpass = allpass && pass;
+  //   failnum += (!pass);
+  // }
   
   {
     // Test of a large scalar math expression
@@ -1198,7 +1199,7 @@ int main(int argc, char *argv[])
     double expected = pi/6;
     double result;
     testcode( result = norm(s) );
-    bool pass = equal_approx(result,expected,tol);
+    bool pass = approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);

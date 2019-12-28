@@ -754,14 +754,14 @@ namespace mathq {
 
 
   // Imaginary - roundzero
-  template <typename D> Imaginary<D> roundzero(const Imaginary<D>& z, const D tolerance = MatricksHelper<D>::tolerance) {
+  template <typename D> Imaginary<D> roundzero(const Imaginary<D>& z, const D tolerance = Helper<D>::tolerance) {
     return Imaginary<D>(roundzero(z.value(),tolerance));
   }
 
   // Imaginary - approx
 
   template <typename D1, typename D2>
-  bool approx(const Imaginary<D1>& x, const Imaginary<D2>& y, const typename AddType<D1,D2>::Type tol = MatricksHelper<typename AddType<D1,D2>::Type>::tolerance) {
+  bool approx(const Imaginary<D1>& x, const Imaginary<D2>& y, const typename AddType<D1,D2>::Type tol = Helper<typename AddType<D1,D2>::Type>::tolerance) {
     return mathq::approx(x.value(), y.value(), tol);
   }
 

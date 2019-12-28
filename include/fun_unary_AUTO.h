@@ -16,7 +16,7 @@ namespace mathq {
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function '+'
+// pos: template class for function '+'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -53,7 +53,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function '-'
+// neg: template class for function '-'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -90,7 +90,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function '!'
+// not: template class for function '!'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -127,7 +127,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::sin'
+// sin: template class for function 'std::sin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -164,7 +164,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::cos'
+// cos: template class for function 'std::cos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -201,7 +201,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::tan'
+// tan: template class for function 'std::tan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -238,7 +238,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::asin'
+// asin: template class for function 'std::asin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -275,7 +275,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::acos'
+// acos: template class for function 'std::acos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -312,7 +312,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::atan'
+// atan: template class for function 'std::atan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -349,7 +349,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::sinh'
+// sinh: template class for function 'std::sinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -386,7 +386,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::cosh'
+// cosh: template class for function 'std::cosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -423,7 +423,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::tanh'
+// tanh: template class for function 'std::tanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -460,7 +460,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::asinh'
+// asinh: template class for function 'std::asinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -497,7 +497,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::acosh'
+// acosh: template class for function 'std::acosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -534,7 +534,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::atanh'
+// atanh: template class for function 'std::atanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -571,7 +571,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::sqrt'
+// sqrt: template class for function 'std::sqrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -608,7 +608,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::cbrt'
+// cbrt: template class for function 'std::cbrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -645,7 +645,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::sqr'
+// sqr: template class for function 'mathq::sqr'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -682,7 +682,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::cube'
+// cube: template class for function 'mathq::cube'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -719,7 +719,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::exp'
+// exp: template class for function 'std::exp'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -756,7 +756,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::exp2'
+// exp2: template class for function 'std::exp2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -793,7 +793,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::expm1'
+// expm1: template class for function 'std::expm1'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -830,7 +830,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::log'
+// log: template class for function 'std::log'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -867,7 +867,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::log10'
+// log10: template class for function 'std::log10'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -904,7 +904,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::log2'
+// log2: template class for function 'std::log2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -941,7 +941,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::log1p'
+// log1p: template class for function 'std::log1p'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -978,7 +978,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::logb'
+// logb: template class for function 'std::logb'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1015,7 +1015,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::sgn'
+// sgn: template class for function 'mathq::sgn'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1052,7 +1052,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::ceil'
+// ceil: template class for function 'std::ceil'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1089,7 +1089,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::floor'
+// floor: template class for function 'std::floor'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1126,7 +1126,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::round'
+// round: template class for function 'std::round'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1163,7 +1163,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::trunc'
+// trunc: template class for function 'std::trunc'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1200,7 +1200,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::erf'
+// erf: template class for function 'std::erf'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1237,7 +1237,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::erfc'
+// erfc: template class for function 'std::erfc'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1274,7 +1274,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::tgamma'
+// tgamma: template class for function 'std::tgamma'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1311,7 +1311,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::lgamma'
+// lgamma: template class for function 'std::lgamma'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1348,7 +1348,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::expint'
+// expint: template class for function 'std::expint'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1385,7 +1385,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::riemann_zeta'
+// riemann_zeta: template class for function 'std::riemann_zeta'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1422,7 +1422,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::comp_ellint_1'
+// comp_ellint_1: template class for function 'std::comp_ellint_1'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1459,7 +1459,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::comp_ellint_2'
+// comp_ellint_2: template class for function 'std::comp_ellint_2'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1496,7 +1496,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::zero'
+// zero: template class for function 'mathq::zero'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1533,7 +1533,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::ilogb'
+// ilogb: template class for function 'std::ilogb'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1570,7 +1570,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::Imaginary'
+// imaginary: template class for function 'mathq::Imaginary'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1607,7 +1607,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::conj'
+// conj_imag: template class for function 'mathq::conj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1644,7 +1644,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::real'
+// real_imag: template class for function 'mathq::real'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1681,7 +1681,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::imag'
+// imag_imag: template class for function 'mathq::imag'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1718,7 +1718,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::abs'
+// abs_imag: template class for function 'mathq::abs'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1755,7 +1755,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::arg'
+// arg_imag: template class for function 'mathq::arg'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1792,7 +1792,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::proj'
+// proj_imag: template class for function 'mathq::proj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1829,7 +1829,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::exp'
+// exp_imag: template class for function 'mathq::exp'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1866,7 +1866,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::log'
+// log_imag: template class for function 'mathq::log'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1903,7 +1903,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::log10'
+// log10_imag: template class for function 'mathq::log10'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1940,7 +1940,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::sqrt'
+// sqrt_imag: template class for function 'mathq::sqrt'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -1977,7 +1977,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::sin'
+// sin_imag: template class for function 'mathq::sin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2014,7 +2014,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::cos'
+// cos_imag: template class for function 'mathq::cos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2051,7 +2051,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::tan'
+// tan_imag: template class for function 'mathq::tan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2088,7 +2088,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::asin'
+// asin_imag: template class for function 'mathq::asin'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2125,7 +2125,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::acos'
+// acos_imag: template class for function 'mathq::acos'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2162,7 +2162,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::atan'
+// atan_imag: template class for function 'mathq::atan'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2199,7 +2199,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::sinh'
+// sinh_imag: template class for function 'mathq::sinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2236,7 +2236,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::cosh'
+// cosh_imag: template class for function 'mathq::cosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2273,7 +2273,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::tanh'
+// tanh_imag: template class for function 'mathq::tanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2310,7 +2310,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::asinh'
+// asinh_imag: template class for function 'mathq::asinh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2347,7 +2347,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::acosh'
+// acosh_imag: template class for function 'mathq::acosh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2384,7 +2384,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::atanh'
+// atanh_imag: template class for function 'mathq::atanh'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2421,7 +2421,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::conj'
+// conj_complex: template class for function 'std::conj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2458,7 +2458,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::real'
+// real_complex: template class for function 'std::real'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2495,7 +2495,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::imag'
+// imag_complex: template class for function 'std::imag'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2532,7 +2532,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::abs'
+// abs_complex: template class for function 'std::abs'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2569,7 +2569,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::arg'
+// arg_complex: template class for function 'std::arg'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2606,7 +2606,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::proj'
+// proj_complex: template class for function 'std::proj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2643,7 +2643,155 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::conj'
+// round_complex: template class for function 'mathq::round'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_round_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::round(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::round(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::round")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_round_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// log2_complex: template class for function 'mathq::log2'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log2_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::log2(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::log2(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::log2")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_log2_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// floor_complex: template class for function 'mathq::floor'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_floor_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::floor(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::floor(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::floor")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_floor_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// ceil_complex: template class for function 'mathq::ceil'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_ceil_complex {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::ceil(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::ceil(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::ceil")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_ceil_complex")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// conj_real: template class for function 'mathq::conj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2680,7 +2828,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::real'
+// real_real: template class for function 'mathq::real'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2717,7 +2865,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'mathq::imag'
+// imag_real: template class for function 'mathq::imag'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2754,7 +2902,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::abs'
+// abs_real: template class for function 'std::abs'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2791,7 +2939,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::arg'
+// arg_real: template class for function 'std::arg'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2828,7 +2976,7 @@ public:
 
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function 'std::proj'
+// proj_real: template class for function 'std::proj'
 //
 //    Note: generated from template file 'fun_unary_functor.hpp'
 //          using Python script 'fun_unary.py'
@@ -2888,7 +3036,7 @@ public:
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operator+(const TensorR<X,E,D,M,R>& x) {		
+auto operator+(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_pos<E,EOUT,D,D>>(x); 
 }
@@ -2907,7 +3055,7 @@ inline auto operator+(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operator-(const TensorR<X,E,D,M,R>& x) {		
+auto operator-(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_neg<E,EOUT,D,D>>(x); 
 }
@@ -2926,7 +3074,7 @@ inline auto operator-(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto operator!(const TensorR<X,E,D,M,R>& x) {		
+auto operator!(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_not<E,EOUT,D,D>>(x); 
 }
@@ -2945,7 +3093,7 @@ inline auto operator!(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sin(const TensorR<X,E,D,M,R>& x) {		
+auto sin(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sin<E,EOUT,D,D>>(x); 
 }
@@ -2964,7 +3112,7 @@ inline auto sin(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto cos(const TensorR<X,E,D,M,R>& x) {		
+auto cos(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cos<E,EOUT,D,D>>(x); 
 }
@@ -2983,7 +3131,7 @@ inline auto cos(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto tan(const TensorR<X,E,D,M,R>& x) {		
+auto tan(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tan<E,EOUT,D,D>>(x); 
 }
@@ -3002,7 +3150,7 @@ inline auto tan(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto asin(const TensorR<X,E,D,M,R>& x) {		
+auto asin(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asin<E,EOUT,D,D>>(x); 
 }
@@ -3021,7 +3169,7 @@ inline auto asin(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto acos(const TensorR<X,E,D,M,R>& x) {		
+auto acos(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_acos<E,EOUT,D,D>>(x); 
 }
@@ -3040,7 +3188,7 @@ inline auto acos(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto atan(const TensorR<X,E,D,M,R>& x) {		
+auto atan(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_atan<E,EOUT,D,D>>(x); 
 }
@@ -3059,7 +3207,7 @@ inline auto atan(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sinh(const TensorR<X,E,D,M,R>& x) {		
+auto sinh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sinh<E,EOUT,D,D>>(x); 
 }
@@ -3078,7 +3226,7 @@ inline auto sinh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto cosh(const TensorR<X,E,D,M,R>& x) {		
+auto cosh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cosh<E,EOUT,D,D>>(x); 
 }
@@ -3097,7 +3245,7 @@ inline auto cosh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto tanh(const TensorR<X,E,D,M,R>& x) {		
+auto tanh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tanh<E,EOUT,D,D>>(x); 
 }
@@ -3116,7 +3264,7 @@ inline auto tanh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto asinh(const TensorR<X,E,D,M,R>& x) {		
+auto asinh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asinh<E,EOUT,D,D>>(x); 
 }
@@ -3135,7 +3283,7 @@ inline auto asinh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto acosh(const TensorR<X,E,D,M,R>& x) {		
+auto acosh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_acosh<E,EOUT,D,D>>(x); 
 }
@@ -3154,7 +3302,7 @@ inline auto acosh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto atanh(const TensorR<X,E,D,M,R>& x) {		
+auto atanh(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_atanh<E,EOUT,D,D>>(x); 
 }
@@ -3173,7 +3321,7 @@ inline auto atanh(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sqrt(const TensorR<X,E,D,M,R>& x) {		
+auto sqrt(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sqrt<E,EOUT,D,D>>(x); 
 }
@@ -3192,7 +3340,7 @@ inline auto sqrt(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto cbrt(const TensorR<X,E,D,M,R>& x) {		
+auto cbrt(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cbrt<E,EOUT,D,D>>(x); 
 }
@@ -3211,7 +3359,7 @@ inline auto cbrt(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sqr(const TensorR<X,E,D,M,R>& x) {		
+auto sqr(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sqr<E,EOUT,D,D>>(x); 
 }
@@ -3230,7 +3378,7 @@ inline auto sqr(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto cube(const TensorR<X,E,D,M,R>& x) {		
+auto cube(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cube<E,EOUT,D,D>>(x); 
 }
@@ -3249,7 +3397,7 @@ inline auto cube(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto exp(const TensorR<X,E,D,M,R>& x) {		
+auto exp(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_exp<E,EOUT,D,D>>(x); 
 }
@@ -3268,7 +3416,7 @@ inline auto exp(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto exp2(const TensorR<X,E,D,M,R>& x) {		
+auto exp2(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_exp2<E,EOUT,D,D>>(x); 
 }
@@ -3287,7 +3435,7 @@ inline auto exp2(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto expm1(const TensorR<X,E,D,M,R>& x) {		
+auto expm1(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_expm1<E,EOUT,D,D>>(x); 
 }
@@ -3306,7 +3454,7 @@ inline auto expm1(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto log(const TensorR<X,E,D,M,R>& x) {		
+auto log(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log<E,EOUT,D,D>>(x); 
 }
@@ -3325,7 +3473,7 @@ inline auto log(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto log10(const TensorR<X,E,D,M,R>& x) {		
+auto log10(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log10<E,EOUT,D,D>>(x); 
 }
@@ -3344,7 +3492,7 @@ inline auto log10(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto log2(const TensorR<X,E,D,M,R>& x) {		
+auto log2(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log2<E,EOUT,D,D>>(x); 
 }
@@ -3363,7 +3511,7 @@ inline auto log2(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto log1p(const TensorR<X,E,D,M,R>& x) {		
+auto log1p(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log1p<E,EOUT,D,D>>(x); 
 }
@@ -3382,7 +3530,7 @@ inline auto log1p(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto logb(const TensorR<X,E,D,M,R>& x) {		
+auto logb(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_logb<E,EOUT,D,D>>(x); 
 }
@@ -3401,7 +3549,7 @@ inline auto logb(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sgn(const TensorR<X,E,D,M,R>& x) {		
+auto sgn(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sgn<E,EOUT,D,D>>(x); 
 }
@@ -3420,7 +3568,7 @@ inline auto sgn(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto ceil(const TensorR<X,E,D,M,R>& x) {		
+auto ceil(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_ceil<E,EOUT,D,D>>(x); 
 }
@@ -3439,7 +3587,7 @@ inline auto ceil(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto floor(const TensorR<X,E,D,M,R>& x) {		
+auto floor(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_floor<E,EOUT,D,D>>(x); 
 }
@@ -3458,7 +3606,7 @@ inline auto floor(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto round(const TensorR<X,E,D,M,R>& x) {		
+auto round(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_round<E,EOUT,D,D>>(x); 
 }
@@ -3477,7 +3625,7 @@ inline auto round(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto trunc(const TensorR<X,E,D,M,R>& x) {		
+auto trunc(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_trunc<E,EOUT,D,D>>(x); 
 }
@@ -3496,7 +3644,7 @@ inline auto trunc(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto erf(const TensorR<X,E,D,M,R>& x) {		
+auto erf(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_erf<E,EOUT,D,D>>(x); 
 }
@@ -3515,7 +3663,7 @@ inline auto erf(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto erfc(const TensorR<X,E,D,M,R>& x) {		
+auto erfc(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_erfc<E,EOUT,D,D>>(x); 
 }
@@ -3534,7 +3682,7 @@ inline auto erfc(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto tgamma(const TensorR<X,E,D,M,R>& x) {		
+auto tgamma(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tgamma<E,EOUT,D,D>>(x); 
 }
@@ -3553,7 +3701,7 @@ inline auto tgamma(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto lgamma(const TensorR<X,E,D,M,R>& x) {		
+auto lgamma(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_lgamma<E,EOUT,D,D>>(x); 
 }
@@ -3572,7 +3720,7 @@ inline auto lgamma(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto expint(const TensorR<X,E,D,M,R>& x) {		
+auto expint(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_expint<E,EOUT,D,D>>(x); 
 }
@@ -3591,7 +3739,7 @@ inline auto expint(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {		
+auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_riemann_zeta<E,EOUT,D,D>>(x); 
 }
@@ -3610,7 +3758,7 @@ inline auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {		
+auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_comp_ellint_1<E,EOUT,D,D>>(x); 
 }
@@ -3629,7 +3777,7 @@ inline auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {		
+auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_comp_ellint_2<E,EOUT,D,D>>(x); 
 }
@@ -3648,7 +3796,7 @@ inline auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto zero(const TensorR<X,E,D,M,R>& x) {		
+auto zero(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_zero<E,EOUT,D,D>>(x); 
 }
@@ -3667,7 +3815,7 @@ inline auto zero(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto ilogb(const TensorR<X,E,D,M,R>& x) {		
+auto ilogb(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,int>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,int,M,R, FUNCTOR_ilogb<E,EOUT,D,int>>(x); 
 }
@@ -3686,7 +3834,7 @@ inline auto ilogb(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto imaginary(const TensorR<X,E,D,M,R>& x) {		
+auto imaginary(const TensorR<X,E,D,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_imaginary<E,EOUT,D,mathq::Imaginary<D>>>(x); 
 }
@@ -3705,7 +3853,7 @@ inline auto imaginary(const TensorR<X,E,D,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_conj_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
@@ -3724,7 +3872,7 @@ inline auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
@@ -3743,7 +3891,7 @@ inline auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
@@ -3762,7 +3910,7 @@ inline auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
@@ -3781,7 +3929,7 @@ inline auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_arg_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
@@ -3800,7 +3948,7 @@ inline auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -3819,7 +3967,7 @@ inline auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_exp_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -3838,7 +3986,7 @@ inline auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -3857,7 +4005,7 @@ inline auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log10_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -3876,7 +4024,7 @@ inline auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_sqrt_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -3895,7 +4043,7 @@ inline auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_sin_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
@@ -3914,7 +4062,7 @@ inline auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_cos_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
@@ -3933,7 +4081,7 @@ inline auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_tan_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
@@ -3952,7 +4100,7 @@ inline auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_asin_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
@@ -3971,7 +4119,7 @@ inline auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_acos_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -3990,7 +4138,7 @@ inline auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_atan_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -4009,7 +4157,7 @@ inline auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_sinh_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
@@ -4028,7 +4176,7 @@ inline auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_cosh_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
@@ -4047,7 +4195,7 @@ inline auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_tanh_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
@@ -4066,7 +4214,7 @@ inline auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_asinh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -4085,7 +4233,7 @@ inline auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_acosh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -4104,7 +4252,7 @@ inline auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
+auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_atanh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
@@ -4123,7 +4271,7 @@ inline auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_conj_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
@@ -4142,7 +4290,7 @@ inline auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
@@ -4161,7 +4309,7 @@ inline auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
@@ -4180,7 +4328,7 @@ inline auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
@@ -4199,7 +4347,7 @@ inline auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_arg_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
@@ -4218,9 +4366,85 @@ inline auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {
 //----------------------------------------------
 
 template <class X, class E, class D, int M, int R>			
-inline auto proj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+auto proj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// round
+// template functions for 'round'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// round 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto round(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_round_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// log2
+// template functions for 'log2'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// log2 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto log2(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log2_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// floor
+// template functions for 'floor'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// floor 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto floor(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_floor_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// ceil
+// template functions for 'ceil'
+//
+//    Note: generated from template file 'fun_unary_functor.hpp'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// ceil 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto ceil(const TensorR<X,E,std::complex<D>,M,R>& x) {		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_ceil_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
 

@@ -378,7 +378,7 @@ namespace mathq {
   // NOTE: in-place
 
     
-  Scalar<E,D,M>&  roundzero(typename Realify<D>::Type tolerance = MatricksHelper<typename Realify<D>::Type>::tolerance) { 
+  Scalar<E,D,M>&  roundzero(typename Realify<D>::Type tolerance = Helper<typename Realify<D>::Type>::tolerance) { 
     data_ = mathq::roundzero(data_, tolerance);
     return *this;
   }

@@ -911,27 +911,6 @@ namespace mathq {
   };
 
 
-  // template<class D, class A, class B, class X, class OP1, class OP2, int M>
-  //   class TER_Series2 : public  TensorR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
-
-
-  //   const D operator[](const index_type i) const {
-  //     D sum = 0;
-  //     // TODO: check a_.size >= N
-  //     for (int n = 0; n < N_ ; n++) {
-  // 	D kx = k_[n]*x_[i];
-  // 	D an = a_[n];
-  // 	if (an != D(0)) {
-  // 	  sum += an*OP1::apply(kx);
-  // 	}
-  // 	D bn = b_[n];
-  // 	if (bn != D(0)) {
-  // 	  sum += bn*OP2::apply(kx);
-  // 	}
-  //     }
-  //     return sum; 
-  //   }
-
 
 
 
@@ -942,90 +921,102 @@ namespace mathq {
   // TER_Transpose   tensor transpose, ie reverse the order of indices (RHS only)
   //-----------------------------------------------------------------------------
 
-//   template<class D, class A, class FUNC, int M>
-//     class TER_Transpose  : public  TensorR<D,TER_Transpose<D,A,FUNC,M> > {
+  template <class X, class E, class D, int M, int R, class FUNC> 
+    class TER_Transpose : public  TensorR<TER_Transpose<X,E,D,M,R,FUNC>, E,D,M,R> {
+  public:
+    typedef Materialize<E,D,M,R> XType;
+    typedef E EType;
+    typedef D DType;
+    constexpr static int Rvalue = R;
+    constexpr static int Mvalue = M;
+      
+  private:
+    const X& x_;
+    VectorofPtrs *vptrs;
+    Dimensions *rdims;
   
-//   private:
-//     const A& a_;
-//     VectorofPtrs *vptrs;
-//     Dimensions *rdims;
-  
-//   public:
-//     typedef typename NumberType<D>::Type MyNumberType;
-
-
-
-//   TER_Transpose(const A& a) : a_(a) {
-//       rdims = &(a_.dims().getReverse());
-//       vptrs = new VectorofPtrs();
-//       vptrs->add(a_.getAddresses());
-//     }
+  public:
+  TER_Transpose(const X& x) : x_(x) {
+      rdims = &(x_.dims().getReverse());
+      vptrs = new VectorofPtrs();
+      vptrs->add(x_.getAddresses());
+    }
     
-//     ~TER_Transpose() {
-//       delete rdims;
-//       delete vptrs;
-//     }
+    ~TER_Transpose() {
+      delete rdims;
+      delete vptrs;
+    }
 
-//     const D operator[](const index_type index1) const {
-//       const Indices inds1 = rdims->indices(index1);
-//       const Indices inds2 = inds1.getReverse();
-//       const index_type index2 = a_.dims().index(inds2);
-//       return FUNC::apply(a_[index2]);
-//     }
+    const D dat(const index_type i) const {
+      if constexpr(M<=1) {
+	return (*this[i]);
+      } else {
+	index_type j = i / x_.elsize();
+	index_type k = i % x_.elsize();
+	return (*this[j][k]);
+      }
+    }
+    
+    const E operator[](const index_type index1) const {
+      const Indices inds1 = rdims->indices(index1);
+      const Indices inds2 = inds1.getReverse();
+      const index_type index2 = x_.dims().index(inds2);
+      return FUNC::apply(x_[index2]);
+    }
 
-//     VectorofPtrs getAddresses(void) const {
-//       return *vptrs;
-//     }
-//     size_type size(void) const {
-//       return rdims->datasize();
-//     }
-//     size_type ndims(void) const {
-//       return rdims->ndims();
-//     }
-//     Dimensions dims(void) const {
-//       return *rdims;
-//     }
-//     bool isExpression(void) const {
-//       return true;
-//     }
-//   size_type depth(void) const {
-//       return M;
-//     }
-//   size_type elsize(void) const {
-//     if constexpr(M<2) {
-//       return 1;
-//     } else {
-//       return a_.elsize();
-//     }
-//   }
-//   size_type eldeepsize(void) const {
-//     if constexpr(M<2) {
-//       return 1;
-//     } else {
-//       return a_.eldeepsize();
-//     }
-//   }
-//     size_type deepsize(void) const {
-//       if constexpr(M<2) {
-// 	  return this->size();
-// 	} else {
-// 	return (this->size())*(this->eldeepsize());
-//       }
-//     }
-//     std::string classname() const {
-//       return "TER_Transpose";
-//     }
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return rdims->datasize();
+    }
+    size_type ndims(void) const {
+      return rdims->ndims();
+    }
+    Dimensions dims(void) const {
+      return *rdims;
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+  size_type depth(void) const {
+      return M;
+    }
+  size_type elsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return x_.elsize();
+    }
+  }
+  size_type eldeepsize(void) const {
+    if constexpr(M<2) {
+      return 1;
+    } else {
+      return x_.eldeepsize();
+    }
+  }
+    size_type deepsize(void) const {
+      if constexpr(M<2) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
+    std::string classname() const {
+      return "TER_Transpose";
+    }
 
 
-// #if MATRICKS_DEBUG>=1
-//     std::string expression(void) const {
-//       std::string sa = a_.expression();
-//       return FUNC::expression(sa);
-//     }
-// #endif
+#if MATRICKS_DEBUG>=1
+    std::string expression(void) const {
+      std::string sa = x_.expression();
+      return FUNC::expression(sa);
+    }
+#endif
 
 
-//   };
+  };
 
 
 

@@ -1,6 +1,6 @@
   
 // ----------------------------------------------------------------
-// FUNCTOR_##NAME##: template class for function '##FUNCTION##'
+// ##FUNCTORNAME##: template class for function '##FUNCTION##'
 //
 //    Note: generated from template file '##MYFILENAME##'
 //          using Python script '##SCRIPTNAME##'

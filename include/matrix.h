@@ -343,7 +343,7 @@ namespace mathq {
     // data is left unchanged
     Matrix<E,NR,NC,D,M>& reshape(const size_type nr, const size_type nc) { 
       const size_type nn = nr*nc;
-      if (nn==size) {
+      if (nn==size()) {
       if (nn == 0) {
 	Nrows_ = 0;
 	Ncols_ = 0; 
@@ -878,7 +878,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Matrix<E,NR,NC,D,M>&  roundzero(typename Realify<E>::Type tolerance = MatricksHelper<typename Realify<E>::Type>::tolerance) { 
+    Matrix<E,NR,NC,D,M>&  roundzero(typename Realify<E>::Type tolerance = Helper<typename Realify<E>::Type>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = mathq::roundzero(data_[i], tolerance);
       }

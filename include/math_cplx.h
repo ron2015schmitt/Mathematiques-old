@@ -98,10 +98,12 @@ namespace mathq {
   
   // numbercast
   
-  template <typename D2, typename D1>
-    std::complex<D2> numbercast(const std::complex<D1>& x) {
-    using namespace std;
-    return std::complex<D2>( numbercast<D2,D1>(real(x)), numbercast<D2,D1>(imag(x)) );
+  template <typename D2, typename D1, typename = EnableIf<IsComplex<D1>::value&&IsComplex<D2>::value>>
+    D2 numbercast(const D1& x) {
+    typedef typename IsComplex<D2>::Type F2;
+    F2 re = numbercast<F2>(real(x));
+    F2 im = numbercast<F2>(imag(x));
+    return std::complex<F2>(re,im);
   }
 
 
@@ -135,6 +137,12 @@ namespace mathq {
     return z*z;
   }
 
+  // cube(z)
+  
+  template <typename D> std::complex<D> cube(const std::complex<D>& z) {
+    return z*z*z;
+  }
+
   
   // complex rounding
 
@@ -163,14 +171,14 @@ namespace mathq {
 
 
   // complex - roundzero
-  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance = MatricksHelper<D>::tolerance) {
+  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance = Helper<D>::tolerance) {
     return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
 
   // approx - complex
 
   template <typename D1, typename D2>
-  bool approx(const std::complex<D1>& x, const std::complex<D2>& y, const typename AddType<D1,D2>::Type tol = MatricksHelper<typename AddType<D1,D2>::Type>::tolerance) {
+  bool approx(const std::complex<D1>& x, const std::complex<D2>& y, const typename AddType<D1,D2>::Type tol = Helper<typename AddType<D1,D2>::Type>::tolerance) {
     return (mathq::approx(real(x),real(y),tol) && mathq::approx(imag(x),imag(y),tol));
   }
 

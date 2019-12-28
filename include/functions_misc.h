@@ -5,10 +5,113 @@
 namespace mathq {
 
   /****************************************************************************
+   * casting
+   ****************************************************************************
+   */
+  
+  // ----------------------------------------------------------------
+  // FUNCTOR_numbercast
+  // ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_numbercast {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return numbercast<DOUT>(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = numbercast<DOUT>(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";
+    DOUT d;
+    sout = functor_style.apply("numbercast")+display::getBracketedTypeName(d)+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_numbercast")+display::getBracketedTypeName(e); 
+  }									
+};
+
+
+  //----------------------------------------------
+  // numbercast 
+  //----------------------------------------------
+  
+  template <class D2, class X, class E, class D, int M, int R>			
+  auto numbercast(const TensorR<X,E,D,M,R>& x) {		
+    typedef typename NumberType<E,D2>::ReplaceTypeE EOUT;		
+    return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D2,M,R, FUNCTOR_numbercast<E,EOUT,D,D2>>(x); 
+  }
+  
+
+    /****************************************************************************
    * Equality related
    ****************************************************************************
    */
-    
+
+
+// ----------------------------------------------------------------
+// FUNCTOR_roundzero
+// ----------------------------------------------------------------
+
+  
+  template <class E, class D> class FUNCTOR_roundzero {
+  public:								
+    typedef typename FundamentalType<D>::Type DTOL;
+    static D apply(const D d, const DTOL tol) {
+      return mathq::roundzero(d,tol);
+    }									
+    template <class T=E>						
+    static typename std::enable_if<!std::is_same<T,D>::value, E& >::type 
+    apply(const E& e, const DTOL tol) {
+      E *e2 = new E();							
+      *e2 = roundzero(e,tol);
+      return *e2;								
+    }									
+    static std::string expression(const std::string& sa, const std::string& sb) {	
+      using namespace display;						
+      std::string sout = "";						
+      sout = sa +" + "+ sb;					
+      return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    D d;								
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_roundzero)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e);
+    s += comma + getTypeName(d);
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+  // -------------------------------------------------------------------
+  // roundzero 
+  //         
+  // -------------------------------------------------------------------
+  template <class X, class E, class D, int M, int R> 
+  auto roundzero(const TensorR<X,E,D,M,R>& x, const typename FundamentalType<D>::Type& tol = Helper<typename FundamentalType<D>::Type>::tolerance)  {
+
+    typedef typename FundamentalType<D>::Type DTOL;
+    return  TER_Binary<TensorR<X,E,D,M,R>,
+		       DTOL,
+		       E,DTOL,E,D,DTOL,D,M,0,M,R,0,R,
+		       FUNCTOR_roundzero<E,D>>(x,tol); 
+  } 
 
 
 
@@ -26,13 +129,147 @@ namespace mathq {
   }
 
 
+  // ----------------------------------------------------------------
+// FUNCTOR_approx: template class for function 'mathq::approx'
+//
+//    Note: generated from template file 'fun_ternary_functor.hpp'
+//          using Python script 'fun_ternary.py'
+// ----------------------------------------------------------------
+
+  
+template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_approx { 
+public:								
+  typedef typename FundamentalType<D3>::Type DTOL;
+  
+  static D3 apply(const D1 d1, const D2 d2, const DTOL tol) {
+    return mathq::approx(d1, d2, tol);
+  }
+  template <class T1=E1, class T2=E2>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value&&!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const E1& e1, const E2& e2, const DTOL tol) {					
+    E3 *e3 = new E3();							
+    *e3 = mathq::approx(e1 , e2, tol);
+    return *e3;								
+  }									
+  template <class T1=E1>						
+  static typename std::enable_if<!std::is_same<T1,D1>::value, E3& >::type 
+  apply(const E1& e1, const D2 d2, const DTOL tol) {					
+    E3 *e3 = new E3();							
+    *e3 = mathq::approx(e1 , d2, tol);
+    return *e3;								
+  }									
+  template <class T2=E2>						
+  static typename std::enable_if<!std::is_same<T2,D2>::value, E3& >::type 
+  apply(const D1 d1, const E2& e2, const DTOL tol) {					
+    E3 *e3 = new E3();							
+    *e3 = mathq::approx(d1 , e2, tol);
+    return *e3;								
+  }									
+  
+  static std::string expression(const std::string& sa, const std::string& sb, const std::string& sc) {	
+    using namespace display;						
+    std::string sout = "";						
+    sout = sa +" , "+ sb +" , "+ sc;	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E1 e1;								
+    E2 e2;								
+    E3 e3;
+    D1 d1;								
+    D2 d2;								
+    D3 d3;
+    std::string comma =  StyledString::get(COMMA).get();		
+    std::string s = functor_namestyle.apply(stringify(FUNCTOR_approx)); 
+    s += StyledString::get(BRACKET1).get();				
+    s += getTypeName(e1);						
+    s += comma + getTypeName(e2);					
+    s += comma + getTypeName(e3);					
+    s += comma + getTypeName(d1);					
+    s += comma + getTypeName(d2);					
+    s += comma + getTypeName(d3);					
+    s += StyledString::get(BRACKET2).get();				
+    return s;								
+  }									
+};
+
+// ----------------------------------------------------------------
+// approx
+// template functions for 'approx'
+//
+//    Note: generated from template file 'fun_ternary_functions.hpp'
+//          using Python script 'fun_ternary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// approx (approx)
+//----------------------------------------------
+
+
+
+// TODO: runtime check that deep dimensions of E1 and E2 and E3 are the same
+
+
+
+
+  
+
+// (11) Tensor<E1(D1)> , Tensor<E2(D2)> 
+
+  template <class A, class B, class E1, class E2, class D1, class D2, int M, int R>
+  auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Helper<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
+
+    typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
+    typedef bool D3;
+    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;  
+    return  TER_Ternary<TensorR<A,E1,D1,M,R>,
+			TensorR<B,E2,D2,M,R>,
+			DTOL,
+			E1,E2,DTOL,E3, D1,D2,DTOL,D3, M,M,0,M, R,R,0,R,
+			FUNCTOR_approx<E1,E2,E3, D1,D2,D3> >(x1,x2,tol); 
+}
+
+// (10) Tensor<E1(D1)> , D2 
+
+  template <class A, class E1, class D1, class D2, int M, int R>
+  auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Helper<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
+
+    typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
+    typedef bool D3;
+    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;  
+    return  TER_Ternary<TensorR<A,E1,D1,M,R>,
+			D2,
+			DTOL,
+			E1,D2,DTOL,E3, D1,D2,DTOL,D3, M,0,0,M, R,0,0,R,
+			FUNCTOR_approx<E1,D2,E3, D1,D2,D3> >(x1,x2,tol); 
+}
+
+
+
+// (01) D1, Tensor<E2(D2)> 
+
+  template <class B, class E2, class D1, class D2, int M, int R>
+  auto approx(D1& x1, const TensorR<B,E2,D2,M,R>& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Helper<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
+
+    typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
+    typedef bool D3;
+    typedef typename NumberType<E2,D3>::ReplaceTypeE E3;  
+    return  TER_Ternary<D1,
+			TensorR<B,E2,D2,M,R>,
+			DTOL,
+			D1,E2,DTOL,E3, D1,D2,DTOL,D3, 0,M,0,M, 0,R,0,R,
+			FUNCTOR_approx<D1,E2,E3, D1,D2,D3> >(x1,x2,tol); 
+}
+
+
 
   // -------------------------------------------------------------------
   // equal_approx - if two tensors are approximately equal, returns a single bool
   //          checks dimensions first
   // -------------------------------------------------------------------
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
-  bool equal_approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const typename AddType<D1,D2>::Type tol = MatricksHelper<typename AddType<D1,D2>::Type>::tolerance)  {
+  bool equal_approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const  typename FundamentalType<typename AddType<D1,D2>::Type>::Type tol = Helper< typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance)  {
     
     if (!dimequiv(x1,x2)) {
       return false;
@@ -123,7 +360,7 @@ namespace mathq {
 
   // sum(a)
 
-  template <class X, class E, class D, int M, int R,  typename = EnableIf<(R==1)> > 
+  template <class X, class E, class D, int M, int R > 
     E sum( const TensorR<X,E,D,M,R>& v ) {
     
  
@@ -145,7 +382,7 @@ namespace mathq {
   
   // prod(a)
 
-  template <class X, class E, class D, int M, int R,  typename = EnableIf<(R==1)> > 
+  template <class X, class E, class D, int M, int R > 
     E prod( const TensorR<X,E,D,M,R>& v ) {
     
  
@@ -172,7 +409,7 @@ namespace mathq {
 
   // min(a)
 
-  template <class X, class E, class D, int M, int R,  typename = EnableIf<(R==1)> > 
+  template <class X, class E, class D, int M, int R>
     D min( const TensorR<X,E,D,M,R>& v ) {
     
     const size_type N = v.deepsize();
@@ -194,7 +431,7 @@ namespace mathq {
 
   // max(a)
 
-  template <class X, class E, class D, int M, int R,  typename = EnableIf<(R==1)> > 
+  template <class X, class E, class D, int M, int R>
     D max( const TensorR<X,E,D,M,R>& v ) {
     
     const size_type N = v.deepsize();
@@ -213,7 +450,7 @@ namespace mathq {
 
   // sumofsqrs(a)
 
-  template <class X, class E, class D, int M, int R,  typename = EnableIf<(R==1)> > 
+  template <class X, class E, class D, int M, int R>
     D sumofsqrs( const TensorR<X,E,D,M,R>& v ) {
     D result = D();
     for (index_type i = 0; i < v.size(); i++)  {
@@ -224,7 +461,7 @@ namespace mathq {
 
   // norm(a)  - L2 norm
 
-  template <class X, class E, class D, int M, int R, typename = EnableIf<(R==1)> > 
+  template <class X, class E, class D, int M, int R>
     D norm( const TensorR<X,E,D,M,R>& v ) {
     return std::sqrt( sumofsqrs(v) );
   }

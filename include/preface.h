@@ -181,7 +181,25 @@ namespace mathq {
   };
 
 
+  // ***************************************************************************
+  //  IsComplex<T>
+  // ***************************************************************************
 
+
+  template <typename T> class
+  IsComplex {
+  public:
+    constexpr static bool value = false;
+    typedef void Type;
+  };
+  template <typename D> class
+  IsComplex<std::complex<D>> {
+  public:
+    constexpr static bool value = true;
+    typedef D Type;
+  };
+
+  
   // ***************************************************************************
   // FundamentalType - this operates recursively to find the primitive arithmetic type
   //                   eg int, float, double, ...

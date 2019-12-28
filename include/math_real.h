@@ -21,61 +21,61 @@ namespace mathq {
    **************************************************************************** 
    */
 
-  template <typename D> struct MatricksHelper {
+  template <typename D> struct Helper {
   public:
     static D tolerance = D(0);
   };
-  template <> struct MatricksHelper<long double> {
+  template <> struct Helper<long double> {
   public:
     constexpr static long double tolerance = 1.5e-30;
   };
-  template <> struct MatricksHelper<double> {
+  template <> struct Helper<double> {
   public:
     constexpr static double tolerance = 1.5e-16;
   };
-  template <> struct MatricksHelper<float> {
+  template <> struct Helper<float> {
   public:
     constexpr static float tolerance = 3.5e-7;
   };
   
-  template <> struct MatricksHelper<char> {
+  template <> struct Helper<char> {
   public:
     constexpr static char tolerance = 0;
   };
-  template <> struct MatricksHelper<short> {
+  template <> struct Helper<short> {
   public:
     constexpr static short tolerance = 0;
   };
-  template <> struct MatricksHelper<int> {
+  template <> struct Helper<int> {
   public:
     constexpr static int tolerance = 0;
   };
-  template <> struct MatricksHelper<long> {
+  template <> struct Helper<long> {
   public:
     constexpr static long tolerance = 0;
   };
-  template <> struct MatricksHelper<long long> {
+  template <> struct Helper<long long> {
   public:
     constexpr static long long tolerance = 0;
   };
 
-  template <> struct MatricksHelper<unsigned char> {
+  template <> struct Helper<unsigned char> {
   public:
     constexpr static unsigned char tolerance = 0;
   };
-  template <> struct MatricksHelper<unsigned short> {
+  template <> struct Helper<unsigned short> {
   public:
     constexpr static unsigned short tolerance = 0;
   };
-  template <> struct MatricksHelper<unsigned int> {
+  template <> struct Helper<unsigned int> {
   public:
     constexpr static unsigned int tolerance = 0;
   };
-  template <> struct MatricksHelper<unsigned long> {
+  template <> struct Helper<unsigned long> {
   public:
     constexpr static unsigned long tolerance = 0;
   };
-  template <> struct MatricksHelper<unsigned long long> {
+  template <> struct Helper<unsigned long long> {
   public:
     constexpr static unsigned long long tolerance = 0;
   };
@@ -101,7 +101,7 @@ namespace mathq {
   // roundzero
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
-    D roundzero(const D& x, const D tolerance =  MatricksHelper<D>::tolerance) {
+    D roundzero(const D& x, const D tolerance =  Helper<D>::tolerance) {
     return (std::abs(x) < std::abs(tolerance) ? 0 : x);
   }
 
@@ -146,18 +146,26 @@ namespace mathq {
   }
 
 
-  // sqr(z)
+  // sqr(x)
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D sqr(const D& x) {
     return x*x;
   }
 
-  // normsqr(z)
+  // normsqr(x)
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D normsqr(const D& x) {
     return x*x;
+  }
+
+
+  // cube(x)
+  
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
+    D cube(const D& x) {
+    return x*x*x;
   }
 
   
@@ -166,7 +174,7 @@ namespace mathq {
   // TODO: use std::frexp() instead ?
   
   template <typename D1, typename D2>
-  bool approx(const D1& x, const D2& y, const typename AddType<D1,D2>::Type tol = MatricksHelper<typename AddType<D1,D2>::Type>::tolerance) {
+  bool approx(const D1& x, const D2& y, typename AddType<D1,D2>::Type tol = Helper<typename AddType<D1,D2>::Type>::tolerance) {
     typename AddType<D1,D2>::Type d = std::max(x,y);
     if (d > 1) {
       tol *= d;

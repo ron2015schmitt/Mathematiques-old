@@ -85,7 +85,11 @@ funcs = [
 ["std::imag", "imag", "imag_complex", "std::complex<D>", "D"],
 ["std::abs", "abs", "abs_complex", "std::complex<D>", "D"],
 ["std::arg", "arg", "arg_complex", "std::complex<D>", "D"],
-["std::proj", "proj", "proj_complex", "std::complex<D>", "std::complex<D>"]
+["std::proj", "proj", "proj_complex", "std::complex<D>", "std::complex<D>"],
+["mathq::round", "round", "round_complex", "std::complex<D>", "std::complex<D>"],
+["mathq::log2", "log2", "log2_complex", "std::complex<D>", "std::complex<D>"],
+["mathq::floor", "floor", "floor_complex", "std::complex<D>", "std::complex<D>"],
+["mathq::ceil", "ceil", "ceil_complex", "std::complex<D>", "std::complex<D>"],
 ]
 
 

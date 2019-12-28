@@ -123,6 +123,14 @@ namespace mathq {
     return x;
   }
 
+  // complex conjugate OPERTOR ~
+
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > D
+  operator~(D& x) {
+    return x;
+  }
+
+  
   // imag
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value> > D
@@ -138,7 +146,14 @@ namespace mathq {
   }
 
 
-  // normsqr(z) - 
+  // sqr(z)
+  
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
+    D sqr(const D& x) {
+    return x*x;
+  }
+
+  // normsqr(z)
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D normsqr(const D& x) {

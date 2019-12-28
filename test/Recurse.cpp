@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
   //   Scalar<Scalar<double>> expected {{3.3}};
   //   Scalar<Scalar<double>> result;
   //   testcode( result = s1+s2 );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);

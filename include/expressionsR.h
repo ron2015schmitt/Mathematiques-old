@@ -631,8 +631,588 @@ namespace mathq {
 
 
 
+  //---------------------------------------------------------------------------
+  // TER_Series    used for Taylor and Maclaurin series
+  //---------------------------------------------------------------------------
+
+  
+  template <class A, class X, class E, class D, int M, int R> 
+  class TER_Series  : public  TensorR<TER_Series<A,X,E,D,M,R>, E,D,M,R> {
+  public:
+    typedef Materialize<E,D,M,R> XType;
+    typedef E EType;
+    typedef D DType;
+    constexpr static int Rvalue = R;
+    constexpr static int Mvalue = M;
+      
+  private:
+    const A& a_;
+    const X& x_;
+    const int N_;
+    const D x0_;
+    VectorofPtrs *vptrs;
+      
+  public:
+      
+
+  TER_Series(const A& a, const X& x, const int N, const D x0)
+    : a_(a), x_(x), N_(N), x0_(x0) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(x_.getAddresses());
+    }
+  TER_Series(const A& a, const X& x, const int N)
+    : a_(a), x_(x), N_(N), x0_(0) { 
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(x_.getAddresses());
+    }
+
+    ~TER_Series() {
+      delete vptrs;
+    }
+
+    const D dat(const index_type i) const {
+
+      const D x = x_.dat(i) - x0_;
+      D sum = 0;
+      // TODO: check a_.size >= N
+      D xpow = 1;
+      for (index_type n = 0; n <= N_ ; n++) {
+	D an = a_[n];
+	if (an!=D(0)) {
+	  sum += an*xpow;
+	}
+	//	if (i==2) {
+	//	  mdisp(x0_,x_[i],x,sum,xpow,N_,n,an);
+	//	}
+	xpow *= x;
+      }
+      return sum; 
+    }
+  
+    const E operator[](const index_type i) const {
+      const E x = x_[i] - x0_;
+      E sum = 0;
+      // TODO: check a_.size >= N
+      E xpow = 1;
+      for (index_type n = 0; n <= N_ ; n++) {
+	D an = a_[n];
+	if (an!=D(0)) {
+	  sum += an*xpow;
+	}
+	//	if (i==2) {
+	//	  mdisp(x0_,x_[i],x,sum,xpow,N_,n,an);
+	//	}
+	xpow *= x;
+      }
+      return sum; 
+    }
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return x_.size();
+    }
+    size_type ndims(void) const {
+      return R;
+    }
+    Dimensions dims(void) const {
+      return x_.dims();
+    }
+    Dimensions tdims(void) const {
+      return this->dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+      return x_.deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      return x_.deepdims(parentdims);
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      return M;
+    }
+    Dimensions eldims(void) const {
+      return x_.eldims();
+    }
+    size_type elsize(void) const {
+      if constexpr(M<=1) {
+	  return 1;
+	} else {
+	return x_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(M<=1) {
+	  return 1;
+	} else {
+	return x_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(M<=1) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
+
+    std::string classname() const {
+      return "TER_Series";
+    }
+
+
+#if MATHQ_DEBUG>=1
+    std::string expression(void) const {
+      std::string sx = x_.expression();
+      return sx;
+    }
+#endif
+
+  };
+
+
+
+
+  //---------------------------------------------------------------------------
+  // TER_Series2    used for fourier series
+  //---------------------------------------------------------------------------
+
+  template <class A, class B, class X, class D, class OP1, class OP2> 
+  class TER_Series2 : public TensorR<TER_Series2<A,B,X,D,OP1,OP2>,D,D,1,1> {
+  public:
+    typedef Materialize<D,D,1,1> XType;
+    typedef D EType;
+    typedef D DType;
+    constexpr static int Rvalue = 1;
+    constexpr static int Mvalue = 1;
+      
+  private:
+    const A& a_;
+    const B& b_;
+    const X& x_;
+    const int N_;
+    const D k1_;
+    Vector<D>& k_;
+    bool initialized;
+    VectorofPtrs *vptrs;
+
+  public:
+
+    TER_Series2(const A& a, const A& b, const X& x, const int N, const D k1)
+    : a_(a), b_(b), x_(x), N_(N), k1_(k1), k_(*(new Vector<D>(N))) {
+      
+      vptrs = new VectorofPtrs();
+      vptrs->add(a_.getAddresses());
+      vptrs->add(b_.getAddresses());
+      vptrs->add(x_.getAddresses());
+      vptrs->add(k_.getAddresses());
+      
+      for (int n = 0; n < N_ ; n++) {
+  	k_[n] = n*k1_;
+      }
+    }
+    ~TER_Series2(){
+      delete &k_;
+      delete vptrs;
+    }
+
+    const D dat(const index_type i) const {
+      return (*this)[i];
+    }
+
+    const D operator[](const index_type i) const {
+      D sum = 0;
+      // TODO: check a_.size >= N
+      for (int n = 0; n < N_ ; n++) {
+  	D kx = k_[n]*x_[i];
+  	D an = a_[n];
+  	if (an != D(0)) {
+  	  sum += an*OP1::apply(kx);
+  	}
+  	D bn = b_[n];
+  	if (bn != D(0)) {
+  	  sum += bn*OP2::apply(kx);
+  	}
+      }
+      return sum; 
+    }
+
+    
+    
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return x_.size();
+    }
+    size_type ndims(void) const {
+      return Rvalue;
+    }
+    Dimensions dims(void) const {
+      return x_.dims();
+    }
+    Dimensions tdims(void) const {
+      return this->dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+      return x_.deepdims();
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      return x_.deepdims(parentdims);
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      return Mvalue;
+    }
+    Dimensions eldims(void) const {
+      return x_.eldims();
+    }
+    size_type elsize(void) const {
+      if constexpr(Mvalue<=1) {
+	  return 1;
+	} else {
+	return x_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(Mvalue<=1) {
+	  return 1;
+	} else {
+	return x_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(Mvalue<=1) {
+	  return this->size();
+	} else {
+	return (this->size())*(this->eldeepsize());
+      }
+    }
+
+    std::string classname() const {
+      return "TER_Series2";
+    }
+
+
+#if MATHQ_DEBUG>=1
+    std::string expression(void) const {
+      std::string sx = x_.expression();
+      return sx;
+    }
+#endif
+
+  };
+
+
+  // template<class D, class A, class B, class X, class OP1, class OP2, int M>
+  //   class TER_Series2 : public  TensorR<D,TER_Series2< D, A, B, X, OP1, OP2> > {
+
+
+  //   const D operator[](const index_type i) const {
+  //     D sum = 0;
+  //     // TODO: check a_.size >= N
+  //     for (int n = 0; n < N_ ; n++) {
+  // 	D kx = k_[n]*x_[i];
+  // 	D an = a_[n];
+  // 	if (an != D(0)) {
+  // 	  sum += an*OP1::apply(kx);
+  // 	}
+  // 	D bn = b_[n];
+  // 	if (bn != D(0)) {
+  // 	  sum += bn*OP2::apply(kx);
+  // 	}
+  //     }
+  //     return sum; 
+  //   }
+
+
+
+
+
+  
+
+  //-----------------------------------------------------------------------------
+  // TER_Transpose   tensor transpose, ie reverse the order of indices (RHS only)
+  //-----------------------------------------------------------------------------
+
+//   template<class D, class A, class FUNC, int M>
+//     class TER_Transpose  : public  TensorR<D,TER_Transpose<D,A,FUNC,M> > {
+  
+//   private:
+//     const A& a_;
+//     VectorofPtrs *vptrs;
+//     Dimensions *rdims;
+  
+//   public:
+//     typedef typename NumberType<D>::Type MyNumberType;
+
+
+
+//   TER_Transpose(const A& a) : a_(a) {
+//       rdims = &(a_.dims().getReverse());
+//       vptrs = new VectorofPtrs();
+//       vptrs->add(a_.getAddresses());
+//     }
+    
+//     ~TER_Transpose() {
+//       delete rdims;
+//       delete vptrs;
+//     }
+
+//     const D operator[](const index_type index1) const {
+//       const Indices inds1 = rdims->indices(index1);
+//       const Indices inds2 = inds1.getReverse();
+//       const index_type index2 = a_.dims().index(inds2);
+//       return FUNC::apply(a_[index2]);
+//     }
+
+//     VectorofPtrs getAddresses(void) const {
+//       return *vptrs;
+//     }
+//     size_type size(void) const {
+//       return rdims->datasize();
+//     }
+//     size_type ndims(void) const {
+//       return rdims->ndims();
+//     }
+//     Dimensions dims(void) const {
+//       return *rdims;
+//     }
+//     bool isExpression(void) const {
+//       return true;
+//     }
+//   size_type depth(void) const {
+//       return M;
+//     }
+//   size_type elsize(void) const {
+//     if constexpr(M<2) {
+//       return 1;
+//     } else {
+//       return a_.elsize();
+//     }
+//   }
+//   size_type eldeepsize(void) const {
+//     if constexpr(M<2) {
+//       return 1;
+//     } else {
+//       return a_.eldeepsize();
+//     }
+//   }
+//     size_type deepsize(void) const {
+//       if constexpr(M<2) {
+// 	  return this->size();
+// 	} else {
+// 	return (this->size())*(this->eldeepsize());
+//       }
+//     }
+//     std::string classname() const {
+//       return "TER_Transpose";
+//     }
+
+
+// #if MATRICKS_DEBUG>=1
+//     std::string expression(void) const {
+//       std::string sa = a_.expression();
+//       return FUNC::expression(sa);
+//     }
+// #endif
+
+
+//   };
+
+
+
+//   //---------------------------------------------------------------------------
+//   // VER_Join   joining two Tensors (RHS only)
+//   //---------------------------------------------------------------------------
+
+//   template<class D, class A, class B, int M>
+//     class VER_Join : public  TensorR<D,VER_Join<D,A,B,M> > {
+
+//   private:
+//     const A& a_;
+//     const B& b_;
+//     VectorofPtrs *vptrs;
+
+//   public:
+//     typedef typename NumberType<D>::Type MyNumberType;
+
+
+//   VER_Join(const A& a, const B& b)
+//     : a_(a), b_(b) { 
+
+//       vptrs = new VectorofPtrs();
+//       vptrs->add(a_.getAddresses());
+//       vptrs->add(b_.getAddresses());
+      
+//     }
+
+//     ~VER_Join() {
+//       delete vptrs;
+//     }
+    
+//     const D operator[](const index_type i) const{
+//       if ( i < a_.size() ) {
+// 	return a_[i];
+//       } else {
+// 	return b_[i-a_.size()];
+//       }
+//     }
+  
+//     VectorofPtrs getAddresses(void) const {
+//       return *vptrs;
+//     }
+//     size_type size(void) const {
+//       return a_.size() +b_.size();
+//     }
+//     size_type ndims(void) const {
+//       return a_.ndims();
+//     }
+//     Dimensions dims(void) const {
+//       return a_.dims();
+//     }
+//     bool isExpression(void) const {
+//       return true;
+//     }
+//   size_type depth(void) const {
+//       return M;
+//     }
+//   size_type elsize(void) const {
+//     if constexpr(M<2) {
+//       return 1;
+//     } else {
+//       return a_.elsize();
+//     }
+//   }
+//   size_type eldeepsize(void) const {
+//     if constexpr(M<2) {
+//       return 1;
+//     } else {
+//       return a_.eldeepsize();
+//     }
+//   }
+//     size_type deepsize(void) const {
+//       if constexpr(M<2) {
+// 	  return this->size();
+// 	} else {
+// 	return (this->size())*(this->eldeepsize());
+//       }
+//     }
+//     std::string classname() const {
+//       return "VER_Join";
+//     }
+
+// #if MATRICKS_DEBUG>=1
+//     std::string expression(void) const {
+//       return "";
+//       //      return expression_VER_Join(a_.expression(),ii_.expression());
+//     }
+// #endif 
+
+    
+//   };
+
+
+
+//   //---------------------------------------------------------------------------
+//   // VER_Rep  repeat a tensor
+//   //---------------------------------------------------------------------------
+
+//   template<class D, class A, int M>
+//     class VER_Rep : public  TensorR<D,VER_Rep<D,A,M> > {
+
+//   private:
+//     const A& a_;
+//     const size_type m_;
+//     const size_type N_;
+//     VectorofPtrs *vptrs;
+
+//   public:
+//     typedef typename NumberType<D>::Type MyNumberType;
+
+
+//   VER_Rep(const A& a, const size_type m)
+//     : a_(a), m_(m), N_(a_.size()) { 
+//       vptrs = new VectorofPtrs();
+//       vptrs->add(a_.getAddresses());
+//     }
+
+
+//     ~VER_Rep() {
+//       delete vptrs;
+//     }
+
+
+//     const D operator[](const index_type i) const{
+//       index_type index = index_type(i % N_);
+//       //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+//       return a_[index];
+//     }
+
+
+//     VectorofPtrs getAddresses(void) const {
+//       return *vptrs;
+//     }
+//     size_type size(void) const {
+//       return m_*a_.size();
+//     }
+//     size_type ndims(void) const {
+//       return a_.ndims();
+//     }
+//     Dimensions dims(void) const {
+//       return a_.dims();
+//     }
+//     bool isExpression(void) const {
+//       return true;
+//     }
+//   size_type depth(void) const {
+//       return M;
+//     }
+//   size_type elsize(void) const {
+//     if constexpr(M<2) {
+//       return 1;
+//     } else {
+//       return a_.elsize();
+//     }
+//   }
+//   size_type eldeepsize(void) const {
+//     if constexpr(M<2) {
+//       return 1;
+//     } else {
+//       return a_.eldeepsize();
+//     }
+//   }
+//     size_type deepsize(void) const {
+//       if constexpr(M<2) {
+// 	  return this->size();
+// 	} else {
+// 	return (this->size())*(this->eldeepsize());
+//       }
+//     }
+//     std::string classname() const {
+//       return "VER_Rep";
+//     }
+
+// #if MATRICKS_DEBUG>=1
+//     std::string expression(void) const {
+//       return "";
+//       //      return expression_VER_Join(a_.expression(),ii_.expression());
+//     }
+// #endif 
+
+//   };
+
 
   
 };  //namespace mathq
 
 #endif 
+
+

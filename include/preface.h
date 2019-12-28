@@ -877,7 +877,7 @@ namespace mathq {
     typedef D (* zeroarg_func)();
     typedef D (* unary_func)(D);
     typedef D (* binary_func)(D, D);
-    typedef D (* tertiary_func)(D, D, D);
+    typedef D (* ternary_func)(D, D, D);
     typedef D (* quaternary_func)(D, D, D);
   };
   

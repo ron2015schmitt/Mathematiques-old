@@ -594,30 +594,30 @@ namespace mathq {
   // *********************************************************
 
 
-  // maclaurin(vector coefs, vector vals, max N)
+  // maclaurin(vector coefs, vector vals, max N, x0)
 
-  // template <class A, class X, class E, class D, int M, int R , typename = EnableIf<(M==1)&&(R==1)>> 
-  //   D maclaurin(const TensorR<A,E,D,M,R>& a, const TensorR<X,E,D,M,R>& x, const int N, const D x0)
-  // {
-  //   return  TER_Series<D, TensorR<A,E,D,M,R>, TensorR<X,E,D,M,R> >(a,x,N,x0);
-  // }
+  template <class A, class X, class E, class D, int M1, int M2, int R1, int R2, typename = EnableIf<(M1==1)&&(R1==1)>> 
+    auto maclaurin(const TensorR<A,D,D,M1,R1>& a, const TensorR<X,E,D,M2,R2>& x, const int N, const D x0)
+  {
+    return TER_Series<TensorR<A,D,D,M1,R1>,TensorR<X,E,D,M2,R2>,E,D,M2,R2>(a,x,N,x0);
+  }
   
   // // taylor(vector coefs, vector vals, max N)
 
-  // template <class A, class X, class E, class D, int M, int R , EnableIf<R==1>=0> 
-  //   E& taylor(const TensorR<A,E,D,M,R>& a, const TensorR<X,E,D,M,R>& x, const int N)
-  // {
-  //   return  TER_Series<D, TensorR<A,E,D,M,R>, TensorR<X,E,D,M,R> >(a,x,N);
-  // }
+  template <class A, class X, class E, class D, int M1, int M2, int R1, int R2, typename = EnableIf<(M1==1)&&(R1==1)>> 
+    auto taylor(const TensorR<A,D,D,M1,R1>& a, const TensorR<X,E,D,M2,R2>& x, const int N)
+  {
+    return TER_Series<TensorR<A,D,D,M1,R1>,TensorR<X,E,D,M2,R2>,E,D,M2,R2>(a,x,N);
+  }
 
   // // ifourier(vector cos coefs, vector sin coefs, vector vals, max N, k1=2pi/wavelength or 2pi/period)
   // // sin coefs must include a coef for n=0 even though its irrelevant
 
-  // template <class A, class B, class E, class D, int M, int R , EnableIf<R==1>=0> 
-  //   auto ifourier(const TensorR<A,E,D,M,R>& Acos, const TensorR<B,E,D,M,R>& Bsin, const TensorR<X,E,D,M,R>& x, const int N, const D k1)
-  // {
-  //   return  TER_Series2<D, TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, TensorR<X,E,D,M,R>, Fun_Cos<D>, Fun_Sin<D> >(Acos,Bsin,x,N,k1);
-  // }
+  template <class A, class B, class X, class D, int M, int R , typename = EnableIf<(M==1)&&(R==1)> > 
+    auto ifourier(const TensorR<A,D,D,M,R>& Acos, const TensorR<B,D,D,M,R>& Bsin, const TensorR<X,D,D,M,R>& x, const int N, const D k1)
+  {
+    return  TER_Series2<TensorR<A,D,D,M,R>, TensorR<B,D,D,M,R>, TensorR<X,D,D,M,R>, D, FUNCTOR_cos<D,D,D,D>, FUNCTOR_sin<D,D,D,D> >(Acos,Bsin,x,N,k1);
+  }
 
 
 

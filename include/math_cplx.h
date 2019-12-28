@@ -130,6 +130,11 @@ namespace mathq {
     return z.real()*z.real() + z.imag()*z.imag();
   }
 
+  // complex - sqr
+  template <typename D> std::complex<D> sqr(const std::complex<D>& z) {
+    return z*z;
+  }
+
   
   // complex rounding
 

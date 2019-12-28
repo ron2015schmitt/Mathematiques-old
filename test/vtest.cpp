@@ -97,7 +97,7 @@ int main()
     Vector<double> expected = {10, 13, 18, 25};
     Vector<double>  result;
     testcode( result = 2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2));
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);

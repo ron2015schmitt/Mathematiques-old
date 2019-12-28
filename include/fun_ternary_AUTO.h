@@ -1183,7 +1183,7 @@ auto comp_ellint_3(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
 
 template <class A, class B, class C, class E1, class E2, class E3, class D1, class D2, class D3, int M, int R> 
 auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
@@ -1198,7 +1198,7 @@ auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, cons
 
 template <class A, class B, class E1, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D3>::value>> 
 auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
@@ -1211,7 +1211,7 @@ auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, cons
 
 template <class A, class C, class E1, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
 auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		      D2,
@@ -1224,7 +1224,7 @@ auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,
 
 template <class A, class E1, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value&&NumberType<D3>::value>> 
 auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     D2,
@@ -1237,7 +1237,7 @@ auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
 
 template <class B, class C, class E2, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
 auto approx(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
@@ -1251,7 +1251,7 @@ auto approx(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,
 
 template <class B, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D3>::value>> 
 auto approx(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
@@ -1264,7 +1264,7 @@ auto approx(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
 
 template <class C, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D2>::value>> 
 auto approx(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
-  typedef typename AddType<typename AddType<D1,D2>::Type,D3>::Type D4;
+  typedef typename RelType<typename RelType<D1,D2>::Type,D3>::Type D4;
   typedef typename NumberType<E3,D4>::ReplaceTypeE E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     D2,

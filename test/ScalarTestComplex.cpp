@@ -190,26 +190,26 @@ int main(int argc, char *argv[])
   }
 
   {
-    //  approxel
+    //  equal_approxel
     printStart(++testnum);
     Scalar<ComplexDouble> s1 = ComplexDouble(14.,71.);
     Scalar<ComplexDouble> s2 = ComplexDouble(14.01,71.);
     Scalar<bool> expected = true;
     Scalar<bool> result;
-    testcode( result = (approxel(s1,s2,0.015)) );
+    testcode( result = (equal_approxel(s1,s2,0.015)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
-    //  approxel
+    //  equal_approxel
     printStart(++testnum);
     Scalar<ComplexDouble> s1 = ComplexDouble(14.,71.);
     Scalar<ComplexDouble> s2 = ComplexDouble(14.01,71.);
     Scalar<bool> expected = false;
     Scalar<bool> result;
-    testcode( result = (approxel(s1,s2,0.0005)) );
+    testcode( result = (equal_approxel(s1,s2,0.0005)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -246,26 +246,26 @@ int main(int argc, char *argv[])
   }
 
   {
-    //  approx
+    //  equal_approx
     printStart(++testnum);
     Scalar<ComplexDouble> s1 = ComplexDouble(1,-25);
     Scalar<ComplexDouble> s2 = ComplexDouble(1.001,-25);
     bool expected = true;
     bool result;
-    testcode( result = approx(s1,s2,0.002) );
+    testcode( result = equal_approx(s1,s2,0.002) );
     bool pass = (result == expected) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
-    //  approx
+    //  equal_approx
     printStart(++testnum);
     Scalar<ComplexDouble> s1 = ComplexDouble(1,-25);
     Scalar<ComplexDouble> s2 = ComplexDouble(1.001,-25);
     bool expected = false;
     bool result;
-    testcode( result = approx(s1,s2,0.0005) );
+    testcode( result = equal_approx(s1,s2,0.0005) );
     bool pass = (result == expected) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -395,7 +395,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(90.130395598910638, 62.831853071795862);
     Scalar<ComplexDouble> result;
     testcode( result = sqr(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -407,7 +407,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(7.039118679673193e2, 9.114715193966381e2);
     Scalar<ComplexDouble> result;
     testcode( result = cube(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -419,7 +419,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(3.20014611167193, 0.490851439896983);
     Scalar<ComplexDouble> result;
     testcode( result = sqrt(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -431,7 +431,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(-22026.4657948067, 2.69746408321387e-12);
     Scalar<ComplexDouble> result;
     testcode( result = exp(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -443,7 +443,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(2.34964712404865, 0.304395797364615);
     Scalar<ComplexDouble> result;
     testcode( result = log(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -455,7 +455,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(3.38982425370401, 0.439150307325372); 
     Scalar<ComplexDouble> result;
     testcode( result =log2(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -467,7 +467,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(1.02043878039418, 0.132197415109993);
     Scalar<ComplexDouble> result;
     testcode( result = log10(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -485,7 +485,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(-6.30626729832689, -9.69021839139966);
     Scalar<ComplexDouble> result;
     testcode( result = sin(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -497,7 +497,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(-9.72647795987463, 6.28275801450715);
     Scalar<ComplexDouble> result;
     testcode( result = cos(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -509,7 +509,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(0.00340454507051446, 0.998471220959037);
     Scalar<ComplexDouble> result;
     testcode( result = tan(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -523,7 +523,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(-0.57522203923062, -3.14159265358979);
     Scalar<ComplexDouble> result;
     testcode( result = asin(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -535,7 +535,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(2.56637061435917, -3.14159265358979);
     Scalar<ComplexDouble> result;
     testcode( result = acos(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -547,7 +547,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(0.57522203923062028, 3.1415926535897932);
     Scalar<ComplexDouble> result;
     testcode( result = atan(s) );
-    bool pass = approx(result,expected, 10*tol);  // relax the tolerance for this
+    bool pass = equal_approx(result,expected, 10*tol);  // relax the tolerance for this
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -562,7 +562,7 @@ int main(int argc, char *argv[])
   //   Scalar<ComplexDouble> expected = ComplexDouble(1,1);
   //   Scalar<ComplexDouble> result;
   //   testcode( result = atan2(s1,s2) );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);
@@ -576,7 +576,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(0.0867469501317104, 0.502502084027902);
     Scalar<ComplexDouble> result;
     testcode( result = sinh(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -588,7 +588,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(0.870359140445571, 0.050083375009922);
     Scalar<ComplexDouble> result;
     testcode( result = cosh(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -600,7 +600,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(0.132452079355618, 0.569728533686492);
     Scalar<ComplexDouble> result;
     testcode( result = tanh(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -618,7 +618,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 2.23606797749979;
     Scalar<double> result;
     testcode( result = real(abs(s)) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -631,7 +631,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected =  ComplexDouble(1,-1);
     Scalar<ComplexDouble> result;
     testcode( result = sgn(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -643,7 +643,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(2,1);
     Scalar<ComplexDouble> result;
     testcode( result = round(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -655,7 +655,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(1,1);
     Scalar<ComplexDouble> result;
     testcode( result = floor(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -667,7 +667,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(2,2);
     Scalar<ComplexDouble> result;
     testcode( result = ceil(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -692,7 +692,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(2.5,2.5);
     Scalar<ComplexDouble> result;
     testcode( result = op1<ComplexDouble,average>(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -705,7 +705,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(6,3);
     Scalar<ComplexDouble> result;
     testcode( result = op2<ComplexDouble,average>(s1,s2) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -720,7 +720,7 @@ int main(int argc, char *argv[])
     Scalar<ComplexDouble> expected = ComplexDouble(97.07651685436622, 60);
     Scalar<ComplexDouble> result;
     testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -1198,7 +1198,7 @@ int main(int argc, char *argv[])
   //   double expected = pi/6;
   //   double result;
   //   testcode( result = norm(s) );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);
@@ -1639,7 +1639,7 @@ int main(int argc, char *argv[])
   //   Scalar<ComplexDoubleexpected = -0.047619047619048;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n/s );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);
@@ -1652,7 +1652,7 @@ int main(int argc, char *argv[])
   //   Scalar<ComplexDoubleexpected = -0.047619047619048;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = n/s );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);
@@ -1722,7 +1722,7 @@ int main(int argc, char *argv[])
   //   Scalar<ComplexDoubleexpected = 64;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = pow(n,s) );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);
@@ -1735,7 +1735,7 @@ int main(int argc, char *argv[])
   //   Scalar<ComplexDoubleexpected = 64;
   //   Scalar<ComplexDoubleresult;
   //   testcode( result = pow(n,s) );
-  //   bool pass = approx(result,expected,tol);
+  //   bool pass = equal_approx(result,expected,tol);
   //   printEnd(pass,result,expected);
   //   allpass = allpass && pass;
   //   failnum += (!pass);

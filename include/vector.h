@@ -1417,7 +1417,46 @@ namespace mathq {
 
   // --------------------- FRIENDS ---------------------
 
+  // --------------------- CONVERSION OPERATORS ---------------------
+
+
+
   
+
+  // std::vector()
+
+    
+    operator std::vector<E>() const {
+      const size_type N = size();
+      std::vector<E> y(N);
+      for(index_type i = 0; i<N; i++) { 
+	y[i] = (*this)[i];
+      }
+      return y;
+    }
+    
+
+    operator E*() const {
+      const size_type N = size();
+      E* ptr = new E[N];
+      for(index_type i = 0; i<N; i++) {
+	ptr[i] = (*this)[i];
+      }
+      return ptr;
+    }
+
+
+    // valarray<E>
+
+    operator std::valarray<E>() const {
+      const size_type N = size();
+      std::valarray<E> y(N);
+      for(index_type i = 0; i<N; i++) { 
+	y[i] = (*this)[i];
+      }
+      return y;
+    }
+
 
   };
 

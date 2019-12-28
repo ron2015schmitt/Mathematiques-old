@@ -188,26 +188,26 @@ int main(int argc, char *argv[])
   }
 
   {
-    //  approxel
+    //  equal_approxel
     printStart(++testnum);
     Scalar<double> s1 = 1;
     Scalar<double> s2 = 1.001;
     Scalar<bool> expected = true;
     Scalar<bool> result;
-    testcode( result = (approxel(s1,s2,0.0011)) );
+    testcode( result = (equal_approxel(s1,s2,0.0011)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
-    //  approxel
+    //  equal_approxel
     printStart(++testnum);
     Scalar<double> s1 = 1;
     Scalar<double> s2 = 1.001;
     Scalar<bool> expected = false;
     Scalar<bool> result;
-    testcode( result = (approxel(s1,s2,0.0009)) );
+    testcode( result = (equal_approxel(s1,s2,0.0009)) );
     bool pass = (result() == expected()) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -244,26 +244,26 @@ int main(int argc, char *argv[])
   }
 
   {
-    //  approx
+    //  equal_approx
     printStart(++testnum);
     Scalar<double> s1 = 1;
     Scalar<double> s2 = 1.001;
     bool expected = true;
     bool result;
-    testcode( result = approx(s1,s2,0.0011) );
+    testcode( result = equal_approx(s1,s2,0.0011) );
     bool pass = (result == expected) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
-    //  approx
+    //  equal_approx
     printStart(++testnum);
     Scalar<double> s1 = 1;
     Scalar<double> s2 = 1.001;
     bool expected = false;
     bool result;
-    testcode( result = approx(s1,s2,0.0009) );
+    testcode( result = equal_approx(s1,s2,0.0009) );
     bool pass = (result == expected) ;
     printEnd(pass,result,expected);
     allpass = allpass && pass;
@@ -394,7 +394,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 9.869604401089358;
     Scalar<double> result;
     testcode( result = sqr(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -406,7 +406,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 27;
     Scalar<double> result;
     testcode( result = cube(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -418,7 +418,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 31.622776601683793;
     Scalar<double> result;
     testcode( result = sqrt(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -430,7 +430,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 1.688091794964469;
     Scalar<double> result;
     testcode( result = exp(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -442,7 +442,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -0.647029583378655;
     Scalar<double> result;
     testcode( result = log(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -454,7 +454,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -0.933466371248838;
     Scalar<double> result;
     testcode( result = log2(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -466,7 +466,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -0.281001377689510;
     Scalar<double> result;
     testcode( result = log10(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -484,7 +484,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.5;
     Scalar<double> result;
     testcode( result = sin(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -496,7 +496,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.866025403784439;
     Scalar<double> result;
     testcode( result = cos(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -508,7 +508,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.577350269189626;
     Scalar<double> result;
     testcode( result = tan(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -522,7 +522,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.523598775598299;
     Scalar<double> result;
     testcode( result = asin(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -534,7 +534,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 1.047197551196598;
     Scalar<double> result;
     testcode( result = acos(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -546,7 +546,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.463647609000806;
     Scalar<double> result;
     testcode( result = atan(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -559,7 +559,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -2.034443935795703;
     Scalar<double> result;
     testcode( result = atan2(s1,s2) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -573,7 +573,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.547853473888040;
     Scalar<double> result;
     testcode( result = sinh(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -585,7 +585,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 1.140238321076429;
     Scalar<double> result;
     testcode( result = cosh(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -597,7 +597,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.480472778156452;
     Scalar<double> result;
     testcode( result = tanh(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -615,7 +615,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = pi;
     Scalar<double> result;
     testcode( result = abs(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -628,7 +628,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -1;
     Scalar<double> result;
     testcode( result = sgn(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -640,7 +640,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 1;
     Scalar<double> result;
     testcode( result = round(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -652,7 +652,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0;
     Scalar<double> result;
     testcode( result = floor(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -664,7 +664,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 1;
     Scalar<double> result;
     testcode( result = ceil(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -688,7 +688,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 0.01;
     Scalar<double> result;
     testcode( result = op1<double,clip>(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -701,7 +701,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 4;
     Scalar<double> result;
     testcode( result = op2<double,paste>(s1,s2) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -716,7 +716,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 25;
     Scalar<double>  result;
     testcode( result = 2*log10(abs(s1/s2)*100) + 3 + pow(-s2,2));
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -1198,7 +1198,7 @@ int main(int argc, char *argv[])
     double expected = pi/6;
     double result;
     testcode( result = norm(s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -1646,7 +1646,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -0.047619047619048;
     Scalar<double> result;
     testcode( result = n/s );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -1659,7 +1659,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = -0.047619047619048;
     Scalar<double> result;
     testcode( result = n/s );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -1729,7 +1729,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 64;
     Scalar<double> result;
     testcode( result = pow(n,s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);
@@ -1742,7 +1742,7 @@ int main(int argc, char *argv[])
     Scalar<double> expected = 64;
     Scalar<double> result;
     testcode( result = pow(n,s) );
-    bool pass = approx(result,expected,tol);
+    bool pass = equal_approx(result,expected,tol);
     printEnd(pass,result,expected);
     allpass = allpass && pass;
     failnum += (!pass);

@@ -14,15 +14,19 @@ template <class T>
 void printEnd_(const bool pass, const T& result, const T& expected, const int linenum) {
   using namespace display;
   if (pass) {
-    mout << "          " <<  "       = " << result <<std::endl;
+    mout << "          " <<  "       = ";
+    dispval(result);
+    mout << std::endl;
     mout << "          ";
     mout << createStyle(GREEN1+BOLD).apply("Passed")  << std::endl;
   } else {
     FormatData<double>::format_string = "%.16g";
-    mout << "          " <<  "       = " << result <<std::endl;
+    mout << "          " <<  "       = ";
+    dispval(result);
+    mout << std::endl;
     mout << "        " << createStyle(BLUE2).apply("Expected");
     std::stringstream ss;
-    ss << expected;
+    dispval_strm(ss,expected);
     mout << " = " <<  createStyle(BOLD).apply(ss.str()) << std::endl;
     mout << "          ";
     mout << createStyle(RED+BOLD).apply("FAILED") ;

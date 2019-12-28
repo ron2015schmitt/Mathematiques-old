@@ -139,7 +139,7 @@ public:
   
 template <class E1, class E2, class E3, class D1, class D2, class D3> class FUNCTOR_approx { 
 public:								
-  typedef typename FundamentalType<D3>::Type DTOL;
+  typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
   
   static D3 apply(const D1 d1, const D2 d2, const DTOL tol) {
     return mathq::approx(d1, d2, tol);
@@ -198,20 +198,10 @@ public:
 // approx
 // template functions for 'approx'
 //
-//    Note: generated from template file 'fun_ternary_functions.hpp'
-//          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
-
-//----------------------------------------------
-// approx (approx)
-//----------------------------------------------
-
 
 
 // TODO: runtime check that deep dimensions of E1 and E2 and E3 are the same
-
-
-
 
   
 
@@ -222,7 +212,7 @@ public:
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
-    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;  
+    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;
     return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 			TensorR<B,E2,D2,M,R>,
 			DTOL,

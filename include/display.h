@@ -541,12 +541,12 @@ namespace display {
 
 
   // this works
-  inline std::string getTypeName(typename mathq::FunctionTypes<double>::unary_func var) {
-    std::string sfunc = display::getFunctionTypeStyle().apply("func");
-    double d;
-    std::string sd = display::getTypeName(d);
-    return sd + " "+sfunc+ StyledString::get(PAREN1).get()+sd+","+sd+StyledString::get(PAREN2).get();
-  }
+  // inline std::string getTypeName(typename mathq::FunctionTypes<double>::unary_func var) {
+  //   std::string sfunc = display::getFunctionTypeStyle().apply("func");
+  //   double d;
+  //   std::string sd = display::getTypeName(d);
+  //   return sd + " "+sfunc+ StyledString::get(PAREN1).get()+sd+","+sd+StyledString::get(PAREN2).get();
+  // }
 
 
 

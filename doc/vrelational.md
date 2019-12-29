@@ -3,7 +3,7 @@
 
 
 # Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`) in mātricks
-_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.31-r3).
+_This document was automatically generated from file_ **`vrelational.cpp`** (mātricks-v2.33-r79).
 
 ## Relational operators
 ### Relational operators between two Vectors
@@ -81,15 +81,13 @@ Vector<double> v( range<double>(-10,10) );
 ```C++
   v = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
   v > 6 = Vector<bool> {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
-  Vector<bool> a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
-v[(v > 6)] = Vector<double> {7, 8, 9, 10}; 
+  v[(v > 6)] = Vector<double> {7, 8, 9, 10}; 
 ```
 
 
 Now set all elements that are larger than 6 to 6 (clipping)
 ```C++
 v[(v > 6)] = 6.;
-Vector<bool> a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}; 
 ```
 **The result is**
 ```C++
@@ -100,7 +98,6 @@ Vector<bool> a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}
 Now set all negative elements to zero
 ```C++
 v[(v < 0)] = 0.;
-Vector<bool> a = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
 ```
 **The result is**
 ```C++
@@ -135,10 +132,8 @@ Vector<double> v( range<double>(1,3) );
   numtrue(v > 2) = 1; 
   numtrue(!(v > 2)) = 2; 
   numtrue(v > 0) = 3; 
-  TER_Binary a = Vector<bool> {0, 0, 1}; 
-findtrue(v > 2) = {2}; 
-  TER_Binary a = Vector<bool> {1, 1, 1}; 
-findtrue(v > 0) = {0, 1, 2}; 
+  findtrue(v > 2) = {2}; 
+  findtrue(v > 0) = {0, 1, 2}; 
 ```
 
 

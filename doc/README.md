@@ -6,6 +6,7 @@ Mathématiques is numerical library for performing linear algebra, calculus, vec
 _Mathématiques distinguishes itself from other libraries by an elegance and versatility that are only possible using the features of C++11,14, and 17._
 
 
+
 1. [Vector declaration](vdeclaration.md)
 1. [Vector assigment](vassignment.md)
 1. [The `range` function](range.md)

@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.31-r3).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.33-r79).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
@@ -146,8 +146,8 @@ The actual screen-shot of the output is shown below:
 
 The following types are currently supported by the display commands
 * **Any class** with methods `.classname()` and `operator<<` is automatically supported
-* `matricks::Vector<D>` vectors
-* `matricks::Matrix<D>` matrices
+* `mathq::Vector<D>` vectors
+* `mathq::Matrix<D>` matrices
 * `bool`
 * `short`, `int`, `long`, `long long`
 * `unsigned short`, `unsigned int`, `unsigned long`, `unsigned long long`
@@ -166,7 +166,7 @@ The following types are currently supported by the display commands
 * `std::initializer_list` C++11 
 ## Printing to other streams: `disp_strm`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`
 * The default stream is `mout` (refer to next section)
-* You can also utilize all the formatting and color functionality of matricks and print to any output stream you like, including files.  The corresponding functions are shown below.
+* You can also utilize all the formatting and color functionality of mathq and print to any output stream you like, including files.  The corresponding functions are shown below.
 
 
 | `mout`  | `ostream` |
@@ -183,22 +183,22 @@ The following types are currently supported by the display commands
 ### Debug-only printing: `disp[123]`, `tdisp[123]`, `mdisp[123]`
 
 
-The display commands also have versions that only display when the code is compiled with the debug flag `MATRICKS_DEBUG` set.
+The display commands also have versions that only display when the code is compiled with the debug flag `MATHQ_DEBUG` set.
 * `disp1`, `tdisp1`, `mdisp1` will
-  * when `MATRICKS_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`
-  * when `MATRICKS_DEBUG == 0` or is undefined: compile to null statements (ie no output and no real-time hit)
+  * when `MATHQ_DEBUG >= 1`: behave like `disp`, `tdisp`, `mdisp`
+  * when `MATHQ_DEBUG == 0` or is undefined: compile to null statements (ie no output and no real-time hit)
 * `disp2`, `tdisp2`, `mdisp2` will
-  * when `MATRICKS_DEBUG >= 2`: behave like `disp`, `tdisp`, `mdisp`
-  * when `MATRICKS_DEBUG < 2` or is undefined: compile to null statements (ie no output and no real-time hit)
+  * when `MATHQ_DEBUG >= 2`: behave like `disp`, `tdisp`, `mdisp`
+  * when `MATHQ_DEBUG < 2` or is undefined: compile to null statements (ie no output and no real-time hit)
 * `disp3`, `tdisp3`, `mdisp3` will
-  * when `MATRICKS_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
-  * when `MATRICKS_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
+  * when `MATHQ_DEBUG >= 3`: behave like `disp`, `tdisp`, `mdisp`
+  * when `MATHQ_DEBUG < 3` or is undefined: compile to null statements (ie no output and no real-time hit)
 ### Debug-only printing: `print[123]`, `printf[123]`
 
 
 * The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `mout` followed by a carriage return.
 * The functions `printf1`, `printf2`, `printf3` function like printf, but actually use sprintf and then output to the stream `mout` using C++ methodlogy.
-## Changing the matricks output stream and controlling color
+## Changing the mathq output stream and controlling color
 * All output uses C++ streams (*no* `printf`)
 * By default all output is sent to `std::cout`
 * The output stream can be set using `Terminal::setmout(std::ostream&)`.
@@ -208,7 +208,7 @@ For example to set the output to stderr:
 Terminal::setmout(std::cerr);
 ```
 
-* You can use the matricks output stream via `Terminal::getmout()` or the macro `mout`
+* You can use the mathq output stream via `Terminal::getmout()` or the macro `mout`
 For example, you can output a string:
 ```C++
 
@@ -216,18 +216,18 @@ mout << "Hello World" << std::endl;
 
 ```
 
-* By default, matricks uses color when it detects that the output stream is connected to a terminal.
-* By default, matricks disables color when it detects that the output stream is piped to a file.
+* By default, mathq uses color when it detects that the output stream is connected to a terminal.
+* By default, mathq disables color when it detects that the output stream is piped to a file.
 * However, the user can override this behavior as follows
 
-To force matricks to use plain text, use the following settings:
+To force mathq to use plain text, use the following settings:
 ```C++
 
 Terminal::setColorOverride(true);
 Terminal::setOverrideValue(false);
 ```
 
-To force matricks to use color text, use the following settings:
+To force mathq to use color text, use the following settings:
 ```C++
 
 Terminal::setColorOverride(true);
@@ -241,7 +241,7 @@ This latter setting can be used to print in colors to a file, which will display
 ## The `Style` class
 * Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).
 
-* matricks defines the class `Style` for applying color and other attributes, such as **bold**
+* mathq defines the class `Style` for applying color and other attributes, such as **bold**
 
 * The predefined styles are shown below
 
@@ -434,21 +434,21 @@ z =  1.000000 + -2.000000i;
 ### Customizing Vector format
 
 
-The format for `matricks:Vector` output is controlled by the following static class variables.
+The format for `mathq:Vector` output is controlled by the following static class variables.
 
 
 |`FormatDataVector` class variable|default value|
 |------------------|------------------------|
 |string_opening| "{"|
 |string_delimeter | ","|
-|max_elements_per_line | matricks::maxsize|
+|max_elements_per_line | mathq::maxsize|
 |string_endofline | "\n"|
 |string_closing |   "}"|
 
 
 **EXAMPLE 9**:  default Vector format
 ```C++
-using namespace matricks;
+using namespace mathq;
 Vector<double> v = range<double>(1001,1010);;
 ```
 The default format yields
@@ -482,7 +482,7 @@ setFormatStringComplex("%s + I*%s");
 ```
 **EXAMPLE10**:  Mathematica Vector format
 ```C++
-using namespace matricks;
+using namespace mathq;
 Vector<double> v = range<double>(1001,1010);;
 set_mathematica_var_format();
 ```
@@ -520,7 +520,7 @@ setFormatStringComplex("%s + i*%s");
 ```
 **EXAMPLE11**:  Matlab Vector format
 ```C++
-using namespace matricks;
+using namespace mathq;
 Vector<double> v = range<double>(1001,1010);;
 set_matlab_var_format();
 ```

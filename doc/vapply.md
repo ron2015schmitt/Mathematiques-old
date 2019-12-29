@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in mātricks
-_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.31-r3).
+_This document was automatically generated from file_ **`vapply.cpp`** (mātricks-v2.33-r79).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 
@@ -37,9 +37,9 @@ Vector<int> v2(range<int>(-2,2));
 
 **Some expressions with results**: Applying User-defined function `pos` via `op1`
 ```C++
-  op1<double,pos>(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  op1<int,pos>(v2) = Vector<int> {0, 0, 0, 1, 2}; 
-  2*v1 + op1<double,pos>( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
+  op1(pos<double>,v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
+  op1(pos<int>,v2) = Vector<int> {0, 0, 0, 1, 2}; 
+  2*v1 + op1(pos<double>, 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
 ```
 
 
@@ -48,9 +48,12 @@ Vector<int> v2(range<int>(-2,2));
 * A similar function exists for binary user-defined functions: `op2<D,funcname>(Vector<D> v1, Vector<D> v2)`.
 * This form can be used in `Vector` expressions as well.
 
-**EXAMPLE 2**: Applying `stdlib` function `fmax` via `op2`
+**EXAMPLE 2**: Applying a function `ploy` via `op2`
+
 ```C++
-using std::fmax;
+double poly(double x, double y) { 
+  return 5*x - 3*y*y*y;
+}
 Vector<double> v1(linspace<double>(-1,1,11) );
 Vector<double> v2(11,0.25);
 ```
@@ -59,76 +62,7 @@ Vector<double> v2(11,0.25);
 ```C++
   v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
   v2 = {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25}; 
-  op2<double,fmax>(v1,v2) = Vector<double> {0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.6, 0.8, 1}; 
-```
-
-### Applying User-defined functions using the `valarray` inside
-* Another technique is to use method `getValArray()` and `std::valarray.apply(func)`
-
-**EXAMPLE 3**: Applying User-defined function `pos` via `valarray` access
-```C++
-using namespace std;
-Vector<double> v1(linspace<double>(-1,1,11) );
-Vector<double> v2;
-v2 = v1.getValArray().apply(pos);
-```
-
-**The result is**
-```C++
-  v1 = {-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  v2 = {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-```
-
-
-
-### Creating new mātricks functions--Under the hood of mātricks
-
-User-defined function can be bound into the `matricks` namespace as vector functions.
-
-place the following code in your file:
-```C++
-namespace matricks { 
-  template <class D> class Fun_Pos {
-  public:
-    Fun_Pos() { }
-
-    static inline D apply(D a) { 
-      return (a>=0) ? a : 0; 
-    }
-
-    static std::string expression( const std::string& sa) {
-      std::string sout = pos(" + sa + ")";
-      return sout;
-    }
-
-    static std::string classname( const std::string& sa) {
-      std::string sout = "pos(" + sa + ")";
-      return sout;
-    }
-
-  };
-
-  template <class D, class A> 
-  inline TER_Unary<D,TensorR<D,A>,Fun_Pos<D> > 
-  pos(const TensorR<D,A>& a)
-  {
-    return  TER_Unary<D,TensorR<D,A>,Fun_Pos<D> >(a);
-  }
-};
-
-```
-**EXAMPLE 4**: Applying User-defined function `pos`
-```C++
-using namespace std;
-Vector<double> v1(linspace<double>(-1,1,11) );
-Vector<int> v2(range<int>(-2,2));
-```
-
-**Some expressions with results**: Applying User-defined bound-in function `pos` 
-```C++
-  pos(v1) = Vector<double> {0, 0, 0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1}; 
-  pos(v2) = Vector<int> {0, 0, 0, 1, 2}; 
-  2*v1 + pos( 2.3*sin(3.14159265358979323846*v1) ) = Vector<double> {-2, -1.6, -1.2, -0.8, -0.4, 0, 1.75191, 2.98743, 3.38743, 2.95191, 2}; 
+  op2(poly,v1,v2) = Vector<double> {-5.04688, -4.04688, -3.04688, -2.04687, -1.04687, -0.046875, 0.953125, 1.95313, 2.95313, 3.95312, 4.95312}; 
 ```
 
 

@@ -3,11 +3,11 @@
 
 
 # under the hood—`Vector` definition in mātricks
-_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.31-r3).
+_This document was automatically generated from file_ **`vdefinition.cpp`** (mātricks-v2.33-r79).
 
 * _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.
 ### The Vector class is a wrapper
-* The `matricks::Vector` wraps a `std::valarray`
+* The `mathq::Vector` wraps a `std::valarray`
 * In the example below
   * `valias` is referenced to the valarray inside `vec`.
 

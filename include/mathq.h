@@ -54,6 +54,7 @@
 #include "functions_misc.h"
 #include "functions_structure.h"
 #include "functions_products.h"
+#include "functions_user.h"
 #include "fileio.h"
 #include "coda.h"
 

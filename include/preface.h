@@ -953,13 +953,21 @@ namespace mathq {
   //************************************************************************
   //* Basic Function types for computation
   //************************************************************************   
-  template <typename D> class FunctionTypes {
+  template <typename DOUT> class FunctionType0 {
   public:
-    typedef D (* zeroarg_func)();
-    typedef D (* unary_func)(D);
-    typedef D (* binary_func)(D, D);
-    typedef D (* ternary_func)(D, D, D);
-    typedef D (* quaternary_func)(D, D, D);
+    typedef DOUT (type)();
+  };
+  template <typename D1, typename DOUT> class FunctionType1 {
+  public:
+    typedef DOUT (type)(D1);
+  };
+  template <typename D1, typename D2, typename DOUT> class FunctionType2 {
+  public:
+    typedef DOUT (type)(D1, D2);
+  };
+  template <typename D1, typename D2, typename D3, typename DOUT> class FunctionType3 {
+  public:
+    typedef DOUT (type)(D1, D2, D3);
   };
   
 

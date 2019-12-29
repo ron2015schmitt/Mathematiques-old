@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
   mout << bold.apply("join") << endl;
   cr();
 
-  mout << blue.apply("Vector-Vector tests") << endl;
   {
     Vector<int> Vi {11,12,-100};
     Vector<double> Vd1 {1,2,3};
@@ -57,13 +56,19 @@ int main(int argc, char *argv[])
     mout<<"  ";tdisp(Vd1);
     mout<<"  ";tdisp(Vd2);
     cr();
-    mout << blue.apply("Vector+Vector Addition:") << endl;
 
+    mout << blue.apply("LHS tests--join") << endl;
     mout<<"  ";tdisp(join(Vd1,Vd1));
     mout<<"  ";tdisp(join(Vd1,Vd2));
-    Vector<double> Vd3 = (Vd2,Vd1,Vd2);
-    mout<<"  ";tdisp(Vd3);
+    mout << blue.apply("LHS tests--comma") << endl;
     mout<<"  ";tdisp((Vd1,Vd2));
+    mout<<"  ";tdisp((Vd2,Vd1,Vd2));
+    
+    mout << blue.apply("LHS tests") << endl;
+    Vector<double> Vd4 = {21,22,23,24,25,26,27};
+    mdisp(Vd1,Vd2);
+    (Vd1,Vd2) = Vd4;
+    mdisp(Vd1,Vd2);
 
     
   }

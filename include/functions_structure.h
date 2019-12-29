@@ -59,21 +59,7 @@ namespace mathq {
 
 
 
-  // join
 
-  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
-auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
-    return TER_Join<TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, E,D,M>(x1,x2);
-  }
-
-
-  // operator,
-
-  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
-  auto operator,(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
-    return join(x1,x2);
-  }
-  
 
 
   // join - LHS
@@ -84,6 +70,29 @@ auto join(TensorRW<A,E,D,M,R>& x1, TensorRW<B,E,D,M,R>& x2) {
   }
 
 
+  // operator, - LHS
+
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+auto operator,(TensorRW<A,E,D,M,R>& x1, TensorRW<B,E,D,M,R>& x2) {
+    return join(x1,x2);
+  }
+
+  // join - RHS
+  
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
+    return TER_Join<TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, E,D,M>(x1,x2);
+  }
+
+  
+  // operator, - RHS
+  
+  // This is needed for when more than two vectors are joined
+
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+  auto operator,(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
+    return join(x1,x2);
+  }
 
 
 

@@ -294,15 +294,16 @@ namespace mathq {
     typedef D DType;
       
   private:
-    const X& x_;
-    const Y& y_;
+    // can't be constant since we alow to be on left hand side
+    X& x_;
+    Y& y_;
     VectorofPtrs *vptrs;
       
   public:
       
 
 
-    TERW_Join(const X& x, const Y& y) : x_(x), y_(y) {
+    TERW_Join(X& x, Y& y) : x_(x), y_(y) {
       vptrs = new VectorofPtrs();
       vptrs->add(x_.getAddresses());
       vptrs->add(y_.getAddresses());
@@ -438,6 +439,7 @@ namespace mathq {
   //   template <class D, class OP, int M>
   //     class TERW_RealFromComplex : public  TensorRW<D,TERW_RealFromComplex<D,OP,M> > {
   //   private:
+    // can't be constant since we alow to be on left hand side
   //     Vector<std::complex<D> >& a_;
   //     VectorofPtrs *vptrs;
 

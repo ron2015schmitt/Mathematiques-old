@@ -77,9 +77,13 @@ auto operator,(TensorRW<A,E,D,M,R>& x1, TensorRW<B,E,D,M,R>& x2) {
     return join(x1,x2);
   }
 
-  // join - RHS
   
-  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+  // join - RHS
+
+  // The second part of the EnableIF clause ensures that writable (ie non-const) expressions get fed
+  // to the wrietable version of join, TERW_Join
+
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<(R==1)&&!(IsTensorRW<A>::value&&IsTensorRW<B>::value)>  >
 auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
     return TER_Join<TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, E,D,M>(x1,x2);
   }
@@ -89,7 +93,7 @@ auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
   
   // This is needed for when more than two vectors are joined
 
-  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<(R==1)&&!(IsTensorRW<A>::value&&IsTensorRW<B>::value)>  >
   auto operator,(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
     return join(x1,x2);
   }

@@ -112,10 +112,19 @@ namespace mathq {
 
   template <class A, class X, class E, class D, int M, int R> 
   class TER_Series;
+
   template <class A, class B, class X, class D, class OP1, class OP2> 
   class TER_Series2;
+
   template <class X, class E, class D, int M, int R, class FUNC> 
   class TER_Transpose;
+
+  template<class A, class D>
+  class TER_Rep;
+
+  template <class X, class Y, class E, class D, int M> 
+  class TER_Join;
+
 
   template<class D>
   class TERW_Subset;
@@ -123,12 +132,9 @@ namespace mathq {
   template<class D>
   class TERW_Submask;
 
-  template<class A, class D>
-  class TER_Rep;
-
   template <class X, class Y, class E, class D, int M> 
-  class TER_Join;
-  
+  class TERW_Join;
+
   // *********************************************************************
   // * Class type querying/manipulation
   // ********************************************************************
@@ -231,6 +237,31 @@ namespace mathq {
     typedef D RealType;
   };
 
+
+  // ***************************************************************************
+  //  IsTensorRW<T>
+  // ***************************************************************************
+
+
+  template <typename T> class
+  IsTensorRW {
+  public:
+    constexpr static bool value = false;
+    typedef void RealType;
+  };
+  template <class X, class E, typename D, int M, int R> class 
+  IsTensorRW<TensorRW<X,E,D,M,R>> {
+  public:
+    constexpr static bool value = true;
+    typedef D RealType;
+  };
+  template <class X, class E, typename D, int M, int R> class 
+  IsTensorRW<TensorR<X,E,D,M,R>> {
+  public:
+    constexpr static bool value = IsTensorRW<X>::value;
+    typedef D RealType;
+  };
+  
   
   // ***************************************************************************
   // FundamentalType - this operates recursively to find the primitive arithmetic type

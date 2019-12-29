@@ -70,6 +70,9 @@ int main(int argc, char *argv[])
     (Vd1,Vd2) = Vd4;
     mdisp(Vd1,Vd2);
 
+    tdisp(IsTensorRW<mathq::TER_Join<mathq::TensorR<mathq::TensorRW<mathq::TERW_Subset<double>, double, double, 1, 1>, double, double, 1, 1>, mathq::TensorR<mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, double, double, 1, 1>, double, double, 1>>::value);
+
+    tdisp(IsTensorRW<mathq::TensorR<mathq::TensorRW<mathq::TERW_Subset<double>, double, double, 1, 1>, double, double, 1, 1>>::value);
     
   }
 

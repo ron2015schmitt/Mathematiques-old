@@ -59,87 +59,29 @@ namespace mathq {
 
 
 
-  // // operator, (join)
+  // join
+
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
+    return TER_Join<TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, E,D,M>(x1,x2);
+  }
 
 
-  // template <class D> 
-  //    auto operator,(Vector<D>& a, Vector<D>& b)
-  //   {
-    
-  //     printf2("  VERW_Join operator,(Vector<D>& a, Vector<D>& b)\n");
-  //     return  VERW_Join<D,Vector<D>,Vector<D> >(a,b);
-  //   }
+  // operator,
 
-  // // //--------------------------------------------
-  // // // Need the const for compiler to find this
-  // // // then we cast away the const
-  // template <class D, class A> 
-  //    auto operator,(const TensorRW<D,A>& a, const Vector<D>& b)
-  //   {
-  //     printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const Vector<D>& b)\n");
-  //     TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
-  //     Vector<D>& b_ = const_cast<Vector<D>& >(b);
-  //     return  VERW_Join<D, TensorRW<D,A>,Vector<D> >(a_,b_);
-  //   }
-  // // //--------------------------------------------
-
-  // // //--------------------------------------------
-  // // // Need the const for compiler to find this
-  // // // then we cast away the const
-  // template <class D, class B> 
-  //    auto operator,(const Vector<D>& a, const TensorRW<D,B>& b)
-  //   {
-  //     printf2("  VERW_Join operator,(const Vector<D>& a, const TensorRW<D,B>& b)\n");
-  //     Vector<D>& a_ = const_cast<Vector<D>& >(a);
-  //     TensorRW<D,B>& b_ = const_cast<TensorRW<D,B>& >(b);
-  //     return VERW_Join<D, Vector<D>,TensorRW<D,B> >(a_,b_);
-  //   }
-  // // //--------------------------------------------
-
-  // // //--------------------------------------------
-  // // // Need the const for compiler to find this
-  // template <class D, class A, class B> 
-  //    auto operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)
-  //   {
-  //     printf2("  VERW_Join operator,(const TensorRW<D,A>& a, const TensorRW<D,B>& b)\n");
-  //     TensorRW<D,A>& a_ = const_cast<TensorRW<D,A>& >(a);
-  //     TensorRW<D,B>& b_ = const_cast<TensorRW<D,B>& >(b);
-  //     return  VERW_Join<D, TensorRW<D,A>,TensorRW<D,B> >(a_,b_);
-  //   }
-  // // //--------------------------------------------
-
-
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+  auto operator,(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
+    return join(x1,x2);
+  }
   
-  // // ///---------
-  
-  // template <class D> 
-  //    const auto operator,(const Vector<D>& a, const Vector<D>& b)
-  //   {
-  //     printf2("  VER_Join operator,(const Vector<D>& a, const Vector<D>& b)\n");
-  //     return  VER_Join<D,Vector<D>,Vector<D> >(a,b);
-  //   }
 
-  // template <class D, class B> 
-  //    const auto operator,(const Vector<D>& a, const TensorR<D,B>& b)
-  //   {
-  //     printf2("  VER_Join operator,(const Vector<D>& a, const TensorR<D,B>& b)\n");
-  //     return  VER_Join<D,Vector<D>,TensorR<D,B>  >(a,b);
-  //   }
 
-  // template <class D, class A> 
-  //    const auto operator,(const TensorR<D,A>& a, const Vector<D>& b)
-  //   {
-  //     printf2("  VER_Join operator,(const TensorR<D,A>& a, const Vector<D>& b)\n");
-  //     return  VER_Join<D,TensorR<D,A>,Vector<D> >(a,b);
-  //   }
- 
-  // template <class D, class A, class B> 
-  //    const auto operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)
-  //   {
-  //     printf2("  VER_Join operator,(const TensorR<D,A>& a, const TensorR<D,B>& b)\n");
-  //     return  VER_Join<D, TensorR<D,A>,TensorR<D,B> >(a,b);
-  //   }
+  // join - LHS
 
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
+auto join(TensorRW<A,E,D,M,R>& x1, TensorRW<B,E,D,M,R>& x2) {
+    return TERW_Join<TensorRW<A,E,D,M,R>, TensorRW<B,E,D,M,R>, E,D,M>(x1,x2);
+  }
 
 
 

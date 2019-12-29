@@ -1020,95 +1020,129 @@ namespace mathq {
 
 
 
-  //   //---------------------------------------------------------------------------
-  //   // VER_Join   joining two Tensors (RHS only)
-  //   //---------------------------------------------------------------------------
-
-  //   template<class D, class A, class B, int M>
-  //     class VER_Join : public  TensorR<D,VER_Join<D,A,B,M> > {
-
-  //   private:
-  //     const A& a_;
-  //     const B& b_;
-  //     VectorofPtrs *vptrs;
-
-  //   public:
-  //     typedef typename NumberType<D>::Type MyNumberType;
 
 
-  //   VER_Join(const A& a, const B& b)
-  //     : a_(a), b_(b) { 
+  //---------------------------------------------------------------------------
+  // VER_Join   joining two Vectors (RHS only)
+  //---------------------------------------------------------------------------
 
-  //       vptrs = new VectorofPtrs();
-  //       vptrs->add(a_.getAddresses());
-  //       vptrs->add(b_.getAddresses());
+  template <class X, class Y, class E, class D, int M> 
+  class TER_Join  : public  TensorR<TER_Join<X,Y,E,D,M>, E,D,M,1> {
+  public:
+    constexpr static int Rvalue = 1;
+    constexpr static int Mvalue = M;
+    typedef Materialize<E,D,M,Rvalue> XType;
+    typedef E EType;
+    typedef D DType;
       
-  //     }
+  private:
+    const X& x_;
+    const Y& y_;
+    VectorofPtrs *vptrs;
+      
+  public:
+      
 
-  //     ~VER_Join() {
-  //       delete vptrs;
-  //     }
+
+    TER_Join(const X& x, const Y& y) : x_(x), y_(y) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(x_.getAddresses());
+      vptrs->add(y_.getAddresses());
+      disp3(x);
+    }
     
-  //     const D operator[](const index_type i) const{
-  //       if ( i < a_.size() ) {
-  // 	return a_[i];
-  //       } else {
-  // 	return b_[i-a_.size()];
-  //       }
-  //     }
-  
-  //     VectorofPtrs getAddresses(void) const {
-  //       return *vptrs;
-  //     }
-  //     size_type size(void) const {
-  //       return a_.size() +b_.size();
-  //     }
-  //     size_type ndims(void) const {
-  //       return a_.ndims();
-  //     }
-  //     Dimensions dims(void) const {
-  //       return a_.dims();
-  //     }
-  //     bool isExpression(void) const {
-  //       return true;
-  //     }
-  //   size_type depth(void) const {
-  //       return M;
-  //     }
-  //   size_type elsize(void) const {
-  //     if constexpr(M<2) {
-  //       return 1;
-  //     } else {
-  //       return a_.elsize();
-  //     }
-  //   }
-  //   size_type eldeepsize(void) const {
-  //     if constexpr(M<2) {
-  //       return 1;
-  //     } else {
-  //       return a_.eldeepsize();
-  //     }
-  //   }
-  //     size_type deepsize(void) const {
-  //       if constexpr(M<2) {
-  // 	  return this->size();
-  // 	} else {
-  // 	return (this->size())*(this->eldeepsize());
-  //       }
-  //     }
-  //     std::string classname() const {
-  //       return "VER_Join";
-  //     }
+    ~TER_Join() {
+      delete vptrs;
+    }
 
-  // #if MATRICKS_DEBUG>=1
-  //     std::string expression(void) const {
-  //       return "";
-  //       //      return expression_VER_Join(a_.expression(),ii_.expression());
-  //     }
-  // #endif 
+    const D dat(const index_type i) const {
+      if ( i < x_.deepsize() ) {
+        return x_.dat(i);
+      } else {
+  	return y_.dat(i-x_.deepsize());
+      }
+    }  
+    const E operator[](const index_type i) const {
+      if ( i < x_.size() ) {
+        return x_[i];
+      } else {
+  	return y_[i-x_.size()];
+      }
+    }
 
     
-  //   };
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return x_.size()+y_.size();
+    }
+    size_type ndims(void) const {
+      return Rvalue;
+    }
+    Dimensions dims(void) const {
+      Dimensions d(x_.size()+y_.size());
+      return d;
+    }
+    Dimensions tdims(void) const {
+      return this->dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+      std::vector<Dimensions>& ddims = *(new std::vector<Dimensions>);
+      return deepdims(ddims);
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      const int N = parentdims.size();
+      std::vector<Dimensions>& ddims = x_.deepdims(parentdims);
+      ddims[N] = this->dims();
+      return ddims;
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      return M;
+    }
+    Dimensions eldims(void) const {
+      return x_.eldims();
+    }
+    size_type elsize(void) const {
+      if constexpr(M<=1) {
+	  return 1;
+	} else {
+	return x_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(M<=1) {
+	  return 1;
+	} else {
+	return x_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(M<=1) {
+	  return this->size();
+	} else {
+	return x_.deepsize() + y_.deepsize();
+      }
+    }
+
+    std::string classname() const {
+      return "TER_Join";
+    }
+
+
+#if MATHQ_DEBUG>=1
+    std::string expression(void) const {
+      std::string sx = x_.expression();
+      return sx;
+    }
+#endif
+
+  };
+
+
 
 
 

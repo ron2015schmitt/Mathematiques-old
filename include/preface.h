@@ -125,6 +125,9 @@ namespace mathq {
 
   template<class A, class D>
   class TER_Rep;
+
+  template <class X, class Y, class E, class D, int M> 
+  class TER_Join;
   
   // *********************************************************************
   // * Class type querying/manipulation

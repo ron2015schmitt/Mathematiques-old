@@ -5,127 +5,6 @@
 namespace mathq {
 
 
-  //---------------------------------------------------------------------------
-  // VERW_Join  join two tensors
-  //---------------------------------------------------------------------------
-
-
-  //   template<class D, class A, class B, int M>
-  //     class VERW_Join : public  TensorRW<D,VERW_Join<D,A,B,M> > {
-
-  //   private:
-  //     A& a_;
-  //     B& b_;
-  //     VectorofPtrs *vptrs;
-
-  //   public:
-  //     typedef typename NumberType<D>::Type MyNumberType;
-
-
-  //   VERW_Join(A& a, B& b)
-  //     : a_(a), b_(b) { 
-  //       vptrs = new VectorofPtrs();
-  //       vptrs->add(a_.getAddresses());
-  //       vptrs->add(b_.getAddresses());
-  //     }
-
-  //     ~VERW_Join() {
-  //       delete vptrs;
-  //     }
-
-
-  //     const D operator[](const index_type i) const{
-  //       if ( i < a_.size() ) {
-  // 	return a_[i];
-  //       } else {
-  // 	return b_[i-a_.size()];
-  //       }
-  //     }
-  //      D& operator[](const index_type i) {
-  //       if ( i < a_.size() ) {
-  // 	return a_[i];
-  //       } else {
-  // 	return b_[i-a_.size()];
-  //       }
-  //     }
-
-  //     VectorofPtrs getAddresses(void) const {
-  //       return *vptrs;
-  //     }
-  //     size_type size(void) const {
-  //       return a_.size() +b_.size();
-  //     }
-  //     size_type ndims(void) const {
-  //       return a_.ndims();
-  //     }
-  //     Dimensions dims(void) const {
-  //       return a_.dims();
-  //     }
-  //     bool isExpression(void) const {
-  //       return true;
-  //     }
-  //   size_type depth(void) const {
-  //       return M;
-  //     }
-  //   size_type elsize(void) const {
-  //     if constexpr(M<2) {
-  //       return 1;
-  //     } else {
-  //       return a_.elsize();
-  //     }
-  //   }
-  //   size_type eldeepsize(void) const {
-  //     if constexpr(M<2) {
-  //       return 1;
-  //     } else {
-  //       return a_.eldeepsize();
-  //     }
-  //   }
-  //     size_type deepsize(void) const {
-  //       if constexpr(M<2) {
-  // 	  return this->size();
-  // 	} else {
-  // 	return (this->size())*(this->eldeepsize());
-  //       }
-  //     }
-  //     std::string classname() const {
-  //       return "VERW_Join";
-  //     }
-
-  //     VERW_Join<D,A,B>& operator=(TERW_Resize<D>& b) { 
-  //       return this->equals(b);
-  //     }
-
-  //     template <class C>
-  //       VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs) { 
-  //       printf2("VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
-  //       return this->equals(rhs);
-  //     }
-
-
-  //     template <class D2, class C>
-  //       VERW_Join<D,A,B>& operator=(const TensorR<D2,C>& rhs) { 
-  //       return this->equals(rhs);
-  //     }
-    
-  //     VERW_Join<D,A,B>& operator=(const MyNumberType d) { 
-  //       return this->equals(d);
-  //     }
-    
-
-    
-  // #if MATRICKS_DEBUG>=1
-  //     std::string expression(void) const {
-  //       return "";
-  //       //      return expression_VER_Join(a_.expression(),ii_.expression());
-  //     }
-  // #endif 
-
-
-  //   };
-
-
-  
   
 
   //---------------------------------------------------------------------------
@@ -198,6 +77,16 @@ namespace mathq {
       return x_[ind];
     }
 
+    template <class Y, class D2>
+    TERW_Subset<D>& operator=(const TensorR<Y,D2,D2,Mvalue,Rvalue>& rhs) { 
+      return this->equals(rhs);
+    }
+    
+    TERW_Subset<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+
+    //----------------------------------------------
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -251,17 +140,7 @@ namespace mathq {
     std::string classname() const {
       return "TERW_Subset";
     }
-
-
-    template <class Y, class D2>
-    TERW_Subset<D>& operator=(const TensorR<Y,D2,D2,Mvalue,Rvalue>& rhs) { 
-      return this->equals(rhs);
-    }
-    
-    TERW_Subset<D>& operator=(const D d) { 
-      return this->equals(d);
-    }
-    
+ 
    
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
@@ -324,6 +203,16 @@ namespace mathq {
       return x_[ind];
     }
 
+    template <class Y, class D2>
+    TERW_Submask<D>& operator=(const TensorR<Y,D2,D2,Mvalue,Rvalue>& rhs) { 
+      return this->equals(rhs);
+    }
+    
+    TERW_Submask<D>& operator=(const D d) { 
+      return this->equals(d);
+    }
+
+    //---------------------------------------------
     
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -379,14 +268,6 @@ namespace mathq {
     }
 
 
-    template <class Y, class D2>
-    TERW_Submask<D>& operator=(const TensorR<Y,D2,D2,Mvalue,Rvalue>& rhs) { 
-      return this->equals(rhs);
-    }
-    
-    TERW_Submask<D>& operator=(const D d) { 
-      return this->equals(d);
-    }
     
    
 #if MATRICKS_DEBUG>=1
@@ -399,6 +280,151 @@ namespace mathq {
 
 
 
+  //---------------------------------------------------------------------------
+  // VERW_Join   joining two Vectors (RHS only)
+  //---------------------------------------------------------------------------
+
+  template <class X, class Y, class E, class D, int M> 
+  class TERW_Join  : public  TensorRW<TERW_Join<X,Y,E,D,M>, E,D,M,1> {
+  public:
+    constexpr static int Rvalue = 1;
+    constexpr static int Mvalue = M;
+    typedef Materialize<E,D,M,Rvalue> XType;
+    typedef E EType;
+    typedef D DType;
+      
+  private:
+    const X& x_;
+    const Y& y_;
+    VectorofPtrs *vptrs;
+      
+  public:
+      
+
+
+    TERW_Join(const X& x, const Y& y) : x_(x), y_(y) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(x_.getAddresses());
+      vptrs->add(y_.getAddresses());
+      disp3(x);
+    }
+    
+    ~TERW_Join() {
+      delete vptrs;
+    }
+
+    const D dat(const index_type i) const {
+      if ( i < x_.deepsize() ) {
+        return x_.dat(i);
+      } else {
+  	return y_.dat(i-x_.deepsize());
+      }
+    }
+    D& dat(const index_type i) {
+      if ( i < x_.deepsize() ) {
+        return x_.dat(i);
+      } else {
+  	return y_.dat(i-x_.deepsize());
+      }
+    }
+    const E operator[](const index_type i) const {
+      if ( i < x_.size() ) {
+        return x_[i];
+      } else {
+  	return y_[i-x_.size()];
+      }
+    }
+    E& operator[](const index_type i) {
+      if ( i < x_.size() ) {
+        return x_[i];
+      } else {
+  	return y_[i-x_.size()];
+      }
+    }
+    
+    template <class Z>
+    TERW_Join<X,Y,E,D,M>& operator=(const TensorR<Z,E,D,M,1>& rhs) { 
+      return this->equals(rhs);
+    }
+
+    TERW_Join<X,Y,E,D,M>& operator=(const D d) { 
+      return this->equals(d);
+    }
+    TERW_Join<X,Y,E,D,M>& operator=(const E& e) { 
+      return this->equals(e);
+    }
+    
+    //----------------------------------------------
+    VectorofPtrs getAddresses(void) const {
+      return *vptrs;
+    }
+    size_type size(void) const {
+      return x_.size()+y_.size();
+    }
+    size_type ndims(void) const {
+      return Rvalue;
+    }
+    Dimensions dims(void) const {
+      Dimensions d(x_.size()+y_.size());
+      return d;
+    }
+    Dimensions tdims(void) const {
+      return this->dims();
+    }
+    std::vector<Dimensions>& deepdims(void) const {
+      std::vector<Dimensions>& ddims = *(new std::vector<Dimensions>);
+      return deepdims(ddims);
+    }
+    std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
+      const int N = parentdims.size();
+      std::vector<Dimensions>& ddims = x_.deepdims(parentdims);
+      ddims[N] = this->dims();
+      return ddims;
+    }
+    bool isExpression(void) const {
+      return true;
+    }
+    size_type depth(void) const {
+      return M;
+    }
+    Dimensions eldims(void) const {
+      return x_.eldims();
+    }
+    size_type elsize(void) const {
+      if constexpr(M<=1) {
+	  return 1;
+	} else {
+	return x_.elsize();
+      }
+    }
+    size_type eldeepsize(void) const {
+      if constexpr(M<=1) {
+	  return 1;
+	} else {
+	return x_.eldeepsize();
+      }
+    }
+    size_type deepsize(void) const {
+      if constexpr(M<=1) {
+	  return this->size();
+	} else {
+	return x_.deepsize() + y_.deepsize();
+      }
+    }
+
+    std::string classname() const {
+      return "TERW_Join";
+    }
+
+
+#if MATHQ_DEBUG>=1
+    std::string expression(void) const {
+      std::string sx = x_.expression();
+      return sx;
+    }
+#endif
+
+  };
 
 
 

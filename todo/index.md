@@ -1,5 +1,6 @@
 # Index class and new indexing methodology
 
+_Back to [Table of Contents](README.md)_
 
 * replace `size_type` everywhere with `index_type`
 * `Index` class has constructors for

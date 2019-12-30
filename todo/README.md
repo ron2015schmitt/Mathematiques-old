@@ -45,12 +45,13 @@ _Update Decmber 30th, 2019_
 1. [Exceptions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
 
-
 ## Items for V12.0 -- Tensor Calculus 
 1. contravariant and covariant vectors
 1. basis vectors
 1. metric tensor
 1. raising and lowering operations
+
+## Items for V13.0 -- FFT Support via FFTW
 
 ## Other
 1. [Developer guide](developerguide.md)

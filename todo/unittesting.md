@@ -9,6 +9,7 @@
    * `test/create/createtests.cpp` has been started.  
    * currently using `bc`
    * will switch to `matlab` to calculate the expected results
+   * start using Python instead of C++ for the scripting
    
    
 * unit tests for helper types. Automate some of this.
@@ -17,3 +18,7 @@
    * Indices
    * Index
    * VectorofPtrs
+   * calculus (on doc page)
+   * Fourier Series
+   * Taylor Series
+   

@@ -1,5 +1,7 @@
 # Diagonal matrices
 
+_Back to [Table of Contents](README.md)_
+
 * Probably best to *not* inherit from Matrix since dimensions() will distinguish
 * has `min(NR,NC)` elements 
 * `A[i]` access ranges across diagonal, from `0` to `min(NR,NC)`

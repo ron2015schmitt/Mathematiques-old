@@ -42,7 +42,7 @@ _Update Decmber 30th, 2019_
 
 ## Items for V11.0 -- Debug Functionality
 1. [Create Tensor Pool and Tensor info](poolandinfo.md)
-1. [Exceptions](exceptions.md)
+1. [Exceptions and Assertions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
 
 ## Items for V12.0 -- Tensor Calculus 

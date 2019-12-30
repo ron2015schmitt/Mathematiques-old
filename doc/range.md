@@ -3,7 +3,7 @@
 
 
 # The `range` function in Mathématiques
-_This document was automatically generated from file_ **`range.cpp`** (Mathématiques-v3.0-r2).
+_This document was automatically generated from file_ **`range.cpp`** (Mathématiques-v3.0-r3).
 
 ### Increasing Sequences
 * The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`

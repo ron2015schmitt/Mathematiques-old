@@ -3,7 +3,7 @@
 
 
 # Vector join operator `(v1,v2)` and `rep` function in Mathématiques
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (Mathématiques-v3.0-r2).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (Mathématiques-v3.0-r3).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors
@@ -22,8 +22,8 @@ Vector<double> v2( range<double>(3,4) );
   v1 = {0, 1, 2}; 
   v2 = {3, 4}; 
   (v1,v2) = Vector<double> {0, 1, 2, 3, 4}; 
-  (v1,v2,v1) = {0, 1, 2}; 
-  (v1,v2,v1,v2) = Vector<double> {0, 1, 2, 3, 4}; 
+  (v1,v2,v1) = Vector<double> {0, 1, 2, 3, 4, 0, 1, 2}; 
+  (v1,v2,v1,v2) = Vector<double> {0, 1, 2, 3, 4, 0, 1, 2, 3, 4}; 
   (10*v1,v2) = Vector<double> {0, 10, 20, 3, 4}; 
   (v1,10*v2) = Vector<double> {0, 1, 2, 30, 40}; 
   (10*v1,10*v2) = Vector<double> {0, 10, 20, 30, 40}; 
@@ -52,8 +52,8 @@ Vector<double> ub(3);
 
 **The result is**
 ```C++
-  ua = {0, 0}; 
-  ub = {1, 2, 3, 4, 5}; 
+  ua = {2, 1}; 
+  ub = {3, 4, 5}; 
 ```
 
 ```C++
@@ -64,8 +64,8 @@ Vector<double> wb(3);
 
 **The result is**
 ```C++
-  wa = {0, 0}; 
-  wb = {3, 2, 1}; 
+  wa = {1, 2}; 
+  wb = {5, 4, 3}; 
 ```
 
 ```C++
@@ -76,8 +76,8 @@ Vector<double> zb(3);
 
 **The result is**
 ```C++
-  za = {0, 0}; 
-  zb = {3, 2, 1}; 
+  za = {2, 1}; 
+  zb = {5, 4, 3}; 
 ```
 
 ### Vector `rep` function

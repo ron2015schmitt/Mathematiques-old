@@ -3,7 +3,7 @@
 
 
 # Vector declaration in Mathématiques
-_This document was automatically generated from file_ **`vdeclaration.cpp`** (Mathématiques-v3.0-r2).
+_This document was automatically generated from file_ **`vdeclaration.cpp`** (Mathématiques-v3.0-r3).
 
 **EXAMPLE 1**: Declare vector `v` (initialize to zeros).
 ```C++

@@ -64,36 +64,41 @@ namespace mathq {
 
   // join - LHS
 
+  // NOTE: Without the const qualifiers, the C++ compiler refuses to use this function
+  //       in the case where one or both inputs are an expression, eg. join((V1,V2),V3)
+  //       Only work-around I have come up with i sto use conts and then cast the const away
+
   template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
-auto join(TensorRW<A,E,D,M,R>& x1, TensorRW<B,E,D,M,R>& x2) {
-    return TERW_Join<TensorRW<A,E,D,M,R>, TensorRW<B,E,D,M,R>, E,D,M>(x1,x2);
+  auto join(const TensorRW<A,E,D,M,R>& x1, const TensorRW<B,E,D,M,R>& x2) {
+    TensorRW<A,E,D,M,R>& a1 = const_cast<TensorRW<A,E,D,M,R>&>(x1);    
+    TensorRW<B,E,D,M,R>& a2 = const_cast<TensorRW<B,E,D,M,R>&>(x2);    
+    return TERW_Join<TensorRW<A,E,D,M,R>, TensorRW<B,E,D,M,R>, E,D,M>(a1,a2);
   }
 
 
   // operator, - LHS
 
+  // Note above applies here as well.
+
   template <class A, class B, class E, class D, int M, int R, typename = EnableIf<R==1> >
-auto operator,(TensorRW<A,E,D,M,R>& x1, TensorRW<B,E,D,M,R>& x2) {
-    return join(x1,x2);
+  auto operator,(const TensorRW<A,E,D,M,R>& x1, const TensorRW<B,E,D,M,R>& x2) {
+    TensorRW<A,E,D,M,R>& a1 = const_cast<TensorRW<A,E,D,M,R>&>(x1);    
+    TensorRW<B,E,D,M,R>& a2 = const_cast<TensorRW<B,E,D,M,R>&>(x2);    
+    return join(a1,a2);
   }
 
   
   // join - RHS
 
-  // The second part of the EnableIF clause ensures that writable (ie non-const) expressions get fed
-  // to the wrietable version of join, TERW_Join
-
-  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<(R==1)&&!(IsTensorRW<A>::value&&IsTensorRW<B>::value)>  >
-auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
-    return TER_Join<TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, E,D,M>(x1,x2);
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<(R==1)>  >
+  auto join(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
+    return  TER_Join<TensorR<A,E,D,M,R>, TensorR<B,E,D,M,R>, E,D,M>(x1,x2);
   }
 
   
   // operator, - RHS
   
-  // This is needed for when more than two vectors are joined
-
-  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<(R==1)&&!(IsTensorRW<A>::value&&IsTensorRW<B>::value)>  >
+  template <class A, class B, class E, class D, int M, int R, typename = EnableIf<(R==1)>  >
   auto operator,(const TensorR<A,E,D,M,R>& x1, const TensorR<B,E,D,M,R>& x2) {
     return join(x1,x2);
   }

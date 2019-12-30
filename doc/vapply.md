@@ -3,7 +3,7 @@
 
 
 # Applying User-defined functions in Mathématiques
-_This document was automatically generated from file_ **`vapply.cpp`** (Mathématiques-v3.0-r2).
+_This document was automatically generated from file_ **`vapply.cpp`** (Mathématiques-v3.0-r3).
 
 As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. 
 

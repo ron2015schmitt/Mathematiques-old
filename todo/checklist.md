@@ -1,5 +1,7 @@
 # Release Checklist
 
+_Back to [Table of Contents](README.md)_
+
 * Update `files/matricks.vers`
 * `reconfigure`
 * update README

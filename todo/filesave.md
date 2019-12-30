@@ -6,5 +6,7 @@ _Back to [Table of Contents](README.md)_
 * ```save``` command
    * implement CSV, TSV, WSV, braces-compact, braces-code, matlab, Matemematuca
    * implement at least oen binary output style
+     * both Mathematica and Matlab support
+     * can save multiple variables to one file
    * for Vectors, allow varg vectors and save as columns
    * provide for optional header text 

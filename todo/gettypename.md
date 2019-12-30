@@ -1,9 +1,10 @@
 # Refactor getTypeName
 
-1. If class does not implement method "classname()", then just print typeid(x).name(), instead of producing a compile error.
+_Back to [Table of Contents](README.md)_
 
-   * one way to do this is to have every class that implements classname() inherit from an abstract class with virtual method
-   * another way is to just directly test using type traits 
+1. perhaps use Pytrhon scripting to generate code
+1. clearly document MACROS in User Guide. Mimimize use of macros
+   1. recall macros take on the naemspace from where they are called!  Location of the definition is irrelevant.
 
 From (https://dev.krzaq.cc/post/checking-whether-a-class-has-a-member-function-with-a-given-signature/)
 ```C++

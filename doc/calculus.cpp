@@ -214,9 +214,9 @@ int main()
     codemulti( set_mathematica_var_format() );
     codemulti( const double pi = M_PI );
     codemulti( const size_type N = 25 );
-    codemulti( const double a = 0 );
-    codemulti( const double b = 2*pi );
-    codemulti( Vector<double> x( linspace_b<double>(a,b,N) ) );
+    codemulti( Vector<double> x( linspace_b<double>(0,2*pi,N) ) );
+    codemulti( const double a = min(x) );
+    codemulti( const double b = max(x) );
     codemulti( Vector<double> f = sin(x) );
     codemulti( Vector<double> f2 = deriv(f,a,b,4,2,true )  );
     codemulti( Vector<double> f3 = deriv(f,a,b,4,3,true )  );

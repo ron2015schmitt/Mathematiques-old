@@ -207,7 +207,7 @@ int main()
 
 
   header3("Arbitrary combinations of the above functionality are supported");
-  text("* Because mātricks uses expression templating:");
+  text("* Because Mathématiques uses expression templating:");
   text("  * no intermediate objects are created");
   text("  * the expression is calculated in a single for loop");
 

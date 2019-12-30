@@ -31,7 +31,7 @@ int main()
   header2("Element access");
 
   header3("Positive and negative indices");
-  text("Similar to python, mātricks allows negative indices");
+  text("Similar to python, Mathématiques allows negative indices");
   cr();
   text("`v[-1] == v[N-1]` == end element\n");
   text("`v[-2] == v[N-2]` == penultimate element\n");

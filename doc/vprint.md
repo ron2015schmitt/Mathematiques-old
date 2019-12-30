@@ -3,12 +3,12 @@
 
 
 # \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v2.33-r82).
+_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v3.0).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 
 * All of the functions decribed in this section are in the namespace `display`
-* Practically speaking, this functionality is one of the most useful aspects of mātricks.
+* Practically speaking, this functionality is one of the most useful aspects of Mathématiques.
 ## The function `disp(x)`
 
 

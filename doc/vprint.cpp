@@ -32,7 +32,7 @@ int main()
   mathq_preamble();
   text("* The examples in this section can be found in file_ `examples/printing.cpp`\n");
   text("* All of the functions decribed in this section are in the namespace `display`");
-  text("* Practically speaking, this functionality is one of the most useful aspects of mātricks.");
+  text("* Practically speaking, this functionality is one of the most useful aspects of Mathématiques.");
 
 
   // disp()

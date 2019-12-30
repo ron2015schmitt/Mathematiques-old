@@ -3,7 +3,7 @@
 
 
 # Vector file I/O in mātricks
-_This document was automatically generated from file_ **`vfile.cpp`** (mātricks-v2.33-r82).
+_This document was automatically generated from file_ **`vfile.cpp`** (mātricks-v3.0).
 
 
 [Table of Contents](README.md)

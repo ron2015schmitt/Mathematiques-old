@@ -3,7 +3,7 @@
 
 
 # Vector join operator `(v1,v2)` and `rep` function in mātricks
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v2.33-r82).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (mātricks-v3.0).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors

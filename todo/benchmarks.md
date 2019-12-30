@@ -1,5 +1,7 @@
 # Benchmarks
 
+_Back to [Table of Contents](README.md)_
+
 Add more benchmarks:
 * matrix expression
 * vector dot vector

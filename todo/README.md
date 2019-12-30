@@ -1,6 +1,6 @@
 # "TO DO" List 
 
-_Update Decmber 30th, 2019_
+_Updated December 30th, 2019_
 
 ## Items for V3.1
 1. [Update Documentation](doc.md)

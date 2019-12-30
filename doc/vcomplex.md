@@ -2,8 +2,8 @@
 [Table of Contents](README.md)
 
 
-# Complex-valued Vectors in mātricks
-_This document was automatically generated from file_ **`vcomplex.cpp`** (mātricks-v3.0).
+# Complex-valued Vectors in Mathématiques
+_This document was automatically generated from file_ **`vcomplex.cpp`** (Mathématiques-v3.0-r2).
 
 ### Representing the unit imaginary _i_
 * In C++, there is no definition for pure imaginary numbers.

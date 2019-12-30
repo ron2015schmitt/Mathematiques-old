@@ -2,8 +2,8 @@
 [Table of Contents](README.md)
 
 
-# \*Formatted and styled printing in mātricks
-_This document was automatically generated from file_ **`vprint.cpp`** (mātricks-v3.0).
+# \*Formatted and styled printing in Mathématiques
+_This document was automatically generated from file_ **`vprint.cpp`** (Mathématiques-v3.0-r2).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 

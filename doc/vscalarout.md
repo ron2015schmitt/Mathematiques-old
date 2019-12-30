@@ -2,8 +2,8 @@
 [Table of Contents](README.md)
 
 
-# Vector functions that return a scalar (dot product, sum, min, max etc) in mātricks
-_This document was automatically generated from file_ **`vscalarout.cpp`** (mātricks-v3.0).
+# Vector functions that return a scalar (dot product, sum, min, max etc) in Mathématiques
+_This document was automatically generated from file_ **`vscalarout.cpp`** (Mathématiques-v3.0-r2).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.

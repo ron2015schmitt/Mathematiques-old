@@ -8,7 +8,7 @@
 
 namespace md {
 
-#define mathq_preamble()  printf("_This document was automatically generated from file_ **`%s`** (%s-%s).\n\n",__FILE__, "mātricks", vers_mathq)
+#define mathq_preamble()  printf("_This document was automatically generated from file_ **`%s`** (%s-%s).\n\n",__FILE__, "Mathématiques", vers_mathq)
 
 inline void write_mdtitle_file (std::string fname, std::string title) {
   using namespace std;
@@ -23,7 +23,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
   
 #define mathq_toc() mout << std::endl<<"[Table of Contents](README.md)"<< std::endl;
 
-#define mdtitle(str)   mout << "# " << str << " in mātricks" << std::endl; write_mdtitle_file(__FILE__,str);
+#define mdtitle(str)   mout << "# " << str << " in Mathématiques" << std::endl; write_mdtitle_file(__FILE__,str);
  
 #define mdtitle0(str)   mout << "# " << str << std::endl; write_mdtitle_file(__FILE__,str);
 

@@ -2,8 +2,8 @@
 [Table of Contents](README.md)
 
 
-# Calculus in mātricks
-_This document was automatically generated from file_ **`calculus.cpp`** (mātricks-v3.0).
+# Calculus in Mathématiques
+_This document was automatically generated from file_ **`calculus.cpp`** (Mathématiques-v3.0-r2).
 
 ## Integration
 ### Definite integrals

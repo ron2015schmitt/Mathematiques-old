@@ -409,6 +409,24 @@ namespace mathq {
   //          C++ template paramters and specialization does not find subclasses
   // ***************************************************************************
 
+  template <typename NewD> class
+  NumberType<Null, NewD> {
+  public:
+    typedef Null Type;
+    typedef NewD ReplaceTypeD;
+    typedef NewD ReplaceTypeE; // DONT modify this
+    constexpr static bool value = true;
+    constexpr static int depth() {
+      return 0;
+    }
+    inline static int size(Null x) {
+      return 0;
+    }
+    inline static int deepsize(Null x) {
+      return 0;
+    }
+  };
+
   template <typename T, typename NewD> class
   NumberType<T,NewD,typename std::enable_if<std::is_arithmetic<T>::value>::type> {
   public:

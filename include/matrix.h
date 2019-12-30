@@ -39,6 +39,7 @@ namespace mathq {
     typedef Matrix<E,NR,NC,D,M> XType;
     typedef E EType;
     typedef D DType;
+    typedef typename FundamentalType<D>::Type FType;
       
 
     // if either NR or NC is 0, then we use valarray
@@ -886,7 +887,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Matrix<E,NR,NC,D,M>&  roundzero(D tolerance = Helper<D>::tolerance) { 
+    Matrix<E,NR,NC,D,M>&  roundzero(FType tolerance = Helper<FType>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = mathq::roundzero(data_[i], tolerance);
       }

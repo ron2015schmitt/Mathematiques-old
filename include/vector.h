@@ -28,6 +28,7 @@ namespace mathq {
     typedef Vector<E,NE,D,M> XType;
     typedef E EType;
     typedef D DType;
+    typedef typename FundamentalType<D>::Type FType;
 
     typedef typename ArrayType<E,NE>::Type MyArrayType;
     constexpr static int R = 1;
@@ -707,7 +708,7 @@ namespace mathq {
   //----------------- .roundzero(tol) ---------------------------
   // NOTE: in-place
     
-  Vector<E,NE,D,M>&  roundzero(D tolerance = Helper<D>::tolerance) { 
+    Vector<E,NE,D,M>&  roundzero(FType tolerance = Helper<FType>::tolerance) { 
     for(index_type i=size(); i--;) {
       data_[i] = mathq::roundzero(data_[i], tolerance);
     }

@@ -26,6 +26,7 @@ namespace mathq {
     typedef Scalar<E,D,M> XType;
     typedef E EType;
     typedef D DType;
+    typedef typename FundamentalType<D>::Type FType;
     constexpr static int Rvalue = 0;
     constexpr static int Mvalue = M;
     typedef typename std::conditional<M==1,E,E&>::type TypeA;
@@ -378,7 +379,7 @@ namespace mathq {
   // NOTE: in-place
 
     
-    Scalar<E,D,M>&  roundzero(D tolerance = Helper<D>::tolerance) { 
+    Scalar<E,D,M>&  roundzero(FType tolerance = Helper<FType>::tolerance) { 
     data_ = mathq::roundzero(data_, tolerance);
     return *this;
   }

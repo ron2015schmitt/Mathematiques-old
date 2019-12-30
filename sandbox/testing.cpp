@@ -708,31 +708,31 @@ int main(int argc, char *argv[])
 
   
 
-  {
-    cr();
-    mout << bold.apply("Complexify") << endl; 
-    Complexify<double>::Type double_;
-    tdisp(double_);
-    Complexify<std::complex<double> >::Type complexdouble_;
-    tdisp(complexdouble_);
-    // Complexify<Scalar<double> >::Type scalardouble_;
-    // tdisp(scalardouble_);
-    // Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-    // tdisp(scalarcomplexdouble_);
-  }
+  // {
+  //   cr();
+  //   mout << bold.apply("Complexify") << endl; 
+  //   Complexify<double>::Type double_;
+  //   tdisp(double_);
+  //   Complexify<std::complex<double> >::Type complexdouble_;
+  //   tdisp(complexdouble_);
+  //   // Complexify<Scalar<double> >::Type scalardouble_;
+  //   // tdisp(scalardouble_);
+  //   // Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+  //   // tdisp(scalarcomplexdouble_);
+  // }
 
-    {
-    cr();
-    mout << bold.apply("Realify") << endl; 
-    Realify<double>::Type double_;
-    tdisp(double_);
-    Realify<std::complex<double> >::Type complexdouble_;
-    tdisp(complexdouble_);
-    // Realify<Scalar<double> >::Type scalardouble_;
-    // tdisp(scalardouble_);
-    // Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-    // tdisp(scalarcomplexdouble_);
-  }
+  //   {
+  //   cr();
+  //   mout << bold.apply("Realify") << endl; 
+  //   Realify<double>::Type double_;
+  //   tdisp(double_);
+  //   Realify<std::complex<double> >::Type complexdouble_;
+  //   tdisp(complexdouble_);
+  //   // Realify<Scalar<double> >::Type scalardouble_;
+  //   // tdisp(scalardouble_);
+  //   // Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
+  //   // tdisp(scalarcomplexdouble_);
+  // }
 
 
   {

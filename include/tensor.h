@@ -38,6 +38,8 @@ namespace mathq {
     typedef Tensor<E,R,D,M> XType;
     typedef E EType;
     typedef D DType;
+    typedef typename FundamentalType<D>::Type FType;
+    
     constexpr static int Rvalue = R;
     constexpr static int Mvalue = M;
 
@@ -632,7 +634,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Tensor<E,R,D,M>&  roundzero(D tolerance = Helper<D>::tolerance) { 
+    Tensor<E,R,D,M>&  roundzero(FType tolerance = Helper<FType>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = mathq::roundzero(data_[i], tolerance);
       }

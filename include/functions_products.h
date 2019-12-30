@@ -84,7 +84,7 @@ namespace mathq {
   EnableMethodIf<R==1, typename MultType<D1,D2>::Type&> dot(const TensorR<A,E1,D1,M,R>& a, const TensorR<B,E2,D2,M,R>& b) {
 
       typedef typename MultType<D1,D2>::Type D3;
-      typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+      typedef typename NumberType<E1,D3>::ReplaceTypeD E3;   // see TODO note above
 
       E3* result = new E3;
       *result = 0;
@@ -142,7 +142,7 @@ namespace mathq {
 // template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
 // auto operator|(const TensorR<A,E1,D1,M,R>& a, const TensorR<B,E2,D2,M,R>& b) {
 //   typedef typename MultType<D1,D2>::Type D3;
-//   typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+//   typedef typename NumberType<E1,D3>::ReplaceTypeD E3;   // see TODO note above
   
 //     // (Scalar|Scalar)
 //     if ((a.ndims() == 0) && (b.ndims() == 0)) {
@@ -173,7 +173,7 @@ namespace mathq {
 // template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
 // auto operator&(const TensorR<A,E1,D1,M,R>& a, const TensorR<B,E2,D2,M,R>& b) {
 //   typedef typename MultType<D1,D2>::Type D3;
-//   typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+//   typedef typename NumberType<E1,D3>::ReplaceTypeD E3;   // see TODO note above
 
 //     // (Scalar&Scalar)
 //     if ((a.ndims() == 0) && (b.ndims() == 0)) {
@@ -196,7 +196,7 @@ namespace mathq {
 // template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
 // auto operator^(const TensorR<A,E1,D1,M,R>& a, const TensorR<B,E2,D2,M,R>& b) {
 //   typedef typename MultType<D1,D2>::Type D3;
-//   typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
+//   typedef typename NumberType<E1,D3>::ReplaceTypeD E3;   // see TODO note above
 
 //     // (Scalar^Scalar)
 //     if ((a.ndims() == 0) && (b.ndims() == 0)) {

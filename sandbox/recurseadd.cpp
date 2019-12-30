@@ -212,6 +212,13 @@ int main(int argc, char *argv[])
     t.stop_timer_curt();
     tdisp(v3);
 
+    cr();
+    decltype(v3)::EType e;
+    decltype(v3)::DType d;
+    tdisp(e);
+    tdisp(d);
+    tdisp(decltype(v3)::Rvalue);
+    tdisp(decltype(v3)::Mvalue);
    
   }
 

@@ -26,18 +26,6 @@ template <class F> void printUnary() {
   mout << F::expression("x") << std::endl;
 }
 
-template <class D1, class D2, template<typename, typename> class F> void printBinary() {
-  mout << F<D1,D2>::classname()  << " ";
-  mout << F<D1,D2>::expression("x","y") << std::endl;
-}
-template <class D, template<typename> class F> void printBinary() {
-  mout << F<D>::classname()  << " ";
-  mout << F<D>::expression("x","y") << std::endl;
-}
-template <class F> void printBinary() {
-  mout << F::classname()  << " ";
-  mout << F::expression("x","y") << std::endl;
-}
 
 
 
@@ -274,80 +262,12 @@ int main(int argc, char *argv[])
 
   mout << typeid(&f1).name() <<endl;
   mout << typeid(f2).name() <<endl;
-  mout << typeid(FunctionTypes<double>::unary_func).name() <<endl;
+  mout << typeid(FunctionType1<double,double>::type).name() <<endl;
   mout << getTypeName(f1) <<endl;
 
 
 
     
-  printUnary<double,Fun_Plus>();
-  printUnary<double,Fun_Minus>();
-  mout << Fun_Cast<double,int>::classname() << " ";
-  mout << Fun_Cast<double,int>::expression("n") << endl;
-  printBinary<double,double,Fun_Add>();
-  printBinary<double,double,Fun_Subtract>();
-  printBinary<double,double,Fun_Multiply>();
-  printBinary<double,float,Fun_Divide>();
-  printBinary<double,int,Fun_Pow>();
-
-  printUnary<double,Fun_Sqr>();
-  printUnary<double,Fun_Cube>();
-  printUnary<double,Fun_Sqrt>();
-  printUnary<double,Fun_Exp>();
-  printUnary<double,Fun_Log>();
-  printUnary<double,Fun_Log2>();
-  printUnary<double,Fun_Log10>();
-  printUnary<double,Fun_Sin>();
-  printUnary<double,Fun_Cos>();
-  printUnary<double,Fun_Tan>();
-  printUnary<double,Fun_Asin>();
-  printUnary<double,Fun_Acos>();
-  printUnary<double,Fun_Atan>();
-  printBinary<double,double,Fun_Atan2>();
-  printUnary<double,Fun_Sinh>();
-  printUnary<double,Fun_Cosh>();
-  printUnary<double,Fun_Tanh>();
-
-  printUnary<double,Fun_Abs>();
-  printUnary<double,Fun_Sgn>();
-  printUnary<double,Fun_Ceil>();
-  printUnary<double,Fun_Floor>();
-  printUnary<double,Fun_Round>();
-  printBinary<double,double,Fun_Roundzero>();
-
-  mout << Fun_UnaryUser<double,f1>::classname()  << " ";
-  mout << Fun_UnaryUser<double,f1>::expression("x") << endl;
-  //  mout << Fun_BinaryUser<double,f2>::classname()  << " ";
-  //  mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
-
-  // s = StyledString::get(ANGLE1).get() + getTypeName(d) + StyledString::get(COMMA).get() + "function(.,.)" + StyledString::get(ANGLE2).get();
-  // mout << Fun_UnaryUser<double,f1>::classname()  << " ";
-  // mout << Fun_UnaryUser<double,f1>::expression("x") << endl;
-  // mout << Fun_BinaryUser<double,f2>::classname()  << " ";
-  // mout << Fun_BinaryUser<double,f2>::expression("x","y") << endl;
-
-
-  printUnary<Fun_Not>();
-  printBinary<bool,bool,Fun_And>();
-  printBinary<bool,bool,Fun_Or>();
-
-
-  printBinary<double,double,Fun_Equal>();
-  printBinary<double,double,Fun_NotEqual>();
-  printBinary<double,double,Fun_LessOrEqual>();
-  printBinary<double,double,Fun_GreaterOrEqual>();
-  printBinary<double,double,Fun_Less>();
-  printBinary<double,double,Fun_Greater>();
-
-
-  printBinary<double,double,Fun_Polar>();
-  printBinary<double,double,Fun_Complex>();
-  printUnary<double,Fun_Arg>();
-  printUnary<double,Fun_Conj>();
-  printUnary<double,Fun_Real>();
-  printUnary<double,Fun_Imag>();
-
-  
 
 
 
@@ -388,9 +308,6 @@ int main(int argc, char *argv[])
   tdisp(v1+v2);
 
 
-  TensorType<T_SCALAR,int>::MyType s3 = s2;
-
-  disp(s3);
 
   Matrix<double> A(2,3);
   A= {{1,2,3},{4,5,6}};
@@ -734,10 +651,10 @@ int main(int argc, char *argv[])
     double x = 6.5;
     tdisp(z);
     tdisp(x);
-    tdisp(conj(z));
-    tdisp(conj(x));
-    tdisp(real(x));
-    tdisp(imag(x));
+    tdisp(mathq::conj(z));
+    tdisp(mathq::conj(x));
+    tdisp(mathq::real(x));
+    tdisp(mathq::imag(x));
   }
 
 
@@ -1047,8 +964,8 @@ int main(int argc, char *argv[])
     // NOTE: no equals sign
     std::vector<std::vector<double>> ss {{1,2},{3,4}};
     tdisp(ss);
-    Vector<std::vector<double>> vs {{1,2},{3,4}};
-    tdisp(vs);
+    // Vector<std::vector<double>> vs {{1,2},{3,4}};
+    // tdisp(vs);
     std::vector<Vector<double>> sv {{1,2},{3,4}};
     tdisp(sv);
     Vector<Vector<double>> vv {{1,2},{3,4}};

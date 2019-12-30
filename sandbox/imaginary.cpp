@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     
     tdisp(x);
     tdisp(y);
-    tdisp(numbercast<float>(y));
+    tdisp(numbercast<Imaginary<float>>(y));
 
     tdisp(+x);
     tdisp(-x);
@@ -95,14 +95,14 @@ int main(int argc, char *argv[])
     tdisp(x/y);
 
 
-    tdisp(complexify(x));
+    tdisp(Complex(x));
 
     tdisp(real(x));
     tdisp(imag(x));
     tdisp(arg(x));
 
     tdisp(abs(x));
-    tdisp(norm(x));
+    tdisp(normsqr(x));
     tdisp(conj(x));
     tdisp(~x);
     tdisp(polar(x));

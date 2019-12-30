@@ -5,17 +5,23 @@
 #include <string>
 
 
+union IndexUnion {
+  int sindex;
+  unsigned int uindex;
+  IndexUnion(int i) {sindex = i;};
+  IndexUnion(unsigned int i) {uindex = i;};
+};  
+  
 
 
 enum IndexType {IND_SIGNED,IND_UNSIGNED};
 class Index {
 public:
-  int n_;
-  unsigned int u_;
+  IndexUnion index;
   IndexType type_;
-  Index(unsigned int u) : n_(-9999), u_(u), type_(IND_UNSIGNED) {
+  Index(unsigned int u) : index(u), type_(IND_UNSIGNED) {
   }
-  Index(int n) : n_(n), u_(99999), type_(IND_SIGNED) {
+  Index(int n) : index(n), type_(IND_SIGNED) {
   }
  
   
@@ -29,21 +35,22 @@ public:
   inline unsigned int value(unsigned int N) const {
     switch (type_) {
     case IND_SIGNED:
-      if (n_<0) {
-	return N+n_;
+      if (index.sindex<0) {
+	return N+index.sindex;
       } else {
-	return n_;
+	return index.sindex;
       }
     case IND_UNSIGNED:
-      return u_;
-    }      
+      return index.uindex;
+    }
+    return 0;
   }    
 
   inline int getn() const {
-    return n_;
+    return index.sindex;
   }
   inline unsigned int getu() const {
-    return u_;
+    return index.uindex;
   }
 
 
@@ -134,6 +141,13 @@ int main(int argc, char *argv[])
   print_mathq_info();
   
 
+  {
+    tdisp(sizeof(int));
+    tdisp(sizeof(unsigned));
+    tdisp(sizeof(unsigned int));
+    tdisp(sizeof(IndexUnion));
+    
+  }
 
   {
     Holder h;

@@ -3037,7 +3037,7 @@ public:
 
 template <class X, class E, class D, int M, int R>			
 auto operator+(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_pos<E,EOUT,D,D>>(x); 
 }
 
@@ -3056,7 +3056,7 @@ auto operator+(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto operator-(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_neg<E,EOUT,D,D>>(x); 
 }
 
@@ -3075,7 +3075,7 @@ auto operator-(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto operator!(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_not<E,EOUT,D,D>>(x); 
 }
 
@@ -3094,7 +3094,7 @@ auto operator!(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sin(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sin<E,EOUT,D,D>>(x); 
 }
 
@@ -3113,7 +3113,7 @@ auto sin(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto cos(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cos<E,EOUT,D,D>>(x); 
 }
 
@@ -3132,7 +3132,7 @@ auto cos(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto tan(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tan<E,EOUT,D,D>>(x); 
 }
 
@@ -3151,7 +3151,7 @@ auto tan(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto asin(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asin<E,EOUT,D,D>>(x); 
 }
 
@@ -3170,7 +3170,7 @@ auto asin(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto acos(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_acos<E,EOUT,D,D>>(x); 
 }
 
@@ -3189,7 +3189,7 @@ auto acos(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto atan(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_atan<E,EOUT,D,D>>(x); 
 }
 
@@ -3208,7 +3208,7 @@ auto atan(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sinh(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sinh<E,EOUT,D,D>>(x); 
 }
 
@@ -3227,7 +3227,7 @@ auto sinh(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto cosh(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cosh<E,EOUT,D,D>>(x); 
 }
 
@@ -3246,7 +3246,7 @@ auto cosh(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto tanh(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tanh<E,EOUT,D,D>>(x); 
 }
 
@@ -3265,7 +3265,7 @@ auto tanh(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto asinh(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_asinh<E,EOUT,D,D>>(x); 
 }
 
@@ -3284,7 +3284,7 @@ auto asinh(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto acosh(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_acosh<E,EOUT,D,D>>(x); 
 }
 
@@ -3303,7 +3303,7 @@ auto acosh(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto atanh(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_atanh<E,EOUT,D,D>>(x); 
 }
 
@@ -3322,7 +3322,7 @@ auto atanh(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sqrt(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sqrt<E,EOUT,D,D>>(x); 
 }
 
@@ -3341,7 +3341,7 @@ auto sqrt(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto cbrt(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cbrt<E,EOUT,D,D>>(x); 
 }
 
@@ -3360,7 +3360,7 @@ auto cbrt(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sqr(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sqr<E,EOUT,D,D>>(x); 
 }
 
@@ -3379,7 +3379,7 @@ auto sqr(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto cube(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_cube<E,EOUT,D,D>>(x); 
 }
 
@@ -3398,7 +3398,7 @@ auto cube(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto exp(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_exp<E,EOUT,D,D>>(x); 
 }
 
@@ -3417,7 +3417,7 @@ auto exp(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto exp2(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_exp2<E,EOUT,D,D>>(x); 
 }
 
@@ -3436,7 +3436,7 @@ auto exp2(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto expm1(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_expm1<E,EOUT,D,D>>(x); 
 }
 
@@ -3455,7 +3455,7 @@ auto expm1(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log<E,EOUT,D,D>>(x); 
 }
 
@@ -3474,7 +3474,7 @@ auto log(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log10(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log10<E,EOUT,D,D>>(x); 
 }
 
@@ -3493,7 +3493,7 @@ auto log10(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log2(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log2<E,EOUT,D,D>>(x); 
 }
 
@@ -3512,7 +3512,7 @@ auto log2(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log1p(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_log1p<E,EOUT,D,D>>(x); 
 }
 
@@ -3531,7 +3531,7 @@ auto log1p(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto logb(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_logb<E,EOUT,D,D>>(x); 
 }
 
@@ -3550,7 +3550,7 @@ auto logb(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sgn(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_sgn<E,EOUT,D,D>>(x); 
 }
 
@@ -3569,7 +3569,7 @@ auto sgn(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto ceil(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_ceil<E,EOUT,D,D>>(x); 
 }
 
@@ -3588,7 +3588,7 @@ auto ceil(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto floor(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_floor<E,EOUT,D,D>>(x); 
 }
 
@@ -3607,7 +3607,7 @@ auto floor(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto round(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_round<E,EOUT,D,D>>(x); 
 }
 
@@ -3626,7 +3626,7 @@ auto round(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto trunc(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_trunc<E,EOUT,D,D>>(x); 
 }
 
@@ -3645,7 +3645,7 @@ auto trunc(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto erf(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_erf<E,EOUT,D,D>>(x); 
 }
 
@@ -3664,7 +3664,7 @@ auto erf(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto erfc(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_erfc<E,EOUT,D,D>>(x); 
 }
 
@@ -3683,7 +3683,7 @@ auto erfc(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto tgamma(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_tgamma<E,EOUT,D,D>>(x); 
 }
 
@@ -3702,7 +3702,7 @@ auto tgamma(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto lgamma(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_lgamma<E,EOUT,D,D>>(x); 
 }
 
@@ -3721,7 +3721,7 @@ auto lgamma(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto expint(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_expint<E,EOUT,D,D>>(x); 
 }
 
@@ -3740,7 +3740,7 @@ auto expint(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_riemann_zeta<E,EOUT,D,D>>(x); 
 }
 
@@ -3759,7 +3759,7 @@ auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_comp_ellint_1<E,EOUT,D,D>>(x); 
 }
 
@@ -3778,7 +3778,7 @@ auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_comp_ellint_2<E,EOUT,D,D>>(x); 
 }
 
@@ -3797,7 +3797,7 @@ auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto zero(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_zero<E,EOUT,D,D>>(x); 
 }
 
@@ -3816,7 +3816,7 @@ auto zero(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto ilogb(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,int>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,int>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,int,M,R, FUNCTOR_ilogb<E,EOUT,D,int>>(x); 
 }
 
@@ -3835,7 +3835,7 @@ auto ilogb(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto imaginary(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_imaginary<E,EOUT,D,mathq::Imaginary<D>>>(x); 
 }
 
@@ -3854,7 +3854,7 @@ auto imaginary(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_conj_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
 
@@ -3873,7 +3873,7 @@ auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
 
@@ -3892,7 +3892,7 @@ auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
 
@@ -3911,7 +3911,7 @@ auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
 
@@ -3930,7 +3930,7 @@ auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_arg_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
 
@@ -3949,7 +3949,7 @@ auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -3968,7 +3968,7 @@ auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_exp_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -3987,7 +3987,7 @@ auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4006,7 +4006,7 @@ auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log10_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4025,7 +4025,7 @@ auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_sqrt_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4044,7 +4044,7 @@ auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_sin_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
 
@@ -4063,7 +4063,7 @@ auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_cos_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
 
@@ -4082,7 +4082,7 @@ auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_tan_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
 
@@ -4101,7 +4101,7 @@ auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_asin_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
 
@@ -4120,7 +4120,7 @@ auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_acos_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4139,7 +4139,7 @@ auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_atan_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4158,7 +4158,7 @@ auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_sinh_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
 
@@ -4177,7 +4177,7 @@ auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,D,M,R, FUNCTOR_cosh_imag<E,EOUT,mathq::Imaginary<D>,D>>(x); 
 }
 
@@ -4196,7 +4196,7 @@ auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,mathq::Imaginary<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,mathq::Imaginary<D>,M,R, FUNCTOR_tanh_imag<E,EOUT,mathq::Imaginary<D>,mathq::Imaginary<D>>>(x); 
 }
 
@@ -4215,7 +4215,7 @@ auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_asinh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4234,7 +4234,7 @@ auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_acosh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4253,7 +4253,7 @@ auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,mathq::Imaginary<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_atanh_imag<E,EOUT,mathq::Imaginary<D>,std::complex<D>>>(x); 
 }
 
@@ -4272,7 +4272,7 @@ auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_conj_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
@@ -4291,7 +4291,7 @@ auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
 
@@ -4310,7 +4310,7 @@ auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
 
@@ -4329,7 +4329,7 @@ auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
 
@@ -4348,7 +4348,7 @@ auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,D,M,R, FUNCTOR_arg_complex<E,EOUT,std::complex<D>,D>>(x); 
 }
 
@@ -4367,7 +4367,7 @@ auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto proj(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
@@ -4386,7 +4386,7 @@ auto proj(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto round(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_round_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
@@ -4405,7 +4405,7 @@ auto round(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto log2(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_log2_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
@@ -4424,7 +4424,7 @@ auto log2(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto floor(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_floor_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
@@ -4443,7 +4443,7 @@ auto floor(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R>			
 auto ceil(const TensorR<X,E,std::complex<D>,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_ceil_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
 }
 
@@ -4462,7 +4462,7 @@ auto ceil(const TensorR<X,E,std::complex<D>,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto conj(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_conj_real<E,EOUT,D,D>>(x); 
 }
 
@@ -4481,7 +4481,7 @@ inline auto conj(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto real(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_real_real<E,EOUT,D,D>>(x); 
 }
 
@@ -4500,7 +4500,7 @@ inline auto real(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto imag(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_imag_real<E,EOUT,D,D>>(x); 
 }
 
@@ -4519,7 +4519,7 @@ inline auto imag(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto abs(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_abs_real<E,EOUT,D,D>>(x); 
 }
 
@@ -4538,7 +4538,7 @@ inline auto abs(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto arg(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,D>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D,M,R, FUNCTOR_arg_real<E,EOUT,D,D>>(x); 
 }
 
@@ -4557,7 +4557,7 @@ inline auto arg(const TensorR<X,E,D,M,R>& x) {
 
 template <class X, class E, class D, int M, int R, typename = std::enable_if_t<std::is_arithmetic<D>::value>>			
 inline auto proj(const TensorR<X,E,D,M,R>& x) {		
-  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeE EOUT;		
+  typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_proj_real<E,EOUT,D,std::complex<D>>>(x); 
 }
 }; // namespace mathq 

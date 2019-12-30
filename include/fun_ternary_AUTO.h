@@ -489,8 +489,6 @@ public:
   }									
 };
 
-  
-
 
 
 
@@ -526,7 +524,7 @@ public:
 template <class A, class B, class C, class E1, class E2, class E3, class D1, class D2, class D3, int M, int R> 
 auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -541,7 +539,7 @@ auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2
 template <class A, class B, class E1, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D3>::value>> 
 auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -554,7 +552,7 @@ auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2
 template <class A, class C, class E1, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
 auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		      D2,
 		      TensorR<C,E3,D3,M,R>,
@@ -567,7 +565,7 @@ auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,
 template <class A, class E1, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value&&NumberType<D3>::value>> 
 auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     D2,
 		     D3,
@@ -580,7 +578,7 @@ auto sph_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
 template <class B, class C, class E2, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
 auto sph_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -594,7 +592,7 @@ auto sph_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,
 template <class B, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D3>::value>> 
 auto sph_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -607,7 +605,7 @@ auto sph_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
 template <class C, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D2>::value>> 
 auto sph_legendre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E3,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E3,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     D2,
 		     TensorR<C,E3,D3,M,R>,
@@ -639,7 +637,7 @@ auto sph_legendre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
 template <class A, class B, class C, class E1, class E2, class E3, class D1, class D2, class D3, int M, int R> 
 auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -654,7 +652,7 @@ auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& 
 template <class A, class B, class E1, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D3>::value>> 
 auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -667,7 +665,7 @@ auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& 
 template <class A, class C, class E1, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
 auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		      D2,
 		      TensorR<C,E3,D3,M,R>,
@@ -680,7 +678,7 @@ auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<
 template <class A, class E1, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value&&NumberType<D3>::value>> 
 auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     D2,
 		     D3,
@@ -693,7 +691,7 @@ auto assoc_legendre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) 
 template <class B, class C, class E2, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
 auto assoc_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -707,7 +705,7 @@ auto assoc_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<
 template <class B, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D3>::value>> 
 auto assoc_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -720,7 +718,7 @@ auto assoc_legendre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) 
 template <class C, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D2>::value>> 
 auto assoc_legendre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E3,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E3,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     D2,
 		     TensorR<C,E3,D3,M,R>,
@@ -752,7 +750,7 @@ auto assoc_legendre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) 
 template <class A, class B, class C, class E1, class E2, class E3, class D1, class D2, class D3, int M, int R> 
 auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -767,7 +765,7 @@ auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& 
 template <class A, class B, class E1, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D3>::value>> 
 auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -780,7 +778,7 @@ auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& 
 template <class A, class C, class E1, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
 auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		      D2,
 		      TensorR<C,E3,D3,M,R>,
@@ -793,7 +791,7 @@ auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<
 template <class A, class E1, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value&&NumberType<D3>::value>> 
 auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     D2,
 		     D3,
@@ -806,7 +804,7 @@ auto assoc_laguerre(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) 
 template <class B, class C, class E2, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
 auto assoc_laguerre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -820,7 +818,7 @@ auto assoc_laguerre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<
 template <class B, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D3>::value>> 
 auto assoc_laguerre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -833,7 +831,7 @@ auto assoc_laguerre(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) 
 template <class C, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D2>::value>> 
 auto assoc_laguerre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E3,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E3,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     D2,
 		     TensorR<C,E3,D3,M,R>,
@@ -865,7 +863,7 @@ auto assoc_laguerre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) 
 template <class A, class B, class C, class E1, class E2, class E3, class D1, class D2, class D3, int M, int R> 
 auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -880,7 +878,7 @@ auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, co
 template <class A, class B, class E1, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D3>::value>> 
 auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -893,7 +891,7 @@ auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, co
 template <class A, class C, class E1, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
 auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		      D2,
 		      TensorR<C,E3,D3,M,R>,
@@ -906,7 +904,7 @@ auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D
 template <class A, class E1, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value&&NumberType<D3>::value>> 
 auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     D2,
 		     D3,
@@ -919,7 +917,7 @@ auto ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
 template <class B, class C, class E2, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
 auto ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -933,7 +931,7 @@ auto ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D
 template <class B, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D3>::value>> 
 auto ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -946,7 +944,7 @@ auto ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
 template <class C, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D2>::value>> 
 auto ellint_3(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E3,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E3,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     D2,
 		     TensorR<C,E3,D3,M,R>,
@@ -978,7 +976,7 @@ auto ellint_3(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
 template <class A, class B, class C, class E1, class E2, class E3, class D1, class D2, class D3, int M, int R> 
 auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -993,7 +991,7 @@ auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x
 template <class A, class B, class E1, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D3>::value>> 
 auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -1006,7 +1004,7 @@ auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x
 template <class A, class C, class E1, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value>> 
 auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		      D2,
 		      TensorR<C,E3,D3,M,R>,
@@ -1019,7 +1017,7 @@ auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const TensorR<C
 template <class A, class E1, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D2>::value&&NumberType<D3>::value>> 
 auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E1,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E1,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 		     D2,
 		     D3,
@@ -1032,7 +1030,7 @@ auto comp_ellint_3(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const D3& x3) {
 template <class B, class C, class E2, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value>> 
 auto comp_ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     TensorR<C,E3,D3,M,R>,
@@ -1046,7 +1044,7 @@ auto comp_ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const TensorR<C
 template <class B, class E2, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D3>::value>> 
 auto comp_ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E2,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E2,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     TensorR<B,E2,D2,M,R>,
 		     D3,
@@ -1059,14 +1057,12 @@ auto comp_ellint_3(const D1& x1, const TensorR<B,E2,D2,M,R>& x2, const D3& x3) {
 template <class C, class E3, class D1, class D2, class D3, int M, int R, typename = std::enable_if_t<NumberType<D1>::value&&NumberType<D2>::value>> 
 auto comp_ellint_3(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
   typedef typename MultType<typename MultType<D1,D2>::Type,D3>::Type D4;
-  typedef typename NumberType<E3,D4>::ReplaceTypeE E4;   // see TODO note above
+  typedef typename NumberType<E3,D4>::ReplaceTypeD E4;   // see TODO note above
   return  TER_Ternary<D1,
 		     D2,
 		     TensorR<C,E3,D3,M,R>,
 		     D1,D2,E3,E4,D1,D2,D3,D4,0,0,M,M,R,R,R,R,
 		     FUNCTOR_comp_ellint_3<D1,D2,E3,E4,D1,D2,D3,D4> >(x1,x2,x3); 
 }
-
-
 }; // namespace mathq 
 #endif // MATHQ__FUN_TERNARY_AUTO_H

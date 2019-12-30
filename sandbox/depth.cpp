@@ -7,7 +7,7 @@
 
 
 
-template <typename D, int M = 1+mathq::NumberType<D>::depth()> class Test : public mathq::TensorRW<D,Test<D>> {
+template <typename D, int M = 1+mathq::NumberType<D>::depth()> class Test : public mathq::TensorRW<Test<D>,D,typename mathq::NumberType<D>::Type,M,1> {
 public:
   typedef D Type;
   Test() {
@@ -20,7 +20,7 @@ public:
 
 
 
-template <typename D> class Test2 : public mathq::TensorRW<D,Test<D>> {
+template <typename D> class Test2 : public mathq::TensorRW<Test<D>,D,D,1,1> {
 public:
   typedef D Type;
   D d_;
@@ -182,33 +182,33 @@ int main(int argc, char *argv[])
 
   }
 
-    {
-      cr();
-      mout << bold.apply("Test class testing") << std::endl;
-      Test<double> t0;
-      tdisp(NumberType<decltype(t0)>::depth());
-      tdisp(t0.depth());
-      Test<Test<double>> t1;
-      tdisp(NumberType<decltype(t1)>::depth());
-      tdisp(t1.depth());
-      Test<Test<Test<double>>> t2;
-      tdisp(NumberType<decltype(t2)>::depth());
-      tdisp(t2.depth());
-    }
+    // {
+    //   cr();
+    //   mout << bold.apply("Test class testing") << std::endl;
+    //   Test<double> t0;
+    //   tdisp(NumberType<decltype(t0)>::depth());
+    //   tdisp(t0.depth());
+    //   Test<Test<double>> t1;
+    //   tdisp(NumberType<decltype(t1)>::depth());
+    //   tdisp(t1.depth());
+    //   Test<Test<Test<double>>> t2;
+    //   tdisp(NumberType<decltype(t2)>::depth());
+    //   tdisp(t2.depth());
+    // }
 
-    {
-      cr();
-      mout << bold.apply("Test2 class testing") << std::endl;
-      Test2<double> t0(0);
-      tdisp(NumberType<decltype(t0)>::depth());
-      tdisp(t0.depth());
-      Test2<Test2<double>> t1 {1};
-      tdisp(NumberType<decltype(t1)>::depth());
-      tdisp(t1.depth());
-      Test2<Test2<Test2<double>>> t2 {{2}};
-      tdisp(NumberType<decltype(t2)>::depth());
-      tdisp(t2.depth());
-    }
+    // {
+    //   cr();
+    //   mout << bold.apply("Test2 class testing") << std::endl;
+    //   Test2<double> t0(0);
+    //   tdisp(NumberType<decltype(t0)>::depth());
+    //   tdisp(t0.depth());
+    //   Test2<Test2<double>> t1 {1};
+    //   tdisp(NumberType<decltype(t1)>::depth());
+    //   tdisp(t1.depth());
+    //   Test2<Test2<Test2<double>>> t2 {{2}};
+    //   tdisp(NumberType<decltype(t2)>::depth());
+    //   tdisp(t2.depth());
+    // }
 
 
     {

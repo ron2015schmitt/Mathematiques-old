@@ -69,6 +69,12 @@ int main(int argc, char *argv[])
     typename decltype(v)::DType d = 0.;
     tdisp(d);
 
+    typename decltype(v)::XType v2;
+    tdisp(v2);
+
+    tdisp(decltype(v)::Mvalue);
+    tdisp(decltype(v)::Rvalue);
+
   }
   
 

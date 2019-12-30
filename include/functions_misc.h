@@ -50,7 +50,7 @@ public:
   
   template <class D2, class X, class E, class D, int M, int R>			
   auto numbercast(const TensorR<X,E,D,M,R>& x) {		
-    typedef typename NumberType<E,D2>::ReplaceTypeE EOUT;		
+    typedef typename NumberType<E,D2>::ReplaceTypeD EOUT;		
     return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,D2,M,R, FUNCTOR_numbercast<E,EOUT,D,D2>>(x); 
   }
   
@@ -212,7 +212,7 @@ public:
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
-    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;
+    typedef typename NumberType<E1,D3>::ReplaceTypeD E3;
     return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 			TensorR<B,E2,D2,M,R>,
 			DTOL,
@@ -227,7 +227,7 @@ public:
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
-    typedef typename NumberType<E1,D3>::ReplaceTypeE E3;  
+    typedef typename NumberType<E1,D3>::ReplaceTypeD E3;  
     return  TER_Ternary<TensorR<A,E1,D1,M,R>,
 			D2,
 			DTOL,
@@ -244,7 +244,7 @@ public:
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
-    typedef typename NumberType<E2,D3>::ReplaceTypeE E3;  
+    typedef typename NumberType<E2,D3>::ReplaceTypeD E3;  
     return  TER_Ternary<D1,
 			TensorR<B,E2,D2,M,R>,
 			DTOL,

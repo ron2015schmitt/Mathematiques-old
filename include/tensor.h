@@ -632,7 +632,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    Tensor<E,R,D,M>&  roundzero(typename Realify<D>::Type tolerance = Helper<typename Realify<E>::Type>::tolerance) { 
+    Tensor<E,R,D,M>&  roundzero(D tolerance = Helper<D>::tolerance) { 
       for(index_type i=size(); i--;) {
 	data_[i] = mathq::roundzero(data_[i], tolerance);
       }

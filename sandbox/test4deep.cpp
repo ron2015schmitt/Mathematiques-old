@@ -325,34 +325,33 @@ int main(int argc, char *argv[])
     tdisp(g1);
     Matrix<Vector<Scalar<double>,4>,3,2> g2;
     tdisp(g2);
+    tdisp(x.deepdims());
+
+
     Tensor<Matrix<Vector<Scalar<double>,4>,3,2>,3> g3;
     tdisp(g3);
-    tdisp(x.deepdims());
-
-    tdisp(x.deepdims());
-
     g3 = insideout(x);
-    
-
-    
-    tdisp(g3);
+    tdisp(g3.deepdims());
+    //   tdisp(g3);
 
     for (int h = 0; h < x().size(); h++) {
       const index_type NR = x()(h).Nrows();
       const index_type NC = x()(h).Ncols();
       for (int i = 0; i < NR; i++) {
-	for (int j = 0; j < NC; j++) {
-	  Dimensions tdims =  x()(h)(i,j).dims();
-	  for (int k = 0; k < tdims[0]; k++) {
-	    for (int l = 0; l < tdims[1]; l++) {
-	      for (int m = 0; m < tdims[2]; m++) {
+  	for (int j = 0; j < NC; j++) {
+  	  Dimensions tdims =  x()(h)(i,j).dims();
+  	  for (int k = 0; k < tdims[0]; k++) {
+  	    for (int l = 0; l < tdims[1]; l++) {
+  	      for (int m = 0; m < tdims[2]; m++) {
+  		//mdisp(h,i,j,k,l,m, x()(h)(i,j)(k,l,m) );
 		mdisp(h,i,j,k,l,m, x()(h)(i,j)(k,l,m), g3(k,l,m)(i,j)(h)());
-	      }
-	    }
-	  }
-	}
+  	      }
+  	    }
+  	  }
+  	}
       }
     }
+    
   }
   
   

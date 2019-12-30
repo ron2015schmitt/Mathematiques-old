@@ -544,8 +544,8 @@ namespace mathq {
     using std::pow;
     typedef typename MultType<D1,D2>::Type D3;
     return pow(
-	       complexify(numbercast<D3>(x1)),
-	       complexify(numbercast<D3>(x2)) );
+	       Complex(numbercast<Imaginary<D3>>(x1)),
+	       Complex(numbercast<Imaginary<D3>>(x2)) );
   }
 
 
@@ -556,7 +556,7 @@ namespace mathq {
     using std::pow;
     typedef typename MultType<D1,D2>::Type D3;
     return pow(
-	       complexify(numbercast<D3>(x1)),
+	       Complex(numbercast<Imaginary<D3>>(x1)),
 	       numbercast<D3>(x2) );
   }
 
@@ -568,7 +568,7 @@ namespace mathq {
     typedef typename MultType<D1,D2>::Type D3;
     return pow(
 	       numbercast<D3>(x1),
-	       complexify(numbercast<D3>(x2)) );
+	       Complex(numbercast<Imaginary<D3>>(x2)) );
   }
 
   
@@ -579,8 +579,8 @@ namespace mathq {
     using std::pow;
     typedef typename MultType<D1,D2>::Type D3;
     return pow(
-	       complexify(numbercast<D3>(x1)),
-	       numbercast<D3>(x2) );
+	       Complex(numbercast<Imaginary<D3>>(x1)),
+	       numbercast<std::complex<D3>>(x2) );
   }
 
   // pow(C1,I2)
@@ -590,8 +590,8 @@ namespace mathq {
     using std::pow;
     typedef typename MultType<D1,D2>::Type D3;
     return pow(
-	       numbercast<D3>(x1),
-	       complexify(numbercast<D3>(x2)) );
+	       numbercast<std::complex<D3>>(x1),
+	       Complex(numbercast<Imaginary<D3>>(x2)) );
   }
 
   
@@ -657,7 +657,7 @@ namespace mathq {
     std::complex<D>
     acos(const Imaginary<D>& z) {
     using std::acos;
-    return acos(complexify(z));
+    return acos(Complex(z));
   }
 
   // atan
@@ -665,7 +665,7 @@ namespace mathq {
     std::complex<D>
     atan(const Imaginary<D>& z) {
     using std::atan;
-    return atan(complexify(z));
+    return atan(Complex(z));
   }
 
   // atan2
@@ -708,7 +708,7 @@ namespace mathq {
     std::complex<D>
     asinh(const Imaginary<D>& z) {
     using std::asinh;
-    return asinh(complexify(z));
+    return asinh(Complex(z));
   }
 
   // acosh
@@ -716,7 +716,7 @@ namespace mathq {
     std::complex<D>
     acosh(const Imaginary<D>& z) {
     using std::acosh;
-    return acosh(complexify(z));
+    return acosh(Complex(z));
   }
 
   // atanh
@@ -724,7 +724,7 @@ namespace mathq {
     std::complex<D>
     atanh(const Imaginary<D>& z) {
     using std::atanh;
-    return atanh(complexify(z));
+    return atanh(Complex(z));
   }
 
 

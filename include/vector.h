@@ -707,7 +707,7 @@ namespace mathq {
   //----------------- .roundzero(tol) ---------------------------
   // NOTE: in-place
     
-  Vector<E,NE,D,M>&  roundzero(typename Realify<E>::Type tolerance = Helper<typename Realify<E>::Type>::tolerance) { 
+  Vector<E,NE,D,M>&  roundzero(D tolerance = Helper<D>::tolerance) { 
     for(index_type i=size(); i--;) {
       data_[i] = mathq::roundzero(data_[i], tolerance);
     }

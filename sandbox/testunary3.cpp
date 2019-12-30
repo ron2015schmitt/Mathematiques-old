@@ -209,14 +209,14 @@ int main(int argc, char *argv[])
 
     cr();
     cr();
-    typename Realify<Scalar<double>>::Type qr;
-    tdisp(qr);
+    // typename Realify<Scalar<double>>::Type qr;
+    // tdisp(qr);
 
-    typename Realify<Scalar<Imaginary<double>> >::Type qi;
-    tdisp(qi);
+    // typename Realify<Scalar<Imaginary<double>> >::Type qi;
+    // tdisp(qi);
     
-    typename Realify<Scalar<std::complex<double>> >::Type qc;
-    tdisp(qc);
+    // typename Realify<Scalar<std::complex<double>> >::Type qc;
+    // tdisp(qc);
   }
 
   
@@ -397,14 +397,14 @@ int main(int argc, char *argv[])
     cr();
     cr();
 
-    typename Realify<Scalar<Scalar<double>>>::Type qr;
-    tdisp(qr);
+    // typename Realify<Scalar<Scalar<double>>>::Type qr;
+    // tdisp(qr);
 
-    typename Realify<Scalar<Scalar<Imaginary<double>>>>::Type qi;
-    tdisp(qi);
+    // typename Realify<Scalar<Scalar<Imaginary<double>>>>::Type qi;
+    // tdisp(qi);
     
-    typename Realify<Scalar<Scalar<std::complex<double>>>>::Type qc;
-    tdisp(qc);
+    // typename Realify<Scalar<Scalar<std::complex<double>>>>::Type qc;
+    // tdisp(qc);
   }
 
 

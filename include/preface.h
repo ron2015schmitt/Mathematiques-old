@@ -70,7 +70,7 @@ namespace mathq {
   
   template <typename D> class Imaginary;
   
-  template <typename T, typename NUM=double, typename H = void> class NumberType;
+  template <typename T, typename NUM=double, typename H=void> class NumberType;
 
 
   // E = element type (int, double, complex<double>, bool, Scalar<double>, Vector<double>, Matrix<double>, etc)

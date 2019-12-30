@@ -1,4 +1,6 @@
-# documenation update
+# documentation update
+
+_Back to [Table of Contents](README.md)_
 
 * discuss `(i)` indexing versus `[i]` indexing
 * cover scalars, matrices and tensors

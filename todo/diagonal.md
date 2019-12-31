@@ -1,8 +1,29 @@
-# Diagonal matrices
+# Special matrices
 
 _Back to [Table of Contents](README.md)_
 
-* Probably best to *not* inherit from Matrix since dimensions() will distinguish
+Already Implemented:
+* `ZeroMatrix`
+* `IdentityMatrix`
+* `ConstDiagMatrix`
+
+TO-DO:
+* `DiagMatrix`
+* `RepColMatrix` -- need for Grids/meshes to save memory
+* `RepRowMatrix` -- need for Grids/meshes to save memory
+* `RepMatMatrix`
+* `BlockMatrix`
+* `JordanBlockMatrix`
+* `JordanFormMatrix`
+* `UpperTriagMatrix`
+* `LowerTriagMatrix`
+* `SymmetricMatrix`
+* `AntiSymmetricMatrix`
+* `SparseMatrix`
+
+
+Notes:
+* Do *not* inherit from Matrix since dimensions() will distinguish
 * has `min(NR,NC)` elements 
 * `A[i]` access ranges across diagonal, from `0` to `min(NR,NC)`
 * `A(i,j)` access simply returns 0 if not on diagonal. error if try to write to `A(i,j)` with `i!=j`

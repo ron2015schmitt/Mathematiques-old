@@ -1,5 +1,7 @@
 # Unit Testing
 
+_Back to [Table of Contents](README.md)_
+
 * need to purchase a new matlab license
 * have only one executable, test.cpp
 * inclue all tests as .cpp files into the main of test.cpp
@@ -9,6 +11,7 @@
    * `test/create/createtests.cpp` has been started.  
    * currently using `bc`
    * will switch to `matlab` to calculate the expected results
+   * start using Python instead of C++ for the scripting
    
    
 * unit tests for helper types. Automate some of this.
@@ -17,3 +20,7 @@
    * Indices
    * Index
    * VectorofPtrs
+   * calculus (on doc page)
+   * Fourier Series
+   * Taylor Series
+   

@@ -20,6 +20,7 @@ TO-DO:
 * `SymmetricMatrix`
 * `AntiSymmetricMatrix`
 * `SparseMatrix`
+* `ExchangeMatrix` (The J matrix)
 
 
 Notes:

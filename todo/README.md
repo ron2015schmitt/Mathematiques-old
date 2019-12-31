@@ -2,7 +2,8 @@
 
 _Updated December 30th, 2019_
 
-[User Guide](../doc/README.md)
+* [Overview](../README.md)
+* [User Guide](../doc/README.md)
 
 ## Items for V3.3
 1. [Update Documentation](doc.md)

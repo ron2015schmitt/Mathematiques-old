@@ -21,7 +21,6 @@ _Updated December 30th, 2019_
 
 ## Items for V7.0 -- Special Matrices
 1. [Special matrices](diagonal.md)
-1. [rep and join](repandjoin.md)
 
 ## Items for V8.0 -- Calculus
 1. Interval class `AB(a,b,N)`, `aB(a,b,N)` etc

@@ -2,9 +2,6 @@
 
 _Updated December 30th, 2019_
 
-* [Overview](../README.md)
-* [User Guide](../doc/README.md)
-
 ## Items for V3.3
 1. [Update Documentation](doc.md)
 
@@ -64,3 +61,9 @@ _Updated December 30th, 2019_
 1. link on Wikipedia C++ numerical packages
 1. [Release Checklist](checklist.md)
 1. Remove `old/` directory and its files
+
+
+---------------
+* [Overview](../README.md)
+* [User Guide](../doc/README.md)
+

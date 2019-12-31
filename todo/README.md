@@ -21,7 +21,9 @@ _Updated December 30th, 2019_
 1. [rep and join](repandjoin.md)
 
 ## Items for V8.0 -- Calculus
-1. Generalize linspace to generate grids in any number of dimensions
+1. Interval class `AB(a,b,N)`, `aB(a,b,N)` etc
+1. Generalize linspace to generate grids in any number of dimensions. 
+  * utilize `RepColMatrix` and `RepRowMatrix`
 1. Integrals and derivatives along each dimension of Matrix or Tenspr
 1. [2D and 3D Coordinate Systems](coordsystems.md)
 1. Integrals and derivatives along each of the two dimensions of a Tensor

@@ -2,7 +2,7 @@
 
 _Updated December 30th, 2019_
 
-## Items for V3.1
+## Items for V3.3
 1. [Update Documentation](doc.md)
 
 ## Items for V4.0 - Unit testing

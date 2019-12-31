@@ -46,6 +46,8 @@
 #include "vector.h"
 #include "matrix.h"
 #include "zeromatrix.h"
+#include "identitymatrix.h"
+#include "constdiagmatrix.h"
 #include "tensor.h"
 #include "expressionsR.h"
 #include "expressionsRW.h"

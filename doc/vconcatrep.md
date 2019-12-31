@@ -3,7 +3,7 @@
 
 
 # Vector join operator `(v1,v2)` and `rep` function in Mathématiques
-_This document was automatically generated from file_ **`vconcatrep.cpp`** (Mathématiques-v3.1).
+_This document was automatically generated from file_ **`vconcatrep.cpp`** (Mathématiques-v3.1-r2).
 
 ### Vector join operator `,` 
 * The Vector operator `,` joins two vectors

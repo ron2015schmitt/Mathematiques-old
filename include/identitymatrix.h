@@ -1,5 +1,5 @@
-#ifndef MATHQ__ZEROMATRIX_H
-#define MATHQ__ZEROMATRIX_H 1
+#ifndef MATHQ__IDENTITYMATRIX_H
+#define MATHQ__IDENTITYMATRIX_H 1
 
 
 
@@ -8,18 +8,18 @@ namespace mathq {
 
 
   /********************************************************************
-   * ZeroMatrix<D        -- variable size matrix (valarray)
+   * IdentityMatrix<D        -- variable size matrix (valarray)
    *                        D  = type for elements
-   * ZeroMatrix<D,NR>    -- fixed number of rows (valarray)
+   * IdentityMatrix<D,NR>    -- fixed number of rows (valarray)
    *                        NR = number of rows
-   * ZeroMatrix<D,NR,NC> -- fixed number of rows and cols (array)
+   * IdentityMatrix<D,NR,NC> -- fixed number of rows and cols (array)
    *                        NC = number of cols
    ********************************************************************  
    */
 
   //, typename = EnableIf<NumberType<D>::value>
   template <class D, int NR, int NC >
-  class ZeroMatrix : public TensorRW<ZeroMatrix<D,NR,NC>,D,D,1,2>{
+  class IdentityMatrix : public TensorRW<IdentityMatrix<D,NR,NC>,D,D,1,2>{
 
   public:
     constexpr static int R = 2;
@@ -28,7 +28,7 @@ namespace mathq {
     static constexpr bool resizable = (NR*NC==0) ? true : false;
     static constexpr bool resizableRows = (NR==0) ? true : false;
     static constexpr bool resizableCols = (NC==0) ? true : false;
-    typedef ZeroMatrix<D,NR,NC> XType;
+    typedef IdentityMatrix<D,NR,NC> XType;
     typedef D EType;
     typedef D DType;
     typedef typename FundamentalType<D>::Type FType;
@@ -40,13 +40,14 @@ namespace mathq {
     // do NOT declare any other storage.
     // keep the instances lightweight
   private:
-    const D data_ = 0;
+    const D zero_ = 0;
+    const D one_ = 1;
     
     index_type Nrows_;
     index_type Ncols_;
 
     static_assert(NumberType<D>::value,
-                  "class ZeroMatrix can only have numbers as elements, ie not vectors, matrices etc.");
+                  "class IdentityMatrix can only have numbers as elements, ie not vectors, matrices etc.");
 
     
 
@@ -57,7 +58,7 @@ namespace mathq {
   public:
     
     // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
-    explicit ZeroMatrix<D,NR,NC>() 
+    explicit IdentityMatrix<D,NR,NC>() 
     {
       size_t NN = NR*NC;
       resize(NR,NC);
@@ -66,7 +67,7 @@ namespace mathq {
     // --------------------- variable-size CONSTRUCTOR ---------------------
     template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
-    explicit ZeroMatrix<D,NR,NC>(const size_type Nr, const size_type Nc) {
+    explicit IdentityMatrix<D,NR,NC>(const size_type Nr, const size_type Nc) {
       resize(Nr,Nc);
     }
 
@@ -77,7 +78,7 @@ namespace mathq {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~ZeroMatrix<D,NR,NC>() {
+    ~IdentityMatrix<D,NR,NC>() {
       //remove from directory
     }
   
@@ -163,7 +164,7 @@ namespace mathq {
     //**********************************************************************
     // --------------------- resize() --------------------
     
-    ZeroMatrix<D,NR,NC>&  resize(const int Nr, const int Nc) {
+    IdentityMatrix<D,NR,NC>&  resize(const int Nr, const int Nc) {
       Nrows_ = NR;
       Ncols_ = NC;
       if constexpr(resizableRows) {
@@ -179,14 +180,14 @@ namespace mathq {
 
     // -------------------------- resize(Dimensions) --------------------------------
     
-    ZeroMatrix<D,NR,NC>& resize(const Dimensions dims) {
+    IdentityMatrix<D,NR,NC>& resize(const Dimensions dims) {
       resize(dims[0], dims[1]);
       return *this;
     }
 
 
 
-    ZeroMatrix<D,NR,NC>& resize(const std::vector<Dimensions>& deepdims_new) {
+    IdentityMatrix<D,NR,NC>& resize(const std::vector<Dimensions>& deepdims_new) {
       std::vector<Dimensions> deepdims(deepdims_new);
       Dimensions newdims = deepdims[0];
       resize(newdims);
@@ -199,7 +200,7 @@ namespace mathq {
 
     // the new matrix has teh same # of entries but has different number of rows/columns
     // data is left unchanged
-    ZeroMatrix<D,NR,NC>& reshape(const size_type nr, const size_type nc) { 
+    IdentityMatrix<D,NR,NC>& reshape(const size_type nr, const size_type nc) { 
       const size_type nn = nr*nc;
       if (nn==size()) {
 	if (nn == 0) {
@@ -214,14 +215,14 @@ namespace mathq {
     }
 
 
-    ZeroMatrix<D,NR,NC>& transpose(void) { 
+    IdentityMatrix<D,NR,NC>& transpose(void) { 
       return *this;
     }
     
     // -------------------------- adjoint() --------------------------------
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{}, ZeroMatrix<D,NR,NC>& >::type adjoint() {
+    typename std::enable_if<is_complex<T>{}, IdentityMatrix<D,NR,NC>& >::type adjoint() {
       return *this;
     }
 
@@ -232,7 +233,7 @@ namespace mathq {
   
     // read
     const D dat(const index_type n)  const { 
-      return data_;
+      return (*this)[n];
     }
 
     // -------------------- auto x.dat(Indices) --------------------
@@ -241,7 +242,9 @@ namespace mathq {
 
     // "read": x.dat(Indices)
     const D dat(const Indices& inds)  const {
-      return data_;
+      index_type r = inds[0];
+      index_type c = inds[1];
+      return (*this)(r,c);
     }
   
 
@@ -251,7 +254,11 @@ namespace mathq {
 
     // "read": x.dat(DeepIndices)
     const D dat(const DeepIndices& dinds)  const {
-      return data_;
+      const index_type depth = dinds.size();
+      const Indices& inds = dinds[depth-Mvalue];
+      index_type r = inds[0];
+      index_type c = inds[1];
+      return (*this)(r,c); 
     }
 
   
@@ -260,11 +267,36 @@ namespace mathq {
     //**********************************************************************
 
     // read
-    const D& operator[](const index_type n)  const {
-      return data_;
+    const D operator[](const index_type n)  const {
+      const Indices& inds = indices(n);;
+      index_type r = inds[0];
+      index_type c = inds[1];
+      return (*this)(r,c); 
     }
 
   
+    // --------------------------- index(r,c) -----------------------------
+    
+    index_type index(const index_type r, const index_type c) const {
+      //TODO: bounds check
+      return c + Ncols_*r; // row major
+    }
+
+    // --------------------------- indices(k) -----------------------------
+
+    // This is the inverse of the above function
+    Indices& indices(const index_type k) const {
+      // NOTE: a divide is between 6 to 40 times more costly than a multiply
+      //       https://stackoverflow.com/questions/4125033/floating-point-division-vs-floating-point-multiplication
+      //       So avoid using this whenever possible
+      //       simplest way to calc is (k/Ncols_, k%Ncols_)
+      //       but the following guarantees that the compution is done efficently
+      //TODO: bounds check
+      Indices& myinds = *(new Indices(2));
+      myinds[0] = k/Ncols_;      // row
+      myinds[1] = k - Ncols_*myinds[0];  // column
+      return myinds;
+    }
 
 
 
@@ -274,7 +306,11 @@ namespace mathq {
     
 
     const D operator()(const index_type r, const index_type c) const {
-      return data_; 
+      if (r==c) {
+	return one_;
+      } else {
+	return zero_;
+      }
     }
 
 
@@ -288,7 +324,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    ZeroMatrix<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    IdentityMatrix<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
       return *this;
     }
 
@@ -297,7 +333,7 @@ namespace mathq {
   // NOTE: in-place
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{},  ZeroMatrix<D,NR,NC>& >::type conj() {
+    typename std::enable_if<is_complex<T>{},  IdentityMatrix<D,NR,NC>& >::type conj() {
       return *this;
     }
 
@@ -309,7 +345,7 @@ namespace mathq {
 
   inline std::string classname() const {
     using namespace display;
-    std::string s = "ZeroMatrix";		
+    std::string s = "IdentityMatrix";		
     s += StyledString::get(ANGLE1).get();
     s += getTypeName(D());
     if (NR!=0) {
@@ -344,7 +380,7 @@ namespace mathq {
   // stream << operator
 
 
-  friend std::ostream& operator<<(std::ostream &stream, const ZeroMatrix<D,NR,NC>& m) {
+  friend std::ostream& operator<<(std::ostream &stream, const IdentityMatrix<D,NR,NC>& m) {
     using namespace display;
 
     Style& style = FormatDataMatrix::style_for_punctuation;
@@ -378,7 +414,7 @@ namespace mathq {
 
 
   //template <class D>	
-  friend inline std::istream& operator>>(const std::string s,  ZeroMatrix<D,NR,NC>& m2) {	
+  friend inline std::istream& operator>>(const std::string s,  IdentityMatrix<D,NR,NC>& m2) {	
     std::istringstream st(s);
     return (st >> m2);
   }
@@ -386,7 +422,7 @@ namespace mathq {
 
   // stream >> operator
 
-  friend std::istream& operator>>(std::istream& stream,  ZeroMatrix<D,NR,NC>& m2) {	
+  friend std::istream& operator>>(std::istream& stream,  IdentityMatrix<D,NR,NC>& m2) {	
     return stream;
   }
 

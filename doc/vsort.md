@@ -1,6 +1,6 @@
 
 # Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`   in Mathématiques
-_This document was automatically generated from file_ **`vsort.cpp`** (Mathématiques-v3.1).
+_This document was automatically generated from file_ **`vsort.cpp`** (Mathématiques-v3.1-r2).
 
 ## Sorting
 * sorting is performed _in place_ via the `.sort()` method

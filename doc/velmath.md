@@ -3,7 +3,7 @@
 
 
 # Element-wise Vector math in Mathématiques
-_This document was automatically generated from file_ **`velmath.cpp`** (Mathématiques-v3.1).
+_This document was automatically generated from file_ **`velmath.cpp`** (Mathématiques-v3.1-r2).
 
 ### Element-wise arithmetic
 The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively

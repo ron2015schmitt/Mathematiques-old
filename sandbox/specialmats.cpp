@@ -15,6 +15,8 @@
     using namespace std;
   
     Style bold = createStyle(BOLD);
+    Style blue = createStyle(BOLD+BLUE2);
+
   
     // force color even if piped to more,less or a file
     Terminal::setColorOverride(true);
@@ -27,8 +29,12 @@
     print_mathq_info();
   
     cr();
+    mout << blue.apply("ZeroMatrix") << std::endl;
+    cr();
     {
       ZeroMatrix<double> a;
+      tdisp(a);
+      a.resize(2,2);
       tdisp(a);
     } 
     cr();
@@ -38,6 +44,38 @@
       tdisp(exp(a));
     } 
 
+    cr();
+    mout << blue.apply("IdentityMatrix") << std::endl;
+    cr();
+    {
+      IdentityMatrix<double> a;
+      tdisp(a);
+      a.resize(2,2);
+      tdisp(a);
+    } 
+    cr();
+    {
+      IdentityMatrix<double,3,2> a;
+      tdisp(a);
+      tdisp(exp(a));
+    } 
+
+    cr();
+    mout << blue.apply("ConstDiagMatrix") << std::endl;
+    cr();
+    {
+      ConstDiagMatrix<double> a(2,2,8);
+      tdisp(a);
+      a.setValue(44);
+      tdisp(a);
+    } 
+    cr();
+    {
+      ConstDiagMatrix<double,3,2> a(8);
+      tdisp(a);
+      tdisp(pow(2,a));
+    } 
+    
   
     cr();
     mout << "done: " << bold.apply(myname) << std::endl;

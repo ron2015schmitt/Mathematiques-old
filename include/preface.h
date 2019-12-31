@@ -107,7 +107,13 @@ namespace mathq {
   template <class D, int NR = 0, int NC = 0> class
   ZeroMatrix;
 
+  template <class D, int NR = 0, int NC = 0> class
+  IdentityMatrix;
 
+  template <class D, int NR = 0, int NC = 0> class
+  ConstDiagMatrix;
+
+  
   // *********************************************************************
   // * Expressions
   // ********************************************************************

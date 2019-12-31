@@ -540,19 +540,20 @@ namespace mathq {
     // -------------------- auto x.dat(Indices) --------------------
     // -------------------------------------------------------------
 
+    
     // "read/write": x.dat(Indices)
     D& dat(const Indices& inds) {
       Indices inds_next(inds);
-      mout << "Matrix: "<<std::endl;
+      //mout << "Matrix: "<<std::endl;
       // error if (inds.size() != sum deepdims[i].rank)
       index_type n = inds_next[0];
       inds_next.erase(inds_next.begin());
       index_type m = inds_next[0];
       inds_next.erase(inds_next.begin());
-      mout << "  ";
-      mdisp(n,m); 
-      mout << "  ";
-      tdisp(inds_next);
+      //mout << "  ";
+      //mdisp(n,m); 
+      //mout << "  ";
+      //tdisp(inds_next);
     
       if constexpr(M>1) {
 	  return (*this)(n,m).dat(inds_next);

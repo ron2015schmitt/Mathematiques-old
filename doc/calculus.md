@@ -3,7 +3,7 @@
 
 
 # Calculus in Mathématiques
-_This document was automatically generated from file_ **`calculus.cpp`** (Mathématiques-v3.1).
+_This document was automatically generated from file_ **`calculus.cpp`** (Mathématiques-v3.1-r2).
 
 ## Integration
 ### Definite integrals

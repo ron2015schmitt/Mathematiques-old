@@ -45,6 +45,7 @@
 #include "scalar.h"
 #include "vector.h"
 #include "matrix.h"
+#include "zeromatrix.h"
 #include "tensor.h"
 #include "expressionsR.h"
 #include "expressionsRW.h"

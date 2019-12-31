@@ -3,7 +3,7 @@
 
 
 # python-like access: negative indices & slices in Mathématiques
-_This document was automatically generated from file_ **`vslices.cpp`** (Mathématiques-v3.0-r3).
+_This document was automatically generated from file_ **`vslices.cpp`** (Mathématiques-v3.1).
 
 ## Element access
 ### Positive and negative indices

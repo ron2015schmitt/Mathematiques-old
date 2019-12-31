@@ -3,7 +3,7 @@
 
 
 # \*Formatted and styled printing in Mathématiques
-_This document was automatically generated from file_ **`vprint.cpp`** (Mathématiques-v3.0-r3).
+_This document was automatically generated from file_ **`vprint.cpp`** (Mathématiques-v3.1).
 
 * The examples in this section can be found in file_ `examples/printing.cpp`
 

@@ -65,10 +65,10 @@ namespace mathq {
 
   public:
     
-    // -------------------  DEFAULT  CONSTRUCTOR: empty --------------------
-    explicit Matrix<E,NR,NC,D,M>() 
+    // -------------------  DEFAULT  CONSTRUCTOR --------------------
+    Matrix<E,NR,NC,D,M>() 
     {
-      resize(0,0);
+      resize(NR,NC);
     }
 
 

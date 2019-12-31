@@ -3,7 +3,7 @@
 
 
 # Access subsets of Vector elements in Mathématiques
-_This document was automatically generated from file_ **`vsubsets.cpp`** (Mathématiques-v3.0-r3).
+_This document was automatically generated from file_ **`vsubsets.cpp`** (Mathématiques-v3.1).
 
 You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices
 ## Access vector elements using a `Vector` of indices

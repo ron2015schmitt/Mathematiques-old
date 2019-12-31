@@ -83,6 +83,11 @@ namespace mathq {
   class TensorRW;
 
 
+  // *********************************************************************
+  // * Concrete Tensors
+  // ********************************************************************
+
+
   
   template <class E, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
   Scalar;
@@ -93,6 +98,14 @@ namespace mathq {
 
   template <class E, int R = 0, typename D = typename NumberType<E>::Type, int M = 1+NumberType<E>::depth()> class
   Tensor;
+
+  // *********************************************************************
+  // * Special Matrices
+  // ********************************************************************
+
+
+  template <class D, int NR = 0, int NC = 0> class
+  ZeroMatrix;
 
 
   // *********************************************************************

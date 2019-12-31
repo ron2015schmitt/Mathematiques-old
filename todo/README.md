@@ -24,8 +24,8 @@ _Updated December 30th, 2019_
 1. [Functions: R^n -> R^m](functions.md)
 
 ## Items for V8.0 -- Special Matrices
+1. [Special matrices](diagonal.md)
 1. [rep and join](repandjoin.md)
-1. [Diagonal matrices](diagonal.md)
 
 ## Items for V9.0 -- Matrix Math via Lapack
 1. [Matrix operations](matrixlapack.md)

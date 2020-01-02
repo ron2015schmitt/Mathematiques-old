@@ -21,7 +21,7 @@ _Back to [Table of Contents](README.md)_
 * `RepColMatrix` -- need for Grids/meshes to save memory
 * `RepRowMatrix` -- need for Grids/meshes to save memory
 * `RepMatMatrix`
-* `BlockMatrix` -- set via initializer list notation `{{A,B},{C,D}}` 
+* `BlockMatrix` -- set via initializer list notation `\{\{A,B\},\{C,D\}\}` 
 * `JordanBlockMatrix`
 * `JordanFormMatrix`
 * `UpperTriagMatrix`

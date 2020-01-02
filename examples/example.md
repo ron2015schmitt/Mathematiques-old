@@ -1,5 +1,8 @@
 ## EXAMPLE CODE FILE: `examples\example.cpp`
 
+_Return to the [examples table of contents](README.md)_
+
+
 This example creates a ramp vector and a sine wave vector and then calculates the
 1. sum
 1. dot product

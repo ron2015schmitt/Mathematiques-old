@@ -54,8 +54,8 @@ int main()
 
   codestart("C++");
 
-  codemulti("#define MATHQ_DEBUG 1");
-  codemulti("#include \"mathq.h\"");
+  text("#define MATHQ_DEBUG 1");
+  text("#include \"mathq.h\"");
   codeend();
 
   header2("DEBUG LEVELS");

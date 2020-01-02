@@ -3,7 +3,7 @@
 
 
 # Debugging in Mathématiques
-_This document was automatically generated from file_ **`vdebug.cpp`** (Mathématiques-v3.2-r3).
+_This document was automatically generated from file_ **`vdebug.cpp`** (Mathématiques-v3.2-r4).
 
 The Mathématiques library provides extensive debugging operation, turned on using the flag `MATHQ_DEBUG`
 In this mode extensive error checking is performed to notify the programmer of
@@ -18,8 +18,8 @@ There are two methods to accomplish this.
 The target `clean` is not needed, but is a recomended practice.
 1. Add a `#define MATHQ_DEBUG 1` statement BEFORE each `mathq.h` include statement
 ```C++
-"#define MATHQ_DEBUG 1";
-"#include \"mathq.h\"";
+#define MATHQ_DEBUG 1
+#include "mathq.h"
 ```
 ## DEBUG LEVELS
  to be written...

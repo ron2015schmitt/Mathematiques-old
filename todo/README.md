@@ -81,6 +81,18 @@ _Updated January 2, 2020_
 
 ## Items for V16.0 -- FFT Support via FFTW
 
+## Filters 
+1. FIR
+1. IIR
+
+## Interpolation
+
+1. Linear using `C++20` functions `midpoint` and `lerp`
+1. least squares smoothing and derivatives
+1. [Savitsky-Golay](https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter)
+1. splines
+
+
 ## Miscellaneous Small Features
 * Random vectors for variety of distrubutions
    * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
@@ -111,6 +123,7 @@ _Updated January 2, 2020_
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
 * `C++20` features?
+* statistics: multiple linear regression and PGA
 
 ## Other
 1. [Developer guide](developerguide.md)

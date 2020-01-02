@@ -1,6 +1,6 @@
-## EXAMPLE CODE FILE: `examples\example.cpp`
+## EXAMPLE CODE FILE: `example.cpp`
 
-_Return to the [examples table of contents](README.md)_
+_Return to the [Code examples](README.md)_
 
 
 This example creates a ramp vector and a sine wave vector and then calculates the
@@ -70,3 +70,6 @@ Compile the code and run the code using
 g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 ./example
 ```
+
+
+_Return to the [Code examples](README.md)_

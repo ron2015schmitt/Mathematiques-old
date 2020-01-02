@@ -22,10 +22,10 @@ std::valarray<double> x(N);
 for(int i=0; i<N; i++)
   x[i] = double(i)/double(N-1);
 std::valarray<double> f(N);
-start_timer();
+start();
 for(int i=0; i<N; i++)
      f[i] = cos(2*pi + pi*sin(2*pi*x[i] + pi/6));
-stop_timer();
+stop();
 ```
 ### results
 

@@ -1,6 +1,6 @@
-# Planned Releases
+# Planned Releases for 2020
 
-_Updated December 30th, 2019_
+_Updated January 2, 2020_
 
 ## Items for V3.3
 1. [Update Documentation](doc.md)

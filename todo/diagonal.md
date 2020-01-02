@@ -18,7 +18,7 @@ _Back to [Table of Contents](README.md)_
    * `A[i]` access ranges across diagonal, from `0` to `min(NR,NC)`
    * `A(i,j)` access simply returns 0 if not on diagonal. error if try to write to `A(i,j)` with `i!=j`
    * `DDiagDecompMatrix`: functions only act on diagonal (for use in decompositions) (note this documentation).
-   * write `diag(vector)` and `diag(matrix)` functions as well as vector(diag)
+   * write `diag(vector)` and `diag(matrix)` functions as well as `vector(diag)`
 * `RepColMatrix` -- need for Grids/meshes to save memory
 * `RepRowMatrix` -- need for Grids/meshes to save memory
 * `RepMatMatrix`

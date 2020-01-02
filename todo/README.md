@@ -56,6 +56,10 @@ _Updated January 2, 2020_
 1. [Create Tensor Pool and Tensor info](poolandinfo.md)
 1. [Exceptions and Assertions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
+1. Implement `VectorOfPtrs` code properly
+   * should only be included in debug mode
+   * only needed for non-elemental functions
+   * only needed when same vector appears on both sides of `=`
 
 ## Items for V15.0 -- Tensor Calculus 
 1. contravariant and covariant vectors
@@ -80,9 +84,11 @@ _Updated January 2, 2020_
 ## Miscellaneous Small Features
 * Random vectors for variety of distrubutions
    * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
-* `+=`, `-=`, `*=`, `/=`, operatgors for all tensors
+* `+=`, `-=`, `*=`, `/=`, operators for all tensors
+* refactor: `::Type` to `::type`
+* Add support for the rest of the [common math functions](https://en.cppreference.com/w/cpp/numeric/math) introduced in `C++11` and `C++20`: `frexp`, `isnan` etc, `ldexp`, `logb`, `ilogb`, `modf`, `div`, `remiander`, `remqou`, `fmod`, `ispow2`, `trunc`, `nearbyint`, `ceil2`, `floor2`, etc.
 * `TensorRW` implementation of `real(t)` and `imag(t)`
-* `TensorRW` implementation of 
+* `TensorRW` implementation of `A.row(r)` and `A.col(r)`
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * Modify Taylor Series to operate at top level (not deep level.)  Test with Scalar<Matrix> and Vector <Matrix> 
    * dat(i) must call [i].
@@ -101,8 +107,10 @@ _Updated January 2, 2020_
 ## Possibilities
 * investigate use of [swap](https://en.cppreference.com/w/cpp/algorithm/swap)
 * investigate use of [multi-threading](https://en.cppreference.com/w/cpp/thread/thread)
+* Create a `Number` class to generalize real,s imaginary and complex?
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
+* `C++20` features?
 
 ## Other
 1. [Developer guide](developerguide.md)

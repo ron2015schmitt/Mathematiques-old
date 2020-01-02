@@ -13,6 +13,10 @@ For information on current and future **development**, refer to the [Mathématiq
 # Table of Contents
 
 
+1. [Code Examples](../examples/README.md)
+1. [Benchmarks](../benchmarks/README.md)
+---------------------
+
 1. [Vector declaration](vdeclaration.md)
 1. [Vector assigment](vassignment.md)
 1. [The `range` function](range.md)

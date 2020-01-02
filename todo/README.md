@@ -37,10 +37,15 @@ _Updated January 2, 2020_
 
 ## Items for V12.0 -- Refactor Display
 1. [Refactor mout and dout](refactormout.md)
+1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
 1. [Refactor getTypeName](gettypename.md)
 1. [Refactor FormatData](formatdata.md)
 1. Fix Printing of ```complex<Vector<double>>>``` etc
 1. [Tensor class FormatData](tensorformatdata.md)
+   1. compact 
+   1. by aligned rows and columns with and without braces
+   1. Mathematica
+   1. Matlab
 
 ## Items for V13.0 -- File I/O
 1. [Save tensor to file](filesave.md)

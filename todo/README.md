@@ -20,7 +20,7 @@ _Updated January 2, 2020_
 1. [Special matrices](diagonal.md)
 
 ## Items for V8.0 -- Calculus
-1. Interval class `AB(a,b,N)`, `aB(a,b,N)` etc
+1. `Interval` virtual class with subclasses `AB(a,b,N)`, `aB(a,b,N)` etc
 1. Generalize linspace to generate grids in any number of dimensions. 
   * utilize `RepColMatrix` and `RepRowMatrix`
 1. Integrals and derivatives along each dimension of Matrix or Tenspr

@@ -1,1 +1,1 @@
-inline const char vers_mathq[] = "v3.2-r1";
+inline const char vers_mathq[] = "v3.2-r3";

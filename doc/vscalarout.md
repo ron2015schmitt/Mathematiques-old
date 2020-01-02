@@ -3,7 +3,7 @@
 
 
 # Vector functions that return a scalar (dot product, sum, min, max etc) in Mathématiques
-_This document was automatically generated from file_ **`vscalarout.cpp`** (Mathématiques-v3.1-r2).
+_This document was automatically generated from file_ **`vscalarout.cpp`** (Mathématiques-v3.2-r1).
 
 ### dot product—the `|` operator
 * The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.

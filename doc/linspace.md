@@ -3,7 +3,7 @@
 
 
 # The `linspace` functions in Mathématiques
-_This document was automatically generated from file_ **`linspace.cpp`** (Mathématiques-v3.1-r2).
+_This document was automatically generated from file_ **`linspace.cpp`** (Mathématiques-v3.2-r1).
 
 ## The `linspace` function: numerical interval [a,b]
 * The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`

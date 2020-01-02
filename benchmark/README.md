@@ -1,10 +1,22 @@
 # Benckmarks
 
+_Updated January 2, 2020_
 
-# vector math benchmarks vs. a handcoded for loop. (-O3 optimization):
-![benchmarks](files/benchmark.png)
+# vector math benchmarks 
 
-where the second code comparision is hand-coded loop 
+Here we compare _Mathematiques_ vs. a handcoded `C` array loops.
+
+### mathq syntax 
+```C++
+Vector<double> x(N);
+x = linspace<double>(0,1,N);
+Vector<double> f(N);
+start();
+f = cos(2*pi + pi*sin(2*pi*x + pi/6));
+stop();
+```
+
+### hand-coded `C` loop 
 ```C++
 std::valarray<double> x(N);
 for(int i=0; i<N; i++)
@@ -15,17 +27,11 @@ for(int i=0; i<N; i++)
      f[i] = cos(2*pi + pi*sin(2*pi*x[i] + pi/6));
 stop_timer();
 ```
+### results
 
-vs mathq syntax 
-```C++
-Vector<double> x(N);
-x = linspace<double>(0,1,N);
-Vector<double> f(N);
-start();
-f = cos(2*pi + pi*sin(2*pi*x + pi/6));
-stop();
-```
+![benchmarks](files/benchmark.png)
+
 
 # dot product benchmarks
-
 ---------------------------------------------------------------------------
+...

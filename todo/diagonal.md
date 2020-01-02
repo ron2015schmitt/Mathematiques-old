@@ -12,6 +12,7 @@ _Back to [Table of Contents](README.md)_
 * `ConstDiagMatrix`
 
 ### TO-DO:
+* `ExchangeMatrix` (The J matrix)
 * `DiagMatrix` and `DDiagMatrix`
    * Diag has `min(NR,NC)` elements 
    * `A[i]` access ranges across diagonal, from `0` to `min(NR,NC)`
@@ -26,14 +27,16 @@ _Back to [Table of Contents](README.md)_
 G={{A,B},{C,D}}
 ``` 
 * `JordanBlockMatrix`
-* `JordanFormMatrix`
+* `BandedMatrix`
+   * `ToeplitzMatrix`
+   * `JordanFormMatrix`
 * `UpperTriagMatrix`
 * `LowerTriagMatrix`
 * `SymmetricMatrix`
-* `AntiSymmetricMatrix`
-* `SparseMatrix`
-* `ExchangeMatrix` (The J matrix)
-
+* `SkewSymmetricMatrix`
+* `HermitianMatrix`
+* `SkewHermitianMatrix`
+* `SparseMatrix` - utilize `std::map`
 
 ### Assignment
 * only allow assignment to other diagonal matrices, not regular mayrices

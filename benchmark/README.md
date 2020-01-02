@@ -29,9 +29,9 @@ stop_timer();
 ```
 ### results
 
-![benchmarks](files/benchmark.png)
+![benchmarks](../files/benchmark.png)
 
 
 # dot product benchmarks
 ---------------------------------------------------------------------------
-...
+To be written...

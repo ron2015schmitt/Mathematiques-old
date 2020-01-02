@@ -73,22 +73,25 @@ _Updated January 2, 2020_
 ## Items for V16.0 -- FFT Support via FFTW
 
 ## Miscellaneous Small Features
-   * Random vectors for variety of distrubutions
-      * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
-      * `+=`, `-=`, `*=`, `/=`, operatgors for all tensors
-   * Modify Taylor Series to operate at top level (not deep level.)  Test with Scalar<Matrix> and Vector <Matrix> 
-      * dat(i) must call [i].
-      * perhaps have a boolean in all TensorR subclasses that denotes which is faster: [i] or dat(i)
-   * `Vector` size modifications. Refer to [C++ Containers library](https://en.cppreference.com/w/cpp/container)
-      * implement `join` functions for Vector and a scalar
-      * Implement `insert(i)`, `remove(i)`,`pop_front`,`push_front`, `pop_back`,`push_back`, methods to `Vector` class
-      * `NE == -1` -> use `std::vector` for storage
-      * `NE == -2` -> use `std::list` for storage
-      * `NE == -3` -> use `std::forward_list` for storage
-      * `NE == -4` -> use `std::stack` for storage
-      * `NE == -5` -> use `std::froward_stack` for storage
-   * `Matrix` size modifications. 
-      * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
+* Random vectors for variety of distrubutions
+   * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
+* `+=`, `-=`, `*=`, `/=`, operatgors for all tensors
+* `TensorRW` implementation of `real(t)` and `imag(t)`
+* `TensorRW` implementation of 
+* Refactor `NumberType` etc to use constexpr fields instead of static methods
+* Modify Taylor Series to operate at top level (not deep level.)  Test with Scalar<Matrix> and Vector <Matrix> 
+   * dat(i) must call [i].
+   * perhaps have a boolean in all TensorR subclasses that denotes which is faster: [i] or dat(i)
+* `Vector` size modifications. Refer to [C++ Containers library](https://en.cppreference.com/w/cpp/container)
+   * implement `join` functions for Vector and a scalar
+   * Implement `insert(i)`, `remove(i)`,`pop_front`,`push_front`, `pop_back`,`push_back`, methods to `Vector` class
+   * `NE == -1` -> use `std::vector` for storage
+   * `NE == -2` -> use `std::list` for storage
+   * `NE == -3` -> use `std::forward_list` for storage
+   * `NE == -4` -> use `std::stack` for storage
+   * `NE == -5` -> use `std::froward_stack` for storage
+* `Matrix` size modifications. 
+   * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
 
 ## Possibilities
 * investigate use of [swap](https://en.cppreference.com/w/cpp/algorithm/swap)

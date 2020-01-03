@@ -131,6 +131,9 @@ _Updated January 2, 2020_
 1. [Release Checklist](checklist.md)
 1. Remove `old/` directory and its files
 
+## Contact
+
+To contact me regarding suggestions, bugs, or volunteer work send an email to `Ron dot Schmitt @ me dot com`
 
 ---------------
 ---------------

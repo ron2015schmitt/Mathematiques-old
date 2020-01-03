@@ -111,6 +111,9 @@ namespace mathq {
   IdentityMatrix;
 
   template <class D, int NR = 0, int NC = 0> class
+  ExchangeMatrix;
+  
+  template <class D, int NR = 0, int NC = 0> class
   ConstDiagMatrix;
 
   

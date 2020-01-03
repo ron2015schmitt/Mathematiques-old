@@ -61,6 +61,22 @@
     } 
 
     cr();
+    mout << blue.apply("ExchangeMatrix") << std::endl;
+    cr();
+    {
+      ExchangeMatrix<double> a;
+      tdisp(a);
+      a.resize(2,2);
+      tdisp(a);
+    } 
+    cr();
+    {
+      ExchangeMatrix<double,3,2> a;
+      tdisp(a);
+      tdisp(exp(a));
+    } 
+
+    cr();
     mout << blue.apply("ConstDiagMatrix") << std::endl;
     cr();
     {

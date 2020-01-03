@@ -92,15 +92,19 @@ _Updated January 2, 2020_
 1. [Savitsky-Golay](https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter)
 1. splines
 
-
-## Miscellaneous Small Features
+## Random Numbers and statistics
 * Random vectors for variety of distrubutions
    * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
+* statistics: multiple linear regression and PGA
+
+
+## Miscellaneous Small Features
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
 * refactor: `::Type` to `::type`
 * Add support for the rest of the [common math functions](https://en.cppreference.com/w/cpp/numeric/math) introduced in `C++11` and `C++20`: `frexp`, `isnan` etc, `ldexp`, `logb`, `ilogb`, `modf`, `div`, `remiander`, `remqou`, `fmod`, `ispow2`, `trunc`, `nearbyint`, `ceil2`, `floor2`, etc.
 * `TensorRW` implementation of `real(t)` and `imag(t)`
 * `TensorRW` implementation of `A.row(r)` and `A.col(r)`
+* `Matrix` constructor and assignment using parameter pack (or list?) of `Vector`, as either cols or rows
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * Modify Taylor Series to operate at top level (not deep level.)  Test with Scalar<Matrix> and Vector <Matrix> 
    * dat(i) must call [i].
@@ -123,7 +127,6 @@ _Updated January 2, 2020_
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
 * `C++20` features?
-* statistics: multiple linear regression and PGA
 
 ## Other
 1. [Developer guide](developerguide.md)

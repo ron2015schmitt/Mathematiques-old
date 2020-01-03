@@ -105,4 +105,4 @@ g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 
 # Feature Schedule
 
-* For information on current and future **development**, refer to the [Mathématiques Feature Schedule](../todo/README.md).
+* For information on current and future **development**, refer to the [Mathématiques Feature Schedule](todo/README.md).

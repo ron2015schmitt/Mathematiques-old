@@ -14,11 +14,11 @@ _Back to [Table of Contents](README.md)_
 
 ### TO-DO:
 
-* `DiagMatrix` and `DDiagMatrix`
+* `DiagMatrix` and `DecompDiagMatrix`
    * Diag has `min(NR,NC)` elements 
    * `A[i]` access ranges across diagonal, from `0` to `min(NR,NC)`
    * `A(i,j)` access simply returns 0 if not on diagonal. error if try to write to `A(i,j)` with `i!=j`
-   * `DDiagDecompMatrix`: functions only act on diagonal (for use in decompositions) (note this documentation).
+   * `DecompDiagMatrix`: functions only act on diagonal (for use in decompositions) (note this documentation).
    * write `diag(vector)` and `diag(matrix)` functions as well as `vector(diag)`
 * `RevDiagMatrix`   
 * `RepColMatrix` -- repeated Column matrix. need for Grids/meshes to save memory
@@ -26,7 +26,6 @@ _Back to [Table of Contents](README.md)_
 
 * `UpperTriagMatrix`
 * `LowerTriagMatrix`
-
 * `SymmetricMatrix`
 * `SkewSymmetricMatrix`
 * `HermitianMatrix`

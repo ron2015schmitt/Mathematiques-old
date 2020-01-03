@@ -1,4 +1,4 @@
-# Mathématiques v3.2-r9
+# Mathématiques v3.2-r10
 
 Mathématiques is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntax while also providing run-time performance and memory usage of hand-coded C or Fortran.
 
@@ -91,7 +91,6 @@ g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 ./example
 ```
 
-
 # BENCHMARKS
 
 [Benchmarks](benchmark/README.md)
@@ -100,3 +99,6 @@ g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 
 [User's Guide](doc/README.md)
 
+# Feature Schedule
+
+* For information on current and future **development**, refer to the [Mathématiques Feature Schedule](../todo/README.md).

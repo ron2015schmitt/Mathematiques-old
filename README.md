@@ -10,12 +10,14 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + can have fixed (uses `array`) or variable dimensions (uses `valarray`)
   + fixed array size is ideal for small vectors, eg 2D or 3D vector
   + Elemental math functions (sin, cos, exp, etc) as well as special functions (C++17).
+  + "boiler plate" code is created using Python scripts
   + Calculus (derivatives and integrals)
   + Taylor series
   + Fourier Series
   + Simple Matlab-like syntax with no run-time cost
-  + 237 unit tests (so far), with a very clear and elegant output.
   + Pretty printing
+  + 237 unit tests (so far), with a very clear and elegant output.
+  + Python unit test generation in progress
   + `Imaginary<D>` number template class that dovetails with the fundamental (rwal) types `D` and  with `std::complex<D>`
   + relational operators and boolean masks
   + mixed-type math with automatic type promotion, eg can add a vector of type `int` with a vector of type `std::complex<double>` and the output will be a vector of type `std::complex<double>`

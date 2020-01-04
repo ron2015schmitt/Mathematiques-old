@@ -1,5 +1,5 @@
-#ifndef MATHQ__DIAGONALMATRIX_H
-#define MATHQ__DIAGONALMATRIX_H 1
+#ifndef MATHQ__REVDIAGMATRIX_H
+#define MATHQ__REVDIAGMATRIX_H 1
 
 
 
@@ -8,18 +8,18 @@ namespace mathq {
 
 
   /********************************************************************
-   * DiagonalMatrix<D        -- variable size matrix (valarray)
+   * RevDiagMatrix<D        -- variable size matrix (valarray)
    *                        D  = type for elements
-   * DiagonalMatrix<D,NR>    -- fixed number of rows (valarray)
+   * RevDiagMatrix<D,NR>    -- fixed number of rows (valarray)
    *                        NR = number of rows
-   * DiagonalMatrix<D,NR,NC> -- fixed number of rows and cols (array)
+   * RevDiagMatrix<D,NR,NC> -- fixed number of rows and cols (array)
    *                        NC = number of cols
    ********************************************************************  
    */
 
   //, typename = EnableIf<NumberType<D>::value>
   template <class D, int NR, int NC >
-  class DiagonalMatrix : public TensorRW<DiagonalMatrix<D,NR,NC>,D,D,1,2>{
+  class RevDiagMatrix : public TensorRW<RevDiagMatrix<D,NR,NC>,D,D,1,2>{
 
   public:
     constexpr static int R = 2;
@@ -28,7 +28,7 @@ namespace mathq {
     static constexpr bool resizable = (NR*NC==0) ? true : false;
     static constexpr bool resizableRows = (NR==0) ? true : false;
     static constexpr bool resizableCols = (NC==0) ? true : false;
-    typedef DiagonalMatrix<D,NR,NC> XType;
+    typedef RevDiagMatrix<D,NR,NC> XType;
     typedef D EType;
     typedef D DType;
     typedef typename FundamentalType<D>::Type FType;
@@ -50,7 +50,7 @@ namespace mathq {
     index_type Ncols_;
 
     static_assert(NumberType<D>::value,
-                  "class DiagonalMatrix can only have numbers as elements, ie not vectors, matrices etc.");
+                  "class RevDiagMatrix can only have numbers as elements, ie not vectors, matrices etc.");
 
     
 
@@ -61,7 +61,7 @@ namespace mathq {
   public:
     
     // -------------------  DEFAULT  CONSTRUCTOR --------------------
-    explicit DiagonalMatrix<D,NR,NC>() 
+    explicit RevDiagMatrix<D,NR,NC>() 
     {
       size_t NN = NR*NC;
       resize(NR,NC);
@@ -69,7 +69,7 @@ namespace mathq {
     }
 
     // -------------------  D value --------------------
-    explicit DiagonalMatrix<D,NR,NC>(const D& value) 
+    explicit RevDiagMatrix<D,NR,NC>(const D& value) 
     {
       size_t NN = NR*NC;
       resize(NR,NC);
@@ -79,7 +79,7 @@ namespace mathq {
     // --------------------- variable-size CONSTRUCTOR ---------------------
     template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
-    explicit DiagonalMatrix<D,NR,NC>(const size_type Nr, const size_type Nc) {
+    explicit RevDiagMatrix<D,NR,NC>(const size_type Nr, const size_type Nc) {
       resize(Nr,Nc);
       *this = 1;
     }
@@ -87,7 +87,7 @@ namespace mathq {
     // --------------------- variable-size CONSTRUCTOR ---------------------
     template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
-    explicit DiagonalMatrix<D,NR,NC>(const size_type Nr, const size_type Nc, const D& value) {
+    explicit RevDiagMatrix<D,NR,NC>(const size_type Nr, const size_type Nc, const D& value) {
       resize(Nr,Nc);
       *this = value;
     }
@@ -99,7 +99,7 @@ namespace mathq {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~DiagonalMatrix<D,NR,NC>() {
+    ~RevDiagMatrix<D,NR,NC>() {
       //remove from directory
     }
   
@@ -185,7 +185,7 @@ namespace mathq {
     //**********************************************************************
     // --------------------- resize() --------------------
     
-    DiagonalMatrix<D,NR,NC>&  resize(const int Nr, const int Nc) {
+    RevDiagMatrix<D,NR,NC>&  resize(const int Nr, const int Nc) {
       Nrows_ = NR;
       Ncols_ = NC;
       if constexpr(resizableRows) {
@@ -205,14 +205,14 @@ namespace mathq {
 
     // -------------------------- resize(Dimensions) --------------------------------
     
-    DiagonalMatrix<D,NR,NC>& resize(const Dimensions dims) {
+    RevDiagMatrix<D,NR,NC>& resize(const Dimensions dims) {
       resize(dims[0], dims[1]);
       return *this;
     }
 
 
 
-    DiagonalMatrix<D,NR,NC>& resize(const std::vector<Dimensions>& deepdims_new) {
+    RevDiagMatrix<D,NR,NC>& resize(const std::vector<Dimensions>& deepdims_new) {
       std::vector<Dimensions> deepdims(deepdims_new);
       Dimensions newdims = deepdims[0];
       resize(newdims);
@@ -225,7 +225,7 @@ namespace mathq {
 
     // the new matrix has teh same # of entries but has different number of rows/columns
     // data is left unchanged
-    DiagonalMatrix<D,NR,NC>& reshape(const size_type nr, const size_type nc) { 
+    RevDiagMatrix<D,NR,NC>& reshape(const size_type nr, const size_type nc) { 
       const size_type nn = nr*nc;
       if (nn==size()) {
 	if (nn == 0) {
@@ -241,14 +241,14 @@ namespace mathq {
     }
 
 
-    DiagonalMatrix<D,NR,NC>& transpose(void) { 
+    RevDiagMatrix<D,NR,NC>& transpose(void) { 
       return *this;
     }
     
     // -------------------------- adjoint() --------------------------------
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{}, DiagonalMatrix<D,NR,NC>& >::type adjoint() {
+    typename std::enable_if<is_complex<T>{}, RevDiagMatrix<D,NR,NC>& >::type adjoint() {
       return *this;
     }
 
@@ -341,7 +341,7 @@ namespace mathq {
     //**********************************************************************
    
     D& operator()(const index_type r, const index_type c) {
-      if (r==c) {
+      if (r+c+1==Ncols_) {
 	return data_[r];
       } else {
 	return (dummy_=0);
@@ -349,7 +349,7 @@ namespace mathq {
     }
 
     const D operator()(const index_type r, const index_type c) const {
-      if (r==c) {
+      if (r+c+1==Ncols_) {
 	return data_[r];
       } else {
 	return zero_;
@@ -362,14 +362,14 @@ namespace mathq {
     //************************** ASSIGNMENT ********************************
     //**********************************************************************
 
-    DiagonalMatrix<D,NR,NC>& operator=(const D& value) {
+    RevDiagMatrix<D,NR,NC>& operator=(const D& value) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = value;
       }
       return *this;
     }
     
-    DiagonalMatrix<D,NR,NC>& operator=(const DiagonalMatrix<D,NR,NC>& b) {
+    RevDiagMatrix<D,NR,NC>& operator=(const RevDiagMatrix<D,NR,NC>& b) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = b[k];
       }
@@ -384,7 +384,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    DiagonalMatrix<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    RevDiagMatrix<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
       return *this;
     }
 
@@ -393,7 +393,7 @@ namespace mathq {
   // NOTE: in-place
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{},  DiagonalMatrix<D,NR,NC>& >::type conj() {
+    typename std::enable_if<is_complex<T>{},  RevDiagMatrix<D,NR,NC>& >::type conj() {
       return *this;
     }
 
@@ -405,7 +405,7 @@ namespace mathq {
 
   inline std::string classname() const {
     using namespace display;
-    std::string s = "DiagonalMatrix";		
+    std::string s = "RevDiagMatrix";		
     s += StyledString::get(ANGLE1).get();
     s += getTypeName(D());
     if (NR!=0) {
@@ -440,7 +440,7 @@ namespace mathq {
   // stream << operator
 
 
-  friend std::ostream& operator<<(std::ostream &stream, const DiagonalMatrix<D,NR,NC>& m) {
+  friend std::ostream& operator<<(std::ostream &stream, const RevDiagMatrix<D,NR,NC>& m) {
     using namespace display;
 
     Style& style = FormatDataMatrix::style_for_punctuation;
@@ -474,7 +474,7 @@ namespace mathq {
 
 
   //template <class D>	
-  friend inline std::istream& operator>>(const std::string s,  DiagonalMatrix<D,NR,NC>& m2) {	
+  friend inline std::istream& operator>>(const std::string s,  RevDiagMatrix<D,NR,NC>& m2) {	
     std::istringstream st(s);
     return (st >> m2);
   }
@@ -482,7 +482,7 @@ namespace mathq {
 
   // stream >> operator
 
-  friend std::istream& operator>>(std::istream& stream,  DiagonalMatrix<D,NR,NC>& m2) {	
+  friend std::istream& operator>>(std::istream& stream,  RevDiagMatrix<D,NR,NC>& m2) {	
     return stream;
   }
 

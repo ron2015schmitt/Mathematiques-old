@@ -100,7 +100,7 @@
       tdisp(a);
       a(0,0) = -2;
       a(1,1) = 2;
-      a(1,2) = 3;
+      a(1,0) = 3;
       tdisp(a);
     } 
     cr();
@@ -109,7 +109,28 @@
       tdisp(a);
       tdisp(pow(2,a));
     } 
-  
+
+
+    cr();
+    mout << blue.apply("RevDiagMatrix") << std::endl;
+    cr();
+    {
+      RevDiagMatrix<double> a(2,2,8);
+      tdisp(a);
+      a(0,1) = -2;
+      a(1,0) = 2;
+      a(1,1) = 3;
+      tdisp(a);
+    } 
+    cr();
+    {
+      RevDiagMatrix<double,3,2> a(8);
+      tdisp(a);
+      tdisp(pow(2,a));
+    } 
+
+
+    
     cr();
     mout << "done: " << bold.apply(myname) << std::endl;
     mout << StyledString::get(HORLINE);

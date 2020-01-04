@@ -116,6 +116,9 @@ namespace mathq {
   template <class D, int NR = 0, int NC = 0> class
   ConstDiagMatrix;
 
+  template <class D, int NR = 0, int NC = 0> class
+  DiagonalMatrix;
+
   
   // *********************************************************************
   // * Expressions

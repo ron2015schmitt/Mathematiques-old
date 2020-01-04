@@ -49,6 +49,7 @@
 #include "identitymatrix.h"
 #include "exchangematrix.h"
 #include "constdiagmatrix.h"
+#include "diagonalmatrix.h"
 #include "tensor.h"
 #include "expressionsR.h"
 #include "expressionsRW.h"

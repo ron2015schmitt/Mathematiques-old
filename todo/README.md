@@ -1,11 +1,11 @@
 # Planned Releases for 2020
 
-_Updated January 2, 2020_
+_Updated January 3, 2020_
 
-## Items for V3.3
+## Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
 
-## Items for V4.0 -- Special Matrices
+## Items for V4.0 -- Special Matrices  (In-progress)
 1. [Special matrices](diagonal.md)
 
 ## Items for V5.0 - Unit testing

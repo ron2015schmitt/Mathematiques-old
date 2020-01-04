@@ -1,23 +1,23 @@
 # Planned Releases for 2020
 
-_Updated January 2, 2020_
+_Updated January 3, 2020_
 
-## Items for V3.3
+## Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
 
-## Items for V4.0 - Unit testing
+## Items for V4.0 -- Special Matrices  (In-progress)
+1. [Special matrices](diagonal.md)
+
+## Items for V5.0 - Unit testing
 1. [Unit Testing](unittesting.md)
 
-## Items for V5.0 - Refactor indexing
+## Items for V6.0 - Refactor indexing
 1. [Index class and new indexing methodology](index.md)
 
-## Items for V6.0 - Tensor Products
+## Items for V7.0 - Tensor Products
 1. [Tensor dot product](dotproduct.md)
 1. [Outer Product and Wedge Product](outerwedge.md)
 1. [Add Benchmarks](benchmarks.md)
-
-## Items for V7.0 -- Special Matrices
-1. [Special matrices](diagonal.md)
 
 ## Items for V8.0 -- Calculus
 1. `Interval` virtual class with subclasses `AB(a,b,N)`, `aB(a,b,N)` etc
@@ -30,6 +30,8 @@ _Updated January 2, 2020_
 1. openblas multi-threading support
 
 ## Items for V10.0 -- Optimize Dot Products for Special Matrices
+
+perhaps using LAPACK/BLAS.
 
 ## Items for V11.0 -- Vector Calculus
 1. [2D and 3D Curvilinear Coordinate Systems](coordsystems.md)

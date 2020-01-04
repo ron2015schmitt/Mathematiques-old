@@ -11,18 +11,14 @@ _Back to [Table of Contents](README.md)_
 * `IdentityMatrix`
 * `ExchangeMatrix` (The J matrix)
 * `ConstDiagMatrix`
+* `DiagonalMatrix`
 
 ### TO-DO:
-
-* `DiagMatrix` and `DecompDiagMatrix`
-   * Diag has `min(NR,NC)` elements 
-   * `A[i]` access ranges across diagonal, from `0` to `min(NR,NC)`
-   * `A(i,j)` access simply returns 0 if not on diagonal. error if try to write to `A(i,j)` with `i!=j`
-   * `DecompDiagMatrix`: functions only act on diagonal (for use in decompositions) (note this documentation).
-   * write `diag(vector)` and `diag(matrix)` functions as well as `vector(diag)`
 * `RevDiagMatrix`   
 * `RepColMatrix` -- repeated Column matrix. need for Grids/meshes to save memory
 * `RepRowMatrix` -- repeated Row matrix. need for Grids/meshes to save memory
+* write `diag()`, which presents the diagonal of a matrix as a vector (via TERW expression)
+* write `diag()`, which presents a vector as the digonal of a matrix (via TERW expression)
 
 * `UpperTriagMatrix`
 * `LowerTriagMatrix`

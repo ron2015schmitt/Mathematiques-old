@@ -130,6 +130,27 @@
     } 
 
 
+    cr();
+    mout << blue.apply("RepColMatrix") << std::endl;
+    cr();
+    {
+      Vector<double> v1 {1,2,3,4};
+      RepColMatrix<double> a(v1,2);
+      tdisp(v1);
+      tdisp(a);
+      a(0,1) = -1;
+      a(1,0) = -2;
+      a(2,1) = -3;
+      a(3,0) = -4;
+      tdisp(a);
+    } 
+    cr();
+    {
+      RepColMatrix<double,3,2> a(8);
+      tdisp(a);
+      tdisp(pow(2,a));
+    } 
+    
     
     cr();
     mout << "done: " << bold.apply(myname) << std::endl;

@@ -40,10 +40,12 @@
 #include "display.h"
 #include "slices.h"
 #include "util.h"
+
 #include "tensors.h"
 #include "debug.h"
 #include "scalar.h"
 #include "vector.h"
+
 #include "matrix.h"
 #include "zeromatrix.h"
 #include "identitymatrix.h"
@@ -51,9 +53,13 @@
 #include "constdiagmatrix.h"
 #include "diagonalmatrix.h"
 #include "revdiagmatrix.h"
+#include "repcolmatrix.h"
+
 #include "tensor.h"
+
 #include "expressionsR.h"
 #include "expressionsRW.h"
+
 #include "fun_unary_AUTO.h"
 #include "fun_binary_AUTO.h"
 #include "fun_ternary_AUTO.h"
@@ -61,6 +67,7 @@
 #include "functions_structure.h"
 #include "functions_products.h"
 #include "functions_user.h"
+
 #include "fileio.h"
 #include "coda.h"
 

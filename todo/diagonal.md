@@ -13,11 +13,12 @@ _Back to [Table of Contents](README.md)_
 * `ConstDiagMatrix`
 * `DiagonalMatrix`
 * `RevDiagMatrix`  
+* `RepColMatrix` -- repeated Column matrix. need for Grids/meshes to save memory
+* `RepRowMatrix` -- repeated Row matrix. need for Grids/meshes to save memory
 
 ### TO-DO:
  
-* `RepColMatrix` -- repeated Column matrix. need for Grids/meshes to save memory
-* `RepRowMatrix` -- repeated Row matrix. need for Grids/meshes to save memory
+
 * write `diag(Matrix)`, which presents the diagonal of a matrix as a vector (via TERW expression)
 * write `diag(Vector)`, which presents a vector as the digonal of a matrix (via TERW expression)
 
@@ -31,7 +32,7 @@ _Back to [Table of Contents](README.md)_
 * `SparseMatrix` - utilize `std::map`
 
 * `RepMatMatrix`-- repeated Matrix matrix.
-* `BlockMatrix` -- set via initializer list notation `G={{A,B},{C,D}}`
+* `BlockMatrix` -- set via initializer list notation `G=((A,B),(C,D))`
 
 * `JordanBlockMatrix`
 

@@ -125,6 +125,9 @@ namespace mathq {
   template <class D, int NR = 0, int NC = 0> class
   RepColMatrix;
 
+  template <class D, int NR = 0, int NC = 0> class
+  RepRowMatrix;
+
   
   // *********************************************************************
   // * Expressions

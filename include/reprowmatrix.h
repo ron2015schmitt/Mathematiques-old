@@ -1,5 +1,5 @@
-#ifndef MATHQ__REPCOLMATRIX_H
-#define MATHQ__REPCOLMATRIX_H 1
+#ifndef MATHQ__REPROWMATRIX_H
+#define MATHQ__REPROWMATRIX_H 1
 
 
 
@@ -8,18 +8,18 @@ namespace mathq {
 
 
   /********************************************************************
-   * RepColMatrix<D        -- variable size matrix (valarray)
+   * RepRowMatrix<D        -- variable size matrix (valarray)
    *                        D  = type for elements
-   * RepColMatrix<D,NR>    -- fixed number of rows (valarray)
+   * RepRowMatrix<D,NR>    -- fixed number of rows (valarray)
    *                        NR = number of rows
-   * RepColMatrix<D,NR,NC> -- fixed number of rows and cols (array)
+   * RepRowMatrix<D,NR,NC> -- fixed number of rows and cols (array)
    *                        NC = number of cols
    ********************************************************************  
    */
 
   //, typename = EnableIf<NumberType<D>::value>
   template <class D, int NR, int NC >
-  class RepColMatrix : public TensorRW<RepColMatrix<D,NR,NC>,D,D,1,2>{
+  class RepRowMatrix : public TensorRW<RepRowMatrix<D,NR,NC>,D,D,1,2>{
 
   public:
     constexpr static int R = 2;
@@ -28,14 +28,14 @@ namespace mathq {
     static constexpr bool resizable = (NR*NC==0) ? true : false;
     static constexpr bool resizableRows = (NR==0) ? true : false;
     static constexpr bool resizableCols = (NC==0) ? true : false;
-    typedef RepColMatrix<D,NR,NC> XType;
+    typedef RepRowMatrix<D,NR,NC> XType;
     typedef D EType;
     typedef D DType;
     typedef typename FundamentalType<D>::Type FType;
       
 
     // if either NR or NC is 0, then we use valarray
-    typedef typename ArrayType<D,NR>::Type MyArrayType;
+    typedef typename ArrayType<D,NC>::Type MyArrayType;
 
     // *********************** OBJECT DATA ***********************************
     //
@@ -50,7 +50,7 @@ namespace mathq {
     index_type Ncols_;
 
     static_assert(NumberType<D>::value,
-                  "class RepColMatrix can only have numbers as elements, ie not vectors, matrices etc.");
+                  "class RepRowMatrix can only have numbers as elements, ie not vectors, matrices etc.");
 
     
 
@@ -61,7 +61,7 @@ namespace mathq {
   public:
     
     // -------------------  DEFAULT  CONSTRUCTOR --------------------
-    explicit RepColMatrix<D,NR,NC>() 
+    explicit RepRowMatrix<D,NR,NC>() 
     {
       size_t NN = NR*NC;
       resize(NR,NC);
@@ -69,7 +69,7 @@ namespace mathq {
     }
 
     // -------------------  D value --------------------
-    explicit RepColMatrix<D,NR,NC>(const D& value) 
+    explicit RepRowMatrix<D,NR,NC>(const D& value) 
     {
       size_t NN = NR*NC;
       resize(NR,NC);
@@ -79,7 +79,7 @@ namespace mathq {
     // -------------------  (Column) Vector --------------------
     template<size_t NN = NR*NC, EnableIf<(NN > 0)> = 0>
 
-    explicit RepColMatrix<D,NR,NC>(const Vector<D>& v) 
+    explicit RepRowMatrix<D,NR,NC>(const Vector<D>& v) 
     {
       resize(NR,NC);  
       *this = v;
@@ -89,9 +89,9 @@ namespace mathq {
     // -------------------  (Column) Vector --------------------
     template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
-      explicit RepColMatrix<D,NR,NC>(const Vector<D>& v, const index_type Nc) 
+      explicit RepRowMatrix<D,NR,NC>(const Vector<D>& v, const index_type Nr) 
     {
-      const index_type Nr = v.size();
+      const index_type Nc = v.size();
       resize(Nr,Nc);  // this a *request* to resize
       *this = v;
     }
@@ -99,7 +99,7 @@ namespace mathq {
     // --------------------- variable-size CONSTRUCTOR ---------------------
     template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
-    explicit RepColMatrix<D,NR,NC>(const size_type Nr, const size_type Nc) {
+    explicit RepRowMatrix<D,NR,NC>(const size_type Nr, const size_type Nc) {
       resize(Nr,Nc);
       *this = 0;
     }
@@ -107,7 +107,7 @@ namespace mathq {
     // --------------------- variable-size CONSTRUCTOR ---------------------
     template<size_t NN = NR*NC, EnableIf<NN == 0> = 0>
 
-    explicit RepColMatrix<D,NR,NC>(const size_type Nr, const size_type Nc, const D& value) {
+    explicit RepRowMatrix<D,NR,NC>(const size_type Nr, const size_type Nc, const D& value) {
       resize(Nr,Nc);
       *this = value;
     }
@@ -119,7 +119,7 @@ namespace mathq {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~RepColMatrix<D,NR,NC>() {
+    ~RepRowMatrix<D,NR,NC>() {
       //remove from directory
     }
   
@@ -205,7 +205,7 @@ namespace mathq {
     //**********************************************************************
     // --------------------- resize() --------------------
     
-    RepColMatrix<D,NR,NC>&  resize(const int Nr, const int Nc) {
+    RepRowMatrix<D,NR,NC>&  resize(const int Nr, const int Nc) {
       Nrows_ = NR;
       Ncols_ = NC;
       if constexpr(resizableRows) {
@@ -215,7 +215,7 @@ namespace mathq {
 	  Ncols_ = Nc;
 	}
      if constexpr(resizable) {
-	 const index_type sz = Nrows_;
+	 const index_type sz = Ncols_;
 	 data_.resize(sz);
      }
      return *this;
@@ -225,14 +225,14 @@ namespace mathq {
 
     // -------------------------- resize(Dimensions) --------------------------------
     
-    RepColMatrix<D,NR,NC>& resize(const Dimensions dims) {
+    RepRowMatrix<D,NR,NC>& resize(const Dimensions dims) {
       resize(dims[0], dims[1]);
       return *this;
     }
 
 
 
-    RepColMatrix<D,NR,NC>& resize(const std::vector<Dimensions>& deepdims_new) {
+    RepRowMatrix<D,NR,NC>& resize(const std::vector<Dimensions>& deepdims_new) {
       std::vector<Dimensions> deepdims(deepdims_new);
       Dimensions newdims = deepdims[0];
       resize(newdims);
@@ -245,7 +245,7 @@ namespace mathq {
 
     // the new matrix has teh same # of entries but has different number of rows/columns
     // data is left unchanged
-    RepColMatrix<D,NR,NC>& reshape(const size_type nr, const size_type nc) { 
+    RepRowMatrix<D,NR,NC>& reshape(const size_type nr, const size_type nc) { 
       const size_type nn = nr*nc;
       if (nn==size()) {
 	if (nn == 0) {
@@ -261,14 +261,14 @@ namespace mathq {
     }
 
 
-    RepColMatrix<D,NR,NC>& transpose(void) { 
+    RepRowMatrix<D,NR,NC>& transpose(void) { 
       return *this;
     }
     
     // -------------------------- adjoint() --------------------------------
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{}, RepColMatrix<D,NR,NC>& >::type adjoint() {
+    typename std::enable_if<is_complex<T>{}, RepRowMatrix<D,NR,NC>& >::type adjoint() {
       return *this;
     }
 
@@ -361,11 +361,11 @@ namespace mathq {
     //**********************************************************************
    
     D& operator()(const index_type r, const index_type c) {
-      return data_[r];
+      return data_[c];
     }
 
     const D operator()(const index_type r, const index_type c) const {
-      return data_[r];
+      return data_[c];
     }
 
 
@@ -375,13 +375,13 @@ namespace mathq {
     //**********************************************************************
 
 
-    RepColMatrix<D,NR,NC>& set(const Vector<D>& v) {
+    RepRowMatrix<D,NR,NC>& set(const Vector<D>& v) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = v[k];
       }
       return *this;
     }
-    RepColMatrix<D,NR,NC>& operator=(const Vector<D>& v) {
+    RepRowMatrix<D,NR,NC>& operator=(const Vector<D>& v) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = v[k];
       }
@@ -389,7 +389,7 @@ namespace mathq {
     }
 
     template <class X>
-    RepColMatrix<D,NR,NC>& operator=(const TensorR<X,D,D,1,1>& v) {
+    RepRowMatrix<D,NR,NC>& operator=(const TensorR<X,D,D,1,1>& v) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = v[k];
       }
@@ -405,14 +405,14 @@ namespace mathq {
       return v;
     }
     
-    RepColMatrix<D,NR,NC>& operator=(const D& value) {
+    RepRowMatrix<D,NR,NC>& operator=(const D& value) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = value;
       }
       return *this;
     }
     
-    RepColMatrix<D,NR,NC>& operator=(const RepColMatrix<D,NR,NC>& b) {
+    RepRowMatrix<D,NR,NC>& operator=(const RepRowMatrix<D,NR,NC>& b) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = b[k];
       }
@@ -427,7 +427,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    RepColMatrix<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    RepRowMatrix<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
       return *this;
     }
 
@@ -436,7 +436,7 @@ namespace mathq {
   // NOTE: in-place
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{},  RepColMatrix<D,NR,NC>& >::type conj() {
+    typename std::enable_if<is_complex<T>{},  RepRowMatrix<D,NR,NC>& >::type conj() {
       return *this;
     }
 
@@ -448,7 +448,7 @@ namespace mathq {
 
   inline std::string classname() const {
     using namespace display;
-    std::string s = "RepColMatrix";		
+    std::string s = "RepRowMatrix";		
     s += StyledString::get(ANGLE1).get();
     s += getTypeName(D());
     if (NR!=0) {
@@ -483,7 +483,7 @@ namespace mathq {
   // stream << operator
 
 
-  friend std::ostream& operator<<(std::ostream &stream, const RepColMatrix<D,NR,NC>& m) {
+  friend std::ostream& operator<<(std::ostream &stream, const RepRowMatrix<D,NR,NC>& m) {
     using namespace display;
 
     Style& style = FormatDataMatrix::style_for_punctuation;
@@ -517,7 +517,7 @@ namespace mathq {
 
 
   //template <class D>	
-  friend inline std::istream& operator>>(const std::string s,  RepColMatrix<D,NR,NC>& m2) {	
+  friend inline std::istream& operator>>(const std::string s,  RepRowMatrix<D,NR,NC>& m2) {	
     std::istringstream st(s);
     return (st >> m2);
   }
@@ -525,7 +525,7 @@ namespace mathq {
 
   // stream >> operator
 
-  friend std::istream& operator>>(std::istream& stream,  RepColMatrix<D,NR,NC>& m2) {	
+  friend std::istream& operator>>(std::istream& stream,  RepRowMatrix<D,NR,NC>& m2) {	
     return stream;
   }
 

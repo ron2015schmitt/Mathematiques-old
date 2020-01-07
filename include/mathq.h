@@ -54,6 +54,7 @@
 #include "diagonalmatrix.h"
 #include "revdiagmatrix.h"
 #include "repcolmatrix.h"
+#include "reprowmatrix.h"
 
 #include "tensor.h"
 

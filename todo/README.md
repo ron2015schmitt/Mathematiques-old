@@ -87,7 +87,7 @@ perhaps using LAPACK/BLAS.
 1. FIR
 1. IIR
 
-## Interpolation
+## Interpolation and Smoothing
 
 1. Linear using `C++20` functions `midpoint` and `lerp`
 1. least squares smoothing and derivatives
@@ -97,7 +97,7 @@ perhaps using LAPACK/BLAS.
 ## Random Numbers and statistics
 * Random vectors for variety of distrubutions
    * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
-* statistics: multiple linear regression and PGA
+* statistics: multiple linear regression, polynomial least-squares fitting (vandermonde matrix), pricples components analysis
 
 
 ## Miscellaneous Small Features

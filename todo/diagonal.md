@@ -7,18 +7,19 @@ _Back to [Table of Contents](README.md)_
 
 
 ### Already Implemented:
-* `ZeroMatrix`
-* `IdentityMatrix`
-* `ExchangeMatrix` (The J matrix)
-* `ConstDiagMatrix`
-* `DiagonalMatrix`
-* `RevDiagMatrix`  
-* `RepColMatrix` -- repeated Column matrix. need for Grids/meshes to save memory
-* `RepRowMatrix` -- repeated Row matrix. need for Grids/meshes to save memory
+* `MatrixZero`
+* `MatrixIdentity`
+* `MatrixExchange` (The J matrix)
+* `MatrixConstDiag`
+* `MatrixDiagonal`
+* `MatrixRevDiag`  
+* `MatrixRepCol` -- repeated Column matrix. need for Grids/meshes to save memory
+* `MatrixRepRow` -- repeated Row matrix. need for Grids/meshes to save memory
+* `MatrixVandermonde`
+* `MatrixToeplitz`
 
 ### TO-DO:
  
-
 * write `diag(Matrix)`, which presents the diagonal of a matrix as a vector (via TERW expression)
 * write `diag(Vector)`, which presents a vector as the digonal of a matrix (via TERW expression)
 
@@ -37,7 +38,6 @@ _Back to [Table of Contents](README.md)_
 * `JordanBlockMatrix`
 
 * `BandedMatrix`
-   * `ToeplitzMatrix`
    * `JordanFormMatrix`
 
 

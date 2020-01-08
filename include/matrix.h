@@ -754,6 +754,7 @@ namespace mathq {
     template<int NR2, int NC2>
     Matrix<E,NR,NC,D,M>& operator=(const Matrix<E,NR2,NC2,D,M>& m) {
       if constexpr(M<=1) {
+	  tdisp(m.dims());
 	  resize(m.dims());
 	  for (index_type i = 0; i < size(); i++)  {
 	    (*this)[i] = m[i];

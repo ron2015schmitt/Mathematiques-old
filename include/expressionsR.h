@@ -280,9 +280,14 @@ namespace mathq {
 	}
       disp3(a);
       disp3(b);
+      disp3(vptrs);
+      tdisp3(E3());
+      tdisp3(D3());
+      mdisp3(M3,R3);
     }
     
     ~TER_Binary() {
+      disp3(vptrs);
       delete vptrs;
     }
 

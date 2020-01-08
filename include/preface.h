@@ -130,7 +130,10 @@ namespace mathq {
 
   template <class D, int NR = 0, int NC = 0> class
   MatrixVandermonde;
-  
+
+  template <class D, int NR = 0, int NC = 0> class
+  MatrixToeplitz;
+
   // *********************************************************************
   // * Expressions
   // ********************************************************************

@@ -56,6 +56,7 @@
 #include "matrix_repcol.h"
 #include "matrix_reprow.h"
 #include "matrix_vandermonde.h"
+#include "matrix_toeplitz.h"
 
 #include "tensor.h"
 

@@ -128,6 +128,8 @@ namespace mathq {
   template <class D, int NR = 0, int NC = 0> class
   RepRowMatrix;
 
+  template <class D, int NR = 0, int NC = 0> class
+  VandermondeMatrix;
   
   // *********************************************************************
   // * Expressions

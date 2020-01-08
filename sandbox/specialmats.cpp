@@ -172,6 +172,29 @@
       tdisp(a);
       tdisp(pow(2,a));
     } 
+
+
+    cr();
+    mout << blue.apply("VandermondeMatrix") << std::endl;
+    cr();
+    {
+      Vector<double> v1 {1,2,3,4};
+      VandermondeMatrix<double> a(v1,3);
+      tdisp(v1);
+      tdisp(a);
+      a(0,1) = -5;
+      a(1,0) = -2;
+      a(2,1) = -10;
+      a(3,0) = -4;
+      tdisp(a);
+    } 
+    cr();
+    {
+      VandermondeMatrix<double,3,4> a(3);
+      tdisp(a);
+      tdisp(pow(2,a));
+    } 
+
     
     cr();
     mout << "done: " << bold.apply(myname) << std::endl;

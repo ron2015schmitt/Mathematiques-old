@@ -55,6 +55,7 @@
 #include "revdiagmatrix.h"
 #include "repcolmatrix.h"
 #include "reprowmatrix.h"
+#include "vandermondematrix.h"
 
 #include "tensor.h"
 

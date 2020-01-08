@@ -29,74 +29,74 @@
     print_mathq_info();
   
     cr();
-    mout << blue.apply("ZeroMatrix") << std::endl;
+    mout << blue.apply("MatrixZero") << std::endl;
     cr();
     {
-      ZeroMatrix<double> a;
+      MatrixZero<double> a;
       tdisp(a);
       a.resize(2,2);
       tdisp(a);
     } 
     cr();
     {
-      ZeroMatrix<double,3,2> a;
+      MatrixZero<double,3,2> a;
       tdisp(a);
       tdisp(exp(a));
     } 
 
     cr();
-    mout << blue.apply("IdentityMatrix") << std::endl;
+    mout << blue.apply("MatrixIdentity") << std::endl;
     cr();
     {
-      IdentityMatrix<double> a;
+      MatrixIdentity<double> a;
       tdisp(a);
       a.resize(2,2);
       tdisp(a);
     } 
     cr();
     {
-      IdentityMatrix<double,3,2> a;
+      MatrixIdentity<double,3,2> a;
       tdisp(a);
       tdisp(exp(a));
     } 
 
     cr();
-    mout << blue.apply("ExchangeMatrix") << std::endl;
+    mout << blue.apply("MatrixExchange") << std::endl;
     cr();
     {
-      ExchangeMatrix<double> a;
+      MatrixExchange<double> a;
       tdisp(a);
       a.resize(2,2);
       tdisp(a);
     } 
     cr();
     {
-      ExchangeMatrix<double,3,2> a;
+      MatrixExchange<double,3,2> a;
       tdisp(a);
       tdisp(exp(a));
     } 
 
     cr();
-    mout << blue.apply("ConstDiagMatrix") << std::endl;
+    mout << blue.apply("MatrixConstDiag") << std::endl;
     cr();
     {
-      ConstDiagMatrix<double> a(2,2,8);
+      MatrixConstDiag<double> a(2,2,8);
       tdisp(a);
       a.setValue(44);
       tdisp(a);
     } 
     cr();
     {
-      ConstDiagMatrix<double,3,2> a(8);
+      MatrixConstDiag<double,3,2> a(8);
       tdisp(a);
       tdisp(pow(2,a));
     } 
     
     cr();
-    mout << blue.apply("DiagonalMatrix") << std::endl;
+    mout << blue.apply("MatrixDiagonal") << std::endl;
     cr();
     {
-      DiagonalMatrix<double> a(2,2,8);
+      MatrixDiagonal<double> a(2,2,8);
       tdisp(a);
       a(0,0) = -2;
       a(1,1) = 2;
@@ -105,17 +105,17 @@
     } 
     cr();
     {
-      DiagonalMatrix<double,3,2> a(8);
+      MatrixDiagonal<double,3,2> a(8);
       tdisp(a);
       tdisp(pow(2,a));
     } 
 
 
     cr();
-    mout << blue.apply("RevDiagMatrix") << std::endl;
+    mout << blue.apply("MatrixRevDiag") << std::endl;
     cr();
     {
-      RevDiagMatrix<double> a(2,2,8);
+      MatrixRevDiag<double> a(2,2,8);
       tdisp(a);
       a(0,1) = -2;
       a(1,0) = 2;
@@ -124,18 +124,18 @@
     } 
     cr();
     {
-      RevDiagMatrix<double,3,2> a(8);
+      MatrixRevDiag<double,3,2> a(8);
       tdisp(a);
       tdisp(pow(2,a));
     } 
 
 
     cr();
-    mout << blue.apply("RepColMatrix") << std::endl;
+    mout << blue.apply("MatrixRepCol") << std::endl;
     cr();
     {
       Vector<double> v1 {1,2,3,4};
-      RepColMatrix<double> a(v1,2);
+      MatrixRepCol<double> a(v1,2);
       tdisp(v1);
       tdisp(a);
       a(0,1) = -1;
@@ -146,18 +146,18 @@
     } 
     cr();
     {
-      RepColMatrix<double,3,2> a(8);
+      MatrixRepCol<double,3,2> a(8);
       tdisp(a);
       tdisp(pow(2,a));
     } 
     
 
     cr();
-    mout << blue.apply("RepRowMatrix") << std::endl;
+    mout << blue.apply("MatrixRepRow") << std::endl;
     cr();
     {
       Vector<double> v1 {1,2,3,4};
-      RepRowMatrix<double> a(v1,2);
+      MatrixRepRow<double> a(v1,2);
       tdisp(v1);
       tdisp(a);
       a(0,1) = -1;
@@ -168,18 +168,18 @@
     } 
     cr();
     {
-      RepRowMatrix<double,3,2> a(8);
+      MatrixRepRow<double,3,2> a(8);
       tdisp(a);
       tdisp(pow(2,a));
     } 
 
 
     cr();
-    mout << blue.apply("VandermondeMatrix") << std::endl;
+    mout << blue.apply("MatrixVandermonde") << std::endl;
     cr();
     {
       Vector<double> v1 {1,2,3,4};
-      VandermondeMatrix<double> a(v1,3);
+      MatrixVandermonde<double> a(v1,3);
       tdisp(v1);
       tdisp(a);
       a(0,1) = -5;
@@ -190,7 +190,7 @@
     } 
     cr();
     {
-      VandermondeMatrix<double,3,4> a(3);
+      MatrixVandermonde<double,3,4> a(3);
       tdisp(a);
       tdisp(pow(2,a));
     } 

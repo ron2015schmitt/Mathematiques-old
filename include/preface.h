@@ -105,31 +105,31 @@ namespace mathq {
 
 
   template <class D, int NR = 0, int NC = 0> class
-  ZeroMatrix;
+  MatrixZero;
 
   template <class D, int NR = 0, int NC = 0> class
-  IdentityMatrix;
+  MatrixIdentity;
 
   template <class D, int NR = 0, int NC = 0> class
-  ExchangeMatrix;
+  MatrixExchange;
   
   template <class D, int NR = 0, int NC = 0> class
-  ConstDiagMatrix;
+  MatrixConstDiag;
 
   template <class D, int NR = 0, int NC = 0> class
-  DiagonalMatrix;
+  MatrixDiagonal;
 
   template <class D, int NR = 0, int NC = 0> class
-  RevDiagMatrix;
+  MatrixRevDiag;
 
   template <class D, int NR = 0, int NC = 0> class
-  RepColMatrix;
+  MatrixRepCol;
 
   template <class D, int NR = 0, int NC = 0> class
-  RepRowMatrix;
+  MatrixRepRow;
 
   template <class D, int NR = 0, int NC = 0> class
-  VandermondeMatrix;
+  MatrixVandermonde;
   
   // *********************************************************************
   // * Expressions

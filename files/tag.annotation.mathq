@@ -1,5 +1,5 @@
 
-v3.2-r19
+v3.2-r20
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.

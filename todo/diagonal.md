@@ -30,7 +30,7 @@ _Back to [Table of Contents](README.md)_
 * write `diag(Vector)`, which presents a vector as the digonal of a matrix (via TERW expression)
 * implement `transpose`, `conjugate`, and `adjoint` for each above
 * implement assigment between matrices and expressions
-* implement `indices` method for each matrix
+* implement `index` and `indices` methods for each matrix (use in [] access)
 * implement direct data access for each matrix
 * implement `const static` field that signifies whether [k] or (r,c) access is quicker. or perhaps use an internal state?
 

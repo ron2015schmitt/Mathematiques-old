@@ -28,12 +28,12 @@ _Back to [Table of Contents](README.md)_
  
 * write `diag(Matrix)`, which presents the diagonal of a matrix as a vector (via TERW expression)
 * write `diag(Vector)`, which presents a vector as the digonal of a matrix (via TERW expression)
-
-
 * implement `transpose`, `conjugate`, and `adjoint` for each above
 * implement assigment between matrices and expressions
+* implement `indices` method for each matrix
+* implement direct data access for each matrix
 
-
+## Other Matrices
 
 
 * `SparseMatrix` - utilize `std::map`

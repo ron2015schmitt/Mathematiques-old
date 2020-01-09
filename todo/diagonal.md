@@ -32,6 +32,7 @@ _Back to [Table of Contents](README.md)_
 * implement assigment between matrices and expressions
 * implement `indices` method for each matrix
 * implement direct data access for each matrix
+* implement `const static` field that signifies whether [k] or (r,c) access is quicker. or perhaps use an internal state?
 
 ## Other Matrices
 

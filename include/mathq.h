@@ -51,6 +51,7 @@
 #include "matrix_diagonal.h"
 #include "matrix_exchange.h"
 #include "matrix_identity.h"
+#include "matrix_lowertriangle.h"
 #include "matrix_revdiag.h"
 #include "matrix_repcol.h"
 #include "matrix_reprow.h"

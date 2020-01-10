@@ -28,26 +28,16 @@ _Back to [Table of Contents](README.md)_
  
 * write `diag(Matrix)`, which presents the diagonal of a matrix as a vector (via TERW expression)
 * write `diag(Vector)`, which presents a vector as the digonal of a matrix (via TERW expression)
-* implement `transpose`, `conjugate`, and `adjoint` for each above
-* implement assigment between matrices and expressions
-* implement `index` and `indices` methods for each matrix (use in [] access)
+* implement `constructor(constTensor<X,D,D,1,2>& x)` and `operator=(constTensor<X,D,D,1,2>& x)`
+   * need `(r,c)` method for TensorR
+   * `Matrix` should use `(r,c)` instead of `.dat()` and `[k]`
 * implement direct data access for each matrix
-* implement `const static` field that signifies whether [k] or (r,c) access is quicker. or perhaps use an internal state?
+* perhaps implement iterator for each type of matrix (as a subclass) at some point
 
 ## Other Matrices
-
-
 * `SparseMatrix` - utilize `std::map`
-
-
-
 * `RepMatMatrix`-- repeated Matrix matrix.
-
-
 * `BlockMatrix` -- set via initializer list notation `G=((A,B),(C,D))`
-
-
-
 * `JordanBlockMatrix`
 * `BandedMatrix`
    * `JordanFormMatrix`

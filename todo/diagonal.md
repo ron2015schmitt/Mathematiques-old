@@ -32,6 +32,7 @@ _Back to [Table of Contents](README.md)_
    * need `(r,c)` method for TensorR
    * `Matrix` should use `(r,c)` instead of `.dat()` and `[k]`
 * implement direct data access for each matrix
+  * implement `dataIndex(r,c)` method for use with `data_`  (refer to `MatrixSymmetric`)
 * perhaps implement iterator for each type of matrix (as a subclass) at some point
 
 ## Other Matrices

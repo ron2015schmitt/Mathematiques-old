@@ -47,16 +47,17 @@
 #include "vector.h"
 
 #include "matrix.h"
-#include "matrix_zero.h"
-#include "matrix_identity.h"
-#include "matrix_exchange.h"
 #include "matrix_constdiag.h"
 #include "matrix_diagonal.h"
+#include "matrix_exchange.h"
+#include "matrix_identity.h"
 #include "matrix_revdiag.h"
 #include "matrix_repcol.h"
 #include "matrix_reprow.h"
-#include "matrix_vandermonde.h"
 #include "matrix_toeplitz.h"
+#include "matrix_uppertriangle.h"
+#include "matrix_vandermonde.h"
+#include "matrix_zero.h"
 
 #include "tensor.h"
 

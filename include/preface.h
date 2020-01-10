@@ -134,6 +134,24 @@ namespace mathq {
   template <class D, int NR = 0, int NC = 0> class
   MatrixToeplitz;
 
+  template <class D, int N = 0> class
+  MatrixUpperTriangle;
+
+  template <class D, int N = 0> class
+  MatrixLowerTriangle;
+
+  template <class D, int N = 0> class
+  MatrixSymmetric;
+
+  template <class D, int N = 0> class
+  MatrixSkewSymmetric;
+  
+  template <class D, int N = 0> class
+  MatrixHermitian;
+
+  template <class D, int N = 0> class
+  MatrixSkewHermitian;
+  
   // *********************************************************************
   // * Expressions
   // ********************************************************************

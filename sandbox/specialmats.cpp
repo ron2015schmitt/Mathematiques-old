@@ -226,6 +226,33 @@ int main(int argc, char *argv[])
     tdisp(2*a);
   } 
 
+
+  cr();
+  mout << blue.apply("MatrixUpperTriangle") << std::endl;
+  cr();
+  {
+    MatrixUpperTriangle<double,3> a(9);
+    tdisp(a);
+    a(0,0) = 1;
+    a(0,1) = 2;
+    a(0,2) = 3;
+    a(1,0) = -2;
+    a(1,1) = 4;
+    a(1,2) = 5;
+    a(2,0) = -4;
+    a(2,1) = -12;
+    a(2,2) = 6;
+    tdisp(a);
+  } 
+  cr();
+  {
+    Vector<double> v {1,2,3,4,5,6,7,8,9,10};
+    MatrixUpperTriangle<double> a(v);
+    tdisp(a);
+    Matrix<double> b = transpose(a);
+    tdisp(b);
+  } 
+  
       
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;

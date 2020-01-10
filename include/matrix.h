@@ -775,6 +775,7 @@ namespace mathq {
 
       if constexpr(M<=1) {
 	  resize(x.dims());
+	  // TODO: use (r,c) instead
           for (index_type i = 0; i < size(); i++)  {
 	    (*this)[i] = x[i];
           }

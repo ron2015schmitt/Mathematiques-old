@@ -1,5 +1,5 @@
-#ifndef MATHQ__MATRIX_UPPERTRIANGLE_H
-#define MATHQ__MATRIX_UPPERTRIANGLE_H 1
+#ifndef MATHQ__MATRIX_SYMMETRIC_H
+#define MATHQ__MATRIX_SYMMETRIC_H 1
 
 
 
@@ -8,16 +8,16 @@ namespace mathq {
 
 
   /********************************************************************
-   * MatrixUpperTriangle<D>    -- variable size matrix (valarray)
+   * MatrixSymmetric<D>    -- variable size matrix (valarray)
    *                              D  = type for elements
-   * MatrixUpperTriangle<D,N>  -- fixed number of rows (valarray)
+   * MatrixSymmetric<D,N>  -- fixed number of rows (valarray)
    *                              N = number of rows
    *                                = number of cols
    ********************************************************************  
    */
 
   template <class D, int N>
-  class MatrixUpperTriangle : public TensorRW<MatrixUpperTriangle<D,N>,D,D,1,2>{
+  class MatrixSymmetric : public TensorRW<MatrixSymmetric<D,N>,D,D,1,2>{
 
   public:
     constexpr static int R = 2;
@@ -26,7 +26,7 @@ namespace mathq {
     constexpr static int NR = N;
     constexpr static int NC = N;
     static constexpr bool resizable = (N==0) ? true : false;
-    typedef MatrixUpperTriangle<D,N> XType;
+    typedef MatrixSymmetric<D,N> XType;
     typedef D EType;
     typedef D DType;
     typedef typename FundamentalType<D>::Type FType;
@@ -47,7 +47,7 @@ namespace mathq {
     index_type N_;
 
     static_assert(NumberType<D>::value,
-                  "class MatrixUpperTriangle can only have numbers as elements, ie not vectors, matrices etc.");
+                  "class MatrixSymmetric can only have numbers as elements, ie not vectors, matrices etc.");
 
     
 
@@ -60,14 +60,14 @@ namespace mathq {
     // ********************* FIXED SIZE CONSTRUCTORS ***********************
     
     // -------------------  DEFAULT  CONSTRUCTOR --------------------
-    explicit MatrixUpperTriangle<D,N>() 
+    explicit MatrixSymmetric<D,N>() 
     {
       resize(N);
       *this = 0;
     }
 
     // -------------------  D value --------------------
-    explicit MatrixUpperTriangle<D,N>(const D& value) 
+    explicit MatrixSymmetric<D,N>(const D& value) 
     {
       resize(N);
       *this = value;
@@ -76,7 +76,7 @@ namespace mathq {
     // -------------------  (Column) Vector --------------------
     template<size_t NN = N, EnableIf<(NN > 0)> = 0>
 
-    explicit MatrixUpperTriangle<D,N>(const Vector<D>& v) 
+    explicit MatrixSymmetric<D,N>(const Vector<D>& v) 
     {
       const index_type size = v.size();
       // TODO: chekc that size = N(N+1)/2
@@ -87,7 +87,7 @@ namespace mathq {
     // --------------------- Matrix CONSTRUCTOR ---------------------
     template<class X, size_t NN = N, EnableIf<(NN>0)> = 0>
 
-    explicit MatrixUpperTriangle<D,N>(const TensorR<X,D,D,1,2> A) {
+    explicit MatrixSymmetric<D,N>(const TensorR<X,D,D,1,2> A) {
       // TODO: chekc that A is N x N
       resize(N);
       *this = A;
@@ -100,7 +100,7 @@ namespace mathq {
     // ------------------- variable size (Column) Vector --------------------
     template<size_t NN = N, EnableIf<NN == 0> = 0>
 
-    explicit MatrixUpperTriangle<D,N>(const Vector<D>& v) 
+    explicit MatrixSymmetric<D,N>(const Vector<D>& v) 
     {
       const index_type len = v.size();
       const index_type M = (std::sqrt(1+8*len) - 1)/2;
@@ -111,7 +111,7 @@ namespace mathq {
     // --------------------- variable-size zero-CONSTRUCTOR---------------------
     template<size_t NN = N, EnableIf<NN == 0> = 0>
 
-    explicit MatrixUpperTriangle<D,N>(const size_type M) {
+    explicit MatrixSymmetric<D,N>(const size_type M) {
       resize(M);
       *this = 0;
     }
@@ -119,7 +119,7 @@ namespace mathq {
     // --------------------- variable-size value CONSTRUCTOR ---------------------
     template<size_t NN = N, EnableIf<NN == 0> = 0>
 
-    explicit MatrixUpperTriangle<D,N>(const size_type M, const D& value) {
+    explicit MatrixSymmetric<D,N>(const size_type M, const D& value) {
       resize(M);
       *this = value;
     }
@@ -128,7 +128,7 @@ namespace mathq {
     // --------------------- variable-size Matrix CONSTRUCTOR ---------------------
     template<class X, size_t NN = N, EnableIf<NN == 0> = 0>
 
-    explicit MatrixUpperTriangle<D,N>(const TensorR<X,D,D,1,2> A) {
+    explicit MatrixSymmetric<D,N>(const TensorR<X,D,D,1,2> A) {
       const index_type M = A.Nrows();
       // TODO: chekc that A is square
       resize(M);
@@ -141,7 +141,7 @@ namespace mathq {
     //************************** DESTRUCTOR ******************************
     //**********************************************************************
 
-    ~MatrixUpperTriangle<D,N>() {
+    ~MatrixSymmetric<D,N>() {
       //remove from directory
     }
   
@@ -227,7 +227,7 @@ namespace mathq {
     //**********************************************************************
     // --------------------- resize() --------------------
     
-    MatrixUpperTriangle<D,N>&  resize(const int M) {
+    MatrixSymmetric<D,N>&  resize(const int M) {
       N_ = N;
       if constexpr(resizable) {
 	 N_ = M;
@@ -241,14 +241,14 @@ namespace mathq {
 
     // -------------------------- resize(Dimensions) --------------------------------
     
-    MatrixUpperTriangle<D,N>& resize(const Dimensions dims) {
+    MatrixSymmetric<D,N>& resize(const Dimensions dims) {
       resize(dims[0], dims[1]);
       return *this;
     }
 
 
 
-    MatrixUpperTriangle<D,N>& resize(const std::vector<Dimensions>& deepdims_new) {
+    MatrixSymmetric<D,N>& resize(const std::vector<Dimensions>& deepdims_new) {
       std::vector<Dimensions> deepdims(deepdims_new);
       Dimensions newdims = deepdims[0];
       resize(newdims);
@@ -258,7 +258,7 @@ namespace mathq {
 
 
 
-    MatrixUpperTriangle<D,N>& transpose(void) {
+    MatrixSymmetric<D,N>& transpose(void) {
       // TODO: implement
       return *this;
     }
@@ -266,7 +266,7 @@ namespace mathq {
     // -------------------------- adjoint() --------------------------------
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{}, MatrixUpperTriangle<D,N>& >::type adjoint() {
+    typename std::enable_if<is_complex<T>{}, MatrixSymmetric<D,N>& >::type adjoint() {
       return *this;
     }
 
@@ -352,22 +352,24 @@ namespace mathq {
     //**********************************************************************
     //***************Tensor-style Element Access: A(r,c) *********************
     //**********************************************************************
+
+    const index_type dataIndex(const index_type r, const index_type c) const {
+      return c + N_*r - (r*r+r)/2; 
+    }
    
     D& operator()(const index_type r, const index_type c) {
       if (r <= c) {
-	index_type q = c + N_*r - (r*r+r)/2; 
-	return data_[q];
+	return data_[dataIndex(r,c)];
       } else {
-	return (dummy_=0);
+	return data_[dataIndex(c,r)];
       }
     }
 
     const D operator()(const index_type r, const index_type c) const {
       if (r <= c) {
-	index_type q = c + N_*r - (r*r+r)/2; 
-	return data_[q];
+	return data_[dataIndex(r,c)];
       } else {
-	return zero_;
+	return data_[dataIndex(c,r)];
       }
     }
 
@@ -384,21 +386,13 @@ namespace mathq {
     //**********************************************************************
 
 
-    MatrixUpperTriangle<D,N>& set(const Vector<D>& v) {
+    MatrixSymmetric<D,N>& set(const Vector<D>& v) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = v[k];
       }
       return *this;
     }
-    MatrixUpperTriangle<D,N>& operator=(const Vector<D>& v) {
-      for (index_type k = 0; k < data_.size(); k++) {
-	data_[k] = v[k];
-      }
-      return *this;
-    }
-
-    template <class X>
-    MatrixUpperTriangle<D,N>& operator=(const TensorR<X,D,D,1,1>& v) {
+    MatrixSymmetric<D,N>& operator=(const Vector<D>& v) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = v[k];
       }
@@ -406,7 +400,15 @@ namespace mathq {
     }
 
     template <class X>
-    MatrixUpperTriangle<D,N>& operator=(const TensorR<X,D,D,1,2>& A) {
+    MatrixSymmetric<D,N>& operator=(const TensorR<X,D,D,1,1>& v) {
+      for (index_type k = 0; k < data_.size(); k++) {
+	data_[k] = v[k];
+      }
+      return *this;
+    }
+
+    template <class X>
+    MatrixSymmetric<D,N>& operator=(const TensorR<X,D,D,1,2>& A) {
       const index_type M = A.Nrows();
       // TODO: check that A is square
       resize(M);
@@ -427,14 +429,14 @@ namespace mathq {
       return v;
     }
     
-    MatrixUpperTriangle<D,N>& operator=(const D& value) {
+    MatrixSymmetric<D,N>& operator=(const D& value) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = value;
       }
       return *this;
     }
     
-    MatrixUpperTriangle<D,N>& operator=(const MatrixUpperTriangle<D,N>& b) {
+    MatrixSymmetric<D,N>& operator=(const MatrixSymmetric<D,N>& b) {
       for (index_type k = 0; k < data_.size(); k++) {
 	data_[k] = b[k];
       }
@@ -449,7 +451,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixUpperTriangle<D,N>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixSymmetric<D,N>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
       return *this;
     }
 
@@ -458,7 +460,7 @@ namespace mathq {
   // NOTE: in-place
 
     template< typename T=D >
-    typename std::enable_if<is_complex<T>{},  MatrixUpperTriangle<D,N>& >::type conj() {
+    typename std::enable_if<is_complex<T>{},  MatrixSymmetric<D,N>& >::type conj() {
       return *this;
     }
 
@@ -470,7 +472,7 @@ namespace mathq {
 
   inline std::string classname() const {
     using namespace display;
-    std::string s = "MatrixUpperTriangle";		
+    std::string s = "MatrixSymmetric";		
     s += StyledString::get(ANGLE1).get();
     s += getTypeName(D());
     if (N!=0) {
@@ -500,7 +502,7 @@ namespace mathq {
   // stream << operator
 
 
-  friend std::ostream& operator<<(std::ostream &stream, const MatrixUpperTriangle<D,N>& m) {
+  friend std::ostream& operator<<(std::ostream &stream, const MatrixSymmetric<D,N>& m) {
     using namespace display;
 
     Style& style = FormatDataMatrix::style_for_punctuation;
@@ -534,7 +536,7 @@ namespace mathq {
 
 
   //template <class D>	
-  friend inline std::istream& operator>>(const std::string s,  MatrixUpperTriangle<D,N>& m2) {	
+  friend inline std::istream& operator>>(const std::string s,  MatrixSymmetric<D,N>& m2) {	
     std::istringstream st(s);
     return (st >> m2);
   }
@@ -542,7 +544,7 @@ namespace mathq {
 
   // stream >> operator
 
-  friend std::istream& operator>>(std::istream& stream,  MatrixUpperTriangle<D,N>& m2) {	
+  friend std::istream& operator>>(std::istream& stream,  MatrixSymmetric<D,N>& m2) {	
     return stream;
   }
 

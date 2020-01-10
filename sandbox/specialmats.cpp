@@ -254,6 +254,9 @@ int main(int argc, char *argv[])
   } 
   
   cr();
+  mout << blue.apply("MatrixLowerTriangle") << std::endl;
+  cr();
+  cr();
   {
     MatrixLowerTriangle<double,3> a(9);
     tdisp(a);
@@ -277,7 +280,34 @@ int main(int argc, char *argv[])
     b = transpose(a);
     tdisp(b);
   } 
-      
+
+
+  cr();
+  mout << blue.apply("MatrixSymmetric") << std::endl;
+  cr();
+  cr();
+  {
+    MatrixSymmetric<double,3> a(9);
+    tdisp(a);
+    a(0,0) = 1;
+    a(0,1) = 2;
+    a(0,2) = 3;
+    a(1,1) = 1;
+    a(1,2) = 4;
+    a(2,2) = 1;
+    tdisp(a);
+  } 
+  cr();
+  {
+    Vector<double> v {1,2,3,4,5,6,7,8,9,10};
+    MatrixSymmetric<double> a(v);
+    tdisp(a);
+    Matrix<double> b;
+    b = transpose(a);
+    tdisp(b);
+  } 
+
+  
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);

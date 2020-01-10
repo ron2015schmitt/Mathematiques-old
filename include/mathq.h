@@ -55,6 +55,7 @@
 #include "matrix_revdiag.h"
 #include "matrix_repcol.h"
 #include "matrix_reprow.h"
+#include "matrix_symmetric.h"
 #include "matrix_toeplitz.h"
 #include "matrix_uppertriangle.h"
 #include "matrix_vandermonde.h"

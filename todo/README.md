@@ -5,7 +5,7 @@ _Updated January 3, 2020_
 ## Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
 
-## Items for V5.0 - Unit testing
+## Items for V4.0 - Unit testing
 1. [Unit Testing](unittesting.md)
 
 ## Items for V5.0 - Continuous Integration 
@@ -36,12 +36,11 @@ _Updated January 3, 2020_
 1. Optimize Dot Products for Special Matrices
 * use LAPACK / BLAS where efficacious to do so
 
-
-## Items for V11.0 -- Vector Calculus
+## Items for V10.0 -- Vector Calculus
 1. [2D and 3D Curvilinear Coordinate Systems](coordsystems.md)
 1. [Functions: R^n -> R^m](functions.md)
 
-## Items for V12.0 -- Refactor Display
+## Items for V11.0 -- Refactor Display
 1. [Refactor mout and dout](refactormout.md)
 1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
 1. [Refactor getTypeName](gettypename.md)
@@ -53,12 +52,12 @@ _Updated January 3, 2020_
    1. Mathematica
    1. Matlab
 
-## Items for V13.0 -- File I/O
+## Items for V12.0 -- File I/O
 1. [Save tensor to file](filesave.md)
 1. [Implement >> operators](inputstreams.md)
 1. [Load tensor from file](fileload.md)
 
-## Items for V14.0 -- Debug Functionality
+## Items for V13.0 -- Debug Functionality
 1. [Create Tensor Pool and Tensor info](poolandinfo.md)
 1. [Exceptions and Assertions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
@@ -67,7 +66,7 @@ _Updated January 3, 2020_
    * only needed for non-elemental functions
    * only needed when same vector appears on both sides of `=`
 
-## Items for V15.0 -- Tensor Calculus 
+## Items for V14.0 -- Tensor Calculus 
 1. contravariant and covariant vectors
    * define Rank0: 
       * Vector<NE=1>
@@ -85,7 +84,7 @@ _Updated January 3, 2020_
    * index contraction / dot products
    * raising and lowering operations using the metric tensor
 
-## Items for V16.0 -- FFT Support via FFTW
+## Items for V15.0 -- FFT Support via FFTW
 
 ## Filters 
 1. FIR

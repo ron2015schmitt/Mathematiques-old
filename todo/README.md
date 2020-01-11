@@ -5,11 +5,14 @@ _Updated January 3, 2020_
 ## Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
 
-## Items for V4.0 -- Special Matrices  (In-progress)
-1. [Special matrices](diagonal.md)
-
 ## Items for V5.0 - Unit testing
 1. [Unit Testing](unittesting.md)
+
+## Items for V5.0 - Continuous Integration 
+1. via 
+   * [gitlab](https://about.gitlab.com/) 
+   or
+   * [circleci](https://circleci.com/)
 
 ## Items for V6.0 - Refactor indexing
 1. [Index class and new indexing methodology](index.md)
@@ -24,14 +27,15 @@ _Updated January 3, 2020_
 1. Generalize linspace to generate grids in any number of dimensions. 
   * utilize `RepColMatrix` and `RepRowMatrix`
 1. Integrals and derivatives along each dimension of Matrix or Tenspr
+   *  best way to re-use code?
 
 ## Items for V9.0 -- Matrix Math via Lapack/Blas
+1. [Special matrices](diagonal.md)
 1. [Matrix operations](matrixlapack.md)
-1. openblas multi-threading support
+1. openblas multi-threading support?
+1. Optimize Dot Products for Special Matrices
+* use LAPACK / BLAS where efficacious to do so
 
-## Items for V10.0 -- Optimize Dot Products for Special Matrices
-
-perhaps using LAPACK/BLAS.
 
 ## Items for V11.0 -- Vector Calculus
 1. [2D and 3D Curvilinear Coordinate Systems](coordsystems.md)
@@ -102,6 +106,7 @@ perhaps using LAPACK/BLAS.
 
 ## Miscellaneous Small Features
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
+* `logspace` function similar to `matlab`
 * refactor: `::Type` to `::type`
 * Add support for the rest of the [common math functions](https://en.cppreference.com/w/cpp/numeric/math) introduced in `C++11` and `C++20`: `frexp`, `isnan` etc, `ldexp`, `logb`, `ilogb`, `modf`, `div`, `remiander`, `remqou`, `fmod`, `ispow2`, `trunc`, `nearbyint`, `ceil2`, `floor2`, etc.
 * `TensorRW` implementation of `real(t)` and `imag(t)`

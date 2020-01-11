@@ -33,6 +33,7 @@ _Back to [Table of Contents](README.md)_
    * `Matrix` should use `(r,c)` instead of `.dat()` and `[k]`
 * implement direct data access for each matrix
   * implement `dataIndex(r,c)` method for use with `data_`  (refer to `MatrixSymmetric`)
+* implement `.transpose()` and `.adjoint()` where appropriate (ie where MatrixType is invariant under such operation)
 * perhaps implement iterator for each type of matrix (as a subclass) at some point
 
 ## Other Matrices

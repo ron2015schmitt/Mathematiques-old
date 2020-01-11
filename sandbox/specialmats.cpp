@@ -307,6 +307,91 @@ int main(int argc, char *argv[])
     tdisp(b);
   } 
 
+
+  cr();
+  mout << blue.apply("MatrixSkewSymmetric") << std::endl;
+  cr();
+  cr();
+  {
+    MatrixSkewSymmetric<double,3> a(9);
+    tdisp(a);
+    a(0,0) = -1;
+    a(0,1) = 1;
+    a(0,2) = 2;
+    a(1,0) = -1;
+    a(1,1) = -1;
+    a(1,2) = 3;
+    a(2,0) = -1;
+    a(2,1) = -1;
+    a(2,2) = -1;
+    tdisp(a);
+  } 
+  cr();
+
+  cr();
+  mout << blue.apply("MatrixHermitian") << std::endl;
+  cr();
+  cr();
+  {
+    MatrixHermitian<double,3> a(9);
+    tdisp(a);
+    a(0,0) = 1;
+    a(0,1) = 2;
+    a(0,2) = 3;
+    a(1,1) = 1;
+    a(1,2) = 4;
+    a(2,2) = 1;
+    tdisp(a);
+  } 
+  cr();
+
+  cr();
+  cr();
+  {
+    MatrixHermitian<ComplexDouble,3> a(9);
+    tdisp(a);
+    a(0,0) = 1;
+    a(0,1) = 2+20i;
+    a(0,2) = 3+30i;
+    a(1,1) = 1;
+    a(1,2) = 4+40i;
+    a(2,2) = 1;
+    tdisp(a);
+  } 
+  cr();
+
+  cr();
+  mout << blue.apply("MatrixSkewHermitian") << std::endl;
+  cr();
+  cr();
+  {
+    MatrixSkewHermitian<double,3> a(9);
+    tdisp(a);
+    a(0,0) = 1;
+    a(0,1) = 2;
+    a(0,2) = 3;
+    a(1,1) = 1;
+    a(1,2) = 4;
+    a(2,2) = 1;
+    tdisp(a);
+  } 
+  cr();
+
+  cr();
+  cr();
+  {
+    MatrixSkewHermitian<ComplexDouble,3> a(9);
+    tdisp(a);
+    a(0,0) = 1;
+    a(0,1) = 2+20i;
+    a(0,2) = 3+30i;
+    a(1,1) = 1;
+    a(1,2) = 4+40i;
+    a(2,2) = 1;
+    tdisp(a);
+  } 
+  cr();
+
   
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;

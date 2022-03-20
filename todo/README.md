@@ -1,6 +1,6 @@
-# Planned Releases for 2020
+# Planned Releases
 
-_Updated January 3, 2020_
+_Updated March 20, 2022_
 
 ## Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
@@ -133,6 +133,7 @@ _Updated January 3, 2020_
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
 * `C++20` features?
+* migrate from `make` to `ninja`
 
 ## Other
 1. [Developer guide](developerguide.md)

@@ -6,14 +6,15 @@ _Updated March 22, 2022_
 1. [Update Documentation](doc.md)
 
 ## Items for V3.4 - Docker Image
-* Create Docker image for the environment
-* list requirements for g++ and other libraries in about of top-level README
+1. Create Docker image for the environment
+2. list requirements for g++ and other libraries in about section of top-level README
 
 ## Items for V4.0 - Unit testing
 1. [Unit Testing](unittesting.md)
+2. list requirements to perform testing in about section of top-level README
 
 ## Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
-1. set up CI / CT on [Github Actions](https://docs.github.com/en/actions) 
+1. set up CI / CT on [Github Actions](https://docs.github.com/en/actions) and using Docker 
 
 ## Items for V6.0 - Refactor indexing
 1. [Index class and new indexing methodology](index.md)

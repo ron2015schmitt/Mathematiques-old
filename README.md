@@ -20,7 +20,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   
 ---------------------------------------------------------------------------
 
-#FEATURES 
+# FEATURES 
 
 + **V3.0** the first official release
   + Arbitrary rank tenor arrays (Scalar, Vector, Matrix, etc)

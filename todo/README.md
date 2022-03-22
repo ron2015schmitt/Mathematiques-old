@@ -8,11 +8,8 @@ _Updated March 20, 2022_
 ## Items for V4.0 - Unit testing
 1. [Unit Testing](unittesting.md)
 
-## Items for V5.0 - Continuous Integration 
-1. via 
-   * [gitlab](https://about.gitlab.com/) 
-   or
-   * [circleci](https://circleci.com/)
+## Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
+1. set up CI / CT on [Github Actions](https://docs.github.com/en/actions) 
 
 ## Items for V6.0 - Refactor indexing
 1. [Index class and new indexing methodology](index.md)
@@ -135,12 +132,7 @@ _Updated March 20, 2022_
    * use of Clifford Algebra for Computer Graphics applications
 * `C++20` features?
 * migrate from `make` to `ninja` and `bash` to `python`
-* set up CI / CT on [Github Actions](https://docs.github.com/en/actions) using an open source mathtool, such as
-  * Octave
-  * SciLab
-  * Sage
-  * NumPy
-  * Julia
+
 
 ## Other
 1. [Developer guide](developerguide.md)

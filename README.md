@@ -116,7 +116,7 @@ g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 
 [Benchmarks](benchmark/README.md)
 
-# User's Guide
+# User Guide
 
 [User's Guide](doc/README.md)
 

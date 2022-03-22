@@ -1,4 +1,4 @@
-# Benckmarks
+# Benchmarks
 
 _Updated January 2, 2020_
 

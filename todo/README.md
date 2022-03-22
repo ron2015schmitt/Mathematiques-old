@@ -147,6 +147,13 @@ _Updated March 22, 2022_
 1. [Release Checklist](checklist.md)
 1. Remove `old/` directory and its files
 
+## Bugs
+ 
+Convert to using github for this
+ 
+* [Bug list](bugs.md)
+ 
+ 
 ## Contact
 
 To contact me regarding suggestions, bugs, or volunteer work send an email to `Ron dot Schmitt @ me dot com`

@@ -4,6 +4,24 @@ Mathématiques is numerical library for performing linear algebra, calculus, vec
 
 _Mathématiques distinguishes itself from other libraries by an elegance and versatility that are only possible using the features of C++11,14, and 17._
 
+# Table of Contents
+
+- [FEATURES](#features)
+- [DEVELOPMENT](#development)
+- [LICENSE](#license)
+- [INSTALLATION](#installation)
+- [CONFIGURATION](#configuration)
+- [USING THE Mathématiques LIBRARY](#using-the-math-matiques-library)
+  * [EXAMPLE MAKEFILE](#example-makefile)
+  * [EXAMPLE CODE FILE](#example-code-file)
+- [BENCHMARKS](#benchmarks)
+- [User Guide](#user-guide)
+- [Feature Schedule](#feature-schedule)
+  
+---------------------------------------------------------------------------
+
+#FEATURES 
+
 + **V3.0** the first official release
   + Arbitrary rank tenor arrays (Scalar, Vector, Matrix, etc)
   + Each tensor type can have tensor as datatype, eg `Vector<Vector<double>>`, which can be used to represent a vector-valued function on a mesh.
@@ -24,8 +42,6 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + mixed-type math with automatic type promotion, eg can add a vector of type `int` with a vector of type `std::complex<double>` and the output will be a vector of type `std::complex<double>`
   + vector/scalar math, eg add a scalar value to every element of a vector or matrix
 
-  
----------------------------------------------------------------------------
 
 # DEVELOPMENT
 

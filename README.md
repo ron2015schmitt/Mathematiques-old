@@ -6,21 +6,21 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 
 # Table of Contents
 
-- [FEATURES](#features)
-- [DEVELOPMENT](#development)
-- [LICENSE](#license)
-- [INSTALLATION](#installation)
-- [CONFIGURATION](#configuration)
-- [USING THE Mathématiques LIBRARY](#using-the-math-matiques-library)
-  * [EXAMPLE MAKEFILE](#example-makefile)
-  * [EXAMPLE CODE FILE](#example-code-file)
-- [BENCHMARKS](#benchmarks)
+- [Features](#features)
+- [About](#about)
+- [License](#license)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Using Mathématiques](#using_mathematiques)
+  * [EXAMPLE Makefile](#example-makefile)
+  * [EXAMPLE Code File](#example-code-file)
 - [User Guide](#user-guide)
-- [Feature Schedule](#feature-schedule)
+- [Benchmarks](#benchmarks)
+- [New Feature Schedule](#feature-schedule)
   
 ---------------------------------------------------------------------------
 
-# FEATURES 
+# Features 
 
 + **V3.0** the first official release
   + Arbitrary rank tenor arrays (Scalar, Vector, Matrix, etc)
@@ -44,7 +44,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + vector/scalar math, eg add a scalar value to every element of a vector or matrix
 
 
-# DEVELOPMENT
+# About
 
 Development for this project originally took place during the years 2003-2008 
 
@@ -54,13 +54,13 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 
-# LICENSE 
+# License 
 
 The code that makes up this library is copyrighted under the *MIT license*.
 
 [Read the LICENSE file for details](LICENSE).
 
-# INSTALLATION
+# Installation
 
 The first step is to clone the repo
 
@@ -68,7 +68,7 @@ The first step is to clone the repo
 
 You now have a directory with all the Mathématiques source code
 
-# CONFIGURATION
+# Configuration
 
 cd into the mathq directory and execute the configure command:
 
@@ -76,8 +76,8 @@ cd into the mathq directory and execute the configure command:
 cd mathq
 ./configure
 ```
-
-# USING THE Mathématiques LIBRARY
+<a name="using_mathematiques"></a>
+# Using Mathématiques
 
 To use the Mathématiques library you need to 
 
@@ -91,13 +91,13 @@ To use the Mathématiques library you need to
 
 4. Include the option `-lmathq` during linking
 
-## EXAMPLE MAKEFILE
+## EXAMPLE Makefile
 
 An example makefile, [examples/Makefile](examples/Makefile),  is included for your convenience.
 
 *AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
 
-## EXAMPLE CODE FILE
+## EXAMPLE Code File
 
 An example of a C++ source file can be found at [examples/example.cpp](examples/example.cpp).
 
@@ -112,13 +112,17 @@ g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 ./example
 ```
 
-# BENCHMARKS
+# User Guide
+
+Elegant markdown guide with colored code for all features.
+
+[User's Guide](doc/README.md)
+
+# Benchmarks
 
 [Benchmarks](benchmark/README.md)
 
-# User Guide
 
-[User's Guide](doc/README.md)
 
 # Feature Schedule
 

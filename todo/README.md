@@ -83,6 +83,7 @@ _Updated March 20, 2022_
    * metric tensor
    * index contraction / dot products
    * raising and lowering operations using the metric tensor
+   * currying
 
 ## Items for V15.0 -- FFT Support via FFTW
 
@@ -133,7 +134,13 @@ _Updated March 20, 2022_
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
 * `C++20` features?
-* migrate from `make` to `ninja`
+* migrate from `make` to `ninja` and `bash` to `python`
+* set up Continuous testing on [Github Actions](https://docs.github.com/en/actions) using an open source mathtool, such as
+  * Octave
+  * SciLab
+  * Sage
+  * NumPy
+  * Julia
 
 ## Other
 1. [Developer guide](developerguide.md)

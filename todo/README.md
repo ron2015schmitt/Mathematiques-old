@@ -5,6 +5,9 @@ _Updated March 20, 2022_
 ## Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
 
+## Items for V3.4 - Docker Image
+* Create Docker image for the environment
+
 ## Items for V4.0 - Unit testing
 1. [Unit Testing](unittesting.md)
 
@@ -125,13 +128,17 @@ _Updated March 20, 2022_
    * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
 
 ## Possibilities
+## Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
+* migrate from `make` to `ninja` and `bash` to `python`
 * investigate use of [swap](https://en.cppreference.com/w/cpp/algorithm/swap)
 * investigate use of [multi-threading](https://en.cppreference.com/w/cpp/thread/thread)
 * Create a `Number` class to generalize real,s imaginary and complex?
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
+* Support other division algebras data types
+   * Quarternions
+   * Octonions
 * `C++20` features?
-* migrate from `make` to `ninja` and `bash` to `python`
 
 
 ## Other

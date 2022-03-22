@@ -24,19 +24,6 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + mixed-type math with automatic type promotion, eg can add a vector of type `int` with a vector of type `std::complex<double>` and the output will be a vector of type `std::complex<double>`
   + vector/scalar math, eg add a scalar value to every element of a vector or matrix
 
-- [DEVELOPMENT](#development)
-- [LICENSE](#license)
-- [INSTALLATION](#installation)
-- [CONFIGURATION](#configuration)
-- [USING THE Mathématiques LIBRARY](#using-the-math-matiques-library)
-  * [EXAMPLE MAKEFILE](#example-makefile)
-  * [EXAMPLE CODE FILE](#example-code-file)
-- [BENCHMARKS](#benchmarks)
-- [User's Guide](#user-s-guide)
-- [Feature Schedule](#feature-schedule)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>  
----------------------------------------------------------------------------
 
 # DEVELOPMENT
 

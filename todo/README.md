@@ -7,6 +7,7 @@ _Updated March 22, 2022_
 
 ## Items for V3.4 - Docker Image
 * Create Docker image for the environment
+* list requirements for g++ and other libraries in about of top-level README
 
 ## Items for V4.0 - Unit testing
 1. [Unit Testing](unittesting.md)

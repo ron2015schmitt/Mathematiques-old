@@ -135,7 +135,7 @@ _Updated March 20, 2022_
    * use of Clifford Algebra for Computer Graphics applications
 * `C++20` features?
 * migrate from `make` to `ninja` and `bash` to `python`
-* set up Continuous testing on [Github Actions](https://docs.github.com/en/actions) using an open source mathtool, such as
+* set up CI / CT on [Github Actions](https://docs.github.com/en/actions) using an open source mathtool, such as
   * Octave
   * SciLab
   * Sage

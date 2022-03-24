@@ -209,7 +209,7 @@ g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
 
 # User Guide
 
-Elegant markdown guide with colored code for all features.
+Elegant markdown guide for all features, with syntax-highlighted code and examples.
 
 [User's Guide](doc/README.md)
 

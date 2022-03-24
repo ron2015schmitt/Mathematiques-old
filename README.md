@@ -93,11 +93,6 @@ The code that makes up this library is copyrighted under the *MIT license*.
 
 # Examples
 
-### dot product—the `|` operator
-* The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
-* This definition becomes very useful for taking the product of matrices because any number of matrices can be multiplied in a single line of code.
-
-
 **EXAMPLE 1**: Dot product of two real vectors `(v1|v2)`
 ```C++
 Vector<double> v1(range<double>(1,4));
@@ -107,13 +102,11 @@ Vector<double> v2({1,-1,1,-1}); // C++11 list
 **Some expressions with results**
 ```C++
   (v1|v1) = 30; 
-  (v2|v2) = 4; 
-  (v1|v2) = -2; 
-  (v2|v1) = -2; 
   (v1|(2*v2+1)) = 6; 
 ```
 
 **EXAMPLE 2**: Element-wise `Vector` math
+**code**
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
@@ -129,12 +122,8 @@ v2 = {1,2,3,4}; // C++11 list
   v1 / v2 = Vector<double> {10, 10, 10, 10}; 
 ```
 
-### Vector-scalar arithmetic
-* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.
-* In this case the scalar is operated on each element of the vector
-
-
 **EXAMPLE 3**: math with scalars and `Vector`s
+**code**
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
@@ -143,22 +132,11 @@ v1 = {10,20,30,40}; // C++11 list
 **Some expressions with results**
 ```C++
   v1 + 1 = Vector<double> {11, 21, 31, 41}; 
-  1 + v1 = Vector<double> {11, 21, 31, 41}; 
-  v1 - 10 = Vector<double> {0, 10, 20, 30}; 
-  40 - v1 = Vector<double> {30, 20, 10, 0}; 
-  v1 * 2 = Vector<double> {20, 40, 60, 80}; 
-  2 * v1 = Vector<double> {20, 40, 60, 80}; 
-  v1 / 10 = Vector<double> {1, 2, 3, 4}; 
-  120 / v1 = Vector<double> {12, 6, 4, 3}; 
   1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
 ```
 
-### Vector math functions
-* A large number of functions is supported.  
-* A function of a `Vector` operates on each element.  
-
-
-**EXAMPLE 4**: functions of a `Vector`—rounding and sign-related 
+**EXAMPLE 4**: functions of a `Vector`
+**code**
 ```C++
 Vector<double> v(7);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
@@ -167,10 +145,7 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 **Some expressions with results**: rounding and sign-related
 ```C++
   floor(v) = Vector<double> {-3, -3, -1, 0, 1, 2, 2}; 
-  ceil(v) = Vector<double> {-2, -2, -1, 0, 1, 3, 3}; 
   round(v) = Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 
-  sgn(v) = Vector<double> {-1, -1, -1, 0, 1, 1, 1}; 
-  abs(v) = Vector<double> {2.5, 2.25, 1, 0, 1, 2.25, 2.5}; 
 ```
 
 # Installation

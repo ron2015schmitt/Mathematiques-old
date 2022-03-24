@@ -9,6 +9,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 - [Features](#features)
 - [About](#about)
 - [License](#license)
+- [Examples](#examples)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Using Mathématiques](#using_mathematiques)
@@ -23,27 +24,47 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 # Features 
 
 + **V3.0** the first official release
+
+**Design**
+  + Simple Matlab-like syntax with no run-time cost
+  + Performance comparable to C and Fortran
+  + Pretty printing and debugging mode
+  + File I/O in various formats including formats for Matlab and Mathematica
+  + Detailed pretty documentation in Markup.  
+  + Markup Documents can be auto-generated from C++ code
+  + "boiler plate" code is created using Python scripts for supporting functionality such as mixed-type math
+
+**Data Types**
   + Arbitrary rank tenor arrays (Scalar, Vector, Matrix, etc)
-  + Each tensor type can have tensor as datatype, eg `Vector<Vector<double>>`, which can be used to represent a vector-valued function on a mesh.
+  + Each tensor type can have tensor as datatype
+    + eg. `Vector<Matrix<double>>` or `Matrix<Vector<double>>`, which can be used to represent a vector-valued function on a 2D or 3D mesh.
   + can have fixed (uses `array`) or variable dimensions (uses `valarray`)
   + fixed array size is ideal for small vectors, eg 2D or 3D vector
+  + `Imaginary<D>` number template class that dovetails with the fundamental (real) types `D` and  with `std::complex<D>`
+
+**Operators**
+  + arithmetic defined for all types: ints, float, double, Complex, Vector, etc
+  + mixed-type math with automatic type promotion: ints and floats, real and complex, vector and scalar, etc
+    + eg. can add a vector of type `int` with a vector of type `std::complex<double>` and the output will be a vector of type `std::complex<double>`
+    + eg. vector/scalar math, eg add a scalar value to every element of a vector or matrix
+  + relational operators and boolean masks for vectors and matrices
+  + boolean vector functions ```any```, ```all```, etc
+
+**Mathematical functions**
+  + Most functions work on all datetypes: floats, Complex, Vector, etc
   + Elemental math functions (sin, cos, exp, etc)
   + Special functions such as Bessel functions (C++17).
-  + "boiler plate" code is created using Python scripts
+
+**Calculus**
   + Calculus (derivatives and integrals)
   + Taylor series
   + Fourier Series
-  + Simple Matlab-like syntax with no run-time cost
-  + Pretty printing and debugging mode
-  + Detailed Documentaion in Markup.  Documents auto-generated from C++ code.
+
+**Tests**
   + 237 unit tests (so far), with a very clear and elegant output.
   + Python unit test generation in progress
-  + `Imaginary<D>` number template class that dovetails with the fundamental (rwal) types `D` and  with `std::complex<D>`
-  + relational operators and boolean masks
-  + mixed-type math with automatic type promotion, eg can add a vector of type `int` with a vector of type `std::complex<double>` and the output will be a vector of type `std::complex<double>`
-  + vector/scalar math, eg add a scalar value to every element of a vector or matrix
-
-
+  + CI/CT using Docker images in progress
+  
 # About
 
 Development for this project originally took place during the years 2003-2008 
@@ -62,6 +83,88 @@ The code that makes up this library is copyrighted under the *MIT license*.
 
 [Read the LICENSE file for details](LICENSE).
 
+# Examples
+
+### dot product—the `|` operator
+* The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.
+* This definition becomes very useful for taking the product of matrices because any number of matrices can be multiplied in a single line of code.
+
+
+**EXAMPLE 1**: Dot product of two real vectors `(v1|v2)`
+```C++
+Vector<double> v1(range<double>(1,4));
+Vector<double> v2({1,-1,1,-1}); // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  (v1|v1) = 30; 
+  (v2|v2) = 4; 
+  (v1|v2) = -2; 
+  (v2|v1) = -2; 
+  (v1|(2*v2+1)) = 6; 
+```
+
+**EXAMPLE 2**: Element-wise `Vector` math
+```C++
+Vector<double> v1(4);
+v1 = {10,20,30,40}; // C++11 list
+Vector<double> v2(4);
+v2 = {1,2,3,4}; // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  v1 + v2 = Vector<double> {11, 22, 33, 44}; 
+  v1 - v2 = Vector<double> {9, 18, 27, 36}; 
+  v1 * v2 = Vector<double> {10, 40, 90, 160}; 
+  v1 / v2 = Vector<double> {10, 10, 10, 10}; 
+```
+
+### Vector-scalar arithmetic
+* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.
+* In this case the scalar is operated on each element of the vector
+
+
+**EXAMPLE 3**: math with scalars and `Vector`s
+```C++
+Vector<double> v1(4);
+v1 = {10,20,30,40}; // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  v1 + 1 = Vector<double> {11, 21, 31, 41}; 
+  1 + v1 = Vector<double> {11, 21, 31, 41}; 
+  v1 - 10 = Vector<double> {0, 10, 20, 30}; 
+  40 - v1 = Vector<double> {30, 20, 10, 0}; 
+  v1 * 2 = Vector<double> {20, 40, 60, 80}; 
+  2 * v1 = Vector<double> {20, 40, 60, 80}; 
+  v1 / 10 = Vector<double> {1, 2, 3, 4}; 
+  120 / v1 = Vector<double> {12, 6, 4, 3}; 
+  1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
+```
+
+### Vector math functions
+* A large number of functions is supported.  
+* A function of a `Vector` operates on each element.  
+
+
+**EXAMPLE 4**: functions of a `Vector`—rounding and sign-related 
+```C++
+Vector<double> v(7);
+v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
+```
+
+**Some expressions with results**: rounding and sign-related
+```C++
+  floor(v) = Vector<double> {-3, -3, -1, 0, 1, 2, 2}; 
+  ceil(v) = Vector<double> {-2, -2, -1, 0, 1, 3, 3}; 
+  round(v) = Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 
+  sgn(v) = Vector<double> {-1, -1, -1, 0, 1, 1, 1}; 
+  abs(v) = Vector<double> {2.5, 2.25, 1, 0, 1, 2.25, 2.5}; 
+```
+
 # Installation
 
 The first step is to clone the repo
@@ -69,6 +172,8 @@ The first step is to clone the repo
 ```git clone https://github.com/ron2015schmitt/mathq.git```
 
 You now have a directory with all the Mathématiques source code
+
+
 
 # Configuration
 

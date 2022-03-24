@@ -94,6 +94,8 @@ The code that makes up this library is copyrighted under the *MIT license*.
 # Examples
 
 **EXAMPLE 1**: Dot product of two real vectors `(v1|v2)`
+
+**variable initialization**
 ```C++
 Vector<double> v1(range<double>(1,4));
 Vector<double> v2({1,-1,1,-1}); // C++11 list
@@ -106,7 +108,8 @@ Vector<double> v2({1,-1,1,-1}); // C++11 list
 ```
 
 **EXAMPLE 2**: Element-wise `Vector` math
-**code**
+
+**variable initialization**
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
@@ -123,7 +126,8 @@ v2 = {1,2,3,4}; // C++11 list
 ```
 
 **EXAMPLE 3**: math with scalars and `Vector`s
-**code**
+
+**variable initialization**
 ```C++
 Vector<double> v1(4);
 v1 = {10,20,30,40}; // C++11 list
@@ -136,13 +140,14 @@ v1 = {10,20,30,40}; // C++11 list
 ```
 
 **EXAMPLE 4**: functions of a `Vector`
-**code**
+
+**variable initialization**
 ```C++
 Vector<double> v(7);
 v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 ```
 
-**Some expressions with results**: rounding and sign-related
+**Some expressions with results**
 ```C++
   floor(v) = Vector<double> {-3, -3, -1, 0, 1, 2, 2}; 
   round(v) = Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 

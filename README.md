@@ -35,7 +35,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + "boiler plate" code is created using Python scripts for supporting functionality such as mixed-type math
 
 **Data Types**
-  + Arbitrary rank tenor arrays (Scalar, Vector, Matrix, etc)
+  + Arbitrary rank tensor arrays (Scalar, Vector, Matrix, etc)
   + Each tensor type can have tensor as datatype
     + eg. `Vector<Matrix<double>>` or `Matrix<Vector<double>>`, which can be used to represent a vector-valued function on a 2D or 3D mesh.
   + can have fixed (uses `array`) or variable dimensions (uses `valarray`)

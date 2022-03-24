@@ -51,15 +51,23 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + boolean vector functions ```any```, ```all```, etc
 
 **Mathematical functions**
-  + Most functions work on all datetypes: floats, Complex, Vector, etc
-  + Elemental math functions (sin, cos, exp, etc)
-  + Special functions such as Bessel functions (C++17).
+  + most functions work on all datetypes: floats, Complex, Vector, etc
+  + elemental math functions (sin, cos, exp, etc)
+  + special functions such as Bessel functions (C++17).
+
+**Linear algreba**
+  + element-wise mathematics for Vectors, Matrices, and Tensors
+  + dot/inner product
+  + outer product and wedge products in progress 
 
 **Calculus**
   + Calculus (derivatives and integrals)
   + Taylor series
   + Fourier Series
 
+**Tensor algreba**
+  + convariant / contravairant tensors and operations are in progress...
+ 
 **Tests**
   + 237 unit tests (so far), with a very clear and elegant output.
   + Python unit test generation in progress

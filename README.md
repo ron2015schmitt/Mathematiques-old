@@ -169,7 +169,7 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 
 The first step is to clone the repo
 
-```git clone https://github.com/ron2015schmitt/mathq.git```
+```git clone https://github.com/ron2015schmitt/Mathematiques.git```
 
 You now have a directory with all the Mathématiques source code
 
@@ -177,10 +177,10 @@ You now have a directory with all the Mathématiques source code
 
 # Configuration
 
-cd into the mathq directory and execute the configure command:
+cd into the ```Mathematiques``` directory and execute the configure command:
 
 ```
-cd mathq
+cd Mathematiques
 ./configure
 ```
 <a name="using_mathematiques"></a>

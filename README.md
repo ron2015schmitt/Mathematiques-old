@@ -28,11 +28,12 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 **Design**
   + Simple Matlab-like syntax with no run-time cost
   + Performance comparable to C and Fortran
-  + Pretty printing and debugging mode
+  + Pretty printing with styles and colors
+  + Debugging mode
   + File I/O in various formats including formats for Matlab and Mathematica
   + Detailed pretty documentation in Markup.  
   + Markup Documents can be auto-generated from C++ code
-  + "boiler plate" code is created using Python scripts for supporting functionality such as mixed-type math
+  + "Boiler plate" code is created using Python scripts for supporting functionality such as mixed-type math
 
 **Data Types**
   + Arbitrary rank tensor arrays (Scalar, Vector, Matrix, etc)

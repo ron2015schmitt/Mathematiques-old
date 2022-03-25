@@ -18,6 +18,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 - [User Guide](#user-guide)
 - [Benchmarks](#benchmarks)
 - [New Feature Schedule](#feature-schedule)
+- [Developer Guide](#developer-guide)
   
 ---------------------------------------------------------------------------
 
@@ -220,8 +221,10 @@ Elegant markdown guide for all features, with syntax-highlighted code and exampl
 
 [Benchmarks](benchmark/README.md)
 
-
-
 # Feature Schedule
 
 * For information on current and future **development**, refer to the [Mathématiques Feature Schedule](todo/README.md).
+
+# Developer Guide
+
+[Developer Guide](doc/developer/README.md)

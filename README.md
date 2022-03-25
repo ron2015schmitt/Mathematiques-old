@@ -37,12 +37,12 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 
 **Data Types**
   + Arbitrary rank tensor arrays (Scalar, Vector, Matrix, etc)
-  + Each tensor type can have tensor as datatype
-    + eg. `Vector<Matrix<double>>` or `Matrix<Vector<double>>`, which can be used to represent a vector-valued function on a 2D or 3D mesh.
   + tensors can have 
     + variable dimensions, using `valarray`:  `Vector<double>`
     + fixed dimensions, using `array`: `Vector<double,3>`
   + fixed array size is ideal for small vectors, eg 2D or 3D vector
+  + Each tensor type can have tensor as datatype
+    + eg. `Vector<Matrix<double>>` or `Matrix<Vector<double>>`, which can be used to represent a vector-valued function on a 2D or 3D mesh.
   + `Imaginary<D>` number template class that dovetails with the fundamental (real) types `D` and  with `std::complex<D>`
 
 **Operators**

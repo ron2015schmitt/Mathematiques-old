@@ -23,7 +23,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 
 # Features 
 
-+ **V3.0** the first official release
++ **V3.2**
 
 **Design**
   + Simple Matlab-like syntax with no run-time cost

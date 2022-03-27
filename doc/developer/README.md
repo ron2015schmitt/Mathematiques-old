@@ -1,3 +1,28 @@
 # Developer Guide
 
 *coming soon...*
+
+## Topics to cover
+
+1. ```configure```, ```deconfigure```, ```reconfigure```
+3. Makefiles
+4. Use of Python for metacoding
+5. git tag versioning: ```files.matricks.vers```, ```reconfigure``` and ```make git```
+6. multi-threading
+7. directories:
+   1. ```example```
+   1. ```test``` (including metacode for test generation)
+   1. ```benchmark```
+   1. ```doc``` as well as scripts ```build``` and ```build1``` and ```toc```
+   1. ```sandbox```
+
+# Release Checklist
+
+_Back to [Table of Contents](README.md)_
+
+* Update `files/matricks.vers`
+* `reconfigure`
+* update README
+* Update docs
+* git push
+* clone from github into a separate directory and verify all code compiles and works

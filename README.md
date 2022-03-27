@@ -159,15 +159,31 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 
 # Installation
 
+## Download the source
+
 The first step is to clone the repo
 
 ```git clone https://github.com/ron2015schmitt/Mathematiques.git```
 
 You now have a directory with all the Mathématiques source code
 
+## Install Prerequisites
 
+The following commands are required: `bash`, `python3`, `make`, and `g++`.
+The following library is required: `lapack`.
 
-# Configuration
+In Ubuntu, you can install these as follows
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt-get install make
+sudo apt install build-essential
+sudo apt-get install liblapacke-dev
+sudo apt-get install liblapack-doc
+```
+The above installation has been verified in [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/)
+
+## Run the configuration
 
 cd into the ```Mathematiques``` directory and execute the configure command:
 

@@ -222,11 +222,7 @@ Compile the code and run the code using the Makefile
 make example
 ./example
 ```
-*or* by using `g++` directly
-```bash
-g++ -I ~/mathq/include example.cpp -o example -L ~/mathq/lib -lmathq
-./example
-```
+
 
 # User Guide
 

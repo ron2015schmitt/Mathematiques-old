@@ -168,7 +168,7 @@ You now have a directory with all the Mathématiques source code
 
 ## Install Prerequisites
 
-The following commands are required: `bash`, `python3`, `make`, and `g++`.
+The following commands are required: `bash`, `python3`, `make`, `g++`, and `gfortran`.
 The following library is required: `lapack`.
 
 In Ubuntu, you can install these as follows
@@ -177,6 +177,7 @@ sudo apt update
 sudo apt upgrade
 sudo apt-get install make
 sudo apt-get install build-essential
+sudo apt-get install gfortran
 sudo apt-get install liblapacke-dev
 sudo apt-get install liblapack-doc
 ```

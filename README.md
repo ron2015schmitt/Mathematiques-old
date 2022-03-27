@@ -11,7 +11,6 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 - [License](#license)
 - [Examples](#examples)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Using Mathématiques](#using_mathematiques)
   * [EXAMPLE Makefile](#example-makefile)
   * [EXAMPLE Code File](#example-code-file)
@@ -177,7 +176,7 @@ In Ubuntu, you can install these as follows
 sudo apt update
 sudo apt upgrade
 sudo apt-get install make
-sudo apt install build-essential
+sudo apt-get install build-essential
 sudo apt-get install liblapacke-dev
 sudo apt-get install liblapack-doc
 ```

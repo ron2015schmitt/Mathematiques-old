@@ -192,9 +192,11 @@ To use the Mathématiques library you need to
 
 ## EXAMPLE Makefile
 
-An example makefile, [examples/Makefile](examples/Makefile),  is included for your convenience.
+An example makefile, `example/Makefile`, is created during [configuration](configuration) for your convenience.
 
 *AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
+
+Here is an example of a [typical Makefile](doc/sample/Makefile).
 
 ## EXAMPLE Code File
 

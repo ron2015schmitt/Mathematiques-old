@@ -1,15 +1,17 @@
 # Developer Guide
 
-*coming soon...*
+*in progress...*
 
 ## Topics to cover
 
 1. ```configure```, ```deconfigure```, ```reconfigure```
 3. Makefiles
 4. Use of Python for metacoding
-5. git tag versioning: ```files.matricks.vers```, ```reconfigure``` and ```make git```
-6. multi-threading
-7. directories:
+   1. use `python3` not `python` in code
+   2. how to run
+6. git tag versioning: ```files.matricks.vers```, ```reconfigure``` and ```make git```
+7. multi-threading
+8. directories:
    1. ```example```
    1. ```test``` (including metacode for test generation)
    1. ```benchmark```

@@ -162,7 +162,9 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
 
 The first step is to clone the repo
 
-```git clone https://github.com/ron2015schmitt/Mathematiques.git```
+```bash
+git clone https://github.com/ron2015schmitt/Mathematiques.git
+```
 
 You now have a directory with all the Mathématiques source code
 
@@ -188,7 +190,7 @@ The above installation has been verified in [Ubuntu 20.04 LTS](https://releases.
 
 cd into the ```Mathematiques``` directory and execute the configure command:
 
-```
+```bash
 cd Mathematiques
 ./configure
 ```

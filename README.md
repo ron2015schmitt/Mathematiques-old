@@ -32,7 +32,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + Debugging mode
   + File I/O in various formats including formats for Matlab and Mathematica
   + Detailed pretty documentation in Markup.  
-  + Markup Documents can be auto-generated from C++ code
+  + Markup Documents can be auto-generated from C++ code.
   + "Boiler plate" code is created using Python scripts for supporting functionality such as mixed-type math
 
 **Data Types**

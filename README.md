@@ -185,6 +185,14 @@ sudo apt-get install liblapack-doc
 ```
 The above installation has been verified in [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/)
 
+### Docker images for the build environment
+
+Docker build files and images are available with all of the prerequisites installed
+
+| Ubuntu 20.04 LTS | [Dockerfile](https://github.com/ron2015schmitt/Mathematiques/tree/master/docker/ubuntu-20.04) | [Image](https://hub.docker.com/repository/docker/electron2015/ubuntu-20.04-mathq-env) |
+
+*The above images do NOT contain the Mathématiques library*
+
 ## Run the configuration
 
 cd into the ```Mathematiques``` directory and execute the configure command:

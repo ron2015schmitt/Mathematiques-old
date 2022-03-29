@@ -11,6 +11,9 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 - [License](#license)
 - [Examples](#examples)
 - [Installation](#installation)
+  * [Download the source](#download-the-source)
+  * [Install Prerequisites](#install-prerequisites)
+  * [Docker-Images](#docker-images)
 - [Using Mathématiques](#using_mathematiques)
   * [EXAMPLE Makefile](#example-makefile)
   * [EXAMPLE Code File](#example-code-file)
@@ -185,6 +188,7 @@ sudo apt-get install liblapack-doc
 ```
 The above installation has been verified in [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/)
 
+<a name="docker-images"></a>
 ### Docker images for the build environment
 
 Docker build files and images are available with all of the prerequisites installed
@@ -203,7 +207,7 @@ cd into the ```Mathematiques``` directory and execute the configure command:
 cd Mathematiques
 ./configure
 ```
-<a name="using_mathematiques"></a>
+<a name="using-mathematiques"></a>
 # Using Mathématiques
 
 To use the Mathématiques library you need to 

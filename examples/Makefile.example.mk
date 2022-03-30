@@ -343,7 +343,7 @@ makecleanall:
 ###############################################################
 
 
-DIR_MATHQ = /home/rs2015/Mathematiques
+DIR_MATHQ = /home/username/Mathematiques
 INCDIR_MATHQ = $(DIR_MATHQ)/include
 LIBDIR_MATHQ = $(DIR_MATHQ)/lib
 LIB_MATHQ = -lmathq

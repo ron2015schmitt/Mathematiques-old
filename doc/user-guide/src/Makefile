@@ -20,11 +20,11 @@ doc:  $(DOC)
 
 
 toc:  $(addsuffix .link_md, $(basename $(DOC)))
-	@cat README.template > README.md
+	@cat README.template.mk > README.md
 	@echo >> README.md
 	@cat $^ >> README.md
 	@$(call placeversion)
-	@cat README.coda >> README.md
+	@cat README.coda.mk >> README.md
 	@cat README.md
 
 

@@ -43,12 +43,12 @@ else
     echo "Nothing to do."
 fi 
 
-rm -f Makefile{,.pristine}
-rm -f benchmark/Makefile{,.pristine}
-rm -f examples/{run,Makefile{,.pristine}}
-rm -f sandbox/{run,Makefile{,.pristine}}
-rm -f test/{run,Makefile{,.pristine}}
-rm -f test/create/{run,Makefile{,.pristine}}
+rm -f Makefile{,.pristine.mk}
+rm -f benchmark/Makefile{,.pristine.mk}
+rm -f examples/{run,Makefile{,.pristine.mk}}
+rm -f sandbox/{run,Makefile{,.pristine.mk}}
+rm -f test/{run,Makefile{,.pristine.mk}}
+rm -f test/create/{run,Makefile{,.pristine.mk}}
 rm -f files/tag.onelinesummary.mathq
 
 

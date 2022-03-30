@@ -56,18 +56,18 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >> ${DIR_TARGET}/Makefile
 echo "" >> ${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq.mk                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >> ${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq.mk >> ${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.system                                         #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.system.mk                                         #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-cat files/Makefile.system >>${DIR_TARGET}/Makefile
+cat files/Makefile.system.mk >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
-cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine.mk
 echo " "
 
 
@@ -95,9 +95,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq.mk                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq.mk >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 
@@ -110,7 +110,7 @@ do
 done
 echo "echo -e \"${BLUE1}${BOLD}All executables ran succesfully${DEFCLR}\"" >> ${DIR_TARGET}/run
 chmod a+rx ${DIR_TARGET}/run
-cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine.mk
 echo " "
 
 
@@ -141,9 +141,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq.mk                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq.mk >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 
@@ -156,7 +156,7 @@ do
 done
 echo "echo -e \"${BLUE1}${BOLD}All executables ran succesfully${DEFCLR}\"" >> ${DIR_TARGET}/run
 chmod a+rx ${DIR_TARGET}/run
-cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine.mk
 
 echo " "
 
@@ -182,12 +182,12 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq.mk                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq.mk >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
-cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine.mk
 echo " "
 
 
@@ -217,9 +217,9 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq.mk                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq.mk >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 
@@ -232,7 +232,7 @@ do
 done
 echo "echo -e \"${BLUE1}${BOLD}All executables ran succesfully${DEFCLR}\"" >> ${DIR_TARGET}/run
 chmod a+rx ${DIR_TARGET}/run
-cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine.mk
 echo " "
 
 
@@ -260,12 +260,12 @@ cat files/Makefile >> ${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-echo "#  files/Makefile.mathq                                       #" >>${DIR_TARGET}/Makefile
+echo "#  files/Makefile.mathq.mk                                       #" >>${DIR_TARGET}/Makefile
 echo "##################################################################" >>${DIR_TARGET}/Makefile
-sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq >>${DIR_TARGET}/Makefile 
+sed -e "s/__DIR_MATHQ__/$temp/g" files/Makefile.mathq.mk >>${DIR_TARGET}/Makefile 
 echo "" >>${DIR_TARGET}/Makefile
 echo "" >>${DIR_TARGET}/Makefile
-cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine
+cp ${DIR_TARGET}/Makefile ${DIR_TARGET}/Makefile.pristine.mk
 echo " "
 echo " "
 

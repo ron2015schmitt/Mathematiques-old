@@ -15,7 +15,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   * [Install Prerequisites](#install-prerequisites)
   * [Docker-Images](#docker-images)
 - [Using Mathématiques](#using_mathematiques)
-  * [EXAMPLE Makefile](#example-makefile)
+  * [User Makefile](#example-makefile)
   * [EXAMPLE Code File](#example-code-file)
 - [User Guide](#user-guide)
 - [Benchmarks](#benchmarks)
@@ -221,13 +221,13 @@ To use the Mathématiques library you need to
 
 4. Include the option `-lmathq` during linking
 
-## EXAMPLE Makefile
+## User Makefile
 
-An example makefile, `example/Makefile`, is created during [configuration](configuration) for your convenience.
+An user makefile, `example/Makefile`, is created during [configuration](configuration) for your convenience.
 
 *AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
 
-Here is an example of a [typical Makefile](doc/sample/Makefile).
+Here is an example of a [typical Makefile](examples/Makefile.example.mk).
 
 ## EXAMPLE Code File
 
@@ -244,7 +244,7 @@ make example
 
 Elegant markdown guide for all features, with syntax-highlighted code and examples.
 
-[User's Guide](doc/doc-user-guide/README.md)
+[User's Guide](doc/user-guide/output/README.md)
 
 # Benchmarks
 

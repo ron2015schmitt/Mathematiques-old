@@ -292,10 +292,10 @@ info:
 
 
 diff:
-	@diff Makefile.pristine Makefile || exit 0
+	@diff Makefile.pristine.mk Makefile || exit 0
 
 cdiff:
-	@colordiff Makefile.pristine Makefile || exit 0
+	@colordiff Makefile.pristine.mk Makefile || exit 0
 
 clean: FORCE
 	@command rm -f *.o

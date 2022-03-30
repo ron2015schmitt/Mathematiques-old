@@ -27,13 +27,3 @@ _User guide is in progress. Some functionality such as Matrices and Tensors are 
 1. [Calculus](calculus.md)
 1. [Vector file I/O](vfile.md)
 
-# Other Resources
-
-* For **installation** and **compilation**, refer to the [Mathématiques Overview](../README.md).
-
-* For information on current and future **development**, refer to the [Mathématiques Feature Schedule](../todo/README.md).
-
-* [Code Examples](../examples/README.md)
-
-* [Benchmarks](../benchmark/README.md)
-

@@ -245,7 +245,7 @@ make example
 
 Elegant markdown guide for all features, with syntax-highlighted code and examples.
 
-[User's Guide](doc/README.md)
+[User's Guide](doc/doc-user-guide/README.md)
 
 # Benchmarks
 

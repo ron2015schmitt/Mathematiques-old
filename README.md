@@ -221,24 +221,22 @@ To use the Mathématiques library you need to
 
 4. Include the option `-lmathq` during linking
 
-## User Makefile
-
-A user makefile, `example/Makefile`, is created during [configuration](configuration) for your convenience.
-
-*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
-
-Here is an example of a [typical Makefile](examples/Makefile.example.mk).
-
 ## EXAMPLE Code File
 
 An example of a C++ source file can be found at [examples/example.cpp](examples/example.cpp).
 
-Compile the code and run the code using the Makefile
+After configuration, Compile the code and run the code using the Makefile
 ```bash
 make example
 ./example
 ```
+## User Makefile
 
+After configuration, your user makefile can be found at `example/Makefile`, for your convenience.
+
+*AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
+
+Here is an example of a [typical Makefile](examples/Makefile.example.mk).
 
 # User Guide
 

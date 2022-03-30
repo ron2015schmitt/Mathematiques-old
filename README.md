@@ -15,7 +15,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   * [Install Prerequisites](#install-prerequisites)
   * [Docker-Images](#docker-images)
 - [Using Mathématiques](#using_mathematiques)
-  * [User Makefile](#example-makefile)
+  * [User Makefile](#user-makefile)
   * [EXAMPLE Code File](#example-code-file)
 - [User Guide](#user-guide)
 - [Benchmarks](#benchmarks)
@@ -223,7 +223,7 @@ To use the Mathématiques library you need to
 
 ## User Makefile
 
-An user makefile, `example/Makefile`, is created during [configuration](configuration) for your convenience.
+A user makefile, `example/Makefile`, is created during [configuration](configuration) for your convenience.
 
 *AFTER CONFIGURATION*, copy this makefile to YOUR source code directory (or cut and paste into an existing makefile).
 

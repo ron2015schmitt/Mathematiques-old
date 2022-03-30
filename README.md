@@ -180,7 +180,6 @@ The following library is required: `lapack`.
 In Ubuntu, you can install these as follows
 ```bash
 sudo apt update
-sudo apt upgrade
 sudo apt-get install build-essential
 sudo apt-get install gfortran
 sudo apt-get install liblapacke-dev

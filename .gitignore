@@ -1,5 +1,21 @@
-examples/run
+# specific files for this project
+/examples/run
+/benchmark/Makefile
+/Makefile
+/Makefile.pristine.mk
+/benchmark/Makefile.pristine.mk
+/examples/Makefile
+/examples/Makefile.pristine.mk
+/sandbox/Makefile
+/sandbox/Makefile.pristine.mk
+/sandbox/run
+/test/Makefile
+/test/Makefile.pristine.mk
+/test/create/Makefile
+/test/create/Makefile.pristine.mk
+/test/run
 
+# -------------C++ output files--------------
 
 # Prerequisites
 *.d

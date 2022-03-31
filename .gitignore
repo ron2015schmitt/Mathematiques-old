@@ -1,19 +1,15 @@
 # specific files for this project
-/examples/run
-/benchmark/Makefile
 /Makefile
-/Makefile.pristine.mk
-/benchmark/Makefile.pristine.mk
+/benchmark/Makefile
 /examples/Makefile
-/examples/Makefile.pristine.mk
+/examples/run
 /sandbox/Makefile
-/sandbox/Makefile.pristine.mk
 /sandbox/run
 /test/Makefile
-/test/Makefile.pristine.mk
 /test/create/Makefile
-/test/create/Makefile.pristine.mk
 /test/run
+
+Makefile.pristine.mk
 
 # -------------C++ output files--------------
 

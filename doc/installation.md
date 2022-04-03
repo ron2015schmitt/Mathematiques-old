@@ -24,10 +24,7 @@ In Ubuntu, you can install these as follows
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt-get install build-essential
-sudo apt-get install gfortran
-sudo apt-get install liblapacke-dev
-sudo apt-get install liblapack-doc
+sudo apt-get install build-essential gfortran liblapacke-dev liblapack-doc
 ```
 The above installation has been verified in [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/)
 

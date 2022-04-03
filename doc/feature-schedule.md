@@ -165,11 +165,6 @@ To contact me regarding suggestions, bugs, or volunteer work send an email to `R
 ---------------
 ---------------
 
-_Links_
-
-* [Mathématiques Overview](../README.md)
-* [User Guide](../doc/README.md)
-
 
 | < <br />[9-Tests](test.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | > <br />[11-Developer Guide](developer-guide.md)   |
 | ----------- | ----------- | ----------- |

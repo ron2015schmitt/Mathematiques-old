@@ -65,13 +65,17 @@ default: clean
 #prevent any default rules from being used
 #.SUFFIXES:
 
+DOCS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-schedule.md  installation.md  license.md  release-notes.md  test.md  user-guide.md  using-mathematiques.md
 
+toc.json: toc.txt createtoc.py
+	python3 createtoc.py
 
-
-%.md: %/template.md createpage.py toc.txt
+%.md: %/template.md createpage.py toc.json
 	python3 createpage.py $*
 
+all: 
+	make $(DOCS)
 
 clean:
-	rm -f *.md
+	rm -f *.md toc.json
 

@@ -1,5 +1,5 @@
 
-| ⇦ <br />[5-Installation](installation.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[7-User Guide](user-guide.md)   |
+| ⇦ <br />[5-Installation](installation.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[7-User Guide](user-guide.md)   |
 | ----------- | ----------- | ----------- |
 
 
@@ -40,5 +40,5 @@ make example
 ./example
 ```
 
-| ⇦ <br />[5-Installation](installation.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[7-User Guide](user-guide.md)   |
+| ⇦ <br />[5-Installation](installation.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[7-User Guide](user-guide.md)   |
 | ----------- | ----------- | ----------- |

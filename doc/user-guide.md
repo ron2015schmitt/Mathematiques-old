@@ -1,5 +1,5 @@
 
-| ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[8-Benchmarks](benchmarks.md)   |
+| ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[8-Benchmarks](benchmarks.md)   |
 | ----------- | ----------- | ----------- |
 
 
@@ -17,5 +17,5 @@ Mathématiques is numerical library for performing linear algebra, calculus, vec
 
 # Table of Contents
 
-| ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[8-Benchmarks](benchmarks.md)   |
+| ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[8-Benchmarks](benchmarks.md)   |
 | ----------- | ----------- | ----------- |

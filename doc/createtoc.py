@@ -114,8 +114,9 @@ f = open("README.md", "w")
 f.write(header + body + toc1 + toc2 + footer)
 f.close()
 
-
-header = "# Mathématiques __VERSION_MATHQ__\n"
+# TODO: restore once top level is working again
+#header = "# Mathématiques __VERSION_MATHQ__\n"
+header = "# Mathématiques \n"
 
 toc2 = ""
 for name in pages:

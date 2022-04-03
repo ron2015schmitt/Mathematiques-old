@@ -1,4 +1,4 @@
-# Mathématiques __VERSION_MATHQ__
+# Mathématiques 
 
 -------------------------
 

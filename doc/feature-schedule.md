@@ -1,11 +1,11 @@
 
-# 10-New Feature Schedule
-
--------------------------
-
-
 | ⇦ <br />[9-Tests](test.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[11-Developer Guide](developer-guide.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 10-New Feature Schedule
+
 ## Planned Releases
 
 ### Items for V3.3 (In-progress)

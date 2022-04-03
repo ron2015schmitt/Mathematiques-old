@@ -1,11 +1,11 @@
 
-# 11-Developer Guide
-
--------------------------
-
-
 | ⇦ <br />[10-New Feature Schedule](feature-schedule.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 11-Developer Guide
+
 
 *in progress...*
 

@@ -30,7 +30,7 @@ with open('toc.json') as f:
 #print(pages)
 
 
-footer = """
+links = """
 | ⇦ <br />{}  | <br />{}<br /> <img width=1000/> | ⇨ <br />{}   |
 | ----------- | ----------- | ----------- |
 """
@@ -51,11 +51,12 @@ else:
     nextpage = pages[nextpage]["numlink"]
 
 title = """
+
+
 # {}
 
--------------------------
-
 """.format(page["numtitle"], today)
+
 
 
 myheader = """
@@ -69,15 +70,15 @@ f = open(page["src"], 'r')
 body = f.read()
 f.close()
 
-links = footer.format(prevpage, "[Table Of Contents](toc.md)", nextpage)
+links = links.format(prevpage, "[Table Of Contents](toc.md)", nextpage)
 
 # print(myheader)
 # print(body)
 # print(links)
 f = open(page["dest"], "w")
-doc = title + links + body + myheader
+doc = links + title + body + myheader
 nlines = len(body.splitlines())
-print(nlines)
+#print(nlines)
 if nlines > 20: 
     doc += links
 f.write(doc)

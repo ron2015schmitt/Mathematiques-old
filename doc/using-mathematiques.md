@@ -1,11 +1,11 @@
 
-# 6-Using Mathématiques
-
--------------------------
-
-
 | ⇦ <br />[5-Installation](installation.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[7-User Guide](user-guide.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 6-Using Mathématiques
+
 
 Now that you have completed installation, to use the Mathématiques library you need to 
 

@@ -1,11 +1,11 @@
 
-# 5-Installation
-
--------------------------
-
-
 | ⇦ <br />[4-Features and Release Notes](release-notes.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[6-Using Mathématiques](using-mathematiques.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 5-Installation
+
 
 
 ## Download the source

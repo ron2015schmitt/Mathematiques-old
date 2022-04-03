@@ -1,11 +1,11 @@
 
-# 1-About
-
--------------------------
-
-
 | ⇦ <br />  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[2-License](license.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 1-About
+
 
 Development for this project originally took place during the years 2003-2008 
 

@@ -1,11 +1,11 @@
 
-# 4-Features and Release Notes
-
--------------------------
-
-
 | ⇦ <br />[3-Examples](examples.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[5-Installation](installation.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 4-Features and Release Notes
+
 ## **V3.2** First Official Release
 
 **Design**

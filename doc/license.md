@@ -1,11 +1,11 @@
 
-# 2-License
-
--------------------------
-
-
 | ⇦ <br />[1-About](about.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[3-Examples](examples.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 2-License
+
 
 The code that makes up this library is copyrighted under the *MIT license*.
 

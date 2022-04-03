@@ -1,11 +1,11 @@
 
-# 8-Benchmarks
-
--------------------------
-
-
 | ⇦ <br />[7-User Guide](user-guide.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
 | ----------- | ----------- | ----------- |
+
+
+
+# 8-Benchmarks
+
 
 
 ## Vector math benchmarks 

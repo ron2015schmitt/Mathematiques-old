@@ -1,4 +1,9 @@
 
+# 7-User Guide
+
+-------------------------
+
+
 | ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[8-Benchmarks](benchmarks.md)   |
 | ----------- | ----------- | ----------- |
 

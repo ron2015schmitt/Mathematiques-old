@@ -50,6 +50,14 @@ if nextpage == None:
 else:
     nextpage = pages[nextpage]["numlink"]
 
+title = """
+# {}
+
+-------------------------
+
+""".format(page["numtitle"], today)
+
+
 myheader = """
 
 -------------------------
@@ -64,12 +72,12 @@ f = open(page["src"], 'r')
 body = f.read()
 f.close()
 
-myfooter = footer.format(prevpage, "[Table Of Contents](toc.md)", nextpage)
+links = footer.format(prevpage, "[Table Of Contents](toc.md)", nextpage)
 
 # print(myheader)
 # print(body)
-# print(myfooter)
+# print(links)
 f = open(page["dest"], "w")
-f.write(myfooter + myheader + body + myfooter)
+f.write(title + links + myheader + body + links)
 f.close()
 

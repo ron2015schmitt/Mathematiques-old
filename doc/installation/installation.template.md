@@ -1,5 +1,4 @@
 
-# Installation
 
 ## Download the source
 

@@ -1,48 +1,46 @@
-# Planned Releases
+## Planned Releases
 
-_Updated March 22, 2022_
-
-## Items for V3.3 (In-progress)
+### Items for V3.3 (In-progress)
 1. [Update Documentation](doc.md)
 
-## Items for V3.4 - Docker Image
+### Items for V3.4 - Docker Image
 1. Create Docker image for the environment
 2. list requirements for g++ and other libraries in about section of top-level README
 
-## Items for V4.0 - Unit testing
+### Items for V4.0 - Unit testing
 1. [Unit Testing](unittesting.md)
 2. list requirements to perform testing in about section of top-level README
 
-## Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
+### Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
 1. set up CI / CT on [Github Actions](https://docs.github.com/en/actions) and using Docker 
 
-## Items for V6.0 - Refactor indexing
+### Items for V6.0 - Refactor indexing
 1. [Index class and new indexing methodology](index.md)
 
-## Items for V7.0 - Tensor Products
+### Items for V7.0 - Tensor Products
 1. [Tensor dot product](dotproduct.md)
 1. [Outer Product and Wedge Product](outerwedge.md)
 1. [Add Benchmarks](benchmarks.md)
 
-## Items for V8.0 -- Calculus
+### Items for V8.0 -- Calculus
 1. `Interval` virtual class with subclasses `AB(a,b,N)`, `aB(a,b,N)` etc
 1. Generalize linspace to generate grids in any number of dimensions. 
   * utilize `RepColMatrix` and `RepRowMatrix`
 1. Integrals and derivatives along each dimension of Matrix or Tenspr
    *  best way to re-use code?
 
-## Items for V9.0 -- Matrix Math via Lapack/Blas
+### Items for V9.0 -- Matrix Math via Lapack/Blas
 1. [Special matrices](diagonal.md)
 1. [Matrix operations](matrixlapack.md)
 1. openblas multi-threading support?
 1. Optimize Dot Products for Special Matrices
 * use LAPACK / BLAS where efficacious to do so
 
-## Items for V10.0 -- Vector Calculus
+### Items for V10.0 -- Vector Calculus
 1. [2D and 3D Curvilinear Coordinate Systems](coordsystems.md)
 1. [Functions: R^n -> R^m](functions.md)
 
-## Items for V11.0 -- Refactor Display
+### Items for V11.0 -- Refactor Display
 1. [Refactor mout and dout](refactormout.md)
 1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
 1. [Refactor getTypeName](gettypename.md)
@@ -54,12 +52,12 @@ _Updated March 22, 2022_
    1. Mathematica
    1. Matlab
 
-## Items for V12.0 -- File I/O
+### Items for V12.0 -- File I/O
 1. [Save tensor to file](filesave.md)
 1. [Implement >> operators](inputstreams.md)
 1. [Load tensor from file](fileload.md)
 
-## Items for V13.0 -- Debug Functionality
+### Items for V13.0 -- Debug Functionality
 1. [Create Tensor Pool and Tensor info](poolandinfo.md)
 1. [Exceptions and Assertions](exceptions.md)
 1. [Implement all error checking](errorchecking.md)
@@ -68,7 +66,7 @@ _Updated March 22, 2022_
    * only needed for non-elemental functions
    * only needed when same vector appears on both sides of `=`
 
-## Items for V14.0 -- Tensor Calculus 
+### Items for V14.0 -- Tensor Calculus 
 1. contravariant and covariant vectors
    * define Rank0: 
       * Vector<NE=1>
@@ -87,26 +85,26 @@ _Updated March 22, 2022_
    * raising and lowering operations using the metric tensor
    * currying
 
-## Items for V15.0 -- FFT Support via FFTW
+### Items for V15.0 -- FFT Support via FFTW
 
-## Filters 
+### Filters 
 1. FIR
 1. IIR
 
-## Interpolation and Smoothing
+### Interpolation and Smoothing
 
 1. Linear using `C++20` functions `midpoint` and `lerp`
 1. least squares smoothing and derivatives
 1. [Savitsky-Golay](https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter)
 1. splines
 
-## Random Numbers and statistics
+### Random Numbers and statistics
 * Random vectors for variety of distrubutions
    * utilize [C++11 random distributions functionality](https://en.cppreference.com/w/cpp/numeric/random)
 * statistics: multiple linear regression, polynomial least-squares fitting (vandermonde matrix), pricples components analysis
 
 
-## Miscellaneous Small Features
+### Miscellaneous Small Features
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
 * `logspace` function similar to `matlab`
 * refactor: `::Type` to `::type`
@@ -129,8 +127,8 @@ _Updated March 22, 2022_
 * `Matrix` size modifications. 
    * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
 
-## Possibilities
-## Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
+### Possibilities
+### Items for V5.0 - Continuous Integration (CI) / Contunous Testing (CT)
 * migrate from `make` to `ninja` and `bash` to `python`
 * investigate use of [swap](https://en.cppreference.com/w/cpp/algorithm/swap)
 * investigate use of [multi-threading](https://en.cppreference.com/w/cpp/thread/thread)
@@ -143,20 +141,20 @@ _Updated March 22, 2022_
 * `C++20` features?
 
 
-## Other
+### Other
 1. [Developer guide](developerguide.md)
 1. link on Wikipedia C++ numerical packages
 1. [Release Checklist](checklist.md)
 1. Remove `old/` directory and its files
 
-## Bugs
+### Bugs
  
 Convert to using github for this
  
 * [Bug list](bugs.md)
  
  
-## Contact
+### Contact
 
 To contact me regarding suggestions, bugs, or volunteer work send an email to `Ron dot Schmitt @ me dot com`
 

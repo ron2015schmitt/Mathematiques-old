@@ -107,3 +107,6 @@ f = open("README.md", "w")
 f.write(header + body + toc1 + toc2)
 f.close()
 
+f = open("toc.md", "w")
+f.write(header + toc1 + toc2)
+f.close()

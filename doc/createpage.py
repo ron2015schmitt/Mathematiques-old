@@ -64,7 +64,7 @@ f = open(page["src"], 'r')
 body = f.read()
 f.close()
 
-myfooter = footer.format(prevpage, "[Table Of Contents](../README.md)", nextpage)
+myfooter = footer.format(prevpage, "[Table Of Contents](top/.md)", nextpage)
 
 # print(myheader)
 # print(body)

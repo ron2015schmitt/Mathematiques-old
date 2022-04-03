@@ -19,6 +19,3 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 
 The GNU gcc (g++) compiler is used by default.
-
-| ⇦ <br />  | <br />[Table Of Contents](toc.md)<br /> <img width=1000/> | ⇨ <br />[2-License](license.md)   |
-| ----------- | ----------- | ----------- |

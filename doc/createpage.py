@@ -74,7 +74,8 @@ links = footer.format(prevpage, "[Table Of Contents](toc.md)", nextpage)
 # print(links)
 f = open(page["dest"], "w")
 doc = title + links + myheader + body
-nlines = len(body)
+nlines = len(body.splitlines())
+print(nlines)
 if nlines > 20: 
     doc += links
 f.write(doc)

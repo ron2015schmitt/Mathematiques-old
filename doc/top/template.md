@@ -1,4 +1,3 @@
-# Mathématiques __VERSION_MATHQ__
 
 Mathématiques is numerical library for performing linear algebra, calculus, vector calculus, etc in C++ via simple MATLAB-like syntax while also providing run-time performance and memory usage of hand-coded C or Fortran.
 

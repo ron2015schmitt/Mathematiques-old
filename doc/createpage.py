@@ -31,7 +31,7 @@ with open('toc.json') as f:
 
 
 links = """
-| ⇦ <br />{}  | <br />{}<br /> <img width=1000/> | ⇨ <br />{}   |
+| ⇦ <br />{}  | [Table Of Contents](toc.md)<br />{}<br /><img width=1000/> | ⇨ <br />{}   |
 | ----------- | ----------- | ----------- |
 """
 
@@ -70,7 +70,7 @@ f = open(page["src"], 'r')
 body = f.read()
 f.close()
 
-links = links.format(prevpage, "[Table Of Contents](toc.md)", nextpage)
+links = links.format(prevpage, page["numtitle"], nextpage)
 
 # print(myheader)
 # print(body)

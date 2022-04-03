@@ -1,6 +1,5 @@
 
-
-To use the Mathématiques library you need to 
+Now that you have completed installation, to use the Mathématiques library you need to 
 
 1. Include the library file `include/mathq.h` in your source code
 ```C++

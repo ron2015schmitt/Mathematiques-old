@@ -7,6 +7,7 @@
     "src": "about/template.md",
     "dest": "about.md",
     "link": "[About](about.md)",
+    "toplink": "[About](doc/about.md)",
     "numlink": "[1-About](about.md)",
     "prev": null,
     "next": "license"
@@ -19,6 +20,7 @@
     "src": "license/template.md",
     "dest": "license.md",
     "link": "[License](license.md)",
+    "toplink": "[License](doc/license.md)",
     "numlink": "[2-License](license.md)",
     "prev": "about",
     "next": "examples"
@@ -31,6 +33,7 @@
     "src": "examples/template.md",
     "dest": "examples.md",
     "link": "[Examples](examples.md)",
+    "toplink": "[Examples](doc/examples.md)",
     "numlink": "[3-Examples](examples.md)",
     "prev": "license",
     "next": "release-notes"
@@ -43,6 +46,7 @@
     "src": "release-notes/template.md",
     "dest": "release-notes.md",
     "link": "[Features and Release Notes](release-notes.md)",
+    "toplink": "[Features and Release Notes](doc/release-notes.md)",
     "numlink": "[4-Features and Release Notes](release-notes.md)",
     "prev": "examples",
     "next": "installation"
@@ -55,6 +59,7 @@
     "src": "installation/template.md",
     "dest": "installation.md",
     "link": "[Installation](installation.md)",
+    "toplink": "[Installation](doc/installation.md)",
     "numlink": "[5-Installation](installation.md)",
     "prev": "release-notes",
     "next": "using-mathematiques"
@@ -67,6 +72,7 @@
     "src": "using-mathematiques/template.md",
     "dest": "using-mathematiques.md",
     "link": "[Using Math\u00e9matiques](using-mathematiques.md)",
+    "toplink": "[Using Math\u00e9matiques](doc/using-mathematiques.md)",
     "numlink": "[6-Using Math\u00e9matiques](using-mathematiques.md)",
     "prev": "installation",
     "next": "user-guide"
@@ -79,6 +85,7 @@
     "src": "user-guide/template.md",
     "dest": "user-guide.md",
     "link": "[User Guide](user-guide.md)",
+    "toplink": "[User Guide](doc/user-guide.md)",
     "numlink": "[7-User Guide](user-guide.md)",
     "prev": "using-mathematiques",
     "next": "benchmarks"
@@ -91,6 +98,7 @@
     "src": "benchmarks/template.md",
     "dest": "benchmarks.md",
     "link": "[Benchmarks](benchmarks.md)",
+    "toplink": "[Benchmarks](doc/benchmarks.md)",
     "numlink": "[8-Benchmarks](benchmarks.md)",
     "prev": "user-guide",
     "next": "test"
@@ -103,6 +111,7 @@
     "src": "test/template.md",
     "dest": "test.md",
     "link": "[Tests](test.md)",
+    "toplink": "[Tests](doc/test.md)",
     "numlink": "[9-Tests](test.md)",
     "prev": "benchmarks",
     "next": "feature-schedule"
@@ -115,6 +124,7 @@
     "src": "feature-schedule/template.md",
     "dest": "feature-schedule.md",
     "link": "[New Feature Schedule](feature-schedule.md)",
+    "toplink": "[New Feature Schedule](doc/feature-schedule.md)",
     "numlink": "[10-New Feature Schedule](feature-schedule.md)",
     "prev": "test",
     "next": "developer-guide"
@@ -127,6 +137,7 @@
     "src": "developer-guide/template.md",
     "dest": "developer-guide.md",
     "link": "[Developer Guide](developer-guide.md)",
+    "toplink": "[Developer Guide](doc/developer-guide.md)",
     "numlink": "[11-Developer Guide](developer-guide.md)",
     "prev": "feature-schedule",
     "next": null

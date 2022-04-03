@@ -1,8 +1,7 @@
-# [3-Examples](doc/examples.md)
+# 3-Examples
 
 _Updated 03 April 2022_
 
-# Examples
 
 **EXAMPLE 1**: Dot product of two real vectors `(v1|v2)`
 
@@ -64,5 +63,5 @@ v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
   round(v) = Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 
 ```
 
-| < <br />[2-License](doc/license.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[4-Features and Release Notes](doc/release-notes.md)   |
+| < <br />[2-License](license.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[4-Features and Release Notes](release-notes.md)   |
 | ----------- | ----------- | ----------- |

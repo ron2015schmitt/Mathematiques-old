@@ -1,4 +1,4 @@
-# [4-Features and Release Notes](doc/release-notes.md)
+# 4-Features and Release Notes
 
 _Updated 03 April 2022_
 
@@ -14,5 +14,5 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 The GNU gcc (g++) compiler is used by default.
 
-| < <br />[3-Examples](doc/examples.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[5-Installation](doc/installation.md)   |
+| < <br />[3-Examples](examples.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[5-Installation](installation.md)   |
 | ----------- | ----------- | ----------- |

@@ -1,8 +1,8 @@
-# [6-Using Mathématiques](doc/using-mathematiques.md)
+# 6-Using Mathématiques
 
 _Updated 03 April 2022_
 
-# Using Mathématiques
+
 
 To use the Mathématiques library you need to 
 
@@ -34,5 +34,5 @@ make example
 ./example
 ```
 
-| < <br />[5-Installation](doc/installation.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[7-User Guide](doc/user-guide.md)   |
+| < <br />[5-Installation](installation.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[7-User Guide](user-guide.md)   |
 | ----------- | ----------- | ----------- |

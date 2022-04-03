@@ -1,9 +1,8 @@
-# [5-Installation](doc/installation.md)
+# 5-Installation
 
 _Updated 03 April 2022_
 
 
-# Installation
 
 ## Download the source
 
@@ -52,5 +51,5 @@ cd Mathematiques
 ./configure
 ```
 
-| < <br />[4-Features and Release Notes](doc/release-notes.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[6-Using Mathématiques](doc/using-mathematiques.md)   |
+| < <br />[4-Features and Release Notes](release-notes.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[6-Using Mathématiques](using-mathematiques.md)   |
 | ----------- | ----------- | ----------- |

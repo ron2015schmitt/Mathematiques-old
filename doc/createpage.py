@@ -43,8 +43,8 @@ for line in lines:
     numtitle = str(i) + "-" + title
     src = name+"/"+name+".template.md"
     dest = name+".md"
-    link = "[{}]({})".format(title, "doc/"+dest)
-    numlink = "[{}]({})".format(numtitle, "doc/"+dest)
+    link = "[{}]({})".format(title, dest)
+    numlink = "[{}]({})".format(numtitle, dest)
     page = {
         "index": i,
         "name": name,
@@ -101,7 +101,7 @@ for name in pages:
 
 _Updated {}_
 
-""".format(page["numlink"], today)
+""".format(page["numtitle"], today)
 
     f = open(page["src"], 'r')
     body = f.read()

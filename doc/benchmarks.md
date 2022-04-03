@@ -1,10 +1,8 @@
-# [8-Benchmarks](doc/benchmarks.md)
+# 8-Benchmarks
 
 _Updated 03 April 2022_
 
-# Benchmarks
 
-_Updated January 2, 2020_
 
 For **installation** and **compilation**, refer to the [Mathématiques Overview](../README.md).
 
@@ -13,7 +11,7 @@ For **usage**, refer to the [Mathématiques User's Guide](../doc/README.md).
 For information on current and future **development**, refer to the [Mathématiques Feature Schedule](../todo/README.md).
 
 
-# Vector math benchmarks 
+## Vector math benchmarks 
 
 Here we compare _Mathematiques_ vs. a handcoded `C` array loops.
 
@@ -43,9 +41,9 @@ stop();
 ![benchmarks](../files/benchmark.png)
 
 
-# dot product benchmarks
+## dot product benchmarks
 ---------------------------------------------------------------------------
 To be written...
 
-| < <br />[7-User Guide](doc/user-guide.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[9-Tests](doc/test.md)   |
+| < <br />[7-User Guide](user-guide.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[9-Tests](test.md)   |
 | ----------- | ----------- | ----------- |

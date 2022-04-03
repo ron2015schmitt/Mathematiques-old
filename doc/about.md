@@ -1,8 +1,7 @@
-# [1-About](doc/about.md)
+# 1-About
 
 _Updated 03 April 2022_
 
-# About
 
 Development for this project originally took place during the years 2003-2008 
 
@@ -14,5 +13,5 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 The GNU gcc (g++) compiler is used by default.
 
-| < <br />  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[2-License](doc/license.md)   |
+| < <br />  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[2-License](license.md)   |
 | ----------- | ----------- | ----------- |

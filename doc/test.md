@@ -1,8 +1,6 @@
-# [9-Tests](doc/test.md)
+# 9-Tests
 
 _Updated 03 April 2022_
-
-# Testing
 
 *In progress*
 
@@ -10,5 +8,5 @@ _Updated 03 April 2022_
 
 
 
-| < <br />[8-Benchmarks](doc/benchmarks.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[10-New Feature Schedule](doc/feature-schedule.md)   |
+| < <br />[8-Benchmarks](benchmarks.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[10-New Feature Schedule](feature-schedule.md)   |
 | ----------- | ----------- | ----------- |

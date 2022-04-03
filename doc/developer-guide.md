@@ -1,8 +1,7 @@
-# [11-Developer Guide](doc/developer-guide.md)
+# 11-Developer Guide
 
 _Updated 03 April 2022_
 
-# Developer Guide
 
 *in progress...*
 
@@ -33,5 +32,5 @@ _Back to [Table of Contents](README.md)_
 * git push
 * clone from github into a separate directory and verify all code compiles and works
 
-| < <br />[10-New Feature Schedule](doc/feature-schedule.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />   |
+| < <br />[10-New Feature Schedule](feature-schedule.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />   |
 | ----------- | ----------- | ----------- |

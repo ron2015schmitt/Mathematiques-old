@@ -25,3 +25,9 @@
 * Update docs
 * git push
 * clone from github into a separate directory and verify all code compiles and works
+
+# Online Documentation
+
+When adding or removing chapters in the main TOC
++ edit the `CHAPTERS` variable in `doc/Makefile`
++ edit the `doc/toc.txt`

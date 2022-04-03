@@ -1,4 +1,3 @@
-# Examples
 
 **EXAMPLE 1**: Dot product of two real vectors `(v1|v2)`
 

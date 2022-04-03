@@ -1,4 +1,3 @@
-# About
 
 Development for this project originally took place during the years 2003-2008 
 

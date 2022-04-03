@@ -59,19 +59,19 @@ endef
 #  SPECIAL TARGETS
 ###########################################################
 
-.PHONY: default
-default: makecleanall
+#.PHONY: default
+default: clean
 
 #prevent any default rules from being used
-.SUFFIXES:
-
-# don't delete .o files
-.PRECIOUS: %.o %_opts.cpp
-
-EXEC ?=
+#.SUFFIXES:
 
 
 
-about.md: about/about.template.md createpage.py toc.txt
-	python3 createpage.py about
+
+%.md: %/template.md createpage.py toc.txt
+	python3 createpage.py $*
+
+
+clean:
+	rm -f *.md
 

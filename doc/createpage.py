@@ -1,7 +1,11 @@
 #!/usr/bin/python
 
 import sys
+import datetime
 
+
+today = datetime.datetime.now().strftime("%d %B %Y")
+#print(today)
 
 usage="""
 USAGE: python3 createpage.py page
@@ -29,27 +33,86 @@ f.close()
 
 N = len(lines)
 i = 1
-titles = []
-paths = []
+pages = {}
 names = []
 for line in lines:
     print("{} ".format(i)+line)
     split = line.split('|')
-    titles.append(split[0].strip())
-    paths.append(split[1].strip())
-    names.append(split[2].strip())  
+    title = split[0].strip()
+    name = split[1].strip()
+    numtitle = str(i) + "-" + title
+    src = name+"/"+name+".template.md"
+    dest = name+".md"
+    link = "[{}]({})".format(title, "doc/"+dest)
+    numlink = "[{}]({})".format(numtitle, "doc/"+dest)
+    page = {
+        "index": i,
+        "name": name,
+        "title": title,
+        "numtitle": numtitle,
+        "src": src,
+        "dest": dest,
+        "link": link,
+        "numlink": numlink,
+        "prev": None,
+        "next": None,
+    }
+    pages[name] = page
+    names.append(name)
     i += 1
 
 
-prevs = [None] * N
-nexts = [None] * N
 for i in range(N):
-    if (i > 0): prevs[i] = names[i-1]
-    if (i < N-1): nexts[i] = names[i+1]
+    name = names[i]
+    page = pages[name]
+    if (i > 0): 
+        page["prev"] = pages[names[i-1]]
+    if (i < N-1): 
+        page["next"] = pages[names[i+1]]
 
-print(titles)
-print(paths)
-print(names)
-print(prevs)
-print(nexts)
+#print(pages)
+# print(paths)
+# print(names)
+# print(prevs)
+# print(nexts)
+
+footer = """
+| < <br />{}  | <br />{}<br /> <img width=1000/> | > <br />{}   |
+| ----------- | ----------- | ----------- |
+"""
+
+for name in pages:
+    page = pages[name]
+    title = page["numtitle"]
+    
+    prev = page["prev"]
+    if prev == None: 
+        prev = ""
+    else:
+        prev = prev["numlink"]
+    
+    next = page["next"]
+    if next == None: 
+        next = ""
+    else:
+        next = next["numlink"]
+
+    myheader = """# {}
+
+_Updated {}_
+
+""".format(page["numlink"], today)
+
+    f = open(page["src"], 'r')
+    body = f.read()
+    f.close()
+
+    myfooter = footer.format(prev,"Table Of Contents",next)
+
+    # print(myheader)
+    # print(body)
+    # print(myfooter)
+    f = open(page["dest"], "w")
+    f.write(myheader+body+myfooter)
+    f.close()
 

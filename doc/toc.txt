@@ -1,11 +1,11 @@
-About | about/ | about
-Examples | examples/ | examples
-Features | features/ | features
-Installation | installation/ | installation
-Using Mathématiques | using-mathematiques/ | using-mathematiques
-User Guide | user-guide/ | user-guide
-Benchmarks | benchmarks/ | benchmarks
-New Feature Schedule | feature-schedule/ | feature-schedule
-License | license/ | license
-Developer Guide | developer-guide/ | developer-guide
-Tests | tests/ | test
+About | about
+License | license
+Examples | examples
+Features and Release Notes | release-notes
+Installation | installation
+Using Mathématiques | using-mathematiques
+User Guide | user-guide
+Benchmarks | benchmarks
+Tests | test
+New Feature Schedule | feature-schedule
+Developer Guide | developer-guide

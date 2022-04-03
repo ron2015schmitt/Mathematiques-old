@@ -1,0 +1,68 @@
+# [3-Examples](doc/examples.md)
+
+_Updated 03 April 2022_
+
+# Examples
+
+**EXAMPLE 1**: Dot product of two real vectors `(v1|v2)`
+
+**variable initialization**
+```C++
+Vector<double> v1(range<double>(1,4));
+Vector<double> v2({1,-1,1,-1}); // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  (v1|v1) = 30; 
+  (v1|(2*v2+1)) = 6; 
+```
+
+**EXAMPLE 2**: Element-wise `Vector` math
+
+**variable initialization**
+```C++
+Vector<double> v1(4);
+v1 = {10,20,30,40}; // C++11 list
+Vector<double> v2(4);
+v2 = {1,2,3,4}; // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  v1 + v2 = Vector<double> {11, 22, 33, 44}; 
+  v1 - v2 = Vector<double> {9, 18, 27, 36}; 
+  v1 * v2 = Vector<double> {10, 40, 90, 160}; 
+  v1 / v2 = Vector<double> {10, 10, 10, 10}; 
+```
+
+**EXAMPLE 3**: math with scalars and `Vector`s
+
+**variable initialization**
+```C++
+Vector<double> v1(4);
+v1 = {10,20,30,40}; // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  v1 + 1 = Vector<double> {11, 21, 31, 41}; 
+  1 + 120 / v1 - 8/8 + 5*v1*2 = Vector<double> {112, 206, 304, 403}; 
+```
+
+**EXAMPLE 4**: functions of a `Vector`
+
+**variable initialization**
+```C++
+Vector<double> v(7);
+v = {-2.5,-2.25,-1,0,1,2.25,2.5}; // C++11 list
+```
+
+**Some expressions with results**
+```C++
+  floor(v) = Vector<double> {-3, -3, -1, 0, 1, 2, 2}; 
+  round(v) = Vector<double> {-3, -2, -1, 0, 1, 2, 3}; 
+```
+
+| < <br />[2-License](doc/license.md)  | <br />Table Of Contents<br /> <img width=1000/> | > <br />[4-Features and Release Notes](doc/release-notes.md)   |
+| ----------- | ----------- | ----------- |

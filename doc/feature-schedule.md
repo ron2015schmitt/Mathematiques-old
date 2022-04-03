@@ -1,5 +1,5 @@
 
-| ⇦ <br />[11-Developer Guide](developer-guide.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />developer-guide   |
+| ⇦ <br />[9-Tests](test.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[11-Developer Guide](developer-guide.md)   |
 | ----------- | ----------- | ----------- |
 
 
@@ -173,5 +173,5 @@ To contact me regarding suggestions, bugs, or volunteer work send an email to `R
 ---------------
 
 
-| ⇦ <br />[11-Developer Guide](developer-guide.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />developer-guide   |
+| ⇦ <br />[9-Tests](test.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[11-Developer Guide](developer-guide.md)   |
 | ----------- | ----------- | ----------- |

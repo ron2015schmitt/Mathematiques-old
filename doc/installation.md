@@ -1,5 +1,5 @@
 
-| ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />using-mathematiques   |
+| ⇦ <br />[4-Features and Release Notes](release-notes.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[6-Using Mathématiques](using-mathematiques.md)   |
 | ----------- | ----------- | ----------- |
 
 
@@ -55,5 +55,5 @@ cd Mathematiques
 ./configure
 ```
 
-| ⇦ <br />[6-Using Mathématiques](using-mathematiques.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />using-mathematiques   |
+| ⇦ <br />[4-Features and Release Notes](release-notes.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[6-Using Mathématiques](using-mathematiques.md)   |
 | ----------- | ----------- | ----------- |

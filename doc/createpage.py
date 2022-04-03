@@ -38,17 +38,17 @@ footer = """
 page = pages[name]
 title = page["numtitle"]
     
-prev = page["prev"]
-if prev == None: 
-    prev = ""
+prevpage = page["prev"]  # gets name
+if prevpage == None: 
+    prevpage = ""
 else:
-    prev = pages[prev]["numlink"]
+    prevpage = pages[prevpage]["numlink"]  
     
-next = page["next"]
-if next == None: 
-    next = ""
+nextpage = page["next"] # gets name
+if nextpage == None: 
+    nextpage = ""
 else:
-    prev = pages[next]["numlink"]
+    nextpage = pages[nextpage]["numlink"]
 
 myheader = """
 
@@ -64,12 +64,12 @@ f = open(page["src"], 'r')
 body = f.read()
 f.close()
 
-myfooter = footer.format(prev,"[Table Of Contents](../README.md)",next)
+myfooter = footer.format(prevpage, "[Table Of Contents](../README.md)", nextpage)
 
 # print(myheader)
 # print(body)
 # print(myfooter)
 f = open(page["dest"], "w")
-f.write(myfooter+myheader+body+myfooter)
+f.write(myfooter + myheader + body + myfooter)
 f.close()
 

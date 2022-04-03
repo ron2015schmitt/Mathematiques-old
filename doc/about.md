@@ -1,5 +1,5 @@
 
-| ⇦ <br />[2-License](license.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />license   |
+| ⇦ <br />  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[2-License](license.md)   |
 | ----------- | ----------- | ----------- |
 
 
@@ -20,5 +20,5 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 The GNU gcc (g++) compiler is used by default.
 
-| ⇦ <br />[2-License](license.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />license   |
+| ⇦ <br />  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[2-License](license.md)   |
 | ----------- | ----------- | ----------- |

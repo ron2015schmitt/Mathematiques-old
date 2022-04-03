@@ -1,5 +1,5 @@
 
-| ⇦ <br />[9-Tests](test.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />test   |
+| ⇦ <br />[7-User Guide](user-guide.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
 | ----------- | ----------- | ----------- |
 
 
@@ -45,5 +45,5 @@ stop();
 ---------------------------------------------------------------------------
 To be written...
 
-| ⇦ <br />[9-Tests](test.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />test   |
+| ⇦ <br />[7-User Guide](user-guide.md)  | <br />[Table Of Contents](../README.md)<br /> <img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
 | ----------- | ----------- | ----------- |

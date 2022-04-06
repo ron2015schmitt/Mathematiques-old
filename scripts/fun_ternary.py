@@ -4,9 +4,9 @@ import os
 from string import Template
 
 myname = os.path.basename(__file__)
-fn_functor = "fun_ternary_functor.hpp"
-fn_functions = "fun_ternary_functions.hpp"
-fn_output = "fun_ternary_AUTO.h"
+fn_functor = "../include-templates/fun_ternary_functor.hpp"
+fn_functions = "../include-templates/fun_ternary_functions.hpp"
+fn_output = "../include/fun_ternary_AUTO.h"
 namespace = "mathq"
 
 

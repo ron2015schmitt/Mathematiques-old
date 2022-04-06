@@ -39,10 +39,11 @@
 #endif
 
 
-// this is created by the makefile and placed in '[exec]_opt.cpp' for
-// any executable the is compiled
-// it contains the $(OPTIMIZE) flag with all the compile optimization options
-  extern char COMPILE_OPTIMIZE[];
+#ifdef MATHQ_COPTS
+  // it contains the $(OPTIMIZE) flag with all the compile optimization options
+  // it is appended to each cpp file during compilation, if MATHQ_COPTS is enabled
+  extern char COMPILER_OPT_STR[];
+#endif
 
 
 namespace display {

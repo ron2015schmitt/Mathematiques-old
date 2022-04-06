@@ -1353,8 +1353,10 @@ namespace display {
     print_debug_level();
     mout << createStyle(BOLD).apply("  C++ version: ");
     mout << createStyle(CYAN).apply(printf2str("%lu",__cplusplus)) << endl;
-    mout << createStyle(BOLD).apply("  OPTIMIZE: ");
-    mout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
+#ifdef MATHQ_COPTS
+    mout << createStyle(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
+    mout << createStyle(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
+#endif
     mout << StyledString::get(HORLINE);
       
   }

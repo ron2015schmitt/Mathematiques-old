@@ -4,10 +4,10 @@ import os
 from string import Template
 
 myname = os.path.basename(__file__)
-fn_op_functor = "fun_binary_op_functor.hpp"
-fn_functor = "fun_binary_functor.hpp"
-fn_functions = "fun_binary_functions.hpp"
-fn_output = "fun_binary_AUTO.h"
+fn_op_functor = "../include-templates/fun_binary_op_functor.hpp"
+fn_functor = "../include-templates/fun_binary_functor.hpp"
+fn_functions = "../include-templates/fun_binary_functions.hpp"
+fn_output = "../include/fun_binary_AUTO.h"
 namespace = "mathq"
 
 ops = [

@@ -6,9 +6,6 @@
 
 
 
-
-
-
 namespace display {
   
   const char blankline[] = "                                                                               \n";

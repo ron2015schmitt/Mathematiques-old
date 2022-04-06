@@ -1,10 +1,12 @@
+v3.4.0
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
-# The Makefile will tack on a revision string (eg 2.1-r1) for commits between changes.
-VERSION_MATHQ=3.2
+# The Makefile will tack on a revision string (eg 2.1.21) for commits between changes.
+export VERSION_MATHQ=3.4
+# V3.3  refactoring of configure, make, and docs
 # V3.2  added IdentityMatrix, ConstDiagMatrix
 # V3.1  added ZeroMatrix
 # V3.0  refactoring/restructuring complete to allow nested tensors

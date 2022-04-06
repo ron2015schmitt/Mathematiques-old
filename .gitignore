@@ -1,14 +1,7 @@
 # specific files for this project
-Makefile.pristine.mk
 run
-
-/Makefile
-/benchmark/Makefile
-/examples/Makefile
-/sandbox/Makefile
-/test/Makefile
-/test/create/Makefile
-
+make-lib/dirmathq.mk
+/scripts/__pycache__/
 
 # -------------C++ output files--------------
 

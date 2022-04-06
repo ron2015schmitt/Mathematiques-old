@@ -60,7 +60,7 @@ endef
 ###########################################################
 
 #.PHONY: default
-default: clean
+default: all
 
 #prevent any default rules from being used
 #.SUFFIXES:
@@ -77,7 +77,7 @@ toc.md: toc.txt createtoc.py
 	python3 createpage.py $*
 
 all: 
-	make $(CHAPTERS)
+	make -j $(CHAPTERS)
 
 clean:
 	rm -f *.md toc.json

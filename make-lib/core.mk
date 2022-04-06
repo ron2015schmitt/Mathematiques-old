@@ -3,16 +3,17 @@ PWD = $(shell pwd)
 
 
 ###############################################################
-# ITEMS SPECIFIC TO MATHQ FILES and DIRS
+# ITEMS SPECIFIC TO MATHQ FILES and DIRS and required libs
 ###############################################################
 
 MAKEDIR_MATHQ := $(DIR_MATHQ)/make-lib
 INCDIR_MATHQ := $(DIR_MATHQ)/include
 LIBDIR_MATHQ := $(DIR_MATHQ)/lib
-LIB_LAPACK = -llapack -lg2c
+LIB_LAPACK := -llapack -lg2c
 LIB_MATHQ := -lmathq
-INCLUDES += -I $(INCDIR_MATHQ) 
-LIBS += -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
+
+INCLUDES := -I $(INCDIR_MATHQ) 
+LIBS := -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 
 
 
@@ -27,7 +28,7 @@ default: all
 .SUFFIXES:
 
 # don't delete .o files after compilation
-.PRECIOUS: %.o %_opts.cpp
+.PRECIOUS: %.o 
 
 EXEC ?=
 

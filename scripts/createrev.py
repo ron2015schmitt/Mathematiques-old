@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import inspect
+import sys
 import os, os.path
 from colorama import init, Fore, Back, Style
 
@@ -8,7 +9,12 @@ import bashutil
 
 init()
 
-# TOOD: move these to a separate file
+# TODO: check number or args = 4 and give usage
+# python3 createrev.py VERSION_FILE_MATHQ TAG_FILE_MATHQ TAG_ANNOTATION_FILE
+
+VERSION_FILE_MATHQ = sys.argv[1]   # input
+TAG_FILE_MATHQ = sys.argv[2]       # output
+TAG_ANNOTATION_FILE = sys.argv[3]  # output
 
 
 # get DIR_MATHQ, the top-level dir for this repo
@@ -19,8 +25,6 @@ split.pop()
 DIR_MATHQ = "/".join(split)
 # print(DIR_MATHQ)
 
-# set the rest of the directories and files
-VERSION_FILE_MATHQ = DIR_MATHQ + "/versioning/version.mathq"
 
 # get the most recent tag
 print("  reading from: "+VERSION_FILE_MATHQ)
@@ -28,7 +32,6 @@ env = bashutil.source(VERSION_FILE_MATHQ)
 VERSION_MATHQ = env["VERSION_MATHQ"]
 # print(VERSION_MATHQ)
 
-TAG_FILE_MATHQ = DIR_MATHQ + "/versioning/tag.mathq"
 print("  reading from: "+TAG_FILE_MATHQ)
 f = open(TAG_FILE_MATHQ, 'r')
 TAG_MATHQ = f.read().strip()
@@ -37,7 +40,6 @@ f.close()
 
 # create a new tag
 TAG_NEW = "v" + VERSION_MATHQ
-# TAG_NEW = 'v3.3'
 print("  loading git tags for: "+TAG_NEW)
 VERSIONS_STR = bashutil.getstdout('git tag -l "{}.*" | cat'.format(TAG_NEW))
 VERSIONS = VERSIONS_STR.split("\n")
@@ -61,7 +63,6 @@ f = open(VERSION_FILE_MATHQ, 'r')
 version_file_contents = f.read()
 f.close()
 
-TAG_ANNOTATION_FILE = DIR_MATHQ + "/versioning/tag.annotation.mathq"
 print("  writing to: "+TAG_ANNOTATION_FILE)
 f = open(TAG_ANNOTATION_FILE, "w")
 doc = FULL_TAG + "\n" + version_file_contents

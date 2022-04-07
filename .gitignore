@@ -3,6 +3,17 @@
 /make-lib/dirmathq.mk
 /scripts/__pycache__/
 
+/benchmark/benchmark
+
+/test/Recurse
+/test/ScalarTest
+/test/ScalarTestComplex
+/test/misctest
+/test/mtest
+/test/ttest
+/test/vtest
+
+/examples/example
 
 # -------------C++ output files--------------
 

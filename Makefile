@@ -28,25 +28,27 @@ example: FORCE
 test: FORCE
 	cd $(DIR_MATHQ)/test && make -j all
 
+benchmark: FORCE
+	cd $(DIR_MATHQ)/benchmark && make -j all
+
 doc: FORCE
 	cd $(DIR_MATHQ)/doc && make -j all
 
 
 
 # TODO: add in doc and others
-all: newrev incl src example test
+all: newrev incl src example test benchmark
 
 #############################################################
 # cleaning
 #############################################################
 
 clean: cleanstd 
-#	\cd $(DIR_MATHQ)/benchmark && make -j clean 
 	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/examples && make -j clean
 	\cd $(DIR_MATHQ)/include && make -j clean 
 	\cd $(DIR_MATHQ)/src && make -j clean
-#	\cd $(DIR_MATHQ)/sandbox && make -j clean
+	\cd $(DIR_MATHQ)/benchmark && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
 
 cleanall: clean

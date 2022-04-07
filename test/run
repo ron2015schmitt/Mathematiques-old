@@ -1,0 +1,2 @@
+#!/bin/bash
+./misctest  && ./Recurse  && ./ScalarTest  && ./ScalarTestComplex  && ./vtest  && ./mtest  && ./ttest  && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"

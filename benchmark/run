@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./benchmark && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"

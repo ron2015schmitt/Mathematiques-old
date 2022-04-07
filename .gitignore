@@ -1,7 +1,8 @@
 # specific files for this project
-run
-make-lib/dirmathq.mk
+/examples/Makefile
+/make-lib/dirmathq.mk
 /scripts/__pycache__/
+
 
 # -------------C++ output files--------------
 

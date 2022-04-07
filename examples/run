@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source ../scripts/colors.bash || exit 1
+
+./example  && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"
+

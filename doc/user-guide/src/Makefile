@@ -13,7 +13,7 @@ DOC = $(addsuffix .md,$(EXEC))
 include ../Makefile
 
 define placeversion
-TAG=`cat $(TAG_FILE_MATHQ)` && echo -e " "$(BLUE)"VERSION_MATHQ"$(DEFCLR)"="$${TAG} && sed -i "s/__VERSION_MATHQ__/$${TAG}/g"  README.md
+TAG=`cat $(TAG_FILE_MATHQ)` && echo -e " "$(BLUE)"COMPATIBLE_VERSION_MATHQ"$(DEFCLR)"="$${TAG} && sed -i "s/__VERSION_MATHQ__/$${TAG}/g"  README.md
 endef
 
 doc:  $(DOC)

@@ -1,6 +1,7 @@
 ###########################################################
-#      Full Informative Dump (This is default)
+#      Full Informative Dump 
 ###########################################################
+
 
 info:
 	@echo
@@ -28,8 +29,10 @@ info:
 	@$(call echovar,LIBDIR_MATHQ)
 	@$(call echovar,LIB_MATHQ)
 	@$(call echovar,LIB_LAPACK)
-	@$(call echovar,VERSION_FILE_MATHQ)
-	@$(call echovar,VERSION_MATHQ)
+ifdef COMPATIBLE_VERSION_MATHQ_FILE
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
+endif
 	@$(call echovar,TAG_MATHQ)
 	@$(call hr)
 	@echo
@@ -193,7 +196,7 @@ endef
 
 
 export OPTSHELP
-help-opts:
+help-g++:
 	@echo "$${OPTSHELP}"
 
 

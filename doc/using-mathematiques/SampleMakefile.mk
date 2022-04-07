@@ -350,9 +350,9 @@ LIB_MATHQ = -lmathq
 INCLUDES += -I $(INCDIR_MATHQ) 
 LIBS += -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 
-#  VERSION_FILE_MATHQ should be a bash file with VERSION_MATHQ=X.X
-VERSION_FILE_MATHQ = $(DIR_MATHQ)/files/version.mathq
-VERSION_MATHQ = `. $(VERSION_FILE_MATHQ) && echo "$${VERSION_MATHQ}"`
+#  COMPATIBLE_VERSION_MATHQ_FILE should be a bash file with COMPATIBLE_VERSION_MATHQ=X.X
+COMPATIBLE_VERSION_MATHQ_FILE = $(DIR_MATHQ)/files/version.mathq
+COMPATIBLE_VERSION_MATHQ = `. $(COMPATIBLE_VERSION_MATHQ_FILE) && echo "$${COMPATIBLE_VERSION_MATHQ}"`
 TAG_FILE_MATHQ = $(DIR_MATHQ)/files/tag.mathq
 TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
 VERSION_HEADER_FILE_MATHQ = $(DIR_MATHQ)/include/version_mathq.h
@@ -369,8 +369,8 @@ info_mathq:
 	@$(call echovar,LIBDIR_MATHQ)
 	@$(call echovar,LIB_MATHQ)
 	@$(call echovar,LIB_LAPACK)
-	@$(call echovar,VERSION_FILE_MATHQ)
-	@$(call echovar,VERSION_MATHQ)
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
 	@$(call echovar,TAG_MATHQ)
 	@$(call hr)
 	@echo

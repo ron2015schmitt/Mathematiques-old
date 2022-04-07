@@ -3,10 +3,21 @@ PWD = $(shell pwd)
 
 
 ###############################################################
-# ITEMS SPECIFIC TO MATHQ FILES and DIRS and required libs
+# ITEMS SPECIFIC TO MATHQ FILES and DIRS
 ###############################################################
 
+# static variables
 MAKEDIR_MATHQ := $(DIR_MATHQ)/make-lib
+TAG_FILE_MATHQ := $(DIR_MATHQ)/versioning/tag.mathq.out.txt
+
+# dynamic variables
+TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
+
+
+###############################################################
+# ITEMS SPECIFIC TO includes and libs
+###############################################################
+
 INCDIR_MATHQ := $(DIR_MATHQ)/include
 LIBDIR_MATHQ := $(DIR_MATHQ)/lib
 LIB_LAPACK := -llapack -lg2c
@@ -111,7 +122,4 @@ cleanstd: FORCE
 	@command rm -f core.*
 
 
-#############################################################################
-# User Code
-#############################################################################
 

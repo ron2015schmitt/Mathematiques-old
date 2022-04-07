@@ -10,13 +10,47 @@ fi
 
 source scripts/colors.bash || exit 1
 
-DIRMATHQ='make-lib/dirmathq.mk'
 
-cat > ${DIRMATHQ} << EOF 
+# Create file that contains the installation path
+
+DIR_MATHQ=${pwd}
+MAKEDIR=${DIR_MATHQ}/make-lib
+
+cat > ${MAKEDIR}/dirmathq.mk << EOF 
 # created by configure script
 # Do NOT store in git
-DIR_MATHQ := ${pwd}
+DIR_MATHQ := ${DIR_MATHQ}
 EOF
+
+
+# create Makefile for user in examples
+
+Makefile_example=${DIR_MATHQ}/examples/Makefile
+
+TAG_FILE_MATHQ=${DIR_MATHQ}/versioning/tag.mathq.out.txt
+TAG_MATHQ=`cat ${TAG_FILE_MATHQ}`
+
+
+cat > ${Makefile_example} << EOF 
+#######################################################################
+# Mathematiques ${TAG_MATHQ} User Code Makefile
+#
+# Copy this Makefile to your project directory
+#
+# `date`
+# This Makefile was created by ${DIR_MATHQ}/configure from
+#   ${MAKEDIR}/example.head.mk
+#   ${MAKEDIR}/core.mk
+#   ${MAKEDIR}/example.foot.mk
+#######################################################################
+
+DIR_MATHQ := ${DIR_MATHQ}
+
+EOF
+
+cat ${MAKEDIR}/example.head.mk >> ${Makefile_example}
+cat ${MAKEDIR}/core.mk >> ${Makefile_example}
+cat ${MAKEDIR}/example.foot.mk >> ${Makefile_example}
 
 
  

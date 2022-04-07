@@ -11,9 +11,9 @@ include make-lib/dirmathq.mk
 #############################################################
 
 newrev: FORCE
-	python3 $(DIR_MATHQ)/scripts/createrev.py $(VERSION_FILE_MATHQ) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
+	python3 $(DIR_MATHQ)/scripts/createrev.py $(COMPATIBLE_VERSION_MATHQ_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
 
-$(TAG_FILE_MATHQ): $(VERSION_FILE_MATHQ)
+$(TAG_FILE_MATHQ): $(COMPATIBLE_VERSION_MATHQ_FILE)
 	newrev
 
 incl: FORCE
@@ -23,13 +23,13 @@ doc: FORCE
 	cd $(DIR_MATHQ)/doc && make -j all
 
 example: FORCE
-	cd $(DIR_MATHQ)/example && make -j all
+	cd $(DIR_MATHQ)/examples && make -j all
 
 src: FORCE
 	cd $(DIR_MATHQ)/src && make -j all
 
 # TODO: add in doc and others
-all: newrev incl src 
+all: newrev incl src example
 
 #############################################################
 # cleaning
@@ -38,7 +38,7 @@ all: newrev incl src
 clean: cleanstd 
 #	\cd $(DIR_MATHQ)/benchmark && make -j clean 
 	\cd $(DIR_MATHQ)/doc && make -j clean 
-#	\cd $(DIR_MATHQ)/examples && make -j clean
+	\cd $(DIR_MATHQ)/examples && make -j clean
 	\cd $(DIR_MATHQ)/include && make -j clean 
 	\cd $(DIR_MATHQ)/src && make -j clean
 #	\cd $(DIR_MATHQ)/sandbox && make -j clean
@@ -53,6 +53,11 @@ cleanall: clean
 	\rm -f $(DIR_MATHQ)/*/*~
 	\rm -f $(DIR_MATHQ)/*/*.old
 	\rm -fr $(DIR_MATHQ)/lib
+
+# this is a quick test for broken builds
+run: 
+	\cd $(DIR_MATHQ)/examples && ./run
+
 
 #############################################################
 # git related 
@@ -97,16 +102,4 @@ git: all
 	  git push --tags origin `git branch --show-current` 
 	@fi
 
-.ONESHELL:
-test : FORCE 
-	TEST=hello
-	echo $${TEST}
-	echo $$$$  #PID
-	echo $$$$
-	if [[ $${TEST} == hello ]] 
-	then
-	echo "test is hello"
-	else
-	echo "test is not hello"
-	fi
 

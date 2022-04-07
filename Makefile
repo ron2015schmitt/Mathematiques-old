@@ -19,17 +19,22 @@ $(TAG_FILE_MATHQ): $(COMPATIBLE_VERSION_MATHQ_FILE)
 incl: FORCE
 	cd $(DIR_MATHQ)/include && make -j all
 
-doc: FORCE
-	cd $(DIR_MATHQ)/doc && make -j all
+src: FORCE
+	cd $(DIR_MATHQ)/src && make -j all
 
 example: FORCE
 	cd $(DIR_MATHQ)/examples && make -j all
 
-src: FORCE
-	cd $(DIR_MATHQ)/src && make -j all
+test: FORCE
+	cd $(DIR_MATHQ)/test && make -j all
+
+doc: FORCE
+	cd $(DIR_MATHQ)/doc && make -j all
+
+
 
 # TODO: add in doc and others
-all: newrev incl src example
+all: newrev incl src example test
 
 #############################################################
 # cleaning
@@ -42,8 +47,7 @@ clean: cleanstd
 	\cd $(DIR_MATHQ)/include && make -j clean 
 	\cd $(DIR_MATHQ)/src && make -j clean
 #	\cd $(DIR_MATHQ)/sandbox && make -j clean
-#	\cd $(DIR_MATHQ)/test && make -j clean
-#	\cd $(DIR_MATHQ)/test/create && make -j clean
+	\cd $(DIR_MATHQ)/test && make -j clean
 
 cleanall: clean
 	\rm -f $(DIR_MATHQ)/*~
@@ -57,6 +61,7 @@ cleanall: clean
 # this is a quick test for broken builds
 run: 
 	\cd $(DIR_MATHQ)/examples && ./run
+	\cd $(DIR_MATHQ)/test && ./run
 
 
 #############################################################

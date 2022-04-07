@@ -3,7 +3,8 @@ include $(DIR_MATHQ)/make-lib/colors.mk
 include $(DIR_MATHQ)/make-lib/core.mk
 include $(DIR_MATHQ)/make-lib/infohelp.mk
 
-EXEC += example
+EXEC += misctest Recurse ScalarTest ScalarTestComplex vtest mtest ttest
+
 
 all: $(EXEC)
 

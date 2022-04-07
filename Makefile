@@ -75,7 +75,7 @@ pull:
 
 
 .ONESHELL:
-git: all
+git: 
 	@echo
 	@git remote update origin
 	@if [[ $$(git fetch --dry-run) ]]
@@ -87,7 +87,6 @@ git: all
 	@fi
 	@git add $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
 	@git add $(VERSION_HEADER_FILE_MATHQ)
-	@git add -u
 	@echo
 	@git status 
 	@echo 
@@ -110,3 +109,4 @@ git: all
 	@fi
 
 
+gitall: all git

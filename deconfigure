@@ -12,12 +12,8 @@ source scripts/colors.bash || exit 1
 
 DIRMATHQ='make-lib/dirmathq.mk'
 
-if [ -f ${DIRMATHQ} ]; then
-    \make -j cleanall
-    \rm ${DIRMATHQ}
-else 
-    echo -e "Nothing to do. Exiting."
-fi
+\make -j cleanall
+\rm ${DIRMATHQ}
 
 
 

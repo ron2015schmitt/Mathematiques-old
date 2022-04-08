@@ -1,2 +1,2 @@
-#!/bin/bash
-./misctest  && ./Recurse  && ./ScalarTest  && ./ScalarTestComplex  && ./vtest  && ./mtest  && ./ttest  && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"
+# ****  This was created by the command "make createrun" and will be deleted upon "make cleanall" ******************
+./misctest  && ./Recurse  && ./ScalarTest  && ./ScalarTestComplex  && ./vtest  && ./mtest  && ./ttest  && echo -e "All executables ran succesfully"

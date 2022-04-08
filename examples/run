@@ -1,6 +1,2 @@
-#!/bin/bash
-
-source ../scripts/colors.bash || exit 1
-
-./example  && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"
-
+# ****  This was created by the command "make createrun" and will be deleted upon "make cleanall" ******************
+./example  && echo -e "All executables ran succesfully"

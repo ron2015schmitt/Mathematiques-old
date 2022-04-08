@@ -1,19 +1,18 @@
 # specific files for this project
-/examples/Makefile
 /make-lib/dirmathq.mk
+/examples/Makefile
 /scripts/__pycache__/
 
-/benchmark/benchmark
+# NOTE: that most of the subdirectories have .gitignore files as well
 
-/test/Recurse
-/test/ScalarTest
-/test/ScalarTestComplex
-/test/misctest
-/test/mtest
-/test/ttest
-/test/vtest
 
-/examples/example
+# temp files
+*.g++_copts
+*.tmp
+*.temp
+~*
+*~
+
 
 # -------------C++ output files--------------
 

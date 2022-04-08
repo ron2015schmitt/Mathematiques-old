@@ -66,18 +66,12 @@ CPPC = g++ -pipe --std=c++17
 
 EXTRAS := 
 ifdef MATHQ_DEBUG
-EXTRAS := -D"MATHQ_DEBUG"
+EXTRAS := -D "MATHQ_DEBUG=$(MATHQ_DEBUG)"
 endif
 
 %.o: %.cpp 
-ifdef MATHQ_COPTS
-	@\echo "#define MATHQ_COPTS 1" > $*.cpp__opts
-	@\echo "char COMPILER_OPT_STR[] = "\"$(OPTIMIZE)\";" >> $*.cpp__opts
-	@\cat $*.cpp >> $*.cpp__opts
-	$(CPPC) $(CFLAGS) $(EXTRAS) -D"MATHQ_COPTS" -c $*.cpp__opts -o $@
-else
+	@\echo -e "g++ compile options used:  $(OPTIMIZE)" > $*.g++_copts
 	$(CPPC) $(CFLAGS) $(EXTRAS) -c $*.cpp -o $@
-endif
 
 
 #############################################################################
@@ -114,12 +108,34 @@ cleanstd: FORCE
 	@command rm -f *.o
 	@command rm -f *.a
 	@command rm -f *.s
-	@command rm -f *.cpp__opts
-	@command rm -f *.temp
-	@command rm -f *.tmp
+	@command rm -f *.g++_copts
 	@command rm -f *.link_md
-	@command rm -f *~
 	@command rm -f core.*
 
+cleanall: FORCE
+	\rm -f run
+	@\rm -f *.temp
+	@\rm -f *.tmp
+	\rm -f *~
+	\rm -f ~*
+	\rm -f *.gz
+	\rm -f *.tar
+	\rm -f *.old
 
+
+rebuild: 
+	@\cd $(DIR_MATHQ) && make cleanall && ./reconfigure && make all
+
+createrun: 
+	@$(DIR_MATHQ)/scripts/createrun.bash $(EXEC)
+
+.ONESHELL:
+gitignore: 
+	@\echo -e '# ****  This was created by the command "make gitignore".' > .gitignore
+	@\echo -e '# ****  Do NOT manually edit.' >> .gitignore
+	@\echo -e "/run" >> .gitignore
+	@for name in $(EXEC)
+	@do
+	@  \printf "/$${name}\n" >> .gitignore
+	@done
 

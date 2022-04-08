@@ -1,3 +1,2 @@
-#!/bin/bash
-# ****  THIS WAS CREATED DURING  CONFIGURATION ******************
-./printing  && ./testing  && ./testing2  && ./tfoverloading  && ./depth  && ./indexing  && ./imaginary  && ./enableexperiment  && ./selfmethod  && ./parmpack  && ./recurseadd  && ./testunary  && ./testunary2  && ./testunary3  && ./test4deep  && ./insideout  && ./typeinfo  && ./testbinary  && ./testrelops  && ./testternary  && ./testjoin  && ./classes  && ./specialmats  && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"
+# ****  This was created by the command "make createrun" and will be deleted upon "make cleanall" ******************
+./printing  && ./testing  && ./testing2  && ./tfoverloading  && ./depth  && ./indexing  && ./imaginary  && ./enableexperiment  && ./selfmethod  && ./parmpack  && ./recurseadd  && ./testunary  && ./testunary2  && ./testunary3  && ./test4deep  && ./insideout  && ./typeinfo  && ./testbinary  && ./testrelops  && ./testternary  && ./testjoin  && ./classes  && ./specialmats  && echo -e "All executables ran succesfully"

@@ -1,3 +1,2 @@
-#!/bin/bash
-
-./benchmark && echo -e "\033[38;5;18mAll executables ran succesfully\033[0;39m"
+# ****  This was created by the command "make createrun" and will be deleted upon "make cleanall" ******************
+./benchmark  && echo -e "All executables ran succesfully"

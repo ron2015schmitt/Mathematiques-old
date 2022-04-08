@@ -11,60 +11,64 @@ include make-lib/dirmathq.mk
 #############################################################
 
 newrev: FORCE
-	python3 $(DIR_MATHQ)/scripts/createrev.py $(COMPATIBLE_VERSION_MATHQ_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
+	\python3 $(DIR_MATHQ)/scripts/createrev.py $(COMPATIBLE_VERSION_MATHQ_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
 
 $(TAG_FILE_MATHQ): $(COMPATIBLE_VERSION_MATHQ_FILE)
 	newrev
 
 incl: FORCE
-	cd $(DIR_MATHQ)/include && make -j all
+	\cd $(DIR_MATHQ)/include && make -j all
 
 src: FORCE
-	cd $(DIR_MATHQ)/src && make -j all
+	\cd $(DIR_MATHQ)/src && make -j all
 
 example: FORCE
-	cd $(DIR_MATHQ)/examples && make -j all
+	\cd $(DIR_MATHQ)/examples && make -j all createrun gitignore
 
 test: FORCE
-	cd $(DIR_MATHQ)/test && make -j all
+	\cd $(DIR_MATHQ)/test && make -j all createrun gitignore
 
 benchmark: FORCE
-	cd $(DIR_MATHQ)/benchmark && make -j all
+	\cd $(DIR_MATHQ)/benchmark && make -j all createrun gitignore
 
 doc: FORCE
-	cd $(DIR_MATHQ)/doc && make -j all
+	\cd $(DIR_MATHQ)/doc && make -j all 
 
+sandbox: FORCE
+	\cd $(DIR_MATHQ)/sandbox && make -j all createrun gitignore
 
 
 # TODO: add in doc and others
-all: newrev incl src example test benchmark
+all: newrev incl src example test benchmark sandbox doc
 
 #############################################################
 # cleaning
 #############################################################
 
 clean: cleanstd 
+	\cd $(DIR_MATHQ)/benchmark && make -j clean
 	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/examples && make -j clean
 	\cd $(DIR_MATHQ)/include && make -j clean 
+	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/src && make -j clean
-	\cd $(DIR_MATHQ)/benchmark && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
 
 cleanall: clean
-	\rm -f $(DIR_MATHQ)/*~
-	\rm -f $(DIR_MATHQ)/*.gz
-	\rm -f $(DIR_MATHQ)/*.tar
-	\rm -f $(DIR_MATHQ)/*.old
-	\rm -f $(DIR_MATHQ)/*/*~
-	\rm -f $(DIR_MATHQ)/*/*.old
-	\rm -fr $(DIR_MATHQ)/lib
+	\cd $(DIR_MATHQ)/benchmark && make -j cleanall
+	\cd $(DIR_MATHQ)/doc && make -j cleanall
+	\cd $(DIR_MATHQ)/examples && make -j cleanall
+	\cd $(DIR_MATHQ)/include && make -j cleanall
+	\cd $(DIR_MATHQ)/sandbox && make -j cleanall
+	\cd $(DIR_MATHQ)/src && make -j cleanall
+	\cd $(DIR_MATHQ)/test && make -j cleanall
 
 # this is a quick test for broken builds
 run: 
 	\cd $(DIR_MATHQ)/examples && ./run
 	\cd $(DIR_MATHQ)/test && ./run
-
+	\cd $(DIR_MATHQ)/benchmark && ./run
+	\cd $(DIR_MATHQ)/sandbox && ./run
 
 #############################################################
 # git related 

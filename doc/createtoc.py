@@ -87,7 +87,7 @@ top = """
 
 # Mathématiques {}
 
-_The documentation is currently being updating.  The full documenation will be released as part of v3.4_
+_The documentation is currently being updating.  The full documentation will be released as part of v3.4_
 
 ----
 

@@ -4,7 +4,7 @@ Examples | examples
 Features and Release Notes | release-notes
 Installation | installation
 Using Mathématiques | using-mathematiques
-User Guide | user-guide
+User Guide | coding-guide
 Benchmarks | benchmarks
 Tests | test
 New Feature Schedule | feature-schedule

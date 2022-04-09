@@ -78,36 +78,56 @@ with open('toc.json', 'w') as f:
     json.dump(pages, f,  indent=2)
 
 
+
+#############################################################
 # create README.md
-header = """
+#############################################################
+
+top = """
 
 # Mathématiques {}
 
-""".format(tag)
+_The documentation is currently incomplete but wil be updated soon._
 
-
-toc1 = """
 -------------------------
 
 # Table of Contents
 
-""".format()
+""".format(tag)
 
 
-toc2 = ""
+toc = ""
 for name in pages:
     page = pages[name]
-    toc2 += str(page["index"]) + ". " + page["toplink"] + "\n"
+    toc += str(page["index"]) + ". " + page["toplink"] + "\n"
 
 footer = ''
 
+
+# write TOC to README.md
+
 f = open("README.md", "w")
-f.write(header + toc1 + toc2 + footer)
+f.write(top + toc)
 f.close()
 
 
-toc2 = ""
-for name in pages:
-    page = pages[name]
-    toc2 += str(page["index"]) + ". " + page["link"] + "\n"
+#############################################################
+# create header.md
+#############################################################
+
+header = """
+<details>
+  <summary>Table of Contents</summary>
+""" + toc + """
+</details>
+"""
+
+# write TOC to header.md
+
+f = open("header.md", "w")
+f.write(header)
+f.close()
+
+
+
 

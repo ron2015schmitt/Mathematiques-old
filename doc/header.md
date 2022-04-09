@@ -1,13 +1,6 @@
 
-
-# Mathématiques v3.3.7
-
-_The documentation is currently incomplete but wil be updated soon._
-
--------------------------
-
-# Table of Contents
-
+<details>
+  <summary>Table of Contents</summary>
 1. [About](doc/about.md)
 2. [License](doc/license.md)
 3. [Examples](doc/examples.md)
@@ -19,3 +12,5 @@ _The documentation is currently incomplete but wil be updated soon._
 9. [Tests](doc/test.md)
 10. [New Feature Schedule](doc/feature-schedule.md)
 11. [Developer Guide](doc/developer-guide.md)
+
+</details>

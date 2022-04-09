@@ -75,18 +75,18 @@
     "toplink": "[Using Math\u00e9matiques](doc/using-mathematiques.md)",
     "numlink": "[6-Using Math\u00e9matiques](using-mathematiques.md)",
     "prev": "installation",
-    "next": "user-guide"
+    "next": "coding-guide"
   },
-  "user-guide": {
+  "coding-guide": {
     "index": 7,
-    "name": "user-guide",
+    "name": "coding-guide",
     "title": "User Guide",
     "numtitle": "7-User Guide",
-    "src": "user-guide/template.md",
-    "dest": "user-guide.md",
-    "link": "[User Guide](user-guide.md)",
-    "toplink": "[User Guide](doc/user-guide.md)",
-    "numlink": "[7-User Guide](user-guide.md)",
+    "src": "coding-guide/template.md",
+    "dest": "coding-guide.md",
+    "link": "[User Guide](coding-guide.md)",
+    "toplink": "[User Guide](doc/coding-guide.md)",
+    "numlink": "[7-User Guide](coding-guide.md)",
     "prev": "using-mathematiques",
     "next": "benchmarks"
   },
@@ -100,7 +100,7 @@
     "link": "[Benchmarks](benchmarks.md)",
     "toplink": "[Benchmarks](doc/benchmarks.md)",
     "numlink": "[8-Benchmarks](benchmarks.md)",
-    "prev": "user-guide",
+    "prev": "coding-guide",
     "next": "test"
   },
   "test": {

@@ -4,7 +4,7 @@ include $(DIR_MATHQ)/make-lib/core.mk
 include $(DIR_MATHQ)/make-lib/infohelp.mk
 
 
-CHAPTERS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-schedule.md  installation.md  license.md  release-notes.md  test.md  user-guide.md  using-mathematiques.md
+CHAPTERS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-schedule.md  installation.md  license.md  release-notes.md  test.md  coding-guide.md  using-mathematiques.md
 
 
 

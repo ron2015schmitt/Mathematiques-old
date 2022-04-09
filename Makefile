@@ -79,7 +79,7 @@ pull:
 
 
 .ONESHELL:
-git: 
+git: newrev
 	@echo
 	@git remote update origin
 	@if [[ $$(git fetch --dry-run) ]]

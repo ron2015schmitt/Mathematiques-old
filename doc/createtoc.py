@@ -87,9 +87,9 @@ top = """
 
 # Mathématiques {}
 
-_The documentation is currently incomplete but wil be updated soon._
+_The documentation is currently being updating.  The full documenation will be released as part of v3.4_
 
--------------------------
+----
 
 # Table of Contents
 
@@ -99,7 +99,7 @@ _The documentation is currently incomplete but wil be updated soon._
 toc = ""
 for name in pages:
     page = pages[name]
-    toc += str(page["index"]) + ". " + page["toplink"] + "\n"
+    toc += str(page["index"]) + ". " + page["link"] + "\n"
 
 footer = ''
 

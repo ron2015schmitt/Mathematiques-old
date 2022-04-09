@@ -1,6 +1,10 @@
 
+<!-- Make sure you have an empty line after the closing </summary> tag, otherwise the markdown/code blocks won't show correctly -->
+<!-- Make sure you have an empty line after the closing </details> tag if you have multiple collapsible sections.-->
+
 <details>
   <summary>Table of Contents</summary>
+
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)

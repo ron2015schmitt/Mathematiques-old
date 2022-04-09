@@ -31,7 +31,7 @@ with open('toc.json') as f:
 
 
 links = """
-| ⇦ <br />{}  | [Table Of Contents](toc.md)<br />{}<br /><img width=1000/> | ⇨ <br />{}   |
+| ⇦ <br />{}  | [Table Of Contents](README.md)<br />{}<br /><img width=1000/> | ⇨ <br />{}   |
 | ----------- | ----------- | ----------- |
 """
 
@@ -73,11 +73,11 @@ links = links.format(prevpage, page["numtitle"], nextpage)
 # print(body)
 # print(links)
 f = open(page["dest"], "w")
-doc = header + title + body + links
+doc = header + title + body
 nlines = len(body.splitlines())
 #print(nlines)
-if nlines > 20: 
-    doc += links
+#if nlines > 20: 
+doc += links
 f.write(doc)
 f.close()
 

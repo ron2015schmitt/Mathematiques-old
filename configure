@@ -8,7 +8,7 @@ if [ "${pwd}" != "${mydir}" ]; then
     exit -1
 fi
 
-source scripts/colors.bash || exit 1
+source scripts/style.bash || exit 1
 
 
 # Create file that contains the installation path

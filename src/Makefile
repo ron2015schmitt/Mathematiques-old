@@ -1,6 +1,6 @@
 include ../make-lib/dirmathq.mk
 -include $(DIR_MATHQ)/make-lib/variables.mk
--include $(DIR_MATHQ)/make-lib/colors.mk
+-include $(DIR_MATHQ)/make-lib/style.mk
 -include $(DIR_MATHQ)/make-lib/core.mk
 -include $(DIR_MATHQ)/make-lib/infohelp.mk
 

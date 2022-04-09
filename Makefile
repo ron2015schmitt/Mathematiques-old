@@ -1,6 +1,6 @@
 include make-lib/dirmathq.mk
 -include $(DIR_MATHQ)/make-lib/variables.mk
--include $(DIR_MATHQ)/make-lib/colors.mk
+-include $(DIR_MATHQ)/make-lib/style.mk
 -include $(DIR_MATHQ)/make-lib/core.mk
 -include $(DIR_MATHQ)/make-lib/infohelp.mk
 
@@ -54,7 +54,7 @@ clean: cleanstd
 	\cd $(DIR_MATHQ)/src && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
 
-cleanall: clean
+purge: 
 	\cd $(DIR_MATHQ)/benchmark && make -j cleanall
 	\cd $(DIR_MATHQ)/doc && make -j cleanall
 	\cd $(DIR_MATHQ)/examples && make -j cleanall
@@ -96,8 +96,9 @@ git:
 	@echo 
 	@echo "THE FOLLOWING COMMANDS WILL BE EXECUTED:"
 	@echo -e "git commit"
-	@echo -e "git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim $$(tput setaf $(Blue))$$(tput bold)`cat $(TAG_FILE_MATHQ)`$$(tput sgr 0)"
-	@echo -e "git push --tags origin $$(tput setaf $(Blue))$$(tput bold)`git branch --show-current`$$(tput sgr 0)"
+# need to be really careful with how we use colro and bold here to get it to work	
+	@echo -e "git tag --file=$(TAG_ANNOTATION_FILE) --cleanup verbatim "$(BLUE)$(BOLD)`cat $(TAG_FILE_MATHQ)`$(DEFCLR)$(NORMAL)
+	@echo -e "git push --tags origin "$(BLUE)$(BOLD)`git branch --show-current`$(DEFCLR)$(NORMAL)
 	@
 	@prompt="Would you like to commit these changes and push to githib [y/N]? "
 	@read -r -p "$${prompt}" response
@@ -114,3 +115,5 @@ git:
 
 
 gitall: all git
+
+

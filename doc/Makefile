@@ -30,8 +30,8 @@ MAGNETALIGHT  :='\033[0;95m'
 CYANLIGHT  :='\033[0;96m'
 WHITE  :='\033[0;97m'
 
-BOLDON:='\e[0;1m'
-BOLDOFF:='\e[0;0m'
+BOLD:='\e[0;1m'
+BOLD_OFF:='\e[0;0m'
 
 UNDERLINEON:='\e[0;4m'
 UNDERLINEOFF:='\e[0;0m'
@@ -42,7 +42,7 @@ where-am-i = $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 THIS_MAKEFILE := $(call where-am-i)
 
 define echovar
- echo -e $(BOLDON)"${1}"$(BOLDOFF)" = ${${1}}"
+ echo -e $(BOLD)"${1}"$(BOLD_OFF)" = ${${1}}"
 endef
 
 define title
@@ -50,7 +50,7 @@ define title
 endef
 
 define hr
- echo -e $(BOLDON)"-------------------------------------------------------------------------------"$(BOLDOFF)
+ echo -e $(BOLD)"-------------------------------------------------------------------------------"$(BOLD_OFF)
 endef
 
 

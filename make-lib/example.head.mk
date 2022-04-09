@@ -1,4 +1,4 @@
-include $(DIR_MATHQ)/make-lib/colors.mk
+include $(DIR_MATHQ)/make-lib/style.mk
 
 
 

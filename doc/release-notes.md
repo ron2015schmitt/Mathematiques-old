@@ -1,6 +1,9 @@
 
+
 <details>
+
   <summary>Table of Contents</summary>
+
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)
@@ -13,7 +16,9 @@
 10. [New Feature Schedule](feature-schedule.md)
 11. [Developer Guide](developer-guide.md)
 
+
 </details>
+
 
 
 
@@ -72,8 +77,5 @@
   + Python unit test generation in progress
   + CI/CT using Docker images in progress
 
-| ⇦ <br />[3-Examples](examples.md)  | [Table Of Contents](toc.md)<br />4-Features and Release Notes<br /><img width=1000/> | ⇨ <br />[5-Installation](installation.md)   |
-| ----------- | ----------- | ----------- |
-
-| ⇦ <br />[3-Examples](examples.md)  | [Table Of Contents](toc.md)<br />4-Features and Release Notes<br /><img width=1000/> | ⇨ <br />[5-Installation](installation.md)   |
+| ⇦ <br />[3-Examples](examples.md)  | [Table Of Contents](README.md)<br />4-Features and Release Notes<br /><img width=1000/> | ⇨ <br />[5-Installation](installation.md)   |
 | ----------- | ----------- | ----------- |

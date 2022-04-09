@@ -1,8 +1,7 @@
 
-<!-- Make sure you have an empty line after the closing </summary> tag, otherwise the markdown/code blocks won't show correctly -->
-<!-- Make sure you have an empty line after the closing </details> tag if you have multiple collapsible sections.-->
 
 <details>
+
   <summary>Table of Contents</summary>
 
 1. [About](about.md)
@@ -17,4 +16,6 @@
 10. [New Feature Schedule](feature-schedule.md)
 11. [Developer Guide](developer-guide.md)
 
+
 </details>
+

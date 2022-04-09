@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.3.7
+# Mathématiques v3.3.9
 
 
 ## Description 
@@ -15,9 +15,9 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 + Performance comparable to C and Fortran
 
 ### Math
-+ Imaginary type
 + Mixed-type math with auto-promotion
-  + eg. Imaginary<double> + <double> -> auto-promotes to a std::complex<double>
++ Imaginary type
+  + Imaginary<double> + <double> auto-promotes to a std::complex<double>
 + Linear algebra
   + inner products
   + outer products
@@ -70,10 +70,6 @@ The first step of refactoring the core code has been completed.
   + More matrix types
   + covariant and contravariant tensors
   + curvilinear coordinate systems
-
-
-## Example
-
 
 
 ## Documentation

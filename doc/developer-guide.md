@@ -1,6 +1,9 @@
 
+
 <details>
+
   <summary>Table of Contents</summary>
+
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)
@@ -13,7 +16,9 @@
 10. [New Feature Schedule](feature-schedule.md)
 11. [Developer Guide](developer-guide.md)
 
+
 </details>
+
 
 
 
@@ -53,8 +58,5 @@ When adding or removing chapters in the main TOC
 + edit the `CHAPTERS` variable in `doc/Makefile`
 + edit the `doc/toc.txt`
 
-| ⇦ <br />[10-New Feature Schedule](feature-schedule.md)  | [Table Of Contents](toc.md)<br />11-Developer Guide<br /><img width=1000/> | ⇨ <br />   |
-| ----------- | ----------- | ----------- |
-
-| ⇦ <br />[10-New Feature Schedule](feature-schedule.md)  | [Table Of Contents](toc.md)<br />11-Developer Guide<br /><img width=1000/> | ⇨ <br />   |
+| ⇦ <br />[10-New Feature Schedule](feature-schedule.md)  | [Table Of Contents](README.md)<br />11-Developer Guide<br /><img width=1000/> | ⇨ <br />   |
 | ----------- | ----------- | ----------- |

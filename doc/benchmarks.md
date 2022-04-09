@@ -1,6 +1,9 @@
 
+
 <details>
+
   <summary>Table of Contents</summary>
+
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)
@@ -13,7 +16,9 @@
 10. [New Feature Schedule](feature-schedule.md)
 11. [Developer Guide](developer-guide.md)
 
+
 </details>
+
 
 
 
@@ -55,8 +60,5 @@ stop();
 ---------------------------------------------------------------------------
 To be written...
 
-| ⇦ <br />[7-User Guide](coding-guide.md)  | [Table Of Contents](toc.md)<br />8-Benchmarks<br /><img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
-| ----------- | ----------- | ----------- |
-
-| ⇦ <br />[7-User Guide](coding-guide.md)  | [Table Of Contents](toc.md)<br />8-Benchmarks<br /><img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
+| ⇦ <br />[7-User Guide](coding-guide.md)  | [Table Of Contents](README.md)<br />8-Benchmarks<br /><img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
 | ----------- | ----------- | ----------- |

@@ -116,10 +116,15 @@ f.close()
 #############################################################
 
 header = """
+
 <details>
+
   <summary>Table of Contents</summary>
+
 """ + toc + """
+
 </details>
+
 """
 
 # write TOC to header.md

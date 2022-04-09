@@ -1,6 +1,9 @@
 
+
 <details>
+
   <summary>Table of Contents</summary>
+
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)
@@ -13,7 +16,9 @@
 10. [New Feature Schedule](feature-schedule.md)
 11. [Developer Guide](developer-guide.md)
 
+
 </details>
+
 
 
 
@@ -30,5 +35,5 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 The GNU gcc (g++) compiler is used by default.
 
-| ⇦ <br />  | [Table Of Contents](toc.md)<br />1-About<br /><img width=1000/> | ⇨ <br />[2-License](license.md)   |
+| ⇦ <br />  | [Table Of Contents](README.md)<br />1-About<br /><img width=1000/> | ⇨ <br />[2-License](license.md)   |
 | ----------- | ----------- | ----------- |

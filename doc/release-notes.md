@@ -3,7 +3,11 @@
 <details>
 
   <summary>Table of Contents</summary>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 1f57cf18c4ca0e79bace8991b476c6b35101a6f7
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)

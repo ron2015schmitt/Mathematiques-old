@@ -38,7 +38,7 @@ sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all createrun gitignore
 
 
-# TODO: add in doc and others
+
 all: newrev incl src example test benchmark sandbox doc
 
 #############################################################

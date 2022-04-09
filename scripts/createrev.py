@@ -9,8 +9,15 @@ import bashutil
 
 init()
 
-# TODO: check number or args = 4 and give usage
-# python3 createrev.py COMPATIBLE_VERSION_MATHQ_FILE TAG_FILE_MATHQ TAG_ANNOTATION_FILE
+usage="""
+USAGE: python3 createrev.py COMPATIBLE_VERSION_MATHQ_FILE TAG_FILE_MATHQ TAG_ANNOTATION_FILE
+"""
+
+n = len(sys.argv)
+if n != 4:
+    print("Invalid number of command line arguments ({})\n".format(n) + usage)
+    sys.exit(1)
+
 
 COMPATIBLE_VERSION_MATHQ_FILE = sys.argv[1]   # input
 TAG_FILE_MATHQ = sys.argv[2]       # output

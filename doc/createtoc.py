@@ -8,19 +8,20 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
 
 usage="""
-USAGE: python3 createtoc.py 
+USAGE: python3 createtoc.py TAG_FILE_MATHQ
 """
-#print(sys.argv[0])
-# print(type(sys.argv))
-# print(str(sys.argv))
-# for arg in sys.argv:
-#     print(arg)
-
 n = len(sys.argv)
-if n != 1:
+if n != 2: 
     print("Invalid number of command line arguments ({})\n".format(n) + usage)
     sys.exit(1)
 
+tag_file = sys.argv[1]
+lines = []
+with open(tag_file, 'r') as f:
+  for line in f:
+    lines.append(line.rstrip())
+f.close()
+tag = lines[0].strip()
 
 # read toc.txt
 # create array from toc.txt
@@ -80,9 +81,9 @@ with open('toc.json', 'w') as f:
 
 header = """
 
-# Mathématiques __VERSION_MATHQ__
+# Mathématiques {}
 
-""".format(today)
+""".format(tag)
 
 
 

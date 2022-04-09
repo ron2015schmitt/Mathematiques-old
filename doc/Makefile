@@ -1,82 +1,23 @@
-# 
-# ********  AUTOMATICALLY CREATED FILE AT CONFIGURATION **********
-# ********  THIS FILE SHOULD NOT BE STORED TO GIT       **********
+include ../make-lib/dirmathq.mk
+include $(DIR_MATHQ)/make-lib/style.mk
+include $(DIR_MATHQ)/make-lib/core.mk
+include $(DIR_MATHQ)/make-lib/infohelp.mk
 
-
-##################################################################
-#  files/Makefile                                                #
-##################################################################
-
-#SOME USEFUL DEFINITIONS
-SHELL:=/bin/bash
-
-
-# TEXT ATTRIBUTES
-BLACK :='\033[0;30m'
-RED   :='\033[0;31m'
-GREEN  :='\033[0;32m'
-YELLLOW  :='\033[0;33m'
-BLUE  :='\033[0;34m'
-MAGENTA  :='\033[0;35m'
-CYAN  :='\033[0;36m'
-GRAYlIGHT  :='\033[0;37m'
-DEFCLR:='\033[0;39m'
-GRAYDARK  :='\033[0;90m'
-REDLIGHT  :='\033[0;91m'
-GREENLIGHT  :='\033[0;92m'
-YELLOWLGIHT  :='\033[0;93m'
-BLUELIGHT  :='\033[0;94m'
-MAGNETALIGHT  :='\033[0;95m'
-CYANLIGHT  :='\033[0;96m'
-WHITE  :='\033[0;97m'
-
-BOLD:='\e[0;1m'
-BOLD_OFF:='\e[0;0m'
-
-UNDERLINEON:='\e[0;4m'
-UNDERLINEOFF:='\e[0;0m'
-
-EXECUTABLES = $(shell find . -type f -executable)
-
-where-am-i = $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
-THIS_MAKEFILE := $(call where-am-i)
-
-define echovar
- echo -e $(BOLD)"${1}"$(BOLD_OFF)" = ${${1}}"
-endef
-
-define title
- echo -e $(BLUE)"${1}"$(DEFCLR)
-endef
-
-define hr
- echo -e $(BOLD)"-------------------------------------------------------------------------------"$(BOLD_OFF)
-endef
-
-
-
-###########################################################
-#  SPECIAL TARGETS
-###########################################################
-
-#.PHONY: default
-default: all
-
-#prevent any default rules from being used
-#.SUFFIXES:
 
 CHAPTERS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-schedule.md  installation.md  license.md  release-notes.md  test.md  user-guide.md  using-mathematiques.md
 
-toc.json: toc.txt createtoc.py
-	python3 createtoc.py
 
-toc.md: toc.txt createtoc.py
-	python3 createtoc.py
+
+toc.json toc.md: toc.txt createtoc.py $(TAG_FILE_MATHQ)
+	python3 createtoc.py $(TAG_FILE_MATHQ)
+
+../README.md: createtop.py $(TAG_FILE_MATHQ)
+	python3 createtop.py $(TAG_FILE_MATHQ)
 
 %.md: %/template.md createpage.py toc.json
 	python3 createpage.py $*
 
-all: 
+all: ../README.md $(CHAPTERS)
 	make -j $(CHAPTERS)
 
 clean:

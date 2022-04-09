@@ -123,9 +123,6 @@ cleanall: FORCE
 	\rm -f *.old
 
 
-rebuild: 
-	@\cd $(DIR_MATHQ) && make cleanall && ./reconfigure && make all
-
 createrun: 
 	@$(DIR_MATHQ)/scripts/createrun.bash $(EXEC)
 

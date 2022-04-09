@@ -12,7 +12,7 @@ source scripts/style.bash || exit 1
 
 DIRMATHQ='make-lib/dirmathq.mk'
 
-\make -j cleanall
+\make -j purge
 \rm ${DIRMATHQ}
 
 

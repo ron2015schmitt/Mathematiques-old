@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.3.11
+# Mathématiques v3.3.14
 
 
 ## Description 
@@ -62,6 +62,14 @@ The first step of refactoring the core code has been completed.
 + v3.5 Indexing
   + Refactor of vector/matrix/tensor indexing, including
     + new index/iterator types such as slices similar to Fortan and Python
+
++ v3.6 Display and Debugging
+  + Refactor of Display and Debugging
+
++ v3.7+ 
+  + More matrix types
+  + covariant and contravariant tensors
+  + curvilinear coordinate systems
 
 
 ## Documentation

@@ -17,6 +17,9 @@
 1. [Refactor getTypeName](feature-schedule/gettypename.md)
 1. [Refactor FormatData](feature-schedule/formatdata.md)
 1. Fix Printing of ```complex<Vector<double>>>``` etc
+1. Add data type to output of inner products
+  * disp(v1 + v2) = Vector<double> {16, -6}; 
+  * disp(M1 + v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
 1. [Tensor class FormatData](feature-schedule/tensorformatdata.md)
    1. compact 
    1. by aligned rows and columns with and without braces
@@ -29,6 +32,9 @@
 1. [Load tensor from file](feature-schedule/fileload.md)
 
 ### v3.8 Debug Refactoring
+1. put example.cpp::printoptsfile  into  print_mathq_info by grabbing (or passing) the file_name
+  * handle when no filename
+  * handle when no .g++_copts file
 1. [Create Tensor Pool and Tensor info](feature-schedule/poolandinfo.md)
 1. [Exceptions and Assertions](feature-schedule/exceptions.md)
 1. [Implement all error checking](feature-schedule/errorchecking.md)
@@ -38,8 +44,10 @@
    * only needed when same vector appears on both sides of `=`
 
 ### Miscellaneous Small Features
+* implement adjoint(Matrix) and ~(Matrix)
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
 * `logspace` function similar to `matlab`
+* element wise dotproducts
 * refactor: `::Type` to `::type`
 * Add support for the rest of the [common math functions](https://en.cppreference.com/w/cpp/numeric/math) introduced in `C++11` and `C++20`: `frexp`, `isnan` etc, `ldexp`, `logb`, `ilogb`, `modf`, `div`, `remiander`, `remqou`, `fmod`, `ispow2`, `trunc`, `nearbyint`, `ceil2`, `floor2`, etc.
 * `TensorRW` implementation of `real(t)` and `imag(t)`
@@ -59,6 +67,7 @@
    * `NE == -5` -> use `std::froward_stack` for storage
 * `Matrix` size modifications. 
    * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
+   * support column major matrices and tensors
 
 
 ### Unit testing
@@ -97,7 +106,7 @@
 
 
 
-### Items for V14.0 -- Tensor Calculus 
+### Tensor Calculus 
 1. contravariant and covariant vectors
    * define Rank0: 
       * Vector<NE=1>
@@ -156,3 +165,6 @@ To contact me regarding suggestions, bugs, or volunteer work send an email to `R
 ---------------
 ---------------
 
+
+| ⇦ <br />[9-Tests](test.md)  | [Table Of Contents](README.md)<br />10-New Feature Schedule<br /><img width=1000/> | ⇨ <br />[11-Developer Guide](developer-guide.md)   |
+| ----------- | ----------- | ----------- |

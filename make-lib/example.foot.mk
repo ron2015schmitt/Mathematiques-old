@@ -4,7 +4,7 @@ include $(DIR_MATHQ)/make-lib/infohelp.mk
 # Project specific
 #############################################################################
 
-EXEC += example
+EXEC += example example-matrices
 
 all: $(EXEC)
 

@@ -13,8 +13,9 @@ source scripts/style.bash || exit 1
 DIRMATHQ='make-lib/dirmathq.mk'
 
 \make -j purge
-\rm ${DIRMATHQ}
+\rm -f ${DIRMATHQ}
 
-
-
+# the following are not removed by makefiles
+\rm -fr examples/Makefile
+\rm -fr scripts/__pycache__/
 

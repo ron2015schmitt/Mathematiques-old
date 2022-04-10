@@ -189,6 +189,7 @@ namespace display {
   const std::string OVERLINE   = ESC+"53m";
 
   const std::string BLACK   = FORE+"5;232m";  // in Ubuntu color=0 is sloghtly gray
+  const std::string DEFCLR   = FORE+"39m";
   const std::string GRAY2   = ESC+"30m";      
   const std::string GRAY1  = FORE+"5;240m";      
   const std::string WHITE   = ESC+"37m";

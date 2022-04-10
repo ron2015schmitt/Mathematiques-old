@@ -4,28 +4,33 @@
 #include <fstream>
 #include <string>
 
-void printoptsfile() {
+void printoptsfile()
+{
   std::ifstream myfile;
   myfile.open("example.g++_copts");
   std::string myline;
-  if (myfile.is_open()) {
-    while (myfile) { 
+  if (myfile.is_open())
+  {
+    while (myfile)
+    {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
   }
-  else {
+  else
+  {
     std::cout << "Couldn't open file\n";
   }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
   const double pi = M_PI;
   std::string myname = argv[0];
 
   using namespace mathq;
   using namespace display;
-  
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
@@ -39,25 +44,44 @@ int main(int argc, char *argv[]) {
   print_mathq_info();
   printoptsfile();
 
-  Vector<double> v1(linspace<double>(-1, 1, 21));
+  Vector<double> v1({1, -1});
   Vector<double> v2;
-  v2 = 10 * sin(pi / 2 * v1) + 10;
+  v2 = 10 * sin(pi / 2 * v1) + 5;
 
   disp(v1);
   disp(v2);
   disp(v1 + v2);
 
+  FormatDataMatrix::max_elements_per_line = 10;
+  FormatDataMatrix::string_opening = "[\n";
+  FormatDataMatrix::string_delimeter = ", ";
+  FormatDataMatrix::string_row_opening = "    ";
+  FormatDataMatrix::string_row_closing = ";\n";
+  FormatDataMatrix::string_lastrow_closing = "";
+  FormatDataMatrix::string_endofline = "\n";
+  FormatDataMatrix::string_closing = "\n]";
+
+  Matrix<double> m1(2, 2);
+  m1 = {10, 20, 30, 40};
+  Matrix<double> m2(2, 2);
+  m2 = {-1, -2, -3, -4};
+
+  Matrix<double> m3(3, 2);
+  m3 = {{1, 2}, {3, 4}, {5, 6}};
   // dot product
   disp(v1 | v2);
 
-  const double N = double(v2.size());
-  // mean
-  double mu2 = sum(v2) / N;
-  disp(mu2);
+  disp(m1);
+  disp(m2);
+  disp(m1 + m2);
 
-  // std deviation
-  double sigma2 = norm(v2 - mu2) / sqrt(N - 1);
-  disp(sigma2);
+  disp(m1 | v1);
+  disp(v1 | m1);
+
+  disp(m1 | m2);
+
+  disp(m3 | m1);
+  disp(m2 | m3.transpose());
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;

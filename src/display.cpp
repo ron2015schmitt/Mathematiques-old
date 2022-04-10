@@ -131,14 +131,14 @@ namespace display {
   //------------------------------------------------------------------------------
 
   // float
-  Style FormatData<float>::style_for_value = createStyle(BLACK);
+  Style FormatData<float>::style_for_value = createStyle(DEFCLR);
   Style FormatData<float>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<float>::format_string_default = "%g";
   std::string FormatData<float>::format_string = format_string_default;
   bool FormatData<float>::tens = false;
 
   // double
-  Style FormatData<double>::style_for_value = createStyle(BLACK);
+  Style FormatData<double>::style_for_value = createStyle(DEFCLR);
   Style FormatData<double>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<double>::format_string_default = "%lg";
   std::string FormatData<double>::format_string = format_string_default;
@@ -146,7 +146,7 @@ namespace display {
 
   
   // long double
-  Style FormatData<long double>::style_for_value = createStyle(BLACK);
+  Style FormatData<long double>::style_for_value = createStyle(DEFCLR);
   Style FormatData<long double>::style_for_zero = createStyle(GRAY1);
   const std::string FormatData<long double>::format_string_default = "%llg";
   std::string FormatData<long double>::format_string = format_string_default;
@@ -204,12 +204,12 @@ namespace display {
 
 
   // string
-  Style FormatData<std::string>::style_for_value = createStyle(BLACK);
+  Style FormatData<std::string>::style_for_value = createStyle(DEFCLR);
   const std::string FormatData<std::string>::format_string_default = "%s";
   std::string FormatData<std::string>::format_string = format_string_default;
 
   // char
-  Style FormatData<char>::style_for_value = createStyle(BLACK);
+  Style FormatData<char>::style_for_value = createStyle(DEFCLR);
   const std::string FormatData<char>::format_string_default = "%c";
   std::string FormatData<char>::format_string = format_string_default;
 
@@ -275,7 +275,7 @@ namespace display {
     Log::style_nspace =  createStyle(MAGENTA1);
     Log::style_class = createStyle(CYAN);
     Log::style_func =  createStyle(BLUE1);
-    Log::style_str = createStyle(BLACK);
+    Log::style_str = createStyle(DEFCLR);
   };
 
 

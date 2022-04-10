@@ -112,7 +112,8 @@ cleanstd: FORCE
 	@command rm -f *.link_md
 	@command rm -f core.*
 
-cleanall: FORCE
+
+cleanall: FORCE clean
 	\rm -f run
 	@\rm -f *.temp
 	@\rm -f *.tmp

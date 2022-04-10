@@ -3,11 +3,7 @@
 <details>
 
   <summary>Table of Contents</summary>
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 1f57cf18c4ca0e79bace8991b476c6b35101a6f7
 1. [About](about.md)
 2. [License](license.md)
 3. [Examples](examples.md)
@@ -28,7 +24,12 @@
 
 # 4-Features and Release Notes
 
-## **V3.2** First Official Release
+
+## **v3.3** Build Process Refactoring
+  + The build process has been fully refactored, simplified, and streamlined
+  + The documentation refactoring has begun
+  
+## **v3.2** First Official Release
 
 **Design**
   + Simple Matlab-like syntax with no run-time cost

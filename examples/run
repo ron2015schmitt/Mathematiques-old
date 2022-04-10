@@ -1,2 +1,2 @@
 # ****  This was created by the command "make createrun" and will be deleted upon "make cleanall" ******************
-./example  && echo -e "\e[34m\e[1mAll executables ran succesfully\e[39m\e[22m"
+./example  && ./example-matrices  && echo -e "\e[34m\e[1mAll executables ran succesfully\e[39m\e[22m"

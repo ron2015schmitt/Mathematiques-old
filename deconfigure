@@ -10,12 +10,16 @@ fi
 
 source scripts/style.bash || exit 1
 
-DIRMATHQ='make-lib/dirmathq.mk'
+DIRMATHQ_FILE='make-lib/dirmathq.mk'
 
 \make -j purge
-\rm -f ${DIRMATHQ}
-
-# the following are not removed by makefiles
-\rm -fr examples/Makefile
 \rm -fr scripts/__pycache__/
+
+# the following are create in configure and are not removed by makefiles
+\rm -fr examples/Makefile
+\rm -f ${DIRMATHQ_FILE}
+\rm -f ${DIR_MATHQ}/include/fun_unary_AUTO.h
+\rm -f ${DIR_MATHQ}/include/fun_binary_AUTO.h
+\rm -f ${DIR_MATHQ}/include/fun_ternary_AUTO.h
+
 

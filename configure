@@ -54,4 +54,14 @@ cat ${MAKEDIR}/example.foot.mk >> ${Makefile_example}
 chmod a-w ${Makefile_example}
 
 
+python3 include-templates/fun_unary.py ${DIR_MATHQ}
+chmod a-w ${DIR_MATHQ}/include/fun_unary_AUTO.h
+
+python3 include-templates/fun_binary.py ${DIR_MATHQ}
+chmod a-w ${DIR_MATHQ}/include/fun_binary_AUTO.h
+
+python3 include-templates/fun_ternary.py ${DIR_MATHQ}
+chmod a-w ${DIR_MATHQ}/include/fun_ternary_AUTO.h
+
+
  

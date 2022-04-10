@@ -1,13 +1,27 @@
 #!/usr/bin/python3
 
-import os
+import os, sys
 from string import Template
 
+def delete(fname):
+  if os.path.exists(fname):  os.remove(fname)
+
+
+usage="""
+USAGE: python3 fun_unary.py DIR_MATHQ
+"""
+
+n = len(sys.argv)
+if n != 2:
+    print("Invalid number of command line arguments ({})\n".format(n) + usage)
+    sys.exit(1)
+DIR_MATHQ = sys.argv[1]
+
 myname = os.path.basename(__file__)
-fn_functor = "../include-templates/fun_unary_functor.hpp"
-fn_functions = "../include-templates/fun_unary_functions.hpp"
-fn_realonly_functions = "../include-templates/fun_unary_real_functions.hpp"
-fn_output = "../include/fun_unary_AUTO.h"
+fn_functor = DIR_MATHQ+"/include-templates/fun_unary_functor.h"
+fn_functions = DIR_MATHQ+"/include-templates/fun_unary_functions.h"
+fn_realonly_functions = DIR_MATHQ+"/include-templates/fun_unary_real_functions.h"
+fn_output = DIR_MATHQ+"/include/fun_unary_AUTO.h"
 namespace = "mathq"
 
 ops = [
@@ -106,7 +120,7 @@ rfuncs = [
 
 
 
-contents = "";
+contents = ""
 
 # -----------------------------------------------------
 # functors
@@ -123,46 +137,46 @@ contents += """
 
 """
 with open(fn_functor, 'r') as file_functor:
-    contents0 = file_functor.read();
+    contents0 = file_functor.read()
 
-contents0 = contents0.replace("##MYFILENAME##",fn_functor);
-contents0 = contents0.replace("##SCRIPTNAME##",myname);
+contents0 = contents0.replace("##MYFILENAME##",fn_functor)
+contents0 = contents0.replace("##SCRIPTNAME##",myname)
 
-count = 0;
+count = 0
 for op in ops:
     function = op[0]
     name = op[1]
     functorname = op[2]
     fun = contents0
-    fun = fun.replace("##FUNCTION##",function);
-    fun = fun.replace("##FUNCTORNAME##",functorname);
+    fun = fun.replace("##FUNCTION##",function)
+    fun = fun.replace("##FUNCTORNAME##",functorname)
     contents += fun
     count += 1
 
 
 
-contents0 = contents0.replace("##MYFILENAME##",fn_functor);
-contents0 = contents0.replace("##SCRIPTNAME##",myname);
+contents0 = contents0.replace("##MYFILENAME##",fn_functor)
+contents0 = contents0.replace("##SCRIPTNAME##",myname)
     
-count = 0;
+count = 0
 for func in funcs:
     function = func[0]
     name = func[1]
     functorname = func[2]
     fun = contents0
-    fun = fun.replace("##FUNCTION##",function);
-    fun = fun.replace("##FUNCTORNAME##",functorname);
+    fun = fun.replace("##FUNCTION##",function)
+    fun = fun.replace("##FUNCTORNAME##",functorname)
     contents += fun
     count += 1
 
-count = 0;
+count = 0
 for func in rfuncs:
     function = func[0]
     name = func[1]
     functorname = func[2]
     fun = contents0
-    fun = fun.replace("##FUNCTION##",function);
-    fun = fun.replace("##FUNCTORNAME##",functorname);
+    fun = fun.replace("##FUNCTION##",function)
+    fun = fun.replace("##FUNCTORNAME##",functorname)
     contents += fun
     count += 1
     
@@ -182,12 +196,12 @@ contents += """
 
 """
 with open(fn_functions, 'r') as file_functions:
-    contents0 = file_functions.read();
+    contents0 = file_functions.read()
 
-contents0 = contents0.replace("##MYFILENAME##",fn_functor);
-contents0 = contents0.replace("##SCRIPTNAME##",myname);
+contents0 = contents0.replace("##MYFILENAME##",fn_functor)
+contents0 = contents0.replace("##SCRIPTNAME##",myname)
 
-count = 0;
+count = 0
 for op in ops:
     function = "operator"+op[0]
     name = op[1]
@@ -195,16 +209,16 @@ for op in ops:
     typeIN = op[3]
     typeOUT = op[4]
     fun = contents0
-    fun = fun.replace("##FUNCTION##",function);
-    fun = fun.replace("##NAME##",name);
-    fun = fun.replace("##COMMENTNAME##",name);
-    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+functorname);
-    fun = fun.replace("##DIN##",typeIN);
-    fun = fun.replace("##DOUT##",typeOUT);
+    fun = fun.replace("##FUNCTION##",function)
+    fun = fun.replace("##NAME##",name)
+    fun = fun.replace("##COMMENTNAME##",name)
+    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+functorname)
+    fun = fun.replace("##DIN##",typeIN)
+    fun = fun.replace("##DOUT##",typeOUT)
     contents += fun
     count += 1
 
-count = 0;
+count = 0
 for func in funcs:
     function = func[0]
     name = func[1]
@@ -212,23 +226,23 @@ for func in funcs:
     typeIN = func[3]
     typeOUT = func[4]
     fun = contents0
-    fun = fun.replace("##FUNCTION##",name);
-    fun = fun.replace("##NAME##",name);
-    fun = fun.replace("##COMMENTNAME##",name);
-    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+functorname);
-    fun = fun.replace("##DIN##",typeIN);
-    fun = fun.replace("##DOUT##",typeOUT);
+    fun = fun.replace("##FUNCTION##",name)
+    fun = fun.replace("##NAME##",name)
+    fun = fun.replace("##COMMENTNAME##",name)
+    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+functorname)
+    fun = fun.replace("##DIN##",typeIN)
+    fun = fun.replace("##DOUT##",typeOUT)
     contents += fun
     count += 1
 
 
 with open(fn_realonly_functions, 'r') as file_functions:
-    contents0 = file_functions.read();
+    contents0 = file_functions.read()
 
-contents0 = contents0.replace("##MYFILENAME##",fn_realonly_functions);
-contents0 = contents0.replace("##SCRIPTNAME##",myname);
+contents0 = contents0.replace("##MYFILENAME##",fn_realonly_functions)
+contents0 = contents0.replace("##SCRIPTNAME##",myname)
 
-count = 0;
+count = 0
 for func in rfuncs:
     function = func[0]
     name = func[1]
@@ -236,12 +250,12 @@ for func in rfuncs:
     typeIN = func[3]
     typeOUT = func[4]
     fun = contents0
-    fun = fun.replace("##FUNCTION##",name);
-    fun = fun.replace("##NAME##",name);
-    fun = fun.replace("##COMMENTNAME##",name);
-    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+functorname);
-    fun = fun.replace("##DIN##",typeIN);
-    fun = fun.replace("##DOUT##",typeOUT);
+    fun = fun.replace("##FUNCTION##",name)
+    fun = fun.replace("##NAME##",name)
+    fun = fun.replace("##COMMENTNAME##",name)
+    fun = fun.replace("##FUNCTOR##","FUNCTOR_"+functorname)
+    fun = fun.replace("##DIN##",typeIN)
+    fun = fun.replace("##DOUT##",typeOUT)
     contents += fun
     count += 1
     
@@ -252,7 +266,7 @@ for func in rfuncs:
 # -----------------------------------------------------
 
 
-fn_output_str=fn_output.upper().split(".")[0]
+fn_output_str=os.path.basename(fn_output).upper().split(".")[0]
 
 NAMESPACE = namespace.upper()
 defvar = NAMESPACE+"__"+fn_output_str+"_H"
@@ -273,6 +287,7 @@ epilogue = """}; // namespace mathq
 
 contents = prologue + contents + epilogue
 
-print(contents)
+#print(contents)
+delete(fn_output)
 with open(fn_output, 'w') as file_output:
-    file_output.write(contents);
+    file_output.write(contents)

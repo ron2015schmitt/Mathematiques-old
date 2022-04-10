@@ -18,7 +18,7 @@ namespace mathq {
 // ----------------------------------------------------------------
 // pos: template class for function '+'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -55,7 +55,7 @@ public:
 // ----------------------------------------------------------------
 // neg: template class for function '-'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ public:
 // ----------------------------------------------------------------
 // not: template class for function '!'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -129,7 +129,7 @@ public:
 // ----------------------------------------------------------------
 // sin: template class for function 'std::sin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -166,7 +166,7 @@ public:
 // ----------------------------------------------------------------
 // cos: template class for function 'std::cos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -203,7 +203,7 @@ public:
 // ----------------------------------------------------------------
 // tan: template class for function 'std::tan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -240,7 +240,7 @@ public:
 // ----------------------------------------------------------------
 // asin: template class for function 'std::asin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -277,7 +277,7 @@ public:
 // ----------------------------------------------------------------
 // acos: template class for function 'std::acos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -314,7 +314,7 @@ public:
 // ----------------------------------------------------------------
 // atan: template class for function 'std::atan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -351,7 +351,7 @@ public:
 // ----------------------------------------------------------------
 // sinh: template class for function 'std::sinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -388,7 +388,7 @@ public:
 // ----------------------------------------------------------------
 // cosh: template class for function 'std::cosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -425,7 +425,7 @@ public:
 // ----------------------------------------------------------------
 // tanh: template class for function 'std::tanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -462,7 +462,7 @@ public:
 // ----------------------------------------------------------------
 // asinh: template class for function 'std::asinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -499,7 +499,7 @@ public:
 // ----------------------------------------------------------------
 // acosh: template class for function 'std::acosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -536,7 +536,7 @@ public:
 // ----------------------------------------------------------------
 // atanh: template class for function 'std::atanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -573,7 +573,7 @@ public:
 // ----------------------------------------------------------------
 // sqrt: template class for function 'std::sqrt'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -610,7 +610,7 @@ public:
 // ----------------------------------------------------------------
 // cbrt: template class for function 'std::cbrt'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -647,7 +647,7 @@ public:
 // ----------------------------------------------------------------
 // sqr: template class for function 'mathq::sqr'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -684,7 +684,7 @@ public:
 // ----------------------------------------------------------------
 // cube: template class for function 'mathq::cube'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -721,7 +721,7 @@ public:
 // ----------------------------------------------------------------
 // exp: template class for function 'std::exp'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -758,7 +758,7 @@ public:
 // ----------------------------------------------------------------
 // exp2: template class for function 'std::exp2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -795,7 +795,7 @@ public:
 // ----------------------------------------------------------------
 // expm1: template class for function 'std::expm1'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -832,7 +832,7 @@ public:
 // ----------------------------------------------------------------
 // log: template class for function 'std::log'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -869,7 +869,7 @@ public:
 // ----------------------------------------------------------------
 // log10: template class for function 'std::log10'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -906,7 +906,7 @@ public:
 // ----------------------------------------------------------------
 // log2: template class for function 'std::log2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -943,7 +943,7 @@ public:
 // ----------------------------------------------------------------
 // log1p: template class for function 'std::log1p'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -980,7 +980,7 @@ public:
 // ----------------------------------------------------------------
 // logb: template class for function 'std::logb'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1017,7 +1017,7 @@ public:
 // ----------------------------------------------------------------
 // sgn: template class for function 'mathq::sgn'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1054,7 +1054,7 @@ public:
 // ----------------------------------------------------------------
 // ceil: template class for function 'std::ceil'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1091,7 +1091,7 @@ public:
 // ----------------------------------------------------------------
 // floor: template class for function 'std::floor'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1128,7 +1128,7 @@ public:
 // ----------------------------------------------------------------
 // round: template class for function 'std::round'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1165,7 +1165,7 @@ public:
 // ----------------------------------------------------------------
 // trunc: template class for function 'std::trunc'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1202,7 +1202,7 @@ public:
 // ----------------------------------------------------------------
 // erf: template class for function 'std::erf'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1239,7 +1239,7 @@ public:
 // ----------------------------------------------------------------
 // erfc: template class for function 'std::erfc'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1276,7 +1276,7 @@ public:
 // ----------------------------------------------------------------
 // tgamma: template class for function 'std::tgamma'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1313,7 +1313,7 @@ public:
 // ----------------------------------------------------------------
 // lgamma: template class for function 'std::lgamma'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1350,7 +1350,7 @@ public:
 // ----------------------------------------------------------------
 // expint: template class for function 'std::expint'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1387,7 +1387,7 @@ public:
 // ----------------------------------------------------------------
 // riemann_zeta: template class for function 'std::riemann_zeta'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1424,7 +1424,7 @@ public:
 // ----------------------------------------------------------------
 // comp_ellint_1: template class for function 'std::comp_ellint_1'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1461,7 +1461,7 @@ public:
 // ----------------------------------------------------------------
 // comp_ellint_2: template class for function 'std::comp_ellint_2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1498,7 +1498,7 @@ public:
 // ----------------------------------------------------------------
 // zero: template class for function 'mathq::zero'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1535,7 +1535,7 @@ public:
 // ----------------------------------------------------------------
 // ilogb: template class for function 'std::ilogb'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1572,7 +1572,7 @@ public:
 // ----------------------------------------------------------------
 // imaginary: template class for function 'mathq::Imaginary'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1609,7 +1609,7 @@ public:
 // ----------------------------------------------------------------
 // conj_imag: template class for function 'mathq::conj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1646,7 +1646,7 @@ public:
 // ----------------------------------------------------------------
 // real_imag: template class for function 'mathq::real'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1683,7 +1683,7 @@ public:
 // ----------------------------------------------------------------
 // imag_imag: template class for function 'mathq::imag'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1720,7 +1720,7 @@ public:
 // ----------------------------------------------------------------
 // abs_imag: template class for function 'mathq::abs'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1757,7 +1757,7 @@ public:
 // ----------------------------------------------------------------
 // arg_imag: template class for function 'mathq::arg'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1794,7 +1794,7 @@ public:
 // ----------------------------------------------------------------
 // proj_imag: template class for function 'mathq::proj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1831,7 +1831,7 @@ public:
 // ----------------------------------------------------------------
 // exp_imag: template class for function 'mathq::exp'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1868,7 +1868,7 @@ public:
 // ----------------------------------------------------------------
 // log_imag: template class for function 'mathq::log'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1905,7 +1905,7 @@ public:
 // ----------------------------------------------------------------
 // log10_imag: template class for function 'mathq::log10'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1942,7 +1942,7 @@ public:
 // ----------------------------------------------------------------
 // sqrt_imag: template class for function 'mathq::sqrt'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -1979,7 +1979,7 @@ public:
 // ----------------------------------------------------------------
 // sin_imag: template class for function 'mathq::sin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2016,7 +2016,7 @@ public:
 // ----------------------------------------------------------------
 // cos_imag: template class for function 'mathq::cos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2053,7 +2053,7 @@ public:
 // ----------------------------------------------------------------
 // tan_imag: template class for function 'mathq::tan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2090,7 +2090,7 @@ public:
 // ----------------------------------------------------------------
 // asin_imag: template class for function 'mathq::asin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2127,7 +2127,7 @@ public:
 // ----------------------------------------------------------------
 // acos_imag: template class for function 'mathq::acos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2164,7 +2164,7 @@ public:
 // ----------------------------------------------------------------
 // atan_imag: template class for function 'mathq::atan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2201,7 +2201,7 @@ public:
 // ----------------------------------------------------------------
 // sinh_imag: template class for function 'mathq::sinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2238,7 +2238,7 @@ public:
 // ----------------------------------------------------------------
 // cosh_imag: template class for function 'mathq::cosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2275,7 +2275,7 @@ public:
 // ----------------------------------------------------------------
 // tanh_imag: template class for function 'mathq::tanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2312,7 +2312,7 @@ public:
 // ----------------------------------------------------------------
 // asinh_imag: template class for function 'mathq::asinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2349,7 +2349,7 @@ public:
 // ----------------------------------------------------------------
 // acosh_imag: template class for function 'mathq::acosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2386,7 +2386,7 @@ public:
 // ----------------------------------------------------------------
 // atanh_imag: template class for function 'mathq::atanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2423,7 +2423,7 @@ public:
 // ----------------------------------------------------------------
 // conj_complex: template class for function 'std::conj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2460,7 +2460,7 @@ public:
 // ----------------------------------------------------------------
 // real_complex: template class for function 'std::real'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2497,7 +2497,7 @@ public:
 // ----------------------------------------------------------------
 // imag_complex: template class for function 'std::imag'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2534,7 +2534,7 @@ public:
 // ----------------------------------------------------------------
 // abs_complex: template class for function 'std::abs'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2571,7 +2571,7 @@ public:
 // ----------------------------------------------------------------
 // arg_complex: template class for function 'std::arg'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2608,7 +2608,7 @@ public:
 // ----------------------------------------------------------------
 // proj_complex: template class for function 'std::proj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2645,7 +2645,7 @@ public:
 // ----------------------------------------------------------------
 // round_complex: template class for function 'mathq::round'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2682,7 +2682,7 @@ public:
 // ----------------------------------------------------------------
 // log2_complex: template class for function 'mathq::log2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2719,7 +2719,7 @@ public:
 // ----------------------------------------------------------------
 // floor_complex: template class for function 'mathq::floor'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2756,7 +2756,7 @@ public:
 // ----------------------------------------------------------------
 // ceil_complex: template class for function 'mathq::ceil'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2793,7 +2793,7 @@ public:
 // ----------------------------------------------------------------
 // conj_real: template class for function 'mathq::conj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2830,7 +2830,7 @@ public:
 // ----------------------------------------------------------------
 // real_real: template class for function 'mathq::real'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2867,7 +2867,7 @@ public:
 // ----------------------------------------------------------------
 // imag_real: template class for function 'mathq::imag'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2904,7 +2904,7 @@ public:
 // ----------------------------------------------------------------
 // abs_real: template class for function 'std::abs'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2941,7 +2941,7 @@ public:
 // ----------------------------------------------------------------
 // arg_real: template class for function 'std::arg'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -2978,7 +2978,7 @@ public:
 // ----------------------------------------------------------------
 // proj_real: template class for function 'std::proj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3027,7 +3027,7 @@ public:
 // pos
 // template functions for 'pos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3046,7 +3046,7 @@ auto operator+(const TensorR<X,E,D,M,R>& x) {
 // neg
 // template functions for 'neg'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3065,7 +3065,7 @@ auto operator-(const TensorR<X,E,D,M,R>& x) {
 // not
 // template functions for 'not'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3084,7 +3084,7 @@ auto operator!(const TensorR<X,E,D,M,R>& x) {
 // sin
 // template functions for 'sin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3103,7 +3103,7 @@ auto sin(const TensorR<X,E,D,M,R>& x) {
 // cos
 // template functions for 'cos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3122,7 +3122,7 @@ auto cos(const TensorR<X,E,D,M,R>& x) {
 // tan
 // template functions for 'tan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3141,7 +3141,7 @@ auto tan(const TensorR<X,E,D,M,R>& x) {
 // asin
 // template functions for 'asin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3160,7 +3160,7 @@ auto asin(const TensorR<X,E,D,M,R>& x) {
 // acos
 // template functions for 'acos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3179,7 +3179,7 @@ auto acos(const TensorR<X,E,D,M,R>& x) {
 // atan
 // template functions for 'atan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3198,7 +3198,7 @@ auto atan(const TensorR<X,E,D,M,R>& x) {
 // sinh
 // template functions for 'sinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3217,7 +3217,7 @@ auto sinh(const TensorR<X,E,D,M,R>& x) {
 // cosh
 // template functions for 'cosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3236,7 +3236,7 @@ auto cosh(const TensorR<X,E,D,M,R>& x) {
 // tanh
 // template functions for 'tanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3255,7 +3255,7 @@ auto tanh(const TensorR<X,E,D,M,R>& x) {
 // asinh
 // template functions for 'asinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3274,7 +3274,7 @@ auto asinh(const TensorR<X,E,D,M,R>& x) {
 // acosh
 // template functions for 'acosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3293,7 +3293,7 @@ auto acosh(const TensorR<X,E,D,M,R>& x) {
 // atanh
 // template functions for 'atanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3312,7 +3312,7 @@ auto atanh(const TensorR<X,E,D,M,R>& x) {
 // sqrt
 // template functions for 'sqrt'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3331,7 +3331,7 @@ auto sqrt(const TensorR<X,E,D,M,R>& x) {
 // cbrt
 // template functions for 'cbrt'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3350,7 +3350,7 @@ auto cbrt(const TensorR<X,E,D,M,R>& x) {
 // sqr
 // template functions for 'sqr'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3369,7 +3369,7 @@ auto sqr(const TensorR<X,E,D,M,R>& x) {
 // cube
 // template functions for 'cube'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3388,7 +3388,7 @@ auto cube(const TensorR<X,E,D,M,R>& x) {
 // exp
 // template functions for 'exp'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3407,7 +3407,7 @@ auto exp(const TensorR<X,E,D,M,R>& x) {
 // exp2
 // template functions for 'exp2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3426,7 +3426,7 @@ auto exp2(const TensorR<X,E,D,M,R>& x) {
 // expm1
 // template functions for 'expm1'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3445,7 +3445,7 @@ auto expm1(const TensorR<X,E,D,M,R>& x) {
 // log
 // template functions for 'log'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3464,7 +3464,7 @@ auto log(const TensorR<X,E,D,M,R>& x) {
 // log10
 // template functions for 'log10'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3483,7 +3483,7 @@ auto log10(const TensorR<X,E,D,M,R>& x) {
 // log2
 // template functions for 'log2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3502,7 +3502,7 @@ auto log2(const TensorR<X,E,D,M,R>& x) {
 // log1p
 // template functions for 'log1p'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3521,7 +3521,7 @@ auto log1p(const TensorR<X,E,D,M,R>& x) {
 // logb
 // template functions for 'logb'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3540,7 +3540,7 @@ auto logb(const TensorR<X,E,D,M,R>& x) {
 // sgn
 // template functions for 'sgn'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3559,7 +3559,7 @@ auto sgn(const TensorR<X,E,D,M,R>& x) {
 // ceil
 // template functions for 'ceil'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3578,7 +3578,7 @@ auto ceil(const TensorR<X,E,D,M,R>& x) {
 // floor
 // template functions for 'floor'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3597,7 +3597,7 @@ auto floor(const TensorR<X,E,D,M,R>& x) {
 // round
 // template functions for 'round'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3616,7 +3616,7 @@ auto round(const TensorR<X,E,D,M,R>& x) {
 // trunc
 // template functions for 'trunc'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3635,7 +3635,7 @@ auto trunc(const TensorR<X,E,D,M,R>& x) {
 // erf
 // template functions for 'erf'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3654,7 +3654,7 @@ auto erf(const TensorR<X,E,D,M,R>& x) {
 // erfc
 // template functions for 'erfc'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3673,7 +3673,7 @@ auto erfc(const TensorR<X,E,D,M,R>& x) {
 // tgamma
 // template functions for 'tgamma'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3692,7 +3692,7 @@ auto tgamma(const TensorR<X,E,D,M,R>& x) {
 // lgamma
 // template functions for 'lgamma'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3711,7 +3711,7 @@ auto lgamma(const TensorR<X,E,D,M,R>& x) {
 // expint
 // template functions for 'expint'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3730,7 +3730,7 @@ auto expint(const TensorR<X,E,D,M,R>& x) {
 // riemann_zeta
 // template functions for 'riemann_zeta'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3749,7 +3749,7 @@ auto riemann_zeta(const TensorR<X,E,D,M,R>& x) {
 // comp_ellint_1
 // template functions for 'comp_ellint_1'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3768,7 +3768,7 @@ auto comp_ellint_1(const TensorR<X,E,D,M,R>& x) {
 // comp_ellint_2
 // template functions for 'comp_ellint_2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3787,7 +3787,7 @@ auto comp_ellint_2(const TensorR<X,E,D,M,R>& x) {
 // zero
 // template functions for 'zero'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3806,7 +3806,7 @@ auto zero(const TensorR<X,E,D,M,R>& x) {
 // ilogb
 // template functions for 'ilogb'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3825,7 +3825,7 @@ auto ilogb(const TensorR<X,E,D,M,R>& x) {
 // imaginary
 // template functions for 'imaginary'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3844,7 +3844,7 @@ auto imaginary(const TensorR<X,E,D,M,R>& x) {
 // conj
 // template functions for 'conj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3863,7 +3863,7 @@ auto conj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // real
 // template functions for 'real'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3882,7 +3882,7 @@ auto real(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // imag
 // template functions for 'imag'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3901,7 +3901,7 @@ auto imag(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // abs
 // template functions for 'abs'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3920,7 +3920,7 @@ auto abs(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // arg
 // template functions for 'arg'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3939,7 +3939,7 @@ auto arg(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // proj
 // template functions for 'proj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3958,7 +3958,7 @@ auto proj(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // exp
 // template functions for 'exp'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3977,7 +3977,7 @@ auto exp(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // log
 // template functions for 'log'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -3996,7 +3996,7 @@ auto log(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // log10
 // template functions for 'log10'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4015,7 +4015,7 @@ auto log10(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // sqrt
 // template functions for 'sqrt'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4034,7 +4034,7 @@ auto sqrt(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // sin
 // template functions for 'sin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4053,7 +4053,7 @@ auto sin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // cos
 // template functions for 'cos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4072,7 +4072,7 @@ auto cos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // tan
 // template functions for 'tan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4091,7 +4091,7 @@ auto tan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // asin
 // template functions for 'asin'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4110,7 +4110,7 @@ auto asin(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // acos
 // template functions for 'acos'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4129,7 +4129,7 @@ auto acos(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // atan
 // template functions for 'atan'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4148,7 +4148,7 @@ auto atan(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // sinh
 // template functions for 'sinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4167,7 +4167,7 @@ auto sinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // cosh
 // template functions for 'cosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4186,7 +4186,7 @@ auto cosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // tanh
 // template functions for 'tanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4205,7 +4205,7 @@ auto tanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // asinh
 // template functions for 'asinh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4224,7 +4224,7 @@ auto asinh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // acosh
 // template functions for 'acosh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4243,7 +4243,7 @@ auto acosh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // atanh
 // template functions for 'atanh'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4262,7 +4262,7 @@ auto atanh(const TensorR<X,E,mathq::Imaginary<D>,M,R>& x) {
 // conj
 // template functions for 'conj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4281,7 +4281,7 @@ auto conj(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // real
 // template functions for 'real'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4300,7 +4300,7 @@ auto real(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // imag
 // template functions for 'imag'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4319,7 +4319,7 @@ auto imag(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // abs
 // template functions for 'abs'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4338,7 +4338,7 @@ auto abs(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // arg
 // template functions for 'arg'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4357,7 +4357,7 @@ auto arg(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // proj
 // template functions for 'proj'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4376,7 +4376,7 @@ auto proj(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // round
 // template functions for 'round'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4395,7 +4395,7 @@ auto round(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // log2
 // template functions for 'log2'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4414,7 +4414,7 @@ auto log2(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // floor
 // template functions for 'floor'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4433,7 +4433,7 @@ auto floor(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // ceil
 // template functions for 'ceil'
 //
-//    Note: generated from template file 'fun_unary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4452,7 +4452,7 @@ auto ceil(const TensorR<X,E,std::complex<D>,M,R>& x) {
 // conj
 // template functions for 'conj'
 //
-//    Note: generated from template file 'fun_unary_real_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_real_functions.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4471,7 +4471,7 @@ inline auto conj(const TensorR<X,E,D,M,R>& x) {
 // real
 // template functions for 'real'
 //
-//    Note: generated from template file 'fun_unary_real_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_real_functions.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4490,7 +4490,7 @@ inline auto real(const TensorR<X,E,D,M,R>& x) {
 // imag
 // template functions for 'imag'
 //
-//    Note: generated from template file 'fun_unary_real_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_real_functions.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4509,7 +4509,7 @@ inline auto imag(const TensorR<X,E,D,M,R>& x) {
 // abs
 // template functions for 'abs'
 //
-//    Note: generated from template file 'fun_unary_real_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_real_functions.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4528,7 +4528,7 @@ inline auto abs(const TensorR<X,E,D,M,R>& x) {
 // arg
 // template functions for 'arg'
 //
-//    Note: generated from template file 'fun_unary_real_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_real_functions.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 
@@ -4547,7 +4547,7 @@ inline auto arg(const TensorR<X,E,D,M,R>& x) {
 // proj
 // template functions for 'proj'
 //
-//    Note: generated from template file 'fun_unary_real_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_real_functions.h'
 //          using Python script 'fun_unary.py'
 // ----------------------------------------------------------------
 

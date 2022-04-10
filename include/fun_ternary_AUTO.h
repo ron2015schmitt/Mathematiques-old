@@ -18,7 +18,7 @@ namespace mathq {
 // ----------------------------------------------------------------
 // FUNCTOR_sph_legendre: template class for function 'std::sph_legendre'
 //
-//    Note: generated from template file 'fun_ternary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functor.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -113,7 +113,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_assoc_legendre: template class for function 'std::assoc_legendre'
 //
-//    Note: generated from template file 'fun_ternary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functor.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -208,7 +208,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_assoc_laguerre: template class for function 'std::assoc_laguerre'
 //
-//    Note: generated from template file 'fun_ternary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functor.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -303,7 +303,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_ellint_3: template class for function 'std::ellint_3'
 //
-//    Note: generated from template file 'fun_ternary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functor.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -398,7 +398,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_comp_ellint_3: template class for function 'std::comp_ellint_3'
 //
-//    Note: generated from template file 'fun_ternary_functor.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functor.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -505,7 +505,7 @@ public:
 // sph_legendre
 // template functions for 'sph_legendre'
 //
-//    Note: generated from template file 'fun_ternary_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functions.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -618,7 +618,7 @@ auto sph_legendre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
 // assoc_legendre
 // template functions for 'assoc_legendre'
 //
-//    Note: generated from template file 'fun_ternary_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functions.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -731,7 +731,7 @@ auto assoc_legendre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) 
 // assoc_laguerre
 // template functions for 'assoc_laguerre'
 //
-//    Note: generated from template file 'fun_ternary_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functions.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -844,7 +844,7 @@ auto assoc_laguerre(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) 
 // ellint_3
 // template functions for 'ellint_3'
 //
-//    Note: generated from template file 'fun_ternary_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functions.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 
@@ -957,7 +957,7 @@ auto ellint_3(const D1& x1, const D2& x2, const TensorR<C,E3,D3,M,R>& x3) {
 // comp_ellint_3
 // template functions for 'comp_ellint_3'
 //
-//    Note: generated from template file 'fun_ternary_functions.hpp'
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_ternary_functions.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 

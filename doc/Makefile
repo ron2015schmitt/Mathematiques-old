@@ -16,7 +16,7 @@ toc.json README.md header.md: createtoc.py $(TAG_FILE_MATHQ) toc.txt
 
 ../README.md: createtop.py $(TAG_FILE_MATHQ) top/template.md
 	python3 createtop.py $(TAG_FILE_MATHQ)
-	@chmod a-w $*.md
+	@chmod a-w ../README.md
 
 all: ../README.md toc.json README.md header.md $(CHAPTERS)
 

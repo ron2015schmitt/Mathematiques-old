@@ -8,7 +8,7 @@ namespace mathq {
 // ----------------------------------------------------------------
 // FUNCTOR_add: template class for operator '+'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -71,7 +71,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_subtract: template class for operator '-'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -134,7 +134,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_multiply: template class for operator '*'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -197,7 +197,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_divide: template class for operator '/'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 

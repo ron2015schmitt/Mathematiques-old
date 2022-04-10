@@ -23,32 +23,32 @@
     "toplink": "[License](doc/license.md)",
     "numlink": "[2-License](license.md)",
     "prev": "about",
-    "next": "examples"
-  },
-  "examples": {
-    "index": 3,
-    "name": "examples",
-    "title": "Examples",
-    "numtitle": "3-Examples",
-    "src": "examples/template.md",
-    "dest": "examples.md",
-    "link": "[Examples](examples.md)",
-    "toplink": "[Examples](doc/examples.md)",
-    "numlink": "[3-Examples](examples.md)",
-    "prev": "license",
     "next": "release-notes"
   },
   "release-notes": {
-    "index": 4,
+    "index": 3,
     "name": "release-notes",
-    "title": "Features and Release Notes",
-    "numtitle": "4-Features and Release Notes",
+    "title": "Release Notes",
+    "numtitle": "3-Release Notes",
     "src": "release-notes/template.md",
     "dest": "release-notes.md",
-    "link": "[Features and Release Notes](release-notes.md)",
-    "toplink": "[Features and Release Notes](doc/release-notes.md)",
-    "numlink": "[4-Features and Release Notes](release-notes.md)",
-    "prev": "examples",
+    "link": "[Release Notes](release-notes.md)",
+    "toplink": "[Release Notes](doc/release-notes.md)",
+    "numlink": "[3-Release Notes](release-notes.md)",
+    "prev": "license",
+    "next": "examples"
+  },
+  "examples": {
+    "index": 4,
+    "name": "examples",
+    "title": "Example code",
+    "numtitle": "4-Example code",
+    "src": "examples/template.md",
+    "dest": "examples.md",
+    "link": "[Example code](examples.md)",
+    "toplink": "[Example code](doc/examples.md)",
+    "numlink": "[4-Example code](examples.md)",
+    "prev": "release-notes",
     "next": "installation"
   },
   "installation": {
@@ -61,7 +61,7 @@
     "link": "[Installation](installation.md)",
     "toplink": "[Installation](doc/installation.md)",
     "numlink": "[5-Installation](installation.md)",
-    "prev": "release-notes",
+    "prev": "examples",
     "next": "using-mathematiques"
   },
   "using-mathematiques": {
@@ -75,18 +75,18 @@
     "toplink": "[Using Math\u00e9matiques](doc/using-mathematiques.md)",
     "numlink": "[6-Using Math\u00e9matiques](using-mathematiques.md)",
     "prev": "installation",
-    "next": "user-guide"
+    "next": "coding-guide"
   },
-  "user-guide": {
+  "coding-guide": {
     "index": 7,
-    "name": "user-guide",
-    "title": "User Guide",
-    "numtitle": "7-User Guide",
-    "src": "user-guide/template.md",
-    "dest": "user-guide.md",
-    "link": "[User Guide](user-guide.md)",
-    "toplink": "[User Guide](doc/user-guide.md)",
-    "numlink": "[7-User Guide](user-guide.md)",
+    "name": "coding-guide",
+    "title": "Coding Guide / Syntax",
+    "numtitle": "7-Coding Guide / Syntax",
+    "src": "coding-guide/template.md",
+    "dest": "coding-guide.md",
+    "link": "[Coding Guide / Syntax](coding-guide.md)",
+    "toplink": "[Coding Guide / Syntax](doc/coding-guide.md)",
+    "numlink": "[7-Coding Guide / Syntax](coding-guide.md)",
     "prev": "using-mathematiques",
     "next": "benchmarks"
   },
@@ -100,7 +100,7 @@
     "link": "[Benchmarks](benchmarks.md)",
     "toplink": "[Benchmarks](doc/benchmarks.md)",
     "numlink": "[8-Benchmarks](benchmarks.md)",
-    "prev": "user-guide",
+    "prev": "coding-guide",
     "next": "test"
   },
   "test": {

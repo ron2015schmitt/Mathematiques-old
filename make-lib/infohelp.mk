@@ -1,79 +1,81 @@
-
-#SOME USEFUL DEFINITIONS
-SHELL:=/bin/bash
-
-
-# TEXT ATTRIBUTES
-BLACK :='\033[0;30m'
-RED   :='\033[0;31m'
-GREEN  :='\033[0;32m'
-YELLLOW  :='\033[0;33m'
-BLUE  :='\033[0;34m'
-MAGENTA  :='\033[0;35m'
-CYAN  :='\033[0;36m'
-GRAYlIGHT  :='\033[0;37m'
-DEFCLR:='\033[0;39m'
-GRAYDARK  :='\033[0;90m'
-REDLIGHT  :='\033[0;91m'
-GREENLIGHT  :='\033[0;92m'
-YELLOWLGIHT  :='\033[0;93m'
-BLUELIGHT  :='\033[0;94m'
-MAGNETALIGHT  :='\033[0;95m'
-CYANLIGHT  :='\033[0;96m'
-WHITE  :='\033[0;97m'
-
-BOLDON:='\e[0;1m'
-BOLDOFF:='\e[0;0m'
-
-UNDERLINEON:='\e[0;4m'
-UNDERLINEOFF:='\e[0;0m'
-
-EXECUTABLES = $(shell find . -type f -executable)
-
-where-am-i = $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
-THIS_MAKEFILE := $(call where-am-i)
-
-define echovar
- echo -e $(BOLDON)"${1}"$(BOLDOFF)" = ${${1}}"
-endef
-
-define title
- echo -e $(BLUE)"${1}"$(DEFCLR)
-endef
-
-define hr
- echo -e $(BOLDON)"-------------------------------------------------------------------------------"$(BOLDOFF)
-endef
-
-
-
 ###########################################################
-#  SPECIAL TARGETS
+#      Full Informative Dump 
 ###########################################################
 
-.PHONY: default
-default: makecleanall
 
-#prevent any default rules from being used
-.SUFFIXES:
+info:
+	@echo
+	@$(call hr)
+	@$(call title,"Variables")
+	@$(call echovar,SHELL)
+	@$(call echovar,CURDIR)
+	@$(call echovar,PWD)
+	@$(call echovar,VPATH)
+	@$(call echovar,MAKE)
+	@$(call echovar,_)
+	@$(call echovar,MAKECMDGOALS)
+	@$(call echovar,MAKE_VERSION)
+	@$(call echovar,MAKEFLAGS)
+	@$(call echovar,GNUMAKEFLAGS)
+	@$(call echovar,MAKEFILES)
+	@$(call echovar,MAKEFILE_LIST)
+	@$(call echovar,MAKE_HOST)
+	@$(call echovar,MAKELEVEL)
+	@echo
+	@$(call title,"mathq")
+	@$(call echovar,DIR_MATHQ)
+	@$(call echovar,MAKEDIR_MATHQ)
+	@$(call echovar,INCDIR_MATHQ)
+	@$(call echovar,LIBDIR_MATHQ)
+	@$(call echovar,LIB_MATHQ)
+	@$(call echovar,LIB_LAPACK)
+ifdef COMPATIBLE_VERSION_MATHQ_FILE
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
+endif
+	@$(call echovar,TAG_MATHQ)
+	@$(call hr)
+	@echo
+	@$(call title,"Includes")
+	@$(call echovar,INCLUDES)
+	@echo
+	@$(call title,"Libraries")
+	@$(call echovar,LIBS)
+	@echo
+	@$(call title,"Optimizations")
+	@$(call echovar,OPTIMIZE)
+	@echo
+	@$(call title,"C++ Compiler")
+	@$(call echovar,CPPC)
+	@$(call echovar,COPT)
+	@$(call echovar,CFLAGS)
+	@echo
+	@$(call title,"Fortran")
+	@$(call echovar,FC)
+	@$(call echovar,FOPT)
+	@$(call echovar,LNK_FFLAGS)
+	@echo
+	@$(call title,"Linker")
+	@$(call echovar,LNK)
+	@$(call echovar,LOPT)
+	@$(call echovar,LFLAGS)
+	@$(call hr)
+	@echo
 
-# don't delete .o files
-.PRECIOUS: %.o %_opts.cpp
-
-EXEC ?=
 
 
+# options listed below for reference
+
+define OPTSHELP
 #############################################################################
 # g++ OPTIMIZATIONS (provided at compile and link time)
 #
-# Note from
+# For full details and up to date list see:
 # https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 #
 #     "If you use multiple -O options, with or without level
 #      numbers, the last such option is the one that is effective."
 #
-# OPTIMIZE provided at the command line will supercede the following
-#          That is the values below will be written over.
 ##############################################################################
 #
 # -O0
@@ -190,132 +192,13 @@ EXEC ?=
 #      -finline-functions
 #      -finline-limit=750
 ###############################################################################
-OPTIMIZE ?=
+endef
+
+
+export OPTSHELP
+help-g++:
+	@echo "$${OPTSHELP}"
 
 
 
-#############################################################################
-# g++ COMPILER
-# COPT provided at the command line will append to options
-#############################################################################
-CPPC = g++ -pipe --std=c++17 
-override COPT ?=  -Wfatal-errors
-CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
 
-%_opts.cpp:
-	@echo "char COMPILE_OPTIMIZE[] = "'"'$(OPTIMIZE)'";' > $@
-	@cat $@
-
-
-%.o: %.cpp 
-ifdef MATHQ_DEBUG
-	$(CPPC) $(CFLAGS) -D"MATHQ_DEBUG=$(MATHQ_DEBUG)" -c $*.cpp -o $@
-else
-	$(CPPC) $(CFLAGS) -c $*.cpp -o $@
-endif
-
-
-#############################################################################
-# gfortran COMPILER
-#############################################################################
-FC = gfortran
-override FOPT ?=
-FFLAGS = $(FOPT)
-LNK_FFLAGS = -lgfortran +fgcse-after-reload
-
-%.o: %.f 
-	$(FC) $(FFLAGS) -c $*.f -o $*.o
-
-
-#############################################################################
-# g++ linker
-# LOPT provided at the command line will append to options
-#############################################################################
-LNK = g++
-override LOPT ?=
-LFLAGS = $(OPTIMIZE) $(LOPT)
-
-%: %.o %_opts.o
-	$(CPPC) $(LFLAGS) $*.o $*_opts.o -o $@ $(LIBS) 
-
-
-
-###########################################################
-#      Full Informative Dump (This is default)
-###########################################################
-
-info:
-	@echo
-	@$(call hr)
-	@$(call title,"Variables")
-	@$(call echovar,SHELL)
-	@$(call echovar,CURDIR)
-	@$(call echovar,PWD)
-	@$(call echovar,VPATH)
-	@$(call echovar,MAKE)
-	@$(call echovar,_)
-	@$(call echovar,MAKECMDGOALS)
-	@$(call echovar,MAKE_VERSION)
-	@$(call echovar,MAKEFLAGS)
-	@$(call echovar,GNUMAKEFLAGS)
-	@$(call echovar,MAKEFILES)
-	@$(call echovar,MAKEFILE_LIST)
-	@$(call echovar,THIS_MAKEFILE)
-	@$(call echovar,MAKE_HOST)
-	@$(call echovar,MAKELEVEL)
-	@echo
-	@$(call title,"Includes")
-	@$(call echovar,INCLUDES)
-	@echo
-	@$(call title,"Libraries")
-	@$(call echovar,LIBS)
-	@echo
-	@$(call title,"Optimizations")
-	@$(call echovar,OPTIMIZE)
-	@echo
-	@$(call title,"C++ Compiler")
-	@$(call echovar,CPPC)
-	@$(call echovar,COPT)
-	@$(call echovar,CFLAGS)
-	@echo
-	@$(call title,"Fortran")
-	@$(call echovar,FC)
-	@$(call echovar,FOPT)
-	@$(call echovar,LNK_FFLAGS)
-	@echo
-	@$(call title,"Linker")
-	@$(call echovar,LNK)
-	@$(call echovar,LOPT)
-	@$(call echovar,LFLAGS)
-	@$(call hr)
-	@echo
-
-
-diff:
-	@diff Makefile.pristine.mk Makefile || exit 0
-
-cdiff:
-	@colordiff Makefile.pristine.mk Makefile || exit 0
-
-clean: FORCE
-	@command rm -f *.o
-	@command rm -f $(DOC)
-	@command rm -f *.a
-	@command rm -f *.s
-	@command rm -f *_opts.*
-	@command rm -f *.temp
-	@command rm -f *.tmp
-	@command rm -f *.link_md
-	@command rm -f *~
-	@command rm -f $(EXEC)
-	@command rm -f core.*
-
-cleanexec: FORCE
-	@command rm -f $(EXECUTABLES)
-FORCE:
-
-all: $(EXEC) 
-
-makecleanall:
-	make -j clean
-	make -j all

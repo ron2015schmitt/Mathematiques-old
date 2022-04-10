@@ -132,7 +132,7 @@ public:
   // ----------------------------------------------------------------
 // FUNCTOR_approx: template class for function 'mathq::approx'
 //
-//    Note: generated from template file 'fun_ternary_functor.hpp'
+//    Note: generated from template file 'fun_ternary_functor.h'
 //          using Python script 'fun_ternary.py'
 // ----------------------------------------------------------------
 

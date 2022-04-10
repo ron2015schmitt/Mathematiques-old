@@ -22,6 +22,8 @@ namespace mathq {
    *                   = underlying algebraic field
    *                     ex. int, double, std::complex<double>
    *                 M = tensor depth. if E=D, then M=1.
+   * 
+   * ROW MAJOR CONVENTION
    ********************************************************************  
    */
 

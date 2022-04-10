@@ -18,7 +18,7 @@ namespace mathq {
 // ----------------------------------------------------------------
 // FUNCTOR_add: template class for operator '+'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_subtract: template class for operator '-'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -144,7 +144,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_multiply: template class for operator '*'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -207,7 +207,7 @@ public:
 // ----------------------------------------------------------------
 // FUNCTOR_divide: template class for operator '/'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -282,7 +282,7 @@ public:
 // Addition
 // template function classes for operator '+'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -436,7 +436,7 @@ auto operator+(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 // Subtraction
 // template function classes for operator '-'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -590,7 +590,7 @@ auto operator-(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 // Multiplication
 // template function classes for operator '*'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 
@@ -744,7 +744,7 @@ auto operator*(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
 // Division
 // template function classes for operator '/'
 //
-//    Note: generated from template file 'fun_binary_op_functor.hpp'
+//    Note: generated from template file 'fun_binary_op_functor.h'
 //          using Python script 'fun_binary_ops.py'
 // ----------------------------------------------------------------
 

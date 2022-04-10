@@ -1,13 +1,17 @@
 # specific files for this project
-Makefile.pristine.mk
-run
-
-/Makefile
-/benchmark/Makefile
+/make-lib/dirmathq.mk
 /examples/Makefile
-/sandbox/Makefile
-/test/Makefile
-/test/create/Makefile
+/scripts/__pycache__/
+
+# NOTE: that most of the subdirectories have .gitignore files as well
+
+
+# temp files
+*.g++_copts
+*.tmp
+*.temp
+~*
+*~
 
 
 # -------------C++ output files--------------

@@ -1,4 +1,9 @@
-## **V3.2** First Official Release
+
+## **v3.3** Build Process Refactoring
+  + The build process has been fully refactored, simplified, and streamlined
+  + The documentation refactoring has begun
+  
+## **v3.2** First Official Release
 
 **Design**
   + Simple Matlab-like syntax with no run-time cost

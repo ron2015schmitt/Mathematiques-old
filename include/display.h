@@ -189,6 +189,7 @@ namespace display {
   const std::string OVERLINE   = ESC+"53m";
 
   const std::string BLACK   = FORE+"5;232m";  // in Ubuntu color=0 is sloghtly gray
+  const std::string DEFCLR   = FORE+"39m";
   const std::string GRAY2   = ESC+"30m";      
   const std::string GRAY1  = FORE+"5;240m";      
   const std::string WHITE   = ESC+"37m";
@@ -1353,8 +1354,10 @@ namespace display {
     print_debug_level();
     mout << createStyle(BOLD).apply("  C++ version: ");
     mout << createStyle(CYAN).apply(printf2str("%lu",__cplusplus)) << endl;
-    mout << createStyle(BOLD).apply("  OPTIMIZE: ");
-    mout << createStyle(CYAN).apply(string(COMPILE_OPTIMIZE)) << endl;
+#ifdef MATHQ_COPTS
+    mout << createStyle(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
+    mout << createStyle(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
+#endif
     mout << StyledString::get(HORLINE);
       
   }

@@ -34,8 +34,8 @@ MAGNETALIGHT  :='\033[0;95m'
 CYANLIGHT  :='\033[0;96m'
 WHITE  :='\033[0;97m'
 
-BOLDON:='\e[0;1m'
-BOLDOFF:='\e[0;0m'
+BOLD:='\e[0;1m'
+BOLD_OFF:='\e[0;0m'
 
 UNDERLINEON:='\e[0;4m'
 UNDERLINEOFF:='\e[0;0m'
@@ -46,7 +46,7 @@ where-am-i = $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 THIS_MAKEFILE := $(call where-am-i)
 
 define echovar
- echo -e $(BOLDON)"${1}"$(BOLDOFF)" = ${${1}}"
+ echo -e $(BOLD)"${1}"$(BOLD_OFF)" = ${${1}}"
 endef
 
 define title
@@ -54,7 +54,7 @@ define title
 endef
 
 define hr
- echo -e $(BOLDON)"-------------------------------------------------------------------------------"$(BOLDOFF)
+ echo -e $(BOLD)"-------------------------------------------------------------------------------"$(BOLD_OFF)
 endef
 
 
@@ -350,9 +350,9 @@ LIB_MATHQ = -lmathq
 INCLUDES += -I $(INCDIR_MATHQ) 
 LIBS += -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 
-#  VERSION_FILE_MATHQ should be a bash file with VERSION_MATHQ=X.X
-VERSION_FILE_MATHQ = $(DIR_MATHQ)/files/version.mathq
-VERSION_MATHQ = `. $(VERSION_FILE_MATHQ) && echo "$${VERSION_MATHQ}"`
+#  COMPATIBLE_VERSION_MATHQ_FILE should be a bash file with COMPATIBLE_VERSION_MATHQ=X.X
+COMPATIBLE_VERSION_MATHQ_FILE = $(DIR_MATHQ)/files/version.mathq
+COMPATIBLE_VERSION_MATHQ = `. $(COMPATIBLE_VERSION_MATHQ_FILE) && echo "$${COMPATIBLE_VERSION_MATHQ}"`
 TAG_FILE_MATHQ = $(DIR_MATHQ)/files/tag.mathq
 TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
 VERSION_HEADER_FILE_MATHQ = $(DIR_MATHQ)/include/version_mathq.h
@@ -369,8 +369,8 @@ info_mathq:
 	@$(call echovar,LIBDIR_MATHQ)
 	@$(call echovar,LIB_MATHQ)
 	@$(call echovar,LIB_LAPACK)
-	@$(call echovar,VERSION_FILE_MATHQ)
-	@$(call echovar,VERSION_MATHQ)
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
+	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
 	@$(call echovar,TAG_MATHQ)
 	@$(call hr)
 	@echo

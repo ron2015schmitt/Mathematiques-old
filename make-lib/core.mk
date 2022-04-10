@@ -114,15 +114,15 @@ cleanstd: FORCE
 
 
 cleanall: FORCE clean
-	\rm -f run
+	@\rm -f run
 	@\rm -f *.temp
 	@\rm -f *.tmp
-	\rm -f *~
-	\rm -f ~*
-	\rm -f *.gz
-	\rm -f *.tar
-	\rm -f *.old
-
+	@\rm -f *~
+	@\rm -f ~*
+	@\rm -f *.gz
+	@\rm -f *.tar
+	@\rm -f *.old
+	@\rm -f run
 
 createrun: 
 	@$(DIR_MATHQ)/scripts/createrun.bash $(EXEC)

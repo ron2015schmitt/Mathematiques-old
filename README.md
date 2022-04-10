@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.3.18
+# Mathématiques v3.3.19
 
 
 ## Description 
@@ -55,10 +55,10 @@ v1 = {10,20,30,40};
 Vector<double> v2(4);
 v2 = {1,2,3,4}; 
 
-disp(v1 + v2)
-disp(v1 - v2)
-disp(v1 * v2)
-disp(v1 / v2)
+disp(v1 + v2);
+disp(v1 - v2);
+disp(v1 * v2);
+disp(v1 / v2);
 ```
 
 **Text Output**
@@ -152,7 +152,7 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 ## News 
 
-The first step of refactoring the core code has been completed.
+The first step of refactoring the build process has been completed.
 
 + v3.3 has been released
   + The build process has been fully refactored, simplified, and streamlined

@@ -4,7 +4,9 @@ import os, sys
 from string import Template
 
 def delete(fname):
-  if os.path.exists(fname):  os.remove(fname)
+  if os.path.exists(fname):  
+    os.chmod(fname, 0o777)
+    os.remove(fname)
 
 
 usage="""

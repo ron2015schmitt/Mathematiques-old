@@ -21,6 +21,7 @@ help-opts:
 version_mathq.h: $(TAG_FILE_MATHQ)
 	echo "$${CONTENT}" > $@
 	@cat $@
+	@chmod a-w $@
 
 all: version_mathq.h
 

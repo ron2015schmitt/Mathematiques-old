@@ -163,9 +163,3 @@
 
 To contact me regarding suggestions, bugs, or volunteer work send an email to `Ron dot Schmitt @ me dot com`
 
----------------
----------------
-
-
-| ⇦ <br />[9-Tests](test.md)  | [Table Of Contents](README.md)<br />10-New Feature Schedule<br /><img width=1000/> | ⇨ <br />[11-Developer Guide](developer-guide.md)   |
-| ----------- | ----------- | ----------- |

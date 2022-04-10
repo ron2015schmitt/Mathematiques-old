@@ -7,7 +7,15 @@ from colorama import init, Fore, Back, Style
 
 import bashutil
 
+
 init()
+
+def delete(fname):
+  if os.path.exists(fname):  
+    os.chmod(fname, 0o777)
+    os.remove(fname)
+
+
 
 usage="""
 USAGE: python3 createrev.py COMPATIBLE_VERSION_MATHQ_FILE TAG_FILE_MATHQ TAG_ANNOTATION_FILE
@@ -39,11 +47,6 @@ env = bashutil.source(COMPATIBLE_VERSION_MATHQ_FILE)
 COMPATIBLE_VERSION_MATHQ = env["COMPATIBLE_VERSION_MATHQ"]
 # print(COMPATIBLE_VERSION_MATHQ)
 
-print("  reading from: "+TAG_FILE_MATHQ)
-f = open(TAG_FILE_MATHQ, 'r')
-TAG_MATHQ = f.read().strip()
-f.close()
-# print(TAG_MATHQ)
 
 # create a new tag
 TAG_NEW = "v" + COMPATIBLE_VERSION_MATHQ
@@ -60,7 +63,8 @@ else:
 FULL_TAG = "{}.{}".format(TAG_NEW, REV)
 print("  new tag="+FULL_TAG)
 
-print("  reading from: "+TAG_FILE_MATHQ)
+print("  writing to: "+TAG_FILE_MATHQ)
+delete(TAG_FILE_MATHQ)
 f = open(TAG_FILE_MATHQ, "w")
 f.write(FULL_TAG)
 f.close()
@@ -71,6 +75,7 @@ version_file_contents = f.read()
 f.close()
 
 print("  writing to: "+TAG_ANNOTATION_FILE)
+delete(TAG_ANNOTATION_FILE)
 f = open(TAG_ANNOTATION_FILE, "w")
 doc = FULL_TAG + "\n" + version_file_contents
 f.write(doc)

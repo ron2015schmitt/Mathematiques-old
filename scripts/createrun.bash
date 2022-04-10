@@ -16,3 +16,4 @@ do
 done
 echo "echo -e \"${BLUE}${BOLD}All executables ran succesfully${DEFCLR}${NORMAL}\"" >> run
 chmod a+rx run
+chmod a-w run

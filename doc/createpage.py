@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 
-import sys
+import sys, os
 import datetime
 import json
+
+def delete(fname):
+  if os.path.exists(fname):  
+    os.chmod(fname, 0o777)
+    os.remove(fname)
 
 today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
@@ -72,6 +77,7 @@ links = links.format(prevpage, page["numtitle"], nextpage)
 # print(myheader)
 # print(body)
 # print(links)
+delete(page["dest"])
 f = open(page["dest"], "w")
 doc = header + title + body
 nlines = len(body.splitlines())

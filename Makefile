@@ -12,6 +12,8 @@ include make-lib/dirmathq.mk
 
 newrev: FORCE
 	\python3 $(DIR_MATHQ)/scripts/createrev.py $(COMPATIBLE_VERSION_MATHQ_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
+	@chmod a-w $(TAG_FILE_MATHQ) 
+	@chmod a-w $(TAG_ANNOTATION_FILE)
 
 $(TAG_FILE_MATHQ): $(COMPATIBLE_VERSION_MATHQ_FILE)
 	newrev
@@ -62,6 +64,11 @@ purge:
 	\cd $(DIR_MATHQ)/sandbox && make -j cleanall
 	\cd $(DIR_MATHQ)/src && make -j cleanall
 	\cd $(DIR_MATHQ)/test && make -j cleanall
+	\rm -f $(TAG_FILE_MATHQ) 
+	git restore $(TAG_FILE_MATHQ) 
+	\rm -f $(TAG_ANNOTATION_FILE)
+	git restore $(TAG_ANNOTATION_FILE) 
+
 
 # this is a quick test for broken builds
 run: 

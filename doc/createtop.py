@@ -6,7 +6,9 @@ import json
 import os
 
 def delete(fname):
-  if os.path.exists(fname):  os.remove(fname)
+  if os.path.exists(fname):  
+    os.chmod(fname, 0o777)
+    os.remove(fname)
 
 today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)

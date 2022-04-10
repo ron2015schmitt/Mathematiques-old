@@ -152,7 +152,7 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 ## News 
 
-The first step of refactoring the build process has been completed.
+The first step of refactoring has been completed.
 
 + v3.3 has been released
   + The build process has been fully refactored, simplified, and streamlined

@@ -8,15 +8,18 @@ CHAPTERS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-sch
 
 %.md: %/template.md createpage.py toc.json
 	python3 createpage.py $*
+	@chmod a-w $*.md
 
-toc.json README.md header.d: createtoc.py $(TAG_FILE_MATHQ) toc.txt 
+toc.json README.md header.md: createtoc.py $(TAG_FILE_MATHQ) toc.txt 
 	python3 createtoc.py $(TAG_FILE_MATHQ)
+	@chmod a-w toc.json README.md header.md
 
 ../README.md: createtop.py $(TAG_FILE_MATHQ) top/template.md
 	python3 createtop.py $(TAG_FILE_MATHQ)
+	@chmod a-w $*.md
 
-all: ../README.md toc.json README.md header.d $(CHAPTERS)
+all: ../README.md toc.json README.md header.md $(CHAPTERS)
 
 clean:
-	rm -f *.md toc.json
+	@rm -f *.md toc.json
 

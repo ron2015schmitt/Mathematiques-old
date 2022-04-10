@@ -3,6 +3,10 @@
 import sys
 import datetime
 import json
+import os
+
+def delete(fname):
+  if os.path.exists(fname):  os.remove(fname)
 
 today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
@@ -32,7 +36,7 @@ header = """
 """.format(tag)
 
 
-
+ 
 f = open("top/template.md", 'r')
 body = f.read()
 f.close()
@@ -40,7 +44,7 @@ f.close()
 
 footer = ""
 
-
+delete('../README.md')
 f = open("../README.md", "w")
 f.write(header + body + footer)
 f.close()

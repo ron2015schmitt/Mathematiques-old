@@ -3,6 +3,10 @@
 import sys
 import datetime
 import json
+import os
+ 
+def delete(fname):
+  if os.path.exists(fname):  os.remove(fname)
 
 today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
@@ -74,6 +78,7 @@ for i in range(N):
 
 
 # create toc.json
+delete("toc.json")
 with open('toc.json', 'w') as f:
     json.dump(pages, f,  indent=2)
 
@@ -105,7 +110,7 @@ footer = ''
 
 
 # write TOC to README.md
-
+delete("README.md")
 f = open("README.md", "w")
 f.write(top + toc)
 f.close()
@@ -128,7 +133,7 @@ header = """
 """
 
 # write TOC to header.md
-
+delete("header.md")
 f = open("header.md", "w")
 f.write(header)
 f.close()

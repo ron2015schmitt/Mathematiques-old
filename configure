@@ -21,7 +21,7 @@ cat > ${MAKEDIR}/dirmathq.mk << EOF
 # Do NOT store in git
 DIR_MATHQ := ${DIR_MATHQ}
 EOF
-
+chmod a-w ${MAKEDIR}/dirmathq.mk
 
 # create Makefile for user in examples
 
@@ -51,6 +51,7 @@ EOF
 cat ${MAKEDIR}/example.head.mk >> ${Makefile_example}
 cat ${MAKEDIR}/core.mk >> ${Makefile_example}
 cat ${MAKEDIR}/example.foot.mk >> ${Makefile_example}
+chmod a-w ${Makefile_example}
 
 
  

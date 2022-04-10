@@ -1,10 +1,10 @@
 About | about
 License | license
-Examples | examples
-Features and Release Notes | release-notes
+Release Notes | release-notes
+Example code | examples
 Installation | installation
 Using Mathématiques | using-mathematiques
-User Guide | coding-guide
+Coding Guide / Syntax | coding-guide
 Benchmarks | benchmarks
 Tests | test
 New Feature Schedule | feature-schedule

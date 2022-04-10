@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
   print_mathq_info();
   printoptsfile();
 
-  Vector<double> v1({1, -1});
+  Vector<double> v1({2, -1});
   Vector<double> v2;
   v2 = 10 * sin(pi / 2 * v1) + 5;
 
@@ -52,11 +52,17 @@ int main(int argc, char *argv[])
   disp(v2);
   disp(v1 + v2);
 
+  // FormatDataVector::max_elements_per_line = 10;
+  // FormatDataVector::string_opening = "[\n  ";
+  // FormatDataVector::string_delimeter = "\n  ";
+  // FormatDataVector::string_endofline = "";
+  // FormatDataVector::string_closing = "\n]";
+
   FormatDataMatrix::max_elements_per_line = 10;
   FormatDataMatrix::string_opening = "[\n";
   FormatDataMatrix::string_delimeter = ", ";
   FormatDataMatrix::string_row_opening = "    ";
-  FormatDataMatrix::string_row_closing = ";\n";
+  FormatDataMatrix::string_row_closing = "\n";
   FormatDataMatrix::string_lastrow_closing = "";
   FormatDataMatrix::string_endofline = "\n";
   FormatDataMatrix::string_closing = "\n]";
@@ -66,11 +72,15 @@ int main(int argc, char *argv[])
   Matrix<double> m2(2, 2);
   m2 = {-1, -2, -3, -4};
 
-  Matrix<double> m3(3, 2);
-  m3 = {{1, 2}, {3, 4}, {5, 6}};
+  Matrix<double> m3({{1, 2}, {3, 4}, {5, 6}});
+  // m3 = {{1, 2}, {3, 4}, {5, 6}};
   // dot product
   disp(v1 | v2);
 
+  disp(v1);
+  disp(m3);
+  disp((m3 | v1));
+  
   disp(m1);
   disp(m2);
   disp(m1 + m2);
@@ -82,6 +92,23 @@ int main(int argc, char *argv[])
 
   disp(m3 | m1);
   disp(m2 | m3.transpose());
+
+
+  Vector<double> v({2, -1});
+  Vector<double> u({1, -2, 4});
+  Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
+
+  disp(v);
+  disp(A);
+  disp(A|v);
+
+
+  disp(u);
+  disp(v);
+  disp(A);
+  disp(u|A|v);
+  disp(u|(2*A-1)|(10 * sin(pi / 2 * v) + 5));
+
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;

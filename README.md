@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.3.16
+# Mathématiques v3.3.17
 
 
 ## Description 
@@ -43,6 +43,47 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 ### Documentation
 + Detailed pretty documentation in Markdown.  
 + Markdown documents can be auto-generated from C++ code.
+
+## Examples
+
+### EXAMPLE 1: Element-wise `Vector` math
+
+**Actual C++ code**
+```C++
+Vector<double> v1(4);
+v1 = {10,20,30,40}; 
+Vector<double> v2(4);
+v2 = {1,2,3,4}; 
+
+disp(v1 + v2)
+disp(v1 - v2)
+disp(v1 * v2)
+disp(v1 / v2)
+```
+
+**Output**
+```C++
+  v1 + v2 = Vector<double> {11, 22, 33, 44}; 
+  v1 - v2 = Vector<double> {9, 18, 27, 36}; 
+  v1 * v2 = Vector<double> {10, 40, 90, 160}; 
+  v1 / v2 = Vector<double> {10, 10, 10, 10}; 
+```
+
+### EXAMPLE 2: Complicated Element-wise `Vector` math
+
+**Actual C++ code**
+```C++
+Vector<double> u( linspace<double>(-1,1,21) );
+Vector<double> v;
+v = 10*sin(pi/2*u) + 10;
+
+const double N = double(v.size());
+double mu = sum(v)/N;
+double sigma = norm(v-mu)/sqrt(N-1);
+
+disp(mu);
+disp(sigma);
+```
 
 ## News 
 

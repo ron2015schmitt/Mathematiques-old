@@ -94,6 +94,7 @@
 * `Matrix` size modifications. 
    * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
    * support column major matrices and tensors
+* add latex parser for disp?
 
 
 ### Unit testing

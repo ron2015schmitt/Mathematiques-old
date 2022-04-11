@@ -22,7 +22,7 @@
 
 
 
-# 5-Installation
+# 5. Installation
 
 
 
@@ -70,5 +70,5 @@ cd Mathematiques
 ./configure
 ```
 
-| ⇦ <br />[4-Example code](examples.md)  | [Table Of Contents](README.md)<br />5-Installation<br /><img width=1000/> | ⇨ <br />[6-Using Mathématiques](using-mathematiques.md)   |
+| ⇦ <br />[4. Example code](examples.md)  | [Table Of Contents](README.md)<br />5. Installation<br /><img width=1000/> | ⇨ <br />[6. Using Mathématiques](using-mathematiques.md)   |
 | ----------- | ----------- | ----------- |

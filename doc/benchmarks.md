@@ -22,7 +22,7 @@
 
 
 
-# 8-Benchmarks
+# 8. Benchmarks
 
 
 
@@ -60,5 +60,5 @@ stop();
 ---------------------------------------------------------------------------
 To be written...
 
-| ⇦ <br />[7-Coding Guide / Syntax](coding-guide.md)  | [Table Of Contents](README.md)<br />8-Benchmarks<br /><img width=1000/> | ⇨ <br />[9-Tests](test.md)   |
+| ⇦ <br />[7. Coding Guide / Syntax](coding-guide.md)  | [Table Of Contents](README.md)<br />8. Benchmarks<br /><img width=1000/> | ⇨ <br />[9. Tests](test.md)   |
 | ----------- | ----------- | ----------- |

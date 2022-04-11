@@ -22,7 +22,7 @@
 
 
 
-# 6-Using Mathématiques
+# 6. Using Mathématiques
 
 
 Now that you have completed installation, to use the Mathématiques library you need to 
@@ -55,5 +55,5 @@ make example
 ./example
 ```
 
-| ⇦ <br />[5-Installation](installation.md)  | [Table Of Contents](README.md)<br />6-Using Mathématiques<br /><img width=1000/> | ⇨ <br />[7-Coding Guide / Syntax](coding-guide.md)   |
+| ⇦ <br />[5. Installation](installation.md)  | [Table Of Contents](README.md)<br />6. Using Mathématiques<br /><img width=1000/> | ⇨ <br />[7. Coding Guide / Syntax](coding-guide.md)   |
 | ----------- | ----------- | ----------- |

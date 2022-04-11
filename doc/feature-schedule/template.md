@@ -118,7 +118,9 @@
       * Tensor<R=4> with dimenions (N,1,N,1) for <true,true> 
       * Tensor<R=4> with dimenions (N,1,1,N) for <true,false> 
       * Tensor<R=4> with dimenions (1,N,N,1) for <false,true> 
-      * Tensor<R=4> with dimenions (1,N,1,N) for <false,false>       
+      * Tensor<R=4> with dimenions (1,N,1,N) for <false,false>  
+1. Use compomnent-free notation  for inner products (Misner, Wheeler, Thorne; Frankel)
+     
 1. generalized coordinate systems
    * basis vectors
    * metric tensor

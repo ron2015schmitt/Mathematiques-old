@@ -22,7 +22,7 @@
 
 
 
-# 10-New Feature Schedule
+# 10. New Feature Schedule
 
 ## Planned Releases
 
@@ -144,7 +144,9 @@
       * Tensor<R=4> with dimenions (N,1,N,1) for <true,true> 
       * Tensor<R=4> with dimenions (N,1,1,N) for <true,false> 
       * Tensor<R=4> with dimenions (1,N,N,1) for <false,true> 
-      * Tensor<R=4> with dimenions (1,N,1,N) for <false,false>       
+      * Tensor<R=4> with dimenions (1,N,1,N) for <false,false>  
+1. Use compomnent-free notation  for inner products (Misner, Wheeler, Thorne; Frankel)
+     
 1. generalized coordinate systems
    * basis vectors
    * metric tensor
@@ -190,5 +192,5 @@
 To contact me regarding suggestions, bugs, or volunteer work send an email to `Ron dot Schmitt @ me dot com`
 
 
-| ⇦ <br />[9-Tests](test.md)  | [Table Of Contents](README.md)<br />10-New Feature Schedule<br /><img width=1000/> | ⇨ <br />[11-Developer Guide](developer-guide.md)   |
+| ⇦ <br />[9. Tests](test.md)  | [Table Of Contents](README.md)<br />10. New Feature Schedule<br /><img width=1000/> | ⇨ <br />[11. Developer Guide](developer-guide.md)   |
 | ----------- | ----------- | ----------- |

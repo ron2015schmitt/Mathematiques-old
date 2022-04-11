@@ -22,7 +22,7 @@
 
 
 
-# 1-About
+# 1. About
 
 
 Development for this project originally took place during the years 2003-2008 
@@ -35,5 +35,5 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 The GNU gcc (g++) compiler is used by default.
 
-| ⇦ <br />  | [Table Of Contents](README.md)<br />1-About<br /><img width=1000/> | ⇨ <br />[2-License](license.md)   |
+| ⇦ <br />  | [Table Of Contents](README.md)<br />1. About<br /><img width=1000/> | ⇨ <br />   |
 | ----------- | ----------- | ----------- |

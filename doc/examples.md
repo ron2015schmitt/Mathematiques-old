@@ -22,7 +22,7 @@
 
 
 
-# 4-Example code
+# 4. Example code
 
 ## Examples
 
@@ -128,5 +128,5 @@ u|A|v = 12;
 u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30; 
 ```
 
-| ⇦ <br />[3-Release Notes](release-notes.md)  | [Table Of Contents](README.md)<br />4-Example code<br /><img width=1000/> | ⇨ <br />[5-Installation](installation.md)   |
+| ⇦ <br />[3. Release Notes](release-notes.md)  | [Table Of Contents](README.md)<br />4. Example code<br /><img width=1000/> | ⇨ <br />[5. Installation](installation.md)   |
 | ----------- | ----------- | ----------- |

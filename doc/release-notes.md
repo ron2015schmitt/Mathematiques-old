@@ -22,7 +22,7 @@
 
 
 
-# 3-Release Notes
+# 3. Release Notes
 
 
 ## **v3.3** Build Process Refactoring
@@ -82,5 +82,5 @@
   + Python unit test generation in progress
   + CI/CT using Docker images in progress
 
-| ⇦ <br />[2-License](license.md)  | [Table Of Contents](README.md)<br />3-Release Notes<br /><img width=1000/> | ⇨ <br />[4-Example code](examples.md)   |
+| ⇦ <br />[2. License](license.md)  | [Table Of Contents](README.md)<br />3. Release Notes<br /><img width=1000/> | ⇨ <br />[4. Example code](examples.md)   |
 | ----------- | ----------- | ----------- |

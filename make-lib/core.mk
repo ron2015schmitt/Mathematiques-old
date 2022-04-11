@@ -26,6 +26,15 @@ LIB_MATHQ := -lmathq
 INCLUDES := -I $(INCDIR_MATHQ) 
 LIBS := -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 
+###########################################################
+# GENERAL VARS
+###########################################################
+
+
+SUBMAKES = $(wildcard */Makefile)
+SUBDIRS = $(dir $(SUBMAKES))
+SUBDIRSCLEAN = $(addprefix clean_,$(SUBDIRS))
+
 
 
 ###########################################################
@@ -104,7 +113,7 @@ LFLAGS = $(OPTIMIZE) $(LOPT)
 
 FORCE:
 
-cleanstd: FORCE 
+cleanstd: FORCE cleansubs
 	@command rm -f *.o
 	@command rm -f *.a
 	@command rm -f *.s
@@ -137,3 +146,17 @@ gitignore:
 	@  \printf "/$${name}\n" >> .gitignore
 	@done
 
+
+
+$(SUBDIRS): FORCE
+	$(MAKE) -C $@
+
+testsubs: FORCE
+	@echo $(SUBMAKES)
+	@echo $(SUBDIRS)
+	@echo $(SUBDIRSCLEAN)
+
+clean_%: FORCE
+	$(MAKE) -C $* clean
+
+cleansubs: $(SUBDIRSCLEAN)

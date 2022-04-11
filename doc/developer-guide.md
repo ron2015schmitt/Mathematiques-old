@@ -22,7 +22,7 @@
 
 
 
-# 11-Developer Guide
+# 11. Developer Guide
 
 
 *in progress...*
@@ -58,5 +58,5 @@ When adding or removing chapters in the main TOC
 + edit the `CHAPTERS` variable in `doc/Makefile`
 + edit the `doc/toc.txt`
 
-| ⇦ <br />[10-New Feature Schedule](feature-schedule.md)  | [Table Of Contents](README.md)<br />11-Developer Guide<br /><img width=1000/> | ⇨ <br />   |
+| ⇦ <br />[10. New Feature Schedule](feature-schedule.md)  | [Table Of Contents](README.md)<br />11. Developer Guide<br /><img width=1000/> | ⇨ <br />   |
 | ----------- | ----------- | ----------- |

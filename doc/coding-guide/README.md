@@ -6,8 +6,7 @@
 
 # Table of Contents
 
-7.1. [Scalar Math](scalar/README.md)
-
+7.1. [Scalar Math](scalar/README.md) 
 7.2. [Display (Output)](display/README.md)
 
 7.3. [Vectors](vector/README.md)

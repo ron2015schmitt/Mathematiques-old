@@ -1,12 +1,12 @@
 
 
-# Mathématiques v3.4.3
+<details>
 
-----
+<summary>Table of Contents</summary>
 
-# Table of Contents
 
-1. [About](about/README.md)
+1. [About](about/README.md)*
+
 2. [License](license/README.md)
 3. [Release Notes](release-notes/README.md)
 4. [Example code](examples/README.md)
@@ -17,3 +17,7 @@
 9. [Tests](test/README.md)
 10. [New Feature Schedule](feature-schedule/README.md)
 11. [Developer Guide](developer-guide/README.md)
+
+
+</details>
+

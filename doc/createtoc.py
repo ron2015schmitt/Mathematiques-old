@@ -131,15 +131,15 @@ top = """
 
 ----
 
-# Table of Contents
+# {}
 
-""".format(tag)
+""".format(tag, "User Guide")
 
 
 toc = ""
 for name in pages:
     page = pages[name]
-    toc += page["fullindex"]+ ". " + page["link"] + "\n"
+    toc += page["fullindex"]+ ". " + page["link"] + "<br>\n"
 
 footer = ''
 

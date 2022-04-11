@@ -28,11 +28,17 @@ if n != 2:
 
 name = sys.argv[1]
 
+#############################################################
 # read toc.json as dict
+#############################################################
 with open('toc.json') as f:
     pages = json.load(f)
 
 #print(pages)
+
+#############################################################
+# create links for footer
+#############################################################
 
 
 links = """
@@ -63,16 +69,28 @@ title = """
 """.format(page["numtitle"], today)
 
 
+#############################################################
+# load header.md
+#############################################################
+
 
 f = open("header.md", 'r')
 header = f.read()
 f.close()
+
+#############################################################
+# read subdir/template.md
+#############################################################
 
 f = open(page["src"], 'r')
 body = f.read()
 f.close()
 
 links = links.format(prevpage, page["numtitle"], nextpage)
+
+#############################################################
+# create  subdir/README.md
+#############################################################
 
 # print(myheader)
 # print(body)
@@ -86,4 +104,6 @@ nlines = len(body.splitlines())
 doc += links
 f.write(doc)
 f.close()
+
+
 

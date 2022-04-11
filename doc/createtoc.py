@@ -42,7 +42,10 @@ else:
   print(chap_num_file+": NOT found")
   prefix = ""
 
+#############################################################
 # read toc.txt
+#############################################################
+
 # create array from toc.txt
 lines = []
 with open('toc.txt', 'r') as f:
@@ -50,6 +53,13 @@ with open('toc.txt', 'r') as f:
     lines.append(line.rstrip())
 f.close()
  
+
+
+#############################################################
+# page dictionary
+#############################################################
+
+
 N = len(lines)
 i = 1
 pages = {}
@@ -66,7 +76,7 @@ for line in lines:
       fullindex = str(i)      
     numtitle = fullindex+ ". "+title
     src = name+"/template.md"
-    dest = name+".md"
+    dest = name+"/README.md"
     link = "[{}]({})".format(title, dest)
     numlink = "[{}]({})".format(numtitle, dest)
     toplink = "[{}](doc/{})".format(title, dest)
@@ -77,6 +87,7 @@ for line in lines:
         "title": title,
         "src": src,
         "dest": dest,
+        "desttoc": name+"/toc.above.md",
         "link": link,
         "toplink": toplink,
         "numlink": numlink,
@@ -98,7 +109,12 @@ for i in range(N):
       page["next"] = names[i+1]
 
 
+
+#############################################################
 # create toc.json
+#############################################################
+
+
 delete("toc.json")
 with open('toc.json', 'w') as f:
   json.dump(pages, f,  indent=2)
@@ -112,8 +128,6 @@ with open('toc.json', 'w') as f:
 top = """
 
 # Mathématiques {}
-
-_The documentation is currently being updating.  The full documentation will be released as part of v3.4_
 
 ----
 
@@ -145,9 +159,9 @@ header = """
 
 <details>
 
-  <summary>Table of Contents</summary>
+<summary>Table of Contents</summary>
 
-""" + toc + """
+{}
 
 </details>
 
@@ -156,13 +170,31 @@ header = """
 # write TOC to header.md
 delete("header.md")
 f = open("header.md", "w")
-f.write(header)
+f.write(header.format(toc))
 f.close()
 
 
+#############################################################
+# create header.above.md for each subdir
+#############################################################
+for subdir in pages:
+  toc = ""
+  for name in pages:
+      page = pages[name]
+      if subdir == name:
+        toc += "\n" + page["fullindex"]+ ". " + page["link"] + "*\n\n"
+      else:
+        toc += page["fullindex"]+ ". " + page["link"] + "\n"
+  # write TOC to header.md
+  fn = subdir + "/header.above.md"
+  delete(fn)
+  f = open(fn, "w")
+  f.write(header.format(toc))
+  f.close()
+
 
 #############################################################
-# save indices and TOC header to sub-directories
+# save indices to subdirs
 #############################################################
 
 for i in range(N):

@@ -4,17 +4,17 @@
 
   <summary>Table of Contents</summary>
 
-1. [About](about.md)
-2. [License](license.md)
-3. [Release Notes](release-notes.md)
-4. [Example code](examples.md)
-5. [Installation](installation.md)
-6. [Using Mathématiques](using-mathematiques.md)
-7. [Coding Guide / Syntax](coding-guide.md)
-8. [Benchmarks](benchmarks.md)
-9. [Tests](test.md)
-10. [New Feature Schedule](feature-schedule.md)
-11. [Developer Guide](developer-guide.md)
+1. [About](about/README.md)
+2. [License](license/README.md)
+3. [Release Notes](release-notes/README.md)
+4. [Example code](examples/README.md)
+5. [Installation](installation/README.md)
+6. [Using Mathématiques](using-mathematiques/README.md)
+7. [Coding Guide / Syntax](coding-guide/README.md)
+8. [Benchmarks](benchmarks/README.md)
+9. [Tests](test/README.md)
+10. [New Feature Schedule](feature-schedule/README.md)
+11. [Developer Guide](developer-guide/README.md)
 
 
 </details>
@@ -82,5 +82,5 @@
   + Python unit test generation in progress
   + CI/CT using Docker images in progress
 
-| ⇦ <br />[2. License](license.md)  | [Table Of Contents](README.md)<br />3. Release Notes<br /><img width=1000/> | ⇨ <br />[4. Example code](examples.md)   |
+| ⇦ <br />[2. License](license/README.md)  | [Table Of Contents](README.md)<br />3. Release Notes<br /><img width=1000/> | ⇨ <br />[4. Example code](examples/README.md)   |
 | ----------- | ----------- | ----------- |

@@ -4,6 +4,9 @@ import sys, os
 import datetime
 import json
 
+print("CREATE PAGE")
+
+
 def delete(fname):
   if os.path.exists(fname):  
     os.chmod(fname, 0o777)
@@ -95,8 +98,10 @@ links = links.format(prevpage, "README.md", page["numtitle"], nextpage)
 # print(myheader)
 # print(body)
 # print(links)
-delete(page["dest"])
-f = open(page["dest"], "w")
+fn = page["dest"]
+print("dest="+fn)
+delete(fn)
+f = open(fn, "w")
 doc = header + title + body
 nlines = len(body.splitlines())
 #print(nlines)

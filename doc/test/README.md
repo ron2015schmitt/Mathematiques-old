@@ -1,10 +1,8 @@
 
 
-# Mathématiques v3.4.9
+<details>
 
-----
-
-# User Guide
+<summary>User Guide</summary>
 
 1. [About](about/README.md)<br>
 2. [License](license/README.md)<br>
@@ -17,3 +15,20 @@
 9. [Tests](test/README.md)<br>
 10. [New Feature Schedule](feature-schedule/README.md)<br>
 11. [Developer Guide](developer-guide/README.md)<br>
+
+
+</details>
+
+
+
+
+# 9. Tests
+
+*In progress*
+
+
+
+
+
+| ⇦ <br />[8. Benchmarks](benchmarks/README.md)  | [Table Of Contents](README.md)<br />9. Tests<br /><img width=1000/> | ⇨ <br />[10. New Feature Schedule](feature-schedule/README.md)   |
+| ----------- | ----------- | ----------- |

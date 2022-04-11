@@ -6,7 +6,7 @@ include $(DIR_MATHQ)/make-lib/infohelp.mk
 
 MYDIR := $(shell pwd)
 CREATE_TOC := $(DIR_MATHQ)/doc/createtoc.py
-CREATE_PAGE := $(DIR_MATHQ)/doc/$(CREATE_PAGE)
+CREATE_PAGE := $(DIR_MATHQ)/doc/createpage.py
 
 
 # do NOT include subdirectories that have a Makefile nor the top subdirectory

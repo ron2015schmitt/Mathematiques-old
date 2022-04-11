@@ -129,7 +129,7 @@ cleansubs: $(SUBDIRSCLEAN)
 
 
 # files that include this shoudl define a "clean" target with "cleanstd" as a prerequisite
-cleanstd: FORCE cleansubs
+cleanstd: FORCE 
 	@command rm -f *.o
 	@command rm -f *.a
 	@command rm -f *.s
@@ -138,7 +138,7 @@ cleanstd: FORCE cleansubs
 	@command rm -f core.*
 
 # files that include this should NOT define a "cleanall" target
-cleanall: FORCE clean $(SUBDIRSCLEAN)
+cleanall: FORCE clean cleansubs
 	@\rm -f run
 	@\rm -f *.temp
 	@\rm -f *.tmp

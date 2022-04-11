@@ -22,7 +22,7 @@
 
 
 
-# 9-Tests
+# 9. Tests
 
 *In progress*
 
@@ -30,5 +30,5 @@
 
 
 
-| ⇦ <br />[8-Benchmarks](benchmarks.md)  | [Table Of Contents](README.md)<br />9-Tests<br /><img width=1000/> | ⇨ <br />[10-New Feature Schedule](feature-schedule.md)   |
+| ⇦ <br />[8. Benchmarks](benchmarks.md)  | [Table Of Contents](README.md)<br />9. Tests<br /><img width=1000/> | ⇨ <br />[10. New Feature Schedule](feature-schedule.md)   |
 | ----------- | ----------- | ----------- |

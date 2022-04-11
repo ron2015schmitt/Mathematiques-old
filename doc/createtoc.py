@@ -7,7 +7,7 @@ import os
  
 def delete(fname):
   print(os.getcwd())
-  if os.path.exists(fname):  
+  if os.path.exists(fname):
     os.chmod(fname, 0o777)
     os.remove(fname)
 
@@ -22,6 +22,7 @@ if n != 2:
     print("Invalid number of command line arguments ({})\n".format(n) + usage)
     sys.exit(1)
 
+# read in version tag from tag file
 tag_file = sys.argv[1]
 lines = []
 with open(tag_file, 'r') as f:
@@ -29,6 +30,17 @@ with open(tag_file, 'r') as f:
     lines.append(line.rstrip())
 f.close()
 tag = lines[0].strip()
+
+# set chapter prefix
+chap_num_file = "chap-num.md"
+if os.path.exists(chap_num_file):
+  print(chap_num_file+": found")
+  with open(chap_num_file) as f:
+    lines = f.readlines()  
+    prefix = lines[0].strip()
+else:
+  print(chap_num_file+": NOT found")
+  prefix = ""
 
 # read toc.txt
 # create array from toc.txt
@@ -47,7 +59,12 @@ for line in lines:
     split = line.split('|')
     title = split[0].strip()
     name = split[1].strip()
-    numtitle = str(i) + "-" + title
+    fullindex = str(i) 
+    if prefix:
+      fullindex = prefix + "." + str(i)
+    else: 
+      fullindex = str(i)      
+    numtitle = fullindex+ ". "+title
     src = name+"/template.md"
     dest = name+".md"
     link = "[{}]({})".format(title, dest)
@@ -55,14 +72,15 @@ for line in lines:
     toplink = "[{}](doc/{})".format(title, dest)
     page = {
         "index": i,
+        "fullindex": fullindex,
         "name": name,
         "title": title,
-        "numtitle": numtitle,
         "src": src,
         "dest": dest,
         "link": link,
         "toplink": toplink,
         "numlink": numlink,
+        "numtitle": numtitle,
         "prev": None,
         "next": None,
     }
@@ -72,18 +90,18 @@ for line in lines:
 
 
 for i in range(N):
-    name = names[i]
-    page = pages[name]
-    if (i > 0): 
-        page["prev"] = names[i-1]
+  name = names[i]
+  page = pages[name]
+  if (i > 0): 
+    page["prev"] = names[i-1]
     if (i < N-1): 
-        page["next"] = names[i+1]
+      page["next"] = names[i+1]
 
 
 # create toc.json
 delete("toc.json")
 with open('toc.json', 'w') as f:
-    json.dump(pages, f,  indent=2)
+  json.dump(pages, f,  indent=2)
 
 
 
@@ -107,7 +125,7 @@ _The documentation is currently being updating.  The full documentation will be 
 toc = ""
 for name in pages:
     page = pages[name]
-    toc += str(page["index"]) + ". " + page["link"] + "\n"
+    toc += page["fullindex"]+ ". " + page["link"] + "\n"
 
 footer = ''
 
@@ -143,4 +161,14 @@ f.close()
 
 
 
+#############################################################
+# save indices and TOC header to sub-directories
+#############################################################
 
+for i in range(N):
+  name = names[i]
+  page = pages[name]
+  fn = name + "/chap-num.md"
+  delete(fn)
+  with open(fn, 'w') as f:
+    f.write(page["fullindex"])

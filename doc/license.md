@@ -22,7 +22,7 @@
 
 
 
-# 2-License
+# 2. License
 
 
 The code that makes up this library is copyrighted under the *MIT license*.
@@ -49,5 +49,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-| ⇦ <br />[1-About](about.md)  | [Table Of Contents](README.md)<br />2-License<br /><img width=1000/> | ⇨ <br />[3-Release Notes](release-notes.md)   |
+| ⇦ <br />[1. About](about.md)  | [Table Of Contents](README.md)<br />2. License<br /><img width=1000/> | ⇨ <br />[3. Release Notes](release-notes.md)   |
 | ----------- | ----------- | ----------- |

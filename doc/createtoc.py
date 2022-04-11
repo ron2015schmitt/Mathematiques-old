@@ -191,6 +191,7 @@ for subdir in pages:
   f = open(fn, "w")
   page = pages[subdir]
   title = page["title"]
+  print(title)
   f.write(header.format(toc.replace("User Guide", title)))
   f.close()
 

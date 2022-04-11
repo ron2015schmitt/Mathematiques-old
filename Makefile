@@ -56,14 +56,7 @@ clean: cleanstd
 	\cd $(DIR_MATHQ)/src && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
 
-purge: 
-	\cd $(DIR_MATHQ)/benchmark && make -j cleanall
-	\cd $(DIR_MATHQ)/doc && make -j cleanall
-	\cd $(DIR_MATHQ)/examples && make -j cleanall
-	\cd $(DIR_MATHQ)/include && make -j cleanall
-	\cd $(DIR_MATHQ)/sandbox && make -j cleanall
-	\cd $(DIR_MATHQ)/src && make -j cleanall
-	\cd $(DIR_MATHQ)/test && make -j cleanall
+purge: cleanall
 	\rm -f $(TAG_FILE_MATHQ) 
 	git restore $(TAG_FILE_MATHQ) 
 	\rm -f $(TAG_ANNOTATION_FILE)

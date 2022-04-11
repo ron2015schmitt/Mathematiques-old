@@ -113,6 +113,22 @@ LFLAGS = $(OPTIMIZE) $(LOPT)
 
 FORCE:
 
+# this is used to recursively build - it calls the every Makefile in a subdirectory
+$(SUBDIRS): FORCE
+	$(MAKE) -C $@
+
+testsubs: FORCE
+	@echo $(SUBMAKES)
+	@echo $(SUBDIRS)
+	@echo $(SUBDIRSCLEAN)
+
+clean_%: FORCE
+	$(MAKE) -C $* cleanall
+
+cleansubs: $(SUBDIRSCLEAN)
+
+
+# files that include this shoudl define a "clean" target with "cleanstd" as a prerequisite
 cleanstd: FORCE cleansubs
 	@command rm -f *.o
 	@command rm -f *.a
@@ -121,8 +137,8 @@ cleanstd: FORCE cleansubs
 	@command rm -f *.link_md
 	@command rm -f core.*
 
-
-cleanall: FORCE clean
+# files that include this should NOT define a "cleanall" target
+cleanall: FORCE clean $(SUBDIRSCLEAN)
 	@\rm -f run
 	@\rm -f *.temp
 	@\rm -f *.tmp
@@ -131,7 +147,6 @@ cleanall: FORCE clean
 	@\rm -f *.gz
 	@\rm -f *.tar
 	@\rm -f *.old
-	@\rm -f run
 
 createrun: 
 	@$(DIR_MATHQ)/scripts/createrun.bash $(EXEC)
@@ -148,15 +163,3 @@ gitignore:
 
 
 
-$(SUBDIRS): FORCE
-	$(MAKE) -C $@
-
-testsubs: FORCE
-	@echo $(SUBMAKES)
-	@echo $(SUBDIRS)
-	@echo $(SUBDIRSCLEAN)
-
-clean_%: FORCE
-	$(MAKE) -C $* clean
-
-cleansubs: $(SUBDIRSCLEAN)

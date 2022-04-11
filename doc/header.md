@@ -2,7 +2,7 @@
 
 <details>
 
-<summary>Table of Contents</summary>
+<summary>User Guide</summary>
 
 1. [About](about/README.md)<br>
 2. [License](license/README.md)<br>

@@ -159,7 +159,7 @@ header = """
 
 <details>
 
-<summary>Table of Contents</summary>
+<summary>User Guide</summary>
 
 {}
 
@@ -189,7 +189,9 @@ for subdir in pages:
   fn = subdir + "/header.above.md"
   delete(fn)
   f = open(fn, "w")
-  f.write(header.format(toc))
+  page = pages[subdir]
+  title = page["title"]
+  f.write(header.format(toc.replace("User Guide", title)))
   f.close()
 
 

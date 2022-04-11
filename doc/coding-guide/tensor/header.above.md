@@ -2,7 +2,7 @@
 
 <details>
 
-<summary>Table of Contents</summary>
+<summary>User Guide</summary>
 
 7.1. [Scalar Math](scalar/README.md)
 7.2. [Display (Output)](display/README.md)

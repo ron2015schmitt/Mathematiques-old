@@ -25,7 +25,7 @@ toc.json README.md header.md: $(CREATE_TOC) $(TAG_FILE_MATHQ) toc.txt
 	@chmod a-w toc.json README.md header.md
 
 
-all: toc.json README.md header.md $(CHAPTER_FILES) $(SUBDIRS)
+norecurse: toc.json README.md header.md $(CHAPTER_FILES) $(MAKE_SUBDIRS)
 
 clean: cleanstd 
 	@rm -f ../README.md toc.json README.md header.md $(CHAPTER_FILES) $(CHAPTER_NUMS) $(CHAPTER_HEADER_ABOVES)

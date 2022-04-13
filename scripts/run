@@ -1,2 +1,0 @@
-# ****  This was created by the makefile and will be deleted upon make clean ******************
-./man  && echo -e "All executables ran succesfully"

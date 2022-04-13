@@ -9,6 +9,10 @@ include $(DIR_MATHQ)/make-lib/variables.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/doc.mk
 
+# dynamic variables
+RUN_FILES = $(wildcard */run)
+RUN_SUBDIRS = $(dir $(RUN_FILES))
+RUN_TARGETS = $(addprefix run_,$(RUN_SUBDIRS))
 
 
 #---------------------------------------------------------------------
@@ -41,7 +45,7 @@ FORCE: ;
 #  we define recipes with the same name below and having both
 #  is problematic
 
-include $(DIR_MATHQ)/make-lib/infohelp.mk
+include $(DIR_MATHQ)/make-lib/info.mk
 
 
 #---------------------------------------------------------------------
@@ -86,6 +90,15 @@ README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) template.md
 some: README.md
 
 all: versioning includes src example benchmark test sandbox README.md #doc
+
+run_%: FORCE
+	cd $* && ./run
+
+run: $(RUN_TARGETS)
+	@echo -e ${BOLD}${GREEN}"All executables in all subdirectories PASSED"${DEFCLR}${NORMAL}
+#	@echo " RUN_FILES=$(RUN_FILES)"
+	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
+#	@echo " RUN_TARGETS=$(RUN_TARGETS)"
 
 #---------------------------------------------------------------------
 # cleaning recipes
@@ -163,3 +176,37 @@ git: newrev
 gitall: all git
 
 
+
+#---------------------------------------------------------------------
+# HELP recipes
+#---------------------------------------------------------------------
+
+define HELP
+#############################################################################
+#   Mathématiques $(shell cat $(TAG_FILE_MATHQ)) Makefile
+#
+#   Note: You must execute './configure' before running this Makefile.
+#         Execute './reconfigure' to re-perform the configuration.
+##############################################################################
+#
+# make help
+#      This help screen.
+# make all
+#      Recursively build the entire library, including documentation
+# make run
+#      Execute all executables in the subdirectories.  
+#      This is a first-order test of the build.
+#      This command terminates immediately if an error occurs, and so
+#      unless the final printed line is an ERROR, it has passed.
+# make clean
+#      Clean most of the files in this directory and all subdirectories
+# make cleanall
+#      Clean all of the files created by 'make all'.
+#      Files created by './configure' are not removed.  
+#      Execute './deconfigure' to remove all artefacts. 
+###############################################################################
+endef
+export HELP
+
+help:
+	@echo "$${HELP}"

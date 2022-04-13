@@ -19,7 +19,9 @@ OPTIMIZE = -O3 -finline-limit=750
 #---------------------------------------------------------------------
 
 include $(DIR_MATHQ)/make-lib/recipes.mk
-include $(DIR_MATHQ)/make-lib/infohelp.mk
+include $(DIR_MATHQ)/make-lib/info.mk
+include $(DIR_MATHQ)/make-lib/help.mk
+
 
 clean: cleanstd
 

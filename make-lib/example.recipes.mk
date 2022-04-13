@@ -1,4 +1,5 @@
-include $(DIR_MATHQ)/make-lib/infohelp.mk
+include $(DIR_MATHQ)/make-lib/info.mk
+include $(DIR_MATHQ)/make-lib/help.mk
 #--------------------------------------------------------------------------
 # --------------- PROJECT SPECIFIC RECIPES---------------------------------
 #--------------------------------------------------------------------------

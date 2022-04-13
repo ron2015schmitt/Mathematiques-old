@@ -15,6 +15,6 @@ for name in ${EXEC}
 do
     printf "./$name  && " >> run
 done
-echo "echo -e \"${BLUE}${BOLD}All executables ran succesfully${DEFCLR}${NORMAL}\"" >> run
+echo "echo -e \"${BLUE}${BOLD}All executables in `pwd` ran succesfully${DEFCLR}${NORMAL}\"" >> run
 chmod a+rx run
 chmod a-w run

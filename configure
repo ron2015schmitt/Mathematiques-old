@@ -38,23 +38,21 @@ cat > ${Makefile_example} << EOF
 # Copy this Makefile to your project directory
 #
 # `date`
-#
 # This Makefile was created by ${DIR_MATHQ}/configure from
-#   ${MAKEDIR}/variables.mk
-#   ${MAKEDIR}/example.variables.mk
-#   ${MAKEDIR}/recipes.mk
-#   ${MAKEDIR}/example.recipes.mk
+#   ${MAKEDIR}/example.head.mk
+#   ${MAKEDIR}/core.mk
+#   ${MAKEDIR}/example.foot.mk
 #######################################################################
 
 DIR_MATHQ := ${DIR_MATHQ}
 
 EOF
 
-cat ${MAKEDIR}/variables.mk >> ${Makefile_example}
-cat ${MAKEDIR}/example.variables.mk >> ${Makefile_example}
-cat ${MAKEDIR}/recipes.mk >> ${Makefile_example}
-cat ${MAKEDIR}/example.recipes.mk >> ${Makefile_example}
+cat ${MAKEDIR}/example.head.mk >> ${Makefile_example}
+cat ${MAKEDIR}/core.mk >> ${Makefile_example}
+cat ${MAKEDIR}/example.foot.mk >> ${Makefile_example}
 chmod a-w ${Makefile_example}
+
 
 python3 include-templates/fun_unary.py ${DIR_MATHQ}
 chmod a-w ${DIR_MATHQ}/include/fun_unary_AUTO.h

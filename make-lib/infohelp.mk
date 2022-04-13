@@ -21,12 +21,6 @@ info:
 	@$(call echovar,MAKEFILE_LIST)
 	@$(call echovar,MAKE_HOST)
 	@$(call echovar,MAKELEVEL)
-	@$(call echovar,NONEXEC)
-	@$(call echovar,EXEC)
-	@$(call echovar,ALL)
-	@$(call echovar,SUBDIRS)
-	@$(call echovar,WHOAMI)
-	@$(call echovar,WHEREAMI)
 	@echo
 	@$(call title,"mathq")
 	@$(call echovar,DIR_MATHQ)

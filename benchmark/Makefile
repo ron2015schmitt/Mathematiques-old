@@ -1,26 +1,17 @@
-#############################################################
-# VARIABLES
-#############################################################
 include ../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/style.mk
-include $(DIR_MATHQ)/make-lib/variables.mk
+include $(DIR_MATHQ)/make-lib/core.mk
+include $(DIR_MATHQ)/make-lib/infohelp.mk
 
-
-NONEXEC = 
-EXEC = benchmark
-ALL = run gitignore
+EXEC += benchmark
 
 # overide the default compiler options
 OPTIMIZE = -O3 -finline-limit=750
 
 
-#---------------------------------------------------------------------
-# RECIPES
-#---------------------------------------------------------------------
-
-include $(DIR_MATHQ)/make-lib/recipes.mk
-include $(DIR_MATHQ)/make-lib/infohelp.mk
+all: $(EXEC)
 
 clean: cleanstd
+	@\rm -f $(EXEC)
 
 

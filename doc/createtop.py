@@ -14,11 +14,11 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
 
 usage="""
-USAGE: python3 {} TAG_FILE_MATHQ template.md
+USAGE: python3 {} TAG_FILE_MATHQ
 """.format(sys.argv[0])
 
 n = len(sys.argv)
-if n != 3: 
+if n != 2: 
     print("Invalid number of command line arguments ({})\n".format(n) + usage)
     sys.exit(1)
 
@@ -38,16 +38,16 @@ header = """
 """.format(tag)
 
 
-template = sys.argv[2]
-f = open(template, 'r')
+ 
+f = open("top/template.md", 'r')
 body = f.read()
 f.close()
 
 
 footer = ""
 
-delete('README.md')
-f = open("README.md", "w")
+delete('../README.md')
+f = open("../README.md", "w")
 f.write(header + body + footer)
 f.close()
 

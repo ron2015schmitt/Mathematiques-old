@@ -1,32 +1,25 @@
 include ../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/style.mk
+include $(DIR_MATHQ)/make-lib/core.mk
 include $(DIR_MATHQ)/make-lib/infohelp.mk
-include $(DIR_MATHQ)/make-lib/doc.mk
-
-CHAPTERS = about license release-notes examples installation using-mathematiques coding-guide benchmarks test feature-schedule developer-guide
 
 
-%/README.md: %/template.md $(CREATE_PAGE) toc.json
-	@echo "dollar-star="$*
-	python3 $(CREATE_PAGE) $*
-	@chmod a-w $*/README.md
+CHAPTERS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-schedule.md  installation.md  license.md  release-notes.md  test.md  coding-guide.md  using-mathematiques.md
 
-toc.json README.md header.md: $(CREATE_TOC) $(TAG_FILE_MATHQ) toc.txt 
-	python3 $(CREATE_TOC) $(TAG_FILE_MATHQ)
+%.md: %/template.md createpage.py toc.json
+	python3 createpage.py $*
+	@chmod a-w $*.md
+
+toc.json README.md header.md: createtoc.py $(TAG_FILE_MATHQ) toc.txt 
+	python3 createtoc.py $(TAG_FILE_MATHQ)
 	@chmod a-w toc.json README.md header.md
 
-some: $(TAG_FILE_MATHQ) ../README.md toc.json README.md header.md $(CHAPTER_READMES) 
-	@echo CHAPTERS=${CHAPTERS}
-	@echo CHAPTER_READMES=${CHAPTER_READMES}
-	@echo CHAPTER_NUMS=${CHAPTER_NUMS}
-	@echo CHAPTER_HEADER_ABOVES=${CHAPTER_HEADER_ABOVES}
+../README.md: createtop.py $(TAG_FILE_MATHQ) top/template.md
+	python3 createtop.py $(TAG_FILE_MATHQ)
+	@chmod a-w ../README.md
 
-clean: cleanstd 
-	@rm -f toc.json README.md header.md $(CHAPTER_READMES) $(CHAPTER_NUMS) $(CHAPTER_HEADER_ABOVES)
+all: ../README.md toc.json README.md header.md $(CHAPTERS)
 
+clean:
+	@rm -f *.md toc.json
 
-test: FORCE
-	@echo $(CHAPTERS)
-	@echo $(MAKE_SUBDIRS)
-	@echo $(SUBDIRS_WOSLASH)
-	@echo $(CHAPTERS_NOMAKE)

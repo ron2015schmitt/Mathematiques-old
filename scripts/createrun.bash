@@ -9,7 +9,8 @@ EXEC=$*
 # [[ $# -lt 1 ]] && echo "nope" && exit 0;
 
 echo -e "${BLUE}${BOLD}Creating run file${DEFCLR}${NORMAL}: ${EXEC}" 
-echo '# ****  This was created by the command "make createrun" and will be deleted upon "make cleanall" ******************' > run
+\rm -f run
+echo '# ****  This was created by the command "make run" and will be deleted upon "make cleanall" ******************' > run
 for name in ${EXEC}
 do
     printf "./$name  && " >> run

@@ -196,14 +196,17 @@ define HELP
 # make run
 #      Execute all executables in the subdirectories.  
 #      This is a first-order test of the build.
-#      This command terminates immediately if an error occurs, and so
-#      unless the final printed line is an ERROR, it has passed.
+#      This command terminates immediately if an error occurs.
 # make clean
 #      Clean most of the files in this directory and all subdirectories
 # make cleanall
 #      Clean all of the files created by 'make all'.
 #      Files created by './configure' are not removed.  
 #      Execute './deconfigure' to remove all artefacts. 
+# make git
+#      Commits staged changes to the repo, creates a version tag and 
+#      pushes to github.  Don't worry: YOU ARE PROMPTED BEFORE it actually
+#      executes any git commands.
 ###############################################################################
 endef
 export HELP

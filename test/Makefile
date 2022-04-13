@@ -1,14 +1,26 @@
+#############################################################
+# VARIABLES
+#############################################################
 include ../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/style.mk
-include $(DIR_MATHQ)/make-lib/core.mk
+include $(DIR_MATHQ)/make-lib/variables.mk
+
+
+NONEXEC = 
+EXEC += misctest Recurse ScalarTest ScalarTestComplex vtest mtest ttest
+ALL += run gitignore
+
+# overide the default compiler options
+OPTIMIZE = -O3 -finline-limit=750
+
+
+#---------------------------------------------------------------------
+# RECIPES
+#---------------------------------------------------------------------
+
+include $(DIR_MATHQ)/make-lib/recipes.mk
 include $(DIR_MATHQ)/make-lib/infohelp.mk
 
-EXEC += misctest Recurse ScalarTest ScalarTestComplex vtest mtest ttest
-
-
-all: $(EXEC)
-
 clean: cleanstd
-	@\rm -f $(EXEC)
 
 

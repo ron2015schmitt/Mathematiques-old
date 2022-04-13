@@ -57,19 +57,12 @@ include $(DIR_MATHQ)/make-lib/info.mk
 #---------------------------------------------------------------------
 # build recipes
 #---------------------------------------------------------------------
-newrev: FORCE
-	\python3 $(DIR_MATHQ)/scripts/createrev.py $(COMPATIBLE_VERSION_MATHQ_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
-	@chmod a-w $(TAG_FILE_MATHQ) 
-	@chmod a-w $(TAG_ANNOTATION_FILE)
 
-$(TAG_FILE_MATHQ): $(COMPATIBLE_VERSION_MATHQ_FILE)
-	newrev
-
-versioning: newrev
+versioning: FORCE
+	make -C $(DIR_MATHQ)/versioning -j all
 
 includes: FORCE
 	make -C $(DIR_MATHQ)/include -j all
-#	\cd $(DIR_MATHQ)/include && make -j all
 
 src: FORCE
 	\cd $(DIR_MATHQ)/src && make -j all
@@ -112,7 +105,7 @@ run: $(RUN_TARGETS)
 
 # clean in reverse order
 clean: 
-#	\cd $(DIR_MATHQ)/doc && make -j clean 
+	cd $(DIR_MATHQ)/doc && make -j clean 
 	rm -f README.md
 	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
@@ -120,19 +113,18 @@ clean:
 	\cd $(DIR_MATHQ)/examples && make -j clean
 	\cd $(DIR_MATHQ)/src && make -j clean
 	\cd $(DIR_MATHQ)/include && make -j clean 
+	\cd $(DIR_MATHQ)/versioning && make -j clean 
 
 # clean in reverse order
 cleanall: 
-	\cd $(DIR_MATHQ)/sandbox && make -j clean
+	cd $(DIR_MATHQ)/doc && make -j cleanall 
+	\cd $(DIR_MATHQ)/sandbox && make -j cleanall
 	\cd $(DIR_MATHQ)/test && make -j cleanall
 	\cd $(DIR_MATHQ)/benchmark && make -j cleanall
 	\cd $(DIR_MATHQ)/examples && make -j cleanall
 	\cd $(DIR_MATHQ)/src && make -j cleanall
 	\cd $(DIR_MATHQ)/include && make -j cleanall
-	\rm -f $(TAG_FILE_MATHQ) 
-	git restore $(TAG_FILE_MATHQ) 
-	\rm -f $(TAG_ANNOTATION_FILE)
-	git restore $(TAG_ANNOTATION_FILE) 
+	\cd $(DIR_MATHQ)/versioning && make -j cleanall
 
 
 #---------------------------------------------------------------------
@@ -144,7 +136,7 @@ pull:
 
 
 .ONESHELL:
-git: newrev
+git: versioning
 	@echo
 	@git remote update origin
 	@if [[ $$(git fetch --dry-run) ]]

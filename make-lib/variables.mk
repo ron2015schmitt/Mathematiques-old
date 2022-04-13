@@ -88,6 +88,9 @@ LIBS := -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 ####################################################################
 # g++ COMPILER
 #
+# make help-g++
+#      This will give a nice shortened summary of options.
+#
 # For full details of options and up to date list see:
 # https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 #

@@ -29,7 +29,7 @@ FORCE: ;
 #
 #---------------------------------------------------------------------
 %.o: %.cpp 
-	@\echo -e "g++ compile options used:  $(OPTIMIZE)" > $*.g++_copts
+	@\echo -e "g++ compile command used:  $(CPPC) $(CFLAGS)" > $*.g++_copts
 	$(CPPC) $(CFLAGS) -c $*.cpp -o $@
 
 

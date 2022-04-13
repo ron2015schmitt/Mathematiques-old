@@ -1,0 +1,198 @@
+{
+  "about": {
+    "index": 1,
+    "name": "about",
+    "skip-readme": false,
+    "title": "About",
+    "version": "v3.4.20",
+    "prefix": "1.",
+    "src": "about/template.md",
+    "dest": "about/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "next": "license"
+  },
+  "license": {
+    "index": 2,
+    "name": "license",
+    "skip-readme": false,
+    "title": "License",
+    "version": "v3.4.20",
+    "prefix": "2.",
+    "src": "license/template.md",
+    "dest": "license/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "about",
+    "next": "release-notes"
+  },
+  "release-notes": {
+    "index": 3,
+    "name": "release-notes",
+    "skip-readme": false,
+    "title": "Release Notes",
+    "version": "v3.4.20",
+    "prefix": "3.",
+    "src": "release-notes/template.md",
+    "dest": "release-notes/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "license",
+    "next": "installation"
+  },
+  "installation": {
+    "index": 4,
+    "name": "installation",
+    "skip-readme": false,
+    "title": "Installation",
+    "version": "v3.4.20",
+    "prefix": "4.",
+    "src": "installation/template.md",
+    "dest": "installation/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "release-notes",
+    "next": "using-mathematiques"
+  },
+  "using-mathematiques": {
+    "index": 5,
+    "name": "using-mathematiques",
+    "skip-readme": false,
+    "title": "Makefile / Using Math\u00e9matiques",
+    "version": "v3.4.20",
+    "prefix": "5.",
+    "src": "using-mathematiques/template.md",
+    "dest": "using-mathematiques/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "installation",
+    "next": "examples"
+  },
+  "examples": {
+    "index": 6,
+    "name": "examples",
+    "skip-readme": false,
+    "title": "Code Examples",
+    "version": "v3.4.20",
+    "prefix": "6.",
+    "src": "examples/template.md",
+    "dest": "examples/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "using-mathematiques",
+    "next": "coding-guide"
+  },
+  "coding-guide": {
+    "index": 7,
+    "name": "coding-guide",
+    "skip-readme": true,
+    "title": "Coding Guide / Syntax",
+    "version": "v3.4.20",
+    "prefix": "7.",
+    "src": "coding-guide/template.md",
+    "dest": "coding-guide/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "examples",
+    "next": "benchmarks"
+  },
+  "benchmarks": {
+    "index": 8,
+    "name": "benchmarks",
+    "skip-readme": false,
+    "title": "Benchmarks",
+    "version": "v3.4.20",
+    "prefix": "8.",
+    "src": "benchmarks/template.md",
+    "dest": "benchmarks/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "coding-guide",
+    "next": "test"
+  },
+  "test": {
+    "index": 9,
+    "name": "test",
+    "skip-readme": false,
+    "title": "Tests",
+    "version": "v3.4.20",
+    "prefix": "9.",
+    "src": "test/template.md",
+    "dest": "test/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "benchmarks",
+    "next": "feature-schedule"
+  },
+  "feature-schedule": {
+    "index": 10,
+    "name": "feature-schedule",
+    "skip-readme": false,
+    "title": "New Feature Plans",
+    "version": "v3.4.20",
+    "prefix": "10.",
+    "src": "feature-schedule/template.md",
+    "dest": "feature-schedule/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "test",
+    "next": "developer-guide"
+  },
+  "developer-guide": {
+    "index": 11,
+    "name": "developer-guide",
+    "skip-readme": false,
+    "title": "Developer Guide",
+    "version": "v3.4.20",
+    "prefix": "11.",
+    "src": "developer-guide/template.md",
+    "dest": "developer-guide/README.md",
+    "level": 2,
+    "parent": {
+      "title": "User Guide",
+      "prefix": "",
+      "level": 1
+    },
+    "prev": "feature-schedule"
+  }
+}

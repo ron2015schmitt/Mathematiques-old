@@ -1,0 +1,18 @@
+{
+  "index": 3,
+  "name": "release-notes",
+  "skip-readme": false,
+  "title": "Release Notes",
+  "version": "v3.4.20",
+  "prefix": "3.",
+  "src": "release-notes/template.md",
+  "dest": "release-notes/README.md",
+  "level": 2,
+  "parent": {
+    "title": "User Guide",
+    "prefix": "",
+    "level": 1
+  },
+  "prev": "license",
+  "next": "installation"
+}

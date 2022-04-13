@@ -1,0 +1,17 @@
+{
+  "index": 1,
+  "name": "about",
+  "skip-readme": false,
+  "title": "About",
+  "version": "v3.4.20",
+  "prefix": "1.",
+  "src": "about/template.md",
+  "dest": "about/README.md",
+  "level": 2,
+  "parent": {
+    "title": "User Guide",
+    "prefix": "",
+    "level": 1
+  },
+  "next": "license"
+}

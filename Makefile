@@ -10,7 +10,6 @@ MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 include make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 include $(DIR_MATHQ)/make-lib/style.mk
-include $(DIR_MATHQ)/make-lib/doc.mk
 
 MAKEFILE_REL := $(subst $(DIR_MATHQ)/,,$(MAKEFILE))
 
@@ -82,8 +81,8 @@ doc: FORCE
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
-README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) template.md
-	python3 $(CREATE_TOP) $(TAG_FILE_MATHQ) template.md
+README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
+	python3 $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
 	@chmod a-w README.md
 
 some: README.md

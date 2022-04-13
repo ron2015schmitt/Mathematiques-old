@@ -105,26 +105,14 @@ cleansubs:: $(MAKECLEAN_SUBDIRS)
 # Each Makefile that has an include statement for this file should:
 #  - define a "clean" target with "cleanstd" as a prerequisite
 cleanstd:: FORCE 
-	@command rm -f *.o
-	@command rm -f *.a
-	@command rm -f *.s
-	@command rm -f *.g++_copts
-	@command rm -f *.link_md
-	@command rm -f core.*
+	@command rm -f *.o *.a *.s *.g++_copts core.*
 	@command rm -f $(EXEC) $(NONEXEC) 
 
 # Target "cleansall" cleans everything, traversing down the directory tree
 # Each Makefile that has an include statement for this file should:
 #  - can (but not necessary) define a "cleanall" target
 cleanall:: FORCE clean
-	@command rm -f $(ALL)
-	@\rm -f run
-	@\rm -f *.temp
-	@\rm -f *.tmp
-	@\rm -f *~
-	@\rm -f ~*
-	@\rm -f *.gz
-	@\rm -f *.tar
-	@\rm -f *.old
+	@\rm -f run *.temp *.tmp *~ ~* *.gz *.tar *.old
+	@\rm -f $(ALL)
 
 

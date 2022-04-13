@@ -1,0 +1,18 @@
+{
+  "index": 6,
+  "name": "examples",
+  "skip-readme": false,
+  "title": "Code Examples",
+  "version": "v3.4.20",
+  "prefix": "6.",
+  "src": "examples/template.md",
+  "dest": "examples/README.md",
+  "level": 2,
+  "parent": {
+    "title": "User Guide",
+    "prefix": "",
+    "level": 1
+  },
+  "prev": "using-mathematiques",
+  "next": "coding-guide"
+}

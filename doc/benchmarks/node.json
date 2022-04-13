@@ -1,0 +1,18 @@
+{
+  "index": 8,
+  "name": "benchmarks",
+  "skip-readme": false,
+  "title": "Benchmarks",
+  "version": "v3.4.20",
+  "prefix": "8.",
+  "src": "benchmarks/template.md",
+  "dest": "benchmarks/README.md",
+  "level": 2,
+  "parent": {
+    "title": "User Guide",
+    "prefix": "",
+    "level": 1
+  },
+  "prev": "coding-guide",
+  "next": "test"
+}

@@ -1,0 +1,17 @@
+{
+  "index": 11,
+  "name": "developer-guide",
+  "skip-readme": false,
+  "title": "Developer Guide",
+  "version": "v3.4.20",
+  "prefix": "11.",
+  "src": "developer-guide/template.md",
+  "dest": "developer-guide/README.md",
+  "level": 2,
+  "parent": {
+    "title": "User Guide",
+    "prefix": "",
+    "level": 1
+  },
+  "prev": "feature-schedule"
+}

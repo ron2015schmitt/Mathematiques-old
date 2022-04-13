@@ -6,22 +6,24 @@ include $(DIR_MATHQ)/make-lib/recipes.mk
 include $(DIR_MATHQ)/make-lib/info.mk
 include $(DIR_MATHQ)/make-lib/help.mk
 
-%/README.md: %/template.md $(CREATE_PAGE) toc.json
-	python3 $(CREATE_PAGE) $*
-	@chmod a-w $*/README.md
+branch.json README.md: $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)
+	python3 $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)  --chapters $(CHAPTERS)  --nodes $(CHAPTER_BRANCHES)
+#	@chmod a-w branch.json README.md 
 
-toc.json README.md header.md: $(CREATE_TOC) $(TAG_FILE_MATHQ) toc.txt 
-	python3 $(CREATE_TOC) $(TAG_FILE_MATHQ)
-	@chmod a-w toc.json README.md header.md
+%/README.md: $(CREATE_DOC_LEAF) branch.json %/title.md %/body.md
+	python3 $(CREATE_DOC_LEAF) $*
+# 	@chmod a-w $*/README.md
 
 clean: cleanstd
+	\rm -f branch.json README.md $(LEAF_READMES) $(CHAPTER_NODE_FILES) 
 
 cleanall:: cleansubs
 
-test: FORCE
-	@echo CHAPTERS=$(CHAPTERS)
-	@echo SUBDIRS_WOSLASH=$(SUBDIRS_WOSLASH)
-	@echo CHAPTERS_NOMAKE=$(CHAPTERS_NOMAKE)
-	@echo CHAPTER_READMES=$(CHAPTER_READMES)
-	@echo CHAPTER_NUMS=$(CHAPTER_NUMS)
-	@echo CHAPTER_DATA_FILES=$(CHAPTER_DATA_FILES)
+info-chapters: FORCE
+	@echo
+	@echo -e ${BLUE}${BOLD}CHAPTERS${DEFCLR}${NORMAL}=$(CHAPTERS)
+	@echo
+	@echo -e ${BLUE}${BOLD}CHAPTER_BRANCHES${DEFCLR}${NORMAL}=$(CHAPTER_BRANCHES)
+	@echo
+	@echo -e ${BLUE}${BOLD}CHAPTER_LEAVES${DEFCLR}${NORMAL}=$(CHAPTER_LEAVES)
+	@echo

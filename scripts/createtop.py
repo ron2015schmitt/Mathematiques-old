@@ -14,7 +14,7 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
 
 usage="""
-USAGE: python3 {} TAG_FILE_MATHQ template.md
+USAGE: python3 {} TAG_FILE_MATHQ body.md
 """.format(sys.argv[0])
 
 n = len(sys.argv)

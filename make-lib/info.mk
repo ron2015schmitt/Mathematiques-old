@@ -27,6 +27,8 @@ info:
 	@$(call echovar,SUBDIRS)
 	@$(call echovar,WHOAMI)
 	@$(call echovar,WHEREAMI)
+	@$(call echovar,MAKEFILE)
+	@$(call echovar,MAKEFILE_REL)
 	@echo
 	@$(call title,"mathq")
 	@$(call echovar,DIR_MATHQ)

@@ -4,10 +4,16 @@
 ######################################################################
 ######################################################################
 
+
+MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
+
 include make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/doc.mk
+
+MAKEFILE_REL := $(subst $(DIR_MATHQ)/,,$(MAKEFILE))
+
 
 # dynamic variables
 RUN_FILES = $(wildcard */run)
@@ -183,7 +189,7 @@ gitall: all git
 
 define HELP
 #############################################################################
-#   Mathématiques $(shell cat $(TAG_FILE_MATHQ)) Makefile
+#   Mathématiques $(shell cat $(TAG_FILE_MATHQ)) Top-Level Makefile
 #
 #   Note: You must execute './configure' before running this Makefile.
 #         Execute './reconfigure' to re-perform the configuration.
@@ -197,6 +203,8 @@ define HELP
 #      Execute all executables in the subdirectories.  
 #      This is a first-order test of the build.
 #      This command terminates immediately if an error occurs.
+# make info
+#      Prints summary of all the make variables.
 # make clean
 #      Clean most of the files in this directory and all subdirectories
 # make cleanall

@@ -85,7 +85,7 @@ LIBS := -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 # Compiler and Linker flags 
 ####################################################################
 
-#############################################################################
+####################################################################
 # g++ COMPILER
 #
 # For full details of options and up to date list see:
@@ -94,7 +94,7 @@ LIBS := -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 #     "If you use multiple -O options, with or without level
 #      numbers, the last such option is the one that is effective."
 #
-#############################################################################
+####################################################################
 
 # COPT provided at the command line will append to options
 override COPT ?=  -Wfatal-errors
@@ -111,17 +111,17 @@ CFLAGS += -D "MATHQ_DEBUG=$(MATHQ_DEBUG)"
 endif
 
 
-#############################################################################
+####################################################################
 # gfortran COMPILER
-#############################################################################
+####################################################################
 FC = gfortran
 override FOPT ?=
 FFLAGS = $(FOPT)
 LNK_FFLAGS = -lgfortran +fgcse-after-reload
 
-#############################################################################
+####################################################################
 # g++ linker
 # LOPT provided at the command line will append to options
-#############################################################################
+####################################################################
 override LOPT ?=
 LFLAGS = $(OPTIMIZE) $(LOPT)

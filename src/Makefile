@@ -1,9 +1,14 @@
 #############################################################
 # VARIABLES
 #############################################################
+
+MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
+
 include ../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
+
+MAKEFILE_REL := $(subst $(DIR_MATHQ)/,,$(MAKEFILE))
 
 
 NONEXEC = libmathq.a

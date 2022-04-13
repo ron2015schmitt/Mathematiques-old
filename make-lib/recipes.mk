@@ -99,12 +99,12 @@ gitignore:
 clean_%: FORCE
 	$(MAKE) -C $* cleanall
 
-cleansubs: $(MAKECLEAN_SUBDIRS)
+cleansubs:: $(MAKECLEAN_SUBDIRS)
 
 
 # Each Makefile that has an include statement for this file should:
 #  - define a "clean" target with "cleanstd" as a prerequisite
-cleanstd: FORCE 
+cleanstd:: FORCE 
 	@command rm -f *.o
 	@command rm -f *.a
 	@command rm -f *.s

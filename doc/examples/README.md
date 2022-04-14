@@ -10,7 +10,7 @@
 4. [Installation](../installation/README.md)<br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 
-_6. Code Examples_<br>
+_6. Code Examples_ 
 
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>

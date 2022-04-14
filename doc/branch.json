@@ -12,7 +12,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "next": "license"
   },
@@ -29,7 +30,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "about",
     "next": "release-notes"
@@ -47,7 +49,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "license",
     "next": "installation"
@@ -65,7 +68,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "release-notes",
     "next": "using-mathematiques"
@@ -83,7 +87,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "installation",
     "next": "examples"
@@ -101,7 +106,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "using-mathematiques",
     "next": "coding-guide"
@@ -119,7 +125,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "examples",
     "next": "benchmarks"
@@ -137,7 +144,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "coding-guide",
     "next": "test"
@@ -155,7 +163,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "benchmarks",
     "next": "feature-schedule"
@@ -173,7 +182,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "test",
     "next": "developer-guide"
@@ -191,7 +201,8 @@
     "parent": {
       "title": "User Guide",
       "prefix": "",
-      "level": 1
+      "level": 1,
+      "header": ""
     },
     "prev": "feature-schedule"
   }

@@ -13,7 +13,7 @@
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 
-_9. Tests_<br>
+_9. Tests_ 
 
 10. [New Feature Plans](../feature-schedule/README.md)<br>
 11. [Developer Guide](../developer-guide/README.md)<br>

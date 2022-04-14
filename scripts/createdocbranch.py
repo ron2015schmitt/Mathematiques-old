@@ -106,6 +106,7 @@ else:
     "title": "User Guide",
     "prefix": "",
     "level": 1,
+    "header": "",
   }
 
 print("node: "+str(node))
@@ -166,7 +167,7 @@ with open('branch.json', 'w') as f:
 # write my README.md
 #############################################################
 
-header=""
+header = node["header"]
 
 top = """
 
@@ -214,7 +215,7 @@ for name in NAMES:
   for name2 in NAMES:
     chapter2 = CHAPTERS[name2]
     if name == name2:
-      line = "_" + chapter["prefix"]+ " " + chapter["title"] + "_<br>\n\n"      
+      line = "_" + chapter["prefix"]+ " " + chapter["title"] + "_ \n\n"      
       if chapter["index"] == 1:
         line = "\n<br>" + line
       else:
@@ -223,7 +224,7 @@ for name in NAMES:
       link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
       line = chapter2["prefix"]+ " " + link + "<br>\n"
     toc += line
-  chapter["header"] = header.format(node["title"], toc)
+  chapter["header"] = node["header"] + header.format(node["title"], toc)
 
 
 #############################################################

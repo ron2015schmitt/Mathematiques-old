@@ -12,7 +12,7 @@
 6. [Code Examples](../examples/README.md)<br>
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
 
-_8. Benchmarks_<br>
+_8. Benchmarks_ 
 
 9. [Tests](../test/README.md)<br>
 10. [New Feature Plans](../feature-schedule/README.md)<br>

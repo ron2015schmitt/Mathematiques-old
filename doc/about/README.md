@@ -5,7 +5,7 @@
 <summary>User Guide</summary>
 
 
-<br>_1. About_<br>
+<br>_1. About_ 
 
 2. [License](../license/README.md)<br>
 3. [Release Notes](../release-notes/README.md)<br>

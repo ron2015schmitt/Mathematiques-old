@@ -6,7 +6,7 @@
 
 1. [About](../about/README.md)<br>
 
-_2. License_<br>
+_2. License_ 
 
 3. [Release Notes](../release-notes/README.md)<br>
 4. [Installation](../installation/README.md)<br>

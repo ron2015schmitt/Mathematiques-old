@@ -9,7 +9,7 @@
 3. [Release Notes](../release-notes/README.md)<br>
 4. [Installation](../installation/README.md)<br>
 
-_5. Makefile / Using Mathématiques_<br>
+_5. Makefile / Using Mathématiques_ 
 
 6. [Code Examples](../examples/README.md)<br>
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>

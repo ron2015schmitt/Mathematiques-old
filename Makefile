@@ -79,8 +79,9 @@ test: FORCE
 benchmark: FORCE
 	\cd $(DIR_MATHQ)/benchmark && make -j all 
 
+ # do not use -j option
 doc: FORCE
-	\cd $(DIR_MATHQ)/doc && make -j all 
+	\cd $(DIR_MATHQ)/doc && make all   
 
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 

@@ -3,7 +3,7 @@
   "name": "installation",
   "skip-readme": false,
   "title": "Installation",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "4.",
   "src": "installation/template.md",
   "dest": "installation/README.md",

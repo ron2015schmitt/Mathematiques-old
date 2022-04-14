@@ -3,7 +3,7 @@
   "name": "feature-schedule",
   "skip-readme": false,
   "title": "New Feature Plans",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "10.",
   "src": "feature-schedule/template.md",
   "dest": "feature-schedule/README.md",

@@ -3,7 +3,7 @@
   "name": "release-notes",
   "skip-readme": false,
   "title": "Release Notes",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "3.",
   "src": "release-notes/template.md",
   "dest": "release-notes/README.md",

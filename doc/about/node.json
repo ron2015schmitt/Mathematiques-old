@@ -3,7 +3,7 @@
   "name": "about",
   "skip-readme": false,
   "title": "About",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "1.",
   "src": "about/template.md",
   "dest": "about/README.md",

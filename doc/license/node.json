@@ -3,7 +3,7 @@
   "name": "license",
   "skip-readme": false,
   "title": "License",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "2.",
   "src": "license/template.md",
   "dest": "license/README.md",

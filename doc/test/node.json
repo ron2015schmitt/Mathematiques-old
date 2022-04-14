@@ -3,7 +3,7 @@
   "name": "test",
   "skip-readme": false,
   "title": "Tests",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "9.",
   "src": "test/template.md",
   "dest": "test/README.md",

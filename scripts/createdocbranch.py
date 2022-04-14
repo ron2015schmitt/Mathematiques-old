@@ -4,6 +4,7 @@ import sys
 import datetime
 import json
 import os
+import re
  
 def delete(fname):
   print(os.getcwd())
@@ -226,7 +227,7 @@ for name in NAMES:
       link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
       line = chapter2["prefix"]+ " " + link + "<br>\n"
     toc += line
-  chapter["header"] = node["header"] + header.format(node["title"], toc)
+  chapter["header"] = re.sub('\(\.\.', '(../..', node["header"]) + header.format(node["title"], toc)
 
 
 #############################################################

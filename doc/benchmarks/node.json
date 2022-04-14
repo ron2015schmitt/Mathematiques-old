@@ -3,7 +3,7 @@
   "name": "benchmarks",
   "skip-readme": false,
   "title": "Benchmarks",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "8.",
   "src": "benchmarks/template.md",
   "dest": "benchmarks/README.md",

@@ -3,7 +3,7 @@
   "name": "examples",
   "skip-readme": false,
   "title": "Code Examples",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "6.",
   "src": "examples/template.md",
   "dest": "examples/README.md",

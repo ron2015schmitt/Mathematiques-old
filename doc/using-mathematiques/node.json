@@ -3,7 +3,7 @@
   "name": "using-mathematiques",
   "skip-readme": false,
   "title": "Makefile / Using Math\u00e9matiques",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "5.",
   "src": "using-mathematiques/template.md",
   "dest": "using-mathematiques/README.md",

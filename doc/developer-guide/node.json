@@ -3,7 +3,7 @@
   "name": "developer-guide",
   "skip-readme": false,
   "title": "Developer Guide",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "11.",
   "src": "developer-guide/template.md",
   "dest": "developer-guide/README.md",

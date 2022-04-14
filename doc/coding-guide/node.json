@@ -3,7 +3,7 @@
   "name": "coding-guide",
   "skip-readme": true,
   "title": "Coding Guide / Syntax",
-  "version": "v3.4.25",
+  "version": "v3.4.27",
   "prefix": "7.",
   "src": "coding-guide/template.md",
   "dest": "coding-guide/README.md",

@@ -1,5 +1,7 @@
 # Structural changes
+_Back to [Table of Contents](../README.md)_
 
+_Most or all of these features have been implemented._
 
 ## Recursive Tensors (Tensors with Tensor elements)
 

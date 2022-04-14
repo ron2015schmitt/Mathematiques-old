@@ -1,6 +1,6 @@
 # Index class and new indexing methodology
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 Refer to file `sandbox/indexing.cpp` for prototyping.
 

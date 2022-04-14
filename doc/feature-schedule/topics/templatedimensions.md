@@ -1,5 +1,7 @@
 # Tensor Dimensions as Template Parameters
 
+_Back to [Table of Contents](../README.md)_
+
 Add template parameters for dimensions of each Tensor class.  
 * Each parameter should have the default value of 0
 * If parameters are > 0, then the tensor is of fixed size and the `array` class is used for storage

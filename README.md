@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.4.27
+# Mathématiques v3.4.28
 
 
 ## Description 
@@ -93,7 +93,9 @@ sigma = 7.4162;
 
 ### EXAMPLE 3: Linear Algebra
 
-Inner product is designated by the `|` operator, eg ```M | v```.  You can optionally enclose in parentheses so that it looks similar to Dirac's bra-ket notation: ```(M | v)```.
+![A dot V](images/A-dot-v.png)
+
+The inner product of linear algebra is designated by the `|` operator, eg ```A | v```.  You can optionally enclose in parentheses so that it looks similar to [Dirac's bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation)): ```(A | v)```.
 
 Note that in bra-ket notation, vectors are neither row nor column vector.  Their behavior is determined by context.   If you would like to create row/column vectors the syntax is: ```Matrix<double> A(N,1)``` for column vectors and ```Matrix<double> A(1,N)``` for row vectors
 
@@ -119,6 +121,8 @@ A|v = {0, 2, 4};
 ```
 
 ### EXAMPLE 4: Complicated Linear Algebra
+
+![u dot A dot V](images/u-dot-A-dot-v.png)
 
 This example is the bilinear form for a matrix ```A``` and two vectors ```u``` and ```v```.  From context, ```u``` behaves as a row vector and ```v``` behaves as acolumn vector.
 
@@ -154,27 +158,31 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 The first step of refactoring has been completed.
 
-+ v3.3 has been released
-  + The build process has been fully refactored, simplified, and streamlined
-  + The documentation refactoring has begun
++ v3.4 Documenation
+  + Full refactoring of the online documentation
+    + expanable table of contents header
+    + navigation footer
 
 ## Coming soon
 
-+ v3.4 Documenation
-  + Full refactoring of the online documentation
-  + Completed _Coding Guide_, covering all the functionality
-  + New in-depth _Developer Guide_
++ v3.5 Documenation
+  + Complete _Coding Guide_, covering all the functionality
+  + New _Developer Guide_
 
-+ v3.5 Indexing
++ v3.6 Indexing
   + Refactor of vector/matrix/tensor indexing, including
     + new index/iterator types such as slices similar to Fortan and Python
 
-+ v3.6 Display and Debugging
-  + Refactor of Display and Debugging
++ v3.7 Display 
+  + Refactor of Display
 
-+ v3.7+ 
++ v3.8 Debugging Modes
+  + Refactor of Debugging Modes
+
++ v4.0+ 
   + More matrix types
   + covariant and contravariant tensors
+  + tensor operations
   + curvilinear coordinate systems
 
 

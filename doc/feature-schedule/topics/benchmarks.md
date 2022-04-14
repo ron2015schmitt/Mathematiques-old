@@ -1,6 +1,6 @@
 # Benchmarks
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 Add more benchmarks:
 * matrix expression

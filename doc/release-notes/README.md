@@ -1,3 +1,4 @@
+# Mathématiques v3.4.28
 
 
 <details>
@@ -23,6 +24,11 @@
 
 ## 3. Release Notes
 
+
+## **v3.4** Documentation Refactoring
+  + Full refactoring of the online documentation
+  + expanable table of contents header
+  + navigation footer
 
 ## **v3.3** Build Process Refactoring
   + The build process has been fully refactored, simplified, and streamlined

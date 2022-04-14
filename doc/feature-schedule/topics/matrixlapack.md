@@ -1,6 +1,6 @@
 # Matrix Operations (via Lapack)
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 1. eigenvalue decomposition (EVD)
 1. singular value decomposition (SVD)

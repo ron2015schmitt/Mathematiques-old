@@ -1,5 +1,7 @@
 # New Methodology for arithmetic operators
 
+_Back to [Table of Contents](../README.md)_
+
 + **IMPLEMENTED IN v2.27-r4**
 
 1. This has been trialed with the addition operator (`operator+`) and simply needs to be repeated for the other operators

@@ -4,7 +4,7 @@
     "name": "about",
     "skip-readme": false,
     "title": "About",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "1.",
     "src": "about/template.md",
     "dest": "about/README.md",
@@ -13,7 +13,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": null,
     "next": "license"
@@ -23,7 +23,7 @@
     "name": "license",
     "skip-readme": false,
     "title": "License",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "2.",
     "src": "license/template.md",
     "dest": "license/README.md",
@@ -32,7 +32,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "about",
     "next": "release-notes"
@@ -42,7 +42,7 @@
     "name": "release-notes",
     "skip-readme": false,
     "title": "Release Notes",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "3.",
     "src": "release-notes/template.md",
     "dest": "release-notes/README.md",
@@ -51,7 +51,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "license",
     "next": "installation"
@@ -61,7 +61,7 @@
     "name": "installation",
     "skip-readme": false,
     "title": "Installation",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "4.",
     "src": "installation/template.md",
     "dest": "installation/README.md",
@@ -70,7 +70,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "release-notes",
     "next": "using-mathematiques"
@@ -80,7 +80,7 @@
     "name": "using-mathematiques",
     "skip-readme": false,
     "title": "Makefile / Using Math\u00e9matiques",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "5.",
     "src": "using-mathematiques/template.md",
     "dest": "using-mathematiques/README.md",
@@ -89,7 +89,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "installation",
     "next": "examples"
@@ -99,7 +99,7 @@
     "name": "examples",
     "skip-readme": false,
     "title": "Code Examples",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "6.",
     "src": "examples/template.md",
     "dest": "examples/README.md",
@@ -108,7 +108,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "using-mathematiques",
     "next": "coding-guide"
@@ -118,7 +118,7 @@
     "name": "coding-guide",
     "skip-readme": true,
     "title": "Coding Guide / Syntax",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "7.",
     "src": "coding-guide/template.md",
     "dest": "coding-guide/README.md",
@@ -127,7 +127,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "examples",
     "next": "benchmarks"
@@ -137,7 +137,7 @@
     "name": "benchmarks",
     "skip-readme": false,
     "title": "Benchmarks",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "8.",
     "src": "benchmarks/template.md",
     "dest": "benchmarks/README.md",
@@ -146,7 +146,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "coding-guide",
     "next": "test"
@@ -156,7 +156,7 @@
     "name": "test",
     "skip-readme": false,
     "title": "Tests",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "9.",
     "src": "test/template.md",
     "dest": "test/README.md",
@@ -165,7 +165,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "benchmarks",
     "next": "feature-schedule"
@@ -175,7 +175,7 @@
     "name": "feature-schedule",
     "skip-readme": false,
     "title": "New Feature Plans",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "10.",
     "src": "feature-schedule/template.md",
     "dest": "feature-schedule/README.md",
@@ -184,7 +184,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "test",
     "next": "developer-guide"
@@ -194,7 +194,7 @@
     "name": "developer-guide",
     "skip-readme": false,
     "title": "Developer Guide",
-    "version": "v3.4.27",
+    "version": "v3.4.28",
     "prefix": "11.",
     "src": "developer-guide/template.md",
     "dest": "developer-guide/README.md",
@@ -203,7 +203,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": ""
+      "header": "# Math\u00e9matiques v3.4.28\n"
     },
     "prev": "feature-schedule",
     "next": null

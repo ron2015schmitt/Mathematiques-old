@@ -1,6 +1,6 @@
 # Create Tensor Pool and Tensor info
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 ## TensorPool
 

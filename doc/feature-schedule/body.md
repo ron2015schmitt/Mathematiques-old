@@ -1,47 +1,46 @@
 ## Planned Releases
 
 
-### v3.4 Documenation Refactoring
-1. Full refactoring of the online documentation
+### v3.5 Documentation Refactoring
 2. Complete _Coding Guide_, covering all the functionality
 3. New in-depth _Developer Guide_
 
-### v3.5 Indexing Refactoring
+### v3.6 Indexing Refactoring
 1. Refactor of vector/matrix/tensor indexing, including
   + new index/iterator types such as slices similar to Fortran and Python
-  + [Index class and new indexing methodology](feature-schedule/index.md)
+  + [Index class and new indexing methodology](topics/index.md)
 
-### v3.6 Display Refactoring
-1. [Refactor mout and dout](feature-schedule/refactormout.md)
+### v3.7 Display Refactoring
+1. [Refactor mout and dout](topics/refactormout.md)
 1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
-1. [Refactor getTypeName](feature-schedule/gettypename.md)
-1. [Refactor FormatData](feature-schedule/formatdata.md)
+1. [Refactor getTypeName](topics/gettypename.md)
+1. [Refactor FormatData](topics/formatdata.md)
 1. Fix Printing of ```complex<Vector<double>>>``` etc
 1. Add data type to output of inner products
   * disp(v1 + v2) = Vector<double> {16, -6}; 
   * disp(M1 + v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
-1. [Tensor class FormatData](feature-schedule/tensorformatdata.md)
+1. [Tensor class FormatData](topics/tensorformatdata.md)
    1. compact 
    1. by aligned rows and columns with and without braces
    1. Mathematica
    1. Matlab
 
-### v3.7 I/O Refactoring
-1. [Save tensor to file](feature-schedule/filesave.md)
-1. [Implement >> operators](feature-schedule/inputstreams.md)
-1. [Load tensor from file](feature-schedule/fileload.md)
-
 ### v3.8 Debug Refactoring
 1. put example.cpp::printoptsfile  into  print_mathq_info by grabbing (or passing) the file_name
   * handle when no filename
   * handle when no .g++_copts file
-1. [Create Tensor Pool and Tensor info](feature-schedule/poolandinfo.md)
-1. [Exceptions and Assertions](feature-schedule/exceptions.md)
-1. [Implement all error checking](feature-schedule/errorchecking.md)
+1. [Create Tensor Pool and Tensor info](topics/poolandinfo.md)
+1. [Exceptions and Assertions](topics/exceptions.md)
+1. [Implement all error checking](topics/errorchecking.md)
 1. Implement `VectorOfPtrs` code properly
    * should only be included in debug mode
    * only needed for non-elemental functions
    * only needed when same vector appears on both sides of `=`
+
+### v3.8 I/O Refactoring
+1. [Save tensor to file](topics/filesave.md)
+1. [Implement >> operators](topics/inputstreams.md)
+1. [Load tensor from file](topics/fileload.md)
 
 ### Miscellaneous Small Features
 * implement adjoint(Matrix) and ~(Matrix)
@@ -70,6 +69,7 @@
    * support column major matrices and tensors
 * add latex parser for disp?
 
+## Futrue work
 
 ### Unit testing
 1. [Unit Testing](unittesting.md)
@@ -87,23 +87,23 @@
    *  best way to re-use code?
 
 ### Matrix Math via Lapack/Blas
-1. [Special matrices](feature-schedule/diagonal.md)
+1. [Special matrices](topics/diagonal.md)
   * use python script to generate matrix code
-1. [Matrix operations](feature-schedule/matrixlapack.md)
+1. [Matrix operations](topics/matrixlapack.md)
 1. openblas multi-threading support?
 1. Optimize Dot Products for Special Matrices
 * use LAPACK / BLAS where efficacious to do so
 
 
 ### Tensor Products
-1. [Tensor dot product](feature-schedule/dotproduct.md)
-1. [Outer Product and Wedge Product](feature-schedule/outerwedge.md)
-1. [Add Benchmarks](feature-schedule/benchmarks.md)
+1. [Tensor dot product](topics/dotproduct.md)
+1. [Outer Product and Wedge Product](topics/outerwedge.md)
+1. [Add Benchmarks](topics/benchmarks.md)
 
 
 ### Vector Calculus
-1. [2D and 3D Curvilinear Coordinate Systems](feature-schedule/coordsystems.md)
-1. [Functions: R^n -> R^m](feature-schedule/functions.md)
+1. [2D and 3D Curvilinear Coordinate Systems](topics/coordsystems.md)
+1. [Functions: R^n -> R^m](topics/functions.md)
 
 
 
@@ -158,6 +158,7 @@
    * Quarternions
    * Octonions
 * `C++20` features?
+* Create a [new Programming language](topics/newlanguage.md) based on Mathématiques
 
 
  

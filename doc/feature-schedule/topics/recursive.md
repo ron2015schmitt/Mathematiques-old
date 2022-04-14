@@ -1,4 +1,7 @@
 # Recursive Tensors (Tensors with Tensor elements)
+_Back to [Table of Contents](../README.md)_
+
+_Most or all of these features have been implemented._
 
 Implement code necessary so that mathematical operations work for recursive tensors, eg. `Vector<Vector<double>>`.  This allows for the most straightforward way to implement vector and tensor functions of space and time.
 

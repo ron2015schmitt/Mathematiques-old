@@ -3,7 +3,7 @@
   "name": "developer-guide",
   "skip-readme": false,
   "title": "Developer Guide",
-  "version": "v3.4.27",
+  "version": "v3.4.28",
   "prefix": "11.",
   "src": "developer-guide/template.md",
   "dest": "developer-guide/README.md",
@@ -12,10 +12,10 @@
     "title": "User Guide",
     "prefix": "",
     "level": 1,
-    "header": ""
+    "header": "# Math\u00e9matiques v3.4.28\n"
   },
   "prev": "feature-schedule",
   "next": null,
-  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. _Developer Guide_ <br>\n\n\n</details>\n\n",
+  "header": "# Math\u00e9matiques v3.4.28\n\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. _Developer Guide_ <br>\n\n\n</details>\n\n",
   "footer": "\n\n| \u21e6 <br />[New Feature Plans](../feature-schedule/README.md)  | [User Guide](../README.md)<br />Developer Guide<br /><img width=1000/> | \u21e8 <br />   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
 }

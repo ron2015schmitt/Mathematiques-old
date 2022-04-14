@@ -1,6 +1,6 @@
 # Refactor FormatData
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 * use Python to generate code
 * use instances instead of class variables and use `constexpr` as needed

@@ -1,3 +1,6 @@
+
+_Back to [Table of Contents](../README.md)_
+
 # Imaginary number class
 
 * make sure all operators implemented for complex are implemented with imag, real, and complex. 

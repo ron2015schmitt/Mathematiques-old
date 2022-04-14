@@ -107,7 +107,7 @@ else:
     "title": "User Guide",
     "prefix": "",
     "level": 1,
-    "header": "",
+    "header": "# Mathématiques {}\n".format(tag),
   }
 
 print("node: "+str(node))

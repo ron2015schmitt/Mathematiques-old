@@ -1,6 +1,6 @@
 # 2D and 3D curvilinear coordinate systems
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 1. 2D curvi-linear coordinate systems
    1. define methods 

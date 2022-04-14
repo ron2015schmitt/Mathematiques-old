@@ -1,6 +1,6 @@
 # Tensor dot product
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 * Use new `<D1,D2>` methodology, following the `operator+` code
 * Implement dot product for each tensor class:

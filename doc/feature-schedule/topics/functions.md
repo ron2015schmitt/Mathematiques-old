@@ -1,6 +1,6 @@
 # Functions: R^n -> R^m
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 * constructor takes:
   * number of coordinates

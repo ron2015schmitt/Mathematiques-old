@@ -1,6 +1,6 @@
 # Release Checklist
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 * Update `files/matricks.vers`
 * `reconfigure`

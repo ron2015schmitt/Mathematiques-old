@@ -1,6 +1,6 @@
 # rep, join, etc
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 * Implement rep and join for matrices.  
 * Look at old matrix code and see if other functions to be implemented

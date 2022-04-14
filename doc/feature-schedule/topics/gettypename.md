@@ -1,6 +1,6 @@
 # Refactor getTypeName
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 1. perhaps use Pytrhon scripting to generate code
 1. clearly document MACROS in User Guide. Mimimize use of macros

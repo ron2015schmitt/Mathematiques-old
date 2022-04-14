@@ -1,6 +1,6 @@
 # Special matrices
 
-_Back to [Table of Contents](README.md)_
+_Back to [Table of Contents](../README.md)_
 
 * Special matrices do *not* inherit from Matrix since dimensions() will distinguish
 * Special matrices do *not* allow nesting, other than as noted for block style matrices.

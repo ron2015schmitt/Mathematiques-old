@@ -10,7 +10,8 @@ branch.json README.md: $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)
 	python3 $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)  --chapters $(CHAPTERS)  --nodes $(CHAPTER_BRANCHES)
 #	@chmod a-w branch.json README.md 
 
-%/README.md: $(CREATE_DOC_LEAF) branch.json %/title.md
+.SECONDEXPANSION:  # use this so that we can use $$==% as prerequisites 
+%/README.md: $(CREATE_DOC_LEAF) branch.json $$*/title.md $$*/body.md $$*/node.json
 	python3 $(CREATE_DOC_LEAF) $*
 
 # 	@chmod a-w $*/README.md

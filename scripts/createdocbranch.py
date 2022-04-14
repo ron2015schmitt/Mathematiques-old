@@ -213,10 +213,15 @@ for name in NAMES:
   chapter = CHAPTERS[name]
   for name2 in NAMES:
     chapter2 = CHAPTERS[name2]
-    link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
-    line = chapter["prefix"]+ " " + link + "<br>\n"
-    if (name == name2):
-      line = "_"+line+"_"
+    if name == name2:
+      line = "_" + chapter["prefix"]+ " " + chapter["title"] + "_<br>\n\n"      
+      if chapter["index"] == 1:
+        line = "\n<br>" + line
+      else:
+        line = "\n" + line        
+    else: 
+      link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
+      line = chapter2["prefix"]+ " " + link + "<br>\n"
     toc += line
   chapter["header"] = header.format(node["title"], toc)
 

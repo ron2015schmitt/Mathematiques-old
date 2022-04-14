@@ -3,7 +3,7 @@
   "name": "license",
   "skip-readme": false,
   "title": "License",
-  "version": "v3.4.22",
+  "version": "v3.4.23",
   "prefix": "2.",
   "src": "license/template.md",
   "dest": "license/README.md",
@@ -15,5 +15,5 @@
   },
   "prev": "about",
   "next": "release-notes",
-  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n2. [About](../about/README.md)<br>\n_2. [License](../license/README.md)<br>\n_2. [Release Notes](../release-notes/README.md)<br>\n2. [Installation](../installation/README.md)<br>\n2. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n2. [Code Examples](../examples/README.md)<br>\n2. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n2. [Benchmarks](../benchmarks/README.md)<br>\n2. [Tests](../test/README.md)<br>\n2. [New Feature Plans](../feature-schedule/README.md)<br>\n2. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n\n_2. License_<br>\n\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
 }

@@ -3,7 +3,7 @@
   "name": "using-mathematiques",
   "skip-readme": false,
   "title": "Makefile / Using Math\u00e9matiques",
-  "version": "v3.4.22",
+  "version": "v3.4.23",
   "prefix": "5.",
   "src": "using-mathematiques/template.md",
   "dest": "using-mathematiques/README.md",
@@ -15,5 +15,5 @@
   },
   "prev": "installation",
   "next": "examples",
-  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n5. [About](../about/README.md)<br>\n5. [License](../license/README.md)<br>\n5. [Release Notes](../release-notes/README.md)<br>\n5. [Installation](../installation/README.md)<br>\n_5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n_5. [Code Examples](../examples/README.md)<br>\n5. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n5. [Benchmarks](../benchmarks/README.md)<br>\n5. [Tests](../test/README.md)<br>\n5. [New Feature Plans](../feature-schedule/README.md)<br>\n5. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n\n_5. Makefile / Using Math\u00e9matiques_<br>\n\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
 }

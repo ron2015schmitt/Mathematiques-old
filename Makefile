@@ -32,7 +32,7 @@ RUN_TARGETS = $(addprefix run_,$(RUN_SUBDIRS))
 #---------------------------------------------------------------------
 
 # force these to always run regardless if prereq's are older or newer
-.PHONY: run gitignore
+.PHONY: run gitignore clean myclean cleanall
 
 # Each Makefile that has an include statement for this file should define a target "some" that makes all targets in that directory but not in subdirectories
 default: all
@@ -45,6 +45,10 @@ default: all
 
 FORCE: ;
 
+
+#---------------------------------------------------------------------
+#  INCLUDED RECIPES
+#---------------------------------------------------------------------
 
 #  Do NOT include $(DIR_MATHQ)/make-lib/recipes.mk because 
 #  we define recipes with the same name below and having both
@@ -81,31 +85,33 @@ doc: FORCE
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
-README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
+README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md title.md
 	python3 $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
 	@chmod a-w README.md
 
 some: README.md
 
-all: versioning includes src example benchmark test sandbox README.md #doc
+all: versioning includes src example benchmark test sandbox README.md doc
 
 run_%: FORCE
 	cd $* && ./run
 
 run: $(RUN_TARGETS)
 	@echo -e ${BOLD}${GREEN}"All executables in all subdirectories PASSED"${DEFCLR}${NORMAL}
-#	@echo " RUN_FILES=$(RUN_FILES)"
 	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
+#	@echo " RUN_FILES=$(RUN_FILES)"
 #	@echo " RUN_TARGETS=$(RUN_TARGETS)"
 
 #---------------------------------------------------------------------
 # cleaning recipes
 #---------------------------------------------------------------------
 
+myclean: 
+	\rm -f README.md
+
 # clean in reverse order
-clean: 
-	cd $(DIR_MATHQ)/doc && make -j clean 
-	rm -f README.md
+clean: myclean
+	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
 	\cd $(DIR_MATHQ)/benchmark && make -j clean
@@ -115,8 +121,8 @@ clean:
 	\cd $(DIR_MATHQ)/versioning && make -j clean 
 
 # clean in reverse order
-cleanall: 
-	cd $(DIR_MATHQ)/doc && make -j cleanall 
+cleanall: myclean
+	\cd $(DIR_MATHQ)/doc && make -j cleanall 
 	\cd $(DIR_MATHQ)/sandbox && make -j cleanall
 	\cd $(DIR_MATHQ)/test && make -j cleanall
 	\cd $(DIR_MATHQ)/benchmark && make -j cleanall

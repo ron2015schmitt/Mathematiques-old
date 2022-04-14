@@ -178,7 +178,7 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 ## News 
 
-The first step of refactoring has been completed.
+The part of refactoring has been completed.
 
 + v3.4 Documenation
   + Full refactoring of the online documentation

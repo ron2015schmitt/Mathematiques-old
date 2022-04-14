@@ -9,7 +9,6 @@
 3. [Release Notes](../release-notes/README.md)<br>
 4. [Installation](../installation/README.md)<br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
-
 6. _Code Examples_ <br>
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
@@ -127,3 +126,8 @@ A = [
 u|A|v = 12; 
 u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30; 
 ```
+
+
+| ⇦ <br />[Makefile / Using Mathématiques](../using-mathematiques/README.md)  | [User Guide](../README.md)<br />Code Examples<br /><img width=1000/> | ⇨ <br />[Coding Guide / Syntax](../coding-guide/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

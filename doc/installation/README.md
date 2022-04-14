@@ -7,7 +7,6 @@
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
 3. [Release Notes](../release-notes/README.md)<br>
-
 4. _Installation_ <br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 6. [Code Examples](../examples/README.md)<br>
@@ -69,3 +68,8 @@ cd into the ```Mathematiques``` directory and execute the configure command:
 cd Mathematiques
 ./configure
 ```
+
+
+| ⇦ <br />[Release Notes](../release-notes/README.md)  | [User Guide](../README.md)<br />Installation<br /><img width=1000/> | ⇨ <br />[Makefile / Using Mathématiques](../using-mathematiques/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

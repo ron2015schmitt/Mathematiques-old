@@ -5,7 +5,6 @@
 <summary>User Guide</summary>
 
 1. [About](../about/README.md)<br>
-
 2. _License_ <br>
 3. [Release Notes](../release-notes/README.md)<br>
 4. [Installation](../installation/README.md)<br>
@@ -48,3 +47,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+| ⇦ <br />[About](../about/README.md)  | [User Guide](../README.md)<br />License<br /><img width=1000/> | ⇨ <br />[Release Notes](../release-notes/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

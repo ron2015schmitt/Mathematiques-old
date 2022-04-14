@@ -10,7 +10,6 @@
 4. [Installation](../installation/README.md)<br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 6. [Code Examples](../examples/README.md)<br>
-
 7. _Coding Guide / Syntax_ <br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
@@ -30,7 +29,6 @@
 7.2. [Display of Results](../display/README.md)<br>
 7.3. [Vectors](../vector/README.md)<br>
 7.4. [Matrices](../matrix/README.md)<br>
-
 7.5. _Linear Algebra_ <br>
 7.6. [Tensors](../tensor/README.md)<br>
 7.7. [FILE I/O](../file-io/README.md)<br>
@@ -42,4 +40,9 @@
 
 
 ### 7.5. Linear Algebra
+
+
+
+| ⇦ <br />[Matrices](../matrix/README.md)  | [Coding Guide / Syntax](../README.md)<br />Linear Algebra<br /><img width=1000/> | ⇨ <br />[Tensors](../tensor/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
 

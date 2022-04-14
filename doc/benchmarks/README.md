@@ -11,7 +11,6 @@
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 6. [Code Examples](../examples/README.md)<br>
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
-
 8. _Benchmarks_ <br>
 9. [Tests](../test/README.md)<br>
 10. [New Feature Plans](../feature-schedule/README.md)<br>
@@ -59,3 +58,8 @@ stop();
 ## dot product benchmarks
 ---------------------------------------------------------------------------
 To be written...
+
+
+| ⇦ <br />[Coding Guide / Syntax](../coding-guide/README.md)  | [User Guide](../README.md)<br />Benchmarks<br /><img width=1000/> | ⇨ <br />[Tests](../test/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

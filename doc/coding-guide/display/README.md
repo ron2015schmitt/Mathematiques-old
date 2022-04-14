@@ -10,7 +10,6 @@
 4. [Installation](../installation/README.md)<br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 6. [Code Examples](../examples/README.md)<br>
-
 7. _Coding Guide / Syntax_ <br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
@@ -27,7 +26,6 @@
 <summary>Coding Guide / Syntax</summary>
 
 7.1. [Scalars](../scalar/README.md)<br>
-
 7.2. _Display of Results_ <br>
 7.3. [Vectors](../vector/README.md)<br>
 7.4. [Matrices](../matrix/README.md)<br>
@@ -42,4 +40,9 @@
 
 
 ### 7.2. Display of Results
+
+
+
+| ⇦ <br />[Scalars](../scalar/README.md)  | [Coding Guide / Syntax](../README.md)<br />Display of Results<br /><img width=1000/> | ⇨ <br />[Vectors](../vector/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
 

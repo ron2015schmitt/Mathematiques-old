@@ -4,7 +4,7 @@
     "name": "scalar",
     "skip-readme": false,
     "title": "Scalars",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.1.",
     "src": "scalar/template.md",
     "dest": "scalar/README.md",
@@ -14,7 +14,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -27,8 +27,10 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
+    "prev": null,
     "next": "display"
   },
   "display": {
@@ -36,7 +38,7 @@
     "name": "display",
     "skip-readme": false,
     "title": "Display of Results",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.2.",
     "src": "display/template.md",
     "dest": "display/README.md",
@@ -46,7 +48,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -59,7 +61,8 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
     "prev": "scalar",
     "next": "vector"
@@ -69,7 +72,7 @@
     "name": "vector",
     "skip-readme": false,
     "title": "Vectors",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.3.",
     "src": "vector/template.md",
     "dest": "vector/README.md",
@@ -79,7 +82,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -92,7 +95,8 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
     "prev": "display",
     "next": "matrix"
@@ -102,7 +106,7 @@
     "name": "matrix",
     "skip-readme": false,
     "title": "Matrices",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.4.",
     "src": "matrix/template.md",
     "dest": "matrix/README.md",
@@ -112,7 +116,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -125,7 +129,8 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
     "prev": "vector",
     "next": "linear-algebra"
@@ -135,7 +140,7 @@
     "name": "linear-algebra",
     "skip-readme": false,
     "title": "Linear Algebra",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.5.",
     "src": "linear-algebra/template.md",
     "dest": "linear-algebra/README.md",
@@ -145,7 +150,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -158,7 +163,8 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
     "prev": "matrix",
     "next": "tensor"
@@ -168,7 +174,7 @@
     "name": "tensor",
     "skip-readme": false,
     "title": "Tensors",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.6.",
     "src": "tensor/template.md",
     "dest": "tensor/README.md",
@@ -178,7 +184,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -191,7 +197,8 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
     "prev": "linear-algebra",
     "next": "file-io"
@@ -201,7 +208,7 @@
     "name": "file-io",
     "skip-readme": false,
     "title": "FILE I/O",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.7.",
     "src": "file-io/template.md",
     "dest": "file-io/README.md",
@@ -211,7 +218,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -224,7 +231,8 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
     "prev": "tensor",
     "next": "debug"
@@ -234,7 +242,7 @@
     "name": "debug",
     "skip-readme": false,
     "title": "Debug Modes",
-    "version": "v3.4.24",
+    "version": "v3.4.25",
     "prefix": "7.8.",
     "src": "debug/template.md",
     "dest": "debug/README.md",
@@ -244,7 +252,7 @@
       "name": "coding-guide",
       "skip-readme": true,
       "title": "Coding Guide / Syntax",
-      "version": "v3.4.24",
+      "version": "v3.4.25",
       "prefix": "7.",
       "src": "coding-guide/template.md",
       "dest": "coding-guide/README.md",
@@ -257,8 +265,10 @@
       },
       "prev": "examples",
       "next": "benchmarks",
-      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
+      "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. _Coding Guide / Syntax_ <br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+      "footer": "\n\n| \u21e6 <br />[Code Examples](../examples/README.md)  | [User Guide](../README.md)<br />Coding Guide / Syntax<br /><img width=1000/> | \u21e8 <br />[Benchmarks](../benchmarks/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
     },
-    "prev": "file-io"
+    "prev": "file-io",
+    "next": null
   }
 }

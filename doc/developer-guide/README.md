@@ -14,7 +14,6 @@
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
 10. [New Feature Plans](../feature-schedule/README.md)<br>
-
 11. _Developer Guide_ <br>
 
 
@@ -57,3 +56,8 @@
 When adding or removing chapters in the main TOC
 + edit the `CHAPTERS` variable in `doc/Makefile`
 + edit the `doc/toc.txt`
+
+
+| ⇦ <br />[New Feature Plans](../feature-schedule/README.md)  | [User Guide](../README.md)<br />Developer Guide<br /><img width=1000/> | ⇨ <br />   |
+| ------------ | :-------------------------------: | ------------ |
+

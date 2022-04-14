@@ -13,7 +13,6 @@
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
-
 10. _New Feature Plans_ <br>
 11. [Developer Guide](../developer-guide/README.md)<br>
 
@@ -190,4 +189,9 @@
 ### Contact
 
 To contact me regarding suggestions, bugs, or volunteer work send an email to `Ron dot Schmitt @ me dot com`
+
+
+
+| ⇦ <br />[Tests](../test/README.md)  | [User Guide](../README.md)<br />New Feature Plans<br /><img width=1000/> | ⇨ <br />[Developer Guide](../developer-guide/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
 

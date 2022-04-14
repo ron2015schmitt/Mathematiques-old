@@ -60,7 +60,7 @@ top = top = """
 
 """.format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
 
-doc = node["header"] + top + body
+doc = node["header"] + top + body + node["footer"]
 
 #############################################################
 # write subdir/README.md

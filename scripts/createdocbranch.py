@@ -146,9 +146,13 @@ for name in NAMES:
 for i in range(Nchapters):
   name = NAMES[i]
   chapter = CHAPTERS[name]
-  if (i > 0): 
+  if (i == 0): 
+    chapter["prev"] = None
+  else:
     chapter["prev"] = NAMES[i-1]
-  if (i < Nchapters-1): 
+  if (i == Nchapters-1): 
+    chapter["next"] = None
+  else:
     chapter["next"] = NAMES[i+1]
 
 
@@ -218,8 +222,6 @@ for name in NAMES:
       line = chapter["prefix"]+ " _" + chapter["title"] + "_ <br>\n"      
       if chapter["index"] == 1:
         line = "\n" + line
-      else:
-        line = "\n" + line        
     else: 
       link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
       line = chapter2["prefix"]+ " " + link + "<br>\n"
@@ -233,17 +235,28 @@ for name in NAMES:
 footer = """
 
 | ⇦ <br />{}  | {}<br />{}<br /><img width=1000/> | ⇨ <br />{}   |
-| ----------- | ----------- | ----------- |
+| ------------ | :-------------------------------: | ------------ |
 
 """
 
-# for name in NAMES:
-#   toc = ""
-#   chapter = CHAPTERS[name]
-#   mytitle = chapter["title"]
-#   chapterP = CHAPTERS[chapter["prev"]]
-#   chapterN = CHAPTERS[chapter["next"]]
-#   chapter["footer"] = footer.format(prev, parent, mytitle, next)
+for name in NAMES:
+  toc = ""
+  chapter = CHAPTERS[name]
+  mytitle = chapter["title"]
+  parent = "[{}]({})".format(node["title"], "../README.md")
+  nameP = chapter["prev"]
+  if nameP == None:
+    linkP = ""  
+  else:
+    chapterP = CHAPTERS[nameP]
+    linkP = "[{}]({})".format(chapterP["title"], "../"+nameP+"/README.md")
+  nameN = chapter["next"]
+  if nameN == None:
+    linkN = ""  
+  else:
+    chapterN = CHAPTERS[nameN]
+    linkN = "[{}]({})".format(chapterN["title"], "../"+nameN+"/README.md")
+  chapter["footer"] = footer.format(linkP, parent, mytitle, linkN)
 
     
 #############################################################

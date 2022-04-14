@@ -6,7 +6,6 @@
 
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
-
 3. _Release Notes_ <br>
 4. [Installation](../installation/README.md)<br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
@@ -81,3 +80,8 @@
   + 237 unit tests (so far), with a very clear and elegant output.
   + Python unit test generation in progress
   + CI/CT using Docker images in progress
+
+
+| ⇦ <br />[License](../license/README.md)  | [User Guide](../README.md)<br />Release Notes<br /><img width=1000/> | ⇨ <br />[Installation](../installation/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

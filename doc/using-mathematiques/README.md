@@ -8,7 +8,6 @@
 2. [License](../license/README.md)<br>
 3. [Release Notes](../release-notes/README.md)<br>
 4. [Installation](../installation/README.md)<br>
-
 5. _Makefile / Using Mathématiques_ <br>
 6. [Code Examples](../examples/README.md)<br>
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
@@ -54,3 +53,8 @@ Compile the code and run the code using the Makefile
 make example
 ./example
 ```
+
+
+| ⇦ <br />[Installation](../installation/README.md)  | [User Guide](../README.md)<br />Makefile / Using Mathématiques<br /><img width=1000/> | ⇨ <br />[Code Examples](../examples/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

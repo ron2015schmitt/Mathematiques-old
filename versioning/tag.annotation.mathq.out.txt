@@ -1,4 +1,4 @@
-v3.4.5
+v3.4.29
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.

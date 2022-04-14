@@ -17,7 +17,7 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 cmd = "python3 " + ' '.join(sys.argv)
 
 usage="""
-USAGE: python3 createtoc.py TAG_FILE_MATHQ --chapters CHAPTER1 ... [--nodes CHAPTER_WITH_OWN_MAKEFILE1 ...]
+USAGE: python3 createdocbranch.py TAG_FILE_MATHQ --chapters CHAPTER1 ... [--nodes CHAPTER_WITH_OWN_MAKEFILE1 ...]
 
 """
 
@@ -99,16 +99,16 @@ data_file = "node.json"
 if os.path.exists(data_file):
   print(data_file+": found")
   with open(data_file) as f:
-    data = json.load(f)
+    node = json.load(f)
 else:
-  print(data_file+": NOT found. Assuming Top level of User Guide and using default data")
-  data = {
+  print(data_file+": NOT found. Assuming Top level of User Guide and using default node")
+  node = {
     "title": "User Guide",
     "prefix": "",
     "level": 1,
   }
 
-print("data: "+str(data))
+print("node: "+str(node))
 
 # read in chapter/title.md for each chapter
 for name in NAMES:
@@ -126,19 +126,19 @@ for name in NAMES:
 
 
 #############################################################
-# complete the rest of CHAPTERS data
+# complete the rest of CHAPTERS node
 #############################################################
 
-# create rest of data for each chapter
+# create rest of node for each chapter
 for name in NAMES:
   chapter = CHAPTERS[name]
   index = chapter["index"]
   chapter["version"] = tag
-  chapter["prefix"] = data["prefix"] + str(index) + "."
+  chapter["prefix"] = node["prefix"] + str(index) + "."
   chapter["src"] = name+"/template.md"
   chapter["dest"] = name+"/README.md"
-  chapter["level"] = data["level"] +1
-  chapter["parent"] = data
+  chapter["level"] = node["level"] +1
+  chapter["parent"] = node
 
 
 # add prev,next for chapter
@@ -160,14 +160,6 @@ with open('branch.json', 'w') as f:
 
 
 
-#############################################################
-# write chapter data to chapter/node.json
-#############################################################
-for name in NAMES:
-  fn = name+"/node.json"
-  delete(fn)
-  with open(fn, 'w') as f:
-    json.dump(CHAPTERS[name], f,  indent=2)
 
 
 #############################################################
@@ -180,7 +172,7 @@ top = """
 
 {} {}
 
-""".format(data["level"]*"#", data["prefix"] + (len(data["prefix"])>0)*" " + data["title"])
+""".format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
 
 
 mytoc = ""
@@ -189,13 +181,73 @@ for name in CHAPTERS:
     link = "[{}]({})".format(chapter["title"], name+"/README.md")
     mytoc += chapter["prefix"]+ " " + link + "<br>\n"
 
+
 footer = ""
 
-# write TOC to README.md
+# write to README.md
 delete("README.md")
 f = open("README.md", "w")
 f.write(header + top + mytoc + body + footer)
 f.close()
+
+
+
+
+#############################################################
+# create header for children
+#############################################################
+header = """
+
+<details>
+
+<summary>{}</summary>
+
+{}
+
+</details>
+
+"""
+
+for name in NAMES:
+  toc = ""
+  chapter = CHAPTERS[name]
+  for name2 in NAMES:
+    chapter2 = CHAPTERS[name2]
+    link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
+    line = chapter["prefix"]+ " " + link + "<br>\n"
+    if (name == name2):
+      line = "_"+line+"_"
+    toc += line
+  chapter["header"] = header.format(node["title"], toc)
+
+
+#############################################################
+# create footer for children
+#############################################################
+footer = """
+
+| ⇦ <br />{}  | {}<br />{}<br /><img width=1000/> | ⇨ <br />{}   |
+| ----------- | ----------- | ----------- |
+
+"""
+
+# for name in NAMES:
+#   toc = ""
+#   chapter = CHAPTERS[name]
+#   mytitle = chapter["title"]
+#   chapterP = CHAPTERS[chapter["prev"]]
+#   chapterN = CHAPTERS[chapter["next"]]
+#   chapter["footer"] = footer.format(prev, parent, mytitle, next)
+
+    
+#############################################################
+# write chapter node to chapter/node.json
+#############################################################
+for name in NAMES:
+  fn = name+"/node.json"
+  delete(fn)
+  with open(fn, 'w') as f:
+    json.dump(CHAPTERS[name], f,  indent=2)
 
 
 

@@ -3,7 +3,7 @@
   "name": "examples",
   "skip-readme": false,
   "title": "Code Examples",
-  "version": "v3.4.20",
+  "version": "v3.4.22",
   "prefix": "6.",
   "src": "examples/template.md",
   "dest": "examples/README.md",
@@ -14,5 +14,6 @@
     "level": 1
   },
   "prev": "using-mathematiques",
-  "next": "coding-guide"
+  "next": "coding-guide",
+  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n6. [About](../about/README.md)<br>\n6. [License](../license/README.md)<br>\n6. [Release Notes](../release-notes/README.md)<br>\n6. [Installation](../installation/README.md)<br>\n6. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n_6. [Code Examples](../examples/README.md)<br>\n_6. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n6. [Benchmarks](../benchmarks/README.md)<br>\n6. [Tests](../test/README.md)<br>\n6. [New Feature Plans](../feature-schedule/README.md)<br>\n6. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
 }

@@ -3,7 +3,7 @@
   "name": "test",
   "skip-readme": false,
   "title": "Tests",
-  "version": "v3.4.20",
+  "version": "v3.4.22",
   "prefix": "9.",
   "src": "test/template.md",
   "dest": "test/README.md",
@@ -14,5 +14,6 @@
     "level": 1
   },
   "prev": "benchmarks",
-  "next": "feature-schedule"
+  "next": "feature-schedule",
+  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n9. [About](../about/README.md)<br>\n9. [License](../license/README.md)<br>\n9. [Release Notes](../release-notes/README.md)<br>\n9. [Installation](../installation/README.md)<br>\n9. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n9. [Code Examples](../examples/README.md)<br>\n9. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n9. [Benchmarks](../benchmarks/README.md)<br>\n_9. [Tests](../test/README.md)<br>\n_9. [New Feature Plans](../feature-schedule/README.md)<br>\n9. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
 }

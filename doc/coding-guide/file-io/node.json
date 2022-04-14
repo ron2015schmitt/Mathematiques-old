@@ -3,7 +3,7 @@
   "name": "file-io",
   "skip-readme": false,
   "title": "FILE I/O",
-  "version": "v3.4.20",
+  "version": "v3.4.22",
   "prefix": "7.7.",
   "src": "file-io/template.md",
   "dest": "file-io/README.md",
@@ -13,7 +13,7 @@
     "name": "coding-guide",
     "skip-readme": true,
     "title": "Coding Guide / Syntax",
-    "version": "v3.4.20",
+    "version": "v3.4.22",
     "prefix": "7.",
     "src": "coding-guide/template.md",
     "dest": "coding-guide/README.md",
@@ -24,8 +24,10 @@
       "level": 1
     },
     "prev": "examples",
-    "next": "benchmarks"
+    "next": "benchmarks",
+    "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n7. [About](../about/README.md)<br>\n7. [License](../license/README.md)<br>\n7. [Release Notes](../release-notes/README.md)<br>\n7. [Installation](../installation/README.md)<br>\n7. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n7. [Code Examples](../examples/README.md)<br>\n_7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n_7. [Benchmarks](../benchmarks/README.md)<br>\n7. [Tests](../test/README.md)<br>\n7. [New Feature Plans](../feature-schedule/README.md)<br>\n7. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
   },
   "prev": "tensor",
-  "next": "debug"
+  "next": "debug",
+  "header": "\n\n<details>\n\n<summary>Coding Guide / Syntax</summary>\n\n7.7. [Scalars](../scalar/README.md)<br>\n7.7. [Display of Results](../display/README.md)<br>\n7.7. [Vectors](../vector/README.md)<br>\n7.7. [Matrices](../matrix/README.md)<br>\n7.7. [Linear Algebra](../linear-algebra/README.md)<br>\n7.7. [Tensors](../tensor/README.md)<br>\n_7.7. [FILE I/O](../file-io/README.md)<br>\n_7.7. [Debug Modes](../debug/README.md)<br>\n\n\n</details>\n\n"
 }

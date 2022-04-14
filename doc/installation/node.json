@@ -3,7 +3,7 @@
   "name": "installation",
   "skip-readme": false,
   "title": "Installation",
-  "version": "v3.4.20",
+  "version": "v3.4.22",
   "prefix": "4.",
   "src": "installation/template.md",
   "dest": "installation/README.md",
@@ -14,5 +14,6 @@
     "level": 1
   },
   "prev": "release-notes",
-  "next": "using-mathematiques"
+  "next": "using-mathematiques",
+  "header": "\n\n<details>\n\n<summary>User Guide</summary>\n\n4. [About](../about/README.md)<br>\n4. [License](../license/README.md)<br>\n4. [Release Notes](../release-notes/README.md)<br>\n_4. [Installation](../installation/README.md)<br>\n_4. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n4. [Code Examples](../examples/README.md)<br>\n4. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n4. [Benchmarks](../benchmarks/README.md)<br>\n4. [Tests](../test/README.md)<br>\n4. [New Feature Plans](../feature-schedule/README.md)<br>\n4. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n"
 }

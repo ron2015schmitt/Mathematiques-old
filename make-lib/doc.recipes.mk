@@ -10,8 +10,9 @@ branch.json README.md: $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)
 	python3 $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)  --chapters $(CHAPTERS)  --nodes $(CHAPTER_BRANCHES)
 #	@chmod a-w branch.json README.md 
 
-%/README.md: $(CREATE_DOC_LEAF) branch.json %/title.md %/body.md
+%/README.md: $(CREATE_DOC_LEAF) branch.json %/title.md
 	python3 $(CREATE_DOC_LEAF) $*
+
 # 	@chmod a-w $*/README.md
 
 clean: cleanstd
@@ -26,4 +27,6 @@ info-chapters: FORCE
 	@echo -e ${BLUE}${BOLD}CHAPTER_BRANCHES${DEFCLR}${NORMAL}=$(CHAPTER_BRANCHES)
 	@echo
 	@echo -e ${BLUE}${BOLD}CHAPTER_LEAVES${DEFCLR}${NORMAL}=$(CHAPTER_LEAVES)
+	@echo
+	@echo -e ${BLUE}${BOLD}LEAF_READMES${DEFCLR}${NORMAL}=$(LEAF_READMES)
 	@echo

@@ -55,7 +55,7 @@ FORCE: ;
 
 # This is used to recursively build - it calls the every subdirectory Makefile
 $(MAKE_SUBDIRS): FORCE
-	$(MAKE) -C $@ 
+	$(MAKE) -C $@ all
 
 testsubs: FORCE
 	@echo $(SUBS)

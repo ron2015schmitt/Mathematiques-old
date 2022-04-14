@@ -4,9 +4,6 @@ import sys, os
 import datetime
 import json
 
-print("CREATE PAGE")
-
-
 def delete(fname):
   if os.path.exists(fname):  
     os.chmod(fname, 0o777)
@@ -16,7 +13,7 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
 
 usage="""
-USAGE: python3 createpage.py page
+USAGE: python3 createdocleaf.py leaf
 """
 #print(sys.argv[0])
 # print(type(sys.argv))
@@ -35,80 +32,45 @@ name = sys.argv[1]
 # read branch.json as dict
 #############################################################
 with open('branch.json') as f:
-    pages = json.load(f)
-
-#print(pages)
-
-#############################################################
-# create links for footer
-#############################################################
-
-
-links = """
-| ⇦ <br />{}  | [Table Of Contents]({})<br />{}<br /><img width=1000/> | ⇨ <br />{}   |
-| ----------- | ----------- | ----------- |
-"""
-
-page = pages[name]
-title = page["numtitle"]
-    
-prevpage = page["prev"]  # gets name
-if prevpage == None: 
-    prevpage = ""
-else:
-    prevpage = pages[prevpage]["numlink"]  
-    
-nextpage = page["next"] # gets name
-if nextpage == None: 
-    nextpage = ""
-else:
-    nextpage = pages[nextpage]["numlink"]
-
-title = """
-
-
-# {}
-
-""".format(page["numtitle"], today)
+    branch = json.load(f)
 
 
 #############################################################
-# load header.md
+# read name/node.json as dict
 #############################################################
+with open(name+'/node.json') as f:
+    node = json.load(f)
 
-
-f = open("header.md", 'r')
-header = f.read()
-f.close()
 
 #############################################################
-# read subdir/template.md
+# read subdir/body.md
 #############################################################
 
-f = open(page["src"], 'r')
-body = f.read()
-f.close()
+with open(name+'/body.md') as f:
+  body = f.read()
 
-links = links.format(prevpage, "README.md", page["numtitle"], nextpage)
 
 #############################################################
-# create  subdir/README.md
+# create markdown doc
 #############################################################
 
-# print(myheader)
-# print(body)
-# print(links)
-fn = page["dest"]
+top = top = """
+
+{} {}
+
+""".format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
+
+doc = top + body
+
+#############################################################
+# write subdir/README.md
+#############################################################
+
+fn = node["name"]+'/README.md'
 print("dest="+fn)
 delete(fn)
-f = open(fn, "w")
-doc = header + title + body
-nlines = len(body.splitlines())
-#print(nlines)
-#if nlines > 20: 
-doc += links
-f.write(doc)
-f.close()
+with open(fn, 'w') as f:
+  f.write(doc)
 
 
 

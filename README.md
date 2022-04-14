@@ -94,7 +94,7 @@ disp(v1 / v2);
 ```C++
 Vector<double> u( linspace<double>(-1,1,21) );
 Vector<double> v;
-v = 10*sin(pi/2*u) + 10;
+v = 25*sin(pi/2*u) + 10;
 
 const double N = double(v.size());
 double mu = sum(v)/N;
@@ -107,7 +107,7 @@ disp(sigma);
 **Text Output**
 ```C++
 mu = 10; 
-sigma = 7.4162; 
+sigma = 5; 
 ```
 
 <a name="example-3"></a>
@@ -115,9 +115,11 @@ sigma = 7.4162;
 
 ![A dot V](images/A-dot-v.png)
 
-The inner product of linear algebra is designated by the `|` operator, eg ```A | v```.  You can optionally enclose in parentheses so that it looks similar to [Dirac's bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation)): ```(A | v)```.
+The inner product of linear algebra is designated by the `|` operator, eg ```A | v```.  You can optionally enclose in parentheses so that it looks similar to [Dirac's bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation): ```(A | v)```.
 
-Note that in bra-ket notation, vectors are neither row nor column vector.  Their behavior is determined by context.   If you would like to create row/column vectors the syntax is: ```Matrix<double> A(N,1)``` for column vectors and ```Matrix<double> A(1,N)``` for row vectors
+If you prefer, you can also use the ```dot``` function,  ```dot(A,v)```
+
+Note that in this notation, vectors are neither row nor column vectors.  Their behavior is determined from context.   If you would like to explicity create row/column vectors the syntax is: ```Matrix<double> A(N,1)``` for column vectors and ```Matrix<double> A(1,N)``` for row vectors
 
 
 **Actual C++ code**
@@ -176,7 +178,7 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 ## News 
 
-The first step of refactoring has been completed.
+The part of refactoring has been completed.
 
 + v3.4 Documenation
   + Full refactoring of the online documentation

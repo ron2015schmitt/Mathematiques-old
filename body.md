@@ -6,6 +6,22 @@ Mathématiques is numerical library for performing linear algebra, calculus, vec
 _Mathématiques distinguishes itself from other libraries by an elegance and versatility that are only possible using the features of C++11,14, and 17._
 
 
+## Table of Contents
+
++ [Features](#features)
+  + [Math](#math)
+  + [Output, I/O, and debugging](#output)
+  + [Documentation](#documentation)
++ [Examples](#examples)
+  + [EXAMPLE 1: Element-wise `Vector` math](#example-1)
+  + [EXAMPLE 2: Complicated Element-wise `Vector` math](#example-2)
+  + [EXAMPLE 3: Linear Algebra](#example-3)
+  + [EXAMPLE 4: Complicated Linear Algebra](#example-4)
++ [New](#new)
++ [Coming soon](#coming-soon)
++ [Documentation](#documentation)
+
+
 ## Features
 + Simple Matlab-like syntax with no run-time cost
 + Performance comparable to C and Fortran
@@ -26,6 +42,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + derivatives
   + integrals
 
+<a name="#output"></a>
 ### Output, I/O, and debugging
 + Pretty printing of results
   + styles
@@ -42,6 +59,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 
 ## Examples
 
+<a name="example-1"></a>
 ### EXAMPLE 1: Element-wise `Vector` math
 
 **Actual C++ code**
@@ -65,6 +83,7 @@ disp(v1 / v2);
   v1 / v2 = Vector<double> {10, 10, 10, 10}; 
 ```
 
+<a name="example-2"></a>
 ### EXAMPLE 2: Complicated Element-wise `Vector` math
 
 **Actual C++ code**
@@ -87,6 +106,7 @@ mu = 10;
 sigma = 7.4162; 
 ```
 
+<a name="example-3"></a>
 ### EXAMPLE 3: Linear Algebra
 
 ![A dot V](images/A-dot-v.png)
@@ -115,10 +135,10 @@ A = [
 ]; 
 A|v = {0, 2, 4}; 
 ```
-
+<a name="example-4"></a>
 ### EXAMPLE 4: Complicated Linear Algebra
 
-![u dot A dot V](images/u-dot-A-dot-v.png)
+![u dot A dot V](images/u-dot-A-dot-v.png  | width=65px)
 
 This example is the bilinear form for a matrix ```A``` and two vectors ```u``` and ```v```.  From context, ```u``` behaves as a row vector and ```v``` behaves as acolumn vector.
 

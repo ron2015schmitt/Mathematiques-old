@@ -1,25 +1,18 @@
+#############################################################
+# VARIABLES
+#############################################################
+
+CHAPTERS = about license release-notes installation using-mathematiques examples coding-guide benchmarks test feature-schedule developer-guide
+
 include ../make-lib/dirmathq.mk
-include $(DIR_MATHQ)/make-lib/style.mk
-include $(DIR_MATHQ)/make-lib/core.mk
-include $(DIR_MATHQ)/make-lib/infohelp.mk
+include $(DIR_MATHQ)/make-lib/doc.variables.mk
 
+NONEXEC = branch.json README.md $(LEAF_READMES)
+EXEC += 
 
-CHAPTERS = about.md  benchmarks.md  developer-guide.md  examples.md  feature-schedule.md  installation.md  license.md  release-notes.md  test.md  coding-guide.md  using-mathematiques.md
+#---------------------------------------------------------------------
+# RECIPES
+#---------------------------------------------------------------------
+include $(DIR_MATHQ)/make-lib/doc.recipes.mk
 
-%.md: %/template.md createpage.py toc.json
-	python3 createpage.py $*
-	@chmod a-w $*.md
-
-toc.json README.md header.md: createtoc.py $(TAG_FILE_MATHQ) toc.txt 
-	python3 createtoc.py $(TAG_FILE_MATHQ)
-	@chmod a-w toc.json README.md header.md
-
-../README.md: createtop.py $(TAG_FILE_MATHQ) top/template.md
-	python3 createtop.py $(TAG_FILE_MATHQ)
-	@chmod a-w ../README.md
-
-all: ../README.md toc.json README.md header.md $(CHAPTERS)
-
-clean:
-	@rm -f *.md toc.json
 

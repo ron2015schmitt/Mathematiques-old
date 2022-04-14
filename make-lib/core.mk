@@ -26,14 +26,29 @@ LIB_MATHQ := -lmathq
 INCLUDES := -I $(INCDIR_MATHQ) 
 LIBS := -L$(LIBDIR_MATHQ) $(LIB_MATHQ)
 
+###########################################################
+# GENERAL VARS
+###########################################################
+
+
+SUBMAKES = $(wildcard */Makefile)
+SUBS = $(wildcard */)
+MAKE_SUBDIRS = $(dir $(SUBMAKES))
+MAKECLEAN_SUBDIRS = $(addprefix clean_,$(MAKE_SUBDIRS))
+
+# Each Makefile that has an include statement for this file should:
+#  - define a variable EXEC that includes of the executable targets
+EXEC ?=
 
 
 ###########################################################
 #  SPECIAL TARGETS
 ###########################################################
 
-.PHONY: default
-default: all
+.PHONY:
+
+# Each Makefile that has an include statement for this file should define a target "norecurse" that makes all targets in that directory but not in subdirectories
+default: norecurse
 
 #prevent any default rules from being used
 .SUFFIXES:
@@ -41,7 +56,6 @@ default: all
 # don't delete .o files after compilation
 .PRECIOUS: %.o 
 
-EXEC ?=
 
 #############################################################################
 # g++ COMPILER
@@ -99,34 +113,32 @@ LFLAGS = $(OPTIMIZE) $(LOPT)
 
 
 #############################################################################
-# Clean up 
+# REAL TARGETS
 #############################################################################
 
 FORCE:
 
-cleanstd: FORCE 
-	@command rm -f *.o
-	@command rm -f *.a
-	@command rm -f *.s
-	@command rm -f *.g++_copts
-	@command rm -f *.link_md
-	@command rm -f core.*
+# This is used to recursively build - it calls the every subdirectory Makefile
+$(MAKE_SUBDIRS): FORCE
+	$(MAKE) -C $@
+
+testsubs: FORCE
+	@echo $(SUBS)
+	@echo $(SUBMAKES)
+	@echo $(MAKE_SUBDIRS)
+	@echo $(MAKECLEAN_SUBDIRS)
+
+# Target "all" build everything, traversing down the directory tree
+# Each Makefile that has an include statement for this file should:
+#  - define a target "norecurse" that makes all targets in that directory but not in subdirectories
+all: default $(MAKE_SUBDIRS)
 
 
-cleanall: FORCE clean
-	@\rm -f run
-	@\rm -f *.temp
-	@\rm -f *.tmp
-	@\rm -f *~
-	@\rm -f ~*
-	@\rm -f *.gz
-	@\rm -f *.tar
-	@\rm -f *.old
-	@\rm -f run
-
+# creates a run file that executes all the $(EXEC) files
 createrun: 
 	@$(DIR_MATHQ)/scripts/createrun.bash $(EXEC)
 
+# creates a .gitignore files for all the $(EXEC) files
 .ONESHELL:
 gitignore: 
 	@\echo -e '# ****  This was created by the command "make gitignore".' > .gitignore
@@ -136,4 +148,40 @@ gitignore:
 	@do
 	@  \printf "/$${name}\n" >> .gitignore
 	@done
+
+
+#############################################################################
+# CLEANING
+#############################################################################
+
+
+clean_%: FORCE
+	$(MAKE) -C $* cleanall
+
+cleansubs: $(MAKECLEAN_SUBDIRS)
+
+
+# Each Makefile that has an include statement for this file should:
+#  - define a "clean" target with "cleanstd" as a prerequisite
+cleanstd: FORCE 
+	@command rm -f *.o
+	@command rm -f *.a
+	@command rm -f *.s
+	@command rm -f *.g++_copts
+	@command rm -f *.link_md
+	@command rm -f core.*
+
+# Target "cleansall" cleans everything, traversing down the directory tree
+# Each Makefile that has an include statement for this file should:
+#  - NOT define a "cleanall" target
+cleanall: FORCE clean cleansubs
+	@\rm -f run
+	@\rm -f *.temp
+	@\rm -f *.tmp
+	@\rm -f *~
+	@\rm -f ~*
+	@\rm -f *.gz
+	@\rm -f *.tar
+	@\rm -f *.old
+
 

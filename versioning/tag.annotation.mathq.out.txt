@@ -1,11 +1,12 @@
-v3.3.20
+v3.4.28
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
 # The Makefile will tack on a revision string (eg 2.1.21) for commits between changes.
-export COMPATIBLE_VERSION_MATHQ=3.3
+export COMPATIBLE_VERSION_MATHQ=3.4
+# V3.4  doc refactoring and expansion.
 # V3.3  massive refactoring of configure and make.  started doc refactoring.
 # V3.2  added IdentityMatrix, ConstDiagMatrix
 # V3.1  added ZeroMatrix

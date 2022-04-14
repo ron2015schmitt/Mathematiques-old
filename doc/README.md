@@ -1,21 +1,16 @@
+# Mathématiques v3.4.28
 
 
-# Mathématiques v3.3.19
+# User Guide
 
-_The documentation is currently being updating.  The full documentation will be released as part of v3.4_
-
-----
-
-# Table of Contents
-
-1. [About](about.md)
-2. [License](license.md)
-3. [Release Notes](release-notes.md)
-4. [Example code](examples.md)
-5. [Installation](installation.md)
-6. [Using Mathématiques](using-mathematiques.md)
-7. [Coding Guide / Syntax](coding-guide.md)
-8. [Benchmarks](benchmarks.md)
-9. [Tests](test.md)
-10. [New Feature Schedule](feature-schedule.md)
-11. [Developer Guide](developer-guide.md)
+1. [About](about/README.md)<br>
+2. [License](license/README.md)<br>
+3. [Release Notes](release-notes/README.md)<br>
+4. [Installation](installation/README.md)<br>
+5. [Makefile / Using Mathématiques](using-mathematiques/README.md)<br>
+6. [Code Examples](examples/README.md)<br>
+7. [Coding Guide / Syntax](coding-guide/README.md)<br>
+8. [Benchmarks](benchmarks/README.md)<br>
+9. [Tests](test/README.md)<br>
+10. [New Feature Plans](feature-schedule/README.md)<br>
+11. [Developer Guide](developer-guide/README.md)<br>

@@ -11,8 +11,7 @@
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 6. [Code Examples](../examples/README.md)<br>
 
-_7. Coding Guide / Syntax_ 
-
+7. _Coding Guide / Syntax_ <br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
 10. [New Feature Plans](../feature-schedule/README.md)<br>
@@ -35,8 +34,7 @@ _7. Coding Guide / Syntax_
 7.6. [Tensors](../tensor/README.md)<br>
 7.7. [FILE I/O](../file-io/README.md)<br>
 
-_7.8. Debug Modes_ 
-
+7.8. _Debug Modes_ <br>
 
 
 </details>

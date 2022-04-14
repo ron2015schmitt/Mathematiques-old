@@ -14,8 +14,7 @@
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
 
-_10. New Feature Plans_ 
-
+10. _New Feature Plans_ <br>
 11. [Developer Guide](../developer-guide/README.md)<br>
 
 

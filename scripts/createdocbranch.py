@@ -215,9 +215,9 @@ for name in NAMES:
   for name2 in NAMES:
     chapter2 = CHAPTERS[name2]
     if name == name2:
-      line = "_" + chapter["prefix"]+ " " + chapter["title"] + "_ \n\n"      
+      line = chapter["prefix"]+ " _" + chapter["title"] + "_ <br>\n"      
       if chapter["index"] == 1:
-        line = "\n<br>" + line
+        line = "\n" + line
       else:
         line = "\n" + line        
     else: 

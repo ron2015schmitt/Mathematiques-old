@@ -8,8 +8,7 @@
 2. [License](../license/README.md)<br>
 3. [Release Notes](../release-notes/README.md)<br>
 
-_4. Installation_ 
-
+4. _Installation_ <br>
 5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
 6. [Code Examples](../examples/README.md)<br>
 7. [Coding Guide / Syntax](../coding-guide/README.md)<br>

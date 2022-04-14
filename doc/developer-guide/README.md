@@ -15,8 +15,7 @@
 9. [Tests](../test/README.md)<br>
 10. [New Feature Plans](../feature-schedule/README.md)<br>
 
-_11. Developer Guide_ 
-
+11. _Developer Guide_ <br>
 
 
 </details>

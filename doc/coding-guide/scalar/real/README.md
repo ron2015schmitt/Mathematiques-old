@@ -1,4 +1,4 @@
-# Mathématiques v3.5.3
+# Mathématiques v3.5.5
 
 
 <details>
@@ -57,6 +57,8 @@
 
 
 #### 7.1.1. Real number mathematics
+
+<br>
 
 
 

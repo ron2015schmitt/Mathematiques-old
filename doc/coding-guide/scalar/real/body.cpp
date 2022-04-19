@@ -21,6 +21,7 @@ int main()
 
   int Nex = 1;
 
+  text("<br>\n");
   cr();
   cr();
 

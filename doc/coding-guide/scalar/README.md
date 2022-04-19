@@ -1,4 +1,4 @@
-# Mathématiques v3.5.1
+# Mathématiques v3.5.2
 
 
 <details>
@@ -24,7 +24,7 @@
 
 <details>
 
-<summary>Coding Guide / Syntax</summary>
+<summary>7. Coding Guide / Syntax</summary>
 
 
 7.1. _Scalar Math: real, imaginary, complex, and quaternion numbers_ <br>

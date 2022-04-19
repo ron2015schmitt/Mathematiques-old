@@ -1,4 +1,4 @@
-# Mathématiques v3.5.1
+# Mathématiques v3.5.2
 
 
 # User Guide

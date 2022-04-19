@@ -3,7 +3,7 @@
     "index": 1,
     "name": "scalar",
     "skip-readme": true,
-    "title": "Scalar Math: real, imaginary, complex, and qauternion numbers",
+    "title": "Scalar Math: real, imaginary, complex, and quaternion numbers",
     "version": "v3.5.1",
     "prefix": "7.1.",
     "src": "scalar/template.md",

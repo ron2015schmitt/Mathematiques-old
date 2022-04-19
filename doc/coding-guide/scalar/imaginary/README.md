@@ -27,7 +27,7 @@
 <summary>Coding Guide / Syntax</summary>
 
 
-7.1. _Scalar Math: real, imaginary, complex, and qauternion numbers_ <br>
+7.1. _Scalar Math: real, imaginary, complex, and quaternion numbers_ <br>
 7.2. [Display of Results](../../display/README.md)<br>
 7.3. [Vectors](../../vector/README.md)<br>
 7.4. [Matrices](../../matrix/README.md)<br>
@@ -43,7 +43,7 @@
 
 <details>
 
-<summary>Scalar Math: real, imaginary, complex, and qauternion numbers</summary>
+<summary>Scalar Math: real, imaginary, complex, and quaternion numbers</summary>
 
 7.1.1. [Real number mathematics](../real/README.md)<br>
 7.1.2. _Imaginary number mathematics_ <br>
@@ -59,6 +59,6 @@
 
 
 
-| ⇦ <br />[Real number mathematics](../real/README.md)  | [Scalar Math: real, imaginary, complex, and qauternion numbers](../README.md)<br />Imaginary number mathematics<br /><img width=1000/> | ⇨ <br />[Complex number mathematics](../complex/README.md)   |
+| ⇦ <br />[Real number mathematics](../real/README.md)  | [Scalar Math: real, imaginary, complex, and quaternion numbers](../README.md)<br />Imaginary number mathematics<br /><img width=1000/> | ⇨ <br />[Complex number mathematics](../complex/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

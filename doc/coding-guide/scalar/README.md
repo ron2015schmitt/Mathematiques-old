@@ -27,7 +27,7 @@
 <summary>Coding Guide / Syntax</summary>
 
 
-7.1. _Scalar Math: real, imaginary, complex, and qauternion numbers_ <br>
+7.1. _Scalar Math: real, imaginary, complex, and quaternion numbers_ <br>
 7.2. [Display of Results](../display/README.md)<br>
 7.3. [Vectors](../vector/README.md)<br>
 7.4. [Matrices](../matrix/README.md)<br>
@@ -41,7 +41,7 @@
 
 
 
-### 7.1. Scalar Math: real, imaginary, complex, and qauternion numbers
+### 7.1. Scalar Math: real, imaginary, complex, and quaternion numbers
 
 7.1.1. [Real number mathematics](real/README.md)<br>
 7.1.2. [Imaginary number mathematics](imaginary/README.md)<br>

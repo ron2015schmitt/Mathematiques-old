@@ -5,6 +5,9 @@
 
 #include <iostream>
 #include <string>
+#include <climits>
+#include <limits>
+#include <stdbool.h>
 
 // used to demonstrate how to convert to C++ vectors
 #include <vector>
@@ -21,23 +24,26 @@ int main()
   cr();
   cr();
 
+  text("C++ supports a wide variety of [integer and floating point types](https://en.cppreference.com/w/cpp/language/types).");
+
   header2("Integers");
 
   header3("Signed Integers");
 
-  text("C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  However, for a 64-bit CPU running Linux, they are consistently the same:");
+  text("C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  However, for a 64-bit CPU running Linux, they have the same number of bits:");
 
   cr();
   cr();
   codestart("C++");
-  resultmulti(sizeof(char));
-  resultmulti(sizeof(short));
-  resultmulti(sizeof(int));
-  resultmulti(sizeof(long));
-  resultmulti(sizeof(long long));
+  printf("CHAR_BIT = %d bits\n", CHAR_BIT);
+  printf("CHAR_BIT*sizeof(char) = %ld bits\n", CHAR_BIT * sizeof(char));
+  printf("CHAR_BIT*sizeof(short) = %ld bits\n", CHAR_BIT * sizeof(short));
+  printf("CHAR_BIT*sizeof(int) = %ld bits\n", CHAR_BIT * sizeof(int));
+  printf("CHAR_BIT*sizeof(long) = %ld bits\n", CHAR_BIT * sizeof(long));
+  printf("CHAR_BIT*sizeof(long long) = %ld bits\n", CHAR_BIT * sizeof(long long));
   codeend();
 
-  text("The C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
+  text("The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
   cr();
   text("The maximum and minimum for each type are given below.");
 
@@ -54,212 +60,112 @@ int main()
 
   header2("Unsigned Integers");
 
+  text("C++ supports unsigned versions of each integer type.");
+
+  text("The maximum and minimum for each type are given below.");
+
+  text("| Type | Min | Max |");
+  text("| :--- | :---: | :---: |");
+  printf("| ```unsigned char``` | %u | %u |\n", std::numeric_limits<unsigned char>::min(), std::numeric_limits<unsigned char>::max());
+  printf("| ```unsigned short``` | %u | %u |\n", std::numeric_limits<unsigned short>::min(), std::numeric_limits<unsigned short>::max());
+  printf("| ```unsigned int``` | %u | %u |\n", std::numeric_limits<unsigned int>::min(), std::numeric_limits<unsigned int>::max());
+  printf("| ```unsigned long``` | %lu | %lu |\n", std::numeric_limits<unsigned long>::min(), std::numeric_limits<unsigned long>::max());
+  printf("| ```unsigned long long``` | %llu | %llu |\n", std::numeric_limits<unsigned long long>::min(), std::numeric_limits<unsigned long long>::max());
+
   header3("Indexing Types");
-  printf("sizeof(off_t) = %ld\n", sizeof(off_t));
-  printf("sizeof(size_t) = %ld\n", sizeof(size_t));
+
+  text("The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)");
+  text("It's size depends on implementation.  The 64-bit Linux size is shown below:");
+  cr();
+  printf("CHAR_SIZE*sizeof(size_t) = %ld bits\n", sizeof(size_t));
+  cr();
+
+  header3("Fixed width integer types");
+
+  text("C++11 introduced new types, called [fixed interger types](https://en.cppreference.com/w/cpp/types/integer), that allow you to directly specify the number of bits:");
+
+  text("| type | signed / unsigned | bits |");
+  text("| :--- | :---: | :---: |");
+  text("| int8_t | signed | 8 bits |");
+  text("| int16_t | signed | 8 bits |");
+  text("| int32_t | signed | 16 bits |");
+  text("| int64_t | signed | 32 bits |");
+  text("| uint8_t | unsigned | 8 bits |");
+  text("| uint16_t | unsigned | 8 bits |");
+  text("| uint32_t | unsigned | 16 bits |");
+  text("| uint64_t | unsigned | 32 bits |");
+
+  header3("Logic");
+
+  text("The boolean type, [```bool```](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A ```bool``` can take only two values, 0 or 1.");
+  text("Two associated constants are defined: ```true``` and ```false```.\n");
+
+  cr();
+  codestart("C++");
+  printf("CHAR_BIT*sizeof(bool) = %ld bits\n", CHAR_BIT * sizeof(bool));
+  printf("true = %d\n", true);
+  printf("false = %d\n", false);
+  codeend();
 
   header2("Floating Point Numbers");
 
-  printf("sizeof(float) = %ld\n", sizeof(float));
-  printf("sizeof(double) = %ld\n", sizeof(double));
-  printf("sizeof(double double) = %ld\n", sizeof(long double));
+  text("On modern systems, C++ generally supports three types of floating point number:");
 
-  header2("Auto-promotion");
+  cr();
+  cr();
+  codestart("C++");
+  printf("CHAR_BIT*sizeof(float) = %ld bits\n", CHAR_BIT * sizeof(char));
+  printf("CHAR_BIT*sizeof(double) = %ld bits\n", CHAR_BIT * sizeof(short));
+  printf("CHAR_BIT*sizeof(long double) = %ld bits\n", CHAR_BIT * sizeof(int));
+  codeend();
 
+  text("The three types are compared below.");
+
+  text("| type | name | bits | standard |  ```digits10``` |  ```max_digits10``` | ```epsilon()``` | ```min()``` | ```lowest()``` | ```max()``` | ");
+  text("| :--- | :---: | :---: | :---:  | :---:  | :---:  | :---:  | :---:  | :---: | :---: |");
+  printf("| float | Single Precision | 32 bits | [IEEE 754-2008 binary32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) |");
+  printf(" %d | ", numeric_limits<float>::digits10);
+  printf(" %d | ", numeric_limits<float>::max_digits10);
+  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::epsilon());
+  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::min());
+  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::lowest());
+  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::max());
+  cr();
+  printf("| double | Double Precision | 64 bits | [IEEE 754-2008 binary64](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) |");
+  printf(" %d | ", numeric_limits<double>::digits10);
+  printf(" %d | ", numeric_limits<double>::max_digits10);
+  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::epsilon());
+  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::min());
+  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::lowest());
+  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::max());
+  cr();
+  printf("| long double | Quad Precision | 128 bits | [IEEE 754-2008 binary128](https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format) |");
+  printf(" %d | ", numeric_limits<long double>::digits10);
+  printf(" %d | ", numeric_limits<long double>::max_digits10);
+  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::epsilon());
+  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::min());
+  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::lowest());
+  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::max());
+  cr();
+
+  cr();
+  cr();
+
+  text("The functions ```epsilon()```, ```min()```, ```lowest()```, and  ```max()```, as well as the static values ```digits10``` and ```max_digits10``` are found in [```limits```](https://en.cppreference.com/w/cpp/types/numeric_limits)");
+
+  text("The static value ```max_digits10``` was used as the precision for printing the above values.");
+
+  header2("Operators");
+// arithmetic logic, relational
+// exponentials neeed exp
   // text("The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively");
 
-  // {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"Element-wise `Vector` math");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v1(4) );
-  //   codemultiNoteC11Array(v1 = {10,20,30,40});
-  //   codemulti( Vector<double> v2(4) );
-  //   codemultiNoteC11Array(v2 = {1,2,3,4});
-  //   codeend();
-  //   cr();
-  //   disp(v1);
-  //   disp(v1+v2);
-  //   //(cout << "here")<<std::end;
-  //   disp(v1);
+  header2("Functions");
 
-  //   resultstart2("");
-  //   resultmulti(v1 + v2);
-  //   resultmulti(v1 - v2);
-  //   resultmulti(v1 * v2);
-  //   resultmulti(v1 / v2);
-  //   resultend();
-  // }
+  header2("Mixed-typed math and auto-promotion");
 
-  // header3("Vector-scalar arithmetic");
-  // text("* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.");
-  // text("* In this case the scalar is operated on each element of the vector");
-
-  // {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"math with scalars and `Vector`s");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v1(4) );
-  //   codemultiNoteC11Array(v1 = {10,20,30,40});
-  //   codeend();
-  //   cr();
-
-  //   resultstart2("");
-  //   resultmulti(v1 + 1);
-  //   resultmulti(1 + v1);
-  //   resultmulti(v1 - 10);
-  //   resultmulti(40 - v1);
-  //   resultmulti(v1 * 2);
-  //   resultmulti(2 * v1);
-  //   resultmulti(v1 / 10);
-  //   resultmulti(120 / v1);
-  //   resultmulti(1 + 120 / v1 - 8/8 + 5*v1*2);
-  //   resultend();
-  // }
-
-  // header3("Vector math functions");
-  // text("* A large number of functions is supported.  ");
-  // text("* A function of a `Vector` operates on each element.  ");
-
-  // {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"functions of a `Vector`—rounding and sign-related ");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v(7) );
-  //   codemultiNoteC11Array(v = {-2.5,-2.25,-1,0,1,2.25,2.5});
-  //   codeend();
-  //   cr();
-
-  //   resultstart2(": rounding and sign-related");
-  //   resultmulti( floor(v)  );
-  //   resultmulti( ceil(v)  );
-  //   resultmulti( round(v)  );
-  //   resultmulti( sgn(v)  );
-  //   resultmulti( abs(v)  );
-  //   resultend();
-  //   cr();
-  // }
-
-  // {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v(5) );
-  //   codemultiNoteC11Array(v = {-1,0,1,2,4});
-  //   codeend();
-  //   cr();
-  //   resultstart2(": powers, roots, and exponentiation");
-  //   resultmulti( pow(2, v)  );
-  //   resultmulti( pow(v, 2)  );
-  //   resultmulti( pow(v,v)  );
-  //   resultmulti( exp(v)  );
-  //   resultmulti( log(v)  );
-  //   resultmulti( log10(v)  );
-  //   resultmulti( log2(v)  );
-  //   resultmulti( sqr(v)  );
-  //   resultmulti( cube(v)  );
-  //   resultmulti( sqrt(v)  );
-  //   resultend();
-  //   cr();
-  // }
-
-  // {
-  //   cr();
-  //   cr();
-
-  //   example(Nex++,"functions of a `Vector`—trig");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v(5) );
-  //   codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
-  //   codemultiNoteC11Array(v = {-pi, -pi/2, 0, pi/2, pi});
-  //   codemulti( const double tol = 2e-16 );
-  //   codeend();
-  //   cr();
-
-  //   resultstart2(": trig");
-  //   resultmulti( sin(v)  );
-  //   resultmulti( cos(v)  );
-  //   resultmulti( tan(v)  );
-  //   resultend();
-  //   cr();
-  //   text("The results are cleaner, when we round to a tolerance");
-  //   cr();
-  //   resultstart2(": trig with rounded zeros");
-  //   resultmulti( roundzero(sin(v),tol)  );
-  //   resultmulti( roundzero(cos(v),tol)  );
-  //   resultmulti( roundzero(tan(v),tol)  );
-  //   resultend();
-
-  // }
-
-  // {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"functions of a `Vector`—rounding and sign-related ");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v(3) );
-  //   codemultiNoteC11Array(v = {-1,0,1});
-  //   codeend();
-  //   cr();
-
-  //   resultstart2(": hyperbolic trig");
-  //   resultmulti( sinh(v)  );
-  //   resultmulti( cosh(v)  );
-  //   resultmulti( tanh(v)  );
-  //   resultend();
-  //   cr();
-  // }
-
-  // {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"functions of a `Vector`—inverse trig");
-  //   codestart("C++");
-  //   codemulti( double pi = std::acos(-1) );
-  //   codemulti( Vector<double> v(3) );
-  //   codemulti( Vector<double> v1(9) );
-  //   codemulti( Vector<double> v2(9) );
-  //   codemultiNoteC11Array(v = {-1,0,1});
-  //   codemultiNoteC11Array(v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
-  //   codemultiNoteC11Array(v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
-  //   codeend();
-  //   cr();
-
-  //   resultstart2(": inverse trig");
-  //   resultmulti( asin(v)/pi  );
-  //   resultmulti( acos(v)/pi  );
-  //   resultmulti( atan(v)/pi  );
-  //   resultmulti( atan2(v1, v2)/pi  );
-  //   resultend();
-  // }
-
-  // header3("Arbitrary combinations of the above functionality are supported");
-  // text("* Because Mathématiques uses expression templating:");
-  // text("  * no intermediate objects are created");
-  // text("  * the expression is calculated in a single for loop");
-
-  //   {
-  //   cr();
-  //   cr();
-  //   example(Nex++,"A huge expression");
-  //   codestart("C++");
-  //   codemulti( Vector<double> v1(4) );
-  //   codemultiNoteC11Array(v1 = {10,20,30,40});
-  //   codemulti( Vector<double> v2(4) );
-  //   codemultiNoteC11Array(v2 = {-1,-2,-3,-4});
-  //   codeend();
-  //   cr();
-
-  //   resultstart2("");
-  //   resultmulti(2*log10(abs(v1/v2)*100) + 3 + pow(-v2,2) );
-  //   resultend();
-  // }
-
-  // mathq_toc();
+  cr();
+  cr();
 
   return 0;
 }

@@ -1,4 +1,4 @@
-# Mathématiques v3.4.30
+# Mathématiques v3.5.1
 
 
 <details>
@@ -26,7 +26,7 @@
 
 <summary>Coding Guide / Syntax</summary>
 
-7.1. [Scalars](../scalar/README.md)<br>
+7.1. [Scalar Math: real, imaginary, complex, and qauternion numbers](../scalar/README.md)<br>
 7.2. [Display of Results](../display/README.md)<br>
 7.3. _Vectors_ <br>
 7.4. [Matrices](../matrix/README.md)<br>

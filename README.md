@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.4.30
+# Mathématiques v3.5.1
 
 
 ## Description 
@@ -15,13 +15,13 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 + [Features](#features)
   + [Math](#math)
   + [Output, I/O, and debugging](#output)
-  + [Documentation Features](#documentation-features)
+  + [Documentation](#documentation)
 + [Examples](#examples)
   + [EXAMPLE 1: Element-wise `Vector` math](#example-1)
   + [EXAMPLE 2: Complicated Element-wise `Vector` math](#example-2)
   + [EXAMPLE 3: Linear Algebra](#example-3)
   + [EXAMPLE 4: Complicated Linear Algebra](#example-4)
-+ [News](#news)
++ [New](#new)
 + [Coming soon](#coming-soon)
 + [Documentation](#documentation)
 
@@ -46,7 +46,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + derivatives
   + integrals
 
-<a name="output"></a>
+<a name="#output"></a>
 ### Output, I/O, and debugging
 + Pretty printing of results
   + styles
@@ -57,7 +57,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + provide bounds checking of arrays and send warnings to the stderr
   + ability to track all large arrays in use
 
-### Documentation Features
+### Documentation
 + Detailed pretty documentation in Markdown.  
 + Markdown documents can be auto-generated from C++ code.
 
@@ -94,7 +94,7 @@ disp(v1 / v2);
 ```C++
 Vector<double> u( linspace<double>(-1,1,21) );
 Vector<double> v;
-v = 25*sin(pi/2*u) + 10;
+v = 10*sin(pi/2*u) + 10;
 
 const double N = double(v.size());
 double mu = sum(v)/N;
@@ -107,7 +107,7 @@ disp(sigma);
 **Text Output**
 ```C++
 mu = 10; 
-sigma = 5; 
+sigma = 7.4162; 
 ```
 
 <a name="example-3"></a>
@@ -115,11 +115,9 @@ sigma = 5;
 
 ![A dot V](images/A-dot-v.png)
 
-The inner product of linear algebra is designated by the `|` operator, eg ```A | v```.  You can optionally enclose in parentheses so that it looks similar to [Dirac's bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation): ```(A | v)```.
+The inner product of linear algebra is designated by the `|` operator, eg ```A | v```.  You can optionally enclose in parentheses so that it looks similar to [Dirac's bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation)): ```(A | v)```.
 
-If you prefer, you can also use the ```dot``` function,  ```dot(A,v)```
-
-Note that in this notation, vectors are neither row nor column vectors.  Their behavior is determined from context.   If you would like to explicity create row/column vectors the syntax is: ```Matrix<double> A(N,1)``` for column vectors and ```Matrix<double> A(1,N)``` for row vectors
+Note that in bra-ket notation, vectors are neither row nor column vector.  Their behavior is determined by context.   If you would like to create row/column vectors the syntax is: ```Matrix<double> A(N,1)``` for column vectors and ```Matrix<double> A(1,N)``` for row vectors
 
 
 **Actual C++ code**
@@ -144,7 +142,7 @@ A|v = {0, 2, 4};
 <a name="example-4"></a>
 ### EXAMPLE 4: Complicated Linear Algebra
 
-![u dot A dot V](images/u-dot-A-dot-v.png)
+![u dot A dot V](images/u-dot-A-dot-v.png  | width=65px)
 
 This example is the bilinear form for a matrix ```A``` and two vectors ```u``` and ```v```.  From context, ```u``` behaves as a row vector and ```v``` behaves as acolumn vector.
 
@@ -178,7 +176,7 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 ## News 
 
-The part of refactoring has been completed.
+The first step of refactoring has been completed.
 
 + v3.4 Documenation
   + Full refactoring of the online documentation

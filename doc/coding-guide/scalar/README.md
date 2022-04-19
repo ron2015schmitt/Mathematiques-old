@@ -1,4 +1,4 @@
-# Mathématiques v3.4.30
+# Mathématiques v3.5.1
 
 
 <details>
@@ -27,7 +27,7 @@
 <summary>Coding Guide / Syntax</summary>
 
 
-7.1. _Scalars_ <br>
+7.1. _Scalar Math: real, imaginary, complex, and qauternion numbers_ <br>
 7.2. [Display of Results](../display/README.md)<br>
 7.3. [Vectors](../vector/README.md)<br>
 7.4. [Matrices](../matrix/README.md)<br>
@@ -41,10 +41,9 @@
 
 
 
-### 7.1. Scalars
+### 7.1. Scalar Math: real, imaginary, complex, and qauternion numbers
 
-
-
-| ⇦ <br />  | [Coding Guide / Syntax](../README.md)<br />Scalars<br /><img width=1000/> | ⇨ <br />[Display of Results](../display/README.md)   |
-| ------------ | :-------------------------------: | ------------ |
-
+7.1.1. [Real number mathematics](real/README.md)<br>
+7.1.2. [Imaginary number mathematics](imaginary/README.md)<br>
+7.1.3. [Complex number mathematics](complex/README.md)<br>
+7.1.4. [Quaternion Mathematics](quaternion/README.md)<br>

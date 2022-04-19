@@ -1,1 +1,1 @@
-Scalars
+Scalar Math: real, imaginary, complex, and quaternion numbers

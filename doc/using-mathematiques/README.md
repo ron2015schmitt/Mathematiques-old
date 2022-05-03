@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -22,7 +22,7 @@
 
 
 
-## 5. Makefile / Using Mathématiques
+# 5. Makefile / Using Mathématiques
 
 
 Now that you have completed installation, to use the Mathématiques library you need to 

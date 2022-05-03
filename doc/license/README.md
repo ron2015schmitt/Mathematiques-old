@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -22,7 +22,7 @@
 
 
 
-## 2. License
+# 2. License
 
 
 The code that makes up this library is copyrighted under the *MIT license*.

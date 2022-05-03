@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -56,14 +56,16 @@
 
 
 
-#### 7.1.1. Real number mathematics
-
-<br>
+# 7.1.1. Real number mathematics
 
 
 
 C++ supports a wide variety of [integer and floating point types](https://en.cppreference.com/w/cpp/language/types).
+
+
 ## Integers
+
+
 ### Signed Integers
 C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  However, for a 64-bit CPU running Linux, they have the same number of bits:
 
@@ -88,7 +90,9 @@ The maximum and minimum for each type are given below.
 | ```long long``` | -9223372036854775808 | 9223372036854775807 |
 
 Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
-## Unsigned Integers
+<br>
+
+### Unsigned Integers
 C++ supports unsigned versions of each integer type.
 The maximum and minimum for each type are given below.
 | Type | Min | Max |
@@ -98,11 +102,15 @@ The maximum and minimum for each type are given below.
 | ```unsigned int``` | 0 | 4294967295 |
 | ```unsigned long``` | 0 | 18446744073709551615 |
 | ```unsigned long long``` | 0 | 18446744073709551615 |
+<br>
+
 ### Indexing Types
 The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)
 It's size depends on implementation.  The 64-bit Linux size is shown below:
 
 CHAR_SIZE*sizeof(size_t) = 8 bits
+
+<br>
 
 ### Fixed width integer types
 C++11 introduced new types, called [fixed interger types](https://en.cppreference.com/w/cpp/types/integer), that allow you to directly specify the number of bits:
@@ -116,6 +124,10 @@ C++11 introduced new types, called [fixed interger types](https://en.cppreferenc
 | uint16_t | unsigned | 8 bits |
 | uint32_t | unsigned | 16 bits |
 | uint64_t | unsigned | 32 bits |
+
+
+<br>
+
 ### Logic
 The boolean type, [```bool```](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A ```bool``` can take only two values, 0 or 1.
 Two associated constants are defined: ```true``` and ```false```.
@@ -126,6 +138,14 @@ CHAR_BIT*sizeof(bool) = 8 bits
 true = 1
 false = 0
 ```
+
+<br>
+
+### Bitwise Math
+Bit-wise math is supported by C++, but not inherently supported by Mathématiques because the bitwise operators are overloaded for vector/matrix operations.  Of course, modification of the source could easily support bit-wise vector/matrix operations.
+
+<br>
+
 ## Floating Point Numbers
 On modern systems, C++ generally supports three types of floating point number:
 
@@ -145,9 +165,125 @@ The three types are compared below.
 
 The functions ```epsilon()```, ```min()```, ```lowest()```, and  ```max()```, as well as the static values ```digits10``` and ```max_digits10``` are found in [```limits```](https://en.cppreference.com/w/cpp/types/numeric_limits)
 The static value ```max_digits10``` was used as the precision for printing the above values.
-## Operators
-## Functions
-## Mixed-typed math and auto-promotion
+
+
+<br>
+
+## Operators and functions
+### Arithmetic Operators
+The operators ```+, -, *, /, %``` are the addition, subtraction, multiplication, division, and modulus operators respectively.
+
+For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).
+
+
+| operator | operation | 
+| :---: | :---: | 
+| ```+``` | addition | 
+| ```-``` | subtraction | 
+| ```*``` | multiplication | 
+| ```/``` | division | 
+| ```%``` | modulus | 
+
+* If both numerator and denominator are integers, the division operator gives the integer division result.
+
+```C++
+7 / 2 = 3; 
+```
+* The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.
+
+```C++
+7 % 2 = 1; 
+```
+* The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
+
+```C++
+div_t result = div(7, 2);
+```
+With result:
+
+```C++
+result.quot = 3; 
+result.rem = 1; 
+```
+
+<br>
+
+### Exponentiation and the ```pow``` function
+C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function
+```C++
+pow(2,8) = 256; 
+```
+
+<br>
+
+### Logic Operators
+For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).
+
+
+| operator | operation | 
+| :---: | :---: | 
+| ```!``` | logical NOT | 
+| `\|\|` | logical OR | 
+| ```&&``` | logical AND | 
+
+Examples:
+
+```C++
+true = 1; 
+false = 0; 
+!true = 0; 
+!false = 1; 
+true && true = 1; 
+true && false = 0; 
+true || false = 1; 
+```
+* In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`
+
+```C++
+!true = 0; 
+!8 = 0; 
+!!8.293 = 1; 
+true && 3 = 1; 
+true && 0 = 0; 
+```
+
+<br>
+
+### Relational Operators
+For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).
+
+
+| operator | operation | 
+| :---: | :---: | 
+| `==` | equal to | 
+| `!=` | not equal to | 
+| `<` | less than | 
+| `<=` | less than or equal to | 
+| `>` | greater than | 
+| `>=` | greater than or equal to | 
+
+Examples:
+
+```C++
+(2 == 2) = 1; 
+(1/2 == 0.5) = 0; 
+(1./2 == 0.5) = 1; 
+(-2 < 34.2) = 1; 
+(2 > 0) = 1; 
+```
+
+<br>
+
+### Mathematical functions
+
+<br>
+
+## More on types
+### Mixed-typed math and auto-promotion
+
+<br>
+
+### Type Casting
 
 
 

@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -23,7 +23,7 @@
 
 
 
-## 1. About
+# 1. About
 
 
 Development for this project originally took place during the years 2003-2008 

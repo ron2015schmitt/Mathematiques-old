@@ -107,7 +107,8 @@ override COPT ?=  -Wfatal-errors
 OPTIMIZE ?= -O2
 
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
-CPPC = g++ -pipe --std=c++17 
+
+CPPC = g++ -pipe -std=c++17
 
 ifdef MATHQ_DEBUG
 CFLAGS += -D "MATHQ_DEBUG=$(MATHQ_DEBUG)"

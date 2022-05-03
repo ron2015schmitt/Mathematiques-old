@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -55,7 +55,7 @@
 
 
 
-#### 7.1.4. Quaternion Mathematics
+# 7.1.4. Quaternion Mathematics
 
 
 [Quaternions](https://en.wikipedia.org/wiki/Quaternion)

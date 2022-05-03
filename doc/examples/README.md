@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -22,7 +22,7 @@
 
 
 
-## 6. Code Examples
+# 6. Code Examples
 
 ## Examples
 

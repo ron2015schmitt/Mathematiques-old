@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.5.1
+# Mathématiques v3.5.6
 
 
 ## Description 
@@ -15,13 +15,13 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 + [Features](#features)
   + [Math](#math)
   + [Output, I/O, and debugging](#output)
-  + [Documentation Features](#documentation-features)
+  + [Documentation](#documentation)
 + [Examples](#examples)
   + [EXAMPLE 1: Element-wise `Vector` math](#example-1)
   + [EXAMPLE 2: Complicated Element-wise `Vector` math](#example-2)
   + [EXAMPLE 3: Linear Algebra](#example-3)
   + [EXAMPLE 4: Complicated Linear Algebra](#example-4)
-+ [News](#news)
++ [New](#new)
 + [Coming soon](#coming-soon)
 + [Documentation](#documentation)
 
@@ -57,7 +57,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + provide bounds checking of arrays and send warnings to the stderr
   + ability to track all large arrays in use
 
-### Documentation Features
+### Documentation
 + Detailed pretty documentation in Markdown.  
 + Markdown documents can be auto-generated from C++ code.
 

@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -22,7 +22,7 @@
 
 
 
-## 3. Release Notes
+# 3. Release Notes
 
 
 ## **v3.4** Documentation Refactoring

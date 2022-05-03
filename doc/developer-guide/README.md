@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -22,7 +22,7 @@
 
 
 
-## 11. Developer Guide
+# 11. Developer Guide
 
 
 *in progress...*

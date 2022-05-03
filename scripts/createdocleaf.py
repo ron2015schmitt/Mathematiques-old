@@ -58,7 +58,9 @@ top = top = """
 
 {} {}
 
-""".format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
+""".format("#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
+
+# """.format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
 
 doc = node["header"] + top + body + node["footer"]
 

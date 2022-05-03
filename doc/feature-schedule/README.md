@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -22,7 +22,7 @@
 
 
 
-## 10. New Feature Plans
+# 10. New Feature Plans
 
 ## Planned Releases
 
@@ -37,14 +37,15 @@
   + [Index class and new indexing methodology](topics/index.md)
 
 ### v3.7 Display Refactoring
+1. Allow to use different strigns for ```=``` and ```;``` when displaying results
 1. [Refactor mout and dout](topics/refactormout.md)
 1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
 1. [Refactor getTypeName](topics/gettypename.md)
 1. [Refactor FormatData](topics/formatdata.md)
 1. Fix Printing of ```complex<Vector<double>>>``` etc
 1. Add data type to output of inner products
-  * disp(v1 + v2) = Vector<double> {16, -6}; 
-  * disp(M1 + v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
+  * disp(v1 | v2) = Vector<double> {16, -6}; 
+  * disp(M1 | v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
 1. [Tensor class FormatData](topics/tensorformatdata.md)
    1. compact 
    1. by aligned rows and columns with and without braces
@@ -68,17 +69,20 @@
 1. [Implement >> operators](topics/inputstreams.md)
 1. [Load tensor from file](topics/fileload.md)
 
+
 ### Miscellaneous Small Features
+* Create a `Number` class to generalize (diviosn alegra numbers) real,s imaginary and complex, quaternions?
+* Refactor `NumberType` etc to use constexpr fields instead of static methods
+* overload `^` as exponentiation for vectors and matrices?
 * implement adjoint(Matrix) and ~(Matrix)
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
 * `logspace` function similar to `matlab`
-* element wise dotproducts
+* element wise dotproducts (in process)
 * refactor: `::Type` to `::type`
 * Add support for the rest of the [common math functions](https://en.cppreference.com/w/cpp/numeric/math) introduced in `C++11` and `C++20`: `frexp`, `isnan` etc, `ldexp`, `logb`, `ilogb`, `modf`, `div`, `remiander`, `remqou`, `fmod`, `ispow2`, `trunc`, `nearbyint`, `ceil2`, `floor2`, etc.
 * `TensorRW` implementation of `real(t)` and `imag(t)`
 * `TensorRW` implementation of `A.row(r)` and `A.col(r)`
 * `Matrix` constructor and assignment using parameter pack (or list?) of `Vector`, as either cols or rows
-* Refactor `NumberType` etc to use constexpr fields instead of static methods
 * Modify Taylor Series to operate at top level (not deep level.)  Test with Scalar<Matrix> and Vector <Matrix> 
    * dat(i) must call [i].
    * perhaps have a boolean in all TensorR subclasses that denotes which is faster: [i] or dat(i)
@@ -93,7 +97,8 @@
 * `Matrix` size modifications. 
    * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
    * support column major matrices and tensors
-* add latex parser for disp?
+* add latex helper functions for disp?
+
 
 ## Futrue work
 
@@ -177,15 +182,58 @@
 ### Possibilities
 * investigate use of [swap](https://en.cppreference.com/w/cpp/algorithm/swap)
 * investigate use of [multi-threading](https://en.cppreference.com/w/cpp/thread/thread)
-* Create a `Number` class to generalize real,s imaginary and complex?
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
 * Support other division algebras data types
    * Quarternions
    * Octonions
-* `C++20` features?
 * Create a [new Programming language](topics/newlanguage.md) based on Mathématiques
 
+### New C++ features
+* Ubuntu 20.04 uses GCC 9.4 which implements C++17 and some of C++20
+
+* C++11 features see [c++11 features](https://en.cppreference.com/w/cpp/11) and [compiler support](https://en.cppreference.com/w/cpp/compiler_support/11) and [GCC C++11 Status](https://gcc.gnu.org/projects/cxx-status.html#cxx11)
+  * GCC 5.X supports all C++11
+  * [exact rational arithmatic](https://en.cppreference.com/w/cpp/numeric/ratio/ratio)
+  * [tuples](https://en.cppreference.com/w/cpp/utility/tuple)
+
+* C++14 features see [c++14 features](https://en.cppreference.com/w/cpp/14) and [compiler support](https://en.cppreference.com/w/cpp/compiler_support/14) and [GCC C++14 Status](https://gcc.gnu.org/projects/cxx-status.html#cxx14)
+  * GCC 5.X supports all C++11
+  * [variable templates](https://en.cppreference.com/w/cpp/language/variable_template)
+
+* C++17 features see [c++17 features](https://en.cppreference.com/w/cpp/17) and [compiler support](https://en.cppreference.com/w/cpp/compiler_support/17) and [GCC C++17 Status](https://gcc.gnu.org/projects/cxx-status.html#cxx17) 
+  * GCC 7.X supports all of C++17, except
+    * [to_chars, from_chars, chars_format](https://en.cppreference.com/w/cpp/utility#Elementary_string_conversions) in GCC 8 and 11
+    * [Hardware interference size](https://en.cppreference.com/w/cpp/thread/hardware_destructive_interference_size) in GCC 12
+    * [Standardization of Parallelism TS](https://wg21.link/P0063R3) in GCC 9
+    * [C++17 should refer to C11 instead of C99](https://en.cppreference.com/w/cpp/header/memory_resource) in GCC
+    * [Polymorphic memory resources]() in GCC 9
+    * []() in GCC
+  * [lambdas](https://en.cppreference.com/w/cpp/language/lambda) enhanced in C++20
+  * [inline (templated) variables](https://en.cppreference.com/w/cpp/language/inline)
+
+* C++20 features. see [c++20 features](https://en.cppreference.com/w/cpp/20) and [compiler support](https://en.cppreference.com/w/cpp/compiler_support/20) and [GCC C++20 Status](https://gcc.gnu.org/projects/cxx-status.html#cxx20)
+  * GCC Started C++20 in 8.X continues through at least 12.X 
+  * [feature `<version>` macros](https://en.cppreference.com/w/cpp/header/version)
+  * [Mathematical constants](https://en.cppreference.com/w/cpp/numeric/constants)
+  * `a <=> b` [three-way operator (-1,+1,0)](https://en.cppreference.com/w/cpp/language/operator_comparison#three-way-comparison)). need GNU 10 
+  * immediate functions: [consteval](https://en.cppreference.com/w/cpp/language/consteval)
+  * [`std::type_identity`](https://en.cppreference.com/w/cpp/types/type_identity)
+  * [modules](https://en.cppreference.com/w/cpp/language/modules)
+  * [constinit](https://en.cppreference.com/w/cpp/language/constinit)
+  * [aggregate initialization enhancements](https://en.cppreference.com/w/cpp/language/aggregate_initialization)
+  * [is_constant_evaluated](https://en.cppreference.com/w/cpp/types/is_constant_evaluated)
+  * [coroutines](https://en.cppreference.com/w/cpp/language/coroutines)
+  * [concepts and constraints](https://en.cppreference.com/w/cpp/language/constraints)
+  * [Class template argument deduction for alias templates](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1975r0.html)
+  * `__VA_OPT__` for preprocessor comma elision
+* C++23 features. see [c++23 features](https://en.cppreference.com/w/cpp/23) and [compiler support](https://en.cppreference.com/w/cpp/compiler_support/23) and [GCC C++23 Status](https://gcc.gnu.org/projects/cxx-status.html#cxx23)
+  * multidimensional array operator
+  * Consistent character literal encoding
+  * if consteval
+  * Non-literal variables (and labels and gotos) in constexpr functions
+* C++ Experimental
+  * [Transactional Memory](Transactional Memory)
 
  
 ### Contact

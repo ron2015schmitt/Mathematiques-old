@@ -1,4 +1,4 @@
-# Mathématiques v3.5.5
+# Mathématiques v3.5.6
 
 
 <details>
@@ -40,7 +40,7 @@
 
 
 
-### 7.8. Debug Modes
+# 7.8. Debug Modes
 
 
 

@@ -401,7 +401,7 @@ int main() {
 
   text("*Bessel Functions*");
   cr();
-  text("| <div style='width:150px'>function</div> | symbol | name | ");
+  text("| <div style='width:180px'>function</div> | symbol | name | ");
   text("| :---: | :---: |  :---: |");
   text("| `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | ");
   text("| `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | ");
@@ -412,7 +412,7 @@ int main() {
   cr();
   text("*Spherical Bessel Functions*");
   cr();
-  text("| <div style='width:150px'>function</div> | symbol | name | ");
+  text("| <div style='width:180px'>function</div> | symbol | name | ");
   text("| :---: | :---: |  :---: |");
   text("| `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | ");
   text("| `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | ");
@@ -434,7 +434,7 @@ int main() {
 
   text("*Other Special Functions*");
   cr();
-  text("| <div style='width:150px'>function</div> | symbol | name | ");
+  text("| <div style='width:180px'>function</div> | symbol | name | ");
   text("| :---: | :---: |  :---: |");
   text("| `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | ");
   text("| `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | ");
@@ -488,7 +488,7 @@ int main() {
   }
 
   header4("getTypeName");
-  text("The function `mathq::display::getTypeName` returns a string that gives the actual humna-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in ");
+  text("The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in ");
   {
     text("Examples:\n");
     codestart("C++");

@@ -1,4 +1,4 @@
-# Mathématiques v3.5.7
+# Mathématiques v3.5.8
 
 
 <details>
@@ -370,7 +370,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Bessel Functions*
 
-| <div style='width:150px'>function</div> | symbol | name | 
+| <div style='width:180px'>function</div> | symbol | name | 
 | :---: | :---: |  :---: |
 | `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | 
 | `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | 
@@ -380,7 +380,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Spherical Bessel Functions*
 
-| <div style='width:150px'>function</div> | symbol | name | 
+| <div style='width:180px'>function</div> | symbol | name | 
 | :---: | :---: |  :---: |
 | `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | 
 | `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | 
@@ -399,7 +399,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Other Special Functions*
 
-| <div style='width:150px'>function</div> | symbol | name | 
+| <div style='width:180px'>function</div> | symbol | name | 
 | :---: | :---: |  :---: |
 | `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | 
 | `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | 
@@ -443,7 +443,7 @@ string s = "hello";
 typeid(s).name() -> "NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
 ```
 #### getTypeName
-The function `mathq::display::getTypeName` returns a string that gives the actual humna-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in 
+The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in 
 Examples:
 
 ```C++

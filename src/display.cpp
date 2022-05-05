@@ -348,7 +348,7 @@ namespace display {
   StyledString* Display::expression = 0;
   StyledString* Display::equals = 0;
   StyledString* Display::terminator = 0;
-  Display display_dummy = *(new Display());
+  Display display_dummy = Display();
   
   
 

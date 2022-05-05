@@ -2,6 +2,7 @@
 
 
 ### v3.5 Documentation Refactoring
+1. add variable for the C++ version used, currently C++17.  append to version string. 
 2. Complete _Coding Guide_, covering all the functionality
 3. New in-depth _Developer Guide_
 
@@ -11,11 +12,14 @@
   + [Index class and new indexing methodology](topics/index.md)
 
 ### v3.7 Display Refactoring
+1. combine all macros from display and md.h into a single header. put rest in display
+1. make all macros UPPERCASE?.  have two files: upper case and lower case
 1. refactor Style, StyledString, Terminal, and Display, Log
   1. reformat all files using VSCode C++ extension
   1. StyleStrgn should allow chnage of the Style
   1. replace anti-pattern `*(new Display())` as `Display()` for all classes. This is not Java
   1. don't use pointers
+  1. trdisp: display type on RHS side of expression
   1. DISPLAY: Allow to use different strigns for ```=``` and ```;``` when displaying results by adding ability to chaneg expression SyledString etc
     * have profiles for text ("->", ""), matlab ("=", ";"), mathematica ("=", ";")
   1. take advantage of std::optional<T> for optional arguments

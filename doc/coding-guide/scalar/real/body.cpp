@@ -11,33 +11,23 @@
 #include <typeinfo>
 #include <optional>
 
-
 int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
-  // std::optional<int> opt;
-  // std::cout << opt.has_value() << '\n';
-  // opt = std::nullopt;
-  // std::cout << opt.has_value() << '\n';
-  // opt = 42;
-  // std::cout << opt.has_value() << '\n';
-
-  //   text("Examples:\n");
-  // codestart("C++");
-  // codemulti(short m1 = 3);
-  // codemulti(int m2 = 100);
-  // // Display::setExpression(std::nullopt, "$$");
-  // tdisp(m1 + m2);
-  // codeend();
-
+  markdown_preamble();
 
   cr();
   cr();
 
-  text("C++ supports a wide variety of [integer and floating point types](https://en.cppreference.com/w/cpp/language/types).");
+  text("C++ supports a wide variety of real number [integer and floating point types](https://en.cppreference.com/w/cpp/language/types), operators, and functions.");
+  cr();
+  text("Mathématiques supplements C++ functionality with several more functions.");
+
+  cr();
+  text("Mathématiques extends all of these operators and functions to vectors, matrices, and tensors, in a element-wise fashion.");
 
   cr();
   cr();
@@ -75,7 +65,7 @@ int main() {
   cr();
   text("Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
 
-  text("<br>\n");
+  vspace();
   header3("Unsigned Integers");
 
   text("C++ supports unsigned versions of each integer type.");
@@ -90,15 +80,20 @@ int main() {
   printf("| ```unsigned long``` | %lu | %lu |\n", std::numeric_limits<unsigned long>::min(), std::numeric_limits<unsigned long>::max());
   printf("| ```unsigned long long``` | %llu | %llu |\n", std::numeric_limits<unsigned long long>::min(), std::numeric_limits<unsigned long long>::max());
 
-  text("<br>\n");
+  vspace();
   header3("Indexing Types");
 
   text("The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)");
   text("It's size depends on implementation.  The 64-bit Linux size is shown below:");
-  cr();
-  printf("CHAR_SIZE*sizeof(size_t) = %ld bits\n", sizeof(size_t));
 
-  text("\n<br>\n");
+  cr();
+  cr();
+  codestart("C++");
+  printf("CHAR_SIZE*sizeof(size_t) = %ld bits\n", sizeof(size_t));
+  codeend();
+  cr();
+
+  vspace();
   header3("Fixed width integer types");
 
   text("C++11 introduced new types, called [fixed interger types](https://en.cppreference.com/w/cpp/types/integer), that allow you to directly specify the number of bits:");
@@ -115,7 +110,7 @@ int main() {
   text("| uint64_t | unsigned | 32 bits |");
   cr();
 
-  text("\n<br>\n");
+  vspace();
   header3("Logic");
 
   text("The boolean type, [```bool```](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A ```bool``` can take only two values, 0 or 1.");
@@ -124,16 +119,17 @@ int main() {
   cr();
   codestart("C++");
   printf("CHAR_BIT*sizeof(bool) = %ld bits\n", CHAR_BIT * sizeof(bool));
-  printf("true = %d\n", true);
-  printf("false = %d\n", false);
+  cr();
+  trdisp(false);
+  trdisp(true);
   codeend();
 
-  text("\n<br>\n");
+  vspace();
   header3("Bitwise Math");
 
   text("Bit-wise math is supported by C++, but not inherently supported by Mathématiques because the bitwise operators are overloaded for vector/matrix operations.  Of course, modification of the source could easily support bit-wise vector/matrix operations.");
 
-  text("\n<br>\n");
+  vspace();
   header2("Floating Point Numbers");
 
   text("On modern systems, C++ generally supports three types of floating point number:");
@@ -182,7 +178,7 @@ int main() {
 
   text("The static value ```max_digits10``` was used as the precision for printing the above values.\n");
 
-  text("\n<br>\n");
+  vspace();
   header2("Operators and functions");
 
   header3("Arithmetic Operators");
@@ -201,11 +197,11 @@ int main() {
 
   text("* If both numerator and denominator are integers, the division operator gives the integer division result.\n");
   codestart("C++");
-  disp(7 / 2);
+  trdisp(7 / 2);
   codeend();
   text("* The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.\n");
   codestart("C++");
-  disp(7 % 2);
+  trdisp(7 % 2);
   codeend();
   text("* The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
 
@@ -214,19 +210,20 @@ int main() {
   codeend();
   text("With result:\n");
   codestart("C++");
-  disp(result.quot);
-  disp(result.rem);
+  trdisp(result.quot);
+  trdisp(result.rem);
   codeend();
 
   // Exponentiation and the power function
-  text("\n<br>\n");
+  vspace();
   header3("Exponentiation and the ```pow``` function");
   text("C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function");
   codestart("C++");
-  disp(pow(2, 8));
+  trdisp(pow(2, 8));
+  trdisp(pow(25, 1 / 2));
   codeend();
 
-  text("\n<br>\n");
+  vspace();
   header3("Logic Operators");
   text("For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).\n");
 
@@ -240,25 +237,25 @@ int main() {
 
   text("Examples:\n");
   codestart("C++");
-  disp(true);
-  disp(false);
-  disp(!true);
-  disp(!false);
-  disp(true && true);
-  disp(true && false);
-  disp(true || false);
+  trdisp(true);
+  trdisp(false);
+  trdisp(!true);
+  trdisp(!false);
+  trdisp(true && true);
+  trdisp(true && false);
+  trdisp(true || false);
   codeend();
 
   text("* In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`\n");
   codestart("C++");
-  disp(!true);
-  disp(!8);
-  disp(!!8.293);
-  disp(true && 3);
-  disp(true && 0);
+  trdisp(!true);
+  trdisp(!8);
+  trdisp(!!8.293);
+  trdisp(true && 3);
+  trdisp(true && 0);
   codeend();
 
-  text("\n<br>\n");
+  vspace();
   header3("Relational Operators");
 
   text("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
@@ -277,14 +274,14 @@ int main() {
 
   text("Examples:\n");
   codestart("C++");
-  disp((2 == 2));
-  disp((1 / 2 == 0.5));
-  disp((1. / 2 == 0.5));
-  disp((-2 < 34.2));
-  disp((2 > 0));
+  trdisp((2 == 2));
+  trdisp((1 / 2 == 0.5));
+  trdisp((1. / 2 == 0.5));
+  trdisp((-2 < 34.2));
+  trdisp((2 > 0));
   codeend();
 
-  text("\n<br>\n");
+  vspace();
   header3("Mathematical functions from the C++ ``std`` library");
 
   header4("C++ ``std`` library common functions");
@@ -294,11 +291,11 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | ");
-  text("| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | ");
-  text("| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | ");
-  text("| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | ");
-  text("| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | ");
+  text("| `abs(x)` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | ");
+  text("| `ceil(x)` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | ");
+  text("| `floor(x)` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | ");
+  text("| `trunc(x)` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | ");
+  text("| `round(x)` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | ");
   cr();
   cr();
 
@@ -306,9 +303,9 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | ");
-  text("| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | ");
-  text("| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | ");
+  text("| `sin(x)` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | ");
+  text("| `cos(x)` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | ");
+  text("| `tan(x)` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | ");
   cr();
   cr();
 
@@ -316,10 +313,10 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | ");
-  text("| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | ");
-  text("| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atan) | ");
-  text("| `atan2(y, x)` | [arc tangent of y/x with quadrant](https://en.cppreference.com/w/cpp/numeric/math/atan2) | ");
+  text("| `asin(x)` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | ");
+  text("| `acos(x)` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | ");
+  text("| `atan(x)` | [arc tangent: all results are mapped into -𝜋/2 <= 𝜃 <= +𝜋/2](https://en.cppreference.com/w/cpp/numeric/math/atan) | ");
+  text("| `atan2(b, a)` | [arc tangent of b/a with full quadrant angles, 0 <= 𝜃 < +2𝜋](https://en.cppreference.com/w/cpp/numeric/math/atan2) | ");
   cr();
   cr();
 
@@ -327,9 +324,9 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | ");
-  text("| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | ");
-  text("| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | ");
+  text("| `sinh(x)` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | ");
+  text("| `cosh(x)` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | ");
+  text("| `tanh(x)` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | ");
   cr();
   cr();
 
@@ -337,9 +334,9 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | ");
-  text("| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | ");
-  text("| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | ");
+  text("| `asinh(x)` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | ");
+  text("| `acosh(x)` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | ");
+  text("| `atanh(x)` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | ");
 
   cr();
   cr();
@@ -349,8 +346,8 @@ int main() {
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | ");
-  text("| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | ");
-  text("| `cqrt` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | ");
+  text("| `sqrt(x)` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | ");
+  text("| `cqrt(x)` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | ");
 
   cr();
   cr();
@@ -359,9 +356,9 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | ");
-  text("| `exp2` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | ");
-  text("| `expm1` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | ");
+  text("| `exp(x)` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | ");
+  text("| `exp2(x)` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | ");
+  text("| `expm1(x)` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | ");
   cr();
   cr();
 
@@ -369,12 +366,12 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | ");
-  text("| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | ");
-  text("| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | ");
-  text("| `log1p` | [ln(x + 1)](https://en.cppreference.com/w/cpp/numeric/math/log1p) | ");
-  text("| `logb` | [extracts exponent of the number and returns a floating point type](https://en.cppreference.com/w/cpp/numeric/math/logb) | ");
-  text("| `ilogb` | [extracts exponent of the number and returns an integral type](https://en.cppreference.com/w/cpp/numeric/math/ilogb) | ");
+  text("| `log(x)` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | ");
+  text("| `log10(x)` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | ");
+  text("| `log2(x)` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | ");
+  text("| `log1p(x)` | [ln(x + 1)](https://en.cppreference.com/w/cpp/numeric/math/log1p) | ");
+  text("| `logb(x)` | [extracts exponent of the number and returns a floating point type](https://en.cppreference.com/w/cpp/numeric/math/logb) | ");
+  text("| `ilogb(x)` | [extracts exponent of the number and returns an integral type](https://en.cppreference.com/w/cpp/numeric/math/ilogb) | ");
 
   cr();
   cr();
@@ -383,13 +380,12 @@ int main() {
   cr();
   text("| function | name | ");
   text("| :---: | :---: | ");
-  text("| `erf` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | ");
-  text("| `erfc` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | ");
-  text("| `tgamma` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | ");
-  text("| `lgamma` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | ");
+  text("| `erf(x)` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | ");
+  text("| `erfc(x)` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | ");
+  text("| `tgamma(x)` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | ");
+  text("| `lgamma(x)` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | ");
   cr();
   cr();
-
 
   header4("C++ ``std`` library special functions");
 
@@ -415,7 +411,6 @@ int main() {
   text("| `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | ");
   cr();
   cr();
-
 
   text("*Orthogonal Polynomials*");
   cr();
@@ -460,13 +455,12 @@ int main() {
   cr();
   cr();
 
-
-  text("\n<br>\n");
+  vspace();
   header2("More on types");
 
   header3("Type information");
 
-  header4("typeid");
+  header4("typeid(x)");
 
   text("The function [`std::typeid`](https://en.cppreference.com/w/cpp/language/typeid) returns an object of type [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) (defined in the header `<typeinfo>`). ");
   text("This gives the type for any varable. However, the names are garbled compiler strings that are not pretty. ");
@@ -476,28 +470,29 @@ int main() {
     text("Examples:\n");
     codestart("C++");
     codemulti(int n = 3);
-    // disp(typeid(n).name());
-    text("typeid(n).name() -> \"i\"");
+    disp(typeid(n).name());
+    // text("typeid(n).name() -> \"i\"");
     codemulti(string s = "hello");
-    // disp(typeid(s).name());
-    text("typeid(s).name() -> \"NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE\"");
+    disp(typeid(s).name());
+    // text("typeid(s).name() -> \"NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE\"");
     codeend();
   }
 
-  header4("getTypeName");
+  vspace();
+  header4("getTypeName(x)");
   text("The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in ");
   {
     text("Examples:\n");
     codestart("C++");
     codemulti(int n = 3);
-    // disp(getTypeName(n));
-    text("getTypeName(n) -> \"int\"");
+    disp(getTypeName(n));
+    // text("getTypeName(n) -> \"int\"");
     codemulti(string s = "hello");
-    // disp(getTypeName(s));
-    text("getTypeName(s) -> \"std::string\"");
+    disp(getTypeName(s));
+    // text("getTypeName(s) -> \"std::string\"");
     codeend();
   }
-  text("\n<br>\n");
+  vspace();
   header3("Mixed-typed math and auto-promotion");
   cr();
   text("C++ automatically converts number types depending on context.");
@@ -510,22 +505,22 @@ int main() {
     codestart("C++");
     codemulti(short n1 = 3);
     codemulti(int n2 = 100);
-    // tdisp(n1 * n2);
-    text("n1 * n2 -> int 300");
+    trdisp(n1 * n2);
+    // text("n1 * n2 -> int 300");
     cr();
     codemulti(float x1 = 3);
     codemulti(double x2 = 0.1415);
-    // tdisp(x1 + x2);
-    text("x1 + x2 -> double 3.1415");
+    trdisp(x1 + x2);
+    // text("x1 + x2 -> double 3.1415");
     cr();
     codemulti(int8_t y1 = 25);
     codemulti(double y2 = 0.25);
-    // tdisp(y1 / y2 + y2);
-    text("y1 / y2 + y2 -> double 100.25");
+    trdisp(y1 / y2 + y2);
+    // text("y1 / y2 + y2 -> double 100.25");
     codeend();
   }
 
-  text("\n<br>\n");
+  vspace();
   header3("Type Conversion");
   text("There are various ways to cast one type to another in C++.  ");
   text("Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/language/explicit_cast), which has two forms for the syntax: `(type) expression` or  `type(expression)` ");
@@ -535,27 +530,26 @@ int main() {
   {
     text("Converting a floating point type to an integer:\n");
     codestart("C++");
-    codemulti(int n1 = (int) 3.14 );
-    // tdisp(n1);
-    text("n1 -> 3");
-    codemulti(int n2 = int(3.14) );
-    // tdisp(n2);
-    text("n2 -> 3");
+    codemulti(int n1 = (int)3.14);
+    trdisp(n1);
+    // text("n1 -> 3");
+    codemulti(int n2 = int(3.14));
+    trdisp(n2);
+    // text("n2 -> 3");
     codeend();
   }
 
   {
     text("Forcing floating point division by converting the numerator to a `float`\n");
     codestart("C++");
-    codemulti(double x = (21 + 1)/7 );
-    // tdisp(x);
-    text("x -> 3");
-    codemulti(double y = float(21 + 1)/7 );
-    // tdisp(y);
-    text("y -> 3.14286");
+    codemulti(double x = (21 + 1) / 7);
+    trdisp(x);
+    // text("x -> 3");
+    codemulti(double y = float(21 + 1) / 7);
+    trdisp(y);
+    // text("y -> 3.14286");
     codeend();
   }
-
 
   return 0;
 }

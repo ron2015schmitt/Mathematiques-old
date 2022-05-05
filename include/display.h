@@ -1113,18 +1113,15 @@ inline void print3(const std::string s) {
 class Display {
 private:
   static bool isInitialized;
-  static StyledString *expression;
-  static StyledString *equals;
-  static StyledString *terminator;
+  static StyledString expression;
+  static StyledString equals;
+  static StyledString terminator;
 
 public:
   static void initialize() {
     //      log3("display","Display","initialize","()");
 
     Display::isInitialized = true;
-    Display::expression = new StyledString(createStyle(BOLD), "");
-    Display::equals = new StyledString(createStyle(GRAY1), " = ");
-    Display::terminator = new StyledString(createStyle(GRAY1), "; ");
   }
   Display() {
     if (!isInitialized) {
@@ -1140,11 +1137,11 @@ public:
   static void mydisp_notype(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
     //      log3("display","Display","mydisp","(const X& x, const std::string name)");
-    expression->setString(name);
-    stream << *expression;
-    stream << *equals;
+    expression.setString(name);
+    stream << expression;
+    stream << equals;
     dispval_strm(stream, x);
-    stream << *terminator;
+    stream << terminator;
     if (issueCR) {
       stream << endl;
     }
@@ -1165,11 +1162,26 @@ public:
     using namespace std;
     //      log3("display","Display","mydisp","(const X& x, const std::string name)");
     stream << getTypeName(x) << " ";
-    expression->setString(name);
-    stream << *expression;
-    stream << *equals;
+    expression.setString(name);
+    stream << expression;
+    stream << equals;
     dispval_strm(stream, x);
-    stream << *terminator;
+    stream << terminator;
+    if (issueCR) {
+      stream << endl;
+    }
+  }
+
+  template <typename X>
+  static void mydisp_type_rhs(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
+    using namespace std;
+    //      log3("display","Display","mydisp","(const X& x, const std::string name)");
+    expression.setString(name);
+    stream << expression;
+    stream << equals;
+    stream << getTypeName(x) << " ";
+    dispval_strm(stream, x);
+    stream << terminator;
     if (issueCR) {
       stream << endl;
     }
@@ -1185,6 +1197,17 @@ public:
     mydisp_type(stream, x, name, true);
   }
 
+  template <typename X>
+  static void trmydisp(std::ostream &stream, const X &x, const std::string name) {
+    using namespace std;
+    mydisp_type_rhs(stream, x, name, false);
+  }
+  template <typename X>
+  static void trmydispcr(std::ostream &stream, const X &x, const std::string name) {
+    using namespace std;
+    mydisp_type_rhs(stream, x, name, true);
+  }
+
   static void issuecr(std::ostream &stream) {
     stream << std::endl;
   }
@@ -1192,11 +1215,13 @@ public:
 
 #define disp_strm(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define tdisp_strm(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define trdisp_strm(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define cr_strm(stream) display::Display::issuecr(stream)
 
 #define dispval(...) display::dispval_strm(mout, __VA_ARGS__)
 #define disp(...) display::Display::mydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
 #define tdisp(...) display::Display::tmydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
+#define trdisp(...) display::Display::trmydispcr(mout, __VA_ARGS__, #__VA_ARGS__)
 #define cr() display::Display::issuecr(mout)
 
 // for how this works, refer to

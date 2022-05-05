@@ -1,4 +1,4 @@
-# Mathématiques v3.5.13
+# Mathématiques v3.5.14
 
 
 <details>
@@ -58,9 +58,13 @@
 
 # 7.1.1. Real number mathematics
 
+_This document was generated from the_ C++ _file_ `real/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
 
+C++ supports a wide variety of real number [integer and floating point types](https://en.cppreference.com/w/cpp/language/types), operators, and functions.
 
-C++ supports a wide variety of [integer and floating point types](https://en.cppreference.com/w/cpp/language/types).
+Mathématiques supplements C++ functionality with several more functions.
+
+Mathématiques extends all of these operators and functions to vectors, matrices, and tensors, in a element-wise fashion.
 
 
 ## Integers
@@ -90,6 +94,7 @@ The maximum and minimum for each type are given below.
 | ```long long``` | -9223372036854775808 | 9223372036854775807 |
 
 Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
+
 <br>
 
 ### Unsigned Integers
@@ -102,13 +107,18 @@ The maximum and minimum for each type are given below.
 | ```unsigned int``` | 0 | 4294967295 |
 | ```unsigned long``` | 0 | 18446744073709551615 |
 | ```unsigned long long``` | 0 | 18446744073709551615 |
+
 <br>
 
 ### Indexing Types
 The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)
 It's size depends on implementation.  The 64-bit Linux size is shown below:
 
+
+```C++
 CHAR_SIZE*sizeof(size_t) = 8 bits
+```
+
 
 <br>
 
@@ -135,8 +145,9 @@ Two associated constants are defined: ```true``` and ```false```.
 
 ```C++
 CHAR_BIT*sizeof(bool) = 8 bits
-true = 1
-false = 0
+
+false => bool 0
+true => bool 1
 ```
 
 <br>
@@ -187,12 +198,12 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 * If both numerator and denominator are integers, the division operator gives the integer division result.
 
 ```C++
-7 / 2 = 3; 
+7 / 2 => int 3
 ```
 * The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.
 
 ```C++
-7 % 2 = 1; 
+7 % 2 => int 1
 ```
 * The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
@@ -202,8 +213,8 @@ div_t result = div(7, 2);
 With result:
 
 ```C++
-result.quot = 3; 
-result.rem = 1; 
+result.quot => int 3
+result.rem => int 1
 ```
 
 <br>
@@ -211,7 +222,8 @@ result.rem = 1;
 ### Exponentiation and the ```pow``` function
 C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function
 ```C++
-pow(2, 8) = 256; 
+pow(2, 8) => double 256
+pow(25, 1 / 2) => double 1
 ```
 
 <br>
@@ -229,22 +241,22 @@ For details refer [Logical Operators](https://en.cppreference.com/w/c/language/o
 Examples:
 
 ```C++
-true = 1; 
-false = 0; 
-!true = 0; 
-!false = 1; 
-true && true = 1; 
-true && false = 0; 
-true || false = 1; 
+true => bool 1
+false => bool 0
+!true => bool 0
+!false => bool 1
+true && true => bool 1
+true && false => bool 0
+true || false => bool 1
 ```
 * In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`
 
 ```C++
-!true = 0; 
-!8 = 0; 
-!!8.293 = 1; 
-true && 3 = 1; 
-true && 0 = 0; 
+!true => bool 0
+!8 => bool 0
+!!8.293 => bool 1
+true && 3 => bool 1
+true && 0 => bool 0
 ```
 
 <br>
@@ -265,11 +277,11 @@ For details refer [Comparison Operators](https://en.cppreference.com/w/c/languag
 Examples:
 
 ```C++
-(2 == 2) = 1; 
-(1 / 2 == 0.5) = 0; 
-(1. / 2 == 0.5) = 1; 
-(-2 < 34.2) = 1; 
-(2 > 0) = 1; 
+(2 == 2) => bool 1
+(1 / 2 == 0.5) => bool 0
+(1. / 2 == 0.5) => bool 1
+(-2 < 34.2) => bool 1
+(2 > 0) => bool 1
 ```
 
 <br>
@@ -281,48 +293,48 @@ The following are [common mathematical functions](https://en.cppreference.com/w/
 
 | function | name | 
 | :---: | :---: | 
-| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | 
-| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | 
-| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | 
-| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | 
-| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | 
+| `abs(x)` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | 
+| `ceil(x)` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | 
+| `floor(x)` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | 
+| `trunc(x)` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | 
+| `round(x)` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | 
 
 
 *Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | 
-| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | 
-| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | 
+| `sin(x)` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | 
+| `cos(x)` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | 
+| `tan(x)` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | 
 
 
 *Inverse Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | 
-| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | 
-| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atan) | 
-| `atan2(y, x)` | [arc tangent of y/x with quadrant](https://en.cppreference.com/w/cpp/numeric/math/atan2) | 
+| `asin(x)` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | 
+| `acos(x)` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | 
+| `atan(x)` | [arc tangent: all results are mapped into -𝜋/2 <= 𝜃 <= +𝜋/2](https://en.cppreference.com/w/cpp/numeric/math/atan) | 
+| `atan2(b, a)` | [arc tangent of b/a with full quadrant angles, 0 <= 𝜃 < +2𝜋](https://en.cppreference.com/w/cpp/numeric/math/atan2) | 
 
 
 *Hyperbolic Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | 
-| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | 
-| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | 
+| `sinh(x)` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | 
+| `cosh(x)` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | 
+| `tanh(x)` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | 
 
 
 *Inverse Hyperbolic Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | 
-| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | 
-| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | 
+| `asinh(x)` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | 
+| `acosh(x)` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | 
+| `atanh(x)` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | 
 
 
 *Exponentiation*
@@ -330,39 +342,39 @@ The following are [common mathematical functions](https://en.cppreference.com/w/
 | function | name | 
 | :---: | :---: | 
 | `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | 
-| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | 
-| `cqrt` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | 
+| `sqrt(x)` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | 
+| `cqrt(x)` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | 
 
 
 *Exponentials*
 
 | function | name | 
 | :---: | :---: | 
-| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | 
-| `exp2` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | 
-| `expm1` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | 
+| `exp(x)` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | 
+| `exp2(x)` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | 
+| `expm1(x)` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | 
 
 
 *Logarithms*
 
 | function | name | 
 | :---: | :---: | 
-| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | 
-| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | 
-| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | 
-| `log1p` | [ln(x + 1)](https://en.cppreference.com/w/cpp/numeric/math/log1p) | 
-| `logb` | [extracts exponent of the number and returns a floating point type](https://en.cppreference.com/w/cpp/numeric/math/logb) | 
-| `ilogb` | [extracts exponent of the number and returns an integral type](https://en.cppreference.com/w/cpp/numeric/math/ilogb) | 
+| `log(x)` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | 
+| `log10(x)` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | 
+| `log2(x)` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | 
+| `log1p(x)` | [ln(x + 1)](https://en.cppreference.com/w/cpp/numeric/math/log1p) | 
+| `logb(x)` | [extracts exponent of the number and returns a floating point type](https://en.cppreference.com/w/cpp/numeric/math/logb) | 
+| `ilogb(x)` | [extracts exponent of the number and returns an integral type](https://en.cppreference.com/w/cpp/numeric/math/ilogb) | 
 
 
 *Other Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `erf` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | 
-| `erfc` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | 
-| `tgamma` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | 
-| `lgamma` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | 
+| `erf(x)` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | 
+| `erfc(x)` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | 
+| `tgamma(x)` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | 
+| `lgamma(x)` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | 
 
 
 #### C++ ``std`` library special functions
@@ -430,7 +442,7 @@ The following are mathematical functions implemented in the Mathématiques libra
 
 ## More on types
 ### Type information
-#### typeid
+#### typeid(x)
 The function [`std::typeid`](https://en.cppreference.com/w/cpp/language/typeid) returns an object of type [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) (defined in the header `<typeinfo>`). 
 This gives the type for any varable. However, the names are garbled compiler strings that are not pretty. 
 
@@ -438,19 +450,22 @@ Examples:
 
 ```C++
 int n = 3;
-typeid(n).name() -> "i"
+typeid(n).name() => i
 string s = "hello";
-typeid(s).name() -> "NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+typeid(s).name() => NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 ```
-#### getTypeName
+
+<br>
+
+#### getTypeName(x)
 The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in 
 Examples:
 
 ```C++
 int n = 3;
-getTypeName(n) -> "int"
+getTypeName(n) => int
 string s = "hello";
-getTypeName(s) -> "std::string"
+getTypeName(s) => std::string
 ```
 
 <br>
@@ -466,15 +481,15 @@ Examples:
 ```C++
 short n1 = 3;
 int n2 = 100;
-n1 * n2 -> int 300
+n1 * n2 => int 300
 
 float x1 = 3;
 double x2 = 0.1415;
-x1 + x2 -> double 3.1415
+x1 + x2 => double 3.1415
 
 int8_t y1 = 25;
 double y2 = 0.25;
-y1 / y2 + y2 -> double 100.25
+y1 / y2 + y2 => double 100.25
 ```
 
 <br>
@@ -487,18 +502,18 @@ Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/lang
 Converting a floating point type to an integer:
 
 ```C++
-int n1 = (int) 3.14;
-n1 -> 3
+int n1 = (int)3.14;
+n1 => int 3
 int n2 = int(3.14);
-n2 -> 3
+n2 => int 3
 ```
 Forcing floating point division by converting the numerator to a `float`
 
 ```C++
-double x = (21 + 1)/7;
-x -> 3
-double y = float(21 + 1)/7;
-y -> 3.14286
+double x = (21 + 1) / 7;
+x => double 3
+double y = float(21 + 1) / 7;
+y => double 3.14286
 ```
 
 

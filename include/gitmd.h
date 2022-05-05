@@ -8,7 +8,10 @@
 
 namespace md {
 
-#define mathq_preamble()  printf("_This document was automatically generated from file_ **`%s`** (%s-%s).\n\n",__FILE__, "Mathématiques", vers_mathq)
+#define markdown_preamble()  printf("_This document was generated from the_ C++ _file_ `%s` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `\"mathq.h\"` _and_ `\"gitmd.h\"`_respectively._ ",__FILE__);
+
+#define mathq_preamble_old()  printf("_This document was automatically generated from file_ **`%s`** (%s-%s).\n\n",__FILE__, "Mathématiques", vers_mathq)
+
 
 inline void write_mdtitle_file (std::string fname, std::string title) {
   using namespace std;
@@ -28,7 +31,7 @@ inline void write_mdtitle_file (std::string fname, std::string title) {
 #define mdtitle0(str)   mout << "# " << str << std::endl; write_mdtitle_file(__FILE__,str);
 
 
-
+#define vspace() mout << "\n<br>\n" << std::endl
 #define header1(str)  mout << "# " << str << std::endl
 #define header2(str)  mout << "## " << str << std::endl
 #define header3(str)  mout << "### " << str << std::endl

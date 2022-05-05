@@ -7,12 +7,14 @@ SHELL := /bin/bash
 # dynamic variables
 
 PWD = $(shell pwd)
+FIRST_MAKEFILE = $(abspath $(firstword $(MAKEFILE_LIST)))
 WHOAMI = $(abspath $(lastword $(MAKEFILE_LIST)))
 WHEREAMI = $(dir $(WHOAMI))
 
 # dynamic variables
 SUBMAKES = $(wildcard */Makefile)
 SUBS = $(wildcard */)
+CLEAN_SUBS = $(addprefix cleandir_,$(SUBS))
 MAKE_SUBDIRS = $(dir $(SUBMAKES))
 MAKECLEAN_SUBDIRS = $(addprefix clean_,$(MAKE_SUBDIRS))
 

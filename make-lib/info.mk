@@ -12,6 +12,7 @@ info:
 	@$(call echovar,PWD)
 	@$(call echovar,VPATH)
 	@$(call echovar,MAKE)
+	@$(call echovar,FIRST_MAKEFILE)
 	@$(call echovar,_)
 	@$(call echovar,MAKECMDGOALS)
 	@$(call echovar,MAKE_VERSION)

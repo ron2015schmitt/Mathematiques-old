@@ -95,11 +95,14 @@ gitignore:
 # CLEANING
 #---------------------------------------------------------------------
 
+cleandir_%: FORCE
+#	@echo "-f $(FIRST_MAKEFILE) -C $* cleanall"
+	@cd $* && command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old
 
 clean_%: FORCE
 	$(MAKE) -C $* cleanall
 
-cleansubs:: $(MAKECLEAN_SUBDIRS)
+cleansubs:: $(MAKECLEAN_SUBDIRS) $(CLEAN_SUBS)
 
 
 # Each Makefile that has an include statement for this file should:
@@ -115,4 +118,20 @@ cleanall:: FORCE clean
 	@\rm -f run *.temp *.tmp *~ ~* *.gz *.tar *.old
 	@\rm -f $(ALL)
 
+
+# @command rm -f *.o
+# @command rm -f *.a
+# @command rm -f *.s
+# @command rm -f *.g++_copts
+# @command rm -f *.link_md
+# @command rm -f core.*
+
+# @\rm -f run
+# @\rm -f *.temp
+# @\rm -f *.tmp
+# @\rm -f *~
+# @\rm -f ~*
+# @\rm -f *.gz
+# @\rm -f *.tar
+# @\rm -f *.old
 

@@ -2,7 +2,7 @@
 # VARIABLES
 #############################################################
 
-CHAPTERS = real imaginary complex quaternion
+CHAPTERS = real complex imaginary quaternion
 
 include ../../../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk
@@ -18,4 +18,7 @@ include $(DIR_MATHQ)/make-lib/doc.recipes.mk
 
 %.md: %
 	./$* > $@
+
+cleanall:: FORCE
+	@echo "$(WHOAMI)"
 

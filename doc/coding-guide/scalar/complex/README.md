@@ -1,4 +1,4 @@
-# Mathématiques v3.5.8
+# Mathématiques v3.5.9
 
 
 <details>
@@ -27,7 +27,7 @@
 <summary>7. Coding Guide / Syntax</summary>
 
 
-7.1. _Scalar Math: real, imaginary, complex, and quaternion numbers_ <br>
+7.1. _Scalar Math: real, imaginary, complex, and quaternions_ <br>
 7.2. [Display of Results](../../display/README.md)<br>
 7.3. [Vectors](../../vector/README.md)<br>
 7.4. [Matrices](../../matrix/README.md)<br>
@@ -43,11 +43,11 @@
 
 <details>
 
-<summary>7.1. Scalar Math: real, imaginary, complex, and quaternion numbers</summary>
+<summary>7.1. Scalar Math: real, imaginary, complex, and quaternions</summary>
 
 7.1.1. [Real number mathematics](../real/README.md)<br>
-7.1.2. [Imaginary number mathematics](../imaginary/README.md)<br>
-7.1.3. _Complex number mathematics_ <br>
+7.1.2. _Complex number mathematics_ <br>
+7.1.3. [Imaginary number mathematics](../imaginary/README.md)<br>
 7.1.4. [Quaternion Mathematics](../quaternion/README.md)<br>
 
 
@@ -55,10 +55,10 @@
 
 
 
-# 7.1.3. Complex number mathematics
+# 7.1.2. Complex number mathematics
 
 
 
-| ⇦ <br />[Imaginary number mathematics](../imaginary/README.md)  | [Scalar Math: real, imaginary, complex, and quaternion numbers](../README.md)<br />Complex number mathematics<br /><img width=1000/> | ⇨ <br />[Quaternion Mathematics](../quaternion/README.md)   |
+| ⇦ <br />[Real number mathematics](../real/README.md)  | [Scalar Math: real, imaginary, complex, and quaternions](../README.md)<br />Complex number mathematics<br /><img width=1000/> | ⇨ <br />[Imaginary number mathematics](../imaginary/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

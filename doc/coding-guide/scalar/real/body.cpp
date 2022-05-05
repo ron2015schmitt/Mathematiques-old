@@ -11,8 +11,6 @@
 #include <typeinfo>
 #include <optional>
 
-// used to demonstrate how to convert to C++ vectors
-#include <vector>
 
 int main() {
   using namespace mathq;

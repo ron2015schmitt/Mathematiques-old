@@ -1,342 +1,420 @@
 #define MATHQ_DEBUG 1
 
-
 #include "mathq.h"
 #include "gitmd.h"
 
 #include <iostream>
 #include <string>
+#include <climits>
+#include <limits>
+#include <stdbool.h>
+#include <typeinfo>
+#include <optional>
 
-// used to demonstrate how to convert to C++ vectors
-#include <vector>
 
-
-
-int main()
-{
+int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
   using namespace md;
 
-  int Nex = 1;
-  
-  mathq_toc();
-  cr();cr();
-  mdtitle("Complex-valued Vectors");
-  mathq_preamble();
+  cr();
+  cr();
 
-  header3("Representing the unit imaginary _i_");
+  header2("Introduction");
 
-  text("* In C++, there is no definition for pure imaginary numbers.");
-  text("* This is in contrast to Fortran.");
-  text("* The unit imaginary is thus `complex<D>(0,1`");
+  text("\n<br>\n");
+  header2("Size of complex numbers");
+
+  text("C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  For a 64-bit CPU running Linux, they have the following number of bits:");
+
+  cr();
+  cr();
+  codestart("C++");
+  printf("CHAR_BIT = %d bits\n", CHAR_BIT);
+  printf("CHAR_BIT*sizeof(char) = %ld bits\n", CHAR_BIT * sizeof(char));
+  printf("CHAR_BIT*sizeof(short) = %ld bits\n", CHAR_BIT * sizeof(short));
+  printf("CHAR_BIT*sizeof(int) = %ld bits\n", CHAR_BIT * sizeof(int));
+  printf("CHAR_BIT*sizeof(long) = %ld bits\n", CHAR_BIT * sizeof(long));
+  printf("CHAR_BIT*sizeof(long long) = %ld bits\n", CHAR_BIT * sizeof(long long));
+  codeend();
+
+  text("The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
+  cr();
+  text("\n<br>\n");
+  header2("Operators and functions");
+
+  header3("Arithmetic Operators");
+  text("The operators ```+, -, *, /, %``` are the addition, subtraction, multiplication, division, and modulus operators respectively.\n");
+  text("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
+
+  cr();
+  text("| operator | operation | ");
+  text("| :---: | :---: | ");
+  text("| ```+``` | addition | ");
+  text("| ```-``` | subtraction | ");
+  text("| ```*``` | multiplication | ");
+  text("| ```/``` | division | ");
+  text("| ```%``` | modulus | ");
+  cr();
+
+  text("* If both numerator and denominator are integers, the division operator gives the integer division result.\n");
+  codestart("C++");
+  disp(7 / 2);
+  codeend();
+  text("* The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.\n");
+  codestart("C++");
+  disp(7 % 2);
+  codeend();
+  text("* The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
+
+  codestart("C++");
+  codemulti(div_t result = div(7, 2));
+  codeend();
+  text("With result:\n");
+  codestart("C++");
+  disp(result.quot);
+  disp(result.rem);
+  codeend();
+
+  // Exponentiation and the power function
+  text("\n<br>\n");
+  header3("Exponentiation and the ```pow``` function");
+  text("C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function");
+  codestart("C++");
+  disp(pow(2, 8));
+  codeend();
+
+  text("\n<br>\n");
+  header3("Logic Operators");
+  text("For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).\n");
+
+  cr();
+  text("| operator | operation | ");
+  text("| :---: | :---: | ");
+  text("| ```!``` | logical NOT | ");
+  text("| `\\|\\|` | logical OR | ");
+  text("| ```&&``` | logical AND | ");
+  cr();
+
+  text("Examples:\n");
+  codestart("C++");
+  disp(true);
+  disp(false);
+  disp(!true);
+  disp(!false);
+  disp(true && true);
+  disp(true && false);
+  disp(true || false);
+  codeend();
+
+  text("* In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`\n");
+  codestart("C++");
+  disp(!true);
+  disp(!8);
+  disp(!!8.293);
+  disp(true && 3);
+  disp(true && 0);
+  codeend();
+
+  text("\n<br>\n");
+  header3("Relational Operators");
+
+  text("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
+
+  cr();
+  text("| operator | operation | ");
+  text("| :---: | :---: | ");
+  text("| `==` | equal to | ");
+  text("| `!=` | not equal to | ");
+  text("| `<` | less than | ");
+  text("| `<=` | less than or equal to | ");
+  text("| `>` | greater than | ");
+  text("| `>=` | greater than or equal to | ");
+  // text("| `<=>` | three-way comparison | ");
+  cr();
+
+  text("Examples:\n");
+  codestart("C++");
+  disp((2 == 2));
+  disp((1 / 2 == 0.5));
+  disp((1. / 2 == 0.5));
+  disp((-2 < 34.2));
+  disp((2 > 0));
+  codeend();
+
+  text("\n<br>\n");
+  header3("Mathematical functions from the C++ ``std`` library");
+
+  header4("C++ ``std`` library common functions");
+
+  cr();
+  text("The following are [common mathematical functions](https://en.cppreference.com/w/cpp/numeric/math) implemented in the C++ `std` library");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | ");
+  text("| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | ");
+  text("| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | ");
+  text("| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | ");
+  text("| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | ");
+  cr();
+  cr();
+
+  text("*Trig Functions*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | ");
+  text("| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | ");
+  text("| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | ");
+  cr();
+  cr();
+
+  text("*Inverse Trig Functions*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | ");
+  text("| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | ");
+  text("| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atan) | ");
+  text("| `atan2(y, x)` | [arc tangent of y/x with quadrant](https://en.cppreference.com/w/cpp/numeric/math/atan2) | ");
+  cr();
+  cr();
+
+  text("*Hyperbolic Trig Functions*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | ");
+  text("| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | ");
+  text("| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | ");
+  cr();
+  cr();
+
+  text("*Inverse Hyperbolic Trig Functions*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | ");
+  text("| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | ");
+  text("| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | ");
+
+  cr();
+  cr();
+
+  text("*Exponentiation*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | ");
+  text("| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | ");
+  text("| `cqrt` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | ");
+
+  cr();
+  cr();
+
+  text("*Exponentials*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | ");
+  text("| `exp2` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | ");
+  text("| `expm1` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | ");
+  cr();
+  cr();
+
+  text("*Logarithms*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | ");
+  text("| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | ");
+  text("| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | ");
+  text("| `log1p` | [ln(x + 1)](https://en.cppreference.com/w/cpp/numeric/math/log1p) | ");
+  text("| `logb` | [extracts exponent of the number and returns a floating point type](https://en.cppreference.com/w/cpp/numeric/math/logb) | ");
+  text("| `ilogb` | [extracts exponent of the number and returns an integral type](https://en.cppreference.com/w/cpp/numeric/math/ilogb) | ");
+
+  cr();
+  cr();
+
+  text("*Other Functions*");
+  cr();
+  text("| function | name | ");
+  text("| :---: | :---: | ");
+  text("| `erf` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | ");
+  text("| `erfc` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | ");
+  text("| `tgamma` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | ");
+  text("| `lgamma` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | ");
+  cr();
+  cr();
+
+
+  header4("C++ ``std`` library special functions");
+
+  text("The following [special mathematical functions](https://en.cppreference.com/w/cpp/numeric/special_functions) implemented in the C++ `std` library");
+  cr();
+
+  text("*Bessel Functions*");
+  cr();
+  text("| <div style='width:180px'>function</div> | symbol | name | ");
+  text("| :---: | :---: |  :---: |");
+  text("| `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | ");
+  text("| `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | ");
+  text("| `cyl_bessel_i(𝜈, x)` | _I_<sub>𝜈</sub>(_x_) | [Modified Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_i) | ");
+  text("| `cyl_bessel_k(𝜈, x)` | _K_<sub>𝜈</sub>(_x_) | [Modified Bessel function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_k) | ");
+
+  cr();
+  cr();
+  text("*Spherical Bessel Functions*");
+  cr();
+  text("| <div style='width:180px'>function</div> | symbol | name | ");
+  text("| :---: | :---: |  :---: |");
+  text("| `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | ");
+  text("| `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | ");
+  cr();
+  cr();
+
+
+  text("*Orthogonal Polynomials*");
+  cr();
+  text("| <div style='width:180px'>function</div>  | symbol | name | ");
+  text("| :---: | :---: |  :---: |");
+  text("| `hermite(n, x)` | _H_<sub>n</sub>(_x_) | [Hermite polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/hermite) | ");
+  text("| `laguerre(n, x)` | _L_<sub>n</sub>(_x_) | [Laguerre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/laguerre) | ");
+  text("| `legendre(n, x)` | _P_<sub>n</sub>(_x_) | [Legendre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/legendre) | ");
+  text("| `assoc_laguerre(n, m, x)` | _L_<sub>n,m</sub>(_x_) | [Associated Laguerre polynomial of degree n, order m](https://en.cppreference.com/w/cpp/numeric/special_functions/assoc_laguerre) | ");
+  text("| `assoc_legendre(n, m, x)` | _P_<sub>n,m</sub>(_x_) | [Associated Legendre polynomial of degree n, order m](https://en.cppreference.com/w/cpp/numeric/special_functions/assoc_legendre) | ");
+  cr();
+  cr();
+
+  text("*Other Special Functions*");
+  cr();
+  text("| <div style='width:180px'>function</div> | symbol | name | ");
+  text("| :---: | :---: |  :---: |");
+  text("| `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | ");
+  text("| `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | ");
+  text("| `comp_ellint_2(k)` |  _E_(_k_) |  [Complete elliptic integral of the 2nd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_2) | ");
+  text("| `comp_ellint_3(n, k)` |  _Π_(_n_,_k_) |  [Complete elliptic integral of the 3rd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_3) | ");
+  text("| `ellint_1(k, φ)` |  _F_(_φ_, _k_) |  [(Incomplete) elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/ellint_1) | ");
+  text("| `ellint_2(k, φ)` |  _E_(_φ_, _k_) |  [(Incomplete) elliptic integral of the 2nd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/ellint_2) | ");
+  text("| `ellint_3(k, n, φ)` |  _Π_(_n_; _φ_, _k_) |  [(Incomplete) elliptic integral of the 3rd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/ellint_3) | ");
+  text("| `expint(x)` |  Ei(_x_) |  [Exponential Integral](https://en.cppreference.com/w/cpp/numeric/special_functions/expint) | ");
+  text("| `riemann_zeta(x)` |  ζ(_x_) | [Riemann Zeta Function](https://en.cppreference.com/w/cpp/numeric/special_functions/riemann_zeta) | ");
+  text("| `sph_legendre(l, m, θ)` | _Y_<sub>_l_</sub><sup>_m_</sup></sub>(_θ_, _φ_=0) | [Spherical Associated Legendre function<sup>†</sup> of degree _l_, order _m_](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_legendre) | ");
+  cr();
+  cr();
+  text("† This is equal to a [Spherical Harmonic](https://en.wikipedia.org/wiki/Spherical_harmonics) with _φ_=0, as the notation implies.");
+
+  header3("Mathematical functions from the Mathématiques library, namespace `mathq`");
+
+  text("The following are mathematical functions implemented in the Mathématiques library, namespace `mathq`");
+  cr();
+  text("| function | description | ");
+  text("| :---: | :---: | ");
+  text("| `sgn(x)` | [signum function](https://en.wikipedia.org/wiki/Sign_function), return type has same type as x | ");
+  text("| `zero(x)` | return a zero with the same type as x | ");
+  text("| `sqr(x)` | x<sup>2</sup> | ");
+  text("| `cube(x)` | x<sup>3</sup> | ");
+  cr();
+  cr();
+
+
+  text("\n<br>\n");
+  header2("More on types");
+
+  header3("Type information");
+
+  header4("typeid");
+
+  text("The function [`std::typeid`](https://en.cppreference.com/w/cpp/language/typeid) returns an object of type [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) (defined in the header `<typeinfo>`). ");
+  text("This gives the type for any varable. However, the names are garbled compiler strings that are not pretty. ");
+  cr();
 
   {
-    cr();
-    cr();
-    example(Nex++,"The unit imaginary _i_ in C++14");
-    cr();
-    text("* In C++14, the unit imaginary is defined by the product operator `operator\"\"i`");
-#if CPP14 == 1
+    text("Examples:\n");
     codestart("C++");
-    codemulti( using namespace std );
-    codemulti( using namespace literals );
-    codemulti( using namespace complex_literals );
-    codemulti(complex<double> z1 = 1i );
-    codemulti(complex<double> z2 = 1+1i );
-    codemulti(complex<double> z3 = -5i );
-    codemulti(complex<double> z4 = 5 );
+    codemulti(int n = 3);
+    // disp(typeid(n).name());
+    text("typeid(n).name() -> \"i\"");
+    codemulti(string s = "hello");
+    // disp(typeid(s).name());
+    text("typeid(s).name() -> \"NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE\"");
     codeend();
-    resultstart2("");
-    resultmulti(z1);
-    resultmulti(z2);
-    resultmulti(~z2);
-    resultmulti(z3);
-    resultmulti(z4);
-    resultend();
-  }
-#endif
-    
-  {
-    cr();
-    cr();
-    example(Nex++,"The unit imaginary _i_ (works in any version)");
-    cr(); 
-    text("In earlier versions of C++, the unit imaginary can be defined by");
-    codestart("C++");
-    codemulti( using namespace std );
-    codemulti( const complex<double> i = complex<double>(0,1) );
-    codemulti(complex<double> z1 = 1.*i );
-    codemulti(complex<double> z2 = 1. + 1.*i );
-    codemulti(complex<double> z3 = -5.*i );
-    codemulti(complex<double> z4 = 5 );
-    codeend();
-    cr();
-    resultstart2("");
-    resultmulti(z1);
-    resultmulti(z2);
-    resultmulti(z3);
-    resultmulti(z4);
-    resultend();
-
   }
 
-
-
-  header3("Declaring a complex-valued `Vector`");
+  header4("getTypeName");
+  text("The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in ");
+  {
+    text("Examples:\n");
+    codestart("C++");
+    codemulti(int n = 3);
+    // disp(getTypeName(n));
+    text("getTypeName(n) -> \"int\"");
+    codemulti(string s = "hello");
+    // disp(getTypeName(s));
+    text("getTypeName(s) -> \"std::string\"");
+    codeend();
+  }
+  text("\n<br>\n");
+  header3("Mixed-typed math and auto-promotion");
+  cr();
+  text("C++ automatically converts number types depending on context.");
+  text("This is referred to as [implicit conversion](https://en.cppreference.com/w/c/language/conversion).");
+  text("For example, when adding an integer and a floating point number, the integer is first converted to a floating point type before the addition takes place.");
+  text("As another example, when adding two integers (or floating point types) of different sizes, the smaller size is first converted to the larger size. This porces is referred to as _promotion_.");
 
   {
-    cr();
-    cr();
-    example(Nex++,"Complex  `Vector` ");
+    text("Examples:\n");
     codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > v(4) );
-#if CPP14 == 1
-    codemulti( using namespace literals );
-    codemulti( using namespace complex_literals );
-    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v = { 1+1i, 1, 1i, 1-1i } );
-#else
-#endif
-    codeend();
+    codemulti(short n1 = 3);
+    codemulti(int n2 = 100);
+    // tdisp(n1 * n2);
+    text("n1 * n2 -> int 300");
     cr();
-
-   
-    resultstart2("");
-    resultmulti(v);
-    resultend();
+    codemulti(float x1 = 3);
+    codemulti(double x2 = 0.1415);
+    // tdisp(x1 + x2);
+    text("x1 + x2 -> double 3.1415");
+    cr();
+    codemulti(int8_t y1 = 25);
+    codemulti(double y2 = 0.25);
+    // tdisp(y1 / y2 + y2);
+    text("y1 / y2 + y2 -> double 100.25");
+    codeend();
   }
 
-
-
-  header3("Arithmetic with complex-valued `Vector`'s");
-
-  {
-    cr();
-    cr();
-    example(Nex++,"Complex `Vector` arithmetic");
-    codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > v1(4) );
-    codemulti( Vector<complex<double> > v2(4) );
-#if CPP14 == 1
-    codemulti( using namespace literals );
-    codemulti( using namespace complex_literals );
-    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v1 = { -1i, 0, 1-1i, 1+1i } );
-    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v2 = { 1+1i, 1, 1i, -1i } );
-#else
-#endif
-    codeend();
-    cr();
-
-   
-    resultstart2("");
-    resultmulti(v1+v2);
-    resultmulti(v1-v2);
-    resultmulti(v1*v2);
-    resultmulti(v1/v2);
-    resultend();
-  }
-
-
-  header3("Mixed arithmetic with complex and real vectors and scalars `Vector`'s");
+  text("\n<br>\n");
+  header3("Type Conversion");
+  text("There are various ways to cast one type to another in C++.  ");
+  text("Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/language/explicit_cast), which has two forms for the syntax: `(type) expression` or  `type(expression)` ");
+  cr();
+  cr();
 
   {
-    cr();
-    cr();
-    example(Nex++,"Mixed real and complex arithmetic ");
+    text("Converting a floating point type to an integer:\n");
     codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<double > vr(4) );
-    codemulti( Vector<complex<double> > vc(4) );
-#if CPP14 == 1
-    codemulti( using namespace literals );
-    codemulti( using namespace complex_literals );
-    codemultiwcomment("C++11 list ", vr = { 1, 2, 3, 4 } );
-    codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", vc = { 1+1i, 1, 1i, -1i } );
-#endif
+    codemulti(int n1 = (int) 3.14 );
+    // tdisp(n1);
+    text("n1 -> 3");
+    codemulti(int n2 = int(3.14) );
+    // tdisp(n2);
+    text("n2 -> 3");
     codeend();
-    cr();
-
-   
-    resultstart2("");
-    resultmulti(vr+vc);
-    resultmulti(vr-vc);
-    resultmulti(vr*vc);
-    resultmulti(vr/vc);
-    resultmulti(2.*vr + vc/2. + 1);
-    // C++14 complex objects are of class "__complex__ double" 
-    //    resultmulti( (1.i)*vr + (5.+2.i)*vc);  // C++14
-    resultmulti( complex<double>(0,1)*vr + complex<double>(5,2)*vc);
-    resultend();
-  }
-
-
-  header3("real and imag parts of `Vector`'s");
-
-
-  {
-    cr();
-    cr();
-    example(Nex++,"get the real and imaginary part of a complex vector");
-    codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > v(4) );
-#if CPP14 == 1
-    codemultiwcomment("C++11 list and C++14 imag", v = {1+1.i, 1., 1.i, 2-5.i});
-#else
-    codemulti( v = (const complex<double>[]) {complex<double>(1,1), complex<double>(1,0), complex<double>(0,1), complex<double>(2,-5)} );
-#endif
-    codeend();
-    cr();
-
-    resultstart2(": real and imaginary parts");
-    resultmulti( v  );
-    resultmulti( real(v)  );
-    resultmulti( imag(v)  );
-    resultend();
-    cr();
-  }
-
-
-  header3("creating complex Vectors from real vectors and scalars");
-
-  {
-    cr();
-    cr();
-    example(Nex++,"create a complex vector from two real vectors");
-    codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > vc(4) );
-    codemulti( Vector<double> vr( range<double>(1,4) ));
-    codemulti( Vector<double> vi( range<double>(-1,-4) ));
-    codemulti( vc = Complex(vr, vi) );
-    codeend();
-    cr();
-
-    resultstart2(": create a complex vector from two real vectors");
-    resultmulti( vr  );
-    resultmulti( vi  );
-    resultmulti( vc  );
-    resultmulti( real(vc)  );
-    resultmulti( imag(vc)  );
-    resultend();
-    cr();
   }
 
   {
-    cr();
-    cr();
-    example(Nex++,"create a complex vector from a real vector and a scalar");
+    text("Forcing floating point division by converting the numerator to a `float`\n");
     codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<double> v( range<double>(1,4) ));
+    codemulti(double x = (21 + 1)/7 );
+    // tdisp(x);
+    text("x -> 3");
+    codemulti(double y = float(21 + 1)/7 );
+    // tdisp(y);
+    text("y -> 3.14286");
     codeend();
-    cr();
-
-    resultstart2(": create a complex vector from a real vector and a scalar");
-    resultmulti( Complex(v, 0.) );
-    resultmulti( Complex(v, 1.) );
-    resultmulti( Complex(0., v) );
-    resultmulti( Complex(1., v) );
-    resultend();
-    cr();
   }
 
-
-  header3("Complex Conjugation");
-
-  text("Complex cojugation can be performed via the function `conj` or via the operator `~`");
-  {
-    cr();
-    cr();
-    example(Nex++,"compute the complex conjugate of a vector");
-    codestart("C++");
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > vc(3) );
-    codemulti( Vector<double> vr( range<double>(1,3) ));
-    codemulti( Vector<double> vi( range<double>(-1,1) ));
-    codemulti( vc = Complex(vr, vi) );
-    codeend();
-    cr();
-
-    resultstart2(": compute the complex conjugate of a vector");
-    resultmulti( vr  );
-    resultmulti( vi  );
-    resultmulti( vc  );
-    resultmulti( conj(vc)  );
-    resultmulti( ~vc  );
-    resultend();
-    cr();
-  }
-
-
-
-
-  
-  text("* Functions defined for complex vectors  ");
-  
-  {
-    cr();
-    cr();
-    example(Nex++,"functions of complex vectors");
-    codestart("C++");
-    codemulti(const double pi = M_PI);
-    codemulti( using namespace std );
-    codemulti( Vector<complex<double> > v(3) );
-    codemulti( Vector<double> vr( range<double>(1,3) ));
-    codemulti( Vector<double> vi( range<double>(-1,1) ));
-    codemulti( v = Complex(vr, vi) );
-    codeend();
-    cr();
-
-    resultstart2(": functions of complex vectors");
-    // TODO: need to implement these for complex numbers and then for Tensors
-    //  resultmulti( floor(v)  );
-    //  resultmulti( ceil(v)  );
-    // resultmulti( sgn(v)  );
-    resultmulti( v  );
-    resultmulti( abs(v)* ( cos(arg(v)) + Complex(0., sin(arg(v))) ) );
-    resultmulti( abs(v)  );
-    resultmulti( pow(2., v)  );
-    resultmulti( pow(v, 2.)  );
-    resultmulti( pow(v,v)  );
-    resultmulti( exp(v)  );
-    resultmulti( round(exp(v))  );
-    resultmulti( roundzero(v+1e-16) );
-    resultmulti( log(v)  );
-    resultmulti( log10(v)  );
-    //    resultmulti( log2(v)  );
-    resultmulti( sqr(v)  );
-    resultmulti( cube(v)  );
-    resultmulti( sqrt(v)  );
-    resultmulti( sin(v)  );
-    resultmulti( cos(v)  );
-    resultmulti( tan(v)  );
-    resultmulti( sinh(v)  );
-    resultmulti( cosh(v)  );
-    resultmulti( tanh(v)  );
-    resultmulti( asin(v)  );
-    resultmulti( acos(v)  );
-    resultmulti( atan(v)  );
-    resultmulti( atan2(vr, vi)  );
-    resultend();
-    cr();
-    resultstart3("Aritmetic with scalars");
-    resultmulti( v + 0.1 );
-    resultmulti( 0.1 + v );
-    resultmulti( v - 0.1 );
-    resultmulti( 0.1 - v );
-    resultend();
-    cr();
-
-  }
-
-
-
-
-  mathq_toc();
 
   return 0;
 }

@@ -1,4 +1,4 @@
-# Mathématiques v3.5.6
+# Mathématiques v3.5.7
 
 
 <details>
@@ -37,13 +37,20 @@
   + [Index class and new indexing methodology](topics/index.md)
 
 ### v3.7 Display Refactoring
-1. Allow to use different strigns for ```=``` and ```;``` when displaying results
+1. refactor Style, StyledString, Terminal, and Display, Log
+  1. reformat all files using VSCode C++ extension
+  1. StyleStrgn should allow chnage of the Style
+  1. replace anti-pattern `*(new Display())` as `Display()` for all classes. This is not Java
+  1. don't use pointers
+  1. DISPLAY: Allow to use different strigns for ```=``` and ```;``` when displaying results by adding ability to chaneg expression SyledString etc
+    * have profiles for text ("->", ""), matlab ("=", ";"), mathematica ("=", ";")
+  1. take advantage of std::optional<T> for optional arguments
 1. [Refactor mout and dout](topics/refactormout.md)
 1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
 1. [Refactor getTypeName](topics/gettypename.md)
 1. [Refactor FormatData](topics/formatdata.md)
 1. Fix Printing of ```complex<Vector<double>>>``` etc
-1. Add data type to output of inner products
+1. Make sure data type to output of inner products works
   * disp(v1 | v2) = Vector<double> {16, -6}; 
   * disp(M1 | v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
 1. [Tensor class FormatData](topics/tensorformatdata.md)
@@ -52,7 +59,12 @@
    1. Mathematica
    1. Matlab
 
-### v3.8 Debug Refactoring
+### v3.8 I/O Refactoring
+1. [Save tensor to file](topics/filesave.md)
+1. [Implement >> operators](topics/inputstreams.md)
+1. [Load tensor from file](topics/fileload.md)
+
+### v3.9 Debug Refactoring
 1. put example.cpp::printoptsfile  into  print_mathq_info by grabbing (or passing) the file_name
   * handle when no filename
   * handle when no .g++_copts file
@@ -64,14 +76,20 @@
    * only needed for non-elemental functions
    * only needed when same vector appears on both sides of `=`
 
-### v3.8 I/O Refactoring
-1. [Save tensor to file](topics/filesave.md)
-1. [Implement >> operators](topics/inputstreams.md)
-1. [Load tensor from file](topics/fileload.md)
 
 
 ### Miscellaneous Small Features
+* reformat all files using VSCode plugin
 * Create a `Number` class to generalize (diviosn alegra numbers) real,s imaginary and complex, quaternions?
+  * see https://en.cppreference.com/w/cpp/types/is_arithmetic
+  * <complex> C++ std::complex
+    * https://en.cppreference.com/w/cpp/numeric/complex
+    * https://en.cppreference.com/w/cpp/numeric/complex/operator%22%22i
+  * <complex.h> C macros
+    * https://en.cppreference.com/w/c/numeric/complex
+    * https://en.cppreference.com/w/c/numeric/complex/complex
+    * https://en.cppreference.com/w/c/numeric/complex/imaginary
+    * https://en.cppreference.com/w/c/numeric/complex/I
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * overload `^` as exponentiation for vectors and matrices?
 * implement adjoint(Matrix) and ~(Matrix)

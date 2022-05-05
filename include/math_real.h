@@ -110,7 +110,14 @@ namespace mathq {
   
   template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
     D zero(const D& x) {
-    return 0;
+    return D(0);
+  }
+
+  // one
+  
+  template <typename D, typename = std::enable_if_t<std::is_arithmetic<D>::value>>
+    D one(const D& x) {
+    return D(1);
   }
 
   // conj

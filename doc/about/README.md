@@ -1,4 +1,4 @@
-# Mathématiques v3.5.14
+# Mathématiques v3.5.15
 
 
 <details>
@@ -25,15 +25,12 @@
 
 # 1. About
 
-The goal of the Mathématiques project is to provide an extensive and user-friendly framework for computationally-efficient numerical computation and computataional science.
 
 Development for this project originally took place during the years 2003-2008 
 
-The code resurrected in 2019, improved, and uploaded to github.
+The code resurrected in 2019, improved, and put on github.
 
-The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) called [expression templating](https://en.wikipedia.org/wiki/Expression_templates).
-
-Mathématiques provides computational efficiency and a memory usage on par with C/Fortran.
+The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) called [expression templating](https://en.wikipedia.org/wiki/Expression_templates), the library provides computational efficiency on par with C/Fortran.
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 

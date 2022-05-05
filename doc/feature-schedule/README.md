@@ -1,4 +1,4 @@
-# Mathématiques v3.5.14
+# Mathématiques v3.5.15
 
 
 <details>
@@ -84,6 +84,10 @@
 
 ### Miscellaneous Small Features
 * reformat all files using VSCode plugin
+* refactor the header so that 
+  * vectors, matricesm displaym tensors, are broken out into different headers
+  * use copious #ifdefs so that order of inclusion matters
+* create an index, with denotation for `types`, `functions`, `operators`
 * Create a `Number` class to generalize (diviosn alegra numbers) real,s imaginary and complex, quaternions?
   * see https://en.cppreference.com/w/cpp/types/is_arithmetic
   * <complex> C++ std::complex
@@ -204,11 +208,12 @@
 ### Possibilities
 * investigate use of [swap](https://en.cppreference.com/w/cpp/algorithm/swap)
 * investigate use of [multi-threading](https://en.cppreference.com/w/cpp/thread/thread)
+* new functions
+  * spherical harmonics
+* Support other division algebras data types
+   * Octonions
 * Graded algebras, such as Clifford Algebras
    * use of Clifford Algebra for Computer Graphics applications
-* Support other division algebras data types
-   * Quarternions
-   * Octonions
 * Create a [new Programming language](topics/newlanguage.md) based on Mathématiques
 
 ### New C++ features

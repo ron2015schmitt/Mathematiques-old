@@ -27,7 +27,7 @@ int main() {
   text("Mathématiques supplements C++ functionality with several more functions.");
 
   cr();
-  text("Mathématiques extends all of these operators and functions to vectors, matrices, and tensors, in a element-wise fashion.");
+  text("Mathématiques extends many of these operators and functions to complex numbers, imaginary numbers, and quaterions, as well as extending to vectors, matrices, and tensors in a element-wise fashion.");
 
   cr();
   cr();
@@ -235,6 +235,9 @@ int main() {
   text("| ```&&``` | logical AND | ");
   cr();
 
+  text("**CAVEAT**: C++ also has binary bit-wise operators `&` and `|`.  Mistyping the above operators can cause painful bugs. \n");
+
+  cr();
   text("Examples:\n");
   codestart("C++");
   trdisp(true);
@@ -272,6 +275,9 @@ int main() {
   // text("| `<=>` | three-way comparison | ");
   cr();
 
+  text("**CAVEAT**: C++ allows assigment `=` inside `if` statements (eg, `if (a = true) return;`).  Mistyping the equals operator `==` can cause painful bugs. \n");
+
+  cr();
   text("Examples:\n");
   codestart("C++");
   trdisp((2 == 2));
@@ -284,25 +290,78 @@ int main() {
   vspace();
   header3("Mathematical functions from the C++ ``std`` library");
 
-  header4("C++ ``std`` library common functions");
+  text("The following notation is used in the User Guide.\n");
+  cr();
+  text("| symbol | C++ types |");
+  text("| :---: | :---: | ");
+  text("| ℤ | any C++ real integral type: `bool`, `int`, `long`, etc | ");
+  text("| ℝ | any C++ real floating-point type: `float`, `double`, `long double`) | ");
+  text("| ℂ | any `std::complex<ℝ>` | ");
+  text("| 𝕁 | any `Imaginary<ℝ>` | ");
+  text("| ℍ | any `Quaternion<ℝ>` | ");
+  text("| 𝕂 | ℝ ∪ ℂ ∪ 𝕁 ∪ ℍ | ");
+  text("| 𝕊 | ℤ ∪ 𝕂 | ");
+
+
+  // text("| `` |  `x` plus any `Vector`, `Matrix`, or `Tensor` with `x` elements  | ");
+  // text("| `` |  `u` plus any `Vector`, `Matrix`, or `Tensor` with `z` elements  | ");
+  cr();
+  vspace();
+
+  header4("Mathematical Functions");
 
   cr();
-  text("The following are [common mathematical functions](https://en.cppreference.com/w/cpp/numeric/math) implemented in the C++ `std` library");
+  text("The following are basic mathematical functions for manipulating numbers.");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
-  text("| `abs(x)` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | ");
-  text("| `ceil(x)` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | ");
-  text("| `floor(x)` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | ");
-  text("| `trunc(x)` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | ");
-  text("| `round(x)` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
+  text("| `abs(x)` | `std` | `<cmath>` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | ");
+  text("| `abs(u)` | `mathq` | `\"mathq.h\"` | **mathq** abs  | ");
+  text("| `ceil(x)` | `std` | `<cmath>` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | ");
+  text("| `ceil(u)` | `mathq` | `\"mathq.h\"` | **mathq** ceiling | ");
+  text("| `floor(x)` | `std` | `<cmath>` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | ");
+  text("| `floor(u)` | `mathq` | `\"mathq.h\"` | **mathq** floor | ");
+  text("| `one(u)` | `mathq` | `\"mathq.h\"` | return a one with the same type as x | ");
+  text("| `trunc(x)` | `std` | `<cmath>` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | ");
+  text("| `trunc(u)` | `mathq` | `\"mathq.h\"` | **mathq** truncate | ");
+  text("| `round(x)` | `std` | `<cmath>` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | ");
+  text("| `round(u)` | `mathq` | `\"mathq.h\"` | **mathq** round function | ");
+  text("| `roundzero(u, tolerance = Helper<X>::tolerance)` | `mathq` | `\"mathq.h\"` | round numbers with magnitude less than `tolerance` to 0. The default values are shown below. | ");
+  text("| `sgn(u)` | `mathq` | `\"mathq.h\"` | [signum function](https://en.wikipedia.org/wiki/Sign_function), return type has same type as x | ");
+  text("| `zero(u)` | `mathq` | `\"mathq.h\"` | return a zero with the same type as x | ");
+  cr();
+  cr();
+
+  text("Notes:");
+  text("The default `zero_tolerance` values are global variables and can be changed by the user code.");
+  text("The default values were chosen so that the typical numerical error encountered with trig functions will produce exactly zero when appropriate.");
+  cr();
+  codestart("C++");
+  disp(Helper<float>::tolerance);
+  disp(Helper<double>::tolerance);
+  disp(Helper<long double>::tolerance);
+  codeend();
+  cr();
+
+  cr();
+  vspace();
+
+  cr();
+  text("The following functions / operators are provided for using real number types with imaginary and complex types.");
+  cr();
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
+  text("| `real(x)` | `mathq` | `\"mathq.h\"` | returns x | ");
+  text("| `imag(x)` | `mathq` | `\"mathq.h\"` | returns `zero(x)` | ");
+  text("| `conj(x)` | `mathq` | `\"mathq.h\"` | returns x | ");
+  text("| `~x` | `mathq` | `\"mathq.h\"` | returns x | ");
   cr();
   cr();
 
   text("*Trig Functions*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `sin(x)` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | ");
   text("| `cos(x)` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | ");
   text("| `tan(x)` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | ");
@@ -311,8 +370,8 @@ int main() {
 
   text("*Inverse Trig Functions*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `asin(x)` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | ");
   text("| `acos(x)` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | ");
   text("| `atan(x)` | [arc tangent: all results are mapped into -𝜋/2 <= 𝜃 <= +𝜋/2](https://en.cppreference.com/w/cpp/numeric/math/atan) | ");
@@ -322,8 +381,8 @@ int main() {
 
   text("*Hyperbolic Trig Functions*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `sinh(x)` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | ");
   text("| `cosh(x)` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | ");
   text("| `tanh(x)` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | ");
@@ -332,8 +391,8 @@ int main() {
 
   text("*Inverse Hyperbolic Trig Functions*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `asinh(x)` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | ");
   text("| `acosh(x)` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | ");
   text("| `atanh(x)` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | ");
@@ -343,8 +402,8 @@ int main() {
 
   text("*Exponentiation*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | ");
   text("| `sqrt(x)` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | ");
   text("| `cqrt(x)` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | ");
@@ -354,8 +413,8 @@ int main() {
 
   text("*Exponentials*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `exp(x)` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | ");
   text("| `exp2(x)` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | ");
   text("| `expm1(x)` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | ");
@@ -364,8 +423,8 @@ int main() {
 
   text("*Logarithms*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `log(x)` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | ");
   text("| `log10(x)` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | ");
   text("| `log2(x)` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | ");
@@ -378,8 +437,8 @@ int main() {
 
   text("*Other Functions*");
   cr();
-  text("| function | name | ");
-  text("| :---: | :---: | ");
+  text("| function | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `erf(x)` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | ");
   text("| `erfc(x)` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | ");
   text("| `tgamma(x)` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | ");
@@ -394,8 +453,8 @@ int main() {
 
   text("*Bessel Functions*");
   cr();
-  text("| <div style='width:180px'>function</div> | symbol | name | ");
-  text("| :---: | :---: |  :---: |");
+  text("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | ");
   text("| `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | ");
   text("| `cyl_bessel_i(𝜈, x)` | _I_<sub>𝜈</sub>(_x_) | [Modified Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_i) | ");
@@ -405,8 +464,8 @@ int main() {
   cr();
   text("*Spherical Bessel Functions*");
   cr();
-  text("| <div style='width:180px'>function</div> | symbol | name | ");
-  text("| :---: | :---: |  :---: |");
+  text("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | ");
   text("| `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | ");
   cr();
@@ -414,8 +473,8 @@ int main() {
 
   text("*Orthogonal Polynomials*");
   cr();
-  text("| <div style='width:180px'>function</div>  | symbol | name | ");
-  text("| :---: | :---: |  :---: |");
+  text("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `hermite(n, x)` | _H_<sub>n</sub>(_x_) | [Hermite polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/hermite) | ");
   text("| `laguerre(n, x)` | _L_<sub>n</sub>(_x_) | [Laguerre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/laguerre) | ");
   text("| `legendre(n, x)` | _P_<sub>n</sub>(_x_) | [Legendre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/legendre) | ");
@@ -426,8 +485,8 @@ int main() {
 
   text("*Other Special Functions*");
   cr();
-  text("| <div style='width:180px'>function</div> | symbol | name | ");
-  text("| :---: | :---: |  :---: |");
+  text("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | ");
   text("| `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | ");
   text("| `comp_ellint_2(k)` |  _E_(_k_) |  [Complete elliptic integral of the 2nd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_2) | ");
@@ -446,10 +505,8 @@ int main() {
 
   text("The following are mathematical functions implemented in the Mathématiques library, namespace `mathq`");
   cr();
-  text("| function | description | ");
-  text("| :---: | :---: | ");
-  text("| `sgn(x)` | [signum function](https://en.wikipedia.org/wiki/Sign_function), return type has same type as x | ");
-  text("| `zero(x)` | return a zero with the same type as x | ");
+  text("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  text("| :---: | :---: | :---: | :---: | ");
   text("| `sqr(x)` | x<sup>2</sup> | ");
   text("| `cube(x)` | x<sup>3</sup> | ");
   cr();

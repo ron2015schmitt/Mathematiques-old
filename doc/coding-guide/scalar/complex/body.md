@@ -5,16 +5,21 @@
 <br>
 
 ## Size of complex numbers
-C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  For a 64-bit CPU running Linux, they have the following number of bits:
+The size of a complex number is simply _twice_ the size of the underlying arithmetic type:
 
 
 ```C++
 CHAR_BIT = 8 bits
-CHAR_BIT*sizeof(char) = 8 bits
-CHAR_BIT*sizeof(short) = 16 bits
+
 CHAR_BIT*sizeof(int) = 32 bits
-CHAR_BIT*sizeof(long) = 64 bits
-CHAR_BIT*sizeof(long long) = 64 bits
+CHAR_BIT*sizeof(complex<int>) = 64 bits
+
+CHAR_BIT*sizeof(double) = 64 bits
+CHAR_BIT*sizeof(complex<double>) = 128 bits
+
+CHAR_BIT*sizeof(long double) = 128 bits
+CHAR_BIT*sizeof(complex<long double>) = 256 bits
+
 ```
 The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.
 
@@ -23,7 +28,7 @@ The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yi
 
 ## Operators and functions
 ### Arithmetic Operators
-The operators ```+, -, *, /, %``` are the addition, subtraction, multiplication, division, and modulus operators respectively.
+Complex numbers in C++ support the 4 standard arithmetic operators.
 
 For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).
 
@@ -34,74 +39,27 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 | ```-``` | subtraction | 
 | ```*``` | multiplication | 
 | ```/``` | division | 
-| ```%``` | modulus | 
-
-* If both numerator and denominator are integers, the division operator gives the integer division result.
 
 ```C++
-7 / 2 = 3; 
-```
-* The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.
-
-```C++
-7 % 2 = 1; 
-```
-* The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
-
-```C++
-div_t result = div(7, 2);
-```
-With result:
-
-```C++
-result.quot = 3; 
-result.rem = 1; 
+complex(1.0,1.0) + complex(2.0,4.0) = (3,5); 
+complex(1.0,1.0) - complex(2.0,4.0) = (-1,-3); 
+complex(1.0,1.0) * complex(2.0,4.0) = (-2,6); 
+complex(1.0,1.0) / complex(2.0,4.0) = (0.3,-0.1); 
 ```
 
 <br>
 
 ### Exponentiation and the ```pow``` function
-C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function
+C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/complex/div) function
 ```C++
-pow(2, 8) = 256; 
-```
-
-<br>
-
-### Logic Operators
-For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).
-
-
-| operator | operation | 
-| :---: | :---: | 
-| ```!``` | logical NOT | 
-| `\|\|` | logical OR | 
-| ```&&``` | logical AND | 
-
-Examples:
-
-```C++
-true = 1; 
-false = 0; 
-!true = 0; 
-!false = 1; 
-true && true = 1; 
-true && false = 0; 
-true || false = 1; 
-```
-* In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`
-
-```C++
-!true = 0; 
-!8 = 0; 
-!!8.293 = 1; 
-true && 3 = 1; 
-true && 0 = 0; 
+pow(complex(1.0,1.0), complex(2.0,4.0)) = (-0.084961,0.0158558); 
 ```
 
 <br>
 
 ### Relational Operators
+Complex numbers are not an ordered set.  Therefore, there is no concept of greater than or less than.
+
 For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).
 
 
@@ -109,165 +67,94 @@ For details refer [Comparison Operators](https://en.cppreference.com/w/c/languag
 | :---: | :---: | 
 | `==` | equal to | 
 | `!=` | not equal to | 
-| `<` | less than | 
-| `<=` | less than or equal to | 
-| `>` | greater than | 
-| `>=` | greater than or equal to | 
 
 Examples:
 
 ```C++
-(2 == 2) = 1; 
-(1 / 2 == 0.5) = 0; 
-(1. / 2 == 0.5) = 1; 
-(-2 < 34.2) = 1; 
-(2 > 0) = 1; 
+
+complex(1.0,1.0) == complex(1.0,1.0) = 1; 
+complex(1.0,1.0) != complex(1.0,1.0) = 0; 
+
+complex(1.0,1.0) == complex(2.0,4.0) = 0; 
+complex(1.0,1.0) != complex(2.0,4.0) = 1; 
 ```
 
 <br>
 
-### Mathematical functions from the C++ ``std`` library
+### Mathematical functions from the C++ [``std::complex`` header](https://en.cppreference.com/w/cpp/numeric/complex)
 #### C++ ``std`` library common functions
 
 The following are [common mathematical functions](https://en.cppreference.com/w/cpp/numeric/math) implemented in the C++ `std` library
 
 | function | name | 
 | :---: | :---: | 
-| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | 
-| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/math/ceil) | 
-| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/math/floor) | 
-| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/math/trunc) | 
-| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | 
+| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/complex/abs) | 
+| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/complex/ceil) | 
+| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/complex/floor) | 
+| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/complex/trunc) | 
+| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/complex/round) | 
 
 
 *Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | 
-| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | 
-| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/math/tan) | 
+| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/complex/sin) | 
+| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/complex/cos) | 
+| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/complex/tan) | 
 
 
 *Inverse Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | 
-| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | 
-| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atan) | 
-| `atan2(y, x)` | [arc tangent of y/x with quadrant](https://en.cppreference.com/w/cpp/numeric/math/atan2) | 
+| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asin) | 
+| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acos) | 
+| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atan) | 
 
 
 *Hyperbolic Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | 
-| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | 
-| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/math/tanh) | 
+| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/complex/sinh) | 
+| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/complex/cosh) | 
+| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/complex/tanh) | 
 
 
 *Inverse Hyperbolic Trig Functions*
 
 | function | name | 
 | :---: | :---: | 
-| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | 
-| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | 
-| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/math/atanh) | 
+| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asinh) | 
+| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acosh) | 
+| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atanh) | 
 
 
 *Exponentiation*
 
 | function | name | 
 | :---: | :---: | 
-| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | 
-| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | 
-| `cqrt` | [Cube Root](https://en.cppreference.com/w/cpp/numeric/math/cqrt) | 
+| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/complex/pow) | 
+| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/complex/sqrt) | 
 
 
 *Exponentials*
 
 | function | name | 
 | :---: | :---: | 
-| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | 
-| `exp2` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | 
-| `expm1` | [e<sup>x</sup> - 1](https://en.cppreference.com/w/cpp/numeric/math/expm1) | 
+| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/complex/exp) | 
 
 
 *Logarithms*
 
 | function | name | 
 | :---: | :---: | 
-| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | 
-| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | 
-| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log2) | 
-| `log1p` | [ln(x + 1)](https://en.cppreference.com/w/cpp/numeric/math/log1p) | 
-| `logb` | [extracts exponent of the number and returns a floating point type](https://en.cppreference.com/w/cpp/numeric/math/logb) | 
-| `ilogb` | [extracts exponent of the number and returns an integral type](https://en.cppreference.com/w/cpp/numeric/math/ilogb) | 
+| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log) | 
+| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log10) | 
+| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log2) | 
 
 
-*Other Functions*
-
-| function | name | 
-| :---: | :---: | 
-| `erf` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | 
-| `erfc` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | 
-| `tgamma` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | 
-| `lgamma` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | 
-
-
-#### C++ ``std`` library special functions
-The following [special mathematical functions](https://en.cppreference.com/w/cpp/numeric/special_functions) implemented in the C++ `std` library
-
-*Bessel Functions*
-
-| <div style='width:180px'>function</div> | symbol | name | 
-| :---: | :---: |  :---: |
-| `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | 
-| `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | 
-| `cyl_bessel_i(𝜈, x)` | _I_<sub>𝜈</sub>(_x_) | [Modified Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_i) | 
-| `cyl_bessel_k(𝜈, x)` | _K_<sub>𝜈</sub>(_x_) | [Modified Bessel function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_k) | 
-
-
-*Spherical Bessel Functions*
-
-| <div style='width:180px'>function</div> | symbol | name | 
-| :---: | :---: |  :---: |
-| `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | 
-| `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | 
-
-
-*Orthogonal Polynomials*
-
-| <div style='width:180px'>function</div>  | symbol | name | 
-| :---: | :---: |  :---: |
-| `hermite(n, x)` | _H_<sub>n</sub>(_x_) | [Hermite polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/hermite) | 
-| `laguerre(n, x)` | _L_<sub>n</sub>(_x_) | [Laguerre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/laguerre) | 
-| `legendre(n, x)` | _P_<sub>n</sub>(_x_) | [Legendre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/legendre) | 
-| `assoc_laguerre(n, m, x)` | _L_<sub>n,m</sub>(_x_) | [Associated Laguerre polynomial of degree n, order m](https://en.cppreference.com/w/cpp/numeric/special_functions/assoc_laguerre) | 
-| `assoc_legendre(n, m, x)` | _P_<sub>n,m</sub>(_x_) | [Associated Legendre polynomial of degree n, order m](https://en.cppreference.com/w/cpp/numeric/special_functions/assoc_legendre) | 
-
-
-*Other Special Functions*
-
-| <div style='width:180px'>function</div> | symbol | name | 
-| :---: | :---: |  :---: |
-| `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | 
-| `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | 
-| `comp_ellint_2(k)` |  _E_(_k_) |  [Complete elliptic integral of the 2nd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_2) | 
-| `comp_ellint_3(n, k)` |  _Π_(_n_,_k_) |  [Complete elliptic integral of the 3rd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_3) | 
-| `ellint_1(k, φ)` |  _F_(_φ_, _k_) |  [(Incomplete) elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/ellint_1) | 
-| `ellint_2(k, φ)` |  _E_(_φ_, _k_) |  [(Incomplete) elliptic integral of the 2nd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/ellint_2) | 
-| `ellint_3(k, n, φ)` |  _Π_(_n_; _φ_, _k_) |  [(Incomplete) elliptic integral of the 3rd kind](https://en.cppreference.com/w/cpp/numeric/special_functions/ellint_3) | 
-| `expint(x)` |  Ei(_x_) |  [Exponential Integral](https://en.cppreference.com/w/cpp/numeric/special_functions/expint) | 
-| `riemann_zeta(x)` |  ζ(_x_) | [Riemann Zeta Function](https://en.cppreference.com/w/cpp/numeric/special_functions/riemann_zeta) | 
-| `sph_legendre(l, m, θ)` | _Y_<sub>_l_</sub><sup>_m_</sup></sub>(_θ_, _φ_=0) | [Spherical Associated Legendre function<sup>†</sup> of degree _l_, order _m_](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_legendre) | 
-
-
-† This is equal to a [Spherical Harmonic](https://en.wikipedia.org/wiki/Spherical_harmonics) with _φ_=0, as the notation implies.
-### Mathematical functions from the Mathématiques library, namespace `mathq`
-The following are mathematical functions implemented in the Mathématiques library, namespace `mathq`
 
 | function | description | 
 | :---: | :---: | 
@@ -339,7 +226,7 @@ Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/lang
 Converting a floating point type to an integer:
 
 ```C++
-int n1 = (int) 3.14;
+int n1 = (int)3.14;
 n1 -> 3
 int n2 = int(3.14);
 n2 -> 3
@@ -347,8 +234,8 @@ n2 -> 3
 Forcing floating point division by converting the numerator to a `float`
 
 ```C++
-double x = (21 + 1)/7;
+double x = (21 + 1) / 7;
 x -> 3
-double y = float(21 + 1)/7;
+double y = float(21 + 1) / 7;
 y -> 3.14286
 ```

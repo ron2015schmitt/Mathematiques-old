@@ -33,7 +33,6 @@ int main() {
   // tdisp(m1 + m2);
   // codeend();
 
-  int Nex = 1;
 
   cr();
   cr();

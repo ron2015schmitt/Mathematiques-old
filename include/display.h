@@ -1412,6 +1412,7 @@ inline void print3(const std::string s) {
 class Display {
 private:
   static bool isInitialized;
+  static StyledString prefixStyledString;
   static Style expressionStyle;
   static StyledString equalsStyledString;
   static StyledString multiSeparatorStyledString;
@@ -1438,6 +1439,7 @@ public:
   static void mydisp_notype(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
     //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
+    stream << prefixStyledString;
     stream << StyledString(expressionStyle, name);
     stream << equalsStyledString;
     dispval_strm(stream, x);
@@ -1450,6 +1452,7 @@ public:
   static void multidisp_notype(std::ostream &stream, const X &x, const std::string name) {
     using namespace std;
     //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
+    stream << prefixStyledString;
     stream << StyledString(expressionStyle, name);
     stream << equalsStyledString;
     dispval_strm(stream, x);
@@ -1466,6 +1469,7 @@ public:
   static void mydisp_type(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
     //      log3("display","Display","mydisp_type","(const X& x, const std::string name)");
+    stream << prefixStyledString;
     stream << StyledString(expressionStyle, name);
     stream << equalsStyledString;
     dispval_strm(stream, x);
@@ -1479,6 +1483,7 @@ public:
   static void mydisp_type_rhs(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
     //      log3("display","Display","mydisp_type_rhs","(const X& x, const std::string name)");
+    stream << prefixStyledString;
     stream << StyledString(expressionStyle, name);
     stream << equalsStyledString;
     stream << getTypeName(x) << " ";

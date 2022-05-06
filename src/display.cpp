@@ -315,10 +315,12 @@ Log Log_dummy = *(new Log());
 
 bool Display::isInitialized = false;
 Style Display::expressionStyle = CREATESTYLE(BOLD);
+
+StyledString Display::prefixStyledString = StyledString(CREATESTYLE(""), " ");  // prefix for display C++ in git markdown:  " " (U+00A0)
 StyledString Display::equalsStyledString = StyledString(CREATESTYLE(GRAY1), " ➜  ");
 //StyledString Display::equalsStyledString = StyledString(CREATESTYLE(GRAY1), "  =  ");
 StyledString Display::multiSeparatorStyledString = StyledString(CREATESTYLE(GRAY1), "; ");
-StyledString Display::terminatorStyledString = StyledString(CREATESTYLE(GRAY1), "");
+StyledString Display::terminatorStyledString = StyledString(CREATESTYLE(GRAY1), ";");  // need the terminator for markdown to color correctly
 Display display_dummy = Display();
 
 }; // namespace display

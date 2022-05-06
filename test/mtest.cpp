@@ -11,7 +11,7 @@ int main() {
   using namespace display;
 
   print_mathq_info();
-  mout << createStyle(BOLD + MAGENTA1).apply(__FILE__) << " - matrix tests" << std::endl;
+  mout << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - matrix tests" << std::endl;
   cr();
   cr();
 

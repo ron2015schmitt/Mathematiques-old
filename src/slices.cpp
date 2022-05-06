@@ -89,9 +89,9 @@ namespace mathq {
     
   std::ostream& operator<<(std::ostream &stream, const mathq::slc& slice) {
     using namespace display;
-    Style name_style = createStyle(CYAN);
-    Style punct_style = createStyle(GRAY1);
-    Style num_style = createStyle(BOLD);
+    Style name_style = CREATESTYLE(CYAN);
+    Style punct_style = CREATESTYLE(GRAY1);
+    Style num_style = CREATESTYLE(BOLD);
     stream << num_style.apply(num2string(slice.start()));
     stream << punct_style.apply(":");
     stream << num_style.apply(num2string(slice.end()));

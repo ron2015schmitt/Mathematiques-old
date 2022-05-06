@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   cr();
   cr();
   mout << StyledString::get(HORLINE);
-  mout << "running: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
 
 
   mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
@@ -83,56 +83,56 @@ int main(int argc, char *argv[]) {
   disp(s + " tour");
   mout << std::endl;
 
-  mout << createStyle(GRAY1) << "  ";
-  mout << createStyle(GRAY2) << "  ";
-  mout << createStyle(WHITE + BLACKBACK) << "  ";
+  mout << CREATESTYLE(GRAY1) << "  ";
+  mout << CREATESTYLE(GRAY2) << "  ";
+  mout << CREATESTYLE(WHITE + BLACKBACK) << "  ";
   mout << std::endl;
 
-  mout << createStyle(RED) << "  ";
+  mout << CREATESTYLE(RED) << "  ";
   mout << std::endl;
-  mout << createStyle(ORANGE) << "  ";
+  mout << CREATESTYLE(ORANGE) << "  ";
   mout << std::endl;
-  mout << createStyle(YELLOW) << "  ";
-  mout << createStyle(YELLOWBRIGHT) << "  ";
+  mout << CREATESTYLE(YELLOW) << "  ";
+  mout << CREATESTYLE(YELLOWBRIGHT) << "  ";
   mout << std::endl;
-  mout << createStyle(GREEN) << "  ";
-  mout << createStyle(GREENBRIGHT) << "  ";
-  mout << createStyle(GREEN1) << "  ";
+  mout << CREATESTYLE(GREEN) << "  ";
+  mout << CREATESTYLE(GREENBRIGHT) << "  ";
+  mout << CREATESTYLE(GREEN1) << "  ";
   mout << std::endl;
-  mout << createStyle(CYAN) << "  ";
-  mout << createStyle(BLUE) << "  ";
-  mout << createStyle(BLUEBRIGHT) << "  ";
-  mout << createStyle(BLUE1) << "  ";
-  mout << createStyle(BLUE2) << "  ";
-  mout << createStyle(BLUE3) << "  ";
+  mout << CREATESTYLE(CYAN) << "  ";
+  mout << CREATESTYLE(BLUE) << "  ";
+  mout << CREATESTYLE(BLUEBRIGHT) << "  ";
+  mout << CREATESTYLE(BLUE1) << "  ";
+  mout << CREATESTYLE(BLUE2) << "  ";
+  mout << CREATESTYLE(BLUE3) << "  ";
   mout << std::endl;
-  mout << createStyle(MAGENTA) << "  ";
-  mout << createStyle(MAGENTA1) << "  ";
-  mout << createStyle(VIOLET1) << "  ";
+  mout << CREATESTYLE(MAGENTA) << "  ";
+  mout << CREATESTYLE(MAGENTA1) << "  ";
+  mout << CREATESTYLE(VIOLET1) << "  ";
   mout << std::endl;
-  mout << createStyle(BOLD) << "  ";
-  mout << createStyle(UNDERLINE) << "  ";
-  mout << createStyle(CROSSEDOUT) << "  ";
-  mout << createStyle(OVERLINE) << "  ";
-  mout << createStyle(SLOWBLINK) << "  ";
-  mout << std::endl;
-
-  mout << createStyle(REDBACK) << "  ";
-  mout << createStyle(ORANGEBACK) << "  ";
-  mout << createStyle(YELLOWBACK) << "  ";
-  mout << createStyle(GREENBACK) << "  ";
-  mout << std::endl;
-  mout << std::endl;
+  mout << CREATESTYLE(BOLD) << "  ";
+  mout << CREATESTYLE(UNDERLINE) << "  ";
+  mout << CREATESTYLE(CROSSEDOUT) << "  ";
+  mout << CREATESTYLE(OVERLINE) << "  ";
+  mout << CREATESTYLE(SLOWBLINK) << "  ";
   mout << std::endl;
 
-  mout << createStyle(BOLD + UNDERLINE + VIOLET1) << "  ";
+  mout << CREATESTYLE(REDBACK) << "  ";
+  mout << CREATESTYLE(ORANGEBACK) << "  ";
+  mout << CREATESTYLE(YELLOWBACK) << "  ";
+  mout << CREATESTYLE(GREENBACK) << "  ";
+  mout << std::endl;
+  mout << std::endl;
+  mout << std::endl;
+
+  mout << CREATESTYLE(BOLD + UNDERLINE + VIOLET1) << "  ";
   mout << std::endl;
   mout << std::endl;
   mout << std::endl;
   mout << std::endl;
 
   {
-    Style mystyle = createStyle(BOLD + RED);
+    Style mystyle = CREATESTYLE(BOLD + RED);
     mout << mystyle.apply("with style") + " without style " << std::endl;
   }
   mout << std::endl;
@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
 
 
   cr();
-  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);
   cr();
 

@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
   using namespace display;
   using namespace std;
 
-  Style bold = createStyle(BOLD);
+  Style bold = CREATESTYLE(BOLD);
 
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);

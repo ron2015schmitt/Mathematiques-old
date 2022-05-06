@@ -506,7 +506,7 @@ namespace mathq {
     // "read/write"
     D& dat(const index_type n) {
       using namespace::display;
-      //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+      //    mout << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
       if constexpr(M<=1) {
 	  int k = n;
 	  if (k < 0) {
@@ -524,7 +524,7 @@ namespace mathq {
     // read
     const D& dat(const index_type n)  const { 
       using namespace::display;
-      //    mout << createStyle(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
+      //    mout << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
       if constexpr(M<=1) {
 	  int k = n;
 	  if (k < 0) {

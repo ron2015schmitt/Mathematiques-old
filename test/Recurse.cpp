@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
   cr();
   cr();
   print_mathq_info();
-  mout << createStyle(BOLD + MAGENTA1).apply(__FILE__) << " - scalar tests" << std::endl;
+  mout << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - scalar tests" << std::endl;
   cr();
   cr();
 

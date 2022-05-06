@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   cr();
   cr();
   mout << StyledString::get(HORLINE);
-  mout << "running: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
 
   mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   print_mathq_info();
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
   disp(sigma2);
 
   cr();
-  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
+  mout << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);
   cr();
 

@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
   using namespace display;
   using namespace mathq::unit_imaginary;
 
-  Style bold = createStyle(BOLD);
+  Style bold = CREATESTYLE(BOLD);
 
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
     cr();
     const int N1 = 5;
     const int N2 = 3;
-    mout << "" << createStyle(BOLD).apply("Vector<Vector<double>> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
+    mout << "" << CREATESTYLE(BOLD).apply("Vector<Vector<double>> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
 
     Vector<Vector<double>> v1(N1);
     Vector<Vector<double>> v2(N1);
@@ -142,10 +142,10 @@ int main(int argc, char *argv[]) {
     const int N1 = 2;
     const int N2 = 3;
     const int N3 = 2;
-    mout << "" << createStyle(BOLD).apply("vector<vector<vector<double>>> + vector<vector<vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
+    mout << "" << CREATESTYLE(BOLD).apply("vector<vector<vector<double>>> + vector<vector<vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
 
     cr();
-    mout << "  " << createStyle(BLUE2 + BOLD).apply("vector<vector<double>> x") << std::endl;
+    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("vector<vector<double>> x") << std::endl;
     vector<vector<double>> x{{.1, .2}, {.3, .4}, {.5, .6}};
     tdisp(x);
     tdisp((void *)&x);
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
 
 
     cr();
-    mout << "  " << createStyle(BLUE2 + BOLD).apply("vector<vector<vector<double>>> v1") << std::endl;
+    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("vector<vector<vector<double>>> v1") << std::endl;
     vector<vector<vector<double>>> v1{{{.1, .2}, {.3, .4}, {.5, .6}}, {{.7, .8}, {.9, 1.0}, {1.1, 1.2}}};
     tdisp(v1);
   }
@@ -169,10 +169,10 @@ int main(int argc, char *argv[]) {
     const int N1 = 2;
     const int N2 = 3;
     const int N3 = 2;
-    mout << "" << createStyle(BOLD).apply("Vector<Vector<Vector<double>>> + Vector<Vector<Vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
+    mout << "" << CREATESTYLE(BOLD).apply("Vector<Vector<Vector<double>>> + Vector<Vector<Vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
 
     cr();
-    mout << "  " << createStyle(BLUE2 + BOLD).apply("Vector<Vector<double>> x") << std::endl;
+    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("Vector<Vector<double>> x") << std::endl;
     Vector<Vector<double>> x{{.1, .2}, {.3, .4}, {.5, .6}};
     tdisp(x);
     tdisp((void *)&x);
@@ -182,7 +182,7 @@ int main(int argc, char *argv[]) {
 
 
     cr();
-    mout << "  " << createStyle(BLUE2 + BOLD).apply("Vector<Vector<Vector<double>>> v1") << std::endl;
+    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("Vector<Vector<Vector<double>>> v1") << std::endl;
     Vector<Vector<Vector<double>>> v1{{{.1, .2}, {.3, .4}, {.5, .6}}, {{.7, .8}, {.9, 1.0}, {1.1, 1.2}}};
     tdisp(v1);
 
@@ -225,7 +225,7 @@ int main(int argc, char *argv[]) {
     cr();
     const int N1 = 2;
     const int N2 = 3;
-    mout << "" << createStyle(BOLD).apply("Vector<Vector<double>> + Vector<double>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
+    mout << "" << CREATESTYLE(BOLD).apply("Vector<Vector<double>> + Vector<double>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
 
     cr();
     Vector<Vector<double>> pairs{{.1, .2}, {.3, .4}, {.5, .6}};
@@ -242,7 +242,7 @@ int main(int argc, char *argv[]) {
     tdisp(v3);
 
 
-    mout << "" << createStyle(BOLD).apply("Vector<double> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
+    mout << "" << CREATESTYLE(BOLD).apply("Vector<double> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
     v3 = {{0, 0}, {0, 0}, {0, 0}};
     tdisp(v3);
     t.start_timer_silent();

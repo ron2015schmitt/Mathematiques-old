@@ -18,7 +18,7 @@
   * gitmd.h
   * display.cpp
 1. combine all macros from display and md.h into a single header. put rest in display
-1. make all macros UPPERCASE?.  have two files: upper case and lower case
+1. make all macros UPPERCASE? Yes.  can get variable collision otherwise
 1. refactor Style, StyledString, Terminal, and Display, Log
   1. reformat all files using VSCode C++ extension
   1. StyleStrgn should allow chnage of the Style

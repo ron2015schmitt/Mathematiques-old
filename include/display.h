@@ -13,7 +13,7 @@
 
 #define mout (display::Terminal::getmout())
 
-#define createStyle(...) display::Style::create(__VA_ARGS__, #__VA_ARGS__)
+#define CREATESTYLE(...) display::Style::create(__VA_ARGS__, #__VA_ARGS__)
 
 #if MATHQ_DEBUG >= 1
 #define printf1(...) mout << display::printf2str(__VA_ARGS__)
@@ -281,9 +281,9 @@ public:
 };
 
 
-inline Style functor_namestyle = createStyle(display::ORANGE2);
-inline Style functor_style = createStyle(display::BOLD);
-inline Style userfunctor_style = createStyle(display::BOLD + display::BLUE1);
+inline Style functor_namestyle = CREATESTYLE(display::ORANGE2);
+inline Style functor_style = CREATESTYLE(display::BOLD);
+inline Style userfunctor_style = CREATESTYLE(display::BOLD + display::BLUE1);
 
 //****************************************************************************
 //                       StyledString
@@ -329,7 +329,7 @@ public:
     return *(new StyledString(style, text));
   }
 
-  inline StyledString() : style_(createStyle(CROSSEDOUT)),
+  inline StyledString() : style_(CREATESTYLE(CROSSEDOUT)),
                           text_(std::string("hello world")) {
     if (!StyledString::isInitialized) {
       StyledString::initialize();
@@ -375,17 +375,17 @@ public:
 
 template <typename T>
 inline Style getTypeStyle(const T &var) {
-  return createStyle(CYAN);
+  return CREATESTYLE(CYAN);
 }
 template <>
 inline Style getTypeStyle(const std::string &var) {
-  return createStyle(GREEN);
+  return CREATESTYLE(GREEN);
 }
 
 #define SPECIALIZE_getTypeStyle(TYPE)          \
   template <>                                  \
   inline Style getTypeStyle(const TYPE &var) { \
-    return createStyle(MAGENTA);               \
+    return CREATESTYLE(MAGENTA);               \
   }
 
 SPECIALIZE_getTypeStyle(float);
@@ -411,19 +411,19 @@ SPECIALIZE_getTypeStyle(bool);
 // container type
 template <typename D, template <typename> typename C>
 inline Style getTypeStyle(const C<const D> &var) {
-  Style style = createStyle(CYAN);
+  Style style = CREATESTYLE(CYAN);
   return style;
 }
 
 // container type2
 template <typename D1, typename D2, template <typename, typename> typename C>
 inline Style getTypeStyle(const C<const D1, const D2> &var) {
-  Style style = createStyle(CYAN);
+  Style style = CREATESTYLE(CYAN);
   return style;
 }
 
 inline Style getFunctionTypeStyle() {
-  return createStyle(BLUE);
+  return CREATESTYLE(BLUE);
 }
 
 //------------------------------------------------------------------
@@ -732,7 +732,7 @@ inline bool checkFormatString(const std::string formatstr, const D &x = D(1)) {
     mout << StyledString::get(HORLINE);
     mout << StyledString::get(ERROR);
     mout << " illegal format string";
-    mout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+    mout << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
     mout << " passed to Format";
     mout << display::getBracketedTypeName(x);
     mout << endl;
@@ -1005,7 +1005,7 @@ inline bool checkFormatStringComplex(const std::string formatstr) {
     mout << StyledString::get(HORLINE);
     mout << StyledString::get(ERROR);
     mout << " illegal format string";
-    mout << createStyle(BOLD).apply(string(" \"") + formatstr + "\"");
+    mout << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
     mout << " passed to setFormatStringComplex";
     mout << endl;
     mout << StyledString::get(HORLINE);
@@ -1250,11 +1250,11 @@ inline void print_mathq_info(void) {
        << endl;
   mout << "compile-time settings" << endl;
   print_debug_level();
-  mout << createStyle(BOLD).apply("  C++ version: ");
-  mout << createStyle(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
+  mout << CREATESTYLE(BOLD).apply("  C++ version: ");
+  mout << CREATESTYLE(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
 #ifdef MATHQ_COPTS
-  mout << createStyle(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
-  mout << createStyle(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
+  mout << CREATESTYLE(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
+  mout << CREATESTYLE(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
 #endif
   mout << StyledString::get(HORLINE);
 }
@@ -1264,7 +1264,7 @@ inline void set_default_format() {
   // TODO: include all default styles
 
   // TODO: put these into an intilization and share it here as well as in cpp file
-  FormatDataVector::style_for_punctuation = createStyle(GRAY1);
+  FormatDataVector::style_for_punctuation = CREATESTYLE(GRAY1);
   FormatDataVector::string_endofline = "\n";
   FormatDataVector::string_opening = "{";
   FormatDataVector::string_delimeter = ",";
@@ -1273,7 +1273,7 @@ inline void set_default_format() {
 
   // TODO: put these into an intilization and share it here as well as in cpp file
   FormatDataMatrix::max_elements_per_line = mathq::maxsize;
-  FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
+  FormatDataMatrix::style_for_punctuation = CREATESTYLE(GRAY1);
   FormatDataMatrix::string_opening = "{";
   FormatDataMatrix::string_delimeter = ", ";
   FormatDataMatrix::string_row_opening = " {";

@@ -251,10 +251,10 @@ You can combine the styles using the `+` sign
 
 ![stylescombined](displaycolorscombined.png)
 
-* To use any of these, use the `createStyle` macro as the following example illustrates
+* To use any of these, use the `CREATESTYLE` macro as the following example illustrates
 ```C++
 
-Style mystyle = createStyle(BOLD+RED);
+Style mystyle = CREATESTYLE(BOLD+RED);
 
 mout << mystyle.apply("with style") + " without style " << std::endl;
 

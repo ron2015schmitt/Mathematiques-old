@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
   using namespace display;
   using namespace mathq::unit_imaginary;
 
-  Style bold = createStyle(BOLD);
-  Style blue = createStyle(BOLD + BLUE2);
+  Style bold = CREATESTYLE(BOLD);
+  Style blue = CREATESTYLE(BOLD + BLUE2);
 
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);

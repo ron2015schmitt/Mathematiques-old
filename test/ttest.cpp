@@ -10,7 +10,7 @@ int main() {
   using namespace display;
 
   print_mathq_info();
-  mout << createStyle(BOLD + MAGENTA1).apply(__FILE__) << " - tensor tests" << std::endl;
+  mout << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - tensor tests" << std::endl;
   cr();
   cr();
 

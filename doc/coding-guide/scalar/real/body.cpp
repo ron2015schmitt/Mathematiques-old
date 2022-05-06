@@ -299,8 +299,8 @@ int main() {
   text("| ℂ | any `std::complex<ℝ>` | ");
   text("| 𝕁 | any `Imaginary<ℝ>` | ");
   text("| ℍ | any `Quaternion<ℝ>` | ");
-  text("| 𝕂 | ℝ ∪ ℂ ∪ 𝕁 ∪ ℍ | ");
-  text("| 𝕊 | ℤ ∪ 𝕂 | ");
+  text("| 𝕂 | any ℝ, ℂ, 𝕁, ℍ | ");
+  text("| 𝕊 | any ℤ, 𝕂 | ");
 
 
   // text("| `` |  `x` plus any `Vector`, `Matrix`, or `Tensor` with `x` elements  | ");

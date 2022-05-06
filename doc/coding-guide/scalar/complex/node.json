@@ -3,7 +3,7 @@
   "name": "complex",
   "skip-readme": false,
   "title": "Complex number mathematics",
-  "version": "v3.5.15",
+  "version": "v3.5.16",
   "prefix": "7.1.2.",
   "src": "complex/template.md",
   "dest": "complex/README.md",

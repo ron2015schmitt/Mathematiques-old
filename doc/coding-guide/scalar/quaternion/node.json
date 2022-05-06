@@ -3,7 +3,7 @@
   "name": "quaternion",
   "skip-readme": false,
   "title": "Quaternion Mathematics",
-  "version": "v3.5.15",
+  "version": "v3.5.16",
   "prefix": "7.1.4.",
   "src": "quaternion/template.md",
   "dest": "quaternion/README.md",

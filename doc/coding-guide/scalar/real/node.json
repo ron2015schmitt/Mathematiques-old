@@ -3,7 +3,7 @@
   "name": "real",
   "skip-readme": false,
   "title": "Real number mathematics",
-  "version": "v3.5.15",
+  "version": "v3.5.16",
   "prefix": "7.1.1.",
   "src": "real/template.md",
   "dest": "real/README.md",

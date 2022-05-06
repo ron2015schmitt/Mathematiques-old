@@ -243,8 +243,8 @@ The following notation is used in the User Guide.
 | ℂ | any `std::complex<ℝ>` | 
 | 𝕁 | any `Imaginary<ℝ>` | 
 | ℍ | any `Quaternion<ℝ>` | 
-| 𝕂 | ℝ ∪ ℂ ∪ 𝕁 ∪ ℍ | 
-| 𝕊 | ℤ ∪ 𝕂 | 
+| 𝕂 | any ℝ, ℂ, 𝕁, ℍ | 
+| 𝕊 | any ℤ, 𝕂 | 
 
 
 <br>

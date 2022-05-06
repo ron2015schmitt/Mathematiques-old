@@ -1213,6 +1213,116 @@ public:
   }
 }; // class Display
 
+
+//****************************************************************************
+//                       print_mathq_info
+//****************************************************************************
+
+inline void print_debug_level(void) {
+  StyledString ss;
+#if (MATHQ_DEBUG == 0)
+  ss = StyledString::get(SSEnum::DLEVEL0);
+#elif (MATHQ_DEBUG == 1)
+  ss = StyledString::get(SSEnum::DLEVEL1);
+#elif (MATHQ_DEBUG == 2)
+  ss = StyledString::get(SSEnum::DLEVEL2);
+#elif (MATHQ_DEBUG >= 3)
+  ss = StyledString::get(SSEnum::DLEVEL3);
+#endif
+  mout << "  " << ss << " " << std::endl;
+}
+
+inline void print_mathq_info(void) {
+  using namespace std;
+  using namespace display;
+  mout << StyledString::get(HORLINE);
+  mout << StyledString::get(MATHEMATIQUES) << " ";
+  mout << StyledString::get(VERSION) << " ";
+  mout << endl
+       << endl;
+  mout << "compile-time settings" << endl;
+  print_debug_level();
+  mout << createStyle(BOLD).apply("  C++ version: ");
+  mout << createStyle(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
+#ifdef MATHQ_COPTS
+  mout << createStyle(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
+  mout << createStyle(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
+#endif
+  mout << StyledString::get(HORLINE);
+}
+
+inline void set_default_format() {
+  using namespace display;
+  // TODO: include all default styles
+
+  // TODO: put these into an intilization and share it here as well as in cpp file
+  FormatDataVector::style_for_punctuation = createStyle(GRAY1);
+  FormatDataVector::string_endofline = "\n";
+  FormatDataVector::string_opening = "{";
+  FormatDataVector::string_delimeter = ",";
+  FormatDataVector::max_elements_per_line = mathq::maxsize;
+  FormatDataVector::string_closing = "}";
+
+  // TODO: put these into an intilization and share it here as well as in cpp file
+  FormatDataMatrix::max_elements_per_line = mathq::maxsize;
+  FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
+  FormatDataMatrix::string_opening = "{";
+  FormatDataMatrix::string_delimeter = ", ";
+  FormatDataMatrix::string_row_opening = " {";
+  FormatDataMatrix::string_row_closing = "},";
+  FormatDataMatrix::string_lastrow_closing = "} ";
+  FormatDataMatrix::string_endofline = "\n";
+  FormatDataMatrix::string_closing = "}";
+
+  setFormatStringComplex("(%s, %s)");
+
+  FormatData<double>::format_string = FormatData<double>::format_string_default;
+  FormatData<double>::tens = false;
+  FormatData<float>::format_string = FormatData<float>::format_string_default;
+  FormatData<long double>::format_string = FormatData<long double>::format_string_default;
+  FormatData<short>::format_string = FormatData<short>::format_string_default;
+  FormatData<int>::format_string = FormatData<int>::format_string_default;
+  FormatData<long>::format_string = FormatData<long>::format_string_default;
+  FormatData<unsigned short>::format_string = FormatData<unsigned short>::format_string_default;
+  FormatData<unsigned int>::format_string = FormatData<unsigned int>::format_string_default;
+  FormatData<unsigned long>::format_string = FormatData<unsigned long>::format_string_default;
+  FormatData<char>::format_string = FormatData<char>::format_string_default;
+
+  FormatData<std::string>::format_string = FormatData<std::string>::format_string_default;
+
+  FormatData<bool>::string_for_true = "1";
+  FormatData<bool>::string_for_false = "0";
+}
+
+inline void set_mathematica_var_format() {
+  using namespace display;
+  FormatDataVector::string_opening = "{\n    ";
+  FormatDataVector::string_delimeter = ", ";
+  FormatDataVector::max_elements_per_line = 5;
+  FormatDataVector::string_endofline = "\n    ";
+  FormatDataVector::string_closing = "\n}";
+  setFormatString<double>("% 10.8e");
+  setFormatStringComplex("%s + I*%s");
+  FormatData<double>::tens = true;
+}
+
+inline void set_matlab_var_format() {
+  using namespace display;
+  FormatDataVector::string_opening = "[ ...\n    ";
+  FormatDataVector::string_delimeter = ", ";
+  FormatDataVector::max_elements_per_line = 5;
+  FormatDataVector::string_endofline = " ...\n    ";
+  FormatDataVector::string_closing = " ...\n]";
+  setFormatString<double>("% 10.8e");
+  setFormatStringComplex("%s + i*%s");
+  FormatData<double>::tens = false;
+}
+
+}; // namespace display
+
+
+
+
 #define disp_strm(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define tdisp_strm(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define trdisp_strm(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
@@ -1351,110 +1461,9 @@ public:
   {}
 #endif
 
-//****************************************************************************
-//                       print_mathq_info
-//****************************************************************************
 
-inline void print_debug_level(void) {
-  StyledString ss;
-#if (MATHQ_DEBUG == 0)
-  ss = StyledString::get(SSEnum::DLEVEL0);
-#elif (MATHQ_DEBUG == 1)
-  ss = StyledString::get(SSEnum::DLEVEL1);
-#elif (MATHQ_DEBUG == 2)
-  ss = StyledString::get(SSEnum::DLEVEL2);
-#elif (MATHQ_DEBUG >= 3)
-  ss = StyledString::get(SSEnum::DLEVEL3);
-#endif
-  mout << "  " << ss << " " << std::endl;
-}
 
-inline void print_mathq_info(void) {
-  using namespace std;
-  using namespace display;
-  mout << StyledString::get(HORLINE);
-  mout << StyledString::get(MATHEMATIQUES) << " ";
-  mout << StyledString::get(VERSION) << " ";
-  mout << endl
-       << endl;
-  mout << "compile-time settings" << endl;
-  print_debug_level();
-  mout << createStyle(BOLD).apply("  C++ version: ");
-  mout << createStyle(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
-#ifdef MATHQ_COPTS
-  mout << createStyle(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
-  mout << createStyle(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
-#endif
-  mout << StyledString::get(HORLINE);
-}
 
-inline void set_default_format() {
-  using namespace display;
-  // TODO: include all default styles
 
-  // TODO: put these into an intilization and share it here as well as in cpp file
-  FormatDataVector::style_for_punctuation = createStyle(GRAY1);
-  FormatDataVector::string_endofline = "\n";
-  FormatDataVector::string_opening = "{";
-  FormatDataVector::string_delimeter = ",";
-  FormatDataVector::max_elements_per_line = mathq::maxsize;
-  FormatDataVector::string_closing = "}";
-
-  // TODO: put these into an intilization and share it here as well as in cpp file
-  FormatDataMatrix::max_elements_per_line = mathq::maxsize;
-  FormatDataMatrix::style_for_punctuation = createStyle(GRAY1);
-  FormatDataMatrix::string_opening = "{";
-  FormatDataMatrix::string_delimeter = ", ";
-  FormatDataMatrix::string_row_opening = " {";
-  FormatDataMatrix::string_row_closing = "},";
-  FormatDataMatrix::string_lastrow_closing = "} ";
-  FormatDataMatrix::string_endofline = "\n";
-  FormatDataMatrix::string_closing = "}";
-
-  setFormatStringComplex("(%s, %s)");
-
-  FormatData<double>::format_string = FormatData<double>::format_string_default;
-  FormatData<double>::tens = false;
-  FormatData<float>::format_string = FormatData<float>::format_string_default;
-  FormatData<long double>::format_string = FormatData<long double>::format_string_default;
-  FormatData<short>::format_string = FormatData<short>::format_string_default;
-  FormatData<int>::format_string = FormatData<int>::format_string_default;
-  FormatData<long>::format_string = FormatData<long>::format_string_default;
-  FormatData<unsigned short>::format_string = FormatData<unsigned short>::format_string_default;
-  FormatData<unsigned int>::format_string = FormatData<unsigned int>::format_string_default;
-  FormatData<unsigned long>::format_string = FormatData<unsigned long>::format_string_default;
-  FormatData<char>::format_string = FormatData<char>::format_string_default;
-
-  FormatData<std::string>::format_string = FormatData<std::string>::format_string_default;
-
-  FormatData<bool>::string_for_true = "1";
-  FormatData<bool>::string_for_false = "0";
-}
-
-inline void set_mathematica_var_format() {
-  using namespace display;
-  FormatDataVector::string_opening = "{\n    ";
-  FormatDataVector::string_delimeter = ", ";
-  FormatDataVector::max_elements_per_line = 5;
-  FormatDataVector::string_endofline = "\n    ";
-  FormatDataVector::string_closing = "\n}";
-  setFormatString<double>("% 10.8e");
-  setFormatStringComplex("%s + I*%s");
-  FormatData<double>::tens = true;
-}
-
-inline void set_matlab_var_format() {
-  using namespace display;
-  FormatDataVector::string_opening = "[ ...\n    ";
-  FormatDataVector::string_delimeter = ", ";
-  FormatDataVector::max_elements_per_line = 5;
-  FormatDataVector::string_endofline = " ...\n    ";
-  FormatDataVector::string_closing = " ...\n]";
-  setFormatString<double>("% 10.8e");
-  setFormatStringComplex("%s + i*%s");
-  FormatData<double>::tens = false;
-}
-
-}; // namespace display
 
 #endif

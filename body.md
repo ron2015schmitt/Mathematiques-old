@@ -11,7 +11,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
 + [Features](#features)
   + [Math](#math)
   + [Output, I/O, and debugging](#output)
-  + [Documentation](#documentation)
+  + [Documentation features](#documentation-features)
 + [Examples](#examples)
   + [EXAMPLE 1: Element-wise `Vector` math](#example-1)
   + [EXAMPLE 2: Complicated Element-wise `Vector` math](#example-2)
@@ -53,7 +53,7 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + provide bounds checking of arrays and send warnings to the stderr
   + ability to track all large arrays in use
 
-### Documentation
+### Documentation features
 + Detailed pretty documentation in Markdown.  
 + Markdown documents can be auto-generated from C++ code.
 

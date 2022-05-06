@@ -1,7 +1,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 #include "test.h"
 
 
@@ -11,9 +10,9 @@ int main() {
   using namespace display;
 
   print_mathq_info();
-  mout << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - matrix tests" << std::endl;
-  cr();
-  cr();
+  MOUT << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - matrix tests" << std::endl;
+  CR();
+  CR();
 
   bool allpass = true;
   int testnum = 0;

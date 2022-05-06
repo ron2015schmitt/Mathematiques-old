@@ -250,7 +250,7 @@ namespace mathq
   //   typedef typename AddType<D1, D2>::Type D3;
   //   typedef typename NumberType<E1, D3>::ReplaceTypeD E3; // see TODO note above
   //   constexpr int M3 = M1;
-  //   //    mout << "C" <<std::endl;
+  //   //    MOUT << "C" <<std::endl;
   //   return TER_Binary<TensorR<A, E1, D1, M1, R>,
   //                     TensorR<B, D2, D2, M2, R>,
   //                     E1, D2, E3, D1, D2, D3, M1, M2, M3, R, R, R,
@@ -278,7 +278,7 @@ namespace mathq
   //   typedef typename AddType<D1, D2>::Type D3;
   //   typedef typename NumberType<E2, D3>::ReplaceTypeD E3; // see TODO note above
   //   constexpr int M3 = M2;
-  //   //    mout << "D" <<std::endl;
+  //   //    MOUT << "D" <<std::endl;
   //   return TER_Binary<TensorR<A, D1, D1, M1, R>,
   //                     TensorR<B, E2, D2, M2, R>,
   //                     D1, E2, E3, D1, D2, D3, M1, M2, M3, R, R, R,

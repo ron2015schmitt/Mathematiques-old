@@ -4,7 +4,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -19,12 +18,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("The `linspace` functions");
   mathq_preamble();
 

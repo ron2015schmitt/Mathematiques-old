@@ -2,7 +2,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 int main(int argc, char *argv[]) {
@@ -26,25 +25,25 @@ int main(int argc, char *argv[]) {
   FormatData<bool>::string_for_false = "false";
 
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
 
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
 
-  mout << bold.apply("Addition tests") << endl;
-  cr();
+  MOUT << bold.apply("Addition tests") << endl;
+  CR();
 
   {
     int s = -10;
@@ -53,12 +52,12 @@ int main(int argc, char *argv[]) {
     tdisp(s);
     tdisp(u);
     tdisp(s + u);
-    cr();
+    CR();
   }
-  mout << blue.apply("Vector-Vector tests") << endl;
+  MOUT << blue.apply("Vector-Vector tests") << endl;
   {
     using namespace mathq::unit_imaginary;
-    cr();
+    CR();
     Vector<short> Vshort{-11, -12, 13};
     Vector<int> Vint1{11, 12, -13};
     Vector<int> Vint2{11, 12, -100};
@@ -72,81 +71,81 @@ int main(int argc, char *argv[]) {
     Vector<Imaginary<long double>> vImagExtended{10 * iL, 20 * iL, 30 * iL};
     Vector<complex<double>> VcomplexDouble{complex<double>(0.1, 0.001), complex<double>(0.2, 0.002), complex<double>(0.3, 0.003)};
     Vector<complex<int>> VcomplexInt{complex<int>(1, -2), complex<int>(1, 0), complex<int>(0, 1)};
-    mout << blue.apply("Given:") << endl;
-    mout << "  ";
+    MOUT << blue.apply("Given:") << endl;
+    MOUT << "  ";
     tdisp(Vshort);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vLong);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vunsigned);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vdouble1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vfloat);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vextended);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vImagDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vImagExtended);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexInt);
-    cr();
-    mout << blue.apply("Vector+Vector Addition:") << endl;
-    mout << "  ";
+    CR();
+    MOUT << blue.apply("Vector+Vector Addition:") << endl;
+    MOUT << "  ";
     tdisp(Vshort + Vshort);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + Vshort);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + vLong);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vLong + Vshort);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + Vunsigned);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint2 + Vunsigned);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vdouble1 + Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vdouble1 + Vunsigned);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vLong + Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vfloat + Vint1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vextended + Vfloat);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + Vextended);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vImagDouble + vImagExtended);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + vImagDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vImagDouble + Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vfloat + vImagDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vLong + vImagDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vdouble1 + VcomplexDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + VcomplexInt);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexDouble + vImagExtended);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexInt + vImagDouble);
 
-    cr();
+    CR();
 
     short sh = 2;
     int n = 10;
@@ -160,240 +159,240 @@ int main(int argc, char *argv[]) {
     complex<double> c_dub = complex<double>(-10.1, -10.2);
     complex<int> c_int = complex<int>(1, -2);
 
-    mout << blue.apply("Given:") << endl;
-    mout << "  ";
+    MOUT << blue.apply("Given:") << endl;
+    MOUT << "  ";
     tdisp(sh);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(n);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(longo);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(u);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(dub);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(f);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(e);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(imag_d);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(imag_e);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(c_dub);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(c_int);
 
-    cr();
-    mout << blue.apply("Vector+scalar Addition:") << endl;
-    mout << "  ";
+    CR();
+    MOUT << blue.apply("Vector+scalar Addition:") << endl;
+    MOUT << "  ";
     tdisp(Vshort + sh);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + sh);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(n + vLong);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vLong + longo);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + u);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(u + Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(dub + Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(f + Vint1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(e + Vdouble2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vfloat + n);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vextended + f);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vImagDouble + imag_e);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 + imag_d);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(vImagDouble + dub);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(f + vImagDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(longo + vImagDouble);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexDouble + dub);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(sh + VcomplexInt);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexDouble + imag_e);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexInt + imag_d);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(VcomplexInt + c_int);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(c_dub + VcomplexInt);
   }
 
 
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Vector tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Vector tests") << endl;
 
 
 
-  cr();
-  cr();
+  CR();
+  CR();
 
   {
-    cr();
+    CR();
     Matrix<Vector<double>> m1{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
     Vector<double> v0{100, 200, 300};
-    mout << blue.apply("Given:") << endl;
-    mout << "  ";
+    MOUT << blue.apply("Given:") << endl;
+    MOUT << "  ";
     tdisp(m1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0);
-    cr();
+    CR();
 
-    mout << "element-wise addition is chosen, since the elements are Vectors" << endl;
-    mout << "  ";
+    MOUT << "element-wise addition is chosen, since the elements are Vectors" << endl;
+    MOUT << "  ";
     tdisp(m1 + v0);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0 + m1);
 
-    cr();
-    mout << "Element-access:" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Element-access:" << endl;
+    MOUT << "  ";
     tdisp(m1[0]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((m1 + v0)[0]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v0 + m1)[0]);
   }
 
 
   {
-    cr();
+    CR();
     Vector<Matrix<double>> v1{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     Vector<double> v0{100, 200, 300};
 
-    mout << blue.apply("Given:") << endl;
-    mout << "  ";
+    MOUT << blue.apply("Given:") << endl;
+    MOUT << "  ";
     tdisp(v1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0);
 
-    cr();
-    mout << "Top-level addition is chosen, since the top-level is a vector" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Top-level addition is chosen, since the top-level is a vector" << endl;
+    MOUT << "  ";
     tdisp(v1 + v0);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0 + v1);
 
-    cr();
-    mout << "Element-access:" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Element-access:" << endl;
+    MOUT << "  ";
     tdisp(v1[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v1 + v0)[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v0 + v1)[1]);
   }
 
 
 
   {
-    cr();
-    cr();
+    CR();
+    CR();
 
     Vector<Vector<double>> v1{{1, 2, 3}, {4, 5, 6}};
     Vector<double> v0{10, 20, 30};
     string s;
-    mout << blue.apply("Given:") << endl;
-    mout << "  ";
+    MOUT << blue.apply("Given:") << endl;
+    MOUT << "  ";
     tdisp(v1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0);
-    cr();
-    mout << "By analysing the dimensions element-wise addition is chosen" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "By analysing the dimensions element-wise addition is chosen" << endl;
+    MOUT << "  ";
     tdisp(v1 + v0);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0 + v1);
 
-    cr();
-    mout << "Element-access:" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Element-access:" << endl;
+    MOUT << "  ";
     tdisp(v1[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v1 + v0)[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v0 + v1)[1]);
 
-    cr();
-    cr();
+    CR();
+    CR();
     Vector<double> v00{100, 200};
-    mout << blue.apply("Given:") << endl;
+    MOUT << blue.apply("Given:") << endl;
 
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v00);
-    cr();
-    mout << "By analysing the dimensions top-level addition is chosen" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "By analysing the dimensions top-level addition is chosen" << endl;
+    MOUT << "  ";
     tdisp(v1 + v00);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v00 + v1);
 
-    cr();
-    mout << "Element-access:" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Element-access:" << endl;
+    MOUT << "  ";
     tdisp(v1[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v1 + v00)[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v00 + v1)[1]);
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("When dimensions and rank are the same, the result depends on order, ie non-commutative") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("When dimensions and rank are the same, the result depends on order, ie non-commutative") << endl;
   {
-    cr();
+    CR();
     Vector<Vector<double>> v1{{1, 2}, {4, 5}};
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v1);
     Vector<double> v0{10, 20};
-    mout << "  ";
+    MOUT << "  ";
     tdisp(v0);
-    cr();
-    mout << "Adding from the right yields element-wise: each element of v1 is added with v0" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Adding from the right yields element-wise: each element of v1 is added with v0" << endl;
+    MOUT << "  ";
     tdisp(v1 + v0);
-    cr();
-    mout << "Adding from the left yields Top-level: add v0[0] to vector v1[0], add v0[1] to vector v1[1]" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Adding from the left yields Top-level: add v0[0] to vector v1[0], add v0[1] to vector v1[1]" << endl;
+    MOUT << "  ";
     tdisp(v0 + v1);
 
-    cr();
-    mout << "Element-access:" << endl;
-    mout << "  ";
+    CR();
+    MOUT << "Element-access:" << endl;
+    MOUT << "  ";
     tdisp(v1[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v1 + v0)[1]);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((v0 + v1)[1]);
-    cr();
+    CR();
   }
 
 
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

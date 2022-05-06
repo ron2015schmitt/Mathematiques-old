@@ -2,7 +2,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 using namespace mathq;
 
@@ -30,13 +29,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -44,18 +43,18 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
-  cr();
-  cr();
-  mout << blue.apply("4- deep tests") << endl;
+  CR();
+  CR();
+  MOUT << blue.apply("4- deep tests") << endl;
 
   {
-    cr();
-    mout << bold.apply("Scalar<Vector<Matrix<Tensor<double,3>,3,2>,4>>") << endl;
+    CR();
+    MOUT << bold.apply("Scalar<Vector<Matrix<Tensor<double,3>,3,2>,4>>") << endl;
     Scalar<Vector<Matrix<Tensor<double, 3>, 3, 2>, 4>> x;
     tdisp(x);
     tdisp(x.dims());
@@ -86,10 +85,10 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    cr();
+    CR();
+    CR();
 
-    mout << "set via initializer_list" << endl;
+    MOUT << "set via initializer_list" << endl;
     Scalar<Vector<Matrix<Tensor<double, 3>, 3, 2>, 4>> x{{{{{{{0, 1}},
                                                              {{100, 101}}},
                                                             {{{1000, 1001}},
@@ -199,10 +198,10 @@ int main(int argc, char *argv[]) {
   }
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

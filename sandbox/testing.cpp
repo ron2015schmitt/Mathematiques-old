@@ -3,7 +3,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 template <typename T>
@@ -19,14 +18,14 @@ T adder(T first, Args... args) {
 
 template <class D, template <typename> class F>
 void printUnary() {
-  mout << F<D>::classname() << " ";
-  mout << F<D>::expression("x") << std::endl;
+  MOUT << F<D>::classname() << " ";
+  MOUT << F<D>::expression("x") << std::endl;
 }
 
 template <class F>
 void printUnary() {
-  mout << F::classname() << " ";
-  mout << F::expression("x") << std::endl;
+  MOUT << F::classname() << " ";
+  MOUT << F::expression("x") << std::endl;
 }
 
 
@@ -77,13 +76,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -100,8 +99,8 @@ int main(int argc, char *argv[]) {
   vc[0] = ComplexDouble(2.0, 3.0);
   vc[1] = ComplexDouble(-2.0, 7.0);
 
-  cr();
-  cr();
+  CR();
+  CR();
   disp(n);
   disp(m);
   disp(x);
@@ -113,8 +112,8 @@ int main(int argc, char *argv[]) {
   disp(s);
   disp(z);
 
-  cr();
-  cr();
+  CR();
+  CR();
   tdisp(n);
   tdisp(m);
   tdisp(x);
@@ -126,113 +125,113 @@ int main(int argc, char *argv[]) {
   tdisp(s);
   tdisp(z);
 
-  cr();
-  cr();
+  CR();
+  CR();
   mdisp(n, m, x, vals, done, str, s, z);
 
-  cr();
-  cr();
+  CR();
+  CR();
   dispval(n);
   dispval(m);
 
-  cr();
-  cr();
+  CR();
+  CR();
   disp(n + 3);
   disp(10 * x - 1);
   disp(!done);
   disp(round(10 * sin(pi / 10 * v) + 10));
   disp(s + " tour");
-  mout << std::endl;
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(GRAY1) << "  ";
-  mout << CREATESTYLE(GRAY2) << "  ";
-  mout << CREATESTYLE(WHITE + BLACKBACK) << "  ";
-  mout << std::endl;
+  MOUT << CREATESTYLE(GRAY1) << "  ";
+  MOUT << CREATESTYLE(GRAY2) << "  ";
+  MOUT << CREATESTYLE(WHITE + BLACKBACK) << "  ";
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(RED) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(ORANGE) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(YELLOW) << "  ";
-  mout << CREATESTYLE(YELLOWBRIGHT) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(GREEN) << "  ";
-  mout << CREATESTYLE(GREENBRIGHT) << "  ";
-  mout << CREATESTYLE(GREEN1) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(CYAN) << "  ";
-  mout << CREATESTYLE(BLUE) << "  ";
-  mout << CREATESTYLE(BLUEBRIGHT) << "  ";
-  mout << CREATESTYLE(BLUE1) << "  ";
-  mout << CREATESTYLE(BLUE2) << "  ";
-  mout << CREATESTYLE(BLUE3) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(MAGENTA) << "  ";
-  mout << CREATESTYLE(MAGENTA1) << "  ";
-  mout << CREATESTYLE(VIOLET1) << "  ";
-  mout << std::endl;
-  mout << bold << "  ";
-  mout << CREATESTYLE(UNDERLINE) << "  ";
-  mout << CREATESTYLE(CROSSEDOUT) << "  ";
-  mout << CREATESTYLE(OVERLINE) << "  ";
-  mout << CREATESTYLE(SLOWBLINK) << "  ";
-  mout << std::endl;
+  MOUT << CREATESTYLE(RED) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(ORANGE) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(YELLOW) << "  ";
+  MOUT << CREATESTYLE(YELLOWBRIGHT) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(GREEN) << "  ";
+  MOUT << CREATESTYLE(GREENBRIGHT) << "  ";
+  MOUT << CREATESTYLE(GREEN1) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(CYAN) << "  ";
+  MOUT << CREATESTYLE(BLUE) << "  ";
+  MOUT << CREATESTYLE(BLUEBRIGHT) << "  ";
+  MOUT << CREATESTYLE(BLUE1) << "  ";
+  MOUT << CREATESTYLE(BLUE2) << "  ";
+  MOUT << CREATESTYLE(BLUE3) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(MAGENTA) << "  ";
+  MOUT << CREATESTYLE(MAGENTA1) << "  ";
+  MOUT << CREATESTYLE(VIOLET1) << "  ";
+  MOUT << std::endl;
+  MOUT << bold << "  ";
+  MOUT << CREATESTYLE(UNDERLINE) << "  ";
+  MOUT << CREATESTYLE(CROSSEDOUT) << "  ";
+  MOUT << CREATESTYLE(OVERLINE) << "  ";
+  MOUT << CREATESTYLE(SLOWBLINK) << "  ";
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(REDBACK) << "  ";
-  mout << CREATESTYLE(ORANGEBACK) << "  ";
-  mout << CREATESTYLE(YELLOWBACK) << "  ";
-  mout << CREATESTYLE(GREENBACK) << "  ";
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+  MOUT << CREATESTYLE(REDBACK) << "  ";
+  MOUT << CREATESTYLE(ORANGEBACK) << "  ";
+  MOUT << CREATESTYLE(YELLOWBACK) << "  ";
+  MOUT << CREATESTYLE(GREENBACK) << "  ";
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(BOLD + UNDERLINE + VIOLET1) << "  ";
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+  MOUT << CREATESTYLE(BOLD + UNDERLINE + VIOLET1) << "  ";
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
 
   {
     Style mystyle = CREATESTYLE(BOLD + RED);
-    mout << mystyle.apply("with style") + " without style " << std::endl;
+    MOUT << mystyle.apply("with style") + " without style " << std::endl;
   }
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
 
   {
     int nf = 27;  // color for foreground
     int nb = 227; // color for background
     Style mystyle(nf, nb);
-    mout << mystyle.apply("Hello World") << std::endl;
+    MOUT << mystyle.apply("Hello World") << std::endl;
 
-    mout << std::endl;
-    mout << std::endl;
-    mout << std::endl;
+    MOUT << std::endl;
+    MOUT << std::endl;
+    MOUT << std::endl;
 
 
     Style bold(BOLD);
     Style mybold = bold + mystyle;
-    mout << mybold.apply("Hello World") << std::endl;
+    MOUT << mybold.apply("Hello World") << std::endl;
 
     Style black(BLACK);
-    mout << "XXX" << black.apply("XXX") << "XXX" << std::endl;
+    MOUT << "XXX" << black.apply("XXX") << "XXX" << std::endl;
   }
 
-  cr();
-  cr();
+  CR();
+  CR();
 
   double d;
 
-  // mout << is_instance<Fun_Multiply<double,int>, Fun_Divide>{} <<endl;
-  // mout << is_instance<Fun_Multiply<double,float>, Fun_Multiply>{} <<endl;
+  // MOUT << is_instance<Fun_Multiply<double,int>, Fun_Divide>{} <<endl;
+  // MOUT << is_instance<Fun_Multiply<double,float>, Fun_Multiply>{} <<endl;
 
 
   // The following causes a compiler error.
   // I think because vector has two template arguments with the second having
   // a default value
 
-  //  mout <<  is_instance<std::vector<int>, std::vector>{}  << endl;
+  //  MOUT <<  is_instance<std::vector<int>, std::vector>{}  << endl;
 
 
   short var_short;
@@ -240,39 +239,39 @@ int main(int argc, char *argv[]) {
   long int var_long;
   long long var_longlong;
   std::string var_string;
-  mout << getTypeName(var_short) << endl;
-  mout << getTypeName(var_int) << endl;
-  mout << getTypeName(var_long) << endl;
-  mout << getTypeName(var_longlong) << endl;
-  mout << getTypeName(var_string) << endl;
-  mout << "sizeof(char) = " << sizeof(char) << endl;
-  mout << "sizeof(short) = " << sizeof(short) << endl;
-  mout << "sizeof(int) = " << sizeof(int) << endl;
-  mout << "sizeof(long) = " << sizeof(long) << endl;
-  mout << "sizeof(long long) = " << sizeof(long long) << endl;
-  mout << endl;
-  mout << "sizeof(float) = " << sizeof(float) << endl;
-  mout << "sizeof(double) = " << sizeof(double) << endl;
-  mout << "sizeof(long double) = " << sizeof(long double) << endl;
-  mout << endl;
-  mout << "sizeof(bool) = " << sizeof(bool) << endl;
-  mout << "sizeof(ComplexFloat) = " << sizeof(ComplexFloat) << endl;
+  MOUT << getTypeName(var_short) << endl;
+  MOUT << getTypeName(var_int) << endl;
+  MOUT << getTypeName(var_long) << endl;
+  MOUT << getTypeName(var_longlong) << endl;
+  MOUT << getTypeName(var_string) << endl;
+  MOUT << "sizeof(char) = " << sizeof(char) << endl;
+  MOUT << "sizeof(short) = " << sizeof(short) << endl;
+  MOUT << "sizeof(int) = " << sizeof(int) << endl;
+  MOUT << "sizeof(long) = " << sizeof(long) << endl;
+  MOUT << "sizeof(long long) = " << sizeof(long long) << endl;
+  MOUT << endl;
+  MOUT << "sizeof(float) = " << sizeof(float) << endl;
+  MOUT << "sizeof(double) = " << sizeof(double) << endl;
+  MOUT << "sizeof(long double) = " << sizeof(long double) << endl;
+  MOUT << endl;
+  MOUT << "sizeof(bool) = " << sizeof(bool) << endl;
+  MOUT << "sizeof(ComplexFloat) = " << sizeof(ComplexFloat) << endl;
 
   char var_char;
   unsigned char var_unsigned_char;
   signed char var_signed_char;
   unsigned int var_unsigned_int;
   signed int var_signed_int;
-  mout << (typeid(var_char) == typeid(var_unsigned_char)) << endl;
-  mout << (typeid(var_char) == typeid(var_signed_char)) << endl;
+  MOUT << (typeid(var_char) == typeid(var_unsigned_char)) << endl;
+  MOUT << (typeid(var_char) == typeid(var_signed_char)) << endl;
 
-  mout << (typeid(var_int) == typeid(var_unsigned_int)) << endl;
-  mout << (typeid(var_int) == typeid(var_signed_int)) << endl;
+  MOUT << (typeid(var_int) == typeid(var_unsigned_int)) << endl;
+  MOUT << (typeid(var_int) == typeid(var_signed_int)) << endl;
 
-  mout << typeid(&f1).name() << endl;
-  mout << typeid(f2).name() << endl;
-  mout << typeid(FunctionType1<double, double>::type).name() << endl;
-  mout << getTypeName(f1) << endl;
+  MOUT << typeid(&f1).name() << endl;
+  MOUT << typeid(f2).name() << endl;
+  MOUT << typeid(FunctionType1<double, double>::type).name() << endl;
+  MOUT << getTypeName(f1) << endl;
 
 
 
@@ -296,7 +295,7 @@ int main(int argc, char *argv[]) {
   Scalar<int> *t2 = static_cast<Scalar<int> *>(t);
 
   disp(*t2);
-  mout << "t=" << *t2 << endl;
+  MOUT << "t=" << *t2 << endl;
 
 
   disp(typeid(*t).name());
@@ -435,7 +434,7 @@ int main(int argc, char *argv[]) {
     double x10 = q(0);
     double x11 = q(1);
     mdisp(x10, x11);
-    cr();
+    CR();
     x10 = q((size_type)0);
   }
 
@@ -462,9 +461,9 @@ int main(int argc, char *argv[]) {
   // mixed complex adding
 
   {
-    cr();
-    mout << bold.apply("complex<double> + complex<float>") << endl;
-    mout << "AddType<double,float>::Type=" << AddType<double, float>::name() << endl;
+    CR();
+    MOUT << bold.apply("complex<double> + complex<float>") << endl;
+    MOUT << "AddType<double,float>::Type=" << AddType<double, float>::name() << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -474,9 +473,9 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<int> + complex<float>") << endl;
-    mout << "AddType<int,float>::Type=" << AddType<int, float>::name() << endl;
+    CR();
+    MOUT << bold.apply("complex<int> + complex<float>") << endl;
+    MOUT << "AddType<int,float>::Type=" << AddType<int, float>::name() << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -486,9 +485,9 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<float> + complex<int>") << endl;
-    mout << "AddType<float,int>::Type=" << AddType<float, int>::name() << endl;
+    CR();
+    MOUT << bold.apply("complex<float> + complex<int>") << endl;
+    MOUT << "AddType<float,int>::Type=" << AddType<float, int>::name() << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
     tdisp(z);
@@ -501,8 +500,8 @@ int main(int argc, char *argv[]) {
 
   // mixed complex SUBTRACT
   {
-    cr();
-    mout << bold.apply("complex<double> - complex<float>") << endl;
+    CR();
+    MOUT << bold.apply("complex<double> - complex<float>") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -512,8 +511,8 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<int> - complex<float>") << endl;
+    CR();
+    MOUT << bold.apply("complex<int> - complex<float>") << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -523,8 +522,8 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<float> - complex<int>") << endl;
+    CR();
+    MOUT << bold.apply("complex<float> - complex<int>") << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
     tdisp(z);
@@ -538,8 +537,8 @@ int main(int argc, char *argv[]) {
 
   // mixed complex MULTIPLY
   {
-    cr();
-    mout << bold.apply("complex<double> * complex<float>") << endl;
+    CR();
+    MOUT << bold.apply("complex<double> * complex<float>") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -549,8 +548,8 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<int> * complex<float>") << endl;
+    CR();
+    MOUT << bold.apply("complex<int> * complex<float>") << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -560,8 +559,8 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<float> * complex<int>") << endl;
+    CR();
+    MOUT << bold.apply("complex<float> * complex<int>") << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
     tdisp(z);
@@ -574,8 +573,8 @@ int main(int argc, char *argv[]) {
 
   // mixed complex DIVIDE
   {
-    cr();
-    mout << bold.apply("complex<double> / complex<float>") << endl;
+    CR();
+    MOUT << bold.apply("complex<double> / complex<float>") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -585,8 +584,8 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<int> / complex<float>") << endl;
+    CR();
+    MOUT << bold.apply("complex<int> / complex<float>") << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
     tdisp(z);
@@ -596,8 +595,8 @@ int main(int argc, char *argv[]) {
     tdisp(q);
   }
   {
-    cr();
-    mout << bold.apply("complex<float> / complex<int>") << endl;
+    CR();
+    MOUT << bold.apply("complex<float> / complex<int>") << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
     tdisp(z);
@@ -612,14 +611,14 @@ int main(int argc, char *argv[]) {
   // complex<D> + D : inherently suppoerd by C++
 
   {
-    cr();
+    CR();
     ComplexDouble z = ComplexDouble(1, 2);
     double x = 6.5;
     tdisp(z);
     tdisp(x);
-    mout << bold.apply("complex<double> + double") << endl;
+    MOUT << bold.apply("complex<double> + double") << endl;
     tdisp((z + x));
-    mout << bold.apply("complex<double> + double") << endl;
+    MOUT << bold.apply("complex<double> + double") << endl;
     tdisp((x + z));
   }
 
@@ -627,33 +626,33 @@ int main(int argc, char *argv[]) {
   // complex<D1> + D2
 
   {
-    cr();
+    CR();
     ComplexDouble z = ComplexDouble(1, 2);
     float x = 6.5;
     tdisp(z);
     tdisp(x);
-    mout << bold.apply("complex<double> + float") << endl;
+    MOUT << bold.apply("complex<double> + float") << endl;
     tdisp((z + x));
-    mout << bold.apply("float + complex<float>") << endl;
+    MOUT << bold.apply("float + complex<float>") << endl;
     tdisp((x + z));
-    mout << bold.apply("complex<double> - float") << endl;
+    MOUT << bold.apply("complex<double> - float") << endl;
     tdisp((z - x));
-    mout << bold.apply("float - complex<float>") << endl;
+    MOUT << bold.apply("float - complex<float>") << endl;
     tdisp((x - z));
-    mout << bold.apply("complex<double> * float") << endl;
+    MOUT << bold.apply("complex<double> * float") << endl;
     tdisp((z * x));
-    mout << bold.apply("float * complex<float>") << endl;
+    MOUT << bold.apply("float * complex<float>") << endl;
     tdisp((x * z));
-    mout << bold.apply("complex<double> / float") << endl;
+    MOUT << bold.apply("complex<double> / float") << endl;
     tdisp((z / x));
-    mout << bold.apply("float / complex<float>") << endl;
+    MOUT << bold.apply("float / complex<float>") << endl;
     tdisp((x / z));
   }
 
 
   {
-    cr();
-    mout << bold.apply("conj(D)") << endl;
+    CR();
+    MOUT << bold.apply("conj(D)") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     double x = 6.5;
     tdisp(z);
@@ -667,8 +666,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Imaginary<double> + Imaginary<float>") << endl;
+    CR();
+    MOUT << bold.apply("Imaginary<double> + Imaginary<float>") << endl;
     ImDouble z = ImDouble(1.1);
     ImFloat x = ImFloat(10.01);
     tdisp(z);
@@ -679,8 +678,8 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    mout << bold.apply("Imaginary<double> * Imaginary<float>") << endl;
+    CR();
+    MOUT << bold.apply("Imaginary<double> * Imaginary<float>") << endl;
     ImDouble z = ImDouble(1.12);
     ImFloat x = ImFloat(100);
     tdisp(z);
@@ -692,21 +691,21 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
+  CR();
   disp(is_base_of<ComplexDouble, ComplexDouble>::value);
   disp(is_base_of<Scalar<double>, Scalar<double>>::value);
 
-  cr();
+  CR();
   disp(is_arithmetic<double>::value);
   disp(is_arithmetic<ComplexDouble>::value);
   disp(is_arithmetic<Scalar<double>>::value);
 
-  cr();
+  CR();
   disp(is_floating_point<double>::value);
   disp(is_floating_point<ComplexDouble>::value);
   disp(is_floating_point<Scalar<double>>::value);
 
-  cr();
+  CR();
   disp(is_complex<double>{});
   disp(is_complex<ComplexDouble>{});
   // disp(is_complex<Scalar<double> >{});
@@ -716,8 +715,8 @@ int main(int argc, char *argv[]) {
 
 
   // {
-  //   cr();
-  //   mout << bold.apply("Complexify") << endl;
+  //   CR();
+  //   MOUT << bold.apply("Complexify") << endl;
   //   Complexify<double>::Type double_;
   //   tdisp(double_);
   //   Complexify<std::complex<double> >::Type complexdouble_;
@@ -729,8 +728,8 @@ int main(int argc, char *argv[]) {
   // }
 
   //   {
-  //   cr();
-  //   mout << bold.apply("Realify") << endl;
+  //   CR();
+  //   MOUT << bold.apply("Realify") << endl;
   //   Realify<double>::Type double_;
   //   tdisp(double_);
   //   Realify<std::complex<double> >::Type complexdouble_;
@@ -743,8 +742,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("conj(Scalar<D>)") << endl;
+    CR();
+    MOUT << bold.apply("conj(Scalar<D>)") << endl;
     Scalar<ComplexDouble> z = ComplexDouble(1, 2);
     Scalar<double> x = 6.5;
     tdisp(z);
@@ -760,8 +759,8 @@ int main(int argc, char *argv[]) {
   }
 
   // {
-  //   cr();
-  //   mout << bold.apply("TypeTraits<T>::ParameterType") << endl;
+  //   CR();
+  //   MOUT << bold.apply("TypeTraits<T>::ParameterType") << endl;
   //   Loki::TypeTraits<int>::ParameterType n = 1;
   //   tdisp(n);
   //   disp(Loki::TypeTraits<decltype(n)>::isReference);
@@ -800,8 +799,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("initializer_list") << endl;
+    CR();
+    MOUT << bold.apply("initializer_list") << endl;
     Vector<int> v1 = {1, 2, 3, 4};
     tdisp(v1);
     int n = 5;
@@ -825,8 +824,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Vector<double>+ Vector<double>") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<double>+ Vector<double>") << std::endl;
     Vector<double> v1 = {11, 22};
     Vector<double> v2 = {100, 200};
     tdisp(v1);
@@ -834,8 +833,8 @@ int main(int argc, char *argv[]) {
     tdisp(v1 + v2);
   }
   {
-    cr();
-    mout << bold.apply("Vector<int>+ Vector<double>") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<int>+ Vector<double>") << std::endl;
     Vector<int> v1 = {11, 22};
     Vector<double> v2 = {0.1, 0.2};
     tdisp(v1);
@@ -843,8 +842,8 @@ int main(int argc, char *argv[]) {
     tdisp(v1 + v2);
   }
   {
-    cr();
-    mout << bold.apply("Vector<double> + double ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<double> + double ") << std::endl;
     Vector<double> v = {11, 22};
     double x = 0.5;
     tdisp(v);
@@ -852,8 +851,8 @@ int main(int argc, char *argv[]) {
     tdisp(v + x);
   }
   {
-    cr();
-    mout << bold.apply("Vector<int> + double ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<int> + double ") << std::endl;
     Vector<int> vz = {11, 22};
     double x = .5;
     tdisp(vz);
@@ -861,8 +860,8 @@ int main(int argc, char *argv[]) {
     tdisp(vz + x);
   }
   {
-    cr();
-    mout << bold.apply("Vector<double> + int ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<double> + int ") << std::endl;
     Vector<double> v = {11.1, 22.2};
     int n = 900;
     tdisp(v);
@@ -871,8 +870,8 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + Vector<complex<double> >") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + Vector<complex<double> >") << std::endl;
     Vector<ComplexDouble> vz1 = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     Vector<ComplexDouble> vz2 = {ComplexDouble(10.5, 20.5), ComplexDouble(30.5, 40.5)};
     tdisp(vz1);
@@ -881,8 +880,8 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + Vector<complex<int> >") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + Vector<complex<int> >") << std::endl;
     Vector<ComplexDouble> vz1 = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     Vector<ComplexInt> vz2 = {ComplexInt(10, 20), ComplexInt(30, 40)};
     tdisp(vz1);
@@ -891,8 +890,8 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + Vector<double>") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + Vector<double>") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 0.2), ComplexDouble(0.3, 2.4)};
     Vector<double> v = {0.01, 0.02};
     tdisp(vz);
@@ -901,8 +900,8 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + Vector<int>") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + Vector<int>") << std::endl;
     Vector<ComplexDouble> vz1 = {ComplexDouble(0.1, 0.2), ComplexDouble(0.3, 2.4)};
     Vector<int> vz2 = {1, 2};
     tdisp(vz1);
@@ -911,8 +910,8 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<int> > + Vector<double>") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<int> > + Vector<double>") << std::endl;
     Vector<ComplexInt> vzn = {ComplexInt(10, 20), ComplexInt(30, 40)};
     Vector<double> vx = {0.01, 0.02};
     tdisp(vzn);
@@ -923,8 +922,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + double ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + double ") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     double x = 0.5;
     tdisp(vz);
@@ -934,8 +933,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + double ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + double ") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     double x = 0.5;
     tdisp(vz);
@@ -943,8 +942,8 @@ int main(int argc, char *argv[]) {
     tdisp(vz + x);
   }
   {
-    cr();
-    mout << bold.apply("Vector<complex<int> > + double ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<int> > + double ") << std::endl;
     Vector<ComplexInt> vz = {ComplexInt(1, 2), ComplexInt(3, 4)};
     double x = .5;
     tdisp(vz);
@@ -952,8 +951,8 @@ int main(int argc, char *argv[]) {
     tdisp(vz + x);
   }
   {
-    cr();
-    mout << bold.apply("Vector<complex<double> > + int ") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<complex<double> > + int ") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     int n = 900;
     tdisp(vz);
@@ -965,8 +964,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Vector<Vector<double> > testing") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<Vector<double> > testing") << std::endl;
 
     // NOTE: no equals sign
     std::vector<std::vector<double>> ss{{1, 2}, {3, 4}};
@@ -987,8 +986,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Vector<Vector<double> > + Vector<Vector<double> >") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<Vector<double> > + Vector<Vector<double> >") << std::endl;
     Vector<Vector<double>> v1{{1, 2}, {3, 4}};
     Vector<Vector<double>> v2{{0.1, 0.2}, {0.3, 0.4}};
     tdisp(v1);
@@ -1001,11 +1000,11 @@ int main(int argc, char *argv[]) {
     // tdisp(-v3);
     //     v3 = {{0,0},{0,0}};
     tdisp(v3);
-    cr();
+    CR();
     //    typename AddType<Vector<double>,Vector<double>>::Type v4 {{6,7},{8,0}};
     //    v1+v2;
     //    disp(v1.bottom());
-    cr();
+    CR();
     disp(typeid(AddType<Vector<double>, Vector<double>>::Type).name());
     // fails:
     //    v3 = v1+v2;
@@ -1032,9 +1031,9 @@ int main(int argc, char *argv[]) {
     //     tdisp(2*s1);
   }
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
   return 0;
 }

@@ -17,7 +17,7 @@ _Back to [Table of Contents](../README.md)_
     operator+(const TensorR<D1,A>& a, const TensorR<D2,B>& b)
     {
       using namespace display;
-      // mout<< a << CREATESTYLE(BOLD).apply("+") << b << std::endl;
+      // MOUT<< a << CREATESTYLE(BOLD).apply("+") << b << std::endl;
       return  TER_Binary<typename AddType<D1,D2>::Type,TensorR<D1,A>,TensorR<D2,B>,Fun_Add_New<D1,D2> >(a,b);
     }
 

@@ -2,7 +2,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 bool printCPUInfo() {
@@ -29,7 +28,7 @@ bool printCPUInfo() {
 
   map<string, string>::iterator it = mymap.begin();
   while (it != mymap.end()) {
-    mout << it->first << "=" << it->second << std::endl;
+    MOUT << it->first << "=" << it->second << std::endl;
     it++;
   }
 
@@ -57,7 +56,7 @@ bool printMemInfo() {
 
   map<string, string>::iterator it = mymap.begin();
   while (it != mymap.end()) {
-    mout << it->first << "=" << it->second << std::endl;
+    MOUT << it->first << "=" << it->second << std::endl;
     it++;
   }
 
@@ -84,13 +83,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -99,15 +98,15 @@ int main(int argc, char *argv[]) {
   Timer tfull, t;
 
   tfull.start_timer_verbose();
-  cr();
+  CR();
 
 
 
   {
-    cr();
+    CR();
     const int N1 = 5;
     const int N2 = 3;
-    mout << "" << CREATESTYLE(BOLD).apply("Vector<Vector<double>> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
+    MOUT << "" << CREATESTYLE(BOLD).apply("Vector<Vector<double>> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
 
     Vector<Vector<double>> v1(N1);
     Vector<Vector<double>> v2(N1);
@@ -128,7 +127,7 @@ int main(int argc, char *argv[]) {
     tdisp(v1);
     tdisp(v2);
 
-    mout << "Deep add (v1+v2)" << std::endl;
+    MOUT << "Deep add (v1+v2)" << std::endl;
     t.start_timer_silent();
     v3 = v1 + v2;
     t.stop_timer_curt();
@@ -138,14 +137,14 @@ int main(int argc, char *argv[]) {
   // two-level recurse std::vector
   {
     using namespace std;
-    cr();
+    CR();
     const int N1 = 2;
     const int N2 = 3;
     const int N3 = 2;
-    mout << "" << CREATESTYLE(BOLD).apply("vector<vector<vector<double>>> + vector<vector<vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
+    MOUT << "" << CREATESTYLE(BOLD).apply("vector<vector<vector<double>>> + vector<vector<vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
 
-    cr();
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("vector<vector<double>> x") << std::endl;
+    CR();
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("vector<vector<double>> x") << std::endl;
     vector<vector<double>> x{{.1, .2}, {.3, .4}, {.5, .6}};
     tdisp(x);
     tdisp((void *)&x);
@@ -154,8 +153,8 @@ int main(int argc, char *argv[]) {
     }
 
 
-    cr();
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("vector<vector<vector<double>>> v1") << std::endl;
+    CR();
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("vector<vector<vector<double>>> v1") << std::endl;
     vector<vector<vector<double>>> v1{{{.1, .2}, {.3, .4}, {.5, .6}}, {{.7, .8}, {.9, 1.0}, {1.1, 1.2}}};
     tdisp(v1);
   }
@@ -163,16 +162,16 @@ int main(int argc, char *argv[]) {
 
   // two-level recurse
   {
-    cr();
-    cr();
-    cr();
+    CR();
+    CR();
+    CR();
     const int N1 = 2;
     const int N2 = 3;
     const int N3 = 2;
-    mout << "" << CREATESTYLE(BOLD).apply("Vector<Vector<Vector<double>>> + Vector<Vector<Vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
+    MOUT << "" << CREATESTYLE(BOLD).apply("Vector<Vector<Vector<double>>> + Vector<Vector<Vector<double>>>") << ", N1=" << N1 << ", N2=" << N2 << ", N3=" << N3 << std::endl;
 
-    cr();
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("Vector<Vector<double>> x") << std::endl;
+    CR();
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("Vector<Vector<double>> x") << std::endl;
     Vector<Vector<double>> x{{.1, .2}, {.3, .4}, {.5, .6}};
     tdisp(x);
     tdisp((void *)&x);
@@ -181,8 +180,8 @@ int main(int argc, char *argv[]) {
     }
 
 
-    cr();
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("Vector<Vector<Vector<double>>> v1") << std::endl;
+    CR();
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("Vector<Vector<Vector<double>>> v1") << std::endl;
     Vector<Vector<Vector<double>>> v1{{{.1, .2}, {.3, .4}, {.5, .6}}, {{.7, .8}, {.9, 1.0}, {1.1, 1.2}}};
     tdisp(v1);
 
@@ -200,13 +199,13 @@ int main(int argc, char *argv[]) {
     tdisp(v1);
     tdisp(v2);
 
-    mout << "Deep add (v1+v2)" << std::endl;
+    MOUT << "Deep add (v1+v2)" << std::endl;
     t.start_timer_silent();
     v3 = v1 + v2;
     t.stop_timer_curt();
     tdisp(v3);
 
-    cr();
+    CR();
     decltype(v3)::EType e;
     decltype(v3)::DType d;
     tdisp(e);
@@ -220,14 +219,14 @@ int main(int argc, char *argv[]) {
 
   // add vector to each element
   {
-    cr();
-    cr();
-    cr();
+    CR();
+    CR();
+    CR();
     const int N1 = 2;
     const int N2 = 3;
-    mout << "" << CREATESTYLE(BOLD).apply("Vector<Vector<double>> + Vector<double>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
+    MOUT << "" << CREATESTYLE(BOLD).apply("Vector<Vector<double>> + Vector<double>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
 
-    cr();
+    CR();
     Vector<Vector<double>> pairs{{.1, .2}, {.3, .4}, {.5, .6}};
     tdisp(pairs);
     Vector<double> origin{10., 20.};
@@ -242,7 +241,7 @@ int main(int argc, char *argv[]) {
     tdisp(v3);
 
 
-    mout << "" << CREATESTYLE(BOLD).apply("Vector<double> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
+    MOUT << "" << CREATESTYLE(BOLD).apply("Vector<double> + Vector<Vector<double>>") << ", N1=" << N1 << ", N2=" << N2 << std::endl;
     v3 = {{0, 0}, {0, 0}, {0, 0}};
     tdisp(v3);
     t.start_timer_silent();
@@ -253,17 +252,17 @@ int main(int argc, char *argv[]) {
 
 
   tfull.stop_timer_silent();
-  cr();
+  CR();
   printf("TOTAL TIME ELAPSED (including text display) = %f sec\n", tfull.cputime());
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

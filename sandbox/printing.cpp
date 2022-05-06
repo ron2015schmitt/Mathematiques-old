@@ -2,7 +2,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 int main(int argc, char *argv[]) {
@@ -15,13 +14,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -38,8 +37,8 @@ int main(int argc, char *argv[]) {
   ComplexDouble z(1, -1);
 
 
-  cr();
-  cr();
+  CR();
+  CR();
   disp(n);
   disp(m);
   disp(x);
@@ -51,8 +50,8 @@ int main(int argc, char *argv[]) {
   disp(s);
   disp(z);
 
-  cr();
-  cr();
+  CR();
+  CR();
   tdisp(n);
   tdisp(m);
   tdisp(x);
@@ -64,105 +63,105 @@ int main(int argc, char *argv[]) {
   tdisp(s);
   tdisp(z);
 
-  cr();
-  cr();
+  CR();
+  CR();
   mdisp(n, m, x, vals, done, str, s, z);
 
-  cr();
-  cr();
+  CR();
+  CR();
   dispval(n);
   dispval(m);
   dispval(A);
 
-  cr();
-  cr();
+  CR();
+  CR();
   disp(n + 3);
   disp(10 * x - 1);
   disp(!done);
   disp(round(10 * sin(pi / 10 * v) + 10));
   disp(s + " tour");
-  mout << std::endl;
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(GRAY1) << "  ";
-  mout << CREATESTYLE(GRAY2) << "  ";
-  mout << CREATESTYLE(WHITE + BLACKBACK) << "  ";
-  mout << std::endl;
+  MOUT << CREATESTYLE(GRAY1) << "  ";
+  MOUT << CREATESTYLE(GRAY2) << "  ";
+  MOUT << CREATESTYLE(WHITE + BLACKBACK) << "  ";
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(RED) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(ORANGE) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(YELLOW) << "  ";
-  mout << CREATESTYLE(YELLOWBRIGHT) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(GREEN) << "  ";
-  mout << CREATESTYLE(GREENBRIGHT) << "  ";
-  mout << CREATESTYLE(GREEN1) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(CYAN) << "  ";
-  mout << CREATESTYLE(BLUE) << "  ";
-  mout << CREATESTYLE(BLUEBRIGHT) << "  ";
-  mout << CREATESTYLE(BLUE1) << "  ";
-  mout << CREATESTYLE(BLUE2) << "  ";
-  mout << CREATESTYLE(BLUE3) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(MAGENTA) << "  ";
-  mout << CREATESTYLE(MAGENTA1) << "  ";
-  mout << CREATESTYLE(VIOLET1) << "  ";
-  mout << std::endl;
-  mout << CREATESTYLE(BOLD) << "  ";
-  mout << CREATESTYLE(UNDERLINE) << "  ";
-  mout << CREATESTYLE(CROSSEDOUT) << "  ";
-  mout << CREATESTYLE(OVERLINE) << "  ";
-  mout << CREATESTYLE(SLOWBLINK) << "  ";
-  mout << std::endl;
+  MOUT << CREATESTYLE(RED) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(ORANGE) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(YELLOW) << "  ";
+  MOUT << CREATESTYLE(YELLOWBRIGHT) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(GREEN) << "  ";
+  MOUT << CREATESTYLE(GREENBRIGHT) << "  ";
+  MOUT << CREATESTYLE(GREEN1) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(CYAN) << "  ";
+  MOUT << CREATESTYLE(BLUE) << "  ";
+  MOUT << CREATESTYLE(BLUEBRIGHT) << "  ";
+  MOUT << CREATESTYLE(BLUE1) << "  ";
+  MOUT << CREATESTYLE(BLUE2) << "  ";
+  MOUT << CREATESTYLE(BLUE3) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(MAGENTA) << "  ";
+  MOUT << CREATESTYLE(MAGENTA1) << "  ";
+  MOUT << CREATESTYLE(VIOLET1) << "  ";
+  MOUT << std::endl;
+  MOUT << CREATESTYLE(BOLD) << "  ";
+  MOUT << CREATESTYLE(UNDERLINE) << "  ";
+  MOUT << CREATESTYLE(CROSSEDOUT) << "  ";
+  MOUT << CREATESTYLE(OVERLINE) << "  ";
+  MOUT << CREATESTYLE(SLOWBLINK) << "  ";
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(REDBACK) << "  ";
-  mout << CREATESTYLE(ORANGEBACK) << "  ";
-  mout << CREATESTYLE(YELLOWBACK) << "  ";
-  mout << CREATESTYLE(GREENBACK) << "  ";
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+  MOUT << CREATESTYLE(REDBACK) << "  ";
+  MOUT << CREATESTYLE(ORANGEBACK) << "  ";
+  MOUT << CREATESTYLE(YELLOWBACK) << "  ";
+  MOUT << CREATESTYLE(GREENBACK) << "  ";
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
 
-  mout << CREATESTYLE(BOLD + UNDERLINE + VIOLET1) << "  ";
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+  MOUT << CREATESTYLE(BOLD + UNDERLINE + VIOLET1) << "  ";
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
 
   {
     Style mystyle = CREATESTYLE(BOLD + RED);
-    mout << mystyle.apply("with style") + " without style " << std::endl;
+    MOUT << mystyle.apply("with style") + " without style " << std::endl;
   }
-  mout << std::endl;
-  mout << std::endl;
-  mout << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
+  MOUT << std::endl;
 
   {
     int nf = 27;  // color for foreground
     int nb = 227; // color for background
     Style mystyle(nf, nb);
-    mout << mystyle.apply("Hello World") << std::endl;
+    MOUT << mystyle.apply("Hello World") << std::endl;
 
-    mout << std::endl;
-    mout << std::endl;
-    mout << std::endl;
+    MOUT << std::endl;
+    MOUT << std::endl;
+    MOUT << std::endl;
 
 
     Style bold(BOLD);
     Style mybold = bold + mystyle;
-    mout << mybold.apply("Hello World") << std::endl;
+    MOUT << mybold.apply("Hello World") << std::endl;
 
     Style black(BLACK);
-    mout << "XXX" << black.apply("XXX") << "XXX" << std::endl;
+    MOUT << "XXX" << black.apply("XXX") << "XXX" << std::endl;
   }
 
 
-  cr();
-  mout << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
 
   return 0;

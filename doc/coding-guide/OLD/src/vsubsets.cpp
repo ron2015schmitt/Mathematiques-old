@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -19,12 +18,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
   
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Access subsets of Vector elements");
   mathq_preamble();
 
@@ -34,20 +33,20 @@ int main()
   header2("Access vector elements using a `Vector` of indices");
 
   header3("Element access `Vector[Vector]`");
-  cr();
+  CR();
   text("* The index Vector _can be smaller than or greater than or equal to_ the length to the data Vector!");
   text("* The index Vector _can have repeated indices and indices can be in any order_!");
   {
-    cr();
-    cr();
-    example(Nex++,"Access via a Vector of indices");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Access via a Vector of indices");
     codestart("C++");
     codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
     codemulti( Vector<index_type> veven( range<index_type>(0,10,2) ) );
     codemulti( Vector<index_type> vodd( range<index_type>(1,10,2) ) );
     codemulti( Vector<index_type> vconst(15,1 ) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti( v );
     resultmulti( veven );
@@ -68,18 +67,18 @@ int main()
   header2("Access vector elements using an C++11 `initializer_list` of indices");
   header3("Element access `Vector[initializer_list]`");
 
-  cr();
+  CR();
   text("* The list can be smaller than or greater than or equal to the length to the data Vector.");
   text("* The list can have repeated indices and indices can be in any order!");
   {
-    cr();
-    cr();
-    example(Nex++,"Access via a C++11 initializer_list");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Access via a C++11 initializer_list");
     codestart("C++");
     codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
     disp(v);
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti( v[{0,4}] );
     resultmulti( v[{4,0,1,4}] );

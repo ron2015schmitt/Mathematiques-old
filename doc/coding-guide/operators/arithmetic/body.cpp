@@ -8,33 +8,31 @@
 
 #define MATHQ_DEBUG 1
 #include "mathq.h"
-#include "macros.h"
-#include "gitmd.h"
 
 int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   markdown_preamble();
 
-  cr();
-  cr();
+  CR();
+  CR();
 
 
   header2("Arithmetic Operators");
   text("The operators `+, -, *, /` are the addition, subtraction, multiplication, and division operators respectively.\n");
   text("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 
-  cr();
+  CR();
   text("| operator | operation | types | ");
   text("| :---: | :---: | :---: | ");
   text("| `+` | addition | 𝕤, 𝕌 | ");
   text("| `-` | subtraction | 𝕤, 𝕌 | ");
   text("| `*` | multiplication | 𝕤, 𝕌 | ");
   text("| `/` | division | 𝕤, 𝕌 | ");
-  cr();
+  CR();
 
   text("For container types, the following rules apply for `x op y`:\n");
   text("* For two (zero-depth) containers of the same `rank` and `dimensions`, `x op y` yields the element-wise operation a container of the same `rank` and `dimensions\n");
@@ -53,64 +51,64 @@ int main() {
   header2("Examples using addition");
 
   header4("Reals");
-  cr();
+  CR();
   codestart("C++");
   trdisp(1 + 2);
   trdisp(7.5 + 2);
   trdisp(7.5 - 0.5);
   codeend();
-  cr();
+  CR();
 
   header4("Complex, Imaginary and Mixed");
-  cr();
+  CR();
   codestart("C++");
   trdisp(complex<double>(1.5, 0) + complex<double>(0.5, 4));
   codeend();
-  cr();
+  CR();
 
   header4("Imaginary");
-  cr();
+  CR();
   codestart("C++");
   trdisp(complex<double>(1.5, 0) + complex<double>(0.5, 4));
   trdisp(Imaginary<double>(1) + Imaginary<double>(33.12));
   trdisp(-10 + Imaginary<double>(5.25));
   trdisp(100 + complex<double>(1.5, 2) + Imaginary<double>(5.25));
   codeend();
-  cr();
+  CR();
 
   header4("Mixed Type");
-  cr();
+  CR();
   codestart("C++");
   trdisp(complex<double>(1.5, 0) + complex<double>(0.5, 4));
   trdisp(Imaginary<double>(1) + Imaginary<double>(33.12));
   trdisp(-10 + Imaginary<double>(5.25));
   trdisp(100 + complex<double>(1.5, 2) + Imaginary<double>(5.25));
   codeend();
-  cr();
+  CR();
 
   header4("Containers");
-  cr();
+  CR();
   codestart("C++");
   codeend();
-  cr();
+  CR();
 
   header4("Nested Containers");
-  cr();
+  CR();
   codestart("C++");
   codeend();
-  cr();
+  CR();
 
   header4("Mixed Rank Math");
-  cr();
+  CR();
   codestart("C++");
   codeend();
-  cr();
+  CR();
 
   header4("Mixed Depth Math");
-  cr();
+  CR();
   codestart("C++");
   codeend();
-  cr();
+  CR();
 
   return 0;
 }

@@ -26,13 +26,13 @@ int main(int argc, char *argv[])
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " <<CREATESTYLE(BOLD).apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " <<CREATESTYLE(BOLD).apply(myname) << std::endl;
 
   
-  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   print_mathq_info();
   
   Vector<double> v1( linspace<double>(-1,1,21) );
@@ -55,10 +55,10 @@ int main(int argc, char *argv[])
   double sigma2 = norm(v2-mu2)/sqrt(N-1);
   disp(sigma2);
 
-  cr();
-  mout << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   
   return 0;

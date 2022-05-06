@@ -28,7 +28,7 @@
   1. DISPLAY: Allow to use different strigns for ```=``` and ```;``` when displaying results by adding ability to chaneg expression SyledString etc
     * have profiles for text ("->", ""), matlab ("=", ";"), mathematica ("=", ";")
   1. take advantage of std::optional<T> for optional arguments
-1. [Refactor mout and dout](topics/refactormout.md)
+1. [Refactor MOUT and dout](topics/refactormout.md)
 1. Group macros together, as much as possible. Clearly notate in a specific section in the documentation.
 1. [Refactor getTypeName](topics/gettypename.md)
 1. [Refactor FormatData](topics/formatdata.md)

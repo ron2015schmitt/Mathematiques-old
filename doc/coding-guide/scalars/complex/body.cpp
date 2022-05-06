@@ -8,18 +8,16 @@
 
 #define MATHQ_DEBUG 1
 #include "mathq.h"
-#include "macros.h"
-#include "gitmd.h"
 
 
 int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
-  cr();
-  cr();
+  CR();
+  CR();
 
   header2("Introduction");
 
@@ -28,24 +26,24 @@ int main() {
 
   text("The size of a complex number is simply _twice_ the size of the underlying arithmetic type:");
 
-  cr();
-  cr();
+  CR();
+  CR();
   codestart("C++");
   printf("CHAR_BIT = %d bits\n", CHAR_BIT);
-  cr();
+  CR();
   printf("CHAR_BIT*sizeof(int) = %ld bits\n", CHAR_BIT * sizeof(int));
   printf("CHAR_BIT*sizeof(complex<int>) = %ld bits\n", CHAR_BIT * sizeof(complex<int>));
-  cr();
+  CR();
   printf("CHAR_BIT*sizeof(double) = %ld bits\n", CHAR_BIT * sizeof(double));
   printf("CHAR_BIT*sizeof(complex<double>) = %ld bits\n", CHAR_BIT * sizeof(complex<double>));
-  cr();
+  CR();
   printf("CHAR_BIT*sizeof(long double) = %ld bits\n", CHAR_BIT * sizeof(long double));
   printf("CHAR_BIT*sizeof(complex<long double>) = %ld bits\n", CHAR_BIT * sizeof(complex<long double>));
-  cr();
+  CR();
   codeend();
 
   text("The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
-  cr();
+  CR();
   text("\n<br>\n");
   header2("Operators and functions");
 
@@ -53,14 +51,14 @@ int main() {
   text("Complex numbers in C++ support the 4 standard arithmetic operators.\n");
   text("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 
-  cr();
+  CR();
   text("| operator | operation | ");
   text("| :---: | :---: | ");
   text("| ```+``` | addition | ");
   text("| ```-``` | subtraction | ");
   text("| ```*``` | multiplication | ");
   text("| ```/``` | division | ");
-  cr();
+  CR();
 
   codestart("C++");
   disp(complex(1.0, 1.0) + complex(2.0, 4.0));
@@ -85,19 +83,19 @@ int main() {
   text("Complex numbers are not an ordered set.  Therefore, there is no concept of greater than or less than.\n");
   text("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
 
-  cr();
+  CR();
   text("| operator | operation | ");
   text("| :---: | :---: | ");
   text("| `==` | equal to | ");
   text("| `!=` | not equal to | ");
-  cr();
+  CR();
 
   text("Examples:\n");
   codestart("C++");
-  cr();
+  CR();
   disp(complex(1.0, 1.0) == complex(1.0, 1.0));
   disp(complex(1.0, 1.0) != complex(1.0, 1.0));
-  cr();
+  CR();
   disp(complex(1.0, 1.0) == complex(2.0, 4.0));
   disp(complex(1.0, 1.0) != complex(2.0, 4.0));
   codeend();
@@ -107,9 +105,9 @@ int main() {
 
   header4("C++ ``std`` library common functions");
 
-  cr();
+  CR();
   text("The following are [common mathematical functions](https://en.cppreference.com/w/cpp/numeric/math) implemented in the C++ `std` library");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/complex/abs) | ");
@@ -117,88 +115,88 @@ int main() {
   text("| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/complex/floor) | ");
   text("| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/complex/trunc) | ");
   text("| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/complex/round) | ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Trig Functions*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/complex/sin) | ");
   text("| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/complex/cos) | ");
   text("| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/complex/tan) | ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Inverse Trig Functions*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asin) | ");
   text("| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acos) | ");
   text("| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atan) | ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Hyperbolic Trig Functions*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/complex/sinh) | ");
   text("| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/complex/cosh) | ");
   text("| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/complex/tanh) | ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Inverse Hyperbolic Trig Functions*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asinh) | ");
   text("| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acosh) | ");
   text("| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atanh) | ");
 
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Exponentiation*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/complex/pow) | ");
   text("| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/complex/sqrt) | ");
 
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Exponentials*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/complex/exp) | ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("*Logarithms*");
-  cr();
+  CR();
   text("| function | name | ");
   text("| :---: | :---: | ");
   text("| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log) | ");
   text("| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log10) | ");
   text("| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log2) | ");
 
-  cr();
-  cr();
+  CR();
+  CR();
 
-  cr();
+  CR();
   text("| function | description | ");
   text("| :---: | :---: | ");
   text("| `sgn(x)` | [signum function](https://en.wikipedia.org/wiki/Sign_function), return type has same type as x | ");
   text("| `zero(x)` | return a zero with the same type as x | ");
   text("| `sqr(x)` | x<sup>2</sup> | ");
   text("| `cube(x)` | x<sup>3</sup> | ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   text("\n<br>\n");
   header2("More on types");
@@ -209,7 +207,7 @@ int main() {
 
   text("The function [`std::typeid`](https://en.cppreference.com/w/cpp/language/typeid) returns an object of type [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) (defined in the header `<typeinfo>`). ");
   text("This gives the type for any varable. However, the names are garbled compiler strings that are not pretty. ");
-  cr();
+  CR();
 
   {
     text("Examples:\n");
@@ -238,7 +236,7 @@ int main() {
   }
   text("\n<br>\n");
   header3("Mixed-typed math and auto-promotion");
-  cr();
+  CR();
   text("C++ automatically converts number types depending on context.");
   text("This is referred to as [implicit conversion](https://en.cppreference.com/w/c/language/conversion).");
   text("For example, when adding an integer and a floating point number, the integer is first converted to a floating point type before the addition takes place.");
@@ -251,12 +249,12 @@ int main() {
     codemulti(int n2 = 100);
     // tdisp(n1 * n2);
     text("n1 * n2 -> int 300");
-    cr();
+    CR();
     codemulti(float x1 = 3);
     codemulti(double x2 = 0.1415);
     // tdisp(x1 + x2);
     text("x1 + x2 -> double 3.1415");
-    cr();
+    CR();
     codemulti(int8_t y1 = 25);
     codemulti(double y2 = 0.25);
     // tdisp(y1 / y2 + y2);
@@ -268,8 +266,8 @@ int main() {
   header3("Type Conversion");
   text("There are various ways to cast one type to another in C++.  ");
   text("Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/language/explicit_cast), which has two forms for the syntax: `(type) expression` or  `type(expression)` ");
-  cr();
-  cr();
+  CR();
+  CR();
 
   {
     text("Converting a floating point type to an integer:\n");

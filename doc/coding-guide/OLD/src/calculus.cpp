@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -18,12 +17,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Calculus");
   mathq_preamble();
 
@@ -31,14 +30,14 @@ int main()
   header3("Definite integrals");
 
   text("Integrating over an interval (a,b) yields a single number--the area under the curve.");
-  cr();
+  CR();
   text("![Definite Integral](DefiniteIntegral.png)");
 
   
   {
-    cr();
-    cr();
-    example(Nex++,"Definite integrals");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Definite integrals");
     codestart("C++");
     codemulti( const size_type N = 100000 );
     codemulti( const double a = 0 );
@@ -47,13 +46,13 @@ int main()
     codemulti( Vector<double> f );
     codemulti( f=-log(log(1/x)) );
     codeend();
-    cr();
+    CR();
 
    
     text("Integrating f(x), as given above, yields the [Euler–Mascheroni](http://mathworld.wolfram.com/Euler-MascheroniConstant.html) constant whose exact value is `0.577215664901532...`.  The function _f_(_x_) is singular at both x=0 and x=1.  Thus we omitted these points. As the results show, many points are needed to achieve even a few digits of accuracy, due to the singularities. ");
-    cr();
+    CR();
     text(" ![Euler–Mascheron Integral](EulerMascheroniConstant.png)");
-    cr();
+    CR();
     resultstart3("");
     resultmulti( N );
     resultmulti( a );
@@ -67,21 +66,21 @@ int main()
 
   header3("Semi-Definite Integrals");
   text("A semi-definite integral is created by replacing one of the end points with _x_.");
-  cr();
+  CR();
   text("* For the integral\n");
   text("![Semi-Definite Integral a2x](SemiDefinite_a2x.png)\n");
   text("use the method `f.integrate_a2x(a, b)` or the function `integrate_a2x(f, a, b)`.");
-  cr();
-  cr();
+  CR();
+  CR();
   text("* For the integral\n");
   text("![Semi-Definite Integral x2b](SemiDefinite_x2b.png)\n");
   text("use the method `f.integrate_x2b(a, b)` or the function `integrate_x2b(f, a, b)`.");
-  cr();
-  cr();
+  CR();
+  CR();
   text("Where [`a`,`b`] defines the interval being used\n");
   
-  cr();
-  cr();
+  CR();
+  CR();
   text("A semi-definite integral yields a function as its output.");
   
   text("Integration requires a cumulative sum.  Thus the caculation can not be accomplished via element-wise operations.  For this reasons these functions can be performed: ");
@@ -92,11 +91,11 @@ int main()
   
 
   {
-    cr();
-    cr();
-    example(Nex++," The error function integral");
+    CR();
+    CR();
+    EXAMPLE(Nex++," The error function integral");
     text("The [error function](http://mathworld.wolfram.com/Erf.html) is the following semi-definite integral of a Gaussian function (with zero mean and variance of 1/2).");
-    cr();
+    CR();
     text("![ErrorFunction](ErrorFunction.png)");
     codestart("C++");
     codemulti( const size_type N = 101 );
@@ -110,17 +109,17 @@ int main()
     codemulti( erf.integrate_a2x(a,b) ) ;
     codemulti( set_mathematica_var_format() );
     codeend();
-    cr();
+    CR();
 
     text("The results _x_ and _erf_(_x_) are:");
-    cr();
+    CR();
     codestart("Mathematica");
     disp(x);
     disp(erf);
     codeend();
 
     text("Cut and paste the above data for `x` and `erf` into Mathematica as well as the following commands");
-    cr();
+    CR();
     codestart("Mathematica");
     text("p1=ListPlot[Partition[Riffle[x,erf],2],PlotStyle->Red];");
     text("p2=Plot[Erf[0,x],{x,0,4}];");
@@ -153,11 +152,11 @@ int main()
 
 
   {
-    cr();
-    cr();
-    example(Nex++,"Derivative of the function _f_(_x_) = 5 _x_");
-    cr();
-    cr();
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Derivative of the function _f_(_x_) = 5 _x_");
+    CR();
+    CR();
     text("The derivative of the function _f_(_x_) = is the constant 5");
     codestart("C++");
     codemulti( set_default_format() );
@@ -167,7 +166,7 @@ int main()
     codemulti( const double b = 1 );
     codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
     codeend();
-    cr();
+    CR();
 
     resultstart3("");
     resultmulti(x);
@@ -198,17 +197,17 @@ int main()
     header3("Differentiation: taking multiple derivatives in one call");
     
   {
-    cr();
-    cr();
-    example(Nex++,"The fourth derivative of sin _x_");
-    cr();
-    cr();
+    CR();
+    CR();
+    EXAMPLE(Nex++,"The fourth derivative of sin _x_");
+    CR();
+    CR();
     text("Here we take the 4th derivative of sin _x_ using `Dpts`=2,3,5, and 7 points. The result for all should be sin _x_:");
-    cr();
-    cr();
+    CR();
+    CR();
     text("![4th derivative of sin(x)](fourthDerivativeOfSin.png)");
-    cr();
-    cr();
+    CR();
+    CR();
     text("We also set `periodic=true` since sin _x_ is periodic over [0,2pi)");
     codestart("C++");
     codemulti( set_mathematica_var_format() );
@@ -223,7 +222,7 @@ int main()
     codemulti( Vector<double> f5 = deriv(f,a,b,4,5,true )  );
     codemulti( Vector<double> f7 = deriv(f,a,b,4,7,true )  );
     codeend();
-    cr();
+    CR();
 
     codestart("Mathematica");
     disp(x);
@@ -234,7 +233,7 @@ int main()
     codeend();
 
     text("Cut and paste the above data for `x`, `f2`, `f3`,...  into Mathematica as well as the following commands");
-    cr();
+    CR();
     codestart("Mathematica");
     text("p2 = ListPlot[Partition[Riffle[x, f2], 2], PlotStyle -> {Red, PointSize[0.01], Opacity[0.9]},PlotLegends -> {\"Dpts=2\"}];");
     text("p3 = ListPlot[Partition[Riffle[x, f3], 2], PlotStyle -> {Orange, PointSize[0.01], Opacity[0.75]}, PlotLegends -> {\"Dpts=3\"}];");
@@ -253,8 +252,8 @@ int main()
     text("* the 3 point derivative is approximately correct: rms error = 2.9%");
     text("* the 5 point derivative is very accurate:         rms error = 0.04%");
     text("* the 7 point derivative is even more accurate:    rms error = 5ppm");
-    cr();
-    cr();
+    CR();
+    CR();
     text("The root mean square (rms) errors were calculated in Mathematica using the following commands.");
 
     codestart("Mathematica");
@@ -275,14 +274,14 @@ int main()
   text("All of these functions can be called _either_ as a method, eg `v.cumsum()` or a function `cumsum(v)`.");
 
   {
-    cr();
-    cr();
-    example(Nex++,"Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc");
     codestart("C++");
     codemulti( set_default_format() );
     codemulti( Vector<double> v1(5) );
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");

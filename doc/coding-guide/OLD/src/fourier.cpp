@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 #include <iostream>
 #include <string>
 
@@ -20,12 +19,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle0("Calculating a function via Fourier series and plotting the results in Matlab");
   mathq_preamble();
 
@@ -37,8 +36,8 @@ int main()
   header3("Clausen function of order _n=1_");
 
   {
-    cr();
-    cr();
+    CR();
+    CR();
     text("Set up the output format so that we can copy and paste into Matlab");
     codestart("C++");
     codemulti( using namespace display  );
@@ -50,11 +49,11 @@ int main()
     codemulti( setFormatString<double>("% 10.8e")  );
     codemulti(  FormatData<double>::tens = false );
     codeend();
-    cr();
+    CR();
 
 
     text("Define the coefficient vectors: ");
-    cr();
+    CR();
 
     
     codestart("C++");
@@ -64,38 +63,38 @@ int main()
     codemulti( An[0] = 0. );
     codemulti( Vector<double> Bn = Vector<double>(N,0.) );
     codeend();
-    cr();
+    CR();
 
 
     text("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
-    cr();
+    CR();
     
     codestart("C++");
     codemulti(   const double pi = M_PI  );
     codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
     codeend();
-    cr();
+    CR();
 
 
     text("Calculate the Fourier series and store the results in vector `CL1`: ");
-    cr();
+    CR();
     codestart("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 2*pi/T );
     codemulti(     Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
-    cr();
+    CR();
 
     
     text("The results `t` and `CL1` are:");
-    cr();
+    CR();
     codestart("Matlab");
     disp(t);
     disp(CL1);
     codeend();
 
     text("Cut and paste the above data for `t` and `CL1` into Matlab as well as the following commands");
-    cr();
+    CR();
     codestart("Matlab");
     text("N=10000;");
     text("dt=2*pi/N;");
@@ -105,11 +104,11 @@ int main()
     codeend();
 
     text("The above matlab code calculates the first Clausen function using the equation");
-    cr();
-    cr();
+    CR();
+    CR();
     text("![Closed form for CL1(t)](ClausenFormula_n1.png)");
-    cr();
-    cr();
+    CR();
+    CR();
     
     text("We exclude the end points, 0 and pi, because the function is infinite at these points.");
 
@@ -122,17 +121,17 @@ int main()
   header3("Clausen function of order _n=2_");
 
   {
-    cr();
-    cr();
+    CR();
+    CR();
     text("Set up the output format so that we can copy and paste into Matlab, this time using the function `set_matlab_var_format()`");
     codestart("C++");
     codemulti( set_matlab_var_format()  );
     codeend();
-    cr();
+    CR();
 
 
     text("Define the coefficient vectors: ");
-    cr();
+    CR();
 
     
     codestart("C++");
@@ -142,38 +141,38 @@ int main()
     codemulti( Vector<double> Bn = 1./sqr(k) );
     codemulti( Bn[0] = 0. );
     codeend();
-    cr();
+    CR();
 
 
     text("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
-    cr();
+    CR();
     
     codestart("C++");
     codemulti(   const double pi = M_PI  );
     codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
     codeend();
-    cr();
+    CR();
 
 
     text("Calculate the Fourier series and store the results in vector `CL2`: ");
-    cr();
+    CR();
     codestart("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 2*pi/T );
     codemulti(     Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega ) );
     codeend();
-    cr();
+    CR();
 
     
     text("The results `t` and `CL2` are:");
-    cr();
+    CR();
     codestart("Matlab");
     disp(t);
     disp(CL2);
     codeend();
 
     text("Cut and paste the above data for t and CL2 into Matlab as well as the following commands.");
-    cr();
+    CR();
     codestart("Matlab");
     text("N=10000;");
     text("dt=2*pi/N;");
@@ -183,11 +182,11 @@ int main()
     codeend();
 
     text("The above matlab code calculates the second Clausen function using the following integral");
-    cr();
-    cr();
+    CR();
+    CR();
     text("![Closed form for CL2(t)](ClausenFormula_n2.png)");
-    cr();
-    cr();
+    CR();
+    CR();
 
     text("We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
     text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");

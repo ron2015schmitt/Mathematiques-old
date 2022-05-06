@@ -738,7 +738,7 @@ public:
       break;
     case 2:
       if (N%2==0)  {
-	mout << "integrate_a2b: Number of points must be odd N="<<N<<std::endl;
+	MOUT << "integrate_a2b: Number of points must be odd N="<<N<<std::endl;
       }
       {
 	D sodd = 0;
@@ -757,7 +757,7 @@ public:
       break;
     case 3:
       if (N%3!=1)  {
-	mout << "integrate_a2b: N-1 must be divisible by 3, N="<<N<<std::endl;
+	MOUT << "integrate_a2b: N-1 must be divisible by 3, N="<<N<<std::endl;
       }
       {
 	D s1 = 0;
@@ -780,7 +780,7 @@ public:
       break;
     case 4:
       if (N%4!=1)  {
-	mout << "integrate_a2b: N-1 must be divisible by 4, N="<<N<<std::endl;
+	MOUT << "integrate_a2b: N-1 must be divisible by 4, N="<<N<<std::endl;
       }
       {
 	D s1 = 0;

@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -18,12 +17,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Vector functions that return a scalar (dot product, sum, min, max etc)");
   mathq_preamble();
 
@@ -32,14 +31,14 @@ int main()
   text("* This definition becomes very useful for taking the product of matrices because any number of matrices can be multiplied in a single line of code.");
   
   {
-    cr();
-    cr();
-    example(Nex++,"Dot product of two real vectors `(v1|v2)`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Dot product of two real vectors `(v1|v2)`");
     codestart("C++");
     codemulti(Vector<double> v1(range<double>(1,4)));
     codemultiNoteC11Array(Vector<double> v2({1,-1,1,-1}));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");
@@ -53,10 +52,10 @@ int main()
 
 
     {
-    cr();
-    cr();
-    example(Nex++,"Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`");
-    cr();
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`");
+    CR();
     text("The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.");
     codestart("C++");
     codemulti(using namespace std);
@@ -68,7 +67,7 @@ int main()
     codemulti(v2 = Complex(range<double>(-1,-2), range<double>(2,3)));
     codemulti(v2.roundzero(tol));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");
@@ -84,13 +83,13 @@ int main()
 
 
   {
-    cr();
-    cr();
-    example(Nex++,"`sum` the elements of a vector");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"`sum` the elements of a vector");
     codestart("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");
@@ -101,13 +100,13 @@ int main()
 
 
     {
-    cr();
-    cr();
-    example(Nex++,"`sum` the elements of a vector");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"`sum` the elements of a vector");
     codestart("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");
@@ -118,14 +117,14 @@ int main()
 
 
   {
-    cr();
-    cr();
-    example(Nex++,"`integrate_a2b` a vector over the interval [a,b]");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"`integrate_a2b` a vector over the interval [a,b]");
     codestart("C++");
     codemulti( Vector<double> v );
     codemulti( v = exp(linspace<double>(-1,1,13)));
     codeend();
-    cr();
+    CR();
    
     resultstart2(" precise value to 16 digits is 2.35040238729 (via Mathematica)");
     resultmulti( integrate_a2b(v,-1.,1.) );
@@ -137,13 +136,13 @@ int main()
 
   
   {
-    cr();
-    cr();
-    example(Nex++,"Compute the _product_ of the elements of a vector");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Compute the _product_ of the elements of a vector");
     codestart("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");
@@ -155,13 +154,13 @@ int main()
 
 
     {
-    cr();
-    cr();
-    example(Nex++,"Find the _minimum_ of the elements of a vector");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Find the _minimum_ of the elements of a vector");
     codestart("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,20,-1,0}));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");
@@ -174,13 +173,13 @@ int main()
 
 
       {
-    cr();
-    cr();
-    example(Nex++,"Find the _maximum_ of the elements of a vector");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Find the _maximum_ of the elements of a vector");
     codestart("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,20,-1,0}));
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");

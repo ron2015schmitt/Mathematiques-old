@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -19,12 +18,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
   
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("python-like access: negative indices & slices");
   mathq_preamble();
 
@@ -32,19 +31,19 @@ int main()
 
   header3("Positive and negative indices");
   text("Similar to python, Mathématiques allows negative indices");
-  cr();
+  CR();
   text("`v[-1] == v[N-1]` == end element\n");
   text("`v[-2] == v[N-2]` == penultimate element\n");
   text("`v[-N] == v[0]`   == first element\n");
   {
-    cr();
-    cr();
-    example(Nex++,"Positive and negative indices");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Positive and negative indices");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(0,10) ) );
     codemulti( const int N = v.size() );
     codeend();
-    cr();
+    CR();
     
    
     resultstart2("");
@@ -63,20 +62,20 @@ int main()
 
 
   {
-    cr();
-    cr();
-    example(Nex++,"Reverse a vector in place.");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Reverse a vector in place.");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(0,10) ) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti( v );
     resultend();
     codestart("C++");
     codemulti( for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti( v );
     resultend();
@@ -97,13 +96,13 @@ int main()
   text("  * `v[slc(-2,-1)]` returns the last two elements\n");
   text("  *  if you can't count from the starting element to the ending element by +1, then an empty vector is returned.\n");
   {
-    cr();
-    cr();
-    example(Nex++,"slice `v[slc(start,end)]`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"slice `v[slc(start,end)]`");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(0,10) ) );
     codeend();
-    cr();
+    CR();
 
     resultstart2("");
     resultmulti( v[slc(2,6)]);
@@ -125,9 +124,9 @@ int main()
   text("  * `v[slc(1,-1,2)]` returns the odd-index elements\n");
   text("  *  if you can't count from the starting element to the ending element by step, then an empty vector is returned.\n");
   {
-    cr();
-    cr();
-    example(Nex++,"slice `v[slc(start,end,step)]`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"slice `v[slc(start,end,step)]`");
     codestart("C++");
     codemulti( Vector<double> v0(0) );
     codemulti( Vector<double> v1(1,0. ));
@@ -136,7 +135,7 @@ int main()
     codemulti( Vector<double> v4( range<double>(0,3) ) );
     codemulti( Vector<double> v10( range<double>(0,10) ) );
     codeend();
-    cr();
+    CR();
     
     resultstart2(": reverse vectors of various lengths using the same slice");
     resultmulti( v0[slc(-1,0,-1)]);

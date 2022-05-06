@@ -2,7 +2,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 int main(int argc, char *argv[]) {
@@ -26,30 +25,30 @@ int main(int argc, char *argv[]) {
   FormatData<bool>::string_for_false = "false";
 
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
 
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
 
-  mout << bold.apply("Relational operator tests") << endl;
-  cr();
+  MOUT << bold.apply("Relational operator tests") << endl;
+  CR();
 
-  mout << blue.apply("Vector-Vector tests") << endl;
+  MOUT << blue.apply("Vector-Vector tests") << endl;
   {
     using namespace mathq::unit_imaginary;
-    cr();
+    CR();
     Vector<int> Vint1{11, 12, -13};
     Vector<int> Vint2{1, 12, 6};
     Vector<int> Vint3{11, 12, -13};
@@ -57,110 +56,110 @@ int main(int argc, char *argv[]) {
     Vector<double> Vd1{0.1, 1, 10};
     Vector<double> Vd2{3.14, 2.2, 10};
     Vector<double> Vf1{0.1, 1, 10};
-    mout << blue.apply("Given:") << endl;
-    mout << "  ";
+    MOUT << blue.apply("Given:") << endl;
+    MOUT << "  ";
     tdisp(Vint1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint3);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint4);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vd1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vd2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vf1);
-    cr();
-    mout << blue.apply("Vector==Vector") << endl;
-    mout << "  ";
+    CR();
+    MOUT << blue.apply("Vector==Vector") << endl;
+    MOUT << "  ";
     tdisp(Vint1 == Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 != Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 > Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 >= Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 < Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 <= Vint2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 == Vint3);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint3 == Vint1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 == Vint1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vd1 == Vf1);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vd1 > 1);
 
-    cr();
-    mout << "  ";
+    CR();
+    MOUT << "  ";
     tdisp(Vd1 == Vd2);
-    mout << "  ";
+    MOUT << "  ";
     tdisp(Vint1 == 12);
-    mout << "  ";
+    MOUT << "  ";
     tdisp((Vd1 == Vd2) && (Vint1 == 12));
-    mout << "  ";
+    MOUT << "  ";
     tdisp((Vd1 == Vd2) || (Vint1 == 12));
-    cr();
-    mout << "  ";
+    CR();
+    MOUT << "  ";
     tdisp(Vint1 == (Vint4 + 1));
-    mout << "  ";
+    MOUT << "  ";
     tdisp((Vint1 + Vint2) + (Vint3 + Vint4));
 
-    cr();
-    mout << "  ";
+    CR();
+    MOUT << "  ";
     tdisp(pow(Vd1, 2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(pow(Vd1, 2.3));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(pow(Vd1, Vint1));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(pow((Vint1 + Vint2) + (Vint3 + Vint4), 2));
   }
-  mout << bold.apply("binary function tests") << endl;
-  cr();
+  MOUT << bold.apply("binary function tests") << endl;
+  CR();
 
-  mout << blue.apply("Vector-Vector tests") << endl;
+  MOUT << blue.apply("Vector-Vector tests") << endl;
   {
     using namespace mathq::unit_imaginary;
-    cr();
+    CR();
     Vector<int> Vint1{1, 2, 3};
     Vector<double> Vd1{0.1, 0.5, 0.2};
     Vector<double> Vd2{0.1, 0.25, 0.4};
 
-    cr();
-    mout << "  ";
+    CR();
+    MOUT << "  ";
     tdisp(atan2(Vd1, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(beta(Vd1, Vd2));
 
-    mout << "  ";
+    MOUT << "  ";
     tdisp(ellint_1(0.25, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(ellint_2(0.1, Vd2));
 
-    mout << "  ";
+    MOUT << "  ";
     tdisp(legendre(2, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(laguerre(2, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(hermite(2, Vd2));
 
-    mout << "  ";
+    MOUT << "  ";
     tdisp(sph_bessel(2, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(sph_neumann(2, Vd2));
 
-    mout << "  ";
+    MOUT << "  ";
     tdisp(cyl_bessel_i(2, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(cyl_bessel_j(2, Vd2));
-    mout << "  ";
+    MOUT << "  ";
     tdisp(cyl_bessel_k(2, Vd2));
   }
   return 0;
@@ -168,10 +167,10 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

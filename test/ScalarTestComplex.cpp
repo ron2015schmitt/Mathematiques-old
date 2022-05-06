@@ -1,6 +1,5 @@
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 #include "test.h"
 
 
@@ -29,12 +28,12 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
+  CR();
+  CR();
   print_mathq_info();
-  mout << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - Scalar-complex numbers tests" << std::endl;
-  cr();
-  cr();
+  MOUT << CREATESTYLE(BOLD + MAGENTA1).apply(__FILE__) << " - Scalar-complex numbers tests" << std::endl;
+  CR();
+  CR();
 
   bool allpass = true;
   int testnum = 0;
@@ -736,10 +735,10 @@ int main(int argc, char *argv[]) {
   // // *            Bit wise operators for unisgned types
   // // ************************************************************************
 
-  cr();
+  CR();
   const unsigned short usmax = std::numeric_limits<unsigned short>::max();
   printf("          std::numeric_limits<unsigned short>::max() = %0x\n", usmax);
-  cr();
+  CR();
   // {
   //   // bitwise not ~
   //   printStart(++testnum);

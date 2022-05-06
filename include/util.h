@@ -25,7 +25,7 @@ namespace mathq {
     }
     void start_timer_verbose(void) {
       tm1_ = time(0);
-      mout << "  The start time is: " << ctime(&tm1_);
+      MOUT << "  The start time is: " << ctime(&tm1_);
       ckstart_ = clock();
     }
     void stop_timer_silent(void) {
@@ -39,7 +39,7 @@ namespace mathq {
       tm2_ = time(0);
       cputime_ = double(ckstop_-ckstart_)/double(CLOCKS_PER_SEC);
       std::string timestr = num2string(cputime_);
-      mout << "  CPU time = " << CREATESTYLE(BOLD).apply(timestr) << " sec" << std::endl;
+      MOUT << "  CPU time = " << CREATESTYLE(BOLD).apply(timestr) << " sec" << std::endl;
     }
     void stop_timer_verbose(void) {
       using namespace display;
@@ -48,8 +48,8 @@ namespace mathq {
       ckdiff_ = ckstop_-ckstart_;
       cputime_ = double(ckstop_-ckstart_)/double(CLOCKS_PER_SEC);
       std::string timestr = num2string(cputime_);
-      mout << "  Finished at: " << ctime(&tm2_);
-      mout << "  CPU time = " << CREATESTYLE(BOLD).apply(timestr) << " sec" << std::endl;
+      MOUT << "  Finished at: " << ctime(&tm2_);
+      MOUT << "  CPU time = " << CREATESTYLE(BOLD).apply(timestr) << " sec" << std::endl;
     }
 
     double cputime(void)  {

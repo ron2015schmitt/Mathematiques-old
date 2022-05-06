@@ -4,7 +4,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -20,12 +19,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Vector assigment");
   mathq_preamble();
 
@@ -33,40 +32,40 @@ int main()
   text("* When the right-hand side is an expression, there are _no_ intermediate objects created.");
   
   {
-    example(Nex++,"Assign all elements to a single value.");
+    EXAMPLE(Nex++,"Assign all elements to a single value.");
     codestart("C++");
     codemulti( Vector<double> v(10) );
     codemulti( v = 78.9 );
     codeend();
-    result(v);
+    RESULT(v);
   }
 
 
   {
-    cr();
-    example(Nex++,"Assign from a C Array.");
-    cr();
+    CR();
+    EXAMPLE(Nex++,"Assign from a C Array.");
+    CR();
     text("_In DEBUG mode, this generates a warning since it is a dangerous practice. Use a C++11 list instead._");
     codestart("C++");
     codemulti( Vector<double> v(4) );
     codemulti( v = (const double[]) {1,2,3,4} );
     codeend();
-    result(v);
+    RESULT(v);
   }
 
   {
-    example(Nex++,"Assign from a C++11 list.");
+    EXAMPLE(Nex++,"Assign from a C++11 list.");
     codestart("C++");
     codemulti( Vector<double> v(4) );
     codemulti( v = {1,2,3,4} );
     codeend();
-    result(v);
+    RESULT(v);
   }
   
 
   {
-    example(Nex++,"Assign from another `Vector`.");
-    cr();
+    EXAMPLE(Nex++,"Assign from another `Vector`.");
+    CR();
     text("Note that values are copied from `v2` to `v1`");
     codestart("C++");
     codemultiNoteC11Array( Vector<double> v1({1,2,3,4}) );
@@ -82,7 +81,7 @@ int main()
   }
   
   {
-    example(Nex++,"Assign from a `Vector` expression.");
+    EXAMPLE(Nex++,"Assign from a `Vector` expression.");
     codestart("C++");
     codemultiNoteC11Array( Vector<double> v1({1,2,3,4}) );
     codemultiNoteC11Array( Vector<double> v2({0,0,0,0}) );
@@ -95,7 +94,7 @@ int main()
   }
   
   {
-    example(Nex++,"Assign from `std` containers.");
+    EXAMPLE(Nex++,"Assign from `std` containers.");
     codestart("C++");
     codemultiNoteC11Array( std::vector<double> vstd({1,2,3,4}) );
     codemulti( Vector<double> v1(4) );

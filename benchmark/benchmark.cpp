@@ -2,7 +2,6 @@
 
 //#define MATHQ_DEBUG
 #include "mathq.h"
-#include "macros.h"
 
 bool printCPUInfo() {
   using namespace std;
@@ -28,7 +27,7 @@ bool printCPUInfo() {
 
   map<string, string>::iterator it = mymap.begin();
   while (it != mymap.end()) {
-    mout << it->first << "=" << it->second << std::endl;
+    MOUT << it->first << "=" << it->second << std::endl;
     it++;
   }
 
@@ -55,7 +54,7 @@ bool printMemInfo() {
 
   map<string, string>::iterator it = mymap.begin();
   while (it != mymap.end()) {
-    mout << it->first << "=" << it->second << std::endl;
+    MOUT << it->first << "=" << it->second << std::endl;
     it++;
   }
 
@@ -69,26 +68,26 @@ int main() {
 
   print_mathq_info();
 
-  mout << CREATESTYLE(BLUE2 + BOLD).apply("MACHINE INFO") << std::endl;
+  MOUT << CREATESTYLE(BLUE2 + BOLD).apply("MACHINE INFO") << std::endl;
   printCPUInfo();
   printMemInfo();
-  mout << StyledString::get(HORLINE);
-  cr();
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   Timer tfull, t;
 
   tfull.start_timer_verbose();
-  cr();
+  CR();
 
   const int N = 2000000;
   const double pi = M_PI;
 
-  mout << "" << CREATESTYLE(BOLD).apply("Fill with a constant value") << ", N=" << N << std::endl;
+  MOUT << "" << CREATESTYLE(BOLD).apply("Fill with a constant value") << ", N=" << N << std::endl;
 
   // In these two cases, storgae is reserved and filled at compile time,
   // so it doesn;t make sense to test. There is nothing to test.
   // {
-  //   mout << "  " << CREATESTYLE(BLUE2+BOLD).apply("double[N]") <<std::endl;
+  //   MOUT << "  " << CREATESTYLE(BLUE2+BOLD).apply("double[N]") <<std::endl;
   //   double tdata[N];
   //   t.start_timer_silent();
   //   for(int i=0; i<N; i++)
@@ -96,7 +95,7 @@ int main() {
   //   t.stop_timer_curt();
   // }
   // {
-  //   mout << "  " << CREATESTYLE(BLUE2+BOLD).apply("std::array")<<std::endl;
+  //   MOUT << "  " << CREATESTYLE(BLUE2+BOLD).apply("std::array")<<std::endl;
   //   std::array<double,N> v;
   //   t.start_timer_silent();
   //   for(int i=0; i<N; i++)
@@ -105,7 +104,7 @@ int main() {
   // }
 
   {
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("new double[N]") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("new double[N]") << std::endl;
     double *temp1 = new double[N];
     t.start_timer_silent();
     for (int i = 0; i < N; i++)
@@ -113,7 +112,7 @@ int main() {
     t.stop_timer_curt();
   }
   {
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::vector") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::vector") << std::endl;
     std::vector<double> vstl(N);
     t.start_timer_silent();
     for (int i = 0; i < N; i++)
@@ -121,7 +120,7 @@ int main() {
     t.stop_timer_curt();
   }
   {
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::valarray") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::valarray") << std::endl;
     std::valarray<double> v(N);
     t.start_timer_silent();
     for (int i = 0; i < N; i++)
@@ -129,7 +128,7 @@ int main() {
     t.stop_timer_curt();
   }
   {
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("mathq::Vector") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("mathq::Vector") << std::endl;
     Vector<double> v1(N);
     t.start_timer_silent();
     for (int i = 0; i < N; i++)
@@ -137,11 +136,11 @@ int main() {
     t.stop_timer_curt();
   }
 
-  cr();
-  mout << "" << CREATESTYLE(BOLD).apply("cos(2*pi + pi*sin(2*pi*x + pi/6))") << ", N=" << N << std::endl;
+  CR();
+  MOUT << "" << CREATESTYLE(BOLD).apply("cos(2*pi + pi*sin(2*pi*x + pi/6))") << ", N=" << N << std::endl;
 
   {
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::valarray") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::valarray") << std::endl;
     std::valarray<double> x(N);
     for (int i = 0; i < N; i++)
       x[i] = double(i) / double(N - 1);
@@ -152,7 +151,7 @@ int main() {
     t.stop_timer_curt();
   }
   {
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("mathq::Vector") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("mathq::Vector") << std::endl;
     Vector<double> x(N);
     Vector<double> f(N);
     x = linspace<double>(0, 1, N);
@@ -161,11 +160,11 @@ int main() {
     t.stop_timer_curt();
   }
 
-  cr();
-  mout << "" << CREATESTYLE(BOLD).apply("complex numbers: sin(2*log10(abs(x/5)*100) + 3 + pow(-x,2))") << ", N=" << N << std::endl;
+  CR();
+  MOUT << "" << CREATESTYLE(BOLD).apply("complex numbers: sin(2*log10(abs(x/5)*100) + 3 + pow(-x,2))") << ", N=" << N << std::endl;
   {
     // int N = 5;
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::valarray") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("std::valarray") << std::endl;
     t.start_timer_silent();
 
     std::valarray<double> x1(N);
@@ -188,7 +187,7 @@ int main() {
   }
   {
     // int N = 5;
-    mout << "  " << CREATESTYLE(BLUE2 + BOLD).apply("mathq::Vector") << std::endl;
+    MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("mathq::Vector") << std::endl;
     t.start_timer_silent();
 
     Vector<ComplexDouble> x(N);
@@ -201,11 +200,11 @@ int main() {
   }
 
   tfull.stop_timer_silent();
-  cr();
+  CR();
   printf("TOTAL TIME ELAPSED (including text display) = %f sec\n", tfull.cputime());
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

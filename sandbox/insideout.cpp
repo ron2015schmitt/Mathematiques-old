@@ -3,7 +3,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 int main(int argc, char *argv[]) {
@@ -23,13 +22,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -37,16 +36,16 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
-  cr();
-  cr();
-  mout << bold.apply("Scalar") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Scalar") << endl;
   {
-    cr();
+    CR();
     InversionType<Scalar<double>, Null>::Type s{4};
     tdisp(s);
     InversionType<Vector<double>, Null>::Type v{1, 2, 3, 4};
@@ -63,10 +62,10 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

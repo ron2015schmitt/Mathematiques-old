@@ -265,46 +265,46 @@ void Log::print(const int level, std::string s) {
   case 3:
     break;
   }
-  mout << s << endl;
+  MOUT << s << endl;
 }
 
 void Log::log(const int level, const std::string nspaceName, const std::string className, const std::string funcName, const std::string s) {
   using namespace std;
   switch (level) {
   case 0:
-    mout << Log::style_log0.apply("log:");
+    MOUT << Log::style_log0.apply("log:");
     break;
   case 1:
-    mout << Log::style_log1.apply("log1:");
+    MOUT << Log::style_log1.apply("log1:");
     break;
   case 2:
-    mout << Log::style_log2.apply("log2:");
+    MOUT << Log::style_log2.apply("log2:");
     break;
   case 3:
-    mout << Log::style_log3.apply("log3:");
+    MOUT << Log::style_log3.apply("log3:");
     break;
   }
-  mout << " in function ";
-  mout << Log::style_nspace.apply(nspaceName);
-  mout << "::";
-  mout << Log::style_class.apply(className);
-  mout << "::";
-  mout << Log::style_func.apply(funcName);
-  mout << Log::style_str.apply(s);
-  mout << endl;
+  MOUT << " in function ";
+  MOUT << Log::style_nspace.apply(nspaceName);
+  MOUT << "::";
+  MOUT << Log::style_class.apply(className);
+  MOUT << "::";
+  MOUT << Log::style_func.apply(funcName);
+  MOUT << Log::style_str.apply(s);
+  MOUT << endl;
 };
 
 void Log::error(const std::string s) {
   using namespace std;
-  mout << StyledString::get(ERROR);
-  mout << s;
-  mout << endl;
+  MOUT << StyledString::get(ERROR);
+  MOUT << s;
+  MOUT << endl;
 }
 void Log::warning(const std::string s) {
   using namespace std;
-  mout << StyledString::get(WARNING);
-  mout << s;
-  mout << endl;
+  MOUT << StyledString::get(WARNING);
+  MOUT << s;
+  MOUT << endl;
 }
 
 Log Log_dummy = *(new Log());

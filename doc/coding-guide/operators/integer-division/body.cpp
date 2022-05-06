@@ -8,29 +8,27 @@
 
 #define MATHQ_DEBUG 1
 #include "mathq.h"
-#include "macros.h"
-#include "gitmd.h"
 
 int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   markdown_preamble();
 
-  cr();
-  cr();
+  CR();
+  CR();
   text("C++ also provides support for integer division witjh remainder.\n");
   text("If both numerator and denominator are integers, the division operator gives the integer division result.\n");
   text("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 
-  cr();
+  CR();
   text("| operator | operation | types | ");
   text("| :---: | :---: | :---: | ");
   text("| `/` | integer division | 𝕤, 𝕌 | ");
   text("| `%` | modulus | ℤ | ");
-  cr();
+  CR();
 
   vspace();
   header3("Examples: integer division");

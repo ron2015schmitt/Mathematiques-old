@@ -2,7 +2,7 @@
 #include "mathq.h"
 
 // *************************************************************
-#include "macros.h"  // remove this after debugging is complete
+  // remove this after debugging is complete
 // *************************************************************
 
 namespace mathq {
@@ -10,13 +10,13 @@ namespace mathq {
   slc::slc(const index_type start, const index_type end, const index_type step) 
     : start_(start), end_(end), step_(step)
   {
-    //printf3("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
+    //PRINTF3("slc::slc(start=%d, end=%d, step=%d)\n",start, end, step);
   }
 
   slc::slc(const index_type start, const index_type end) 
     : start_(start), end_(end), step_(1)
   {
-    //printf3("slc::slc(start=%d, end=%d)\n",start, end);
+    //PRINTF3("slc::slc(start=%d, end=%d)\n",start, end);
   }
   
 
@@ -33,7 +33,7 @@ namespace mathq {
   }
   
   Vector<index_type>& slc::toIndexVector(const size_type N) const {
-    //    printf3("slc::toIndexVector(N=%lu)\n",N);
+    //    PRINTF3("slc::toIndexVector(N=%lu)\n",N);
     index_type mystart = start_;
     if (mystart < 0) {
       mystart += N;

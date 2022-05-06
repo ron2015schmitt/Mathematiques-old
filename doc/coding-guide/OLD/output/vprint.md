@@ -164,15 +164,15 @@ The following types are currently supported by the display commands
 * `std::queue` C++ queues
 * `std::map` C++ maps
 * `std::initializer_list` C++11 
-## Printing to other streams: `disp_strm`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`
-* The default stream is `mout` (refer to next section)
+## Printing to other streams: `DISP_STRM`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`
+* The default stream is `MOUT` (refer to next section)
 * You can also utilize all the formatting and color functionality of mathq and print to any output stream you like, including files.  The corresponding functions are shown below.
 
 
-| `mout`  | `ostream` |
+| `MOUT`  | `ostream` |
 | ------------- | ------------- |
 | `dispval(x)`  | `dispval_strm(ostream,x)`  |
-| `disp(x)`  | `disp_strm(ostream,x)`  |
+| `disp(x)`  | `DISP_STRM(ostream,x)`  |
 | `tdisp(x)`  | `tdisp_strm(ostream,x)`  |
 | `mdisp(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |
 
@@ -196,8 +196,8 @@ The display commands also have versions that only display when the code is compi
 ### Debug-only printing: `print[123]`, `printf[123]`
 
 
-* The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `mout` followed by a carriage return.
-* The functions `printf1`, `printf2`, `printf3` function like printf, but actually use sprintf and then output to the stream `mout` using C++ methodlogy.
+* The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `MOUT` followed by a carriage return.
+* The functions `PRINTF1`, `PRINTF2`, `PRINTF3` function like printf, but actually use sprintf and then output to the stream `MOUT` using C++ methodlogy.
 ## Changing the mathq output stream and controlling color
 * All output uses C++ streams (*no* `printf`)
 * By default all output is sent to `std::cout`
@@ -208,11 +208,11 @@ For example to set the output to stderr:
 Terminal::setmout(std::cerr);
 ```
 
-* You can use the mathq output stream via `Terminal::getmout()` or the macro `mout`
+* You can use the mathq output stream via `Terminal::getmout()` or the macro `MOUT`
 For example, you can output a string:
 ```C++
 
-mout << "Hello World" << std::endl;
+MOUT << "Hello World" << std::endl;
 
 ```
 
@@ -256,7 +256,7 @@ You can combine the styles using the `+` sign
 
 Style mystyle = CREATESTYLE(BOLD+RED);
 
-mout << mystyle.apply("with style") + " without style " << std::endl;
+MOUT << mystyle.apply("with style") + " without style " << std::endl;
 
 ```
 
@@ -278,7 +278,7 @@ The output from the above two lines of code is:
 int nf = 27;  // color for foreground
 int nb = 227; // color for background
 display::Style mystyle(nf,nb); 
-display::mout << mystyle.apply("Hello World") << std::endl; 
+display::MOUT << mystyle.apply("Hello World") << std::endl; 
 ```
 * Style objects can added:
 
@@ -288,7 +288,7 @@ int nb = 227; // color for background
 display::Style mystyle(nf,nb);
 display::Style bold(BOLD);
 display::Style mybold = bold + mystyle;
-display::mout << mybold.apply("Hello World") << std::endl; 
+display::MOUT << mybold.apply("Hello World") << std::endl; 
 ```
 * Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles
 * Wikipedia lists the allowable [8-bit color definitions](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)

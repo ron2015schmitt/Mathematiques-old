@@ -247,7 +247,7 @@ public:
   // "read/write"
   D &dat(const index_type n) {
     using namespace ::display;
-    //    mout << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+    //    MOUT << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
     if constexpr (M < 2) {
       int k = n;
       if (k < 0) {
@@ -265,7 +265,7 @@ public:
   // read
   const D &dat(const index_type n) const {
     using namespace ::display;
-    //    mout << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
+    //    MOUT << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
     if constexpr (M < 2) {
       int k = n;
       if (k < 0) {
@@ -286,11 +286,11 @@ public:
   // "read/write": x.dat(Indices)
   D &dat(const Indices &inds) {
     // printf("Tensor.dat(Indices)\n");
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(inds.size());
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(inds);
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(ndims());
     Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
@@ -299,9 +299,9 @@ public:
       mine.push_back(inds_next[0]);
       inds_next.erase(inds_next.begin());
     }
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(mine);
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(inds_next);
     if constexpr (M > 1) {
       return (*this)(mine).dat(inds_next);
@@ -313,11 +313,11 @@ public:
   // "read": x.dat(Indices)
   const D dat(const Indices &inds) const {
     // printf("Tensor.dat(Indices) const\n");
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(inds.size());
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(inds);
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(ndims());
     Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
@@ -326,9 +326,9 @@ public:
       mine.push_back(inds_next[0]);
       inds_next.erase(inds_next.begin());
     }
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(mine);
-    // mout << "  ";
+    // MOUT << "  ";
     // tdisp(inds_next);
     if constexpr (M > 1) {
       return (*this)(mine).dat(inds_next);
@@ -512,7 +512,7 @@ public:
 
   // ----------------- tensor = C++11 init list
   Tensor<E, R, D, M> &operator=(const NestedInitializerList<E, R> &mylist) {
-    // mout << "operator=: ";
+    // MOUT << "operator=: ";
     // tdisp(mylist);
     int i = 0;
     Dimensions dims = NestedInitializerListDef<E, R>::dims(mylist);

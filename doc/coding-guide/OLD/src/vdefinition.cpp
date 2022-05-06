@@ -4,7 +4,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -21,13 +20,13 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
   int Nex = 1;
 
 
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("under the hood—`Vector` definition");
   mathq_preamble();
   text("* _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.");
@@ -38,9 +37,9 @@ int main()
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
-    cr();
-    example(Nex++, "Getting the `valarray` wrapped by a `Vector`.");
-    cr();
+    CR();
+    EXAMPLE(Nex++, "Getting the `valarray` wrapped by a `Vector`.");
+    CR();
     codestart("C++");
     codemulti(using namespace std);
     codemultiNoteC11Array( Vector<double> vec({0,1,2,3}) );
@@ -48,7 +47,7 @@ int main()
     codemulti( vec[1] = -1 );
     codemulti( valias[2] = -2 );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti(vec);
     resultmulti(valias);
@@ -63,9 +62,9 @@ int main()
   text("  * `valias` is referenced to the valarray inside `vec`.");
 
   {
-    cr();
-    example(Nex++, "Setting and getting the wrapped `valarray`");
-    cr();
+    CR();
+    EXAMPLE(Nex++, "Setting and getting the wrapped `valarray`");
+    CR();
     codestart("C++");
     codemulti(using namespace std);
     codemulti( Vector<double> vec(2) );
@@ -73,7 +72,7 @@ int main()
     codemulti( vec[1] = 1 );
     codemulti( valias[2] = 2 );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti(vec);
     resultmulti(valias);

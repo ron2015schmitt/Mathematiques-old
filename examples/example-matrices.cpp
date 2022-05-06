@@ -3,7 +3,6 @@
 #include <string>
 
 #include "mathq.h"
-#include "macros.h"
 
 void printoptsfile() {
   std::ifstream myfile;
@@ -30,12 +29,12 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   print_mathq_info();
   printoptsfile();
 
@@ -102,10 +101,10 @@ int main(int argc, char *argv[]) {
   disp(u | A | v);
   disp(u | (2 * A - 1) | (10 * sin(pi / 2 * v) + 5));
 
-  cr();
-  mout << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

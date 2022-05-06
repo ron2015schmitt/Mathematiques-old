@@ -2,7 +2,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 
@@ -23,13 +22,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -37,35 +36,35 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
-  cr();
-  cr();
-  mout << bold.apply("Scalar") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Scalar") << endl;
   {
-    cr();
+    CR();
     Scalar<double> s = 1.1;
     tdisp(s);
     tdisp((-s)[0]);
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("Vector") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Vector") << endl;
   {
-    cr();
+    CR();
     Vector<double> v{1.1, 2.2};
     tdisp(v);
     tdisp((-v)[1]);
   }
 
-  cr();
-  cr();
-  mout << bold.apply("Matrix") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Matrix") << endl;
   {
     Matrix<double> m{{1, 2}, {3, 4}};
     tdisp(m);
@@ -74,11 +73,11 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  cr();
-  mout << bold.apply("Tensor") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Tensor") << endl;
   {
-    cr();
+    CR();
     Tensor<double, 3> t{
         {{0, 1, 2, 3, 4}, {10, 11, 12, 13, 14}},
         {{100, 101, 102, 103, 104}, {110, 111, 112, 113, 114}},
@@ -90,84 +89,84 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  cr();
-  cr();
-  cr();
+  CR();
+  CR();
+  CR();
+  CR();
 
 
-  mout << blue.apply("Two-level tests") << endl;
+  MOUT << blue.apply("Two-level tests") << endl;
 
 
   // -------------------------------------------------
   // two level tests
   // -------------------------------------------------
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Scalar tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Scalar tests") << endl;
 
   {
-    cr();
+    CR();
     Scalar<Scalar<double>> s{{1.1}};
     tdisp(s);
     tdisp((-s)[0]);
   }
   {
-    cr();
+    CR();
     Scalar<Vector<double>> s{{1., 2., 3.}};
     tdisp(s);
     tdisp((-s)[0]);
   }
   {
-    cr();
+    CR();
     Scalar<Matrix<double>> s{{{1, 2}, {3, 4}}};
     tdisp(s);
     tdisp((-s)[0]);
   }
 
   {
-    cr();
+    CR();
     Scalar<Tensor<double, 2>> s{{{1, 2}, {3, 4}}};
     tdisp(s);
     tdisp((-s)[0]);
   }
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Vector tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Vector tests") << endl;
   {
-    cr();
+    CR();
     Vector<Scalar<double>> v{{1.}, {2.}};
     tdisp(v);
     tdisp((-v)[1]);
   }
 
   {
-    cr();
+    CR();
     Vector<Vector<double>> v{{1., 2., 3.}, {4., 5., 6.}};
     tdisp(v);
     tdisp((-v)[1]);
   }
   {
-    cr();
+    CR();
     Vector<Matrix<double>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     tdisp(v);
     tdisp((-v)[1]);
   }
   {
-    cr();
+    CR();
     Vector<Tensor<double, 2>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     tdisp(v);
     tdisp((-v)[1]);
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Matrix tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Matrix tests") << endl;
   {
-    cr();
+    CR();
     Matrix<Scalar<double>> m{{{1}, {2}}, {{3}, {4}}};
     ;
     tdisp(m);
@@ -175,14 +174,14 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Matrix<Vector<double>> m{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
     tdisp(m);
     tdisp((-m)[2]);
   }
 
   {
-    cr();
+    CR();
     Matrix<Matrix<double>> m{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
@@ -191,7 +190,7 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Matrix<Tensor<double, 3>, 2, 2> m{{{{{-0, -1},
                                          {-10, -11},
                                          {-20, -21}},
@@ -225,24 +224,24 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Tensor tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Tensor tests") << endl;
   {
-    cr();
+    CR();
     Tensor<Scalar<double>, 2> t{{{1}, {2}}, {{3}, {4}}};
     tdisp(t);
     tdisp((-t)[1]);
   }
   {
-    cr();
+    CR();
     Tensor<Vector<double>, 2> t{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
     tdisp(t);
     tdisp((-t)[1]);
   }
 
   {
-    cr();
+    CR();
     Tensor<Matrix<double, 2, 2>, 2> t{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
@@ -252,7 +251,7 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
+    CR();
     Tensor<Tensor<double, 3>, 2> t{{{{{0, 1},
                                       {10, 11},
                                       {20, 21}},
@@ -286,10 +285,10 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

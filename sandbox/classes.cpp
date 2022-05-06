@@ -3,7 +3,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 
@@ -130,10 +129,10 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
   print_mathq_info();
 
 
@@ -144,7 +143,7 @@ int main(int argc, char *argv[]) {
     tdisp(*(new ClassA()));
   }
 
-  cr();
+  CR();
   {
     ClassA a(8);
     tdisp(a);
@@ -152,76 +151,76 @@ int main(int argc, char *argv[]) {
     tdisp(*(new ClassA(8)));
   }
 
-  cr();
+  CR();
   {
     ClassA a = 100;
     tdisp(a);
   }
 
-  cr();
+  CR();
   {
     ClassA a{101}; // works
     tdisp(a);
   }
 
-  cr();
+  CR();
   {
     ClassA a = {102}; // also works!
     tdisp(a);
   }
 
-  cr();
+  CR();
   {
     ClassB b;
     tdisp(b);
     tdisp(ClassB());
     tdisp(*(new ClassB()));
   }
-  cr();
+  CR();
   {
     ClassB b(9);
     tdisp(b);
   }
-  cr();
+  CR();
   {
     // error: conversion from ‘int’ to non-scalar type ‘MyClass’ requested
     // ClassB b = 9;
   }
-  cr();
+  CR();
   {
     ClassB b{6}; // works !
     tdisp(b);
   }
 
 
-  cr();
+  CR();
   {
     ClassC c;
     tdisp(c);
     tdisp(ClassC());
     tdisp(*(new ClassC()));
   }
-  cr();
+  CR();
   {
     ClassC c(10);
     tdisp(c);
     c = 23;
     tdisp(c);
   }
-  cr();
+  CR();
   {
     // still doesn't work. = use the constructor
     // ClassC c = 11;
     // tdisp(c);
   }
 
-  cr();
+  CR();
   {
     ClassD d;
     tdisp(d);
   }
 
-  cr();
+  CR();
   {
     // doesn't work
     // ClassD d {22};
@@ -229,9 +228,9 @@ int main(int argc, char *argv[]) {
   }
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
   return 0;
 }

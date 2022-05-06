@@ -1428,7 +1428,7 @@ namespace matricks {
 
     template <class C>
       VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs) { 
-      printf2("VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
+      PRINTF2("VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
       return this->equals(rhs);
     }
 
@@ -1489,7 +1489,7 @@ namespace matricks {
 
     const D operator[](const index_type i) const{
       index_type index = index_type(i % N_);
-      //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      //      PRINTF3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
     }
 

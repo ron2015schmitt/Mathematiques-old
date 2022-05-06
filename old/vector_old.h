@@ -410,20 +410,20 @@ namespace mathq {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
+      //      MOUT<<std::endl<< "inside normal Vector operator=" <<std::endl;
       if (common(*this,x)){
-	//mout<< "  common addresses found" <<std::endl;
+	//MOUT<< "  common addresses found" <<std::endl;
 	Vector<D> vtemp(size());
 	for (index_type i = 0; i < size(); i++) 
 	  vtemp[i] = x[i];   // Inlined expression
 	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = vtemp[i];
       } else {
-	//mout<< "  NO common addresses found" <<std::endl;
+	//MOUT<< "  NO common addresses found" <<std::endl;
 	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = x[i];   // Inlined expression
       }
-      //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
+      //MOUT<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
       return *this; 
     }
     
@@ -451,12 +451,12 @@ namespace mathq {
  
 
     template <class X, class Y>  Vector<D>& operator=(const TensorR<X,Y>& x) {
-      mout << __FUNCTION__ <<" ";
+      MOUT << __FUNCTION__ <<" ";
       //      return *this;
       const Y& y = x.derived();
       disp(y.classname());
       disp(y.isExpression());
-      cr();
+      CR();
       Vector<double> v(2);
       y[0];  // dies here somewhere
       

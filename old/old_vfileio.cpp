@@ -21,7 +21,7 @@ int main()
 
   int Nex = 1;
   
-  cr();
+  CR();
   mdtitle("Vector file i/o");
   mathq_preamble();
 

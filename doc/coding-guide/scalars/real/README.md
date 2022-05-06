@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.24</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.25</h1>
 
 <details>
 
@@ -49,7 +49,6 @@
 
 # [7.1. Scalar Types](../README.md)<br>
 
-# 7.1. [**Scalar Types**](../README.md)<br>
 7.1.1. _Reals_ <br>
 7.1.2. [Complex numbers](../complex/README.md)<br>
 7.1.3. [Imaginary numbers](../imaginary/README.md)<br>

@@ -8,35 +8,33 @@
 
 #define MATHQ_DEBUG 1
 #include "mathq.h"
-#include "macros.h"
-#include "gitmd.h"
 
 int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   markdown_preamble();
 
-  cr();
-  cr();
+  CR();
+  CR();
 
   vspace();
   header2("Logic Operators");
   text("For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).\n");
 
-  cr();
+  CR();
   text("| operator | operation | ");
   text("| :---: | :---: | ");
   text("| `!` | logical NOT | ");
   text("| `\\|\\|` | logical OR | ");
   text("| `&&` | logical AND | ");
-  cr();
+  CR();
 
   text("**CAVEAT**: C++ also has binary bit-wise operators `&` and `|`.  Mistyping the above operators can cause painful bugs. \n");
 
-  cr();
+  CR();
   text("Examples:\n");
   codestart("C++");
   trdisp(true);

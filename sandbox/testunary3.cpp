@@ -3,7 +3,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 int main(int argc, char *argv[]) {
@@ -27,27 +26,27 @@ int main(int argc, char *argv[]) {
   FormatData<bool>::string_for_false = "false";
 
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
 
-  cr();
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  CR();
   //------------------------------------------------------
 
-  cr();
-  cr();
-  mout << bold.apply("scalar") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("scalar") << endl;
   {
-    cr();
+    CR();
     double x = 0.25;
     tdisp(x);
     tdisp(+x);
@@ -83,15 +82,15 @@ int main(int argc, char *argv[]) {
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("Scalar") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Scalar") << endl;
   {
 
-    cr();
-    mout << blue.apply("Boolean Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Boolean Scalar") << endl;
 
-    cr();
+    CR();
     Scalar<bool> sb = true;
     tdisp(sb);
     tdisp(!sb);
@@ -101,8 +100,8 @@ int main(int argc, char *argv[]) {
 
 
 
-    cr();
-    mout << blue.apply("Real Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Real Scalar") << endl;
 
     Scalar<double> sr = 0.25;
     tdisp(sr);
@@ -136,8 +135,8 @@ int main(int argc, char *argv[]) {
     tdisp(atanh(sr));
 
 
-    cr();
-    mout << blue.apply("Imag Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Imag Scalar") << endl;
     Scalar<Imaginary<double>> si;
     si() = Imaginary<double>(0.25);
 
@@ -173,8 +172,8 @@ int main(int argc, char *argv[]) {
     tdisp(atanh(si));
 
 
-    cr();
-    mout << blue.apply("Complex Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Complex Scalar") << endl;
     Scalar<ComplexDouble> sc{ComplexDouble(0.25, 0.5)};
     tdisp(sc);
     tdisp(-sc);
@@ -206,8 +205,8 @@ int main(int argc, char *argv[]) {
     tdisp(acosh(sc));
     tdisp(atanh(sc));
 
-    cr();
-    cr();
+    CR();
+    CR();
     // typename Realify<Scalar<double>>::Type qr;
     // tdisp(qr);
 
@@ -219,13 +218,13 @@ int main(int argc, char *argv[]) {
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("Vector") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Vector") << endl;
   {
-    cr();
-    mout << bold.apply("Vector") << " - " << blue.apply("Real Scalar") << endl;
-    cr();
+    CR();
+    MOUT << bold.apply("Vector") << " - " << blue.apply("Real Scalar") << endl;
+    CR();
     Vector<double> vr{1.1, 2.2};
     tdisp(vr);
     tdisp(-vr);
@@ -258,12 +257,12 @@ int main(int argc, char *argv[]) {
     tdisp(atanh(vr));
   }
 
-  cr();
-  cr();
-  mout << bold.apply("Matrix") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Matrix") << endl;
   {
-    cr();
-    mout << bold.apply("Matrix") << " - " << blue.apply("Real Scalar") << endl;
+    CR();
+    MOUT << bold.apply("Matrix") << " - " << blue.apply("Real Scalar") << endl;
     Matrix<double> mr{{1, 2}, {3, 4}};
     tdisp(mr);
     tdisp(-mr);
@@ -297,13 +296,13 @@ int main(int argc, char *argv[]) {
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("Tensor") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Tensor") << endl;
   {
-    cr();
-    mout << bold.apply("Tensor") << " - " << blue.apply("Real Scalar") << endl;
-    cr();
+    CR();
+    MOUT << bold.apply("Tensor") << " - " << blue.apply("Real Scalar") << endl;
+    CR();
     Tensor<double, 3> tr{
         {{0, 1, 2, 3, 4}, {10, 11, 12, 13, 14}},
         {{100, 101, 102, 103, 104}, {110, 111, 112, 113, 114}},
@@ -330,36 +329,36 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  cr();
-  cr();
-  cr();
+  CR();
+  CR();
+  CR();
+  CR();
 
 
-  mout << blue.apply("Two-level tests") << endl;
+  MOUT << blue.apply("Two-level tests") << endl;
 
   // // -------------------------------------------------
   // // two level tests
   // // -------------------------------------------------
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Scalar tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Scalar tests") << endl;
 
-  cr();
-  cr();
-  mout << bold.apply("Scalar") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Scalar") << endl;
   {
-    cr();
+    CR();
 
-    cr();
-    mout << blue.apply("Boolean Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Boolean Scalar") << endl;
     Scalar<Scalar<bool>> sb = true;
     tdisp(sb);
     tdisp(!sb);
 
-    cr();
-    mout << blue.apply("Real Scalar Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Real Scalar Scalar") << endl;
     Scalar<Scalar<double>> sr = {{1.1}};
     tdisp(sr);
     tdisp(-sr);
@@ -368,8 +367,8 @@ int main(int argc, char *argv[]) {
     tdisp(conj(sr));
 
 
-    cr();
-    mout << blue.apply("Imaginary Scalar Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Imaginary Scalar Scalar") << endl;
     Scalar<Scalar<Imaginary<double>>> si;
     si()() = Imaginary<double>(3);
     tdisp(si);
@@ -380,8 +379,8 @@ int main(int argc, char *argv[]) {
     tdisp(sin(si));
     tdisp(exp(si));
 
-    cr();
-    mout << blue.apply("Complex Scalar") << endl;
+    CR();
+    MOUT << blue.apply("Complex Scalar") << endl;
     Scalar<Scalar<ComplexDouble>> sc{{ComplexDouble(1, 2)}};
     tdisp(sc);
     tdisp(-sc);
@@ -391,8 +390,8 @@ int main(int argc, char *argv[]) {
     tdisp(sin(sc));
     tdisp(exp(sc));
 
-    cr();
-    cr();
+    CR();
+    CR();
 
     // typename Realify<Scalar<Scalar<double>>>::Type qr;
     // tdisp(qr);
@@ -406,21 +405,21 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
+    CR();
     Scalar<Scalar<double>> s{{1.1}};
     tdisp(s);
     tdisp(sin(s));
     tdisp(exp(s));
   }
   {
-    cr();
+    CR();
     Scalar<Vector<double>> s{{1., 2., 3.}};
     tdisp(s);
     tdisp(sin(s));
     tdisp(exp(s));
   }
   {
-    cr();
+    CR();
     Scalar<Matrix<double>> s{{{1, 2}, {3, 4}}};
     tdisp(s);
     tdisp(sin(s));
@@ -428,18 +427,18 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Scalar<Tensor<double, 2>> s{{{1, 2}, {3, 4}}};
     tdisp(s);
     tdisp(sin(s));
     tdisp(exp(s));
   }
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Vector tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Vector tests") << endl;
   {
-    cr();
+    CR();
     Vector<Scalar<double>> v{{1.}, {2.}};
     tdisp(v);
     tdisp(sin(v));
@@ -447,21 +446,21 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Vector<Vector<double>> v{{1., 2., 3.}, {4., 5., 6.}};
     tdisp(v);
     tdisp(sin(v));
     tdisp(exp(v));
   }
   {
-    cr();
+    CR();
     Vector<Matrix<double>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     tdisp(v);
     tdisp(sin(v));
     tdisp(exp(v));
   }
   {
-    cr();
+    CR();
     Vector<Tensor<double, 2>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     tdisp(v);
     tdisp(sin(v));
@@ -469,11 +468,11 @@ int main(int argc, char *argv[]) {
   }
 
 
-  cr();
-  cr();
-  mout << bold.apply("Two-Level Matrix tests") << endl;
+  CR();
+  CR();
+  MOUT << bold.apply("Two-Level Matrix tests") << endl;
   {
-    cr();
+    CR();
     Matrix<Scalar<double>> m{{{1}, {2}}, {{3}, {4}}};
     ;
     tdisp(m);
@@ -482,7 +481,7 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Matrix<Vector<double>> m{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
     tdisp(m);
     tdisp(sin(m));
@@ -490,7 +489,7 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Matrix<Matrix<double>> m{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
@@ -500,7 +499,7 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    cr();
+    CR();
     Matrix<Tensor<double, 3>, 2, 2> m{{{{{-0, -1},
                                          {-10, -11},
                                          {-20, -21}},
@@ -535,11 +534,11 @@ int main(int argc, char *argv[]) {
 
 
 
-  // cr();
-  // cr();
-  // mout << bold.apply("Two-Level Tensor tests") << endl;
+  // CR();
+  // CR();
+  // MOUT << bold.apply("Two-Level Tensor tests") << endl;
   // {
-  //   cr();
+  //   CR();
   //   Tensor<Scalar<double>,2> t {{{1},{2}},{{3},{4}}};
   //   tdisp(t);
   //   tdisp(sin(t));
@@ -548,7 +547,7 @@ int main(int argc, char *argv[]) {
   //   tdisp(cyl_bessel_j(t));
   // }
   // {
-  //   cr();
+  //   CR();
   //   Tensor<Vector<double>,2> t {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
   //   tdisp(t);
   //   tdisp(sin(t));
@@ -558,7 +557,7 @@ int main(int argc, char *argv[]) {
   // }
 
   // {
-  //   cr();
+  //   CR();
   //   Tensor<Matrix<double,2,2>,2> t  {
   //     { {{1,2},{3,4}}, {{5,6},{7,8}} },
   // 	{ {{9,10},{11,12}}, {{13,14},{15,16}} }
@@ -572,7 +571,7 @@ int main(int argc, char *argv[]) {
 
 
   // {
-  //   cr();
+  //   CR();
   //   Tensor<Tensor<double,3>,2> t { {
   // 	{
   // 	  {
@@ -635,10 +634,10 @@ int main(int argc, char *argv[]) {
 
 
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

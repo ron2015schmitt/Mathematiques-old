@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -18,12 +17,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Element-wise Vector math");
   mathq_preamble();
 
@@ -31,16 +30,16 @@ int main()
   text("The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively");
 
   {
-    cr();
-    cr();
-    example(Nex++,"Element-wise `Vector` math");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Element-wise `Vector` math");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
     codemulti( Vector<double> v2(4) );
     codemultiNoteC11Array(v2 = {1,2,3,4});
     codeend();
-    cr();
+    CR();
     disp(v1);
     disp(v1+v2);
     //(cout << "here")<<std::end;
@@ -60,14 +59,14 @@ int main()
   text("* In this case the scalar is operated on each element of the vector");
 
   {
-    cr();
-    cr();
-    example(Nex++,"math with scalars and `Vector`s");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"math with scalars and `Vector`s");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
     codeend();
-    cr();
+    CR();
 
     resultstart2("");
     resultmulti(v1 + 1);
@@ -88,14 +87,14 @@ int main()
   text("* A function of a `Vector` operates on each element.  ");
   
   {
-    cr();
-    cr();
-    example(Nex++,"functions of a `Vector`—rounding and sign-related ");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(7) );
     codemultiNoteC11Array(v = {-2.5,-2.25,-1,0,1,2.25,2.5});
     codeend();
-    cr();
+    CR();
 
     resultstart2(": rounding and sign-related");
     resultmulti( floor(v)  );
@@ -104,18 +103,18 @@ int main()
     resultmulti( sgn(v)  );
     resultmulti( abs(v)  );
     resultend();
-    cr();
+    CR();
   }
     
   {
-    cr();
-    cr();
-    example(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
     codestart("C++");
     codemulti( Vector<double> v(5) );
     codemultiNoteC11Array(v = {-1,0,1,2,4});
     codeend();
-    cr();
+    CR();
     resultstart2(": powers, roots, and exponentiation");
     resultmulti( pow(2, v)  );
     resultmulti( pow(v, 2)  );
@@ -128,31 +127,31 @@ int main()
     resultmulti( cube(v)  );
     resultmulti( sqrt(v)  );
     resultend();
-    cr();
+    CR();
   }
 
 
   {
-    cr();
-    cr();
+    CR();
+    CR();
 
-    example(Nex++,"functions of a `Vector`—trig");
+    EXAMPLE(Nex++,"functions of a `Vector`—trig");
     codestart("C++");
     codemulti( Vector<double> v(5) );
     codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
     codemultiNoteC11Array(v = {-pi, -pi/2, 0, pi/2, pi});
     codemulti( const double tol = 2e-16 );
     codeend();
-    cr();
+    CR();
 
     resultstart2(": trig");
     resultmulti( sin(v)  );
     resultmulti( cos(v)  );
     resultmulti( tan(v)  );
     resultend();
-    cr();
+    CR();
     text("The results are cleaner, when we round to a tolerance");
-    cr();
+    CR();
     resultstart2(": trig with rounded zeros");
     resultmulti( roundzero(sin(v),tol)  );
     resultmulti( roundzero(cos(v),tol)  );
@@ -163,28 +162,28 @@ int main()
 
   
   {
-    cr();
-    cr();
-    example(Nex++,"functions of a `Vector`—rounding and sign-related ");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"functions of a `Vector`—rounding and sign-related ");
     codestart("C++");
     codemulti( Vector<double> v(3) );
     codemultiNoteC11Array(v = {-1,0,1});
     codeend();
-    cr();
+    CR();
 
     resultstart2(": hyperbolic trig");
     resultmulti( sinh(v)  );
     resultmulti( cosh(v)  );
     resultmulti( tanh(v)  );
     resultend();
-    cr();
+    CR();
   }
 
 
   {
-    cr();
-    cr();
-    example(Nex++,"functions of a `Vector`—inverse trig");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"functions of a `Vector`—inverse trig");
     codestart("C++");
     codemulti( double pi = std::acos(-1) );
     codemulti( Vector<double> v(3) );
@@ -194,7 +193,7 @@ int main()
     codemultiNoteC11Array(v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
     codemultiNoteC11Array(v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
     codeend();
-    cr();
+    CR();
 
     resultstart2(": inverse trig");
     resultmulti( asin(v)/pi  );
@@ -213,16 +212,16 @@ int main()
 
 
     {
-    cr();
-    cr();
-    example(Nex++,"A huge expression");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"A huge expression");
     codestart("C++");
     codemulti( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
     codemulti( Vector<double> v2(4) );
     codemultiNoteC11Array(v2 = {-1,-2,-3,-4});
     codeend();
-    cr();
+    CR();
 
    
     resultstart2("");

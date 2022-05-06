@@ -4,7 +4,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -21,53 +20,53 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
   
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Vector declaration");
   mathq_preamble();
 
  
   {
-    example(Nex++, "Declare vector `v` (initialize to zeros).");
+    EXAMPLE(Nex++, "Declare vector `v` (initialize to zeros).");
     codestart("C++");
     codemulti( const size_type N = 4 );
     codemulti( Vector<double> v(N) );
     codeend();
-    result(v);
+    RESULT(v);
   }
 
   {
-    example(Nex++, "Declare `v` and initialize to a constant" );
+    EXAMPLE(Nex++, "Declare `v` and initialize to a constant" );
     codestart("C++");
     codemulti( Vector<double> v(4, -1 ) );
     codeend();
-    result(v);
+    RESULT(v);
   }
 
   {
-    example(Nex++, "Declare `v` and initialize to a **C-style array** of values" );
-    cr();
+    EXAMPLE(Nex++, "Declare `v` and initialize to a **C-style array** of values" );
+    CR();
     text("In debug mode, this produces a warning, as shown below");
     codestart("C++");
     codemulti( Vector<double> v( 4, (const double[]) {10, 20, 30, 40} )  );
     codeend();
-    result(v);
+    RESULT(v);
   }
 
   {
-    example(Nex++, "Declare `v` and initialize directly from a list (**__C++11__**)" );
+    EXAMPLE(Nex++, "Declare `v` and initialize directly from a list (**__C++11__**)" );
     codestart("C++");
     codemulti( Vector<double> v({10, 20, 30, 40})  );
     codeend();
-    result(v);
+    RESULT(v);
   }
 
   {
-    example(Nex++, "Declare `v2` and initialize to values of `v1`" );
+    EXAMPLE(Nex++, "Declare `v2` and initialize to values of `v1`" );
     text("* Note that this is a _copy_ constructor.");
     text("* In fact _all_ of the `Vector` constructors are _copy_ constructors.");
     codestart("C++");
@@ -83,7 +82,7 @@ int main()
   }
 
   {
-    example(Nex++, "Declare `v2` and initialize to an expression" );
+    EXAMPLE(Nex++, "Declare `v2` and initialize to an expression" );
     text("* The expression is computed without creating any intermediate objects.");  
     codestart("C++");
     codemultiNoteC11Array( Vector<double> v1({10,11,12,13} ) );

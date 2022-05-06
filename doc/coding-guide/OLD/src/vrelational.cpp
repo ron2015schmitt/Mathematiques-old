@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -18,30 +17,30 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`)");
   mathq_preamble();
 
   header2("Relational operators");
 
   header3("Relational operators between two Vectors");
-  cr();
+  CR();
   text("Vector relations operate element-wise, similar to arithmetic operators. Given two Vectors of the same size, a vector relational expression (eg `(v1>v2)` returns a vector of booleans of the same size"); 
 
   {
-    cr();
-    cr();
-    example(Nex++,"relational operators between two vectors`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"relational operators between two vectors`");
     codestart("C++");
     codemulti( Vector<double> v1( range<double>(1,3) ) );
     codemulti( Vector<double> v2( range<double>(3,1) ) );
     codeend();
-    cr();
+    CR();
     
    
     resultstart2("");
@@ -58,13 +57,13 @@ int main()
 
   header3("Relational operators between a Vector and scalar");
   {
-    cr();
-    cr();
-    example(Nex++,"relational operators between a vector and a scalar`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"relational operators between a vector and a scalar`");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(1,3) ) );
     codeend();
-    cr();
+    CR();
     
    
     resultstart2("");
@@ -82,13 +81,13 @@ int main()
 
   header3("The element-wise logical operatora `&&`,`||`,`!`");
   {
-    cr();
-    cr();
-    example(Nex++,"The element-wise logical operators");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"The element-wise logical operators");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(1,5) ) );
     codeend();
-    cr();
+    CR();
     
     resultstart2("");
     resultmulti( v );
@@ -105,13 +104,13 @@ int main()
   text("* For example `v[v>0]` will return a vector containing only the positive values of v.");
   text("* Vector mask access can be used on the left hand side of assigment, allowing you to set values via masks.");
   {
-    cr();
-    cr();
-    example(Nex++,"Using vector masks");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Using vector masks");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(-10,10) ) );
     codeend();
-    cr();
+    CR();
     
    
     resultstart2("");
@@ -119,7 +118,7 @@ int main()
     resultmulti( v > 6 );
     resultmulti( v[(v > 6)] );
     resultend();
-    cr();
+    CR();
 
     text("Now set all elements that are larger than 6 to 6 (clipping)");
     codestart("C++");
@@ -128,7 +127,7 @@ int main()
     resultstart();
     resultmulti( v );    
     resultend();
-    cr();
+    CR();
 
     text("Now set all negative elements to zero");
     codestart("C++");
@@ -137,7 +136,7 @@ int main()
     resultstart();
     resultmulti( v );    
     resultend();
-    cr();
+    CR();
 
     
   }
@@ -147,21 +146,21 @@ int main()
 
   header3("The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
   {
-    cr();
+    CR();
     text("* The function `alltrue(v)` returns a `bool`: true if every element of `v` is true, otherwise it returns false");
-    cr();
+    CR();
     text("* The function `anytrue(v)` returns a `bool`: true if any element of `v` is true, otherwise it returns false");
-    cr();
+    CR();
     text("* The function `numtrue(v)` returns a `size_type` equal to the number of elements of `v` that are true. ");
-    cr();
+    CR();
     text("* The function `findtrue(v)` returns a `Vector<index_type>` which contains the indices of the true elements of `v`. ");
-    cr();
-    cr();
-    example(Nex++,"The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
     codestart("C++");
     codemulti( Vector<double> v( range<double>(1,3) ) );
     codeend();
-    cr();
+    CR();
     
    
     resultstart2("");

@@ -506,7 +506,7 @@ namespace mathq {
     // "read/write"
     D& dat(const index_type n) {
       using namespace::display;
-      //    mout << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
+      //    MOUT << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #1")<<std::endl;
       if constexpr(M<=1) {
 	  int k = n;
 	  if (k < 0) {
@@ -524,7 +524,7 @@ namespace mathq {
     // read
     const D& dat(const index_type n)  const { 
       using namespace::display;
-      //    mout << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
+      //    MOUT << CREATESTYLE(BOLD).apply("operator["+num2string(n)+"] #2")<<std::endl;
       if constexpr(M<=1) {
 	  int k = n;
 	  if (k < 0) {
@@ -546,15 +546,15 @@ namespace mathq {
     // "read/write": x.dat(Indices)
     D& dat(const Indices& inds) {
       Indices inds_next(inds);
-      //mout << "Matrix: "<<std::endl;
+      //MOUT << "Matrix: "<<std::endl;
       // error if (inds.size() != sum deepdims[i].rank)
       index_type n = inds_next[0];
       inds_next.erase(inds_next.begin());
       index_type m = inds_next[0];
       inds_next.erase(inds_next.begin());
-      //mout << "  ";
+      //MOUT << "  ";
       //mdisp(n,m); 
-      //mout << "  ";
+      //MOUT << "  ";
       //tdisp(inds_next);
     
       if constexpr(M>1) {

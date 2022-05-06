@@ -61,7 +61,7 @@ auto operator+(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x
   constexpr int R3 = R1;
   constexpr int M3 = M1;
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;
-  //    mout << "A" <<std::endl;
+  //    MOUT << "A" <<std::endl;
   return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
 		     TensorR<B,E2,D2,M2,R2>,
 		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
@@ -81,7 +81,7 @@ auto operator+(const TensorR<A,E1,D1,M1,R1>& x1, const TensorR<B,E2,D2,M2,R2>& x
   constexpr int R3 = R2;
   constexpr int M3 = M2;
   typedef typename NumberType<E,D3>::ReplaceTypeE E3;  
-  //    mout << "B" <<std::endl;
+  //    MOUT << "B" <<std::endl;
   return  TER_Binary<TensorR<A,E1,D1,M1,R1>,
 		     TensorR<B,E2,D2,M2,R2>,
 		     E1,E2,E3,D1,D2,D3,M1,M2,M3,R1,R2,R3,
@@ -108,7 +108,7 @@ auto operator+(const TensorR<A,E1,D1,M1,R>& x1, const TensorR<B,D2,D2,M2,R>& x2)
   typedef typename AddType<D1,D2>::Type D3;
   typedef typename NumberType<E1,D3>::ReplaceTypeE E3;   // see TODO note above
   constexpr int M3 = M1;
-  //    mout << "C" <<std::endl;
+  //    MOUT << "C" <<std::endl;
   return  TER_Binary<TensorR<A,E1,D1,M1,R>,
 		     TensorR<B,D2,D2,M2,R>,
 		     E1,D2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
@@ -132,7 +132,7 @@ auto operator+(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2)
   typedef typename AddType<D1,D2>::Type D3;
   typedef typename NumberType<E2,D3>::ReplaceTypeE E3;   // see TODO note above
   constexpr int M3 = M2;
-  //    mout << "D" <<std::endl;
+  //    MOUT << "D" <<std::endl;
   return  TER_Binary<TensorR<A,D1,D1,M1,R>,
 		     TensorR<B,E2,D2,M2,R>,
 		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,

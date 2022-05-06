@@ -2,7 +2,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -22,12 +21,12 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   int Nex = 1;
   
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("\\*Formatted and styled printing");
   mathq_preamble();
   text("* The examples in this section can be found in file_ `examples/printing.cpp`\n");
@@ -38,15 +37,15 @@ int main()
   // disp()
   
   header2("The function `disp(x)`");
-  cr();cr();
+  CR();CR();
 
   text("The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.");
-  cr();cr();
+  CR();CR();
   
-  example(Nex++,"simple examples of `disp(x)` usage");
-  cr();cr();
+  EXAMPLE(Nex++,"simple examples of `disp(x)` usage");
+  CR();CR();
   text("Define and initialize some variables:");
-  cr();cr();
+  CR();CR();
   codestart("C++");
   codemulti(  int n = 45 );
   codemulti(  int m =256 );
@@ -60,7 +59,7 @@ int main()
   codeend();
 
   text("display each variable using `disp`:");
-  cr();cr();
+  CR();CR();
 
   codestart("C++");
   text("disp(n);");
@@ -74,22 +73,22 @@ int main()
   text("disp(z);");
   codeend();
 
-  cr();cr();
+  CR();CR();
   text("The actual screen-shot of the output is shown below:");
-  cr();cr();
+  CR();CR();
   text("![disp example 1](disp_example1.png)");
   
   // tdisp()
 
   header2("The function `tdisp(x)`");
-  cr();cr();
+  CR();CR();
 
   text("The function `tdisp(x)` displays the variable type, in addition to the variable name and value");
-  cr();cr();
+  CR();CR();
   
-  example(Nex++," `tdisp(x)` usage");
+  EXAMPLE(Nex++," `tdisp(x)` usage");
 
-  cr();cr();
+  CR();CR();
 
   codestart("C++");
   text("tdisp(n);");
@@ -103,34 +102,34 @@ int main()
   text("tdisp(z);");
   codeend();
 
-  cr();cr();
+  CR();CR();
   text("The actual screen-shot of the output is shown below:");
-  cr();cr();
+  CR();CR();
   text("![disp example 2](disp_example2.png)");
 
 
   // mdisp()
 
   header2("The function `mdisp(x1,x2,...)`");
-  cr();cr();
+  CR();CR();
 
   text("* The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.");
   text("* Very useful for displaying:");
   text("  * the arguments passed to a function");
   text("  * the variables inside a for loop");
-  cr();cr();
+  CR();CR();
   
 
-  example(Nex++," `mdisp(x1,x2,...)` usage");
-  cr();cr();
+  EXAMPLE(Nex++," `mdisp(x1,x2,...)` usage");
+  CR();CR();
 
   codestart("C++");
   text("mdisp(n,m,x,vals,done,str,s,z);");
   codeend();
 
-  cr();cr();
+  CR();CR();
   text("The actual screen-shot of the output is shown below:");
-  cr();cr();
+  CR();CR();
   text("![disp example 3](disp_example3.png)");
 
   // tried this but doesn't help with displaying at the correct scale
@@ -141,38 +140,38 @@ int main()
   // dispval()
 
   header2("The function `dispval(x)`");
-  cr();cr();
+  CR();CR();
 
   text("* The function `dispval(x)` prints only the variable value, without the name and equals sign, and _without a carriage return_.");
-  cr();cr();
+  CR();CR();
   
 
-  example(Nex++," `dispval(x)` usage");
-  cr();cr();
+  EXAMPLE(Nex++," `dispval(x)` usage");
+  CR();CR();
 
   codestart("C++");
   text("dispval(n);");
   text("dispval(m);");
   codeend();
 
-  cr();cr();
+  CR();CR();
   text("The actual screen-shot of the output is shown below:");
-  cr();cr();
+  CR();CR();
   text("![disp example 3b](disp_example3b.png)");
 
 
   // expressions
 
   header2("Displaying expressions");
-  cr();cr();
+  CR();CR();
 
   text("* The functions introduced above can also be used to display expressions.");
   text("* vector and matrix expressions can be displayed in this manner.");
-  cr();cr();
+  CR();CR();
   
 
-  example(Nex++," displaying expressions");
-  cr();cr();
+  EXAMPLE(Nex++," displaying expressions");
+  CR();CR();
 
   codestart("C++");
   text("disp(n+3);");
@@ -182,16 +181,16 @@ int main()
   text("disp(s+\" tour\");");
   codeend();
 
-  cr();cr();
+  CR();CR();
   text("The actual screen-shot of the output is shown below:");
-  cr();cr();
+  CR();CR();
   text("![disp example 4](disp_example4.png)");
 
 
   // expressions
 
   header2("Supported Types");
-  cr();cr();
+  CR();CR();
 
   text("The following types are currently supported by the display commands");
   text("* **Any class** with methods `.classname()` and `operator<<` is automatically supported");
@@ -218,27 +217,27 @@ int main()
 
   // printing to other streams
 
-  header2("Printing to other streams: `disp_strm`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`");
-  text("* The default stream is `mout` (refer to next section)");
+  header2("Printing to other streams: `DISP_STRM`, `dispval_strm`, `tdisp_strm`, `mdisp_strm`");
+  text("* The default stream is `MOUT` (refer to next section)");
   text("* You can also utilize all the formatting and color functionality of mathq and print to any output stream you like, including files.  The corresponding functions are shown below.");
-  cr();cr();
-  text("| `mout`  | `ostream` |");
+  CR();CR();
+  text("| `MOUT`  | `ostream` |");
   text("| ------------- | ------------- |");
   text("| `dispval(x)`  | `dispval_strm(ostream,x)`  |");
-  text("| `disp(x)`  | `disp_strm(ostream,x)`  |");
+  text("| `disp(x)`  | `DISP_STRM(ostream,x)`  |");
   text("| `tdisp(x)`  | `tdisp_strm(ostream,x)`  |");
   text("| `mdisp(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |");
-  cr();cr();
+  CR();CR();
   
 
   
   // debug-only printing
 
   header2("Debug-only printing");
-  cr();cr();
+  CR();CR();
 
   header3("Debug-only printing: `disp[123]`, `tdisp[123]`, `mdisp[123]`");
-  cr();cr();
+  CR();CR();
 
   text("The display commands also have versions that only display when the code is compiled with the debug flag `MATHQ_DEBUG` set.");
   text("* `disp1`, `tdisp1`, `mdisp1` will");
@@ -256,11 +255,11 @@ int main()
 
 
   header3("Debug-only printing: `print[123]`, `printf[123]`");
-  cr();cr();
+  CR();CR();
   
-  text("* The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `mout` followed by a carriage return.");
+  text("* The functions `print1`, `print2`, `print3` each take a single std::string (or C string) as input and print the string to the stream `MOUT` followed by a carriage return.");
 
-  text("* The functions `printf1`, `printf2`, `printf3` function like printf, but actually use sprintf and then output to the stream `mout` using C++ methodlogy.");
+  text("* The functions `PRINTF1`, `PRINTF2`, `PRINTF3` function like printf, but actually use sprintf and then output to the stream `MOUT` using C++ methodlogy.");
 
 
   
@@ -272,10 +271,10 @@ int main()
   text("```C++\n");
   text("Terminal::setmout(std::cerr);");
   text("```\n");
-  text("* You can use the mathq output stream via `Terminal::getmout()` or the macro `mout`");
+  text("* You can use the mathq output stream via `Terminal::getmout()` or the macro `MOUT`");
   text("For example, you can output a string:");
   text("```C++\n");
-  text("mout << \"Hello World\" << std::endl;\n");
+  text("MOUT << \"Hello World\" << std::endl;\n");
   text("```\n");
   text("* By default, mathq uses color when it detects that the output stream is connected to a terminal.");
   text("* By default, mathq disables color when it detects that the output stream is piped to a file.");
@@ -292,7 +291,7 @@ int main()
   text("```\n");
   text("This latter setting can be used to print in colors to a file, which will display properly when the file is viewed via a terminal command like `more`,`less`, or `cat`.\n");
   
-  cr();cr();
+  CR();CR();
   header2("The `Style` class");
   text("* Color and other text attributes are controlled using the [ANSI escape codes for terminals](https://en.wikipedia.org/wiki/ANSI_escape_code).\n");
   text("* mathq defines the class `Style` for applying color and other attributes, such as **bold**\n");
@@ -303,15 +302,15 @@ int main()
   text("* To use any of these, use the `CREATESTYLE` macro as the following example illustrates");
   text("```C++\n");
   text("Style mystyle = CREATESTYLE(BOLD+RED);\n");
-  text("mout << mystyle.apply(\"with style\") + \" without style \" << std::endl;\n");
+  text("MOUT << mystyle.apply(\"with style\") + \" without style \" << std::endl;\n");
   text("```\n");
   text("The output from the above two lines of code is:\n");
   text("![stylesexample](displaycolorsexample.png)");
-  cr();cr();
+  CR();CR();
   text("* _The Style class checks to see whether or not to actually use colors, as described in the previous sub-section_\n");
-  cr();cr();
+  CR();CR();
 
-  cr();cr();
+  CR();CR();
   header3("Custom styles");
   text("* The user can define a style for any foreground color and background color combination as follows:\n");
 
@@ -319,7 +318,7 @@ int main()
   text("int nf = 27;  // color for foreground");
   text("int nb = 227; // color for background");
   text("display::Style mystyle(nf,nb); ");
-  text("display::mout << mystyle.apply(\"Hello World\") << std::endl; ");
+  text("display::MOUT << mystyle.apply(\"Hello World\") << std::endl; ");
   codeend();
 
   text("* Style objects can added:\n");
@@ -329,7 +328,7 @@ int main()
   text("display::Style mystyle(nf,nb);");
   text("display::Style bold(BOLD);");
   text("display::Style mybold = bold + mystyle;");
-  text("display::mout << mybold.apply(\"Hello World\") << std::endl; ");
+  text("display::MOUT << mybold.apply(\"Hello World\") << std::endl; ");
   codeend();
   text("* Place the attributes, eg `BOLD`, `UNDERLINE`, before the color styles");
   
@@ -337,13 +336,13 @@ int main()
 
   
   header2("Customizing display format for data types");
-  cr();cr();
+  CR();CR();
   header3("Customizing number formats");
   text("You can set the number format for any of the primitive datatypes using template function `setFormatString<D>(std::string)`");
 
   {
-    cr();cr();
-    example(Nex++," `double` number format");
+    CR();CR();
+    EXAMPLE(Nex++," `double` number format");
       
     codestart("C++");
     codemulti( using namespace display );
@@ -367,8 +366,8 @@ int main()
 
 
   {
-    cr();cr();
-    example(Nex++," `int` number format");
+    CR();CR();
+    EXAMPLE(Nex++," `int` number format");
 
     codestart("C++");
     codemulti( using namespace display );
@@ -390,7 +389,7 @@ int main()
 
   }
 
-  cr();cr();
+  CR();CR();
   header3("Customizing format for `char`,`string`, and `bool`");
   text("* The default format for `char` is `\"%c\"`");
   text("* The default format for `std::string` is `\"%s\"`");
@@ -400,7 +399,7 @@ int main()
   text("* The default `bool` string are `0` and `1`");
 
   {
-    cr();cr();
+    CR();CR();
     codestart("C++");
     codemulti( using namespace display );
     codemulti( bool a = true );
@@ -411,7 +410,7 @@ int main()
     resultmulti(a);
     resultmulti(!a);
     resultend();
-    cr();cr();
+    CR();CR();
 
     text("For example, we can change the bool display value to true/false as follows.");
     codestart("C++");
@@ -425,51 +424,51 @@ int main()
     resultmulti(a);
     resultmulti(!a);
     resultend();
-    cr();cr();
+    CR();CR();
   } 
 
 
   
   header3("Customizing complex number format");
   text("The format for complex numbers is set using the function `setFormatStringComplex`.  The default format is `\"(%s, %s)\"`\n");
-  cr();cr();
+  CR();CR();
 
   {
     set_default_format();
-    example(Nex++," complex number formats");
+    EXAMPLE(Nex++," complex number formats");
     codestart("C++");
     codemulti( using namespace display );
     codemulti( ComplexDouble z(1,-2)  );
     codeend();
       
-    cr();cr();
+    CR();CR();
     text("Default format: `\"(%s, %s)\"`\n");
     codestart("C++");
     disp(z);
     codeend();
       
-    cr();cr();
+    CR();CR();
     text("Matlab input format `\"%s + i*%s\"`\n");
     setFormatStringComplex("%s + i*%s");
     codestart("C++");
     disp(z);
     codeend();
 
-    cr();cr();
+    CR();CR();
     text("Mathematica input format `\"%s + I*%s\"`\n");
     setFormatStringComplex("%s + I*%s");
     codestart("C++");
     disp(z);
     codeend();
 
-    cr();cr();
+    CR();CR();
     text("Matlab output format / C++14 format `\"%s + %si\"`\n");
     setFormatStringComplex("%s + %si");
     codestart("C++");
     disp(z);
     codeend();
 
-    cr();cr();
+    CR();CR();
     text("Note that the format of the real and imaginary parts of `complex<D>` are controlled by the format string for the template data type.`\n");
     codestart("C++");
     codemulti( setFormatString<double>("%9.6f")  );
@@ -483,10 +482,10 @@ int main()
   }
 
   header3("Customizing Vector format");
-  cr();cr();
+  CR();CR();
 
   text("The format for `mathq:Vector` output is controlled by the following static class variables.");
-  cr();cr();
+  CR();CR();
   text("|`FormatDataVector` class variable|default value|");
   text("|------------------|------------------------|");
   text("|string_opening| \"{\"|");
@@ -494,11 +493,11 @@ int main()
   text("|max_elements_per_line | mathq::maxsize|");
   text("|string_endofline | \"\\n\"|");
   text("|string_closing |   \"}\"|");
-  cr();cr();
+  CR();CR();
 
   {
     set_default_format();
-    example(Nex++," default Vector format");
+    EXAMPLE(Nex++," default Vector format");
     codestart("C++");
     codemulti( using namespace mathq );
     codemulti( Vector<double> v = range<double>(1001,1010);  );
@@ -510,10 +509,10 @@ int main()
   }
   
   header4("Mathematica-style Vector format");
-  cr();cr();
+  CR();CR();
   text("The Mathematica-style format allows you to cut and paste results directly into a Mathematica notebook.  ");
   text("The function `set_mathematica_var_format()` sets these variables as follows");
-  cr();cr();
+  CR();CR();
   text("|`FormatDataVector` class variable|Mathematica value|");
   text("|------------------|------------------------|");
   text("|string_opening| \"{\\n    \" |");
@@ -522,9 +521,9 @@ int main()
   text("|string_endofline | \"\\n    \" |");
   text("|string_closing |   \"\\n}\"   |");
 
-  cr();cr();
+  CR();CR();
   text("* This function also changes the format for doubles and complex numbers");
-  cr();cr();
+  CR();CR();
   codestart("C++");
   codemulti( setFormatString<double>("% 10.8e") );
   codemulti( FormatData<double>::tens = true );
@@ -532,7 +531,7 @@ int main()
   codeend();
   {
     
-    example(Nex++," Mathematica Vector format");
+    EXAMPLE(Nex++," Mathematica Vector format");
     codestart("C++");
     codemulti( using namespace mathq );
     codemulti( Vector<double> v = range<double>(1001,1010);  );
@@ -545,10 +544,10 @@ int main()
   }
   
   header4("Matlab-style Vector format");
-  cr();cr();
+  CR();CR();
   text("The Matlab-style format allows you to cut and paste results directly into the Matlab command line or m-file.  ");
   text("The function `set_matlab_var_format()` sets these varibles as follows");
-  cr();cr();
+  CR();CR();
   text("|`FormatDataVector` class variable|Matlab value|");
   text("|------------------|------------------------|");
   text("|string_opening|   \"[ ...\\n    \"  |");
@@ -557,9 +556,9 @@ int main()
   text("|string_endofline |  \" ...\\n    \"  |");
   text("|string_closing |   \" ...\\n]\"  |");
 
-  cr();cr();
+  CR();CR();
   text("* This function also changes the format for doubles and complex numbers");
-  cr();cr();
+  CR();CR();
   codestart("C++");
   codemulti( setFormatString<double>("% 10.8e") );
   codemulti( FormatData<double>::tens = false );
@@ -567,7 +566,7 @@ int main()
   codeend();
   {
     
-    example(Nex++," Matlab Vector format");
+    EXAMPLE(Nex++," Matlab Vector format");
     codestart("C++");
     codemulti( using namespace mathq );
     codemulti( Vector<double> v = range<double>(1001,1010);  );
@@ -584,80 +583,80 @@ int main()
 
   header3("Color and style settings for floating point types\n");
 
-  cr();cr();
+  CR();CR();
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(MAGENTA) | ");
   text("| style_for_value | Style(BLACK) | ");
   text("| style_for_zero | Style(GRAY1) | ");
-  cr();cr();
+  CR();CR();
 
 
   header3("Color and style settings for signed integer types\n");
 
-  cr();cr();
+  CR();CR();
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(MAGENTA) | ");
   text("| style_for_value | Style(BLUE2) | ");
   text("| style_for_zero | Style(GRAY1) | ");
-  cr();cr();
+  CR();CR();
 
   header3("Color and style settings for unsigned integer types\n");
 
-  cr();cr();
+  CR();CR();
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(MAGENTA) | ");
   text("| style_for_value | Style(VIOLET1) | ");
   text("| style_for_zero | Style(GRAY1) | ");
-  cr();cr();
+  CR();CR();
 
 
 
   header3("Color and style settings for `bool`\n");
 
-  cr();cr();
+  CR();CR();
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(MAGENTA) | ");
   text("| style_for_true | Style(GREEN1) | ");
   text("| style_for_false | Style(GRAY1) | ");
-  cr();cr();
+  CR();CR();
 
   header3("Color and style settings for `char`\n");
 
-  cr();cr();
+  CR();CR();
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(MAGENTA) | ");
   text("| style_for_value | Style(BLACK) | ");
-  cr();cr();
+  CR();CR();
 
   header3("Color and style settings for `string`\n");
 
-  cr();cr();
+  CR();CR();
   text("| `FormatData<D>` class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(GREEN) | ");
   text("| style_for_value | Style(BLACK) | ");
-  cr();cr();
+  CR();CR();
 
   header3("Color and style settings for `std::complex`\n");
-  cr();cr();
+  CR();CR();
   text("| **FormatDataComplex** class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(GREEN) | ");
   text("| style_for_punctuation | Style(GRAY1) | ");
-  cr();cr();
+  CR();CR();
   
   header3("Color and style settings for `Vector`\n");
-  cr();cr();
+  CR();CR();
   text("| **FormatDataVector** class variable | default value | ");
   text("|--------------------|----------------------------|");
   text("| style_for_type_name | Style(CYAN) | ");
   text("| style_for_punctuation | Style(GRAY1) | ");
-  cr();cr();
+  CR();CR();
 
   mathq_toc();
 

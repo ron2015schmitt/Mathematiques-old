@@ -8,41 +8,238 @@
 //****************************************************************************
 //                      MACROS
 //
-// The scope of a macros is where it is used!!!
+// REMINDER: In terms of calls to functions etc, the scope of a macros 
+//           is where it is used!!!
+//           For this reason always use th efull symbol name with namespaces
 //****************************************************************************
 
-#define mout (display::Terminal::getmout())
+// NOT THAT THIS IS NOT A FUNCTION
+#define MOUT (display::Terminal::getmout())
 
-#define CREATESTYLE(...) display::Style::create(__VA_ARGS__, #__VA_ARGS__)
-
+// THESE PRINTF FUNCTIONS DISAPPEAR when in FAST MODE
 #if MATHQ_DEBUG >= 1
-#define printf1(...) mout << display::printf2str(__VA_ARGS__)
+#define PRINTF1(...) MOUT << display::printf2str(__VA_ARGS__)
 #else
-#define printf1(...) \
+#define PRINTF1(...) \
   {}
 #endif
 
 #if MATHQ_DEBUG >= 2
-#define printf2(...) mout << display::printf2str(__VA_ARGS__)
+#define PRINTF2(...) MOUT << display::printf2str(__VA_ARGS__)
 #else
-#define printf2(...) \
+#define PRINTF2(...) \
   {}
 #endif
 
 #if MATHQ_DEBUG >= 3
-#define printf3(...) mout << display::printf2str(__VA_ARGS__)
+#define PRINTF3(...) MOUT << display::printf2str(__VA_ARGS__)
 #else
-#define printf3(...) \
+#define PRINTF3(...) \
   {}
 #endif
 
 
+#define CREATESTYLE(...) display::Style::create(__VA_ARGS__, #__VA_ARGS__)
+
+
+#define DISP_STRM(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define tdisp_strm(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define trdisp_strm(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define cr_strm(stream) display::Display::issuecr(stream)
+
+#define dispval(...) display::dispval_strm(MOUT, __VA_ARGS__)
+#define disp(...) display::Display::mydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+#define tdisp(...) display::Display::tmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+#define trdisp(...) display::Display::trmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+#define CR() display::Display::issuecr(MOUT)
+
+// for how this works, refer to
+// https://stackoverflow.com/questions/3046889/optional-parameters-with-c-macros
+#define disp_0(stream) display::Display::issuecr(stream)
+#define dispX(stream, A) display::Display::mydisp(stream, A, #A)
+#define disp_1(stream, A) \
+  dispX(stream, A, #A);   \
+  cr_strm(stream)
+#define disp_2(stream, A, B) \
+  dispX(stream, A);          \
+  dispX(stream, B);          \
+  cr_strm(stream)
+#define disp_3(stream, A, B, C) \
+  dispX(stream, A);             \
+  dispX(stream, B);             \
+  dispX(stream, C);             \
+  cr_strm(stream)
+#define disp_4(stream, A, B, C, D) \
+  dispX(stream, A);                \
+  dispX(stream, B);                \
+  dispX(stream, C);                \
+  dispX(stream, D);                \
+  cr_strm(stream)
+#define disp_5(stream, A, B, C, D, E) \
+  dispX(stream, A);                   \
+  dispX(stream, B);                   \
+  dispX(stream, C);                   \
+  dispX(stream, D);                   \
+  dispX(stream, E);                   \
+  cr_strm(stream)
+#define disp_6(stream, A, B, C, D, E, F) \
+  dispX(stream, A);                      \
+  dispX(stream, B);                      \
+  dispX(stream, C);                      \
+  dispX(stream, D);                      \
+  dispX(stream, E);                      \
+  dispX(stream, F);                      \
+  cr_strm(stream)
+#define disp_7(stream, A, B, C, D, E, F, G) \
+  dispX(stream, A);                         \
+  dispX(stream, B);                         \
+  dispX(stream, C);                         \
+  dispX(stream, D);                         \
+  dispX(stream, E);                         \
+  dispX(stream, F);                         \
+  dispX(stream, G);                         \
+  cr_strm(stream)
+#define disp_8(stream, A, B, C, D, E, F, G, H) \
+  dispX(stream, A);                            \
+  dispX(stream, B);                            \
+  dispX(stream, C);                            \
+  dispX(stream, D);                            \
+  dispX(stream, E);                            \
+  dispX(stream, F);                            \
+  dispX(stream, G);                            \
+  dispX(stream, H);                            \
+  cr_strm(stream)
+#define disp_9(stream, A, B, C, D, E, F, G, H, I) \
+  dispX(stream, A);                               \
+  dispX(stream, B);                               \
+  dispX(stream, C);                               \
+  dispX(stream, D);                               \
+  dispX(stream, E);                               \
+  dispX(stream, F);                               \
+  dispX(stream, G);                               \
+  dispX(stream, H);                               \
+  dispX(stream, I);                               \
+  cr_strm(stream)
+#define disp_10(stream, A, B, C, D, E, F, G, H, I, J) \
+  dispX(stream, A);                                   \
+  dispX(stream, B);                                   \
+  dispX(stream, C);                                   \
+  dispX(stream, D);                                   \
+  dispX(stream, E);                                   \
+  dispX(stream, F);                                   \
+  dispX(stream, G);                                   \
+  dispX(stream, H);                                   \
+  dispX(stream, I);                                   \
+  dispX(stream, J);                                   \
+  cr_strm(stream)
+
+// The interim macro that simply strips the excess and ends up with the required macro
+#define mdisp_X(x, A, B, C, D, E, F, G, H, I, J, FUNC, ...) FUNC;
+
+// The macro that the programmer uses
+#define mdisp(...) mdisp_X(, ##__VA_ARGS__, disp_10(MOUT, __VA_ARGS__), disp_9(MOUT, __VA_ARGS__), disp_8(MOUT, __VA_ARGS__), disp_7(MOUT, __VA_ARGS__), disp_6(MOUT, __VA_ARGS__), disp_5(MOUT, __VA_ARGS__), disp_4(MOUT, __VA_ARGS__), disp_3(MOUT, __VA_ARGS__), disp_2(MOUT, __VA_ARGS__), disp_1(MOUT, __VA_ARGS__), disp_0(MOUT))
+
+#define mdisp_strm(stream, ...) mdisp_X(, ##__VA_ARGS__, disp_10(stream, __VA_ARGS__), disp_9(stream, __VA_ARGS__), disp_8(stream, __VA_ARGS__), disp_7(stream, __VA_ARGS__), disp_6(stream, __VA_ARGS__), disp_5(stream, __VA_ARGS__), disp_4(stream, __VA_ARGS__), disp_3(stream, __VA_ARGS__), disp_2(stream, __VA_ARGS__), disp_1(stream, __VA_ARGS__), disp_0(stream))
+
+#if MATHQ_DEBUG >= 1
+#define mdisp1(...) mdisp(__VA_ARGS__)
+#define disp1(...) disp(__VA_ARGS__)
+#define tdisp1(...) tdisp(__VA_ARGS__)
+#else
+#define mdisp1(...) \
+  {}
+#define disp1(...) \
+  {}
+#define tdisp1(...) \
+  {}
+#endif
+
+#if MATHQ_DEBUG >= 2
+#define mdisp2(...) mdisp(__VA_ARGS__)
+#define disp2(...) disp(__VA_ARGS__)
+#define tdisp2(...) tdisp(__VA_ARGS__)
+#else
+#define mdisp2(...) \
+  {}
+#define disp2(...) \
+  {}
+#define tdisp2(...) \
+  {}
+#endif
+
+#if MATHQ_DEBUG >= 3
+#define mdisp3(...) mdisp(__VA_ARGS__)
+#define disp3(...) disp(__VA_ARGS__)
+#define tdisp3(...) tdisp(__VA_ARGS__)
+#else
+#define mdisp3(...) \
+  {}
+#define disp3(...) \
+  {}
+#define tdisp3(...) \
+  {}
+#endif
+
+#define text(str) MOUT << str << std::endl
+
+#define codestart(lang) MOUT << std::string("```") << std::string(lang) << std::endl
+#define codemulti(...)                     \
+  printf("%s;\n", stringify(__VA_ARGS__)); \
+  __VA_ARGS__
+#define codemultiwcomment(str, ...)                   \
+  printf("%s; // %s\n", stringify(__VA_ARGS__), str); \
+  __VA_ARGS__
+
+#define codemultiNoteC11Array(...)                       \
+  printf("%s; // C++11 list\n", stringify(__VA_ARGS__)); \
+  __VA_ARGS__
+
+#define codeend() printf("```\n")
+#define code(...)         \
+  codestart();            \
+  codemulti(__VA_ARGS__); \
+  codeend()
+
+#define resultstart() printf("**The result is**\n```C++\n")
+#define resultstart2(str) printf("**Some expressions with results**%s\n```C++\n", str)
+#define resultstart3(str) printf("**Results**%s\n```C++\n", str)
+#define resultmulti(...) \
+  printf("  ");          \
+  disp(__VA_ARGS__)
+#define resultend() printf("```\n\n")
+#define RESULT(...)         \
+  resultstart();            \
+  resultmulti(__VA_ARGS__); \
+  resultend()
+
+#define EXAMPLE(n, str) MOUT << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl
+
+
+// 
+// SPECIFIC TO GITHUB MARKDOWN
+//
+
+#define markdown_preamble() printf("_This document was generated from the_ C++ _file_ `%s` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `\"mathq.h\"` _and_ `\"gitmd.h\"`_respectively._ ", __FILE__);
+
+#define mdtitle(str)                                       \
+  MOUT << "# " << str << " in Mathématiques" << std::endl; \
+  write_mdtitle_file(__FILE__, str);
+
+
+#define vspace() MOUT << "\n<br>\n" \
+                      << std::endl
+#define header1(str) MOUT << "# " << str << std::endl
+#define header2(str) MOUT << "## " << str << std::endl
+#define header3(str) MOUT << "### " << str << std::endl
+#define header4(str) MOUT << "#### " << str << std::endl
+
+
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 namespace display {
 
 extern const char blankline[];
-
 //****************************************************************************
 //                          Some declarations. Definitions below
 //****************************************************************************
@@ -729,14 +926,14 @@ inline bool checkFormatString(const std::string formatstr, const D &x = D(1)) {
     passed = false;
 
   if (!passed) {
-    mout << StyledString::get(HORLINE);
-    mout << StyledString::get(ERROR);
-    mout << " illegal format string";
-    mout << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
-    mout << " passed to Format";
-    mout << display::getBracketedTypeName(x);
-    mout << endl;
-    mout << StyledString::get(HORLINE);
+    MOUT << StyledString::get(HORLINE);
+    MOUT << StyledString::get(ERROR);
+    MOUT << " illegal format string";
+    MOUT << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
+    MOUT << " passed to Format";
+    MOUT << display::getBracketedTypeName(x);
+    MOUT << endl;
+    MOUT << StyledString::get(HORLINE);
     return false;
   }
   return true;
@@ -1002,13 +1199,13 @@ inline bool checkFormatStringComplex(const std::string formatstr) {
     passed = false;
 
   if (!passed) {
-    mout << StyledString::get(HORLINE);
-    mout << StyledString::get(ERROR);
-    mout << " illegal format string";
-    mout << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
-    mout << " passed to setFormatStringComplex";
-    mout << endl;
-    mout << StyledString::get(HORLINE);
+    MOUT << StyledString::get(HORLINE);
+    MOUT << StyledString::get(ERROR);
+    MOUT << " illegal format string";
+    MOUT << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
+    MOUT << " passed to setFormatStringComplex";
+    MOUT << endl;
+    MOUT << StyledString::get(HORLINE);
     return false;
   }
   return true;
@@ -1076,7 +1273,7 @@ public:
 
 inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
   display::Log::log(0, spaceName, className, funcName, s);
-  //    mout << __PRETTY_FUNCTION__;
+  //    MOUT << __PRETTY_FUNCTION__;
 }
 
 inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
@@ -1237,26 +1434,26 @@ inline void print_debug_level(void) {
 #elif (MATHQ_DEBUG >= 3)
   ss = StyledString::get(SSEnum::DLEVEL3);
 #endif
-  mout << "  " << ss << " " << std::endl;
+  MOUT << "  " << ss << " " << std::endl;
 }
 
 inline void print_mathq_info(void) {
   using namespace std;
   using namespace display;
-  mout << StyledString::get(HORLINE);
-  mout << StyledString::get(MATHEMATIQUES) << " ";
-  mout << StyledString::get(VERSION) << " ";
-  mout << endl
+  MOUT << StyledString::get(HORLINE);
+  MOUT << StyledString::get(MATHEMATIQUES) << " ";
+  MOUT << StyledString::get(VERSION) << " ";
+  MOUT << endl
        << endl;
-  mout << "compile-time settings" << endl;
+  MOUT << "compile-time settings" << endl;
   print_debug_level();
-  mout << CREATESTYLE(BOLD).apply("  C++ version: ");
-  mout << CREATESTYLE(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
+  MOUT << CREATESTYLE(BOLD).apply("  C++ version: ");
+  MOUT << CREATESTYLE(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
 #ifdef MATHQ_COPTS
-  mout << CREATESTYLE(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
-  mout << CREATESTYLE(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
+  MOUT << CREATESTYLE(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
+  MOUT << CREATESTYLE(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
 #endif
-  mout << StyledString::get(HORLINE);
+  MOUT << StyledString::get(HORLINE);
 }
 
 inline void set_default_format() {
@@ -1325,6 +1522,8 @@ inline void set_matlab_var_format() {
   setFormatStringComplex("%s + i*%s");
   FormatData<double>::tens = false;
 }
+
+
 
 }; // namespace display
 

@@ -3,7 +3,6 @@
 
 #define MATHQ_DEBUG 0
 #include "mathq.h"
-#include "macros.h"
 
 
 template <typename D, int M = 1 + mathq::NumberType<D>::depth()>
@@ -51,13 +50,13 @@ int main(int argc, char *argv[]) {
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
 
   print_mathq_info();
 
@@ -66,8 +65,8 @@ int main(int argc, char *argv[]) {
 
 
   // {
-  //   cr();
-  //   mout << bold.apply("Complexify") << endl;
+  //   CR();
+  //   MOUT << bold.apply("Complexify") << endl;
   //   Complexify<double>::Type double_;
   //   tdisp(double_);
   //   Complexify<std::complex<double> >::Type complexdouble_;
@@ -79,8 +78,8 @@ int main(int argc, char *argv[]) {
   // }
 
   //   {
-  //   cr();
-  //   mout << bold.apply("Realify") << endl;
+  //   CR();
+  //   MOUT << bold.apply("Realify") << endl;
   //   Realify<double>::Type double_;
   //   tdisp(double_);
   //   Realify<std::complex<double> >::Type complexdouble_;
@@ -93,8 +92,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("conj(Scalar<D>)") << endl;
+    CR();
+    MOUT << bold.apply("conj(Scalar<D>)") << endl;
     Scalar<ComplexDouble> z = ComplexDouble(1, 2);
     Scalar<double> x = 6.5;
     tdisp(z);
@@ -111,8 +110,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Vector<double> testing") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<double> testing") << std::endl;
     tdisp(NumberType<double>::depth());
     Vector<double> vd{1, 2, 3, 4};
     tdisp(vd);
@@ -134,8 +133,8 @@ int main(int argc, char *argv[]) {
     tdisp(d4);
   }
   {
-    cr();
-    mout << bold.apply("Vector<ComplexDouble> testing") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<ComplexDouble> testing") << std::endl;
     tdisp(NumberType<ComplexDouble>::depth());
     Vector<ComplexDouble> vd{ComplexDouble(0.1, 1), ComplexDouble(0.2, 2), ComplexDouble(3, 0.3)};
     tdisp(vd);
@@ -147,8 +146,8 @@ int main(int argc, char *argv[]) {
     tdisp(d2);
   }
   {
-    cr();
-    mout << bold.apply("Vector<Vector<double> > testing") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<Vector<double> > testing") << std::endl;
     Vector<Vector<double>> vd{{1.1, 1.2}, {2.1, 2.2}, {3.1, 3.2}};
     tdisp(vd);
     tdisp(FundamentalType<decltype(vd)>::depth());
@@ -161,26 +160,26 @@ int main(int argc, char *argv[]) {
   {
     using namespace std;
     // this work sbut disp() doesn't work because it doesn't recurse formats
-    cr();
-    mout << bold.apply("complex<Vector<double>> testing") << std::endl;
+    CR();
+    MOUT << bold.apply("complex<Vector<double>> testing") << std::endl;
     tdisp(NumberType<complex<Vector<double>>>::depth());
     complex<Vector<double>> vd = complex<Vector<double>>({1.1, 1.2, 1.3}, {2.1, 2.2, 2.3});
-    mout << vd << endl;
+    MOUT << vd << endl;
     tdisp(FundamentalType<decltype(vd)>::depth());
     FundamentalType<decltype(vd)>::Type d = 43;
     tdisp(d);
     tdisp(NumberType<decltype(vd)>::depth());
     NumberType<decltype(vd)>::Type v2 = vd;
-    mout << v2 << endl;
+    MOUT << v2 << endl;
 
     //  TODO: need to define operator+=
     //    NumberType<decltype(vd)>::Type v3 = vd+v2;
-    //    mout << v3 << endl;
+    //    MOUT << v3 << endl;
   }
 
   // {
-  //   cr();
-  //   mout << bold.apply("Test class testing") << std::endl;
+  //   CR();
+  //   MOUT << bold.apply("Test class testing") << std::endl;
   //   Test<double> t0;
   //   tdisp(NumberType<decltype(t0)>::depth());
   //   tdisp(t0.depth());
@@ -193,8 +192,8 @@ int main(int argc, char *argv[]) {
   // }
 
   // {
-  //   cr();
-  //   mout << bold.apply("Test2 class testing") << std::endl;
+  //   CR();
+  //   MOUT << bold.apply("Test2 class testing") << std::endl;
   //   Test2<double> t0(0);
   //   tdisp(NumberType<decltype(t0)>::depth());
   //   tdisp(t0.depth());
@@ -208,8 +207,8 @@ int main(int argc, char *argv[]) {
 
 
   {
-    cr();
-    mout << bold.apply("Scalar<double> class testing") << std::endl;
+    CR();
+    MOUT << bold.apply("Scalar<double> class testing") << std::endl;
     Scalar<double> t1(1.1);
     tdisp(t1);
     tdisp(NumberType<decltype(t1)>::depth());
@@ -219,8 +218,8 @@ int main(int argc, char *argv[]) {
     tdisp(t1.eldeepsize());
     tdisp(t1.deepsize());
 
-    cr();
-    mout << bold.apply("Vector<double> class testing") << std::endl;
+    CR();
+    MOUT << bold.apply("Vector<double> class testing") << std::endl;
     Vector<double> v{1, 2, 3, 4};
     tdisp(v);
     tdisp(NumberType<decltype(v)>::depth());
@@ -230,7 +229,7 @@ int main(int argc, char *argv[]) {
     tdisp(v.eldeepsize());
     tdisp(v.deepsize());
 
-    mout << bold.apply("Scalar<Scalar<double>> class testing") << std::endl;
+    MOUT << bold.apply("Scalar<Scalar<double>> class testing") << std::endl;
     Scalar<Scalar<double>> t2{{2.2}};
     tdisp(t2);
     tdisp(NumberType<decltype(t2)>::depth());
@@ -240,7 +239,7 @@ int main(int argc, char *argv[]) {
     tdisp(t2.eldeepsize());
     tdisp(t2.deepsize());
 
-    mout << bold.apply("Scalar<Vector<double>> class testing") << std::endl;
+    MOUT << bold.apply("Scalar<Vector<double>> class testing") << std::endl;
     Scalar<Vector<double>> t3{{1, 2}};
     tdisp(t3);
     tdisp(NumberType<decltype(t3)>::depth());
@@ -300,7 +299,7 @@ int main(int argc, char *argv[]) {
       tdisp(t7(n));
     }
 
-    // mout << bold.apply("Vector<Vector<double>> class testing") << std::endl;
+    // MOUT << bold.apply("Vector<Vector<double>> class testing") << std::endl;
     // Vector<Vector<double>> t5 {{1,2},{3,4},{5,6}};
     // tdisp(t5);
     // tdisp(NumberType<decltype(t5)>::depth());
@@ -329,9 +328,9 @@ int main(int argc, char *argv[]) {
 
   //------------------------------------------------------
 
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
   return 0;
 }

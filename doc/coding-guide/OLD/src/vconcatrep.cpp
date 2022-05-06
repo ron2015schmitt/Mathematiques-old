@@ -2,7 +2,6 @@
 
  
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 #include <string>
@@ -16,13 +15,13 @@ int main()
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
  
   int Nex = 1;
 
 
   mathq_toc();
-  cr();cr();
+  CR();CR();
   mdtitle("Vector join operator `(v1,v2)` and `rep` function");
   mathq_preamble();
 
@@ -33,14 +32,14 @@ int main()
   text("* join can be used on the left hand side as well!");
  
   {
-    cr();
-    cr();
-    example(Nex++,"Vector join operator `,`");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Vector join operator `,`");
     codestart("C++");
     codemulti( Vector<double> v1( range<double>(0,2) ) );
     codemulti( Vector<double> v2( range<double>(3,4) ) );
     codeend();
-    cr();
+    CR();
 
     resultstart();
     resultmulti(v1);
@@ -53,15 +52,15 @@ int main()
     resultmulti( (10*v1,10*v2)  );
     resultend();
 
-    cr();
+    CR();
     text("The following are examples usign the join operator on the left hand side");
-    cr();
+    CR();
     codestart("C++");
     codemulti( Vector<double> va(2) );
     codemulti( Vector<double> vb(3) );
     codemulti( (va,vb) = range<double>(1,5) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti(va);
     resultmulti(vb);
@@ -72,7 +71,7 @@ int main()
     codemulti( Vector<double> ub(3) );
     codemulti( (ua[{1,0}],ub) = range<double>(1,5) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti(ua);
     resultmulti(ub);
@@ -83,7 +82,7 @@ int main()
     codemulti( Vector<double> wb(3) );
     codemulti( (wa,wb[{2,1,0}]) = range<double>(1,5) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti(wa);
     resultmulti(wb);
@@ -94,7 +93,7 @@ int main()
     codemulti( Vector<double> zb(3) );
     codemulti( (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5) );
     codeend();
-    cr();
+    CR();
     resultstart();
     resultmulti(za);
     resultmulti(zb);
@@ -109,9 +108,9 @@ int main()
 
   
   {
-    cr();
-    cr();
-    example(Nex++,"Vector `rep` function");
+    CR();
+    CR();
+    EXAMPLE(Nex++,"Vector `rep` function");
     codestart("C++");
     codemulti( Vector<double> v1( range<double>(1,3) ) );
     codemulti( Vector<double> v2( range<double>(4,5) ) );
@@ -122,7 +121,7 @@ int main()
     codemulti( Vector<double> v5 );
     codemulti( v5 = rep((v1,v2),2) );
     codeend();
-    cr();
+    CR();
 
    
     resultstart();
@@ -134,8 +133,8 @@ int main()
     resultend();
   }
 
-  cr();
-  cr();
+  CR();
+  CR();
   
   mathq_toc();
 

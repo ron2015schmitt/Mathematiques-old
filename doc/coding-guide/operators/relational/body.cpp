@@ -8,19 +8,17 @@
 
 #define MATHQ_DEBUG 1
 #include "mathq.h"
-#include "macros.h"
-#include "gitmd.h"
 
 int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
-  using namespace md;
+  
 
   markdown_preamble();
 
-  cr();
-  cr();
+  CR();
+  CR();
 
 
   vspace();
@@ -28,7 +26,7 @@ int main() {
 
   text("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
 
-  cr();
+  CR();
   text("| operator | operation | ");
   text("| :---: | :---: | ");
   text("| `==` | equal to | ");
@@ -38,11 +36,11 @@ int main() {
   text("| `>` | greater than | ");
   text("| `>=` | greater than or equal to | ");
   // text("| `<=>` | three-way comparison | ");
-  cr();
+  CR();
 
   text("**CAVEAT**: C++ allows assigment `=` inside `if` statements (eg, `if (a = true) return;`).  Mistyping the equals operator `==` can cause painful bugs. \n");
 
-  cr();
+  CR();
   text("Examples:\n");
   codestart("C++");
   trdisp((2 == 2));

@@ -4,7 +4,6 @@
 
 
 #include "mathq.h"
-#include "gitmd.h"
 
 #include <iostream>
 
@@ -13,10 +12,10 @@
 int main()
 {
   using namespace mathq;
-  using namespace md;
+  
   using namespace std;
 
-  cr();
+  CR();
   printcr("When running in DEBUG mode, all Vector and Matrix objects are assigned");
   printcr("a unique name and ID#. The name and ID can be accessed using the");
   printcr("name() and objectID() member functions respectively.");
@@ -71,7 +70,7 @@ int main()
   mathqinfo(x);
 
   Matrix<double> A(2,3,"me");
-  cr();
+  CR();
   mathqinfo(A);
 
 

@@ -307,7 +307,7 @@ namespace mathq {
       vptrs = new VectorofPtrs();
       vptrs->add(x_.getAddresses());
       vptrs->add(y_.getAddresses());
-      disp3(x);
+      // disp3(x);
     }
     
     ~TERW_Join() {

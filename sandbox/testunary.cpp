@@ -1,16 +1,13 @@
 
-//#define MATHQ_DEBUG
-
-#include "mathq.h" 
-
 #include <fstream>
 
+#define MATHQ_DEBUG 0
+#include "mathq.h"
+#include "macros.h"
 
 
 
-
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 
   const double pi = M_PI;
   std::string myname = argv[0];
@@ -21,8 +18,8 @@ int main(int argc, char *argv[])
   using namespace mathq::unit_imaginary;
 
   Style bold = createStyle(BOLD);
-  Style blue = createStyle(BOLD+BLUE2);
-  
+  Style blue = createStyle(BOLD + BLUE2);
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
@@ -30,21 +27,20 @@ int main(int argc, char *argv[])
   cr();
   cr();
   mout << StyledString::get(HORLINE);
-  mout << "running: " <<bold.apply(myname) << std::endl;
+  mout << "running: " << bold.apply(myname) << std::endl;
 
-  
-  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
-  
+
+  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+
   print_mathq_info();
 
 
 
-  
-
 
 
   cr();
-  mout << StyledString::get(HORLINE);cr();
+  mout << StyledString::get(HORLINE);
+  cr();
   //------------------------------------------------------
 
   cr();
@@ -67,7 +63,7 @@ int main(int argc, char *argv[])
   mout << bold.apply("Vector") << endl;
   {
     cr();
-    Vector<double> v {1.1,2.2};
+    Vector<double> v{1.1, 2.2};
     tdisp(v);
     tdisp(v(0));
     tdisp(v.dims());
@@ -79,9 +75,9 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Vector<double,2> v {1,2};
+    Vector<double, 2> v{1, 2};
     tdisp(v);
-    Vector<double,2> v2;
+    Vector<double, 2> v2;
     v2 = -v;
     tdisp(v2);
   }
@@ -93,10 +89,10 @@ int main(int argc, char *argv[])
     cr();
     Matrix<double> m0;
     tdisp(m0);
-    
-    Matrix<double> m {{1,2},{3,4}};
+
+    Matrix<double> m{{1, 2}, {3, 4}};
     tdisp(m);
-    tdisp(m(0,0));
+    tdisp(m(0, 0));
     tdisp(m.Nrows());
     tdisp(m.Ncols());
     tdisp(m.dims());
@@ -107,9 +103,9 @@ int main(int argc, char *argv[])
   }
   cr();
   {
-    Matrix<double,2,2> m {{1.1,2.2},{3.3,4.4}};
+    Matrix<double, 2, 2> m{{1.1, 2.2}, {3.3, 4.4}};
     tdisp(m);
-    Matrix<double,2,2> m2;
+    Matrix<double, 2, 2> m2;
     m2 = -m;
     tdisp(m2);
   }
@@ -120,16 +116,16 @@ int main(int argc, char *argv[])
   mout << bold.apply("Tensor -- Initializer lists") << endl;
   {
     cr();
-    std::initializer_list<double> x1 {1,2};
+    std::initializer_list<double> x1{1, 2};
     tdisp(x1);
 
-    std::initializer_list<std::initializer_list<double>> x2 {{1,2},{3,4}};
+    std::initializer_list<std::initializer_list<double>> x2{{1, 2}, {3, 4}};
     tdisp(x2);
 
-    NestedInitializerList<double,1> y1 {1,2};
+    NestedInitializerList<double, 1> y1{1, 2};
     tdisp(y1);
 
-    NestedInitializerList<double,2> y2 {{1,2},{3,4}};
+    NestedInitializerList<double, 2> y2{{1, 2}, {3, 4}};
     tdisp(y2);
   }
 
@@ -142,14 +138,14 @@ int main(int argc, char *argv[])
     tdisp(t0.dims());
     tdisp(t0.eldims());
     tdisp(t0);
-    Tensor<double,3> t1;
+    Tensor<double, 3> t1;
     tdisp(t1.dims());
     tdisp(t1.deepdims());
     tdisp(t1.deepsize());
     tdisp(t1.depth());
     tdisp(t1);
-    Dimensions dims(3,2,5);
-    Tensor<double,3> t2(dims);
+    Dimensions dims(3, 2, 5);
+    Tensor<double, 3> t2(dims);
     tdisp(t2.dims());
     tdisp(t2);
     for (int i = 0; i < t2.size(); i++) {
@@ -158,40 +154,40 @@ int main(int argc, char *argv[])
     tdisp(t2);
     for (int i = 0; i < t2.dims()[0]; i++) {
       for (int j = 0; j < t2.dims()[1]; j++) {
-	for (int k = 0; k < t2.dims()[2]; k++) {
-	  t2(i,j,k) = double(100*i)+double(10*j)+double(k);
-	  // mdisp(i,j,k,t2(i,j,k));
-	}
+        for (int k = 0; k < t2.dims()[2]; k++) {
+          t2(i, j, k) = double(100 * i) + double(10 * j) + double(k);
+          // mdisp(i,j,k,t2(i,j,k));
+        }
       }
     }
     tdisp(t2);
 
-    Tensor<double,1> t3 {1,2,3}; 
+    Tensor<double, 1> t3{1, 2, 3};
     tdisp(t3.dims());
     tdisp(t3.eldims());
     tdisp(t3);
 
 
-    Tensor<double,2> t4 {{1.1,2.2},{3.3,4.4}};
+    Tensor<double, 2> t4{{1.1, 2.2}, {3.3, 4.4}};
     tdisp(t4.dims());
     tdisp(t4);
 
-    Tensor<double,3> t5 {
-      {{0, 1, 2, 3, 4},{10, 11, 12, 13, 14}},
-    	{{100, 101, 102, 103, 104},{110, 111, 112, 113, 114}},
-    	  {{200, 201, 202, 203, 204},{210, 211, 212, 213, 214}  } };
-    
+    Tensor<double, 3> t5{
+        {{0, 1, 2, 3, 4}, {10, 11, 12, 13, 14}},
+        {{100, 101, 102, 103, 104}, {110, 111, 112, 113, 114}},
+        {{200, 201, 202, 203, 204}, {210, 211, 212, 213, 214}}};
+
     tdisp(t5.dims());
-    tdisp(t5(2,1,3));
+    tdisp(t5(2, 1, 3));
     tdisp(t5);
   }
 
-    
+
   cr();
   {
-    Tensor<double,2> t {{1.1,2.2},{3.3,4.4}};
+    Tensor<double, 2> t{{1.1, 2.2}, {3.3, 4.4}};
     tdisp(t);
-    Tensor<double,2> t2;
+    Tensor<double, 2> t2;
     t2 = -t;
     tdisp(t2);
   }
@@ -205,7 +201,7 @@ int main(int argc, char *argv[])
 
 
   mout << blue.apply("Two-level tests") << endl;
-  
+
 
   // -------------------------------------------------
   // two level tests
@@ -217,7 +213,7 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Scalar<Scalar<double>> s {{1.1}};
+    Scalar<Scalar<double>> s{{1.1}};
     tdisp(s);
     tdisp(s());
     tdisp(s()());
@@ -231,47 +227,46 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Scalar<Vector<double>> s {{1.,2.,3.}};
+    Scalar<Vector<double>> s{{1., 2., 3.}};
     tdisp(s);
     tdisp(s()(2));
     tdisp(s.dims());
     tdisp(s.size());
     tdisp(s.deepdims());
     Scalar<Vector<double>> s2;
-    s2 = -s;  
-    tdisp(s2);  
+    s2 = -s;
+    tdisp(s2);
   }
 
-  {   
+  {
     cr();
-    Scalar<Matrix<double>> s {{{1,2},{3,4}}};
+    Scalar<Matrix<double>> s{{{1, 2}, {3, 4}}};
     tdisp(s);
-    tdisp(s()(0,1));
+    tdisp(s()(0, 1));
     tdisp(s.dims());
     tdisp(s.size());
     tdisp(s.deepdims());
 
     Scalar<Matrix<double>> s2;
-    s2 = -s;  
-    tdisp(s2);  
+    s2 = -s;
+    tdisp(s2);
   }
 
-  {   
+  {
     cr();
-    Scalar<Tensor<double,2>> s {{{1,2},{3,4}}};
+    Scalar<Tensor<double, 2>> s{{{1, 2}, {3, 4}}};
     tdisp(s);
     tdisp(s());
-    tdisp(s()(0,1));
+    tdisp(s()(0, 1));
     tdisp(s.dims());
     tdisp(s.size());
     tdisp(s().dims());
     tdisp(s.depth());
     tdisp(s.deepdims());
 
-    Scalar<Tensor<double,2>> s2;
-    s2 = -s;  
+    Scalar<Tensor<double, 2>> s2;
+    s2 = -s;
     tdisp(s2);
-    
   }
 
   cr();
@@ -279,7 +274,7 @@ int main(int argc, char *argv[])
   mout << bold.apply("Two-Level Vector tests") << endl;
   {
     cr();
-    Vector<Scalar<double>> v {{1.},{2.}};
+    Vector<Scalar<double>> v{{1.}, {2.}};
     tdisp(v);
     tdisp(v(0));
     tdisp(v(0)());
@@ -293,7 +288,7 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Vector<Vector<double>> v {{1.,2.,3.},{4.,5.,6.}};
+    Vector<Vector<double>> v{{1., 2., 3.}, {4., 5., 6.}};
     tdisp(v);
     tdisp(v(0));
     tdisp(v(0)(2));
@@ -307,10 +302,10 @@ int main(int argc, char *argv[])
   }
   {
     cr();
-    Vector<Matrix<double>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
+    Vector<Matrix<double>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     tdisp(v);
     tdisp(v(0));
-    tdisp(v(1)(0,1));
+    tdisp(v(1)(0, 1));
     tdisp(v.dims());
     tdisp(v.size());
     tdisp(v.deepdims());
@@ -321,14 +316,14 @@ int main(int argc, char *argv[])
   }
   {
     cr();
-    Vector<Tensor<double,2>> v { {{1,2},{3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}} };
+    Vector<Tensor<double, 2>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
     tdisp(v);
     tdisp(v(0));
-    tdisp(v(2)(1,1));
+    tdisp(v(2)(1, 1));
     tdisp(v.dims());
     tdisp(v.size());
     tdisp(v.deepdims());
-    Vector<Tensor<double,2>> v2;
+    Vector<Tensor<double, 2>> v2;
     mout << "v2 = -v;" << endl;
     v2 = -v;
     tdisp(v2);
@@ -340,10 +335,11 @@ int main(int argc, char *argv[])
   mout << bold.apply("Two-Level Matrix tests") << endl;
   {
     cr();
-    Matrix<Scalar<double>> m {{{1},{2}},{{3},{4}}};;
+    Matrix<Scalar<double>> m{{{1}, {2}}, {{3}, {4}}};
+    ;
     tdisp(m);
-    tdisp(m(0,0));
-    tdisp(m(0,0)());
+    tdisp(m(0, 0));
+    tdisp(m(0, 0)());
     tdisp(m.Nrows());
     tdisp(m.Ncols());
     tdisp(m.dims());
@@ -355,29 +351,28 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Matrix<Vector<double>> m {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
+    Matrix<Vector<double>> m{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
     tdisp(m);
-    tdisp(m(0,0));
-    tdisp(m(0,0)(1));
+    tdisp(m(0, 0));
+    tdisp(m(0, 0)(1));
     tdisp(m.Nrows());
     tdisp(m.Ncols());
     tdisp(m.dims());
     tdisp(m.deepdims());
     Matrix<Vector<double>> m2;
     mout << "m2 = -m;" << endl;
-    m2 = -m; 
+    m2 = -m;
     tdisp(m2);
   }
 
   {
     cr();
-    Matrix<Matrix<double>> m  {
-      { {{1,2},{3,4}}, {{5,6},{7,8}} },
-	{ {{9,10},{11,12}}, {{13,14},{15,16}} }
-    };
+    Matrix<Matrix<double>> m{
+        {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
+        {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
     tdisp(m);
-    tdisp(m(0,0));
-    tdisp(m(0,0)(1,1));
+    tdisp(m(0, 0));
+    tdisp(m(0, 0)(1, 1));
     tdisp(m.dims());
     tdisp(m.size());
     tdisp(m.deepdims());
@@ -389,34 +384,34 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Matrix<Tensor<double,3>,2,2> m1;
+    Matrix<Tensor<double, 3>, 2, 2> m1;
     tdisp(m1);
     tdisp(m1.dims());
     tdisp(m1.size());
     tdisp(m1.deepdims());
-    Dimensions tdims(2,3,2);
+    Dimensions tdims(2, 3, 2);
 
     for (int i = 0; i < m1.dims()[0]; i++) {
       for (int j = 0; j < m1.dims()[1]; j++) {
-	m1(i,j).resize(tdims);
-	for (int k = 0; k < tdims[0]; k++) {
-	  for (int l = 0; l < tdims[1]; l++) {
-	    for (int m = 0; m < tdims[2]; m++) {
-	      m1(i,j)(k,l,m) = double(10000*i)+double(1000*j)+double(100*k)+double(10*l)+double(m);
-	    }
-	  }
-	}
+        m1(i, j).resize(tdims);
+        for (int k = 0; k < tdims[0]; k++) {
+          for (int l = 0; l < tdims[1]; l++) {
+            for (int m = 0; m < tdims[2]; m++) {
+              m1(i, j)(k, l, m) = double(10000 * i) + double(1000 * j) + double(100 * k) + double(10 * l) + double(m);
+            }
+          }
+        }
       }
     }
     tdisp(m1);
-    tdisp(m1(0,1));
-    tdisp(m1(1,0)(1,2,0));
+    tdisp(m1(0, 1));
+    tdisp(m1(1, 0)(1, 2, 0));
     tdisp(m1.dims());
     tdisp(m1.size());
     tdisp(m1.deepdims());
 
 
-    Matrix<Tensor<double,3>> m2;
+    Matrix<Tensor<double, 3>> m2;
     mout << "m2 = -m1;" << endl;
     m2 = -m1;
     tdisp(m2);
@@ -424,95 +419,69 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Matrix<Tensor<double,3>,2,2> m1 { {
-	{
-	  {
-	    {-0, -1},
-	      {-10, -11},
-		{-20, -21}
-	  },
-	    {
-	      {-100, -101},
-		{-110, -111},
-		  {-120, -121}
-	    }
-	}, 
-	  {
-	    {
-	      {-1000, -1001},
-		{-1010, -1011},
-		  {-1020, -1021}
-	    },
-	      {
-		{-1100, -1101},
-		  {-1110, -1111},
-		    {-1120, -1121}
-	      }
-	  }}, {
-	{
-	  {
-	    {-10000, -10001},
-	      {-10010, -10011},
-		{-10020, -10021}
-	  },
-	    {
-	      {-10100, -10101},
-		{-10110, -10111},
-		  {-10120, -10121}
-	    }
-	}, 
-	  {
-	    {
-	      {-11000, -11001},
-		{-11010, -11011},
-		  {-11020, -11021}
-	    },
-	      {
-		{-11100, -11101},
-		  {-11110, -11111},
-		    {-11120, -11121}
-	      }
-	  }} };
+    Matrix<Tensor<double, 3>, 2, 2> m1{{{{{-0, -1},
+                                          {-10, -11},
+                                          {-20, -21}},
+                                         {{-100, -101},
+                                          {-110, -111},
+                                          {-120, -121}}},
+                                        {{{-1000, -1001},
+                                          {-1010, -1011},
+                                          {-1020, -1021}},
+                                         {{-1100, -1101},
+                                          {-1110, -1111},
+                                          {-1120, -1121}}}},
+                                       {{{{-10000, -10001},
+                                          {-10010, -10011},
+                                          {-10020, -10021}},
+                                         {{-10100, -10101},
+                                          {-10110, -10111},
+                                          {-10120, -10121}}},
+                                        {{{-11000, -11001},
+                                          {-11010, -11011},
+                                          {-11020, -11021}},
+                                         {{-11100, -11101},
+                                          {-11110, -11111},
+                                          {-11120, -11121}}}}};
 
     tdisp(m1);
     tdisp(m1.dims());
     tdisp(m1.size());
     tdisp(m1.deepdims());
-    
   }
 
 
   /////////////////////////////////////////////////////////////////
 
 
-  
+
   cr();
   cr();
   mout << bold.apply("Two-Level Tensor tests") << endl;
   {
     cr();
-    Tensor<Scalar<double>,2> t;
+    Tensor<Scalar<double>, 2> t;
     tdisp(t);
     tdisp(t.dims());
     tdisp(t.deepdims());
-    Dimensions tdims(2,2);
+    Dimensions tdims(2, 2);
     t.resize(tdims);
-    t(0,0) = 1;
-    t(0,1) = 2;
-    t(1,0) = 3;
-    t(1,1) = 4;
+    t(0, 0) = 1;
+    t(0, 1) = 2;
+    t(1, 0) = 3;
+    t(1, 1) = 4;
     tdisp(t);
     tdisp(t.dims());
     tdisp(t.deepdims());
     tdisp(t.eldims());
   }
   {
-    
+
     cr();
-    Tensor<Scalar<double>,2> t {{{1},{2}},{{3},{4}}};
+    Tensor<Scalar<double>, 2> t{{{1}, {2}}, {{3}, {4}}};
     tdisp(t);
-    tdisp(t(1,0));
-    tdisp(t(1,0)());
+    tdisp(t(1, 0));
+    tdisp(t(1, 0)());
     tdisp(t.dims());
     tdisp(t.deepdims());
     tdisp(t.eldims());
@@ -523,10 +492,10 @@ int main(int argc, char *argv[])
     typename decltype(t)::EType e;
     tdisp(e);
 
-    Tensor<Scalar<double>,2> t2;
-    typename Tensor<Scalar<double>,2>::DType d2a;
+    Tensor<Scalar<double>, 2> t2;
+    typename Tensor<Scalar<double>, 2>::DType d2a;
     tdisp(d2a);
-    typename Tensor<Scalar<double>,2>::EType e2a;
+    typename Tensor<Scalar<double>, 2>::EType e2a;
     tdisp(e2a);
     typename decltype(t2)::DType d2b;
     tdisp(d2b);
@@ -538,31 +507,30 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Tensor<Vector<double>,2> t {{{1,2,3},{4,5,6}},{{7,8,9},{10,11,12}}};
+    Tensor<Vector<double>, 2> t{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
     tdisp(t);
-    tdisp(t(0,0));
-    tdisp(t(0,0)(1));
+    tdisp(t(0, 0));
+    tdisp(t(0, 0)(1));
     tdisp(t.dims());
     tdisp(t.deepdims());
-    Tensor<Vector<double>,2> t2;
+    Tensor<Vector<double>, 2> t2;
     mout << "t2 = -t;" << endl;
-    t2 = -t; 
+    t2 = -t;
     tdisp(t2);
   }
 
   {
     cr();
-    Tensor<Matrix<double,2,2>,2> m  {
-      { {{1,2},{3,4}}, {{5,6},{7,8}} },
-  	{ {{9,10},{11,12}}, {{13,14},{15,16}} }
-    };
+    Tensor<Matrix<double, 2, 2>, 2> m{
+        {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
+        {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
     tdisp(m);
-    tdisp(m(0,0));
-    tdisp(m(0,0)(1,1));
+    tdisp(m(0, 0));
+    tdisp(m(0, 0)(1, 1));
     tdisp(m.dims());
     tdisp(m.size());
     tdisp(m.deepdims());
-    Tensor<Matrix<double,2,2>,2> m2;
+    Tensor<Matrix<double, 2, 2>, 2> m2;
     mout << "m2 = -m;" << endl;
     m2 = -m;
     tdisp(m2);
@@ -570,36 +538,36 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Tensor<Tensor<double,3>,2> m1;
+    Tensor<Tensor<double, 3>, 2> m1;
     tdisp(m1);
     tdisp(m1.dims());
     tdisp(m1.size());
     tdisp(m1.deepdims());
-    Dimensions tdims1(2,2);
+    Dimensions tdims1(2, 2);
     m1.resize(tdims1);
-    Dimensions tdims2(2,3,2);
+    Dimensions tdims2(2, 3, 2);
 
     for (int i = 0; i < m1.dims()[0]; i++) {
       for (int j = 0; j < m1.dims()[1]; j++) {
-  	m1(i,j).resize(tdims2);
-  	for (int k = 0; k < tdims2[0]; k++) {
-  	  for (int l = 0; l < tdims2[1]; l++) {
-  	    for (int m = 0; m < tdims2[2]; m++) {
-  	      m1(i,j)(k,l,m) = double(10000*i)+double(1000*j)+double(100*k)+double(10*l)+double(m);
-  	    }
-  	  }
-  	}
+        m1(i, j).resize(tdims2);
+        for (int k = 0; k < tdims2[0]; k++) {
+          for (int l = 0; l < tdims2[1]; l++) {
+            for (int m = 0; m < tdims2[2]; m++) {
+              m1(i, j)(k, l, m) = double(10000 * i) + double(1000 * j) + double(100 * k) + double(10 * l) + double(m);
+            }
+          }
+        }
       }
     }
     tdisp(m1);
-    tdisp(m1(0,1));
-    tdisp(m1(1,0)(1,2,0));
+    tdisp(m1(0, 1));
+    tdisp(m1(1, 0)(1, 2, 0));
     tdisp(m1.dims());
     tdisp(m1.size());
     tdisp(m1.deepdims());
 
 
-    Tensor<Tensor<double,3>,2> m2;
+    Tensor<Tensor<double, 3>, 2> m2;
     mout << "m2 = -m1;" << endl;
     m2 = -m1;
     tdisp(m2);
@@ -607,72 +575,45 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    Tensor<Tensor<double,3>,2> m1 { {
-  	{
-  	  {
-  	    {-0, -1},
-  	      {-10, -11},
-  		{-20, -21}
-  	  },
-  	    {
-  	      {-100, -101},
-  		{-110, -111},
-  		  {-120, -121}
-  	    }
-  	}, 
-  	  {
-  	    {
-  	      {-1000, -1001},
-  		{-1010, -1011},
-  		  {-1020, -1021}
-  	    },
-  	      {
-  		{-1100, -1101},
-  		  {-1110, -1111},
-  		    {-1120, -1121}
-  	      }
-  	  }}, {
-  	{
-  	  {
-  	    {-10000, -10001},
-  	      {-10010, -10011},
-  		{-10020, -10021}
-  	  },
-  	    {
-  	      {-10100, -10101},
-  		{-10110, -10111},
-  		  {-10120, -10121}
-  	    }
-  	}, 
-  	  {
-  	    {
-  	      {-11000, -11001},
-  		{-11010, -11011},
-  		  {-11020, -11021}
-  	    },
-  	      {
-  		{-11100, -11101},
-  		  {-11110, -11111},
-  		    {-11120, -11121}
-  	      }
-  	  }} };
+    Tensor<Tensor<double, 3>, 2> m1{{{{{-0, -1},
+                                       {-10, -11},
+                                       {-20, -21}},
+                                      {{-100, -101},
+                                       {-110, -111},
+                                       {-120, -121}}},
+                                     {{{-1000, -1001},
+                                       {-1010, -1011},
+                                       {-1020, -1021}},
+                                      {{-1100, -1101},
+                                       {-1110, -1111},
+                                       {-1120, -1121}}}},
+                                    {{{{-10000, -10001},
+                                       {-10010, -10011},
+                                       {-10020, -10021}},
+                                      {{-10100, -10101},
+                                       {-10110, -10111},
+                                       {-10120, -10121}}},
+                                     {{{-11000, -11001},
+                                       {-11010, -11011},
+                                       {-11020, -11021}},
+                                      {{-11100, -11101},
+                                       {-11110, -11111},
+                                       {-11120, -11121}}}}};
 
     tdisp(m1);
     tdisp(m1.dims());
     tdisp(m1.size());
     tdisp(m1.deepdims());
-    
   }
 
-  
 
 
-  
-  
+
+
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);
   cr();
-  
+
   return 0;
 }

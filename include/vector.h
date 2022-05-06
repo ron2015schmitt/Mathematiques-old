@@ -2,6 +2,7 @@
 #define MATHQ__VECTOR_H 1
 
 
+
 namespace mathq {
  
   
@@ -397,7 +398,6 @@ namespace mathq {
     // error if (inds.size() != sum deepdims[i].rank
     index_type n = inds_next[0];
     mout << "  ";
-    tdisp(n);
     inds_next.erase(inds_next.begin());
     if constexpr(M>1) {
 	return (*this)(n).dat(inds_next);

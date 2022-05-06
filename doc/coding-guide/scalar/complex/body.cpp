@@ -1,8 +1,3 @@
-#define MATHQ_DEBUG 1
-
-#include "mathq.h"
-#include "gitmd.h"
-
 #include <iostream>
 #include <string>
 #include <climits>
@@ -10,6 +5,12 @@
 #include <stdbool.h>
 #include <typeinfo>
 #include <optional>
+
+#define MATHQ_DEBUG 1
+#include "mathq.h"
+#include "macros.h"
+#include "gitmd.h"
+
 
 int main() {
   using namespace mathq;
@@ -62,10 +63,10 @@ int main() {
   cr();
 
   codestart("C++");
-  disp(complex(1.0,1.0) + complex(2.0,4.0));
-  disp(complex(1.0,1.0) - complex(2.0,4.0));
-  disp(complex(1.0,1.0) * complex(2.0,4.0));
-  disp(complex(1.0,1.0) / complex(2.0,4.0));
+  disp(complex(1.0, 1.0) + complex(2.0, 4.0));
+  disp(complex(1.0, 1.0) - complex(2.0, 4.0));
+  disp(complex(1.0, 1.0) * complex(2.0, 4.0));
+  disp(complex(1.0, 1.0) / complex(2.0, 4.0));
   codeend();
 
 
@@ -75,7 +76,7 @@ int main() {
   text("C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/complex/div) function");
 
   codestart("C++");
-  disp(pow(complex(1.0,1.0), complex(2.0,4.0)));
+  disp(pow(complex(1.0, 1.0), complex(2.0, 4.0)));
   codeend();
 
   text("\n<br>\n");
@@ -94,11 +95,11 @@ int main() {
   text("Examples:\n");
   codestart("C++");
   cr();
-  disp(complex(1.0,1.0) == complex(1.0,1.0));
-  disp(complex(1.0,1.0) != complex(1.0,1.0));
+  disp(complex(1.0, 1.0) == complex(1.0, 1.0));
+  disp(complex(1.0, 1.0) != complex(1.0, 1.0));
   cr();
-  disp(complex(1.0,1.0) == complex(2.0,4.0));
-  disp(complex(1.0,1.0) != complex(2.0,4.0));
+  disp(complex(1.0, 1.0) == complex(2.0, 4.0));
+  disp(complex(1.0, 1.0) != complex(2.0, 4.0));
   codeend();
 
   text("\n<br>\n");

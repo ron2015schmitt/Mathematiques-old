@@ -1,17 +1,13 @@
 #define MATHQ_DEBUG 0
-
-#include "mathq.h" 
+#include "mathq.h"
+#include "macros.h"
 #include "test.h"
 
 
 
-
-
-
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   std::string myname = argv[0];
-  
+
   using namespace mathq;
   using namespace display;
 
@@ -25,7 +21,7 @@ int main(int argc, char *argv[])
   cr();
   cr();
   print_mathq_info();
-  mout << createStyle(BOLD+MAGENTA1).apply(__FILE__) << " - scalar tests" <<std::endl;
+  mout << createStyle(BOLD + MAGENTA1).apply(__FILE__) << " - scalar tests" << std::endl;
   cr();
   cr();
 
@@ -42,17 +38,17 @@ int main(int argc, char *argv[])
   // Scalar<Scalar<double>>
   //--------------------------------------------
   {
-    Scalar<Scalar<double>> s {{2.2}};
+    Scalar<Scalar<double>> s{{2.2}};
     size_type expected;
     size_type result;
     bool pass;
-    
+
     // ndims()
     printStart(++testnum);
     expected = 0;
-    testcode( result = s.ndims() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.ndims());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
@@ -60,9 +56,9 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     Dimensions Dexpected;
     Dimensions Dresult;
-    testcode( Dresult = s.dims() );
-    pass = (Dresult==Dexpected);
-    printEnd(pass,Dresult,Dexpected);
+    testcode(Dresult = s.dims());
+    pass = (Dresult == Dexpected);
+    printEnd(pass, Dresult, Dexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
@@ -70,20 +66,20 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     bool bexpected = false;
     bool bresult;
-    testcode( bresult = s.isExpression() );
-    pass = (bresult==bexpected);
-    printEnd(pass,bresult,bexpected);
+    testcode(bresult = s.isExpression());
+    pass = (bresult == bexpected);
+    printEnd(pass, bresult, bexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // getAddresses()
     printStart(++testnum);
     VectorofPtrs pexpected;
-    pexpected.add((void*)&s);
+    pexpected.add((void *)&s);
     VectorofPtrs presult;
-    testcode( presult = s.getAddresses() );
-    pass = (presult==pexpected);
-    printEnd(pass,presult,pexpected);
+    testcode(presult = s.getAddresses());
+    pass = (presult == pexpected);
+    printEnd(pass, presult, pexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
@@ -91,76 +87,76 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     Tensors Eexpected = T_SCALAR;
     Tensors Eresult;
-    testcode( Eresult = s.getEnum() );
-    pass = (Eresult==Eexpected);
-    printEnd(pass,Eresult,Eexpected);
+    testcode(Eresult = s.getEnum());
+    pass = (Eresult == Eexpected);
+    printEnd(pass, Eresult, Eexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // size()
     printStart(++testnum);
     expected = 1;
-    testcode( result = s.size() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.size());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // depth()
     printStart(++testnum);
     expected = 2;
-    testcode( result = s.depth() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.depth());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // elsize()
     printStart(++testnum);
     expected = 1;
-    testcode( result = s.elsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.elsize());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // eldeepsize()
     printStart(++testnum);
     expected = 1;
-    testcode( result = s.eldeepsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.eldeepsize());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // deepsize()
     printStart(++testnum);
     expected = 1;
-    testcode( result = s.deepsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.deepsize());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
     printStart(++testnum);
-    Scalar<Scalar<double>> s {{2.2}};
-    Scalar<double> expected {2.2};
+    Scalar<Scalar<double>> s{{2.2}};
+    Scalar<double> expected{2.2};
     Scalar<double> result;
-    testcode( result = s() );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
+    testcode(result = s());
+    bool pass = equal(result, expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
     printStart(++testnum);
-    Scalar<Scalar<double>> s {{2.2}};
+    Scalar<Scalar<double>> s{{2.2}};
     double expected = 2.2;
-    double result;  
-    testcode( result = s()() );
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
+    double result;
+    testcode(result = s()());
+    bool pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
@@ -179,23 +175,23 @@ int main(int argc, char *argv[])
 
 
 
-   
+
   //--------------------------------------------
   // Scalar<Vector<double>>
   //--------------------------------------------
 
   {
-    Scalar<Vector<double>> s {{1.1,2.2}};
+    Scalar<Vector<double>> s{{1.1, 2.2}};
     size_type expected;
     size_type result;
     bool pass;
-    
+
     // ndims()
     printStart(++testnum);
     expected = 0;
-    testcode( result = s.ndims() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.ndims());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
@@ -203,9 +199,9 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     Dimensions Dexpected;
     Dimensions Dresult;
-    testcode( Dresult = s.dims() );
-    pass = (Dresult==Dexpected);
-    printEnd(pass,Dresult,Dexpected);
+    testcode(Dresult = s.dims());
+    pass = (Dresult == Dexpected);
+    printEnd(pass, Dresult, Dexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
@@ -213,20 +209,20 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     bool bexpected = false;
     bool bresult;
-    testcode( bresult = s.isExpression() );
-    pass = (bresult==bexpected);
-    printEnd(pass,bresult,bexpected);
+    testcode(bresult = s.isExpression());
+    pass = (bresult == bexpected);
+    printEnd(pass, bresult, bexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // getAddresses()
     printStart(++testnum);
     VectorofPtrs pexpected;
-    pexpected.add((void*)&s);
+    pexpected.add((void *)&s);
     VectorofPtrs presult;
-    testcode( presult = s.getAddresses() );
-    pass = (presult==pexpected);
-    printEnd(pass,presult,pexpected);
+    testcode(presult = s.getAddresses());
+    pass = (presult == pexpected);
+    printEnd(pass, presult, pexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
@@ -234,105 +230,105 @@ int main(int argc, char *argv[])
     printStart(++testnum);
     Tensors Eexpected = T_SCALAR;
     Tensors Eresult;
-    testcode( Eresult = s.getEnum() );
-    pass = (Eresult==Eexpected);
-    printEnd(pass,Eresult,Eexpected);
+    testcode(Eresult = s.getEnum());
+    pass = (Eresult == Eexpected);
+    printEnd(pass, Eresult, Eexpected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // size()
     printStart(++testnum);
     expected = 1;
-    testcode( result = s.size() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.size());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // depth()
     printStart(++testnum);
     expected = 2;
-    testcode( result = s.depth() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.depth());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // elsize()
     printStart(++testnum);
     expected = 2;
-    testcode( result = s.elsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.elsize());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // eldeepsize()
     printStart(++testnum);
     expected = 2;
-    testcode( result = s.eldeepsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.eldeepsize());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
 
     // deepsize()
     printStart(++testnum);
     expected = 2;
-    testcode( result = s.deepsize() );
-    pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.deepsize());
+    pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s {{1.1,2.2}};
-    Vector<double> expected {1.1,2.2};
+    Scalar<Vector<double>> s{{1.1, 2.2}};
+    Vector<double> expected{1.1, 2.2};
     Vector<double> result;
-    testcode( result = s() );
-    bool pass = equal(result,expected);
-    printEnd(pass,result,expected);
+    testcode(result = s());
+    bool pass = equal(result, expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s {{1.1,2.2}};
+    Scalar<Vector<double>> s{{1.1, 2.2}};
     double expected = 2.2;
     double result;
-    testcode( result = s()(1) );
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s()(1));
+    bool pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s {{1.1,2.2}};
+    Scalar<Vector<double>> s{{1.1, 2.2}};
     double expected = 1.1;
     double result;
-    testcode( result = s.dat(0) );
-    bool pass = (result==expected);
-    printEnd(pass,result,expected);
+    testcode(result = s.dat(0));
+    bool pass = (result == expected);
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s {{1.1,2.2}};
+    Scalar<Vector<double>> s{{1.1, 2.2}};
     double expected = 2.2;
     double result;
-    testcode( result = s.dat(1) );
-    bool pass = result==expected;
-    printEnd(pass,result,expected);
+    testcode(result = s.dat(1));
+    bool pass = result == expected;
+    printEnd(pass, result, expected);
     allpass = allpass && pass;
     failnum += (!pass);
   }
 
 
 
-  
+
   //--------------------------------------------
   // Scalar<Matrix<double>>
   //--------------------------------------------
@@ -342,7 +338,7 @@ int main(int argc, char *argv[])
   //   size_type expected;
   //   size_type result;
   //   bool pass;
-    
+
   //   // ndims()
   //   printStart(++testnum);
   //   expected = 0;
@@ -449,7 +445,7 @@ int main(int argc, char *argv[])
   //   allpass = allpass && pass;
   //   failnum += (!pass);
   // }
-  
+
   // {
   //   printStart(++testnum);
   //   Scalar<Matrix<double>> s { {{1.1,2.2},{3.3,4.4}}};
@@ -495,9 +491,9 @@ int main(int argc, char *argv[])
   //   allpass = allpass && pass;
   //   failnum += (!pass);
   // }
-    
 
-  
+
+
   //--------------------------------------------------------
   printSummary(__FILE__, testnum, failnum);
   return failnum;

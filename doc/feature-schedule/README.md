@@ -1,4 +1,4 @@
-# Mathématiques v3.5.19
+# Mathématiques v3.5.20
 
 
 <details>
@@ -62,6 +62,7 @@
    1. by aligned rows and columns with and without braces
    1. Mathematica
    1. Matlab
+1. move the SPECIALIZE_getTypeName into .h file and python script
 
 ### v3.8 I/O Refactoring
 1. [Save tensor to file](topics/filesave.md)

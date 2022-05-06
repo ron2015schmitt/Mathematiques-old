@@ -1,10 +1,11 @@
-#include "mathq.h"
 #include <vector>
 
+#define MATHQ_DEBUG 0
+#include "mathq.h"
+#include "macros.h"
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   const double pi = M_PI;
   std::string myname = argv[0];
   using namespace mathq;
@@ -17,27 +18,28 @@ int main(int argc, char *argv[])
   cr();
   cr();
   mout << StyledString::get(HORLINE);
-  mout << "running: " <<createStyle(BOLD).apply(myname) << std::endl;
+  mout << "running: " << createStyle(BOLD).apply(myname) << std::endl;
 
-  
-  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
-  
+
+  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+
   print_mathq_info();
 
-  
+
   int n = 45;
   unsigned int m = 256;
   double x = 3.14;
-  double vals[] = {1.1,2.2,3.3};
+  double vals[] = {1.1, 2.2, 3.3};
   bool done = true;
-  Vector<double> v = range<double>(1,10);
-  Matrix<double> A(2,2,{1,2,3,4});
+  Vector<double> v = range<double>(1, 10);
+  Matrix<double> A(2, 2, {1, 2, 3, 4});
   char str[] = "hello";
   std::string s = "world";
-  ComplexDouble z(1,-1);
+  ComplexDouble z(1, -1);
 
 
-  cr();cr();
+  cr();
+  cr();
   disp(n);
   disp(m);
   disp(x);
@@ -49,7 +51,8 @@ int main(int argc, char *argv[])
   disp(s);
   disp(z);
 
-  cr();cr();
+  cr();
+  cr();
   tdisp(n);
   tdisp(m);
   tdisp(x);
@@ -61,27 +64,30 @@ int main(int argc, char *argv[])
   tdisp(s);
   tdisp(z);
 
-  cr();cr();
-  mdisp(n,m,x,vals,done,str,s,z);
+  cr();
+  cr();
+  mdisp(n, m, x, vals, done, str, s, z);
 
-  cr();cr();
+  cr();
+  cr();
   dispval(n);
   dispval(m);
   dispval(A);
-  
-  cr();cr();
-  disp(n+3);
-  disp(10*x-1);
+
+  cr();
+  cr();
+  disp(n + 3);
+  disp(10 * x - 1);
   disp(!done);
-  disp( round(10*sin(pi/10*v) + 10) );
-  disp(s+" tour");
+  disp(round(10 * sin(pi / 10 * v) + 10));
+  disp(s + " tour");
   mout << std::endl;
 
   mout << createStyle(GRAY1) << "  ";
   mout << createStyle(GRAY2) << "  ";
-  mout << createStyle(WHITE+BLACKBACK) << "  ";
+  mout << createStyle(WHITE + BLACKBACK) << "  ";
   mout << std::endl;
-  
+
   mout << createStyle(RED) << "  ";
   mout << std::endl;
   mout << createStyle(ORANGE) << "  ";
@@ -119,14 +125,14 @@ int main(int argc, char *argv[])
   mout << std::endl;
   mout << std::endl;
 
-  mout << createStyle(BOLD+UNDERLINE+VIOLET1) << "  ";
+  mout << createStyle(BOLD + UNDERLINE + VIOLET1) << "  ";
   mout << std::endl;
   mout << std::endl;
   mout << std::endl;
   mout << std::endl;
 
   {
-    Style mystyle = createStyle(BOLD+RED);
+    Style mystyle = createStyle(BOLD + RED);
     mout << mystyle.apply("with style") + " without style " << std::endl;
   }
   mout << std::endl;
@@ -135,7 +141,7 @@ int main(int argc, char *argv[])
 
   {
     int nf = 27;  // color for foreground
-    int nb = 227; // color for background 
+    int nb = 227; // color for background
     Style mystyle(nf, nb);
     mout << mystyle.apply("Hello World") << std::endl;
 
@@ -144,21 +150,20 @@ int main(int argc, char *argv[])
     mout << std::endl;
 
 
-    Style bold(BOLD); 
-    Style mybold = bold + mystyle; 
+    Style bold(BOLD);
+    Style mybold = bold + mystyle;
     mout << mybold.apply("Hello World") << std::endl;
 
-    Style black(BLACK); 
-    mout <<"XXX"<< black.apply("XXX")<<"XXX" << std::endl;
-    
+    Style black(BLACK);
+    mout << "XXX" << black.apply("XXX") << "XXX" << std::endl;
   }
-  
+
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);
   cr();
 
-  
+
   return 0;
 }

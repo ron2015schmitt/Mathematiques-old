@@ -1,4 +1,4 @@
-# Mathématiques v3.5.19
+# Mathématiques v3.5.20
 
 
 <details>
@@ -81,10 +81,10 @@ For container types, the following rules apply for `x op y`:
 #### Complex, Imaginary and Mixed
 
 ```C++
-complex<double>(1.5,0) + complex<double>(0.5,4)  =>  std::complex<double> (2,4)
+complex<double>(1.5, 0) + complex<double>(0.5, 4)  =>  std::complex<double> (2,4)
 Imaginary<double>(1) + Imaginary<double>(33.12)  =>  Imaginary<double> 34.12i
 -10 + Imaginary<double>(5.25)  =>  std::complex<double> (-10,5.25)
-100 + complex<double>(1.5,2) + Imaginary<double>(5.25)  =>  std::complex<double> (101.5,7.25)
+100 + complex<double>(1.5, 2) + Imaginary<double>(5.25)  =>  std::complex<double> (101.5,7.25)
 ```
 
 #### Vectors, Matrice, and Tensors

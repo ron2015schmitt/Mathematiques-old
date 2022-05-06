@@ -1,20 +1,20 @@
-
-#include "mathq.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+
+#include "mathq.h"
+#include "macros.h"
 
 void printoptsfile() {
   std::ifstream myfile;
   myfile.open("example.g++_copts");
   std::string myline;
   if (myfile.is_open()) {
-    while (myfile) { 
+    while (myfile) {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
-  }
-  else {
+  } else {
     std::cout << "Couldn't open file\n";
   }
 }
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
   using namespace mathq;
   using namespace display;
-  
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
@@ -39,16 +39,16 @@ int main(int argc, char *argv[]) {
   print_mathq_info();
   printoptsfile();
 
-Vector<double> u( linspace<double>(-1,1,21) );
-Vector<double> v;
-v = 10*sin(pi/2*u) + 10;
+  Vector<double> u(linspace<double>(-1, 1, 21));
+  Vector<double> v;
+  v = 10 * sin(pi / 2 * u) + 10;
 
-const double N = double(v.size());
-double mu = sum(v)/N;
-double sigma = norm(v-mu)/sqrt(N-1);
+  const double N = double(v.size());
+  double mu = sum(v) / N;
+  double sigma = norm(v - mu) / sqrt(N - 1);
 
-disp(mu);
-disp(sigma);
+  disp(mu);
+  disp(sigma);
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;

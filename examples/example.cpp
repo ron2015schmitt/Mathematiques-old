@@ -1,20 +1,21 @@
 
-#include "mathq.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+
+#include "mathq.h"
+#include "macros.h"
 
 void printoptsfile() {
   std::ifstream myfile;
   myfile.open("example.g++_copts");
   std::string myline;
   if (myfile.is_open()) {
-    while (myfile) { 
+    while (myfile) {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
-  }
-  else {
+  } else {
     std::cout << "Couldn't open file\n";
   }
 }
@@ -25,7 +26,7 @@ int main(int argc, char *argv[]) {
 
   using namespace mathq;
   using namespace display;
-  
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);

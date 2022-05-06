@@ -1,13 +1,13 @@
-#define MATHQ_DEBUG 1
-#include "mathq.h"
-
 #include <vector>
-
 #include <string>
 
+#define MATHQ_DEBUG 0
+#include "mathq.h"
+#include "macros.h"
 
 
-template <typename D, int M = 1+mathq::NumberType<D>::depth()> class Test : public mathq::TensorRW<Test<D>,D,typename mathq::NumberType<D>::Type,M,1> {
+template <typename D, int M = 1 + mathq::NumberType<D>::depth()>
+class Test : public mathq::TensorRW<Test<D>, D, typename mathq::NumberType<D>::Type, M, 1> {
 public:
   typedef D Type;
   Test() {
@@ -15,40 +15,38 @@ public:
   constexpr mathq::size_type depth() const {
     return M;
   }
- 
 };
 
 
 
-template <typename D> class Test2 : public mathq::TensorRW<Test<D>,D,D,1,1> {
+template <typename D>
+class Test2 : public mathq::TensorRW<Test<D>, D, D, 1, 1> {
 public:
   typedef D Type;
   D d_;
   Test2() {
   }
-  Test2(D d): d_(d) {
+  Test2(D d) : d_(d) {
   }
   constexpr mathq::size_type depth() const {
     return mathq::NumberType<decltype(*this)>::depth();
   }
- 
 };
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 
 
   typedef typename mathq::Vector<double> VectorDouble;
-  
+
   const double pi = M_PI;
   std::string myname = argv[0];
   using namespace mathq;
   using namespace display;
   using namespace std;
-  
+
   Style bold = createStyle(BOLD);
-  
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
@@ -56,20 +54,20 @@ int main(int argc, char *argv[])
   cr();
   cr();
   mout << StyledString::get(HORLINE);
-  mout << "running: " <<bold.apply(myname) << std::endl;
+  mout << "running: " << bold.apply(myname) << std::endl;
 
-  
-  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
-  
+
+  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+
   print_mathq_info();
-  
 
-  
-  
+
+
+
 
   // {
   //   cr();
-  //   mout << bold.apply("Complexify") << endl; 
+  //   mout << bold.apply("Complexify") << endl;
   //   Complexify<double>::Type double_;
   //   tdisp(double_);
   //   Complexify<std::complex<double> >::Type complexdouble_;
@@ -82,7 +80,7 @@ int main(int argc, char *argv[])
 
   //   {
   //   cr();
-  //   mout << bold.apply("Realify") << endl; 
+  //   mout << bold.apply("Realify") << endl;
   //   Realify<double>::Type double_;
   //   tdisp(double_);
   //   Realify<std::complex<double> >::Type complexdouble_;
@@ -96,8 +94,8 @@ int main(int argc, char *argv[])
 
   {
     cr();
-    mout << bold.apply("conj(Scalar<D>)") << endl; 
-    Scalar<ComplexDouble> z = ComplexDouble(1,2);
+    mout << bold.apply("conj(Scalar<D>)") << endl;
+    Scalar<ComplexDouble> z = ComplexDouble(1, 2);
     Scalar<double> x = 6.5;
     tdisp(z);
     tdisp(x);
@@ -108,7 +106,7 @@ int main(int argc, char *argv[])
     tdisp(real(x));
     tdisp(imag(x));
     tdisp(z.conj());
-    //tdisp(x.conj());
+    // tdisp(x.conj());
   }
 
 
@@ -116,13 +114,13 @@ int main(int argc, char *argv[])
     cr();
     mout << bold.apply("Vector<double> testing") << std::endl;
     tdisp(NumberType<double>::depth());
-    Vector<double> vd {1,2,3,4};
+    Vector<double> vd{1, 2, 3, 4};
     tdisp(vd);
 
     tdisp(FundamentalType<double>::depth());
     FundamentalType<double>::Type d1 = 0.1;
     tdisp(d1);
-    
+
     tdisp(FundamentalType<ComplexDouble>::depth());
     FundamentalType<ComplexDouble>::Type d2 = 0.1;
     tdisp(d2);
@@ -139,20 +137,19 @@ int main(int argc, char *argv[])
     cr();
     mout << bold.apply("Vector<ComplexDouble> testing") << std::endl;
     tdisp(NumberType<ComplexDouble>::depth());
-    Vector<ComplexDouble> vd {ComplexDouble(0.1,1), ComplexDouble(0.2,2), ComplexDouble(3,0.3)};
+    Vector<ComplexDouble> vd{ComplexDouble(0.1, 1), ComplexDouble(0.2, 2), ComplexDouble(3, 0.3)};
     tdisp(vd);
     tdisp(FundamentalType<decltype(vd)>::depth());
     FundamentalType<decltype(vd)>::Type d = 3.14;
     tdisp(d);
     tdisp(NumberType<decltype(vd)>::depth());
-    NumberType<decltype(vd)>::Type d2 = ComplexDouble(0.1,0.2);
+    NumberType<decltype(vd)>::Type d2 = ComplexDouble(0.1, 0.2);
     tdisp(d2);
-
   }
   {
     cr();
     mout << bold.apply("Vector<Vector<double> > testing") << std::endl;
-    Vector<Vector<double>> vd {{1.1,1.2},{2.1,2.2},{3.1,3.2}};
+    Vector<Vector<double>> vd{{1.1, 1.2}, {2.1, 2.2}, {3.1, 3.2}};
     tdisp(vd);
     tdisp(FundamentalType<decltype(vd)>::depth());
     FundamentalType<decltype(vd)>::Type d = 0.1;
@@ -167,7 +164,7 @@ int main(int argc, char *argv[])
     cr();
     mout << bold.apply("complex<Vector<double>> testing") << std::endl;
     tdisp(NumberType<complex<Vector<double>>>::depth());
-    complex<Vector<double>> vd = complex<Vector<double>>({1.1,1.2,1.3},{2.1,2.2,2.3});
+    complex<Vector<double>> vd = complex<Vector<double>>({1.1, 1.2, 1.3}, {2.1, 2.2, 2.3});
     mout << vd << endl;
     tdisp(FundamentalType<decltype(vd)>::depth());
     FundamentalType<decltype(vd)>::Type d = 43;
@@ -179,161 +176,159 @@ int main(int argc, char *argv[])
     //  TODO: need to define operator+=
     //    NumberType<decltype(vd)>::Type v3 = vd+v2;
     //    mout << v3 << endl;
-
   }
 
-    // {
-    //   cr();
-    //   mout << bold.apply("Test class testing") << std::endl;
-    //   Test<double> t0;
-    //   tdisp(NumberType<decltype(t0)>::depth());
-    //   tdisp(t0.depth());
-    //   Test<Test<double>> t1;
-    //   tdisp(NumberType<decltype(t1)>::depth());
-    //   tdisp(t1.depth());
-    //   Test<Test<Test<double>>> t2;
-    //   tdisp(NumberType<decltype(t2)>::depth());
-    //   tdisp(t2.depth());
-    // }
+  // {
+  //   cr();
+  //   mout << bold.apply("Test class testing") << std::endl;
+  //   Test<double> t0;
+  //   tdisp(NumberType<decltype(t0)>::depth());
+  //   tdisp(t0.depth());
+  //   Test<Test<double>> t1;
+  //   tdisp(NumberType<decltype(t1)>::depth());
+  //   tdisp(t1.depth());
+  //   Test<Test<Test<double>>> t2;
+  //   tdisp(NumberType<decltype(t2)>::depth());
+  //   tdisp(t2.depth());
+  // }
 
-    // {
-    //   cr();
-    //   mout << bold.apply("Test2 class testing") << std::endl;
-    //   Test2<double> t0(0);
-    //   tdisp(NumberType<decltype(t0)>::depth());
-    //   tdisp(t0.depth());
-    //   Test2<Test2<double>> t1 {1};
-    //   tdisp(NumberType<decltype(t1)>::depth());
-    //   tdisp(t1.depth());
-    //   Test2<Test2<Test2<double>>> t2 {{2}};
-    //   tdisp(NumberType<decltype(t2)>::depth());
-    //   tdisp(t2.depth());
-    // }
-
-
-    {
-      cr();
-      mout << bold.apply("Scalar<double> class testing") << std::endl;
-      Scalar<double> t1(1.1);
-      tdisp(t1);
-      tdisp(NumberType<decltype(t1)>::depth());
-      tdisp(t1.size());
-      tdisp(t1.depth());
-      tdisp(t1.elsize());
-      tdisp(t1.eldeepsize());
-      tdisp(t1.deepsize());
-
-      cr();
-      mout << bold.apply("Vector<double> class testing") << std::endl;
-      Vector<double> v {1,2,3,4};
-      tdisp(v);
-      tdisp(NumberType<decltype(v)>::depth());
-      tdisp(v.size());
-      tdisp(v.depth());
-      tdisp(v.elsize());
-      tdisp(v.eldeepsize());
-      tdisp(v.deepsize());
-
-      mout << bold.apply("Scalar<Scalar<double>> class testing") << std::endl;
-      Scalar<Scalar<double>> t2 {{2.2}};
-      tdisp(t2);
-      tdisp(NumberType<decltype(t2)>::depth());
-      tdisp(t2.size());
-      tdisp(t2.depth());
-      tdisp(t2.elsize());
-      tdisp(t2.eldeepsize());
-      tdisp(t2.deepsize());
-
-      mout << bold.apply("Scalar<Vector<double>> class testing") << std::endl;
-      Scalar<Vector<double>> t3 {{1,2}};
-      tdisp(t3);
-      tdisp(NumberType<decltype(t3)>::depth());
-      tdisp(t3.size());
-      tdisp(t3.depth());
-      tdisp(t3.elsize());
-      tdisp(t3.eldeepsize());
-      tdisp(t3.deepsize());
+  // {
+  //   cr();
+  //   mout << bold.apply("Test2 class testing") << std::endl;
+  //   Test2<double> t0(0);
+  //   tdisp(NumberType<decltype(t0)>::depth());
+  //   tdisp(t0.depth());
+  //   Test2<Test2<double>> t1 {1};
+  //   tdisp(NumberType<decltype(t1)>::depth());
+  //   tdisp(t1.depth());
+  //   Test2<Test2<Test2<double>>> t2 {{2}};
+  //   tdisp(NumberType<decltype(t2)>::depth());
+  //   tdisp(t2.depth());
+  // }
 
 
-      Vector<Scalar<double>> t4(0);
-      tdisp(t4);
-      tdisp(NumberType<decltype(t4)>::depth());
-      tdisp(t4.size());
-      tdisp(t4.depth());
-      tdisp(t4.elsize());
-      tdisp(t4.eldeepsize());
-      tdisp(t4.deepsize());
+  {
+    cr();
+    mout << bold.apply("Scalar<double> class testing") << std::endl;
+    Scalar<double> t1(1.1);
+    tdisp(t1);
+    tdisp(NumberType<decltype(t1)>::depth());
+    tdisp(t1.size());
+    tdisp(t1.depth());
+    tdisp(t1.elsize());
+    tdisp(t1.eldeepsize());
+    tdisp(t1.deepsize());
 
-      Vector<Scalar<double>> t5(3);
-      tdisp(t5);    
-      tdisp(t5[0]);
-      tdisp(t5[1]);
-      tdisp(t5[2]);
-      t5[0] = 3.2;
-      tdisp(t5[0]);
-      tdisp(NumberType<decltype(t5)>::depth());
-      tdisp(t5.size());
-      tdisp(t5.depth());
-      tdisp(t5.elsize());
-      tdisp(t5.eldeepsize());
-      tdisp(t5.deepsize());
+    cr();
+    mout << bold.apply("Vector<double> class testing") << std::endl;
+    Vector<double> v{1, 2, 3, 4};
+    tdisp(v);
+    tdisp(NumberType<decltype(v)>::depth());
+    tdisp(v.size());
+    tdisp(v.depth());
+    tdisp(v.elsize());
+    tdisp(v.eldeepsize());
+    tdisp(v.deepsize());
 
-      Vector<Scalar<double>> t6 {{1},{2}};
-      tdisp(t6);
-      tdisp(NumberType<decltype(t6)>::depth());
-      tdisp(t6.size());
-      tdisp(t6.depth());
-      tdisp(t6.elsize());
-      tdisp(t6.eldeepsize());
-      tdisp(t6.deepsize());
+    mout << bold.apply("Scalar<Scalar<double>> class testing") << std::endl;
+    Scalar<Scalar<double>> t2{{2.2}};
+    tdisp(t2);
+    tdisp(NumberType<decltype(t2)>::depth());
+    tdisp(t2.size());
+    tdisp(t2.depth());
+    tdisp(t2.elsize());
+    tdisp(t2.eldeepsize());
+    tdisp(t2.deepsize());
+
+    mout << bold.apply("Scalar<Vector<double>> class testing") << std::endl;
+    Scalar<Vector<double>> t3{{1, 2}};
+    tdisp(t3);
+    tdisp(NumberType<decltype(t3)>::depth());
+    tdisp(t3.size());
+    tdisp(t3.depth());
+    tdisp(t3.elsize());
+    tdisp(t3.eldeepsize());
+    tdisp(t3.deepsize());
 
 
-      Vector<Vector<double>> t7 {{1,2,3},{4,5,6}};
-      tdisp(t7);
-      tdisp(NumberType<decltype(t7)>::depth());
-      tdisp(t7.size());
-      tdisp(t7.depth());
-      tdisp(t7.elsize());
-      tdisp(t7.eldeepsize());
-      tdisp(t7.deepsize());
+    Vector<Scalar<double>> t4(0);
+    tdisp(t4);
+    tdisp(NumberType<decltype(t4)>::depth());
+    tdisp(t4.size());
+    tdisp(t4.depth());
+    tdisp(t4.elsize());
+    tdisp(t4.eldeepsize());
+    tdisp(t4.deepsize());
 
-      for (int n = 0; n < t7.deepsize(); n++) {
-	tdisp(t7.dat(n));
-      }
-      for (int n = 0; n < t7.size(); n++) {
-	tdisp(t7(n));
-      }
+    Vector<Scalar<double>> t5(3);
+    tdisp(t5);
+    tdisp(t5[0]);
+    tdisp(t5[1]);
+    tdisp(t5[2]);
+    t5[0] = 3.2;
+    tdisp(t5[0]);
+    tdisp(NumberType<decltype(t5)>::depth());
+    tdisp(t5.size());
+    tdisp(t5.depth());
+    tdisp(t5.elsize());
+    tdisp(t5.eldeepsize());
+    tdisp(t5.deepsize());
 
-      // mout << bold.apply("Vector<Vector<double>> class testing") << std::endl;
-      // Vector<Vector<double>> t5 {{1,2},{3,4},{5,6}};
-      // tdisp(t5);
-      // tdisp(NumberType<decltype(t5)>::depth());
-      // tdisp(t5.size());
-      // tdisp(t5.depth());
-      // tdisp(t5.elsize());
-      // tdisp(t5.eldeepsize());
-      // tdisp(t5.deepsize());
+    Vector<Scalar<double>> t6{{1}, {2}};
+    tdisp(t6);
+    tdisp(NumberType<decltype(t6)>::depth());
+    tdisp(t6.size());
+    tdisp(t6.depth());
+    tdisp(t6.elsize());
+    tdisp(t6.eldeepsize());
+    tdisp(t6.deepsize());
 
+
+    Vector<Vector<double>> t7{{1, 2, 3}, {4, 5, 6}};
+    tdisp(t7);
+    tdisp(NumberType<decltype(t7)>::depth());
+    tdisp(t7.size());
+    tdisp(t7.depth());
+    tdisp(t7.elsize());
+    tdisp(t7.eldeepsize());
+    tdisp(t7.deepsize());
+
+    for (int n = 0; n < t7.deepsize(); n++) {
+      tdisp(t7.dat(n));
+    }
+    for (int n = 0; n < t7.size(); n++) {
+      tdisp(t7(n));
     }
 
-    {
-      Vector<double> t1 {4,5,6};
-      tdisp(t1);
-      Vector<Vector<double>> t2 {{1,2,3},{4,5,6}};
-      tdisp(t2);
+    // mout << bold.apply("Vector<Vector<double>> class testing") << std::endl;
+    // Vector<Vector<double>> t5 {{1,2},{3,4},{5,6}};
+    // tdisp(t5);
+    // tdisp(NumberType<decltype(t5)>::depth());
+    // tdisp(t5.size());
+    // tdisp(t5.depth());
+    // tdisp(t5.elsize());
+    // tdisp(t5.eldeepsize());
+    // tdisp(t5.deepsize());
+  }
 
-      typename DeeperType<decltype(t1),decltype(t2)>::Type x;
-      tdisp(x);
-      typename DeeperType<decltype(t2),decltype(t1)>::Type y;
-      tdisp(y);
-      typename DeeperType<double,decltype(t1)>::Type z;
-      tdisp(z);
-      typename NumberType<decltype(t1),float>::ReplaceTypeD w;
-      tdisp(w);
-    }
-    
+  {
+    Vector<double> t1{4, 5, 6};
+    tdisp(t1);
+    Vector<Vector<double>> t2{{1, 2, 3}, {4, 5, 6}};
+    tdisp(t2);
+
+    typename DeeperType<decltype(t1), decltype(t2)>::Type x;
+    tdisp(x);
+    typename DeeperType<decltype(t2), decltype(t1)>::Type y;
+    tdisp(y);
+    typename DeeperType<double, decltype(t1)>::Type z;
+    tdisp(z);
+    typename NumberType<decltype(t1), float>::ReplaceTypeD w;
+    tdisp(w);
+  }
+
   //------------------------------------------------------
-  
+
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);

@@ -1,7 +1,9 @@
 #define MATHQ_DEBUG 1
 #include "mathq.h"
 
-
+// *************************************************************
+#include "macros.h"  // remove this after debugging is complete
+// *************************************************************
 
 namespace mathq {
   

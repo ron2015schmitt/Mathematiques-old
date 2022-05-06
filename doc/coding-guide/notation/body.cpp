@@ -1,8 +1,3 @@
-#define MATHQ_DEBUG 1
-
-#include "mathq.h"
-#include "gitmd.h"
-
 #include <iostream>
 #include <string>
 #include <climits>
@@ -10,6 +5,11 @@
 #include <stdbool.h>
 #include <typeinfo>
 #include <optional>
+
+#define MATHQ_DEBUG 1
+#include "mathq.h"
+#include "macros.h"
+#include "gitmd.h"
 
 int main() {
   using namespace mathq;
@@ -36,7 +36,7 @@ int main() {
   text("| 𝕤 | any ℤ, 𝕂 | ");
 
   cr();
- text("Lower case 𝕤 was chosen because 𝕊 is commonly used in mathematics for the spherical groups\n");
+  text("Lower case 𝕤 was chosen because 𝕊 is commonly used in mathematics for the spherical groups\n");
 
 
 

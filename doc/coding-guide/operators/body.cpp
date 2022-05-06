@@ -1,8 +1,3 @@
-#define MATHQ_DEBUG 1
-
-#include "mathq.h"
-#include "gitmd.h"
-
 #include <iostream>
 #include <string>
 #include <climits>
@@ -10,6 +5,11 @@
 #include <stdbool.h>
 #include <typeinfo>
 #include <optional>
+
+#define MATHQ_DEBUG 1
+#include "mathq.h"
+#include "macros.h"
+#include "gitmd.h"
 
 int main() {
   using namespace mathq;
@@ -56,10 +56,10 @@ int main() {
   header4("Complex, Imaginary and Mixed");
   cr();
   codestart("C++");
-  trdisp(complex<double>(1.5,0) + complex<double>(0.5,4));
+  trdisp(complex<double>(1.5, 0) + complex<double>(0.5, 4));
   trdisp(Imaginary<double>(1) + Imaginary<double>(33.12));
   trdisp(-10 + Imaginary<double>(5.25));
-  trdisp(100 + complex<double>(1.5,2) + Imaginary<double>(5.25));
+  trdisp(100 + complex<double>(1.5, 2) + Imaginary<double>(5.25));
   codeend();
   cr();
 

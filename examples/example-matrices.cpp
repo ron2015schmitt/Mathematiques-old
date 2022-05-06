@@ -1,30 +1,25 @@
-
-#include "mathq.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 
-void printoptsfile()
-{
+#include "mathq.h"
+#include "macros.h"
+
+void printoptsfile() {
   std::ifstream myfile;
   myfile.open("example.g++_copts");
   std::string myline;
-  if (myfile.is_open())
-  {
-    while (myfile)
-    {
+  if (myfile.is_open()) {
+    while (myfile) {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
-  }
-  else
-  {
+  } else {
     std::cout << "Couldn't open file\n";
   }
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   const double pi = M_PI;
   std::string myname = argv[0];
 
@@ -80,7 +75,7 @@ int main(int argc, char *argv[])
   disp(v1);
   disp(m3);
   disp((m3 | v1));
-  
+
   disp(m1);
   disp(m2);
   disp(m1 + m2);
@@ -93,22 +88,19 @@ int main(int argc, char *argv[])
   disp(m3 | m1);
   disp(m2 | m3.transpose());
 
-
   Vector<double> v({2, -1});
   Vector<double> u({1, -2, 4});
   Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
 
   disp(v);
   disp(A);
-  disp(A|v);
-
+  disp(A | v);
 
   disp(u);
   disp(v);
   disp(A);
-  disp(u|A|v);
-  disp(u|(2*A-1)|(10 * sin(pi / 2 * v) + 5));
-
+  disp(u | A | v);
+  disp(u | (2 * A - 1) | (10 * sin(pi / 2 * v) + 5));
 
   cr();
   mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;

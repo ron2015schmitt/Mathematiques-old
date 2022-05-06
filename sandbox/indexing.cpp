@@ -1,20 +1,22 @@
-#define MATHQ_DEBUG 1
-#include "mathq.h"
-
 #include <vector>
 #include <string>
+
+#define MATHQ_DEBUG 0
+#include "mathq.h"
+#include "macros.h"
 
 
 union IndexUnion {
   int sindex;
   unsigned int uindex;
-  IndexUnion(int i) {sindex = i;};
-  IndexUnion(unsigned int i) {uindex = i;};
-};  
-  
+  IndexUnion(int i) { sindex = i; };
+  IndexUnion(unsigned int i) { uindex = i; };
+};
 
 
-enum IndexType {IND_SIGNED,IND_UNSIGNED};
+
+enum IndexType { IND_SIGNED,
+                 IND_UNSIGNED };
 class Index {
 public:
   IndexUnion index;
@@ -23,8 +25,8 @@ public:
   }
   Index(int n) : index(n), type_(IND_SIGNED) {
   }
- 
-  
+
+
   inline std::string classname() const {
     return "Index";
   }
@@ -35,16 +37,16 @@ public:
   inline unsigned int value(unsigned int N) const {
     switch (type_) {
     case IND_SIGNED:
-      if (index.sindex<0) {
-	return N+index.sindex;
+      if (index.sindex < 0) {
+        return N + index.sindex;
       } else {
-	return index.sindex;
+        return index.sindex;
       }
     case IND_UNSIGNED:
       return index.uindex;
     }
     return 0;
-  }    
+  }
 
   inline int getn() const {
     return index.sindex;
@@ -54,7 +56,7 @@ public:
   }
 
 
-  inline friend std::ostream& operator<<(std::ostream &stream, const Index& index) {
+  inline friend std::ostream &operator<<(std::ostream &stream, const Index &index) {
     using namespace display;
 
     switch (IndexType t = index.getType()) {
@@ -66,7 +68,7 @@ public:
       stream << "IND_UNSIGNED ";
       dispval_strm(stream, index.getu());
       break;
-    }      
+    }
     return stream;
   }
 };
@@ -74,62 +76,61 @@ public:
 
 class Holder {
 private:
-  std::valarray<double>* data_;
-  
+  std::valarray<double> *data_;
+
 public:
-  Holder()  {
-    data_ = new std::valarray<double>(5); 
+  Holder() {
+    data_ = new std::valarray<double>(5);
   }
 
-      // "read/write": 
-  double& operator[](const Index& index)  {
-    return (*data_)[index.value(size())]; 
-    }
+  // "read/write":
+  double &operator[](const Index &index) {
+    return (*data_)[index.value(size())];
+  }
 
-    // "read only":
-  const double& operator[](const Index& index) const {
-    return (*data_)[index.value(size())]; 
-    }
+  // "read only":
+  const double &operator[](const Index &index) const {
+    return (*data_)[index.value(size())];
+  }
 
   inline int size() const {
     return data_->size();
   }
-  
+
   inline std::string classname() const {
     return "Holder";
   }
 
-    inline friend std::ostream& operator<<(std::ostream &stream, const Holder& h) {
-      using namespace display;
-      dispval_strm(stream, "(");
-      for (int i = 0; i < h.size(); i++) {
-	if (i>0) {
-	  dispval_strm(stream, ", ");
-	}
-	dispval_strm(stream, h[i]);
+  inline friend std::ostream &operator<<(std::ostream &stream, const Holder &h) {
+    using namespace display;
+    dispval_strm(stream, "(");
+    for (int i = 0; i < h.size(); i++) {
+      if (i > 0) {
+        dispval_strm(stream, ", ");
       }
-      dispval_strm(stream, ")");
-      
-      return stream;
+      dispval_strm(stream, h[i]);
     }
+    dispval_strm(stream, ")");
+
+    return stream;
+  }
 };
 
 
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 
 
-  
+
   const double pi = M_PI;
   std::string myname = argv[0];
   using namespace mathq;
   using namespace display;
   using namespace std;
-  
+
   Style bold = createStyle(BOLD);
-  
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
@@ -137,16 +138,15 @@ int main(int argc, char *argv[])
   cr();
   cr();
   mout << StyledString::get(HORLINE);
-  mout << "running: " <<bold.apply(myname) << std::endl;
+  mout << "running: " << bold.apply(myname) << std::endl;
   print_mathq_info();
-  
+
 
   {
     tdisp(sizeof(int));
     tdisp(sizeof(unsigned));
     tdisp(sizeof(unsigned int));
     tdisp(sizeof(IndexUnion));
-    
   }
 
   {
@@ -170,13 +170,12 @@ int main(int argc, char *argv[])
     tdisp(-2);
     h[-2] = 3.3;
     tdisp(h);
-
   }
 
 
 
 
-  
+
   cr();
   mout << "done: " << bold.apply(myname) << std::endl;
   mout << StyledString::get(HORLINE);

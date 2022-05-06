@@ -12,6 +12,11 @@
   + [Index class and new indexing methodology](topics/index.md)
 
 ### v3.7 Display Refactoring
+1. This is includes files:
+  * display.h
+  * macros.h
+  * gitmd.h
+  * display.cpp
 1. combine all macros from display and md.h into a single header. put rest in display
 1. make all macros UPPERCASE?.  have two files: upper case and lower case
 1. refactor Style, StyledString, Terminal, and Display, Log
@@ -36,6 +41,7 @@
    1. by aligned rows and columns with and without braces
    1. Mathematica
    1. Matlab
+1. move the SPECIALIZE_getTypeName into .h file and python script
 
 ### v3.8 I/O Refactoring
 1. [Save tensor to file](topics/filesave.md)

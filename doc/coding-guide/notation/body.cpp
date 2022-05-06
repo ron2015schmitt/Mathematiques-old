@@ -27,7 +27,8 @@ int main() {
   cr();
   text("| symbol | C++ types |");
   text("| :---: | :---: | ");
-  text("| ℤ | any C++ real integral type: `bool`, `int`, `long`, etc | ");
+  text("| ℤ | any C++ real signed integral type: `bool`, `int`, `long`, etc | ");
+  text("| ℕ | any C++ real unsigned integral type: `unsigned int`, `unsigned long`, etc | ");
   text("| ℝ | any C++ real floating-point type: `float`, `double`, `long double`) | ");
   text("| ℂ | any `std::complex<ℝ>` | ");
   text("| 𝕁 | any `Imaginary<ℝ>` | ");

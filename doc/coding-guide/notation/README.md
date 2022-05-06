@@ -1,4 +1,4 @@
-# Mathématiques v3.5.22
+# Mathématiques v3.5.23
 
 
 <details>
@@ -30,10 +30,11 @@
 7.2. [Container Types](../containers/README.md)<br>
 7.3. _User Guide Notation_ <br>
 7.4. [Operators](../operators/README.md)<br>
-7.5. [Display of Results](../display/README.md)<br>
-7.6. [Linear Algebra](../linear-algebra/README.md)<br>
-7.7. [FILE I/O](../file-io/README.md)<br>
-7.8. [Debug Modes](../debug/README.md)<br>
+7.5. [Functions](../functions/README.md)<br>
+7.6. [Display of Results](../display/README.md)<br>
+7.7. [Linear Algebra](../linear-algebra/README.md)<br>
+7.8. [FILE I/O](../file-io/README.md)<br>
+7.9. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
@@ -51,7 +52,8 @@ The following notation shorthand is used in the User Guide (but certainly not in
 
 | symbol | C++ types |
 | :---: | :---: | 
-| ℤ | any C++ real integral type: `bool`, `int`, `long`, etc | 
+| ℤ | any C++ real signed integral type: `bool`, `int`, `long`, etc | 
+| ℕ | any C++ real unsigned integral type: `unsigned int`, `unsigned long`, etc | 
 | ℝ | any C++ real floating-point type: `float`, `double`, `long double`) | 
 | ℂ | any `std::complex<ℝ>` | 
 | 𝕁 | any `Imaginary<ℝ>` | 

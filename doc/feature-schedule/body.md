@@ -64,11 +64,12 @@
 
 ### Miscellaneous Small Features
 * reformat all files using VSCode plugin
-* refactor the header so that 
-  * vectors, matricesm displaym tensors, are broken out into different headers
+* make all temp README.md files read-only
+* refactor the headers so that 
+  * vectors, matrices display tensors Scalar are broken out into different headers
   * use copious #ifdefs so that order of inclusion matters
 * create an index, with denotation for `types`, `functions`, `operators`
-* Create a `Number` class to generalize (diviosn alegra numbers) real,s imaginary and complex, quaternions?
+* Create a `Number` class to generalize (division alegra numbers) real,s imaginary and complex, quaternions?
   * see https://en.cppreference.com/w/cpp/types/is_arithmetic
   * <complex> C++ std::complex
     * https://en.cppreference.com/w/cpp/numeric/complex

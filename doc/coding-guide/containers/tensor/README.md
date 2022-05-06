@@ -1,4 +1,4 @@
-# Mathématiques v3.5.22
+# Mathématiques v3.5.23
 
 
 <details>
@@ -30,10 +30,11 @@
 7.2. _Container Types_ <br>
 7.3. [User Guide Notation](../../notation/README.md)<br>
 7.4. [Operators](../../operators/README.md)<br>
-7.5. [Display of Results](../../display/README.md)<br>
-7.6. [Linear Algebra](../../linear-algebra/README.md)<br>
-7.7. [FILE I/O](../../file-io/README.md)<br>
-7.8. [Debug Modes](../../debug/README.md)<br>
+7.5. [Functions](../../functions/README.md)<br>
+7.6. [Display of Results](../../display/README.md)<br>
+7.7. [Linear Algebra](../../linear-algebra/README.md)<br>
+7.8. [FILE I/O](../../file-io/README.md)<br>
+7.9. [Debug Modes](../../debug/README.md)<br>
 
 
 </details>

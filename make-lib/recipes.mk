@@ -97,7 +97,7 @@ gitignore:
 
 cleandir_%: FORCE
 #	@echo "-f $(FIRST_MAKEFILE) -C $* cleanall"
-	@cd $* && command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old node.json
+	@cd $* && command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old node.json branch.json
 
 clean_%: FORCE
 	$(MAKE) -C $* cleanall
@@ -108,7 +108,7 @@ cleansubs:: $(MAKECLEAN_SUBDIRS) $(CLEAN_SUBS)
 # Each Makefile that has an include statement for this file should:
 #  - define a "clean" target with "cleanstd" as a prerequisite
 cleanstd:: FORCE 
-	@command rm -f *.o *.a *.s *.g++_copts core.*  node.json
+	@command rm -f *.o *.a *.s *.g++_copts core.*  node.json branch.json
 	@command rm -f $(EXEC) $(NONEXEC) 
 
 # Target "cleansall" cleans everything, traversing down the directory tree

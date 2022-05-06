@@ -1,4 +1,4 @@
-# Mathématiques v3.5.21
+# Mathématiques v3.5.22
 
 
 <details>
@@ -26,23 +26,21 @@
 
 <summary>7. Coding Guide / Syntax</summary>
 
-7.1. [Scalar Math: real, imaginary, complex, and quaternions](../scalar/README.md)<br>
-7.2. [Vectors](../vector/README.md)<br>
-7.3. [Matrices](../matrix/README.md)<br>
-7.4. [Tensors](../tensor/README.md)<br>
-7.5. _User Guide Notation_ <br>
-7.6. [Operators](../operators/README.md)<br>
-7.7. [Display of Results](../display/README.md)<br>
-7.8. [Linear Algebra](../linear-algebra/README.md)<br>
-7.9. [FILE I/O](../file-io/README.md)<br>
-7.10. [Debug Modes](../debug/README.md)<br>
+7.1. [Scalar Types](../scalars/README.md)<br>
+7.2. [Container Types](../containers/README.md)<br>
+7.3. _User Guide Notation_ <br>
+7.4. [Operators](../operators/README.md)<br>
+7.5. [Display of Results](../display/README.md)<br>
+7.6. [Linear Algebra](../linear-algebra/README.md)<br>
+7.7. [FILE I/O](../file-io/README.md)<br>
+7.8. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
 
 
 
-# 7.5. User Guide Notation
+# 7.3. User Guide Notation
 
 _This document was generated from the_ C++ _file_ `notation/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
 <br>
@@ -83,6 +81,6 @@ Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the 
 
 
 
-| ⇦ <br />[Tensors](../tensor/README.md)  | [Coding Guide / Syntax](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Operators](../operators/README.md)   |
+| ⇦ <br />[Container Types](../containers/README.md)  | [Coding Guide / Syntax](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Operators](../operators/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

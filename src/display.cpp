@@ -315,7 +315,7 @@ Log Log_dummy = *(new Log());
 
 bool Display::isInitialized = false;
 StyledString Display::expression = StyledString(CREATESTYLE(BOLD), "");
-StyledString Display::equals = StyledString(CREATESTYLE(GRAY1), "  =>  ");
+StyledString Display::equals = StyledString(CREATESTYLE(GRAY1), "  ➜  ");
 StyledString Display::terminator = StyledString(CREATESTYLE(GRAY1), "");
 Display display_dummy = Display();
 

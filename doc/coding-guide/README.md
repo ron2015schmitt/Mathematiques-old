@@ -1,4 +1,4 @@
-# Mathématiques v3.5.21
+# Mathématiques v3.5.22
 
 
 <details>
@@ -24,13 +24,11 @@
 
 ## 7. Coding Guide / Syntax
 
-7.1. [Scalar Math: real, imaginary, complex, and quaternions](scalar/README.md)<br>
-7.2. [Vectors](vector/README.md)<br>
-7.3. [Matrices](matrix/README.md)<br>
-7.4. [Tensors](tensor/README.md)<br>
-7.5. [User Guide Notation](notation/README.md)<br>
-7.6. [Operators](operators/README.md)<br>
-7.7. [Display of Results](display/README.md)<br>
-7.8. [Linear Algebra](linear-algebra/README.md)<br>
-7.9. [FILE I/O](file-io/README.md)<br>
-7.10. [Debug Modes](debug/README.md)<br>
+7.1. [Scalar Types](scalars/README.md)<br>
+7.2. [Container Types](containers/README.md)<br>
+7.3. [User Guide Notation](notation/README.md)<br>
+7.4. [Operators](operators/README.md)<br>
+7.5. [Display of Results](display/README.md)<br>
+7.6. [Linear Algebra](linear-algebra/README.md)<br>
+7.7. [FILE I/O](file-io/README.md)<br>
+7.8. [Debug Modes](debug/README.md)<br>

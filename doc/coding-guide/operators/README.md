@@ -1,4 +1,4 @@
-# Mathématiques v3.5.21
+# Mathématiques v3.5.22
 
 
 <details>
@@ -26,23 +26,21 @@
 
 <summary>7. Coding Guide / Syntax</summary>
 
-7.1. [Scalar Math: real, imaginary, complex, and quaternions](../scalar/README.md)<br>
-7.2. [Vectors](../vector/README.md)<br>
-7.3. [Matrices](../matrix/README.md)<br>
-7.4. [Tensors](../tensor/README.md)<br>
-7.5. [User Guide Notation](../notation/README.md)<br>
-7.6. _Operators_ <br>
-7.7. [Display of Results](../display/README.md)<br>
-7.8. [Linear Algebra](../linear-algebra/README.md)<br>
-7.9. [FILE I/O](../file-io/README.md)<br>
-7.10. [Debug Modes](../debug/README.md)<br>
+7.1. [Scalar Types](../scalars/README.md)<br>
+7.2. [Container Types](../containers/README.md)<br>
+7.3. [User Guide Notation](../notation/README.md)<br>
+7.4. _Operators_ <br>
+7.5. [Display of Results](../display/README.md)<br>
+7.6. [Linear Algebra](../linear-algebra/README.md)<br>
+7.7. [FILE I/O](../file-io/README.md)<br>
+7.8. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
 
 
 
-# 7.6. Operators
+# 7.4. Operators
 
 _This document was generated from the_ C++ _file_ `operators/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
 
@@ -73,18 +71,18 @@ For container types, the following rules apply for `x op y`:
 #### Reals
 
 ```C++
-1 + 2  =>  int 3
-7.5 + 2  =>  double 9.5
-7.5 - 0.5  =>  double 7
+1 + 2  ➜  int 3
+7.5 + 2  ➜  double 9.5
+7.5 - 0.5  ➜  double 7
 ```
 
 #### Complex, Imaginary and Mixed
 
 ```C++
-complex<double>(1.5, 0) + complex<double>(0.5, 4)  =>  std::complex<double> (2,4)
-Imaginary<double>(1) + Imaginary<double>(33.12)  =>  Imaginary<double> 34.12i
--10 + Imaginary<double>(5.25)  =>  std::complex<double> (-10,5.25)
-100 + complex<double>(1.5, 2) + Imaginary<double>(5.25)  =>  std::complex<double> (101.5,7.25)
+complex<double>(1.5, 0) + complex<double>(0.5, 4)  ➜  std::complex<double> (2,4)
+Imaginary<double>(1) + Imaginary<double>(33.12)  ➜  Imaginary<double> 34.12i
+-10 + Imaginary<double>(5.25)  ➜  std::complex<double> (-10,5.25)
+100 + complex<double>(1.5, 2) + Imaginary<double>(5.25)  ➜  std::complex<double> (101.5,7.25)
 ```
 
 #### Vectors, Matrice, and Tensors
@@ -113,12 +111,12 @@ If both numerator and denominator are integers, the division operator gives the 
 
 ### Examples: integer division
 ```C++
-7 / 2  =>  int 3
+7 / 2  ➜  int 3
 ```
 * The modulus operator `a % b`, gives the remainder after integer divison of `a` by `b`.
 
 ```C++
-7 % 2  =>  int 1
+7 % 2  ➜  int 1
 ```
 * The function [`std::div`](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
@@ -128,8 +126,8 @@ div_t result = div(7, 2);
 With result:
 
 ```C++
-result.quot  =>  int 3
-result.rem  =>  int 1
+result.quot  ➜  int 3
+result.rem  ➜  int 1
 ```
 
 <br>
@@ -137,8 +135,8 @@ result.rem  =>  int 1
 ## Exponentiation and the `pow` function
 C++ does not have an exponentiation operator.  Instead it provides the [`std::pow`](https://en.cppreference.com/w/cpp/numeric/math/div) function
 ```C++
-pow(2, 8)  =>  double 256
-pow(25, 1 / 2)  =>  double 1
+pow(2, 8)  ➜  double 256
+pow(25, 1 / 2)  ➜  double 1
 ```
 
 <br>
@@ -159,22 +157,22 @@ For details refer [Logical Operators](https://en.cppreference.com/w/c/language/o
 Examples:
 
 ```C++
-true  =>  bool 1
-false  =>  bool 0
-!true  =>  bool 0
-!false  =>  bool 1
-true && true  =>  bool 1
-true && false  =>  bool 0
-true || false  =>  bool 1
+true  ➜  bool 1
+false  ➜  bool 0
+!true  ➜  bool 0
+!false  ➜  bool 1
+true && true  ➜  bool 1
+true && false  ➜  bool 0
+true || false  ➜  bool 1
 ```
 * In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`
 
 ```C++
-!true  =>  bool 0
-!8  =>  bool 0
-!!8.293  =>  bool 1
-true && 3  =>  bool 1
-true && 0  =>  bool 0
+!true  ➜  bool 0
+!8  ➜  bool 0
+!!8.293  ➜  bool 1
+true && 3  ➜  bool 1
+true && 0  ➜  bool 0
 ```
 
 <br>
@@ -198,11 +196,11 @@ For details refer [Comparison Operators](https://en.cppreference.com/w/c/languag
 Examples:
 
 ```C++
-(2 == 2)  =>  bool 1
-(1 / 2 == 0.5)  =>  bool 0
-(1. / 2 == 0.5)  =>  bool 1
-(-2 < 34.2)  =>  bool 1
-(2 > 0)  =>  bool 1
+(2 == 2)  ➜  bool 1
+(1 / 2 == 0.5)  ➜  bool 0
+(1. / 2 == 0.5)  ➜  bool 1
+(-2 < 34.2)  ➜  bool 1
+(2 > 0)  ➜  bool 1
 ```
 
 <br>

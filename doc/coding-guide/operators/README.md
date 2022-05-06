@@ -1,10 +1,10 @@
-# Mathématiques v3.5.23
-
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.24</h1>
 
 <details>
 
 <summary>User Guide</summary>
 
+# [User Guide](../../README.md)<br>
 1. [About](../../about/README.md)<br>
 2. [License](../../license/README.md)<br>
 3. [Release Notes](../../release-notes/README.md)<br>
@@ -24,8 +24,9 @@
 
 <details>
 
-<summary>7. Coding Guide / Syntax</summary>
+<summary>Coding Guide / Syntax</summary>
 
+# [7. Coding Guide / Syntax](../README.md)<br>
 7.1. [Scalar Types](../scalars/README.md)<br>
 7.2. [Container Types](../containers/README.md)<br>
 7.3. [User Guide Notation](../notation/README.md)<br>
@@ -41,7 +42,7 @@
 
 
 
-### 7.4. Operators
+# 7.4. Operators
 
 7.4.1. [Arithmetic](arithmetic/README.md)<br>
 7.4.2. [Integer Division](integer-division/README.md)<br>

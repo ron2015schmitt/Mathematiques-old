@@ -1,10 +1,10 @@
-# Mathématiques v3.5.23
-
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.24</h1>
 
 <details>
 
 <summary>User Guide</summary>
 
+# [User Guide](../../../README.md)<br>
 1. [About](../../../about/README.md)<br>
 2. [License](../../../license/README.md)<br>
 3. [Release Notes](../../../release-notes/README.md)<br>
@@ -24,8 +24,9 @@
 
 <details>
 
-<summary>7. Coding Guide / Syntax</summary>
+<summary>Coding Guide / Syntax</summary>
 
+# [7. Coding Guide / Syntax](../../README.md)<br>
 
 7.1. _Scalar Types_ <br>
 7.2. [Container Types](../../containers/README.md)<br>
@@ -44,8 +45,9 @@
 
 <details>
 
-<summary>7.1. Scalar Types</summary>
+<summary>Scalar Types</summary>
 
+# [7.1. Scalar Types](../README.md)<br>
 7.1.1. [Reals](../real/README.md)<br>
 7.1.2. _Complex numbers_ <br>
 7.1.3. [Imaginary numbers](../imaginary/README.md)<br>

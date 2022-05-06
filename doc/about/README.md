@@ -1,10 +1,10 @@
-# Mathématiques v3.5.23
-
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.24</h1>
 
 <details>
 
 <summary>User Guide</summary>
 
+# [User Guide](../README.md)<br>
 
 1. _About_ <br>
 2. [License](../license/README.md)<br>

@@ -1,10 +1,10 @@
-# Mathématiques v3.5.23
-
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.24</h1>
 
 <details>
 
 <summary>User Guide</summary>
 
+# [User Guide](../README.md)<br>
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
 3. [Release Notes](../release-notes/README.md)<br>
@@ -94,7 +94,7 @@
 * refactor the headers so that 
   * vectors, matrices display tensors Scalar are broken out into different headers
   * use copious #ifdefs so that order of inclusion matters
-* create an index, with denotation for `types`, `functions`, `operators`
+* User Guide: create an index, with denotation for `types`, `functions`, `operators`
 * Create a `Number` class to generalize (division alegra numbers) real,s imaginary and complex, quaternions?
   * see https://en.cppreference.com/w/cpp/types/is_arithmetic
   * <complex> C++ std::complex
@@ -107,6 +107,9 @@
     * https://en.cppreference.com/w/c/numeric/complex/I
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * overload `^` as exponentiation for vectors and matrices?
+* pow(container, scalar)
+* pow(container, container)
+* dotel(container1, container2, depth): depth specifies at what level the dot product takes place
 * implement adjoint(Matrix) and ~(Matrix)
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
 * `logspace` function similar to `matlab`

@@ -68,7 +68,7 @@
 * refactor the headers so that 
   * vectors, matrices display tensors Scalar are broken out into different headers
   * use copious #ifdefs so that order of inclusion matters
-* create an index, with denotation for `types`, `functions`, `operators`
+* User Guide: create an index, with denotation for `types`, `functions`, `operators`
 * Create a `Number` class to generalize (division alegra numbers) real,s imaginary and complex, quaternions?
   * see https://en.cppreference.com/w/cpp/types/is_arithmetic
   * <complex> C++ std::complex
@@ -81,6 +81,9 @@
     * https://en.cppreference.com/w/c/numeric/complex/I
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * overload `^` as exponentiation for vectors and matrices?
+* pow(container, scalar)
+* pow(container, container)
+* dotel(container1, container2, depth): depth specifies at what level the dot product takes place
 * implement adjoint(Matrix) and ~(Matrix)
 * `+=`, `-=`, `*=`, `/=`, operators for all tensors
 * `logspace` function similar to `matlab`

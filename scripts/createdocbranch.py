@@ -81,13 +81,17 @@ for i in range(i+1,N):
 # read input files
 #############################################################
 
-
 # read in version tag from tag file
 lines = []
 with open(TAG_FILE, 'r') as f:
   for line in f:
     lines.append(line.rstrip())
 tag = lines[0].strip()
+
+# Set Document title
+#MATHQ_TITLE = "# Mathématiques {}\n".format(tag)
+MATHQ_TITLE = "<h1 style='border: 2px solid; text-align: center'>Mathématiques {}</h1>".format(tag)
+
 
 # read in body file
 lines = []
@@ -107,7 +111,7 @@ else:
     "title": "User Guide",
     "prefix": "",
     "level": 1,
-    "header": "# Mathématiques {}\n".format(tag),
+    "header": MATHQ_TITLE,
   }
 
 print("node: "+str(node))
@@ -178,8 +182,8 @@ top = """
 
 {} {}
 
-""".format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
-
+""".format("#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
+#""".format(node["level"]*"#", node["prefix"] + (len(node["prefix"])>0)*" " + node["title"])
 
 mytoc = ""
 for name in CHAPTERS:
@@ -202,7 +206,7 @@ f.close()
 #############################################################
 # create header for children
 #############################################################
-header = """
+menu = """
 
 <details>
 
@@ -215,8 +219,12 @@ header = """
 """
 
 for name in NAMES:
-  toc = ""
   chapter = CHAPTERS[name]
+  title = node["title"]
+  numandtitle = node["prefix"]+ (len(node["prefix"])>0)*" " + title
+  file = "../README.md"
+  link = "[{}]({})".format(numandtitle, file)
+  toc = "# " + link + "<br>\n"
   for name2 in NAMES:
     chapter2 = CHAPTERS[name2]
     if name == name2:
@@ -227,7 +235,7 @@ for name in NAMES:
       link = "[{}]({})".format(chapter2["title"], "../"+name2+"/README.md")
       line = chapter2["prefix"]+ " " + link + "<br>\n"
     toc += line
-  chapter["header"] = re.sub('\(\.\.', '(../..', node["header"]) + header.format(node["prefix"]+ (len(node["prefix"])>0)*" " + node["title"], toc)
+  chapter["header"] = re.sub('\(\.\.', '(../..', node["header"]) + menu.format(title, toc)
 
 
 #############################################################

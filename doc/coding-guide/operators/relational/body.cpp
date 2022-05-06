@@ -15,7 +15,7 @@ int main() {
   using namespace display;
   
 
-  markdown_preamble();
+  GMD_PREAMBLE();
 
   CR();
   CR();
@@ -24,31 +24,31 @@ int main() {
   vspace();
   header2("Relational Operators");
 
-  text("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
+  OUTPUT("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
 
   CR();
-  text("| operator | operation | ");
-  text("| :---: | :---: | ");
-  text("| `==` | equal to | ");
-  text("| `!=` | not equal to | ");
-  text("| `<` | less than | ");
-  text("| `<=` | less than or equal to | ");
-  text("| `>` | greater than | ");
-  text("| `>=` | greater than or equal to | ");
-  // text("| `<=>` | three-way comparison | ");
+  OUTPUT("| operator | operation | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `==` | equal to | ");
+  OUTPUT("| `!=` | not equal to | ");
+  OUTPUT("| `<` | less than | ");
+  OUTPUT("| `<=` | less than or equal to | ");
+  OUTPUT("| `>` | greater than | ");
+  OUTPUT("| `>=` | greater than or equal to | ");
+  // OUTPUT("| `<=>` | three-way comparison | ");
   CR();
 
-  text("**CAVEAT**: C++ allows assigment `=` inside `if` statements (eg, `if (a = true) return;`).  Mistyping the equals operator `==` can cause painful bugs. \n");
+  OUTPUT("**CAVEAT**: C++ allows assigment `=` inside `if` statements (eg, `if (a = true) return;`).  Mistyping the equals operator `==` can cause painful bugs. \n");
 
   CR();
-  text("Examples:\n");
-  codestart("C++");
-  trdisp((2 == 2));
-  trdisp((1 / 2 == 0.5));
-  trdisp((1. / 2 == 0.5));
-  trdisp((-2 < 34.2));
-  trdisp((2 > 0));
-  codeend();
+  OUTPUT("Examples:\n");
+  GMD_CODE_START("C++");
+  TRDISP((2 == 2));
+  TRDISP((1 / 2 == 0.5));
+  TRDISP((1. / 2 == 0.5));
+  TRDISP((-2 < 34.2));
+  TRDISP((2 > 0));
+  GMD_CODE_END();
 
 
   return 0;

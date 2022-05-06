@@ -53,27 +53,27 @@ int main(int argc, char *argv[]) {
     Vector<double> Vd3{6, 7, 8, 9};
     MOUT << blue.apply("Given:") << endl;
     MOUT << "  ";
-    tdisp(Vi);
+    TLDISP(Vi);
     MOUT << "  ";
-    tdisp(Vd1);
+    TLDISP(Vd1);
     MOUT << "  ";
-    tdisp(Vd2);
+    TLDISP(Vd2);
     MOUT << "  ";
-    tdisp(Vd3);
+    TLDISP(Vd3);
     CR();
 
     MOUT << blue.apply("LHS tests--join") << endl;
     MOUT << "  ";
-    tdisp(join(Vd1, Vd1));
+    TLDISP(join(Vd1, Vd1));
     MOUT << "  ";
-    tdisp(join(Vd1, Vd2));
+    TLDISP(join(Vd1, Vd2));
     MOUT << blue.apply("LHS tests--comma") << endl;
     MOUT << "  ";
-    tdisp((Vd1, Vd2));
+    TLDISP((Vd1, Vd2));
     MOUT << "  ";
-    tdisp((Vd1, Vd2, Vd3));
+    TLDISP((Vd1, Vd2, Vd3));
     MOUT << "  ";
-    tdisp(join((Vd1, Vd2), Vd3));
+    TLDISP(join((Vd1, Vd2), Vd3));
 
 
     MOUT << blue.apply("LHS tests") << endl;
@@ -81,25 +81,25 @@ int main(int argc, char *argv[]) {
     Vector<double> Vd5 = {21, 22, 23, 24, 25, 26, 27, 28, 29};
     MOUT << "Initial values: " << endl;
     MOUT << " ";
-    mdisp(Vd1, Vd2, Vd3);
+    MDISP(Vd1, Vd2, Vd3);
     MOUT << blue.apply("(Vd1,Vd2) = Vd4") << endl;
     (Vd1, Vd2) = Vd4;
     MOUT << " ";
-    disp(Vd4);
+    DISP(Vd4);
     MOUT << " ";
-    mdisp(Vd1, Vd2);
+    MDISP(Vd1, Vd2);
     MOUT << blue.apply("(Vd1,Vd2,Vd3) = Vd5") << endl;
     (Vd1, Vd2, Vd3) = Vd5;
     MOUT << " ";
-    disp(Vd5);
+    DISP(Vd5);
     MOUT << " ";
-    mdisp(Vd1, Vd2, Vd3);
+    MDISP(Vd1, Vd2, Vd3);
 
-    tdisp(IsTensorRW<mathq::TER_Join<mathq::TensorR<mathq::TensorRW<mathq::TERW_Subset<double>, double, double, 1, 1>, double, double, 1, 1>, mathq::TensorR<mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, double, double, 1, 1>, double, double, 1>>::value);
+    TLDISP(IsTensorRW<mathq::TER_Join<mathq::TensorR<mathq::TensorRW<mathq::TERW_Subset<double>, double, double, 1, 1>, double, double, 1, 1>, mathq::TensorR<mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, double, double, 1, 1>, double, double, 1>>::value);
 
-    tdisp(IsTensorRW<mathq::TensorR<mathq::TensorRW<mathq::TERW_Subset<double>, double, double, 1, 1>, double, double, 1, 1>>::value);
+    TLDISP(IsTensorRW<mathq::TensorR<mathq::TensorRW<mathq::TERW_Subset<double>, double, double, 1, 1>, double, double, 1, 1>>::value);
 
-    tdisp(IsTensorRW<mathq::TERW_Join<mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, double, double, 1>>::value);
+    TLDISP(IsTensorRW<mathq::TERW_Join<mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, mathq::TensorRW<mathq::Vector<double>, double, double, 1, 1>, double, double, 1>>::value);
   }
 
 

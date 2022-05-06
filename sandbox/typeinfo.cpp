@@ -44,29 +44,29 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Vector<Matrix<double, 2, 2>, 3> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
-    tdisp(v);
-    tdisp(v(0));
-    tdisp(v(1)(0, 1));
-    tdisp(v.dims());
-    tdisp(v.size());
-    tdisp(v.deepdims());
+    TLDISP(v);
+    TLDISP(v(0));
+    TLDISP(v(1)(0, 1));
+    TLDISP(v.dims());
+    TLDISP(v.size());
+    TLDISP(v.deepdims());
 
     decltype(v) x(0.0);
     x = 0.;
-    tdisp(x);
+    TLDISP(x);
 
     typename decltype(v)::EType e;
     e = 0.;
-    tdisp(e);
+    TLDISP(e);
 
     typename decltype(v)::DType d = 0.;
-    tdisp(d);
+    TLDISP(d);
 
     typename decltype(v)::XType v2;
-    tdisp(v2);
+    TLDISP(v2);
 
-    tdisp(decltype(v)::Mvalue);
-    tdisp(decltype(v)::Rvalue);
+    TLDISP(decltype(v)::Mvalue);
+    TLDISP(decltype(v)::Rvalue);
   }
 
 

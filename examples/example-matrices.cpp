@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
   Vector<double> v2;
   v2 = 10 * sin(pi / 2 * v1) + 5;
 
-  disp(v1);
-  disp(v2);
-  disp(v1 + v2);
+  DISP(v1);
+  DISP(v2);
+  DISP(v1 + v2);
 
   // FormatDataVector::max_elements_per_line = 10;
   // FormatDataVector::string_opening = "[\n  ";
@@ -69,37 +69,37 @@ int main(int argc, char *argv[]) {
   Matrix<double> m3({{1, 2}, {3, 4}, {5, 6}});
   // m3 = {{1, 2}, {3, 4}, {5, 6}};
   // dot product
-  disp(v1 | v2);
+  DISP(v1 | v2);
 
-  disp(v1);
-  disp(m3);
-  disp((m3 | v1));
+  DISP(v1);
+  DISP(m3);
+  DISP((m3 | v1));
 
-  disp(m1);
-  disp(m2);
-  disp(m1 + m2);
+  DISP(m1);
+  DISP(m2);
+  DISP(m1 + m2);
 
-  disp(m1 | v1);
-  disp(v1 | m1);
+  DISP(m1 | v1);
+  DISP(v1 | m1);
 
-  disp(m1 | m2);
+  DISP(m1 | m2);
 
-  disp(m3 | m1);
-  disp(m2 | m3.transpose());
+  DISP(m3 | m1);
+  DISP(m2 | m3.transpose());
 
   Vector<double> v({2, -1});
   Vector<double> u({1, -2, 4});
   Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
 
-  disp(v);
-  disp(A);
-  disp(A | v);
+  DISP(v);
+  DISP(A);
+  DISP(A | v);
 
-  disp(u);
-  disp(v);
-  disp(A);
-  disp(u | A | v);
-  disp(u | (2 * A - 1) | (10 * sin(pi / 2 * v) + 5));
+  DISP(u);
+  DISP(v);
+  DISP(A);
+  DISP(u | A | v);
+  DISP(u | (2 * A - 1) | (10 * sin(pi / 2 * v) + 5));
 
   CR();
   MOUT << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;

@@ -47,8 +47,8 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Scalar<double> s = 1.1;
-    tdisp(s);
-    tdisp((-s)[0]);
+    TLDISP(s);
+    TLDISP((-s)[0]);
   }
 
 
@@ -58,8 +58,8 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Vector<double> v{1.1, 2.2};
-    tdisp(v);
-    tdisp((-v)[1]);
+    TLDISP(v);
+    TLDISP((-v)[1]);
   }
 
   CR();
@@ -67,8 +67,8 @@ int main(int argc, char *argv[]) {
   MOUT << bold.apply("Matrix") << endl;
   {
     Matrix<double> m{{1, 2}, {3, 4}};
-    tdisp(m);
-    tdisp((-m)[2]);
+    TLDISP(m);
+    TLDISP((-m)[2]);
   }
 
 
@@ -83,8 +83,8 @@ int main(int argc, char *argv[]) {
         {{100, 101, 102, 103, 104}, {110, 111, 112, 113, 114}},
         {{200, 201, 202, 203, 204}, {210, 211, 212, 213, 214}}};
 
-    tdisp(t);
-    tdisp((-t)[5]);
+    TLDISP(t);
+    TLDISP((-t)[5]);
   }
 
 
@@ -109,27 +109,27 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Scalar<Scalar<double>> s{{1.1}};
-    tdisp(s);
-    tdisp((-s)[0]);
+    TLDISP(s);
+    TLDISP((-s)[0]);
   }
   {
     CR();
     Scalar<Vector<double>> s{{1., 2., 3.}};
-    tdisp(s);
-    tdisp((-s)[0]);
+    TLDISP(s);
+    TLDISP((-s)[0]);
   }
   {
     CR();
     Scalar<Matrix<double>> s{{{1, 2}, {3, 4}}};
-    tdisp(s);
-    tdisp((-s)[0]);
+    TLDISP(s);
+    TLDISP((-s)[0]);
   }
 
   {
     CR();
     Scalar<Tensor<double, 2>> s{{{1, 2}, {3, 4}}};
-    tdisp(s);
-    tdisp((-s)[0]);
+    TLDISP(s);
+    TLDISP((-s)[0]);
   }
 
   CR();
@@ -138,27 +138,27 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Vector<Scalar<double>> v{{1.}, {2.}};
-    tdisp(v);
-    tdisp((-v)[1]);
+    TLDISP(v);
+    TLDISP((-v)[1]);
   }
 
   {
     CR();
     Vector<Vector<double>> v{{1., 2., 3.}, {4., 5., 6.}};
-    tdisp(v);
-    tdisp((-v)[1]);
+    TLDISP(v);
+    TLDISP((-v)[1]);
   }
   {
     CR();
     Vector<Matrix<double>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
-    tdisp(v);
-    tdisp((-v)[1]);
+    TLDISP(v);
+    TLDISP((-v)[1]);
   }
   {
     CR();
     Vector<Tensor<double, 2>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
-    tdisp(v);
-    tdisp((-v)[1]);
+    TLDISP(v);
+    TLDISP((-v)[1]);
   }
 
 
@@ -169,15 +169,15 @@ int main(int argc, char *argv[]) {
     CR();
     Matrix<Scalar<double>> m{{{1}, {2}}, {{3}, {4}}};
     ;
-    tdisp(m);
-    tdisp((-m)[2]);
+    TLDISP(m);
+    TLDISP((-m)[2]);
   }
 
   {
     CR();
     Matrix<Vector<double>> m{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
-    tdisp(m);
-    tdisp((-m)[2]);
+    TLDISP(m);
+    TLDISP((-m)[2]);
   }
 
   {
@@ -185,8 +185,8 @@ int main(int argc, char *argv[]) {
     Matrix<Matrix<double>> m{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
-    tdisp(m);
-    tdisp((-m)[2]);
+    TLDISP(m);
+    TLDISP((-m)[2]);
   }
 
   {
@@ -216,8 +216,8 @@ int main(int argc, char *argv[]) {
                                          {-11110, -11111},
                                          {-11120, -11121}}}}};
 
-    tdisp(m);
-    tdisp((-m)[1]);
+    TLDISP(m);
+    TLDISP((-m)[1]);
   }
 
   /////////////////////////////////////////////////////////////////
@@ -230,14 +230,14 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Tensor<Scalar<double>, 2> t{{{1}, {2}}, {{3}, {4}}};
-    tdisp(t);
-    tdisp((-t)[1]);
+    TLDISP(t);
+    TLDISP((-t)[1]);
   }
   {
     CR();
     Tensor<Vector<double>, 2> t{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
-    tdisp(t);
-    tdisp((-t)[1]);
+    TLDISP(t);
+    TLDISP((-t)[1]);
   }
 
   {
@@ -245,8 +245,8 @@ int main(int argc, char *argv[]) {
     Tensor<Matrix<double, 2, 2>, 2> t{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
-    tdisp(t);
-    tdisp((-t)[1]);
+    TLDISP(t);
+    TLDISP((-t)[1]);
   }
 
 
@@ -277,8 +277,8 @@ int main(int argc, char *argv[]) {
                                       {11110, 11111},
                                       {11120, 11121}}}}};
 
-    tdisp(t);
-    tdisp((-t)[1]);
+    TLDISP(t);
+    TLDISP((-t)[1]);
   }
 
 

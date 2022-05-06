@@ -365,13 +365,13 @@ namespace mathq {
    
     D& operator()(const index_type r, const index_type c) {
       const index_type k = r-c+Ncols()-1;
-      //      mdisp(r,c,k);
+      //      MDISP(r,c,k);
       return data_[k];
     }
 
     const D operator()(const index_type r, const index_type c) const {
       const index_type k = r-c+Ncols()-1;
-      //      mdisp(r,c,k);
+      //      MDISP(r,c,k);
       return data_[k];
     }
 

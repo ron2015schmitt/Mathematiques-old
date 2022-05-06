@@ -29,8 +29,8 @@ int main()
   mathq_preamble();
 
   header2("Fourier Series for the Clausen Functions");
-  text("As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: ");
-  text("![Clausen Functions](ClausenDefinition.png)");
+  OUTPUT("As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: ");
+  OUTPUT("![Clausen Functions](ClausenDefinition.png)");
 
 
   header3("Clausen function of order _n=1_");
@@ -38,8 +38,8 @@ int main()
   {
     CR();
     CR();
-    text("Set up the output format so that we can copy and paste into Matlab");
-    codestart("C++");
+    OUTPUT("Set up the output format so that we can copy and paste into Matlab");
+    GMD_CODE_START("C++");
     codemulti( using namespace display  );
     codemulti( FormatDataVector::string_opening =  "[ ...\n    "  );
     codemulti( FormatDataVector::string_delimeter = ", "  );
@@ -48,73 +48,73 @@ int main()
     codemulti( FormatDataVector::string_closing =   " ...\n]"  );
     codemulti( setFormatString<double>("% 10.8e")  );
     codemulti(  FormatData<double>::tens = false );
-    codeend();
+    GMD_CODE_END();
     CR();
 
 
-    text("Define the coefficient vectors: ");
+    OUTPUT("Define the coefficient vectors: ");
     CR();
 
     
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( const size_type N = 20 );
     codemulti( Vector<double> k = range<double>(0,N-1)  );
     codemulti( Vector<double> An = 1/k );
     codemulti( An[0] = 0. );
     codemulti( Vector<double> Bn = Vector<double>(N,0.) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
 
-    text("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
+    OUTPUT("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
     CR();
     
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(   const double pi = M_PI  );
     codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
 
-    text("Calculate the Fourier series and store the results in vector `CL1`: ");
+    OUTPUT("Calculate the Fourier series and store the results in vector `CL1`: ");
     CR();
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 2*pi/T );
     codemulti(     Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega ) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     
-    text("The results `t` and `CL1` are:");
+    OUTPUT("The results `t` and `CL1` are:");
     CR();
-    codestart("Matlab");
-    disp(t);
-    disp(CL1);
-    codeend();
+    GMD_CODE_START("Matlab");
+    DISP(t);
+    DISP(CL1);
+    GMD_CODE_END();
 
-    text("Cut and paste the above data for `t` and `CL1` into Matlab as well as the following commands");
+    OUTPUT("Cut and paste the above data for `t` and `CL1` into Matlab as well as the following commands");
     CR();
-    codestart("Matlab");
-    text("N=10000;");
-    text("dt=2*pi/N;");
-    text("tt=linspace(dt,2*pi-dt,10000);");
-    text("y1=-log(2*abs(sin(tt/2)));");
-    text("plot(t,CL1,'r.',tt,y1)");
-    codeend();
+    GMD_CODE_START("Matlab");
+    OUTPUT("N=10000;");
+    OUTPUT("dt=2*pi/N;");
+    OUTPUT("tt=linspace(dt,2*pi-dt,10000);");
+    OUTPUT("y1=-log(2*abs(sin(tt/2)));");
+    OUTPUT("plot(t,CL1,'r.',tt,y1)");
+    GMD_CODE_END();
 
-    text("The above matlab code calculates the first Clausen function using the equation");
+    OUTPUT("The above matlab code calculates the first Clausen function using the equation");
     CR();
     CR();
-    text("![Closed form for CL1(t)](ClausenFormula_n1.png)");
+    OUTPUT("![Closed form for CL1(t)](ClausenFormula_n1.png)");
     CR();
     CR();
     
-    text("We exclude the end points, 0 and pi, because the function is infinite at these points.");
+    OUTPUT("We exclude the end points, 0 and pi, because the function is infinite at these points.");
 
-    text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
+    OUTPUT("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
 
-    text("![Fourier Series for CL1</sub>(t)](ClausenFourierSeries_n1.png)");
+    OUTPUT("![Fourier Series for CL1</sub>(t)](ClausenFourierSeries_n1.png)");
 
   }
 
@@ -123,75 +123,75 @@ int main()
   {
     CR();
     CR();
-    text("Set up the output format so that we can copy and paste into Matlab, this time using the function `set_matlab_var_format()`");
-    codestart("C++");
+    OUTPUT("Set up the output format so that we can copy and paste into Matlab, this time using the function `set_matlab_var_format()`");
+    GMD_CODE_START("C++");
     codemulti( set_matlab_var_format()  );
-    codeend();
+    GMD_CODE_END();
     CR();
 
 
-    text("Define the coefficient vectors: ");
+    OUTPUT("Define the coefficient vectors: ");
     CR();
 
     
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( const size_type N = 20 );
     codemulti( Vector<double> k = range<double>(0,N-1)  );
     codemulti( Vector<double> An = Vector<double>(N,0.) );
     codemulti( Vector<double> Bn = 1./sqr(k) );
     codemulti( Bn[0] = 0. );
-    codeend();
+    GMD_CODE_END();
     CR();
 
 
-    text("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
+    OUTPUT("Define the coordinate vector `t` as 51 points over the interval [0,+2pi]: ");
     CR();
     
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(   const double pi = M_PI  );
     codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
 
-    text("Calculate the Fourier series and store the results in vector `CL2`: ");
+    OUTPUT("Calculate the Fourier series and store the results in vector `CL2`: ");
     CR();
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(     const double T = 2*pi );
     codemulti(     const double omega = 2*pi/T );
     codemulti(     Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega ) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     
-    text("The results `t` and `CL2` are:");
+    OUTPUT("The results `t` and `CL2` are:");
     CR();
-    codestart("Matlab");
-    disp(t);
-    disp(CL2);
-    codeend();
+    GMD_CODE_START("Matlab");
+    DISP(t);
+    DISP(CL2);
+    GMD_CODE_END();
 
-    text("Cut and paste the above data for t and CL2 into Matlab as well as the following commands.");
+    OUTPUT("Cut and paste the above data for t and CL2 into Matlab as well as the following commands.");
     CR();
-    codestart("Matlab");
-    text("N=10000;");
-    text("dt=2*pi/N;");
-    text("tt=linspace(dt,2*pi-dt,10000);");
-    text("y2=cumtrapz(-log(2*abs(sin(tt/2))))*dt;");
-    text("plot(t,CL2,'r.',tt,y2)");
-    codeend();
+    GMD_CODE_START("Matlab");
+    OUTPUT("N=10000;");
+    OUTPUT("dt=2*pi/N;");
+    OUTPUT("tt=linspace(dt,2*pi-dt,10000);");
+    OUTPUT("y2=cumtrapz(-log(2*abs(sin(tt/2))))*dt;");
+    OUTPUT("plot(t,CL2,'r.',tt,y2)");
+    GMD_CODE_END();
 
-    text("The above matlab code calculates the second Clausen function using the following integral");
+    OUTPUT("The above matlab code calculates the second Clausen function using the following integral");
     CR();
     CR();
-    text("![Closed form for CL2(t)](ClausenFormula_n2.png)");
+    OUTPUT("![Closed form for CL2(t)](ClausenFormula_n2.png)");
     CR();
     CR();
 
-    text("We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
-    text("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
+    OUTPUT("We exclude the end points, 0 and pi, because the integrand is infinite at these points.");
+    OUTPUT("This yields the following plot comparing the Fourier series [red dots] to the exact function [solid blue].");
 
-    text("![Fourier Series for CL2(t)](ClausenFourierSeries_n2.png)");
+    OUTPUT("![Fourier Series for CL2(t)](ClausenFourierSeries_n2.png)");
 
   }
 

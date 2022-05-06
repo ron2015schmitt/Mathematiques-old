@@ -69,10 +69,10 @@ v1 = {10,20,30,40};
 Vector<double> v2(4);
 v2 = {1,2,3,4}; 
 
-disp(v1 + v2);
-disp(v1 - v2);
-disp(v1 * v2);
-disp(v1 / v2);
+DISP(v1 + v2);
+DISP(v1 - v2);
+DISP(v1 * v2);
+DISP(v1 / v2);
 ```
 
 **Text Output**
@@ -96,8 +96,8 @@ const double N = double(v.size());
 double mu = sum(v)/N;
 double sigma = norm(v-mu)/sqrt(N-1);
 
-disp(mu);
-disp(sigma);
+DISP(mu);
+DISP(sigma);
 ```
 
 **Text Output**
@@ -120,9 +120,9 @@ Note that in bra-ket notation, vectors are neither row nor column vector.  Their
 ```C++
 Vector<double> v({2, -1});
 Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
-disp(v);
-disp(A);
-disp(A | v);
+DISP(v);
+DISP(A);
+DISP(A | v);
 ```
 
 **Text Output**
@@ -148,11 +148,11 @@ Vector<double> v({2, -1});
 Vector<double> u({1, -2, 4});
 Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
 
-disp(u);
-disp(v);
-disp(A);
-disp(u|A|v);
-disp(u|(2*A-1)|(10 * sin(pi / 2 * v) + 5));
+DISP(u);
+DISP(v);
+DISP(A);
+DISP(u|A|v);
+DISP(u|(2*A-1)|(10 * sin(pi / 2 * v) + 5));
 ```
 
 **Text Output**

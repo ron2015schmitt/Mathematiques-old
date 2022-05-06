@@ -459,7 +459,7 @@ int main(int argc, char *argv[]) {
   // {
   //   printStart(++testnum);
   //   Scalar<Matrix<double>> s  { {{1.1,2.2},{3.3,4.4}}};
-  //   tdisp(s());
+  //   TLDISP(s());
   //   double expected = 2.2;
   //   double result;
   //   testcode( result = s()(0,1) );

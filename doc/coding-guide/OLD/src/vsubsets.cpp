@@ -27,25 +27,25 @@ int main()
   mdtitle("Access subsets of Vector elements");
   mathq_preamble();
 
-  text("You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices");
+  OUTPUT("You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices");
 
   
   header2("Access vector elements using a `Vector` of indices");
 
   header3("Element access `Vector[Vector]`");
   CR();
-  text("* The index Vector _can be smaller than or greater than or equal to_ the length to the data Vector!");
-  text("* The index Vector _can have repeated indices and indices can be in any order_!");
+  OUTPUT("* The index Vector _can be smaller than or greater than or equal to_ the length to the data Vector!");
+  OUTPUT("* The index Vector _can have repeated indices and indices can be in any order_!");
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Access via a Vector of indices");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
     codemulti( Vector<index_type> veven( range<index_type>(0,10,2) ) );
     codemulti( Vector<index_type> vodd( range<index_type>(1,10,2) ) );
     codemulti( Vector<index_type> vconst(15,1 ) );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti( v );
@@ -68,16 +68,16 @@ int main()
   header3("Element access `Vector[initializer_list]`");
 
   CR();
-  text("* The list can be smaller than or greater than or equal to the length to the data Vector.");
-  text("* The list can have repeated indices and indices can be in any order!");
+  OUTPUT("* The list can be smaller than or greater than or equal to the length to the data Vector.");
+  OUTPUT("* The list can have repeated indices and indices can be in any order!");
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Access via a C++11 initializer_list");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
-    disp(v);
-    codeend();
+    DISP(v);
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti( v[{0,4}] );

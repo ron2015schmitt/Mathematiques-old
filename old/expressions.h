@@ -836,7 +836,7 @@ namespace matricks {
 	  sum += an*xpow;
 	}
 	//	if (i==2) {
-	//	  mdisp(x0_,x_[i],x,sum,xpow,N_,n,an);
+	//	  MDISP(x0_,x_[i],x,sum,xpow,N_,n,an);
 	//	}
 	xpow *= x;
       }

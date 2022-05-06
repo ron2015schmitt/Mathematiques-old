@@ -56,10 +56,10 @@ int main(int argc, char *argv[]) {
     CR();
     MOUT << bold.apply("Scalar<Vector<Matrix<Tensor<double,3>,3,2>,4>>") << endl;
     Scalar<Vector<Matrix<Tensor<double, 3>, 3, 2>, 4>> x;
-    tdisp(x);
-    tdisp(x.dims());
-    tdisp(x.size());
-    tdisp(x.deepdims());
+    TLDISP(x);
+    TLDISP(x.dims());
+    TLDISP(x.size());
+    TLDISP(x.deepdims());
     Dimensions tdims(2, 1, 2);
 
     for (int h = 0; h < x().size(); h++) {
@@ -78,10 +78,10 @@ int main(int argc, char *argv[]) {
         }
       }
     }
-    tdisp(x);
-    tdisp(x.dims());
-    tdisp(x.size());
-    tdisp(x.deepdims());
+    TLDISP(x);
+    TLDISP(x.dims());
+    TLDISP(x.size());
+    TLDISP(x.deepdims());
   }
 
   {
@@ -138,45 +138,45 @@ int main(int argc, char *argv[]) {
                                                             {{{321000, 321001}},
                                                              {{321100, 321101}}}}}}};
 
-    tdisp(x);
-    tdisp(x.dims());
-    tdisp(x.size());
-    tdisp(x.deepdims());
+    TLDISP(x);
+    TLDISP(x.dims());
+    TLDISP(x.size());
+    TLDISP(x.deepdims());
 
 
     Vector<Matrix<Tensor<double, 3>, 3, 2>, 4> v;
     v = x();
-    tdisp(v);
+    TLDISP(v);
 
     Matrix<Tensor<double, 3>, 3, 2> m;
     m = x()(1);
-    tdisp(m);
+    TLDISP(m);
 
     Tensor<double, 3> t;
     t = x()(1)(2, 1);
-    tdisp(t);
-    tdisp(t.dims());
-    tdisp(t(1, 0, 0));
+    TLDISP(t);
+    TLDISP(t.dims());
+    TLDISP(t(1, 0, 0));
 
-    tdisp(x()(1)(2, 1)(1, 0, 0));
+    TLDISP(x()(1)(2, 1)(1, 0, 0));
 
     Indices inds({1, 2, 1, 1, 0, 0});
-    tdisp(inds);
+    TLDISP(inds);
     double y = x.dat(inds);
-    tdisp(y);
+    TLDISP(y);
 
     Vector<Scalar<double>, 4> g1;
-    tdisp(g1);
+    TLDISP(g1);
     Matrix<Vector<Scalar<double>, 4>, 3, 2> g2;
-    tdisp(g2);
-    tdisp(x.deepdims());
+    TLDISP(g2);
+    TLDISP(x.deepdims());
 
 
     Tensor<Matrix<Vector<Scalar<double>, 4>, 3, 2>, 3> g3;
-    tdisp(g3);
+    TLDISP(g3);
     g3 = insideout(x);
-    tdisp(g3.deepdims());
-    //   tdisp(g3);
+    TLDISP(g3.deepdims());
+    //   TLDISP(g3);
 
     for (int h = 0; h < x().size(); h++) {
       const index_type NR = x()(h).Nrows();
@@ -187,8 +187,8 @@ int main(int argc, char *argv[]) {
           for (int k = 0; k < tdims[0]; k++) {
             for (int l = 0; l < tdims[1]; l++) {
               for (int m = 0; m < tdims[2]; m++) {
-                // mdisp(h,i,j,k,l,m, x()(h)(i,j)(k,l,m) );
-                mdisp(h, i, j, k, l, m, x()(h)(i, j)(k, l, m), g3(k, l, m)(i, j)(h)());
+                // MDISP(h,i,j,k,l,m, x()(h)(i,j)(k,l,m) );
+                MDISP(h, i, j, k, l, m, x()(h)(i, j)(k, l, m), g3(k, l, m)(i, j)(h)());
               }
             }
           }

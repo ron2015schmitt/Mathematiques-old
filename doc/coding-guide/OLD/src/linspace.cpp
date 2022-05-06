@@ -28,43 +28,43 @@ int main()
   mathq_preamble();
 
   header2("The `linspace` function: numerical interval [a,b]");
-  text("* The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`");
-  text("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
-  codestart("C++");
-  disp(linspace<double>(100,400,4));
-  disp(linspace<unsigned int>(1,2,2));
-  disp(linspace<double>(0,1,11));
-  disp(linspace<double>(1,0,11));
-  codeend();
+  OUTPUT("* The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`");
+  OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
+  GMD_CODE_START("C++");
+  DISP(linspace<double>(100,400,4));
+  DISP(linspace<unsigned int>(1,2,2));
+  DISP(linspace<double>(0,1,11));
+  DISP(linspace<double>(1,0,11));
+  GMD_CODE_END();
 
 
   header2("The `linspace_a` function: numerical interval (a,b]");
-  text("* The function `linspace_a<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
-  text("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
-  codestart("C++");
-  disp(linspace_a<double>(0,1,10));
-  disp(linspace_a<double>(1,0,10));
-  codeend();
+  OUTPUT("* The function `linspace_a<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
+  OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
+  GMD_CODE_START("C++");
+  DISP(linspace_a<double>(0,1,10));
+  DISP(linspace_a<double>(1,0,10));
+  GMD_CODE_END();
 
 
   header2("The `linspace_b` function: numerical interval [a,b)");
-  text("* The function `linspace_b<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b-delta`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
-  text("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
-  codestart("C++");
-  disp(linspace_b<double>(0,1,10));
-  disp(linspace_b<double>(1,0,10));
-  codeend();
+  OUTPUT("* The function `linspace_b<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b-delta`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
+  OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
+  GMD_CODE_START("C++");
+  DISP(linspace_b<double>(0,1,10));
+  DISP(linspace_b<double>(1,0,10));
+  GMD_CODE_END();
 
-  text("* This function is very useful for dealing the domain of trig functions, since typicallywe want to use the **interval [0,2*pi)**, ie we dont want to include the point 2*pi");
+  OUTPUT("* This function is very useful for dealing the domain of trig functions, since typicallywe want to use the **interval [0,2*pi)**, ie we dont want to include the point 2*pi");
 
 
   header2("The `linspace_ab` function: numerical interval (a,b)");
-  text("* The function `linspace_ab<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b-delta`, where `delta=(b-a)/(N+1)` is the spacing between consecutive points.");
-  text("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
-  codestart("C++");
-  disp(linspace_ab<double>(0,1,9));
-  disp(linspace_ab<double>(1,0,9));
-  codeend();
+  OUTPUT("* The function `linspace_ab<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b-delta`, where `delta=(b-a)/(N+1)` is the spacing between consecutive points.");
+  OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
+  GMD_CODE_START("C++");
+  DISP(linspace_ab<double>(0,1,9));
+  DISP(linspace_ab<double>(1,0,9));
+  GMD_CODE_END();
 
   
   mathq_toc();

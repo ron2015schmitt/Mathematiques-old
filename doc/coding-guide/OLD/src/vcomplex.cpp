@@ -27,18 +27,18 @@ int main()
 
   header3("Representing the unit imaginary _i_");
 
-  text("* In C++, there is no definition for pure imaginary numbers.");
-  text("* This is in contrast to Fortran.");
-  text("* The unit imaginary is thus `complex<D>(0,1`");
+  OUTPUT("* In C++, there is no definition for pure imaginary numbers.");
+  OUTPUT("* This is in contrast to Fortran.");
+  OUTPUT("* The unit imaginary is thus `complex<D>(0,1`");
 
   {
     CR();
     CR();
     EXAMPLE(Nex++,"The unit imaginary _i_ in C++14");
     CR();
-    text("* In C++14, the unit imaginary is defined by the product operator `operator\"\"i`");
+    OUTPUT("* In C++14, the unit imaginary is defined by the product operator `operator\"\"i`");
 #if CPP14 == 1
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( using namespace literals );
     codemulti( using namespace complex_literals );
@@ -46,7 +46,7 @@ int main()
     codemulti(complex<double> z2 = 1+1i );
     codemulti(complex<double> z3 = -5i );
     codemulti(complex<double> z4 = 5 );
-    codeend();
+    GMD_CODE_END();
     resultstart2("");
     resultmulti(z1);
     resultmulti(z2);
@@ -62,15 +62,15 @@ int main()
     CR();
     EXAMPLE(Nex++,"The unit imaginary _i_ (works in any version)");
     CR(); 
-    text("In earlier versions of C++, the unit imaginary can be defined by");
-    codestart("C++");
+    OUTPUT("In earlier versions of C++, the unit imaginary can be defined by");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( const complex<double> i = complex<double>(0,1) );
     codemulti(complex<double> z1 = 1.*i );
     codemulti(complex<double> z2 = 1. + 1.*i );
     codemulti(complex<double> z3 = -5.*i );
     codemulti(complex<double> z4 = 5 );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart2("");
     resultmulti(z1);
@@ -89,7 +89,7 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Complex  `Vector` ");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<complex<double> > v(4) );
 #if CPP14 == 1
@@ -98,7 +98,7 @@ int main()
     codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v = { 1+1i, 1, 1i, 1-1i } );
 #else
 #endif
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -115,7 +115,7 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Complex `Vector` arithmetic");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<complex<double> > v1(4) );
     codemulti( Vector<complex<double> > v2(4) );
@@ -126,7 +126,7 @@ int main()
     codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", v2 = { 1+1i, 1, 1i, -1i } );
 #else
 #endif
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -145,7 +145,7 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Mixed real and complex arithmetic ");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<double > vr(4) );
     codemulti( Vector<complex<double> > vc(4) );
@@ -155,7 +155,7 @@ int main()
     codemultiwcomment("C++11 list ", vr = { 1, 2, 3, 4 } );
     codemultiwcomment("C++11 list and C++14 literal `i` for unit imaginary ", vc = { 1+1i, 1, 1i, -1i } );
 #endif
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -179,7 +179,7 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"get the real and imaginary part of a complex vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<complex<double> > v(4) );
 #if CPP14 == 1
@@ -187,7 +187,7 @@ int main()
 #else
     codemulti( v = (const complex<double>[]) {complex<double>(1,1), complex<double>(1,0), complex<double>(0,1), complex<double>(2,-5)} );
 #endif
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": real and imaginary parts");
@@ -205,13 +205,13 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"create a complex vector from two real vectors");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<complex<double> > vc(4) );
     codemulti( Vector<double> vr( range<double>(1,4) ));
     codemulti( Vector<double> vi( range<double>(-1,-4) ));
     codemulti( vc = Complex(vr, vi) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": create a complex vector from two real vectors");
@@ -228,10 +228,10 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"create a complex vector from a real vector and a scalar");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<double> v( range<double>(1,4) ));
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": create a complex vector from a real vector and a scalar");
@@ -246,18 +246,18 @@ int main()
 
   header3("Complex Conjugation");
 
-  text("Complex cojugation can be performed via the function `conj` or via the operator `~`");
+  OUTPUT("Complex cojugation can be performed via the function `conj` or via the operator `~`");
   {
     CR();
     CR();
     EXAMPLE(Nex++,"compute the complex conjugate of a vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( using namespace std );
     codemulti( Vector<complex<double> > vc(3) );
     codemulti( Vector<double> vr( range<double>(1,3) ));
     codemulti( Vector<double> vi( range<double>(-1,1) ));
     codemulti( vc = Complex(vr, vi) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": compute the complex conjugate of a vector");
@@ -274,20 +274,20 @@ int main()
 
 
   
-  text("* Functions defined for complex vectors  ");
+  OUTPUT("* Functions defined for complex vectors  ");
   
   {
     CR();
     CR();
     EXAMPLE(Nex++,"functions of complex vectors");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(const double pi = M_PI);
     codemulti( using namespace std );
     codemulti( Vector<complex<double> > v(3) );
     codemulti( Vector<double> vr( range<double>(1,3) ));
     codemulti( Vector<double> vi( range<double>(-1,1) ));
     codemulti( v = Complex(vr, vi) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": functions of complex vectors");

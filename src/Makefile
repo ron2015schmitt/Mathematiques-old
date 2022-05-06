@@ -37,6 +37,8 @@ $(LIBFILE_MATHQ): libmathq.a
 	@\mkdir -p $(DIR_MATHQ)/lib
 	@\cp libmathq.a $(DIR_MATHQ)/lib/
 
+lib: $(LIBFILE_MATHQ)
+
 clean: cleanstd
 	@\rm -f $(DIR_MATHQ)/lib/libmathq.a
 

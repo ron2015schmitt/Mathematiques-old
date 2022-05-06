@@ -47,15 +47,15 @@ int main(int argc, char *argv[]) {
   {
     CR();
     InversionType<Scalar<double>, Null>::Type s{4};
-    tdisp(s);
+    TLDISP(s);
     InversionType<Vector<double>, Null>::Type v{1, 2, 3, 4};
-    tdisp(v);
+    TLDISP(v);
     InversionType<Scalar<Vector<double>>, Null>::Type vs{{1}, {2}, {3}, {4}};
-    tdisp(vs);
+    TLDISP(vs);
     Scalar<Vector<double>> sv{{1, 2, 3, 4}};
-    tdisp(sv);
+    TLDISP(sv);
     InversionType<decltype(sv), Null>::Type vs2;
-    tdisp(vs2);
+    TLDISP(vs2);
   }
 
 

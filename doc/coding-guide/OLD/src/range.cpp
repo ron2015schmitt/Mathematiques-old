@@ -30,59 +30,59 @@ int main()
 
   header3("Increasing Sequences");
 
-  text("* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`");
+  OUTPUT("* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`");
   CR();
   EXAMPLE(Nex++, "Increasing sequences using `range`");
-  codestart("C++");
-  disp(range<int>(1,10));
-  disp(range<double>(-3,3));
-  codeend();
+  GMD_CODE_START("C++");
+  DISP(range<int>(1,10));
+  DISP(range<double>(-3,3));
+  GMD_CODE_END();
 
   header3("Decreasing Sequences");
-  text("* Counting down is also supported");
+  OUTPUT("* Counting down is also supported");
   CR();
   EXAMPLE(Nex++, "Decreasing sequence using `range`");
-  codestart("C++");
-  disp(range<int>(10,0));
-  codeend();
+  GMD_CODE_START("C++");
+  DISP(range<int>(10,0));
+  GMD_CODE_END();
 
 
   header3("Non-integer Sequences");
 
-  text("* The start and end need not be integers ");
+  OUTPUT("* The start and end need not be integers ");
   CR();
   EXAMPLE(Nex++, "Floating point sequences using `range`");
-  codestart("C++");
-  disp(range<double>(1.5,5.5));
-  disp(range<double>(5.5,1.5));
-  codeend();
+  GMD_CODE_START("C++");
+  DISP(range<double>(1.5,5.5));
+  DISP(range<double>(5.5,1.5));
+  GMD_CODE_END();
 
   header3("Arbitrary stride");
 
   
-  text("* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start, start+stride, start+2*stride, ..., (end)}`");
+  OUTPUT("* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start, start+stride, start+2*stride, ..., (end)}`");
 
   CR();
   EXAMPLE(Nex++, "Seqeunces of different strides using `range`");
-  codestart("C++");
-  disp(range<int>(2,10,2));
-  disp(range<double>(0,10,0.5));
-  codeend();
+  GMD_CODE_START("C++");
+  DISP(range<int>(2,10,2));
+  DISP(range<double>(0,10,0.5));
+  GMD_CODE_END();
 
   header3("The end point isn't always included");
 
-  text("* The end point is only included when ");
-  text("```C++");
-  text("end == start + n * stride");
-  text("```");
-  text("where `n` is an integer.\n");
+  OUTPUT("* The end point is only included when ");
+  OUTPUT("```C++");
+  OUTPUT("end == start + n * stride");
+  OUTPUT("```");
+  OUTPUT("where `n` is an integer.\n");
 
   CR();
   EXAMPLE(Nex++, "End point is not included in certain cases");
-  codestart("C++");
-  disp(range<int>(0,5,2));
-  disp(range<double>(1,3.5));
-  codeend();
+  GMD_CODE_START("C++");
+  DISP(range<int>(0,5,2));
+  DISP(range<double>(1,3.5));
+  GMD_CODE_END();
 
 
   header3("Initializing `Vector`'s using `range`");
@@ -91,11 +91,11 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Initialize `Vector`'s of various data types  using the *`range`* function");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<unsigned int> v1 ( range<unsigned int>(0,3) ) );
     codemulti( Vector<int> v2 ( range<int>(0,3) ) );
     codemulti( Vector<double> v3 ( range<double>(0,3)) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart();
@@ -112,11 +112,11 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Assigning a `Vector`'s to a *`range`*");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( const size_t N = 10);
     codemulti( Vector<double> v (N));
     codemulti( v = range<double>(0,N-1));
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart();

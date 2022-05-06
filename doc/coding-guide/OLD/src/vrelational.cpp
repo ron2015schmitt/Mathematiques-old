@@ -30,16 +30,16 @@ int main()
 
   header3("Relational operators between two Vectors");
   CR();
-  text("Vector relations operate element-wise, similar to arithmetic operators. Given two Vectors of the same size, a vector relational expression (eg `(v1>v2)` returns a vector of booleans of the same size"); 
+  OUTPUT("Vector relations operate element-wise, similar to arithmetic operators. Given two Vectors of the same size, a vector relational expression (eg `(v1>v2)` returns a vector of booleans of the same size"); 
 
   {
     CR();
     CR();
     EXAMPLE(Nex++,"relational operators between two vectors`");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v1( range<double>(1,3) ) );
     codemulti( Vector<double> v2( range<double>(3,1) ) );
-    codeend();
+    GMD_CODE_END();
     CR();
     
    
@@ -60,9 +60,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"relational operators between a vector and a scalar`");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( range<double>(1,3) ) );
-    codeend();
+    GMD_CODE_END();
     CR();
     
    
@@ -84,9 +84,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"The element-wise logical operators");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( range<double>(1,5) ) );
-    codeend();
+    GMD_CODE_END();
     CR();
     
     resultstart2("");
@@ -100,16 +100,16 @@ int main()
 
 
   header2("Vector mask access");
-  text("* A subset of a vector can be extracted using a boolean-valued vector of the same size.");
-  text("* For example `v[v>0]` will return a vector containing only the positive values of v.");
-  text("* Vector mask access can be used on the left hand side of assigment, allowing you to set values via masks.");
+  OUTPUT("* A subset of a vector can be extracted using a boolean-valued vector of the same size.");
+  OUTPUT("* For example `v[v>0]` will return a vector containing only the positive values of v.");
+  OUTPUT("* Vector mask access can be used on the left hand side of assigment, allowing you to set values via masks.");
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Using vector masks");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( range<double>(-10,10) ) );
-    codeend();
+    GMD_CODE_END();
     CR();
     
    
@@ -120,19 +120,19 @@ int main()
     resultend();
     CR();
 
-    text("Now set all elements that are larger than 6 to 6 (clipping)");
-    codestart("C++");
+    OUTPUT("Now set all elements that are larger than 6 to 6 (clipping)");
+    GMD_CODE_START("C++");
     codemulti( v[(v > 6)] = 6. );
-    codeend();
+    GMD_CODE_END();
     resultstart();
     resultmulti( v );    
     resultend();
     CR();
 
-    text("Now set all negative elements to zero");
-    codestart("C++");
+    OUTPUT("Now set all negative elements to zero");
+    GMD_CODE_START("C++");
     codemulti( v[(v < 0)] = 0. );
-    codeend();
+    GMD_CODE_END();
     resultstart();
     resultmulti( v );    
     resultend();
@@ -147,19 +147,19 @@ int main()
   header3("The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
   {
     CR();
-    text("* The function `alltrue(v)` returns a `bool`: true if every element of `v` is true, otherwise it returns false");
+    OUTPUT("* The function `alltrue(v)` returns a `bool`: true if every element of `v` is true, otherwise it returns false");
     CR();
-    text("* The function `anytrue(v)` returns a `bool`: true if any element of `v` is true, otherwise it returns false");
+    OUTPUT("* The function `anytrue(v)` returns a `bool`: true if any element of `v` is true, otherwise it returns false");
     CR();
-    text("* The function `numtrue(v)` returns a `size_type` equal to the number of elements of `v` that are true. ");
+    OUTPUT("* The function `numtrue(v)` returns a `size_type` equal to the number of elements of `v` that are true. ");
     CR();
-    text("* The function `findtrue(v)` returns a `Vector<index_type>` which contains the indices of the true elements of `v`. ");
+    OUTPUT("* The function `findtrue(v)` returns a `Vector<index_type>` which contains the indices of the true elements of `v`. ");
     CR();
     CR();
     EXAMPLE(Nex++,"The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( range<double>(1,3) ) );
-    codeend();
+    GMD_CODE_END();
     CR();
     
    

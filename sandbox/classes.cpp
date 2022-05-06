@@ -138,48 +138,48 @@ int main(int argc, char *argv[]) {
 
   {
     ClassA a;
-    tdisp(a);
-    tdisp(ClassA());
-    tdisp(*(new ClassA()));
+    TLDISP(a);
+    TLDISP(ClassA());
+    TLDISP(*(new ClassA()));
   }
 
   CR();
   {
     ClassA a(8);
-    tdisp(a);
-    tdisp(ClassA(8));
-    tdisp(*(new ClassA(8)));
+    TLDISP(a);
+    TLDISP(ClassA(8));
+    TLDISP(*(new ClassA(8)));
   }
 
   CR();
   {
     ClassA a = 100;
-    tdisp(a);
+    TLDISP(a);
   }
 
   CR();
   {
     ClassA a{101}; // works
-    tdisp(a);
+    TLDISP(a);
   }
 
   CR();
   {
     ClassA a = {102}; // also works!
-    tdisp(a);
+    TLDISP(a);
   }
 
   CR();
   {
     ClassB b;
-    tdisp(b);
-    tdisp(ClassB());
-    tdisp(*(new ClassB()));
+    TLDISP(b);
+    TLDISP(ClassB());
+    TLDISP(*(new ClassB()));
   }
   CR();
   {
     ClassB b(9);
-    tdisp(b);
+    TLDISP(b);
   }
   CR();
   {
@@ -189,42 +189,42 @@ int main(int argc, char *argv[]) {
   CR();
   {
     ClassB b{6}; // works !
-    tdisp(b);
+    TLDISP(b);
   }
 
 
   CR();
   {
     ClassC c;
-    tdisp(c);
-    tdisp(ClassC());
-    tdisp(*(new ClassC()));
+    TLDISP(c);
+    TLDISP(ClassC());
+    TLDISP(*(new ClassC()));
   }
   CR();
   {
     ClassC c(10);
-    tdisp(c);
+    TLDISP(c);
     c = 23;
-    tdisp(c);
+    TLDISP(c);
   }
   CR();
   {
     // still doesn't work. = use the constructor
     // ClassC c = 11;
-    // tdisp(c);
+    // TLDISP(c);
   }
 
   CR();
   {
     ClassD d;
-    tdisp(d);
+    TLDISP(d);
   }
 
   CR();
   {
     // doesn't work
     // ClassD d {22};
-    // tdisp(d);
+    // TLDISP(d);
   }
 
 

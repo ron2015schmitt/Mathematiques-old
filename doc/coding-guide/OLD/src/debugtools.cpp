@@ -24,9 +24,9 @@ int main()
   Vector<double> x(5);
   x=linspace<double>(100,500,5);
   print("\t");
-  disp(x.name());
+  DISP(x.name());
   print("\t");
-  disp(x.objectID());
+  DISP(x.objectID());
 
 
   printcrcr("The run-time name is used in all mathq errors and warnings.");
@@ -41,30 +41,30 @@ int main()
   Vector<double> y(3,"y");
   "{31,32,33}">>y;
   print("\t");
-  disp(y.name());
+  DISP(y.name());
   print("\t");
-  disp(y.objectID());
+  DISP(y.objectID());
 
 
   printcrcr("You can also change the name at any time");
   printcrcr("Here is an example");
   y.name("joe");
   print("\t");
-  disp(y.name());
+  DISP(y.name());
   print("\t");
-  disp(y.objectID());
+  DISP(y.objectID());
 
   printcrcr("You can query a vector's size");
-  disp(x.size());
+  DISP(x.size());
 
   printcrcr("You can display the classname of any mathq object (container name only)");
-  disp(x.classname());
+  DISP(x.classname());
 
   printcrcr("You can display the full classname of any mathq object");
-  disp(x.fullclassname());
+  DISP(x.fullclassname());
 
   printcrcr("You can display the datatype contained in any mathq object");
-  disp(x.datatype());
+  DISP(x.datatype());
 
   printcrcr("You can also display a summary of information about any mathq object");
   mathqinfo(x);

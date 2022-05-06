@@ -15,40 +15,40 @@ int main() {
   using namespace display;
   
 
-  markdown_preamble();
+  GMD_PREAMBLE();
 
   CR();
   CR();
-  text("C++ also provides support for integer division witjh remainder.\n");
-  text("If both numerator and denominator are integers, the division operator gives the integer division result.\n");
-  text("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
+  OUTPUT("C++ also provides support for integer division witjh remainder.\n");
+  OUTPUT("If both numerator and denominator are integers, the division operator gives the integer division result.\n");
+  OUTPUT("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 
   CR();
-  text("| operator | operation | types | ");
-  text("| :---: | :---: | :---: | ");
-  text("| `/` | integer division | 𝕤, 𝕌 | ");
-  text("| `%` | modulus | ℤ | ");
+  OUTPUT("| operator | operation | types | ");
+  OUTPUT("| :---: | :---: | :---: | ");
+  OUTPUT("| `/` | integer division | 𝕤, 𝕌 | ");
+  OUTPUT("| `%` | modulus | ℤ | ");
   CR();
 
   vspace();
   header3("Examples: integer division");
-  codestart("C++");
-  trdisp(7 / 2);
-  codeend();
-  text("* The modulus operator `a % b`, gives the remainder after integer divison of `a` by `b`.\n");
-  codestart("C++");
-  trdisp(7 % 2);
-  codeend();
-  text("* The function [`std::div`](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
+  GMD_CODE_START("C++");
+  TRDISP(7 / 2);
+  GMD_CODE_END();
+  OUTPUT("* The modulus operator `a % b`, gives the remainder after integer divison of `a` by `b`.\n");
+  GMD_CODE_START("C++");
+  TRDISP(7 % 2);
+  GMD_CODE_END();
+  OUTPUT("* The function [`std::div`](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
 
-  codestart("C++");
+  GMD_CODE_START("C++");
   codemulti(div_t result = div(7, 2));
-  codeend();
-  text("With result:\n");
-  codestart("C++");
-  trdisp(result.quot);
-  trdisp(result.rem);
-  codeend();
+  GMD_CODE_END();
+  OUTPUT("With result:\n");
+  GMD_CODE_START("C++");
+  TRDISP(result.quot);
+  TRDISP(result.rem);
+  GMD_CODE_END();
 
   return 0;
 }

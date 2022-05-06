@@ -14,7 +14,7 @@ void printEnd_(const bool pass, const T &result, const T &expected, const int li
   if (pass) {
     MOUT << "          "
          << "       = ";
-    dispval(result);
+    DISPVAL(result);
     MOUT << std::endl;
     MOUT << "          ";
     MOUT << CREATESTYLE(GREEN1 + BOLD).apply("Passed") << std::endl;
@@ -22,7 +22,7 @@ void printEnd_(const bool pass, const T &result, const T &expected, const int li
     FormatData<double>::format_string = "%.16g";
     MOUT << "          "
          << "       = ";
-    dispval(result);
+    DISPVAL(result);
     MOUT << std::endl;
     MOUT << "        " << CREATESTYLE(BLUE2).apply("Expected");
     std::stringstream ss;

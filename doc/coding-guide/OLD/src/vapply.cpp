@@ -57,13 +57,13 @@ int main()
   mathq_preamble();
 
 
-  text("As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. ");
+  OUTPUT("As an example, consider the following user-defined function `pos`, which forces negative values to zero.  Mathematically this is x*u(x), where u(x) is the (_Heaviside_) unit step function. ");
 
   {
     CR();
-    codestart("C++");
-    text(pos_str);
-    codeend();
+    GMD_CODE_START("C++");
+    OUTPUT(pos_str);
+    GMD_CODE_END();
 
     CR();
     resultstart2(": `pos` function");
@@ -77,16 +77,16 @@ int main()
   header3("Applying User-defined functions via `op1`");
   {
     CR();
-    text("* The simplest way to apply a user-defined function is to use the function `op1<D,funcname>(Vector<D> v)`.");
-    text("* This form can be used in `Vector` expressions");
+    OUTPUT("* The simplest way to apply a user-defined function is to use the function `op1<D,funcname>(Vector<D> v)`.");
+    OUTPUT("* This form can be used in `Vector` expressions");
     CR();
     EXAMPLE(Nex++,"Applying User-defined function `pos` via `op1`");
     CR();
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(using namespace std );
     codemulti( Vector<double> v1(linspace<double>(-1,1,11) ) );
     codemulti( Vector<int> v2(range<int>(-2,2))  );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart2(": Applying User-defined function `pos` via `op1`");
     resultmulti( op1(pos<double>,v1)  );
@@ -99,17 +99,17 @@ int main()
   header3("Applying User-defined binary functions via `op2`");
   {
     CR();
-    text("* A similar function exists for binary user-defined functions: `op2<D,funcname>(Vector<D> v1, Vector<D> v2)`.");
-    text("* This form can be used in `Vector` expressions as well.");
+    OUTPUT("* A similar function exists for binary user-defined functions: `op2<D,funcname>(Vector<D> v1, Vector<D> v2)`.");
+    OUTPUT("* This form can be used in `Vector` expressions as well.");
     CR();
     EXAMPLE(Nex++,"Applying a function `ploy` via `op2`");
     CR();
 
-    codestart("C++");
-    text(poly_str);
+    GMD_CODE_START("C++");
+    OUTPUT(poly_str);
     codemulti( Vector<double> v1(linspace<double>(-1,1,11) ) );
     codemulti( Vector<double> v2(11,0.25) );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti( v1  );

@@ -30,15 +30,15 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixZero<double> a;
-    tdisp(a);
+    TLDISP(a);
     a.resize(2, 2);
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixZero<double, 3, 2> a;
-    tdisp(a);
-    tdisp(exp(a));
+    TLDISP(a);
+    TLDISP(exp(a));
   }
 
   CR();
@@ -46,15 +46,15 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixIdentity<double> a;
-    tdisp(a);
+    TLDISP(a);
     a.resize(2, 2);
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixIdentity<double, 3, 2> a;
-    tdisp(a);
-    tdisp(exp(a));
+    TLDISP(a);
+    TLDISP(exp(a));
   }
 
   CR();
@@ -62,15 +62,15 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixExchange<double> a;
-    tdisp(a);
+    TLDISP(a);
     a.resize(2, 2);
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixExchange<double, 3, 2> a;
-    tdisp(a);
-    tdisp(exp(a));
+    TLDISP(a);
+    TLDISP(exp(a));
   }
 
   CR();
@@ -78,15 +78,15 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixConstDiag<double> a(2, 2, 8);
-    tdisp(a);
+    TLDISP(a);
     a.setValue(44);
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixConstDiag<double, 3, 2> a(8);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
 
   CR();
@@ -94,17 +94,17 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixDiagonal<double> a(2, 2, 8);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = -2;
     a(1, 1) = 2;
     a(1, 0) = 3;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixDiagonal<double, 3, 2> a(8);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
 
 
@@ -113,17 +113,17 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixRevDiag<double> a(2, 2, 8);
-    tdisp(a);
+    TLDISP(a);
     a(0, 1) = -2;
     a(1, 0) = 2;
     a(1, 1) = 3;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixRevDiag<double, 3, 2> a(8);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
 
 
@@ -133,19 +133,19 @@ int main(int argc, char *argv[]) {
   {
     Vector<double> v1{1, 2, 3, 4};
     MatrixRepCol<double> a(v1, 2);
-    tdisp(v1);
-    tdisp(a);
+    TLDISP(v1);
+    TLDISP(a);
     a(0, 1) = -1;
     a(1, 0) = -2;
     a(2, 1) = -3;
     a(3, 0) = -4;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixRepCol<double, 3, 2> a(8);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
 
 
@@ -155,19 +155,19 @@ int main(int argc, char *argv[]) {
   {
     Vector<double> v1{1, 2, 3, 4};
     MatrixRepRow<double> a(v1, 2);
-    tdisp(v1);
-    tdisp(a);
+    TLDISP(v1);
+    TLDISP(a);
     a(0, 1) = -1;
     a(1, 0) = -2;
     a(2, 1) = -3;
     a(3, 0) = -4;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixRepRow<double, 3, 2> a(8);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
 
 
@@ -177,19 +177,19 @@ int main(int argc, char *argv[]) {
   {
     Vector<double> v1{1, 2, 3, 4};
     MatrixVandermonde<double> a(v1, 3);
-    tdisp(v1);
-    tdisp(a);
+    TLDISP(v1);
+    TLDISP(a);
     a(0, 1) = -5;
     a(1, 0) = -2;
     a(2, 1) = -10;
     a(3, 0) = -4;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     MatrixVandermonde<double, 3, 4> a(3);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
 
 
@@ -200,27 +200,27 @@ int main(int argc, char *argv[]) {
     // vector size is Nrows + Ncols + 1
     Vector<double> v1{1, 2, 3, 4, 5};
     MatrixToeplitz<double> a(v1, 3, 3);
-    tdisp(v1);
-    tdisp(a);
+    TLDISP(v1);
+    TLDISP(a);
     a(0, 1) = -5;
     a(1, 0) = -2;
     a(2, 1) = -10;
     a(2, 0) = -4;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     Vector<double> v1{1, 2, 3, 4};
     MatrixToeplitz<double, 3, 2> a(v1);
-    tdisp(a);
-    tdisp(pow(2, a));
+    TLDISP(a);
+    TLDISP(pow(2, a));
   }
   CR();
   {
     Vector<double> v1{1, 2, 3, 4};
     MatrixToeplitz<double, 2, 3> a(v1);
-    tdisp(a);
-    tdisp(2 * a);
+    TLDISP(a);
+    TLDISP(2 * a);
   }
 
 
@@ -229,7 +229,7 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixUpperTriangle<double, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = 2;
     a(0, 2) = 3;
@@ -239,15 +239,15 @@ int main(int argc, char *argv[]) {
     a(2, 0) = -4;
     a(2, 1) = -12;
     a(2, 2) = 6;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     Vector<double> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     MatrixUpperTriangle<double> a(v);
-    tdisp(a);
+    TLDISP(a);
     Matrix<double> b = transpose(a);
-    tdisp(b);
+    TLDISP(b);
   }
 
   CR();
@@ -256,7 +256,7 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixLowerTriangle<double, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = -1;
     a(0, 2) = -2;
@@ -266,16 +266,16 @@ int main(int argc, char *argv[]) {
     a(2, 0) = 4;
     a(2, 1) = 5;
     a(2, 2) = 6;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     Vector<double> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     MatrixLowerTriangle<double> a(v);
-    tdisp(a);
+    TLDISP(a);
     Matrix<double> b;
     b = transpose(a);
-    tdisp(b);
+    TLDISP(b);
   }
 
 
@@ -285,23 +285,23 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixSymmetric<double, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = 2;
     a(0, 2) = 3;
     a(1, 1) = 1;
     a(1, 2) = 4;
     a(2, 2) = 1;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
   {
     Vector<double> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     MatrixSymmetric<double> a(v);
-    tdisp(a);
+    TLDISP(a);
     Matrix<double> b;
     b = transpose(a);
-    tdisp(b);
+    TLDISP(b);
   }
 
 
@@ -311,7 +311,7 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixSkewSymmetric<double, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = -1;
     a(0, 1) = 1;
     a(0, 2) = 2;
@@ -321,7 +321,7 @@ int main(int argc, char *argv[]) {
     a(2, 0) = -1;
     a(2, 1) = -1;
     a(2, 2) = -1;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
 
@@ -331,14 +331,14 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixHermitian<double, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = 2;
     a(0, 2) = 3;
     a(1, 1) = 1;
     a(1, 2) = 4;
     a(2, 2) = 1;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
 
@@ -346,14 +346,14 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixHermitian<ComplexDouble, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = 2 + 20i;
     a(0, 2) = 3 + 30i;
     a(1, 1) = 1;
     a(1, 2) = 4 + 40i;
     a(2, 2) = 1;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
 
@@ -363,14 +363,14 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixSkewHermitian<double, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = 2;
     a(0, 2) = 3;
     a(1, 1) = 1;
     a(1, 2) = 4;
     a(2, 2) = 1;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
 
@@ -378,14 +378,14 @@ int main(int argc, char *argv[]) {
   CR();
   {
     MatrixSkewHermitian<ComplexDouble, 3> a(9);
-    tdisp(a);
+    TLDISP(a);
     a(0, 0) = 1;
     a(0, 1) = 2 + 20i;
     a(0, 2) = 3 + 30i;
     a(1, 1) = 1;
     a(1, 2) = 4 + 40i;
     a(2, 2) = 1;
-    tdisp(a);
+    TLDISP(a);
   }
   CR();
 

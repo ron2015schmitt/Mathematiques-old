@@ -8,144 +8,226 @@
 //****************************************************************************
 //                      MACROS
 //
-// REMINDER: In terms of calls to functions etc, the scope of a macros 
+// REMINDER: In terms of calls to functions etc, the scope of a macros
 //           is where it is used!!!
 //           For this reason always use th efull symbol name with namespaces
 //****************************************************************************
 
+//
+// > Helper macros intended only for use by other macros internal to this file <
+//
+
+// for how this works, refer to
+// https://stackoverflow.com/questions/3046889/optional-parameters-with-c-macros
+#define _DISP_0(stream) display::Display::issuecr(stream)
+#define _DISPX(stream, A) display::Display::multidisp_notype(stream, A, #A)
+#define _DISP_1(stream, A) \
+  _DISPX(stream, A, #A);   \
+  CR_STRM(stream)
+#define _DISP_2(stream, A, B) \
+  _DISPX(stream, A);          \
+  _DISPX(stream, B);          \
+  CR_STRM(stream)
+#define _DISP_3(stream, A, B, C) \
+  _DISPX(stream, A);             \
+  _DISPX(stream, B);             \
+  _DISPX(stream, C);             \
+  CR_STRM(stream)
+#define _DISP_4(stream, A, B, C, D) \
+  _DISPX(stream, A);                \
+  _DISPX(stream, B);                \
+  _DISPX(stream, C);                \
+  _DISPX(stream, D);                \
+  CR_STRM(stream)
+#define _DISP_5(stream, A, B, C, D, E) \
+  _DISPX(stream, A);                   \
+  _DISPX(stream, B);                   \
+  _DISPX(stream, C);                   \
+  _DISPX(stream, D);                   \
+  _DISPX(stream, E);                   \
+  CR_STRM(stream)
+#define _DISP_6(stream, A, B, C, D, E, F) \
+  _DISPX(stream, A);                      \
+  _DISPX(stream, B);                      \
+  _DISPX(stream, C);                      \
+  _DISPX(stream, D);                      \
+  _DISPX(stream, E);                      \
+  _DISPX(stream, F);                      \
+  CR_STRM(stream)
+#define _DISP_7(stream, A, B, C, D, E, F, G) \
+  _DISPX(stream, A);                         \
+  _DISPX(stream, B);                         \
+  _DISPX(stream, C);                         \
+  _DISPX(stream, D);                         \
+  _DISPX(stream, E);                         \
+  _DISPX(stream, F);                         \
+  _DISPX(stream, G);                         \
+  CR_STRM(stream)
+#define _DISP_8(stream, A, B, C, D, E, F, G, H) \
+  _DISPX(stream, A);                            \
+  _DISPX(stream, B);                            \
+  _DISPX(stream, C);                            \
+  _DISPX(stream, D);                            \
+  _DISPX(stream, E);                            \
+  _DISPX(stream, F);                            \
+  _DISPX(stream, G);                            \
+  _DISPX(stream, H);                            \
+  CR_STRM(stream)
+#define _DISP_9(stream, A, B, C, D, E, F, G, H, I) \
+  _DISPX(stream, A);                               \
+  _DISPX(stream, B);                               \
+  _DISPX(stream, C);                               \
+  _DISPX(stream, D);                               \
+  _DISPX(stream, E);                               \
+  _DISPX(stream, F);                               \
+  _DISPX(stream, G);                               \
+  _DISPX(stream, H);                               \
+  _DISPX(stream, I);                               \
+  CR_STRM(stream)
+#define _DISP_10(stream, A, B, C, D, E, F, G, H, I, J) \
+  _DISPX(stream, A);                                   \
+  _DISPX(stream, B);                                   \
+  _DISPX(stream, C);                                   \
+  _DISPX(stream, D);                                   \
+  _DISPX(stream, E);                                   \
+  _DISPX(stream, F);                                   \
+  _DISPX(stream, G);                                   \
+  _DISPX(stream, H);                                   \
+  _DISPX(stream, I);                                   \
+  _DISPX(stream, J);                                   \
+  CR_STRM(stream)
+
+// The interim macro that simply strips the excess and ends up with the required macro
+#define _MDISP_X(x, A, B, C, D, E, F, G, H, I, J, FUNC, ...) FUNC;
+
+
+
+//
+// > USER MACROS <
+//
+
+//
+// MOUT
+//
+// The stream from the Terminal class is used to output text to
+// stdout with colors and styles.
+//
 // NOT THAT THIS IS NOT A FUNCTION
+
 #define MOUT (display::Terminal::getmout())
 
-// THESE PRINTF FUNCTIONS DISAPPEAR when in FAST MODE
-#if MATHQ_DEBUG >= 1
-#define PRINTF1(...) MOUT << display::printf2str(__VA_ARGS__)
-#else
-#define PRINTF1(...) \
-  {}
-#endif
 
-#if MATHQ_DEBUG >= 2
-#define PRINTF2(...) MOUT << display::printf2str(__VA_ARGS__)
-#else
-#define PRINTF2(...) \
-  {}
-#endif
-
-#if MATHQ_DEBUG >= 3
-#define PRINTF3(...) MOUT << display::printf2str(__VA_ARGS__)
-#else
-#define PRINTF3(...) \
-  {}
-#endif
-
+//
+// CREATESTYLE(stylestring)
+//
+// Create a Style object via factory pattern.  The styles are stored
+// in a factory. Each style is given a key based on the input string.
+// If the style already exists in the factory, then that Style instance.
+// Else a new Style instance is created, stored in the factory, and returned.
+//
+//   stylestring -> string with style and color escape codes
 
 #define CREATESTYLE(...) display::Style::create(__VA_ARGS__, #__VA_ARGS__)
 
 
-#define DISP_STRM(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
-#define tdisp_strm(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
-#define trdisp_strm(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
-#define cr_strm(stream) display::Display::issuecr(stream)
+//
+// OUTPUT(x)
+//
+// sends x to MOUT
+//
+//   x -> variable or expression that has >> operator defined
 
-#define dispval(...) display::dispval_strm(MOUT, __VA_ARGS__)
-#define disp(...) display::Display::mydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
-#define tdisp(...) display::Display::tmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
-#define trdisp(...) display::Display::trmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+#define OUTPUT(x) MOUT << x << std::endl
+
+
+//
+// DISPVAL(x)
+//
+// displays value of variable or expression x, ie sends x to MOUT
+// Effectively the same as OUTPUT(x) but handled by Display::expression
+// before being send to the Terminal
+//
+//   x -> variable or expression that has >> operator defined
+//
+// EXAMPLES:
+//   DISPVAL(1+3); // "4"
+
+#define DISPVAL(...) display::dispval_strm(MOUT, __VA_ARGS__)
+
+
+//
+// DISP(x)
+//
+// displays variable x as follows to MOUT
+//    MOUT << Display::expressionStyle[stringify(x)]
+//    MOUT << Display::equalsStyledString
+//    MOUT << (value of x styled according to data type)
+//    MOUT << Display::terminatorStyledString
+//
+//   x -> variable or expression that has >> operator defined
+//
+// EXAMPLES:
+//   DISP(1+3); // "1+3  ➜  4"
+
+#define DISP(...) display::Display::mydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+
+
+//
+// TLDISP(x)
+//
+// same as DISP(x) but prints the typename on the LHS
+//
+// EXAMPLES:
+//   TLDISP(1+3); // "int 1+3  ➜  4"
+
+#define TLDISP(...) display::Display::tmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+
+
+//
+// TRDISP(x)
+//
+// same as DISP(x) but prints the typename on the RHS
+//
+// EXAMPLES:
+//   TRDISP(1+3); // "1+3  ➜  int 4"
+
+#define TRDISP(...) display::Display::trmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+
+//
+// MDISP(x)
+//
+// same as DISP(x) but can print up to 10 expressions on the same line
+//
+// EXAMPLES:
+//   MDISP(1+3, 22/7); // "1 + 3 ➜  4; 22 / 7 ➜  3; "
+
+#define MDISP(...) _MDISP_X(, ##__VA_ARGS__, _DISP_10(MOUT, __VA_ARGS__), _DISP_9(MOUT, __VA_ARGS__), _DISP_8(MOUT, __VA_ARGS__), _DISP_7(MOUT, __VA_ARGS__), _DISP_6(MOUT, __VA_ARGS__), _DISP_5(MOUT, __VA_ARGS__), _DISP_4(MOUT, __VA_ARGS__), _DISP_3(MOUT, __VA_ARGS__), _DISP_2(MOUT, __VA_ARGS__), _DISP_1(MOUT, __VA_ARGS__), _DISP_0(MOUT))
+
+// issue a carriage return (line break)
 #define CR() display::Display::issuecr(MOUT)
 
-// for how this works, refer to
-// https://stackoverflow.com/questions/3046889/optional-parameters-with-c-macros
-#define disp_0(stream) display::Display::issuecr(stream)
-#define dispX(stream, A) display::Display::mydisp(stream, A, #A)
-#define disp_1(stream, A) \
-  dispX(stream, A, #A);   \
-  cr_strm(stream)
-#define disp_2(stream, A, B) \
-  dispX(stream, A);          \
-  dispX(stream, B);          \
-  cr_strm(stream)
-#define disp_3(stream, A, B, C) \
-  dispX(stream, A);             \
-  dispX(stream, B);             \
-  dispX(stream, C);             \
-  cr_strm(stream)
-#define disp_4(stream, A, B, C, D) \
-  dispX(stream, A);                \
-  dispX(stream, B);                \
-  dispX(stream, C);                \
-  dispX(stream, D);                \
-  cr_strm(stream)
-#define disp_5(stream, A, B, C, D, E) \
-  dispX(stream, A);                   \
-  dispX(stream, B);                   \
-  dispX(stream, C);                   \
-  dispX(stream, D);                   \
-  dispX(stream, E);                   \
-  cr_strm(stream)
-#define disp_6(stream, A, B, C, D, E, F) \
-  dispX(stream, A);                      \
-  dispX(stream, B);                      \
-  dispX(stream, C);                      \
-  dispX(stream, D);                      \
-  dispX(stream, E);                      \
-  dispX(stream, F);                      \
-  cr_strm(stream)
-#define disp_7(stream, A, B, C, D, E, F, G) \
-  dispX(stream, A);                         \
-  dispX(stream, B);                         \
-  dispX(stream, C);                         \
-  dispX(stream, D);                         \
-  dispX(stream, E);                         \
-  dispX(stream, F);                         \
-  dispX(stream, G);                         \
-  cr_strm(stream)
-#define disp_8(stream, A, B, C, D, E, F, G, H) \
-  dispX(stream, A);                            \
-  dispX(stream, B);                            \
-  dispX(stream, C);                            \
-  dispX(stream, D);                            \
-  dispX(stream, E);                            \
-  dispX(stream, F);                            \
-  dispX(stream, G);                            \
-  dispX(stream, H);                            \
-  cr_strm(stream)
-#define disp_9(stream, A, B, C, D, E, F, G, H, I) \
-  dispX(stream, A);                               \
-  dispX(stream, B);                               \
-  dispX(stream, C);                               \
-  dispX(stream, D);                               \
-  dispX(stream, E);                               \
-  dispX(stream, F);                               \
-  dispX(stream, G);                               \
-  dispX(stream, H);                               \
-  dispX(stream, I);                               \
-  cr_strm(stream)
-#define disp_10(stream, A, B, C, D, E, F, G, H, I, J) \
-  dispX(stream, A);                                   \
-  dispX(stream, B);                                   \
-  dispX(stream, C);                                   \
-  dispX(stream, D);                                   \
-  dispX(stream, E);                                   \
-  dispX(stream, F);                                   \
-  dispX(stream, G);                                   \
-  dispX(stream, H);                                   \
-  dispX(stream, I);                                   \
-  dispX(stream, J);                                   \
-  cr_strm(stream)
 
-// The interim macro that simply strips the excess and ends up with the required macro
-#define mdisp_X(x, A, B, C, D, E, F, G, H, I, J, FUNC, ...) FUNC;
+//
+// duplicate of above functions but sends output to stream
+//
 
-// The macro that the programmer uses
-#define mdisp(...) mdisp_X(, ##__VA_ARGS__, disp_10(MOUT, __VA_ARGS__), disp_9(MOUT, __VA_ARGS__), disp_8(MOUT, __VA_ARGS__), disp_7(MOUT, __VA_ARGS__), disp_6(MOUT, __VA_ARGS__), disp_5(MOUT, __VA_ARGS__), disp_4(MOUT, __VA_ARGS__), disp_3(MOUT, __VA_ARGS__), disp_2(MOUT, __VA_ARGS__), disp_1(MOUT, __VA_ARGS__), disp_0(MOUT))
+#define DISP_STRM(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define TDISP_STRM(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define TRDISP_STRM(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
+#define CR_STRM(stream) display::Display::issuecr(stream)
+#define mdisp_strm(stream, ...) _MDISP_X(, ##__VA_ARGS__, _DISP_10(stream, __VA_ARGS__), _DISP_9(stream, __VA_ARGS__), _DISP_8(stream, __VA_ARGS__), _DISP_7(stream, __VA_ARGS__), _DISP_6(stream, __VA_ARGS__), _DISP_5(stream, __VA_ARGS__), _DISP_4(stream, __VA_ARGS__), _DISP_3(stream, __VA_ARGS__), _DISP_2(stream, __VA_ARGS__), _DISP_1(stream, __VA_ARGS__), _DISP_0(stream))
 
-#define mdisp_strm(stream, ...) mdisp_X(, ##__VA_ARGS__, disp_10(stream, __VA_ARGS__), disp_9(stream, __VA_ARGS__), disp_8(stream, __VA_ARGS__), disp_7(stream, __VA_ARGS__), disp_6(stream, __VA_ARGS__), disp_5(stream, __VA_ARGS__), disp_4(stream, __VA_ARGS__), disp_3(stream, __VA_ARGS__), disp_2(stream, __VA_ARGS__), disp_1(stream, __VA_ARGS__), disp_0(stream))
+
+// THESE FUNCTIONS ONLY APPEAR IN CERTAIN DEBUG MODES
 
 #if MATHQ_DEBUG >= 1
-#define mdisp1(...) mdisp(__VA_ARGS__)
-#define disp1(...) disp(__VA_ARGS__)
-#define tdisp1(...) tdisp(__VA_ARGS__)
+#define PRINTF1(...) MOUT << display::printf2str(__VA_ARGS__)
+#define mdisp1(...) MDISP(__VA_ARGS__)
+#define disp1(...) DISP(__VA_ARGS__)
+#define tdisp1(...) TLDISP(__VA_ARGS__)
 #else
+#define PRINTF1(...) \
+  {}
 #define mdisp1(...) \
   {}
 #define disp1(...) \
@@ -155,10 +237,13 @@
 #endif
 
 #if MATHQ_DEBUG >= 2
-#define mdisp2(...) mdisp(__VA_ARGS__)
-#define disp2(...) disp(__VA_ARGS__)
-#define tdisp2(...) tdisp(__VA_ARGS__)
+#define PRINTF2(...) MOUT << display::printf2str(__VA_ARGS__)
+#define mdisp2(...) MDISP(__VA_ARGS__)
+#define disp2(...) DISP(__VA_ARGS__)
+#define tdisp2(...) TLDISP(__VA_ARGS__)
 #else
+#define PRINTF2(...) \
+  {}
 #define mdisp2(...) \
   {}
 #define disp2(...) \
@@ -168,10 +253,13 @@
 #endif
 
 #if MATHQ_DEBUG >= 3
-#define mdisp3(...) mdisp(__VA_ARGS__)
-#define disp3(...) disp(__VA_ARGS__)
-#define tdisp3(...) tdisp(__VA_ARGS__)
+#define PRINTF3(...) MOUT << display::printf2str(__VA_ARGS__)
+#define mdisp3(...) MDISP(__VA_ARGS__)
+#define disp3(...) DISP(__VA_ARGS__)
+#define tdisp3(...) TLDISP(__VA_ARGS__)
 #else
+#define PRINTF3(...) \
+  {}
 #define mdisp3(...) \
   {}
 #define disp3(...) \
@@ -180,9 +268,7 @@
   {}
 #endif
 
-#define text(str) MOUT << str << std::endl
 
-#define codestart(lang) MOUT << std::string("```") << std::string(lang) << std::endl
 #define codemulti(...)                     \
   printf("%s;\n", stringify(__VA_ARGS__)); \
   __VA_ARGS__
@@ -194,18 +280,14 @@
   printf("%s; // C++11 list\n", stringify(__VA_ARGS__)); \
   __VA_ARGS__
 
-#define codeend() printf("```\n")
-#define code(...)         \
-  codestart();            \
-  codemulti(__VA_ARGS__); \
-  codeend()
+
 
 #define resultstart() printf("**The result is**\n```C++\n")
 #define resultstart2(str) printf("**Some expressions with results**%s\n```C++\n", str)
 #define resultstart3(str) printf("**Results**%s\n```C++\n", str)
 #define resultmulti(...) \
   printf("  ");          \
-  disp(__VA_ARGS__)
+  DISP(__VA_ARGS__)
 #define resultend() printf("```\n\n")
 #define RESULT(...)         \
   resultstart();            \
@@ -215,11 +297,23 @@
 #define EXAMPLE(n, str) MOUT << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl
 
 
-// 
+//
 // SPECIFIC TO GITHUB MARKDOWN
 //
 
-#define markdown_preamble() printf("_This document was generated from the_ C++ _file_ `%s` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `\"mathq.h\"` _and_ `\"gitmd.h\"`_respectively._ ", __FILE__);
+#define GMD_PREAMBLE() printf("_This document was generated from the_ C++ _file_ `%s` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `\"mathq.h\"` _and_ `\"gitmd.h\"`_respectively._ ", __FILE__);
+
+//
+// for creating code blocks
+//
+
+#define GMD_CODE_START(lang) MOUT << std::string("```") << std::string(lang) << std::endl
+#define GMD_CODE_END() printf("```\n")
+#define GMD_CODE_BLOCK(...)         \
+  GMD_CODE_START();            \
+  codemulti(__VA_ARGS__); \
+  GMD_CODE_END()
+
 
 #define mdtitle(str)                                       \
   MOUT << "# " << str << " in Mathématiques" << std::endl; \
@@ -1318,9 +1412,11 @@ inline void print3(const std::string s) {
 class Display {
 private:
   static bool isInitialized;
-  static StyledString expression;
-  static StyledString equals;
-  static StyledString terminator;
+  static Style expressionStyle;
+  static StyledString equalsStyledString;
+  static StyledString multiSeparatorStyledString;
+  static StyledString terminatorStyledString;
+
 
 public:
   static void initialize() {
@@ -1341,21 +1437,25 @@ public:
   template <typename X>
   static void mydisp_notype(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
-    //      log3("display","Display","mydisp","(const X& x, const std::string name)");
-    expression.setString(name);
-    stream << expression;
-    stream << equals;
+    //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
+    stream << StyledString(expressionStyle, name);
+    stream << equalsStyledString;
     dispval_strm(stream, x);
-    stream << terminator;
+    stream << terminatorStyledString;
     if (issueCR) {
       stream << endl;
     }
   }
   template <typename X>
-  static void mydisp(std::ostream &stream, const X &x, const std::string name) {
+  static void multidisp_notype(std::ostream &stream, const X &x, const std::string name) {
     using namespace std;
-    mydisp_notype(stream, x, name, false);
+    //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
+    stream << StyledString(expressionStyle, name);
+    stream << equalsStyledString;
+    dispval_strm(stream, x);
+    stream << multiSeparatorStyledString;
   }
+
   template <typename X>
   static void mydispcr(std::ostream &stream, const X &x, const std::string name) {
     using namespace std;
@@ -1365,13 +1465,11 @@ public:
   template <typename X>
   static void mydisp_type(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
-    //      log3("display","Display","mydisp","(const X& x, const std::string name)");
-    stream << getTypeName(x) << " ";
-    expression.setString(name);
-    stream << expression;
-    stream << equals;
+    //      log3("display","Display","mydisp_type","(const X& x, const std::string name)");
+    stream << StyledString(expressionStyle, name);
+    stream << equalsStyledString;
     dispval_strm(stream, x);
-    stream << terminator;
+    stream << terminatorStyledString;
     if (issueCR) {
       stream << endl;
     }
@@ -1380,13 +1478,12 @@ public:
   template <typename X>
   static void mydisp_type_rhs(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
     using namespace std;
-    //      log3("display","Display","mydisp","(const X& x, const std::string name)");
-    expression.setString(name);
-    stream << expression;
-    stream << equals;
+    //      log3("display","Display","mydisp_type_rhs","(const X& x, const std::string name)");
+    stream << StyledString(expressionStyle, name);
+    stream << equalsStyledString;
     stream << getTypeName(x) << " ";
     dispval_strm(stream, x);
-    stream << terminator;
+    stream << terminatorStyledString;
     if (issueCR) {
       stream << endl;
     }

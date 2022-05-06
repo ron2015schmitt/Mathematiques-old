@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.25</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.26</h1>
 
 <details>
 
@@ -60,8 +60,8 @@
 1. [Refactor FormatData](topics/formatdata.md)
 1. Fix Printing of ```complex<Vector<double>>>``` etc
 1. Make sure data type to output of inner products works
-  * disp(v1 | v2) = Vector<double> {16, -6}; 
-  * disp(M1 | v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
+  * DISP(v1 | v2) = Vector<double> {16, -6}; 
+  * DISP(M1 | v2) = ^Vector<double>^ {-10, -10};  # missing part between the ^'s
 1. [Tensor class FormatData](topics/tensorformatdata.md)
    1. compact 
    1. by aligned rows and columns with and without braces

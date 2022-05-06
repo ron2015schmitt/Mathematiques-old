@@ -39,47 +39,47 @@ int main(int argc, char *argv[]) {
 
   CR();
   CR();
-  disp(n);
-  disp(m);
-  disp(x);
-  disp(vals);
-  disp(done);
-  disp(v);
-  disp(A);
-  disp(str);
-  disp(s);
-  disp(z);
+  DISP(n);
+  DISP(m);
+  DISP(x);
+  DISP(vals);
+  DISP(done);
+  DISP(v);
+  DISP(A);
+  DISP(str);
+  DISP(s);
+  DISP(z);
 
   CR();
   CR();
-  tdisp(n);
-  tdisp(m);
-  tdisp(x);
-  tdisp(vals);
-  tdisp(done);
-  tdisp(v);
-  tdisp(A);
-  tdisp(str);
-  tdisp(s);
-  tdisp(z);
+  TLDISP(n);
+  TLDISP(m);
+  TLDISP(x);
+  TLDISP(vals);
+  TLDISP(done);
+  TLDISP(v);
+  TLDISP(A);
+  TLDISP(str);
+  TLDISP(s);
+  TLDISP(z);
 
   CR();
   CR();
-  mdisp(n, m, x, vals, done, str, s, z);
+  MDISP(n, m, x, vals, done, str, s, z);
 
   CR();
   CR();
-  dispval(n);
-  dispval(m);
-  dispval(A);
+  DISPVAL(n);
+  DISPVAL(m);
+  DISPVAL(A);
 
   CR();
   CR();
-  disp(n + 3);
-  disp(10 * x - 1);
-  disp(!done);
-  disp(round(10 * sin(pi / 10 * v) + 10));
-  disp(s + " tour");
+  DISP(n + 3);
+  DISP(10 * x - 1);
+  DISP(!done);
+  DISP(round(10 * sin(pi / 10 * v) + 10));
+  DISP(s + " tour");
   MOUT << std::endl;
 
   MOUT << CREATESTYLE(GRAY1) << "  ";

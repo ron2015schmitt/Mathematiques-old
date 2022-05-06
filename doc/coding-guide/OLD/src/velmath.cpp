@@ -27,23 +27,23 @@ int main()
   mathq_preamble();
 
   header3("Element-wise arithmetic");
-  text("The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively");
+  OUTPUT("The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively");
 
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Element-wise `Vector` math");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
     codemulti( Vector<double> v2(4) );
     codemultiNoteC11Array(v2 = {1,2,3,4});
-    codeend();
+    GMD_CODE_END();
     CR();
-    disp(v1);
-    disp(v1+v2);
+    DISP(v1);
+    DISP(v1+v2);
     //(cout << "here")<<std::end;
-    disp(v1);
+    DISP(v1);
    
     resultstart2("");
     resultmulti(v1 + v2);
@@ -55,17 +55,17 @@ int main()
 
 
   header3("Vector-scalar arithmetic");
-  text("* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.");
-  text("* In this case the scalar is operated on each element of the vector");
+  OUTPUT("* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.");
+  OUTPUT("* In this case the scalar is operated on each element of the vector");
 
   {
     CR();
     CR();
     EXAMPLE(Nex++,"math with scalars and `Vector`s");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2("");
@@ -83,17 +83,17 @@ int main()
 
 
   header3("Vector math functions");
-  text("* A large number of functions is supported.  ");
-  text("* A function of a `Vector` operates on each element.  ");
+  OUTPUT("* A large number of functions is supported.  ");
+  OUTPUT("* A function of a `Vector` operates on each element.  ");
   
   {
     CR();
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—rounding and sign-related ");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v(7) );
     codemultiNoteC11Array(v = {-2.5,-2.25,-1,0,1,2.25,2.5});
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": rounding and sign-related");
@@ -110,10 +110,10 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v(5) );
     codemultiNoteC11Array(v = {-1,0,1,2,4});
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart2(": powers, roots, and exponentiation");
     resultmulti( pow(2, v)  );
@@ -136,12 +136,12 @@ int main()
     CR();
 
     EXAMPLE(Nex++,"functions of a `Vector`—trig");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v(5) );
     codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
     codemultiNoteC11Array(v = {-pi, -pi/2, 0, pi/2, pi});
     codemulti( const double tol = 2e-16 );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": trig");
@@ -150,7 +150,7 @@ int main()
     resultmulti( tan(v)  );
     resultend();
     CR();
-    text("The results are cleaner, when we round to a tolerance");
+    OUTPUT("The results are cleaner, when we round to a tolerance");
     CR();
     resultstart2(": trig with rounded zeros");
     resultmulti( roundzero(sin(v),tol)  );
@@ -165,10 +165,10 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—rounding and sign-related ");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v(3) );
     codemultiNoteC11Array(v = {-1,0,1});
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": hyperbolic trig");
@@ -184,7 +184,7 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—inverse trig");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( double pi = std::acos(-1) );
     codemulti( Vector<double> v(3) );
     codemulti( Vector<double> v1(9) );
@@ -192,7 +192,7 @@ int main()
     codemultiNoteC11Array(v = {-1,0,1});
     codemultiNoteC11Array(v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
     codemultiNoteC11Array(v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart2(": inverse trig");
@@ -206,21 +206,21 @@ int main()
 
 
   header3("Arbitrary combinations of the above functionality are supported");
-  text("* Because Mathématiques uses expression templating:");
-  text("  * no intermediate objects are created");
-  text("  * the expression is calculated in a single for loop");
+  OUTPUT("* Because Mathématiques uses expression templating:");
+  OUTPUT("  * no intermediate objects are created");
+  OUTPUT("  * the expression is calculated in a single for loop");
 
 
     {
     CR();
     CR();
     EXAMPLE(Nex++,"A huge expression");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
     codemulti( Vector<double> v2(4) );
     codemultiNoteC11Array(v2 = {-1,-2,-3,-4});
-    codeend();
+    GMD_CODE_END();
     CR();
 
    

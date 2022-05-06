@@ -553,9 +553,9 @@ namespace mathq {
       index_type m = inds_next[0];
       inds_next.erase(inds_next.begin());
       //MOUT << "  ";
-      //mdisp(n,m); 
+      //MDISP(n,m); 
       //MOUT << "  ";
-      //tdisp(inds_next);
+      //TLDISP(inds_next);
     
       if constexpr(M>1) {
 	  return (*this)(n,m).dat(inds_next);
@@ -756,7 +756,7 @@ namespace mathq {
     template<int NR2, int NC2>
     Matrix<E,NR,NC,D,M>& operator=(const Matrix<E,NR2,NC2,D,M>& m) {
       if constexpr(M<=1) {
-	  tdisp(m.dims());
+	  TLDISP(m.dims());
 	  resize(m.dims());
 	  for (index_type i = 0; i < size(); i++)  {
 	    (*this)[i] = m[i];

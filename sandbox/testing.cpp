@@ -101,46 +101,46 @@ int main(int argc, char *argv[]) {
 
   CR();
   CR();
-  disp(n);
-  disp(m);
-  disp(x);
-  disp(vals);
-  disp(done);
-  disp(v);
-  disp(vc);
-  disp(str);
-  disp(s);
-  disp(z);
+  DISP(n);
+  DISP(m);
+  DISP(x);
+  DISP(vals);
+  DISP(done);
+  DISP(v);
+  DISP(vc);
+  DISP(str);
+  DISP(s);
+  DISP(z);
 
   CR();
   CR();
-  tdisp(n);
-  tdisp(m);
-  tdisp(x);
-  tdisp(vals);
-  tdisp(done);
-  tdisp(v);
-  tdisp(vc);
-  tdisp(str);
-  tdisp(s);
-  tdisp(z);
+  TLDISP(n);
+  TLDISP(m);
+  TLDISP(x);
+  TLDISP(vals);
+  TLDISP(done);
+  TLDISP(v);
+  TLDISP(vc);
+  TLDISP(str);
+  TLDISP(s);
+  TLDISP(z);
 
   CR();
   CR();
-  mdisp(n, m, x, vals, done, str, s, z);
+  MDISP(n, m, x, vals, done, str, s, z);
 
   CR();
   CR();
-  dispval(n);
-  dispval(m);
+  DISPVAL(n);
+  DISPVAL(m);
 
   CR();
   CR();
-  disp(n + 3);
-  disp(10 * x - 1);
-  disp(!done);
-  disp(round(10 * sin(pi / 10 * v) + 10));
-  disp(s + " tour");
+  DISP(n + 3);
+  DISP(10 * x - 1);
+  DISP(!done);
+  DISP(round(10 * sin(pi / 10 * v) + 10));
+  DISP(s + " tour");
   MOUT << std::endl;
 
   MOUT << CREATESTYLE(GRAY1) << "  ";
@@ -278,114 +278,114 @@ int main(int argc, char *argv[]) {
 
 
   Vector<double> vv({1, 2, 3});
-  disp(vv);
+  DISP(vv);
   Vector<double> ww({0, 0, 0});
-  disp(ww);
-  disp(dimequiv(vv, ww));
-  disp(common(vv, ww));
-  disp(common(vv, vv));
+  DISP(ww);
+  DISP(dimequiv(vv, ww));
+  DISP(common(vv, ww));
+  DISP(common(vv, vv));
 
   double x1 = 1;
   double x2 = x1 + 3e-16;
-  disp(approx(x1, x2, 0.));
-  disp(approx(x1, x2, 3.5e-16));
+  DISP(approx(x1, x2, 0.));
+  DISP(approx(x1, x2, 3.5e-16));
 
 
   TensorAbstract *t = new Scalar<int>(22);
   Scalar<int> *t2 = static_cast<Scalar<int> *>(t);
 
-  disp(*t2);
+  DISP(*t2);
   MOUT << "t=" << *t2 << endl;
 
 
-  disp(typeid(*t).name());
-  disp(typeid(*t2).name());
-  // disp(is_instance<decltype(*t), Scalar>{});
-  // disp(is_instance<decltype(*t2), Scalar>{});
+  DISP(typeid(*t).name());
+  DISP(typeid(*t2).name());
+  // DISP(is_instance<decltype(*t), Scalar>{});
+  // DISP(is_instance<decltype(*t2), Scalar>{});
 
   Scalar<int> s1 = 12;
   Scalar<int> s2 = 10;
-  disp(s1 + s2);
-  tdisp(s1 + s2);
+  DISP(s1 + s2);
+  TLDISP(s1 + s2);
 
   Vector<int> v1 = {1, 2};
   Vector<int> v2 = {10, 20};
-  disp(v1 + v2);
-  tdisp(v1 + v2);
+  DISP(v1 + v2);
+  TLDISP(v1 + v2);
 
 
 
   Matrix<double> A(2, 3);
   A = {{1, 2, 3}, {4, 5, 6}};
-  tdisp(A);
+  TLDISP(A);
   A.transpose();
-  tdisp(A);
+  TLDISP(A);
 
   {
     Dimensions dims1(2, 1, 7);
-    disp(dims1);
-    disp(dims1.reduce());
+    DISP(dims1);
+    DISP(dims1.reduce());
     Dimensions dims2(2, 3);
-    disp(dims2);
-    disp(dims2.reduce());
-    disp(dims1 == dims2);
-    disp(dims1.reduce() == dims2.reduce());
-    disp(equiv(dims1, dims2));
+    DISP(dims2);
+    DISP(dims2.reduce());
+    DISP(dims1 == dims2);
+    DISP(dims1.reduce() == dims2.reduce());
+    DISP(equiv(dims1, dims2));
     Dimensions dims3(2, 5);
-    disp(dims3);
-    disp(equiv(dims1, dims3));
-    disp(equiv(dims2, dims3));
+    DISP(dims3);
+    DISP(equiv(dims1, dims3));
+    DISP(equiv(dims2, dims3));
 
     VectorofPtrs addrs1((void *)&dims1);
     addrs1.add((void *)&dims2);
-    disp(addrs1);
+    DISP(addrs1);
 
     VectorofPtrs addrs2((void *)&dims3);
     addrs2.add((void *)&x);
-    disp(addrs2);
-    disp(common(addrs1, addrs2));
+    DISP(addrs2);
+    DISP(common(addrs1, addrs2));
     addrs2.add((void *)&dims1);
-    disp(addrs2);
-    disp(common(addrs1, addrs2));
+    DISP(addrs2);
+    DISP(common(addrs1, addrs2));
   }
   {
     Dimensions dims3(2, 2, 2);
-    disp(dims3);
+    DISP(dims3);
     Tensor<double> T(dims3);
-    disp(T.dims());
-    disp(T.index(0, 0, 0));
-    disp(T.index(0, 0, 1));
-    disp(T.index(0, 1, 0));
-    disp(T.index(0, 1, 1));
-    disp(T.index(1, 0, 0));
-    disp(T.index(1, 0, 1));
-    disp(T.index(1, 1, 0));
-    disp(T.index(1, 1, 1));
+    DISP(T.dims());
+    DISP(T.index(0, 0, 0));
+    DISP(T.index(0, 0, 1));
+    DISP(T.index(0, 1, 0));
+    DISP(T.index(0, 1, 1));
+    DISP(T.index(1, 0, 0));
+    DISP(T.index(1, 0, 1));
+    DISP(T.index(1, 1, 0));
+    DISP(T.index(1, 1, 1));
 
 
     for (int k = 0; k < T.size(); k++) {
-      mdisp(k, T.indices(k));
+      MDISP(k, T.indices(k));
       T[k] = k;
     }
-    disp(T(0, 0, 0));
-    disp(T(0, 0, 1));
-    disp(T(0, 1, 0));
-    disp(T(0, 1, 1));
-    disp(T(1, 0, 0));
-    disp(T(1, 0, 1));
-    disp(T(1, 1, 0));
-    disp(T(1, 1, 1));
-    disp(42);
-    tdisp(T);
+    DISP(T(0, 0, 0));
+    DISP(T(0, 0, 1));
+    DISP(T(0, 1, 0));
+    DISP(T(0, 1, 1));
+    DISP(T(1, 0, 0));
+    DISP(T(1, 0, 1));
+    DISP(T(1, 1, 0));
+    DISP(T(1, 1, 1));
+    DISP(42);
+    TLDISP(T);
 
     Dimensions dims4(13, 17, 11, 14);
-    disp(dims4);
+    DISP(dims4);
     Dimensions dims6({22, 45, 11, 18, 12, 11});
-    disp(dims6);
+    DISP(dims6);
   }
   {
     Dimensions dims(3, 2, 1, 6);
-    disp(dims);
+    DISP(dims);
     double c = 0;
     Tensor<double> T(dims);
     for (int i = 0; i < T.dims()[0]; i++) {
@@ -397,11 +397,11 @@ int main(int argc, char *argv[]) {
         }
       }
     }
-    disp(T);
+    DISP(T);
   }
   {
     Dimensions dims(3, 2, 3, 6);
-    disp(dims);
+    DISP(dims);
     double c = 0;
     Tensor<double> T(dims);
     for (int i = 0; i < T.dims()[0]; i++) {
@@ -413,11 +413,11 @@ int main(int argc, char *argv[]) {
         }
       }
     }
-    disp(T);
+    DISP(T);
   }
   {
     Dimensions dims(3, 2);
-    disp(dims);
+    DISP(dims);
     double c = 0;
     Tensor<double> T(dims);
     for (int i = 0; i < T.dims()[0]; i++) {
@@ -425,36 +425,36 @@ int main(int argc, char *argv[]) {
         T(i, j) = c++;
       }
     }
-    disp(T);
+    DISP(T);
   }
 
   {
     Vector<double> q = {21, 22};
-    tdisp(q);
+    TLDISP(q);
     double x10 = q(0);
     double x11 = q(1);
-    mdisp(x10, x11);
+    MDISP(x10, x11);
     CR();
     x10 = q((size_type)0);
   }
 
 
-  disp(sizeof(size_type));
-  disp(sizeof(index_type));
+  DISP(sizeof(size_type));
+  DISP(sizeof(index_type));
 
   {
     AddType<double, float>::Type x;
-    tdisp(x);
+    TLDISP(x);
   }
   {
     AddType<double, int>::Type x;
-    tdisp(x);
+    TLDISP(x);
     double y = 3.1;
     int n = 10;
     AddType<double, int>::Type z = y + n;
-    tdisp(y);
-    tdisp(n);
-    tdisp(z);
+    TLDISP(y);
+    TLDISP(n);
+    TLDISP(z);
   }
 
 
@@ -466,11 +466,11 @@ int main(int argc, char *argv[]) {
     MOUT << "AddType<double,float>::Type=" << AddType<double, float>::name() << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z + x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z + x));
     AddType<ComplexDouble, ComplexFloat>::Type q = z + x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
@@ -478,11 +478,11 @@ int main(int argc, char *argv[]) {
     MOUT << "AddType<int,float>::Type=" << AddType<int, float>::name() << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z + x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z + x));
     AddType<ComplexInt, ComplexFloat>::Type q = z + x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
@@ -490,11 +490,11 @@ int main(int argc, char *argv[]) {
     MOUT << "AddType<float,int>::Type=" << AddType<float, int>::name() << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z + x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z + x));
     AddType<ComplexFloat, ComplexInt>::Type q = z + x;
-    tdisp(q);
+    TLDISP(q);
   }
 
 
@@ -504,33 +504,33 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("complex<double> - complex<float>") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z - x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z - x));
     SubType<ComplexDouble, ComplexFloat>::Type q = z - x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
     MOUT << bold.apply("complex<int> - complex<float>") << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z - x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z - x));
     SubType<ComplexInt, ComplexFloat>::Type q = z - x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
     MOUT << bold.apply("complex<float> - complex<int>") << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z - x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z - x));
     SubType<ComplexFloat, ComplexInt>::Type q = z - x;
-    tdisp(q);
+    TLDISP(q);
   }
 
 
@@ -541,33 +541,33 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("complex<double> * complex<float>") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z * x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z * x));
     MultType<ComplexDouble, ComplexFloat>::Type q = z * x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
     MOUT << bold.apply("complex<int> * complex<float>") << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z * x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z * x));
     MultType<ComplexInt, ComplexFloat>::Type q = z * x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
     MOUT << bold.apply("complex<float> * complex<int>") << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z * x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z * x));
     MultType<ComplexFloat, ComplexInt>::Type q = z * x;
-    tdisp(q);
+    TLDISP(q);
   }
 
 
@@ -577,33 +577,33 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("complex<double> / complex<float>") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z / x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z / x));
     DivType<ComplexDouble, ComplexFloat>::Type q = z / x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
     MOUT << bold.apply("complex<int> / complex<float>") << endl;
     ComplexInt z = ComplexInt(1, 2);
     ComplexFloat x = ComplexFloat(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z / x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z / x));
     DivType<ComplexInt, ComplexFloat>::Type q = z / x;
-    tdisp(q);
+    TLDISP(q);
   }
   {
     CR();
     MOUT << bold.apply("complex<float> / complex<int>") << endl;
     ComplexFloat z = ComplexFloat(1, 2);
     ComplexInt x = ComplexInt(4, -3);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z / x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z / x));
     DivType<ComplexFloat, ComplexInt>::Type q = z / x;
-    tdisp(q);
+    TLDISP(q);
   }
 
 
@@ -614,12 +614,12 @@ int main(int argc, char *argv[]) {
     CR();
     ComplexDouble z = ComplexDouble(1, 2);
     double x = 6.5;
-    tdisp(z);
-    tdisp(x);
+    TLDISP(z);
+    TLDISP(x);
     MOUT << bold.apply("complex<double> + double") << endl;
-    tdisp((z + x));
+    TLDISP((z + x));
     MOUT << bold.apply("complex<double> + double") << endl;
-    tdisp((x + z));
+    TLDISP((x + z));
   }
 
 
@@ -629,24 +629,24 @@ int main(int argc, char *argv[]) {
     CR();
     ComplexDouble z = ComplexDouble(1, 2);
     float x = 6.5;
-    tdisp(z);
-    tdisp(x);
+    TLDISP(z);
+    TLDISP(x);
     MOUT << bold.apply("complex<double> + float") << endl;
-    tdisp((z + x));
+    TLDISP((z + x));
     MOUT << bold.apply("float + complex<float>") << endl;
-    tdisp((x + z));
+    TLDISP((x + z));
     MOUT << bold.apply("complex<double> - float") << endl;
-    tdisp((z - x));
+    TLDISP((z - x));
     MOUT << bold.apply("float - complex<float>") << endl;
-    tdisp((x - z));
+    TLDISP((x - z));
     MOUT << bold.apply("complex<double> * float") << endl;
-    tdisp((z * x));
+    TLDISP((z * x));
     MOUT << bold.apply("float * complex<float>") << endl;
-    tdisp((x * z));
+    TLDISP((x * z));
     MOUT << bold.apply("complex<double> / float") << endl;
-    tdisp((z / x));
+    TLDISP((z / x));
     MOUT << bold.apply("float / complex<float>") << endl;
-    tdisp((x / z));
+    TLDISP((x / z));
   }
 
 
@@ -655,12 +655,12 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("conj(D)") << endl;
     ComplexDouble z = ComplexDouble(1, 2);
     double x = 6.5;
-    tdisp(z);
-    tdisp(x);
-    tdisp(mathq::conj(z));
-    tdisp(mathq::conj(x));
-    tdisp(mathq::real(x));
-    tdisp(mathq::imag(x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP(mathq::conj(z));
+    TLDISP(mathq::conj(x));
+    TLDISP(mathq::real(x));
+    TLDISP(mathq::imag(x));
   }
 
 
@@ -670,11 +670,11 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Imaginary<double> + Imaginary<float>") << endl;
     ImDouble z = ImDouble(1.1);
     ImFloat x = ImFloat(10.01);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z + x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z + x));
     AddType<ImDouble, ImFloat>::Type q = z + x; // TODO: NOTICE THAT ADDTYPE WORKS FOR IMAGINARY WORKS! use for Tensor functions
-    tdisp(q);
+    TLDISP(q);
   }
 
   {
@@ -682,34 +682,34 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Imaginary<double> * Imaginary<float>") << endl;
     ImDouble z = ImDouble(1.12);
     ImFloat x = ImFloat(100);
-    tdisp(z);
-    tdisp(x);
-    tdisp((z * x));
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP((z * x));
     MultType<ImDouble, ImFloat>::Type q = z * x; // TODO: NOTICE THAT ADDTYPE WORKS FOR IMAGINARY WORKS! use for Tensor functions
-    tdisp(q);
+    TLDISP(q);
   }
 
 
 
   CR();
-  disp(is_base_of<ComplexDouble, ComplexDouble>::value);
-  disp(is_base_of<Scalar<double>, Scalar<double>>::value);
+  DISP(is_base_of<ComplexDouble, ComplexDouble>::value);
+  DISP(is_base_of<Scalar<double>, Scalar<double>>::value);
 
   CR();
-  disp(is_arithmetic<double>::value);
-  disp(is_arithmetic<ComplexDouble>::value);
-  disp(is_arithmetic<Scalar<double>>::value);
+  DISP(is_arithmetic<double>::value);
+  DISP(is_arithmetic<ComplexDouble>::value);
+  DISP(is_arithmetic<Scalar<double>>::value);
 
   CR();
-  disp(is_floating_point<double>::value);
-  disp(is_floating_point<ComplexDouble>::value);
-  disp(is_floating_point<Scalar<double>>::value);
+  DISP(is_floating_point<double>::value);
+  DISP(is_floating_point<ComplexDouble>::value);
+  DISP(is_floating_point<Scalar<double>>::value);
 
   CR();
-  disp(is_complex<double>{});
-  disp(is_complex<ComplexDouble>{});
-  // disp(is_complex<Scalar<double> >{});
-  // disp(is_complex<Scalar<ComplexDouble> >{});
+  DISP(is_complex<double>{});
+  DISP(is_complex<ComplexDouble>{});
+  // DISP(is_complex<Scalar<double> >{});
+  // DISP(is_complex<Scalar<ComplexDouble> >{});
 
 
 
@@ -718,26 +718,26 @@ int main(int argc, char *argv[]) {
   //   CR();
   //   MOUT << bold.apply("Complexify") << endl;
   //   Complexify<double>::Type double_;
-  //   tdisp(double_);
+  //   TLDISP(double_);
   //   Complexify<std::complex<double> >::Type complexdouble_;
-  //   tdisp(complexdouble_);
+  //   TLDISP(complexdouble_);
   //   // Complexify<Scalar<double> >::Type scalardouble_;
-  //   // tdisp(scalardouble_);
+  //   // TLDISP(scalardouble_);
   //   // Complexify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-  //   // tdisp(scalarcomplexdouble_);
+  //   // TLDISP(scalarcomplexdouble_);
   // }
 
   //   {
   //   CR();
   //   MOUT << bold.apply("Realify") << endl;
   //   Realify<double>::Type double_;
-  //   tdisp(double_);
+  //   TLDISP(double_);
   //   Realify<std::complex<double> >::Type complexdouble_;
-  //   tdisp(complexdouble_);
+  //   TLDISP(complexdouble_);
   //   // Realify<Scalar<double> >::Type scalardouble_;
-  //   // tdisp(scalardouble_);
+  //   // TLDISP(scalardouble_);
   //   // Realify<Scalar<std::complex<double> > >::Type scalarcomplexdouble_;
-  //   // tdisp(scalarcomplexdouble_);
+  //   // TLDISP(scalarcomplexdouble_);
   // }
 
 
@@ -746,52 +746,52 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("conj(Scalar<D>)") << endl;
     Scalar<ComplexDouble> z = ComplexDouble(1, 2);
     Scalar<double> x = 6.5;
-    tdisp(z);
-    tdisp(x);
-    tdisp(conj(z));
-    tdisp(conj(x));
-    tdisp(real(z));
-    tdisp(imag(z));
-    tdisp(real(x));
-    tdisp(imag(x));
-    tdisp(z.conj());
-    // tdisp(x.conj());
+    TLDISP(z);
+    TLDISP(x);
+    TLDISP(conj(z));
+    TLDISP(conj(x));
+    TLDISP(real(z));
+    TLDISP(imag(z));
+    TLDISP(real(x));
+    TLDISP(imag(x));
+    TLDISP(z.conj());
+    // TLDISP(x.conj());
   }
 
   // {
   //   CR();
   //   MOUT << bold.apply("TypeTraits<T>::ParameterType") << endl;
   //   Loki::TypeTraits<int>::ParameterType n = 1;
-  //   tdisp(n);
-  //   disp(Loki::TypeTraits<decltype(n)>::isReference);
+  //   TLDISP(n);
+  //   DISP(Loki::TypeTraits<decltype(n)>::isReference);
 
   //   Loki::TypeTraits<long>::ParameterType longo = *(new long(123456789));
-  //   tdisp(longo);
-  //   disp(Loki::TypeTraits<decltype(longo)>::isReference);
+  //   TLDISP(longo);
+  //   DISP(Loki::TypeTraits<decltype(longo)>::isReference);
 
   //   Loki::TypeTraits<long long>::ParameterType llongo = *(new long long(12345678));
-  //   tdisp(llongo);
-  //   disp(Loki::TypeTraits<decltype(llongo)>::isReference);
+  //   TLDISP(llongo);
+  //   DISP(Loki::TypeTraits<decltype(llongo)>::isReference);
 
   //   Loki::TypeTraits<double>::ParameterType x = 2.13;
-  //   tdisp(x);
-  //   disp(Loki::TypeTraits<decltype(x)>::isReference);
+  //   TLDISP(x);
+  //   DISP(Loki::TypeTraits<decltype(x)>::isReference);
 
   //   Loki::TypeTraits<long double>::ParameterType big = 2.13;
-  //   tdisp(big);
-  //   disp(Loki::TypeTraits<decltype(big)>::isReference);
+  //   TLDISP(big);
+  //   DISP(Loki::TypeTraits<decltype(big)>::isReference);
 
   //   Loki::TypeTraits<std::complex<double>>::ParameterType z = *(new std::complex<double>(1.2,3.4));
-  //   tdisp(z);
-  //   disp(Loki::TypeTraits<decltype(z)>::isReference); // doesnt work
-  //   disp(Loki::TypeTraits<decltype(z)>::isReference); // works
-  //   disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double> >>::isReference);
-  //   disp(Loki::TypeTraits<Loki::TypeTraits<std::complex<double>>::ParameterType>::isReference);
+  //   TLDISP(z);
+  //   DISP(Loki::TypeTraits<decltype(z)>::isReference); // doesnt work
+  //   DISP(Loki::TypeTraits<decltype(z)>::isReference); // works
+  //   DISP(Loki::TypeTraits<Loki::TypeTraits<std::complex<double> >>::isReference);
+  //   DISP(Loki::TypeTraits<Loki::TypeTraits<std::complex<double>>::ParameterType>::isReference);
 
 
   //   Loki::TypeTraits<Imaginary<double>>::ParameterType w = *(new Imaginary<double>(1.2));
-  //   tdisp(w);
-  //   disp(Loki::TypeTraits<decltype(z)>::isReference); // works
+  //   TLDISP(w);
+  //   DISP(Loki::TypeTraits<decltype(z)>::isReference); // works
 
 
   // }
@@ -802,10 +802,10 @@ int main(int argc, char *argv[]) {
     CR();
     MOUT << bold.apply("initializer_list") << endl;
     Vector<int> v1 = {1, 2, 3, 4};
-    tdisp(v1);
+    TLDISP(v1);
     int n = 5;
     Vector<int> v2 = {1, 2, 3, 4, n};
-    tdisp(v2);
+    TLDISP(v2);
 
     Scalar<int> s = 5;
 
@@ -818,7 +818,7 @@ int main(int argc, char *argv[]) {
     // make a subclass of slice that uses a list of vectors, or just has as part of slice
 
 
-    tdisp(v3);
+    TLDISP(v3);
   }
 
 
@@ -828,45 +828,45 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<double>+ Vector<double>") << std::endl;
     Vector<double> v1 = {11, 22};
     Vector<double> v2 = {100, 200};
-    tdisp(v1);
-    tdisp(v2);
-    tdisp(v1 + v2);
+    TLDISP(v1);
+    TLDISP(v2);
+    TLDISP(v1 + v2);
   }
   {
     CR();
     MOUT << bold.apply("Vector<int>+ Vector<double>") << std::endl;
     Vector<int> v1 = {11, 22};
     Vector<double> v2 = {0.1, 0.2};
-    tdisp(v1);
-    tdisp(v2);
-    tdisp(v1 + v2);
+    TLDISP(v1);
+    TLDISP(v2);
+    TLDISP(v1 + v2);
   }
   {
     CR();
     MOUT << bold.apply("Vector<double> + double ") << std::endl;
     Vector<double> v = {11, 22};
     double x = 0.5;
-    tdisp(v);
-    tdisp(x);
-    tdisp(v + x);
+    TLDISP(v);
+    TLDISP(x);
+    TLDISP(v + x);
   }
   {
     CR();
     MOUT << bold.apply("Vector<int> + double ") << std::endl;
     Vector<int> vz = {11, 22};
     double x = .5;
-    tdisp(vz);
-    tdisp(x);
-    tdisp(vz + x);
+    TLDISP(vz);
+    TLDISP(x);
+    TLDISP(vz + x);
   }
   {
     CR();
     MOUT << bold.apply("Vector<double> + int ") << std::endl;
     Vector<double> v = {11.1, 22.2};
     int n = 900;
-    tdisp(v);
-    tdisp(n);
-    tdisp(v + n);
+    TLDISP(v);
+    TLDISP(n);
+    TLDISP(v + n);
   }
 
   {
@@ -874,9 +874,9 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<double> > + Vector<complex<double> >") << std::endl;
     Vector<ComplexDouble> vz1 = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     Vector<ComplexDouble> vz2 = {ComplexDouble(10.5, 20.5), ComplexDouble(30.5, 40.5)};
-    tdisp(vz1);
-    tdisp(vz2);
-    tdisp(vz1 + vz2);
+    TLDISP(vz1);
+    TLDISP(vz2);
+    TLDISP(vz1 + vz2);
   }
 
   {
@@ -884,9 +884,9 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<double> > + Vector<complex<int> >") << std::endl;
     Vector<ComplexDouble> vz1 = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     Vector<ComplexInt> vz2 = {ComplexInt(10, 20), ComplexInt(30, 40)};
-    tdisp(vz1);
-    tdisp(vz2);
-    tdisp(vz1 + vz2);
+    TLDISP(vz1);
+    TLDISP(vz2);
+    TLDISP(vz1 + vz2);
   }
 
   {
@@ -894,9 +894,9 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<double> > + Vector<double>") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 0.2), ComplexDouble(0.3, 2.4)};
     Vector<double> v = {0.01, 0.02};
-    tdisp(vz);
-    tdisp(v);
-    tdisp(vz + v);
+    TLDISP(vz);
+    TLDISP(v);
+    TLDISP(vz + v);
   }
 
   {
@@ -904,9 +904,9 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<double> > + Vector<int>") << std::endl;
     Vector<ComplexDouble> vz1 = {ComplexDouble(0.1, 0.2), ComplexDouble(0.3, 2.4)};
     Vector<int> vz2 = {1, 2};
-    tdisp(vz1);
-    tdisp(vz2);
-    tdisp(vz1 + vz2);
+    TLDISP(vz1);
+    TLDISP(vz2);
+    TLDISP(vz1 + vz2);
   }
 
   {
@@ -914,9 +914,9 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<int> > + Vector<double>") << std::endl;
     Vector<ComplexInt> vzn = {ComplexInt(10, 20), ComplexInt(30, 40)};
     Vector<double> vx = {0.01, 0.02};
-    tdisp(vzn);
-    tdisp(vx);
-    tdisp(vzn + vx);
+    TLDISP(vzn);
+    TLDISP(vx);
+    TLDISP(vzn + vx);
   }
 
 
@@ -926,9 +926,9 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<double> > + double ") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     double x = 0.5;
-    tdisp(vz);
-    tdisp(x);
-    tdisp(vz + x);
+    TLDISP(vz);
+    TLDISP(x);
+    TLDISP(vz + x);
   }
 
 
@@ -937,27 +937,27 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<complex<double> > + double ") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     double x = 0.5;
-    tdisp(vz);
-    tdisp(x);
-    tdisp(vz + x);
+    TLDISP(vz);
+    TLDISP(x);
+    TLDISP(vz + x);
   }
   {
     CR();
     MOUT << bold.apply("Vector<complex<int> > + double ") << std::endl;
     Vector<ComplexInt> vz = {ComplexInt(1, 2), ComplexInt(3, 4)};
     double x = .5;
-    tdisp(vz);
-    tdisp(x);
-    tdisp(vz + x);
+    TLDISP(vz);
+    TLDISP(x);
+    TLDISP(vz + x);
   }
   {
     CR();
     MOUT << bold.apply("Vector<complex<double> > + int ") << std::endl;
     Vector<ComplexDouble> vz = {ComplexDouble(0.1, 1.1), ComplexDouble(0.2, 2.2)};
     int n = 900;
-    tdisp(vz);
-    tdisp(n);
-    tdisp(vz + n);
+    TLDISP(vz);
+    TLDISP(n);
+    TLDISP(vz + n);
   }
 
 
@@ -969,19 +969,19 @@ int main(int argc, char *argv[]) {
 
     // NOTE: no equals sign
     std::vector<std::vector<double>> ss{{1, 2}, {3, 4}};
-    tdisp(ss);
+    TLDISP(ss);
     // Vector<std::vector<double>> vs {{1,2},{3,4}};
-    // tdisp(vs);
+    // TLDISP(vs);
     std::vector<Vector<double>> sv{{1, 2}, {3, 4}};
-    tdisp(sv);
+    TLDISP(sv);
     Vector<Vector<double>> vv{{1, 2}, {3, 4}};
-    tdisp(vv);
+    TLDISP(vv);
     Vector<Vector<double>> vv2{{1, -1}, {3, 4}};
-    tdisp(vv2);
+    TLDISP(vv2);
     Vector<Vector<double>> vv3{{1, -1}, {2, 4}};
-    tdisp(vv3);
+    TLDISP(vv3);
     Vector<Vector<double>> vv4{{1, -1}, {2, -2}};
-    tdisp(vv4);
+    TLDISP(vv4);
   }
 
 
@@ -990,32 +990,32 @@ int main(int argc, char *argv[]) {
     MOUT << bold.apply("Vector<Vector<double> > + Vector<Vector<double> >") << std::endl;
     Vector<Vector<double>> v1{{1, 2}, {3, 4}};
     Vector<Vector<double>> v2{{0.1, 0.2}, {0.3, 0.4}};
-    tdisp(v1);
-    tdisp(v2);
-    // tdisp(v1+v2);
+    TLDISP(v1);
+    TLDISP(v2);
+    // TLDISP(v1+v2);
     Vector<Vector<double>> v3{{0, 0}, {0, 0}};
-    tdisp(v3);
+    TLDISP(v3);
     //    v3 = v1;
-    tdisp(v3);
-    // tdisp(-v3);
+    TLDISP(v3);
+    // TLDISP(-v3);
     //     v3 = {{0,0},{0,0}};
-    tdisp(v3);
+    TLDISP(v3);
     CR();
     //    typename AddType<Vector<double>,Vector<double>>::Type v4 {{6,7},{8,0}};
     //    v1+v2;
-    //    disp(v1.bottom());
+    //    DISP(v1.bottom());
     CR();
-    disp(typeid(AddType<Vector<double>, Vector<double>>::Type).name());
+    DISP(typeid(AddType<Vector<double>, Vector<double>>::Type).name());
     // fails:
     //    v3 = v1+v2;
-    disp(v3);
+    DISP(v3);
   }
   //------------------------------------------------------
 
 
   {
     MultType<int, ComplexDouble>::Type x;
-    tdisp(x);
+    TLDISP(x);
   }
 
 
@@ -1025,10 +1025,10 @@ int main(int argc, char *argv[]) {
     Scalar<ComplexDouble> s2 = ComplexDouble(10, 3);
     Scalar<ComplexDouble> result;
     //    result = 20*log10(abs(s1/s2)*100) + 3 + pow(-s2,2);
-    tdisp(s1 * 2.);
-    tdisp(s1 * 2);
-    // tdisp(2.*s1);
-    //     tdisp(2*s1);
+    TLDISP(s1 * 2.);
+    TLDISP(s1 * 2);
+    // TLDISP(2.*s1);
+    //     TLDISP(2*s1);
   }
 
   CR();

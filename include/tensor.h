@@ -287,11 +287,11 @@ public:
   D &dat(const Indices &inds) {
     // printf("Tensor.dat(Indices)\n");
     // MOUT << "  ";
-    // tdisp(inds.size());
+    // TLDISP(inds.size());
     // MOUT << "  ";
-    // tdisp(inds);
+    // TLDISP(inds);
     // MOUT << "  ";
-    // tdisp(ndims());
+    // TLDISP(ndims());
     Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
     Indices mine;
@@ -300,9 +300,9 @@ public:
       inds_next.erase(inds_next.begin());
     }
     // MOUT << "  ";
-    // tdisp(mine);
+    // TLDISP(mine);
     // MOUT << "  ";
-    // tdisp(inds_next);
+    // TLDISP(inds_next);
     if constexpr (M > 1) {
       return (*this)(mine).dat(inds_next);
     } else {
@@ -314,11 +314,11 @@ public:
   const D dat(const Indices &inds) const {
     // printf("Tensor.dat(Indices) const\n");
     // MOUT << "  ";
-    // tdisp(inds.size());
+    // TLDISP(inds.size());
     // MOUT << "  ";
-    // tdisp(inds);
+    // TLDISP(inds);
     // MOUT << "  ";
-    // tdisp(ndims());
+    // TLDISP(ndims());
     Indices inds_next(inds);
     // error if (inds.size() != sum deepdims[i].rank
     Indices mine;
@@ -327,9 +327,9 @@ public:
       inds_next.erase(inds_next.begin());
     }
     // MOUT << "  ";
-    // tdisp(mine);
+    // TLDISP(mine);
     // MOUT << "  ";
-    // tdisp(inds_next);
+    // TLDISP(inds_next);
     if constexpr (M > 1) {
       return (*this)(mine).dat(inds_next);
     } else {
@@ -513,7 +513,7 @@ public:
   // ----------------- tensor = C++11 init list
   Tensor<E, R, D, M> &operator=(const NestedInitializerList<E, R> &mylist) {
     // MOUT << "operator=: ";
-    // tdisp(mylist);
+    // TLDISP(mylist);
     int i = 0;
     Dimensions dims = NestedInitializerListDef<E, R>::dims(mylist);
     resize(dims);
@@ -618,7 +618,7 @@ public:
   std::ostream &send(std::ostream &stream, index_type &n, const Dimensions &dim) const {
     using namespace display;
     Style &style = FormatDataVector::style_for_punctuation;
-    //      mdisp(n,dim);
+    //      MDISP(n,dim);
     const int delta = this->ndims() - dim.ndims();
     if (delta == 0) {
       stream << std::endl;

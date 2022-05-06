@@ -314,9 +314,11 @@ Log Log_dummy = *(new Log());
 //****************************************************************************
 
 bool Display::isInitialized = false;
-StyledString Display::expression = StyledString(CREATESTYLE(BOLD), "");
-StyledString Display::equals = StyledString(CREATESTYLE(GRAY1), "  ➜  ");
-StyledString Display::terminator = StyledString(CREATESTYLE(GRAY1), "");
+Style Display::expressionStyle = CREATESTYLE(BOLD);
+StyledString Display::equalsStyledString = StyledString(CREATESTYLE(GRAY1), " ➜  ");
+//StyledString Display::equalsStyledString = StyledString(CREATESTYLE(GRAY1), "  =  ");
+StyledString Display::multiSeparatorStyledString = StyledString(CREATESTYLE(GRAY1), "; ");
+StyledString Display::terminatorStyledString = StyledString(CREATESTYLE(GRAY1), "");
 Display display_dummy = Display();
 
 }; // namespace display

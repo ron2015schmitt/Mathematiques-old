@@ -27,18 +27,18 @@ int main()
 
   
   header3("Vector join operator `,` ");
-  text("* The Vector operator `,` joins two vectors");
-  text("* This is an expression.  It does not create intermediate objects.");
-  text("* join can be used on the left hand side as well!");
+  OUTPUT("* The Vector operator `,` joins two vectors");
+  OUTPUT("* This is an expression.  It does not create intermediate objects.");
+  OUTPUT("* join can be used on the left hand side as well!");
  
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Vector join operator `,`");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v1( range<double>(0,2) ) );
     codemulti( Vector<double> v2( range<double>(3,4) ) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
     resultstart();
@@ -53,46 +53,46 @@ int main()
     resultend();
 
     CR();
-    text("The following are examples usign the join operator on the left hand side");
+    OUTPUT("The following are examples usign the join operator on the left hand side");
     CR();
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> va(2) );
     codemulti( Vector<double> vb(3) );
     codemulti( (va,vb) = range<double>(1,5) );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti(va);
     resultmulti(vb);
     resultend();
 
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> ua(2) );
     codemulti( Vector<double> ub(3) );
     codemulti( (ua[{1,0}],ub) = range<double>(1,5) );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti(ua);
     resultmulti(ub);
     resultend();
 
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> wa(2) );
     codemulti( Vector<double> wb(3) );
     codemulti( (wa,wb[{2,1,0}]) = range<double>(1,5) );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti(wa);
     resultmulti(wb);
     resultend();
 
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> za(2) );
     codemulti( Vector<double> zb(3) );
     codemulti( (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5) );
-    codeend();
+    GMD_CODE_END();
     CR();
     resultstart();
     resultmulti(za);
@@ -102,16 +102,16 @@ int main()
     
 
   header3("Vector `rep` function");
-  text("* The Vector `rep(v,m)` function replicates the input vector `m` times.");
-  text("* `rep` cannot be used on the left hand side of assignment, since it doesn't provide utility to do so.");
-  text("* The Vector `rep(v,m)` function can be combined with the join operator.");
+  OUTPUT("* The Vector `rep(v,m)` function replicates the input vector `m` times.");
+  OUTPUT("* `rep` cannot be used on the left hand side of assignment, since it doesn't provide utility to do so.");
+  OUTPUT("* The Vector `rep(v,m)` function can be combined with the join operator.");
 
   
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Vector `rep` function");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v1( range<double>(1,3) ) );
     codemulti( Vector<double> v2( range<double>(4,5) ) );
     codemulti( Vector<double> v3 );
@@ -120,7 +120,7 @@ int main()
     codemulti( v4 = (rep(v1,2), rep(v2,3)) );
     codemulti( Vector<double> v5 );
     codemulti( v5 = rep((v1,v2),2) );
-    codeend();
+    GMD_CODE_END();
     CR();
 
    

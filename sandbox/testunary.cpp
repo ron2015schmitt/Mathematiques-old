@@ -48,13 +48,13 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Scalar<double> s = 1.1;
-    tdisp(s);
-    tdisp(s());
-    tdisp(s.dims());
-    tdisp(s.size());
+    TLDISP(s);
+    TLDISP(s());
+    TLDISP(s.dims());
+    TLDISP(s.size());
     Scalar<double> s2;
     s2 = -s;
-    tdisp(s2);
+    TLDISP(s2);
   }
 
   CR();
@@ -63,22 +63,22 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Vector<double> v{1.1, 2.2};
-    tdisp(v);
-    tdisp(v(0));
-    tdisp(v.dims());
-    tdisp(v.size());
+    TLDISP(v);
+    TLDISP(v(0));
+    TLDISP(v.dims());
+    TLDISP(v.size());
     Vector<double> v2;
     v2 = -v;
-    tdisp(v2);
+    TLDISP(v2);
   }
 
   {
     CR();
     Vector<double, 2> v{1, 2};
-    tdisp(v);
+    TLDISP(v);
     Vector<double, 2> v2;
     v2 = -v;
-    tdisp(v2);
+    TLDISP(v2);
   }
 
   CR();
@@ -87,26 +87,26 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Matrix<double> m0;
-    tdisp(m0);
+    TLDISP(m0);
 
     Matrix<double> m{{1, 2}, {3, 4}};
-    tdisp(m);
-    tdisp(m(0, 0));
-    tdisp(m.Nrows());
-    tdisp(m.Ncols());
-    tdisp(m.dims());
+    TLDISP(m);
+    TLDISP(m(0, 0));
+    TLDISP(m.Nrows());
+    TLDISP(m.Ncols());
+    TLDISP(m.dims());
     Matrix<double> m2;
-    tdisp(m2);
+    TLDISP(m2);
     m2 = -m;
-    tdisp(m2);
+    TLDISP(m2);
   }
   CR();
   {
     Matrix<double, 2, 2> m{{1.1, 2.2}, {3.3, 4.4}};
-    tdisp(m);
+    TLDISP(m);
     Matrix<double, 2, 2> m2;
     m2 = -m;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
 
@@ -116,16 +116,16 @@ int main(int argc, char *argv[]) {
   {
     CR();
     std::initializer_list<double> x1{1, 2};
-    tdisp(x1);
+    TLDISP(x1);
 
     std::initializer_list<std::initializer_list<double>> x2{{1, 2}, {3, 4}};
-    tdisp(x2);
+    TLDISP(x2);
 
     NestedInitializerList<double, 1> y1{1, 2};
-    tdisp(y1);
+    TLDISP(y1);
 
     NestedInitializerList<double, 2> y2{{1, 2}, {3, 4}};
-    tdisp(y2);
+    TLDISP(y2);
   }
 
   CR();
@@ -134,61 +134,61 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Tensor<double> t0;
-    tdisp(t0.dims());
-    tdisp(t0.eldims());
-    tdisp(t0);
+    TLDISP(t0.dims());
+    TLDISP(t0.eldims());
+    TLDISP(t0);
     Tensor<double, 3> t1;
-    tdisp(t1.dims());
-    tdisp(t1.deepdims());
-    tdisp(t1.deepsize());
-    tdisp(t1.depth());
-    tdisp(t1);
+    TLDISP(t1.dims());
+    TLDISP(t1.deepdims());
+    TLDISP(t1.deepsize());
+    TLDISP(t1.depth());
+    TLDISP(t1);
     Dimensions dims(3, 2, 5);
     Tensor<double, 3> t2(dims);
-    tdisp(t2.dims());
-    tdisp(t2);
+    TLDISP(t2.dims());
+    TLDISP(t2);
     for (int i = 0; i < t2.size(); i++) {
       t2[i] = double(i);
     }
-    tdisp(t2);
+    TLDISP(t2);
     for (int i = 0; i < t2.dims()[0]; i++) {
       for (int j = 0; j < t2.dims()[1]; j++) {
         for (int k = 0; k < t2.dims()[2]; k++) {
           t2(i, j, k) = double(100 * i) + double(10 * j) + double(k);
-          // mdisp(i,j,k,t2(i,j,k));
+          // MDISP(i,j,k,t2(i,j,k));
         }
       }
     }
-    tdisp(t2);
+    TLDISP(t2);
 
     Tensor<double, 1> t3{1, 2, 3};
-    tdisp(t3.dims());
-    tdisp(t3.eldims());
-    tdisp(t3);
+    TLDISP(t3.dims());
+    TLDISP(t3.eldims());
+    TLDISP(t3);
 
 
     Tensor<double, 2> t4{{1.1, 2.2}, {3.3, 4.4}};
-    tdisp(t4.dims());
-    tdisp(t4);
+    TLDISP(t4.dims());
+    TLDISP(t4);
 
     Tensor<double, 3> t5{
         {{0, 1, 2, 3, 4}, {10, 11, 12, 13, 14}},
         {{100, 101, 102, 103, 104}, {110, 111, 112, 113, 114}},
         {{200, 201, 202, 203, 204}, {210, 211, 212, 213, 214}}};
 
-    tdisp(t5.dims());
-    tdisp(t5(2, 1, 3));
-    tdisp(t5);
+    TLDISP(t5.dims());
+    TLDISP(t5(2, 1, 3));
+    TLDISP(t5);
   }
 
 
   CR();
   {
     Tensor<double, 2> t{{1.1, 2.2}, {3.3, 4.4}};
-    tdisp(t);
+    TLDISP(t);
     Tensor<double, 2> t2;
     t2 = -t;
-    tdisp(t2);
+    TLDISP(t2);
   }
 
 
@@ -213,59 +213,59 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Scalar<Scalar<double>> s{{1.1}};
-    tdisp(s);
-    tdisp(s());
-    tdisp(s()());
-    tdisp(s.dims());
-    tdisp(s.size());
-    tdisp(s.deepdims());
+    TLDISP(s);
+    TLDISP(s());
+    TLDISP(s()());
+    TLDISP(s.dims());
+    TLDISP(s.size());
+    TLDISP(s.deepdims());
     Scalar<Scalar<double>> s2;
     s2 = -s;
-    tdisp(s2);
+    TLDISP(s2);
   }
 
   {
     CR();
     Scalar<Vector<double>> s{{1., 2., 3.}};
-    tdisp(s);
-    tdisp(s()(2));
-    tdisp(s.dims());
-    tdisp(s.size());
-    tdisp(s.deepdims());
+    TLDISP(s);
+    TLDISP(s()(2));
+    TLDISP(s.dims());
+    TLDISP(s.size());
+    TLDISP(s.deepdims());
     Scalar<Vector<double>> s2;
     s2 = -s;
-    tdisp(s2);
+    TLDISP(s2);
   }
 
   {
     CR();
     Scalar<Matrix<double>> s{{{1, 2}, {3, 4}}};
-    tdisp(s);
-    tdisp(s()(0, 1));
-    tdisp(s.dims());
-    tdisp(s.size());
-    tdisp(s.deepdims());
+    TLDISP(s);
+    TLDISP(s()(0, 1));
+    TLDISP(s.dims());
+    TLDISP(s.size());
+    TLDISP(s.deepdims());
 
     Scalar<Matrix<double>> s2;
     s2 = -s;
-    tdisp(s2);
+    TLDISP(s2);
   }
 
   {
     CR();
     Scalar<Tensor<double, 2>> s{{{1, 2}, {3, 4}}};
-    tdisp(s);
-    tdisp(s());
-    tdisp(s()(0, 1));
-    tdisp(s.dims());
-    tdisp(s.size());
-    tdisp(s().dims());
-    tdisp(s.depth());
-    tdisp(s.deepdims());
+    TLDISP(s);
+    TLDISP(s());
+    TLDISP(s()(0, 1));
+    TLDISP(s.dims());
+    TLDISP(s.size());
+    TLDISP(s().dims());
+    TLDISP(s.depth());
+    TLDISP(s.deepdims());
 
     Scalar<Tensor<double, 2>> s2;
     s2 = -s;
-    tdisp(s2);
+    TLDISP(s2);
   }
 
   CR();
@@ -274,58 +274,58 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Vector<Scalar<double>> v{{1.}, {2.}};
-    tdisp(v);
-    tdisp(v(0));
-    tdisp(v(0)());
-    tdisp(v.dims());
-    tdisp(v.size());
-    tdisp(v.deepdims());
+    TLDISP(v);
+    TLDISP(v(0));
+    TLDISP(v(0)());
+    TLDISP(v.dims());
+    TLDISP(v.size());
+    TLDISP(v.deepdims());
     Vector<Scalar<double>> v2;
     v2 = -v;
-    tdisp(v2);
+    TLDISP(v2);
   }
 
   {
     CR();
     Vector<Vector<double>> v{{1., 2., 3.}, {4., 5., 6.}};
-    tdisp(v);
-    tdisp(v(0));
-    tdisp(v(0)(2));
-    tdisp(v.dims());
-    tdisp(v.size());
-    tdisp(v.deepdims());
+    TLDISP(v);
+    TLDISP(v(0));
+    TLDISP(v(0)(2));
+    TLDISP(v.dims());
+    TLDISP(v.size());
+    TLDISP(v.deepdims());
     Vector<Vector<double>> v2;
     MOUT << "v2 = -v;" << endl;
     v2 = -v;
-    tdisp(v2);
+    TLDISP(v2);
   }
   {
     CR();
     Vector<Matrix<double>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
-    tdisp(v);
-    tdisp(v(0));
-    tdisp(v(1)(0, 1));
-    tdisp(v.dims());
-    tdisp(v.size());
-    tdisp(v.deepdims());
+    TLDISP(v);
+    TLDISP(v(0));
+    TLDISP(v(1)(0, 1));
+    TLDISP(v.dims());
+    TLDISP(v.size());
+    TLDISP(v.deepdims());
     Vector<Matrix<double>> v2;
     MOUT << "v2 = -v;" << endl;
     v2 = -v;
-    tdisp(v2);
+    TLDISP(v2);
   }
   {
     CR();
     Vector<Tensor<double, 2>> v{{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}, {{9, 10}, {11, 12}}};
-    tdisp(v);
-    tdisp(v(0));
-    tdisp(v(2)(1, 1));
-    tdisp(v.dims());
-    tdisp(v.size());
-    tdisp(v.deepdims());
+    TLDISP(v);
+    TLDISP(v(0));
+    TLDISP(v(2)(1, 1));
+    TLDISP(v.dims());
+    TLDISP(v.size());
+    TLDISP(v.deepdims());
     Vector<Tensor<double, 2>> v2;
     MOUT << "v2 = -v;" << endl;
     v2 = -v;
-    tdisp(v2);
+    TLDISP(v2);
   }
 
 
@@ -336,32 +336,32 @@ int main(int argc, char *argv[]) {
     CR();
     Matrix<Scalar<double>> m{{{1}, {2}}, {{3}, {4}}};
     ;
-    tdisp(m);
-    tdisp(m(0, 0));
-    tdisp(m(0, 0)());
-    tdisp(m.Nrows());
-    tdisp(m.Ncols());
-    tdisp(m.dims());
-    tdisp(m.deepdims());
+    TLDISP(m);
+    TLDISP(m(0, 0));
+    TLDISP(m(0, 0)());
+    TLDISP(m.Nrows());
+    TLDISP(m.Ncols());
+    TLDISP(m.dims());
+    TLDISP(m.deepdims());
     Matrix<Scalar<double>> m2;
     m2 = -m;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
   {
     CR();
     Matrix<Vector<double>> m{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
-    tdisp(m);
-    tdisp(m(0, 0));
-    tdisp(m(0, 0)(1));
-    tdisp(m.Nrows());
-    tdisp(m.Ncols());
-    tdisp(m.dims());
-    tdisp(m.deepdims());
+    TLDISP(m);
+    TLDISP(m(0, 0));
+    TLDISP(m(0, 0)(1));
+    TLDISP(m.Nrows());
+    TLDISP(m.Ncols());
+    TLDISP(m.dims());
+    TLDISP(m.deepdims());
     Matrix<Vector<double>> m2;
     MOUT << "m2 = -m;" << endl;
     m2 = -m;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
   {
@@ -369,25 +369,25 @@ int main(int argc, char *argv[]) {
     Matrix<Matrix<double>> m{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
-    tdisp(m);
-    tdisp(m(0, 0));
-    tdisp(m(0, 0)(1, 1));
-    tdisp(m.dims());
-    tdisp(m.size());
-    tdisp(m.deepdims());
+    TLDISP(m);
+    TLDISP(m(0, 0));
+    TLDISP(m(0, 0)(1, 1));
+    TLDISP(m.dims());
+    TLDISP(m.size());
+    TLDISP(m.deepdims());
     Matrix<Matrix<double>> m2;
     MOUT << "m2 = -m;" << endl;
     m2 = -m;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
   {
     CR();
     Matrix<Tensor<double, 3>, 2, 2> m1;
-    tdisp(m1);
-    tdisp(m1.dims());
-    tdisp(m1.size());
-    tdisp(m1.deepdims());
+    TLDISP(m1);
+    TLDISP(m1.dims());
+    TLDISP(m1.size());
+    TLDISP(m1.deepdims());
     Dimensions tdims(2, 3, 2);
 
     for (int i = 0; i < m1.dims()[0]; i++) {
@@ -402,18 +402,18 @@ int main(int argc, char *argv[]) {
         }
       }
     }
-    tdisp(m1);
-    tdisp(m1(0, 1));
-    tdisp(m1(1, 0)(1, 2, 0));
-    tdisp(m1.dims());
-    tdisp(m1.size());
-    tdisp(m1.deepdims());
+    TLDISP(m1);
+    TLDISP(m1(0, 1));
+    TLDISP(m1(1, 0)(1, 2, 0));
+    TLDISP(m1.dims());
+    TLDISP(m1.size());
+    TLDISP(m1.deepdims());
 
 
     Matrix<Tensor<double, 3>> m2;
     MOUT << "m2 = -m1;" << endl;
     m2 = -m1;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
   {
@@ -443,10 +443,10 @@ int main(int argc, char *argv[]) {
                                           {-11110, -11111},
                                           {-11120, -11121}}}}};
 
-    tdisp(m1);
-    tdisp(m1.dims());
-    tdisp(m1.size());
-    tdisp(m1.deepdims());
+    TLDISP(m1);
+    TLDISP(m1.dims());
+    TLDISP(m1.size());
+    TLDISP(m1.deepdims());
   }
 
 
@@ -460,62 +460,62 @@ int main(int argc, char *argv[]) {
   {
     CR();
     Tensor<Scalar<double>, 2> t;
-    tdisp(t);
-    tdisp(t.dims());
-    tdisp(t.deepdims());
+    TLDISP(t);
+    TLDISP(t.dims());
+    TLDISP(t.deepdims());
     Dimensions tdims(2, 2);
     t.resize(tdims);
     t(0, 0) = 1;
     t(0, 1) = 2;
     t(1, 0) = 3;
     t(1, 1) = 4;
-    tdisp(t);
-    tdisp(t.dims());
-    tdisp(t.deepdims());
-    tdisp(t.eldims());
+    TLDISP(t);
+    TLDISP(t.dims());
+    TLDISP(t.deepdims());
+    TLDISP(t.eldims());
   }
   {
 
     CR();
     Tensor<Scalar<double>, 2> t{{{1}, {2}}, {{3}, {4}}};
-    tdisp(t);
-    tdisp(t(1, 0));
-    tdisp(t(1, 0)());
-    tdisp(t.dims());
-    tdisp(t.deepdims());
-    tdisp(t.eldims());
+    TLDISP(t);
+    TLDISP(t(1, 0));
+    TLDISP(t(1, 0)());
+    TLDISP(t.dims());
+    TLDISP(t.deepdims());
+    TLDISP(t.eldims());
     decltype(t) xx;
-    tdisp(xx);
+    TLDISP(xx);
     typename decltype(t)::DType d;
-    tdisp(d);
+    TLDISP(d);
     typename decltype(t)::EType e;
-    tdisp(e);
+    TLDISP(e);
 
     Tensor<Scalar<double>, 2> t2;
     typename Tensor<Scalar<double>, 2>::DType d2a;
-    tdisp(d2a);
+    TLDISP(d2a);
     typename Tensor<Scalar<double>, 2>::EType e2a;
-    tdisp(e2a);
+    TLDISP(e2a);
     typename decltype(t2)::DType d2b;
-    tdisp(d2b);
+    TLDISP(d2b);
     typename decltype(t2)::EType e2b;
-    tdisp(e2b);
+    TLDISP(e2b);
     t2 = -t;
-    tdisp(t2);
+    TLDISP(t2);
   }
 
   {
     CR();
     Tensor<Vector<double>, 2> t{{{1, 2, 3}, {4, 5, 6}}, {{7, 8, 9}, {10, 11, 12}}};
-    tdisp(t);
-    tdisp(t(0, 0));
-    tdisp(t(0, 0)(1));
-    tdisp(t.dims());
-    tdisp(t.deepdims());
+    TLDISP(t);
+    TLDISP(t(0, 0));
+    TLDISP(t(0, 0)(1));
+    TLDISP(t.dims());
+    TLDISP(t.deepdims());
     Tensor<Vector<double>, 2> t2;
     MOUT << "t2 = -t;" << endl;
     t2 = -t;
-    tdisp(t2);
+    TLDISP(t2);
   }
 
   {
@@ -523,25 +523,25 @@ int main(int argc, char *argv[]) {
     Tensor<Matrix<double, 2, 2>, 2> m{
         {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},
         {{{9, 10}, {11, 12}}, {{13, 14}, {15, 16}}}};
-    tdisp(m);
-    tdisp(m(0, 0));
-    tdisp(m(0, 0)(1, 1));
-    tdisp(m.dims());
-    tdisp(m.size());
-    tdisp(m.deepdims());
+    TLDISP(m);
+    TLDISP(m(0, 0));
+    TLDISP(m(0, 0)(1, 1));
+    TLDISP(m.dims());
+    TLDISP(m.size());
+    TLDISP(m.deepdims());
     Tensor<Matrix<double, 2, 2>, 2> m2;
     MOUT << "m2 = -m;" << endl;
     m2 = -m;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
   {
     CR();
     Tensor<Tensor<double, 3>, 2> m1;
-    tdisp(m1);
-    tdisp(m1.dims());
-    tdisp(m1.size());
-    tdisp(m1.deepdims());
+    TLDISP(m1);
+    TLDISP(m1.dims());
+    TLDISP(m1.size());
+    TLDISP(m1.deepdims());
     Dimensions tdims1(2, 2);
     m1.resize(tdims1);
     Dimensions tdims2(2, 3, 2);
@@ -558,18 +558,18 @@ int main(int argc, char *argv[]) {
         }
       }
     }
-    tdisp(m1);
-    tdisp(m1(0, 1));
-    tdisp(m1(1, 0)(1, 2, 0));
-    tdisp(m1.dims());
-    tdisp(m1.size());
-    tdisp(m1.deepdims());
+    TLDISP(m1);
+    TLDISP(m1(0, 1));
+    TLDISP(m1(1, 0)(1, 2, 0));
+    TLDISP(m1.dims());
+    TLDISP(m1.size());
+    TLDISP(m1.deepdims());
 
 
     Tensor<Tensor<double, 3>, 2> m2;
     MOUT << "m2 = -m1;" << endl;
     m2 = -m1;
-    tdisp(m2);
+    TLDISP(m2);
   }
 
   {
@@ -599,10 +599,10 @@ int main(int argc, char *argv[]) {
                                        {-11110, -11111},
                                        {-11120, -11121}}}}};
 
-    tdisp(m1);
-    tdisp(m1.dims());
-    tdisp(m1.size());
-    tdisp(m1.deepdims());
+    TLDISP(m1);
+    TLDISP(m1.dims());
+    TLDISP(m1.size());
+    TLDISP(m1.deepdims());
   }
 
 

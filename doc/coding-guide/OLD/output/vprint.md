@@ -9,13 +9,13 @@ _This document was automatically generated from file_ **`vprint.cpp`** (Mathéma
 
 * All of the functions decribed in this section are in the namespace `display`
 * Practically speaking, this functionality is one of the most useful aspects of Mathématiques.
-## The function `disp(x)`
+## The function `DISP(x)`
 
 
-The function `disp(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.
+The function `DISP(x)` displays both the variable name (or expression) as well as its value, formatted according to the user.   This is an incredibly useful function.
 
 
-**EXAMPLE 1**: simple examples of `disp(x)` usage
+**EXAMPLE 1**: simple examples of `DISP(x)` usage
 
 
 Define and initialize some variables:
@@ -36,15 +36,15 @@ display each variable using `disp`:
 
 
 ```C++
-disp(n);
-disp(m);
-disp(x);
-disp(vals);
-disp(done);
-disp(v);
-disp(str);
-disp(s);
-disp(z);
+DISP(n);
+DISP(m);
+DISP(x);
+DISP(vals);
+DISP(done);
+DISP(v);
+DISP(str);
+DISP(s);
+DISP(z);
 ```
 
 
@@ -52,25 +52,25 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 1](disp_example1.png)
-## The function `tdisp(x)`
+## The function `TLDISP(x)`
 
 
-The function `tdisp(x)` displays the variable type, in addition to the variable name and value
+The function `TLDISP(x)` displays the variable type, in addition to the variable name and value
 
 
-**EXAMPLE 2**:  `tdisp(x)` usage
+**EXAMPLE 2**:  `TLDISP(x)` usage
 
 
 ```C++
-tdisp(n);
-tdisp(m);
-tdisp(x);
-tdisp(vals);
-tdisp(done);
-tdisp(v);
-tdisp(str);
-tdisp(s);
-tdisp(z);
+TLDISP(n);
+TLDISP(m);
+TLDISP(x);
+TLDISP(vals);
+TLDISP(done);
+TLDISP(v);
+TLDISP(str);
+TLDISP(s);
+TLDISP(z);
 ```
 
 
@@ -78,20 +78,20 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 2](disp_example2.png)
-## The function `mdisp(x1,x2,...)`
+## The function `MDISP(x1,x2,...)`
 
 
-* The function `mdisp(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.
+* The function `MDISP(x1,x2,...)` displays multiple variables (from 1 to 10) on the same line.
 * Very useful for displaying:
   * the arguments passed to a function
   * the variables inside a for loop
 
 
-**EXAMPLE 3**:  `mdisp(x1,x2,...)` usage
+**EXAMPLE 3**:  `MDISP(x1,x2,...)` usage
 
 
 ```C++
-mdisp(n,m,x,vals,done,str,s,z);
+MDISP(n,m,x,vals,done,str,s,z);
 ```
 
 
@@ -99,18 +99,18 @@ The actual screen-shot of the output is shown below:
 
 
 ![disp example 3](disp_example3.png)
-## The function `dispval(x)`
+## The function `DISPVAL(x)`
 
 
-* The function `dispval(x)` prints only the variable value, without the name and equals sign, and _without a carriage return_.
+* The function `DISPVAL(x)` prints only the variable value, without the name and equals sign, and _without a carriage return_.
 
 
-**EXAMPLE 4**:  `dispval(x)` usage
+**EXAMPLE 4**:  `DISPVAL(x)` usage
 
 
 ```C++
-dispval(n);
-dispval(m);
+DISPVAL(n);
+DISPVAL(m);
 ```
 
 
@@ -129,11 +129,11 @@ The actual screen-shot of the output is shown below:
 
 
 ```C++
-disp(n+3);
-disp(10*x-1);
-disp(!done);
-disp( round(10*sin(pi/10*v) + 10) );
-disp(s+" tour");
+DISP(n+3);
+DISP(10*x-1);
+DISP(!done);
+DISP( round(10*sin(pi/10*v) + 10) );
+DISP(s+" tour");
 ```
 
 
@@ -171,10 +171,10 @@ The following types are currently supported by the display commands
 
 | `MOUT`  | `ostream` |
 | ------------- | ------------- |
-| `dispval(x)`  | `dispval_strm(ostream,x)`  |
-| `disp(x)`  | `DISP_STRM(ostream,x)`  |
-| `tdisp(x)`  | `tdisp_strm(ostream,x)`  |
-| `mdisp(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |
+| `DISPVAL(x)`  | `dispval_strm(ostream,x)`  |
+| `DISP(x)`  | `DISP_STRM(ostream,x)`  |
+| `TLDISP(x)`  | `TDISP_STRM(ostream,x)`  |
+| `MDISP(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |
 
 
 ## Debug-only printing

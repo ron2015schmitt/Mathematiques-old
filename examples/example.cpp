@@ -43,21 +43,21 @@ int main(int argc, char *argv[]) {
   Vector<double> v2;
   v2 = 10 * sin(pi / 2 * v1) + 10;
 
-  disp(v1);
-  disp(v2);
-  disp(v1 + v2);
+  DISP(v1);
+  DISP(v2);
+  DISP(v1 + v2);
 
   // dot product
-  disp(v1 | v2);
+  DISP(v1 | v2);
 
   const double N = double(v2.size());
   // mean
   double mu2 = sum(v2) / N;
-  disp(mu2);
 
   // std deviation
   double sigma2 = norm(v2 - mu2) / sqrt(N - 1);
-  disp(sigma2);
+
+  MDISP(mu2, sigma2);
 
   CR();
   MOUT << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;

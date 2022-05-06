@@ -1393,7 +1393,7 @@ namespace matricks {
   template <class A> 
     inline Vector<index_type>& findtrue( const TensorR<bool,A>& a ) {
     int N = 0;
-    tdisp(a);
+    TLDISP(a);
 
     for (index_type i = 0; i< a.size(); i++)
       N += int(a[i]);

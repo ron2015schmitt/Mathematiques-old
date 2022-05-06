@@ -101,10 +101,10 @@ int main(int argc, char *argv[]) {
 
   if constexpr (3 > 1) {
     int x = 5;
-    disp(x);
+    DISP(x);
   } else {
     int y = 7;
-    disp(y);
+    DISP(y);
   }
 
 
@@ -113,43 +113,43 @@ int main(int argc, char *argv[]) {
   x[0] = 1.1;
   x[1] = 2.2;
   x[2] = 3.3;
-  tdisp(x);
-  tdisp(y);
+  TLDISP(x);
+  TLDISP(y);
 
-  disp(has_helloworld<Hello>::value);
-  disp(has_helloworld<Generic>::value);
+  DISP(has_helloworld<Hello>::value);
+  DISP(has_helloworld<Generic>::value);
 
   {
     Vector<double, 3> v;
-    tdisp(v.size());
+    TLDISP(v.size());
     v(0) = 1.1;
     v(1) = 2.2;
     v(2) = 3.3;
-    tdisp(v);
+    TLDISP(v);
   }
 
   {
     Vector<double> v(3);
-    tdisp(v.size());
+    TLDISP(v.size());
     v(0) = 1.1;
     v(1) = 2.2;
     v(2) = 3.3;
-    tdisp(v);
+    TLDISP(v);
   }
 
   {
     yabba<double, 3> v(1, 2, 3);
-    tdisp(v[0]);
-    tdisp(v[1]);
-    tdisp(v[2]);
+    TLDISP(v[0]);
+    TLDISP(v[1]);
+    TLDISP(v[2]);
   }
 
 
   {
     std::valarray<double> val;
-    tdisp(val);
+    TLDISP(val);
     val.resize(4);
-    tdisp(val);
+    TLDISP(val);
   }
 
 

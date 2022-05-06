@@ -27,45 +27,45 @@ int main()
 
 
 
-  text("The Mathématiques library provides extensive debugging operation, turned on using the flag `MATHQ_DEBUG`");
+  OUTPUT("The Mathématiques library provides extensive debugging operation, turned on using the flag `MATHQ_DEBUG`");
 
-  text("In this mode extensive error checking is performed to notify the programmer of");
+  OUTPUT("In this mode extensive error checking is performed to notify the programmer of");
 
-  text(" - out of bounds access for vectors or matrices (e.g. x[10] where x has size less than 9");
-  text(" - adding/subtracting/multiplying/dividing vector or matrices of unequal size");
-  text(" - invalid dot products of vector and/or matrices ");
-  text(" - other assorted errors and warnings");
+  OUTPUT(" - out of bounds access for vectors or matrices (e.g. x[10] where x has size less than 9");
+  OUTPUT(" - adding/subtracting/multiplying/dividing vector or matrices of unequal size");
+  OUTPUT(" - invalid dot products of vector and/or matrices ");
+  OUTPUT(" - other assorted errors and warnings");
 
 
   header2("SETTING `MATHQ_DEBUG` MODE");
 
-  text("There are two methods to accomplish this.");
+  OUTPUT("There are two methods to accomplish this.");
 
-  text("1. Use the provided sample makefile and specify `MATHQ_DEBUG=1` on the command line");
+  OUTPUT("1. Use the provided sample makefile and specify `MATHQ_DEBUG=1` on the command line");
 
-  text("```make clean MATHQ_DEBUG=1 myprogram```");
+  OUTPUT("```make clean MATHQ_DEBUG=1 myprogram```");
 
-  text("The target `clean` is not needed, but is a recomended practice.");
-
-
-  text("1. Add a `#define MATHQ_DEBUG 1` statement BEFORE each `mathq.h` include statement");
+  OUTPUT("The target `clean` is not needed, but is a recomended practice.");
 
 
-  codestart("C++");
+  OUTPUT("1. Add a `#define MATHQ_DEBUG 1` statement BEFORE each `mathq.h` include statement");
 
-  text("#define MATHQ_DEBUG 1");
-  text("#include \"mathq.h\"");
-  codeend();
+
+  GMD_CODE_START("C++");
+
+  OUTPUT("#define MATHQ_DEBUG 1");
+  OUTPUT("#include \"mathq.h\"");
+  GMD_CODE_END();
 
   header2("DEBUG LEVELS");
 
-  text(" to be written...");
+  OUTPUT(" to be written...");
 
   header2("RECOMMENDATIONS");
 
-  text("* While developing your code, use `MATHQ_DEBUG` mode.  When you are convinced that it is operating without errors or warnings, run normally.");
+  OUTPUT("* While developing your code, use `MATHQ_DEBUG` mode.  When you are convinced that it is operating without errors or warnings, run normally.");
   
-  text("* Compile a `MATHQ_DEBUG` and a quick version of your code, giving the executables different names. This way if a segmentation fault occurs, or you otherwise suspect an error, you can quickly check the problem under careful mode.");
+  OUTPUT("* Compile a `MATHQ_DEBUG` and a quick version of your code, giving the executables different names. This way if a segmentation fault occurs, or you otherwise suspect an error, you can quickly check the problem under careful mode.");
   
   mathq_toc();
   

@@ -183,7 +183,7 @@ int main() {
     }
 
     t.stop_timer_curt();
-    // tdisp(f);
+    // TLDISP(f);
   }
   {
     // int N = 5;
@@ -196,7 +196,7 @@ int main() {
     f = sin(2 * log10(abs(x / 5) * 100) + 3 + pow(-x, 2));
 
     t.stop_timer_curt();
-    // tdisp(f);
+    // TLDISP(f);
   }
 
   tfull.stop_timer_silent();

@@ -27,17 +27,17 @@ int main()
   mathq_preamble();
 
   header3("dot product—the `|` operator");
-  text("* The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.");
-  text("* This definition becomes very useful for taking the product of matrices because any number of matrices can be multiplied in a single line of code.");
+  OUTPUT("* The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.");
+  OUTPUT("* This definition becomes very useful for taking the product of matrices because any number of matrices can be multiplied in a single line of code.");
   
   {
     CR();
     CR();
     EXAMPLE(Nex++,"Dot product of two real vectors `(v1|v2)`");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti(Vector<double> v1(range<double>(1,4)));
     codemultiNoteC11Array(Vector<double> v2({1,-1,1,-1}));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -56,8 +56,8 @@ int main()
     CR();
     EXAMPLE(Nex++,"Dot product of two complex vectors `(~v1|v2)=(conj(v1)|v2)`");
     CR();
-    text("The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.");
-    codestart("C++");
+    OUTPUT("The complex dot product is defined such that the first vector conjugated.  In this manner, the dot product of a complex vector with itself produces a real number.");
+    GMD_CODE_START("C++");
     codemulti(using namespace std);
     codemulti(const double tol = 2e-16);
     codemulti(Vector<complex<double> > v1);
@@ -66,7 +66,7 @@ int main()
     codemulti(Vector<complex<double> > v2);
     codemulti(v2 = Complex(range<double>(-1,-2), range<double>(2,3)));
     codemulti(v2.roundzero(tol));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -86,9 +86,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"`sum` the elements of a vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -103,9 +103,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"`sum` the elements of a vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -120,10 +120,10 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"`integrate_a2b` a vector over the interval [a,b]");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v );
     codemulti( v = exp(linspace<double>(-1,1,13)));
-    codeend();
+    GMD_CODE_END();
     CR();
    
     resultstart2(" precise value to 16 digits is 2.35040238729 (via Mathematica)");
@@ -139,9 +139,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Compute the _product_ of the elements of a vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,2,3,4}));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -157,9 +157,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Find the _minimum_ of the elements of a vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,20,-1,0}));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    
@@ -176,9 +176,9 @@ int main()
     CR();
     CR();
     EXAMPLE(Nex++,"Find the _maximum_ of the elements of a vector");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemultiwcomment("C++11 list initialization", Vector<double> v({1,20,-1,0}));
-    codeend();
+    GMD_CODE_END();
     CR();
 
    

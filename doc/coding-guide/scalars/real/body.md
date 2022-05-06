@@ -60,8 +60,8 @@ Two associated constants are defined: ```true``` and ```false```.
 ```C++
 CHAR_BIT*sizeof(bool) = 8 bits
 
-false  ➜  bool 0
-true  ➜  bool 1
+false ➜  bool 0
+true ➜  bool 1
 ```
 
 <br>
@@ -140,12 +140,12 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 * If both numerator and denominator are integers, the division operator gives the integer division result.
 
 ```C++
-7 / 2  ➜  int 3
+7 / 2 ➜  int 3
 ```
 * The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.
 
 ```C++
-7 % 2  ➜  int 1
+7 % 2 ➜  int 1
 ```
 * The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
@@ -155,6 +155,6 @@ div_t result = div(7, 2);
 With result:
 
 ```C++
-result.quot  ➜  int 3
-result.rem  ➜  int 1
+result.quot ➜  int 3
+result.rem ➜  int 1
 ```

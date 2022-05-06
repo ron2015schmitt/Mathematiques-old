@@ -502,7 +502,7 @@ namespace mathq {
 	index_type d = 0;
 	index_type sz = dims[n-d-1];
 	index_type ind = ++(inds[n-d-1]);
-	//mdisp(m,n,d,sz,ind,inds[n-d-1]);
+	//MDISP(m,n,d,sz,ind,inds[n-d-1]);
 	while (ind >= sz) {
 	  inds[n-d-1] = 0;
 	  d++;
@@ -595,7 +595,7 @@ namespace mathq {
 
       template <class D, int R, int M>
 	static void compute(Tensor<E,R,D,M>& t, const type& item, int& i) {
-	//tdisp(item);
+	//TLDISP(item);
 	t[i++] = item;
       }
 
@@ -665,7 +665,7 @@ namespace mathq {
     DeepIndices dinds(ddims);
     for(index_type i = 0; i < Ndeep; i++) {
       // set equal
-      //mdisp(i,dinds,tin.dat(i),tin.dat(dinds));
+      //MDISP(i,dinds,tin.dat(i),tin.dat(dinds));
       DeepIndices rinds = dinds.getReverse();
       tout->dat(rinds) = tin.dat(dinds);
       dinds++;

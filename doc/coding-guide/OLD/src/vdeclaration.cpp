@@ -32,49 +32,49 @@ int main()
  
   {
     EXAMPLE(Nex++, "Declare vector `v` (initialize to zeros).");
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( const size_type N = 4 );
     codemulti( Vector<double> v(N) );
-    codeend();
+    GMD_CODE_END();
     RESULT(v);
   }
 
   {
     EXAMPLE(Nex++, "Declare `v` and initialize to a constant" );
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v(4, -1 ) );
-    codeend();
+    GMD_CODE_END();
     RESULT(v);
   }
 
   {
     EXAMPLE(Nex++, "Declare `v` and initialize to a **C-style array** of values" );
     CR();
-    text("In debug mode, this produces a warning, as shown below");
-    codestart("C++");
+    OUTPUT("In debug mode, this produces a warning, as shown below");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v( 4, (const double[]) {10, 20, 30, 40} )  );
-    codeend();
+    GMD_CODE_END();
     RESULT(v);
   }
 
   {
     EXAMPLE(Nex++, "Declare `v` and initialize directly from a list (**__C++11__**)" );
-    codestart("C++");
+    GMD_CODE_START("C++");
     codemulti( Vector<double> v({10, 20, 30, 40})  );
-    codeend();
+    GMD_CODE_END();
     RESULT(v);
   }
 
   {
     EXAMPLE(Nex++, "Declare `v2` and initialize to values of `v1`" );
-    text("* Note that this is a _copy_ constructor.");
-    text("* In fact _all_ of the `Vector` constructors are _copy_ constructors.");
-    codestart("C++");
+    OUTPUT("* Note that this is a _copy_ constructor.");
+    OUTPUT("* In fact _all_ of the `Vector` constructors are _copy_ constructors.");
+    GMD_CODE_START("C++");
     codemultiNoteC11Array( Vector<double> v1( {10,11,12,13} ) );
     codemulti( Vector<double> v2(v1) );
     codemulti( v1[0] = -1 );
     codemulti( v2[0] = -2 );
-    codeend();
+    GMD_CODE_END();
     resultstart();
     resultmulti(v1);
     resultmulti(v2);
@@ -83,11 +83,11 @@ int main()
 
   {
     EXAMPLE(Nex++, "Declare `v2` and initialize to an expression" );
-    text("* The expression is computed without creating any intermediate objects.");  
-    codestart("C++");
+    OUTPUT("* The expression is computed without creating any intermediate objects.");  
+    GMD_CODE_START("C++");
     codemultiNoteC11Array( Vector<double> v1({10,11,12,13} ) );
     codemulti( Vector<double> v2(10*v1+1) );
-    codeend();
+    GMD_CODE_END();
     resultstart();
     resultmulti(v1);
     resultmulti(v2);

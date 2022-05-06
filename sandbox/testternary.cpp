@@ -49,9 +49,9 @@ int main(int argc, char *argv[]) {
     int s = -10;
     unsigned int u = 5;
 
-    tdisp(s);
-    tdisp(u);
-    tdisp(s + u);
+    TLDISP(s);
+    TLDISP(u);
+    TLDISP(s + u);
     CR();
   }
   MOUT << blue.apply("Vector-Vector tests") << endl;
@@ -75,38 +75,38 @@ int main(int argc, char *argv[]) {
     Vector<complex<int>> VcomplexInt{complex<int>(1, -2), complex<int>(1, 0), complex<int>(0, 1)};
     MOUT << blue.apply("Given:") << endl;
     MOUT << "  ";
-    tdisp(Vshort);
+    TLDISP(Vshort);
     MOUT << "  ";
-    tdisp(Vint1);
+    TLDISP(Vint1);
     MOUT << "  ";
-    tdisp(Vint2);
+    TLDISP(Vint2);
     MOUT << "  ";
-    tdisp(vLong);
+    TLDISP(vLong);
     MOUT << "  ";
-    tdisp(Vunsigned);
+    TLDISP(Vunsigned);
     MOUT << "  ";
-    tdisp(Vl);
+    TLDISP(Vl);
     MOUT << "  ";
-    tdisp(Vm);
+    TLDISP(Vm);
     MOUT << "  ";
-    tdisp(Vdouble1);
+    TLDISP(Vdouble1);
     MOUT << "  ";
-    tdisp(Vdouble2);
+    TLDISP(Vdouble2);
     MOUT << "  ";
-    tdisp(Vfloat);
+    TLDISP(Vfloat);
     MOUT << "  ";
-    tdisp(Vextended);
+    TLDISP(Vextended);
     CR();
     MOUT << blue.apply("Vector,Vector,Vector") << endl;
-    tdisp(std::sph_legendre(3, 0, 1.2345));
-    tdisp(sph_legendre(Vl, Vm, Vdouble1));
-    tdisp(sph_legendre(Vl, Vm, 1.2345));
-    tdisp(sph_legendre(Vl, 0, Vdouble1));
-    tdisp(sph_legendre(Vl, 3, 1.2345));
-    tdisp(sph_legendre(3, Vm, Vdouble1));
-    tdisp(sph_legendre(3, 0, Vdouble1));
-    tdisp(sph_legendre(3, Vm, 1.2345));
-    //    tdisp(sph_legendre(3,Vm,Vdouble1));
+    TLDISP(std::sph_legendre(3, 0, 1.2345));
+    TLDISP(sph_legendre(Vl, Vm, Vdouble1));
+    TLDISP(sph_legendre(Vl, Vm, 1.2345));
+    TLDISP(sph_legendre(Vl, 0, Vdouble1));
+    TLDISP(sph_legendre(Vl, 3, 1.2345));
+    TLDISP(sph_legendre(3, Vm, Vdouble1));
+    TLDISP(sph_legendre(3, 0, Vdouble1));
+    TLDISP(sph_legendre(3, Vm, 1.2345));
+    //    TLDISP(sph_legendre(3,Vm,Vdouble1));
     CR();
 
     short sh = 2;
@@ -119,19 +119,19 @@ int main(int argc, char *argv[]) {
 
     MOUT << blue.apply("Given:") << endl;
     MOUT << "  ";
-    tdisp(sh);
+    TLDISP(sh);
     MOUT << "  ";
-    tdisp(n);
+    TLDISP(n);
     MOUT << "  ";
-    tdisp(longo);
+    TLDISP(longo);
     MOUT << "  ";
-    tdisp(u);
+    TLDISP(u);
     MOUT << "  ";
-    tdisp(dub);
+    TLDISP(dub);
     MOUT << "  ";
-    tdisp(f);
+    TLDISP(f);
     MOUT << "  ";
-    tdisp(e);
+    TLDISP(e);
 
     CR();
     MOUT << blue.apply("Vector,Vector,scalar :") << endl;
@@ -154,25 +154,25 @@ int main(int argc, char *argv[]) {
     Vector<double> v0{100, 200, 300};
     MOUT << blue.apply("Given:") << endl;
     MOUT << "  ";
-    tdisp(m1);
+    TLDISP(m1);
     MOUT << "  ";
-    tdisp(v0);
+    TLDISP(v0);
     CR();
 
     MOUT << "element-wise addition is chosen, since the elements are Vectors" << endl;
     MOUT << "  ";
-    tdisp(m1 + v0);
+    TLDISP(m1 + v0);
     MOUT << "  ";
-    tdisp(v0 + m1);
+    TLDISP(v0 + m1);
 
     CR();
     MOUT << "Element-access:" << endl;
     MOUT << "  ";
-    tdisp(m1[0]);
+    TLDISP(m1[0]);
     MOUT << "  ";
-    tdisp((m1 + v0)[0]);
+    TLDISP((m1 + v0)[0]);
     MOUT << "  ";
-    tdisp((v0 + m1)[0]);
+    TLDISP((v0 + m1)[0]);
   }
 
 
@@ -183,25 +183,25 @@ int main(int argc, char *argv[]) {
 
     MOUT << blue.apply("Given:") << endl;
     MOUT << "  ";
-    tdisp(v1);
+    TLDISP(v1);
     MOUT << "  ";
-    tdisp(v0);
+    TLDISP(v0);
 
     CR();
     MOUT << "Top-level addition is chosen, since the top-level is a vector" << endl;
     MOUT << "  ";
-    tdisp(v1 + v0);
+    TLDISP(v1 + v0);
     MOUT << "  ";
-    tdisp(v0 + v1);
+    TLDISP(v0 + v1);
 
     CR();
     MOUT << "Element-access:" << endl;
     MOUT << "  ";
-    tdisp(v1[1]);
+    TLDISP(v1[1]);
     MOUT << "  ";
-    tdisp((v1 + v0)[1]);
+    TLDISP((v1 + v0)[1]);
     MOUT << "  ";
-    tdisp((v0 + v1)[1]);
+    TLDISP((v0 + v1)[1]);
   }
 
 
@@ -214,36 +214,36 @@ int main(int argc, char *argv[]) {
   //   Vector<double> v0 {10,20,30};
   //   string s;
   //   MOUT << blue.apply("Given:") << endl;
-  //   MOUT<<"  ";tdisp(v1);
-  //   MOUT<<"  ";tdisp(v0);
+  //   MOUT<<"  ";TLDISP(v1);
+  //   MOUT<<"  ";TLDISP(v0);
   //   CR();
   //   MOUT << "By analysing the dimensions element-wise addition is chosen" << endl;
-  //   MOUT<<"  ";tdisp(v1+v0);
-  //   MOUT<<"  ";tdisp(v0+v1);
+  //   MOUT<<"  ";TLDISP(v1+v0);
+  //   MOUT<<"  ";TLDISP(v0+v1);
 
   //   CR();
   //   MOUT << "Element-access:" << endl;
-  //   MOUT<<"  ";tdisp(v1[1]);
-  //   MOUT<<"  ";tdisp((v1+v0)[1]);
-  //   MOUT<<"  ";tdisp((v0+v1)[1]);
+  //   MOUT<<"  ";TLDISP(v1[1]);
+  //   MOUT<<"  ";TLDISP((v1+v0)[1]);
+  //   MOUT<<"  ";TLDISP((v0+v1)[1]);
 
   //   CR();
   //   CR();
   //   Vector<double> v00 {100,200};
   //   MOUT << blue.apply("Given:") << endl;
 
-  //   MOUT<<"  ";tdisp(v1);
-  //   MOUT<<"  ";tdisp(v00);
+  //   MOUT<<"  ";TLDISP(v1);
+  //   MOUT<<"  ";TLDISP(v00);
   //   CR();
   //   MOUT << "By analysing the dimensions top-level addition is chosen" << endl;
-  //   MOUT<<"  ";tdisp(v1+v00);
-  //   MOUT<<"  ";tdisp(v00+v1);
+  //   MOUT<<"  ";TLDISP(v1+v00);
+  //   MOUT<<"  ";TLDISP(v00+v1);
 
   //   CR();
   //   MOUT << "Element-access:" << endl;
-  //   MOUT<<"  ";tdisp(v1[1]);
-  //   MOUT<<"  ";tdisp((v1+v00)[1]);
-  //   MOUT<<"  ";tdisp((v00+v1)[1]);
+  //   MOUT<<"  ";TLDISP(v1[1]);
+  //   MOUT<<"  ";TLDISP((v1+v00)[1]);
+  //   MOUT<<"  ";TLDISP((v00+v1)[1]);
   // }
 
 
@@ -253,21 +253,21 @@ int main(int argc, char *argv[]) {
   // {
   //   CR();
   //   Vector<Vector<double>> v1 {{1,2},{4,5}};
-  //   MOUT<<"  ";tdisp(v1);
+  //   MOUT<<"  ";TLDISP(v1);
   //   Vector<double> v0 {10,20};
-  //   MOUT<<"  ";tdisp(v0);
+  //   MOUT<<"  ";TLDISP(v0);
   //   CR();
   //   MOUT << "Adding from the right yields element-wise: each element of v1 is added with v0" << endl;
-  //   MOUT<<"  ";tdisp(v1+v0);
+  //   MOUT<<"  ";TLDISP(v1+v0);
   //   CR();
   //   MOUT << "Adding from the left yields Top-level: add v0[0] to vector v1[0], add v0[1] to vector v1[1]" << endl;
-  //   MOUT<<"  ";tdisp(v0+v1);
+  //   MOUT<<"  ";TLDISP(v0+v1);
 
   //   CR();
   //   MOUT << "Element-access:" << endl;
-  //   MOUT<<"  ";tdisp(v1[1]);
-  //   MOUT<<"  ";tdisp((v1+v0)[1]);
-  //   MOUT<<"  ";tdisp((v0+v1)[1]);
+  //   MOUT<<"  ";TLDISP(v1[1]);
+  //   MOUT<<"  ";TLDISP((v1+v0)[1]);
+  //   MOUT<<"  ";TLDISP((v0+v1)[1]);
   //   CR();
   // }
 

@@ -142,33 +142,33 @@ int main(int argc, char *argv[]) {
 
 
   {
-    tdisp(sizeof(int));
-    tdisp(sizeof(unsigned));
-    tdisp(sizeof(unsigned int));
-    tdisp(sizeof(IndexUnion));
+    TLDISP(sizeof(int));
+    TLDISP(sizeof(unsigned));
+    TLDISP(sizeof(unsigned int));
+    TLDISP(sizeof(IndexUnion));
   }
 
   {
     Holder h;
-    tdisp(h);
+    TLDISP(h);
 
     Index ind(-1);
-    tdisp(ind);
+    TLDISP(ind);
     h[ind] = 4.4;
-    tdisp(h);
+    TLDISP(h);
 
     Index ind2(1u);
-    tdisp(ind2);
+    TLDISP(ind2);
     h[ind2] = 1.1;
-    tdisp(h);
+    TLDISP(h);
 
-    tdisp(2u);
+    TLDISP(2u);
     h[2u] = 2.2;
-    tdisp(h);
+    TLDISP(h);
 
-    tdisp(-2);
+    TLDISP(-2);
     h[-2] = 3.3;
-    tdisp(h);
+    TLDISP(h);
   }
 
 

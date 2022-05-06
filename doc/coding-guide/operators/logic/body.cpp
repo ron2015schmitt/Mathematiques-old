@@ -15,45 +15,45 @@ int main() {
   using namespace display;
   
 
-  markdown_preamble();
+  GMD_PREAMBLE();
 
   CR();
   CR();
 
   vspace();
   header2("Logic Operators");
-  text("For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).\n");
+  OUTPUT("For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).\n");
 
   CR();
-  text("| operator | operation | ");
-  text("| :---: | :---: | ");
-  text("| `!` | logical NOT | ");
-  text("| `\\|\\|` | logical OR | ");
-  text("| `&&` | logical AND | ");
+  OUTPUT("| operator | operation | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `!` | logical NOT | ");
+  OUTPUT("| `\\|\\|` | logical OR | ");
+  OUTPUT("| `&&` | logical AND | ");
   CR();
 
-  text("**CAVEAT**: C++ also has binary bit-wise operators `&` and `|`.  Mistyping the above operators can cause painful bugs. \n");
+  OUTPUT("**CAVEAT**: C++ also has binary bit-wise operators `&` and `|`.  Mistyping the above operators can cause painful bugs. \n");
 
   CR();
-  text("Examples:\n");
-  codestart("C++");
-  trdisp(true);
-  trdisp(false);
-  trdisp(!true);
-  trdisp(!false);
-  trdisp(true && true);
-  trdisp(true && false);
-  trdisp(true || false);
-  codeend();
+  OUTPUT("Examples:\n");
+  GMD_CODE_START("C++");
+  TRDISP(true);
+  TRDISP(false);
+  TRDISP(!true);
+  TRDISP(!false);
+  TRDISP(true && true);
+  TRDISP(true && false);
+  TRDISP(true || false);
+  GMD_CODE_END();
 
-  text("* In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`\n");
-  codestart("C++");
-  trdisp(!true);
-  trdisp(!8);
-  trdisp(!!8.293);
-  trdisp(true && 3);
-  trdisp(true && 0);
-  codeend();
+  OUTPUT("* In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`\n");
+  GMD_CODE_START("C++");
+  TRDISP(!true);
+  TRDISP(!8);
+  TRDISP(!!8.293);
+  TRDISP(true && 3);
+  TRDISP(true && 0);
+  GMD_CODE_END();
 
   vspace();
 

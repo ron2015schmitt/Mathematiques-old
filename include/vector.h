@@ -1045,7 +1045,7 @@ namespace mathq {
   // any change in the default parameters must be likewise made in vfunctions.h: deriv(...)
 
   Vector<E,NE,D,M>& deriv(const E a, const E b, const int n=1, int Dpts=7, const bool periodic=false) {
-    //mdisp(a,b,n,Dpts,periodic);
+    //MDISP(a,b,n,Dpts,periodic);
     const size_type N = size();
     if (N<=1) return *this;
 

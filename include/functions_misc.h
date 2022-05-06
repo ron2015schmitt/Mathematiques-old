@@ -692,9 +692,9 @@ public:
   
   template <class X, class E, class D, int M, int R>
   EnableMethodIf<R==1,Vector<E>&>  deriv(const TensorR<X,E,D,M,R>& f, const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
-    //    mdisp(a,b,n,Dpts,periodic,f.size());
+    //    MDISP(a,b,n,Dpts,periodic,f.size());
     Vector<E> *df = new Vector<E>(f.size());
-    //    tdisp(*df);
+    //    TLDISP(*df);
     *df = f;
     df->deriv(a,b,n,Dpts,periodic);
     return *df;

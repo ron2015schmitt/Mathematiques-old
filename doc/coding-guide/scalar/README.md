@@ -1,4 +1,4 @@
-# Mathématiques v3.5.15
+# Mathématiques v3.5.17
 
 
 <details>
@@ -28,13 +28,14 @@
 
 
 7.1. _Scalar Math: real, imaginary, complex, and quaternions_ <br>
-7.2. [Display of Results](../display/README.md)<br>
-7.3. [Vectors](../vector/README.md)<br>
-7.4. [Matrices](../matrix/README.md)<br>
-7.5. [Linear Algebra](../linear-algebra/README.md)<br>
-7.6. [Tensors](../tensor/README.md)<br>
-7.7. [FILE I/O](../file-io/README.md)<br>
-7.8. [Debug Modes](../debug/README.md)<br>
+7.2. [Vectors](../vector/README.md)<br>
+7.3. [Matrices](../matrix/README.md)<br>
+7.4. [Tensors](../tensor/README.md)<br>
+7.5. [User Guide Notation](../notation/README.md)<br>
+7.6. [Display of Results](../display/README.md)<br>
+7.7. [Linear Algebra](../linear-algebra/README.md)<br>
+7.8. [FILE I/O](../file-io/README.md)<br>
+7.9. [Debug Modes](../debug/README.md)<br>
 
 
 </details>

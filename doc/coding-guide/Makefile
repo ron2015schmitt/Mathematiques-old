@@ -2,13 +2,13 @@
 # VARIABLES
 #############################################################
 
-CHAPTERS = scalar display vector matrix linear-algebra tensor file-io debug
+CHAPTERS = scalar vector matrix tensor notation display linear-algebra  file-io debug
 
 include ../../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk
 
 NONEXEC = branch.json README.md $(LEAF_READMES)
-EXEC += 
+EXEC += ./notation/body
 ALL += 
 
 #---------------------------------------------------------------------
@@ -16,6 +16,8 @@ ALL +=
 #---------------------------------------------------------------------
 include $(DIR_MATHQ)/make-lib/doc.recipes.mk
 
+%.md: %
+	./$* > $@
 
 
 

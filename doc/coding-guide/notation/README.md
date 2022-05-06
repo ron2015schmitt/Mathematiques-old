@@ -1,4 +1,4 @@
-# Mathématiques v3.5.17
+# Mathématiques v3.5.18
 
 
 <details>
@@ -31,10 +31,11 @@
 7.3. [Matrices](../matrix/README.md)<br>
 7.4. [Tensors](../tensor/README.md)<br>
 7.5. _User Guide Notation_ <br>
-7.6. [Display of Results](../display/README.md)<br>
-7.7. [Linear Algebra](../linear-algebra/README.md)<br>
-7.8. [FILE I/O](../file-io/README.md)<br>
-7.9. [Debug Modes](../debug/README.md)<br>
+7.6. [Operators](../operators/README.md)<br>
+7.7. [Display of Results](../display/README.md)<br>
+7.8. [Linear Algebra](../linear-algebra/README.md)<br>
+7.9. [FILE I/O](../file-io/README.md)<br>
+7.10. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
@@ -82,6 +83,6 @@ Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the 
 
 
 
-| ⇦ <br />[Tensors](../tensor/README.md)  | [Coding Guide / Syntax](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Display of Results](../display/README.md)   |
+| ⇦ <br />[Tensors](../tensor/README.md)  | [Coding Guide / Syntax](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Operators](../operators/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

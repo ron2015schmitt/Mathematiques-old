@@ -1,4 +1,4 @@
-# Mathématiques v3.5.17
+# Mathématiques v3.5.18
 
 
 <details>
@@ -32,10 +32,11 @@
 7.3. [Matrices](../../matrix/README.md)<br>
 7.4. [Tensors](../../tensor/README.md)<br>
 7.5. [User Guide Notation](../../notation/README.md)<br>
-7.6. [Display of Results](../../display/README.md)<br>
-7.7. [Linear Algebra](../../linear-algebra/README.md)<br>
-7.8. [FILE I/O](../../file-io/README.md)<br>
-7.9. [Debug Modes](../../debug/README.md)<br>
+7.6. [Operators](../../operators/README.md)<br>
+7.7. [Display of Results](../../display/README.md)<br>
+7.8. [Linear Algebra](../../linear-algebra/README.md)<br>
+7.9. [FILE I/O](../../file-io/README.md)<br>
+7.10. [Debug Modes](../../debug/README.md)<br>
 
 
 </details>
@@ -101,10 +102,10 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 | ```/``` | division | 
 
 ```C++
-complex(1.0,1.0) + complex(2.0,4.0) => (3,5)
-complex(1.0,1.0) - complex(2.0,4.0) => (-1,-3)
-complex(1.0,1.0) * complex(2.0,4.0) => (-2,6)
-complex(1.0,1.0) / complex(2.0,4.0) => (0.3,-0.1)
+complex(1.0,1.0) + complex(2.0,4.0)  =>  (3,5)
+complex(1.0,1.0) - complex(2.0,4.0)  =>  (-1,-3)
+complex(1.0,1.0) * complex(2.0,4.0)  =>  (-2,6)
+complex(1.0,1.0) / complex(2.0,4.0)  =>  (0.3,-0.1)
 ```
 
 <br>
@@ -112,7 +113,7 @@ complex(1.0,1.0) / complex(2.0,4.0) => (0.3,-0.1)
 ### Exponentiation and the ```pow``` function
 C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/complex/div) function
 ```C++
-pow(complex(1.0,1.0), complex(2.0,4.0)) => (-0.084961,0.0158558)
+pow(complex(1.0,1.0), complex(2.0,4.0))  =>  (-0.084961,0.0158558)
 ```
 
 <br>
@@ -132,11 +133,11 @@ Examples:
 
 ```C++
 
-complex(1.0,1.0) == complex(1.0,1.0) => 1
-complex(1.0,1.0) != complex(1.0,1.0) => 0
+complex(1.0,1.0) == complex(1.0,1.0)  =>  1
+complex(1.0,1.0) != complex(1.0,1.0)  =>  0
 
-complex(1.0,1.0) == complex(2.0,4.0) => 0
-complex(1.0,1.0) != complex(2.0,4.0) => 1
+complex(1.0,1.0) == complex(2.0,4.0)  =>  0
+complex(1.0,1.0) != complex(2.0,4.0)  =>  1
 ```
 
 <br>

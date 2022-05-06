@@ -50,20 +50,20 @@ int main() {
   printf("CHAR_BIT*sizeof(long long) = %ld bits\n", CHAR_BIT * sizeof(long long));
   codeend();
 
-  text("The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
+  text("The symbol [`CHAR_BIT`](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [`sizeof()`](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
   cr();
   text("The maximum and minimum for each type are given below.");
 
   text("| Type | Min | Max |");
   text("| :--- | :---: | :---: |");
-  printf("| ```char``` | %d | %d |\n", std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
-  printf("| ```short``` | %d | %d |\n", std::numeric_limits<short>::min(), std::numeric_limits<short>::max());
-  printf("| ```int``` | %d | %d |\n", std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
-  printf("| ```long``` | %ld | %ld |\n", std::numeric_limits<long>::min(), std::numeric_limits<long>::max());
-  printf("| ```long long``` | %lld | %lld |\n", std::numeric_limits<long long>::min(), std::numeric_limits<long long>::max());
+  printf("| `char` | %d | %d |\n", std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
+  printf("| `short` | %d | %d |\n", std::numeric_limits<short>::min(), std::numeric_limits<short>::max());
+  printf("| `int` | %d | %d |\n", std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+  printf("| `long` | %ld | %ld |\n", std::numeric_limits<long>::min(), std::numeric_limits<long>::max());
+  printf("| `long long` | %lld | %lld |\n", std::numeric_limits<long long>::min(), std::numeric_limits<long long>::max());
 
   cr();
-  text("Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  text("Here the C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
 
   vspace();
   header3("Unsigned Integers");
@@ -74,16 +74,16 @@ int main() {
 
   text("| Type | Min | Max |");
   text("| :--- | :---: | :---: |");
-  printf("| ```unsigned char``` | %u | %u |\n", std::numeric_limits<unsigned char>::min(), std::numeric_limits<unsigned char>::max());
-  printf("| ```unsigned short``` | %u | %u |\n", std::numeric_limits<unsigned short>::min(), std::numeric_limits<unsigned short>::max());
-  printf("| ```unsigned int``` | %u | %u |\n", std::numeric_limits<unsigned int>::min(), std::numeric_limits<unsigned int>::max());
-  printf("| ```unsigned long``` | %lu | %lu |\n", std::numeric_limits<unsigned long>::min(), std::numeric_limits<unsigned long>::max());
-  printf("| ```unsigned long long``` | %llu | %llu |\n", std::numeric_limits<unsigned long long>::min(), std::numeric_limits<unsigned long long>::max());
+  printf("| `unsigned char` | %u | %u |\n", std::numeric_limits<unsigned char>::min(), std::numeric_limits<unsigned char>::max());
+  printf("| `unsigned short` | %u | %u |\n", std::numeric_limits<unsigned short>::min(), std::numeric_limits<unsigned short>::max());
+  printf("| `unsigned int` | %u | %u |\n", std::numeric_limits<unsigned int>::min(), std::numeric_limits<unsigned int>::max());
+  printf("| `unsigned long` | %lu | %lu |\n", std::numeric_limits<unsigned long>::min(), std::numeric_limits<unsigned long>::max());
+  printf("| `unsigned long long` | %llu | %llu |\n", std::numeric_limits<unsigned long long>::min(), std::numeric_limits<unsigned long long>::max());
 
   vspace();
   header3("Indexing Types");
 
-  text("The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)");
+  text("The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)");
   text("It's size depends on implementation.  The 64-bit Linux size is shown below:");
 
   cr();
@@ -113,8 +113,8 @@ int main() {
   vspace();
   header3("Logic");
 
-  text("The boolean type, [```bool```](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A ```bool``` can take only two values, 0 or 1.");
-  text("Two associated constants are defined: ```true``` and ```false```.\n");
+  text("The boolean type, [`bool`](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A `bool` can take only two values, 0 or 1.");
+  text("Two associated constants are defined: `true` and `false`.\n");
 
   cr();
   codestart("C++");
@@ -144,7 +144,7 @@ int main() {
 
   text("The three types are compared below.");
 
-  text("| type | name | bits | standard |  ```digits10``` |  ```max_digits10``` | ```epsilon()``` | ```min()``` | ```lowest()``` | ```max()``` | ");
+  text("| type | name | bits | standard |  `digits10` |  `max_digits10` | `epsilon()` | `min()` | `lowest()` | `max()` | ");
   text("| :--- | :---: | :---: | :---:  | :---:  | :---:  | :---:  | :---:  | :---: | :---: |");
   printf("| float | Single Precision | 32 bits | [IEEE 754-2008 binary32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) |");
   printf(" %d | ", numeric_limits<float>::digits10);
@@ -174,36 +174,36 @@ int main() {
   cr();
   cr();
 
-  text("The functions ```epsilon()```, ```min()```, ```lowest()```, and  ```max()```, as well as the static values ```digits10``` and ```max_digits10``` are found in [```limits```](https://en.cppreference.com/w/cpp/types/numeric_limits)");
+  text("The functions `epsilon()`, `min()`, `lowest()`, and  `max()`, as well as the static values `digits10` and `max_digits10` are found in [`limits`](https://en.cppreference.com/w/cpp/types/numeric_limits)");
 
-  text("The static value ```max_digits10``` was used as the precision for printing the above values.\n");
+  text("The static value `max_digits10` was used as the precision for printing the above values.\n");
 
   vspace();
   header2("Operators and functions");
 
   header3("Arithmetic Operators");
-  text("The operators ```+, -, *, /, %``` are the addition, subtraction, multiplication, division, and modulus operators respectively.\n");
+  text("The operators `+, -, *, /, %` are the addition, subtraction, multiplication, division, and modulus operators respectively.\n");
   text("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 
   cr();
   text("| operator | operation | ");
   text("| :---: | :---: | ");
-  text("| ```+``` | addition | ");
-  text("| ```-``` | subtraction | ");
-  text("| ```*``` | multiplication | ");
-  text("| ```/``` | division | ");
-  text("| ```%``` | modulus | ");
+  text("| `+` | addition | ");
+  text("| `-` | subtraction | ");
+  text("| `*` | multiplication | ");
+  text("| `/` | division | ");
+  text("| `%` | modulus | ");
   cr();
 
   text("* If both numerator and denominator are integers, the division operator gives the integer division result.\n");
   codestart("C++");
   trdisp(7 / 2);
   codeend();
-  text("* The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.\n");
+  text("* The modulus operator `a % b`, gives the remainder after integer divison of `a` by `b`.\n");
   codestart("C++");
   trdisp(7 % 2);
   codeend();
-  text("* The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
+  text("* The function [`std::div`](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
 
   codestart("C++");
   codemulti(div_t result = div(7, 2));
@@ -216,8 +216,8 @@ int main() {
 
   // Exponentiation and the power function
   vspace();
-  header3("Exponentiation and the ```pow``` function");
-  text("C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function");
+  header3("Exponentiation and the `pow` function");
+  text("C++ does not have an exponentiation operator.  Instead it provides the [`std::pow`](https://en.cppreference.com/w/cpp/numeric/math/div) function");
   codestart("C++");
   trdisp(pow(2, 8));
   trdisp(pow(25, 1 / 2));
@@ -230,9 +230,9 @@ int main() {
   cr();
   text("| operator | operation | ");
   text("| :---: | :---: | ");
-  text("| ```!``` | logical NOT | ");
+  text("| `!` | logical NOT | ");
   text("| `\\|\\|` | logical OR | ");
-  text("| ```&&``` | logical AND | ");
+  text("| `&&` | logical AND | ");
   cr();
 
   text("**CAVEAT**: C++ also has binary bit-wise operators `&` and `|`.  Mistyping the above operators can cause painful bugs. \n");

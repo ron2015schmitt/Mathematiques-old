@@ -86,8 +86,8 @@ Two associated constants are defined: ```true``` and ```false```.
 ```C++
 CHAR_BIT*sizeof(bool) = 8 bits
 
-false => bool 0
-true => bool 1
+false  =>  bool 0
+true  =>  bool 1
 ```
 
 <br>
@@ -138,12 +138,12 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 * If both numerator and denominator are integers, the division operator gives the integer division result.
 
 ```C++
-7 / 2 => int 3
+7 / 2  =>  int 3
 ```
 * The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.
 
 ```C++
-7 % 2 => int 1
+7 % 2  =>  int 1
 ```
 * The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
@@ -153,8 +153,8 @@ div_t result = div(7, 2);
 With result:
 
 ```C++
-result.quot => int 3
-result.rem => int 1
+result.quot  =>  int 3
+result.rem  =>  int 1
 ```
 
 <br>
@@ -162,8 +162,8 @@ result.rem => int 1
 ### Exponentiation and the ```pow``` function
 C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/math/div) function
 ```C++
-pow(2, 8) => double 256
-pow(25, 1 / 2) => double 1
+pow(2, 8)  =>  double 256
+pow(25, 1 / 2)  =>  double 1
 ```
 
 <br>
@@ -184,22 +184,22 @@ For details refer [Logical Operators](https://en.cppreference.com/w/c/language/o
 Examples:
 
 ```C++
-true => bool 1
-false => bool 0
-!true => bool 0
-!false => bool 1
-true && true => bool 1
-true && false => bool 0
-true || false => bool 1
+true  =>  bool 1
+false  =>  bool 0
+!true  =>  bool 0
+!false  =>  bool 1
+true && true  =>  bool 1
+true && false  =>  bool 0
+true || false  =>  bool 1
 ```
 * In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`
 
 ```C++
-!true => bool 0
-!8 => bool 0
-!!8.293 => bool 1
-true && 3 => bool 1
-true && 0 => bool 0
+!true  =>  bool 0
+!8  =>  bool 0
+!!8.293  =>  bool 1
+true && 3  =>  bool 1
+true && 0  =>  bool 0
 ```
 
 <br>
@@ -223,11 +223,11 @@ For details refer [Comparison Operators](https://en.cppreference.com/w/c/languag
 Examples:
 
 ```C++
-(2 == 2) => bool 1
-(1 / 2 == 0.5) => bool 0
-(1. / 2 == 0.5) => bool 1
-(-2 < 34.2) => bool 1
-(2 > 0) => bool 1
+(2 == 2)  =>  bool 1
+(1 / 2 == 0.5)  =>  bool 0
+(1. / 2 == 0.5)  =>  bool 1
+(-2 < 34.2)  =>  bool 1
+(2 > 0)  =>  bool 1
 ```
 
 <br>
@@ -276,9 +276,9 @@ The default `zero_tolerance` values are global variables and can be changed by t
 The default values were chosen so that the typical numerical error encountered with trig functions will produce exactly zero when appropriate.
 
 ```C++
-Helper<float>::tolerance => 3.5e-07
-Helper<double>::tolerance => 1.5e-16
-Helper<long double>::tolerance => 1.5e-30
+Helper<float>::tolerance  =>  3.5e-07
+Helper<double>::tolerance  =>  1.5e-16
+Helper<long double>::tolerance  =>  1.5e-30
 ```
 
 
@@ -444,9 +444,9 @@ Examples:
 
 ```C++
 int n = 3;
-typeid(n).name() => i
+typeid(n).name()  =>  i
 string s = "hello";
-typeid(s).name() => NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+typeid(s).name()  =>  NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 ```
 
 <br>
@@ -457,9 +457,9 @@ Examples:
 
 ```C++
 int n = 3;
-getTypeName(n) => int
+getTypeName(n)  =>  int
 string s = "hello";
-getTypeName(s) => std::string
+getTypeName(s)  =>  std::string
 ```
 
 <br>
@@ -475,15 +475,15 @@ Examples:
 ```C++
 short n1 = 3;
 int n2 = 100;
-n1 * n2 => int 300
+n1 * n2  =>  int 300
 
 float x1 = 3;
 double x2 = 0.1415;
-x1 + x2 => double 3.1415
+x1 + x2  =>  double 3.1415
 
 int8_t y1 = 25;
 double y2 = 0.25;
-y1 / y2 + y2 => double 100.25
+y1 / y2 + y2  =>  double 100.25
 ```
 
 <br>
@@ -497,15 +497,15 @@ Converting a floating point type to an integer:
 
 ```C++
 int n1 = (int)3.14;
-n1 => int 3
+n1  =>  int 3
 int n2 = int(3.14);
-n2 => int 3
+n2  =>  int 3
 ```
 Forcing floating point division by converting the numerator to a `float`
 
 ```C++
 double x = (21 + 1) / 7;
-x => double 3
+x  =>  double 3
 double y = float(21 + 1) / 7;
-y => double 3.14286
+y  =>  double 3.14286
 ```

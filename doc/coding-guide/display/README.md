@@ -1,4 +1,4 @@
-# Mathématiques v3.5.17
+# Mathématiques v3.5.18
 
 
 <details>
@@ -31,20 +31,21 @@
 7.3. [Matrices](../matrix/README.md)<br>
 7.4. [Tensors](../tensor/README.md)<br>
 7.5. [User Guide Notation](../notation/README.md)<br>
-7.6. _Display of Results_ <br>
-7.7. [Linear Algebra](../linear-algebra/README.md)<br>
-7.8. [FILE I/O](../file-io/README.md)<br>
-7.9. [Debug Modes](../debug/README.md)<br>
+7.6. [Operators](../operators/README.md)<br>
+7.7. _Display of Results_ <br>
+7.8. [Linear Algebra](../linear-algebra/README.md)<br>
+7.9. [FILE I/O](../file-io/README.md)<br>
+7.10. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
 
 
 
-# 7.6. Display of Results
+# 7.7. Display of Results
 
 
 
-| ⇦ <br />[User Guide Notation](../notation/README.md)  | [Coding Guide / Syntax](../README.md)<br />Display of Results<br /><img width=1000/> | ⇨ <br />[Linear Algebra](../linear-algebra/README.md)   |
+| ⇦ <br />[Operators](../operators/README.md)  | [Coding Guide / Syntax](../README.md)<br />Display of Results<br /><img width=1000/> | ⇨ <br />[Linear Algebra](../linear-algebra/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

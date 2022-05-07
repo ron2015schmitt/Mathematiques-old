@@ -29,11 +29,11 @@ int main() {
 
   CR();
   CR();
-  header2("Integers");
+  GMD_HEADER2("Integers");
   CR();
   CR();
 
-  header3("Signed Integers");
+  GMD_HEADER3("Signed Integers");
 
   OUTPUT("C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  For a 64-bit CPU running Linux, they have the following number of bits:");
 
@@ -63,8 +63,8 @@ int main() {
   CR();
   OUTPUT("Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
 
-  vspace();
-  header3("Unsigned Integers");
+  GMD_VSPACE();
+  GMD_HEADER3("Unsigned Integers");
 
   OUTPUT("C++ supports unsigned versions of each integer type.");
 
@@ -81,8 +81,8 @@ int main() {
   printf("| ```size_t``` | %lu | %lu |\n", std::numeric_limits<size_t>::min(), std::numeric_limits<size_t>::max());
 
 
-  vspace();
-  header3("Boolean");
+  GMD_VSPACE();
+  GMD_HEADER3("Boolean");
 
   OUTPUT("The boolean type, [```bool```](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A ```bool``` can take only two values, 0 or 1.");
   OUTPUT("Two associated constants are defined: ```true``` and ```false```.\n");
@@ -95,8 +95,8 @@ int main() {
   TRDISP(true);
   GMD_CODE_END();
 
-  vspace();
-  header3("Indexing Types");
+  GMD_VSPACE();
+  GMD_HEADER3("Indexing Types");
 
   OUTPUT("The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)");
   OUTPUT("It's size depends on implementation.  The 64-bit Linux size is shown below:");
@@ -108,8 +108,8 @@ int main() {
   GMD_CODE_END();
   CR();
 
-  vspace();
-  header3("Fixed width integer types");
+  GMD_VSPACE();
+  GMD_HEADER3("Fixed width integer types");
 
   OUTPUT("C++11 introduced new types, called [fixed interger types](https://en.cppreference.com/w/cpp/types/integer), that allow you to directly specify the number of bits:");
 
@@ -132,8 +132,8 @@ int main() {
   CR();
 
 
-  vspace();
-  header2("Floating Point Numbers");
+  GMD_VSPACE();
+  GMD_HEADER2("Floating Point Numbers");
 
   OUTPUT("On modern systems, C++ generally supports three types of floating point number:");
 
@@ -181,10 +181,10 @@ int main() {
 
   OUTPUT("The static value ```max_digits10``` was used as the precision for printing the above values.\n");
 
-  vspace();
-  header2("Operators and functions");
+  GMD_VSPACE();
+  GMD_HEADER2("Operators and functions");
 
-  header3("Arithmetic Operators");
+  GMD_HEADER3("Arithmetic Operators");
   OUTPUT("The operators ```+, -, *, /, %``` are the addition, subtraction, multiplication, division, and modulus operators respectively.\n");
   OUTPUT("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 

@@ -23,10 +23,10 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Vector functions that return a scalar (dot product, sum, min, max etc)");
+  GMD_TITLE("Vector functions that return a scalar (dot product, sum, min, max etc)");
   mathq_preamble();
 
-  header3("dot product—the `|` operator");
+  GMD_HEADER3("dot product—the `|` operator");
   OUTPUT("* The dot product is accomplished via the `|` operator, such that the dot product takes a form similar to P.A.M. Dirac's 'bra-ket' notation.");
   OUTPUT("* This definition becomes very useful for taking the product of matrices because any number of matrices can be multiplied in a single line of code.");
   

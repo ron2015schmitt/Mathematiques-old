@@ -19,10 +19,10 @@ int main() {
   CR();
   CR();
 
-  header2("Introduction");
+  GMD_HEADER2("Introduction");
 
   OUTPUT("\n<br>\n");
-  header2("Size of complex numbers");
+  GMD_HEADER2("Size of complex numbers");
 
   OUTPUT("The size of a complex number is simply _twice_ the size of the underlying arithmetic type:");
 
@@ -45,9 +45,9 @@ int main() {
   OUTPUT("The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
   CR();
   OUTPUT("\n<br>\n");
-  header2("Operators and functions");
+  GMD_HEADER2("Operators and functions");
 
-  header3("Arithmetic Operators");
+  GMD_HEADER3("Arithmetic Operators");
   OUTPUT("Complex numbers in C++ support the 4 standard arithmetic operators.\n");
   OUTPUT("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
 
@@ -70,7 +70,7 @@ int main() {
 
   // Exponentiation and the power function
   OUTPUT("\n<br>\n");
-  header3("Exponentiation and the ```pow``` function");
+  GMD_HEADER3("Exponentiation and the ```pow``` function");
   OUTPUT("C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/complex/div) function");
 
   GMD_CODE_START("C++");
@@ -78,7 +78,7 @@ int main() {
   GMD_CODE_END();
 
   OUTPUT("\n<br>\n");
-  header3("Relational Operators");
+  GMD_HEADER3("Relational Operators");
 
   OUTPUT("Complex numbers are not an ordered set.  Therefore, there is no concept of greater than or less than.\n");
   OUTPUT("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
@@ -101,9 +101,9 @@ int main() {
   GMD_CODE_END();
 
   OUTPUT("\n<br>\n");
-  header3("Mathematical functions from the C++ [``std::complex`` header](https://en.cppreference.com/w/cpp/numeric/complex)");
+  GMD_HEADER3("Mathematical functions from the C++ [``std::complex`` header](https://en.cppreference.com/w/cpp/numeric/complex)");
 
-  header4("C++ ``std`` library common functions");
+  GMD_HEADER4("C++ ``std`` library common functions");
 
   CR();
   OUTPUT("The following are [common mathematical functions](https://en.cppreference.com/w/cpp/numeric/math) implemented in the C++ `std` library");
@@ -199,11 +199,11 @@ int main() {
   CR();
 
   OUTPUT("\n<br>\n");
-  header2("More on types");
+  GMD_HEADER2("More on types");
 
-  header3("Type information");
+  GMD_HEADER3("Type information");
 
-  header4("typeid");
+  GMD_HEADER4("typeid");
 
   OUTPUT("The function [`std::typeid`](https://en.cppreference.com/w/cpp/language/typeid) returns an object of type [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) (defined in the header `<typeinfo>`). ");
   OUTPUT("This gives the type for any varable. However, the names are garbled compiler strings that are not pretty. ");
@@ -221,7 +221,7 @@ int main() {
     GMD_CODE_END();
   }
 
-  header4("getTypeName");
+  GMD_HEADER4("getTypeName");
   OUTPUT("The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in ");
   {
     OUTPUT("Examples:\n");
@@ -235,7 +235,7 @@ int main() {
     GMD_CODE_END();
   }
   OUTPUT("\n<br>\n");
-  header3("Mixed-typed math and auto-promotion");
+  GMD_HEADER3("Mixed-typed math and auto-promotion");
   CR();
   OUTPUT("C++ automatically converts number types depending on context.");
   OUTPUT("This is referred to as [implicit conversion](https://en.cppreference.com/w/c/language/conversion).");
@@ -263,7 +263,7 @@ int main() {
   }
 
   OUTPUT("\n<br>\n");
-  header3("Type Conversion");
+  GMD_HEADER3("Type Conversion");
   OUTPUT("There are various ways to cast one type to another in C++.  ");
   OUTPUT("Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/language/explicit_cast), which has two forms for the syntax: `(type) expression` or  `type(expression)` ");
   CR();

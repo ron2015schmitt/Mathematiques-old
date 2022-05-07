@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.27</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.28</h1>
 
 <details>
 

@@ -24,15 +24,15 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Access subsets of Vector elements");
+  GMD_TITLE("Access subsets of Vector elements");
   mathq_preamble();
 
   OUTPUT("You can ccess avector elements using a `Vector` of indices or a C++11 `initializer_list` of indices");
 
   
-  header2("Access vector elements using a `Vector` of indices");
+  GMD_HEADER2("Access vector elements using a `Vector` of indices");
 
-  header3("Element access `Vector[Vector]`");
+  GMD_HEADER3("Element access `Vector[Vector]`");
   CR();
   OUTPUT("* The index Vector _can be smaller than or greater than or equal to_ the length to the data Vector!");
   OUTPUT("* The index Vector _can have repeated indices and indices can be in any order_!");
@@ -64,8 +64,8 @@ int main()
 
 
 
-  header2("Access vector elements using an C++11 `initializer_list` of indices");
-  header3("Element access `Vector[initializer_list]`");
+  GMD_HEADER2("Access vector elements using an C++11 `initializer_list` of indices");
+  GMD_HEADER3("Element access `Vector[initializer_list]`");
 
   CR();
   OUTPUT("* The list can be smaller than or greater than or equal to the length to the data Vector.");

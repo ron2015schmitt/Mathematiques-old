@@ -28,12 +28,12 @@ int main()
   mdtitle0("Calculating a function via Fourier series and plotting the results in Matlab");
   mathq_preamble();
 
-  header2("Fourier Series for the Clausen Functions");
+  GMD_HEADER2("Fourier Series for the Clausen Functions");
   OUTPUT("As our example, we'll use the [Clausen functions](http://mathworld.wolfram.com/ClausenFunction.html). The Clausen function of order _n_ has Fourier series: ");
   OUTPUT("![Clausen Functions](ClausenDefinition.png)");
 
 
-  header3("Clausen function of order _n=1_");
+  GMD_HEADER3("Clausen function of order _n=1_");
 
   {
     CR();
@@ -118,7 +118,7 @@ int main()
 
   }
 
-  header3("Clausen function of order _n=2_");
+  GMD_HEADER3("Clausen function of order _n=2_");
 
   {
     CR();

@@ -29,7 +29,7 @@ namespace matricks {
   TER_Unary(const TIN& a) : a_(a) {
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
-      disp3(a);
+      DISP3(a);
     }
     
   ~TER_Unary() {

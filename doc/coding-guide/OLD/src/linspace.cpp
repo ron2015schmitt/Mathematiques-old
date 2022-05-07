@@ -24,10 +24,10 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("The `linspace` functions");
+  GMD_TITLE("The `linspace` functions");
   mathq_preamble();
 
-  header2("The `linspace` function: numerical interval [a,b]");
+  GMD_HEADER2("The `linspace` function: numerical interval [a,b]");
   OUTPUT("* The function `linspace<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b`, spaced by `(b-a)/(N-1)`");
   OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
   GMD_CODE_START("C++");
@@ -38,7 +38,7 @@ int main()
   GMD_CODE_END();
 
 
-  header2("The `linspace_a` function: numerical interval (a,b]");
+  GMD_HEADER2("The `linspace_a` function: numerical interval (a,b]");
   OUTPUT("* The function `linspace_a<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
   OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
   GMD_CODE_START("C++");
@@ -47,7 +47,7 @@ int main()
   GMD_CODE_END();
 
 
-  header2("The `linspace_b` function: numerical interval [a,b)");
+  GMD_HEADER2("The `linspace_b` function: numerical interval [a,b)");
   OUTPUT("* The function `linspace_b<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a` to `b-delta`, where `delta=(b-a)/(N)` is the spacing between consecutive points.");
   OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
   GMD_CODE_START("C++");
@@ -58,7 +58,7 @@ int main()
   OUTPUT("* This function is very useful for dealing the domain of trig functions, since typicallywe want to use the **interval [0,2*pi)**, ie we dont want to include the point 2*pi");
 
 
-  header2("The `linspace_ab` function: numerical interval (a,b)");
+  GMD_HEADER2("The `linspace_ab` function: numerical interval (a,b)");
   OUTPUT("* The function `linspace_ab<D>(a,b,N)` returns a `Vector<D>` containing an equispaced sequence of `N` points, from `a+delta` to `b-delta`, where `delta=(b-a)/(N+1)` is the spacing between consecutive points.");
   OUTPUT("* Note that `b` can be less than `a`, in which case the returned sequence is decreasing");
   GMD_CODE_START("C++");

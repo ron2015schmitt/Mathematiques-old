@@ -21,8 +21,8 @@ int main() {
   CR();
 
 
-  vspace();
-  header2("Relational Operators");
+  GMD_VSPACE();
+  GMD_HEADER2("Relational Operators");
 
   OUTPUT("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
 

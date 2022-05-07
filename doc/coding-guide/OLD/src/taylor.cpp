@@ -27,7 +27,7 @@ int main()
   mdtitle0("Calculating a Taylor series and plotting the results in Mathematica");
   mathq_preamble();
 
-  header2("Taylor Series for the Bessel Function J<sub>0</sub>(r)");
+  GMD_HEADER2("Taylor Series for the Bessel Function J<sub>0</sub>(r)");
   OUTPUT("We can easily calculate a [Taylor Series](http://mathworld.wolfram.com/TaylorSeries.html) in mathq. As an example, let's calculate the Taylor series for the [Bessel Function of the first kind](http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html) of order 0, J<sub>0</sub>(r). ");
 
   OUTPUT("The first 20 (n=0,1,...19) coefficients for  J<sub>0</sub>(r), are:\n");
@@ -115,7 +115,7 @@ int main()
   }
 
   
-  header2("Maclaurin Series for the Bessel Function J<sub>0</sub>(x)");
+  GMD_HEADER2("Maclaurin Series for the Bessel Function J<sub>0</sub>(x)");
 
   OUTPUT("To acheive better accuracy, we can calculate the [Maclaurin Series](http://mathworld.wolfram.com/MaclaurinSeries.html) at the point `r=5`, which is the center of our interval of interest.");
   OUTPUT("The first 20 (n=0,1,...19) coefficients for the Maclaurin Series (r<sub>0</sub>=5) for the function J<sub>0</sub>(r), are:\n");

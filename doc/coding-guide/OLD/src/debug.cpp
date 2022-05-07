@@ -22,7 +22,7 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Debugging");
+  GMD_TITLE("Debugging");
   mathq_preamble();
 
 
@@ -37,7 +37,7 @@ int main()
   OUTPUT(" - other assorted errors and warnings");
 
 
-  header2("SETTING `MATHQ_DEBUG` MODE");
+  GMD_HEADER2("SETTING `MATHQ_DEBUG` MODE");
 
   OUTPUT("There are two methods to accomplish this.");
 
@@ -57,11 +57,11 @@ int main()
   OUTPUT("#include \"mathq.h\"");
   GMD_CODE_END();
 
-  header2("DEBUG LEVELS");
+  GMD_HEADER2("DEBUG LEVELS");
 
   OUTPUT(" to be written...");
 
-  header2("RECOMMENDATIONS");
+  GMD_HEADER2("RECOMMENDATIONS");
 
   OUTPUT("* While developing your code, use `MATHQ_DEBUG` mode.  When you are convinced that it is operating without errors or warnings, run normally.");
   

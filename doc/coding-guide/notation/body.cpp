@@ -17,11 +17,11 @@ int main() {
 
   GMD_PREAMBLE();
 
-  vspace();
+  GMD_VSPACE();
 
   OUTPUT("The following notation shorthand is used in the User Guide (but certainly not in C++ code!).\n");
 
-  header3("Scalars");
+  GMD_HEADER3("Scalars");
   CR();
   OUTPUT("| symbol | C++ types |");
   OUTPUT("| :---: | :---: | ");
@@ -39,9 +39,9 @@ int main() {
 
 
 
-  vspace();
+  GMD_VSPACE();
 
-  header3("Containers");
+  GMD_HEADER3("Containers");
   CR();
   OUTPUT("| symbol | C++ types |");
   OUTPUT("| :---: | :---: | ");
@@ -53,7 +53,7 @@ int main() {
   OUTPUT("Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the torus groups\n");
 
   CR();
-  vspace();
+  GMD_VSPACE();
 
   return 0;
 }

@@ -25,10 +25,10 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("The `range` function");
+  GMD_TITLE("The `range` function");
   mathq_preamble();
 
-  header3("Increasing Sequences");
+  GMD_HEADER3("Increasing Sequences");
 
   OUTPUT("* The function `range<D>(start,end)` returns a Vector<D> containing the numbers `{start, start+1, start+2, ..., (end)}`");
   CR();
@@ -38,7 +38,7 @@ int main()
   DISP(range<double>(-3,3));
   GMD_CODE_END();
 
-  header3("Decreasing Sequences");
+  GMD_HEADER3("Decreasing Sequences");
   OUTPUT("* Counting down is also supported");
   CR();
   EXAMPLE(Nex++, "Decreasing sequence using `range`");
@@ -47,7 +47,7 @@ int main()
   GMD_CODE_END();
 
 
-  header3("Non-integer Sequences");
+  GMD_HEADER3("Non-integer Sequences");
 
   OUTPUT("* The start and end need not be integers ");
   CR();
@@ -57,7 +57,7 @@ int main()
   DISP(range<double>(5.5,1.5));
   GMD_CODE_END();
 
-  header3("Arbitrary stride");
+  GMD_HEADER3("Arbitrary stride");
 
   
   OUTPUT("* The function `range<D>(Nstart,Nend,Nstride)` returns a Vector<D> containing the numbers `{start, start+stride, start+2*stride, ..., (end)}`");
@@ -69,7 +69,7 @@ int main()
   DISP(range<double>(0,10,0.5));
   GMD_CODE_END();
 
-  header3("The end point isn't always included");
+  GMD_HEADER3("The end point isn't always included");
 
   OUTPUT("* The end point is only included when ");
   OUTPUT("```C++");
@@ -85,7 +85,7 @@ int main()
   GMD_CODE_END();
 
 
-  header3("Initializing `Vector`'s using `range`");
+  GMD_HEADER3("Initializing `Vector`'s using `range`");
 
   {
     CR();
@@ -106,7 +106,7 @@ int main()
   }
 
 
-  header3("Assigning `Vector`'s using `range`");
+  GMD_HEADER3("Assigning `Vector`'s using `range`");
 
   {
     CR();

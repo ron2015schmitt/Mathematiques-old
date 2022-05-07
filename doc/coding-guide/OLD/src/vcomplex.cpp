@@ -22,10 +22,10 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Complex-valued Vectors");
+  GMD_TITLE("Complex-valued Vectors");
   mathq_preamble();
 
-  header3("Representing the unit imaginary _i_");
+  GMD_HEADER3("Representing the unit imaginary _i_");
 
   OUTPUT("* In C++, there is no definition for pure imaginary numbers.");
   OUTPUT("* This is in contrast to Fortran.");
@@ -83,7 +83,7 @@ int main()
 
 
 
-  header3("Declaring a complex-valued `Vector`");
+  GMD_HEADER3("Declaring a complex-valued `Vector`");
 
   {
     CR();
@@ -109,7 +109,7 @@ int main()
 
 
 
-  header3("Arithmetic with complex-valued `Vector`'s");
+  GMD_HEADER3("Arithmetic with complex-valued `Vector`'s");
 
   {
     CR();
@@ -139,7 +139,7 @@ int main()
   }
 
 
-  header3("Mixed arithmetic with complex and real vectors and scalars `Vector`'s");
+  GMD_HEADER3("Mixed arithmetic with complex and real vectors and scalars `Vector`'s");
 
   {
     CR();
@@ -172,7 +172,7 @@ int main()
   }
 
 
-  header3("real and imag parts of `Vector`'s");
+  GMD_HEADER3("real and imag parts of `Vector`'s");
 
 
   {
@@ -199,7 +199,7 @@ int main()
   }
 
 
-  header3("creating complex Vectors from real vectors and scalars");
+  GMD_HEADER3("creating complex Vectors from real vectors and scalars");
 
   {
     CR();
@@ -244,7 +244,7 @@ int main()
   }
 
 
-  header3("Complex Conjugation");
+  GMD_HEADER3("Complex Conjugation");
 
   OUTPUT("Complex cojugation can be performed via the function `conj` or via the operator `~`");
   {

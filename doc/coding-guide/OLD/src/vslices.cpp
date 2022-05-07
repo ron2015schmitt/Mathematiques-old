@@ -24,12 +24,12 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("python-like access: negative indices & slices");
+  GMD_TITLE("python-like access: negative indices & slices");
   mathq_preamble();
 
-  header2("Element access");
+  GMD_HEADER2("Element access");
 
-  header3("Positive and negative indices");
+  GMD_HEADER3("Positive and negative indices");
   OUTPUT("Similar to python, Mathématiques allows negative indices");
   CR();
   OUTPUT("`v[-1] == v[N-1]` == end element\n");
@@ -85,9 +85,9 @@ int main()
 
 
   
-  header2("Slices via the `slc` function");
+  GMD_HEADER2("Slices via the `slc` function");
 
-  header3("The `(start,end)` slice");
+  GMD_HEADER3("The `(start,end)` slice");
   OUTPUT("* The form `v[slc(start,end)]` returns a `Vector` with every element from index=start to index=end, stepping by +1.\n");
   OUTPUT("* Negative indices are permitted.\n");
   OUTPUT("* Examples\n");
@@ -115,7 +115,7 @@ int main()
   }
 
 
-  header3("The `(start,end,step)` slice");
+  GMD_HEADER3("The `(start,end,step)` slice");
   OUTPUT("* The form `v[slc(start,end,step)]` returns a `Vector` with every element from index=start to index=end, stepping by step.\n");
   OUTPUT("* Negative indices are permitted.\n");
   OUTPUT("* Examples\n");

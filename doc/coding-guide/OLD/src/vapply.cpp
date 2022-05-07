@@ -53,7 +53,7 @@ int main()
     
   mathq_toc();
   CR();CR();
-  mdtitle("Applying User-defined functions");
+  GMD_TITLE("Applying User-defined functions");
   mathq_preamble();
 
 
@@ -74,7 +74,7 @@ int main()
   }
 
   CR();
-  header3("Applying User-defined functions via `op1`");
+  GMD_HEADER3("Applying User-defined functions via `op1`");
   {
     CR();
     OUTPUT("* The simplest way to apply a user-defined function is to use the function `op1<D,funcname>(Vector<D> v)`.");
@@ -96,7 +96,7 @@ int main()
   }
 	    
   CR();
-  header3("Applying User-defined binary functions via `op2`");
+  GMD_HEADER3("Applying User-defined binary functions via `op2`");
   {
     CR();
     OUTPUT("* A similar function exists for binary user-defined functions: `op2<D,funcname>(Vector<D> v1, Vector<D> v2)`.");

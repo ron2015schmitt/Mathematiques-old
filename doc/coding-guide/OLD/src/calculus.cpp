@@ -23,11 +23,11 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Calculus");
+  GMD_TITLE("Calculus");
   mathq_preamble();
 
-  header2("Integration");
-  header3("Definite integrals");
+  GMD_HEADER2("Integration");
+  GMD_HEADER3("Definite integrals");
 
   OUTPUT("Integrating over an interval (a,b) yields a single number--the area under the curve.");
   CR();
@@ -64,7 +64,7 @@ int main()
   }
 
 
-  header3("Semi-Definite Integrals");
+  GMD_HEADER3("Semi-Definite Integrals");
   OUTPUT("A semi-definite integral is created by replacing one of the end points with _x_.");
   CR();
   OUTPUT("* For the integral\n");
@@ -134,7 +134,7 @@ int main()
   }
 
 
-  header3("Semi-Definite Integrals: optional parameters");
+  GMD_HEADER3("Semi-Definite Integrals: optional parameters");
 
 
   OUTPUT("The optional `order` parameter specifies the integration method order: \n");
@@ -145,7 +145,7 @@ int main()
   OUTPUT("* `f.integrate_x2b(a, b, order)`");
   OUTPUT("* `integrate_x2b(f, a, b, order)`");
   
-  header2("Differentiation");
+  GMD_HEADER2("Differentiation");
   OUTPUT("* Differentiation requires points around it.   The derivative can be performed :");
   OUTPUT("  * on a Vector in place using `f.deriv(a, b)`, mimizing both memory usage and computation time.");
   OUTPUT("  * on a Vector or expression using the function `deriv(f, a, b)`,  in which case a `new Vector` is created inside the function and returned. ");
@@ -186,7 +186,7 @@ int main()
   }
 
 
-    header3("Differentiation: optional parameters");
+    GMD_HEADER3("Differentiation: optional parameters");
     OUTPUT("* The differentiation method/function has 3 optional parameters:");
     OUTPUT("  * `f.deriv(a, b, n, Dpts, periodic)` or `deriv(f, a, b, n, Dpts, periodic)`");
     OUTPUT("* The optional parameters are:");
@@ -194,7 +194,7 @@ int main()
     OUTPUT("  * `Dpts` [DEFAULT=`7`] is the number of points to use in the calculation: 2,3,5, or 7.  More points yield better accuracy. ");
     OUTPUT("  * `periodic` [DEFAULT=`false`]. When set to `true` the derivative at the end points will be of higher accuracy for periodic function.");
 
-    header3("Differentiation: taking multiple derivatives in one call");
+    GMD_HEADER3("Differentiation: taking multiple derivatives in one call");
     
   {
     CR();
@@ -270,7 +270,7 @@ int main()
 
 
   
-  header2("Various functions related to integration and differentiation");
+  GMD_HEADER2("Various functions related to integration and differentiation");
   OUTPUT("All of these functions can be called _either_ as a method, eg `v.cumsum()` or a function `cumsum(v)`.");
 
   {

@@ -23,10 +23,10 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Element-wise Vector math");
+  GMD_TITLE("Element-wise Vector math");
   mathq_preamble();
 
-  header3("Element-wise arithmetic");
+  GMD_HEADER3("Element-wise arithmetic");
   OUTPUT("The operators +,-,*,/ perform element-wise addition, subtraction, multiplication, and division respectively");
 
   {
@@ -54,7 +54,7 @@ int main()
   }
 
 
-  header3("Vector-scalar arithmetic");
+  GMD_HEADER3("Vector-scalar arithmetic");
   OUTPUT("* The binary operators +,-,*,/ can each be used to pair a scalar and a `Vector`.");
   OUTPUT("* In this case the scalar is operated on each element of the vector");
 
@@ -82,7 +82,7 @@ int main()
   }
 
 
-  header3("Vector math functions");
+  GMD_HEADER3("Vector math functions");
   OUTPUT("* A large number of functions is supported.  ");
   OUTPUT("* A function of a `Vector` operates on each element.  ");
   
@@ -205,7 +205,7 @@ int main()
 
 
 
-  header3("Arbitrary combinations of the above functionality are supported");
+  GMD_HEADER3("Arbitrary combinations of the above functionality are supported");
   OUTPUT("* Because Mathématiques uses expression templating:");
   OUTPUT("  * no intermediate objects are created");
   OUTPUT("  * the expression is calculated in a single for loop");

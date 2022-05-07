@@ -30,8 +30,8 @@ int main() {
   OUTPUT("| `%` | modulus | ℤ | ");
   CR();
 
-  vspace();
-  header3("Examples: integer division");
+  GMD_VSPACE();
+  GMD_HEADER3("Examples: integer division");
   GMD_CODE_START("C++");
   TRDISP(7 / 2);
   GMD_CODE_END();

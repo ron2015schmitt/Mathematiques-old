@@ -193,6 +193,7 @@
 
 #define TRDISP(...) display::Display::trmydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
 
+
 //
 // MDISP(x)
 //
@@ -203,85 +204,110 @@
 
 #define MDISP(...) _MDISP_X(, ##__VA_ARGS__, _DISP_10(MOUT, __VA_ARGS__), _DISP_9(MOUT, __VA_ARGS__), _DISP_8(MOUT, __VA_ARGS__), _DISP_7(MOUT, __VA_ARGS__), _DISP_6(MOUT, __VA_ARGS__), _DISP_5(MOUT, __VA_ARGS__), _DISP_4(MOUT, __VA_ARGS__), _DISP_3(MOUT, __VA_ARGS__), _DISP_2(MOUT, __VA_ARGS__), _DISP_1(MOUT, __VA_ARGS__), _DISP_0(MOUT))
 
+
+//
+// CR(x)
+//
 // issue a carriage return (line break)
+
 #define CR() display::Display::issuecr(MOUT)
+
 
 
 //
 // duplicate of above functions but sends output to stream
 //
-
+#define DISPVAL_STRM(stream,...) display::dispval_strm(stream, __VA_ARGS__)
 #define DISP_STRM(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define TDISP_STRM(stream, ...) display::Display::tmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define TRDISP_STRM(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define CR_STRM(stream) display::Display::issuecr(stream)
-#define mdisp_strm(stream, ...) _MDISP_X(, ##__VA_ARGS__, _DISP_10(stream, __VA_ARGS__), _DISP_9(stream, __VA_ARGS__), _DISP_8(stream, __VA_ARGS__), _DISP_7(stream, __VA_ARGS__), _DISP_6(stream, __VA_ARGS__), _DISP_5(stream, __VA_ARGS__), _DISP_4(stream, __VA_ARGS__), _DISP_3(stream, __VA_ARGS__), _DISP_2(stream, __VA_ARGS__), _DISP_1(stream, __VA_ARGS__), _DISP_0(stream))
+#define MDISP_STRM(stream, ...) _MDISP_X(, ##__VA_ARGS__, _DISP_10(stream, __VA_ARGS__), _DISP_9(stream, __VA_ARGS__), _DISP_8(stream, __VA_ARGS__), _DISP_7(stream, __VA_ARGS__), _DISP_6(stream, __VA_ARGS__), _DISP_5(stream, __VA_ARGS__), _DISP_4(stream, __VA_ARGS__), _DISP_3(stream, __VA_ARGS__), _DISP_2(stream, __VA_ARGS__), _DISP_1(stream, __VA_ARGS__), _DISP_0(stream))
 
 
+//
 // THESE FUNCTIONS ONLY APPEAR IN CERTAIN DEBUG MODES
+//
 
 #if MATHQ_DEBUG >= 1
 #define PRINTF1(...) MOUT << display::printf2str(__VA_ARGS__)
-#define mdisp1(...) MDISP(__VA_ARGS__)
-#define disp1(...) DISP(__VA_ARGS__)
-#define tdisp1(...) TLDISP(__VA_ARGS__)
+#define MDISP1(...) MDISP(__VA_ARGS__)
+#define DISP1(...) DISP(__VA_ARGS__)
+#define TLDISP1(...) TLDISP(__VA_ARGS__)
+#define TRDISP1(...) TRDISP(__VA_ARGS__)
 #else
 #define PRINTF1(...) \
   {}
-#define mdisp1(...) \
+#define MDISP1(...) \
   {}
-#define disp1(...) \
+#define DISP1(...) \
   {}
-#define tdisp1(...) \
+#define TLDISP1(...) \
+  {}
+#define TRDISP1(...) \
   {}
 #endif
 
 #if MATHQ_DEBUG >= 2
 #define PRINTF2(...) MOUT << display::printf2str(__VA_ARGS__)
-#define mdisp2(...) MDISP(__VA_ARGS__)
-#define disp2(...) DISP(__VA_ARGS__)
-#define tdisp2(...) TLDISP(__VA_ARGS__)
+#define MDISP2(...) MDISP(__VA_ARGS__)
+#define DISP2(...) DISP(__VA_ARGS__)
+#define TLDISP2(...) TLDISP(__VA_ARGS__)
+#define TRDISP2(...) TRDISP(__VA_ARGS__)
 #else
 #define PRINTF2(...) \
   {}
-#define mdisp2(...) \
+#define MDISP2(...) \
   {}
-#define disp2(...) \
+#define DISP2(...) \
   {}
-#define tdisp2(...) \
+#define TLDISP2(...) \
+  {}
+#define TRDISP2(...) \
   {}
 #endif
 
 #if MATHQ_DEBUG >= 3
 #define PRINTF3(...) MOUT << display::printf2str(__VA_ARGS__)
-#define mdisp3(...) MDISP(__VA_ARGS__)
-#define disp3(...) DISP(__VA_ARGS__)
-#define tdisp3(...) TLDISP(__VA_ARGS__)
+#define MDISP3(...) MDISP(__VA_ARGS__)
+#define DISP3(...) DISP(__VA_ARGS__)
+#define TLDISP3(...) TLDISP(__VA_ARGS__)
+#define TRDISP3(...) TRDISP(__VA_ARGS__)
 #else
 #define PRINTF3(...) \
   {}
-#define mdisp3(...) \
+#define MDISP3(...) \
   {}
-#define disp3(...) \
+#define DISP3(...) \
   {}
-#define tdisp3(...) \
+#define TLDISP3(...) \
+  {}
+#define TRDISP3(...) \
   {}
 #endif
 
 
+// rename CODE_ECHO
+// line of code is both executed
+// use MOUT instead of printf
+
 #define codemulti(...)                     \
   printf("%s;\n", stringify(__VA_ARGS__)); \
   __VA_ARGS__
+
+
 #define codemultiwcomment(str, ...)                   \
   printf("%s; // %s\n", stringify(__VA_ARGS__), str); \
   __VA_ARGS__
 
+
+// **deprecated**
 #define codemultiNoteC11Array(...)                       \
   printf("%s; // C++11 list\n", stringify(__VA_ARGS__)); \
   __VA_ARGS__
 
 
-
+// **deprecated**
 #define resultstart() printf("**The result is**\n```C++\n")
 #define resultstart2(str) printf("**Some expressions with results**%s\n```C++\n", str)
 #define resultstart3(str) printf("**Results**%s\n```C++\n", str)
@@ -293,39 +319,52 @@
   resultstart();            \
   resultmulti(__VA_ARGS__); \
   resultend()
-
 #define EXAMPLE(n, str) MOUT << "**EXAMPLE" << std::setw(2) << n << "**: " << str << std::endl
+
 
 
 //
 // SPECIFIC TO GITHUB MARKDOWN
 //
 
+
 #define GMD_PREAMBLE() printf("_This document was generated from the_ C++ _file_ `%s` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `\"mathq.h\"` _and_ `\"gitmd.h\"`_respectively._ ", __FILE__);
 
+
 //
-// for creating code blocks
+// Creating markdown code blocks
+//
+// place code between these two macros
+// 
+// EXAMPLE:
+//  GMD_CODE_START(); 
+//  x = 0;  // line of code is executed
+//  codemulti( x = (43.2 - 1)/2 );  // line of code is both executed and also put in the Markdown code block
+//  GMD_CODE_END()
 //
 
 #define GMD_CODE_START(lang) MOUT << std::string("```") << std::string(lang) << std::endl
 #define GMD_CODE_END() printf("```\n")
+
+
+// for a one-liner code block
+
 #define GMD_CODE_BLOCK(...)         \
   GMD_CODE_START();            \
   codemulti(__VA_ARGS__); \
   GMD_CODE_END()
 
+// for providing some vertical space
 
-#define mdtitle(str)                                       \
-  MOUT << "# " << str << " in Mathématiques" << std::endl; \
-  write_mdtitle_file(__FILE__, str);
-
-
-#define vspace() MOUT << "\n<br>\n" \
+#define GMD_VSPACE() MOUT << "\n<br>\n" \
                       << std::endl
-#define header1(str) MOUT << "# " << str << std::endl
-#define header2(str) MOUT << "## " << str << std::endl
-#define header3(str) MOUT << "### " << str << std::endl
-#define header4(str) MOUT << "#### " << str << std::endl
+
+// header macros 
+
+#define GMD_HEADER1(str) MOUT << "# " << str << std::endl
+#define GMD_HEADER2(str) MOUT << "## " << str << std::endl
+#define GMD_HEADER3(str) MOUT << "### " << str << std::endl
+#define GMD_HEADER4(str) MOUT << "#### " << str << std::endl
 
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

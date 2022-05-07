@@ -23,12 +23,12 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`)");
+  GMD_TITLE("Vector relational operators (`==`,`<`,`>`, etc), masks, logical operators (`!`,`&&`,etc) and logical functions (`alltrue`,`anytrue`,`numtrue`,`findtrue`)");
   mathq_preamble();
 
-  header2("Relational operators");
+  GMD_HEADER2("Relational operators");
 
-  header3("Relational operators between two Vectors");
+  GMD_HEADER3("Relational operators between two Vectors");
   CR();
   OUTPUT("Vector relations operate element-wise, similar to arithmetic operators. Given two Vectors of the same size, a vector relational expression (eg `(v1>v2)` returns a vector of booleans of the same size"); 
 
@@ -55,7 +55,7 @@ int main()
     resultend();
   }
 
-  header3("Relational operators between a Vector and scalar");
+  GMD_HEADER3("Relational operators between a Vector and scalar");
   {
     CR();
     CR();
@@ -77,9 +77,9 @@ int main()
     resultend();
   }
 
-  header2("Logical operators");
+  GMD_HEADER2("Logical operators");
 
-  header3("The element-wise logical operatora `&&`,`||`,`!`");
+  GMD_HEADER3("The element-wise logical operatora `&&`,`||`,`!`");
   {
     CR();
     CR();
@@ -99,7 +99,7 @@ int main()
   }
 
 
-  header2("Vector mask access");
+  GMD_HEADER2("Vector mask access");
   OUTPUT("* A subset of a vector can be extracted using a boolean-valued vector of the same size.");
   OUTPUT("* For example `v[v>0]` will return a vector containing only the positive values of v.");
   OUTPUT("* Vector mask access can be used on the left hand side of assigment, allowing you to set values via masks.");
@@ -142,9 +142,9 @@ int main()
   }
 
 
-  header2("Logical functions");
+  GMD_HEADER2("Logical functions");
 
-  header3("The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
+  GMD_HEADER3("The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
   {
     CR();
     OUTPUT("* The function `alltrue(v)` returns a `bool`: true if every element of `v` is true, otherwise it returns false");

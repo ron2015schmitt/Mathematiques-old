@@ -62,7 +62,7 @@ int main() {
   CR();
 
   CR();
-  vspace();
+  GMD_VSPACE();
 
   CR();
   OUTPUT("The following functions / operators are provided for using real number types with imaginary and complex types.");
@@ -164,7 +164,7 @@ int main() {
   CR();
   CR();
 
-  header4("C++ ``std`` library special functions");
+  GMD_HEADER4("C++ ``std`` library special functions");
 
   OUTPUT("The following [special mathematical functions](https://en.cppreference.com/w/cpp/numeric/special_functions) implemented in the C++ `std` library");
   CR();
@@ -219,7 +219,7 @@ int main() {
   CR();
   OUTPUT("† This is equal to a [Spherical Harmonic](https://en.wikipedia.org/wiki/Spherical_harmonics) with _φ_=0, as the notation implies.");
 
-  header3("Mathematical functions from the Mathématiques library, namespace `mathq`");
+  GMD_HEADER3("Mathematical functions from the Mathématiques library, namespace `mathq`");
 
   OUTPUT("The following are mathematical functions implemented in the Mathématiques library, namespace `mathq`");
   CR();
@@ -230,12 +230,12 @@ int main() {
   CR();
   CR();
 
-  vspace();
-  header2("More on types");
+  GMD_VSPACE();
+  GMD_HEADER2("More on types");
 
-  header3("Type information");
+  GMD_HEADER3("Type information");
 
-  header4("typeid(x)");
+  GMD_HEADER4("typeid(x)");
 
   OUTPUT("The function [`std::typeid`](https://en.cppreference.com/w/cpp/language/typeid) returns an object of type [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) (defined in the header `<typeinfo>`). ");
   OUTPUT("This gives the type for any varable. However, the names are garbled compiler strings that are not pretty. ");
@@ -253,8 +253,8 @@ int main() {
     GMD_CODE_END();
   }
 
-  vspace();
-  header4("getTypeName(x)");
+  GMD_VSPACE();
+  GMD_HEADER4("getTypeName(x)");
   OUTPUT("The function `mathq::display::getTypeName` returns a string that gives the actual human-readable type name. It works for most [fundamental types](https://en.cppreference.com/w/cpp/language/types) and all classes defined in ");
   {
     OUTPUT("Examples:\n");
@@ -267,8 +267,8 @@ int main() {
     // OUTPUT("getTypeName(s) -> \"std::string\"");
     GMD_CODE_END();
   }
-  vspace();
-  header3("Mixed-typed math and auto-promotion");
+  GMD_VSPACE();
+  GMD_HEADER3("Mixed-typed math and auto-promotion");
   CR();
   OUTPUT("C++ automatically converts number types depending on context.");
   OUTPUT("This is referred to as [implicit conversion](https://en.cppreference.com/w/c/language/conversion).");
@@ -295,8 +295,8 @@ int main() {
     GMD_CODE_END();
   }
 
-  vspace();
-  header3("Type Conversion");
+  GMD_VSPACE();
+  GMD_HEADER3("Type Conversion");
   OUTPUT("There are various ways to cast one type to another in C++.  ");
   OUTPUT("Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/language/explicit_cast), which has two forms for the syntax: `(type) expression` or  `type(expression)` ");
   CR();

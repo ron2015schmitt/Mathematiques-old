@@ -20,8 +20,8 @@ int main() {
   CR();
   CR();
 
-  vspace();
-  header2("Logic Operators");
+  GMD_VSPACE();
+  GMD_HEADER2("Logic Operators");
   OUTPUT("For details refer [Logical Operators](https://en.cppreference.com/w/c/language/operator_logical).\n");
 
   CR();
@@ -55,7 +55,7 @@ int main() {
   TRDISP(true && 0);
   GMD_CODE_END();
 
-  vspace();
+  GMD_VSPACE();
 
   return 0;
 }

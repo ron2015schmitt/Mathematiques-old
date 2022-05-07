@@ -26,7 +26,7 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Vector declaration");
+  GMD_TITLE("Vector declaration");
   mathq_preamble();
 
  

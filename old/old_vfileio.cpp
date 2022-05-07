@@ -22,7 +22,7 @@ int main()
   int Nex = 1;
   
   CR();
-  mdtitle("Vector file i/o");
+  GMD_TITLE("Vector file i/o");
   mathq_preamble();
 
 

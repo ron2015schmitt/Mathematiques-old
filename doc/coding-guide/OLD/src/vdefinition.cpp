@@ -27,11 +27,11 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("under the hood—`Vector` definition");
+  GMD_TITLE("under the hood—`Vector` definition");
   mathq_preamble();
   OUTPUT("* _This information is mostly irrelavent to usage but is provided for rare cases when you may want to access the underlying data type_.");
 
-  header3("The Vector class is a wrapper");
+  GMD_HEADER3("The Vector class is a wrapper");
   OUTPUT("* The `mathq::Vector` wraps a `std::valarray`");
   OUTPUT("* In the example below");
   OUTPUT("  * `valias` is referenced to the valarray inside `vec`.");
@@ -56,7 +56,7 @@ int main()
   }
 
 
-  header3("Getting the wrapped `valarray`/`array`");
+  GMD_HEADER3("Getting the wrapped `valarray`/`array`");
   OUTPUT("* In the example below");
   OUTPUT("  * `vec` is constructed");
   OUTPUT("  * `valias` is referenced to the valarray inside `vec`.");

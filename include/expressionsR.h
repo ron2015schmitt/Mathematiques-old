@@ -29,7 +29,7 @@ public:
   TER_Unary(const X &x) : x_(x) {
     vptrs = new VectorofPtrs();
     vptrs->add(x_.getAddresses());
-    // disp3(x);
+    // DISP3(x);
   }
 
   ~TER_Unary() {
@@ -134,7 +134,7 @@ public:
   TER_Unary_User(const FUNC &f, const X &x) : x_(x), f_(f) {
     vptrs = new VectorofPtrs();
     vptrs->add(x_.getAddresses());
-    // disp3(x);
+    // DISP3(x);
   }
 
   ~TER_Unary_User() {
@@ -245,16 +245,16 @@ public:
     if constexpr (M2 > 0) {
       vptrs->add(b_.getAddresses());
     }
-    // disp3(a);
-    // disp3(b);
-    // disp3(vptrs);
-    // tdisp3(E3());
-    // tdisp3(D3());
-    // mdisp3(M3, R3);
+    // DISP3(a);
+    // DISP3(b);
+    // DISP3(vptrs);
+    // TLDISP3(E3());
+    // TLDISP3(D3());
+    // MDISP3(M3, R3);
   }
 
   ~TER_Binary() {
-    // disp3(vptrs);
+    // DISP3(vptrs);
     delete vptrs;
   }
 
@@ -538,8 +538,8 @@ public:
     if constexpr (M2 > 0) {
       vptrs->add(b_.getAddresses());
     }
-    // disp3(a);
-    // disp3(b);
+    // DISP3(a);
+    // DISP3(b);
   }
 
   ~TER_Binary_User() {
@@ -826,9 +826,9 @@ public:
     if constexpr (M3 > 0) {
       // vptrs->add(c_.getAddresses());
     }
-    // disp3(a);
-    // disp3(b);
-    // disp3(c);
+    // DISP3(a);
+    // DISP3(b);
+    // DISP3(c);
   }
 
   ~TER_Ternary() {
@@ -1365,7 +1365,7 @@ public:
     vptrs = new VectorofPtrs();
     vptrs->add(x_.getAddresses());
     vptrs->add(y_.getAddresses());
-    disp3(x);
+    DISP3(x);
   }
 
   ~TER_Join() {

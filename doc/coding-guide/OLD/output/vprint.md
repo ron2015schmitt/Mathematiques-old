@@ -174,7 +174,7 @@ The following types are currently supported by the display commands
 | `DISPVAL(x)`  | `dispval_strm(ostream,x)`  |
 | `DISP(x)`  | `DISP_STRM(ostream,x)`  |
 | `TLDISP(x)`  | `TDISP_STRM(ostream,x)`  |
-| `MDISP(x,y,...)`  | `mdisp_strm(ostream,x,y,...)`  |
+| `MDISP(x,y,...)`  | `MDISP_STRM(ostream,x,y,...)`  |
 
 
 ## Debug-only printing

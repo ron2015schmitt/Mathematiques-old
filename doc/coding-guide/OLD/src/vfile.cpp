@@ -23,7 +23,7 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Vector file I/O");
+  GMD_TITLE("Vector file I/O");
   mathq_preamble();
 
   mathq_toc();

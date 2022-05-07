@@ -22,11 +22,11 @@ int main()
 
   mathq_toc();
   CR();CR();
-  mdtitle("Vector join operator `(v1,v2)` and `rep` function");
+  GMD_TITLE("Vector join operator `(v1,v2)` and `rep` function");
   mathq_preamble();
 
   
-  header3("Vector join operator `,` ");
+  GMD_HEADER3("Vector join operator `,` ");
   OUTPUT("* The Vector operator `,` joins two vectors");
   OUTPUT("* This is an expression.  It does not create intermediate objects.");
   OUTPUT("* join can be used on the left hand side as well!");
@@ -101,7 +101,7 @@ int main()
   }    
     
 
-  header3("Vector `rep` function");
+  GMD_HEADER3("Vector `rep` function");
   OUTPUT("* The Vector `rep(v,m)` function replicates the input vector `m` times.");
   OUTPUT("* `rep` cannot be used on the left hand side of assignment, since it doesn't provide utility to do so.");
   OUTPUT("* The Vector `rep(v,m)` function can be combined with the join operator.");

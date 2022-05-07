@@ -25,7 +25,7 @@ int main()
   
   mathq_toc();
   CR();CR();
-  mdtitle("Vector assigment");
+  GMD_TITLE("Vector assigment");
   mathq_preamble();
 
   OUTPUT("* Vector assignment is performed by copying the elements of the object on the right-hand side to the left-hand side.");

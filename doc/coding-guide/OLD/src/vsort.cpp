@@ -22,9 +22,9 @@ int main()
   int Nex = 1;
   
   CR();
-  mdtitle("Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`  ");
+  GMD_TITLE("Methods `Vector.sort()`, `Vector.uniq()`, `Vector.quniq()`  ");
   mathq_preamble();
-  header2("Sorting");
+  GMD_HEADER2("Sorting");
   OUTPUT("* sorting is performed _in place_ via the `.sort()` method");
   CR();
   OUTPUT("* the indices for the sort are returned in a `Vector<index_type>`");
@@ -50,8 +50,8 @@ int main()
     resultend();
   }
 
-  header2("Removing duplicate elements");
-  header3("The `.uniq()` method");
+  GMD_HEADER2("Removing duplicate elements");
+  GMD_HEADER3("The `.uniq()` method");
   OUTPUT("* The `.uniq()` method operates _in place_, removing all duplicate values.");
   CR();
   OUTPUT("* The indices for the unique elements are returned in a `Vector<index_type>`");
@@ -74,7 +74,7 @@ int main()
     resultend();
   }
 
-  header3("The `.quniq()` method");
+  GMD_HEADER3("The `.quniq()` method");
   OUTPUT("* The `.quniq()` method operates _in place_, removing all _adjacent_ duplicate values.");
   CR();
   OUTPUT("* The indices for the unique elements are returned in a `Vector<index_type>`");

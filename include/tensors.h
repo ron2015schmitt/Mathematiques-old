@@ -287,18 +287,18 @@ namespace mathq {
       calcSize();
     }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3) {
-      //      mdisp3(dim1,dim2,dim3);
+      //      MDISP3(dim1,dim2,dim3);
       resize(3,0);
-      //      disp3(size());
+      //      DISP3(size());
       (*this)[0] = dim1;
       (*this)[1] = dim2;
       (*this)[2] = dim3;
       calcSize();
     }
     Dimensions(const size_type dim1, const size_type dim2, const size_type dim3, const size_type dim4) {
-      //      mdisp3(dim1,dim2,dim3);
+      //      MDISP3(dim1,dim2,dim3);
       resize(4,0);
-      //      disp3(size());
+      //      DISP3(size());
       (*this)[0] = dim1;
       (*this)[1] = dim2;
       (*this)[2] = dim3;

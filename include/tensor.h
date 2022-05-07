@@ -572,7 +572,7 @@ public:
   //----------------- .roundzero(tol) ---------------------------
   // NOTE: in-place
 
-  Tensor<E, R, D, M> &roundzero(FType tolerance = Helper<FType>::tolerance) {
+  Tensor<E, R, D, M> &roundzero(FType tolerance = Functions<FType>::tolerance) {
     for (index_type i = size(); i--;) {
       data_[i] = mathq::roundzero(data_[i], tolerance);
     }

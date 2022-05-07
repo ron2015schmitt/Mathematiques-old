@@ -1,4 +1,4 @@
-_This document was generated from the_ C++ _file_ `real/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
+_This document was generated from the_ C++ _file_ `real/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
 
 C++ supports a wide variety of real number [integer and floating point types](https://en.cppreference.com/w/cpp/language/types), operators, and functions.
 
@@ -150,7 +150,7 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 * The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
 ```C++
-  div_t result = div(7, 2);
+div_t result = div(7, 2);
 ```
 With result:
 

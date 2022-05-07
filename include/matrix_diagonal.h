@@ -384,7 +384,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixDiagonal<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixDiagonal<D,NR,NC>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

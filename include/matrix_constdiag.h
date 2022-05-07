@@ -352,7 +352,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixConstDiag<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixConstDiag<D,NR,NC>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

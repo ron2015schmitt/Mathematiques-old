@@ -427,7 +427,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixRepRow<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixRepRow<D,NR,NC>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

@@ -708,7 +708,7 @@ namespace mathq {
   //----------------- .roundzero(tol) ---------------------------
   // NOTE: in-place
     
-    Vector<E,NE,D,M>&  roundzero(FType tolerance = Helper<FType>::tolerance) { 
+    Vector<E,NE,D,M>&  roundzero(FType tolerance = Functions<FType>::tolerance) { 
     for(index_type i=size(); i--;) {
       data_[i] = mathq::roundzero(data_[i], tolerance);
     }

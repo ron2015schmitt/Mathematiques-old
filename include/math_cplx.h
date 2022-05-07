@@ -172,14 +172,14 @@ namespace mathq {
 
 
   // complex - roundzero
-  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance = Helper<D>::tolerance) {
+  template <typename D> std::complex<D> roundzero(const std::complex<D>& x, const D tolerance = Functions<D>::tolerance) {
     return std::complex<D>(roundzero(x.real(),tolerance), roundzero(x.imag(),tolerance));
   }
 
   // approx - complex
 
   template <typename D1, typename D2>
-  bool approx(const std::complex<D1>& x, const std::complex<D2>& y, const typename AddType<D1,D2>::Type tol = Helper<typename AddType<D1,D2>::Type>::tolerance) {
+  bool approx(const std::complex<D1>& x, const std::complex<D2>& y, const typename AddType<D1,D2>::Type tol = Functions<typename AddType<D1,D2>::Type>::tolerance) {
     return (mathq::approx(real(x),real(y),tol) && mathq::approx(imag(x),imag(y),tol));
   }
 

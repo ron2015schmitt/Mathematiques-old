@@ -434,7 +434,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixToeplitz<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixToeplitz<D,NR,NC>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

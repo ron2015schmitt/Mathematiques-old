@@ -455,7 +455,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixSkewSymmetric<D,N>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixSkewSymmetric<D,N>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

@@ -104,7 +104,7 @@ public:
   //         
   // -------------------------------------------------------------------
   template <class X, class E, class D, int M, int R> 
-  auto roundzero(const TensorR<X,E,D,M,R>& x, const typename FundamentalType<D>::Type& tol = Helper<typename FundamentalType<D>::Type>::tolerance)  {
+  auto roundzero(const TensorR<X,E,D,M,R>& x, const typename FundamentalType<D>::Type& tol = Functions<typename FundamentalType<D>::Type>::tolerance)  {
 
     typedef typename FundamentalType<D>::Type DTOL;
     return  TER_Binary<TensorR<X,E,D,M,R>,
@@ -208,7 +208,7 @@ public:
 // (11) Tensor<E1(D1)> , Tensor<E2(D2)> 
 
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R>
-  auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Helper<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
+  auto approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Functions<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
@@ -223,7 +223,7 @@ public:
 // (10) Tensor<E1(D1)> , D2 
 
   template <class A, class E1, class D1, class D2, int M, int R>
-  auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Helper<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
+  auto approx(const TensorR<A,E1,D1,M,R>& x1, const D2& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Functions<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
@@ -240,7 +240,7 @@ public:
 // (01) D1, Tensor<E2(D2)> 
 
   template <class B, class E2, class D1, class D2, int M, int R>
-  auto approx(D1& x1, const TensorR<B,E2,D2,M,R>& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Helper<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
+  auto approx(D1& x1, const TensorR<B,E2,D2,M,R>& x2, const typename FundamentalType<typename AddType<D1,D2>::Type>::Type& tol = Functions<typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance) {
 
     typedef typename FundamentalType<typename AddType<D1,D2>::Type>::Type DTOL;
     typedef bool D3;
@@ -259,7 +259,7 @@ public:
   //          checks dimensions first
   // -------------------------------------------------------------------
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
-  bool equal_approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const  typename FundamentalType<typename AddType<D1,D2>::Type>::Type tol = Helper< typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance)  {
+  bool equal_approx(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2, const  typename FundamentalType<typename AddType<D1,D2>::Type>::Type tol = Functions< typename FundamentalType<typename AddType<D1,D2>::Type>::Type>::tolerance)  {
     
     if (!dimequiv(x1,x2)) {
       return false;

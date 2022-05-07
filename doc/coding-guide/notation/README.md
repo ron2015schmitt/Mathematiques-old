@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.31</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.32</h1>
 
 <details>
 
@@ -44,7 +44,7 @@
 
 # 7.3. User Guide Notation
 
-_This document was generated from the_ C++ _file_ `notation/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
+_This document was generated from the_ C++ _file_ `notation/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
 <br>
 
 The following notation shorthand is used in the User Guide (but certainly not in C++ code!).

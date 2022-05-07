@@ -44,7 +44,7 @@ int main() {
   OUTPUT("| `trunc(u)` | `mathq` | `\"mathq.h\"` | **mathq** truncate | ");
   OUTPUT("| `round(x)` | `std` | `<cmath>` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | ");
   OUTPUT("| `round(u)` | `mathq` | `\"mathq.h\"` | **mathq** round function | ");
-  OUTPUT("| `roundzero(u, tolerance = Helper<X>::tolerance)` | `mathq` | `\"mathq.h\"` | round numbers with magnitude less than `tolerance` to 0. The default values are shown below. | ");
+  OUTPUT("| `roundzero(u, tolerance = Functions<X>::tolerance)` | `mathq` | `\"mathq.h\"` | round numbers with magnitude less than `tolerance` to 0. The default values are shown below. | ");
   OUTPUT("| `sgn(u)` | `mathq` | `\"mathq.h\"` | [signum function](https://en.wikipedia.org/wiki/Sign_function), return type has same type as x | ");
   OUTPUT("| `zero(u)` | `mathq` | `\"mathq.h\"` | return a zero with the same type as x | ");
   CR();
@@ -55,9 +55,9 @@ int main() {
   OUTPUT("The default values were chosen so that the typical numerical error encountered with trig functions will produce exactly zero when appropriate.");
   CR();
   GMD_CODE_START("C++");
-  DISP(Helper<float>::tolerance);
-  DISP(Helper<double>::tolerance);
-  DISP(Helper<long double>::tolerance);
+  DISP(Functions<float>::tolerance);
+  DISP(Functions<double>::tolerance);
+  DISP(Functions<long double>::tolerance);
   GMD_CODE_END();
   CR();
 

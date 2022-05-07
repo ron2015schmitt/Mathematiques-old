@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.31</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.32</h1>
 
 <details>
 
@@ -60,7 +60,7 @@
 
 # 7.4.1. Arithmetic
 
-_This document was generated from the_ C++ _file_ `arithmetic/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
+_This document was generated from the_ C++ _file_ `arithmetic/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
 
 ## Arithmetic Operators
 The operators `+, -, *, /` are the addition, subtraction, multiplication, and division operators respectively.

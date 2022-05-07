@@ -432,7 +432,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixVandermonde<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixVandermonde<D,NR,NC>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

@@ -450,7 +450,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixSkewHermitian<D,N>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixSkewHermitian<D,N>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

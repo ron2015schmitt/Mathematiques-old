@@ -317,7 +317,7 @@ bool Display::isInitialized = false;
 Style Display::expressionStyle = CREATESTYLE(BOLD);
 
 
-StyledString Display::codePrefixStyledString = StyledString(CREATESTYLE(""), "  ");  
+StyledString Display::codePrefixStyledString = StyledString(CREATESTYLE(""), "");  
 
 // prefix for display C++ in git markdown so that syntax highlighting works fully
 // ☀ ☘ ☯ ☄ " " (U+00A0)

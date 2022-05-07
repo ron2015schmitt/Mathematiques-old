@@ -449,7 +449,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixLowerTriangle<D,N>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixLowerTriangle<D,N>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

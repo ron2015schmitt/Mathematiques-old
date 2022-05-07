@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.31</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.32</h1>
 
 <details>
 
@@ -44,7 +44,7 @@
 
 # 7.5. Functions
 
-_This document was generated from the_ C++ _file_ `functions/body.cpp` _using functions and macros in the namespaces_ `mathq::display` _and_ `mathq::md` _in headers_ `"mathq.h"` _and_ `"gitmd.h"`_respectively._ 
+_This document was generated from the_ C++ _file_ `functions/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
 
 C++ supports a wide variety of mathematical functions.
 
@@ -67,7 +67,7 @@ The following are basic mathematical functions for manipulating numbers.
 | `trunc(u)` | `mathq` | `"mathq.h"` | **mathq** truncate | 
 | `round(x)` | `std` | `<cmath>` | [round function](https://en.cppreference.com/w/cpp/numeric/math/round) | 
 | `round(u)` | `mathq` | `"mathq.h"` | **mathq** round function | 
-| `roundzero(u, tolerance = Helper<X>::tolerance)` | `mathq` | `"mathq.h"` | round numbers with magnitude less than `tolerance` to 0. The default values are shown below. | 
+| `roundzero(u, tolerance = Functions<X>::tolerance)` | `mathq` | `"mathq.h"` | round numbers with magnitude less than `tolerance` to 0. The default values are shown below. | 
 | `sgn(u)` | `mathq` | `"mathq.h"` | [signum function](https://en.wikipedia.org/wiki/Sign_function), return type has same type as x | 
 | `zero(u)` | `mathq` | `"mathq.h"` | return a zero with the same type as x | 
 
@@ -77,9 +77,9 @@ The default `zero_tolerance` values are global variables and can be changed by t
 The default values were chosen so that the typical numerical error encountered with trig functions will produce exactly zero when appropriate.
 
 ```C++
-☄ Helper<float>::tolerance ➜  3.5e-07;
-☄ Helper<double>::tolerance ➜  1.5e-16;
-☄ Helper<long double>::tolerance ➜  1.5e-30;
+☄ Functions<float>::tolerance ➜  3.5e-07;
+☄ Functions<double>::tolerance ➜  1.5e-16;
+☄ Functions<long double>::tolerance ➜  1.5e-30;
 ```
 
 
@@ -244,9 +244,9 @@ This gives the type for any varable. However, the names are garbled compiler str
 Examples:
 
 ```C++
-  int n = 3;
+int n = 3;
 ☄ typeid(n).name() ➜  i;
-  string s = "hello";
+string s = "hello";
 ☄ typeid(s).name() ➜  NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE;
 ```
 
@@ -257,9 +257,9 @@ The function `mathq::display::getTypeName` returns a string that gives the actua
 Examples:
 
 ```C++
-  int n = 3;
+int n = 3;
 ☄ getTypeName(n) ➜  int;
-  string s = "hello";
+string s = "hello";
 ☄ getTypeName(s) ➜  std::string;
 ```
 
@@ -274,16 +274,16 @@ As another example, when adding two integers (or floating point types) of differ
 Examples:
 
 ```C++
-  short n1 = 3;
-  int n2 = 100;
+short n1 = 3;
+int n2 = 100;
 ☄ n1 * n2 ➜  int 300;
 
-  float x1 = 3;
-  double x2 = 0.1415;
+float x1 = 3;
+double x2 = 0.1415;
 ☄ x1 + x2 ➜  double 3.1415;
 
-  int8_t y1 = 25;
-  double y2 = 0.25;
+int8_t y1 = 25;
+double y2 = 0.25;
 ☄ y1 / y2 + y2 ➜  double 100.25;
 ```
 
@@ -297,17 +297,17 @@ Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/lang
 Converting a floating point type to an integer:
 
 ```C++
-  int n1 = (int)3.14;
+int n1 = (int)3.14;
 ☄ n1 ➜  int 3;
-  int n2 = int(3.14);
+int n2 = int(3.14);
 ☄ n2 ➜  int 3;
 ```
 Forcing floating point division by converting the numerator to a `float`
 
 ```C++
-  double x = (21 + 1) / 7;
+double x = (21 + 1) / 7;
 ☄ x ➜  double 3;
-  double y = float(21 + 1) / 7;
+double y = float(21 + 1) / 7;
 ☄ y ➜  double 3.14286;
 ```
 

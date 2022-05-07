@@ -324,7 +324,7 @@ namespace mathq {
     //----------------- .roundzero(tol) ---------------------------
     // NOTE: in-place
 
-    MatrixExchange<D,NR,NC>&  roundzero(FType tolerance = Helper<FType>::tolerance) {
+    MatrixExchange<D,NR,NC>&  roundzero(FType tolerance = Functions<FType>::tolerance) {
       return *this;
     }
 

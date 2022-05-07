@@ -379,7 +379,7 @@ namespace mathq {
   // NOTE: in-place
 
     
-    Scalar<E,D,M>&  roundzero(FType tolerance = Helper<FType>::tolerance) { 
+    Scalar<E,D,M>&  roundzero(FType tolerance = Functions<FType>::tolerance) { 
     data_ = mathq::roundzero(data_, tolerance);
     return *this;
   }

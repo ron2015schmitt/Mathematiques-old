@@ -316,9 +316,12 @@ Log Log_dummy = *(new Log());
 bool Display::isInitialized = false;
 Style Display::expressionStyle = CREATESTYLE(BOLD);
 
+
+StyledString Display::codePrefixStyledString = StyledString(CREATESTYLE(""), "  ");  
+
 // prefix for display C++ in git markdown so that syntax highlighting works fully
 // ☀ ☘ ☯ ☄ " " (U+00A0)
-StyledString Display::prefixStyledString = StyledString(CREATESTYLE(""), "☄ ");  
+StyledString Display::prefixStyledString = StyledString(CREATESTYLE(GREEN), "☄ ");  
 
 StyledString Display::equalsStyledString = StyledString(CREATESTYLE(GRAY1), " ➜  ");
 //StyledString Display::equalsStyledString = StyledString(CREATESTYLE(GRAY1), "  =  ");

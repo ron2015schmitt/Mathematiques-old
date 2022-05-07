@@ -44,7 +44,7 @@
 //
 // OUTPUT(x)
 //
-// sends x to MOUT
+// sends x to MOUT with CR
 //
 //   x -> variable or expression that has >> operator defined
 
@@ -81,6 +81,19 @@
 //   DISP(1+3); // "1+3  ➜  4"
 
 #define DISP(...) display::Display::mydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
+
+//
+// SRDISP(str,x)
+//
+//
+// same as DISP(x) but prints str on the right before the terminator
+//
+//   x -> variable or expression that has >> operator defined
+//
+// EXAMPLES:
+//   SRDISP(" bits",CHAR_BIT); // "CHAR_BIT  ➜  8 bits"
+
+#define SRDISP(str,...) display::Display::mydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__,str)
 
 
 //
@@ -1507,13 +1520,14 @@ public:
   //       exists, EVEN if you put getTypeName(x) inside an if clause
 
   template <typename X>
-  static void mydisp_notype(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
+  static void mydisp_notype(std::ostream &stream, const X &x, const std::string name, const bool issueCR, const std::string postString = "") {
     using namespace std;
     //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
     stream << prefixStyledString;
     stream << StyledString(expressionStyle, name);
     stream << equalsStyledString;
     dispval_strm(stream, x);
+    stream << postString;
     stream << terminatorStyledString;
     if (issueCR) {
       stream << endl;
@@ -1531,9 +1545,9 @@ public:
   }
 
   template <typename X>
-  static void mydispcr(std::ostream &stream, const X &x, const std::string name) {
+  static void mydispcr(std::ostream &stream, const X &x, const std::string name, const std::string postString = "") {
     using namespace std;
-    mydisp_notype(stream, x, name, true);
+    mydisp_notype(stream, x, name, true, postString);
   }
 
   template <typename X>

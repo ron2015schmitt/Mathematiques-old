@@ -13,7 +13,7 @@ int main() {
   using namespace mathq;
   using namespace std;
   using namespace display;
-  
+
 
   GMD_PREAMBLE();
 
@@ -37,11 +37,14 @@ int main() {
 
   OUTPUT("C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  For a 64-bit CPU running Linux, they have the following number of bits:");
 
+  // TODO: should OUTPUT instead of printf
   CR();
   CR();
   GMD_CODE_START("C++");
-  printf("CHAR_BIT = %d bits\n", CHAR_BIT);
+  DISPVAL(CHAR_BIT);
+  OUTPUT(" bits");
   printf("CHAR_BIT*sizeof(char) = %ld bits\n", CHAR_BIT * sizeof(char));
+  OUTPUT("CHAR_BIT*sizeof(char) = " << " " << CHAR_BIT*sizeof(char) << " bits");
   printf("CHAR_BIT*sizeof(short) = %ld bits\n", CHAR_BIT * sizeof(short));
   printf("CHAR_BIT*sizeof(int) = %ld bits\n", CHAR_BIT * sizeof(int));
   printf("CHAR_BIT*sizeof(long) = %ld bits\n", CHAR_BIT * sizeof(long));
@@ -52,13 +55,19 @@ int main() {
   CR();
   OUTPUT("The maximum and minimum for each type are given below.");
 
-  OUTPUT("| Type | Min | Max |");
-  OUTPUT("| :--- | :---: | :---: |");
-  printf("| ```char``` | %d | %d |\n", std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
+  OUTPUT("| Type | Size<sup>1,2</sup> | Min<sup>3</sup> | Max<sup>4</sup> |");
+  OUTPUT("| :--- | :---: | :---: | :---: | ");
+  printf("| ```char``` | %d | %d | \n", std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
   printf("| ```short``` | %d | %d |\n", std::numeric_limits<short>::min(), std::numeric_limits<short>::max());
   printf("| ```int``` | %d | %d |\n", std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
   printf("| ```long``` | %ld | %ld |\n", std::numeric_limits<long>::min(), std::numeric_limits<long>::max());
   printf("| ```long long``` | %lld | %lld |\n", std::numeric_limits<long long>::min(), std::numeric_limits<long long>::max());
+
+  OUTPUT("1. The C++ constant [```CHAR_BIT```](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[```std::sizeof```](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.");
+  OUTPUT("2. Sizes and limits given for a 64-bit CPU running Linux");
+  OUTPUT("3. The C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("4. The C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+
 
   CR();
   OUTPUT("Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");

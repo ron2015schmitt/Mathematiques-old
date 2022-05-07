@@ -15,8 +15,9 @@ C++ supports several different signed integer types.  The size of each depends o
 
 
 ```C++
-CHAR_BIT = 8 bits
+8 bits
 CHAR_BIT*sizeof(char) = 8 bits
+CHAR_BIT*sizeof(char) =  8 bits
 CHAR_BIT*sizeof(short) = 16 bits
 CHAR_BIT*sizeof(int) = 32 bits
 CHAR_BIT*sizeof(long) = 64 bits
@@ -25,13 +26,17 @@ CHAR_BIT*sizeof(long long) = 64 bits
 The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.
 
 The maximum and minimum for each type are given below.
-| Type | Min | Max |
-| :--- | :---: | :---: |
-| ```char``` | -128 | 127 |
+| Type | Size<sup>1,2</sup> | Min<sup>3</sup> | Max<sup>4</sup> |
+| :--- | :---: | :---: | :---: | 
+| ```char``` | -128 | 127 | 
 | ```short``` | -32768 | 32767 |
 | ```int``` | -2147483648 | 2147483647 |
 | ```long``` | -9223372036854775808 | 9223372036854775807 |
 | ```long long``` | -9223372036854775808 | 9223372036854775807 |
+1. The C++ constant [```CHAR_BIT```](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[```std::sizeof```](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.
+2. Sizes and limits given for a 64-bit CPU running Linux
+3. The C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
+4. The C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
 
 Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
 

@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.29</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.30</h1>
 
 <details>
 
@@ -83,11 +83,11 @@ For details refer [Comparison Operators](https://en.cppreference.com/w/c/languag
 Examples:
 
 ```C++
- (2 == 2) ➜  bool 1;
- (1 / 2 == 0.5) ➜  bool 0;
- (1. / 2 == 0.5) ➜  bool 1;
- (-2 < 34.2) ➜  bool 1;
- (2 > 0) ➜  bool 1;
+☄ (2 == 2) ➜  bool 1;
+☄ (1 / 2 == 0.5) ➜  bool 0;
+☄ (1. / 2 == 0.5) ➜  bool 1;
+☄ (-2 < 34.2) ➜  bool 1;
+☄ (2 > 0) ➜  bool 1;
 ```
 
 

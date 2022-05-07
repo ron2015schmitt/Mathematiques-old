@@ -83,9 +83,9 @@ int main()
     EXAMPLE(Nex++,"Applying User-defined function `pos` via `op1`");
     CR();
     GMD_CODE_START("C++");
-    codemulti(using namespace std );
-    codemulti( Vector<double> v1(linspace<double>(-1,1,11) ) );
-    codemulti( Vector<int> v2(range<int>(-2,2))  );
+    ECHO_CODE(using namespace std );
+    ECHO_CODE( Vector<double> v1(linspace<double>(-1,1,11) ) );
+    ECHO_CODE( Vector<int> v2(range<int>(-2,2))  );
     GMD_CODE_END();
     CR();
     resultstart2(": Applying User-defined function `pos` via `op1`");
@@ -107,8 +107,8 @@ int main()
 
     GMD_CODE_START("C++");
     OUTPUT(poly_str);
-    codemulti( Vector<double> v1(linspace<double>(-1,1,11) ) );
-    codemulti( Vector<double> v2(11,0.25) );
+    ECHO_CODE( Vector<double> v1(linspace<double>(-1,1,11) ) );
+    ECHO_CODE( Vector<double> v2(11,0.25) );
     GMD_CODE_END();
     CR();
     resultstart();

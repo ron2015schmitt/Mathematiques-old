@@ -35,11 +35,11 @@ int main()
     CR();
     EXAMPLE(Nex++," `Vector.sort()`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> t( {23,-1,100,7}) );
-    codemulti( Vector<double> y( {30,10,20,40} ) );
-    codemulti( Vector<index_type> vindex );
-    codemulti( vindex = t.sort() );
-    codemulti( y = y[vindex] );
+    ECHO_CODE( Vector<double> t( {23,-1,100,7}) );
+    ECHO_CODE( Vector<double> y( {30,10,20,40} ) );
+    ECHO_CODE( Vector<index_type> vindex );
+    ECHO_CODE( vindex = t.sort() );
+    ECHO_CODE( y = y[vindex] );
     GMD_CODE_END();
     CR();
 
@@ -62,9 +62,9 @@ int main()
     CR();
     EXAMPLE(Nex++,"The `.uniq()` method");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> t( {23,-1,23,4,4,4,-1,3,3}) );
-    codemulti( Vector<index_type> vindex );
-    codemulti( vindex = t.uniq() );
+    ECHO_CODE( Vector<double> t( {23,-1,23,4,4,4,-1,3,3}) );
+    ECHO_CODE( Vector<index_type> vindex );
+    ECHO_CODE( vindex = t.uniq() );
     GMD_CODE_END();
     CR();
 
@@ -85,9 +85,9 @@ int main()
     CR();
     EXAMPLE(Nex++,"The `.quniq()` method");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> t( {23,-1,23,4,4,4,-1,3,3}) );
-    codemulti( Vector<index_type> vindex );
-    codemulti( vindex = t.quniq() );
+    ECHO_CODE( Vector<double> t( {23,-1,23,4,4,4,-1,3,3}) );
+    ECHO_CODE( Vector<index_type> vindex );
+    ECHO_CODE( vindex = t.quniq() );
     GMD_CODE_END();
     CR();
 

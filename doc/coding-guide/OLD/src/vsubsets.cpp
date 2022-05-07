@@ -41,10 +41,10 @@ int main()
     CR();
     EXAMPLE(Nex++,"Access via a Vector of indices");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
-    codemulti( Vector<index_type> veven( range<index_type>(0,10,2) ) );
-    codemulti( Vector<index_type> vodd( range<index_type>(1,10,2) ) );
-    codemulti( Vector<index_type> vconst(15,1 ) );
+    ECHO_CODE( Vector<double> v( linspace<double>(0,1,11) ) );
+    ECHO_CODE( Vector<index_type> veven( range<index_type>(0,10,2) ) );
+    ECHO_CODE( Vector<index_type> vodd( range<index_type>(1,10,2) ) );
+    ECHO_CODE( Vector<index_type> vconst(15,1 ) );
     GMD_CODE_END();
     CR();
     resultstart();
@@ -75,7 +75,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"Access via a C++11 initializer_list");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( linspace<double>(0,1,11) ) );
+    ECHO_CODE( Vector<double> v( linspace<double>(0,1,11) ) );
     DISP(v);
     GMD_CODE_END();
     CR();

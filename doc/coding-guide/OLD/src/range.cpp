@@ -92,9 +92,9 @@ int main()
     CR();
     EXAMPLE(Nex++,"Initialize `Vector`'s of various data types  using the *`range`* function");
     GMD_CODE_START("C++");
-    codemulti( Vector<unsigned int> v1 ( range<unsigned int>(0,3) ) );
-    codemulti( Vector<int> v2 ( range<int>(0,3) ) );
-    codemulti( Vector<double> v3 ( range<double>(0,3)) );
+    ECHO_CODE( Vector<unsigned int> v1 ( range<unsigned int>(0,3) ) );
+    ECHO_CODE( Vector<int> v2 ( range<int>(0,3) ) );
+    ECHO_CODE( Vector<double> v3 ( range<double>(0,3)) );
     GMD_CODE_END();
     CR();
 
@@ -113,9 +113,9 @@ int main()
     CR();
     EXAMPLE(Nex++,"Assigning a `Vector`'s to a *`range`*");
     GMD_CODE_START("C++");
-    codemulti( const size_t N = 10);
-    codemulti( Vector<double> v (N));
-    codemulti( v = range<double>(0,N-1));
+    ECHO_CODE( const size_t N = 10);
+    ECHO_CODE( Vector<double> v (N));
+    ECHO_CODE( v = range<double>(0,N-1));
     GMD_CODE_END();
     CR();
 

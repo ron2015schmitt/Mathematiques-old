@@ -47,15 +47,15 @@ int main()
   OUTPUT("Define and initialize some variables:");
   CR();CR();
   GMD_CODE_START("C++");
-  codemulti(  int n = 45 );
-  codemulti(  int m =256 );
-  codemulti(  double x = 3.14 );
-  codemulti(  double vals[] = {1.1,2.2,3.3} );
-  codemulti(  bool done = true );
-  codemulti( Vector<double> v = range<double>(1,10) );
-  codemulti(  char str[] = "hello" );
-  codemulti(  std::string s = "world"  );
-  codemulti(  ComplexDouble z(1,-1)  );
+  ECHO_CODE(  int n = 45 );
+  ECHO_CODE(  int m =256 );
+  ECHO_CODE(  double x = 3.14 );
+  ECHO_CODE(  double vals[] = {1.1,2.2,3.3} );
+  ECHO_CODE(  bool done = true );
+  ECHO_CODE( Vector<double> v = range<double>(1,10) );
+  ECHO_CODE(  char str[] = "hello" );
+  ECHO_CODE(  std::string s = "world"  );
+  ECHO_CODE(  ComplexDouble z(1,-1)  );
   GMD_CODE_END();
 
   OUTPUT("display each variable using `disp`:");
@@ -345,8 +345,8 @@ int main()
     EXAMPLE(Nex++," `double` number format");
       
     GMD_CODE_START("C++");
-    codemulti( using namespace display );
-    codemulti( double x = 2.51  );
+    ECHO_CODE( using namespace display );
+    ECHO_CODE( double x = 2.51  );
     GMD_CODE_END();
     OUTPUT("");
 
@@ -355,7 +355,7 @@ int main()
     resultend();
 
     GMD_CODE_START("C++");
-    codemulti( setFormatString<double>("%+18.15f")  );
+    ECHO_CODE( setFormatString<double>("%+18.15f")  );
     GMD_CODE_END();
     OUTPUT("");
     resultstart3(": The format `\"%+18.15f\"`  yields");
@@ -370,8 +370,8 @@ int main()
     EXAMPLE(Nex++," `int` number format");
 
     GMD_CODE_START("C++");
-    codemulti( using namespace display );
-    codemulti( int n = -1024  );
+    ECHO_CODE( using namespace display );
+    ECHO_CODE( int n = -1024  );
     GMD_CODE_END();
     OUTPUT("");
 
@@ -380,7 +380,7 @@ int main()
     resultend();
 
     GMD_CODE_START("C++");
-    codemulti( setFormatString<int>("%10d")  );
+    ECHO_CODE( setFormatString<int>("%10d")  );
     GMD_CODE_END();
     OUTPUT("");
     resultstart3(": The format `\"%10d\"`  yields");
@@ -401,8 +401,8 @@ int main()
   {
     CR();CR();
     GMD_CODE_START("C++");
-    codemulti( using namespace display );
-    codemulti( bool a = true );
+    ECHO_CODE( using namespace display );
+    ECHO_CODE( bool a = true );
     GMD_CODE_END();
     OUTPUT("");
 
@@ -414,9 +414,9 @@ int main()
 
     OUTPUT("For example, we can change the bool display value to true/false as follows.");
     GMD_CODE_START("C++");
-    codemulti( using namespace display );
-    codemulti( FormatData<bool>::string_for_true = "true" );
-    codemulti( FormatData<bool>::string_for_false = "false" );
+    ECHO_CODE( using namespace display );
+    ECHO_CODE( FormatData<bool>::string_for_true = "true" );
+    ECHO_CODE( FormatData<bool>::string_for_false = "false" );
     GMD_CODE_END();
     OUTPUT("");
 
@@ -437,8 +437,8 @@ int main()
     set_default_format();
     EXAMPLE(Nex++," complex number formats");
     GMD_CODE_START("C++");
-    codemulti( using namespace display );
-    codemulti( ComplexDouble z(1,-2)  );
+    ECHO_CODE( using namespace display );
+    ECHO_CODE( ComplexDouble z(1,-2)  );
     GMD_CODE_END();
       
     CR();CR();
@@ -471,7 +471,7 @@ int main()
     CR();CR();
     OUTPUT("Note that the format of the real and imaginary parts of `complex<D>` are controlled by the format string for the template data type.`\n");
     GMD_CODE_START("C++");
-    codemulti( setFormatString<double>("%9.6f")  );
+    ECHO_CODE( setFormatString<double>("%9.6f")  );
     GMD_CODE_END();
     OUTPUT("The above statement changes the display of `z` to\n");
     GMD_CODE_START("C++");
@@ -499,8 +499,8 @@ int main()
     set_default_format();
     EXAMPLE(Nex++," default Vector format");
     GMD_CODE_START("C++");
-    codemulti( using namespace mathq );
-    codemulti( Vector<double> v = range<double>(1001,1010);  );
+    ECHO_CODE( using namespace mathq );
+    ECHO_CODE( Vector<double> v = range<double>(1001,1010);  );
     GMD_CODE_END();
     OUTPUT("The default format yields\n");
     GMD_CODE_START("C++");
@@ -525,17 +525,17 @@ int main()
   OUTPUT("* This function also changes the format for doubles and complex numbers");
   CR();CR();
   GMD_CODE_START("C++");
-  codemulti( setFormatString<double>("% 10.8e") );
-  codemulti( FormatData<double>::tens = true );
-  codemulti( setFormatStringComplex("%s + I*%s") );
+  ECHO_CODE( setFormatString<double>("% 10.8e") );
+  ECHO_CODE( FormatData<double>::tens = true );
+  ECHO_CODE( setFormatStringComplex("%s + I*%s") );
   GMD_CODE_END();
   {
     
     EXAMPLE(Nex++," Mathematica Vector format");
     GMD_CODE_START("C++");
-    codemulti( using namespace mathq );
-    codemulti( Vector<double> v = range<double>(1001,1010);  );
-    codemulti( set_mathematica_var_format() );
+    ECHO_CODE( using namespace mathq );
+    ECHO_CODE( Vector<double> v = range<double>(1001,1010);  );
+    ECHO_CODE( set_mathematica_var_format() );
     GMD_CODE_END();
     OUTPUT("The Mathematica format yields\n");
     GMD_CODE_START("C++");
@@ -560,17 +560,17 @@ int main()
   OUTPUT("* This function also changes the format for doubles and complex numbers");
   CR();CR();
   GMD_CODE_START("C++");
-  codemulti( setFormatString<double>("% 10.8e") );
-  codemulti( FormatData<double>::tens = false );
-  codemulti( setFormatStringComplex("%s + i*%s") );
+  ECHO_CODE( setFormatString<double>("% 10.8e") );
+  ECHO_CODE( FormatData<double>::tens = false );
+  ECHO_CODE( setFormatStringComplex("%s + i*%s") );
   GMD_CODE_END();
   {
     
     EXAMPLE(Nex++," Matlab Vector format");
     GMD_CODE_START("C++");
-    codemulti( using namespace mathq );
-    codemulti( Vector<double> v = range<double>(1001,1010);  );
-    codemulti( set_matlab_var_format() );
+    ECHO_CODE( using namespace mathq );
+    ECHO_CODE( Vector<double> v = range<double>(1001,1010);  );
+    ECHO_CODE( set_matlab_var_format() );
     GMD_CODE_END();
     OUTPUT("The Matlab format yields\n");
     GMD_CODE_START("C++");

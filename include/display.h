@@ -213,9 +213,28 @@
 #define CR() display::Display::issuecr(MOUT)
 
 
+//
+// ECHO_CODE
+//
+// line of code is both executed and printted to MOUT
+
+#define ECHO_CODE(...)  MOUT << " " << display::printf2str(stringify(__VA_ARGS__)) << ";" << std::endl;  \
+  __VA_ARGS__
 
 //
-// duplicate of above functions but sends output to stream
+// ECHO_CODE_W_COMMENT
+//
+// line of code is both executed and printted to MOUT
+// the string ("// " + str) is appended to the output
+
+#define ECHO_CODE_W_COMMENT(str,...)  MOUT << " " << display::printf2str(stringify(__VA_ARGS__)) << "; // "+str << std::endl;  \
+  __VA_ARGS__
+
+
+
+
+//
+// duplicate of above functions but send output to stream
 //
 #define DISPVAL_STRM(stream,...) display::dispval_strm(stream, __VA_ARGS__)
 #define DISP_STRM(stream, ...) display::Display::mydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
@@ -223,10 +242,15 @@
 #define TRDISP_STRM(stream, ...) display::Display::trmydispcr(stream, __VA_ARGS__, #__VA_ARGS__)
 #define CR_STRM(stream) display::Display::issuecr(stream)
 #define MDISP_STRM(stream, ...) _MDISP_X(, ##__VA_ARGS__, _DISP_10(stream, __VA_ARGS__), _DISP_9(stream, __VA_ARGS__), _DISP_8(stream, __VA_ARGS__), _DISP_7(stream, __VA_ARGS__), _DISP_6(stream, __VA_ARGS__), _DISP_5(stream, __VA_ARGS__), _DISP_4(stream, __VA_ARGS__), _DISP_3(stream, __VA_ARGS__), _DISP_2(stream, __VA_ARGS__), _DISP_1(stream, __VA_ARGS__), _DISP_0(stream))
+#define ECHO_CODE_STRM(stream, ...)  stream << " " << display::printf2str(stringify(__VA_ARGS__)) << ";" << std::endl;  \
+  __VA_ARGS__
+#define ECHO_CODE_W_COMMENT_STRM(stream, str,...)  stream << " " << display::printf2str(stringify(__VA_ARGS__)) << "; // "+str << std::endl;  \
+  __VA_ARGS__
 
 
 //
-// THESE FUNCTIONS ONLY APPEAR IN CERTAIN DEBUG MODES
+// THESE FUNCTIONS ONLY APPEAR IN DEBUG MODES
+// ie they have zero run-time cost when the DEBUG level is less than the number specified
 //
 
 #if MATHQ_DEBUG >= 1
@@ -287,18 +311,6 @@
 #endif
 
 
-// rename CODE_ECHO
-// line of code is both executed
-// use MOUT instead of printf
-
-#define codemulti(...)                     \
-  printf("%s;\n", stringify(__VA_ARGS__)); \
-  __VA_ARGS__
-
-
-#define codemultiwcomment(str, ...)                   \
-  printf("%s; // %s\n", stringify(__VA_ARGS__), str); \
-  __VA_ARGS__
 
 
 // **deprecated**
@@ -339,7 +351,7 @@
 // EXAMPLE:
 //  GMD_CODE_START(); 
 //  x = 0;  // line of code is executed
-//  codemulti( x = (43.2 - 1)/2 );  // line of code is both executed and also put in the Markdown code block
+//  ECHO_CODE( x = (43.2 - 1)/2 );  // line of code is both executed and also put in the Markdown code block
 //  GMD_CODE_END()
 //
 
@@ -351,13 +363,12 @@
 
 #define GMD_CODE_BLOCK(...)         \
   GMD_CODE_START();            \
-  codemulti(__VA_ARGS__); \
+  ECHO_CODE(__VA_ARGS__); \
   GMD_CODE_END()
 
 // for providing some vertical space
 
-#define GMD_VSPACE() MOUT << "\n<br>\n" \
-                      << std::endl
+#define GMD_VSPACE() MOUT << "\n<br>\n" << std::endl
 
 // header macros 
 
@@ -1447,7 +1458,10 @@ inline void print3(const std::string s) {
 //                       Display
 //****************************************************************************
 
-// add class variable that if defined overrides the default, taken from the Format class
+// TODO: 
+//       add method that supports ECHO_CODE?
+//       add class variable that if defined overrides the default, taken from the Format class
+
 class Display {
 private:
   static bool isInitialized;

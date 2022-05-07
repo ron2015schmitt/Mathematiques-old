@@ -150,7 +150,7 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 * The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
 ```C++
-div_t result = div(7, 2);
+ div_t result = div(7, 2);
 ```
 With result:
 

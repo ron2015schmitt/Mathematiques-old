@@ -36,8 +36,8 @@ int main()
     CR();
     EXAMPLE(Nex++,"Vector join operator `,`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v1( range<double>(0,2) ) );
-    codemulti( Vector<double> v2( range<double>(3,4) ) );
+    ECHO_CODE( Vector<double> v1( range<double>(0,2) ) );
+    ECHO_CODE( Vector<double> v2( range<double>(3,4) ) );
     GMD_CODE_END();
     CR();
 
@@ -56,9 +56,9 @@ int main()
     OUTPUT("The following are examples usign the join operator on the left hand side");
     CR();
     GMD_CODE_START("C++");
-    codemulti( Vector<double> va(2) );
-    codemulti( Vector<double> vb(3) );
-    codemulti( (va,vb) = range<double>(1,5) );
+    ECHO_CODE( Vector<double> va(2) );
+    ECHO_CODE( Vector<double> vb(3) );
+    ECHO_CODE( (va,vb) = range<double>(1,5) );
     GMD_CODE_END();
     CR();
     resultstart();
@@ -67,9 +67,9 @@ int main()
     resultend();
 
     GMD_CODE_START("C++");
-    codemulti( Vector<double> ua(2) );
-    codemulti( Vector<double> ub(3) );
-    codemulti( (ua[{1,0}],ub) = range<double>(1,5) );
+    ECHO_CODE( Vector<double> ua(2) );
+    ECHO_CODE( Vector<double> ub(3) );
+    ECHO_CODE( (ua[{1,0}],ub) = range<double>(1,5) );
     GMD_CODE_END();
     CR();
     resultstart();
@@ -78,9 +78,9 @@ int main()
     resultend();
 
     GMD_CODE_START("C++");
-    codemulti( Vector<double> wa(2) );
-    codemulti( Vector<double> wb(3) );
-    codemulti( (wa,wb[{2,1,0}]) = range<double>(1,5) );
+    ECHO_CODE( Vector<double> wa(2) );
+    ECHO_CODE( Vector<double> wb(3) );
+    ECHO_CODE( (wa,wb[{2,1,0}]) = range<double>(1,5) );
     GMD_CODE_END();
     CR();
     resultstart();
@@ -89,9 +89,9 @@ int main()
     resultend();
 
     GMD_CODE_START("C++");
-    codemulti( Vector<double> za(2) );
-    codemulti( Vector<double> zb(3) );
-    codemulti( (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5) );
+    ECHO_CODE( Vector<double> za(2) );
+    ECHO_CODE( Vector<double> zb(3) );
+    ECHO_CODE( (za[{1,0}],zb[{2,1,0}]) = range<double>(1,5) );
     GMD_CODE_END();
     CR();
     resultstart();
@@ -112,14 +112,14 @@ int main()
     CR();
     EXAMPLE(Nex++,"Vector `rep` function");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v1( range<double>(1,3) ) );
-    codemulti( Vector<double> v2( range<double>(4,5) ) );
-    codemulti( Vector<double> v3 );
-    codemulti( v3 = rep(v1,3) );
-    codemulti( Vector<double> v4 );
-    codemulti( v4 = (rep(v1,2), rep(v2,3)) );
-    codemulti( Vector<double> v5 );
-    codemulti( v5 = rep((v1,v2),2) );
+    ECHO_CODE( Vector<double> v1( range<double>(1,3) ) );
+    ECHO_CODE( Vector<double> v2( range<double>(4,5) ) );
+    ECHO_CODE( Vector<double> v3 );
+    ECHO_CODE( v3 = rep(v1,3) );
+    ECHO_CODE( Vector<double> v4 );
+    ECHO_CODE( v4 = (rep(v1,2), rep(v2,3)) );
+    ECHO_CODE( Vector<double> v5 );
+    ECHO_CODE( v5 = rep((v1,v2),2) );
     GMD_CODE_END();
     CR();
 

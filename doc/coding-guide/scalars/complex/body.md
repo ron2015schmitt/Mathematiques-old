@@ -176,9 +176,9 @@ This gives the type for any varable. However, the names are garbled compiler str
 Examples:
 
 ```C++
-int n = 3;
+ int n = 3;
 typeid(n).name() -> "i"
-string s = "hello";
+ string s = "hello";
 typeid(s).name() -> "NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
 ```
 #### getTypeName
@@ -186,9 +186,9 @@ The function `mathq::display::getTypeName` returns a string that gives the actua
 Examples:
 
 ```C++
-int n = 3;
+ int n = 3;
 getTypeName(n) -> "int"
-string s = "hello";
+ string s = "hello";
 getTypeName(s) -> "std::string"
 ```
 
@@ -203,16 +203,16 @@ As another example, when adding two integers (or floating point types) of differ
 Examples:
 
 ```C++
-short n1 = 3;
-int n2 = 100;
+ short n1 = 3;
+ int n2 = 100;
 n1 * n2 -> int 300
 
-float x1 = 3;
-double x2 = 0.1415;
+ float x1 = 3;
+ double x2 = 0.1415;
 x1 + x2 -> double 3.1415
 
-int8_t y1 = 25;
-double y2 = 0.25;
+ int8_t y1 = 25;
+ double y2 = 0.25;
 y1 / y2 + y2 -> double 100.25
 ```
 
@@ -226,16 +226,16 @@ Here we demonstrate [explicit conversion](https://en.cppreference.com/w/cpp/lang
 Converting a floating point type to an integer:
 
 ```C++
-int n1 = (int)3.14;
+ int n1 = (int)3.14;
 n1 -> 3
-int n2 = int(3.14);
+ int n2 = int(3.14);
 n2 -> 3
 ```
 Forcing floating point division by converting the numerator to a `float`
 
 ```C++
-double x = (21 + 1) / 7;
+ double x = (21 + 1) / 7;
 x -> 3
-double y = float(21 + 1) / 7;
+ double y = float(21 + 1) / 7;
 y -> 3.14286
 ```

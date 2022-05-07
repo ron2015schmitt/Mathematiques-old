@@ -34,8 +34,8 @@ int main()
   {
     EXAMPLE(Nex++,"Assign all elements to a single value.");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(10) );
-    codemulti( v = 78.9 );
+    ECHO_CODE( Vector<double> v(10) );
+    ECHO_CODE( v = 78.9 );
     GMD_CODE_END();
     RESULT(v);
   }
@@ -47,8 +47,8 @@ int main()
     CR();
     OUTPUT("_In DEBUG mode, this generates a warning since it is a dangerous practice. Use a C++11 list instead._");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(4) );
-    codemulti( v = (const double[]) {1,2,3,4} );
+    ECHO_CODE( Vector<double> v(4) );
+    ECHO_CODE( v = (const double[]) {1,2,3,4} );
     GMD_CODE_END();
     RESULT(v);
   }
@@ -56,8 +56,8 @@ int main()
   {
     EXAMPLE(Nex++,"Assign from a C++11 list.");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(4) );
-    codemulti( v = {1,2,3,4} );
+    ECHO_CODE( Vector<double> v(4) );
+    ECHO_CODE( v = {1,2,3,4} );
     GMD_CODE_END();
     RESULT(v);
   }
@@ -70,9 +70,9 @@ int main()
     GMD_CODE_START("C++");
     codemultiNoteC11Array( Vector<double> v1({1,2,3,4}) );
     codemultiNoteC11Array( Vector<double> v2({0,0,0,0}) );
-    codemulti( v2 = v1 );
-    codemulti( v1[0] = 100 );
-    codemulti( v2[0] = 200 );
+    ECHO_CODE( v2 = v1 );
+    ECHO_CODE( v1[0] = 100 );
+    ECHO_CODE( v2[0] = 200 );
     GMD_CODE_END();
     resultstart();
     resultmulti(v1);
@@ -85,7 +85,7 @@ int main()
     GMD_CODE_START("C++");
     codemultiNoteC11Array( Vector<double> v1({1,2,3,4}) );
     codemultiNoteC11Array( Vector<double> v2({0,0,0,0}) );
-    codemulti( v2 = 2*v1 );
+    ECHO_CODE( v2 = 2*v1 );
     GMD_CODE_END();
     resultstart();
     resultmulti(v1);
@@ -97,17 +97,17 @@ int main()
     EXAMPLE(Nex++,"Assign from `std` containers.");
     GMD_CODE_START("C++");
     codemultiNoteC11Array( std::vector<double> vstd({1,2,3,4}) );
-    codemulti( Vector<double> v1(4) );
-    codemulti( v1 = vstd );
+    ECHO_CODE( Vector<double> v1(4) );
+    ECHO_CODE( v1 = vstd );
     codemultiNoteC11Array( std::array<double, 3> varray = {10,20,30} );
-    codemulti( Vector<double> v2(3) );
-    codemulti( v2 = varray );
+    ECHO_CODE( Vector<double> v2(3) );
+    ECHO_CODE( v2 = varray );
     codemultiNoteC11Array( std::valarray<double> myvalarray = {100,200} );
-    codemulti( Vector<double> v3(2) );
-    codemulti( v3 = myvalarray );
+    ECHO_CODE( Vector<double> v3(2) );
+    ECHO_CODE( v3 = myvalarray );
     codemultiNoteC11Array( std::list<double> mylist = {-1,-2}; );
-    codemulti( Vector<double> v4(2) );
-    codemulti( v4 = mylist );
+    ECHO_CODE( Vector<double> v4(2) );
+    ECHO_CODE( v4 = mylist );
     GMD_CODE_END();
     resultstart();
     resultmulti(v1);

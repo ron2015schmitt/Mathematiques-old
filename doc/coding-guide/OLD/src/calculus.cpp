@@ -39,12 +39,12 @@ int main()
     CR();
     EXAMPLE(Nex++,"Definite integrals");
     GMD_CODE_START("C++");
-    codemulti( const size_type N = 100000 );
-    codemulti( const double a = 0 );
-    codemulti( const double b = 1 );
-    codemulti( Vector<double> x(linspace_ab<double>(a,b,N)) );
-    codemulti( Vector<double> f );
-    codemulti( f=-log(log(1/x)) );
+    ECHO_CODE( const size_type N = 100000 );
+    ECHO_CODE( const double a = 0 );
+    ECHO_CODE( const double b = 1 );
+    ECHO_CODE( Vector<double> x(linspace_ab<double>(a,b,N)) );
+    ECHO_CODE( Vector<double> f );
+    ECHO_CODE( f=-log(log(1/x)) );
     GMD_CODE_END();
     CR();
 
@@ -98,16 +98,16 @@ int main()
     CR();
     OUTPUT("![ErrorFunction](ErrorFunction.png)");
     GMD_CODE_START("C++");
-    codemulti( const size_type N = 101 );
-    codemulti( const double a = 0 );
-    codemulti( const double b = 4 );
-    codemulti( const double pi = M_PI );
-    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
-    codemulti( Vector<double> gauss );
-    codemulti( gauss = 2/sqrt(pi)*exp(-sqr(x)) );
-    codemulti( Vector<double> erf = gauss );
-    codemulti( erf.integrate_a2x(a,b) ) ;
-    codemulti( set_mathematica_var_format() );
+    ECHO_CODE( const size_type N = 101 );
+    ECHO_CODE( const double a = 0 );
+    ECHO_CODE( const double b = 4 );
+    ECHO_CODE( const double pi = M_PI );
+    ECHO_CODE( Vector<double> x( linspace<double>(a,b,N) ) );
+    ECHO_CODE( Vector<double> gauss );
+    ECHO_CODE( gauss = 2/sqrt(pi)*exp(-sqr(x)) );
+    ECHO_CODE( Vector<double> erf = gauss );
+    ECHO_CODE( erf.integrate_a2x(a,b) ) ;
+    ECHO_CODE( set_mathematica_var_format() );
     GMD_CODE_END();
     CR();
 
@@ -159,12 +159,12 @@ int main()
     CR();
     OUTPUT("The derivative of the function _f_(_x_) = is the constant 5");
     GMD_CODE_START("C++");
-    codemulti( set_default_format() );
-    codemulti( const double pi = M_PI );
-    codemulti( const size_type N = 11 );
-    codemulti( const double a = 0 );
-    codemulti( const double b = 1 );
-    codemulti( Vector<double> x( linspace<double>(a,b,N) ) );
+    ECHO_CODE( set_default_format() );
+    ECHO_CODE( const double pi = M_PI );
+    ECHO_CODE( const size_type N = 11 );
+    ECHO_CODE( const double a = 0 );
+    ECHO_CODE( const double b = 1 );
+    ECHO_CODE( Vector<double> x( linspace<double>(a,b,N) ) );
     GMD_CODE_END();
     CR();
 
@@ -210,17 +210,17 @@ int main()
     CR();
     OUTPUT("We also set `periodic=true` since sin _x_ is periodic over [0,2pi)");
     GMD_CODE_START("C++");
-    codemulti( set_mathematica_var_format() );
-    codemulti( const double pi = M_PI );
-    codemulti( const size_type N = 25 );
-    codemulti( Vector<double> x( linspace_b<double>(0,2*pi,N) ) );
-    codemulti( const double a = min(x) );
-    codemulti( const double b = max(x) );
-    codemulti( Vector<double> f = sin(x) );
-    codemulti( Vector<double> f2 = deriv(f,a,b,4,2,true )  );
-    codemulti( Vector<double> f3 = deriv(f,a,b,4,3,true )  );
-    codemulti( Vector<double> f5 = deriv(f,a,b,4,5,true )  );
-    codemulti( Vector<double> f7 = deriv(f,a,b,4,7,true )  );
+    ECHO_CODE( set_mathematica_var_format() );
+    ECHO_CODE( const double pi = M_PI );
+    ECHO_CODE( const size_type N = 25 );
+    ECHO_CODE( Vector<double> x( linspace_b<double>(0,2*pi,N) ) );
+    ECHO_CODE( const double a = min(x) );
+    ECHO_CODE( const double b = max(x) );
+    ECHO_CODE( Vector<double> f = sin(x) );
+    ECHO_CODE( Vector<double> f2 = deriv(f,a,b,4,2,true )  );
+    ECHO_CODE( Vector<double> f3 = deriv(f,a,b,4,3,true )  );
+    ECHO_CODE( Vector<double> f5 = deriv(f,a,b,4,5,true )  );
+    ECHO_CODE( Vector<double> f7 = deriv(f,a,b,4,7,true )  );
     GMD_CODE_END();
     CR();
 
@@ -278,8 +278,8 @@ int main()
     CR();
     EXAMPLE(Nex++,"Various functions: `cumsum`, `cumprod`, `cumtrapz`, `diff`, etc");
     GMD_CODE_START("C++");
-    codemulti( set_default_format() );
-    codemulti( Vector<double> v1(5) );
+    ECHO_CODE( set_default_format() );
+    ECHO_CODE( Vector<double> v1(5) );
     GMD_CODE_END();
     CR();
 

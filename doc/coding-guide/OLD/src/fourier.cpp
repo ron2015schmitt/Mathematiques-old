@@ -40,14 +40,14 @@ int main()
     CR();
     OUTPUT("Set up the output format so that we can copy and paste into Matlab");
     GMD_CODE_START("C++");
-    codemulti( using namespace display  );
-    codemulti( FormatDataVector::string_opening =  "[ ...\n    "  );
-    codemulti( FormatDataVector::string_delimeter = ", "  );
-    codemulti( FormatDataVector::max_elements_per_line = 5  );
-    codemulti( FormatDataVector::string_endofline = " ...\n    "  );
-    codemulti( FormatDataVector::string_closing =   " ...\n]"  );
-    codemulti( setFormatString<double>("% 10.8e")  );
-    codemulti(  FormatData<double>::tens = false );
+    ECHO_CODE( using namespace display  );
+    ECHO_CODE( FormatDataVector::string_opening =  "[ ...\n    "  );
+    ECHO_CODE( FormatDataVector::string_delimeter = ", "  );
+    ECHO_CODE( FormatDataVector::max_elements_per_line = 5  );
+    ECHO_CODE( FormatDataVector::string_endofline = " ...\n    "  );
+    ECHO_CODE( FormatDataVector::string_closing =   " ...\n]"  );
+    ECHO_CODE( setFormatString<double>("% 10.8e")  );
+    ECHO_CODE(  FormatData<double>::tens = false );
     GMD_CODE_END();
     CR();
 
@@ -57,11 +57,11 @@ int main()
 
     
     GMD_CODE_START("C++");
-    codemulti( const size_type N = 20 );
-    codemulti( Vector<double> k = range<double>(0,N-1)  );
-    codemulti( Vector<double> An = 1/k );
-    codemulti( An[0] = 0. );
-    codemulti( Vector<double> Bn = Vector<double>(N,0.) );
+    ECHO_CODE( const size_type N = 20 );
+    ECHO_CODE( Vector<double> k = range<double>(0,N-1)  );
+    ECHO_CODE( Vector<double> An = 1/k );
+    ECHO_CODE( An[0] = 0. );
+    ECHO_CODE( Vector<double> Bn = Vector<double>(N,0.) );
     GMD_CODE_END();
     CR();
 
@@ -70,8 +70,8 @@ int main()
     CR();
     
     GMD_CODE_START("C++");
-    codemulti(   const double pi = M_PI  );
-    codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
+    ECHO_CODE(   const double pi = M_PI  );
+    ECHO_CODE(   Vector<double> t = linspace<double>(0,2*pi,51) );
     GMD_CODE_END();
     CR();
 
@@ -79,9 +79,9 @@ int main()
     OUTPUT("Calculate the Fourier series and store the results in vector `CL1`: ");
     CR();
     GMD_CODE_START("C++");
-    codemulti(     const double T = 2*pi );
-    codemulti(     const double omega = 2*pi/T );
-    codemulti(     Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega ) );
+    ECHO_CODE(     const double T = 2*pi );
+    ECHO_CODE(     const double omega = 2*pi/T );
+    ECHO_CODE(     Vector<double> CL1 = ifourier(An,Bn, t, An.size(), omega ) );
     GMD_CODE_END();
     CR();
 
@@ -125,7 +125,7 @@ int main()
     CR();
     OUTPUT("Set up the output format so that we can copy and paste into Matlab, this time using the function `set_matlab_var_format()`");
     GMD_CODE_START("C++");
-    codemulti( set_matlab_var_format()  );
+    ECHO_CODE( set_matlab_var_format()  );
     GMD_CODE_END();
     CR();
 
@@ -135,11 +135,11 @@ int main()
 
     
     GMD_CODE_START("C++");
-    codemulti( const size_type N = 20 );
-    codemulti( Vector<double> k = range<double>(0,N-1)  );
-    codemulti( Vector<double> An = Vector<double>(N,0.) );
-    codemulti( Vector<double> Bn = 1./sqr(k) );
-    codemulti( Bn[0] = 0. );
+    ECHO_CODE( const size_type N = 20 );
+    ECHO_CODE( Vector<double> k = range<double>(0,N-1)  );
+    ECHO_CODE( Vector<double> An = Vector<double>(N,0.) );
+    ECHO_CODE( Vector<double> Bn = 1./sqr(k) );
+    ECHO_CODE( Bn[0] = 0. );
     GMD_CODE_END();
     CR();
 
@@ -148,8 +148,8 @@ int main()
     CR();
     
     GMD_CODE_START("C++");
-    codemulti(   const double pi = M_PI  );
-    codemulti(   Vector<double> t = linspace<double>(0,2*pi,51) );
+    ECHO_CODE(   const double pi = M_PI  );
+    ECHO_CODE(   Vector<double> t = linspace<double>(0,2*pi,51) );
     GMD_CODE_END();
     CR();
 
@@ -157,9 +157,9 @@ int main()
     OUTPUT("Calculate the Fourier series and store the results in vector `CL2`: ");
     CR();
     GMD_CODE_START("C++");
-    codemulti(     const double T = 2*pi );
-    codemulti(     const double omega = 2*pi/T );
-    codemulti(     Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega ) );
+    ECHO_CODE(     const double T = 2*pi );
+    ECHO_CODE(     const double omega = 2*pi/T );
+    ECHO_CODE(     Vector<double> CL2 = ifourier(An,Bn, t, An.size(), omega ) );
     GMD_CODE_END();
     CR();
 

@@ -34,9 +34,9 @@ int main()
     CR();
     EXAMPLE(Nex++,"Element-wise `Vector` math");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v1(4) );
+    ECHO_CODE( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
-    codemulti( Vector<double> v2(4) );
+    ECHO_CODE( Vector<double> v2(4) );
     codemultiNoteC11Array(v2 = {1,2,3,4});
     GMD_CODE_END();
     CR();
@@ -63,7 +63,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"math with scalars and `Vector`s");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v1(4) );
+    ECHO_CODE( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
     GMD_CODE_END();
     CR();
@@ -91,7 +91,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—rounding and sign-related ");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(7) );
+    ECHO_CODE( Vector<double> v(7) );
     codemultiNoteC11Array(v = {-2.5,-2.25,-1,0,1,2.25,2.5});
     GMD_CODE_END();
     CR();
@@ -111,7 +111,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—powers, roots, and exponentiation");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(5) );
+    ECHO_CODE( Vector<double> v(5) );
     codemultiNoteC11Array(v = {-1,0,1,2,4});
     GMD_CODE_END();
     CR();
@@ -137,10 +137,10 @@ int main()
 
     EXAMPLE(Nex++,"functions of a `Vector`—trig");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(5) );
-    codemultiwcomment("C++11 constexpr",constexpr double pi = std::acos(-1) );
+    ECHO_CODE( Vector<double> v(5) );
+    ECHO_CODE_W_COMMENT("C++11 constexpr",constexpr double pi = std::acos(-1) );
     codemultiNoteC11Array(v = {-pi, -pi/2, 0, pi/2, pi});
-    codemulti( const double tol = 2e-16 );
+    ECHO_CODE( const double tol = 2e-16 );
     GMD_CODE_END();
     CR();
 
@@ -166,7 +166,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—rounding and sign-related ");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v(3) );
+    ECHO_CODE( Vector<double> v(3) );
     codemultiNoteC11Array(v = {-1,0,1});
     GMD_CODE_END();
     CR();
@@ -185,10 +185,10 @@ int main()
     CR();
     EXAMPLE(Nex++,"functions of a `Vector`—inverse trig");
     GMD_CODE_START("C++");
-    codemulti( double pi = std::acos(-1) );
-    codemulti( Vector<double> v(3) );
-    codemulti( Vector<double> v1(9) );
-    codemulti( Vector<double> v2(9) );
+    ECHO_CODE( double pi = std::acos(-1) );
+    ECHO_CODE( Vector<double> v(3) );
+    ECHO_CODE( Vector<double> v1(9) );
+    ECHO_CODE( Vector<double> v2(9) );
     codemultiNoteC11Array(v = {-1,0,1});
     codemultiNoteC11Array(v1 = {-1,-1,-1, 0, 0, 0, 1, 1, 1});
     codemultiNoteC11Array(v2 = {-1, 0, 1,-1, 0, 1,-1, 0, 1});
@@ -216,9 +216,9 @@ int main()
     CR();
     EXAMPLE(Nex++,"A huge expression");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v1(4) );
+    ECHO_CODE( Vector<double> v1(4) );
     codemultiNoteC11Array(v1 = {10,20,30,40});
-    codemulti( Vector<double> v2(4) );
+    ECHO_CODE( Vector<double> v2(4) );
     codemultiNoteC11Array(v2 = {-1,-2,-3,-4});
     GMD_CODE_END();
     CR();

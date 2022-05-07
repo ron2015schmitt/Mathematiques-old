@@ -37,8 +37,8 @@ int main()
     CR();
     EXAMPLE(Nex++,"relational operators between two vectors`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v1( range<double>(1,3) ) );
-    codemulti( Vector<double> v2( range<double>(3,1) ) );
+    ECHO_CODE( Vector<double> v1( range<double>(1,3) ) );
+    ECHO_CODE( Vector<double> v2( range<double>(3,1) ) );
     GMD_CODE_END();
     CR();
     
@@ -61,7 +61,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"relational operators between a vector and a scalar`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(1,3) ) );
+    ECHO_CODE( Vector<double> v( range<double>(1,3) ) );
     GMD_CODE_END();
     CR();
     
@@ -85,7 +85,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"The element-wise logical operators");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(1,5) ) );
+    ECHO_CODE( Vector<double> v( range<double>(1,5) ) );
     GMD_CODE_END();
     CR();
     
@@ -108,7 +108,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"Using vector masks");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(-10,10) ) );
+    ECHO_CODE( Vector<double> v( range<double>(-10,10) ) );
     GMD_CODE_END();
     CR();
     
@@ -122,7 +122,7 @@ int main()
 
     OUTPUT("Now set all elements that are larger than 6 to 6 (clipping)");
     GMD_CODE_START("C++");
-    codemulti( v[(v > 6)] = 6. );
+    ECHO_CODE( v[(v > 6)] = 6. );
     GMD_CODE_END();
     resultstart();
     resultmulti( v );    
@@ -131,7 +131,7 @@ int main()
 
     OUTPUT("Now set all negative elements to zero");
     GMD_CODE_START("C++");
-    codemulti( v[(v < 0)] = 0. );
+    ECHO_CODE( v[(v < 0)] = 0. );
     GMD_CODE_END();
     resultstart();
     resultmulti( v );    
@@ -158,7 +158,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"The functions `alltrue`, `anytrue`, `numtrue`, and `findtrue`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(1,3) ) );
+    ECHO_CODE( Vector<double> v( range<double>(1,3) ) );
     GMD_CODE_END();
     CR();
     

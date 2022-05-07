@@ -40,8 +40,8 @@ int main()
     CR();
     EXAMPLE(Nex++,"Positive and negative indices");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(0,10) ) );
-    codemulti( const int N = v.size() );
+    ECHO_CODE( Vector<double> v( range<double>(0,10) ) );
+    ECHO_CODE( const int N = v.size() );
     GMD_CODE_END();
     CR();
     
@@ -66,14 +66,14 @@ int main()
     CR();
     EXAMPLE(Nex++,"Reverse a vector in place.");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(0,10) ) );
+    ECHO_CODE( Vector<double> v( range<double>(0,10) ) );
     GMD_CODE_END();
     CR();
     resultstart();
     resultmulti( v );
     resultend();
     GMD_CODE_START("C++");
-    codemulti( for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]) );
+    ECHO_CODE( for (int i = 0; i < v.size()/2; i++) std::swap(v[i],v[-i-1]) );
     GMD_CODE_END();
     CR();
     resultstart();
@@ -100,7 +100,7 @@ int main()
     CR();
     EXAMPLE(Nex++,"slice `v[slc(start,end)]`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v( range<double>(0,10) ) );
+    ECHO_CODE( Vector<double> v( range<double>(0,10) ) );
     GMD_CODE_END();
     CR();
 
@@ -128,12 +128,12 @@ int main()
     CR();
     EXAMPLE(Nex++,"slice `v[slc(start,end,step)]`");
     GMD_CODE_START("C++");
-    codemulti( Vector<double> v0(0) );
-    codemulti( Vector<double> v1(1,0. ));
-    codemulti( Vector<double> v2( range<double>(0,1) ) );
-    codemulti( Vector<double> v3( range<double>(0,2) ) );
-    codemulti( Vector<double> v4( range<double>(0,3) ) );
-    codemulti( Vector<double> v10( range<double>(0,10) ) );
+    ECHO_CODE( Vector<double> v0(0) );
+    ECHO_CODE( Vector<double> v1(1,0. ));
+    ECHO_CODE( Vector<double> v2( range<double>(0,1) ) );
+    ECHO_CODE( Vector<double> v3( range<double>(0,2) ) );
+    ECHO_CODE( Vector<double> v4( range<double>(0,3) ) );
+    ECHO_CODE( Vector<double> v10( range<double>(0,10) ) );
     GMD_CODE_END();
     CR();
     

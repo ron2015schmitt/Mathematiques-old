@@ -212,10 +212,10 @@ int main() {
   {
     OUTPUT("Examples:\n");
     GMD_CODE_START("C++");
-    codemulti(int n = 3);
+    ECHO_CODE(int n = 3);
     // DISP(typeid(n).name());
     OUTPUT("typeid(n).name() -> \"i\"");
-    codemulti(string s = "hello");
+    ECHO_CODE(string s = "hello");
     // DISP(typeid(s).name());
     OUTPUT("typeid(s).name() -> \"NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE\"");
     GMD_CODE_END();
@@ -226,10 +226,10 @@ int main() {
   {
     OUTPUT("Examples:\n");
     GMD_CODE_START("C++");
-    codemulti(int n = 3);
+    ECHO_CODE(int n = 3);
     // DISP(getTypeName(n));
     OUTPUT("getTypeName(n) -> \"int\"");
-    codemulti(string s = "hello");
+    ECHO_CODE(string s = "hello");
     // DISP(getTypeName(s));
     OUTPUT("getTypeName(s) -> \"std::string\"");
     GMD_CODE_END();
@@ -245,18 +245,18 @@ int main() {
   {
     OUTPUT("Examples:\n");
     GMD_CODE_START("C++");
-    codemulti(short n1 = 3);
-    codemulti(int n2 = 100);
+    ECHO_CODE(short n1 = 3);
+    ECHO_CODE(int n2 = 100);
     // TLDISP(n1 * n2);
     OUTPUT("n1 * n2 -> int 300");
     CR();
-    codemulti(float x1 = 3);
-    codemulti(double x2 = 0.1415);
+    ECHO_CODE(float x1 = 3);
+    ECHO_CODE(double x2 = 0.1415);
     // TLDISP(x1 + x2);
     OUTPUT("x1 + x2 -> double 3.1415");
     CR();
-    codemulti(int8_t y1 = 25);
-    codemulti(double y2 = 0.25);
+    ECHO_CODE(int8_t y1 = 25);
+    ECHO_CODE(double y2 = 0.25);
     // TLDISP(y1 / y2 + y2);
     OUTPUT("y1 / y2 + y2 -> double 100.25");
     GMD_CODE_END();
@@ -272,10 +272,10 @@ int main() {
   {
     OUTPUT("Converting a floating point type to an integer:\n");
     GMD_CODE_START("C++");
-    codemulti(int n1 = (int)3.14);
+    ECHO_CODE(int n1 = (int)3.14);
     // TLDISP(n1);
     OUTPUT("n1 -> 3");
-    codemulti(int n2 = int(3.14));
+    ECHO_CODE(int n2 = int(3.14));
     // TLDISP(n2);
     OUTPUT("n2 -> 3");
     GMD_CODE_END();
@@ -284,10 +284,10 @@ int main() {
   {
     OUTPUT("Forcing floating point division by converting the numerator to a `float`\n");
     GMD_CODE_START("C++");
-    codemulti(double x = (21 + 1) / 7);
+    ECHO_CODE(double x = (21 + 1) / 7);
     // TLDISP(x);
     OUTPUT("x -> 3");
-    codemulti(double y = float(21 + 1) / 7);
+    ECHO_CODE(double y = float(21 + 1) / 7);
     // TLDISP(y);
     OUTPUT("y -> 3.14286");
     GMD_CODE_END();

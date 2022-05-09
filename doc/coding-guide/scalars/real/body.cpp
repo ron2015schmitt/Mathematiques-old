@@ -44,8 +44,8 @@ int main() {
 
   OUTPUT("1. Sizes and limits given for a 64-bit CPU running Linux");
   OUTPUT("2. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.");
-  OUTPUT("3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
-  OUTPUT("4. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("3. The C++ function [`std::numeric_limits<type>::min()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the minimum.");
+  OUTPUT("4. The C++ function [`std::numeric_limits<type>::max()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the maximum.");
   CR();
 
   GMD_VSPACE();
@@ -65,8 +65,8 @@ int main() {
 
   OUTPUT("1. Sizes and limits given for a 64-bit CPU running Linux");
   OUTPUT("2. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.");
-  OUTPUT("3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
-  OUTPUT("4. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("3. The C++ function [`std::numeric_limits<type>::min()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the minimum.");
+  OUTPUT("4. The C++ function [`std::numeric_limits<type>::max()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the maximum.");
 
   GMD_VSPACE();
   GMD_HEADER3("Boolean");
@@ -85,8 +85,9 @@ int main() {
   GMD_VSPACE();
   GMD_HEADER3("Indexing Types");
 
-  OUTPUT("The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array), no smaller and no larger.");
-  OUTPUT("It's size depends on implementation.  The 64-bit Linux size is shown below:");
+  OUTPUT("The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is an _unsigned_ integer type"); 
+  OUTPUT("that is the optimal type for array indexing and loop counting. ");
+  OUTPUT("It's size depends on implementation.  The 64-bit Ubuntu 20.04 size is shown below:");
 
   CR();
   CR();
@@ -120,8 +121,8 @@ int main() {
   OUTPUT("| `uint64_t` | " << CHAR_BIT*sizeof(uint64_t) << " bits | " << numeric_limits<uint64_t>::min() << " | " << numeric_limits<uint64_t>::max() << " | ");
   CR();
   OUTPUT("1. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(uint)`.");
-  OUTPUT("2. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
-  OUTPUT("3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("2. The C++ function [`std::numeric_limits<type>::min()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the minimum.");
+  OUTPUT("3. The C++ function [`std::numeric_limits<type>::max()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the maximum.");
 
 
   GMD_VSPACE();

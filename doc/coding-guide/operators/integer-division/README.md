@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.34</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
 
 <details>
 
@@ -59,7 +59,7 @@
 
 # 7.4.2. Integer Division
 
-_This document was generated from the_ C++ _file_ `integer-division/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
+_This document was generated from the C++ file_ `integer-division/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 
 C++ also provides support for integer division witjh remainder.
 
@@ -78,12 +78,12 @@ For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/la
 
 ### Examples: integer division
 ```C++
-☄ 7 / 2 ➜  int 3;
+☀ 7 / 2 ➜ int 3;
 ```
 * The modulus operator `a % b`, gives the remainder after integer divison of `a` by `b`.
 
 ```C++
-☄ 7 % 2 ➜  int 1;
+☀ 7 % 2 ➜ int 1;
 ```
 * The function [`std::div`](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.
 
@@ -93,8 +93,8 @@ div_t result = div(7, 2);
 With result:
 
 ```C++
-☄ result.quot ➜  int 3;
-☄ result.rem ➜  int 1;
+☀ result.quot ➜ int 3;
+☀ result.rem ➜ int 1;
 ```
 
 

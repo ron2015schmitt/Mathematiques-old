@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.34</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
 
 <details>
 
@@ -59,7 +59,7 @@
 
 # 7.4.4. Relational
 
-_This document was generated from the_ C++ _file_ `relational/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
+_This document was generated from the C++ file_ `relational/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 
 
 <br>
@@ -83,11 +83,11 @@ For details refer [Comparison Operators](https://en.cppreference.com/w/c/languag
 Examples:
 
 ```C++
-☄ (2 == 2) ➜  bool 1;
-☄ (1 / 2 == 0.5) ➜  bool 0;
-☄ (1. / 2 == 0.5) ➜  bool 1;
-☄ (-2 < 34.2) ➜  bool 1;
-☄ (2 > 0) ➜  bool 1;
+☀ (2 == 2) ➜ bool 1;
+☀ (1 / 2 == 0.5) ➜ bool 0;
+☀ (1. / 2 == 0.5) ➜ bool 1;
+☀ (-2 < 34.2) ➜ bool 1;
+☀ (2 > 0) ➜ bool 1;
 ```
 
 

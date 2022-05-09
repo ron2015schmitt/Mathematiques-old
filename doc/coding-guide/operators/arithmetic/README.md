@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.34</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
 
 <details>
 
@@ -60,7 +60,7 @@
 
 # 7.4.1. Arithmetic
 
-_This document was generated from the_ C++ _file_ `arithmetic/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
+_This document was generated from the C++ file_ `arithmetic/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 
 ## Arithmetic Operators
 The operators `+, -, *, /` are the addition, subtraction, multiplication, and division operators respectively.
@@ -87,8 +87,8 @@ For container types, the following rules apply for `x op y`:
 ## Exponentiation and the `pow` function
 C++ does not have an exponentiation operator.  Instead it provides the [`std::pow`](https://en.cppreference.com/w/cpp/numeric/math/div) function
 ```C++
-☄ pow(2, 8) ➜  double 256;
-☄ pow(25, 1 / 2) ➜  double 1;
+☀ pow(2, 8) ➜ double 256;
+☀ pow(25, 1 / 2) ➜ double 1;
 ```
 
 <br>
@@ -97,33 +97,33 @@ C++ does not have an exponentiation operator.  Instead it provides the [`std::po
 #### Reals
 
 ```C++
-☄ 1 + 2 ➜  int 3;
-☄ 7.5 + 2 ➜  double 9.5;
-☄ 7.5 - 0.5 ➜  double 7;
+☀ 1 + 2 ➜ int 3;
+☀ 7.5 + 2 ➜ double 9.5;
+☀ 7.5 - 0.5 ➜ double 7;
 ```
 
 #### Complex, Imaginary and Mixed
 
 ```C++
-☄ complex<double>(1.5, 0) + complex<double>(0.5, 4) ➜  std::complex<double> (2,4);
+☀ complex<double>(1.5, 0) + complex<double>(0.5, 4) ➜ std::complex<double> (2,4);
 ```
 
 #### Imaginary
 
 ```C++
-☄ complex<double>(1.5, 0) + complex<double>(0.5, 4) ➜  std::complex<double> (2,4);
-☄ Imaginary<double>(1) + Imaginary<double>(33.12) ➜  Imaginary<double> 34.12i;
-☄ -10 + Imaginary<double>(5.25) ➜  std::complex<double> (-10,5.25);
-☄ 100 + complex<double>(1.5, 2) + Imaginary<double>(5.25) ➜  std::complex<double> (101.5,7.25);
+☀ complex<double>(1.5, 0) + complex<double>(0.5, 4) ➜ std::complex<double> (2,4);
+☀ Imaginary<double>(1) + Imaginary<double>(33.12) ➜ Imaginary<double> 34.12i;
+☀ -10 + Imaginary<double>(5.25) ➜ std::complex<double> (-10,5.25);
+☀ 100 + complex<double>(1.5, 2) + Imaginary<double>(5.25) ➜ std::complex<double> (101.5,7.25);
 ```
 
 #### Mixed Type
 
 ```C++
-☄ complex<double>(1.5, 0) + complex<double>(0.5, 4) ➜  std::complex<double> (2,4);
-☄ Imaginary<double>(1) + Imaginary<double>(33.12) ➜  Imaginary<double> 34.12i;
-☄ -10 + Imaginary<double>(5.25) ➜  std::complex<double> (-10,5.25);
-☄ 100 + complex<double>(1.5, 2) + Imaginary<double>(5.25) ➜  std::complex<double> (101.5,7.25);
+☀ complex<double>(1.5, 0) + complex<double>(0.5, 4) ➜ std::complex<double> (2,4);
+☀ Imaginary<double>(1) + Imaginary<double>(33.12) ➜ Imaginary<double> 34.12i;
+☀ -10 + Imaginary<double>(5.25) ➜ std::complex<double> (-10,5.25);
+☀ 100 + complex<double>(1.5, 2) + Imaginary<double>(5.25) ➜ std::complex<double> (101.5,7.25);
 ```
 
 #### Containers

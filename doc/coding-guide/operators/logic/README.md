@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.34</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
 
 <details>
 
@@ -59,7 +59,7 @@
 
 # 7.4.3. Logic
 
-_This document was generated from the_ C++ _file_ `logic/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
+_This document was generated from the C++ file_ `logic/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 
 
 <br>
@@ -80,22 +80,22 @@ For details refer [Logical Operators](https://en.cppreference.com/w/c/language/o
 Examples:
 
 ```C++
-☄ true ➜  bool 1;
-☄ false ➜  bool 0;
-☄ !true ➜  bool 0;
-☄ !false ➜  bool 1;
-☄ true && true ➜  bool 1;
-☄ true && false ➜  bool 0;
-☄ true || false ➜  bool 1;
+☀ true ➜ bool 1;
+☀ false ➜ bool 0;
+☀ !true ➜ bool 0;
+☀ !false ➜ bool 1;
+☀ true && true ➜ bool 1;
+☀ true && false ➜ bool 0;
+☀ true || false ➜ bool 1;
 ```
 * In C++ logical operators work for all real and integer types: `0` corresponds to `false` and all non-zero values correspond to `true`
 
 ```C++
-☄ !true ➜  bool 0;
-☄ !8 ➜  bool 0;
-☄ !!8.293 ➜  bool 1;
-☄ true && 3 ➜  bool 1;
-☄ true && 0 ➜  bool 0;
+☀ !true ➜ bool 0;
+☀ !8 ➜ bool 0;
+☀ !!8.293 ➜ bool 1;
+☀ true && 3 ➜ bool 1;
+☀ true && 0 ➜ bool 0;
 ```
 
 <br>

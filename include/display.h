@@ -276,7 +276,7 @@
 // SPECIFIC TO GITHUB MARKDOWN
 //
 
-#define GMD_PREAMBLE() printf("_This document was generated from the_ C++ _file_ `%s` _using functions (namespace `mathq::display`) and macros in the header `\"mathq.h\"`. ", __FILE__);
+#define GMD_PREAMBLE() printf("_This document was generated from the C++ file_ `%s` _using macros and functions (in namespace `mathq::display`) from the header_ `\"mathq.h\"`. ", __FILE__);
 
 
 //

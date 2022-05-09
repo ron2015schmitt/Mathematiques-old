@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.34</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
 
 <details>
 
@@ -61,7 +61,7 @@
 
 # 7.1.1. Reals
 
-_This document was generated from the_ C++ _file_ `real/body.cpp` _using functions (namespace `mathq::display`) and macros in the header `"mathq.h"`. 
+_This document was generated from the C++ file_ `real/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 
 C++ supports a wide variety of real numbers [integer and floating point types](https://en.cppreference.com/w/cpp/language/types).
 
@@ -81,8 +81,8 @@ The maximum and minimum for each type are given below.
 | `long long` | 64 bits | -9223372036854775808 | 9223372036854775807 | 
 1. Sizes and limits given for a 64-bit CPU running Linux
 2. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.
-3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
-4. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
+3. The C++ function [`std::numeric_limits<type>::min()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the minimum.
+4. The C++ function [`std::numeric_limits<type>::max()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the maximum.
 
 
 <br>
@@ -100,8 +100,8 @@ C++ also supports several different unsigned integer types.  **The size of each 
 | `size_t` | 64 bits | 0 | 18446744073709551615 | 
 1. Sizes and limits given for a 64-bit CPU running Linux
 2. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.
-3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
-4. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
+3. The C++ function [`std::numeric_limits<type>::min()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the minimum.
+4. The C++ function [`std::numeric_limits<type>::max()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the maximum.
 
 <br>
 
@@ -111,21 +111,22 @@ Two associated constants are defined: `true` and `false`.
 
 
 ```C++
-☄ CHAR_BIT*sizeof(bool) ➜  8 bits;
+☀ CHAR_BIT*sizeof(bool) ➜ 8 bits;
 
-☄ false ➜  bool 0;
-☄ true ➜  bool 1;
+☀ false ➜ bool 0;
+☀ true ➜ bool 1;
 ```
 
 <br>
 
 ### Indexing Types
-The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array), no smaller and no larger.
-It's size depends on implementation.  The 64-bit Linux size is shown below:
+The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is an _unsigned_ integer type
+that is the optimal type for array indexing and loop counting. 
+It's size depends on implementation.  The 64-bit Ubuntu 20.04 size is shown below:
 
 
 ```C++
-☄ CHAR_BIT*sizeof(size_t) ➜  64 bits;
+☀ CHAR_BIT*sizeof(size_t) ➜ 64 bits;
 ```
 
 
@@ -153,8 +154,8 @@ C++11 introduced new types, called [fixed interger types](https://en.cppreferenc
 | `uint64_t` | 64 bits | 0 | 18446744073709551615 | 
 
 1. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(uint)`.
-2. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
-3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.
+2. The C++ function [`std::numeric_limits<type>::min()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the minimum.
+3. The C++ function [`std::numeric_limits<type>::max()`](https://en.cppreference.com/w/cpp/types/numeric_limits) was used to compute the maximum.
 
 <br>
 

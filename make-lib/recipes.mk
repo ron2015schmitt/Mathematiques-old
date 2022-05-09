@@ -17,6 +17,10 @@ default: some
 
 FORCE: ;
 
+# this forces all recipes to use a single shell
+.ONESHELL:
+
+
 
 #---------------------------------------------------------------------
 # g++ COMPILER
@@ -79,7 +83,6 @@ run:
 
 # creates a .gitignore files for all the $(EXEC) files
 #  we can't detect changes in EXEC so force it
-.ONESHELL:
 gitignore: 
 	@\echo -e ${BOLD}${BLUE}"Creating .gitignore file..."${DEFCLR}${NORMAL} 
 	@\echo -e '# ****  This was created by the command "make gitignore".' > .gitignore
@@ -95,15 +98,18 @@ gitignore:
 # CLEANING
 #---------------------------------------------------------------------
 
-cleandir_%: FORCE
-#	@echo "-f $(FIRST_MAKEFILE) -C $* cleanall"
-	@cd $* && command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old node.json branch.json
+makeclean_%: FORCE
+	@$(MAKE) -C $* cleanall
 
-clean_%: FORCE
-	$(MAKE) -C $* cleanall
+nomakeclean_%: FORCE
+	@echo "nomakeclean_$(*)"
+# ONSHELL is on
+	@cd $(*)  
+	@command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old node.json branch.json
+#  if body.cpp exists then body.md is an output file not a source
+	@if [[ -f body.cpp ]] ; then command rm body.md; fi
 
-cleansubs:: $(MAKECLEAN_SUBDIRS) $(CLEAN_SUBS)
-
+cleansubs:: $(MAKECLEAN_SUBDIRS) $(NOMAKECLEAN_SUBDIRS)
 
 # Each Makefile that has an include statement for this file should:
 #  - define a "clean" target with "cleanstd" as a prerequisite

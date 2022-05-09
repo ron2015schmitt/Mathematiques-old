@@ -76,6 +76,48 @@ int main() {
   GMD_CODE_END();
   CR();
 
+
+  GMD_CODE_START("C++");
+  DISP(complex(1.0, 1.0) + complex(2.0, 4.0));
+  DISP(complex(1.0, 1.0) - complex(2.0, 4.0));
+  DISP(complex(1.0, 1.0) * complex(2.0, 4.0));
+  DISP(complex(1.0, 1.0) / complex(2.0, 4.0));
+  GMD_CODE_END();
+
+
+  // Exponentiation and the power function
+  OUTPUT("\n<br>\n");
+  GMD_HEADER3("Exponentiation and the ```pow``` function");
+  OUTPUT("C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/complex/div) function");
+
+  GMD_CODE_START("C++");
+  DISP(pow(complex(1.0, 1.0), complex(2.0, 4.0)));
+  GMD_CODE_END();
+
+  OUTPUT("\n<br>\n");
+  GMD_HEADER3("Relational Operators");
+
+  OUTPUT("Complex numbers are not an ordered set.  Therefore, there is no concept of greater than or less than.\n");
+  OUTPUT("For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).\n");
+
+  CR();
+  OUTPUT("| operator | operation | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `==` | equal to | ");
+  OUTPUT("| `!=` | not equal to | ");
+  CR();
+
+  OUTPUT("Examples:\n");
+  GMD_CODE_START("C++");
+  CR();
+  DISP(complex(1.0, 1.0) == complex(1.0, 1.0));
+  DISP(complex(1.0, 1.0) != complex(1.0, 1.0));
+  CR();
+  DISP(complex(1.0, 1.0) == complex(2.0, 4.0));
+  DISP(complex(1.0, 1.0) != complex(2.0, 4.0));
+  GMD_CODE_END();
+
+
   GMD_HEADER4("Mixed Type");
   CR();
   GMD_CODE_START("C++");

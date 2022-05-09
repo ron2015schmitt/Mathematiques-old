@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.36</h1>
 
 <details>
 
@@ -117,6 +117,44 @@ C++ does not have an exponentiation operator.  Instead it provides the [`std::po
 ☀ 100 + complex<double>(1.5, 2) + Imaginary<double>(5.25) ➜ std::complex<double> (101.5,7.25);
 ```
 
+```C++
+☀ complex(1.0, 1.0) + complex(2.0, 4.0) ➜ (3,5);
+☀ complex(1.0, 1.0) - complex(2.0, 4.0) ➜ (-1,-3);
+☀ complex(1.0, 1.0) * complex(2.0, 4.0) ➜ (-2,6);
+☀ complex(1.0, 1.0) / complex(2.0, 4.0) ➜ (0.3,-0.1);
+```
+
+<br>
+
+### Exponentiation and the ```pow``` function
+C++ does not have an exponentiation operator.  Instead it provides the [```std::pow```](https://en.cppreference.com/w/cpp/numeric/complex/div) function
+```C++
+☀ pow(complex(1.0, 1.0), complex(2.0, 4.0)) ➜ (-0.084961,0.0158558);
+```
+
+<br>
+
+### Relational Operators
+Complex numbers are not an ordered set.  Therefore, there is no concept of greater than or less than.
+
+For details refer [Comparison Operators](https://en.cppreference.com/w/c/language/operator_comparison).
+
+
+| operator | operation | 
+| :---: | :---: | 
+| `==` | equal to | 
+| `!=` | not equal to | 
+
+Examples:
+
+```C++
+
+☀ complex(1.0, 1.0) == complex(1.0, 1.0) ➜ 1;
+☀ complex(1.0, 1.0) != complex(1.0, 1.0) ➜ 0;
+
+☀ complex(1.0, 1.0) == complex(2.0, 4.0) ➜ 0;
+☀ complex(1.0, 1.0) != complex(2.0, 4.0) ➜ 1;
+```
 #### Mixed Type
 
 ```C++

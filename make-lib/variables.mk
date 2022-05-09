@@ -12,11 +12,19 @@ WHOAMI = $(abspath $(lastword $(MAKEFILE_LIST)))
 WHEREAMI = $(dir $(WHOAMI))
 
 # dynamic variables
-SUBMAKES = $(wildcard */Makefile)
+
+# all sub-directories
 SUBS = $(wildcard */)
-CLEAN_SUBS = $(addprefix cleandir_,$(SUBS))
+
+# all sub makefiles
+SUBMAKES = $(wildcard */Makefile)
+# all sub-directories with makefiles
 MAKE_SUBDIRS = $(dir $(SUBMAKES))
-MAKECLEAN_SUBDIRS = $(addprefix clean_,$(MAKE_SUBDIRS))
+MAKECLEAN_SUBDIRS = $(addprefix makeclean_,$(MAKE_SUBDIRS))
+
+# all sub-directories without makefiles
+NOMAKE_SUBDIRS = $(filter-out $(MAKE_SUBDIRS),$(SUBS))
+NOMAKECLEAN_SUBDIRS = $(addprefix nomakeclean_,$(NOMAKE_SUBDIRS))
 
 
 # Each Makefile that has an include statement for this file should:

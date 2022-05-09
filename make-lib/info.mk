@@ -38,6 +38,13 @@ info:
 	@$(call echovar,LIBDIR_MATHQ)
 	@$(call echovar,LIB_MATHQ)
 	@$(call echovar,LIB_LAPACK)
+
+	@$(call echovar,SUBS)
+	@$(call echovar,SUBMAKES)
+	@$(call echovar,MAKE_SUBDIRS)
+	@$(call echovar,MAKECLEAN_SUBDIRS)
+	@$(call echovar,NOMAKE_SUBDIRS)
+	@$(call echovar,NOMAKECLEAN_SUBDIRS)
 ifdef COMPATIBLE_VERSION_MATHQ_FILE
 	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
 	@$(call echovar,COMPATIBLE_VERSION_MATHQ)

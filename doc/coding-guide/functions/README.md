@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.35</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.36</h1>
 
 <details>
 
@@ -172,6 +172,82 @@ The following functions / operators are provided for using real number types wit
 | `erfc(x)` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | 
 | `tgamma(x)` | [Gamma Function, Γ(x)](https://en.cppreference.com/w/cpp/numeric/math/tgamma) | 
 | `lgamma(x)` | [Natural Logarithm of the Gamma Function, ln(Γ(x))](https://en.cppreference.com/w/cpp/numeric/math/lgamma) | 
+
+
+
+<br>
+
+### Mathematical functions from the C++ [``std::complex`` header](https://en.cppreference.com/w/cpp/numeric/complex)
+
+COMPLEX FUNCTIONS
+
+| function | name | 
+| :---: | :---: | 
+| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/complex/abs) | 
+| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/complex/ceil) | 
+| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/complex/floor) | 
+| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/complex/trunc) | 
+| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/complex/round) | 
+
+
+*Trig Functions*
+
+| function | name | 
+| :---: | :---: | 
+| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/complex/sin) | 
+| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/complex/cos) | 
+| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/complex/tan) | 
+
+
+*Inverse Trig Functions*
+
+| function | name | 
+| :---: | :---: | 
+| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asin) | 
+| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acos) | 
+| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atan) | 
+
+
+*Hyperbolic Trig Functions*
+
+| function | name | 
+| :---: | :---: | 
+| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/complex/sinh) | 
+| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/complex/cosh) | 
+| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/complex/tanh) | 
+
+
+*Inverse Hyperbolic Trig Functions*
+
+| function | name | 
+| :---: | :---: | 
+| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asinh) | 
+| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acosh) | 
+| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atanh) | 
+
+
+*Exponentiation*
+
+| function | name | 
+| :---: | :---: | 
+| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/complex/pow) | 
+| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/complex/sqrt) | 
+
+
+*Exponentials*
+
+| function | name | 
+| :---: | :---: | 
+| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/complex/exp) | 
+
+
+*Logarithms*
+
+| function | name | 
+| :---: | :---: | 
+| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log) | 
+| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log10) | 
+| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log2) | 
 
 
 #### C++ ``std`` library special functions

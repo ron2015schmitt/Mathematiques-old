@@ -18,6 +18,3 @@ include $(DIR_MATHQ)/make-lib/doc.recipes.mk
 
 %.md: %
 	./$* > $@
-
-
-

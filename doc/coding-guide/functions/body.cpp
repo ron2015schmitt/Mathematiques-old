@@ -164,6 +164,95 @@ int main() {
   CR();
   CR();
 
+
+    OUTPUT("\n<br>\n");
+  GMD_HEADER3("Mathematical functions from the C++ [``std::complex`` header](https://en.cppreference.com/w/cpp/numeric/complex)");
+
+
+  CR();
+  OUTPUT("COMPLEX FUNCTIONS");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `abs` | [absolute value](https://en.cppreference.com/w/cpp/numeric/complex/abs) | ");
+  OUTPUT("| `ceil` | [ceiling function](https://en.cppreference.com/w/cpp/numeric/complex/ceil) | ");
+  OUTPUT("| `floor` | [floor function](https://en.cppreference.com/w/cpp/numeric/complex/floor) | ");
+  OUTPUT("| `trunc` | [truncate function](https://en.cppreference.com/w/cpp/numeric/complex/trunc) | ");
+  OUTPUT("| `round` | [round function](https://en.cppreference.com/w/cpp/numeric/complex/round) | ");
+  CR();
+  CR();
+
+  OUTPUT("*Trig Functions*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `sin` | [sine](https://en.cppreference.com/w/cpp/numeric/complex/sin) | ");
+  OUTPUT("| `cos` | [cosine](https://en.cppreference.com/w/cpp/numeric/complex/cos) | ");
+  OUTPUT("| `tan` | [tangent](https://en.cppreference.com/w/cpp/numeric/complex/tan) | ");
+  CR();
+  CR();
+
+  OUTPUT("*Inverse Trig Functions*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `asin` | [arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asin) | ");
+  OUTPUT("| `acos` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acos) | ");
+  OUTPUT("| `atan` | [arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atan) | ");
+  CR();
+  CR();
+
+  OUTPUT("*Hyperbolic Trig Functions*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `sinh` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/complex/sinh) | ");
+  OUTPUT("| `cosh` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/complex/cosh) | ");
+  OUTPUT("| `tanh` | [Hyperbolic tangent](https://en.cppreference.com/w/cpp/numeric/complex/tanh) | ");
+  CR();
+  CR();
+
+  OUTPUT("*Inverse Hyperbolic Trig Functions*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `asinh` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/complex/asinh) | ");
+  OUTPUT("| `acosh` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/complex/acosh) | ");
+  OUTPUT("| `atanh` | [Hyperbolic arc tangent](https://en.cppreference.com/w/cpp/numeric/complex/atanh) | ");
+
+  CR();
+  CR();
+
+  OUTPUT("*Exponentiation*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/complex/pow) | ");
+  OUTPUT("| `sqrt` | [Square Root](https://en.cppreference.com/w/cpp/numeric/complex/sqrt) | ");
+
+  CR();
+  CR();
+
+  OUTPUT("*Exponentials*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `exp` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/complex/exp) | ");
+  CR();
+  CR();
+
+  OUTPUT("*Logarithms*");
+  CR();
+  OUTPUT("| function | name | ");
+  OUTPUT("| :---: | :---: | ");
+  OUTPUT("| `log` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log) | ");
+  OUTPUT("| `log10` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log10) | ");
+  OUTPUT("| `log2` | [base 2 logarithm, log<sub>2</sub>(x)](https://en.cppreference.com/w/cpp/numeric/complex/log2) | ");
+
+  CR();
+  CR();
+
+
   GMD_HEADER4("C++ ``std`` library special functions");
 
   OUTPUT("The following [special mathematical functions](https://en.cppreference.com/w/cpp/numeric/special_functions) implemented in the C++ `std` library");

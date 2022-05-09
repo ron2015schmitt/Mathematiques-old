@@ -4,6 +4,10 @@
 
 namespace mathq {
 
+//*************
+// DEPRECATED 
+//*************
+
 
   /********************************************************************
    * Scalar<E>    -- variable size vector (valarray)

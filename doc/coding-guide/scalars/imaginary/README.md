@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.36</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.37</h1>
 
 <details>
 
@@ -60,6 +60,29 @@
 
 # 7.1.3. Imaginary numbers
 
+
+
+## Introduction
+
+<br>
+
+## Size of complex numbers
+The size of a complex number is simply _twice_ the size of the underlying arithmetic type:
+
+
+```C++
+CHAR_BIT = 8 bits
+
+CHAR_BIT*sizeof(int) = 32 bits
+CHAR_BIT*sizeof(complex<int>) = 64 bits
+
+CHAR_BIT*sizeof(double) = 64 bits
+CHAR_BIT*sizeof(complex<double>) = 128 bits
+
+CHAR_BIT*sizeof(long double) = 128 bits
+CHAR_BIT*sizeof(complex<long double>) = 256 bits
+
+```
 
 
 | ⇦ <br />[Complex numbers](../complex/README.md)  | [Scalar Types](../README.md)<br />Imaginary numbers<br /><img width=1000/> | ⇨ <br />[Quaternions](../quaternion/README.md)   |

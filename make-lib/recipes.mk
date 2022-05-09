@@ -107,7 +107,7 @@ nomakeclean_%: FORCE
 	@cd $(*)  
 	@command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old node.json branch.json
 #  if body.cpp exists then body.md is an output file not a source
-	@if [[ -f body.cpp ]] ; then command rm body.md; fi
+	@if [[ -f body.cpp ]] ; then command rm -f body.md; fi
 
 cleansubs:: $(MAKECLEAN_SUBDIRS) $(NOMAKECLEAN_SUBDIRS)
 

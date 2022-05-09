@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.36</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.37</h1>
 
 <details>
 
@@ -61,7 +61,39 @@
 # 7.1.4. Quaternions
 
 
-[Quaternions](https://en.wikipedia.org/wiki/Quaternion)
+
+## Introduction
+| × | 1 | **i** | **j** | **k** | 
+| :---: | :---: | :---: | :---: | :---: |
+| 1 |1 | i | j | k | 
+| **i** |i | -1 | k | -j | 
+| **j** |j | -k | -1 | i | 
+| **k** |k | j | -i | -1 | 
+
+The above table is referred to as the [Cayley Table](https://en.wikipedia.org/wiki/Cayley_table) for Quaternions.  Each entry is the product of the row label times the col label.
+
+
+
+<br>
+
+## Size of quaternionss
+The size of a quaternions is simply _twice_ the size of the underlying arithmetic type:
+
+
+```C++
+CHAR_BIT = 8 bits
+
+CHAR_BIT*sizeof(int) = 32 bits
+CHAR_BIT*sizeof(complex<int>) = 64 bits
+
+CHAR_BIT*sizeof(double) = 64 bits
+CHAR_BIT*sizeof(complex<double>) = 128 bits
+
+CHAR_BIT*sizeof(long double) = 128 bits
+CHAR_BIT*sizeof(complex<long double>) = 256 bits
+
+```
+
 
 | ⇦ <br />[Imaginary numbers](../imaginary/README.md)  | [Scalar Types](../README.md)<br />Quaternions<br /><img width=1000/> | ⇨ <br />   |
 | ------------ | :-------------------------------: | ------------ |

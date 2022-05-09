@@ -31,7 +31,7 @@ int main() {
   CR();
   OUTPUT("The following are basic mathematical functions for manipulating numbers.");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `abs(x)` | `std` | `<cmath>` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | ");
   OUTPUT("| `abs(u)` | `mathq` | `\"mathq.h\"` | **mathq** abs  | ");
@@ -67,7 +67,7 @@ int main() {
   CR();
   OUTPUT("The following functions / operators are provided for using real number types with imaginary and complex types.");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `real(x)` | `mathq` | `\"mathq.h\"` | returns x | ");
   OUTPUT("| `imag(x)` | `mathq` | `\"mathq.h\"` | returns `zero(x)` | ");
@@ -78,7 +78,7 @@ int main() {
 
   OUTPUT("*Trig Functions*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `sin(x)` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | ");
   OUTPUT("| `cos(x)` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | ");
@@ -88,7 +88,7 @@ int main() {
 
   OUTPUT("*Inverse Trig Functions*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `asin(x)` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | ");
   OUTPUT("| `acos(x)` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | ");
@@ -99,7 +99,7 @@ int main() {
 
   OUTPUT("*Hyperbolic Trig Functions*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `sinh(x)` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | ");
   OUTPUT("| `cosh(x)` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | ");
@@ -109,7 +109,7 @@ int main() {
 
   OUTPUT("*Inverse Hyperbolic Trig Functions*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `asinh(x)` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | ");
   OUTPUT("| `acosh(x)` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | ");
@@ -120,7 +120,7 @@ int main() {
 
   OUTPUT("*Exponentiation*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | ");
   OUTPUT("| `sqrt(x)` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | ");
@@ -131,7 +131,7 @@ int main() {
 
   OUTPUT("*Exponentials*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `exp(x)` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | ");
   OUTPUT("| `exp2(x)` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | ");
@@ -141,7 +141,7 @@ int main() {
 
   OUTPUT("*Logarithms*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `log(x)` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | ");
   OUTPUT("| `log10(x)` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | ");
@@ -155,7 +155,7 @@ int main() {
 
   OUTPUT("*Other Functions*");
   CR();
-  OUTPUT("| function | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `erf(x)` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | ");
   OUTPUT("| `erfc(x)` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | ");
@@ -171,7 +171,7 @@ int main() {
 
   OUTPUT("*Bessel Functions*");
   CR();
-  OUTPUT("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | ");
   OUTPUT("| `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | ");
@@ -182,7 +182,7 @@ int main() {
   CR();
   OUTPUT("*Spherical Bessel Functions*");
   CR();
-  OUTPUT("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | ");
   OUTPUT("| `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | ");
@@ -191,7 +191,7 @@ int main() {
 
   OUTPUT("*Orthogonal Polynomials*");
   CR();
-  OUTPUT("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `hermite(n, x)` | _H_<sub>n</sub>(_x_) | [Hermite polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/hermite) | ");
   OUTPUT("| `laguerre(n, x)` | _L_<sub>n</sub>(_x_) | [Laguerre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/laguerre) | ");
@@ -203,7 +203,7 @@ int main() {
 
   OUTPUT("*Other Special Functions*");
   CR();
-  OUTPUT("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | ");
   OUTPUT("| `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | ");
@@ -223,7 +223,7 @@ int main() {
 
   OUTPUT("The following are mathematical functions implemented in the Mathématiques library, namespace `mathq`");
   CR();
-  OUTPUT("| <div style='width:180px'>function</div> | namespace | header | name | ");
+  OUTPUT("| <div style='width:225px'>function</div> | namespace | header | name | ");
   OUTPUT("| :---: | :---: | :---: | :---: | ");
   OUTPUT("| `sqr(x)` | x<sup>2</sup> | ");
   OUTPUT("| `cube(x)` | x<sup>3</sup> | ");

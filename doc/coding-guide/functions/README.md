@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.33</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.34</h1>
 
 <details>
 
@@ -54,7 +54,7 @@ Mathématiques extends many of these functions to complex numbers, imaginary num
 
 The following are basic mathematical functions for manipulating numbers.
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `abs(x)` | `std` | `<cmath>` | [absolute value](https://en.cppreference.com/w/cpp/numeric/math/abs) | 
 | `abs(u)` | `mathq` | `"mathq.h"` | **mathq** abs  | 
@@ -89,7 +89,7 @@ The default values were chosen so that the typical numerical error encountered w
 
 The following functions / operators are provided for using real number types with imaginary and complex types.
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `real(x)` | `mathq` | `"mathq.h"` | returns x | 
 | `imag(x)` | `mathq` | `"mathq.h"` | returns `zero(x)` | 
@@ -99,7 +99,7 @@ The following functions / operators are provided for using real number types wit
 
 *Trig Functions*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `sin(x)` | [sine](https://en.cppreference.com/w/cpp/numeric/math/sin) | 
 | `cos(x)` | [cosine](https://en.cppreference.com/w/cpp/numeric/math/cos) | 
@@ -108,7 +108,7 @@ The following functions / operators are provided for using real number types wit
 
 *Inverse Trig Functions*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `asin(x)` | [arc sine](https://en.cppreference.com/w/cpp/numeric/math/asin) | 
 | `acos(x)` | [arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acos) | 
@@ -118,7 +118,7 @@ The following functions / operators are provided for using real number types wit
 
 *Hyperbolic Trig Functions*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `sinh(x)` | [Hyperbolic sine](https://en.cppreference.com/w/cpp/numeric/math/sinh) | 
 | `cosh(x)` | [Hyperbolic cosine](https://en.cppreference.com/w/cpp/numeric/math/cosh) | 
@@ -127,7 +127,7 @@ The following functions / operators are provided for using real number types wit
 
 *Inverse Hyperbolic Trig Functions*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `asinh(x)` | [Hyperbolic arc sine](https://en.cppreference.com/w/cpp/numeric/math/asinh) | 
 | `acosh(x)` | [Hyperbolic arc cosine](https://en.cppreference.com/w/cpp/numeric/math/acosh) | 
@@ -136,7 +136,7 @@ The following functions / operators are provided for using real number types wit
 
 *Exponentiation*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `pow(x, y)` | [x<sup>y</sup>](https://en.cppreference.com/w/cpp/numeric/math/pow) | 
 | `sqrt(x)` | [Square Root](https://en.cppreference.com/w/cpp/numeric/math/sqrt) | 
@@ -145,7 +145,7 @@ The following functions / operators are provided for using real number types wit
 
 *Exponentials*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `exp(x)` | [e<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp) | 
 | `exp2(x)` | [2<sup>x</sup>](https://en.cppreference.com/w/cpp/numeric/math/exp2) | 
@@ -154,7 +154,7 @@ The following functions / operators are provided for using real number types wit
 
 *Logarithms*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `log(x)` | [Natural Logarithm, ln(x) = log<sub>e</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log) | 
 | `log10(x)` | [base 10 logarithm, log<sub>10</sub>(x)](https://en.cppreference.com/w/cpp/numeric/math/log10) | 
@@ -166,7 +166,7 @@ The following functions / operators are provided for using real number types wit
 
 *Other Functions*
 
-| function | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `erf(x)` | [error function, erf(x)](https://en.cppreference.com/w/cpp/numeric/math/erf) | 
 | `erfc(x)` | [complimentary error function, erfc(x)](https://en.cppreference.com/w/cpp/numeric/math/erfc) | 
@@ -179,7 +179,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Bessel Functions*
 
-| <div style='width:180px'>function</div> | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `cyl_bessel_j(𝜈, x)` | _J_<sub>𝜈</sub>(_x_) | [Bessel function of the 1st kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_bessel_j) | 
 | `cyl_neumann(𝜈, x)` | _Y_<sub>𝜈</sub>(_x_) | [Bessel (aka Neumann or Weber) function of the 2nd kind of degree 𝜈](https://en.cppreference.com/w/cpp/numeric/special_functions/cyl_neumann) | 
@@ -189,7 +189,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Spherical Bessel Functions*
 
-| <div style='width:180px'>function</div> | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `sph_bessel(n, x)` | _j_<sub>n</sub>(_x_) | [Spherical Bessel function of the 1st kind of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_bessel) | 
 | `sph_neumann(n, x)` | _y_<sub>n</sub>(_x_) | [Spherical Bessel (aka Neumann or Weber) function of the 2nd kind of degree n, aka Spherical Neumann function](https://en.cppreference.com/w/cpp/numeric/special_functions/sph_neumann) | 
@@ -197,7 +197,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Orthogonal Polynomials*
 
-| <div style='width:180px'>function</div> | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `hermite(n, x)` | _H_<sub>n</sub>(_x_) | [Hermite polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/hermite) | 
 | `laguerre(n, x)` | _L_<sub>n</sub>(_x_) | [Laguerre polynomial of degree n](https://en.cppreference.com/w/cpp/numeric/special_functions/laguerre) | 
@@ -208,7 +208,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 
 *Other Special Functions*
 
-| <div style='width:180px'>function</div> | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `beta(x, y)` |  B(_x_,_y_) | [Euler beta function (Euler Integral of the 1st kind)](https://en.cppreference.com/w/cpp/numeric/special_functions/beta) | 
 | `comp_ellint_1(k)` |  _K_(_k_) |  [Complete elliptic integral of the 1st kind](https://en.cppreference.com/w/cpp/numeric/special_functions/comp_ellint_1) | 
@@ -226,7 +226,7 @@ The following [special mathematical functions](https://en.cppreference.com/w/cpp
 ### Mathematical functions from the Mathématiques library, namespace `mathq`
 The following are mathematical functions implemented in the Mathématiques library, namespace `mathq`
 
-| <div style='width:180px'>function</div> | namespace | header | name | 
+| <div style='width:225px'>function</div> | namespace | header | name | 
 | :---: | :---: | :---: | :---: | 
 | `sqr(x)` | x<sup>2</sup> | 
 | `cube(x)` | x<sup>3</sup> | 

@@ -20,85 +20,63 @@ int main() {
   CR();
   CR();
 
-  OUTPUT("C++ supports a wide variety of real number [integer and floating point types](https://en.cppreference.com/w/cpp/language/types), operators, and functions.");
-  CR();
-  OUTPUT("Mathématiques supplements C++ functionality with several more functions.");
-
-  CR();
-  OUTPUT("Mathématiques extends many of these operators and functions to complex numbers, imaginary numbers, and quaterions, as well as extending to vectors, matrices, and tensors in a element-wise fashion.");
-
-  CR();
+  OUTPUT("C++ supports a wide variety of real numbers [integer and floating point types](https://en.cppreference.com/w/cpp/language/types).");
   CR();
   GMD_HEADER2("Integers");
-  CR();
   CR();
 
   GMD_HEADER3("Signed Integers");
 
-  OUTPUT("C++ supports several different signed integer types.  The size of each depends on the CPU and compiler.  For a 64-bit CPU running Linux, they have the following number of bits:");
+  OUTPUT("C++ supports several different signed integer types.  **The size of each depends on the CPU and compiler**.  For a 64-bit CPU running Linux, they have the following number of bits:");
 
-  // TODO: should OUTPUT instead of printf
-  CR();
-  CR();
-  GMD_CODE_START("C++");
-  DISPVAL(CHAR_BIT);
-  OUTPUT(" bits");
-  printf("CHAR_BIT*sizeof(char) = %ld bits\n", CHAR_BIT * sizeof(char));
-  OUTPUT("CHAR_BIT*sizeof(char) = " << " " << CHAR_BIT*sizeof(char) << " bits");
-  printf("CHAR_BIT*sizeof(short) = %ld bits\n", CHAR_BIT * sizeof(short));
-  printf("CHAR_BIT*sizeof(int) = %ld bits\n", CHAR_BIT * sizeof(int));
-  printf("CHAR_BIT*sizeof(long) = %ld bits\n", CHAR_BIT * sizeof(long));
-  printf("CHAR_BIT*sizeof(long long) = %ld bits\n", CHAR_BIT * sizeof(long long));
-  GMD_CODE_END();
-
-  OUTPUT("The symbol [```CHAR_BIT```](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [```sizeof()```](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
+  OUTPUT("The symbol [`CHAR_BIT`](https://en.cppreference.com/w/cpp/header/climits) yields the number of bits per byte, and the C++ function [`sizeof()`](https://en.cppreference.com/w/cpp/language/sizeof) yields the size in _bytes_ of the argument, which can be a type, variable, or expression.");
   CR();
   OUTPUT("The maximum and minimum for each type are given below.");
 
-  OUTPUT("| Type | Size<sup>1,2</sup> | Min<sup>3</sup> | Max<sup>4</sup> |");
+  OUTPUT("| Type | Size<sup>1,2</sup> | Min<sup>1,3</sup> | Max<sup>1,4</sup> |");
   OUTPUT("| :--- | :---: | :---: | :---: | ");
-  printf("| ```char``` | %d | %d | \n", std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
-  printf("| ```short``` | %d | %d |\n", std::numeric_limits<short>::min(), std::numeric_limits<short>::max());
-  printf("| ```int``` | %d | %d |\n", std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
-  printf("| ```long``` | %ld | %ld |\n", std::numeric_limits<long>::min(), std::numeric_limits<long>::max());
-  printf("| ```long long``` | %lld | %lld |\n", std::numeric_limits<long long>::min(), std::numeric_limits<long long>::max());
+  // note: need to cast numeric_limits<char>::min() as an int so that it gets printed as a number and not an ASCII charcter
+  OUTPUT("| `char` | " << CHAR_BIT*sizeof(char) << " bits | " << int(numeric_limits<char>::min()) << " | " << int(numeric_limits<char>::max()) << " | ");
+  OUTPUT("| `short` | " << CHAR_BIT*sizeof(short) << " bits | " << numeric_limits<short>::min() << " | " << numeric_limits<short>::max() << " | ");
+  OUTPUT("| `int` | " << CHAR_BIT*sizeof(int) << " bits | " << numeric_limits<int>::min() << " | " << numeric_limits<int>::max() << " | ");
+  OUTPUT("| `long` | " << CHAR_BIT*sizeof(long) << " bits | " << numeric_limits<long>::min() << " | " << numeric_limits<long>::max() << " | ");
+  OUTPUT("| `long long` | " << CHAR_BIT*sizeof(long long) << " bits | " << numeric_limits<long long>::min() << " | " << numeric_limits<long long>::max() << " | ");
 
-  OUTPUT("1. The C++ constant [```CHAR_BIT```](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[```std::sizeof```](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.");
-  OUTPUT("2. Sizes and limits given for a 64-bit CPU running Linux");
-  OUTPUT("3. The C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
-  OUTPUT("4. The C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
-
-
+  OUTPUT("1. Sizes and limits given for a 64-bit CPU running Linux");
+  OUTPUT("2. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.");
+  OUTPUT("3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("4. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
   CR();
-  OUTPUT("Here the C++ [```std::numeric_limits```](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
 
   GMD_VSPACE();
   GMD_HEADER3("Unsigned Integers");
 
-  OUTPUT("C++ supports unsigned versions of each integer type.");
+  OUTPUT("C++ also supports several different unsigned integer types.  **The size of each depends on the CPU and compiler**.  For a 64-bit CPU running Linux, they have the following number of bits:");
 
-  OUTPUT("The maximum and minimum for each type are given below.");
+  OUTPUT("| Type | Size<sup>1,2</sup> | Min<sup>1,3</sup> | Max<sup>1,4</sup> |");
+  OUTPUT("| :--- | :---: | :---: | :---: | ");
+  OUTPUT("| `bool` | " << CHAR_BIT*sizeof(bool) << " bits | " << numeric_limits<bool>::min() << " | " << numeric_limits<bool>::max() << " | ");
+  OUTPUT("| `unsigned char` | " << CHAR_BIT*sizeof(unsigned char) << " bits | " << int(numeric_limits<unsigned char>::min()) << " | " << int(numeric_limits<unsigned char>::max()) << " | ");
+  OUTPUT("| `unsigned short` | " << CHAR_BIT*sizeof(unsigned short) << " bits | " << numeric_limits<unsigned short>::min() << " | " << numeric_limits<unsigned short>::max() << " | ");
+  OUTPUT("| `unsigned int` | " << CHAR_BIT*sizeof(unsigned int) << " bits | " << numeric_limits<unsigned int>::min() << " | " << numeric_limits<unsigned int>::max() << " | ");
+  OUTPUT("| `unsigned long` | " << CHAR_BIT*sizeof(unsigned long) << " bits | " << numeric_limits<unsigned long>::min() << " | " << numeric_limits<unsigned long>::max() << " | ");
+  OUTPUT("| `unsigned long long` | " << CHAR_BIT*sizeof(unsigned long long) << " bits | " << numeric_limits<unsigned long long>::min() << " | " << numeric_limits<unsigned long long>::max() << " | ");
+  OUTPUT("| `size_t` | " << CHAR_BIT*sizeof(size_t) << " bits | " << numeric_limits<size_t>::min() << " | " << numeric_limits<size_t>::max() << " | ");
 
-  OUTPUT("| Type | Min | Max |");
-  OUTPUT("| :--- | :---: | :---: |");
-  printf("| ```bool``` | %u | %u |\n", std::numeric_limits<bool>::min(), std::numeric_limits<bool>::max());
-  printf("| ```unsigned char``` | %u | %u |\n", std::numeric_limits<unsigned char>::min(), std::numeric_limits<unsigned char>::max());
-  printf("| ```unsigned short``` | %u | %u |\n", std::numeric_limits<unsigned short>::min(), std::numeric_limits<unsigned short>::max());
-  printf("| ```unsigned int``` | %u | %u |\n", std::numeric_limits<unsigned int>::min(), std::numeric_limits<unsigned int>::max());
-  printf("| ```unsigned long``` | %lu | %lu |\n", std::numeric_limits<unsigned long>::min(), std::numeric_limits<unsigned long>::max());
-  printf("| ```unsigned long long``` | %llu | %llu |\n", std::numeric_limits<unsigned long long>::min(), std::numeric_limits<unsigned long long>::max());
-  printf("| ```size_t``` | %lu | %lu |\n", std::numeric_limits<size_t>::min(), std::numeric_limits<size_t>::max());
-
+  OUTPUT("1. Sizes and limits given for a 64-bit CPU running Linux");
+  OUTPUT("2. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(int)`.");
+  OUTPUT("3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("4. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
 
   GMD_VSPACE();
   GMD_HEADER3("Boolean");
 
-  OUTPUT("The boolean type, [```bool```](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A ```bool``` can take only two values, 0 or 1.");
-  OUTPUT("Two associated constants are defined: ```true``` and ```false```.\n");
+  OUTPUT("The boolean type, [`bool`](https://en.cppreference.com/w/c/types/boolean), was introduced in C99.  A `bool` can take only two values, 0 or 1.");
+  OUTPUT("Two associated constants are defined: `true` and `false`.\n");
 
   CR();
   GMD_CODE_START("C++");
-  printf("CHAR_BIT*sizeof(bool) = %ld bits\n", CHAR_BIT * sizeof(bool));
+  SRDISP(" bits", CHAR_BIT*sizeof(bool));
   CR();
   TRDISP(false);
   TRDISP(true);
@@ -107,13 +85,13 @@ int main() {
   GMD_VSPACE();
   GMD_HEADER3("Indexing Types");
 
-  OUTPUT("The type [```size_t```](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array)");
+  OUTPUT("The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is the _unsigned_ integer type that is the best type to use for array indexing and loop counting because it size_t can store the maximum size of a theoretically possible object of any type (including array), no smaller and no larger.");
   OUTPUT("It's size depends on implementation.  The 64-bit Linux size is shown below:");
 
   CR();
   CR();
   GMD_CODE_START("C++");
-  printf("CHAR_SIZE*sizeof(size_t) = %ld bits\n", sizeof(size_t));
+  SRDISP(" bits", CHAR_BIT*sizeof(size_t));
   GMD_CODE_END();
   CR();
 
@@ -123,108 +101,95 @@ int main() {
   OUTPUT("C++11 introduced new types, called [fixed interger types](https://en.cppreference.com/w/cpp/types/integer), that allow you to directly specify the number of bits:");
 
   CR();
-  OUTPUT("| type | bits |");
-  OUTPUT("| :--- | :---: |");
-  OUTPUT("| int8_t | 8 bits |");
-  OUTPUT("| int16_t | 8 bits |");
-  OUTPUT("| int32_t | 16 bits |");
-  OUTPUT("| int64_t | 32 bits |");
+  OUTPUT("| Type | Size<sup>1</sup> | Min<sup>2</sup> | Max<sup>3</sup> |");
+  OUTPUT("| :--- | :---: | :---: | :---: | ");
+  OUTPUT("| `int8_t` | " << CHAR_BIT*sizeof(int8_t) << " bits | " << int(numeric_limits<int8_t>::min()) << " | " << int(numeric_limits<int8_t>::max()) << " | ");
+  OUTPUT("| `int16_t` | " << CHAR_BIT*sizeof(int16_t) << " bits | " << numeric_limits<int16_t>::min() << " | " << numeric_limits<int16_t>::max() << " | ");
+  OUTPUT("| `int32_t` | " << CHAR_BIT*sizeof(int32_t) << " bits | " << numeric_limits<int32_t>::min() << " | " << numeric_limits<int32_t>::max() << " | ");
+  OUTPUT("| `int64_t` | " << CHAR_BIT*sizeof(int64_t) << " bits | " << numeric_limits<int64_t>::min() << " | " << numeric_limits<int64_t>::max() << " | ");
   CR();
 
+
+  GMD_VSPACE();
   CR();
-  OUTPUT("| type | bits |");
-  OUTPUT("| :--- | :---: |");
-  OUTPUT("| uint8_t | 8 bits |");
-  OUTPUT("| uint16_t | 8 bits |");
-  OUTPUT("| uint32_t | 16 bits |");
-  OUTPUT("| uint64_t | 32 bits |");
+  OUTPUT("| Type | Size<sup>1</sup> | Min<sup>2</sup> | Max<sup>3</sup> |");
+  OUTPUT("| :--- | :---: | :---: | :---: | ");
+  OUTPUT("| `uint8_t` | " << CHAR_BIT*sizeof(uint8_t) << " bits | " << int(numeric_limits<uint8_t>::min()) << " | " << int(numeric_limits<uint8_t>::max()) << " | ");
+  OUTPUT("| `uint16_t` | " << CHAR_BIT*sizeof(uint16_t) << " bits | " << numeric_limits<uint16_t>::min() << " | " << numeric_limits<uint16_t>::max() << " | ");
+  OUTPUT("| `uint32_t` | " << CHAR_BIT*sizeof(uint32_t) << " bits | " << numeric_limits<uint32_t>::min() << " | " << numeric_limits<uint32_t>::max() << " | ");
+  OUTPUT("| `uint64_t` | " << CHAR_BIT*sizeof(uint64_t) << " bits | " << numeric_limits<uint64_t>::min() << " | " << numeric_limits<uint64_t>::max() << " | ");
   CR();
+  OUTPUT("1. The C++ constant [`CHAR_BIT`](https://en.cppreference.com/w/cpp/types/numeric_limits) and C++ function[`std::sizeof`](https://en.cppreference.com/w/cpp/types/numeric_limits) were used to compute size in bits, eg. `CHAR_BIT*sizeof(uint)`.");
+  OUTPUT("2. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
+  OUTPUT("3. The C++ [`std::numeric_limits`](https://en.cppreference.com/w/cpp/types/numeric_limits) functions were used to compute the max and min.");
 
 
   GMD_VSPACE();
   GMD_HEADER2("Floating Point Numbers");
 
-  OUTPUT("On modern systems, C++ generally supports three types of floating point number:");
+  OUTPUT("C++ generally supports three types of floating point number.  These types aare the same for all CPUs and operating systems.");
 
-  CR();
-  CR();
-  GMD_CODE_START("C++");
-  printf("CHAR_BIT*sizeof(float) = %ld bits\n", CHAR_BIT * sizeof(char));
-  printf("CHAR_BIT*sizeof(double) = %ld bits\n", CHAR_BIT * sizeof(short));
-  printf("CHAR_BIT*sizeof(long double) = %ld bits\n", CHAR_BIT * sizeof(int));
-  GMD_CODE_END();
 
   OUTPUT("The three types are compared below.");
 
-  OUTPUT("| type | name | bits | standard |  ```digits10``` |  ```max_digits10``` | ```epsilon()``` | ```min()``` | ```lowest()``` | ```max()``` | ");
+  OUTPUT("| type | name | bits | standard |  `digits10` |  `max_digits10` | `epsilon()` | `min()` | `lowest()` | `max()` | ");
   OUTPUT("| :--- | :---: | :---: | :---:  | :---:  | :---:  | :---:  | :---:  | :---: | :---: |");
-  printf("| float | Single Precision | 32 bits | [IEEE 754-2008 binary32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) |");
-  printf(" %d | ", numeric_limits<float>::digits10);
-  printf(" %d | ", numeric_limits<float>::max_digits10);
-  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::epsilon());
-  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::min());
-  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::lowest());
-  printf(" %0.*g | ", numeric_limits<float>::max_digits10, numeric_limits<float>::max());
-  CR();
-  printf("| double | Double Precision | 64 bits | [IEEE 754-2008 binary64](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) |");
-  printf(" %d | ", numeric_limits<double>::digits10);
-  printf(" %d | ", numeric_limits<double>::max_digits10);
-  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::epsilon());
-  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::min());
-  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::lowest());
-  printf(" %0.*g | ", numeric_limits<double>::max_digits10, numeric_limits<double>::max());
-  CR();
-  printf("| long double | Quad Precision | 128 bits | [IEEE 754-2008 binary128](https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format) |");
-  printf(" %d | ", numeric_limits<long double>::digits10);
-  printf(" %d | ", numeric_limits<long double>::max_digits10);
-  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::epsilon());
-  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::min());
-  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::lowest());
-  printf(" %0.*Lg | ", numeric_limits<long double>::max_digits10, numeric_limits<long double>::max());
+  OUTPUT_NOCR("| float | Single Precision | ");
+  OUTPUT_NOCR(CHAR_BIT*sizeof(float));
+  OUTPUT_NOCR(" | [IEEE 754-2008 binary32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) |");
+  OUTPUT_NOCR(numeric_limits<float>::digits10);
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<float>::max_digits10);
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<float>::epsilon());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<float>::min());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<float>::lowest());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<float>::max());
+  OUTPUT_NOCR(" | ");
   CR();
 
+  OUTPUT_NOCR("| double | Double Precision | ");
+  OUTPUT_NOCR(CHAR_BIT*sizeof(double));
+  OUTPUT_NOCR(" | [IEEE 754-2008 binary32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) |");
+  OUTPUT_NOCR(numeric_limits<double>::digits10);
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<double>::max_digits10);
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<double>::epsilon());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<double>::min());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<double>::lowest());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<double>::max());
+  OUTPUT_NOCR(" | ");
+  CR();
+
+
+  OUTPUT_NOCR("| long double | Quad Precision | ");
+  OUTPUT_NOCR(CHAR_BIT*sizeof(long double));
+  OUTPUT_NOCR(" | [IEEE 754-2008 binary32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) |");
+  OUTPUT_NOCR(numeric_limits<long double>::digits10);
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<long double>::max_digits10);
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<long double>::epsilon());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<long double>::min());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<long double>::lowest());
+  OUTPUT_NOCR(" | ");
+  OUTPUT_NOCR(numeric_limits<long double>::max());
+  OUTPUT_NOCR(" | ");
   CR();
   CR();
 
-  OUTPUT("The functions ```epsilon()```, ```min()```, ```lowest()```, and  ```max()```, as well as the static values ```digits10``` and ```max_digits10``` are found in [```limits```](https://en.cppreference.com/w/cpp/types/numeric_limits)");
+  OUTPUT("The functions `epsilon()`, `min()`, `lowest()`, and  `max()`, as well as the static values `digits10` and `max_digits10` are found in [`limits`](https://en.cppreference.com/w/cpp/types/numeric_limits)");
 
-  OUTPUT("The static value ```max_digits10``` was used as the precision for printing the above values.\n");
-
-  GMD_VSPACE();
-  GMD_HEADER2("Operators and functions");
-
-  GMD_HEADER3("Arithmetic Operators");
-  OUTPUT("The operators ```+, -, *, /, %``` are the addition, subtraction, multiplication, division, and modulus operators respectively.\n");
-  OUTPUT("For details refer to [Arithmetic Operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic).\n");
-
-  CR();
-  OUTPUT("| operator | operation | ");
-  OUTPUT("| :---: | :---: | ");
-  OUTPUT("| ```+``` | addition | ");
-  OUTPUT("| ```-``` | subtraction | ");
-  OUTPUT("| ```*``` | multiplication | ");
-  OUTPUT("| ```/``` | division | ");
-  OUTPUT("| ```%``` | modulus | ");
-  CR();
-
-  OUTPUT("* If both numerator and denominator are integers, the division operator gives the integer division result.\n");
-  GMD_CODE_START("C++");
-  TRDISP(7 / 2);
-  GMD_CODE_END();
-  OUTPUT("* The modulus operator ```a % b```, gives the remainder after integer divison of ```a``` by ```b```.\n");
-  GMD_CODE_START("C++");
-  TRDISP(7 % 2);
-  GMD_CODE_END();
-  OUTPUT("* The function [```std::div```](https://en.cppreference.com/w/cpp/numeric/math/div) can also be used for integer division, It returns both the result and remainder.\n");
-
-  GMD_CODE_START("C++");
-  ECHO_CODE(div_t result = div(7, 2));
-  GMD_CODE_END();
-  OUTPUT("With result:\n");
-  GMD_CODE_START("C++");
-  TRDISP(result.quot);
-  TRDISP(result.rem);
-  GMD_CODE_END();
+  OUTPUT("The static value `max_digits10` was used as the precision for printing the above values.\n");
 
 
   return 0;

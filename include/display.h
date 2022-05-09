@@ -50,6 +50,15 @@
 
 #define OUTPUT(x) MOUT << x << std::endl
 
+//
+// OUTPUT_NOCR(x)
+//
+// sends x to MOUT
+//
+//   x -> variable or expression that has >> operator defined
+
+#define OUTPUT_NOCR(x) MOUT << x;
+
 
 //
 // DISPVAL(x)

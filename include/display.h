@@ -92,6 +92,22 @@
 #define DISP(...) display::Display::mydispcr(MOUT, __VA_ARGS__, #__VA_ARGS__)
 
 //
+// DISP_NOCR(x)
+//
+// displays variable x as follows to MOUT
+//    MOUT << Display::expressionStyle[stringify(x)]
+//    MOUT << Display::equalsStyledString
+//    MOUT << (value of x styled according to data type)
+//    MOUT << Display::terminatorStyledString
+//
+//   x -> variable or expression that has >> operator defined
+//
+// EXAMPLES:
+//   DISP_NOCR(1+3); // "1+3  ➜  4"
+
+#define DISP_NOCR(...) display::Display::mydisp_notype(MOUT, __VA_ARGS__, #__VA_ARGS__, false)
+
+//
 // SRDISP(str,x)
 //
 //

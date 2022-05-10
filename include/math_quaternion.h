@@ -40,6 +40,17 @@ public:
     return k_;
   }
 
+  D scalar() const {
+    return r_;
+  }
+
+
+  Vector<D, 3> &vector() const {
+    Vector<D, 3> *vector = new Vector<D, 3>({i_, j_, k_});
+    return *vector;
+  }
+
+
   Quaternion<D> &negate() {
     r_ = -r_;
     i_ = -i_;
@@ -69,21 +80,21 @@ public:
     return *this;
   }
 
-  // Quaternion<D> &operator-=(const Quaternion<D> &y) {
-  //   *this = *this - y;
-  //   return *this;
-  // }
+  Quaternion<D> &operator-=(const Quaternion<D> &y) {
+    *this = *this - y;
+    return *this;
+  }
 
 
-  // Quaternion<D> &operator*=(const D &y) {
-  //   *this = *this * y;
-  //   return *this;
-  // }
+  Quaternion<D> &operator*=(const D &y) {
+    *this = *this * y;
+    return *this;
+  }
 
-  // Quaternion<D> &operator/=(const D &y) {
-  //   *this = *this / y;
-  //   return *this;
-  // }
+  Quaternion<D> &operator/=(const D &y) {
+    *this = *this / y;
+    return *this;
+  }
 
 
 
@@ -275,10 +286,10 @@ operator-(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
   /// CAVEAT: If you have a trailing ',' in the parm list you wil get a mysterious "error: expected primary-expression before ‘(’ token"
 }
 
-// // Quaternion<D1> * Quaternion<D2>
+// Quaternion<D1> * Quaternion<D2>
 
 template <typename D1, typename D2>
-inline mathq::Quaternion<typename mathq::AddType<D1, D2>::Type>
+inline auto
 operator*(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
   typedef typename mathq::AddType<D1, D2>::Type D3;
   return mathq::Quaternion<D3>(
@@ -290,12 +301,11 @@ operator*(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
 }
 
 
-// // Quaternion<D1> / Quaternion<D2>
+// Quaternion<D1> / Quaternion<D2>
 
 // template <typename D1, typename D2>
-// inline
-//     typename DivType<D1, D2>::Type
-//     operator/(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
+// inline auto
+// operator/(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
 //   typedef typename DivType<D1, D2>::Type D3;
 //   return D3(x1.value() / x2.value());
 // }
@@ -630,28 +640,28 @@ operator*(const Imaginary<D2> &x1, const Quaternion<D1> &x2) {
 
 template <typename D>
 inline D real(const Quaternion<D> &z) {
-  return z._r;
+  return z.real();
 }
 
 // imag(z)
 
 template <typename D>
 inline D imag(const Quaternion<D> &z) {
-  return z._i;
+  return z.imag();
 }
 
 // jmag(z)
 
 template <typename D>
 inline D jmag(const Quaternion<D> &z) {
-  return z._j;
+  return z.jmag();
 }
 
 // kmag(z)
 
 template <typename D>
 inline D kmag(const Quaternion<D> &z) {
-  return z._k;
+  return z.kmag();
 }
 
 // // arg(z)  -  this is pi/2, but let the std library calculate
@@ -685,14 +695,14 @@ inline D kmag(const Quaternion<D> &z) {
 
 template <typename D>
 inline D abs(const Quaternion<D> &z) {
-  return std::sqrt(z._r * z._r + z._i * z._i + z._j * z._j + z._k * z._k);
+  return std::sqrt(z.real() * z.real() + z.imag() * z.imag() + z.jmag() * z.jmag() + z.kmag() * z.kmag());
 }
 
 // normsqr(z) -
 
 template <typename D>
 inline D normsqr(const Quaternion<D> &z) {
-  return z._r * z._r + z._i * z._i + z._j * z._j + z._k * z._k;
+  return z.real() * z.real() + z.imag() * z.imag() + z.jmag() * z.jmag() + z.kmag() * z.kmag();
 }
 
 

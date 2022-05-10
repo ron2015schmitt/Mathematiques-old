@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.37</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.38</h1>
 
 <details>
 
@@ -77,21 +77,35 @@ The above table is referred to as the [Cayley Table](https://en.wikipedia.org/wi
 <br>
 
 ## Size of quaternionss
-The size of a quaternions is simply _twice_ the size of the underlying arithmetic type:
+The size of a quaternions is simply _four times_ the size of the underlying arithmetic type:
 
 
 ```C++
-CHAR_BIT = 8 bits
+☀ CHAR_BIT ➜ 8 bits;
 
-CHAR_BIT*sizeof(int) = 32 bits
-CHAR_BIT*sizeof(complex<int>) = 64 bits
+☀ CHAR_BIT * sizeof(int) ➜ 32 bits;
+☀ CHAR_BIT * sizeof(Quaternion<int>) ➜ 128 bits;
 
-CHAR_BIT*sizeof(double) = 64 bits
-CHAR_BIT*sizeof(complex<double>) = 128 bits
+☀ CHAR_BIT * sizeof(double) ➜ 64 bits;
+☀ CHAR_BIT * sizeof(Quaternion<double>) ➜ 256 bits;
 
-CHAR_BIT*sizeof(long double) = 128 bits
-CHAR_BIT*sizeof(complex<long double>) = 256 bits
+☀ CHAR_BIT * sizeof(long double) ➜ 128 bits;
+☀ CHAR_BIT * sizeof(Quaternion<long double>) ➜ 512 bits;
 
+```
+
+
+```C++
+auto q1 = Quaternion<double>(1, 2, -1, -3);
+auto q2 = Quaternion<double>(4, 3, -2, -5);
+
+☀ q1 ➜ Quaternion<double> 1 + 2i + -j + -3k;
+☀ real(q1) ➜ 1; ☀ imag(q1) ➜ 2; ☀ jmag(q1) ➜ -1; ☀ kmag(q1) ➜ -3; 
+☀ q1.scalar() ➜ double 1;
+☀ q1.vector() ➜ Vector<double,NE=3> {2, -1, -3};
+☀ q2 ➜ Quaternion<double> 4 + 3i + -2j + -5k;
+☀ q1 * q2 ➜ Quaternion<double> -19 + 10i + -5j + -18k;
+☀ abs(q1 * q2) ➜ double 28.4605;
 ```
 
 

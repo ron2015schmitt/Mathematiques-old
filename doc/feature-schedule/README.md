@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.37</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.38</h1>
 
 <details>
 
@@ -45,6 +45,7 @@
   * display.cpp
 1. combine all macros from display and md.h into a single header. put rest in display
 1. make all macros UPPERCASE? Yes.  can get variable collision otherwise
+1. implement istream operators:  `stdin >> Vector` etc
 1. refactor Style, StyledString, Terminal, and Display, Log
   1. reformat all files using VSCode C++ extension
   1. StyleStrgn should allow chnage of the Style
@@ -90,6 +91,7 @@
 
 ### Miscellaneous Small Features
 * reformat all files using VSCode plugin
+* inv<D>(D x) for real, integers, imaginar, complex, quaternions
 * make all temp README.md files read-only
 * refactor the headers so that 
   * vectors, matrices display tensors Scalar are broken out into different headers

@@ -889,7 +889,6 @@ inline auto conj(const Quaternion<D> &z) {
 }
 
 
-
 // inv(z)
 
 template <typename D>
@@ -901,7 +900,7 @@ inline auto inv(const Quaternion<D> &z) {
 // neg(z)
 
 template <typename D>
-inline Quaternion<D> &neg(const Quaternion<D> &z) {
+inline Quaternion<D> neg(const Quaternion<D> &z) {
   Quaternion<D> y = z;
   return y.negate();
 }
@@ -935,20 +934,31 @@ exp(const Quaternion<D> &q) {
 }
 
 // log(q)
+//
+//  note that similar to log of a complex number, log of a quaternion is a multivalued function
+//  This function returns the principal value.  Notice that you will get unexpected results for
+//  real values (ie v=0): the vector part is NaN
+//
+// exp(log(q)) = q always provided v != 0
+// log(exp(q)) = q sometimes
+//
+// We could improve the answer for the v=0 case via
+// https://math.stackexchange.com/questions/2527630/logarithm-and-exponent-of-real-quaternions
 
 template <typename D>
 inline Quaternion<D>
 log(const Quaternion<D> &q) {
-  using std::acos;
-  using std::log;
+  // using std::acos;
+  using std::log, std::acos;
   const D a = q.scalar();
   const D abs = q.abs();
   const D vabs = q.vabs();
+  const D k = acos(a / abs) / vabs;
   return Quaternion<D>(
       log(abs),
-      acos(a / abs) * q.imag() / vabs,
-      acos(a / abs) * q.jmag() / vabs,
-      acos(a / abs) * q.kmag() / vabs);
+      k * q.imag(),
+      k * q.jmag(),
+      k * q.kmag());
 }
 
 
@@ -990,6 +1000,7 @@ inline auto
 pow(const Quaternion<D1> &q, const D2 &x) {
   using std::cos;
   using std::pow;
+  using std::sin;
   typedef typename MultType<D1, D2>::Type D3;
   const D3 k = pow(q.abs(), x);
   const D3 c = 1 / q.vabs();

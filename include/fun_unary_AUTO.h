@@ -2791,6 +2791,339 @@ public:
 
   
 // ----------------------------------------------------------------
+// quaternion: template class for function 'mathq::Quaternion'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_quaternion {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::Quaternion(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::Quaternion(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::Quaternion")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_quaternion")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// conj_quat: template class for function 'mathq::conj'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_conj_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::conj(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::conj(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::conj")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_conj_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// real_quat: template class for function 'mathq::real'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_real_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::real(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::real(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::real")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_real_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// imag_quat: template class for function 'mathq::imag'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_imag_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::imag(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::imag(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::imag")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_imag_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// jmag_quat: template class for function 'mathq::jmag'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_jmag_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::jmag(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::jmag(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::jmag")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_jmag_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// kmag_quat: template class for function 'mathq::kmag'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_kmag_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::kmag(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::kmag(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::kmag")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_kmag_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// abs_quat: template class for function 'mathq::abs'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_abs_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::abs(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::abs(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::abs")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_abs_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// exp_quat: template class for function 'mathq::exp'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_exp_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::exp(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::exp(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::exp")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_exp_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
+// log_quat: template class for function 'mathq::log'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+template <class E, class EOUT, class DIN, class DOUT> class FUNCTOR_log_quat {	
+public:								
+  typedef DIN DType;							
+  typedef DOUT DoutType;						
+  typedef E EType;							
+  typedef EOUT EoutType;
+  static DOUT apply(const DIN d) {					
+    return mathq::log(d);		
+  }									
+  template <class T=E>						
+  static  typename std::enable_if<!std::is_same<T,DIN>::value, EOUT& >::type 
+  apply(const E& e) {						
+    EOUT *e2 = new EOUT();						
+    *e2 = mathq::log(e);						
+    return *e2;							
+  }									
+  static std::string expression(const std::string& sa) {		
+    using namespace display;						
+    std::string sout = "";						
+    sout = functor_style.apply("mathq::log")+"("+ sa + ")";	
+    return sout;							
+  }									
+  static std::string classname() {					
+    using namespace display;						
+    E e;								
+    return functor_namestyle.apply("FUNCTOR_log_quat")+display::getBracketedTypeName(e); 
+  }									
+};
+
+  
+// ----------------------------------------------------------------
 // conj_real: template class for function 'mathq::conj'
 //
 //    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
@@ -4445,6 +4778,177 @@ template <class X, class E, class D, int M, int R>
 auto ceil(const TensorR<X,E,std::complex<D>,M,R>& x) {		
   typedef typename NumberType<E,std::complex<D>>::ReplaceTypeD EOUT;		
   return  TER_Unary<TensorR<X,E,std::complex<D>,M,R>,EOUT,std::complex<D>,M,R, FUNCTOR_ceil_complex<E,EOUT,std::complex<D>,std::complex<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// quaternion
+// template functions for 'quaternion'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// quaternion 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto quaternion(const TensorR<X,E,D,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Quaternion<D>>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,D,M,R>,EOUT,mathq::Quaternion<D>,M,R, FUNCTOR_quaternion<E,EOUT,D,mathq::Quaternion<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// conj
+// template functions for 'conj'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// conj 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto conj(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Quaternion<D>>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,mathq::Quaternion<D>,M,R, FUNCTOR_conj_quat<E,EOUT,mathq::Quaternion<D>,mathq::Quaternion<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// real
+// template functions for 'real'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// real 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto real(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,D,M,R, FUNCTOR_real_quat<E,EOUT,mathq::Quaternion<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// imag
+// template functions for 'imag'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// imag 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto imag(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,D,M,R, FUNCTOR_imag_quat<E,EOUT,mathq::Quaternion<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// jmag
+// template functions for 'jmag'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// jmag 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto jmag(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,D,M,R, FUNCTOR_jmag_quat<E,EOUT,mathq::Quaternion<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// kmag
+// template functions for 'kmag'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// kmag 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto kmag(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,D,M,R, FUNCTOR_kmag_quat<E,EOUT,mathq::Quaternion<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// abs
+// template functions for 'abs'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// abs 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto abs(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,D>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,D,M,R, FUNCTOR_abs_quat<E,EOUT,mathq::Quaternion<D>,D>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// exp
+// template functions for 'exp'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// exp 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto exp(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Quaternion<D>>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,mathq::Quaternion<D>,M,R, FUNCTOR_exp_quat<E,EOUT,mathq::Quaternion<D>,mathq::Quaternion<D>>>(x); 
+}
+
+
+// ----------------------------------------------------------------
+// log
+// template functions for 'log'
+//
+//    Note: generated from template file '/home/rs2015/Mathematiques/include-templates/fun_unary_functor.h'
+//          using Python script 'fun_unary.py'
+// ----------------------------------------------------------------
+
+//----------------------------------------------
+// log 
+//----------------------------------------------
+
+template <class X, class E, class D, int M, int R>			
+auto log(const TensorR<X,E,mathq::Quaternion<D>,M,R>& x) {		
+  typedef typename NumberType<E,mathq::Quaternion<D>>::ReplaceTypeD EOUT;		
+  return  TER_Unary<TensorR<X,E,mathq::Quaternion<D>,M,R>,EOUT,mathq::Quaternion<D>,M,R, FUNCTOR_log_quat<E,EOUT,mathq::Quaternion<D>,mathq::Quaternion<D>>>(x); 
 }
 
 

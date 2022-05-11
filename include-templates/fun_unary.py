@@ -73,6 +73,7 @@ funcs = [
 ["std::comp_ellint_2", "comp_ellint_2", "comp_ellint_2", "D", "D"],
 ["mathq::zero", "zero", "zero", "D", "D"],
 ["std::ilogb", "ilogb", "ilogb", "D", "int"],
+
 ["mathq::Imaginary", "imaginary", "imaginary", "D", "mathq::Imaginary<D>"],
 ["mathq::conj", "conj", "conj_imag", "mathq::Imaginary<D>", "mathq::Imaginary<D>"],
 ["mathq::real", "real", "real_imag", "mathq::Imaginary<D>", "D"],
@@ -96,6 +97,7 @@ funcs = [
 ["mathq::asinh", "asinh", "asinh_imag", "mathq::Imaginary<D>", "std::complex<D>"],
 ["mathq::acosh", "acosh", "acosh_imag", "mathq::Imaginary<D>", "std::complex<D>"],
 ["mathq::atanh", "atanh", "atanh_imag", "mathq::Imaginary<D>", "std::complex<D>"],
+
 ["std::conj", "conj", "conj_complex", "std::complex<D>", "std::complex<D>"],
 ["std::real", "real", "real_complex", "std::complex<D>", "D"],
 ["std::imag", "imag", "imag_complex", "std::complex<D>", "D"],
@@ -106,6 +108,18 @@ funcs = [
 ["mathq::log2", "log2", "log2_complex", "std::complex<D>", "std::complex<D>"],
 ["mathq::floor", "floor", "floor_complex", "std::complex<D>", "std::complex<D>"],
 ["mathq::ceil", "ceil", "ceil_complex", "std::complex<D>", "std::complex<D>"],
+
+["mathq::Quaternion", "quaternion", "quaternion", "D", "mathq::Quaternion<D>"],
+["mathq::conj", "conj", "conj_quat", "mathq::Quaternion<D>", "mathq::Quaternion<D>"],
+["mathq::real", "real", "real_quat", "mathq::Quaternion<D>", "D"],
+["mathq::imag", "imag", "imag_quat", "mathq::Quaternion<D>", "D"],
+["mathq::jmag", "jmag", "jmag_quat", "mathq::Quaternion<D>", "D"],
+["mathq::kmag", "kmag", "kmag_quat", "mathq::Quaternion<D>", "D"],
+["mathq::abs", "abs", "abs_quat", "mathq::Quaternion<D>", "D"],
+["mathq::exp", "exp", "exp_quat", "mathq::Quaternion<D>", "mathq::Quaternion<D>"],
+["mathq::log", "log", "log_quat", "mathq::Quaternion<D>", "mathq::Quaternion<D>"],
+
+
 ]
 
 

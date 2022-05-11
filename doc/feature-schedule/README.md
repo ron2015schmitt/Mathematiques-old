@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.40</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.41</h1>
 
 <details>
 
@@ -88,6 +88,7 @@
 
 
 ### Miscellaneous Small Features
+* use https://doxygen.nl/manual/docblocks.html os similar to generate method and function docs?
 * reformat all files using VSCode plugin
 * all objects should ave .invert() and conjugate(), not .inv and .conj
 * inv<D>(D x) for real, integers, imaginar, complex, quaternion

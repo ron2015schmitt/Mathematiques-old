@@ -44,11 +44,30 @@ public:
     return r_;
   }
 
-
   Vector<D, 3> &vector() const {
     Vector<D, 3> *vector = new Vector<D, 3>({i_, j_, k_});
     return *vector;
   }
+
+
+  D normsqr() const {
+    return r_ * r_ + i_ * i_ + j_ * j_ + k_ * k_;
+  }
+
+  D abs() const {
+    return std::sqrt(this->normsqr());
+  }
+
+  Quaternion<D> &invert() {
+    D k = 1 / this->normsqr();
+    r_ = k * r_;
+    i_ = -k * i_;
+    j_ = -k * j_;
+    k_ = -k * k_;
+    return *this;
+  }
+
+
 
 
   Quaternion<D> &negate() {
@@ -58,6 +77,15 @@ public:
     k_ = -k_;
     return *this;
   }
+
+  Quaternion<D> &conj() {
+    r_ = r_;
+    i_ = -i_;
+    j_ = -j_;
+    k_ = -k_;
+    return *this;
+  }
+
 
   D operator=(const D &y) {
     r_ = y.r_;
@@ -86,12 +114,13 @@ public:
   }
 
 
-  Quaternion<D> &operator*=(const D &y) {
+  // arithmetic operators
+  Quaternion<D> &operator*=(const Quaternion<D> &y) {
     *this = *this * y;
     return *this;
   }
 
-  Quaternion<D> &operator/=(const D &y) {
+  Quaternion<D> &operator/=(const Quaternion<D> &y) {
     *this = *this / y;
     return *this;
   }
@@ -219,17 +248,6 @@ numbercast(const Quaternion<F1> &y) {
 }
 
 
-// ***************************************************************************
-// // From real, Imaginary, complex
-// // ***************************************************************************
-
-
-// template <typename D>
-// inline std::complex<D>
-// Complex(const Quaternion<D> &x) {
-//   return std::complex<D>(0, x.value());
-// }
-
 
 // ***************************************************************************
 // * Quaternion arithmetic: Quaternion<D>
@@ -238,7 +256,7 @@ numbercast(const Quaternion<F1> &y) {
 // +Quaternion<D>
 
 template <typename D>
-inline Quaternion<D>
+inline auto
 operator+(const Quaternion<D> &x) {
   return x;
 }
@@ -246,7 +264,7 @@ operator+(const Quaternion<D> &x) {
 // -Quaternion<D>
 
 template <typename D>
-inline Quaternion<D>
+inline auto
 operator-(const Quaternion<D> &x) {
   Quaternion<D> y = x;
   return y.negate();
@@ -261,28 +279,28 @@ operator-(const Quaternion<D> &x) {
 // Quaternion<D1> + Quaternion<D2>
 
 template <typename D1, typename D2>
-inline mathq::Quaternion<typename mathq::AddType<D1, D2>::Type>
+inline auto
 operator+(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
   typedef typename mathq::AddType<D1, D2>::Type D3;
   return mathq::Quaternion<D3>(
       x1.real() + x2.real(),
-      x1.imaj() + x2.imaj(),
-      x1.jmaj() + x2.jmaj(),
-      x1.kmaj() + x2.kmaj());
+      x1.imag() + x2.imag(),
+      x1.jmag() + x2.jmag(),
+      x1.kmag() + x2.kmag());
   /// CAVEAT: If you have a trailing ',' in the parm list you wil get a mysterious "error: expected primary-expression before ‘(’ token"
 }
 
 // Quaternion<D1> - Quaternion<D2>
 
 template <typename D1, typename D2>
-inline mathq::Quaternion<typename mathq::AddType<D1, D2>::Type>
+inline auto
 operator-(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
   typedef typename mathq::AddType<D1, D2>::Type D3;
   return mathq::Quaternion<D3>(
       x1.real() - x2.real(),
-      x1.imaj() - x2.imaj(),
-      x1.jmaj() - x2.jmaj(),
-      x1.kmaj() - x2.kmaj());
+      x1.imag() - x2.imag(),
+      x1.jmag() - x2.jmag(),
+      x1.kmag() - x2.kmag());
   /// CAVEAT: If you have a trailing ',' in the parm list you wil get a mysterious "error: expected primary-expression before ‘(’ token"
 }
 
@@ -303,12 +321,18 @@ operator*(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
 
 // Quaternion<D1> / Quaternion<D2>
 
-// template <typename D1, typename D2>
-// inline auto
-// operator/(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
-//   typedef typename DivType<D1, D2>::Type D3;
-//   return D3(x1.value() / x2.value());
-// }
+template <typename D1, typename D2>
+inline auto
+operator/(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
+  typedef typename mathq::AddType<D1, D2>::Type D3;
+  D3 k = 1 / normsqr(x2);
+  return mathq::Quaternion<D3>(
+      k * (x1.real() * x2.real() + x1.imag() * x2.imag() + x1.jmag() * x2.jmag() + x1.kmag() * x2.kmag()),
+      k * (-x1.real() * x2.imag() + x1.imag() * x2.real() - x1.jmag() * x2.kmag() + x1.kmag() * x2.jmag()),
+      k * (-x1.real() * x2.jmag() + x1.imag() * x2.kmag() + x1.jmag() * x2.real() - x1.kmag() * x2.imag()),
+      k * (-x1.real() * x2.kmag() - x1.imag() * x2.jmag() + x1.jmag() * x2.imag() + x1.kmag() * x2.real()));
+  /// CAVEAT: If you have a trailing ',' in the parm list you wil get a mysterious "error: expected primary-expression before ‘(’ token"
+}
 
 
 
@@ -320,52 +344,68 @@ operator*(const Quaternion<D1> &x1, const Quaternion<D2> &x2) {
 // // *                                  R1  OP Quaternion<D2>
 // // ***************************************************************************
 
-// // Quaternion<D1> + R2
+// Quaternion<D1> + D2
 
-// template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-// inline std::complex<typename AddType<D1, D2>::Type>
-// operator+(const Quaternion<D1> &xi, const D2 &xr) {
-//   typedef typename AddType<D1, D2>::Type D3;
-//   typedef typename std::complex<D3> T3;
-//   return T3(xr, xi.value());
-// }
+template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
+inline auto
+operator+(const Quaternion<D1> &x1, const D2 &x2) {
+  typedef typename MultType<D1, D2>::Type D3;
+  typedef Quaternion<D3> T3;
+  return T3(
+      x1.real() + x2,
+      x1.imag(),
+      x1.jmag(),
+      x1.kmag());
+}
 
-// // D1 + Quaternion<D2>
+// D1 + Quaternion<D2>
 
-// template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value>>
-// inline std::complex<typename AddType<D1, D2>::Type>
-// operator+(const D1 &xr, const Quaternion<D2> &xi) {
-//   typedef typename AddType<D1, D2>::Type D3;
-//   typedef typename std::complex<D3> T3;
-//   return T3(xr, xi.value());
-// }
+template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
+inline auto
+operator+(const D1 &x1, const Quaternion<D2> &x2) {
+  typedef typename MultType<D1, D2>::Type D3;
+  typedef Quaternion<D3> T3;
+  return T3(
+      x1 + x2.real(),
+      x2.imag(),
+      x2.jmag(),
+      x2.kmag());
+}
 
 
-// // Quaternion<D1> - D2
+// Quaternion<D1> - D2
 
-// template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-// inline std::complex<typename AddType<D1, D2>::Type>
-// operator-(const Quaternion<D1> &xi, const D2 &xr) {
-//   typedef typename AddType<D1, D2>::Type D3;
-//   typedef typename std::complex<D3> T3;
-//   return T3(-xr, xi.value());
-// }
+template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
+inline auto
+operator-(const Quaternion<D1> &x1, const D2 &x2) {
+  typedef typename MultType<D1, D2>::Type D3;
+  typedef Quaternion<D3> T3;
+  return T3(
+      x1.real() - x2,
+      x1.imag(),
+      x1.jmag(),
+      x1.kmag());
+}
 
-// // D1 - Quaternion<D2>
+// D1 - Quaternion<D2>
 
-// template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value>>
-// inline std::complex<typename AddType<D1, D2>::Type>
-// operator-(const D1 &xr, const Quaternion<D2> &xi) {
-//   typedef typename AddType<D1, D2>::Type D3;
-//   typedef typename std::complex<D3> T3;
-//   return T3(xr, -xi.value());
-// }
+template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
+inline auto
+operator-(const D1 &x1, const Quaternion<D2> &x2) {
+  typedef typename MultType<D1, D2>::Type D3;
+  typedef Quaternion<D3> T3;
+  return T3(
+      x1 - x2.real(),
+      -x2.imag(),
+      -x2.jmag(),
+      -x2.kmag());
+}
 
 
 // Quaternion<D1> * D2
 
 template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-inline Quaternion<typename MultType<D1, D2>::Type>
+inline auto
 operator*(const Quaternion<D1> &x1, const D2 &x2) {
   typedef typename MultType<D1, D2>::Type D3;
   typedef Quaternion<D3> T3;
@@ -379,7 +419,7 @@ operator*(const Quaternion<D1> &x1, const D2 &x2) {
 // D1 * Quaternion<D2>
 
 template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-inline Quaternion<typename MultType<D1, D2>::Type>
+inline auto
 operator*(const D1 &x1, const Quaternion<D2> &x2) {
   typedef typename MultType<D1, D2>::Type D3;
   typedef Quaternion<D3> T3;
@@ -390,26 +430,27 @@ operator*(const D1 &x1, const Quaternion<D2> &x2) {
       x1 * x2.kmag());
 }
 
+// Quaternion<D1> / D2
 
-// // Quaternion<D1> / D2
+template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
+inline auto
+operator/(const Quaternion<D1> &x1, const D2 &x2) {
+  typedef typename MultType<D1, D2>::Type D3;
+  typedef Quaternion<D3> T3;
+  D2 k = 1 / x2;
+  return x1 * k;
+}
 
-// template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-// inline Quaternion<typename DivType<D1, D2>::Type>
-// operator/(const Quaternion<D1> &x1, const D2 &x2) {
-//   typedef typename DivType<D1, D2>::Type D3;
-//   typedef Quaternion<D3> T3;
-//   return T3(x1.value() / x2);
-// }
+// D1 / Quaternion<D2>
 
-// // D1 / Quaternion<D2>
+template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
+inline auto
+operator/(const D1 &x1, const Quaternion<D2> &x2) {
+  typedef typename MultType<D1, D2>::Type D3;
+  typedef Quaternion<D3> T3;
+  return x1 * inv(x2);
+}
 
-// template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-// inline Quaternion<typename DivType<D1, D2>::Type>
-// operator/(const D1 &x1, const Quaternion<D2> &x2) {
-//   typedef typename DivType<D1, D2>::Type D3;
-//   typedef Quaternion<D3> T3;
-//   return T3(-x1 / x2.value());
-// }
 
 
 
@@ -463,7 +504,7 @@ operator*(const D1 &x1, const Quaternion<D2> &x2) {
 // Quaternion<D1> * Imaginary<D2>
 
 template <typename D1, typename D2>
-inline Quaternion<typename MultType<D1, D2>::Type>
+inline auto
 operator*(const Quaternion<D1> &x1, const Imaginary<D2> &x2) {
   typedef typename MultType<D1, D2>::Type D3;
   typedef typename mathq::Quaternion<D3> T3;
@@ -478,7 +519,7 @@ operator*(const Quaternion<D1> &x1, const Imaginary<D2> &x2) {
 // Imaginary<D2> * Quaternion<D1>
 
 template <typename D1, typename D2>
-inline Quaternion<typename MultType<D1, D2>::Type>
+inline auto
 operator*(const Imaginary<D2> &x1, const Quaternion<D1> &x2) {
   typedef typename MultType<D1, D2>::Type D3;
   typedef typename mathq::Quaternion<D3> T3;
@@ -664,76 +705,60 @@ inline D kmag(const Quaternion<D> &z) {
   return z.kmag();
 }
 
-// // arg(z)  -  this is pi/2, but let the std library calculate
-// //            since we don't know data type
-
-// template <typename D>
-// inline D arg(const Quaternion<D> &z) {
-//   using std::arg;
-//   std::complex<D> dummy(0, 1);
-//   return arg(dummy);
-// }
-
-
-// // proj(z)  -  the "projection of z onto the Riemann sphere"--NOT REALLY
-// //
-// //             For most z, std::proj(z)==z, but all complex infinities,
-// //             even the numbers where one component is infinite and the
-// //             other is NaN, become positive real infinity, (INFINITY, 0)
-// //             or (INFINITY, -0). The sign of the imaginary (zero) component
-// //             is the sign of std::imag(z).
-
-// template <typename D>
-// inline std::complex<D> proj(const Quaternion<D> &z) {
-//   using std::proj;
-//   std::complex<D> c(0, z.value());
-//   return proj(c);
-// }
 
 
 // abs(z)
 
 template <typename D>
 inline D abs(const Quaternion<D> &z) {
-  return std::sqrt(z.real() * z.real() + z.imag() * z.imag() + z.jmag() * z.jmag() + z.kmag() * z.kmag());
+  return z.abs();
 }
 
 // normsqr(z) -
 
 template <typename D>
 inline D normsqr(const Quaternion<D> &z) {
-  return z.real() * z.real() + z.imag() * z.imag() + z.jmag() * z.jmag() + z.kmag() * z.kmag();
+  return z.normsqr();
 }
 
 
-// // conj(z)  - we go against C++  convention
-// //            Note: C++ std lib returns complex number for conj(real)
+// conj(z)  - we go against C++  convention
+//            Note: C++ std lib returns complex number for conj(real)
 
-// template <typename D>
-// inline Quaternion<D>
-// conj(const Quaternion<D> &z) {
-//   return -z;
-// }
-
-
-
-// // complex conjugate OPERTOR ~
-
-// template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
-// Quaternion<D>
-// operator~(const Quaternion<D> &z) {
-//   return conj(z);
-// }
+template <typename D>
+inline auto conj(const Quaternion<D> &z) {
+  Quaternion<D> y = z;
+  return y.conj();
+}
 
 
 
-// // polar(z)
+// inv(z)
 
-// template <typename D>
-// inline std::complex<D>
-// polar(const Quaternion<D> &z) {
-//   return std::complex(abs(z), arg(z));
-// }
+template <typename D>
+inline auto inv(const Quaternion<D> &z) {
+  Quaternion<D> y = z;
+  return y.invert();
+}
+
+
+
+template <typename D>
+inline Quaternion<D> &neg(const Quaternion<D> &z) {
+  Quaternion<D> y = z;
+  return y.negate();
+}
+
+
+// complex conjugate OPERTOR ~
+
+template <typename D, typename = std::enable_if_t<std::is_floating_point<D>::value>>
+inline auto operator~(const Quaternion<D> &z) {
+  return conj(z);
+}
+
+
+
 
 // // exp(z)
 

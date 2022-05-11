@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.38</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.39</h1>
 
 <details>
 
@@ -91,6 +91,7 @@
 
 ### Miscellaneous Small Features
 * reformat all files using VSCode plugin
+* all objects should ave .invert() and conjugate(), not .inv and .conj
 * inv<D>(D x) for real, integers, imaginar, complex, quaternions
 * make all temp README.md files read-only
 * refactor the headers so that 

@@ -65,6 +65,7 @@
 
 ### Miscellaneous Small Features
 * reformat all files using VSCode plugin
+* all objects should ave .invert() and conjugate(), not .inv and .conj
 * inv<D>(D x) for real, integers, imaginar, complex, quaternions
 * make all temp README.md files read-only
 * refactor the headers so that 

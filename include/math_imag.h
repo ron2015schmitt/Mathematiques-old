@@ -29,6 +29,16 @@ public:
     return *this;
   }
 
+  Imaginary<D> &invert() {
+    d_ = -1/d_;
+    return *this;
+  }
+
+  Imaginary<D> &conjugate() {
+    d_ = -d_;
+    return *this;
+  }
+
   D operator=(const D &y) {
     return d_ = y.value();
   }
@@ -235,9 +245,9 @@ operator+(const D1 &xr, const Imaginary<D2> &xi) {
 // Imaginary<D1> - D2
 
 template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D2>::value>>
-inline std::complex<typename AddType<D1, D2>::Type>
+inline std::complex<typename SubType<D1, D2>::Type>
 operator-(const Imaginary<D1> &xi, const D2 &xr) {
-  typedef typename AddType<D1, D2>::Type D3;
+  typedef typename SubType<D1, D2>::Type D3;
   typedef typename std::complex<D3> T3;
   return T3(-xr, xi.value());
 }
@@ -247,7 +257,7 @@ operator-(const Imaginary<D1> &xi, const D2 &xr) {
 template <typename D1, typename D2, typename = std::enable_if_t<std::is_arithmetic<D1>::value>>
 inline std::complex<typename AddType<D1, D2>::Type>
 operator-(const D1 &xr, const Imaginary<D2> &xi) {
-  typedef typename AddType<D1, D2>::Type D3;
+  typedef typename SubType<D1, D2>::Type D3;
   typedef typename std::complex<D3> T3;
   return T3(xr, -xi.value());
 }

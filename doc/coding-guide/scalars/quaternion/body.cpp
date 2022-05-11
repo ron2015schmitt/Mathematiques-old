@@ -135,6 +135,7 @@ int main() {
   TRDISP(inv(q1));
   TRDISP(conj(q1));
   TRDISP(~q1);
+  TRDISP(q1.matrix2by2());
   CR();
   TRDISP(q2);
   TRDISP(abs(q2));

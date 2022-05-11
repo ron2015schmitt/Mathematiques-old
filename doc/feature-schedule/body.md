@@ -14,18 +14,15 @@
 ### v3.7 Display Refactoring
 1. This is includes files:
   * display.h
-  * macros.h
-  * gitmd.h
   * display.cpp
-1. combine all macros from display and md.h into a single header. put rest in display
-1. make all macros UPPERCASE? Yes.  can get variable collision otherwise
+1. add support for std::tuple
+1. move ostream operators guts to FormatData:  `stdout << Vector` etc
 1. implement istream operators:  `stdin >> Vector` etc
 1. refactor Style, StyledString, Terminal, and Display, Log
   1. reformat all files using VSCode C++ extension
   1. StyleStrgn should allow chnage of the Style
   1. replace anti-pattern `*(new Display())` as `Display()` for all classes. This is not Java
   1. don't use pointers
-  1. trdisp: display type on RHS side of expression
   1. DISPLAY: Allow to use different strigns for ```=``` and ```;``` when displaying results by adding ability to chaneg expression SyledString etc
     * have profiles for text ("->", ""), matlab ("=", ";"), mathematica ("=", ";")
   1. take advantage of std::optional<T> for optional arguments
@@ -42,6 +39,7 @@
    1. by aligned rows and columns with and without braces
    1. Mathematica
    1. Matlab
+   2. python
 1. move the SPECIALIZE_getTypeName into .h file and python script
 
 ### v3.8 I/O Refactoring
@@ -66,7 +64,7 @@
 ### Miscellaneous Small Features
 * reformat all files using VSCode plugin
 * all objects should ave .invert() and conjugate(), not .inv and .conj
-* inv<D>(D x) for real, integers, imaginar, complex, quaternions
+* inv<D>(D x) for real, integers, imaginar, complex, quaternion
 * make all temp README.md files read-only
 * refactor the headers so that 
   * vectors, matrices display tensors Scalar are broken out into different headers

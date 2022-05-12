@@ -4,61 +4,18 @@
 
 <summary>User Guide</summary>
 
-# [User Guide](../../../README.md)<br>
-1. [About](../../../about/README.md)<br>
-2. [License](../../../license/README.md)<br>
-3. [Release Notes](../../../release-notes/README.md)<br>
-4. [Installation](../../../installation/README.md)<br>
-5. [Makefile / Using Mathématiques](../../../using-mathematiques/README.md)<br>
-6. [Code Examples](../../../examples/README.md)<br>
-7. _Coding Guide / Syntax_ <br>
-8. [Benchmarks](../../../benchmarks/README.md)<br>
-9. [Tests](../../../test/README.md)<br>
-10. [New Feature Plans](../../../feature-schedule/README.md)<br>
-11. [Developer Guide](../../../developer-guide/README.md)<br>
+# [User Guide](../README.md)<br>
+1. [Reals](../real/README.md)<br>
+2. [Complex numbers](../complex/README.md)<br>
+3. [Imaginary numbers](../imaginary/README.md)<br>
+4. _Quaternions_ <br>
 
 
 </details>
 
 
 
-<details>
-
-<summary>Coding Guide / Syntax</summary>
-
-# [7. Coding Guide / Syntax](../../README.md)<br>
-
-7.1. _Scalar Types_ <br>
-7.2. [Container Types](../../containers/README.md)<br>
-7.3. [User Guide Notation](../../notation/README.md)<br>
-7.4. [Operators](../../operators/README.md)<br>
-7.5. [Functions](../../functions/README.md)<br>
-7.6. [Display of Results](../../display/README.md)<br>
-7.7. [Linear Algebra](../../linear-algebra/README.md)<br>
-7.8. [FILE I/O](../../file-io/README.md)<br>
-7.9. [Debug Modes](../../debug/README.md)<br>
-
-
-</details>
-
-
-
-<details>
-
-<summary>Scalar Types</summary>
-
-# [7.1. Scalar Types](../README.md)<br>
-7.1.1. [Reals](../real/README.md)<br>
-7.1.2. [Complex numbers](../complex/README.md)<br>
-7.1.3. [Imaginary numbers](../imaginary/README.md)<br>
-7.1.4. _Quaternions_ <br>
-
-
-</details>
-
-
-
-# 7.1.4. Quaternions
+# 4. Quaternions
 
 
 
@@ -103,6 +60,7 @@ The size of a quaternions is simply _four times_ the size of the underlying arit
 ☀ CHAR_BIT * sizeof(Quaternion<long double>) ➜ 512 bits;
 
 ```
+## Declartion
 Declaring quaternion variables in Mathématiques
 
 
@@ -115,8 +73,59 @@ auto x1 = Quaternion<double>() = 16 + 2 * i + 3 * j + 13 * k;
 auto x2 = Quaternion<double>() = 5 + 11 * i + 10 * j + 8 * k;
 auto x3 = Quaternion<double>() = 9 + 7 * i + 6 * j + 12 * k;
 auto x4 = Quaternion<double>() = 4 + 14 * i + 15 * j + 1 * k;
+```
+## Arithmetic
+```C++
 auto v = Vector<Quaternion<double>>({16 + 2 * i + 3 * j + 13 * k, 5 + 11 * i + 10 * j + 8 * k, 9 + 7 * i + 6 * j + 12 * k, 4 + 14 * i + 15 * j + 1 * k});
 auto v2 = Vector<Quaternion<double>>({0.53767 + 0.86217 * i - 0.43359 * j + 2.7694 * k, 1.8339 + 0.31877 * i + 0.34262 * j - 1.3499 * k, -2.2588 - 1.3077 * i + 3.5784 * j + 3.0349 * k});
+```
+## Methods
+Assume `q`  is of type `Quaternion<D>` with 
+
+> _q_ = _a_ + _b_ **i** + _c_ **j** + _d_ **k** 
+
+The scalar+vector form of q is 
+
+>  _q_ = _a_ + **v**. 
+
+The polar form of q is: 
+
+> _q_ = ||_q_|| ( cos _φ_ + **n̂** sin _φ_ ). 
+
+where  
+
+> _φ_ ≐  cos<sup-1></sup>( _a_/||_q_|| ). 
+
+and  
+
+> **n̂** ≐ **v**/||**v**||
+
+| syntax | modifies q? | description | 
+| :---: | :---: | :---: | 
+| `Quaternion<D> invert()` | yes | q := 1/q, returns `q` | 
+| `Quaternion<D> negate()` | yes | q := -q, returns `q` | 
+| `Quaternion<D> conjugate()` | yes | q := q<sup>*</sup>, returns `q` | 
+| `D real()` | no | returns the real part of `q` | 
+| `D imag()` | no | returns the i-component part of `q` | 
+| `D jmag()` | no | returns the j-component part of `q` | 
+| `D kmag()` | no | returns the k-component of `q` | 
+| `D abs()` | no | returns \|\|_q_\|\|, the magnitude of `q` | 
+| `D normsqr()` | no | returns the magnitude-squared of `q` | 
+| `D scalar()` | no | same as real() | 
+| `Quaternion<D> normalized()` | no | returns _q_/\|\|_q_\|\| | 
+| `Vector<D,3> vector()` | no | returns **v**, the vector part of `q` | 
+| `Vector<D,3> unitvector()` | no | returns **n̂**, the vector part of `q` normalized to 1 | 
+| `D vabs()` | no | returns, _v_=\|\|**v**\|\| the magnitude of `q.vector()` | 
+| `D vnormsqr()` | no | returns \|\|**v**\|\|<sup>2</sup> | 
+| `D angle()` | no | returns φ as defined above | 
+| `std::tuple<D, D, Vector<D, 3>> polar()` | no | returns { \|\|_q_\|\|, φ, **n̂** } as a tuple | 
+| `Matrix<std::complex<D>, 2, 2> matrix2by2()` | no | returns **Q**, the 2x2 matrix form<sup>1</sup> of _q_ | 
+
+1. **Q** = [  _a_ + **i** _b_,  _c_ + **i** _d_;
+             -_c_ + **i** _d_,  _a_ - **i** _b_  ]
+
+## Functions
+```C++
 ☀ v ➜ Vector<Quaternion<double>> {
 16 + 2i + 3j + 13k, 
 5 + 11i + 10j + 8k, 
@@ -153,8 +162,8 @@ auto v2 = Vector<Quaternion<double>>({0.53767 + 0.86217 * i - 0.43359 * j + 2.76
 0.53767 + 0.86217i + -0.43359j + 2.7694k, 
 1.8339 + 0.31877i + 0.34262j + -1.3499k, 
 -2.2588 + -1.3077i + 3.5784j + 3.0349k};
-☀ log(Quaternion<double>(2,0,0,0)) ➜ Quaternion<double> 0.693147 + -nani + -nanj + -nank;
-☀ log(Quaternion<double>(-2,0,0,0)) ➜ Quaternion<double> 0.693147 + -nani + -nanj + -nank;
+☀ log(Quaternion<double>(2, 0, 0, 0)) ➜ Quaternion<double> 0.693147 + -nani + -nanj + -nank;
+☀ log(Quaternion<double>(-2, 0, 0, 0)) ➜ Quaternion<double> 0.693147 + -nani + -nanj + -nank;
 
 ```
 Mathématiques supports the four arithmetic operators for quaternions:
@@ -219,8 +228,10 @@ auto w = Quaternion<double>(-2.2434, -0.820493, 0.410247, 1.23074);
 ☀ q2 ➜ Quaternion<double> 4 + 3i + -2j + -5k;
 ☀ abs(q2) ➜ double 7.34847;
 ```
+```C++
+```
 
 
-| ⇦ <br />[Imaginary numbers](../imaginary/README.md)  | [Scalar Types](../README.md)<br />Quaternions<br /><img width=1000/> | ⇨ <br />   |
+| ⇦ <br />[Imaginary numbers](../imaginary/README.md)  | [User Guide](../README.md)<br />Quaternions<br /><img width=1000/> | ⇨ <br />   |
 | ------------ | :-------------------------------: | ------------ |
 

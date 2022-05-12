@@ -44,16 +44,29 @@ public:
     return r_;
   }
 
+  D normsqr() const {
+    return r_ * r_ + i_ * i_ + j_ * j_ + k_ * k_;
+  }
+
+  D abs() const {
+    return std::sqrt(this->normsqr());
+  }
+
   Quaternion<D> &normalized() const {
     Quaternion<D> y = *this;
     return y / y.abs();
   }
 
-
-
   Vector<D, 3> &vector() const {
     Vector<D, 3> *vector = new Vector<D, 3>({i_, j_, k_});
     return *vector;
+  }
+
+  D vnormsqr() const {
+    return i_ * i_ + j_ * j_ + k_ * k_;
+  }
+  D vabs() const {
+    return std::sqrt(this->vnormsqr());
   }
 
   Vector<D, 3> &unitvector() const {
@@ -71,21 +84,8 @@ public:
   }
 
 
-  D vnormsqr() const {
-    return i_ * i_ + j_ * j_ + k_ * k_;
-  }
-  D vabs() const {
-    return std::sqrt(this->vnormsqr());
-  }
 
 
-  D normsqr() const {
-    return r_ * r_ + i_ * i_ + j_ * j_ + k_ * k_;
-  }
-
-  D abs() const {
-    return std::sqrt(this->normsqr());
-  }
 
 
   Matrix<std::complex<D>, 2, 2> matrix2by2() const {
@@ -98,6 +98,9 @@ public:
   }
 
 
+  //
+  // methods that modify q
+  //
 
   Quaternion<D> &invert() {
     D k = 1 / this->normsqr();
@@ -107,9 +110,6 @@ public:
     k_ = -k * k_;
     return *this;
   }
-
-
-
 
   Quaternion<D> &negate() {
     r_ = -r_;

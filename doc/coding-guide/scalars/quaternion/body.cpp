@@ -115,6 +115,8 @@ int main() {
   CR();
   GMD_CODE_END();
 
+  GMD_HEADER2("Declartion");
+
 
   OUTPUT("Declaring quaternion variables in Mathématiques");
 
@@ -132,6 +134,12 @@ int main() {
   ECHO_CODE(auto x2 = Quaternion<double>() = 5 + 11 * i + 10 * j + 8 * k);
   ECHO_CODE(auto x3 = Quaternion<double>() = 9 + 7 * i + 6 * j + 12 * k);
   ECHO_CODE(auto x4 = Quaternion<double>() = 4 + 14 * i + 15 * j + 1 * k);
+  GMD_CODE_END();
+
+
+  GMD_HEADER2("Arithmetic");
+
+  GMD_CODE_START("C++");
 
   FormatDataVector::string_opening = "{\n";
   FormatDataVector::max_elements_per_line = 1;
@@ -144,9 +152,56 @@ int main() {
   ECHO_CODE(auto v2 = Vector<Quaternion<double>>({0.53767 + 0.86217 * i - 0.43359 * j + 2.7694 * k,
                                                   1.8339 + 0.31877 * i + 0.34262 * j - 1.3499 * k,
                                                   -2.2588 - 1.3077 * i + 3.5784 * j + 3.0349 * k}));
+  GMD_CODE_END();
 
-// exp(log(q)) = q always if v!=0
-// log(exp(q)) = q sometimes
+  GMD_HEADER2("Methods");
+
+  OUTPUT("Assume `q`  is of type `Quaternion<D>` with \n");
+  OUTPUT("> _q_ = _a_ + _b_ **i** + _c_ **j** + _d_ **k** \n");
+  OUTPUT("The scalar+vector form of q is \n");
+  OUTPUT(">  _q_ = _a_ + **v**. \n");
+  OUTPUT("The polar form of q is: \n");
+  OUTPUT("> _q_ = ||_q_|| ( cos _φ_ + **n\u0302** sin _φ_ ). \n");
+  OUTPUT("where  \n");
+  OUTPUT("> _φ_ ≐  cos<sup-1></sup>( _a_/||_q_|| ). \n");
+  OUTPUT("and  \n");
+  OUTPUT("> **n\u0302** ≐ **v**/||**v**||\n");
+
+
+  OUTPUT("| syntax | modifies q? | description | ");
+  OUTPUT("| :---: | :---: | :---: | ");
+  OUTPUT("| `Quaternion<D> invert()` | yes | q := 1/q, returns `q` | ");
+  OUTPUT("| `Quaternion<D> negate()` | yes | q := -q, returns `q` | ");
+  OUTPUT("| `Quaternion<D> conjugate()` | yes | q := q<sup>*</sup>, returns `q` | ");
+  OUTPUT("| `D real()` | no | returns the real part of `q` | ");
+  OUTPUT("| `D imag()` | no | returns the i-component part of `q` | ");
+  OUTPUT("| `D jmag()` | no | returns the j-component part of `q` | ");
+  OUTPUT("| `D kmag()` | no | returns the k-component of `q` | ");
+  OUTPUT("| `D abs()` | no | returns \\|\\|_q_\\|\\|, the magnitude of `q` | ");
+  OUTPUT("| `D normsqr()` | no | returns the magnitude-squared of `q` | ");
+  OUTPUT("| `D scalar()` | no | same as real() | ");
+  OUTPUT("| `Quaternion<D> normalized()` | no | returns _q_/\\|\\|_q_\\|\\| | ");
+  OUTPUT("| `Vector<D,3> vector()` | no | returns **v**, the vector part of `q` | ");
+  OUTPUT("| `Vector<D,3> unitvector()` | no | returns **n\u0302**, the vector part of `q` normalized to 1 | ");
+  OUTPUT("| `D vabs()` | no | returns, _v_=\\|\\|**v**\\|\\| the magnitude of `q.vector()` | ");
+  OUTPUT("| `D vnormsqr()` | no | returns \\|\\|**v**\\|\\|<sup>2</sup> | ");
+  OUTPUT("| `D angle()` | no | returns φ as defined above | ");
+  OUTPUT("| `std::tuple<D, D, Vector<D, 3>> polar()` | no | returns { \\|\\|_q_\\|\\|, φ, **n\u0302** } as a tuple | ");
+  OUTPUT("| `Matrix<std::complex<D>, 2, 2> matrix2by2()` | no | returns **Q**, the 2x2 matrix form<sup>1</sup> of _q_ | ");
+
+  CR();
+  OUTPUT("1. **Q** = [  _a_ + **i** _b_,  _c_ + **i** _d_; ");
+  OUTPUT("             -_c_ + **i** _d_,  _a_ - **i** _b_  ]");
+  CR();
+
+
+
+
+  GMD_HEADER2("Functions");
+
+  // exp(log(q)) = q always if v!=0
+  // log(exp(q)) = q sometimes
+  GMD_CODE_START("C++");
   TRDISP(v);
   TRDISP(exp(v));
   TRDISP(v2);
@@ -157,8 +212,8 @@ int main() {
   TRDISP(log(exp(v2)));
   TRDISP(exp(log(v2)));
 
-  TRDISP(log(Quaternion<double>(2,0,0,0)));
-  TRDISP(log(Quaternion<double>(-2,0,0,0)));
+  TRDISP(log(Quaternion<double>(2, 0, 0, 0)));
+  TRDISP(log(Quaternion<double>(-2, 0, 0, 0)));
 
   CR();
   GMD_CODE_END();
@@ -225,6 +280,8 @@ int main() {
   GMD_CODE_END();
 
 
+  GMD_CODE_START("C++");
+  GMD_CODE_END();
 
   return 0;
 }

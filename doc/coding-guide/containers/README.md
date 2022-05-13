@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.41</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.43</h1>
 
 <details>
 
@@ -27,9 +27,9 @@
 <summary>Coding Guide / Syntax</summary>
 
 # [7. Coding Guide / Syntax](../README.md)<br>
-7.1. [Scalar Types](../scalars/README.md)<br>
-7.2. _Container Types_ <br>
-7.3. [User Guide Notation](../notation/README.md)<br>
+7.1. [User Guide Notation](../notation/README.md)<br>
+7.2. [Scalar Types](../scalars/README.md)<br>
+7.3. _Container Types_ <br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. [Display of Results](../display/README.md)<br>
@@ -42,8 +42,8 @@
 
 
 
-# 7.2. Container Types
+# 7.3. Container Types
 
-7.2.1. [Vectors](vector/README.md)<br>
-7.2.2. [Matrices](matrix/README.md)<br>
-7.2.3. [Tensors](tensor/README.md)<br>
+7.3.1. [Vectors](vector/README.md)<br>
+7.3.2. [Matrices](matrix/README.md)<br>
+7.3.3. [Tensors](tensor/README.md)<br>

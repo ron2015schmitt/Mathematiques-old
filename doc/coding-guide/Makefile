@@ -2,7 +2,7 @@
 # VARIABLES
 #############################################################
 
-CHAPTERS = scalars containers notation operators functions display linear-algebra file-io debug
+CHAPTERS = notation scalars containers operators functions display linear-algebra file-io debug
 
 include ../../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk

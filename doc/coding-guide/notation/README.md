@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.41</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.43</h1>
 
 <details>
 
@@ -27,9 +27,10 @@
 <summary>Coding Guide / Syntax</summary>
 
 # [7. Coding Guide / Syntax](../README.md)<br>
-7.1. [Scalar Types](../scalars/README.md)<br>
-7.2. [Container Types](../containers/README.md)<br>
-7.3. _User Guide Notation_ <br>
+
+7.1. _User Guide Notation_ <br>
+7.2. [Scalar Types](../scalars/README.md)<br>
+7.3. [Container Types](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. [Display of Results](../display/README.md)<br>
@@ -42,11 +43,51 @@
 
 
 
-# 7.3. User Guide Notation
+# 7.1. User Guide Notation
 
 _This document was generated from the C++ file_ `notation/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 <br>
 
+## Code and results
+In this documentation, code is shown inline as `int x` and in code blocks:
+
+
+```C++
+double pi = 3.14;
+double r = 2.5;
+double area = pi * pow(r, 2);
+```
+Results are also shown in code blocks but with each line preceded by the symbol `☀ `
+
+
+```C++
+☀ pi ➜ double 3.14;
+☀ r ➜ double 2.5;
+☀ area ➜ double 19.625;
+```
+This is also how the results are output in a linux terminal, albeit with slightly different coloring.  A screen shot of the same results are shown below
+
+![linux-terminal-example-output](linux-terminal-example-output.png)
+
+
+The code used to display these results is:
+
+
+
+```C++
+TRDISP(pi);
+TRDISP(r);
+TRDISP(area);
+```
+This topic is covered in detail in the Display section of this guide.
+
+Often we will display code and results together, with the symbol `☀ ` distinguishing results from code:
+
+```C++
+double x = 1.52;
+☀ x ➜ double 1.52;
+```
+## Numbers and containers
 The following notation shorthand is used in the User Guide (but certainly not in C++ code!).
 
 ### Scalars
@@ -84,6 +125,6 @@ Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the 
 
 
 
-| ⇦ <br />[Container Types](../containers/README.md)  | [Coding Guide / Syntax](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Operators](../operators/README.md)   |
+| ⇦ <br />  | [Coding Guide / Syntax](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types](../scalars/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

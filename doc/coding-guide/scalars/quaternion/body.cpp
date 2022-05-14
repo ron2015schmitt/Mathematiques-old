@@ -236,17 +236,17 @@ int main() {
   TRDISP(q);
   TRDISP(exp(q));
   TRDISP(log(q));
-  TRDISP(pow(q1, 2));
-  TRDISP(pow(q1, 0.5));
-  TRDISP(inv(q1));
-  TRDISP(conj(q1));
+  TRDISP(pow(q, 2));
+  TRDISP(pow(q, 0.5));
+  TRDISP(inv(q));
+  TRDISP(conj(q));
   GMD_CODE_END();
 
 
   GMD_HEADER2("Containers of Quaternions");
   CR();
   OUTPUT("Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have quaternions as their underlying type.");
-  OUTPUT("Below is are examples of container math with quaternions.  Mixed math is allowed.\n");
+  OUTPUT("Below are examples of container math with quaternions.  Mixed math is allowed.\n");
   CR();
 
 
@@ -263,8 +263,9 @@ int main() {
 
 
   GMD_CODE_START("C++");
-  TRDISP(v);
   TRDISP(q);
+  CR();
+  TRDISP(v);
   CR();
   TRDISP(v + q);
   CR();

@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.45</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.46</h1>
 
 <details>
 
@@ -210,27 +210,28 @@ Below are a few examples.
 ☀ q ➜ Quaternion<double> 16 + 2*i + 3*j + 13*k;
 ☀ exp(q) ➜ Quaternion<double> 5.35246e+06 + 1.05157e+06*i + 1.57736e+06*j + 6.83522e+06*k;
 ☀ log(q) ➜ Quaternion<double> 3.04111 + 0.103851*i + 0.155777*j + 0.675034*k;
-☀ pow(q1, 2) ➜ Quaternion<double> -13 + 4*i + -2*j + -6*k;
-☀ pow(q1, 0.5) ➜ Quaternion<double> 1.56093 + 0.640645*i + -0.320323*j + -0.960968*k;
-☀ inv(q1) ➜ Quaternion<double> 0.0666667 + -0.133333*i + 0.0666667*j + 0.2*k;
-☀ conj(q1) ➜ Quaternion<double> 1 + -2*i + j + 3*k;
+☀ pow(q, 2) ➜ Quaternion<double> 74 + 64*i + 96*j + 416*k;
+☀ pow(q, 0.5) ➜ Quaternion<double> 4.297 + 0.23272*i + 0.349081*j + 1.51268*k;
+☀ inv(q) ➜ Quaternion<double> 0.0365297 + -0.00456621*i + -0.00684932*j + -0.0296804*k;
+☀ conj(q) ➜ Quaternion<double> 16 + -2*i + -3*j + -13*k;
 ```
 ## Containers of Quaternions
 
 Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have quaternions as their underlying type.
-Below is are examples of container math with quaternions.  Mixed math is allowed.
+Below are examples of container math with quaternions.  Mixed math is allowed.
 
 
 ```C++
 auto v = Vector<Quaternion<double>>({ 16 + 2*i + 3*j + 13*k, 5 + 11*i + 10*j + 8*k, 9 + 7*i + 6*j + 12*k, 4 + 14*i + 15*j + 1*k });
 ```
 ```C++
+☀ q ➜ Quaternion<double> 16 + 2*i + 3*j + 13*k;
+
 ☀ v ➜ Vector<Quaternion<double>> {
 16 + 2*i + 3*j + 13*k, 
 5 + 11*i + 10*j + 8*k, 
 9 + 7*i + 6*j + 12*k, 
 4 + 14*i + 15*j + k};
-☀ q ➜ Quaternion<double> 16 + 2*i + 3*j + 13*k;
 
 ☀ v + q ➜ TER_Binary Vector<Quaternion<double>> {
 32 + 4*i + 6*j + 26*k, 

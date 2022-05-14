@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.44</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.45</h1>
 
 <details>
 
@@ -215,10 +215,10 @@ Below are a few examples.
 ☀ inv(q1) ➜ Quaternion<double> 0.0666667 + -0.133333*i + 0.0666667*j + 0.2*k;
 ☀ conj(q1) ➜ Quaternion<double> 1 + -2*i + j + 3*k;
 ```
-## Functions
+## Containers of Quaternions
 
 Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have quaternions as their underlying type.
-Below is an example of container math with quaternions.  Mixed math is allowed.
+Below is are examples of container math with quaternions.  Mixed math is allowed.
 
 
 ```C++

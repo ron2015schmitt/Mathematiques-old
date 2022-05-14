@@ -243,10 +243,10 @@ int main() {
   GMD_CODE_END();
 
 
-  GMD_HEADER2("Functions");
+  GMD_HEADER2("Containers of Quaternions");
   CR();
   OUTPUT("Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have quaternions as their underlying type.");
-  OUTPUT("Below is an example of container math with quaternions.  Mixed math is allowed.\n");
+  OUTPUT("Below is are examples of container math with quaternions.  Mixed math is allowed.\n");
   CR();
 
 

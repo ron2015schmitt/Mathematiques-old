@@ -3,7 +3,7 @@
   "name": "using-mathematiques",
   "skip-readme": false,
   "title": "Makefile / Using Math\u00e9matiques",
-  "version": "v3.5.44",
+  "version": "v3.5.45",
   "prefix": "5.",
   "src": "using-mathematiques/template.md",
   "dest": "using-mathematiques/README.md",
@@ -12,10 +12,10 @@
     "title": "User Guide",
     "prefix": "",
     "level": 1,
-    "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.44</h1>"
+    "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.45</h1>"
   },
   "prev": "installation",
   "next": "examples",
-  "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.44</h1>\n\n<details>\n\n<summary>User Guide</summary>\n\n# [User Guide](../README.md)<br>\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. _Makefile / Using Math\u00e9matiques_ <br>\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+  "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.45</h1>\n\n<details>\n\n<summary>User Guide</summary>\n\n# [User Guide](../README.md)<br>\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. [Installation](../installation/README.md)<br>\n5. _Makefile / Using Math\u00e9matiques_ <br>\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
   "footer": "\n\n| \u21e6 <br />[Installation](../installation/README.md)  | [User Guide](../README.md)<br />Makefile / Using Math\u00e9matiques<br /><img width=1000/> | \u21e8 <br />[Code Examples](../examples/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
 }

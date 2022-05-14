@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <functional>
+#include <tuple>
 
 //****************************************************************************
 //                      MACROS
@@ -436,345 +437,351 @@
 
 namespace display {
 
-extern const char blankline[];
-//****************************************************************************
-//                          Some declarations. Definitions below
-//****************************************************************************
+  extern const char blankline[];
+  //****************************************************************************
+  //                          Some declarations. Definitions below
+  //****************************************************************************
 
-inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
-inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
-inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
-inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
-inline void print1(const std::string s);
-inline void print2(const std::string s);
-inline void print3(const std::string s);
+  inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s);
+  inline void print1(const std::string s);
+  inline void print2(const std::string s);
+  inline void print3(const std::string s);
 
-//****************************************************************************
-//                        String functions
-//****************************************************************************
+  //****************************************************************************
+  //                        String functions
+  //****************************************************************************
 
-inline std::string replaceAll(std::string s, std::string s1, std::string s2) {
-  size_t pos = s.find(s1);
-  while (pos != std::string::npos) {
-    s.replace(pos, s1.size(), s2);
-    pos = s.find(s1, pos + s2.size());
-  }
-  return s;
-}
-
-//------------------------------------------------------------
-//                        printf2str
-//------------------------------------------------------------
-
-inline std::string printf2str(const char *format, ...) {
-  const size_t BUFFER_SIZE = 256;
-  char buffer[BUFFER_SIZE];
-  va_list args;
-  va_start(args, format);
-  size_t n = vsnprintf(buffer, BUFFER_SIZE, format, args);
-  if (n < 0) {
-    // TODO: format error and throw
-  } else if (n >= BUFFER_SIZE) {
-    // TODO: string too long error and throw
-  }
-  va_end(args);
-  return std::string(buffer);
-}
-
-//------------------------------------------------------------
-//                        num2string
-//------------------------------------------------------------
-
-template <class D>
-inline std::string num2string(D x) {
-  std::ostringstream strm;
-  strm << x;
-  return strm.str();
-}
-
-
-//****************************************************************************
-//                          Terminal
-//****************************************************************************
-
-class Terminal {
-private:
-  static bool isInitialized;
-  static bool colorOverride;
-  static bool overrideValue;
-  static std::ostream *outputstream;
-
-public:
-  Terminal() {
-    // for initializing the class
-    if (!isInitialized) {
-      outputstream = &std::cout;
+  inline std::string replaceAll(std::string s, std::string s1, std::string s2) {
+    size_t pos = s.find(s1);
+    while (pos != std::string::npos) {
+      s.replace(pos, s1.size(), s2);
+      pos = s.find(s1, pos + s2.size());
     }
-    isInitialized = true;
+    return s;
   }
 
-  inline static bool getUseColor() {
-    bool useColor = false;
-    if (Terminal::outputstream == &std::cout) {
-      useColor = (isatty(STDOUT_FILENO) == 1);
-    } else if (Terminal::outputstream == &std::cerr) {
-      useColor = (isatty(STDERR_FILENO) == 1);
+  //------------------------------------------------------------
+  //                        printf2str
+  //------------------------------------------------------------
+
+  inline std::string printf2str(const char* format, ...) {
+    const size_t BUFFER_SIZE = 256;
+    char buffer[BUFFER_SIZE];
+    va_list args;
+    va_start(args, format);
+    size_t n = vsnprintf(buffer, BUFFER_SIZE, format, args);
+    if (n < 0) {
+      // TODO: format error and throw
     }
-    if (colorOverride) {
+    else if (n >= BUFFER_SIZE) {
+      // TODO: string too long error and throw
+    }
+    va_end(args);
+    return std::string(buffer);
+  }
+
+  //------------------------------------------------------------
+  //                        num2string
+  //------------------------------------------------------------
+
+  template <class D>
+  inline std::string num2string(D x) {
+    std::ostringstream strm;
+    strm << x;
+    return strm.str();
+  }
+
+
+  //****************************************************************************
+  //                          Terminal
+  //****************************************************************************
+
+  class Terminal {
+  private:
+    static bool isInitialized;
+    static bool colorOverride;
+    static bool overrideValue;
+    static std::ostream* outputstream;
+
+  public:
+    Terminal() {
+      // for initializing the class
+      if (!isInitialized) {
+        outputstream = &std::cout;
+      }
+      isInitialized = true;
+    }
+
+    inline static bool getUseColor() {
+      bool useColor = false;
+      if (Terminal::outputstream == &std::cout) {
+        useColor = (isatty(STDOUT_FILENO) == 1);
+      }
+      else if (Terminal::outputstream == &std::cerr) {
+        useColor = (isatty(STDERR_FILENO) == 1);
+      }
+      if (colorOverride) {
+        return overrideValue;
+      }
+      else {
+        return useColor;
+      }
+    }
+
+    inline static void setColorOverride(bool val) {
+      colorOverride = val;
+    }
+    inline static void setOverrideValue(bool val) {
+      overrideValue = val;
+    }
+    inline static void setmout(std::ostream& os) {
+      outputstream = &os;
+    }
+    inline static bool getColorOverride() {
+      return colorOverride;
+    }
+    inline static bool getOverrideValue() {
       return overrideValue;
-    } else {
-      return useColor;
     }
-  }
-
-  inline static void setColorOverride(bool val) {
-    colorOverride = val;
-  }
-  inline static void setOverrideValue(bool val) {
-    overrideValue = val;
-  }
-  inline static void setmout(std::ostream &os) {
-    outputstream = &os;
-  }
-  inline static bool getColorOverride() {
-    return colorOverride;
-  }
-  inline static bool getOverrideValue() {
-    return overrideValue;
-  }
-  inline static std::ostream &getmout() {
-    return *outputstream;
-  }
-};
-
-
-//****************************************************************************
-//                       Terminal escape codes for color etc
-//****************************************************************************
-
-const std::string ESC = "\033[";
-const std::string FORE = ESC + "38;";
-const std::string BACK = ESC + "48;";
-
-const std::string RESET = ESC + "0m";
-const std::string BOLD = ESC + "1m";
-const std::string DIM = ESC + "2m";    // not widely supported
-const std::string ITALIC = ESC + "3m"; // not widely supported
-const std::string UNDERLINE = ESC + "4m";
-const std::string SLOWBLINK = ESC + "5m";
-const std::string RAPIDBLINK = ESC + "6m"; // not widely supported
-const std::string REVERSED = ESC + "7m";
-const std::string CROSSEDOUT = ESC + "9m";
-const std::string FONT2 = ESC + "11m";     // not widely supported
-const std::string FRAKTUR = ESC + "20m";   // not widely supported
-const std::string FRAMED = ESC + "51m";    // not widely supported
-const std::string ENCIRCLED = ESC + "52m"; // not widely supported
-const std::string OVERLINE = ESC + "53m";
-
-const std::string BLACK = FORE + "5;232m"; // in Ubuntu color=0 is sloghtly gray
-const std::string DEFCLR = FORE + "39m";
-const std::string GRAY2 = ESC + "30m";
-const std::string GRAY1 = FORE + "5;240m";
-const std::string WHITE = ESC + "37m";
-
-// organized per ROYGBIV
-const std::string RED = ESC + "31m";
-const std::string ORANGE = FORE + "5;208m";
-const std::string ORANGE1 = FORE + "5;172m";
-const std::string ORANGE2 = FORE + "5;166m";
-const std::string YELLOW = ESC + "33m";
-const std::string YELLOWBRIGHT = ESC + "93m";
-const std::string GREEN = ESC + "32m";
-const std::string GREENBRIGHT = ESC + "92m";
-const std::string GREEN1 = FORE + "5;22m";
-const std::string CYAN = ESC + "36m";
-const std::string BLUE = ESC + "34m";
-const std::string BLUEBRIGHT = ESC + "94m";
-const std::string BLUE1 = FORE + "5;18m";
-const std::string BLUE2 = FORE + "5;21m";
-const std::string BLUE3 = FORE + "5;27m";
-const std::string MAGENTA = ESC + "35m";
-const std::string MAGENTA1 = FORE + "5;129m";
-const std::string VIOLET1 = FORE + "5;54m";
-
-const std::string BLACKBACK = BACK + "5;16m";
-const std::string REDBACK = BACK + "5;160m";
-const std::string ORANGEBACK = BACK + "5;208m";
-const std::string YELLOWBACK = BACK + "5;226m";
-const std::string GREENBACK = BACK + "5;46m";
-
-//****************************************************************************
-//                       Style
-//****************************************************************************
-
-class Style {
-private:
-  std::string stylestr_;
-  std::string stylename_;
-
-public:
-  static Style &create(const std::string stylestr, const std::string stylename);
-
-  static Style &create(const unsigned int n) {
-    Style *style = new Style(n);
-    return *style;
-  }
-
-  inline Style() : stylestr_(""), stylename_("") {
-  }
-  inline Style(const std::string stylestr) : stylestr_(stylestr), stylename_("") {
-  }
-  inline Style(const std::string stylestr, const std::string stylename) : stylestr_(stylestr), stylename_(stylename) {
-  }
-  inline Style(const Style &style) : stylestr_(style.getStyleString()), stylename_(style.getName()) {
-  }
-  inline Style(const unsigned int n) {
-    stylestr_ = FORE + printf2str("5;%um", n);
-    stylename_ = "";
-  }
-  inline Style(const unsigned int n, const unsigned int m) {
-    stylestr_ = FORE + printf2str("5;%um", n) + BACK + printf2str("5;%um", m);
-    stylename_ = "";
-  }
-  inline Style(const std::string attributestr, const unsigned int n, const unsigned int m) {
-    stylestr_ = attributestr + FORE + printf2str("5;%um", n) + BACK + printf2str("5;%um", m);
-    stylename_ = "";
-  }
-  inline std::string apply(const std::string s) const {
-    if (Terminal::getUseColor()) {
-      return stylestr_ + s + RESET;
-    } else {
-      return s;
+    inline static std::ostream& getmout() {
+      return *outputstream;
     }
-  }
-  inline std::string getStyleString() const {
-    return stylestr_;
-  }
+  };
 
-  inline std::string getName() const {
-    return stylename_;
-  }
 
-  inline std::string classname() const {
-    return "Style";
-  }
+  //****************************************************************************
+  //                       Terminal escape codes for color etc
+  //****************************************************************************
 
-  inline Style &operator+(const Style &style2) const {
-    Style *style3 = new Style(this->getStyleString() + style2.getStyleString(), this->getName() + "+" + style2.getName());
-    return *style3;
-  }
+  const std::string ESC = "\033[";
+  const std::string FORE = ESC + "38;";
+  const std::string BACK = ESC + "48;";
 
-  inline friend std::ostream &operator<<(std::ostream &stream, const Style &style) {
-    std::string s = style.getName();
-    if (s.empty()) {
-      s = "style";
+  const std::string RESET = ESC + "0m";
+  const std::string BOLD = ESC + "1m";
+  const std::string DIM = ESC + "2m";    // not widely supported
+  const std::string ITALIC = ESC + "3m"; // not widely supported
+  const std::string UNDERLINE = ESC + "4m";
+  const std::string SLOWBLINK = ESC + "5m";
+  const std::string RAPIDBLINK = ESC + "6m"; // not widely supported
+  const std::string REVERSED = ESC + "7m";
+  const std::string CROSSEDOUT = ESC + "9m";
+  const std::string FONT2 = ESC + "11m";     // not widely supported
+  const std::string FRAKTUR = ESC + "20m";   // not widely supported
+  const std::string FRAMED = ESC + "51m";    // not widely supported
+  const std::string ENCIRCLED = ESC + "52m"; // not widely supported
+  const std::string OVERLINE = ESC + "53m";
+
+  const std::string BLACK = FORE + "5;232m"; // in Ubuntu color=0 is sloghtly gray
+  const std::string DEFCLR = FORE + "39m";
+  const std::string GRAY2 = ESC + "30m";
+  const std::string GRAY1 = FORE + "5;240m";
+  const std::string WHITE = ESC + "37m";
+
+  // organized per ROYGBIV
+  const std::string RED = ESC + "31m";
+  const std::string ORANGE = FORE + "5;208m";
+  const std::string ORANGE1 = FORE + "5;172m";
+  const std::string ORANGE2 = FORE + "5;166m";
+  const std::string YELLOW = ESC + "33m";
+  const std::string YELLOWBRIGHT = ESC + "93m";
+  const std::string GREEN = ESC + "32m";
+  const std::string GREENBRIGHT = ESC + "92m";
+  const std::string GREEN1 = FORE + "5;22m";
+  const std::string CYAN = ESC + "36m";
+  const std::string BLUE = ESC + "34m";
+  const std::string BLUEBRIGHT = ESC + "94m";
+  const std::string BLUE1 = FORE + "5;18m";
+  const std::string BLUE2 = FORE + "5;21m";
+  const std::string BLUE3 = FORE + "5;27m";
+  const std::string MAGENTA = ESC + "35m";
+  const std::string MAGENTA1 = FORE + "5;129m";
+  const std::string VIOLET1 = FORE + "5;54m";
+
+  const std::string BLACKBACK = BACK + "5;16m";
+  const std::string REDBACK = BACK + "5;160m";
+  const std::string ORANGEBACK = BACK + "5;208m";
+  const std::string YELLOWBACK = BACK + "5;226m";
+  const std::string GREENBACK = BACK + "5;46m";
+
+  //****************************************************************************
+  //                       Style
+  //****************************************************************************
+
+  class Style {
+  private:
+    std::string stylestr_;
+    std::string stylename_;
+
+  public:
+    static Style& create(const std::string stylestr, const std::string stylename);
+
+    static Style& create(const unsigned int n) {
+      Style* style = new Style(n);
+      return *style;
     }
-    stream << style.apply(s);
-    return stream;
-  }
-};
 
-
-inline Style functor_namestyle = CREATESTYLE(display::ORANGE2);
-inline Style functor_style = CREATESTYLE(display::BOLD);
-inline Style userfunctor_style = CREATESTYLE(display::BOLD + display::BLUE1);
-
-//****************************************************************************
-//                       StyledString
-//****************************************************************************
-
-enum SSEnum { INDENT,
-              ERROR,
-              WARNING,
-              MATHQ,
-              MATHEMATIQUES,
-              VERSION,
-              DLEVEL0,
-              DLEVEL1,
-              DLEVEL2,
-              DLEVEL3,
-              HORLINE,
-              ANGLE1,
-              ANGLE2,
-              PAREN1,
-              PAREN2,
-              BRACKET1,
-              BRACKET2,
-              BRACE1,
-              BRACE2,
-              COMMA,
-              COLON,
-              SEMICOLON,
-              PERIOD };
-
-class StyledString {
-private:
-  static bool isInitialized;
-  static std::map<SSEnum, StyledString> Map;
-  Style &style_;
-  std::string text_;
-
-public:
-  static void add(const SSEnum ss, StyledString &styledString);
-  static void del(const SSEnum ss);
-  static StyledString &get(const SSEnum ss);
-  static void initialize();
-  static StyledString &create(Style &style, const std::string text) {
-    return *(new StyledString(style, text));
-  }
-
-  inline StyledString() : style_(CREATESTYLE(CROSSEDOUT)),
-                          text_(std::string("hello world")) {
-    if (!StyledString::isInitialized) {
-      StyledString::initialize();
+    inline Style() : stylestr_(""), stylename_("") {
     }
-  }
-  inline StyledString(Style &style, const std::string text) : style_(style), text_(text) {
-  }
-  inline StyledString(const StyledString &styledstring) : style_(styledstring.getStyle()), text_(styledstring.getString()) {
-  }
-  inline std::string get() const {
-    return style_.apply(text_);
-  }
-  inline std::string getString() const {
-    return text_;
-  }
-  inline StyledString &setString(const std::string text) {
-    text_ = text;
-    return *this;
-  }
-  inline Style &getStyle() const {
-    return style_;
-  }
+    inline Style(const std::string stylestr) : stylestr_(stylestr), stylename_("") {
+    }
+    inline Style(const std::string stylestr, const std::string stylename) : stylestr_(stylestr), stylename_(stylename) {
+    }
+    inline Style(const Style& style) : stylestr_(style.getStyleString()), stylename_(style.getName()) {
+    }
+    inline Style(const unsigned int n) {
+      stylestr_ = FORE + printf2str("5;%um", n);
+      stylename_ = "";
+    }
+    inline Style(const unsigned int n, const unsigned int m) {
+      stylestr_ = FORE + printf2str("5;%um", n) + BACK + printf2str("5;%um", m);
+      stylename_ = "";
+    }
+    inline Style(const std::string attributestr, const unsigned int n, const unsigned int m) {
+      stylestr_ = attributestr + FORE + printf2str("5;%um", n) + BACK + printf2str("5;%um", m);
+      stylename_ = "";
+    }
+    inline std::string apply(const std::string s) const {
+      if (Terminal::getUseColor()) {
+        return stylestr_ + s + RESET;
+      }
+      else {
+        return s;
+      }
+    }
+    inline std::string getStyleString() const {
+      return stylestr_;
+    }
 
-  StyledString &operator=(const StyledString &styledstring) {
-    style_ = styledstring.getStyle();
-    text_ = styledstring.getString();
-    return *this;
+    inline std::string getName() const {
+      return stylename_;
+    }
+
+    inline std::string classname() const {
+      return "Style";
+    }
+
+    inline Style& operator+(const Style& style2) const {
+      Style* style3 = new Style(this->getStyleString() + style2.getStyleString(), this->getName() + "+" + style2.getName());
+      return *style3;
+    }
+
+    inline friend std::ostream& operator<<(std::ostream& stream, const Style& style) {
+      std::string s = style.getName();
+      if (s.empty()) {
+        s = "style";
+      }
+      stream << style.apply(s);
+      return stream;
+    }
+  };
+
+
+  inline Style functor_namestyle = CREATESTYLE(display::ORANGE2);
+  inline Style functor_style = CREATESTYLE(display::BOLD);
+  inline Style userfunctor_style = CREATESTYLE(display::BOLD + display::BLUE1);
+
+  //****************************************************************************
+  //                       StyledString
+  //****************************************************************************
+
+  enum SSEnum {
+    INDENT,
+    ERROR,
+    WARNING,
+    MATHQ,
+    MATHEMATIQUES,
+    VERSION,
+    DLEVEL0,
+    DLEVEL1,
+    DLEVEL2,
+    DLEVEL3,
+    HORLINE,
+    ANGLE1,
+    ANGLE2,
+    PAREN1,
+    PAREN2,
+    BRACKET1,
+    BRACKET2,
+    BRACE1,
+    BRACE2,
+    COMMA,
+    COLON,
+    SEMICOLON,
+    PERIOD
+  };
+
+  class StyledString {
+  private:
+    static bool isInitialized;
+    static std::map<SSEnum, StyledString> Map;
+    Style& style_;
+    std::string text_;
+
+  public:
+    static void add(const SSEnum ss, StyledString& styledString);
+    static void del(const SSEnum ss);
+    static StyledString& get(const SSEnum ss);
+    static void initialize();
+    static StyledString& create(Style& style, const std::string text) {
+      return *(new StyledString(style, text));
+    }
+
+    inline StyledString() : style_(CREATESTYLE(CROSSEDOUT)),
+      text_(std::string("hello world")) {
+      if (!StyledString::isInitialized) {
+        StyledString::initialize();
+      }
+    }
+    inline StyledString(Style& style, const std::string text) : style_(style), text_(text) {
+    }
+    inline StyledString(const StyledString& styledstring) : style_(styledstring.getStyle()), text_(styledstring.getString()) {
+    }
+    inline std::string get() const {
+      return style_.apply(text_);
+    }
+    inline std::string getString() const {
+      return text_;
+    }
+    inline StyledString& setString(const std::string text) {
+      text_ = text;
+      return *this;
+    }
+    inline Style& getStyle() const {
+      return style_;
+    }
+
+    StyledString& operator=(const StyledString& styledstring) {
+      style_ = styledstring.getStyle();
+      text_ = styledstring.getString();
+      return *this;
+    }
+
+    inline std::string classname() const {
+      return "StyledString";
+    }
+
+    inline friend std::ostream& operator<<(std::ostream& stream, const StyledString& ss) {
+      stream << ss.get();
+      return stream;
+    }
+  };
+
+  //---------------------------------------------------------------------------------
+  //       getTypeStyle
+  //---------------------------------------------------------------------------------
+
+  template <typename T>
+  inline Style getTypeStyle(const T& var) {
+    return CREATESTYLE(CYAN);
   }
-
-  inline std::string classname() const {
-    return "StyledString";
+  template <>
+  inline Style getTypeStyle(const std::string& var) {
+    return CREATESTYLE(GREEN);
   }
-
-  inline friend std::ostream &operator<<(std::ostream &stream, const StyledString &ss) {
-    stream << ss.get();
-    return stream;
-  }
-};
-
-//---------------------------------------------------------------------------------
-//       getTypeStyle
-//---------------------------------------------------------------------------------
-
-template <typename T>
-inline Style getTypeStyle(const T &var) {
-  return CREATESTYLE(CYAN);
-}
-template <>
-inline Style getTypeStyle(const std::string &var) {
-  return CREATESTYLE(GREEN);
-}
 
 #define SPECIALIZE_getTypeStyle(TYPE)          \
   template <>                                  \
@@ -782,85 +789,93 @@ inline Style getTypeStyle(const std::string &var) {
     return CREATESTYLE(MAGENTA);               \
   }
 
-SPECIALIZE_getTypeStyle(float);
-SPECIALIZE_getTypeStyle(double);
-SPECIALIZE_getTypeStyle(long double);
+  SPECIALIZE_getTypeStyle(float);
+  SPECIALIZE_getTypeStyle(double);
+  SPECIALIZE_getTypeStyle(long double);
 
-SPECIALIZE_getTypeStyle(char);
-SPECIALIZE_getTypeStyle(signed char);
-SPECIALIZE_getTypeStyle(short);
-SPECIALIZE_getTypeStyle(int);
-SPECIALIZE_getTypeStyle(long);
-SPECIALIZE_getTypeStyle(long long);
+  SPECIALIZE_getTypeStyle(char);
+  SPECIALIZE_getTypeStyle(signed char);
+  SPECIALIZE_getTypeStyle(short);
+  SPECIALIZE_getTypeStyle(int);
+  SPECIALIZE_getTypeStyle(long);
+  SPECIALIZE_getTypeStyle(long long);
 
-SPECIALIZE_getTypeStyle(unsigned char);
-SPECIALIZE_getTypeStyle(unsigned short);
-SPECIALIZE_getTypeStyle(unsigned int);
-SPECIALIZE_getTypeStyle(unsigned long);
-SPECIALIZE_getTypeStyle(unsigned long long);
+  SPECIALIZE_getTypeStyle(unsigned char);
+  SPECIALIZE_getTypeStyle(unsigned short);
+  SPECIALIZE_getTypeStyle(unsigned int);
+  SPECIALIZE_getTypeStyle(unsigned long);
+  SPECIALIZE_getTypeStyle(unsigned long long);
 
-SPECIALIZE_getTypeStyle(wchar_t);
-SPECIALIZE_getTypeStyle(bool);
+  SPECIALIZE_getTypeStyle(wchar_t);
+  SPECIALIZE_getTypeStyle(bool);
 
-// container type
-template <typename D, template <typename> typename C>
-inline Style getTypeStyle(const C<const D> &var) {
-  Style style = CREATESTYLE(CYAN);
-  return style;
-}
+  // container type
+  template <typename D, template <typename> typename C>
+  inline Style getTypeStyle(const C<const D>& var) {
+    Style style = CREATESTYLE(CYAN);
+    return style;
+  }
 
-// container type2
-template <typename D1, typename D2, template <typename, typename> typename C>
-inline Style getTypeStyle(const C<const D1, const D2> &var) {
-  Style style = CREATESTYLE(CYAN);
-  return style;
-}
+  // container type2
+  template <typename D1, typename D2, template <typename, typename> typename C>
+  inline Style getTypeStyle(const C<const D1, const D2>& var) {
+    Style style = CREATESTYLE(CYAN);
+    return style;
+  }
 
-inline Style getFunctionTypeStyle() {
-  return CREATESTYLE(BLUE);
-}
 
-//------------------------------------------------------------------
-//       Has_classname
-//------------------------------------------------------------------
+  template <typename... Ts>
+  Style getTypeStyle(const std::tuple<Ts...>& var) {
+    Style style = CREATESTYLE(CYAN);
+    return style;
+  }
 
-// I sued this version:
-// https://stackoverflow.com/questions/257288/is-it-possible-to-write-a-template-to-check-for-a-functions-existence
-// It doesn;t check the signature
 
-// other solutions:
-// https://stackoverflow.com/questions/36079170/how-to-check-if-a-member-name-variable-or-function-exists-in-a-class-with-or
-// https://stackoverflow.com/questions/87372/check-if-a-class-has-a-member-function-of-a-given-signature
-// https://stackoverflow.com/questions/41936763/type-traits-to-check-if-class-has-member-function
+  inline Style getFunctionTypeStyle() {
+    return CREATESTYLE(BLUE);
+  }
 
-template <typename T>
-class Has_classname {
-  typedef char one;
-  struct two {
-    char x[2];
+  //------------------------------------------------------------------
+  //       Has_classname
+  //------------------------------------------------------------------
+
+  // I sued this version:
+  // https://stackoverflow.com/questions/257288/is-it-possible-to-write-a-template-to-check-for-a-functions-existence
+  // It doesn;t check the signature
+
+  // other solutions:
+  // https://stackoverflow.com/questions/36079170/how-to-check-if-a-member-name-variable-or-function-exists-in-a-class-with-or
+  // https://stackoverflow.com/questions/87372/check-if-a-class-has-a-member-function-of-a-given-signature
+  // https://stackoverflow.com/questions/41936763/type-traits-to-check-if-class-has-member-function
+
+  template <typename T>
+  class Has_classname {
+    typedef char one;
+    struct two {
+      char x[2];
+    };
+
+    template <typename C>
+    static one test(decltype(&C::classname));
+    template <typename C>
+    static two test(...);
+
+  public:
+    enum { value = sizeof(test<T>(0)) == sizeof(char) };
   };
 
-  template <typename C>
-  static one test(decltype(&C::classname));
-  template <typename C>
-  static two test(...);
+  //------------------------------------------------------------------
+  //       getTypeName
+  //------------------------------------------------------------------
 
-public:
-  enum { value = sizeof(test<T>(0)) == sizeof(char) };
-};
-
-//------------------------------------------------------------------
-//       getTypeName
-//------------------------------------------------------------------
-
-template <class T>
-inline std::string getTypeName(const T &var) {
-  std::string s = typeid(var).name();
-  if constexpr (Has_classname<T>::value) {
-    s = var.classname();
+  template <class T>
+  inline std::string getTypeName(const T& var) {
+    std::string s = typeid(var).name();
+    if constexpr (Has_classname<T>::value) {
+      s = var.classname();
+    }
+    return getTypeStyle(var).apply(s);
   }
-  return getTypeStyle(var).apply(s);
-}
 
 #define SPECIALIZE_getTypeName(TYPE)                \
   template <>                                       \
@@ -868,62 +883,62 @@ inline std::string getTypeName(const T &var) {
     return getTypeStyle(var).apply(#TYPE);          \
   }
 
-SPECIALIZE_getTypeName(float);
-SPECIALIZE_getTypeName(double);
-SPECIALIZE_getTypeName(long double);
+  SPECIALIZE_getTypeName(float);
+  SPECIALIZE_getTypeName(double);
+  SPECIALIZE_getTypeName(long double);
 
-SPECIALIZE_getTypeName(char);
-SPECIALIZE_getTypeName(signed char);
-SPECIALIZE_getTypeName(short);
-SPECIALIZE_getTypeName(int);
-SPECIALIZE_getTypeName(long);
-SPECIALIZE_getTypeName(long long);
+  SPECIALIZE_getTypeName(char);
+  SPECIALIZE_getTypeName(signed char);
+  SPECIALIZE_getTypeName(short);
+  SPECIALIZE_getTypeName(int);
+  SPECIALIZE_getTypeName(long);
+  SPECIALIZE_getTypeName(long long);
 
-SPECIALIZE_getTypeName(unsigned char);
-SPECIALIZE_getTypeName(unsigned short);
-SPECIALIZE_getTypeName(unsigned int);
-SPECIALIZE_getTypeName(unsigned long);
-SPECIALIZE_getTypeName(unsigned long long);
+  SPECIALIZE_getTypeName(unsigned char);
+  SPECIALIZE_getTypeName(unsigned short);
+  SPECIALIZE_getTypeName(unsigned int);
+  SPECIALIZE_getTypeName(unsigned long);
+  SPECIALIZE_getTypeName(unsigned long long);
 
-SPECIALIZE_getTypeName(wchar_t);
+  SPECIALIZE_getTypeName(wchar_t);
 
-SPECIALIZE_getTypeName(std::string);
-SPECIALIZE_getTypeName(bool);
+  SPECIALIZE_getTypeName(std::string);
+  SPECIALIZE_getTypeName(bool);
 
-// std::complex
-template <class D>
-inline std::string getTypeName(const std::complex<D> &var) {
-  std::string s = getTypeStyle(var).apply("std::complex");
-  s += getBracketedTypeName(var.real());
-  return s;
-}
+  // std::complex
+  template <class D>
+  inline std::string getTypeName(const std::complex<D>& var) {
+    std::string s = getTypeStyle(var).apply("std::complex");
+    s += getBracketedTypeName(var.real());
+    return s;
+  }
 
-// T[]
-template <typename T, size_t N>
-inline std::string getTypeName(const T (&a)[N]) {
-  std::string tname = getTypeName(a[0]);
-  std::ostringstream stream;
-  stream << tname << StyledString::get(BRACKET1).get() << N << StyledString::get(BRACKET2).get();
-  return stream.str();
-}
+  // T[]
+  template <typename T, size_t N>
+  inline std::string getTypeName(const T(&a)[N]) {
+    std::string tname = getTypeName(a[0]);
+    std::ostringstream stream;
+    stream << tname << StyledString::get(BRACKET1).get() << N << StyledString::get(BRACKET2).get();
+    return stream.str();
+  }
 
-// This does not overridfe the default
-//  template <class D>
-//  inline std::string getTypeName(typename mathq::FunctionTypes<D>::unary_func var) {
-//  std::string s = display::getFunctionTypeStyle().apply("userfunc");
-//  double d = 0;
-//  std::string sd = display::getTypeName(d);
-//  s = sd + "(*"+s+")"+"("+sd+")";
-//  return s;
-//}
+  // This does not overridfe the default
+  //  template <class D>
+  //  inline std::string getTypeName(typename mathq::FunctionTypes<D>::unary_func var) {
+  //  std::string s = display::getFunctionTypeStyle().apply("userfunc");
+  //  double d = 0;
+  //  std::string sd = display::getTypeName(d);
+  //  s = sd + "(*"+s+")"+"("+sd+")";
+  //  return s;
+  //}
 
-// this works
-// inline std::string getTypeName(typename mathq::FunctionTypes<double>::unary_func var) {
-//   std::string sfunc = display::getFunctionTypeStyle().apply("func");
-//   double d;
-//   std::string sd = display::getTypeName(d);
-//   return sd + " "+sfunc+ StyledString::get(PAREN1).get()+sd+","+sd+StyledString::get(PAREN2).get();
-// }
+  // this works
+  // inline std::string getTypeName(typename mathq::FunctionTypes<double>::unary_func var) {
+  //   std::string sfunc = display::getFunctionTypeStyle().apply("func");
+  //   double d;
+  //   std::string sd = display::getTypeName(d);
+  //   return sd + " "+sfunc+ StyledString::get(PAREN1).get()+sd+","+sd+StyledString::get(PAREN2).get();
+  // }
 
 #define SPECIALIZE_getTypeName_CONTAINER(TYPE)         \
   template <typename D>                                \
@@ -934,11 +949,11 @@ inline std::string getTypeName(const T (&a)[N]) {
     return s;                                          \
   }
 
-SPECIALIZE_getTypeName_CONTAINER(std::vector);
-SPECIALIZE_getTypeName_CONTAINER(std::valarray);
-SPECIALIZE_getTypeName_CONTAINER(std::list);
-SPECIALIZE_getTypeName_CONTAINER(std::queue);
-SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
+  SPECIALIZE_getTypeName_CONTAINER(std::vector);
+  SPECIALIZE_getTypeName_CONTAINER(std::valarray);
+  SPECIALIZE_getTypeName_CONTAINER(std::list);
+  SPECIALIZE_getTypeName_CONTAINER(std::queue);
+  SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
 
 #define SPECIALIZE_getTypeName_CONTAINER2(TYPE)             \
   template <typename D1, typename D2>                       \
@@ -954,50 +969,93 @@ SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
     return s;                                               \
   }
 
-SPECIALIZE_getTypeName_CONTAINER2(std::map);
+  SPECIALIZE_getTypeName_CONTAINER2(std::map);
 
-template <typename D, unsigned long int N>
-inline std::string getTypeName(const std::array<D, N> &var) {
-  std::string s = getTypeStyle(var).apply("std::array");
-  D d;
-  s += StyledString::get(ANGLE1).get();
-  s += getTypeName(d);
-  s += StyledString::get(COMMA).get();
-  s += num2string(N);
-  s += StyledString::get(ANGLE2).get();
-  return s;
-}
+  template <typename D, unsigned long int N>
+  inline std::string getTypeName(const std::array<D, N>& var) {
+    std::string s = getTypeStyle(var).apply("std::array");
+    D d;
+    s += StyledString::get(ANGLE1).get();
+    s += getTypeName(d);
+    s += StyledString::get(COMMA).get();
+    s += num2string(N);
+    s += StyledString::get(ANGLE2).get();
+    return s;
+  }
+
+
+  // template< class T >
+  // inline constexpr std::size_t tuple_size_v = std::tuple_size<T>::value;
+
+  template <size_t I = 0, typename... Ts>
+  constexpr std::string getTypeName(const std::tuple<Ts...>& var, std::string s = std::string("")) {
+    if constexpr (I == sizeof...(Ts)) {
+      return s+StyledString::get(ANGLE2).get();
+    }
+    else {
+      using SelectedType = std::tuple_element_t<I, std::tuple<Ts...> >;
+      if constexpr (I == 0) {
+        std::string s1 = getTypeStyle(var).apply("std::tuple");
+        s += s1;
+        s += StyledString::get(ANGLE1).get();
+      }
+      else {
+        s += StyledString::get(COMMA).get();
+      }
+      s += getTypeName(SelectedType());
+      return getTypeName<I + 1, Ts...>(var, s);
+    }
+  }
+
+
+  // template <size_t I = 0, typename... Ts>
+  // constexpr std::string getTypeName(const std::tuple<Ts...>& var, std::string& s = "") {
+  //   if constexpr (I == sizeof...(Ts)) {
+  //     return s;
+  //   }
+  //   else {
+  //     s += std::tuple_element_t<I, Ts...>;
+  //     return getTypeName<I + 1, Ts...>(var, s);
+  //   }
+  // }
+
+  // s += StyledString::get(ANGLE1).get();
+  // s += std::tuple_element_t<I, T>;
+  // s += StyledString::get(COMMA).get();
+  // s += getTypeName(d2);
+  // s += StyledString::get(ANGLE2).get();
+
 
 //---------------------------------------------------------------------------------
 //       getBracketedTypeName
 //-------------------------------------------------------------------------------
 
-template <typename T>
-inline std::string getBracketedTypeName(const T &var) {
-  std::string name = getTypeName(var);
-  return StyledString::get(ANGLE1).get() + getTypeStyle(var).apply(name) + StyledString::get(ANGLE2).get();
-}
+  template <typename T>
+  inline std::string getBracketedTypeName(const T& var) {
+    std::string name = getTypeName(var);
+    return StyledString::get(ANGLE1).get() + getTypeStyle(var).apply(name) + StyledString::get(ANGLE2).get();
+  }
 
-//****************************************************************************
-//                       FormatData
-//****************************************************************************
+  //****************************************************************************
+  //                       FormatData
+  //****************************************************************************
 
-class FormatBase {
-};
+  class FormatBase {
+  };
 
-template <typename T>
-class FormatData {
-public:
-};
+  template <typename T>
+  class FormatData {
+  public:
+  };
 
-template <typename T>
-inline std::string getFormatString() {
-  return FormatData<T>::format_string;
-}
-template <typename T>
-inline std::string getDefaultFormatString() {
-  return FormatData<T>::format_string_default;
-}
+  template <typename T>
+  inline std::string getFormatString() {
+    return FormatData<T>::format_string;
+  }
+  template <typename T>
+  inline std::string getDefaultFormatString() {
+    return FormatData<T>::format_string_default;
+  }
 
 #define SPECIALIZE_FormatData_mathtype(TYPE)        \
   template <>                                       \
@@ -1009,15 +1067,15 @@ inline std::string getDefaultFormatString() {
     static std::string format_string;               \
   };
 
-SPECIALIZE_FormatData_mathtype(short);
-SPECIALIZE_FormatData_mathtype(int);
-SPECIALIZE_FormatData_mathtype(long);
-SPECIALIZE_FormatData_mathtype(long long);
+  SPECIALIZE_FormatData_mathtype(short);
+  SPECIALIZE_FormatData_mathtype(int);
+  SPECIALIZE_FormatData_mathtype(long);
+  SPECIALIZE_FormatData_mathtype(long long);
 
-SPECIALIZE_FormatData_mathtype(unsigned short);
-SPECIALIZE_FormatData_mathtype(unsigned int);
-SPECIALIZE_FormatData_mathtype(unsigned long);
-SPECIALIZE_FormatData_mathtype(unsigned long long);
+  SPECIALIZE_FormatData_mathtype(unsigned short);
+  SPECIALIZE_FormatData_mathtype(unsigned int);
+  SPECIALIZE_FormatData_mathtype(unsigned long);
+  SPECIALIZE_FormatData_mathtype(unsigned long long);
 
 #define SPECIALIZE_FormatData_floating(TYPE)        \
   template <>                                       \
@@ -1031,128 +1089,129 @@ SPECIALIZE_FormatData_mathtype(unsigned long long);
     static bool tens;                               \
   };
 
-SPECIALIZE_FormatData_floating(float);
-SPECIALIZE_FormatData_floating(double);
-SPECIALIZE_FormatData_floating(long double);
+  SPECIALIZE_FormatData_floating(float);
+  SPECIALIZE_FormatData_floating(double);
+  SPECIALIZE_FormatData_floating(long double);
 
-// string
-template <>
-class FormatData<std::string> {
-public:
-  static Style style_for_type_name;
-  static Style style_for_value;
-  const static std::string format_string_default;
-  static std::string format_string;
-};
+  // string
+  template <>
+  class FormatData<std::string> {
+  public:
+    static Style style_for_type_name;
+    static Style style_for_value;
+    const static std::string format_string_default;
+    static std::string format_string;
+  };
 
-// char
-template <>
-class FormatData<char> {
-public:
-  static Style style_for_type_name;
-  static Style style_for_value;
-  const static std::string format_string_default;
-  static std::string format_string;
-};
+  // char
+  template <>
+  class FormatData<char> {
+  public:
+    static Style style_for_type_name;
+    static Style style_for_value;
+    const static std::string format_string_default;
+    static std::string format_string;
+  };
 
-// bool
-template <>
-class FormatData<bool> {
-public:
-  static Style style_for_type_name;
-  static Style style_for_true;
-  static Style style_for_false;
-  static std::string string_for_true;
-  static std::string string_for_false;
-};
+  // bool
+  template <>
+  class FormatData<bool> {
+  public:
+    static Style style_for_type_name;
+    static Style style_for_true;
+    static Style style_for_false;
+    static std::string string_for_true;
+    static std::string string_for_false;
+  };
 
-// Vector
-class FormatDataVector {
-public:
-  static mathq::index_type max_elements_per_line;
-  static Style style_for_punctuation;
-  static std::string string_opening;
-  static std::string string_delimeter;
-  static std::string string_endofline;
-  static std::string string_closing;
-};
+  // Vector
+  class FormatDataVector {
+  public:
+    static mathq::index_type max_elements_per_line;
+    static Style style_for_punctuation;
+    static std::string string_opening;
+    static std::string string_delimeter;
+    static std::string string_endofline;
+    static std::string string_closing;
+  };
 
-// Matrix
-class FormatDataMatrix {
-public:
-  static mathq::index_type max_elements_per_line;
-  static Style style_for_punctuation;
-  static std::string string_opening;
-  static std::string string_delimeter;
-  static std::string string_row_opening;
-  static std::string string_row_closing;
-  static std::string string_lastrow_closing;
-  static std::string string_endofline;
-  static std::string string_closing;
-};
+  // Matrix
+  class FormatDataMatrix {
+  public:
+    static mathq::index_type max_elements_per_line;
+    static Style style_for_punctuation;
+    static std::string string_opening;
+    static std::string string_delimeter;
+    static std::string string_row_opening;
+    static std::string string_row_closing;
+    static std::string string_lastrow_closing;
+    static std::string string_endofline;
+    static std::string string_closing;
+  };
 
-//****************************************************************************
-//       FormatString
-//****************************************************************************
+  //****************************************************************************
+  //       FormatString
+  //****************************************************************************
 
-template <typename D>
-inline bool checkFormatString(const std::string formatstr, const D &x = D(1)) {
-  using namespace std;
-  if (formatstr.empty()) {
-    return false;
+  template <typename D>
+  inline bool checkFormatString(const std::string formatstr, const D& x = D(1)) {
+    using namespace std;
+    if (formatstr.empty()) {
+      return false;
+    }
+
+    bool passed = true;
+    std::string s("");
+    try {
+      s = printf2str(formatstr.c_str(), x);
+    }
+    catch (...) {
+      // rethrow
+      passed = false;
+    }
+    size_t found = s.find("(nil)");
+    if (found != string::npos)
+      passed = false;
+    D x2 = D(0);
+    D* x2ptr = &x2;
+    string format = FormatData<D>::format_string_default;
+    int ret = std::sscanf(s.c_str(), format.c_str(), x2ptr);
+    if (ret != 1)
+      passed = false;
+    if (x2 != x)
+      passed = false;
+
+    if (!passed) {
+      MOUT << StyledString::get(HORLINE);
+      MOUT << StyledString::get(ERROR);
+      MOUT << " illegal format string";
+      MOUT << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
+      MOUT << " passed to Format";
+      MOUT << display::getBracketedTypeName(x);
+      MOUT << endl;
+      MOUT << StyledString::get(HORLINE);
+      return false;
+    }
+    return true;
   }
 
-  bool passed = true;
-  std::string s("");
-  try {
-    s = printf2str(formatstr.c_str(), x);
-  } catch (...) {
-    // rethrow
-    passed = false;
+  template <typename T>
+  inline void setFormatString(const std::string fstring) {
+    T* xptr = new T(25);
+    bool valid = checkFormatString<T>(fstring, *xptr);
+    if (valid) {
+      FormatData<T>::format_string = fstring;
+    }
   }
-  size_t found = s.find("(nil)");
-  if (found != string::npos)
-    passed = false;
-  D x2 = D(0);
-  D *x2ptr = &x2;
-  string format = FormatData<D>::format_string_default;
-  int ret = std::sscanf(s.c_str(), format.c_str(), x2ptr);
-  if (ret != 1)
-    passed = false;
-  if (x2 != x)
-    passed = false;
 
-  if (!passed) {
-    MOUT << StyledString::get(HORLINE);
-    MOUT << StyledString::get(ERROR);
-    MOUT << " illegal format string";
-    MOUT << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
-    MOUT << " passed to Format";
-    MOUT << display::getBracketedTypeName(x);
-    MOUT << endl;
-    MOUT << StyledString::get(HORLINE);
-    return false;
+  //---------------------------------------------------------------------------------
+  //       dispvalstrm
+  //---------------------------------------------------------------------------------
+
+  template <typename T>
+  inline void dispval_strm(std::ostream& stream, const T& d) {
+    stream << d;
   }
-  return true;
-}
-
-template <typename T>
-inline void setFormatString(const std::string fstring) {
-  T *xptr = new T(25);
-  bool valid = checkFormatString<T>(fstring, *xptr);
-  if (valid) {
-    FormatData<T>::format_string = fstring;
-  }
-}
-
-//---------------------------------------------------------------------------------
-//       dispvalstrm
-//---------------------------------------------------------------------------------
-
-template <typename T>
-inline void dispval_strm(std::ostream &stream, const T &d) {
-  stream << d;
-}
 
 #define SPECIALIZE_mathtypes_dispval_strm(TYPE)                           \
   template <>                                                             \
@@ -1167,15 +1226,15 @@ inline void dispval_strm(std::ostream &stream, const T &d) {
     stream << style.apply(sval);                                          \
   }
 
-SPECIALIZE_mathtypes_dispval_strm(short);
-SPECIALIZE_mathtypes_dispval_strm(int);
-SPECIALIZE_mathtypes_dispval_strm(long);
-SPECIALIZE_mathtypes_dispval_strm(long long);
+  SPECIALIZE_mathtypes_dispval_strm(short);
+  SPECIALIZE_mathtypes_dispval_strm(int);
+  SPECIALIZE_mathtypes_dispval_strm(long);
+  SPECIALIZE_mathtypes_dispval_strm(long long);
 
-SPECIALIZE_mathtypes_dispval_strm(unsigned short);
-SPECIALIZE_mathtypes_dispval_strm(unsigned int);
-SPECIALIZE_mathtypes_dispval_strm(unsigned long);
-SPECIALIZE_mathtypes_dispval_strm(unsigned long long);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned short);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned int);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned long);
+  SPECIALIZE_mathtypes_dispval_strm(unsigned long long);
 
 #define SPECIALIZE_floating_dispval_strm(TYPE)                            \
   template <>                                                             \
@@ -1194,546 +1253,598 @@ SPECIALIZE_mathtypes_dispval_strm(unsigned long long);
     stream << style.apply(sval);                                          \
   }
 
-SPECIALIZE_floating_dispval_strm(float);
-SPECIALIZE_floating_dispval_strm(double);
-SPECIALIZE_floating_dispval_strm(long double);
+  SPECIALIZE_floating_dispval_strm(float);
+  SPECIALIZE_floating_dispval_strm(double);
+  SPECIALIZE_floating_dispval_strm(long double);
 
-// string
-template <>
-inline void dispval_strm<std::string>(std::ostream &stream, const std::string &str) {
-  using namespace std;
-  string s = printf2str(FormatData<std::string>::format_string.c_str(), str.c_str());
-  Style style = FormatData<std::string>::style_for_value;
-  stream << style.apply(s);
-}
-
-// char
-template <>
-inline void dispval_strm<char>(std::ostream &stream, const char &c) {
-  using namespace std;
-  string s = printf2str(FormatData<char>::format_string.c_str(), c);
-  Style style = FormatData<char>::style_for_value;
-  stream << style.apply(s);
-}
-
-// bool
-template <>
-inline void dispval_strm<bool>(std::ostream &stream, const bool &b) {
-  using namespace std;
-  if (b) {
-    Style style = FormatData<bool>::style_for_true;
-    string s = FormatData<bool>::string_for_true;
-    stream << style.apply(s);
-  } else {
-    Style style = FormatData<bool>::style_for_false;
-    string s = FormatData<bool>::string_for_false;
+  // string
+  template <>
+  inline void dispval_strm<std::string>(std::ostream& stream, const std::string& str) {
+    using namespace std;
+    string s = printf2str(FormatData<std::string>::format_string.c_str(), str.c_str());
+    Style style = FormatData<std::string>::style_for_value;
     stream << style.apply(s);
   }
-}
 
-// T[N]
-template <typename T, size_t N>
-inline void dispval_strm(std::ostream &stream, const T (&a)[N]) {
-  stream << "{";
-  for (size_t ii = 0; ii < N; ii++) {
-    if (ii > 0)
-      stream << ", ";
-    dispval_strm(stream, a[ii]);
+  // char
+  template <>
+  inline void dispval_strm<char>(std::ostream& stream, const char& c) {
+    using namespace std;
+    string s = printf2str(FormatData<char>::format_string.c_str(), c);
+    Style style = FormatData<char>::style_for_value;
+    stream << style.apply(s);
   }
-  stream << "}";
-}
 
-// char[N]
-template <size_t N>
-inline void dispval_strm(std::ostream &stream, const char (&a)[N]) {
-  stream << a;
-}
-
-// std::vector
-template <typename D>
-inline void dispval_strm(std::ostream &stream, const std::vector<D> &var) {
-  stream << "{";
-  for (size_t ii = 0; ii < var.size(); ii++) {
-    if (ii > 0)
-      stream << ", ";
-    dispval_strm(stream, var[ii]);
+  // bool
+  template <>
+  inline void dispval_strm<bool>(std::ostream& stream, const bool& b) {
+    using namespace std;
+    if (b) {
+      Style style = FormatData<bool>::style_for_true;
+      string s = FormatData<bool>::string_for_true;
+      stream << style.apply(s);
+    }
+    else {
+      Style style = FormatData<bool>::style_for_false;
+      string s = FormatData<bool>::string_for_false;
+      stream << style.apply(s);
+    }
   }
-  stream << "}";
-}
 
-// std::valarray
-template <typename D>
-inline void dispval_strm(std::ostream &stream, const std::valarray<D> &var) {
-  stream << "{";
-  for (size_t ii = 0; ii < var.size(); ii++) {
-    if (ii > 0)
-      stream << ", ";
-    dispval_strm(stream, var[ii]);
+  // T[N]
+  template <typename T, size_t N>
+  inline void dispval_strm(std::ostream& stream, const T(&a)[N]) {
+    stream << "{";
+    for (size_t ii = 0; ii < N; ii++) {
+      if (ii > 0)
+        stream << ", ";
+      dispval_strm(stream, a[ii]);
+    }
+    stream << "}";
   }
-  stream << "}";
-}
 
-// std::array
-template <typename D, unsigned long int N>
-inline void dispval_strm(std::ostream &stream, const std::array<D, N> &var) {
-  stream << "{";
-  for (size_t ii = 0; ii < var.size(); ii++) {
-    if (ii > 0)
-      stream << ", ";
-    dispval_strm(stream, var[ii]);
+  // char[N]
+  template <size_t N>
+  inline void dispval_strm(std::ostream& stream, const char(&a)[N]) {
+    stream << a;
   }
-  stream << "}";
-}
 
-// std::list
-template <typename D>
-inline void dispval_strm(std::ostream &stream, const std::list<D> &var) {
-  stream << "{";
-  size_t ii = 0;
-  for (typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
-    if (ii++ > 0)
-      stream << ", ";
-    dispval_strm(stream, *it);
+  // std::vector
+  template <typename D>
+  inline void dispval_strm(std::ostream& stream, const std::vector<D>& var) {
+    stream << "{";
+    for (size_t ii = 0; ii < var.size(); ii++) {
+      if (ii > 0)
+        stream << ", ";
+      dispval_strm(stream, var[ii]);
+    }
+    stream << "}";
   }
-  stream << "}";
-}
 
-// std::initializer_list
-template <typename D>
-inline void dispval_strm(std::ostream &stream, const std::initializer_list<D> &var) {
-  stream << "{";
-  size_t ii = 0;
-  for (auto it = var.begin(); it != var.end(); ++it) {
-    if (ii++ > 0)
-      stream << ", ";
-    dispval_strm(stream, *it);
+  // std::valarray
+  template <typename D>
+  inline void dispval_strm(std::ostream& stream, const std::valarray<D>& var) {
+    stream << "{";
+    for (size_t ii = 0; ii < var.size(); ii++) {
+      if (ii > 0)
+        stream << ", ";
+      dispval_strm(stream, var[ii]);
+    }
+    stream << "}";
   }
-  stream << "}";
-}
 
-// std::queue
-template <typename D>
-void dispval_strm(std::ostream &stream, const std::queue<D> &var) {
-  // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
-  std::queue<D> myq = var;
-
-  stream << "{";
-  const size_t N = myq.size();
-  for (size_t ii = 0; ii < N; ii++) {
-    if (ii > 0)
-      stream << ", ";
-    D val = myq.front();
-    myq.pop();
-    dispval_strm(stream, val);
+  // std::array
+  template <typename D, unsigned long int N>
+  inline void dispval_strm(std::ostream& stream, const std::array<D, N>& var) {
+    stream << "{";
+    for (size_t ii = 0; ii < var.size(); ii++) {
+      if (ii > 0)
+        stream << ", ";
+      dispval_strm(stream, var[ii]);
+    }
+    stream << "}";
   }
-  stream << "}";
-}
 
-// std::map
-template <typename D1, typename D2>
-void dispval_strm(std::ostream &stream, const std::map<D1, D2> &mymap) {
-  stream << "{" << std::endl;
-  for (typename std::map<D1, D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++) {
-    stream << " " << it->first << ":" << it->second << std::endl;
+  // std::list
+  template <typename D>
+  inline void dispval_strm(std::ostream& stream, const std::list<D>& var) {
+    stream << "{";
+    size_t ii = 0;
+    for (typename std::list<D>::const_iterator it = var.begin(); it != var.end(); ++it) {
+      if (ii++ > 0)
+        stream << ", ";
+      dispval_strm(stream, *it);
+    }
+    stream << "}";
   }
-  stream << "}";
-}
+
+  // std::initializer_list
+  template <typename D>
+  inline void dispval_strm(std::ostream& stream, const std::initializer_list<D>& var) {
+    stream << "{";
+    size_t ii = 0;
+    for (auto it = var.begin(); it != var.end(); ++it) {
+      if (ii++ > 0)
+        stream << ", ";
+      dispval_strm(stream, *it);
+    }
+    stream << "}";
+  }
+
+  // std::queue
+  template <typename D>
+  void dispval_strm(std::ostream& stream, const std::queue<D>& var) {
+    // ** We have to copy the queue to iterate through contents since this is a desrtuctive process
+    std::queue<D> myq = var;
+
+    stream << "{";
+    const size_t N = myq.size();
+    for (size_t ii = 0; ii < N; ii++) {
+      if (ii > 0)
+        stream << ", ";
+      D val = myq.front();
+      myq.pop();
+      dispval_strm(stream, val);
+    }
+    stream << "}";
+  }
+
+  // std::map
+  template <typename D1, typename D2>
+  void dispval_strm(std::ostream& stream, const std::map<D1, D2>& mymap) {
+    stream << "{" << std::endl;
+    for (typename std::map<D1, D2>::const_iterator it = mymap.begin(); it != mymap.end(); it++) {
+      stream << " " << it->first << ":" << it->second << std::endl;
+    }
+    stream << "}";
+  }
+
+
+
+  // template< class T >
+  // inline constexpr std::size_t tuple_size_v = std::tuple_size<T>::value;
+
+  // template <size_t I = 0, typename... Ts>
+  // constexpr std::string getTypeName(const std::tuple<Ts...>& var, std::string s = std::string("")) {
+  //   if constexpr (I == sizeof...(Ts)) {
+  //     return s+StyledString::get(ANGLE2).get();
+  //   }
+  //   else {
+  //     using SelectedType = std::tuple_element_t<I, std::tuple<Ts...> >;
+  //     if constexpr (I == 0) {
+  //       std::string s1 = getTypeStyle(var).apply("std::tuple");
+  //       s += s1;
+  //       s += StyledString::get(ANGLE1).get();
+  //     }
+  //     else {
+  //       s += StyledString::get(COMMA).get();
+  //     }
+  //     s += getTypeName(SelectedType());
+  //     return getTypeName<I + 1, Ts...>(var, s);
+  //   }
+  // }
+
+  // // std::tuple
+
+  template <size_t I = 0, typename... Ts>
+  inline void dispval_strm(std::ostream& stream, const std::tuple<Ts...>& var) {
+    if constexpr (I == sizeof...(Ts)) {
+      stream << "}";
+    }
+    else {
+      using SelectedType = std::tuple_element_t<I, std::tuple<Ts...> >;
+      if constexpr (I == 0) {
+        stream << "{";
+      }
+      else {
+        stream <<  StyledString::get(COMMA).get();
+      }
+      stream << std::get<I>(var);
+      dispval_strm<I + 1, Ts...>(stream, var);
+    }
+  }
+
+
+  // std::cout << "index " << I << " has type: ";
+  // using SelectedType = std::tuple_element_t<I, T>;
 
 //---------------------------------------------------------------------------------
 //       specialize for complex
 //---------------------------------------------------------------------------------
 
-class FormatDataComplex {
-public:
-  static Style style_for_punctuation;
-  static std::string format_string;
-  const static std::string format_string_default;
-};
+  class FormatDataComplex {
+  public:
+    static Style style_for_punctuation;
+    static std::string format_string;
+    const static std::string format_string_default;
+  };
 
-inline bool checkFormatStringComplex(const std::string formatstr) {
-  using namespace std;
-  if (formatstr.empty()) {
-    return false;
+  inline bool checkFormatStringComplex(const std::string formatstr) {
+    using namespace std;
+    if (formatstr.empty()) {
+      return false;
+    }
+
+    bool passed = true;
+    string sr = string("%f");
+    string si = string("%f");
+    string s;
+    try {
+      s = printf2str(formatstr.c_str(), sr.c_str(), si.c_str());
+    }
+    catch (...) {
+      passed = false;
+    }
+    size_t found = s.find("(nil)");
+    if (found != string::npos)
+      passed = false;
+
+    string formatfloats = s;
+    float xreal = 3.1415;
+    float ximag = 2.72;
+    try {
+      s = printf2str(formatfloats.c_str(), xreal, ximag);
+    }
+    catch (...) {
+      passed = false;
+    }
+    found = s.find("(nil)");
+    if (found != string::npos)
+      passed = false;
+
+    //    printf("formatstr = %s\n",formatstr.c_str());
+    //    printf("formatfloats = %s\n",formatfloats.c_str());
+
+    float xreal2 = 3.1415;
+    float ximag2 = 2.72;
+    int ret = std::sscanf(s.c_str(), formatfloats.c_str(), &xreal2, &ximag2);
+    //    printf("xreal2=%f ximag2=%f\n",xreal2,ximag2);
+    if (ret != 2)
+      passed = false;
+    if (xreal2 != xreal)
+      passed = false;
+    if (ximag2 != ximag)
+      passed = false;
+
+    if (!passed) {
+      MOUT << StyledString::get(HORLINE);
+      MOUT << StyledString::get(ERROR);
+      MOUT << " illegal format string";
+      MOUT << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
+      MOUT << " passed to setFormatStringComplex";
+      MOUT << endl;
+      MOUT << StyledString::get(HORLINE);
+      return false;
+    }
+    return true;
   }
 
-  bool passed = true;
-  string sr = string("%f");
-  string si = string("%f");
-  string s;
-  try {
-    s = printf2str(formatstr.c_str(), sr.c_str(), si.c_str());
-  } catch (...) {
-    passed = false;
+  inline std::string getFormatStringComplex() {
+    return FormatDataComplex::format_string;
   }
-  size_t found = s.find("(nil)");
-  if (found != string::npos)
-    passed = false;
 
-  string formatfloats = s;
-  float xreal = 3.1415;
-  float ximag = 2.72;
-  try {
-    s = printf2str(formatfloats.c_str(), xreal, ximag);
-  } catch (...) {
-    passed = false;
+  inline void setFormatStringComplex(const std::string fstring) {
+    bool valid = checkFormatStringComplex(fstring);
+    if (valid) {
+      FormatDataComplex::format_string = fstring;
+    }
   }
-  found = s.find("(nil)");
-  if (found != string::npos)
-    passed = false;
 
-  //    printf("formatstr = %s\n",formatstr.c_str());
-  //    printf("formatfloats = %s\n",formatfloats.c_str());
+  template <class D>
+  void dispval_strm(std::ostream& stream, const std::complex<D>& d) {
+    using namespace std;
+    using namespace mathq;
 
-  float xreal2 = 3.1415;
-  float ximag2 = 2.72;
-  int ret = std::sscanf(s.c_str(), formatfloats.c_str(), &xreal2, &ximag2);
-  //    printf("xreal2=%f ximag2=%f\n",xreal2,ximag2);
-  if (ret != 2)
-    passed = false;
-  if (xreal2 != xreal)
-    passed = false;
-  if (ximag2 != ximag)
-    passed = false;
+    // print the real and imaginary parts to strings
+    string sr = printf2str(getFormatString<D>().c_str(), d.real());
+    string si = printf2str(getFormatString<D>().c_str(), d.imag());
 
-  if (!passed) {
-    MOUT << StyledString::get(HORLINE);
-    MOUT << StyledString::get(ERROR);
-    MOUT << " illegal format string";
-    MOUT << CREATESTYLE(BOLD).apply(string(" \"") + formatstr + "\"");
-    MOUT << " passed to setFormatStringComplex";
-    MOUT << endl;
-    MOUT << StyledString::get(HORLINE);
-    return false;
+    // decompose the format string so we can apply style to the punctuation
+    string fs = getFormatStringComplex();
+    int m1 = fs.find("%s");
+    string fs1 = fs.substr(0, m1);
+    int m2 = fs.find("%s", m1 + 2);
+    string fs2 = fs.substr(m1 + 2, m2 - m1 - 2);
+    string fs3 = fs.substr(m2 + 2, fs.size() - m2 - 2);
+    Style style = FormatDataComplex::style_for_punctuation;
+    fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
+
+    // put it all together
+    stream << printf2str(fs.c_str(), sr.c_str(), si.c_str());
   }
-  return true;
-}
 
-inline std::string getFormatStringComplex() {
-  return FormatDataComplex::format_string;
-}
+  //****************************************************************************
+  //                       Log
+  //****************************************************************************
 
-inline void setFormatStringComplex(const std::string fstring) {
-  bool valid = checkFormatStringComplex(fstring);
-  if (valid) {
-    FormatDataComplex::format_string = fstring;
+  class Log {
+  public:
+    static Style style_log0;
+    static Style style_log1;
+    static Style style_log2;
+    static Style style_log3;
+    static Style style_nspace;
+    ;
+    static Style style_class;
+    static Style style_func;
+    static Style style_str;
+
+    static void log(const int level, const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "");
+    static void print(const int level, std::string s);
+    static void warning(const std::string s);
+    static void error(const std::string s);
+    static void indent(const std::string s);
+
+    Log();
+
+  }; // class  Log
+
+  inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+    display::Log::log(0, spaceName, className, funcName, s);
+    //    MOUT << __PRETTY_FUNCTION__;
   }
-}
 
-template <class D>
-void dispval_strm(std::ostream &stream, const std::complex<D> &d) {
-  using namespace std;
-  using namespace mathq;
-
-  // print the real and imaginary parts to strings
-  string sr = printf2str(getFormatString<D>().c_str(), d.real());
-  string si = printf2str(getFormatString<D>().c_str(), d.imag());
-
-  // decompose the format string so we can apply style to the punctuation
-  string fs = getFormatStringComplex();
-  int m1 = fs.find("%s");
-  string fs1 = fs.substr(0, m1);
-  int m2 = fs.find("%s", m1 + 2);
-  string fs2 = fs.substr(m1 + 2, m2 - m1 - 2);
-  string fs3 = fs.substr(m2 + 2, fs.size() - m2 - 2);
-  Style style = FormatDataComplex::style_for_punctuation;
-  fs = style.apply(fs1) + "%s" + style.apply(fs2) + "%s" + style.apply(fs3);
-
-  // put it all together
-  stream << printf2str(fs.c_str(), sr.c_str(), si.c_str());
-}
-
-//****************************************************************************
-//                       Log
-//****************************************************************************
-
-class Log {
-public:
-  static Style style_log0;
-  static Style style_log1;
-  static Style style_log2;
-  static Style style_log3;
-  static Style style_nspace;
-  ;
-  static Style style_class;
-  static Style style_func;
-  static Style style_str;
-
-  static void log(const int level, const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "");
-  static void print(const int level, std::string s);
-  static void warning(const std::string s);
-  static void error(const std::string s);
-  static void indent(const std::string s);
-
-  Log();
-
-}; // class  Log
-
-inline void log(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
-  display::Log::log(0, spaceName, className, funcName, s);
-  //    MOUT << __PRETTY_FUNCTION__;
-}
-
-inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+  inline void log1(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
 #if MATHQ_DEBUG >= 1
-  display::Log::log(1, spaceName, className, funcName, s);
+    display::Log::log(1, spaceName, className, funcName, s);
 #endif
-}
+  }
 
-inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+  inline void log2(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
 #if MATHQ_DEBUG >= 2
-  display::Log::log(2, spaceName, className, funcName, s);
+    display::Log::log(2, spaceName, className, funcName, s);
 #endif
-}
+  }
 
-inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
+  inline void log3(const std::string spaceName, const std::string className, const std::string funcName, const std::string s = "") {
 #if MATHQ_DEBUG >= 3
-  display::Log::log(3, spaceName, className, funcName, s);
+    display::Log::log(3, spaceName, className, funcName, s);
 #endif
-}
+  }
 
-inline void print1(const std::string s) {
+  inline void print1(const std::string s) {
 #if MATHQ_DEBUG >= 1
-  display::Log::print(1, s);
+    display::Log::print(1, s);
 #endif
-}
-inline void print2(const std::string s) {
+  }
+  inline void print2(const std::string s) {
 #if MATHQ_DEBUG >= 2
-  display::Log::print(2, s);
+    display::Log::print(2, s);
 #endif
-}
-inline void print3(const std::string s) {
+  }
+  inline void print3(const std::string s) {
 #if MATHQ_DEBUG >= 3
-  display::Log::print(3, s);
+    display::Log::print(3, s);
 #endif
-}
-
-//****************************************************************************
-//                       Display
-//****************************************************************************
-
-// TODO:
-//       add method that supports ECHO_CODE?
-//       add class variable that if defined overrides the default, taken from the Format class
-
-class Display {
-private:
-  static bool isInitialized;
-
-public:
-  static StyledString codePrefixStyledString;
-  static StyledString prefixStyledString;
-  static Style expressionStyle;
-  static StyledString equalsStyledString;
-  static StyledString multiSeparatorStyledString;
-  static StyledString terminatorStyledString;
-
-
-public:
-  static void initialize() {
-    //      log3("display","Display","initialize","()");
-
-    Display::isInitialized = true;
   }
-  Display() {
-    if (!isInitialized) {
-      Display::initialize();
+
+  //****************************************************************************
+  //                       Display
+  //****************************************************************************
+
+  // TODO:
+  //       add method that supports ECHO_CODE?
+  //       add class variable that if defined overrides the default, taken from the Format class
+
+  class Display {
+  private:
+    static bool isInitialized;
+
+  public:
+    static StyledString codePrefixStyledString;
+    static StyledString prefixStyledString;
+    static Style expressionStyle;
+    static StyledString equalsStyledString;
+    static StyledString multiSeparatorStyledString;
+    static StyledString terminatorStyledString;
+
+
+  public:
+    static void initialize() {
+      //      log3("display","Display","initialize","()");
+
+      Display::isInitialized = true;
     }
-  }
-
-  // NOTE: do NOT try to combine mydisp_notype and mydisp_type
-  //       this wil causes compilation failure if X.classname() does not
-  //       exists, EVEN if you put getTypeName(x) inside an if clause
-
-  template <typename X>
-  static void mydisp_notype(std::ostream &stream, const X &x, const std::string name, const bool issueCR, const std::string postString = "") {
-    using namespace std;
-    //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
-    stream << prefixStyledString;
-    stream << StyledString(expressionStyle, name);
-    stream << equalsStyledString;
-    dispval_strm(stream, x);
-    stream << postString;
-    stream << terminatorStyledString;
-    if (issueCR) {
-      stream << endl;
+    Display() {
+      if (!isInitialized) {
+        Display::initialize();
+      }
     }
-  }
-  template <typename X>
-  static void multidisp_notype(std::ostream &stream, const X &x, const std::string name) {
-    using namespace std;
-    //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
-    stream << prefixStyledString;
-    stream << StyledString(expressionStyle, name);
-    stream << equalsStyledString;
-    dispval_strm(stream, x);
-    stream << multiSeparatorStyledString;
-  }
 
-  template <typename X>
-  static void mydispcr(std::ostream &stream, const X &x, const std::string name, const std::string postString = "") {
-    using namespace std;
-    mydisp_notype(stream, x, name, true, postString);
-  }
+    // NOTE: do NOT try to combine mydisp_notype and mydisp_type
+    //       this wil causes compilation failure if X.classname() does not
+    //       exists, EVEN if you put getTypeName(x) inside an if clause
 
-  template <typename X>
-  static void mydisp_type(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
-    using namespace std;
-    //      log3("display","Display","mydisp_type","(const X& x, const std::string name)");
-    stream << prefixStyledString;
-    stream << StyledString(expressionStyle, name);
-    stream << equalsStyledString;
-    dispval_strm(stream, x);
-    stream << terminatorStyledString;
-    if (issueCR) {
-      stream << endl;
+    template <typename X>
+    static void mydisp_notype(std::ostream& stream, const X& x, const std::string name, const bool issueCR, const std::string postString = "") {
+      using namespace std;
+      //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
+      stream << prefixStyledString;
+      stream << StyledString(expressionStyle, name);
+      stream << equalsStyledString;
+      dispval_strm(stream, x);
+      stream << postString;
+      stream << terminatorStyledString;
+      if (issueCR) {
+        stream << endl;
+      }
     }
-  }
-
-  template <typename X>
-  static void mydisp_type_rhs(std::ostream &stream, const X &x, const std::string name, const bool issueCR) {
-    using namespace std;
-    //      log3("display","Display","mydisp_type_rhs","(const X& x, const std::string name)");
-    stream << prefixStyledString;
-    stream << StyledString(expressionStyle, name);
-    stream << equalsStyledString;
-    stream << getTypeName(x) << " ";
-    dispval_strm(stream, x);
-    stream << terminatorStyledString;
-    if (issueCR) {
-      stream << endl;
+    template <typename X>
+    static void multidisp_notype(std::ostream& stream, const X& x, const std::string name) {
+      using namespace std;
+      //      log3("display","Display","mydisp_notype","(const X& x, const std::string name)");
+      stream << prefixStyledString;
+      stream << StyledString(expressionStyle, name);
+      stream << equalsStyledString;
+      dispval_strm(stream, x);
+      stream << multiSeparatorStyledString;
     }
-  }
-  template <typename X>
-  static void tmydisp(std::ostream &stream, const X &x, const std::string name) {
-    using namespace std;
-    mydisp_type(stream, x, name, false);
-  }
-  template <typename X>
-  static void tmydispcr(std::ostream &stream, const X &x, const std::string name) {
-    using namespace std;
-    mydisp_type(stream, x, name, true);
-  }
 
-  template <typename X>
-  static void trmydisp(std::ostream &stream, const X &x, const std::string name) {
-    using namespace std;
-    mydisp_type_rhs(stream, x, name, false);
-  }
-  template <typename X>
-  static void trmydispcr(std::ostream &stream, const X &x, const std::string name) {
-    using namespace std;
-    mydisp_type_rhs(stream, x, name, true);
-  }
+    template <typename X>
+    static void mydispcr(std::ostream& stream, const X& x, const std::string name, const std::string postString = "") {
+      using namespace std;
+      mydisp_notype(stream, x, name, true, postString);
+    }
 
-  static void issuecr(std::ostream &stream) {
-    stream << std::endl;
-  }
-}; // class Display
+    template <typename X>
+    static void mydisp_type(std::ostream& stream, const X& x, const std::string name, const bool issueCR) {
+      using namespace std;
+      //      log3("display","Display","mydisp_type","(const X& x, const std::string name)");
+      stream << prefixStyledString;
+      stream << StyledString(expressionStyle, name);
+      stream << equalsStyledString;
+      dispval_strm(stream, x);
+      stream << terminatorStyledString;
+      if (issueCR) {
+        stream << endl;
+      }
+    }
+
+    template <typename X>
+    static void mydisp_type_rhs(std::ostream& stream, const X& x, const std::string name, const bool issueCR) {
+      using namespace std;
+      //      log3("display","Display","mydisp_type_rhs","(const X& x, const std::string name)");
+      stream << prefixStyledString;
+      stream << StyledString(expressionStyle, name);
+      stream << equalsStyledString;
+      stream << getTypeName(x) << " ";
+      dispval_strm(stream, x);
+      stream << terminatorStyledString;
+      if (issueCR) {
+        stream << endl;
+      }
+    }
+    template <typename X>
+    static void tmydisp(std::ostream& stream, const X& x, const std::string name) {
+      using namespace std;
+      mydisp_type(stream, x, name, false);
+    }
+    template <typename X>
+    static void tmydispcr(std::ostream& stream, const X& x, const std::string name) {
+      using namespace std;
+      mydisp_type(stream, x, name, true);
+    }
+
+    template <typename X>
+    static void trmydisp(std::ostream& stream, const X& x, const std::string name) {
+      using namespace std;
+      mydisp_type_rhs(stream, x, name, false);
+    }
+    template <typename X>
+    static void trmydispcr(std::ostream& stream, const X& x, const std::string name) {
+      using namespace std;
+      mydisp_type_rhs(stream, x, name, true);
+    }
+
+    static void issuecr(std::ostream& stream) {
+      stream << std::endl;
+    }
+  }; // class Display
 
 
-//****************************************************************************
-//                       print_mathq_info
-//****************************************************************************
+  //****************************************************************************
+  //                       print_mathq_info
+  //****************************************************************************
 
-inline void print_debug_level(void) {
-  StyledString ss;
+  inline void print_debug_level(void) {
+    StyledString ss;
 #if (MATHQ_DEBUG == 0)
-  ss = StyledString::get(SSEnum::DLEVEL0);
+    ss = StyledString::get(SSEnum::DLEVEL0);
 #elif (MATHQ_DEBUG == 1)
-  ss = StyledString::get(SSEnum::DLEVEL1);
+    ss = StyledString::get(SSEnum::DLEVEL1);
 #elif (MATHQ_DEBUG == 2)
-  ss = StyledString::get(SSEnum::DLEVEL2);
+    ss = StyledString::get(SSEnum::DLEVEL2);
 #elif (MATHQ_DEBUG >= 3)
-  ss = StyledString::get(SSEnum::DLEVEL3);
+    ss = StyledString::get(SSEnum::DLEVEL3);
 #endif
-  MOUT << "  " << ss << " " << std::endl;
-}
+    MOUT << "  " << ss << " " << std::endl;
+  }
 
-inline void print_mathq_info(void) {
-  using namespace std;
-  using namespace display;
-  MOUT << StyledString::get(HORLINE);
-  MOUT << StyledString::get(MATHEMATIQUES) << " ";
-  MOUT << StyledString::get(VERSION) << " ";
-  MOUT << endl
-       << endl;
-  MOUT << "compile-time settings" << endl;
-  print_debug_level();
-  MOUT << CREATESTYLE(BOLD).apply("  C++ version: ");
-  MOUT << CREATESTYLE(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
+  inline void print_mathq_info(void) {
+    using namespace std;
+    using namespace display;
+    MOUT << StyledString::get(HORLINE);
+    MOUT << StyledString::get(MATHEMATIQUES) << " ";
+    MOUT << StyledString::get(VERSION) << " ";
+    MOUT << endl
+      << endl;
+    MOUT << "compile-time settings" << endl;
+    print_debug_level();
+    MOUT << CREATESTYLE(BOLD).apply("  C++ version: ");
+    MOUT << CREATESTYLE(CYAN).apply(printf2str("%lu", __cplusplus)) << endl;
 #ifdef MATHQ_COPTS
-  MOUT << CREATESTYLE(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
-  MOUT << CREATESTYLE(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
+    MOUT << CREATESTYLE(BOLD).apply("  g++ OPTIMIZATION FLAGS: ");
+    MOUT << CREATESTYLE(CYAN).apply(string(COMPILER_OPT_STR)) << endl;
 #endif
-  MOUT << StyledString::get(HORLINE);
-}
+    MOUT << StyledString::get(HORLINE);
+  }
 
-inline void set_default_format() {
-  using namespace display;
-  // TODO: include all default styles
+  inline void set_default_format() {
+    using namespace display;
+    // TODO: include all default styles
 
-  // TODO: put these into an intilization and share it here as well as in cpp file
-  FormatDataVector::style_for_punctuation = CREATESTYLE(GRAY1);
-  FormatDataVector::string_endofline = "\n";
-  FormatDataVector::string_opening = "{";
-  FormatDataVector::string_delimeter = ",";
-  FormatDataVector::max_elements_per_line = mathq::maxsize;
-  FormatDataVector::string_closing = "}";
+    // TODO: put these into an intilization and share it here as well as in cpp file
+    FormatDataVector::style_for_punctuation = CREATESTYLE(GRAY1);
+    FormatDataVector::string_endofline = "\n";
+    FormatDataVector::string_opening = "{";
+    FormatDataVector::string_delimeter = ",";
+    FormatDataVector::max_elements_per_line = mathq::maxsize;
+    FormatDataVector::string_closing = "}";
 
-  // TODO: put these into an intilization and share it here as well as in cpp file
-  FormatDataMatrix::max_elements_per_line = mathq::maxsize;
-  FormatDataMatrix::style_for_punctuation = CREATESTYLE(GRAY1);
-  FormatDataMatrix::string_opening = "{";
-  FormatDataMatrix::string_delimeter = ", ";
-  FormatDataMatrix::string_row_opening = " {";
-  FormatDataMatrix::string_row_closing = "},";
-  FormatDataMatrix::string_lastrow_closing = "} ";
-  FormatDataMatrix::string_endofline = "\n";
-  FormatDataMatrix::string_closing = "}";
+    // TODO: put these into an intilization and share it here as well as in cpp file
+    FormatDataMatrix::max_elements_per_line = mathq::maxsize;
+    FormatDataMatrix::style_for_punctuation = CREATESTYLE(GRAY1);
+    FormatDataMatrix::string_opening = "{";
+    FormatDataMatrix::string_delimeter = ", ";
+    FormatDataMatrix::string_row_opening = " {";
+    FormatDataMatrix::string_row_closing = "},";
+    FormatDataMatrix::string_lastrow_closing = "} ";
+    FormatDataMatrix::string_endofline = "\n";
+    FormatDataMatrix::string_closing = "}";
 
-  setFormatStringComplex("(%s, %s)");
+    setFormatStringComplex("(%s, %s)");
 
-  FormatData<double>::format_string = FormatData<double>::format_string_default;
-  FormatData<double>::tens = false;
-  FormatData<float>::format_string = FormatData<float>::format_string_default;
-  FormatData<long double>::format_string = FormatData<long double>::format_string_default;
-  FormatData<short>::format_string = FormatData<short>::format_string_default;
-  FormatData<int>::format_string = FormatData<int>::format_string_default;
-  FormatData<long>::format_string = FormatData<long>::format_string_default;
-  FormatData<unsigned short>::format_string = FormatData<unsigned short>::format_string_default;
-  FormatData<unsigned int>::format_string = FormatData<unsigned int>::format_string_default;
-  FormatData<unsigned long>::format_string = FormatData<unsigned long>::format_string_default;
-  FormatData<char>::format_string = FormatData<char>::format_string_default;
+    FormatData<double>::format_string = FormatData<double>::format_string_default;
+    FormatData<double>::tens = false;
+    FormatData<float>::format_string = FormatData<float>::format_string_default;
+    FormatData<long double>::format_string = FormatData<long double>::format_string_default;
+    FormatData<short>::format_string = FormatData<short>::format_string_default;
+    FormatData<int>::format_string = FormatData<int>::format_string_default;
+    FormatData<long>::format_string = FormatData<long>::format_string_default;
+    FormatData<unsigned short>::format_string = FormatData<unsigned short>::format_string_default;
+    FormatData<unsigned int>::format_string = FormatData<unsigned int>::format_string_default;
+    FormatData<unsigned long>::format_string = FormatData<unsigned long>::format_string_default;
+    FormatData<char>::format_string = FormatData<char>::format_string_default;
 
-  FormatData<std::string>::format_string = FormatData<std::string>::format_string_default;
+    FormatData<std::string>::format_string = FormatData<std::string>::format_string_default;
 
-  FormatData<bool>::string_for_true = "1";
-  FormatData<bool>::string_for_false = "0";
-}
+    FormatData<bool>::string_for_true = "1";
+    FormatData<bool>::string_for_false = "0";
+  }
 
-inline void set_mathematica_var_format() {
-  using namespace display;
-  FormatDataVector::string_opening = "{\n    ";
-  FormatDataVector::string_delimeter = ", ";
-  FormatDataVector::max_elements_per_line = 5;
-  FormatDataVector::string_endofline = "\n    ";
-  FormatDataVector::string_closing = "\n}";
-  setFormatString<double>("% 10.8e");
-  setFormatStringComplex("%s + I*%s");
-  FormatData<double>::tens = true;
-}
+  inline void set_mathematica_var_format() {
+    using namespace display;
+    FormatDataVector::string_opening = "{\n    ";
+    FormatDataVector::string_delimeter = ", ";
+    FormatDataVector::max_elements_per_line = 5;
+    FormatDataVector::string_endofline = "\n    ";
+    FormatDataVector::string_closing = "\n}";
+    setFormatString<double>("% 10.8e");
+    setFormatStringComplex("%s + I*%s");
+    FormatData<double>::tens = true;
+  }
 
-inline void set_matlab_var_format() {
-  using namespace display;
-  FormatDataVector::string_opening = "[ ...\n    ";
-  FormatDataVector::string_delimeter = ", ";
-  FormatDataVector::max_elements_per_line = 5;
-  FormatDataVector::string_endofline = " ...\n    ";
-  FormatDataVector::string_closing = " ...\n]";
-  setFormatString<double>("% 10.8e");
-  setFormatStringComplex("%s + i*%s");
-  FormatData<double>::tens = false;
-}
+  inline void set_matlab_var_format() {
+    using namespace display;
+    FormatDataVector::string_opening = "[ ...\n    ";
+    FormatDataVector::string_delimeter = ", ";
+    FormatDataVector::max_elements_per_line = 5;
+    FormatDataVector::string_endofline = " ...\n    ";
+    FormatDataVector::string_closing = " ...\n]";
+    setFormatString<double>("% 10.8e");
+    setFormatStringComplex("%s + i*%s");
+    FormatData<double>::tens = false;
+  }
 
 
 

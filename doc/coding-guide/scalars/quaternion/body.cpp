@@ -43,49 +43,49 @@ int main() {
 
   // first row
   OUTPUT_NOCR("| 1 |");
-  OUTPUT_NOCR(1 * 1);
+  OUTPUT_NOCR(1*1);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(1 * i);
+  OUTPUT_NOCR(1*i);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(1 * j);
+  OUTPUT_NOCR(1*j);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(1 * k);
+  OUTPUT_NOCR(1*k);
   OUTPUT_NOCR(" | ");
   CR();
 
   // 2nd row
   OUTPUT_NOCR("| **i** |");
-  OUTPUT_NOCR(i * 1);
+  OUTPUT_NOCR(i*1);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(i * i);
+  OUTPUT_NOCR(i*i);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(i * j);
+  OUTPUT_NOCR(i*j);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(i * k);
+  OUTPUT_NOCR(i*k);
   OUTPUT_NOCR(" | ");
   CR();
 
   // third row
   OUTPUT_NOCR("| **j** |");
-  OUTPUT_NOCR(j * 1);
+  OUTPUT_NOCR(j*1);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(j * i);
+  OUTPUT_NOCR(j*i);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(j * j);
+  OUTPUT_NOCR(j*j);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(j * k);
+  OUTPUT_NOCR(j*k);
   OUTPUT_NOCR(" | ");
   CR();
 
   // 4th row
   OUTPUT_NOCR("| **k** |");
-  OUTPUT_NOCR(k * 1);
+  OUTPUT_NOCR(k*1);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(k * i);
+  OUTPUT_NOCR(k*i);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(k * j);
+  OUTPUT_NOCR(k*j);
   OUTPUT_NOCR(" | ");
-  OUTPUT_NOCR(k * k);
+  OUTPUT_NOCR(k*k);
   OUTPUT_NOCR(" | ");
   CR();
 
@@ -104,18 +104,18 @@ int main() {
   GMD_CODE_START("C++");
   SRDISP(" bits", CHAR_BIT);
   CR();
-  SRDISP(" bits", CHAR_BIT * sizeof(int));
-  SRDISP(" bits", CHAR_BIT * sizeof(Quaternion<int>));
+  SRDISP(" bits", CHAR_BIT*sizeof(int));
+  SRDISP(" bits", CHAR_BIT*sizeof(Quaternion<int>));
   CR();
-  SRDISP(" bits", CHAR_BIT * sizeof(double));
-  SRDISP(" bits", CHAR_BIT * sizeof(Quaternion<double>));
+  SRDISP(" bits", CHAR_BIT*sizeof(double));
+  SRDISP(" bits", CHAR_BIT*sizeof(Quaternion<double>));
   CR();
-  SRDISP(" bits", CHAR_BIT * sizeof(long double));
-  SRDISP(" bits", CHAR_BIT * sizeof(Quaternion<long double>));
+  SRDISP(" bits", CHAR_BIT*sizeof(long double));
+  SRDISP(" bits", CHAR_BIT*sizeof(Quaternion<long double>));
   CR();
   GMD_CODE_END();
 
-  GMD_HEADER2("Declartion");
+  GMD_HEADER2("Declaration and initialization");
 
 
   OUTPUT("Declaring quaternion variables in Mathématiques");
@@ -124,35 +124,39 @@ int main() {
   CR();
   CR();
   GMD_CODE_START("C++");
-  using namespace mathq;
+  ECHO_CODE(using namespace mathq);
+  ECHO_CODE(using namespace mathq::unit_imaginary);
+  ECHO_CODE(using namespace mathq::unit_quaternion);
+  CR();
   ECHO_CODE(auto q1 = Quaternion<double>(1, 2, -1, -3));
   ECHO_CODE(auto q2 = Quaternion<double>(4, 3, -2, -5));
-  ECHO_CODE(auto q = Quaternion<double>() = 16 + 2 * i + 3 * j + 13 * k);
-  ECHO_CODE(auto p = Quaternion<double>() = 0.53767 + 0.86217 * i - 0.43359 * j + 2.7694 * k);
-
-  ECHO_CODE(auto x1 = Quaternion<double>() = 16 + 2 * i + 3 * j + 13 * k);
-  ECHO_CODE(auto x2 = Quaternion<double>() = 5 + 11 * i + 10 * j + 8 * k);
-  ECHO_CODE(auto x3 = Quaternion<double>() = 9 + 7 * i + 6 * j + 12 * k);
-  ECHO_CODE(auto x4 = Quaternion<double>() = 4 + 14 * i + 15 * j + 1 * k);
+  ECHO_CODE(auto q = Quaternion<double>() = 16 + 2*i + 3*j + 13*k);
+  ECHO_CODE(auto p = Quaternion<double>() = 0.53767 + 0.86217*i - 0.43359*j + 2.7694*k);
   GMD_CODE_END();
 
+  MOUT << "In the above expressions we used the constants `i`, `j`, and `k`, which are defined as follows:\n";
+  CR();
+  GMD_CODE_START("C++");
+  TRDISP(mathq::unit_imaginary::i);
+  TRDISP(mathq::unit_quaternion::j);
+  TRDISP(mathq::unit_quaternion::k);
+  GMD_CODE_END();
+
+  OUTPUT("Unlike the standard C++ `i`, which is an operator, the Mathématiques `i`, `j`, and `k` are constants");
 
   GMD_HEADER2("Arithmetic");
 
+  OUTPUT("The 4 fundamental arithmetic operators can be used with quaternions.");
+
+  OUTPUT("Mathématiques supports the four arithmetic operators for quaternions:");
+  CR();
   GMD_CODE_START("C++");
-
-  FormatDataVector::string_opening = "{\n";
-  FormatDataVector::max_elements_per_line = 1;
-  FormatDataVector::string_endofline = "\n";
-  ECHO_CODE(auto v = Vector<Quaternion<double>>({16 + 2 * i + 3 * j + 13 * k,
-                                                 5 + 11 * i + 10 * j + 8 * k,
-                                                 9 + 7 * i + 6 * j + 12 * k,
-                                                 4 + 14 * i + 15 * j + 1 * k}));
-
-  ECHO_CODE(auto v2 = Vector<Quaternion<double>>({0.53767 + 0.86217 * i - 0.43359 * j + 2.7694 * k,
-                                                  1.8339 + 0.31877 * i + 0.34262 * j - 1.3499 * k,
-                                                  -2.2588 - 1.3077 * i + 3.5784 * j + 3.0349 * k}));
+  TRDISP(q1+q2);
+  TRDISP(q1-q2);
+  TRDISP(q1*q2);
+  TRDISP(q2/q1);
   GMD_CODE_END();
+
 
   GMD_HEADER2("Methods");
 
@@ -166,6 +170,7 @@ int main() {
   OUTPUT("> _φ_ ≐  cos<sup-1></sup>( _a_/||_q_|| ). \n");
   OUTPUT("and  \n");
   OUTPUT("> **n\u0302** ≐ **v**/||**v**||\n");
+  OUTPUT("Note that for complex numbers **n\u0302** = +i or -i.  \n");
 
 
   OUTPUT("| syntax | modifies q? | description | ");
@@ -195,92 +200,82 @@ int main() {
   CR();
 
 
+  OUTPUT("A few examples are shown below."); 
+
+  CR();
+  GMD_CODE_START("C++");
+  TRDISP(q1);
+  TRDISP(q1.real());
+  TRDISP(q1.imag());
+  TRDISP(q1.jmag());
+  TRDISP(q1.kmag());
+  TRDISP(q1.abs());
+  TRDISP(q1.scalar());
+  TRDISP(q1.vector());
+  TRDISP(q1.vabs());
+  TRDISP(q1.unitvector());
+  TRDISP(q1.angle());
+  TRDISP(q1.polar());
+  TRDISP(q1.matrix2by2());
+  GMD_CODE_END();
+
+  // MOUT << "sizeof tuple = " << display::tuple_size_v<std::tuple<double, double, Vector<double, 3>>> << endl;
+
+  MOUT << "typename = "  << getTypeName(q1.polar()) << endl;
 
 
   GMD_HEADER2("Functions");
+  CR();
+  OUTPUT("Mathématiques supports several quaternion functions.  These are listed in detail in the section on functions.");
+  OUTPUT("Below are a few examples.\n");
+  CR();
 
-  // exp(log(q)) = q always if v!=0
-  // log(exp(q)) = q sometimes
-  GMD_CODE_START("C++");
-  TRDISP(v);
-  TRDISP(exp(v));
-  TRDISP(v2);
-  TRDISP(log(v2));
-
-  TRDISP(log(exp(v)));
-  TRDISP(exp(log(v)));
-  TRDISP(log(exp(v2)));
-  TRDISP(exp(log(v2)));
-
-  TRDISP(log(Quaternion<double>(2, 0, 0, 0)));
-  TRDISP(log(Quaternion<double>(-2, 0, 0, 0)));
 
   CR();
-  GMD_CODE_END();
-
-  OUTPUT("Mathématiques supports the four arithmetic operators for quaternions:");
-  CR();
-  GMD_CODE_START("C++");
-  TRDISP(q1 + q2);
-  TRDISP(q1 - q2);
-  TRDISP(q1 * q2);
-  TRDISP(q2 / q1);
-  GMD_CODE_END();
-
-
-  OUTPUT("Mathématiques supports several methods");
-
-
   GMD_CODE_START("C++");
   TRDISP(q);
   TRDISP(exp(q));
-  TRDISP(exp(log(q)));
-  TRDISP(p);
-  TRDISP(log(p));
-  TRDISP(log(exp(p)));
-  TRDISP(q1);
-  MDISP(real(q1), imag(q1), jmag(q1), kmag(q1));
-  TRDISP(q1.scalar());
-  TRDISP(q1.vector());
-  TRDISP(+q1);
-  TRDISP(-q1);
-  TRDISP(abs(q1));
-  TRDISP(q1);
-  TRDISP(exp(q1));
-  TRDISP(log(q1));
-  TRDISP(log(exp(q1)));
-  ECHO_CODE(auto w = Quaternion<double>(-2.2434, -0.820493, 0.410247, 1.23074));
-  TRDISP(w);
-  TRDISP(log(w));
-  TRDISP(exp(log(q1)));
-  TRDISP(q1);
-  TRDISP(q1 * q1);
+  TRDISP(log(q));
   TRDISP(pow(q1, 2));
   TRDISP(pow(q1, 0.5));
-  TRDISP(pow(pow(q1, 0.5), 2));
-  TRDISP(q1.angle());
-  TRDISP(q1.abs());
-  TRDISP(q1.vabs());
-  TRDISP(q1.unitvector());
-  TRDISP(q1.abs());
-  TRDISP(normsqr(q1));
-  TRDISP(q1.invert());
-  TRDISP(q1);
-  TRDISP(q1.invert());
-  TRDISP(q1);
   TRDISP(inv(q1));
   TRDISP(conj(q1));
-  TRDISP(~q1);
-  TRDISP(q1.matrix2by2());
+  GMD_CODE_END();
+
+
+  GMD_HEADER2("Functions");
   CR();
-  TRDISP(q2 * inv(q1));
-  TRDISP(abs(q1 * q2));
-  TRDISP(q2);
-  TRDISP(abs(q2));
+  OUTPUT("Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have quaternions as their underlying type.");
+  OUTPUT("Below is an example of container math with quaternions.  Mixed math is allowed.\n");
+  CR();
+
+
+
+  FormatDataVector::string_opening = "{\n";
+  FormatDataVector::max_elements_per_line = 1;
+  FormatDataVector::string_endofline = "\n";
+  GMD_CODE_START("C++");
+  ECHO_CODE(auto v = Vector<Quaternion<double>>({ 16 + 2*i + 3*j + 13*k,
+                                                 5 + 11*i + 10*j + 8*k,
+                                                 9 + 7*i + 6*j + 12*k,
+                                                 4 + 14*i + 15*j + 1*k }));
   GMD_CODE_END();
 
 
   GMD_CODE_START("C++");
+  TRDISP(v);
+  TRDISP(q);
+  CR();
+  TRDISP(v + q);
+  CR();
+  TRDISP(exp(v));
+  CR();
+  // TRDISP(exp(v) + v);
+  // TRDISP(exp(v) + 1);
+  // TRDISP(exp(v) + 2.3);
+  // TRDISP(exp(v) + complex(1,2));
+  // TRDISP(exp(v) + Imaginary<double>(2));
+  // TRDISP(exp(v) + Quaternion<double>(1, 2, -1, -3));
   GMD_CODE_END();
 
   return 0;

@@ -62,6 +62,11 @@
 
 
 ### Miscellaneous Small Features
+* BUG: let  `v = Vector<Quaternion<double>>`
+  * `(exp(v) + int)` works
+  * `(exp(v) + double)` works
+  * `(exp(v) + complex)` works
+  * `(exp(v) + quaternion)` doesn;t compile
 * use https://doxygen.nl/manual/docblocks.html os similar to generate method and function docs?
 * reformat all files using VSCode plugin
 * all objects should ave .invert() and conjugate(), not .inv and .conj

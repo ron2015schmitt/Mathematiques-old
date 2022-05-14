@@ -22,15 +22,15 @@ USAGE: python3 createrev.py COMPATIBLE_VERSION_MATHQ_FILE TAG_FILE_MATHQ TAG_ANN
 """
 
 n = len(sys.argv)
-if n != 4:
+if n != 5:
     print("Invalid number of command line arguments ({})\n".format(n) + usage)
     sys.exit(1)
 
 
 COMPATIBLE_VERSION_MATHQ_FILE = sys.argv[1]   # input
-TAG_FILE_MATHQ = sys.argv[2]       # output
-TAG_ANNOTATION_FILE = sys.argv[3]  # output
-
+CPP_VERSION_FILE = sys.argv[2]   # input
+TAG_FILE_MATHQ = sys.argv[3]       # output
+TAG_ANNOTATION_FILE = sys.argv[4]  # output
 
 # get DIR_MATHQ, the top-level dir for this repo
 filename = inspect.getframeinfo(inspect.currentframe()).filename
@@ -47,6 +47,13 @@ env = bashutil.source(COMPATIBLE_VERSION_MATHQ_FILE)
 COMPATIBLE_VERSION_MATHQ = env["COMPATIBLE_VERSION_MATHQ"]
 # print(COMPATIBLE_VERSION_MATHQ)
 
+# get the C++ version
+print("  reading from: "+CPP_VERSION_FILE)
+file1 = open(CPP_VERSION_FILE, 'r')
+CPP_VERSION_FILE = file1.readline()
+file1.close()
+# print(CPP_VERSION_FILE)
+
 
 # create a new tag
 TAG_NEW = "v" + COMPATIBLE_VERSION_MATHQ
@@ -60,7 +67,7 @@ else:
     REV = len(VERSIONS)
 #print("REV={}".format(REV))
 
-FULL_TAG = "{}.{}".format(TAG_NEW, REV)
+FULL_TAG = "{}.{}".format(TAG_NEW, REV)+"-"+CPP_VERSION_FILE
 print("  new tag="+FULL_TAG)
 
 print("  writing to: "+TAG_FILE_MATHQ)

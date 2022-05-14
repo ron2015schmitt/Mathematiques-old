@@ -49,6 +49,7 @@ ifdef COMPATIBLE_VERSION_MATHQ_FILE
 	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
 	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
 endif
+	@$(call echovar,CPP_VERSION_FILE)
 	@$(call echovar,TAG_MATHQ)
 	@$(call hr)
 	@echo

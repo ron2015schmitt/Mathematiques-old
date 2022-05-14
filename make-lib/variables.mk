@@ -66,6 +66,7 @@ CREATE_RUN := $(DIR_MATHQ)/scripts/createrun.bash
 
 # static variables
 TAG_ANNOTATION_FILE := $(DIR_MATHQ)/versioning/tag.annotation.mathq.out.txt
+CPP_VERSION_FILE := $(DIR_MATHQ)/versioning/c++.version.mathq
 VERSION_HEADER_FILE_MATHQ := $(DIR_MATHQ)/include/version_mathq.h
 COMPATIBLE_VERSION_MATHQ_FILE := $(DIR_MATHQ)/versioning/compatible.version.master.record.mathq
 

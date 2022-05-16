@@ -18,7 +18,7 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 cmd = "python3 " + ' '.join(sys.argv)
 
 usage="""
-USAGE: python3 createdocbranch.py TAG_FILE_MATHQ --chapters CHAPTER1 ... [--nodes CHAPTER_WITH_OWN_MAKEFILE1 ...]
+USAGE: python3 createdocbranch.py TAG_FILE_MATHQ --chapters CHAPTER1 ... [--branches CHAPTER_WITH_OWN_MAKEFILE1 ...]
 
 """
 
@@ -45,11 +45,9 @@ if sys.argv[2] != "--chapters":
 
 NAMES = []
 CHAPTERS = {}
-skipfound = False
 Nchapters = 0
 for i in range(3,N):
-  if sys.argv[i] == "--nodes":
-    skipfound = True
+  if sys.argv[i] == "--branches":
     break
   else:
     name = sys.argv[i]
@@ -70,7 +68,7 @@ print("NAMES={}".format(NAMES))
 #print("CHAPTERS={}".format(CHAPTERS))
 
 
-# process --nodes args (ie skip the README gen because it has a makefile, should be called branches)
+# process --branches args (ie skip the README gen because it has a makefile, should be called branches)
 for i in range(i+1,N):
     name = sys.argv[i]
     print("Chapter '{}' has a Makefile. skipping README generation for this chapter...".format(name))
@@ -99,6 +97,13 @@ fn = "body.temp.md"
 with open(fn, 'r') as f:
   body = f.read()
 
+fn = "title.src.md"
+if os.path.exists(fn):
+  print(fn+": found")
+  with open(fn) as f:
+    title_text = f.read()
+print("title_text=",title_text)
+
 # read in node.json, if exists
 data_file = "node.json"
 if os.path.exists(data_file):
@@ -106,9 +111,9 @@ if os.path.exists(data_file):
   with open(data_file) as f:
     node = json.load(f)
 else:
-  print(data_file+": NOT found. Assuming Top level of User Guide and using default node")
+  print(data_file+": NOT found. Assuming Top level of User Manual and using default node")
   node = {
-    "title": "User Guide",
+    "title": title_text,
     "prefix": "",
     "level": 1,
     "header": MATHQ_TITLE,

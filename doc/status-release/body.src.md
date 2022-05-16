@@ -2,17 +2,50 @@
 
 Currently, in 2022, Mathématiques is undergoing the final changes to make it sponsorship-ready.  This process includes full documentation in markdown, finalizing the syntax, and code refactoring.
 
+## News 
 
-## **v3.4** Documentation Refactoring
+The first step of refactoring has been completed.
+
++ v3.4 Documenation
+  + Full refactoring of the online documentation
+    + expanable table of contents header
+    + navigation footer
+
+## Coming soon
+
++ v3.5 Documenation
+  + Rewritten User Manual
+  + Complete _Usage Guide_, covering all the functionality
+  + New _Developer Guide_
+
++ v3.6 Indexing
+  + Refactor of vector/matrix/tensor indexing, including
+    + new index/iterator types such as slices similar to Fortan and Python
+
++ v3.7 Display 
+  + Refactor of Display
+
++ v3.8 Debugging Modes
+  + Refactor of Debugging Modes
+
++ v4.0+ 
+  + More matrix types
+  + covariant and contravariant tensors
+  + tensor operations
+  + curvilinear coordinate systems
+
+## Release Notes
+
+### **v3.4** Documentation Refactoring
   + Full refactoring of the online documentation
   + expanable table of contents header
   + navigation footer
 
-## **v3.3** Build Process Refactoring
+### **v3.3** Build Process Refactoring
   + The build process has been fully refactored, simplified, and streamlined
   + The documentation refactoring has begun
   
-## **v3.2** First Official Release
+### **v3.2** First Official Release
 
 **Design**
   + Simple Matlab-like syntax with no run-time cost

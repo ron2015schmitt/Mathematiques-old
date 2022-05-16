@@ -1,1 +1,1 @@
-Usage Guide: Syntax, Data types, Functions, etc
+Usage Guide: Syntax, Data Types, Functions, etc

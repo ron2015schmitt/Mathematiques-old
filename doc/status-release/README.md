@@ -1,17 +1,17 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.54-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
 
 <details>
 
-<summary>User Guide</summary>
+<summary>User Manual</summary>
 
-# [User Guide](../README.md)<br>
+# [User Manual](../README.md)<br>
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
 3. _Status, Release Notes & Planned Work_ <br>
 4. [Description and Example Usage](../description-examples/README.md)<br>
 5. [Installation](../installation/README.md)<br>
 6. [Your First Mathématiques Project](../first-project/README.md)<br>
-7. [Usage Guide: Syntax, Data types, Functions, etc](../usage-guide/README.md)<br>
+7. [Usage Guide: Syntax, Data Types, Functions, etc](../usage-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
 10. [Developer Guide: Modifying and Extending Mathématiques](../developer-guide/README.md)<br>
@@ -27,17 +27,50 @@
 
 Currently, in 2022, Mathématiques is undergoing the final changes to make it sponsorship-ready.  This process includes full documentation in markdown, finalizing the syntax, and code refactoring.
 
+## News 
 
-## **v3.4** Documentation Refactoring
+The first step of refactoring has been completed.
+
++ v3.4 Documenation
+  + Full refactoring of the online documentation
+    + expanable table of contents header
+    + navigation footer
+
+## Coming soon
+
++ v3.5 Documenation
+  + Rewritten User Manual
+  + Complete _Usage Guide_, covering all the functionality
+  + New _Developer Guide_
+
++ v3.6 Indexing
+  + Refactor of vector/matrix/tensor indexing, including
+    + new index/iterator types such as slices similar to Fortan and Python
+
++ v3.7 Display 
+  + Refactor of Display
+
++ v3.8 Debugging Modes
+  + Refactor of Debugging Modes
+
++ v4.0+ 
+  + More matrix types
+  + covariant and contravariant tensors
+  + tensor operations
+  + curvilinear coordinate systems
+
+## Release Notes
+
+### **v3.4** Documentation Refactoring
   + Full refactoring of the online documentation
   + expanable table of contents header
   + navigation footer
 
-## **v3.3** Build Process Refactoring
+### **v3.3** Build Process Refactoring
   + The build process has been fully refactored, simplified, and streamlined
   + The documentation refactoring has begun
   
-## **v3.2** First Official Release
+### **v3.2** First Official Release
 
 **Design**
   + Simple Matlab-like syntax with no run-time cost
@@ -91,6 +124,6 @@ Currently, in 2022, Mathématiques is undergoing the final changes to make it sp
   + CI/CT using Docker images in progress
 
 
-| ⇦ <br />[License](../license/README.md)  | [User Guide](../README.md)<br />Status, Release Notes & Planned Work<br /><img width=1000/> | ⇨ <br />[Description and Example Usage](../description-examples/README.md)   |
+| ⇦ <br />[License](../license/README.md)  | [User Manual](../README.md)<br />Status, Release Notes & Planned Work<br /><img width=1000/> | ⇨ <br />[Description and Example Usage](../description-examples/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

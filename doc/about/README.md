@@ -1,10 +1,10 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.54-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
 
 <details>
 
-<summary>User Guide</summary>
+<summary>User Manual</summary>
 
-# [User Guide](../README.md)<br>
+# [User Manual](../README.md)<br>
 
 1. _About_ <br>
 2. [License](../license/README.md)<br>
@@ -12,7 +12,7 @@
 4. [Description and Example Usage](../description-examples/README.md)<br>
 5. [Installation](../installation/README.md)<br>
 6. [Your First Mathématiques Project](../first-project/README.md)<br>
-7. [Usage Guide: Syntax, Data types, Functions, etc](../usage-guide/README.md)<br>
+7. [Usage Guide: Syntax, Data Types, Functions, etc](../usage-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
 10. [Developer Guide: Modifying and Extending Mathématiques](../developer-guide/README.md)<br>
@@ -122,6 +122,6 @@ Other configurations are of course possible with modification.
 /home/rs2015/Mathematiques/doc
 
 
-| ⇦ <br />  | [User Guide](../README.md)<br />About<br /><img width=1000/> | ⇨ <br />[License](../license/README.md)   |
+| ⇦ <br />  | [User Manual](../README.md)<br />About<br /><img width=1000/> | ⇨ <br />[License](../license/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

@@ -10,7 +10,7 @@ include $(DIR_MATHQ)/make-lib/help.mk
 
 # add subdir nodefiles as target
 README.md: $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ) body.temp.md title.src.md
-	python3 $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)  --chapters $(CHAPTERS)  --nodes $(CHAPTER_BRANCHES)
+	python3 $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ)  --chapters $(CHAPTERS)  --branches $(CHAPTER_BRANCHES)
 
 
 # MAKE all subdir README files (used for dsubdirs that do NOT have a Makefile)

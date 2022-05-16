@@ -17,9 +17,6 @@ _Mathématiques distinguishes itself from other libraries by an elegance and ver
   + [EXAMPLE 2: Complicated Element-wise `Vector` math](#example-2)
   + [EXAMPLE 3: Linear Algebra](#example-3)
   + [EXAMPLE 4: Complicated Linear Algebra](#example-4)
-+ [New](#new)
-+ [Coming soon](#coming-soon)
-+ [Documentation](#documentation)
 
 
 ## Features
@@ -168,40 +165,3 @@ u|A|v = 12;
 u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30; 
 ```
 
-
-
-## News 
-
-The first step of refactoring has been completed.
-
-+ v3.4 Documenation
-  + Full refactoring of the online documentation
-    + expanable table of contents header
-    + navigation footer
-
-## Coming soon
-
-+ v3.5 Documenation
-  + Complete _Coding Guide_, covering all the functionality
-  + New _Developer Guide_
-
-+ v3.6 Indexing
-  + Refactor of vector/matrix/tensor indexing, including
-    + new index/iterator types such as slices similar to Fortan and Python
-
-+ v3.7 Display 
-  + Refactor of Display
-
-+ v3.8 Debugging Modes
-  + Refactor of Debugging Modes
-
-+ v4.0+ 
-  + More matrix types
-  + covariant and contravariant tensors
-  + tensor operations
-  + curvilinear coordinate systems
-
-
-## Documentation
-
-[User Guide](doc/README.md)

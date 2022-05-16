@@ -1,17 +1,17 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.54-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
 
 <details>
 
-<summary>User Guide</summary>
+<summary>User Manual</summary>
 
-# [User Guide](../../README.md)<br>
+# [User Manual](../../README.md)<br>
 1. [About](../../about/README.md)<br>
 2. [License](../../license/README.md)<br>
 3. [Status, Release Notes & Planned Work](../../status-release/README.md)<br>
 4. [Description and Example Usage](../../description-examples/README.md)<br>
 5. [Installation](../../installation/README.md)<br>
 6. [Your First Mathématiques Project](../../first-project/README.md)<br>
-7. _Usage Guide: Syntax, Data types, Functions, etc_ <br>
+7. _Usage Guide: Syntax, Data Types, Functions, etc_ <br>
 8. [Benchmarks](../../benchmarks/README.md)<br>
 9. [Tests](../../test/README.md)<br>
 10. [Developer Guide: Modifying and Extending Mathématiques](../../developer-guide/README.md)<br>
@@ -23,9 +23,9 @@
 
 <details>
 
-<summary>Usage Guide: Syntax, Data types, Functions, etc</summary>
+<summary>Usage Guide: Syntax, Data Types, Functions, etc</summary>
 
-# [7. Usage Guide: Syntax, Data types, Functions, etc](../README.md)<br>
+# [7. Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br>
 
 7.1. _User Guide Notation_ <br>
 7.2. [Scalar Types](../scalars/README.md)<br>
@@ -124,6 +124,6 @@ Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the 
 
 
 
-| ⇦ <br />  | [Usage Guide: Syntax, Data types, Functions, etc](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types](../scalars/README.md)   |
+| ⇦ <br />  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types](../scalars/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

@@ -109,7 +109,7 @@ sigma = 7.4162;
 <a name="example-3"></a>
 ### EXAMPLE 3: Linear Algebra
 
-![A dot V](images/A-dot-v.png)
+![A dot V](A-dot-v.png)
 
 The inner product of linear algebra is designated by the `|` operator, eg ```A | v```.  You can optionally enclose in parentheses so that it looks similar to [Dirac's bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation)): ```(A | v)```.
 
@@ -138,7 +138,7 @@ A|v = {0, 2, 4};
 <a name="example-4"></a>
 ### EXAMPLE 4: Complicated Linear Algebra
 
-![u dot A dot V](images/u-dot-A-dot-v.png  | width=65px)
+![u dot A dot V](u-dot-A-dot-v.png  | width=65px)
 
 This example is the bilinear form for a matrix ```A``` and two vectors ```u``` and ```v```.  From context, ```u``` behaves as a row vector and ```v``` behaves as acolumn vector.
 

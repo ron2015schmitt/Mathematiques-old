@@ -1,11 +1,11 @@
 
 
-# Mathématiques v3.5.51-c++17
+# Mathématiques v3.5.52-c++17
 
 
-## User Guide
+## User Manual
 
-[User Guide](doc/README.md)
+[User Manual](doc/README.md)
 
 
 

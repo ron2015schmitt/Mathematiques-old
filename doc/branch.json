@@ -4,7 +4,7 @@
     "name": "about",
     "skip-readme": false,
     "title": "About",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "1.",
     "src": "about/template.md",
     "dest": "about/README.md",
@@ -13,7 +13,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": null,
     "next": "license"
@@ -23,7 +23,7 @@
     "name": "license",
     "skip-readme": false,
     "title": "License",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "2.",
     "src": "license/template.md",
     "dest": "license/README.md",
@@ -32,7 +32,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "about",
     "next": "status-release"
@@ -42,7 +42,7 @@
     "name": "status-release",
     "skip-readme": false,
     "title": "Status, Release Notes & Planned Work",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "3.",
     "src": "status-release/template.md",
     "dest": "status-release/README.md",
@@ -51,7 +51,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "license",
     "next": "description-examples"
@@ -61,7 +61,7 @@
     "name": "description-examples",
     "skip-readme": false,
     "title": "Description and Example Usage",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "4.",
     "src": "description-examples/template.md",
     "dest": "description-examples/README.md",
@@ -70,7 +70,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "status-release",
     "next": "installation"
@@ -80,7 +80,7 @@
     "name": "installation",
     "skip-readme": false,
     "title": "Installation",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "5.",
     "src": "installation/template.md",
     "dest": "installation/README.md",
@@ -89,7 +89,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "description-examples",
     "next": "first-project"
@@ -99,7 +99,7 @@
     "name": "first-project",
     "skip-readme": false,
     "title": "Your First Math\u00e9matiques Project",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "6.",
     "src": "first-project/template.md",
     "dest": "first-project/README.md",
@@ -108,7 +108,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "installation",
     "next": "usage-guide"
@@ -118,7 +118,7 @@
     "name": "usage-guide",
     "skip-readme": true,
     "title": "Usage Guide: Syntax, Data types, Functions, etc",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "7.",
     "src": "usage-guide/template.md",
     "dest": "usage-guide/README.md",
@@ -127,7 +127,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "first-project",
     "next": "benchmarks"
@@ -137,7 +137,7 @@
     "name": "benchmarks",
     "skip-readme": false,
     "title": "Benchmarks",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "8.",
     "src": "benchmarks/template.md",
     "dest": "benchmarks/README.md",
@@ -146,7 +146,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "usage-guide",
     "next": "test"
@@ -156,7 +156,7 @@
     "name": "test",
     "skip-readme": false,
     "title": "Tests",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "9.",
     "src": "test/template.md",
     "dest": "test/README.md",
@@ -165,7 +165,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "benchmarks",
     "next": "developer-guide"
@@ -175,7 +175,7 @@
     "name": "developer-guide",
     "skip-readme": false,
     "title": "Developer Guide: Modifying and Extending Math\u00e9matiques",
-    "version": "v3.5.51-c++17",
+    "version": "v3.5.52-c++17",
     "prefix": "10.",
     "src": "developer-guide/template.md",
     "dest": "developer-guide/README.md",
@@ -184,7 +184,7 @@
       "title": "User Guide",
       "prefix": "",
       "level": 1,
-      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
+      "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.52-c++17</h1>"
     },
     "prev": "test",
     "next": null

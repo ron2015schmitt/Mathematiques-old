@@ -8,7 +8,7 @@ The code was resurrected in 2019: refactored, extended, improved, simplified, an
 
 In early 2020, the project was officially launched as _Mathématiques_ and uploaded to a github!
 
-Currently, in 2022, Mathématiques is undergoing changes to make it sponsor-ready.  This process includes full documentation in markdown and refactoring of some of the code.
+Currently, in 2022, Mathématiques is undergoing changes to make it sponsorship-ready.  This process includes full documentation in markdown, finalizing the syntax,  refactoring of some of the code.
 
 ## Techniques
 

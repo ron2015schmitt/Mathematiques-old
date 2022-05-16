@@ -1,8 +1,4 @@
 
-
-# Mathématiques v3.5.50-c++17
-
-
 ## User Guide
 
 [User Guide](doc/README.md)

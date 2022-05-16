@@ -1,6 +1,12 @@
 ## Goal
 
-The goal of the Mathématiques project is to provide a _library_ for _numerical computation_, _computation sciences_, _engineering simulations_, and _computer graphics_ that is
+The goal of the Mathématiques project is to provide a _library_ for 
+* numerical computation
+* computation sciences
+* engineering simulations
+* computer graphics
+
+that is
 * user friendly
 * feature rich
 * flexible

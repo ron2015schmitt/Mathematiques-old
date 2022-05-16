@@ -86,9 +86,11 @@ doc: FORCE
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
-CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/createdoctop.py
-README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.src.md title.src.md
-	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.src.md
+CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/doc_create_top.py
+body.temp.md: body.src.md doc/about/part-one.src.md
+	@cat body.src.md doc/about/part-one.src.md > $@
+README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ)  title.src.md body.temp.md
+	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.temp.md 
 	@chmod a-w README.md
 
 some: README.md

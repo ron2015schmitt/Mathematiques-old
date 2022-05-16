@@ -87,8 +87,8 @@ sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
 CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/createdoctop.py
-README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.md title.md
-	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.md
+README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.src.md title.src.md
+	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.src.md
 	@chmod a-w README.md
 
 some: README.md

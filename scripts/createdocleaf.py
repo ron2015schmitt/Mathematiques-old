@@ -46,7 +46,7 @@ with open(name+'/node.json') as f:
 # read subdir/body.md
 #############################################################
 
-with open(name+'/body.md') as f:
+with open(name+'/body.temp.md') as f:
   body = f.read()
 
 

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 15 19:27:17 2022
+# Make data base, printed on Mon May 16 13:04:57 2022
 
 # Variables
 
@@ -84,12 +84,11 @@ LNK_FFLAGS = -lgfortran +fgcse-after-reload
 VSCODE_CWD = /mnt/c/Program Files/Microsoft VS Code
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 84)
 LIBNAME_MATHQ = mathq
+ 
 # makefile (from '/home/rs2015/Mathematiques/make-lib/style.mk', line 29)
 GRAYBRIGHT_BG := '\e[47m'
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 81)
 LIB_LAPACK := -llapack -lg2c
-# makefile (from 'Makefile', line 91)
-CREATE_TOP := /home/rs2015/Mathematiques/scripts/createdoctop.py
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -154,7 +153,7 @@ YELLOW_BRIGHT := '\e[93m'
 CYAN_BRIGHT := '\e[96m'
 # environment
 DISPLAY = :0
-# makefile (from 'Makefile', line 191)
+# makefile (from 'Makefile', line 201)
 define HELP
 #############################################################################
 #   Mathématiques $(shell cat $(TAG_FILE_MATHQ)) Top-Level Makefile
@@ -220,7 +219,7 @@ RUN_FILES = $(wildcard */run)
 # environment
 LOGNAME = rs2015
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # makefile (from '/home/rs2015/Mathematiques/make-lib/style.mk', line 75)
 hr =  echo -e $(BOLD)"-------------------------------------------------------------------------------"$(BOLD_OFF)
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 17)
@@ -287,6 +286,8 @@ DIR_MATHQ := /home/rs2015/Mathematiques
 MAKE_COMMAND := make
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 53)
 TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
+# makefile (from 'Makefile', line 89)
+CREATE_DOC_TOP := /home/rs2015/Mathematiques/scripts/createdoctop.py
 # makefile (from '/home/rs2015/Mathematiques/make-lib/style.mk', line 34)
 GREEN_BG := '\e[42m'
 # default
@@ -299,7 +300,6 @@ OPTIMIZE = -O2
 MAKEFLAGS = pqrR
 # environment
 MFLAGS = -pqrR
- 
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # makefile (from '/home/rs2015/Mathematiques/make-lib/style.mk', line 5)
@@ -373,7 +373,7 @@ CYAN_BRIGHT_BG := '\e[106m'
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 23)
 MAKECLEAN_SUBDIRS = $(addprefix makeclean_,$(MAKE_SUBDIRS))
 # variable set hash-table stats:
-# Load=166/1024=16%, Rehash=0, Collisions=31/243=13%
+# Load=166/1024=16%, Rehash=0, Collisions=33/243=14%
 
 # Pattern-specific Variable Values
 
@@ -388,7 +388,8 @@ MAKECLEAN_SUBDIRS = $(addprefix makeclean_,$(MAKE_SUBDIRS))
 # Implicit Rules
 
 run_%: FORCE
-#  recipe to execute (from 'Makefile', line 101):
+ 
+#  recipe to execute (from 'Makefile', line 99):
 	cd $* && ./run
 
 # 1 implicit rules, 0 (0.0%) terminal.
@@ -436,7 +437,7 @@ myclean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 114):
+#  recipe to execute (from 'Makefile', line 124):
 	\rm -f README.md
 
 .PHONY: run gitignore clean myclean cleanall
@@ -447,7 +448,7 @@ myclean:
 # Not a target:
 make-lib/dirmathq.mk:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-15 09:51:20.206193552
+#  Last modified 2022-05-15 20:22:07.347883538
 #  File has been updated.
 #  Successfully updated.
 
@@ -473,7 +474,7 @@ git: versioning
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 149):
+#  recipe to execute (from 'Makefile', line 159):
 	@echo
 	@git remote update origin
 	@if [[ $$(git fetch --dry-run) ]]
@@ -514,7 +515,7 @@ git: versioning
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-15 09:48:43.946193439
+#  Last modified 2022-05-16 12:51:40.630165892
 #  File has been updated.
 #  Successfully updated.
 
@@ -527,7 +528,7 @@ run_test/:
 versioning: FORCE
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
-#  Last modified 2022-05-15 09:51:20.296193552
+#  Last modified 2022-05-15 20:22:44.257883739
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -581,7 +582,6 @@ benchmark: FORCE
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 80):
- 
 	\cd $(DIR_MATHQ)/benchmark && make -j all 
 
 # Not a target:
@@ -601,7 +601,7 @@ help:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 224):
+#  recipe to execute (from 'Makefile', line 234):
 	@echo "$${HELP}"
 
 default: all
@@ -626,6 +626,12 @@ some: README.md
 #  File has not been updated.
 
 # Not a target:
+title.src.md:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 body.md:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -634,7 +640,7 @@ body.md:
 # Not a target:
 /home/rs2015/Mathematiques/make-lib/variables.mk:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-15 09:31:36.856192695
+#  Last modified 2022-05-15 20:13:42.237880794
 #  File has been updated.
 #  Successfully updated.
 
@@ -648,13 +654,13 @@ pull:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 144):
+#  recipe to execute (from 'Makefile', line 154):
 	git pull origin master
 
 # Not a target:
 /home/rs2015/Mathematiques/make-lib/info.mk:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-15 10:40:03.256195669
+#  Last modified 2022-05-15 20:17:59.507882192
 #  File has been updated.
 #  Successfully updated.
 
@@ -663,7 +669,7 @@ run: run_benchmark/ run_examples/ run_sandbox/ run_test/
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 104):
+#  recipe to execute (from 'Makefile', line 102):
 	@echo -e ${BOLD}${GREEN}"All executables in all subdirectories PASSED"${DEFCLR}${NORMAL}
 	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
 
@@ -672,7 +678,7 @@ clean: myclean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 118):
+#  recipe to execute (from 'Makefile', line 128):
 	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
@@ -682,6 +688,7 @@ clean: myclean
 	\cd $(DIR_MATHQ)/include && make -j clean 
 	\cd $(DIR_MATHQ)/versioning && make -j clean 
 
+ 
 # Not a target:
 /home/rs2015/Mathematiques/make-lib/style.mk:
 #  Implicit rule search has been done.
@@ -689,18 +696,12 @@ clean: myclean
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-title.md:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
 cleanall: myclean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 129):
+#  recipe to execute (from 'Makefile', line 139):
 	\cd $(DIR_MATHQ)/doc && make -j cleanall 
 	\cd $(DIR_MATHQ)/sandbox && make -j cleanall
 	\cd $(DIR_MATHQ)/test && make -j cleanall
@@ -710,12 +711,12 @@ cleanall: myclean
 	\cd $(DIR_MATHQ)/include && make -j cleanall
 	\cd $(DIR_MATHQ)/versioning && make -j cleanall
 
-README.md: /home/rs2015/Mathematiques/scripts/createdoctop.py /home/rs2015/Mathematiques/versioning/tag.mathq.out.txt body.md title.md
+README.md: /home/rs2015/Mathematiques/scripts/createdoctop.py /home/rs2015/Mathematiques/versioning/tag.mathq.out.txt body.md title.src.md
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 93):
-	python3 $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
+#  recipe to execute (from 'Makefile', line 91):
+	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.md
 	@chmod a-w README.md
 
 doc: FORCE
@@ -802,20 +803,35 @@ info::
 	@$(call hr)
 	@echo
 
+info::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 109):
+	@echo
+	@$(call hr)
+	@$(call title,"top Makefile related")
+	@$(call echovar,MAKEFILE)
+	@$(call echovar,MAKEFILE_REL)
+	@$(call echovar,RUN_FILES)
+	@$(call echovar,RUN_SUBDIRS)
+	@$(call echovar,RUN_TARGETS)
+	@$(call echovar,CREATE_DOC_TOP)
+
 # files hash-table stats:
-# Load=41/1024=4%, Rehash=0, Collisions=1/100=1%
+# Load=41/1024=4%, Rehash=0, Collisions=1/102=1%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 64 / storage = 748 B / avg = 11 B
-# current buf: size = 8162 B / used = 748 B / count = 64 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 65 / storage = 764 B / avg = 11 B
+# current buf: size = 8162 B / used = 764 B / count = 65 / avg = 11 B
 
-# strcache performance: lookups = 139 / hit rate = 53%
+# strcache performance: lookups = 141 / hit rate = 53%
 # hash-table stats:
-# Load=64/8192=1%, Rehash=0, Collisions=1/139=1%
-# Finished Make data base on Sun May 15 19:27:17 2022
+# Load=65/8192=1%, Rehash=0, Collisions=1/141=1%
+# Finished Make data base on Mon May 16 13:04:57 2022
 
  

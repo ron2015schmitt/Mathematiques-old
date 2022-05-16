@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.48-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.49-c++17</h1>
 
 <details>
 
@@ -25,7 +25,6 @@
 
 # 1. About
 
-
 ## Goal
 
 The goal of the Mathématiques project is to provide a _library_ for _numerical computation_, _computation sciences_, _engineering simulations_, and _computer graphics_ that is
@@ -49,27 +48,15 @@ producing executables that are
 
 C++ was chosen for its efficiency and because it has the features, such as templating, needed to create a syntax.
 
-## Platform
-
-The initial platform chosen is
-* language
-  1. C++17 or higher
-* compiler
-  1. The GNU g++ compiler that supports C++17 XX or higher
-* OS
-  1. Linux: Ubuntu 20.05
-* packages
-  1. LAPACK: for the more advanced linear algebra functions: matrix inverse, and decompositions
-
-Other configurations are of course possible with modification.
-
-
-## Influences
+# Influences
 
 * Matlab
-* Python
 * Fortran95
 * Mathematica
+* Boost C++
+* Python
+
+
 
 ## History
 
@@ -87,10 +74,24 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 
-TODO: add Fortran C note.
+## Platform
+
+The initial platform chosen is
+* language
+  1. C++17 or higher
+* compiler
+  1. The GNU g++ compiler that supports C++17 XX or higher
+* OS
+  1. Linux: Ubuntu 20.05
+* packages
+  1. LAPACK: for the more advanced linear algebra functions: matrix inverse, and decompositions
+
+Other configurations are of course possible with modification.
 
 
 
+
+/home/rs2015/Mathematiques/doc
 
 
 | ⇦ <br />  | [User Guide](../README.md)<br />About<br /><img width=1000/> | ⇨ <br />[License](../license/README.md)   |

@@ -70,7 +70,7 @@ print("NAMES={}".format(NAMES))
 #print("CHAPTERS={}".format(CHAPTERS))
 
 
-# process --skip-readme args 
+# process --nodes args (ie skip the README gen because it has a makefile, should be called branches)
 for i in range(i+1,N):
     name = sys.argv[i]
     print("Chapter '{}' has a Makefile. skipping README generation for this chapter...".format(name))
@@ -95,7 +95,7 @@ MATHQ_TITLE = "<h1 style='border: 2px solid; text-align: center'>Mathématiques 
 
 # read in body file
 lines = []
-fn = "body.md"
+fn = "body.temp.md"
 with open(fn, 'r') as f:
   body = f.read()
 
@@ -116,17 +116,17 @@ else:
 
 print("node: "+str(node))
 
-# read in chapter/title.md for each chapter
+# read in chapter/title.src.md for each chapter
 for name in NAMES:
   lines = []
-  fn = name+"/title.md"
+  fn = name+"/title.src.md"
   with open(fn, 'r') as f:
     for line in f:
       lines.append(line.rstrip())
   if len(lines): 
     title = lines[0].strip()
   else:
-    title = "File '{}/title.md' not found.".format(name)  
+    title = "File '{}/title.src.md' not found.".format(name)  
   CHAPTERS[name]["title"] = title
 
 

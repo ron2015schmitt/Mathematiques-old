@@ -86,8 +86,9 @@ doc: FORCE
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
-README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md title.md
-	python3 $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
+CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/createdoctop.py
+README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.md title.md
+	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.md
 	@chmod a-w README.md
 
 some: README.md
@@ -102,6 +103,18 @@ run: $(RUN_TARGETS)
 	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
 #	@echo " RUN_FILES=$(RUN_FILES)"
 #	@echo " RUN_TARGETS=$(RUN_TARGETS)"
+
+
+info::
+	@echo
+	@$(call hr)
+	@$(call title,"top Makefile related")
+	@$(call echovar,MAKEFILE)
+	@$(call echovar,MAKEFILE_REL)
+	@$(call echovar,RUN_FILES)
+	@$(call echovar,RUN_SUBDIRS)
+	@$(call echovar,RUN_TARGETS)
+	@$(call echovar,CREATE_DOC_TOP)
 
 #---------------------------------------------------------------------
 # cleaning recipes

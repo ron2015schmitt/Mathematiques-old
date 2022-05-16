@@ -59,9 +59,6 @@ TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
 #  COMPATIBLE_VERSION_MATHQ_FILE should be a bash file with: export COMPATIBLE_VERSION_MATHQ=X.X
 
 #scripts
-CREATE_DOC_BRANCH := $(DIR_MATHQ)/scripts/createtoc.py
-CREATE_TOP := $(DIR_MATHQ)/scripts/createtop.py
-CREATE_DOC_LEAF := $(DIR_MATHQ)/scripts/createpage.py
 CREATE_RUN := $(DIR_MATHQ)/scripts/createrun.bash
 
 # static variables

@@ -1,5 +1,5 @@
 
-*in progress...*
+🚧 *in progress...*
 
 ## Topics to cover
 
@@ -9,7 +9,7 @@
    1. use `python3` not `python` in code
    2. how to run
 6. git tag versioning: ```files.matricks.vers```, ```reconfigure``` and ```make git```
-7. multi-threading
+7. multi-threading makefiles
 8. directories:
    1. ```example```
    1. ```test``` (including metacode for test generation)

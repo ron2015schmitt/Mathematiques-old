@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.50-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.51-c++17</h1>
 
 <details>
 
@@ -7,34 +7,23 @@
 # [User Guide](../README.md)<br>
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
-3. [Release Notes](../release-notes/README.md)<br>
-4. _Installation_ <br>
-5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
-6. [Code Examples](../examples/README.md)<br>
-7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
+3. [Status, Release Notes & Planned Work](../status-release/README.md)<br>
+4. [Description and Example Usage](../description-examples/README.md)<br>
+5. _Installation_ <br>
+6. [Your First Mathématiques Project](../first-project/README.md)<br>
+7. [Usage Guide: Syntax, Data types, Functions, etc](../usage-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. [Tests](../test/README.md)<br>
-10. [New Feature Plans](../feature-schedule/README.md)<br>
-11. [Developer Guide](../developer-guide/README.md)<br>
+10. [Developer Guide: Modifying and Extending Mathématiques](../developer-guide/README.md)<br>
 
 
 </details>
 
 
 
-# 4. Installation
+# 5. Installation
 
 
-
-## Download the source
-
-The first step is to clone the repo
-
-```bash
-git clone https://github.com/ron2015schmitt/Mathematiques.git
-```
-
-You now have a directory with all the Mathématiques source code
 
 ## Install Prerequisites
 
@@ -61,16 +50,45 @@ Docker build files and images are available with all of the prerequisites instal
 
 *The above images do NOT contain the Mathématiques library*
 
-## Run the configuration
+## Download the source
 
-cd into the ```Mathematiques``` directory and execute the configure command:
+The first step is to clone the repo from a Linux terminal
+
+```bash
+git clone https://github.com/ron2015schmitt/Mathematiques.git
+```
+
+You now have a directory with all the Mathématiques source code
+
+## Run the configuration and build the library
+
+From the same Linux terminal execute the following commands:
 
 ```bash
 cd Mathematiques
 ./configure
+make all
 ```
 
+## Testing
 
-| ⇦ <br />[Release Notes](../release-notes/README.md)  | [User Guide](../README.md)<br />Installation<br /><img width=1000/> | ⇨ <br />[Makefile / Using Mathématiques](../using-mathematiques/README.md)   |
+Execute the following commands to perform a quick test:
+
+```bash
+make run
+```
+
+After executing has completed, the last output line should read:
+
+```text
+All executables in all subdirectories PASSED
+```
+in green text.
+
+We do not yet have full code coverage testing.
+
+
+
+| ⇦ <br />[Description and Example Usage](../description-examples/README.md)  | [User Guide](../README.md)<br />Installation<br /><img width=1000/> | ⇨ <br />[Your First Mathématiques Project](../first-project/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

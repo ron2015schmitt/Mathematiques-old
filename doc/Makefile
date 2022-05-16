@@ -2,7 +2,7 @@
 # VARIABLES
 #############################################################
 
-CHAPTERS = about license release-notes installation using-mathematiques examples coding-guide benchmarks test feature-schedule developer-guide
+CHAPTERS = about license status-release description-examples installation first-project usage-guide benchmarks test developer-guide
 
 include ../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk

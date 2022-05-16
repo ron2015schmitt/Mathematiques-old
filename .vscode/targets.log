@@ -118,7 +118,7 @@ YELLOW_BG := '\e[48;5;3m'
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 78)
 INCDIR_MATHQ := /home/rs2015/Mathematiques/include
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 71)
-COMPATIBLE_VERSION_MATHQ = `. $(COMPATIBLE_VERSION_MATHQ_FILE) && echo "$${COMPATIBLE_VERSION_MATHQ}"`
+FEATURE_VERSION_MATHQ = `. $(FEATURE_VERSION_MATHQ_FILE) && echo "$${FEATURE_VERSION_MATHQ}"`
 # makefile (from '/home/rs2015/Mathematiques/make-lib/style.mk', line 32)
 RED_BG := '\e[41m'
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 10)
@@ -267,7 +267,7 @@ GRAYBRIGHT := '\e[37m'
 # environment
 NAME = ronbot-12700k
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 68)
-COMPATIBLE_VERSION_MATHQ_FILE := /home/rs2015/Mathematiques/versioning/compatible.version.master.record.mathq
+FEATURE_VERSION_MATHQ_FILE := /home/rs2015/Mathematiques/versioning/compatible.feature.version.master.record.mathq
 # makefile (from '/home/rs2015/Mathematiques/make-lib/variables.mk', line 34)
 ALL = 
 # automatic
@@ -771,8 +771,8 @@ info::
 	@$(call echovar,MAKECLEAN_SUBDIRS)
 	@$(call echovar,NOMAKE_SUBDIRS)
 	@$(call echovar,NOMAKECLEAN_SUBDIRS)
-	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
-	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
+	@$(call echovar,FEATURE_VERSION_MATHQ_FILE)
+	@$(call echovar,FEATURE_VERSION_MATHQ)
 	@$(call echovar,CPP_VERSION_FILE)
 	@$(call echovar,TAG_MATHQ)
 	@$(call hr)

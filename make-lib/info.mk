@@ -45,9 +45,9 @@ info::
 	@$(call echovar,MAKECLEAN_SUBDIRS)
 	@$(call echovar,NOMAKE_SUBDIRS)
 	@$(call echovar,NOMAKECLEAN_SUBDIRS)
-ifdef COMPATIBLE_VERSION_MATHQ_FILE
-	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
-	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
+ifdef FEATURE_VERSION_MATHQ_FILE
+	@$(call echovar,FEATURE_VERSION_MATHQ_FILE)
+	@$(call echovar,FEATURE_VERSION_MATHQ)
 endif
 	@$(call echovar,CPP_VERSION_FILE)
 	@$(call echovar,TAG_MATHQ)

@@ -1,15 +1,5 @@
 
 
-## Download the source
-
-The first step is to clone the repo
-
-```bash
-git clone https://github.com/ron2015schmitt/Mathematiques.git
-```
-
-You now have a directory with all the Mathématiques source code
-
 ## Install Prerequisites
 
 The following commands are required: `bash`, `python3`, `make`, `g++`, and `gfortran`.
@@ -35,11 +25,40 @@ Docker build files and images are available with all of the prerequisites instal
 
 *The above images do NOT contain the Mathématiques library*
 
-## Run the configuration
+## Download the source
 
-cd into the ```Mathematiques``` directory and execute the configure command:
+The first step is to clone the repo from a Linux terminal
+
+```bash
+git clone https://github.com/ron2015schmitt/Mathematiques.git
+```
+
+You now have a directory with all the Mathématiques source code
+
+## Run the configuration and build the library
+
+From the same Linux terminal execute the following commands:
 
 ```bash
 cd Mathematiques
 ./configure
+make all
 ```
+
+## Testing
+
+Execute the following commands to perform a quick test:
+
+```bash
+make run
+```
+
+After executing has completed, the last output line should read:
+
+```text
+All executables in all subdirectories PASSED
+```
+in green text.
+
+We do not yet have full code coverage testing.
+

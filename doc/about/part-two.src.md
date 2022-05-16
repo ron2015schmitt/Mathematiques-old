@@ -8,7 +8,6 @@ The code was resurrected in 2019: refactored, extended, improved, simplified, an
 
 In early 2020, the project was officially launched as _Mathématiques_ and uploaded to a github!
 
-Currently, in 2022, Mathématiques is undergoing changes to make it sponsorship-ready.  This process includes full documentation in markdown, finalizing the syntax,  refactoring of some of the code.
 
 ## Techniques
 
@@ -20,7 +19,7 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 The initial platform chosen is
 * language
-  1. C++17 or higher
+  1. C++17 or higher, necessary to create the syntax
 * compiler
   1. The GNU g++ compiler that supports C++17 XX or higher
 * OS

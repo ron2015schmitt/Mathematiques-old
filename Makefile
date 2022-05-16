@@ -102,7 +102,7 @@ run_%: FORCE
 
 run: $(RUN_TARGETS)
 	@echo -e ${BOLD}${GREEN}"All executables in all subdirectories PASSED"${DEFCLR}${NORMAL}
-	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
+#	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
 #	@echo " RUN_FILES=$(RUN_FILES)"
 #	@echo " RUN_TARGETS=$(RUN_TARGETS)"
 

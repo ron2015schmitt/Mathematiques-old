@@ -1,1 +1,1 @@
-Developer Guide
+Developer Guide: Modifying and Extending Mathématiques

@@ -1,12 +1,14 @@
-v3.5.50-c++17
+v3.5.51-c++17
 #!/bin/bash
 # version = Major.Minor
 # Minor should be manually updated any time new functionality is added.
 # Major should be manually incremented for major releases.
 # Both should be integers with no leading zeroes (ie NOT 2.01)
-# The Makefile will tack on a revision string (eg 2.1.21) for commits between changes.
-export COMPATIBLE_VERSION_MATHQ=3.5
-# V3.5  completing user guide
+# Do NOT include a revision string!!
+# The Makefile will tack on a revision string (to yield the full version strign eg. 2.1.21) for commits between changes.
+# This files documents features and functionality, not patches nor bug fixes
+export FEATURE_VERSION_MATHQ=3.5
+# V3.5  completing user guide, display changes and refactoring
 # V3.4  doc refactoring 
 # V3.3  massive refactoring of configure and make.  started doc refactoring.
 # V3.2  added IdentityMatrix, ConstDiagMatrix

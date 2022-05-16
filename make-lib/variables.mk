@@ -56,19 +56,19 @@ TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
 # These vairables are used only for building Matehmatiques
 # ie are not needed by the end user code
 #
-#  COMPATIBLE_VERSION_MATHQ_FILE should be a bash file with: export COMPATIBLE_VERSION_MATHQ=X.X
+#  FEATURE_VERSION_MATHQ_FILE should be a bash file with: export FEATURE_VERSION_MATHQ=X.X
 
 #scripts
 CREATE_RUN := $(DIR_MATHQ)/scripts/createrun.bash
 
 # static variables
 TAG_ANNOTATION_FILE := $(DIR_MATHQ)/versioning/tag.annotation.mathq.out.txt
-CPP_VERSION_FILE := $(DIR_MATHQ)/versioning/c++.version.mathq
+CPP_VERSION_FILE := $(DIR_MATHQ)/versioning/c++.version.src.txt
 VERSION_HEADER_FILE_MATHQ := $(DIR_MATHQ)/include/version_mathq.h
-COMPATIBLE_VERSION_MATHQ_FILE := $(DIR_MATHQ)/versioning/compatible.version.master.record.mathq
+FEATURE_VERSION_MATHQ_FILE := $(DIR_MATHQ)/versioning/feature.version.master.record.bash
 
 # dynamic variables
-COMPATIBLE_VERSION_MATHQ = `. $(COMPATIBLE_VERSION_MATHQ_FILE) && echo "$${COMPATIBLE_VERSION_MATHQ}"`
+FEATURE_VERSION_MATHQ = `. $(FEATURE_VERSION_MATHQ_FILE) && echo "$${FEATURE_VERSION_MATHQ}"`
 
 
 ####################################################################

@@ -1,10 +1,10 @@
 {
-  "index": 4,
+  "index": 5,
   "name": "installation",
   "skip-readme": false,
   "title": "Installation",
-  "version": "v3.5.50-c++17",
-  "prefix": "4.",
+  "version": "v3.5.51-c++17",
+  "prefix": "5.",
   "src": "installation/template.md",
   "dest": "installation/README.md",
   "level": 2,
@@ -12,10 +12,10 @@
     "title": "User Guide",
     "prefix": "",
     "level": 1,
-    "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.50-c++17</h1>"
+    "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>"
   },
-  "prev": "release-notes",
-  "next": "using-mathematiques",
-  "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.50-c++17</h1>\n\n<details>\n\n<summary>User Guide</summary>\n\n# [User Guide](../README.md)<br>\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Release Notes](../release-notes/README.md)<br>\n4. _Installation_ <br>\n5. [Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)<br>\n6. [Code Examples](../examples/README.md)<br>\n7. [Coding Guide / Syntax](../coding-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [New Feature Plans](../feature-schedule/README.md)<br>\n11. [Developer Guide](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
-  "footer": "\n\n| \u21e6 <br />[Release Notes](../release-notes/README.md)  | [User Guide](../README.md)<br />Installation<br /><img width=1000/> | \u21e8 <br />[Makefile / Using Math\u00e9matiques](../using-mathematiques/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
+  "prev": "description-examples",
+  "next": "first-project",
+  "header": "<h1 style='border: 2px solid; text-align: center'>Math\u00e9matiques v3.5.51-c++17</h1>\n\n<details>\n\n<summary>User Guide</summary>\n\n# [User Guide](../README.md)<br>\n1. [About](../about/README.md)<br>\n2. [License](../license/README.md)<br>\n3. [Status, Release Notes & Planned Work](../status-release/README.md)<br>\n4. [Description and Example Usage](../description-examples/README.md)<br>\n5. _Installation_ <br>\n6. [Your First Math\u00e9matiques Project](../first-project/README.md)<br>\n7. [Usage Guide: Syntax, Data types, Functions, etc](../usage-guide/README.md)<br>\n8. [Benchmarks](../benchmarks/README.md)<br>\n9. [Tests](../test/README.md)<br>\n10. [Developer Guide: Modifying and Extending Math\u00e9matiques](../developer-guide/README.md)<br>\n\n\n</details>\n\n",
+  "footer": "\n\n| \u21e6 <br />[Description and Example Usage](../description-examples/README.md)  | [User Guide](../README.md)<br />Installation<br /><img width=1000/> | \u21e8 <br />[Your First Math\u00e9matiques Project](../first-project/README.md)   |\n| ------------ | :-------------------------------: | ------------ |\n\n"
 }

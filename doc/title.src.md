@@ -1,1 +1,1 @@
-User Guide
+User Manual

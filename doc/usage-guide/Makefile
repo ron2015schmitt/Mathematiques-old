@@ -7,7 +7,7 @@ CHAPTERS = notation scalars containers operators functions display linear-algebr
 include ../../make-lib/dirmathq.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk
 
-NONEXEC = branch.json README.md $(LEAF_READMES)
+NONEXEC = README.md $(LEAF_READMES)
 EXEC += ./notation/body ./functions/body
 ALL += 
 
@@ -16,5 +16,3 @@ ALL +=
 #---------------------------------------------------------------------
 include $(DIR_MATHQ)/make-lib/doc.recipes.mk
 
-%.md: %
-	./$* > $@

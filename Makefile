@@ -19,6 +19,8 @@ RUN_FILES = $(wildcard */run)
 RUN_SUBDIRS = $(dir $(RUN_FILES))
 RUN_TARGETS = $(addprefix run_,$(RUN_SUBDIRS))
 
+CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/doc_create_top.py
+
 
 #---------------------------------------------------------------------
 #---------------------------------------------------------------------
@@ -30,6 +32,9 @@ RUN_TARGETS = $(addprefix run_,$(RUN_SUBDIRS))
 #---------------------------------------------------------------------
 #  SPECIAL RECIPES -- THESE MUST BE FIRST
 #---------------------------------------------------------------------
+
+.ONESHELL:
+
 
 # force these to always run regardless if prereq's are older or newer
 .PHONY: run gitignore clean myclean cleanall
@@ -86,12 +91,11 @@ doc: FORCE
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
-CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/doc_create_top.py
 body.temp.md: body.src.md doc/about/part-one.src.md
 	@cat body.src.md doc/about/part-one.src.md > $@
-README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ)  title.src.md body.temp.md
+README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) title.src.md body.temp.md
 	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.temp.md 
-	@chmod a-w README.md
+	@chmod a-w README.md body.temp.md
 
 some: README.md
 
@@ -123,10 +127,10 @@ info::
 #---------------------------------------------------------------------
 
 myclean: 
-	\rm -f README.md
+	\rm -f README.md *.temp.md
 
 # clean in reverse order
-clean: myclean
+clean_local:: myclean
 	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
@@ -156,7 +160,6 @@ pull:
 	git pull origin master
 
 
-.ONESHELL:
 git: versioning
 	@echo
 	@git remote update origin

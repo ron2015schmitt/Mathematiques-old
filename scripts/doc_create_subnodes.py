@@ -161,12 +161,12 @@ for i in range(Nchapters):
     chapter["next"] = NAMES[i+1]
 
 
-#############################################################
-# write CHAPTERS to branch.json 
-#############################################################
-delete("branch.json")
-with open('branch.json', 'w') as f:
-  json.dump(CHAPTERS, f,  indent=2)
+# #############################################################
+# # write CHAPTERS to branch.json 
+# #############################################################
+# delete("branch.json")
+# with open('branch.json', 'w') as f:
+#   json.dump(CHAPTERS, f,  indent=2)
 
 
 

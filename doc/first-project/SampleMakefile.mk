@@ -309,7 +309,7 @@ diff:
 cdiff:
 	@colordiff Makefile.pristine.mk Makefile || exit 0
 
-clean: FORCE
+clean_local:: FORCE
 	@command rm -f *.o
 	@command rm -f $(DOC)
 	@command rm -f *.a

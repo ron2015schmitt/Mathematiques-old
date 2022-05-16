@@ -28,6 +28,6 @@ include $(DIR_MATHQ)/make-lib/info.mk
 include $(DIR_MATHQ)/make-lib/help.mk
 
 
-clean: cleanstd
+clean_local:: cleanstd
 
 

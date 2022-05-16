@@ -674,7 +674,7 @@ run: run_benchmark/ run_examples/ run_sandbox/ run_test/
 	@echo -e ${BOLD}${GREEN}"All executables in all subdirectories PASSED"${DEFCLR}${NORMAL}
 	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
 
-clean: myclean
+clean_local:: myclean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.

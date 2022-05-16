@@ -44,4 +44,4 @@ version_mathq.h: $(TAG_FILE_MATHQ)
 	@cat $@
 	@chmod a-w $@
 
-clean: cleanstd
+clean_local:: cleanstd

@@ -18,7 +18,7 @@ def delete(fname):
 
 
 usage="""
-USAGE: python3 createrev.py FEATURE_VERSION_MATHQ_FILE TAG_FILE_MATHQ TAG_ANNOTATION_FILE
+USAGE: python3 create_rev.py FEATURE_VERSION_MATHQ_FILE TAG_FILE_MATHQ TAG_ANNOTATION_FILE
 """
 
 n = len(sys.argv)

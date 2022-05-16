@@ -13,7 +13,7 @@ today = datetime.datetime.now().strftime("%d %B %Y")
 #print(today)
 
 usage="""
-USAGE: python3 createdocleaf.py leaf
+USAGE: python3 createdocleaf.py leafname
 """
 #print(sys.argv[0])
 # print(type(sys.argv))
@@ -28,11 +28,11 @@ if n != 2:
 
 name = sys.argv[1]
 
-#############################################################
-# read branch.json as dict
-#############################################################
-with open('branch.json') as f:
-    branch = json.load(f)
+# #############################################################
+# # read branch.json as dict
+# #############################################################
+# with open('branch.json') as f:
+#     branch = json.load(f)
 
 
 #############################################################

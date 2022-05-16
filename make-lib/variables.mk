@@ -59,7 +59,7 @@ TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
 #  FEATURE_VERSION_MATHQ_FILE should be a bash file with: export FEATURE_VERSION_MATHQ=X.X
 
 #scripts
-CREATE_RUN := $(DIR_MATHQ)/scripts/createrun.bash
+CREATE_RUN := $(DIR_MATHQ)/scripts/create_run.bash
 
 # static variables
 TAG_ANNOTATION_FILE := $(DIR_MATHQ)/versioning/tag.annotation.mathq.out.txt

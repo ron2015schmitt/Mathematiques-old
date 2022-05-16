@@ -39,7 +39,7 @@ $(LIBFILE_MATHQ): libmathq.a
 
 lib: $(LIBFILE_MATHQ)
 
-clean: cleanstd
+clean_local:: cleanstd
 	@\rm -f $(DIR_MATHQ)/lib/libmathq.a
 
 	

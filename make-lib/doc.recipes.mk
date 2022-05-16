@@ -34,10 +34,8 @@ README.md: $(CREATE_DOC_BRANCH) $(TAG_FILE_MATHQ) body.temp.md title.src.md
 %.temp.md: %.bash
 	./$*.bash > $@
 
-clean_local:: 
+clean:: 
 	\rm -f README.md $(LEAF_READMES) $(CHAPTER_NODE_FILES) 
-
-cleanall:: cleansubs
 
 info::
 	@echo

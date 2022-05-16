@@ -4,7 +4,7 @@
 
 CHAPTERS = notation scalars containers operators functions display linear-algebra file-io debug
 
-include ../../make-lib/dirmathq.mk
+include ../../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk
 
 NONEXEC = README.md $(LEAF_READMES)

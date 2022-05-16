@@ -1,5 +1,5 @@
 # specific files for this project
-/make-lib/dirmathq.mk
+/make-lib/dirmathq.config.mk
 /examples/Makefile
 /scripts/__pycache__/
 
@@ -12,7 +12,9 @@
 *.temp
 ~*
 *~
+*.temp.md
 
+.vscode/targets.log
 
 # -------------C++ output files--------------
 

@@ -7,7 +7,7 @@
 
 MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-include make-lib/dirmathq.mk
+include make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 
@@ -130,7 +130,7 @@ myclean:
 	\rm -f README.md *.temp.md
 
 # clean in reverse order
-clean_local:: myclean
+clean:: myclean
 	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean

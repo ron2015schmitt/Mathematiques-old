@@ -4,7 +4,7 @@
 
 MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-include ../make-lib/dirmathq.mk
+include ../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 
@@ -35,7 +35,7 @@ newrev: FORCE
 $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE): $(FEATURE_VERSION_MATHQ_FILE) $(CPP_VERSION_FILE)
 	newrev
 
-clean_local:: cleanstd
+clean::
 	\rm -f $(TAG_FILE_MATHQ) 
 	git restore $(TAG_FILE_MATHQ) 
 	\rm -f $(TAG_ANNOTATION_FILE)

@@ -4,7 +4,7 @@
 #---------------------------------------------------------------------
 
 # force these to always run regardless if prereq's are older or newer
-.PHONY: run gitignore clean cleanall cleansubs
+.PHONY: run gitignore clean cleanall
 
 # Each Makefile that has an include statement for this file should define a target "some" that makes all targets in that directory but not in subdirectories
 default: some
@@ -104,6 +104,13 @@ clean:: FORCE
 	@command rm -f *.o *.a *.s *.g++_copts core.* node.json *.temp.md
 	@command rm -f $(EXEC) $(NONEXEC) 
 
+# Target "cleansall" cleans everything, traversing down the directory tree
+# Each Makefile that has an include statement for this file should:
+#  - can (but not necessary) define a "cleanall" target
+cleanall:: FORCE clean
+	@\rm -f run *.temp *.tmp *~ ~* *.gz *.tar *.old 
+	@\rm -f $(ALL)
+
 
 makeclean_%: FORCE
 	@$(MAKE) -C $* cleanall
@@ -117,12 +124,4 @@ nomakeclean_%: FORCE
 #	@if [[ -f body.cpp ]] ; then command rm -f body.md; fi
 
 cleansubs:: $(MAKECLEAN_SUBDIRS) $(NOMAKECLEAN_SUBDIRS)
-
-
-# Target "cleansall" cleans everything, traversing down the directory tree
-# Each Makefile that has an include statement for this file should:
-#  - can (but not necessary) define a "cleanall" target
-cleanall:: FORCE clean cleansubs
-	@\rm -f run *.temp *.tmp *~ ~* *.gz *.tar *.old 
-	@\rm -f $(ALL)
 

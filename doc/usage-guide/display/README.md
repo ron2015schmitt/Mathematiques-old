@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.57-c++17</h1>
 
 <details>
 
@@ -27,8 +27,8 @@
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br>
 7.1. [Usage Guide Notation](../notation/README.md)<br>
-7.2. [Scalar Types: Real, Imaginary, Complex & Quaternion](../scalars/README.md)<br>
-7.3. [Container Types: Vector, Matrix & Tensor](../containers/README.md)<br>
+7.2. [Scalar Types (Real, Imaginary, Complex & Quaternion)](../scalars/README.md)<br>
+7.3. [Container Types (Vector, Matrix & Tensor)](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. _Display of Results_ <br>

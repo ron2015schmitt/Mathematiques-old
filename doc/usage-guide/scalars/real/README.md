@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.57-c++17</h1>
 
 <details>
 
@@ -27,8 +27,8 @@
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../../README.md)<br>
 7.1. [Usage Guide Notation](../../notation/README.md)<br>
-7.2. _Scalar Types: Real, Imaginary, Complex & Quaternion_ <br>
-7.3. [Container Types: Vector, Matrix & Tensor](../../containers/README.md)<br>
+7.2. _Scalar Types (Real, Imaginary, Complex & Quaternion)_ <br>
+7.3. [Container Types (Vector, Matrix & Tensor)](../../containers/README.md)<br>
 7.4. [Operators](../../operators/README.md)<br>
 7.5. [Functions](../../functions/README.md)<br>
 7.6. [Display of Results](../../display/README.md)<br>
@@ -43,9 +43,9 @@
 
 <details>
 
-<summary>Scalar Types: Real, Imaginary, Complex & Quaternion</summary>
+<summary>Scalar Types (Real, Imaginary, Complex & Quaternion)</summary>
 
-# [7.2. Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br>
+# [7.2. Scalar Types (Real, Imaginary, Complex & Quaternion)](../README.md)<br>
 
 7.2.1. _Reals_ <br>
 7.2.2. [Complex numbers](../complex/README.md)<br>
@@ -201,9 +201,10 @@ auto v = Vector<double>() = { 0, 1, 2, 3, 4};
 ☀ v ➜ Vector<double> {0, 1, 2, 3, 4};
 ☀ pi*v/4 ➜ TER_Binary Vector<double> {0, 0.785398, 1.5708, 2.35619, 3.14159};
 ☀ 10*sin(pi*v/4) ➜ TER_Binary Vector<double> {0, 7.07107, 10, 7.07107, 1.22465e-15};
+☀ 10*sin(pi*v/4) + 100*v + 1 + v*v ➜ TER_Binary Vector<double> {1, 109.071, 215, 317.071, 417};
 ```
 
 
-| ⇦ <br />  | [Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br />Reals<br /><img width=1000/> | ⇨ <br />[Complex numbers](../complex/README.md)   |
+| ⇦ <br />  | [Scalar Types (Real, Imaginary, Complex & Quaternion)](../README.md)<br />Reals<br /><img width=1000/> | ⇨ <br />[Complex numbers](../complex/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

@@ -237,6 +237,7 @@ int main() {
   TRDISP(v);
   TRDISP(pi*v/4);
   TRDISP(10*sin(pi*v/4));
+  TRDISP(10*sin(pi*v/4) + 100*v + 1 + v*v);
   GMD_CODE_END();
 
 

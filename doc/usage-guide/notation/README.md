@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.57-c++17</h1>
 
 <details>
 
@@ -28,8 +28,8 @@
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br>
 
 7.1. _Usage Guide Notation_ <br>
-7.2. [Scalar Types: Real, Imaginary, Complex & Quaternion](../scalars/README.md)<br>
-7.3. [Container Types: Vector, Matrix & Tensor](../containers/README.md)<br>
+7.2. [Scalar Types (Real, Imaginary, Complex & Quaternion)](../scalars/README.md)<br>
+7.3. [Container Types (Vector, Matrix & Tensor)](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. [Display of Results](../display/README.md)<br>
@@ -124,6 +124,6 @@ Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the 
 
 
 
-| ⇦ <br />  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />Usage Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types: Real, Imaginary, Complex & Quaternion](../scalars/README.md)   |
+| ⇦ <br />  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />Usage Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types (Real, Imaginary, Complex & Quaternion)](../scalars/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

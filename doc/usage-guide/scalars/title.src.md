@@ -1,1 +1,1 @@
-Scalar Types: Real, Imaginary, Complex & Quaternion
+Scalar Types (Real, Imaginary, Complex & Quaternion)

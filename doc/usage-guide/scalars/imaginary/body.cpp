@@ -63,13 +63,16 @@ int main() {
   ECHO_CODE(using namespace mathq);
   ECHO_CODE(using namespace mathq::unit_imaginary);
   CR();
-  // ECHO_CODE(auto q1 = Imaginary<double>(1, 2, -1, -3));
-  // ECHO_CODE(auto q2 = Imaginary<double>(4, 3, -2, -5));
-  // ECHO_CODE(auto q = Imaginary<double>() = 16 + 2*i + 3*j + 13*k);
-  // ECHO_CODE(auto p = Imaginary<double>() = 0.53767 + 0.86217*i - 0.43359*j + 2.7694*k);
+  ECHO_CODE(Imaginary<double> q1 = Imaginary<double>(2.5));
+  ECHO_CODE(auto q2 = Imaginary<double>() = 2*i);
+  ECHO_CODE(auto q = Imaginary<double>() = -i/0.25);
+  CR();
+  TRDISP(q1);
+  TRDISP(q2);
+  TRDISP(q);
   GMD_CODE_END();
 
-  MOUT << "In the above expressions we used the constants `i`, `j`, and `k`, which are defined as follows:\n";
+  MOUT << "In the above expressions we used the constant `i` which is defined as follows:\n";
   CR();
   GMD_CODE_START("C++");
   TRDISP(mathq::unit_imaginary::i);
@@ -84,10 +87,10 @@ int main() {
   OUTPUT("Mathématiques supports the four arithmetic operators for imaginary numbers:");
   CR();
   GMD_CODE_START("C++");
-  // TRDISP(q1+q2);
-  // TRDISP(q1-q2);
-  // TRDISP(q1*q2);
-  // TRDISP(q2/q1);
+  TRDISP(q1+q2);
+  TRDISP(q1-q2);
+  TRDISP(q1*q2);
+  TRDISP(q2/q1);
   GMD_CODE_END();
 
 
@@ -101,31 +104,23 @@ int main() {
   OUTPUT("| `Imaginary<D> invert()` | yes | q := 1/q, returns `q` | ");
   OUTPUT("| `Imaginary<D> negate()` | yes | q := -q, returns `q` | ");
   OUTPUT("| `Imaginary<D> conjugate()` | yes | q := q<sup>*</sup>, returns `q` | ");
-  OUTPUT("| `D real()` | no | returns the real part of `q` | ");
+  OUTPUT("| `D real()` | no | returns the real part of `q`, ie zero | ");
   OUTPUT("| `D imag()` | no | returns the i-component part of `q` | ");
-  OUTPUT("| `D abs()` | no | returns \\|\\|_q_\\|\\|, the magnitude of `q` | ");
+  OUTPUT("| `D value()` | no | returns the i-component part of `q` | ");
+  OUTPUT("| `D abs()` | no | returns \\|_q_\\|, the magnitude of `q` | ");
   OUTPUT("| `D normsqr()` | no | returns the magnitude-squared of `q` | ");
-  OUTPUT("| `D scalar()` | no | same as real() | ");
-  OUTPUT("| `D angle()` | no | returns φ as defined above | ");
 
 
-  OUTPUT("A few examples are shown below."); 
+  OUTPUT("A few examples are shown below.");
 
   CR();
   GMD_CODE_START("C++");
-  // TRDISP(q1);
-  // TRDISP(q1.real());
-  // TRDISP(q1.imag());
-  // TRDISP(q1.jmag());
-  // TRDISP(q1.kmag());
-  // TRDISP(q1.abs());
-  // TRDISP(q1.scalar());
-  // TRDISP(q1.vector());
-  // TRDISP(q1.vabs());
-  // TRDISP(q1.unitvector());
-  // TRDISP(q1.angle());
-  // TRDISP(q1.polar());
-  // TRDISP(q1.matrix2by2());
+  TRDISP(q1);
+  TRDISP(q1.real());
+  TRDISP(q1.imag());
+  TRDISP(q1.value());
+  TRDISP(q1.abs());
+  TRDISP(q1.normsqr());
   GMD_CODE_END();
 
 
@@ -140,14 +135,18 @@ int main() {
   CR();
   GMD_CODE_START("C++");
   ECHO_CODE(double pi = 3.14159265358979311599796346854);
-  TRDISP(pi);
-  TRDISP(2*sin(pi/4) - 1);
-  TRDISP(3/pi*asin(0.86602540378));
-  TRDISP(exp(2));
-  TRDISP(log(10));
-  TRDISP(log10(10));
-  TRDISP(pow(2,10));
-  TRDISP(pow(2,2.5-2));
+  TRDISP(2*i*i);
+  TRDISP(20*i*i/(4*i));
+  TRDISP(2*i*i + 3);
+  TRDISP(i/i + i/5 +4*i + 4);
+  TRDISP(1 + i);
+  TRDISP(20 + i/0.25);
+  TRDISP(10*exp(i*pi/4));
+  TRDISP(10*cos(pi/4) + 10*i*sin(pi/4));
+  TRDISP(exp(1+i*pi/4)/2.71828);
+  CR();
+  TRDISP(q);
+  TRDISP(pow(q, 7));
   GMD_CODE_END();
 
   GMD_HEADER2("Containers of Imaginary numbers");
@@ -158,33 +157,32 @@ int main() {
 
 
 
-  FormatDataVector::string_opening = "{\n";
-  FormatDataVector::max_elements_per_line = 1;
-  FormatDataVector::string_endofline = "\n";
   GMD_CODE_START("C++");
-  // ECHO_CODE(auto v = Vector<Imaginary<double>>({ 16 + 2*i + 3*j + 13*k,
-  //                                                5 + 11*i + 10*j + 8*k,
-  //                                                9 + 7*i + 6*j + 12*k,
-  //                                                4 + 14*i + 15*j + 1*k }));
+  ECHO_CODE(auto v = Vector<Imaginary<double>>({ i, i, -i, i }));
   GMD_CODE_END();
 
 
   GMD_CODE_START("C++");
-  // TRDISP(q);
-  // CR();
-  // TRDISP(v);
-  // CR();
-  // TRDISP(v + q);
-  // CR();
-  // TRDISP(exp(v));
-  // CR();
-  // TRDISP(exp(v) + v);
-  // TRDISP(exp(v) + 1);
-  // TRDISP(exp(v) + 2.3);
-  // TRDISP(exp(v) + complex(1,2));
-  // TRDISP(exp(v) + Imaginary<double>(2));
-  // TRDISP(exp(v) + Imaginary<double>(1, 2, -1, -3));
+  TRDISP(q);
+  CR();
+  TRDISP(v);
+  CR();
+  TRDISP(v + q);
+  CR();
+  TRDISP(exp(v));
+  CR();
+  TRDISP(exp(v) + v);
+  TRDISP(exp(v) + 1);
+  TRDISP(exp(v) + 2.3);
+  TRDISP(exp(v) + complex(1, 2));
+  TRDISP(2*exp(v) + Imaginary<double>(2));
+  // TRDISP(exp(v)*Imaginary<double>(1));  // bug?
+//  auto y = exp(v)*Imaginary<double>(1);  // yes, this also fails
+  // TRDISP(exp(v)*4);  // works
+  // TRDISP(v*i);  // fails
+
   GMD_CODE_END();
+
 
   return 0;
 }

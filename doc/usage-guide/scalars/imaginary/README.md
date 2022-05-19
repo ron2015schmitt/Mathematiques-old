@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.57-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.58-c++17</h1>
 
 <details>
 
@@ -92,8 +92,15 @@ Declaring quaternion variables in Mathématiques
 using namespace mathq;
 using namespace mathq::unit_imaginary;
 
+Imaginary<double> q1 = Imaginary<double>(2.5);
+auto q2 = Imaginary<double>() = 2*i;
+auto q = Imaginary<double>() = -i/0.25;
+
+☀ q1 ➜ Imaginary<double> 2.5i;
+☀ q2 ➜ Imaginary<double> 2i;
+☀ q ➜ Imaginary<double> -4i;
 ```
-In the above expressions we used the constants `i`, `j`, and `k`, which are defined as follows:
+In the above expressions we used the constant `i` which is defined as follows:
 
 ```C++
 ☀ mathq::unit_imaginary::i ➜ Imaginary<double> i;
@@ -104,6 +111,10 @@ The 4 fundamental arithmetic operators can be used with imaginary numbers.
 Mathématiques supports the four arithmetic operators for imaginary numbers:
 
 ```C++
+☀ q1+q2 ➜ Imaginary<double> 4.5i;
+☀ q1-q2 ➜ Imaginary<double> 0.5i;
+☀ q1*q2 ➜ double -5;
+☀ q2/q1 ➜ double 0.8;
 ```
 ## Methods
 Assume `q`  is of type `Imaginary<D>` with 
@@ -113,15 +124,20 @@ Assume `q`  is of type `Imaginary<D>` with
 | `Imaginary<D> invert()` | yes | q := 1/q, returns `q` | 
 | `Imaginary<D> negate()` | yes | q := -q, returns `q` | 
 | `Imaginary<D> conjugate()` | yes | q := q<sup>*</sup>, returns `q` | 
-| `D real()` | no | returns the real part of `q` | 
+| `D real()` | no | returns the real part of `q`, ie zero | 
 | `D imag()` | no | returns the i-component part of `q` | 
-| `D abs()` | no | returns \|\|_q_\|\|, the magnitude of `q` | 
+| `D value()` | no | returns the i-component part of `q` | 
+| `D abs()` | no | returns \|_q_\|, the magnitude of `q` | 
 | `D normsqr()` | no | returns the magnitude-squared of `q` | 
-| `D scalar()` | no | same as real() | 
-| `D angle()` | no | returns φ as defined above | 
 A few examples are shown below.
 
 ```C++
+☀ q1 ➜ Imaginary<double> 2.5i;
+☀ q1.real() ➜ double 0;
+☀ q1.imag() ➜ double 2.5;
+☀ q1.value() ➜ double 2.5;
+☀ q1.abs() ➜ double 2.5;
+☀ q1.normsqr() ➜ double 6.25;
 ```
 ## Operators & Functions
 
@@ -132,14 +148,18 @@ Below are a few examples.
 
 ```C++
 double pi = 3.14159265358979311599796346854;
-☀ pi ➜ double 3.14159;
-☀ 2*sin(pi/4) - 1 ➜ double 0.414214;
-☀ 3/pi*asin(0.86602540378) ➜ double 1;
-☀ exp(2) ➜ double 7.38906;
-☀ log(10) ➜ double 2.30259;
-☀ log10(10) ➜ double 1;
-☀ pow(2,10) ➜ double 1024;
-☀ pow(2,2.5-2) ➜ double 1.41421;
+☀ 2*i*i ➜ double -2;
+☀ 20*i*i/(4*i) ➜ Imaginary<double> 5i;
+☀ 2*i*i + 3 ➜ double 1;
+☀ i/i + i/5 +4*i + 4 ➜ std::complex<double> (5,4.2);
+☀ 1 + i ➜ std::complex<double> (1,1);
+☀ 20 + i/0.25 ➜ std::complex<double> (20,4);
+☀ 10*exp(i*pi/4) ➜ std::complex<double> (7.07107,7.07107);
+☀ 10*cos(pi/4) + 10*i*sin(pi/4) ➜ std::complex<double> (7.07107,7.07107);
+☀ exp(1+i*pi/4)/2.71828 ➜ std::complex<double> (0.707107,0.707107);
+
+☀ q ➜ Imaginary<double> -4i;
+☀ pow(q, 7) ➜ std::complex<double> (-7.02261e-12,16384);
 ```
 ## Containers of Imaginary numbers
 
@@ -148,8 +168,22 @@ Below are examples of container math with imaginary numbers.  Mixed math is allo
 
 
 ```C++
+auto v = Vector<Imaginary<double>>({ i, i, -i, i });
 ```
 ```C++
+☀ q ➜ Imaginary<double> -4i;
+
+☀ v ➜ Vector<Imaginary<double>> {i, i, -1i, i};
+
+☀ v + q ➜ TER_Binary Vector<Imaginary<double>> {-3i, -3i, -5i, -3i};
+
+☀ exp(v) ➜ TER_Unary Vector<std::complex<double>> {(0.540302,0.841471), (0.540302,0.841471), (0.540302,-0.841471), (0.540302,0.841471)};
+
+☀ exp(v) + v ➜ TER_Binary Vector<std::complex<double>> {(0.540302,1.84147), (0.540302,1.84147), (0.540302,-1.84147), (0.540302,1.84147)};
+☀ exp(v) + 1 ➜ TER_Binary Vector<std::complex<double>> {(1.5403,0.841471), (1.5403,0.841471), (1.5403,-0.841471), (1.5403,0.841471)};
+☀ exp(v) + 2.3 ➜ TER_Binary Vector<std::complex<double>> {(2.8403,0.841471), (2.8403,0.841471), (2.8403,-0.841471), (2.8403,0.841471)};
+☀ exp(v) + complex(1, 2) ➜ TER_Binary Vector<std::complex<double>> {(1.5403,2.84147), (1.5403,2.84147), (1.5403,1.15853), (1.5403,2.84147)};
+☀ 2*exp(v) + Imaginary<double>(2) ➜ TER_Binary Vector<std::complex<double>> {(1.0806,3.68294), (1.0806,3.68294), (1.0806,0.317058), (1.0806,3.68294)};
 ```
 
 

@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.57-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.58-c++17</h1>
 
 <details>
 
@@ -180,7 +180,7 @@ Below are a few examples.
 
 ```C++
 double pi = 3.14159265358979311599796346854;
-☀ pi ➜ double 3.14159;
+☀ pi  ➜  double 3.1415926535897931159980;
 ☀ pi/2+100-0.5*pi ➜ double 100;
 ☀ 2*sin(pi/4) - 1 ➜ double 0.414214;
 ☀ 3/pi*asin(0.86602540378) ➜ double 1;
@@ -197,7 +197,7 @@ Below are examples of container math with imaginary numbers.  Mixed math is allo
 
 
 ```C++
-auto v = Vector<double>() = { 0, 1, 2, 3, 4};
+auto v = Vector<double>() = { 0, 1, 2, 3, 4 };
 ☀ v ➜ Vector<double> {0, 1, 2, 3, 4};
 ☀ pi*v/4 ➜ TER_Binary Vector<double> {0, 0.785398, 1.5708, 2.35619, 3.14159};
 ☀ 10*sin(pi*v/4) ➜ TER_Binary Vector<double> {0, 7.07107, 10, 7.07107, 1.22465e-15};

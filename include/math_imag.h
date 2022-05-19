@@ -23,6 +23,19 @@ public:
   D value() const {
     return d_;
   }
+  D real() {
+    return D(0);
+  }
+  D imag() {
+    return d_;
+  }
+  D abs() {
+    return std::abs(d_);
+  }
+  D normsqr() {
+    return d_*d_;
+  }
+
 
   Imaginary<D> &negate() {
     d_ = -d_;
@@ -38,6 +51,8 @@ public:
     d_ = -d_;
     return *this;
   }
+
+
 
   D operator=(const D &y) {
     return d_ = y.value();

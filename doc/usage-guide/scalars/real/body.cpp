@@ -85,7 +85,7 @@ int main() {
   GMD_VSPACE();
   GMD_HEADER3("Indexing Types");
 
-  OUTPUT("The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is an _unsigned_ integer type"); 
+  OUTPUT("The type [`size_t`](https://en.cppreference.com/w/c/types/size_t) is an _unsigned_ integer type");
   OUTPUT("that is the optimal type for array indexing and loop counting. ");
   OUTPUT("It's size depends on implementation.  The 64-bit Ubuntu 20.04 size is shown below:");
 
@@ -191,6 +191,53 @@ int main() {
   OUTPUT("The functions `epsilon()`, `min()`, `lowest()`, and  `max()`, as well as the static values `digits10` and `max_digits10` are found in [`limits`](https://en.cppreference.com/w/cpp/types/numeric_limits)");
 
   OUTPUT("The static value `max_digits10` was used as the precision for printing the above values.\n");
+
+
+
+
+  GMD_HEADER2("Methods");
+  OUTPUT("All real number types are primitives not objects and thus do not have methods.");
+
+
+
+
+  GMD_HEADER2("Operators & Functions");
+  CR();
+  OUTPUT("C++ supports many functions and Mathématiques provides several more.  These are listed in detail in the sections on opetators and functions.  C++ supports mixed type arithmetic between all the real types.");
+  OUTPUT("Below are a few examples.\n");
+  CR();
+
+
+  CR();
+  GMD_CODE_START("C++");
+  ECHO_CODE(double pi = 3.14159265358979311599796346854);
+  TRDISP(pi);
+  TRDISP(pi/2+100-0.5*pi);
+  TRDISP(2*sin(pi/4) - 1);
+  TRDISP(3/pi*asin(0.86602540378));
+  TRDISP(exp(2));
+  TRDISP(log(10));
+  TRDISP(log10(10));
+  TRDISP(pow(2, 10));
+  TRDISP(pow(2, 2.5-2));
+  GMD_CODE_END();
+
+
+  GMD_HEADER2("Containers of Imaginary numbers");
+  CR();
+  OUTPUT("Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have imaginary numbers as their underlying type.");
+  OUTPUT("Below are examples of container math with imaginary numbers.  Mixed math is allowed.\n");
+  CR();
+
+  // FormatDataVector::string_opening = "{\n";
+  // FormatDataVector::max_elements_per_line = 1;
+  // FormatDataVector::string_endofline = "\n";
+  GMD_CODE_START("C++");
+  ECHO_CODE(auto v = Vector<double>() = { 0, 1, 2, 3, 4});
+  TRDISP(v);
+  TRDISP(pi*v/4);
+  TRDISP(10*sin(pi*v/4));
+  GMD_CODE_END();
 
 
   return 0;

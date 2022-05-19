@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../../README.md)<br>
 1. [About](../../about/README.md)<br>
 2. [License](../../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../../status-release/README.md)<br>
 4. [Description and Example Usage](../../description-examples/README.md)<br>
 5. [Installation](../../installation/README.md)<br>
 6. [Your First Mathématiques Project](../../first-project/README.md)<br>
@@ -27,9 +27,9 @@
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br>
 
-7.1. _User Guide Notation_ <br>
-7.2. [Scalar Types](../scalars/README.md)<br>
-7.3. [Container Types](../containers/README.md)<br>
+7.1. _Usage Guide Notation_ <br>
+7.2. [Scalar Types: Real, Imaginary, Complex & Quaternion](../scalars/README.md)<br>
+7.3. [Container Types: Vector, Matrix & Tensor](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. [Display of Results](../display/README.md)<br>
@@ -42,7 +42,7 @@
 
 
 
-# 7.1. User Guide Notation
+# 7.1. Usage Guide Notation
 
 _This document was generated from the C++ file_ `notation/body.cpp` _using macros and functions (in namespace `mathq::display`) from the header_ `"mathq.h"`. 
 <br>
@@ -124,6 +124,6 @@ Lower case 𝕥 was chosen because 𝕋 is commonly used in mathematics for the 
 
 
 
-| ⇦ <br />  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />User Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types](../scalars/README.md)   |
+| ⇦ <br />  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />Usage Guide Notation<br /><img width=1000/> | ⇨ <br />[Scalar Types: Real, Imaginary, Complex & Quaternion](../scalars/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

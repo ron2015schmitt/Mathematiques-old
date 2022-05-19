@@ -144,7 +144,7 @@ int main() {
 
   OUTPUT("Unlike the standard C++ `i`, which is an operator, the Mathématiques `i`, `j`, and `k` are constants");
 
-  GMD_HEADER2("Arithmetic");
+  GMD_HEADER2("Arithmetic Operators");
 
   OUTPUT("The 4 fundamental arithmetic operators can be used with quaternions.");
 

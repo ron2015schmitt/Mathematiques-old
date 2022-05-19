@@ -1,1 +1,1 @@
-Status, Release Notes & Planned Work
+Status, Planned Work & Release Notes

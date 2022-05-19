@@ -1,4 +1,4 @@
-## Goal
+## Goal - Phase 1
 
 The goal of the Mathématiques project is to provide a _library_ for 
 * numerical computation
@@ -41,7 +41,7 @@ C++ was chosen for its efficiency and because it has the features, such as templ
 
 Currently, in 2022, Mathématiques is undergoing the final changes to make it sponsorship-ready.  This process includes full documentation in markdown, finalizing the syntax, and code refactoring.
 
-## Long-Term Goal
+## Goal - Phase 2
 
 Design a C++ style language and compiler for high-performance mathematics that
 

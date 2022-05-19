@@ -129,24 +129,26 @@ int main() {
   GMD_CODE_END();
 
 
-  GMD_HEADER2("Functions");
+
+  GMD_HEADER2("Operators & Functions");
   CR();
-  OUTPUT("Mathématiques supports several quaternion functions.  These are listed in detail in the section on functions.");
+  OUTPUT("C++ supports many functions and Mathématiques provides several more.  These are listed in detail in the sections on opetators and functions.  C++ supports mixed type arithmetic between all the real types.");
   OUTPUT("Below are a few examples.\n");
   CR();
 
 
   CR();
   GMD_CODE_START("C++");
-  // TRDISP(q);
-  // TRDISP(exp(q));
-  // TRDISP(log(q));
-  // TRDISP(pow(q1, 2));
-  // TRDISP(pow(q1, 0.5));
-  // TRDISP(inv(q1));
-  // TRDISP(conj(q1));
+  ECHO_CODE(double pi = 3.14159265358979311599796346854);
+  TRDISP(pi);
+  TRDISP(2*sin(pi/4) - 1);
+  TRDISP(3/pi*asin(0.86602540378));
+  TRDISP(exp(2));
+  TRDISP(log(10));
+  TRDISP(log10(10));
+  TRDISP(pow(2,10));
+  TRDISP(pow(2,2.5-2));
   GMD_CODE_END();
-
 
   GMD_HEADER2("Containers of Imaginary numbers");
   CR();

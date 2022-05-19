@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../README.md)<br>
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../status-release/README.md)<br>
 4. [Description and Example Usage](../description-examples/README.md)<br>
 5. _Installation_ <br>
 6. [Your First Mathématiques Project](../first-project/README.md)<br>

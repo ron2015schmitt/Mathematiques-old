@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../../README.md)<br>
 1. [About](../../about/README.md)<br>
 2. [License](../../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../../status-release/README.md)<br>
 4. [Description and Example Usage](../../description-examples/README.md)<br>
 5. [Installation](../../installation/README.md)<br>
 6. [Your First Mathématiques Project](../../first-project/README.md)<br>
@@ -26,9 +26,9 @@
 <summary>Usage Guide: Syntax, Data Types, Functions, etc</summary>
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br>
-7.1. [User Guide Notation](../notation/README.md)<br>
-7.2. [Scalar Types](../scalars/README.md)<br>
-7.3. [Container Types](../containers/README.md)<br>
+7.1. [Usage Guide Notation](../notation/README.md)<br>
+7.2. [Scalar Types: Real, Imaginary, Complex & Quaternion](../scalars/README.md)<br>
+7.3. [Container Types: Vector, Matrix & Tensor](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. _Display of Results_ <br>

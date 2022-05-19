@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../README.md)<br>
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../status-release/README.md)<br>
 4. _Description and Example Usage_ <br>
 5. [Installation](../installation/README.md)<br>
 6. [Your First Mathématiques Project](../first-project/README.md)<br>
@@ -192,6 +192,6 @@ u|(2*A-1)|(10 * sin(pi / 2 * v) + 5) = -30;
 
 
 
-| ⇦ <br />[Status, Release Notes & Planned Work](../status-release/README.md)  | [User Manual](../README.md)<br />Description and Example Usage<br /><img width=1000/> | ⇨ <br />[Installation](../installation/README.md)   |
+| ⇦ <br />[Status, Planned Work & Release Notes](../status-release/README.md)  | [User Manual](../README.md)<br />Description and Example Usage<br /><img width=1000/> | ⇨ <br />[Installation](../installation/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

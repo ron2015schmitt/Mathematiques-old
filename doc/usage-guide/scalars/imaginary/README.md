@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../../../README.md)<br>
 1. [About](../../../about/README.md)<br>
 2. [License](../../../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../../../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../../../status-release/README.md)<br>
 4. [Description and Example Usage](../../../description-examples/README.md)<br>
 5. [Installation](../../../installation/README.md)<br>
 6. [Your First Mathématiques Project](../../../first-project/README.md)<br>
@@ -26,9 +26,9 @@
 <summary>Usage Guide: Syntax, Data Types, Functions, etc</summary>
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../../README.md)<br>
-7.1. [User Guide Notation](../../notation/README.md)<br>
-7.2. _Scalar Types_ <br>
-7.3. [Container Types](../../containers/README.md)<br>
+7.1. [Usage Guide Notation](../../notation/README.md)<br>
+7.2. _Scalar Types: Real, Imaginary, Complex & Quaternion_ <br>
+7.3. [Container Types: Vector, Matrix & Tensor](../../containers/README.md)<br>
 7.4. [Operators](../../operators/README.md)<br>
 7.5. [Functions](../../functions/README.md)<br>
 7.6. [Display of Results](../../display/README.md)<br>
@@ -43,9 +43,9 @@
 
 <details>
 
-<summary>Scalar Types</summary>
+<summary>Scalar Types: Real, Imaginary, Complex & Quaternion</summary>
 
-# [7.2. Scalar Types](../README.md)<br>
+# [7.2. Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br>
 7.2.1. [Reals](../real/README.md)<br>
 7.2.2. [Complex numbers](../complex/README.md)<br>
 7.2.3. _Imaginary numbers_ <br>
@@ -123,14 +123,23 @@ A few examples are shown below.
 
 ```C++
 ```
-## Functions
+## Operators & Functions
 
-Mathématiques supports several quaternion functions.  These are listed in detail in the section on functions.
+C++ supports many functions and Mathématiques provides several more.  These are listed in detail in the sections on opetators and functions.  C++ supports mixed type arithmetic between all the real types.
 Below are a few examples.
 
 
 
 ```C++
+double pi = 3.14159265358979311599796346854;
+☀ pi ➜ double 3.14159;
+☀ 2*sin(pi/4) - 1 ➜ double 0.414214;
+☀ 3/pi*asin(0.86602540378) ➜ double 1;
+☀ exp(2) ➜ double 7.38906;
+☀ log(10) ➜ double 2.30259;
+☀ log10(10) ➜ double 1;
+☀ pow(2,10) ➜ double 1024;
+☀ pow(2,2.5-2) ➜ double 1.41421;
 ```
 ## Containers of Imaginary numbers
 
@@ -144,6 +153,6 @@ Below are examples of container math with imaginary numbers.  Mixed math is allo
 ```
 
 
-| ⇦ <br />[Complex numbers](../complex/README.md)  | [Scalar Types](../README.md)<br />Imaginary numbers<br /><img width=1000/> | ⇨ <br />[Quaternions](../quaternion/README.md)   |
+| ⇦ <br />[Complex numbers](../complex/README.md)  | [Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br />Imaginary numbers<br /><img width=1000/> | ⇨ <br />[Quaternions](../quaternion/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

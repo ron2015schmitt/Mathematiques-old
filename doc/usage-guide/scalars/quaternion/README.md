@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../../../README.md)<br>
 1. [About](../../../about/README.md)<br>
 2. [License](../../../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../../../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../../../status-release/README.md)<br>
 4. [Description and Example Usage](../../../description-examples/README.md)<br>
 5. [Installation](../../../installation/README.md)<br>
 6. [Your First Mathématiques Project](../../../first-project/README.md)<br>
@@ -26,9 +26,9 @@
 <summary>Usage Guide: Syntax, Data Types, Functions, etc</summary>
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../../README.md)<br>
-7.1. [User Guide Notation](../../notation/README.md)<br>
-7.2. _Scalar Types_ <br>
-7.3. [Container Types](../../containers/README.md)<br>
+7.1. [Usage Guide Notation](../../notation/README.md)<br>
+7.2. _Scalar Types: Real, Imaginary, Complex & Quaternion_ <br>
+7.3. [Container Types: Vector, Matrix & Tensor](../../containers/README.md)<br>
 7.4. [Operators](../../operators/README.md)<br>
 7.5. [Functions](../../functions/README.md)<br>
 7.6. [Display of Results](../../display/README.md)<br>
@@ -43,9 +43,9 @@
 
 <details>
 
-<summary>Scalar Types</summary>
+<summary>Scalar Types: Real, Imaginary, Complex & Quaternion</summary>
 
-# [7.2. Scalar Types](../README.md)<br>
+# [7.2. Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br>
 7.2.1. [Reals](../real/README.md)<br>
 7.2.2. [Complex numbers](../complex/README.md)<br>
 7.2.3. [Imaginary numbers](../imaginary/README.md)<br>
@@ -123,7 +123,7 @@ In the above expressions we used the constants `i`, `j`, and `k`, which are defi
 ☀ mathq::unit_quaternion::k ➜ Quaternion<double> k;
 ```
 Unlike the standard C++ `i`, which is an operator, the Mathématiques `i`, `j`, and `k` are constants
-## Arithmetic
+## Arithmetic Operators
 The 4 fundamental arithmetic operators can be used with quaternions.
 Mathématiques supports the four arithmetic operators for quaternions:
 
@@ -247,6 +247,6 @@ auto v = Vector<Quaternion<double>>({ 16 + 2*i + 3*j + 13*k, 5 + 11*i + 10*j + 8
 ```
 
 
-| ⇦ <br />[Imaginary numbers](../imaginary/README.md)  | [Scalar Types](../README.md)<br />Quaternions<br /><img width=1000/> | ⇨ <br />   |
+| ⇦ <br />[Imaginary numbers](../imaginary/README.md)  | [Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br />Quaternions<br /><img width=1000/> | ⇨ <br />   |
 | ------------ | :-------------------------------: | ------------ |
 

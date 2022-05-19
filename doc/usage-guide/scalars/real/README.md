@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -7,7 +7,7 @@
 # [User Manual](../../../README.md)<br>
 1. [About](../../../about/README.md)<br>
 2. [License](../../../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../../../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../../../status-release/README.md)<br>
 4. [Description and Example Usage](../../../description-examples/README.md)<br>
 5. [Installation](../../../installation/README.md)<br>
 6. [Your First Mathématiques Project](../../../first-project/README.md)<br>
@@ -26,9 +26,9 @@
 <summary>Usage Guide: Syntax, Data Types, Functions, etc</summary>
 
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../../README.md)<br>
-7.1. [User Guide Notation](../../notation/README.md)<br>
-7.2. _Scalar Types_ <br>
-7.3. [Container Types](../../containers/README.md)<br>
+7.1. [Usage Guide Notation](../../notation/README.md)<br>
+7.2. _Scalar Types: Real, Imaginary, Complex & Quaternion_ <br>
+7.3. [Container Types: Vector, Matrix & Tensor](../../containers/README.md)<br>
 7.4. [Operators](../../operators/README.md)<br>
 7.5. [Functions](../../functions/README.md)<br>
 7.6. [Display of Results](../../display/README.md)<br>
@@ -43,9 +43,9 @@
 
 <details>
 
-<summary>Scalar Types</summary>
+<summary>Scalar Types: Real, Imaginary, Complex & Quaternion</summary>
 
-# [7.2. Scalar Types](../README.md)<br>
+# [7.2. Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br>
 
 7.2.1. _Reals_ <br>
 7.2.2. [Complex numbers](../complex/README.md)<br>
@@ -169,8 +169,41 @@ The three types are compared below.
 The functions `epsilon()`, `min()`, `lowest()`, and  `max()`, as well as the static values `digits10` and `max_digits10` are found in [`limits`](https://en.cppreference.com/w/cpp/types/numeric_limits)
 The static value `max_digits10` was used as the precision for printing the above values.
 
+## Methods
+All real number types are primitives not objects and thus do not have methods.
+## Operators & Functions
+
+C++ supports many functions and Mathématiques provides several more.  These are listed in detail in the sections on opetators and functions.  C++ supports mixed type arithmetic between all the real types.
+Below are a few examples.
 
 
-| ⇦ <br />  | [Scalar Types](../README.md)<br />Reals<br /><img width=1000/> | ⇨ <br />[Complex numbers](../complex/README.md)   |
+
+```C++
+double pi = 3.14159265358979311599796346854;
+☀ pi ➜ double 3.14159;
+☀ pi/2+100-0.5*pi ➜ double 100;
+☀ 2*sin(pi/4) - 1 ➜ double 0.414214;
+☀ 3/pi*asin(0.86602540378) ➜ double 1;
+☀ exp(2) ➜ double 7.38906;
+☀ log(10) ➜ double 2.30259;
+☀ log10(10) ➜ double 1;
+☀ pow(2, 10) ➜ double 1024;
+☀ pow(2, 2.5-2) ➜ double 1.41421;
+```
+## Containers of Imaginary numbers
+
+Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>` can have imaginary numbers as their underlying type.
+Below are examples of container math with imaginary numbers.  Mixed math is allowed.
+
+
+```C++
+auto v = Vector<double>() = { 0, 1, 2, 3, 4};
+☀ v ➜ Vector<double> {0, 1, 2, 3, 4};
+☀ pi*v/4 ➜ TER_Binary Vector<double> {0, 0.785398, 1.5708, 2.35619, 3.14159};
+☀ 10*sin(pi*v/4) ➜ TER_Binary Vector<double> {0, 7.07107, 10, 7.07107, 1.22465e-15};
+```
+
+
+| ⇦ <br />  | [Scalar Types: Real, Imaginary, Complex & Quaternion](../README.md)<br />Reals<br /><img width=1000/> | ⇨ <br />[Complex numbers](../complex/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

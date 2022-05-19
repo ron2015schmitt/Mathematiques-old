@@ -1,1 +1,1 @@
-User Guide Notation
+Usage Guide Notation

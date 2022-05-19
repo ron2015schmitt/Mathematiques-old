@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.55-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.56-c++17</h1>
 
 <details>
 
@@ -8,7 +8,7 @@
 
 1. _About_ <br>
 2. [License](../license/README.md)<br>
-3. [Status, Release Notes & Planned Work](../status-release/README.md)<br>
+3. [Status, Planned Work & Release Notes](../status-release/README.md)<br>
 4. [Description and Example Usage](../description-examples/README.md)<br>
 5. [Installation](../installation/README.md)<br>
 6. [Your First Mathématiques Project](../first-project/README.md)<br>
@@ -24,7 +24,7 @@
 
 # 1. About
 
-## Goal
+## Goal - Phase 1
 
 The goal of the Mathématiques project is to provide a _library_ for 
 * numerical computation
@@ -67,7 +67,7 @@ C++ was chosen for its efficiency and because it has the features, such as templ
 
 Currently, in 2022, Mathématiques is undergoing the final changes to make it sponsorship-ready.  This process includes full documentation in markdown, finalizing the syntax, and code refactoring.
 
-## Long-Term Goal
+## Goal - Phase 2
 
 Design a C++ style language and compiler for high-performance mathematics that
 

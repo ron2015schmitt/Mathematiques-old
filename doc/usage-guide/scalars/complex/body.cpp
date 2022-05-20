@@ -93,6 +93,30 @@ int main() {
   CR();
   GMD_CODE_END();
 
+  GMD_HEADER2("Methods");
+
+  OUTPUT("Assume `z`  is of type `std::complex<D>` with \n");
+
+
+  OUTPUT("| syntax | modifies q? | description | ");
+  OUTPUT("| :---: | :---: | :---: | ");
+  OUTPUT("| `D real()` | no | returns the real part of `z`, ie zero | ");
+  OUTPUT("| `D imag()` | no | returns the i-component part of `z` | ");
+
+
+  OUTPUT("A few examples are shown below.");
+
+  CR();
+  GMD_CODE_START("C++");
+  {
+    ECHO_CODE(complex<double> z = 1.5 + 3.5i);
+    TRDISP(z);
+    TRDISP(z.real());
+    TRDISP(z.imag());
+  }
+  GMD_CODE_END();
+
+
 
   GMD_HEADER2("Math with mixed types");
 
@@ -130,6 +154,36 @@ int main() {
   TRDISP(exp((3.1415/2)*1i));
   TRDISP(pow(1.5 + 3i, 0.5));
   CR();
+  GMD_CODE_END();
+
+
+  GMD_HEADER2("Containers of std::complex numbers");
+  CR();
+  OUTPUT("Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>`) can have complex numbers as their underlying type.");
+  OUTPUT("Below are examples of container math with complex numbers.  Mixed math is allowed.\n");
+  CR();
+
+
+
+  GMD_CODE_START("C++");
+  {
+    ECHO_CODE(using namespace std);
+    ECHO_CODE(using namespace std::complex_literals);
+    CR();
+    ECHO_CODE(complex<double> z = 1.5 + 3.5i);
+    ECHO_CODE(Vector<complex<double>> v = Vector<complex<double>>({ 1, 1i, 1 + 1i, 1 - 1i }));
+    CR();
+    TRDISP(z);
+    TRDISP(v);
+    CR();
+    TRDISP(v + z);
+    TRDISP(v*1i);
+    TRDISP(exp(v));
+    TRDISP(exp(v) + 1);
+    TRDISP(exp(v) + complex(1, 2));
+    TRDISP(exp(v) + v);
+    TRDISP(exp(v)/v + v);
+  }
   GMD_CODE_END();
 
   return 0;

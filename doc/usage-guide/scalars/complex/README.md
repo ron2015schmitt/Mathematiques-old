@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.58-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.59-c++17</h1>
 
 <details>
 
@@ -31,10 +31,14 @@
 7.3. [Container Types (Vector, Matrix & Tensor)](../../containers/README.md)<br>
 7.4. [Operators](../../operators/README.md)<br>
 7.5. [Functions](../../functions/README.md)<br>
-7.6. [Display of Results](../../display/README.md)<br>
-7.7. [Linear Algebra](../../linear-algebra/README.md)<br>
-7.8. [FILE I/O](../../file-io/README.md)<br>
-7.9. [Debug Modes](../../debug/README.md)<br>
+7.6. [Linear Algebra](../../linear-algebra/README.md)<br>
+7.7. [Indexing, Masks, and Sorting](../../indexing-sorting/README.md)<br>
+7.8. [Calculus](../../calculus/README.md)<br>
+7.9. [Vector Calculus](../../vector-calculus/README.md)<br>
+7.10. [Tensor Calculus](../../tensor-calculus/README.md)<br>
+7.11. [Display of Results](../../display/README.md)<br>
+7.12. [FILE I/O](../../file-io/README.md)<br>
+7.13. [Debug Modes](../../debug/README.md)<br>
 
 
 </details>
@@ -121,6 +125,21 @@ The 4 fundamental arithmetic operators can be used with complex numbers.
 ☀ 2 + 4.5i / 2 + 3i ➜ std::complex<double> (2,5.25);
 
 ```
+## Methods
+Assume `z`  is of type `std::complex<D>` with 
+
+| syntax | modifies q? | description | 
+| :---: | :---: | :---: | 
+| `D real()` | no | returns the real part of `z`, ie zero | 
+| `D imag()` | no | returns the i-component part of `z` | 
+A few examples are shown below.
+
+```C++
+complex<double> z = 1.5 + 3.5i;
+☀ z ➜ std::complex<double> (1.5,3.5);
+☀ z.real() ➜ double 1.5;
+☀ z.imag() ➜ double 3.5;
+```
 ## Math with mixed types
 Mathématiques extends the C++ functionality so that mixed math (ints, floating pt, complex<int>, complex<floating pt>) is possible.
 ```C++
@@ -157,6 +176,30 @@ Below are a few examples.
 ☀ exp((3.1415/2)*1i) ➜ std::complex<double> (4.63268e-05,1);
 ☀ pow(1.5 + 3i, 0.5) ➜ std::complex<double> (1.5579,0.962835);
 
+```
+## Containers of std::complex numbers
+
+Mathématiques container classes (ie `Vector<D>`, `Matrix<d>`, and `Tensor<D>`) can have complex numbers as their underlying type.
+Below are examples of container math with complex numbers.  Mixed math is allowed.
+
+
+```C++
+using namespace std;
+using namespace std::complex_literals;
+
+complex<double> z = 1.5 + 3.5i;
+Vector<complex<double>> v = Vector<complex<double>>({ 1, 1i, 1 + 1i, 1 - 1i });
+
+☀ z ➜ std::complex<double> (1.5,3.5);
+☀ v ➜ Vector<std::complex<double>> {(1,0), (0,1), (1,1), (1,-1)};
+
+☀ v + z ➜ TER_Binary Vector<std::complex<double>> {(2.5,3.5), (1.5,4.5), (2.5,4.5), (2.5,2.5)};
+☀ v*1i ➜ TER_Binary Vector<std::complex<double>> {(0,1), (-1,0), (-1,1), (1,1)};
+☀ exp(v) ➜ TER_Unary Vector<std::complex<double>> {(2.71828,0), (0.540302,0.841471), (1.46869,2.28736), (1.46869,-2.28736)};
+☀ exp(v) + 1 ➜ TER_Binary Vector<std::complex<double>> {(3.71828,0), (1.5403,0.841471), (2.46869,2.28736), (2.46869,-2.28736)};
+☀ exp(v) + complex(1, 2) ➜ TER_Binary Vector<std::complex<double>> {(3.71828,2), (1.5403,2.84147), (2.46869,4.28736), (2.46869,-0.287355)};
+☀ exp(v) + v ➜ TER_Binary Vector<std::complex<double>> {(3.71828,0), (0.540302,1.84147), (2.46869,3.28736), (2.46869,-3.28736)};
+☀ exp(v)/v + v ➜ TER_Binary Vector<std::complex<double>> {(3.71828,0), (0.841471,0.459698), (2.87802,1.40933), (2.87802,-1.40933)};
 ```
 
 

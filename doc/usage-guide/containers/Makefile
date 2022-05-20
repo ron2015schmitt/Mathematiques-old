@@ -8,7 +8,7 @@ include ../../../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk
 
 NONEXEC = README.md $(LEAF_READMES)
-EXEC += 
+EXEC += ./vector/body
 ALL += 
 
 #---------------------------------------------------------------------

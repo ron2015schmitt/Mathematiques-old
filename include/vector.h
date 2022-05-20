@@ -10,7 +10,7 @@ namespace mathq {
    * Vector<E>    -- variable size vector (valarray)
    *                 E  = type for elements
    * Vector<E,NE> -- fixed size vector (array)
-   *                 NE = size = number of elements [OPTIONAL]
+   *                 NE = size = number of elements
    *
    * DO NOT SPECIFY: D,M
    *                 The defaults are defined in the declaration in

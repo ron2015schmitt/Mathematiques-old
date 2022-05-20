@@ -62,11 +62,9 @@
 
 
 ### Miscellaneous Small Features
-* BUG: let  `v = Vector<Quaternion<double>>`
-  * `(exp(v) + int)` works
-  * `(exp(v) + double)` works
-  * `(exp(v) + complex)` works
-  * `(exp(v) + quaternion)` doesn;t compile
+* Complex type that inherits from std::complex
+  * can then allows complex, imaginary and quaternion to hold vectors
+* cast method for const std::initializer_list<E>?  is this possible
 * use https://doxygen.nl/manual/docblocks.html os similar to generate method and function docs?
 * reformat all files using VSCode plugin
 * all objects should ave .invert() and conjugate(), not .inv and .conj
@@ -75,7 +73,6 @@
 * refactor the headers so that 
   * vectors, matrices display tensors Scalar are broken out into different headers
   * use copious #ifdefs so that order of inclusion matters
-* User Guide: create an index, with denotation for `types`, `functions`, `operators`
 * Create a `Number` class to generalize (division alegra numbers) real,s imaginary and complex, quaternions?
   * see https://en.cppreference.com/w/cpp/types/is_arithmetic
   * <complex> C++ std::complex
@@ -106,11 +103,12 @@
 * `Vector` size modifications. Refer to [C++ Containers library](https://en.cppreference.com/w/cpp/container)
    * implement `join` functions for Vector and a scalar
    * Implement `insert(i)`, `remove(i)`,`pop_front`,`push_front`, `pop_back`,`push_back`, methods to `Vector` class
-   * `NE == -1` -> use `std::vector` for storage
-   * `NE == -2` -> use `std::list` for storage
-   * `NE == -3` -> use `std::forward_list` for storage
-   * `NE == -4` -> use `std::stack` for storage
-   * `NE == -5` -> use `std::froward_stack` for storage
+   * `NE == -1` -> use `std::array` for storage (fixed size)
+   * `NE == -2` -> use `std::vector` for storage
+   * `NE == -3` -> use `std::list` for storage
+   * `NE == -4` -> use `std::forward_list` for storage
+   * `NE == -5` -> use `std::stack` for storage
+   * `NE == -6` -> use `std::froward_stack` for storage
 * `Matrix` size modifications. 
    * Implement `insertRow/Col(i)`, `removeRow/Col(i)`,`pop_top/bot`,`push_top/bot`, `pop_left/right`,`push_left/right`, methods to `Matrix` class
    * support column major matrices and tensors

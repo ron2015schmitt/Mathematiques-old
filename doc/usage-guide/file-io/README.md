@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.58-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.59-c++17</h1>
 
 <details>
 
@@ -31,20 +31,24 @@
 7.3. [Container Types (Vector, Matrix & Tensor)](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
-7.6. [Display of Results](../display/README.md)<br>
-7.7. [Linear Algebra](../linear-algebra/README.md)<br>
-7.8. _FILE I/O_ <br>
-7.9. [Debug Modes](../debug/README.md)<br>
+7.6. [Linear Algebra](../linear-algebra/README.md)<br>
+7.7. [Indexing, Masks, and Sorting](../indexing-sorting/README.md)<br>
+7.8. [Calculus](../calculus/README.md)<br>
+7.9. [Vector Calculus](../vector-calculus/README.md)<br>
+7.10. [Tensor Calculus](../tensor-calculus/README.md)<br>
+7.11. [Display of Results](../display/README.md)<br>
+7.12. _FILE I/O_ <br>
+7.13. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
 
 
 
-# 7.8. FILE I/O
+# 7.12. FILE I/O
 
 
 
-| ⇦ <br />[Linear Algebra](../linear-algebra/README.md)  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />FILE I/O<br /><img width=1000/> | ⇨ <br />[Debug Modes](../debug/README.md)   |
+| ⇦ <br />[Display of Results](../display/README.md)  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />FILE I/O<br /><img width=1000/> | ⇨ <br />[Debug Modes](../debug/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

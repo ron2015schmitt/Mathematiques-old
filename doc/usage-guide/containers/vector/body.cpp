@@ -26,8 +26,9 @@ int main() {
 
   GMD_HEADER2("Introduction");
 
-  OUTPUT("Mathématiques vector variables have type `Vector<D>`, which is a template class that holds a number of elements of type `D`.");
-  OUTPUT("The most common case is where `D=double`, ie `Vector<double>`.");
+  OUTPUT("Mathématiques vector variables have type `Vector<E>`, which is a template class that holds a number of elements of type `E`.");
+  OUTPUT("The element type `E` can be either a scalar type, such as a real or complex type, or another container type.");
+  OUTPUT("The most common case is where `E=double`, ie `Vector<double>`.");
   OUTPUT("Vectors can be defined as fixed-size or dynamically-sized.");
   OUTPUT("This class can be used to create linear algebra vectors, as well as physical vectors such velocity.");
 
@@ -42,6 +43,7 @@ int main() {
 
   OUTPUT("To declare a fixed-size vector, the size must be a complie-time constant, making it suitable for 2D, 3D, and 3+1D physical vectors, such as velocity, position, force, electric field, etc.  ");
   OUTPUT("The syntax for a fixed-size vector is `Vector<double,NE>`, where `NE` is a positive integer.");
+  OUTPUT("Vectors can be declared and initialized in a variety of ways:");
 
 
   CR();
@@ -49,9 +51,41 @@ int main() {
   GMD_CODE_START("C++");
   {
     ECHO_CODE(using namespace mathq);
+    CR();
+    ECHO_CODE(auto velocity2D = Vector<double, 2>(0));
+    ECHO_CODE(auto velocity3D = Vector<double, 3>(0));
+    ECHO_CODE(auto vector = Vector<double, 11>(0));
+    TRDISP(velocity2D);
+    TRDISP(velocity3D);
+    TRDISP(vector);
+  }
+  {
+    CR();
+    ECHO_CODE(Vector<double, 2> velocity2D(0));
+    ECHO_CODE(Vector<double, 3> velocity3D(1));
+    TRDISP(velocity2D);
+    TRDISP(velocity3D);
+  }
+  {
+    CR();
+    ECHO_CODE(Vector<double, 2> velocity2D);
+    ECHO_CODE(velocity2D = 4);
+    ECHO_CODE(Vector<double, 3> velocity3D);
+    ECHO_CODE(velocity3D = -0.55);
+    TRDISP(velocity2D);
+    TRDISP(velocity3D);
+  }
+  {
+    CR();
     ECHO_CODE(Vector<double, 2> velocity2D({ 70.5, -30 }));
     ECHO_CODE(Vector<double, 3> velocity3D({ 10, 0, -15 }));
+    TRDISP(velocity2D);
+    TRDISP(velocity3D);
+  }
+  {
     CR();
+    ECHO_CODE(Vector<double, 2> velocity2D = Vector<double, 2>({ 70.5, -30 }));
+    ECHO_CODE(Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 }));
     TRDISP(velocity2D);
     TRDISP(velocity3D);
   }

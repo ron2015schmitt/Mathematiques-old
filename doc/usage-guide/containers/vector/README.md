@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.59-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.60-c++17</h1>
 
 <details>
 
@@ -65,8 +65,9 @@
 
 
 ## Introduction
-Mathématiques vector variables have type `Vector<D>`, which is a template class that holds a number of elements of type `D`.
-The most common case is where `D=double`, ie `Vector<double>`.
+Mathématiques vector variables have type `Vector<E>`, which is a template class that holds a number of elements of type `E`.
+The element type `E` can be either a scalar type, such as a real or complex type, or another container type.
+The most common case is where `E=double`, ie `Vector<double>`.
 Vectors can be defined as fixed-size or dynamically-sized.
 This class can be used to create linear algebra vectors, as well as physical vectors such velocity.
 
@@ -79,15 +80,40 @@ Vectors can be defined as fixed-size or dynamically-sized.
 ### Fixed size vectors
 To declare a fixed-size vector, the size must be a complie-time constant, making it suitable for 2D, 3D, and 3+1D physical vectors, such as velocity, position, force, electric field, etc.  
 The syntax for a fixed-size vector is `Vector<double,NE>`, where `NE` is a positive integer.
+Vectors can be declared and initialized in a variety of ways:
 
 
 ```C++
 using namespace mathq;
+
+auto velocity2D = Vector<double, 2>(0);
+auto velocity3D = Vector<double, 3>(0);
+auto vector = Vector<double, 11>(0);
+☀ velocity2D ➜ Vector<double,NE=2> {0, 0};
+☀ velocity3D ➜ Vector<double,NE=3> {0, 0, 0};
+☀ vector ➜ Vector<double,NE=11> {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+Vector<double, 2> velocity2D(0);
+Vector<double, 3> velocity3D(1);
+☀ velocity2D ➜ Vector<double,NE=2> {0, 0};
+☀ velocity3D ➜ Vector<double,NE=3> {1, 1, 1};
+
+Vector<double, 2> velocity2D;
+velocity2D = 4;
+Vector<double, 3> velocity3D;
+velocity3D = -0.55;
+☀ velocity2D ➜ Vector<double,NE=2> {4, 4};
+☀ velocity3D ➜ Vector<double,NE=3> {-0.55, -0.55, -0.55};
+
 Vector<double, 2> velocity2D({ 70.5, -30 });
 Vector<double, 3> velocity3D({ 10, 0, -15 });
-
 ☀ velocity2D ➜ Vector<double,NE=2> {70.5, -30};
 ☀ velocity3D ➜ Vector<double,NE=3> {10, 0, -15};
+
+Vector<double, 2> velocity2D = Vector<double, 2>({ 70.5, -30 });
+Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
+☀ velocity2D ➜ Vector<double,NE=2> {70.5, -30};
+☀ velocity3D ➜ Vector<double,NE=3> {70.5, -30, -15};
 ```
 
 

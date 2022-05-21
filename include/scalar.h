@@ -191,7 +191,7 @@ namespace mathq {
   bool isExpression(void) const {
     return false;
   }
-  virtual Tensors getEnum(void) const {
+  Tensors getEnum(void) const {
     return T_SCALAR;
   }
   VectorofPtrs getAddresses(void) const  {

@@ -60,6 +60,83 @@
    * only needed when same vector appears on both sides of `=`
 
 
+### Test memory usage and speed (benchmarks) of a variety of usages and refactor as necessary
+#### Refactor `TensorAbstract`
+* container classes, eg Vector, require more space then the data, one more 32 bit or 64-bit or 128-bit data value. problem is due to pure virtual members: if a class has a virtual function it then has a v-table and each instance has a pointer to the table.
+    * https://johnysswlab.com/the-true-price-of-virtual-functions-in-c/
+    * https://github.com/ibogosavljevic/johnysswlab/tree/master/2021-02-virtualfunctions
+    * https://stackoverflow.com/questions/1626290/c-virtual-function-table-memory-cost
+    * https://guihao-liang.github.io/2020/05/30/what-is-vtable-in-cpp
+  * we have virtual functions in the following classes
+      * TensorAbstract: about 15
+      * TensorR: getEnum 
+      * TensorRW: getEnum
+      * getting rid of getENum didn;t fix it
+        * Note: we can use helper class and visitor pattern for getEnum or return a constexpr static member, like we do for M
+      * we currently use derived() pattern but this doesn;t seem to fix it since TensorAbstract is not templated
+      * perhaps use Helper template friend class and visitor pattern?
+        * https://en.cppreference.com/w/cpp/language/friend
+      * We only use 
+        * to determine mathq container from non-container with `std::is_base_of<TensorAbstract,E1>::value`
+```C++
+template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
+	  EnableIf<(M1==1)&&(M2>=2)&&(std::is_base_of<TensorAbstract,E2>::value)> = 0  >
+auto Complex(const TensorR<A,D1,D1,M1,R>& x1, const TensorR<B,E2,D2,M2,R>& x2) {
+  typedef TensorR<A,D1,D1,M1,R> E1;  
+  typedef typename ComplexType<D1,D2>::Type D3;
+  typedef typename NumberType<E2,D3>::ReplaceTypeD E3;  
+  constexpr int M3 = M2;
+  return  TER_Binary<TensorR<A,D1,D1,M1,R>,
+		     TensorR<B,E2,D2,M2,R>,
+		     D1,E2,E3,D1,D2,D3,M1,M2,M3,R,R,R,
+		     FUNCTOR_Complex<E1,E2,E3,D1,D2,D3> >(x1,x2); 
+}
+```
+        * and for these two functions
+```C++
+  inline bool dimequiv(const TensorAbstract& tensor1, const TensorAbstract& tensor2) {
+    return equiv(tensor1.dims(), tensor2.dims());
+  }
+
+  inline bool common(const TensorAbstract& tensor1, const TensorAbstract& tensor2) {
+    return common(tensor1.getAddresses(), tensor2.getAddresses());
+  }
+
+  // -------------------------------------------------------------------
+  // equal - if two tensors are equal. returns a single bool
+  //         checks dimensions first
+  // -------------------------------------------------------------------
+  template <class A, class B, class E1, class E2, class D1, class D2, int M, int R> 
+  bool equal(const TensorR<A,E1,D1,M,R>& x1, const TensorR<B,E2,D2,M,R>& x2)  {
+    if (!dimequiv(x1,x2)) {
+      return false;
+    }
+    return alltrue(x1==x2);
+  }  
+```
+        * what if we made TensorAbstract into Container<E,D>? do we even need TensorAbstract?
+    * use hiding: virtual or override? No, this won't help
+      * see https://stackoverflow.com/questions/33350175/c-override-inherited-methods
+    * google "C++ alternative to virtual functions"
+    * use curiously recurring template pattern (aka Barton-Nackman trick)
+      * https://stackoverflow.com/questions/9240168/templates-as-an-alternative-to-virtual-functions-in-c
+      * https://stackoverflow.com/questions/23628081/a-standard-way-to-avoid-virtual-functions
+      * https://en.wikibooks.org/wiki/More_C++_Idioms/Curiously_Recurring_Template_Pattern
+      * https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern
+      * https://en.wikipedia.org/wiki/Barton%E2%80%93Nackman_trick
+      * Some use cases for this pattern are static polymorphism and other metaprogramming techniques such as those described by Andrei Alexandrescu in Modern C++ Design.[7] It also figures prominently in the C++ implementation of the Data, Context, and Interaction paradigm.[8]
+  * try debuggers to track memory usage
+    * https://stackoverflow.com/questions/438515/how-to-track-memory-allocations-in-c-especially-new-delete
+    * https://stackoverflow.com/questions/10578133/tools-for-debugging-of-memory-usage
+    * https://www.computerworld.com/article/3003957/review-5-memory-debuggers-for-linux-coding.html
+    * https://stackoverflow.com/questions/2160300/how-to-find-the-memory-used-by-any-object
+    * https://www.cprogramming.com/debugging/valgrind.html
+    * https://stackoverflow.com/questions/700097/memory-allocation-profiling-in-c
+    * https://stackoverflow.com/questions/15881170/is-there-a-memory-overhead-associated-with-heap-memory-allocations-eg-markers-i/15881440#15881440
+    * https://www.nobugs.org/developer/win32/debug_crt_heap.html
+  
+
+
 
 ### Miscellaneous Small Features
 * Complex type that inherits from std::complex
@@ -73,7 +150,8 @@
 * refactor the headers so that 
   * vectors, matrices display tensors Scalar are broken out into different headers
   * use copious #ifdefs so that order of inclusion matters
-* Create a `Number` class to generalize (division alegra numbers) real,s imaginary and complex, quaternions?
+
+* Create a `Number` class to generalize (division alegra numbers) real's imaginary and complex, quaternions?
   * see https://en.cppreference.com/w/cpp/types/is_arithmetic
   * <complex> C++ std::complex
     * https://en.cppreference.com/w/cpp/numeric/complex
@@ -83,6 +161,8 @@
     * https://en.cppreference.com/w/c/numeric/complex/complex
     * https://en.cppreference.com/w/c/numeric/complex/imaginary
     * https://en.cppreference.com/w/c/numeric/complex/I
+
+    
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * overload `^` as exponentiation for vectors and matrices?
 * pow(container, scalar)

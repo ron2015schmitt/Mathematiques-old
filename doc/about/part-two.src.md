@@ -15,6 +15,10 @@ The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
 
+References
+1. Andrei Alexandrescu, __Modern C++ Design: Generic Programming and Design Patterns Applied__, 2001.
+2. David Vandevoorde, Douglas Gregor, Nicolai M Josuttis, __C++ Templates: The Complete Guide__, 2nd edition, 2018.
+
 ## Platform
 
 The initial platform chosen is

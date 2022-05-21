@@ -6,7 +6,7 @@
 #include <typeinfo>
 #include <optional>
 
-#define MATHQ_DEBUG 1
+#define MATHQ_DEBUG 0
 #include "mathq.h"
 
 
@@ -75,11 +75,12 @@ int main() {
     TRDISP(velocity2D);
     TRDISP(velocity3D);
   }
-  {
+  { 
     CR();
     ECHO_CODE(Vector<double, 2> velocity2D({ 70.5, -30 }));
     ECHO_CODE(Vector<double, 3> velocity3D({ 10, 0, -15 }));
     TRDISP(velocity2D);
+    ECHO_CODE(Vector<double> v3(3));
     TRDISP(velocity3D);
   }
   {
@@ -103,54 +104,40 @@ int main() {
   OUTPUT("\n<br>\n");
   GMD_HEADER3("Runtime-sized and Dynamically-sized vectors");
 
-  CR();
-  CR();
-  GMD_CODE_START("C++");
-  ECHO_CODE(using namespace mathq);
-  ECHO_CODE(using namespace mathq::unit_imaginary);
-  ECHO_CODE(using namespace mathq::unit_quaternion);
-  CR();
-  ECHO_CODE(auto q1 = Quaternion<double>(1, 2, -1, -3));
-  ECHO_CODE(auto q2 = Quaternion<double>(4, 3, -2, -5));
-  ECHO_CODE(auto q = Quaternion<double>() = 16 + 2*i + 3*j + 13*k);
-  ECHO_CODE(auto p = Quaternion<double>() = 0.53767 + 0.86217*i - 0.43359*j + 2.7694*k);
-  GMD_CODE_END();
-
-  MOUT << "In the above expressions we used the constants `i`, `j`, and `k`, which are defined as follows:\n";
-  CR();
-  GMD_CODE_START("C++");
-  TRDISP(mathq::unit_imaginary::i);
-  TRDISP(mathq::unit_quaternion::j);
-  TRDISP(mathq::unit_quaternion::k);
-  GMD_CODE_END();
-
-  OUTPUT("Unlike the standard C++ `i`, which is an operator, the Mathématiques `i`, `j`, and `k` are constants");
 
 
 
 
   CR();
   CR();
-  OUTPUT("\n<br>\n");
-  GMD_HEADER2("Size of Vectors");
 
-  OUTPUT("The size of a quaternions is simply _four times_ the size of the underlying arithmetic type:");
+  // TODO: give in terms of the size of the data
+  //   DISP(sizeof(Vector<double, 2>::MyArrayType)/sizeof(double));
+  //   DISP(sizeof(Vector<double, 100>)/sizeof(double));
+  //   DISP(sizeof(std::array<double, 100>)/sizeof(double));
+  //   DISP(sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double));
+  //   DISP(sizeof(array<array<double, 2>, 100>)/sizeof(double));
+  // OUTPUT("\n<br>\n");
+  // GMD_HEADER2("Size of Vectors");
 
-  CR();
-  CR();
-  GMD_CODE_START("C++");
-  SRDISP(" bits", CHAR_BIT);
-  CR();
-  SRDISP(" bits", CHAR_BIT*sizeof(int));
-  SRDISP(" bits", CHAR_BIT*sizeof(Quaternion<int>));
-  CR();
-  SRDISP(" bits", CHAR_BIT*sizeof(double));
-  SRDISP(" bits", CHAR_BIT*sizeof(Quaternion<double>));
-  CR();
-  SRDISP(" bits", CHAR_BIT*sizeof(long double));
-  SRDISP(" bits", CHAR_BIT*sizeof(Quaternion<long double>));
-  CR();
-  GMD_CODE_END();
+  // OUTPUT("The size of a vector is 64bits plus the vector size times the size of the underlying arithmetic type:");
+
+  // CR();
+  // CR();
+  // GMD_CODE_START("C++");
+  // CR();
+  // SRDISP(" bytes", sizeof(int));
+  // SRDISP(" bytes", sizeof(Vector<int, 10>));
+  // CR();
+  // SRDISP(" bytes", sizeof(double));
+  // SRDISP(" bytes", sizeof(Vector<double, 10>));
+  // SRDISP(" bytes", sizeof(std::array<double, 10>));
+  // CR();
+  // SRDISP(" bytes", sizeof(long double));
+  // SRDISP(" bytes", sizeof(Vector<long double, 10>));
+  // CR();
+  // GMD_CODE_END();
+
 
 
 
@@ -162,10 +149,10 @@ int main() {
   OUTPUT("Mathématiques supports the four arithmetic operators for quaternions:");
   CR();
   GMD_CODE_START("C++");
-  TRDISP(q1+q2);
-  TRDISP(q1-q2);
-  TRDISP(q1*q2);
-  TRDISP(q2/q1);
+  // TRDISP(q1+q2);
+  // TRDISP(q1-q2);
+  // TRDISP(q1*q2);
+  // TRDISP(q2/q1);
   GMD_CODE_END();
 
 
@@ -215,24 +202,24 @@ int main() {
 
   CR();
   GMD_CODE_START("C++");
-  TRDISP(q1);
-  TRDISP(q1.real());
-  TRDISP(q1.imag());
-  TRDISP(q1.jmag());
-  TRDISP(q1.kmag());
-  TRDISP(q1.abs());
-  TRDISP(q1.scalar());
-  TRDISP(q1.vector());
-  TRDISP(q1.vabs());
-  TRDISP(q1.unitvector());
-  TRDISP(q1.angle());
-  TRDISP(q1.polar());
-  TRDISP(q1.matrix2by2());
-  GMD_CODE_END();
+  // TRDISP(q1);
+  // TRDISP(q1.real());
+  // TRDISP(q1.imag());
+  // TRDISP(q1.jmag());
+  // TRDISP(q1.kmag());
+  // TRDISP(q1.abs());
+  // TRDISP(q1.scalar());
+  // TRDISP(q1.vector());
+  // TRDISP(q1.vabs());
+  // TRDISP(q1.unitvector());
+  // TRDISP(q1.angle());
+  // TRDISP(q1.polar());
+  // TRDISP(q1.matrix2by2());
+  // GMD_CODE_END();
 
-  // MOUT << "sizeof tuple = " << display::tuple_size_v<std::tuple<double, double, Vector<double, 3>>> << endl;
+  // // MOUT << "sizeof tuple = " << display::tuple_size_v<std::tuple<double, double, Vector<double, 3>>> << endl;
 
-  MOUT << "typename = "  << getTypeName(q1.polar()) << endl;
+  // MOUT << "typename = "  << getTypeName(q1.polar()) << endl;
 
 
   GMD_HEADER2("Functions");
@@ -244,13 +231,13 @@ int main() {
 
   CR();
   GMD_CODE_START("C++");
-  TRDISP(q);
-  TRDISP(exp(q));
-  TRDISP(log(q));
-  TRDISP(pow(q, 2));
-  TRDISP(pow(q, 0.5));
-  TRDISP(inv(q));
-  TRDISP(conj(q));
+  // TRDISP(q);
+  // TRDISP(exp(q));
+  // TRDISP(log(q));
+  // TRDISP(pow(q, 2));
+  // TRDISP(pow(q, 0.5));
+  // TRDISP(inv(q));
+  // TRDISP(conj(q));
   GMD_CODE_END();
 
 
@@ -262,26 +249,26 @@ int main() {
 
 
 
-  FormatDataVector::string_opening = "{\n";
-  FormatDataVector::max_elements_per_line = 1;
-  FormatDataVector::string_endofline = "\n";
-  GMD_CODE_START("C++");
-  ECHO_CODE(auto v = Vector<Quaternion<double>>({ 16 + 2*i + 3*j + 13*k,
-                                                 5 + 11*i + 10*j + 8*k,
-                                                 9 + 7*i + 6*j + 12*k,
-                                                 4 + 14*i + 15*j + 1*k }));
-  GMD_CODE_END();
+  // FormatDataVector::string_opening = "{\n";
+  // FormatDataVector::max_elements_per_line = 1;
+  // FormatDataVector::string_endofline = "\n";
+  // GMD_CODE_START("C++");
+  // ECHO_CODE(auto v = Vector<Quaternion<double>>({ 16 + 2*i + 3*j + 13*k,
+  //                                                5 + 11*i + 10*j + 8*k,
+  //                                                9 + 7*i + 6*j + 12*k,
+  //                                                4 + 14*i + 15*j + 1*k }));
+  // GMD_CODE_END();
 
 
   GMD_CODE_START("C++");
-  TRDISP(q);
-  CR();
-  TRDISP(v);
-  CR();
-  TRDISP(v + q);
-  CR();
-  TRDISP(exp(v));
-  CR();
+  // TRDISP(q);
+  // CR();
+  // TRDISP(v);
+  // CR();
+  // TRDISP(v + q);
+  // CR();
+  // TRDISP(exp(v));
+  // CR();
   // TRDISP(exp(v) + v);
   // TRDISP(exp(v) + 1);
   // TRDISP(exp(v) + 2.3);

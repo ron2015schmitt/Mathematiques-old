@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.60-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.61-c++17</h1>
 
 <details>
 
@@ -101,6 +101,10 @@ In early 2020, the project was officially launched as _Mathématiques_ and uploa
 The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) called [expression templating](https://en.wikipedia.org/wiki/Expression_templates), the library provides computational efficiency on par with C/Fortran.
 
 *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
+
+References
+1. Andrei Alexandrescu, __Modern C++ Design: Generic Programming and Design Patterns Applied__, 2001.
+2. David Vandevoorde, Douglas Gregor, Nicolai M Josuttis, __C++ Templates: The Complete Guide__, 2nd edition, 2018.
 
 ## Platform
 

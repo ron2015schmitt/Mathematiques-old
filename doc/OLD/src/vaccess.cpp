@@ -1,6 +1,6 @@
 
 // flag for run-time bounds and size checking
-#define MATHQ_DEBUG 1
+#define MATHQ_DEBUG 0
 
 
 #include "mathq.h"

@@ -1,4 +1,4 @@
-#define MATHQ_DEBUG 1
+#define MATHQ_DEBUG 0
 
 
 #include "mathq.h"

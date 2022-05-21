@@ -238,7 +238,7 @@ namespace mathq
 
   // TODO: implement
   // template <class A, class B, class E1, class D1, class D2, int M1, int M2, int R,
-  //           EnableIf<(M1 >= 2) && (M2 == 1) && (std::is_base_of<TensorAbstract, E1>::value)> = 0>
+  //           EnableIf<(M1 >= 2) && (M2 == 1) && (IsMathqContainer< E1>::value)> = 0>
   // auto operator|(const TensorR<A, E1, D1, M1, R> &x1, const TensorR<B, D2, D2, M2, R> &x2)
   // {
 
@@ -268,7 +268,7 @@ namespace mathq
   // TODO: implement
 
   // template <class A, class B, class E2, class D1, class D2, int M1, int M2, int R,
-  //           EnableIf<(M1 == 1) && (M2 >= 2) && (std::is_base_of<TensorAbstract, E2>::value)> = 0>
+  //           EnableIf<(M1 == 1) && (M2 >= 2) && (IsMathqContainer< E2>::value)> = 0>
   // auto operator|(const TensorR<A, D1, D1, M1, R> &x1, const TensorR<B, E2, D2, M2, R> &x2)
   // {
   //   // NOT SURE WHICH OF THE THREE IS BEST

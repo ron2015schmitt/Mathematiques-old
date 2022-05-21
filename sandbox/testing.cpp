@@ -291,17 +291,6 @@ int main(int argc, char *argv[]) {
   DISP(approx(x1, x2, 3.5e-16));
 
 
-  TensorAbstract *t = new Scalar<int>(22);
-  Scalar<int> *t2 = static_cast<Scalar<int> *>(t);
-
-  DISP(*t2);
-  MOUT << "t=" << *t2 << endl;
-
-
-  DISP(typeid(*t).name());
-  DISP(typeid(*t2).name());
-  // DISP(is_instance<decltype(*t), Scalar>{});
-  // DISP(is_instance<decltype(*t2), Scalar>{});
 
   Scalar<int> s1 = 12;
   Scalar<int> s2 = 10;

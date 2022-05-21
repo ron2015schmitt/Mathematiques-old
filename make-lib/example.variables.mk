@@ -10,7 +10,7 @@ MAKEFILE_REL := $(subst $(DIR_MATHQ)/,,$(MAKEFILE))
 ####################################################################
 ################## PROJECT SPECIFIC VARIABLES ######################
 ####################################################################
-EXEC += example example2 example-matrices
+EXEC += example example2 example-matrices example3
 ALL += run gitignore
 ####################################################################
 

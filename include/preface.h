@@ -365,6 +365,96 @@ public:
 
 
 // ***************************************************************************
+//  IsMathqContainer<T>
+// ***************************************************************************
+
+
+template <typename T>
+class
+    IsMathqContainer {
+public:
+  constexpr static bool value = false;
+  typedef void RealType;
+};
+
+template <typename D>
+class
+    IsMathqContainer<Scalar<D>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+
+template <typename D>
+class
+    IsMathqContainer<Vector<D>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+template <typename D, int NE>
+class
+    IsMathqContainer<Vector<D,NE>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+
+template <typename D>
+class
+    IsMathqContainer<Matrix<D>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+template <typename D, int NR>
+class
+    IsMathqContainer<Matrix<D,NR>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+template <typename D, int NR, int NC>
+class
+    IsMathqContainer<Matrix<D,NR,NC>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+
+template <typename D>
+class
+    IsMathqContainer<Tensor<D>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+template <typename D, int R>
+class
+    IsMathqContainer<Tensor<D,R>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+
+
+template <class X, class E, typename D, int M, int R>
+class
+    IsMathqContainer<TensorR<X, E, D, M, R>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+template <class X, class E, typename D, int M, int R>
+class
+    IsMathqContainer<TensorRW<X, E, D, M, R>> {
+public:
+  constexpr static bool value = true;
+  typedef D RealType;
+};
+
+
+// ***************************************************************************
 //  IsTensorRW<T>
 // ***************************************************************************
 

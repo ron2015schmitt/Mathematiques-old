@@ -4,7 +4,7 @@
 
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   std::string myname = argv[0];
 
   using namespace mathq;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
   // Scalar<Scalar<double>>
   //--------------------------------------------
   {
-    Scalar<Scalar<double>> s{{2.2}};
+    Scalar<Scalar<double>> s{ {2.2} };
     size_type expected;
     size_type result;
     bool pass;
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
     // getAddresses()
     printStart(++testnum);
     VectorofPtrs pexpected;
-    pexpected.add((void *)&s);
+    pexpected.add((void*)&s);
     VectorofPtrs presult;
     testcode(presult = s.getAddresses());
     pass = (presult == pexpected);
@@ -139,8 +139,8 @@ int main(int argc, char *argv[]) {
   }
   {
     printStart(++testnum);
-    Scalar<Scalar<double>> s{{2.2}};
-    Scalar<double> expected{2.2};
+    Scalar<Scalar<double>> s{ {2.2} };
+    Scalar<double> expected{ 2.2 };
     Scalar<double> result;
     testcode(result = s());
     bool pass = equal(result, expected);
@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
   }
   {
     printStart(++testnum);
-    Scalar<Scalar<double>> s{{2.2}};
+    Scalar<Scalar<double>> s{ {2.2} };
     double expected = 2.2;
     double result;
     testcode(result = s()());
@@ -180,7 +180,7 @@ int main(int argc, char *argv[]) {
   //--------------------------------------------
 
   {
-    Scalar<Vector<double>> s{{1.1, 2.2}};
+    Scalar<Vector<double>> s{ {1.1, 2.2} };
     size_type expected;
     size_type result;
     bool pass;
@@ -217,7 +217,7 @@ int main(int argc, char *argv[]) {
     // getAddresses()
     printStart(++testnum);
     VectorofPtrs pexpected;
-    pexpected.add((void *)&s);
+    pexpected.add((void*)&s);
     VectorofPtrs presult;
     testcode(presult = s.getAddresses());
     pass = (presult == pexpected);
@@ -282,8 +282,8 @@ int main(int argc, char *argv[]) {
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s{{1.1, 2.2}};
-    Vector<double> expected{1.1, 2.2};
+    Scalar<Vector<double>> s{ {1.1, 2.2} };
+    Vector<double> expected{ 1.1, 2.2 };
     Vector<double> result;
     testcode(result = s());
     bool pass = equal(result, expected);
@@ -293,7 +293,7 @@ int main(int argc, char *argv[]) {
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s{{1.1, 2.2}};
+    Scalar<Vector<double>> s{ {1.1, 2.2} };
     double expected = 2.2;
     double result;
     testcode(result = s()(1));
@@ -304,7 +304,7 @@ int main(int argc, char *argv[]) {
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s{{1.1, 2.2}};
+    Scalar<Vector<double>> s{ {1.1, 2.2} };
     double expected = 1.1;
     double result;
     testcode(result = s.dat(0));
@@ -315,7 +315,7 @@ int main(int argc, char *argv[]) {
   }
   {
     printStart(++testnum);
-    Scalar<Vector<double>> s{{1.1, 2.2}};
+    Scalar<Vector<double>> s{ {1.1, 2.2} };
     double expected = 2.2;
     double result;
     testcode(result = s.dat(1));

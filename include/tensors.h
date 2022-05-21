@@ -700,7 +700,7 @@ namespace mathq {
 
 
 
-  
+
 
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R>
   bool dimequiv(const TensorR<A, E1, D1, M, R>& x1, const TensorR<B, E2, D2, M, R>& x2) {

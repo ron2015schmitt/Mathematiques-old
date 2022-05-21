@@ -15,7 +15,7 @@ D paste(D x, D y) {
 }
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   std::string myname = argv[0];
 
   using namespace mathq;
@@ -45,19 +45,19 @@ int main(int argc, char *argv[]) {
   // -------------- constructors etc ------------------------
 
   {
-      // dynamic cast
-      // just use Material for expressions and typedecl() forconcrete
-      // printStart(++testnum);
-      // Scalar<int> s1 = 1;
-      // testtext( "dynamic casting" );
-      // TensorRW<int,Scalar<int> > &s2 = s1;
-      // Scalar<int> *sp1 = dynamic_cast<Scalar<int>*>(&s2);
-      // void* result = (void*)&s1;
-      // void* expected = (void*)sp1;
-      // bool pass = (result==expected);
-      // printEnd(pass,result,expected);
-      // allpass = allpass && pass;
-      // failnum += (!pass);
+    // dynamic cast
+    // just use Material for expressions and typedecl() forconcrete
+    // printStart(++testnum);
+    // Scalar<int> s1 = 1;
+    // testtext( "dynamic casting" );
+    // TensorRW<int,Scalar<int> > &s2 = s1;
+    // Scalar<int> *sp1 = dynamic_cast<Scalar<int>*>(&s2);
+    // void* result = (void*)&s1;
+    // void* expected = (void*)sp1;
+    // bool pass = (result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
   }
 
 
@@ -1055,7 +1055,7 @@ int main(int argc, char *argv[]) {
    */
 
 
-  // -------------- transpose------------------------
+   // -------------- transpose------------------------
 
   {
     // transpose(z)
@@ -1116,17 +1116,17 @@ int main(int argc, char *argv[]) {
     failnum += (!pass);
   }
   {
-      // x.conj() - does not exist
-      // using namespace std;
-      // printStart(++testnum);
-      // Scalar<double> x = 22;
-      // Scalar<ComplexDouble> expected = ComplexDouble(22,0);
-      // Scalar<ComplexDouble> result;
-      // testcode( result = x.conj() );
-      // bool pass = alltrue(result==expected);
-      // printEnd(pass,result,expected);
-      // allpass = allpass && pass;
-      // failnum += (!pass);
+    // x.conj() - does not exist
+    // using namespace std;
+    // printStart(++testnum);
+    // Scalar<double> x = 22;
+    // Scalar<ComplexDouble> expected = ComplexDouble(22,0);
+    // Scalar<ComplexDouble> result;
+    // testcode( result = x.conj() );
+    // bool pass = alltrue(result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
 
   }
 
@@ -1347,9 +1347,9 @@ int main(int argc, char *argv[]) {
    ************************************************************
    */
 
-  //---------- Scalar/scalar mix: arithmetic -----------------
+   //---------- Scalar/scalar mix: arithmetic -----------------
 
-  // addition
+   // addition
   {
     // Scalar + scalar
     printStart(++testnum);

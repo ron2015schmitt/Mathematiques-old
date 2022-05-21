@@ -15,7 +15,7 @@ D average(D x, D y) {
 }
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   std::string myname = argv[0];
 
   using namespace mathq;
@@ -47,18 +47,18 @@ int main(int argc, char *argv[]) {
   // just use Material for expressions and typedecl() forconcrete
 
   {
-      // dynamic cast
-      // printStart(++testnum);
-      // Scalar<ComplexInt> s1 = ComplexInt(1,1);
-      // testtext( "dynamic casting" );
-      // TensorRW<ComplexInt, Scalar<ComplexInt> > &s2 = s1;
-      // Scalar<ComplexInt> *sp1 = dynamic_cast< Scalar<ComplexInt>* >(&s2);
-      // void* result = (void*)&s1;
-      // void* expected = (void*)sp1;
-      // bool pass = (result==expected);
-      // printEnd(pass,result,expected);
-      // allpass = allpass && pass;
-      // failnum += (!pass);
+    // dynamic cast
+    // printStart(++testnum);
+    // Scalar<ComplexInt> s1 = ComplexInt(1,1);
+    // testtext( "dynamic casting" );
+    // TensorRW<ComplexInt, Scalar<ComplexInt> > &s2 = s1;
+    // Scalar<ComplexInt> *sp1 = dynamic_cast< Scalar<ComplexInt>* >(&s2);
+    // void* result = (void*)&s1;
+    // void* expected = (void*)sp1;
+    // bool pass = (result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
   }
 
 

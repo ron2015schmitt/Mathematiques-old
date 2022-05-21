@@ -25,9 +25,9 @@ int main() {
     // vector + vector
 
     printStart(++testnum);
-    Vector<int> v1 = {10, 20, 30, 40};
-    Vector<int> v2 = {-1, -2, -3, -4};
-    Vector<int> expected = {9, 18, 27, 36};
+    Vector<int> v1 = { 10, 20, 30, 40 };
+    Vector<int> v2 = { -1, -2, -3, -4 };
+    Vector<int> expected = { 9, 18, 27, 36 };
     Vector<int> result;
     TLDISP(v1);
     TLDISP(v2);
@@ -44,9 +44,9 @@ int main() {
     // vector - vector
 
     printStart(++testnum);
-    Vector<int> v1 = {10, 20, 30, 40};
-    Vector<int> v2 = {-1, -2, -3, -4};
-    Vector<int> expected = {11, 22, 33, 44};
+    Vector<int> v1 = { 10, 20, 30, 40 };
+    Vector<int> v2 = { -1, -2, -3, -4 };
+    Vector<int> expected = { 11, 22, 33, 44 };
     Vector<int> result;
     testcode(result = v1 - v2);
     bool pass = equal(result, expected);
@@ -59,9 +59,9 @@ int main() {
     // vector * vector
 
     printStart(++testnum);
-    Vector<int> v1 = {10, 20, 30, 40};
-    Vector<int> v2 = {-1, -2, 3, 0};
-    Vector<int> expected = {-10, -40, 90, 0};
+    Vector<int> v1 = { 10, 20, 30, 40 };
+    Vector<int> v2 = { -1, -2, 3, 0 };
+    Vector<int> expected = { -10, -40, 90, 0 };
     Vector<int> result;
     testcode(result = v1 * v2);
     bool pass = equal(result, expected);
@@ -74,9 +74,9 @@ int main() {
     // vector / vector
 
     printStart(++testnum);
-    Vector<int> v1 = {10, 20, 30, 40};
-    Vector<int> v2 = {-1, -2, 3, 10};
-    Vector<int> expected = {-10, -10, 10, 4};
+    Vector<int> v1 = { 10, 20, 30, 40 };
+    Vector<int> v2 = { -1, -2, 3, 10 };
+    Vector<int> expected = { -10, -10, 10, 4 };
     Vector<int> result;
     testcode(result = v1 / v2);
     bool pass = equal(result, expected);
@@ -90,9 +90,9 @@ int main() {
     // Test of a large vector math expression
 
     printStart(++testnum);
-    Vector<double> v1 = {10., 20., 30., 40.};
-    Vector<double> v2 = {-1, -2, -3, -4};
-    Vector<double> expected = {10, 13, 18, 25};
+    Vector<double> v1 = { 10., 20., 30., 40. };
+    Vector<double> v2 = { -1, -2, -3, -4 };
+    Vector<double> expected = { 10, 13, 18, 25 };
     Vector<double> result;
     testcode(result = 2 * log10(abs(v1 / v2) * 100) + 3 + pow(-v2, 2));
     bool pass = equal_approx(result, expected, tol);
@@ -155,21 +155,21 @@ int main() {
     failnum += (!pass);
   }
   {
-      // x.conj()  -- does not exist
-      // using namespace std;
-      // printStart(++testnum);
-      // Vector<double> x(2);
-      // x[0] = 3.14;
-      // x[1] = -45;
-      // Vector<ComplexDouble> expected({ComplexDouble(3.14,0), ComplexDouble(-45,0) });
-      // expected[0] = 3.14;
-      // expected[1] = -45;
-      // Vector<ComplexDouble> result;
-      // testcode( result = x.conj() );
-      // bool pass = alltrue(result==expected);
-      // printEnd(pass,result,expected);
-      // allpass = allpass && pass;
-      // failnum += (!pass);
+    // x.conj()  -- does not exist
+    // using namespace std;
+    // printStart(++testnum);
+    // Vector<double> x(2);
+    // x[0] = 3.14;
+    // x[1] = -45;
+    // Vector<ComplexDouble> expected({ComplexDouble(3.14,0), ComplexDouble(-45,0) });
+    // expected[0] = 3.14;
+    // expected[1] = -45;
+    // Vector<ComplexDouble> result;
+    // testcode( result = x.conj() );
+    // bool pass = alltrue(result==expected);
+    // printEnd(pass,result,expected);
+    // allpass = allpass && pass;
+    // failnum += (!pass);
   }
 
 

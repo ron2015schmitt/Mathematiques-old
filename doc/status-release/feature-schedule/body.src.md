@@ -77,7 +77,7 @@
   * can then allows complex, imaginary and quaternion to hold vectors
 * cast method for const std::initializer_list<E>?  is this possible
 * use https://doxygen.nl/manual/docblocks.html os similar to generate method and function docs?
-* reformat all files using VSCode plugin
+* reformat all files using VSCode plugin: all done except sandbox
 * all objects should ave .invert() and conjugate(), not .inv and .conj
 * inv<D>(D x) for real, integers, imaginar, complex, quaternion
 * make all temp README.md files read-only

@@ -9,19 +9,20 @@ void printStart(const int n) {
 }
 
 template <class T>
-void printEnd_(const bool pass, const T &result, const T &expected, const int linenum) {
+void printEnd_(const bool pass, const T& result, const T& expected, const int linenum) {
   using namespace display;
   if (pass) {
     MOUT << "          "
-         << "       = ";
+      << "       = ";
     DISPVAL(result);
     MOUT << std::endl;
     MOUT << "          ";
     MOUT << CREATESTYLE(GREEN1 + BOLD).apply("Passed") << std::endl;
-  } else {
+  }
+  else {
     FormatData<double>::format_string = "%.16g";
     MOUT << "          "
-         << "       = ";
+      << "       = ";
     DISPVAL(result);
     MOUT << std::endl;
     MOUT << "        " << CREATESTYLE(BLUE2).apply("Expected");
@@ -39,7 +40,7 @@ void printEnd_(const bool pass, const T &result, const T &expected, const int li
 
 #define printEnd(pass, result, expected) printEnd_(pass, result, expected, __LINE__)
 
-void printCode(const std::string &str) {
+void printCode(const std::string& str) {
   using namespace display;
   MOUT << CREATESTYLE(GRAY1).apply(str) << std::endl;
 }

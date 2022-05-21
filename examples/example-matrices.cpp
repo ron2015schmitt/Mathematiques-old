@@ -13,12 +13,13 @@ void printoptsfile() {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
-  } else {
+  }
+  else {
     std::cout << "Couldn't open file\n";
   }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   const double pi = M_PI;
   std::string myname = argv[0];
 
@@ -38,7 +39,7 @@ int main(int argc, char *argv[]) {
   print_mathq_info();
   printoptsfile();
 
-  Vector<double> v1({2, -1});
+  Vector<double> v1({ 2, -1 });
   Vector<double> v2;
   v2 = 10 * sin(pi / 2 * v1) + 5;
 
@@ -62,11 +63,11 @@ int main(int argc, char *argv[]) {
   FormatDataMatrix::string_closing = "\n]";
 
   Matrix<double> m1(2, 2);
-  m1 = {10, 20, 30, 40};
+  m1 = { 10, 20, 30, 40 };
   Matrix<double> m2(2, 2);
-  m2 = {-1, -2, -3, -4};
+  m2 = { -1, -2, -3, -4 };
 
-  Matrix<double> m3({{1, 2}, {3, 4}, {5, 6}});
+  Matrix<double> m3({ {1, 2}, {3, 4}, {5, 6} });
   // m3 = {{1, 2}, {3, 4}, {5, 6}};
   // dot product
   DISP(v1 | v2);
@@ -87,9 +88,9 @@ int main(int argc, char *argv[]) {
   DISP(m3 | m1);
   DISP(m2 | m3.transpose());
 
-  Vector<double> v({2, -1});
-  Vector<double> u({1, -2, 4});
-  Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
+  Vector<double> v({ 2, -1 });
+  Vector<double> u({ 1, -2, 4 });
+  Matrix<double> A({ {1, 2}, {3, 4}, {5, 6} });
 
   DISP(v);
   DISP(A);

@@ -17,9 +17,11 @@ bool printCPUInfo() {
   while (std::getline(file, label, ':') && std::getline(file, value)) {
     if (label.find("model name") != std::string::npos) {
       mymap[label] = value;
-    } else if (label.find("cpu MHz") != std::string::npos) {
+    }
+    else if (label.find("cpu MHz") != std::string::npos) {
       mymap[label] = value;
-    } else if (label.find("cache size") != std::string::npos) {
+    }
+    else if (label.find("cache size") != std::string::npos) {
       mymap[label] = value;
     }
   }
@@ -105,7 +107,7 @@ int main() {
 
   {
     MOUT << "  " << CREATESTYLE(BLUE2 + BOLD).apply("new double[N]") << std::endl;
-    double *temp1 = new double[N];
+    double* temp1 = new double[N];
     t.start_timer_silent();
     for (int i = 0; i < N; i++)
       temp1[i] = 3.14;

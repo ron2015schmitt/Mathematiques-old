@@ -14,12 +14,13 @@ void printoptsfile() {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
-  } else {
+  }
+  else {
     std::cout << "Couldn't open file\n";
   }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   const double pi = M_PI;
   std::string myname = argv[0];
 

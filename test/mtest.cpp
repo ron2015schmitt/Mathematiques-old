@@ -28,11 +28,11 @@ int main() {
     using namespace std; // need this recognize lists
     printStart(++testnum);
     Matrix<int> m1(2, 2);
-    m1 = {10, 20, 30, 40};
+    m1 = { 10, 20, 30, 40 };
     Matrix<int> m2(2, 2);
-    m2 = {-1, -2, -3, -4};
+    m2 = { -1, -2, -3, -4 };
     Matrix<int> expected(2, 2);
-    expected = {9, 18, 27, 36};
+    expected = { 9, 18, 27, 36 };
     Matrix<int> result;
     testcode(result = m1 + m2);
     bool pass = equal(result, expected);

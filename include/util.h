@@ -12,11 +12,11 @@ namespace mathq {
   //      Time related
   //***********************************************************************
 
- 
+
   class Timer {
-    time_t tm1_,tm2_;
+    time_t tm1_, tm2_;
     clock_t ckstart_, ckstop_, ckdiff_;
-    double cputime_;  
+    double cputime_;
     //  string name;
   public:
     void start_timer_silent(void) {
@@ -52,7 +52,7 @@ namespace mathq {
       MOUT << "  CPU time = " << CREATESTYLE(BOLD).apply(timestr) << " sec" << std::endl;
     }
 
-    double cputime(void)  {
+    double cputime(void) {
       cputime_ = double(ckstop_-ckstart_)/double(CLOCKS_PER_SEC);
       return cputime_;
     }
@@ -71,7 +71,7 @@ namespace mathq {
 
 
 
-  
+
 
 
 };

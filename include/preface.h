@@ -84,7 +84,6 @@ class NumberType;
 // E = element type (int, double, complex<double>, bool, Scalar<double>, Vector<double>, Matrix<double>, etc)
 // D = number type (int, double, complex<double>, bool, etc)
 
-class TensorAbstract;
 template <class X, class E, typename D, int M, int R>
 class TensorR;
 template <class X, class E, typename D, int M, int R>

@@ -700,53 +700,13 @@ namespace mathq {
 
 
 
-  // -------------------------------------------------------------------
-  //
-  // TensorAbstract  - abstract class that allows us to put tensors of
-  //           any rank and data type into the same contianer.
-  //           Use ndims() dim() or getEnum()
-  //           to determined rank (ie Scalar Vector, Matrix, Tensor)
-  //  rank   Subclass Name
-  //    0    Scalar
-  //    1    Vector
-  //    2    Matrix
-  //    3+   Tensor
-  // -------------------------------------------------------------------
+  
 
-  class TensorAbstract {
-    // DO NOT define any storage: we want to
-    //        be able to define "light-weight" vectors and matrices
-    //        light-weight in that they are small from 1 to 4 elements
-  public:
-    virtual size_type size(void) const = 0;
-    virtual size_type depth(void) const = 0;
-    virtual Dimensions eldims(void) const = 0;
-    virtual size_type ndims(void) const = 0;
-    virtual Dimensions dims(void) const = 0;
-    virtual std::vector<Dimensions>& deepdims(void) const = 0;
-    virtual std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const = 0;
-    virtual bool isExpression(void) const = 0;     // NOTE: with the intrudction of getEnum, this function redundant
-    virtual Tensors getEnum(void) const = 0;
-    virtual VectorofPtrs getAddresses(void) const = 0;
-    virtual std::string classname(void) const = 0;  // NOTE: *not* static
-    virtual size_type elsize(void) const = 0;
-    virtual size_type eldeepsize(void) const = 0;
-    virtual size_type deepsize(void) const = 0;
-
-  };
-
-
-  // inline bool dimequiv(const TensorAbstract& tensor1, const TensorAbstract& tensor2) {
-  //   return equiv(tensor1.dims(), tensor2.dims());
-  // }
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R>
   bool dimequiv(const TensorR<A, E1, D1, M, R>& x1, const TensorR<B, E2, D2, M, R>& x2) {
     return equiv(x1.dims(), x2.dims());
   }
 
-  // inline bool common(const TensorAbstract& tensor1, const TensorAbstract& tensor2) {
-  //   return common(tensor1.getAddresses(), tensor2.getAddresses());
-  // }
   template <class A, class B, class E1, class E2, class D1, class D2, int M, int R>
   bool common(const TensorR<A, E1, D1, M, R>& x1, const TensorR<B, E2, D2, M, R>& x2) {
     // PRINTF3("in common");
@@ -809,7 +769,7 @@ namespace mathq {
   // -------------------------------------------------------------------
 
   template <class X, class E, typename D, int M, int R> class
-    TensorR : public TensorAbstract {
+    TensorR {
   public:
     typedef Materialize<E, D, M, R> XType;
     typedef E EType;

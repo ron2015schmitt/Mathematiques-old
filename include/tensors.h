@@ -820,8 +820,9 @@ namespace mathq {
     bool isExpression(void) const {
       return derived().isExpression();
     }
-    virtual Tensors getEnum(void) const {
-      return T_EXPRESSION_R;
+    Tensors getEnum(void) const {
+      // return T_EXPRESSION_R;
+      return derived().getEnum();
     }
     size_type depth(void) const {
       return derived().depth();
@@ -940,8 +941,9 @@ namespace mathq {
     bool isExpression(void) const {
       return derived().isExpression();
     }
-    virtual Tensors getEnum(void) const {
-      return T_EXPRESSION_RW;
+    Tensors getEnum(void) const {
+      return derived().getEnum();
+      // return T_EXPRESSION_RW;
     }
     size_type depth(void) const {
       return derived().depth();

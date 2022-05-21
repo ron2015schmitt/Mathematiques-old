@@ -112,13 +112,22 @@ int main() {
   CR();
 
   // TODO: give in terms of the size of the data
-  //   DISP(sizeof(Vector<double, 2>::MyArrayType)/sizeof(double));
-  //   DISP(sizeof(Vector<double, 100>)/sizeof(double));
-  //   DISP(sizeof(std::array<double, 100>)/sizeof(double));
-  //   DISP(sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double));
-  //   DISP(sizeof(array<array<double, 2>, 100>)/sizeof(double));
-  // OUTPUT("\n<br>\n");
-  // GMD_HEADER2("Size of Vectors");
+  GMD_CODE_START("C++");
+  CR();
+    DISP(sizeof(array<double, 2>)/sizeof(double));
+    DISP(sizeof(Vector<double, 2>)/sizeof(double));
+
+  CR();
+    DISP(sizeof(array<double, 100>)/sizeof(double));
+    DISP(sizeof(Vector<double, 100>)/sizeof(double));
+  CR();
+    DISP(sizeof(array<array<double, 2>, 100>)/sizeof(double));
+    DISP(sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double));
+  GMD_CODE_END();
+
+
+  OUTPUT("\n<br>\n");
+  GMD_HEADER2("Size of Vectors");
 
   // OUTPUT("The size of a vector is 64bits plus the vector size times the size of the underlying arithmetic type:");
 

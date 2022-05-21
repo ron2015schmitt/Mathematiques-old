@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.63-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.64-c++17</h1>
 
 <details>
 
@@ -124,6 +124,21 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 ### Runtime-sized and Dynamically-sized vectors
 
 
+```C++
+
+☀ sizeof(array<double, 2>)/sizeof(double) ➜ 2;
+☀ sizeof(Vector<double, 2>)/sizeof(double) ➜ 2;
+
+☀ sizeof(array<double, 100>)/sizeof(double) ➜ 100;
+☀ sizeof(Vector<double, 100>)/sizeof(double) ➜ 100;
+
+☀ sizeof(array<array<double, 2>, 100>)/sizeof(double) ➜ 200;
+☀ sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double) ➜ 200;
+```
+
+<br>
+
+## Size of Vectors
 
 <br>
 

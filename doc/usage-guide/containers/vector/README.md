@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.67-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.68-c++17</h1>
 
 <details>
 
@@ -125,6 +125,13 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 
 
 ```C++
+
+☀ rx ➜ mathq::Range<int> (-1,1,3);
+☀ grid(rx) ➜ Vector<int> {-1, 0, 1};
+☀ ry ➜ mathq::Range<int> (0,3,4);
+☀ grid(ry) ➜ Vector<int> {0, 1, 2, 3};
+☀ gridXY(0) ➜ Matrix<int> { {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1} };
+☀ gridXY(1) ➜ Matrix<int> { {0, 0, 0}, {1, 1, 1}, {3, 3, 3}, {3, 3, 3} };
 
 ☀ sizeof(array<double, 2>)/sizeof(double) ➜ 2;
 ☀ sizeof(Vector<double, 2>)/sizeof(double) ➜ 2;

@@ -830,6 +830,11 @@ namespace display {
     return style;
   }
 
+  template <class D>
+  Style getTypeStyle(const mathq::Range<D>& var) {
+    Style style = CREATESTYLE(CYAN);
+    return style;
+  }
 
   inline Style getFunctionTypeStyle() {
     return CREATESTYLE(BLUE);
@@ -954,6 +959,7 @@ namespace display {
   SPECIALIZE_getTypeName_CONTAINER(std::list);
   SPECIALIZE_getTypeName_CONTAINER(std::queue);
   SPECIALIZE_getTypeName_CONTAINER(std::initializer_list);
+  SPECIALIZE_getTypeName_CONTAINER(mathq::Range);
 
 #define SPECIALIZE_getTypeName_CONTAINER2(TYPE)             \
   template <typename D1, typename D2>                       \
@@ -1257,6 +1263,20 @@ namespace display {
   SPECIALIZE_floating_dispval_strm(double);
   SPECIALIZE_floating_dispval_strm(long double);
 
+
+  // mathq::Range
+  template <typename D>
+  inline void dispval_strm(std::ostream& stream, const mathq::Range<D>& var) {
+    stream << "(";
+    dispval_strm(stream, var.x1);
+    stream << ",";
+    dispval_strm(stream, var.x2);
+    stream << ",";
+    dispval_strm(stream, var.N);
+    stream << ")";
+  }
+
+
   // string
   template <>
   inline void dispval_strm<std::string>(std::ostream& stream, const std::string& str) {
@@ -1398,6 +1418,7 @@ namespace display {
     }
     stream << "}";
   }
+
 
 
 

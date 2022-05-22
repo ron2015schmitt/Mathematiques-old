@@ -72,7 +72,10 @@
 
 
 ### Miscellaneous Small Features
+* use row-repeated Matrix and col-rpeeated Matrix for grid2
+* use row-repeated Tensor and col-rpeeated Tensor for grid3
 * get rid of typename usage in templates?
+* use of variable templates to simplify variadics like Dimension?
 * Complex type that inherits from std::complex
   * can then allows complex, imaginary and quaternion to hold vectors
 * cast method for const std::initializer_list<E>?  is this possible

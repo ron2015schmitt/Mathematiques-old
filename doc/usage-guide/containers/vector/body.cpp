@@ -111,8 +111,19 @@ int main() {
   CR();
   CR();
 
+
   // TODO: give in terms of the size of the data
   GMD_CODE_START("C++");
+  CR();
+    Range rx(-1, 1, 3);
+    Range ry(0, 3, 4);
+    TRDISP(rx);
+    TRDISP(grid(rx));
+    TRDISP(ry);
+    TRDISP(grid(ry));
+    auto gridXY = grid(rx, ry);
+    TRDISP(gridXY(0));
+    TRDISP(gridXY(1));
   CR();
     DISP(sizeof(array<double, 2>)/sizeof(double));
     DISP(sizeof(Vector<double, 2>)/sizeof(double));

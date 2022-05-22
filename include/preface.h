@@ -1304,7 +1304,35 @@ namespace mathq {
   template <class X, class E, class D, int M, int R>
   EnableMethodIf<std::is_same<D, bool>::value, Vector<index_type>&> findtrue(const TensorR<X, E, D, M, R>& v);
 
+
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  class
+    Range {
+  public:
+    const D x1;
+    const D x2;
+    const std::size_t N;
+    const D step;
+    Range(const D x1, const D x2, const std::size_t N) :
+      x1(x1),
+      x2(x2),
+      N(N),
+      step((x2-x1)/static_cast<D>(N-1)) {
+    }
+
+    ~Range() {
+    }
+  };
+
+
+
+
 }; // namespace mathq
+
+
+
+
 
 
 #endif

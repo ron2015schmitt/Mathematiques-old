@@ -510,8 +510,9 @@ namespace mathq {
     const D step = (end-start)/static_cast<D>(N-1);
 
     (*y)[0] = start;
-    for (size_type i = 1; i<(N-1); i++)
+    for (size_type i = 1; i<(N-1); i++) {
       (*y)[i] = start + static_cast<D>(i)*step;
+    }
     (*y)[N-1] = end;
     return *y;
 
@@ -560,6 +561,71 @@ namespace mathq {
     return linspace(start+step, end-step, N);
   }
 
+
+  // *********************************************************
+  // *          Functions that return a grid
+  // *********************************************************
+
+// Vector<D>& linspace(D start, D end, size_type N)
+
+
+
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto grid(const Range<D>& rang) {
+    return linspace(rang.x1, rang.x2, rang.N);
+  }
+
+  /// TODO: use reprow and repcol matrices
+
+  // uses same convetnion as meshgrid form matlab
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto grid(const Range<D>& r1, const Range<D>& r2) {
+    auto X = Matrix<D>(r2.N, r1.N);
+    auto Y = Matrix<D>(r2.N, r1.N);
+    auto* G = new Vector<Matrix<D>,2>();
+
+    for (size_type c = 0; c < r1.N; c++) {
+      D temp;
+
+      if (c == 0) {
+        temp = r1.x1;
+      }
+      else if (c == r1.N-1) {
+        temp = r1.x2;
+      }
+      else {
+        temp = r1.x1 + static_cast<D>(c)*r1.step;
+      }
+      for (size_type r = 0; r < r2.N; r++) {
+        X(r, c) = temp;
+      }
+    }
+
+    for (size_type r = 0; r < r2.N; r++) {
+      D temp;
+      if (r == 0) {
+        temp = r2.x1;
+      }
+      else if (r == r1.N-1) {
+        temp = r2.x2;
+      }
+      else {
+        temp = r2.x1 + static_cast<D>(r)*r2.step;
+      }
+      for (size_type c = 0; c < r1.N; c++) {
+        Y(r, c) = temp;
+      }
+    }
+    (*G)(0) = X;
+    (*G)(1) = Y;
+    return *G;
+  }
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto grid(const Range<D>& r1, const Range<D>& r2, const Range<D>& rang3) {
+    // return linspace(rang.x1, rang.x2, rang.N);
+  }
 
 
   // *********************************************************
@@ -849,7 +915,6 @@ namespace mathq {
   auto ifourier(const TensorR<A, D, D, M, R>& Acos, const TensorR<B, D, D, M, R>& Bsin, const TensorR<X, D, D, M, R>& x, const int N, const D k1) {
     return  TER_Series2<TensorR<A, D, D, M, R>, TensorR<B, D, D, M, R>, TensorR<X, D, D, M, R>, D, FUNCTOR_cos<D, D, D, D>, FUNCTOR_sin<D, D, D, D> >(Acos, Bsin, x, N, k1);
   }
-
 
 
 

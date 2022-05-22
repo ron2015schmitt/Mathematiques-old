@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.71-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.72-c++17</h1>
 
 <details>
 
@@ -139,12 +139,16 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 ☀ fgrid(func3, gridX) ➜ Vector<double> {0.367879, 1, 2.71828};
 ☀ func4(-3) ➜ double 0.0497871;
 ☀ fgrid(func4, gridX) ➜ Vector<double> {0.367879, 1, 2.71828};
+
 ☀ ry ➜ mathq::Range<double> (0,3,4);
 ☀ grid(ry) ➜ Vector<double> {0, 1, 2, 3};
 ☀ rz ➜ mathq::Range<double> (10,11,2);
 ☀ grid(rz) ➜ Vector<double> {10, 11};
 ☀ gridXY(0) ➜ Matrix<double> { {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1} };
 ☀ gridXY(1) ➜ Matrix<double> { {0, 0, 0}, {1, 1, 1}, {2, 2, 2}, {3, 3, 3} };
+☀ R ➜ Matrix<double> { {1, 0, 1}, {1.41421, 1, 1.41421}, {2.23607, 2, 2.23607}, {3.16228, 3, 3.16228} };
+☀ R2 ➜ Matrix<double> { {1, 0, 1}, {1.41421, 1, 1.41421}, {2.23607, 2, 2.23607}, {3.16228, 3, 3.16228} };
+
 ☀ gridXYZ(0) ➜ Tensor<double> 
 {
   {

@@ -80,7 +80,22 @@
 
 
 ### Miscellaneous Small Features
-* create template versions of all C++ functions so that there is never overload ambiguity
+* create template versions of all C++ functions so that there is never overload ambiguity. Put inside namespace
+```C++
+  template <class DIN>
+  auto test(DIN x) {
+    return std::exp(x);
+  }
+  template <>
+  auto test<float>(float x) {
+    return std::exp(x);
+  }
+  template <>
+  auto test<long double>(long double x) {
+    return std::exp(x);
+  }
+  // this seems to works for ints. if problems, use a helper class to determine which exp to call: expf expl, exp
+```
 * use row-repeated Matrix and col-rpeeated Matrix for grid2
 * use row-repeated Tensor and col-rpeeated Tensor for grid3
 * get rid of typename usage in templates?

@@ -568,8 +568,7 @@ namespace mathq {
 
 // Vector<D>& linspace(D start, D end, size_type N)
 
-
-  // TODO: need to include Imagnary and Quaternions in this
+  // complex and Quaternions are not ordered sets so they can't be used in a range
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   auto grid(const Range<D>& rang) {
@@ -696,9 +695,7 @@ namespace mathq {
   }
 
 
-  // apply function to 1D grid
-
-  // std::function<void(int)> f_display = print_num;
+  // fgrid 1D - apply function to 1D grid
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   Vector<D>& fgrid(std::function<D(D)> func, const Vector<D>& grid) {
@@ -717,8 +714,25 @@ namespace mathq {
     return fgrid( std::function<D(D)>(func), grid );
   }
 
+  // fgrid 2D 
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto fgrid(std::function<D(D,D)> func, const Vector<Matrix<D>, 2>& grid) {
+    const Matrix<D> &X = grid(0);
+    const Matrix<D> &Y = grid(1);
+    auto* y = new Matrix<D>(X.Nrows(), X.Ncols());
+    for(int k = 0; k < X.size(); k++) {
+      (*y)[k] = func(X[k],Y[k]);
+    }
+    return *y;
+  }
 
-  
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto fgrid(D (func)(D,D), const Vector<Matrix<D>, 2>& grid) {
+    // All 3 of these work
+    // std::function<D(D,D)> func2 = func;  return fgrid( func2, grid );
+    // return fgrid( std::function<D(D,D)>(std::forward<decltype(func)>(func)), grid );
+    return fgrid( std::function<D(D,D)>(func), grid );
+  }
 
 
 

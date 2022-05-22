@@ -6,8 +6,10 @@
 #include <typeinfo>
 #include <optional>
 
-#define MATHQ_DEBUG 0
+
 #include "mathq.h"
+
+inline double fradius2(double x, double y) { return  std::sqrt(x*x + y*y); }
 
 
 int main() {
@@ -115,6 +117,8 @@ int main() {
   // TODO: give in terms of the size of the data
   GMD_CODE_START("C++");
   CR();
+
+
   Range<double> rx(-1, 1, 3);
   Range<double> ry(0, 3, 4);
   Range<double> rz(10, 11, 2);
@@ -128,7 +132,7 @@ int main() {
   TRDISP(fgrid(func, gridX));
   double (*func2)(double) = &std::exp;
   TRDISP(func2(1));
- TRDISP(fgrid(func2, gridX));  // doesnt work
+  TRDISP(fgrid(func2, gridX));  // doesnt work
   TRDISP(static_cast<double (*)(double)>(&std::exp)(1));
   std::function<double(double)> func3 = static_cast<double (*)(double)>(&std::exp);
   TRDISP(func3(1));
@@ -136,7 +140,7 @@ int main() {
   std::function<double(double)> func4 = [](double d) {  return std::exp(d); };
   TRDISP(func4(-3));
   TRDISP(fgrid(func4, gridX));
-
+  CR();
   TRDISP(ry);
   TRDISP(grid(ry));
   TRDISP(rz);
@@ -144,6 +148,14 @@ int main() {
   auto gridXY = grid(rx, ry);
   TRDISP(gridXY(0));
   TRDISP(gridXY(1));
+
+  std::function<double(double, double)> fradius = [](double x, double y) {  return std::sqrt(x*x + y*y); };
+  auto R = fgrid(fradius, gridXY);
+  TRDISP(R);
+  auto R2 = fgrid(fradius2, gridXY);
+  TRDISP(R2);
+
+  CR();
   auto gridXYZ = grid(rx, ry, rz);
   TRDISP(gridXYZ(0));
   TRDISP(gridXYZ(1));

@@ -432,7 +432,7 @@ namespace mathq {
       return k;
     }
 
-    index_type indexl(const std::initializer_list<size_type>& mylist) const {
+    index_type index(const std::initializer_list<size_type>& mylist) const {
       // TODO: check size
       const index_type NN = this->ndims();
       const size_type N = mylist.size();
@@ -533,9 +533,11 @@ namespace mathq {
     }
 
     // ----------------- tensor = Tensor<E,R,D,M> ----------------
+    template <int R1>
     Tensor<E, R, D, M>&
-      operator=(const Tensor<E, R, D, M>& x) {
+      operator=(const Tensor<E, R1, D, M>& x) {
       // TODO: issue warning
+      // TRDISP(x);
       resize(x.dims());
       for (index_type i = size(); i--;) {
         data_[i] = x[i]; // Inlined expression

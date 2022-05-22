@@ -28,12 +28,12 @@
 # [7. Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br>
 7.1. [Usage Guide Notation](../notation/README.md)<br>
 7.2. [Scalar Types (Real, Imaginary, Complex & Quaternion)](../scalars/README.md)<br>
-7.3. _Container Types (Vector, Matrix & Tensor)_ <br>
+7.3. [Container Types (Vector, Matrix & Tensor)](../containers/README.md)<br>
 7.4. [Operators](../operators/README.md)<br>
 7.5. [Functions](../functions/README.md)<br>
 7.6. [Linear Algebra](../linear-algebra/README.md)<br>
 7.7. [Indexing, Masks, and Sorting](../indexing-sorting/README.md)<br>
-7.8. [Ranges and Grids](../ranges-grids/README.md)<br>
+7.8. _Ranges and Grids_ <br>
 7.9. [Calculus](../calculus/README.md)<br>
 7.10. [Vector Calculus](../vector-calculus/README.md)<br>
 7.11. [Tensor Calculus](../tensor-calculus/README.md)<br>
@@ -46,8 +46,10 @@
 
 
 
-# 7.3. Container Types (Vector, Matrix & Tensor)
+# 7.8. Ranges and Grids
 
-7.3.1. [Vectors](vector/README.md)<br>
-7.3.2. [Matrices](matrix/README.md)<br>
-7.3.3. [Tensors](tensor/README.md)<br>
+
+
+| ⇦ <br />[Indexing, Masks, and Sorting](../indexing-sorting/README.md)  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />Ranges and Grids<br /><img width=1000/> | ⇨ <br />[Calculus](../calculus/README.md)   |
+| ------------ | :-------------------------------: | ------------ |
+

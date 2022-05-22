@@ -1268,9 +1268,9 @@ namespace display {
   template <typename D>
   inline void dispval_strm(std::ostream& stream, const mathq::Range<D>& var) {
     stream << "(";
-    dispval_strm(stream, var.x1);
+    dispval_strm(stream, var.a);
     stream << ",";
-    dispval_strm(stream, var.x2);
+    dispval_strm(stream, var.b);
     stream << ",";
     dispval_strm(stream, var.N);
     stream << ")";

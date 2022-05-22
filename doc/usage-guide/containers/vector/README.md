@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.68-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.69-c++17</h1>
 
 <details>
 
@@ -33,12 +33,13 @@
 7.5. [Functions](../../functions/README.md)<br>
 7.6. [Linear Algebra](../../linear-algebra/README.md)<br>
 7.7. [Indexing, Masks, and Sorting](../../indexing-sorting/README.md)<br>
-7.8. [Calculus](../../calculus/README.md)<br>
-7.9. [Vector Calculus](../../vector-calculus/README.md)<br>
-7.10. [Tensor Calculus](../../tensor-calculus/README.md)<br>
-7.11. [Display of Results](../../display/README.md)<br>
-7.12. [FILE I/O](../../file-io/README.md)<br>
-7.13. [Debug Modes](../../debug/README.md)<br>
+7.8. [Ranges and Grids](../../ranges-grids/README.md)<br>
+7.9. [Calculus](../../calculus/README.md)<br>
+7.10. [Vector Calculus](../../vector-calculus/README.md)<br>
+7.11. [Tensor Calculus](../../tensor-calculus/README.md)<br>
+7.12. [Display of Results](../../display/README.md)<br>
+7.13. [FILE I/O](../../file-io/README.md)<br>
+7.14. [Debug Modes](../../debug/README.md)<br>
 
 
 </details>
@@ -126,12 +127,84 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 
 ```C++
 
-☀ rx ➜ mathq::Range<int> (-1,1,3);
-☀ grid(rx) ➜ Vector<int> {-1, 0, 1};
-☀ ry ➜ mathq::Range<int> (0,3,4);
-☀ grid(ry) ➜ Vector<int> {0, 1, 2, 3};
-☀ gridXY(0) ➜ Matrix<int> { {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1} };
-☀ gridXY(1) ➜ Matrix<int> { {0, 0, 0}, {1, 1, 1}, {3, 3, 3}, {3, 3, 3} };
+☀ rx ➜ mathq::Range<double> (-1,1,3);
+☀ gridX ➜ Vector<double> {-1, 0, 1};
+☀ sqr(gridX + 2) ➜ TER_Unary Vector<double> {1, 4, 9};
+☀ ry ➜ mathq::Range<double> (0,3,4);
+☀ grid(ry) ➜ Vector<double> {0, 1, 2, 3};
+☀ rz ➜ mathq::Range<double> (10,11,2);
+☀ grid(rz) ➜ Vector<double> {10, 11};
+☀ gridXY(0) ➜ Matrix<double> { {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1} };
+☀ gridXY(1) ➜ Matrix<double> { {0, 0, 0}, {1, 1, 1}, {2, 2, 2}, {3, 3, 3} };
+☀ gridXYZ(0) ➜ Tensor<double> 
+{
+  {
+    {-1, -1},
+    {0, 0},
+    {1, 1}
+  },
+  {
+    {-1, -1},
+    {0, 0},
+    {1, 1}
+  },
+  {
+    {-1, -1},
+    {0, 0},
+    {1, 1}
+  },
+  {
+    {-1, -1},
+    {0, 0},
+    {1, 1}
+  }
+};
+☀ gridXYZ(1) ➜ Tensor<double> 
+{
+  {
+    {0, 0},
+    {0, 0},
+    {0, 0}
+  },
+  {
+    {1, 1},
+    {1, 1},
+    {1, 1}
+  },
+  {
+    {2, 2},
+    {2, 2},
+    {2, 2}
+  },
+  {
+    {3, 3},
+    {3, 3},
+    {3, 3}
+  }
+};
+☀ gridXYZ(2) ➜ Tensor<double> 
+{
+  {
+    {10, 11},
+    {10, 11},
+    {10, 11}
+  },
+  {
+    {10, 11},
+    {10, 11},
+    {10, 11}
+  },
+  {
+    {10, 11},
+    {10, 11},
+    {10, 11}
+  },
+  {
+    {10, 11},
+    {10, 11},
+    {10, 11}
+  }
+};
 
 ☀ sizeof(array<double, 2>)/sizeof(double) ➜ 2;
 ☀ sizeof(Vector<double, 2>)/sizeof(double) ➜ 2;

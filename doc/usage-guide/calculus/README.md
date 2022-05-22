@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.68-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.69-c++17</h1>
 
 <details>
 
@@ -33,22 +33,23 @@
 7.5. [Functions](../functions/README.md)<br>
 7.6. [Linear Algebra](../linear-algebra/README.md)<br>
 7.7. [Indexing, Masks, and Sorting](../indexing-sorting/README.md)<br>
-7.8. _Calculus_ <br>
-7.9. [Vector Calculus](../vector-calculus/README.md)<br>
-7.10. [Tensor Calculus](../tensor-calculus/README.md)<br>
-7.11. [Display of Results](../display/README.md)<br>
-7.12. [FILE I/O](../file-io/README.md)<br>
-7.13. [Debug Modes](../debug/README.md)<br>
+7.8. [Ranges and Grids](../ranges-grids/README.md)<br>
+7.9. _Calculus_ <br>
+7.10. [Vector Calculus](../vector-calculus/README.md)<br>
+7.11. [Tensor Calculus](../tensor-calculus/README.md)<br>
+7.12. [Display of Results](../display/README.md)<br>
+7.13. [FILE I/O](../file-io/README.md)<br>
+7.14. [Debug Modes](../debug/README.md)<br>
 
 
 </details>
 
 
 
-# 7.8. Calculus
+# 7.9. Calculus
 
 
 
-| ⇦ <br />[Indexing, Masks, and Sorting](../indexing-sorting/README.md)  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />Calculus<br /><img width=1000/> | ⇨ <br />[Vector Calculus](../vector-calculus/README.md)   |
+| ⇦ <br />[Ranges and Grids](../ranges-grids/README.md)  | [Usage Guide: Syntax, Data Types, Functions, etc](../README.md)<br />Calculus<br /><img width=1000/> | ⇨ <br />[Vector Calculus](../vector-calculus/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

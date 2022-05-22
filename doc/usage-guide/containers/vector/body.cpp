@@ -75,7 +75,7 @@ int main() {
     TRDISP(velocity2D);
     TRDISP(velocity3D);
   }
-  { 
+  {
     CR();
     ECHO_CODE(Vector<double, 2> velocity2D({ 70.5, -30 }));
     ECHO_CODE(Vector<double, 3> velocity3D({ 10, 0, -15 }));
@@ -115,25 +115,34 @@ int main() {
   // TODO: give in terms of the size of the data
   GMD_CODE_START("C++");
   CR();
-    Range rx(-1, 1, 3);
-    Range ry(0, 3, 4);
-    TRDISP(rx);
-    TRDISP(grid(rx));
-    TRDISP(ry);
-    TRDISP(grid(ry));
-    auto gridXY = grid(rx, ry);
-    TRDISP(gridXY(0));
-    TRDISP(gridXY(1));
+  Range<double> rx(-1, 1, 3);
+  Range<double> ry(0, 3, 4);
+  Range<double> rz(10, 11, 2);
+  TRDISP(rx);
+  auto gridX = grid(rx);
+  TRDISP(gridX);
+  TRDISP(sqr(gridX + 2));
+  TRDISP(ry);
+  TRDISP(grid(ry));
+  TRDISP(rz);
+  TRDISP(grid(rz));
+  auto gridXY = grid(rx, ry);
+  TRDISP(gridXY(0));
+  TRDISP(gridXY(1));
+  auto gridXYZ = grid(rx, ry, rz);
+  TRDISP(gridXYZ(0));
+  TRDISP(gridXYZ(1));
+  TRDISP(gridXYZ(2));
   CR();
-    DISP(sizeof(array<double, 2>)/sizeof(double));
-    DISP(sizeof(Vector<double, 2>)/sizeof(double));
+  DISP(sizeof(array<double, 2>)/sizeof(double));
+  DISP(sizeof(Vector<double, 2>)/sizeof(double));
 
   CR();
-    DISP(sizeof(array<double, 100>)/sizeof(double));
-    DISP(sizeof(Vector<double, 100>)/sizeof(double));
+  DISP(sizeof(array<double, 100>)/sizeof(double));
+  DISP(sizeof(Vector<double, 100>)/sizeof(double));
   CR();
-    DISP(sizeof(array<array<double, 2>, 100>)/sizeof(double));
-    DISP(sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double));
+  DISP(sizeof(array<array<double, 2>, 100>)/sizeof(double));
+  DISP(sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double));
   GMD_CODE_END();
 
 

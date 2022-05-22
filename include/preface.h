@@ -1310,15 +1310,15 @@ namespace mathq {
   class
     Range {
   public:
-    const D x1;
-    const D x2;
+    const D a;
+    const D b;
     const std::size_t N;
     const D step;
-    Range(const D x1, const D x2, const std::size_t N) :
-      x1(x1),
-      x2(x2),
+    Range(const D a, const D b, const std::size_t N) :
+      a(a),
+      b(b),
       N(N),
-      step((x2-x1)/static_cast<D>(N-1)) {
+      step((b-a)/static_cast<D>(N-1)) {
     }
 
     ~Range() {

@@ -573,7 +573,7 @@ namespace mathq {
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   auto grid(const Range<D>& rang) {
-    return linspace(rang.x1, rang.x2, rang.N);
+    return linspace(rang.a, rang.b, rang.N);
   }
 
   /// TODO: use reprow and repcol matrices
@@ -583,19 +583,19 @@ namespace mathq {
   auto grid(const Range<D>& r1, const Range<D>& r2) {
     auto X = Matrix<D>(r2.N, r1.N);
     auto Y = Matrix<D>(r2.N, r1.N);
-    auto* G = new Vector<Matrix<D>,2>();
+    auto* G = new Vector<Matrix<D>, 2>();
 
     for (size_type c = 0; c < r1.N; c++) {
       D temp;
 
       if (c == 0) {
-        temp = r1.x1;
+        temp = r1.a;
       }
       else if (c == r1.N-1) {
-        temp = r1.x2;
+        temp = r1.b;
       }
       else {
-        temp = r1.x1 + static_cast<D>(c)*r1.step;
+        temp = r1.a + static_cast<D>(c)*r1.step;
       }
       for (size_type r = 0; r < r2.N; r++) {
         X(r, c) = temp;
@@ -605,13 +605,13 @@ namespace mathq {
     for (size_type r = 0; r < r2.N; r++) {
       D temp;
       if (r == 0) {
-        temp = r2.x1;
+        temp = r2.a;
       }
-      else if (r == r1.N-1) {
-        temp = r2.x2;
+      else if (r == r2.N-1) {
+        temp = r2.b;
       }
       else {
-        temp = r2.x1 + static_cast<D>(r)*r2.step;
+        temp = r2.a + static_cast<D>(r)*r2.step;
       }
       for (size_type c = 0; c < r1.N; c++) {
         Y(r, c) = temp;
@@ -623,8 +623,76 @@ namespace mathq {
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto grid(const Range<D>& r1, const Range<D>& r2, const Range<D>& rang3) {
-    // return linspace(rang.x1, rang.x2, rang.N);
+  auto grid(const Range<D>& r1, const Range<D>& r2, const Range<D>& r3) {
+    auto dims = Dimensions(r2.N, r1.N, r3.N);
+    auto X = Tensor<D,3>(dims);
+    auto Y = Tensor<D,3>(dims);
+    auto Z = Tensor<D,3>(dims);
+    auto* G = new Vector<Tensor<D>,3>({Dimensions(3),dims});
+    // TRDISP(G->deepdims());
+    // TRDISP((*G)(0));
+    // X
+    for (size_type c = 0; c < r1.N; c++) {
+      D temp;
+
+      if (c == 0) {
+        temp = r1.a;
+      }
+      else if (c == r1.N-1) {
+        temp = r1.b;
+      }
+      else {
+        temp = r1.a + static_cast<D>(c)*r1.step;
+      }
+      for (size_type r = 0; r < r2.N; r++) {
+        for (size_type k = 0; k < r3.N; k++) {
+          X({r, c, k}) = temp;
+        }
+      }
+    }
+
+    // Y 
+    for (size_type r = 0; r < r2.N; r++) {
+      D temp;
+      if (r == 0) {
+        temp = r2.a;
+      }
+      else if (r == r2.N-1) {
+        temp = r2.b;
+      }
+      else {
+        temp = r2.a + static_cast<D>(r)*r2.step;
+      }
+      for (size_type c = 0; c < r1.N; c++) {
+        for (size_type k = 0; k < r3.N; k++) {
+          Y({r, c, k}) = temp;
+        }
+      }
+    }
+    // Z
+    for (size_type k = 0; k < r3.N; k++) {
+      D temp;
+      if (k == 0) {
+        temp = r3.a;
+      }
+      else if (k == r3.N-1) {
+        temp = r3.b;
+      }
+      else {
+        temp = r3.a + static_cast<D>(k)*r3.step;
+      }
+      for (size_type r = 0; r < r2.N; r++) {
+        for (size_type c = 0; c < r1.N; c++) {
+          Z({r, c, k}) = temp;
+        }
+      }
+    }
+    // TRDISP((*G)(0));
+    // TRDISP(X);
+    (*G)(0) = X;
+    (*G)(1) = Y;
+    (*G)(2) = Z;
+    return *G;
   }
 
 

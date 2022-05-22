@@ -2,7 +2,7 @@
 # VARIABLES
 #############################################################
 
-CHAPTERS = notation scalars containers operators functions linear-algebra indexing-sorting calculus vector-calculus tensor-calculus display file-io debug
+CHAPTERS = notation scalars containers operators functions linear-algebra indexing-sorting ranges-grids calculus vector-calculus tensor-calculus display file-io debug
 
 include ../../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/doc.variables.mk

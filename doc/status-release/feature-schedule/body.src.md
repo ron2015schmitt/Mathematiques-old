@@ -14,6 +14,14 @@
 1. Refactor of vector/matrix/tensor indexing, including
   + new index/iterator types such as slices similar to C++ stdlib, Fortran, and Python, including negative indices
   + [Index class and new indexing methodology](topics/index.md)
+1. use std::size_t instead of these  (searc and replace everywhere)
+  * typedef std::vector<double>::size_type size_type;
+  * typedef int index_type;
+  * typedef long double extended;  -> quad?
+1. add vararg constructor for Dimensions or parameter pack 
+1. change deepdims from std::vector<Dimensions> to initlist<Dimensions>. define a class deepdims
+1. allow VEctor, Matrix, Tensor to be initialized from deep dims
+1. create a Array3 type
 
 ### v3.7 Display Refactoring
 1. This is includes files:

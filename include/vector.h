@@ -1073,6 +1073,10 @@ namespace mathq {
 
         // deriv -  derivative
         // any change in the default parameters must be likewise made in vfunctions.h: deriv(...)
+        // n: number of derivatives to take
+        // Dpts: window size = number of points used in derivative formula
+        // periodic: if true, perform derivative with start and end connected: 
+        //           dat[-1] == dat[n-1], dat[n] == dat[0] etc
 
         Vector<E, NE, D, M>& deriv(const E a, const E b, const int n = 1, int Dpts = 7, const bool periodic = false) {
           //MDISP(a,b,n,Dpts,periodic);

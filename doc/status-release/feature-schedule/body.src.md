@@ -126,6 +126,8 @@
     * https://en.cppreference.com/w/c/numeric/complex/imaginary
     * https://en.cppreference.com/w/c/numeric/complex/I
 
+* Tensor<D> constructed from Tensor<D,N> as well as equals
+  * WHy does Vector<Tensor<D,2>> create Tensor<D> (R=0)?
     
 * Refactor `NumberType` etc to use constexpr fields instead of static methods
 * overload `^` as exponentiation for vectors and matrices?

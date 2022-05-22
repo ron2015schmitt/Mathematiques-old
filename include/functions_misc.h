@@ -700,42 +700,139 @@ namespace mathq {
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   Vector<D>& fgrid(std::function<D(D)> func, const Vector<D>& grid) {
     Vector<D>* y = new Vector<D>(grid.size());
-    for(int k = 0; k < grid.size(); k++) {
+    for (int k = 0; k < grid.size(); k++) {
       (*y)[k] = func(grid[k]);
     }
     return *y;
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  Vector<D>& fgrid(D (func)(D), const Vector<D>& grid) {
+  Vector<D>& fgrid(D(func)(D), const Vector<D>& grid) {
     // All 3 of these work
     // std::function<D(D)> func2 = func;  return fgrid( func2, grid );
     // return fgrid( std::function<D(D)>(std::forward<decltype(func)>(func)), grid );
-    return fgrid( std::function<D(D)>(func), grid );
+    return fgrid(std::function<D(D)>(func), grid);
   }
 
+
+  //
   // fgrid 2D 
+  //
+
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto fgrid(std::function<D(D,D)> func, const Vector<Matrix<D>, 2>& grid) {
-    const Matrix<D> &X = grid(0);
-    const Matrix<D> &Y = grid(1);
+  auto fgrid(std::function<D(D, D)> func, const Vector<Matrix<D>, 2>& grid) {
+    const Matrix<D>& X = grid(0);
+    const Matrix<D>& Y = grid(1);
     auto* y = new Matrix<D>(X.Nrows(), X.Ncols());
-    for(int k = 0; k < X.size(); k++) {
-      (*y)[k] = func(X[k],Y[k]);
+    for (int k = 0; k < X.size(); k++) {
+      (*y)[k] = func(X[k], Y[k]);
     }
     return *y;
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto fgrid(D (func)(D,D), const Vector<Matrix<D>, 2>& grid) {
+  auto fgrid(D(func)(D, D), const Vector<Matrix<D>, 2>& grid) {
     // All 3 of these work
     // std::function<D(D,D)> func2 = func;  return fgrid( func2, grid );
     // return fgrid( std::function<D(D,D)>(std::forward<decltype(func)>(func)), grid );
-    return fgrid( std::function<D(D,D)>(func), grid );
+    return fgrid(std::function<D(D, D)>(func), grid);
   }
 
 
+  //
+  // fgrid 3D 
+  //
 
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto fgrid(std::function<D(D, D, D)> func, const Vector<Tensor<D>, 3>& grid) {
+    const Tensor<D>& X = grid(0);
+    const Tensor<D>& Y = grid(1);
+    const Tensor<D>& Z = grid(2);
+    auto* y = new Tensor<D, 3>(X.dims());
+    for (int k = 0; k < X.size(); k++) {
+      (*y)[k] = func(X[k], Y[k], Z[k]);
+    }
+    return *y;
+  }
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto fgrid(D(func)(D, D, D), const Vector<Tensor<D>, 3>& grid) {
+    // All 3 of these work
+    // std::function<D(D,D)> func2 = func;  return fgrid( func2, grid );
+    // return fgrid( std::function<D(D,D)>(std::forward<decltype(func)>(func)), grid );
+    return fgrid(std::function<D(D, D, D)>(func), grid);
+  }
+
+
+  // ***************************************************************************
+  // * nabla operator
+  // ***************************************************************************
+
+  template <class T>
+  class Nabla {
+  public:
+    Nabla() {
+    }
+    ~Nabla() {
+    }
+  };
+
+  const Nabla<void> nabla;
+
+
+  // ***************************************************************************
+  // * gradient of a scalar function in N dimensions
+  // ***************************************************************************
+
+  // gradient
+  // assumes a uniform linear grid spacing
+  // TODO: non-uniform grids
+
+  // 
+  // 1D
+  //
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto grad(const Vector<D>& gridfunc, const Range<D>& range, const int Dpts = 7, const bool periodic = false) {
+    const size_type N = gridfunc.size();
+    Vector<D>* df = new Vector<D>(N);
+    *df = gridfunc;
+    df->deriv(range.a, range.b, 1, Dpts, periodic);
+    return *df;
+  }
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto operator&(const Nabla<void> i, std::pair<Vector<D>,Range<D>> funcANDrange) {
+    return grad( funcANDrange.first, funcANDrange.second );
+  }
+
+  // 
+  // 2D
+  //
+
+  // template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  // auto fgrid(std::function<D(D, D)> func, const Vector<Matrix<D>, 2>& grid) {
+  //   const Matrix<D>& X = grid(0);
+  //   const Matrix<D>& Y = grid(1);
+  //   auto* y = new Matrix<D>(X.Nrows(), X.Ncols());
+  //   for (int k = 0; k < X.size(); k++) {
+  //     (*y)[k] = func(X[k], Y[k]);
+  //   }
+  //   return *y;
+  // }
+  // template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  // auto grad(const Vector<D>& gridfunc, const Range<D>& range, const int Dpts = 7, const bool periodic = false) {
+  //   const size_type N = gridfunc.size();
+  //   Vector<D>* df = new Vector<D>(N);
+  //   *df = gridfunc;
+  //   df->deriv(range.a, range.b, 1, Dpts, periodic);
+  //   return *df;
+  // }
+
+  // template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  // auto operator&(const Nabla<void> i, std::pair<Vector<D>,Range<D>> funcANDrange) {
+  //   return grad( funcANDrange.first, funcANDrange.second );
+  // }
 
   // *********************************************************
   // *          Functions that return a vector from a vector

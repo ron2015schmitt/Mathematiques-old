@@ -10,6 +10,7 @@
 #include "mathq.h"
 
 inline double fradius2(double x, double y) { return  std::sqrt(x*x + y*y); }
+inline double fradius3d_2(double x, double y, double z) { return  std::sqrt(x*x + y*y + z*z); }
 
 
 int main() {
@@ -125,6 +126,15 @@ int main() {
   TRDISP(rx);
   auto gridX = grid(rx);
   TRDISP(gridX);
+  auto divX = grad(grid(rx),rx);
+  TRDISP(divX);
+  Range<double> rx2(-10, 10, 21);
+  auto gridX2 = grid(rx2);
+  TRDISP(gridX2);
+  auto divX2 = grad(gridX2,rx2);
+  TRDISP(divX2);
+  auto divX2_2 = nabla & pair(gridX2,rx2);
+  TRDISP(divX2_2);
 
   TRDISP(sqr(gridX + 2));
   std::function<double(double)> func = [](double d) {  return mathq::sqr(d+2); };
@@ -160,6 +170,16 @@ int main() {
   TRDISP(gridXYZ(0));
   TRDISP(gridXYZ(1));
   TRDISP(gridXYZ(2));
+  std::function<double(double, double, double)> fradius3d = [](double x, double y, double z) {  return std::sqrt(x*x + y*y + z*z); };
+  auto R3D = fgrid(fradius3d, gridXYZ);
+  TRDISP(R3D);
+  auto R3D_2 = fgrid(fradius3d_2, gridXYZ);
+  TRDISP(R3D_2);
+
+
+
+
+
   CR();
   DISP(sizeof(array<double, 2>)/sizeof(double));
   DISP(sizeof(Vector<double, 2>)/sizeof(double));
@@ -170,6 +190,7 @@ int main() {
   CR();
   DISP(sizeof(array<array<double, 2>, 100>)/sizeof(double));
   DISP(sizeof(Vector<Vector<double, 2>, 100>)/sizeof(double));
+
   GMD_CODE_END();
 
 

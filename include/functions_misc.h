@@ -569,7 +569,7 @@ namespace mathq {
 // Vector<D>& linspace(D start, D end, size_type N)
 
 
-
+  // TODO: need to include Imagnary and Quaternions in this
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   auto grid(const Range<D>& rang) {
@@ -625,10 +625,10 @@ namespace mathq {
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   auto grid(const Range<D>& r1, const Range<D>& r2, const Range<D>& r3) {
     auto dims = Dimensions(r2.N, r1.N, r3.N);
-    auto X = Tensor<D,3>(dims);
-    auto Y = Tensor<D,3>(dims);
-    auto Z = Tensor<D,3>(dims);
-    auto* G = new Vector<Tensor<D>,3>({Dimensions(3),dims});
+    auto X = Tensor<D, 3>(dims);
+    auto Y = Tensor<D, 3>(dims);
+    auto Z = Tensor<D, 3>(dims);
+    auto* G = new Vector<Tensor<D>, 3>({ Dimensions(3),dims });
     // TRDISP(G->deepdims());
     // TRDISP((*G)(0));
     // X
@@ -646,7 +646,7 @@ namespace mathq {
       }
       for (size_type r = 0; r < r2.N; r++) {
         for (size_type k = 0; k < r3.N; k++) {
-          X({r, c, k}) = temp;
+          X({ r, c, k }) = temp;
         }
       }
     }
@@ -665,7 +665,7 @@ namespace mathq {
       }
       for (size_type c = 0; c < r1.N; c++) {
         for (size_type k = 0; k < r3.N; k++) {
-          Y({r, c, k}) = temp;
+          Y({ r, c, k }) = temp;
         }
       }
     }
@@ -683,7 +683,7 @@ namespace mathq {
       }
       for (size_type r = 0; r < r2.N; r++) {
         for (size_type c = 0; c < r1.N; c++) {
-          Z({r, c, k}) = temp;
+          Z({ r, c, k }) = temp;
         }
       }
     }
@@ -694,6 +694,34 @@ namespace mathq {
     (*G)(2) = Z;
     return *G;
   }
+
+
+  // apply function to 1D grid
+
+  // std::function<void(int)> f_display = print_num;
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  Vector<D>& f(std::function<D(D)>& func, const Vector<D>& grid) {
+    Vector<D>* y = new Vector<D>(grid.size());
+    for(int k = 0; k < grid.size(); k++) {
+      (*y)[k] = func(grid[k]);
+    }
+    return *y;
+  }
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  Vector<D>& f(D (func)(D), const Vector<D>& grid) {
+    Vector<D>* y = new Vector<D>(grid.size());
+    for(int k = 0; k < grid.size(); k++) {
+      (*y)[k] = func(grid[k]);
+    }
+    return *y;
+  }
+
+
+  
+
+
 
 
   // *********************************************************

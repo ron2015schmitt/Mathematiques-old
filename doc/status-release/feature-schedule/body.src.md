@@ -80,10 +80,14 @@
 
 
 ### Miscellaneous Small Features
+* create template versions of all C++ functions so that there is never overload ambiguity
 * use row-repeated Matrix and col-rpeeated Matrix for grid2
 * use row-repeated Tensor and col-rpeeated Tensor for grid3
 * get rid of typename usage in templates?
 * use of variable templates to simplify variadics like Dimension?
+  * use list for DeepDimensions
+  * Deep -> Nested
+* replace std::enable_if<std::is_arithmetic<D>::value, D>::type> with mathq version that accepts Imaginary and Quaternions
 * Complex type that inherits from std::complex
   * can then allows complex, imaginary and quaternion to hold vectors
 * cast method for const std::initializer_list<E>?  is this possible

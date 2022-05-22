@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.69-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.70-c++17</h1>
 
 <details>
 
@@ -130,6 +130,13 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 ☀ rx ➜ mathq::Range<double> (-1,1,3);
 ☀ gridX ➜ Vector<double> {-1, 0, 1};
 ☀ sqr(gridX + 2) ➜ TER_Unary Vector<double> {1, 4, 9};
+☀ func(-3) ➜ double 1;
+☀ f(func, gridX) ➜ Vector<double> {1, 4, 9};
+☀ func2(1) ➜ double 2.71828;
+☀ f(func2, gridX) ➜ Vector<double> {0.367879, 1, 2.71828};
+☀ static_cast<double (*)(double)>(&std::exp)(1) ➜ double 2.71828;
+☀ func3(1) ➜ double 2.71828;
+☀ f(func3, gridX) ➜ Vector<double> {0.367879, 1, 2.71828};
 ☀ ry ➜ mathq::Range<double> (0,3,4);
 ☀ grid(ry) ➜ Vector<double> {0, 1, 2, 3};
 ☀ rz ➜ mathq::Range<double> (10,11,2);

@@ -16,9 +16,9 @@ There are two methods to accomplish this.
 1. Use the provided sample makefile and specify `MATHQ_DEBUG=1` on the command line
 ```make clean MATHQ_DEBUG=1 myprogram```
 The target `clean` is not needed, but is a recomended practice.
-1. Add a `#define MATHQ_DEBUG 0` statement BEFORE each `mathq.h` include statement
+1. Add a `` statement BEFORE each `mathq.h` include statement
 ```C++
-#define MATHQ_DEBUG 0
+
 #include "mathq.h"
 ```
 ## DEBUG LEVELS

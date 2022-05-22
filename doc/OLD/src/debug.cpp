@@ -1,4 +1,4 @@
-#define MATHQ_DEBUG 0
+
 
 
 #include "mathq.h"
@@ -48,12 +48,12 @@ int main()
   OUTPUT("The target `clean` is not needed, but is a recomended practice.");
 
 
-  OUTPUT("1. Add a `#define MATHQ_DEBUG 0` statement BEFORE each `mathq.h` include statement");
+  OUTPUT("1. Add a `` statement BEFORE each `mathq.h` include statement");
 
 
   GMD_CODE_START("C++");
 
-  OUTPUT("#define MATHQ_DEBUG 0");
+  OUTPUT("");
   OUTPUT("#include \"mathq.h\"");
   GMD_CODE_END();
 

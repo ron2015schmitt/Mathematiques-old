@@ -6,7 +6,7 @@
 #include <typeinfo>
 #include <optional>
 
-#define MATHQ_DEBUG 0
+
 #include "mathq.h"
 
 

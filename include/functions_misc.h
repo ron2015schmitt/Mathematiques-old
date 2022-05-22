@@ -701,7 +701,7 @@ namespace mathq {
   // std::function<void(int)> f_display = print_num;
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  Vector<D>& f(std::function<D(D)>& func, const Vector<D>& grid) {
+  Vector<D>& fgrid(std::function<D(D)> func, const Vector<D>& grid) {
     Vector<D>* y = new Vector<D>(grid.size());
     for(int k = 0; k < grid.size(); k++) {
       (*y)[k] = func(grid[k]);
@@ -710,12 +710,11 @@ namespace mathq {
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  Vector<D>& f(D (func)(D), const Vector<D>& grid) {
-    Vector<D>* y = new Vector<D>(grid.size());
-    for(int k = 0; k < grid.size(); k++) {
-      (*y)[k] = func(grid[k]);
-    }
-    return *y;
+  Vector<D>& fgrid(D (func)(D), const Vector<D>& grid) {
+    // All 3 of these work
+    // std::function<D(D)> func2 = func;  return fgrid( func2, grid );
+    // return fgrid( std::function<D(D)>(std::forward<decltype(func)>(func)), grid );
+    return fgrid( std::function<D(D)>(func), grid );
   }
 
 

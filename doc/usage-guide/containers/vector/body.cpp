@@ -121,17 +121,22 @@ int main() {
   TRDISP(rx);
   auto gridX = grid(rx);
   TRDISP(gridX);
+
   TRDISP(sqr(gridX + 2));
   std::function<double(double)> func = [](double d) {  return mathq::sqr(d+2); };
   TRDISP(func(-3));
-  TRDISP(f(func, gridX));
+  TRDISP(fgrid(func, gridX));
   double (*func2)(double) = &std::exp;
   TRDISP(func2(1));
- TRDISP(f(func2, gridX));  // doesnt work
+ TRDISP(fgrid(func2, gridX));  // doesnt work
   TRDISP(static_cast<double (*)(double)>(&std::exp)(1));
   std::function<double(double)> func3 = static_cast<double (*)(double)>(&std::exp);
   TRDISP(func3(1));
-  TRDISP(f(func3, gridX));
+  TRDISP(fgrid(func3, gridX));
+  std::function<double(double)> func4 = [](double d) {  return std::exp(d); };
+  TRDISP(func4(-3));
+  TRDISP(fgrid(func4, gridX));
+
   TRDISP(ry);
   TRDISP(grid(ry));
   TRDISP(rz);

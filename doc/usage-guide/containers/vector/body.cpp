@@ -120,21 +120,21 @@ int main() {
   CR();
 
 
-  Range<double> rx(-1, 1, 3);
-  Range<double> ry(0, 3, 4);
-  Range<double> rz(10, 11, 2);
+  Domain<double> rx(-1, 1, 3);
+  Domain<double> ry(0, 3, 4);
+  Domain<double> rz(10, 11, 2);
   TRDISP(rx);
   auto gridX = grid(rx);
   TRDISP(gridX);
   auto divX = grad(grid(rx),rx);
   TRDISP(divX);
-  Range<double> rx2(-10, 10, 21);
+  Domain<double> rx2(-10, 10, 21);
   auto gridX2 = grid(rx2);
   TRDISP(gridX2);
-  auto divX2 = grad(gridX2,rx2);
-  TRDISP(divX2);
-  auto divX2_2 = nabla & pair(gridX2,rx2);
-  TRDISP(divX2_2);
+  auto gradX2 = grad(gridX2,rx2);
+  TRDISP(gradX2);
+  auto gradX2_2 = nabla & pair(gridX2,rx2);
+  TRDISP(gradX2_2);
 
   TRDISP(sqr(gridX + 2));
   std::function<double(double)> func = [](double d) {  return mathq::sqr(d+2); };
@@ -159,11 +159,23 @@ int main() {
   TRDISP(gridXY(0));
   TRDISP(gridXY(1));
 
+
   std::function<double(double, double)> fradius = [](double x, double y) {  return std::sqrt(x*x + y*y); };
   auto R = fgrid(fradius, gridXY);
   TRDISP(R);
   auto R2 = fgrid(fradius2, gridXY);
   TRDISP(R2);
+
+  auto gradXY = grad(R, rx, ry);
+  TRDISP(gradXY(0));
+  TRDISP(gradXY(1));
+  gradXY = nabla & std::make_tuple(R, rx, ry);
+  TRDISP(gradXY(0));
+  TRDISP(gradXY(1));
+  // auto gradX2_2 = nabla & pair(gridX2,rx2);
+  // TRDISP(gradX2_2);
+
+
 
   CR();
   auto gridXYZ = grid(rx, ry, rz);

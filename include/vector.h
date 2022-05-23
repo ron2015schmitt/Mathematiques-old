@@ -89,9 +89,17 @@ namespace mathq {
     template<size_t NE1 = NE, EnableIf<(NE1 > 0)> = 0>
 
     explicit Vector<E, NE, D, M>(const std::initializer_list<Dimensions> deepdims) {
-      index_type i = 0;
       // TRDISP(deepdims);
       this->resize(std::vector<Dimensions>(deepdims));
+      constructorHelper();
+    }
+    // --------------------- Vector(std::vector<Dimensions>)  ---------------------
+
+    template<size_t NE1 = NE, EnableIf<(NE1 > 0)> = 0>
+
+    explicit Vector<E, NE, D, M>(const std::vector<Dimensions> deepdims) {
+      // TRDISP(deepdims);
+      this->resize(deepdims);
       constructorHelper();
     }
 

@@ -1308,20 +1308,20 @@ namespace mathq {
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   class
-    Range {
+    Domain {
   public:
     const D a;
     const D b;
     const std::size_t N;
     const D step;
-    Range(const D a, const D b, const std::size_t N) :
+    Domain(const D a, const D b, const std::size_t N) :
       a(a),
       b(b),
       N(N),
       step((b-a)/static_cast<D>(N-1)) {
     }
 
-    ~Range() {
+    ~Domain() {
     }
   };
 

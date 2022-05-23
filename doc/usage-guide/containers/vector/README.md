@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.75-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.76-c++17</h1>
 
 <details>
 
@@ -127,12 +127,12 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 
 ```C++
 
-☀ rx ➜ mathq::Range<double> (-1,1,3);
+☀ rx ➜ mathq::Domain<double> (-1,1,3);
 ☀ gridX ➜ Vector<double> {-1, 0, 1};
 ☀ divX ➜ Vector<double> {1, 1, 1};
 ☀ gridX2 ➜ Vector<double> {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-☀ divX2 ➜ Vector<double> {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-☀ divX2_2 ➜ Vector<double> {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+☀ gradX2 ➜ Vector<double> {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+☀ gradX2_2 ➜ Vector<double> {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 ☀ sqr(gridX + 2) ➜ TER_Unary Vector<double> {1, 4, 9};
 ☀ func(-3) ➜ double 1;
 ☀ fgrid(func, gridX) ➜ Vector<double> {1, 4, 9};
@@ -144,14 +144,18 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 ☀ func4(-3) ➜ double 0.0497871;
 ☀ fgrid(func4, gridX) ➜ Vector<double> {0.367879, 1, 2.71828};
 
-☀ ry ➜ mathq::Range<double> (0,3,4);
+☀ ry ➜ mathq::Domain<double> (0,3,4);
 ☀ grid(ry) ➜ Vector<double> {0, 1, 2, 3};
-☀ rz ➜ mathq::Range<double> (10,11,2);
+☀ rz ➜ mathq::Domain<double> (10,11,2);
 ☀ grid(rz) ➜ Vector<double> {10, 11};
 ☀ gridXY(0) ➜ Matrix<double> { {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1} };
 ☀ gridXY(1) ➜ Matrix<double> { {0, 0, 0}, {1, 1, 1}, {2, 2, 2}, {3, 3, 3} };
 ☀ R ➜ Matrix<double> { {1, 0, 1}, {1.41421, 1, 1.41421}, {2.23607, 2, 2.23607}, {3.16228, 3, 3.16228} };
 ☀ R2 ➜ Matrix<double> { {1, 0, 1}, {1.41421, 1, 1.41421}, {2.23607, 2, 2.23607}, {3.16228, 3, 3.16228} };
+☀ gradXY(0) ➜ Matrix<double> { {-2, 0, 2}, {-0.828427, 0, 0.828427}, {-0.472136, 0, 0.472136}, {-0.324555, 0, 0.324555} };
+☀ gradXY(1) ➜ Matrix<double> { {1, 0, 1}, {1.41421, 1, 1.41421}, {2.23607, 2, 2.23607}, {3.16228, 3, 3.16228} };
+☀ gradXY(0) ➜ Matrix<double> { {-2, 0, 2}, {-0.828427, 0, 0.828427}, {-0.472136, 0, 0.472136}, {-0.324555, 0, 0.324555} };
+☀ gradXY(1) ➜ Matrix<double> { {1, 0, 1}, {1.41421, 1, 1.41421}, {2.23607, 2, 2.23607}, {3.16228, 3, 3.16228} };
 
 ☀ gridXYZ(0) ➜ Tensor<double> 
 {

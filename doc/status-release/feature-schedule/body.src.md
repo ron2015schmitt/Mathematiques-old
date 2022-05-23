@@ -97,7 +97,19 @@
   // this seems to works for ints. if problems, use a helper class to determine which exp to call: expf expl, exp
 ```
 * use row-repeated Matrix and col-rpeeated Matrix for grid2
+* create Tenor3/Array3. use level for the name of th ethird dimension Nlevels
+* create Tensor4/Array4 for xyzt
 * use row-repeated Tensor and col-rpeeated Tensor for grid3
+* rewrite grad using slices
+* create 2D and 3D  Domains
+* create Function which includes it's domain and it's defintiomn and a way to find out rank
+* put deriv option into nablas
+* add grid methods to Domain to calculate a grid 
+  * on fly on the using N for-loops
+  * return the entire grid as an object
+  * wind-through from [0] to [NR*NC-1] via iterators or re-entrant funtions
+  * lambda functions to produce an output object
+
 * get rid of typename usage in templates?
 * use of variable templates to simplify variadics like Dimension?
   * use list for DeepDimensions

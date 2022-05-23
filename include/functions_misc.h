@@ -462,7 +462,7 @@ namespace mathq {
   // *          Functions that create vectors
   // *********************************************************
 
-  // The Range generating function (with step given)
+  // The Domain generating function (with step given)
 
   template <class D>
   Vector<D>& range(D start, D end, D step) {
@@ -486,7 +486,7 @@ namespace mathq {
   }
 
 
-  // The Range generating function (step by +/-1)
+  // The Domain generating function (step by +/-1)
 
   template <class D>
   Vector<D>& range(D start, D end) {
@@ -571,7 +571,7 @@ namespace mathq {
   // complex and Quaternions are not ordered sets so they can't be used in a range
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto grid(const Range<D>& rang) {
+  auto grid(const Domain<D>& rang) {
     return linspace(rang.a, rang.b, rang.N);
   }
 
@@ -579,7 +579,7 @@ namespace mathq {
 
   // uses same convetnion as meshgrid form matlab
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto grid(const Range<D>& r1, const Range<D>& r2) {
+  auto grid(const Domain<D>& r1, const Domain<D>& r2) {
     auto X = Matrix<D>(r2.N, r1.N);
     auto Y = Matrix<D>(r2.N, r1.N);
     auto* G = new Vector<Matrix<D>, 2>();
@@ -622,7 +622,7 @@ namespace mathq {
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto grid(const Range<D>& r1, const Range<D>& r2, const Range<D>& r3) {
+  auto grid(const Domain<D>& r1, const Domain<D>& r2, const Domain<D>& r3) {
     auto dims = Dimensions(r2.N, r1.N, r3.N);
     auto X = Tensor<D, 3>(dims);
     auto Y = Tensor<D, 3>(dims);
@@ -793,7 +793,7 @@ namespace mathq {
   //
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto grad(const Vector<D>& gridfunc, const Range<D>& range, const int Dpts = 7, const bool periodic = false) {
+  auto grad(const Vector<D>& gridfunc, const Domain<D>& range, const int Dpts = 7, const bool periodic = false) {
     const size_type N = gridfunc.size();
     Vector<D>* df = new Vector<D>(N);
     *df = gridfunc;
@@ -802,8 +802,8 @@ namespace mathq {
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto operator&(const Nabla<void> i, std::pair<Vector<D>,Range<D>> funcANDrange) {
-    return grad( funcANDrange.first, funcANDrange.second );
+  auto operator&(const Nabla<void> i, std::pair<Vector<D>, Domain<D>> funcANDrange) {
+    return grad(funcANDrange.first, funcANDrange.second);
   }
 
   // 
@@ -820,19 +820,55 @@ namespace mathq {
   //   }
   //   return *y;
   // }
-  // template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  // auto grad(const Vector<D>& gridfunc, const Range<D>& range, const int Dpts = 7, const bool periodic = false) {
-  //   const size_type N = gridfunc.size();
-  //   Vector<D>* df = new Vector<D>(N);
-  //   *df = gridfunc;
-  //   df->deriv(range.a, range.b, 1, Dpts, periodic);
-  //   return *df;
-  // }
 
-  // template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  // auto operator&(const Nabla<void> i, std::pair<Vector<D>,Range<D>> funcANDrange) {
-  //   return grad( funcANDrange.first, funcANDrange.second );
-  // }
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto grad(const Matrix<D>& gridfunc, const Domain<D>& domX, const Domain<D>& domY, const int Dpts = 7, const bool periodic = false) {
+
+    // TODO: rewrite with slices
+
+    const size_type NR = gridfunc.Nrows();
+    const size_type NC = gridfunc.Ncols();
+    Vector<Matrix<D>, 2>* df = new Vector<Matrix<D>, 2>();
+    // starts off with empty matrices
+    // TRDISP(*df);
+
+    // take d/dx
+    Vector<D> vtemp = Vector<D>(NC);
+    Matrix<D> mtemp = Matrix<D>(NR, NC);
+    for (int r = 0; r < NR; r++) {
+      for (int c = 0; c < NC; c++) {
+        vtemp(c) = gridfunc(r, c);
+      }
+      vtemp.deriv(domX.a, domX.b, 1, Dpts, periodic);
+      for (int c = 0; c < NC; c++) {
+        mtemp(r, c) = vtemp(c);
+      }
+    }
+    (*df)(0) = mtemp;
+
+    // take d/dy
+    vtemp.resize(NR);
+    for (int c = 0; c < NC; c++) {
+      for (int r = 0; r < NR; r++) {
+        vtemp(r) = gridfunc(r, c);
+      }
+      vtemp.deriv(domY.a, domY.b, 1, Dpts, periodic);
+      for (int r = 0; r < NR; r++) {
+        mtemp(r, c) = vtemp(r);
+      }
+    }
+    (*df)(1) = mtemp;
+
+    // TRDISP(*df);
+    return *df;
+  }
+
+  template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
+  auto operator&(const Nabla<void> i, std::tuple<Matrix<D>, Domain<D>,Domain<D>> funcANDrange) {
+    return grad( std::get<0>(funcANDrange), std::get<1>(funcANDrange), std::get<2>(funcANDrange) );
+  }
+
+
 
   // *********************************************************
   // *          Functions that return a vector from a vector

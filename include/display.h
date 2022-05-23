@@ -836,6 +836,12 @@ namespace display {
     return style;
   }
 
+  template <class T>
+  Style getTypeStyle(const mathq::Nabla<T>& var) {
+    Style style = CREATESTYLE(CYAN);
+    return style;
+  }
+
   inline Style getFunctionTypeStyle() {
     return CREATESTYLE(BLUE);
   }
@@ -976,6 +982,13 @@ namespace display {
   }
 
   SPECIALIZE_getTypeName_CONTAINER2(std::map);
+
+  template <typename T>
+  inline std::string getTypeName(const mathq::Nabla<T>& var) {
+    std::string s = getTypeStyle(var).apply("mathq::Nabla");
+    return s;
+  }
+
 
   template <typename D, unsigned long int N>
   inline std::string getTypeName(const std::array<D, N>& var) {
@@ -1265,8 +1278,8 @@ namespace display {
 
 
   // mathq::Domain
-  template <typename D>
-  inline void dispval_strm(std::ostream& stream, const mathq::Domain<D>& var) {
+  template <typename T>
+  inline void dispval_strm(std::ostream& stream, const mathq::Domain<T>& var) {
     stream << "(";
     dispval_strm(stream, var.a);
     stream << ",";
@@ -1275,6 +1288,19 @@ namespace display {
     dispval_strm(stream, var.N);
     stream << ")";
   }
+
+  // mathq::Nabla
+  template <typename D>
+  inline void dispval_strm(std::ostream& stream, const mathq::Nabla<D>& var) {
+    stream << "(Ndims=";
+    dispval_strm(stream, var.Ndims);
+    stream << ", Nwindow=";
+    dispval_strm(stream, var.Nwindow);
+    stream << ", periodic=";
+    dispval_strm(stream, var.periodic);
+    stream << ")";
+  }
+
 
 
   // string

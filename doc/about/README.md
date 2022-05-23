@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.76-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.77-c++17</h1>
 
 <details>
 
@@ -29,6 +29,8 @@
 The goal of the Mathématiques project is to provide a _library_ for 
 * numerical computation
 * computational sciences
+* machine learning / AI
+* big data
 * engineering simulations
 * computer graphics
 
@@ -101,8 +103,13 @@ In early 2020, the project was officially launched as _Mathématiques_ and uploa
 The code uses a form of C++ [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) called [expression templating](https://en.wikipedia.org/wiki/Expression_templates), the library provides computational efficiency on par with C/Fortran.
 
 1. *Expression templating* produces complex code in the library itself, but the *user code* is simple, clean, and extremely efficient.
-1. *Type traits*
-1. _Avoid_ use of viretual functions completely to minimize size of instance in memory and run-time cost
+1. *Type traits* design pattern
+1. *operator overloading*
+1. using templates for all functions
+1. _Avoid_ use of virtual functions completely to minimize size of instance in memory and run-time cost
+
+Looking into:
+1. kwargs for named arguments
 
 References
 1. Andrei Alexandrescu, __Modern C++ Design: Generic Programming and Design Patterns Applied__, 2001.

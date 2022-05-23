@@ -13,6 +13,7 @@ inline double fradius2(double x, double y) { return  std::sqrt(x*x + y*y); }
 inline double fradius3d_2(double x, double y, double z) { return  std::sqrt(x*x + y*y + z*z); }
 
 
+
 int main() {
   using namespace mathq;
   using namespace std;
@@ -105,11 +106,7 @@ int main() {
   CR();
   CR();
   OUTPUT("\n<br>\n");
-  GMD_HEADER3("Runtime-sized and Dynamically-sized vectors");
-
-
-
-
+  GMD_HEADER3("Grids, Functions, and Vector Calculus");
 
   CR();
   CR();
@@ -119,7 +116,8 @@ int main() {
   GMD_CODE_START("C++");
   CR();
 
-
+  Nabla d1;
+  TRDISP(d1);
   Domain<double> rx(-1, 1, 3);
   Domain<double> ry(0, 3, 4);
   Domain<double> rz(10, 11, 2);
@@ -133,7 +131,7 @@ int main() {
   TRDISP(gridX2);
   auto gradX2 = grad(gridX2,rx2);
   TRDISP(gradX2);
-  auto gradX2_2 = nabla & pair(gridX2,rx2);
+  auto gradX2_2 = nabla_old & pair(gridX2,rx2);
   TRDISP(gradX2_2);
 
   TRDISP(sqr(gridX + 2));
@@ -169,11 +167,9 @@ int main() {
   auto gradXY = grad(R, rx, ry);
   TRDISP(gradXY(0));
   TRDISP(gradXY(1));
-  gradXY = nabla & std::make_tuple(R, rx, ry);
+  gradXY = nabla_old & std::make_tuple(R, rx, ry);
   TRDISP(gradXY(0));
   TRDISP(gradXY(1));
-  // auto gradX2_2 = nabla & pair(gridX2,rx2);
-  // TRDISP(gradX2_2);
 
 
 
@@ -190,6 +186,17 @@ int main() {
 
 
 
+  CR();
+  CR();
+  OUTPUT("\n<br>\n");
+  GMD_HEADER3("Runtime-sized and Dynamically-sized vectors");
+
+
+
+
+
+  CR();
+  CR();
 
 
   CR();

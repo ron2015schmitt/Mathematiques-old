@@ -3,6 +3,8 @@
 The goal of the Mathématiques project is to provide a _library_ for 
 * numerical computation
 * computational sciences
+* machine learning / AI
+* big data
 * engineering simulations
 * computer graphics
 

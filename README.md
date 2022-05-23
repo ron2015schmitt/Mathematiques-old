@@ -1,6 +1,6 @@
 
 
-# Mathématiques v3.5.76-c++17
+# Mathématiques v3.5.77-c++17
 
 
 ## User Manual
@@ -14,6 +14,8 @@
 The goal of the Mathématiques project is to provide a _library_ for 
 * numerical computation
 * computational sciences
+* machine learning / AI
+* big data
 * engineering simulations
 * computer graphics
 

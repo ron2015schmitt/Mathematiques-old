@@ -1,4 +1,4 @@
-<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.76-c++17</h1>
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.77-c++17</h1>
 
 <details>
 
@@ -122,11 +122,12 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
 
 <br>
 
-### Runtime-sized and Dynamically-sized vectors
+### Grids, Functions, and Vector Calculus
 
 
 ```C++
 
+☀ d1 ➜ mathq::Nabla (Ndims=1, Nwindow=7, periodic=0);
 ☀ rx ➜ mathq::Domain<double> (-1,1,3);
 ☀ gridX ➜ Vector<double> {-1, 0, 1};
 ☀ divX ➜ Vector<double> {1, 1, 1};
@@ -272,6 +273,14 @@ Vector<double, 3> velocity3D = Vector<double, 3>({ 70.5, -30 });
     {10.4881, 11.4455}
   }
 };
+
+
+
+<br>
+
+### Runtime-sized and Dynamically-sized vectors
+
+
 
 ☀ sizeof(array<double, 2>)/sizeof(double) ➜ 2;
 ☀ sizeof(Vector<double, 2>)/sizeof(double) ➜ 2;

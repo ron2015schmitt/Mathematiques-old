@@ -1296,15 +1296,9 @@ namespace mathq {
   };
 
 
-
-  ////////////////////////////////////////////////////////////
-  // In functions_misc.h
-  ////////////////////////////////////////////////////////////
-
-  template <class X, class E, class D, int M, int R>
-  EnableMethodIf<std::is_same<D, bool>::value, Vector<index_type>&> findtrue(const TensorR<X, E, D, M, R>& v);
-
-
+  // ***************************************************************************
+  // * Domain
+  // ***************************************************************************
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
   class
@@ -1324,6 +1318,35 @@ namespace mathq {
     ~Domain() {
     }
   };
+
+
+
+  // ***************************************************************************
+  // * nabla object
+  // ***************************************************************************
+
+  template <class T = void>
+  class Nabla {
+  public:
+    const unsigned int Ndims;
+    const unsigned int Nwindow;
+    const bool periodic;
+  public:
+    Nabla(const unsigned int Ndims = 1, const unsigned int Nwindow = 7, const bool periodic = false) :
+      Ndims(Ndims), Nwindow(Nwindow), periodic(periodic) {
+    }
+    ~Nabla() {
+    }
+  };
+
+
+
+  ////////////////////////////////////////////////////////////
+  // In functions_misc.h
+  ////////////////////////////////////////////////////////////
+
+  template <class X, class E, class D, int M, int R>
+  EnableMethodIf<std::is_same<D, bool>::value, Vector<index_type>&> findtrue(const TensorR<X, E, D, M, R>& v);
 
 
 

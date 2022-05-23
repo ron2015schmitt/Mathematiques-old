@@ -769,15 +769,18 @@ namespace mathq {
   // ***************************************************************************
 
   template <class T>
-  class Nabla {
+  class Nabla_old {
   public:
-    Nabla() {
+    Nabla_old() {
     }
-    ~Nabla() {
+    ~Nabla_old() {
     }
   };
 
-  const Nabla<void> nabla;
+  const Nabla_old<void> nabla_old;
+
+
+
 
 
   // ***************************************************************************
@@ -802,7 +805,7 @@ namespace mathq {
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto operator&(const Nabla<void> i, std::pair<Vector<D>, Domain<D>> funcANDrange) {
+  auto operator&(const Nabla_old<void> i, std::pair<Vector<D>, Domain<D>> funcANDrange) {
     return grad(funcANDrange.first, funcANDrange.second);
   }
 
@@ -864,8 +867,8 @@ namespace mathq {
   }
 
   template <class D, typename = typename std::enable_if<std::is_arithmetic<D>::value, D>::type>
-  auto operator&(const Nabla<void> i, std::tuple<Matrix<D>, Domain<D>,Domain<D>> funcANDrange) {
-    return grad( std::get<0>(funcANDrange), std::get<1>(funcANDrange), std::get<2>(funcANDrange) );
+  auto operator&(const Nabla_old<void> i, std::tuple<Matrix<D>, Domain<D>, Domain<D>> funcANDrange) {
+    return grad(std::get<0>(funcANDrange), std::get<1>(funcANDrange), std::get<2>(funcANDrange));
   }
 
 

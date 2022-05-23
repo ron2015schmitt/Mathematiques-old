@@ -7,7 +7,7 @@ namespace mathq {
   namespace debug {
 
   };
-  
+
 };
 
 

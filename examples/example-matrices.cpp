@@ -1,30 +1,25 @@
-
-#include "mathq.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 
-void printoptsfile()
-{
+#include "mathq.h"
+
+void printoptsfile() {
   std::ifstream myfile;
   myfile.open("example.g++_copts");
   std::string myline;
-  if (myfile.is_open())
-  {
-    while (myfile)
-    {
+  if (myfile.is_open()) {
+    while (myfile) {
       std::getline(myfile, myline);
       std::cout << myline << '\n';
     }
   }
-  else
-  {
+  else {
     std::cout << "Couldn't open file\n";
   }
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char* argv[]) {
   const double pi = M_PI;
   std::string myname = argv[0];
 
@@ -35,22 +30,22 @@ int main(int argc, char *argv[])
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " << createStyle(BOLD).apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
 
-  mout << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
   print_mathq_info();
   printoptsfile();
 
-  Vector<double> v1({2, -1});
+  Vector<double> v1({ 2, -1 });
   Vector<double> v2;
   v2 = 10 * sin(pi / 2 * v1) + 5;
 
-  disp(v1);
-  disp(v2);
-  disp(v1 + v2);
+  DISP(v1);
+  DISP(v2);
+  DISP(v1 + v2);
 
   // FormatDataVector::max_elements_per_line = 10;
   // FormatDataVector::string_opening = "[\n  ";
@@ -68,52 +63,49 @@ int main(int argc, char *argv[])
   FormatDataMatrix::string_closing = "\n]";
 
   Matrix<double> m1(2, 2);
-  m1 = {10, 20, 30, 40};
+  m1 = { 10, 20, 30, 40 };
   Matrix<double> m2(2, 2);
-  m2 = {-1, -2, -3, -4};
+  m2 = { -1, -2, -3, -4 };
 
-  Matrix<double> m3({{1, 2}, {3, 4}, {5, 6}});
+  Matrix<double> m3({ {1, 2}, {3, 4}, {5, 6} });
   // m3 = {{1, 2}, {3, 4}, {5, 6}};
   // dot product
-  disp(v1 | v2);
+  DISP(v1 | v2);
 
-  disp(v1);
-  disp(m3);
-  disp((m3 | v1));
-  
-  disp(m1);
-  disp(m2);
-  disp(m1 + m2);
+  DISP(v1);
+  DISP(m3);
+  DISP((m3 | v1));
 
-  disp(m1 | v1);
-  disp(v1 | m1);
+  DISP(m1);
+  DISP(m2);
+  DISP(m1 + m2);
 
-  disp(m1 | m2);
+  DISP(m1 | v1);
+  DISP(v1 | m1);
 
-  disp(m3 | m1);
-  disp(m2 | m3.transpose());
+  DISP(m1 | m2);
 
+  DISP(m3 | m1);
+  DISP(m2 | m3.transpose());
 
-  Vector<double> v({2, -1});
-  Vector<double> u({1, -2, 4});
-  Matrix<double> A({{1, 2}, {3, 4}, {5, 6}});
+  Vector<double> v({ 2, -1 });
+  Vector<double> u({ 1, -2, 4 });
+  Matrix<double> A({ {1, 2}, {3, 4}, {5, 6} });
 
-  disp(v);
-  disp(A);
-  disp(A|v);
+  DISP(v);
+  DISP(A);
+  DISP(A | v);
 
+  DISP(u);
+  DISP(v);
+  DISP(A);
+  DISP(u | A | v);
+  DISP(u | (2 * A - 1) | (10 * sin(pi / 2 * v) + 5));
 
-  disp(u);
-  disp(v);
-  disp(A);
-  disp(u|A|v);
-  disp(u|(2*A-1)|(10 * sin(pi / 2 * v) + 5));
-
-
-  cr();
-  mout << "done: " << createStyle(BOLD).apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+  CR();
+  MOUT << "done: " << CREATESTYLE(BOLD).apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
 
   return 0;
 }

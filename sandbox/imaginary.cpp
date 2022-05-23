@@ -1,12 +1,11 @@
-#define MATHQ_DEBUG 1
-#include "mathq.h"
-
 #include <vector>
 #include <string>
 
+#define MATHQ_DEBUG 0
+#include "mathq.h"
 
-int main(int argc, char *argv[])
-{
+
+int main(int argc, char *argv[]) {
   const double pi = M_PI;
   std::string myname = argv[0];
 
@@ -15,162 +14,161 @@ int main(int argc, char *argv[])
   using namespace display;
   using namespace mathq::unit_imaginary;
 
-  Style bold = createStyle(BOLD);
-  
+  Style bold = CREATESTYLE(BOLD);
+
   // force color even if piped to more,less or a file
   Terminal::setColorOverride(true);
   Terminal::setOverrideValue(true);
 
-  cr();
-  cr();
-  mout << StyledString::get(HORLINE);
-  mout << "running: " <<bold.apply(myname) << std::endl;
+  CR();
+  CR();
+  MOUT << StyledString::get(HORLINE);
+  MOUT << "running: " << bold.apply(myname) << std::endl;
 
-  
-  mout<< "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
-  
+
+  MOUT << "MATHQ_DEBUG=" << MATHQ_DEBUG << std::endl;
+
   print_mathq_info();
 
 
   {
-    cr();
-    tdisp(i);
+    CR();
+    TLDISP(i);
     Imaginary<double> x(2);
     Imaginary<int> y(3);
-    std::complex<float> z(1,1);
-    
-    tdisp(x);
-    tdisp(y);
-    tdisp(numbercast<Imaginary<float>>(y));
+    std::complex<float> z(1, 1);
 
-    tdisp(+x);
-    tdisp(-x);
+    TLDISP(x);
+    TLDISP(y);
+    TLDISP(numbercast<Imaginary<float>>(y));
 
-
-    
-    tdisp(x+3*i);
-    tdisp(x-3*i);
-    tdisp(i*i);
-    tdisp(x*i);
-    tdisp(x/i);
-
-    tdisp(4*i+x);
-    tdisp(4*i-x);
-    tdisp(i*x);
-    tdisp(i/x);
-
-    tdisp(x+3);
-    tdisp(x-3);
-    tdisp(x*4);
-    tdisp(x/2);
-
-    tdisp(3+x);
-    tdisp(3-x);
-    tdisp(4*x);
-    tdisp(2/x);
-
-
-    tdisp(x+z);
-    tdisp(x-z);
-    tdisp(x*z);
-    tdisp(x/z);
-
-    tdisp(z+x);
-    tdisp(z-x);
-    tdisp(z*x);
-    tdisp(z/x);
-
-
-    
-    tdisp(x += i);
-    tdisp(x -= 2*i);
-    tdisp(x *= 4);
-    tdisp(x /= 4);
-
-    tdisp(x+=5*i);
-
-    tdisp(x+y);
-    tdisp(x-y);
-    tdisp(x*y);
-    tdisp(x/y);
-
-
-    tdisp(Complex(x));
-
-    tdisp(real(x));
-    tdisp(imag(x));
-    tdisp(arg(x));
-
-    tdisp(abs(x));
-    tdisp(normsqr(x));
-    tdisp(conj(x));
-    tdisp(~x);
-    tdisp(polar(x));
-
-    tdisp(exp(x));
-
-    tdisp(log(x));
-    tdisp(log10(x));
-    tdisp(log2(x));
-
-    tdisp(x);
-    tdisp(y);
-    tdisp(pow(x,y));
-    tdisp(pow(x,2));
-    tdisp(pow(2,x));
-    tdisp(pow(x,z));
-    tdisp(pow(z,x));
-
-    tdisp(sqrt(x));
-    tdisp(sqr(x));
-    tdisp(cube(x));
-
-    Imaginary <double> w(1.9);
-    tdisp(w);
-    tdisp(round(w));
-    tdisp(sgn(-w));
-    tdisp(floor(w));
-    tdisp(ceil(w));
-
-    w=0.009*i;
-    tdisp(w);
-    tdisp(roundzero(w,0.01));
-    tdisp(roundzero(w,0.001));
-    tdisp(approx(i,1.009*i, 0.01));
-    tdisp(approx(i,1.009*i, 0.001));
-
-
-    tdisp(sin(x));
-    tdisp(cos(x));
-    tdisp(tan(x));
-
-    tdisp(sinh(x));
-    tdisp(cosh(x));
-    tdisp(tanh(x));
-
-    
-    tdisp(asin(x));
-    tdisp(acos(x));
-    tdisp(atan(x));
-
-    w=0.9*i;
-    tdisp(w);
-    tdisp(atan(w));
+    TLDISP(+x);
+    TLDISP(-x);
 
 
 
-    tdisp(asinh(w));
-    tdisp(acosh(w));
-    tdisp(atanh(w));
+    TLDISP(x + 3 * i);
+    TLDISP(x - 3 * i);
+    TLDISP(i * i);
+    TLDISP(x * i);
+    TLDISP(x / i);
 
+    TLDISP(4 * i + x);
+    TLDISP(4 * i - x);
+    TLDISP(i * x);
+    TLDISP(i / x);
+
+    TLDISP(x + 3);
+    TLDISP(x - 3);
+    TLDISP(x * 4);
+    TLDISP(x / 2);
+
+    TLDISP(3 + x);
+    TLDISP(3 - x);
+    TLDISP(4 * x);
+    TLDISP(2 / x);
+
+
+    TLDISP(x + z);
+    TLDISP(x - z);
+    TLDISP(x * z);
+    TLDISP(x / z);
+
+    TLDISP(z + x);
+    TLDISP(z - x);
+    TLDISP(z * x);
+    TLDISP(z / x);
+
+
+
+    TLDISP(x += i);
+    TLDISP(x -= 2 * i);
+    TLDISP(x *= 4);
+    TLDISP(x /= 4);
+
+    TLDISP(x += 5 * i);
+
+    TLDISP(x + y);
+    TLDISP(x - y);
+    TLDISP(x * y);
+    TLDISP(x / y);
+
+
+    TLDISP(Complex(x));
+
+    TLDISP(real(x));
+    TLDISP(imag(x));
+    TLDISP(arg(x));
+
+    TLDISP(abs(x));
+    TLDISP(normsqr(x));
+    TLDISP(conj(x));
+    TLDISP(~x);
+    TLDISP(polar(x));
+
+    TLDISP(exp(x));
+
+    TLDISP(log(x));
+    TLDISP(log10(x));
+    TLDISP(log2(x));
+
+    TLDISP(x);
+    TLDISP(y);
+    TLDISP(pow(x, y));
+    TLDISP(pow(x, 2));
+    TLDISP(pow(2, x));
+    TLDISP(pow(x, z));
+    TLDISP(pow(z, x));
+
+    TLDISP(sqrt(x));
+    TLDISP(sqr(x));
+    TLDISP(cube(x));
+
+    Imaginary<double> w(1.9);
+    TLDISP(w);
+    TLDISP(round(w));
+    TLDISP(sgn(-w));
+    TLDISP(floor(w));
+    TLDISP(ceil(w));
+
+    w = 0.009 * i;
+    TLDISP(w);
+    TLDISP(roundzero(w, 0.01));
+    TLDISP(roundzero(w, 0.001));
+    TLDISP(approx(i, 1.009 * i, 0.01));
+    TLDISP(approx(i, 1.009 * i, 0.001));
+
+
+    TLDISP(sin(x));
+    TLDISP(cos(x));
+    TLDISP(tan(x));
+
+    TLDISP(sinh(x));
+    TLDISP(cosh(x));
+    TLDISP(tanh(x));
+
+
+    TLDISP(asin(x));
+    TLDISP(acos(x));
+    TLDISP(atan(x));
+
+    w = 0.9 * i;
+    TLDISP(w);
+    TLDISP(atan(w));
+
+
+
+    TLDISP(asinh(w));
+    TLDISP(acosh(w));
+    TLDISP(atanh(w));
   }
 
 
   //------------------------------------------------------
-  
-  cr();
-  mout << "done: " << bold.apply(myname) << std::endl;
-  mout << StyledString::get(HORLINE);
-  cr();
+
+  CR();
+  MOUT << "done: " << bold.apply(myname) << std::endl;
+  MOUT << StyledString::get(HORLINE);
+  CR();
   return 0;
 }

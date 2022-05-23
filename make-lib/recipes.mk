@@ -4,7 +4,7 @@
 #---------------------------------------------------------------------
 
 # force these to always run regardless if prereq's are older or newer
-.PHONY: run gitignore
+.PHONY: run gitignore clean cleanall cleansubs
 
 # Each Makefile that has an include statement for this file should define a target "some" that makes all targets in that directory but not in subdirectories
 default: some
@@ -16,6 +16,10 @@ default: some
 .PRECIOUS: %.o 
 
 FORCE: ;
+
+# this forces all recipes to use a single shell
+.ONESHELL:
+
 
 
 #---------------------------------------------------------------------
@@ -79,7 +83,6 @@ run:
 
 # creates a .gitignore files for all the $(EXEC) files
 #  we can't detect changes in EXEC so force it
-.ONESHELL:
 gitignore: 
 	@\echo -e ${BOLD}${BLUE}"Creating .gitignore file..."${DEFCLR}${NORMAL} 
 	@\echo -e '# ****  This was created by the command "make gitignore".' > .gitignore
@@ -95,24 +98,31 @@ gitignore:
 # CLEANING
 #---------------------------------------------------------------------
 
-
-clean_%: FORCE
-	$(MAKE) -C $* cleanall
-
-cleansubs:: $(MAKECLEAN_SUBDIRS)
-
-
 # Each Makefile that has an include statement for this file should:
 #  - define a "clean" target with "cleanstd" as a prerequisite
-cleanstd:: FORCE 
-	@command rm -f *.o *.a *.s *.g++_copts core.*
+clean:: FORCE 
+	@command rm -f *.o *.a *.s *.g++_copts core.* node.json *.temp.md
 	@command rm -f $(EXEC) $(NONEXEC) 
+
+
+makeclean_%: FORCE
+	@$(MAKE) -C $* cleanall
+
+nomakeclean_%: FORCE
+	@echo "nomakeclean_$(*)"
+# ONSHELL is on
+	@cd $(*)  
+	@command rm -f *.o *.a *.s *.g++_copts core.* *.temp *.tmp *~ ~* *.gz *.tar *.old node.json *.temp.md
+#  DONT NEED ANYMORE: if body.cpp exists then body.md is an output file not a source
+#	@if [[ -f body.cpp ]] ; then command rm -f body.md; fi
+
+cleansubs:: $(MAKECLEAN_SUBDIRS) $(NOMAKECLEAN_SUBDIRS)
+
 
 # Target "cleansall" cleans everything, traversing down the directory tree
 # Each Makefile that has an include statement for this file should:
 #  - can (but not necessary) define a "cleanall" target
-cleanall:: FORCE clean
-	@\rm -f run *.temp *.tmp *~ ~* *.gz *.tar *.old
+cleanall:: FORCE clean cleansubs
+	@\rm -f run *.temp *.tmp *~ ~* *.gz *.tar *.old 
 	@\rm -f $(ALL)
-
 

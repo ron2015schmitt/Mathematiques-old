@@ -3,7 +3,7 @@
 ###########################################################
 
 
-info:
+info::
 	@echo
 	@$(call hr)
 	@$(call title,"Variables")
@@ -12,6 +12,7 @@ info:
 	@$(call echovar,PWD)
 	@$(call echovar,VPATH)
 	@$(call echovar,MAKE)
+	@$(call echovar,FIRST_MAKEFILE)
 	@$(call echovar,_)
 	@$(call echovar,MAKECMDGOALS)
 	@$(call echovar,MAKE_VERSION)
@@ -37,10 +38,18 @@ info:
 	@$(call echovar,LIBDIR_MATHQ)
 	@$(call echovar,LIB_MATHQ)
 	@$(call echovar,LIB_LAPACK)
-ifdef COMPATIBLE_VERSION_MATHQ_FILE
-	@$(call echovar,COMPATIBLE_VERSION_MATHQ_FILE)
-	@$(call echovar,COMPATIBLE_VERSION_MATHQ)
+
+	@$(call echovar,SUBS)
+	@$(call echovar,SUBMAKES)
+	@$(call echovar,MAKE_SUBDIRS)
+	@$(call echovar,MAKECLEAN_SUBDIRS)
+	@$(call echovar,NOMAKE_SUBDIRS)
+	@$(call echovar,NOMAKECLEAN_SUBDIRS)
+ifdef FEATURE_VERSION_MATHQ_FILE
+	@$(call echovar,FEATURE_VERSION_MATHQ_FILE)
+	@$(call echovar,FEATURE_VERSION_MATHQ)
 endif
+	@$(call echovar,CPP_VERSION_FILE)
 	@$(call echovar,TAG_MATHQ)
 	@$(call hr)
 	@echo

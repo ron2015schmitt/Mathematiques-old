@@ -37,6 +37,7 @@
 #include "math_real.h"
 #include "math_cplx.h"
 #include "math_imag.h"
+#include "math_quaternion.h"
 #include "display.h"
 #include "slices.h"
 #include "util.h"

@@ -4,7 +4,7 @@
 
 MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-include ../make-lib/dirmathq.mk
+include ../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 
@@ -28,6 +28,6 @@ include $(DIR_MATHQ)/make-lib/info.mk
 include $(DIR_MATHQ)/make-lib/help.mk
 
 
-clean: cleanstd
+clean::
 
 

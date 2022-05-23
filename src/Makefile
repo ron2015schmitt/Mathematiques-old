@@ -4,7 +4,7 @@
 
 MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-include ../make-lib/dirmathq.mk
+include ../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 
@@ -37,7 +37,9 @@ $(LIBFILE_MATHQ): libmathq.a
 	@\mkdir -p $(DIR_MATHQ)/lib
 	@\cp libmathq.a $(DIR_MATHQ)/lib/
 
-clean: cleanstd
+lib: $(LIBFILE_MATHQ)
+
+clean::
 	@\rm -f $(DIR_MATHQ)/lib/libmathq.a
 
 	

@@ -4,7 +4,6 @@
 #include "mathq.h"
 
 
-
 namespace mathq {
 
   namespace debug {

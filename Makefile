@@ -7,7 +7,7 @@
 
 MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-include make-lib/dirmathq.mk
+include make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 
@@ -18,6 +18,8 @@ MAKEFILE_REL := $(subst $(DIR_MATHQ)/,,$(MAKEFILE))
 RUN_FILES = $(wildcard */run)
 RUN_SUBDIRS = $(dir $(RUN_FILES))
 RUN_TARGETS = $(addprefix run_,$(RUN_SUBDIRS))
+
+CREATE_DOC_TOP := $(DIR_MATHQ)/scripts/doc_create_top.py
 
 
 #---------------------------------------------------------------------
@@ -30,6 +32,9 @@ RUN_TARGETS = $(addprefix run_,$(RUN_SUBDIRS))
 #---------------------------------------------------------------------
 #  SPECIAL RECIPES -- THESE MUST BE FIRST
 #---------------------------------------------------------------------
+
+.ONESHELL:
+
 
 # force these to always run regardless if prereq's are older or newer
 .PHONY: run gitignore clean myclean cleanall
@@ -86,9 +91,11 @@ doc: FORCE
 sandbox: FORCE
 	\cd $(DIR_MATHQ)/sandbox && make -j all 
 
-README.md: $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md title.md
-	python3 $(CREATE_TOP) $(TAG_FILE_MATHQ) body.md
-	@chmod a-w README.md
+body.temp.md: body.src.md doc/about/part-one.src.md
+	@cat body.src.md doc/about/part-one.src.md > $@
+README.md: $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) title.src.md body.temp.md
+	python3 $(CREATE_DOC_TOP) $(TAG_FILE_MATHQ) body.temp.md 
+	@chmod a-w README.md body.temp.md
 
 some: README.md
 
@@ -99,19 +106,31 @@ run_%: FORCE
 
 run: $(RUN_TARGETS)
 	@echo -e ${BOLD}${GREEN}"All executables in all subdirectories PASSED"${DEFCLR}${NORMAL}
-	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
+#	@echo " RUN_SUBDIRS=$(RUN_SUBDIRS)"
 #	@echo " RUN_FILES=$(RUN_FILES)"
 #	@echo " RUN_TARGETS=$(RUN_TARGETS)"
+
+
+info::
+	@echo
+	@$(call hr)
+	@$(call title,"top Makefile related")
+	@$(call echovar,MAKEFILE)
+	@$(call echovar,MAKEFILE_REL)
+	@$(call echovar,RUN_FILES)
+	@$(call echovar,RUN_SUBDIRS)
+	@$(call echovar,RUN_TARGETS)
+	@$(call echovar,CREATE_DOC_TOP)
 
 #---------------------------------------------------------------------
 # cleaning recipes
 #---------------------------------------------------------------------
 
 myclean: 
-	\rm -f README.md
+	\rm -f README.md *.temp.md
 
 # clean in reverse order
-clean: myclean
+clean:: myclean
 	\cd $(DIR_MATHQ)/doc && make -j clean 
 	\cd $(DIR_MATHQ)/sandbox && make -j clean
 	\cd $(DIR_MATHQ)/test && make -j clean
@@ -141,7 +160,6 @@ pull:
 	git pull origin master
 
 
-.ONESHELL:
 git: versioning
 	@echo
 	@git remote update origin

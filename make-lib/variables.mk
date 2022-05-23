@@ -7,14 +7,24 @@ SHELL := /bin/bash
 # dynamic variables
 
 PWD = $(shell pwd)
+FIRST_MAKEFILE = $(abspath $(firstword $(MAKEFILE_LIST)))
 WHOAMI = $(abspath $(lastword $(MAKEFILE_LIST)))
 WHEREAMI = $(dir $(WHOAMI))
 
 # dynamic variables
-SUBMAKES = $(wildcard */Makefile)
+
+# all sub-directories
 SUBS = $(wildcard */)
+
+# all sub makefiles
+SUBMAKES = $(wildcard */Makefile)
+# all sub-directories with makefiles
 MAKE_SUBDIRS = $(dir $(SUBMAKES))
-MAKECLEAN_SUBDIRS = $(addprefix clean_,$(MAKE_SUBDIRS))
+MAKECLEAN_SUBDIRS = $(addprefix makeclean_,$(MAKE_SUBDIRS))
+
+# all sub-directories without makefiles
+NOMAKE_SUBDIRS = $(filter-out $(MAKE_SUBDIRS),$(SUBS))
+NOMAKECLEAN_SUBDIRS = $(addprefix nomakeclean_,$(NOMAKE_SUBDIRS))
 
 
 # Each Makefile that has an include statement for this file should:
@@ -46,21 +56,19 @@ TAG_MATHQ = `cat $(TAG_FILE_MATHQ)`
 # These vairables are used only for building Matehmatiques
 # ie are not needed by the end user code
 #
-#  COMPATIBLE_VERSION_MATHQ_FILE should be a bash file with: export COMPATIBLE_VERSION_MATHQ=X.X
+#  FEATURE_VERSION_MATHQ_FILE should be a bash file with: export FEATURE_VERSION_MATHQ=X.X
 
 #scripts
-CREATE_DOC_BRANCH := $(DIR_MATHQ)/scripts/createtoc.py
-CREATE_TOP := $(DIR_MATHQ)/scripts/createtop.py
-CREATE_DOC_LEAF := $(DIR_MATHQ)/scripts/createpage.py
-CREATE_RUN := $(DIR_MATHQ)/scripts/createrun.bash
+CREATE_RUN := $(DIR_MATHQ)/scripts/create_run.bash
 
 # static variables
 TAG_ANNOTATION_FILE := $(DIR_MATHQ)/versioning/tag.annotation.mathq.out.txt
+CPP_VERSION_FILE := $(DIR_MATHQ)/versioning/c++.version.src.txt
 VERSION_HEADER_FILE_MATHQ := $(DIR_MATHQ)/include/version_mathq.h
-COMPATIBLE_VERSION_MATHQ_FILE := $(DIR_MATHQ)/versioning/compatible.version.master.record.mathq
+FEATURE_VERSION_MATHQ_FILE := $(DIR_MATHQ)/versioning/feature.version.master.record.bash
 
 # dynamic variables
-COMPATIBLE_VERSION_MATHQ = `. $(COMPATIBLE_VERSION_MATHQ_FILE) && echo "$${COMPATIBLE_VERSION_MATHQ}"`
+FEATURE_VERSION_MATHQ = `. $(FEATURE_VERSION_MATHQ_FILE) && echo "$${FEATURE_VERSION_MATHQ}"`
 
 
 ####################################################################
@@ -107,7 +115,8 @@ override COPT ?=  -Wfatal-errors
 OPTIMIZE ?= -O2
 
 CFLAGS = $(OPTIMIZE) $(COPT) $(INCLUDES)
-CPPC = g++ -pipe --std=c++17 
+
+CPPC = g++ -pipe -std=c++17
 
 ifdef MATHQ_DEBUG
 CFLAGS += -D "MATHQ_DEBUG=$(MATHQ_DEBUG)"

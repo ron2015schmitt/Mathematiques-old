@@ -21,8 +21,8 @@ int main()
 
   int Nex = 1;
   
-  cr();
-  mdtitle("Vector file i/o");
+  CR();
+  GMD_TITLE("Vector file i/o");
   mathq_preamble();
 
 
@@ -32,10 +32,10 @@ int main()
   // Vector<double> v1(5,"vec1");
   // Vector<double> v2("vec2");
 
-  // disp(v2);
+  // DISP(v2);
 
   // "{1,2,3,4,5}" >> v1;
-  // disp(v1);
+  // DISP(v1);
 
   // // save a vector to a file in default "braces" format
   // save(v1,"v1.temp");
@@ -45,11 +45,11 @@ int main()
   // // ** THE DATA IN The FILE
   // load(v2,"v1.temp");
 
-  // disp(v2);
+  // DISP(v2);
 
 
   // "{1.1,1.2,1.3,1.4,1.5}" >> v1;
-  // disp(v1);
+  // DISP(v1);
 
 
   // // save a vector to a file in default "no braces" format
@@ -58,11 +58,11 @@ int main()
 
   // // load a vector from a file in "no braces" format
   // v2.clear();
-  // disp(v2);
+  // DISP(v2);
   // v2.textformat(text_nobraces);
   // load(v2,"v1b.temp");
 
-  // disp(v2);
+  // DISP(v2);
 
 
   mathq_toc();

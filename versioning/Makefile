@@ -4,7 +4,7 @@
 
 MAKEFILE := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-include ../make-lib/dirmathq.mk
+include ../make-lib/dirmathq.config.mk
 include $(DIR_MATHQ)/make-lib/style.mk
 include $(DIR_MATHQ)/make-lib/variables.mk
 
@@ -28,14 +28,14 @@ include $(DIR_MATHQ)/make-lib/info.mk
 include $(DIR_MATHQ)/make-lib/help.mk
 
 newrev: FORCE
-	\python3 $(DIR_MATHQ)/scripts/createrev.py $(COMPATIBLE_VERSION_MATHQ_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
+	\python3 $(DIR_MATHQ)/scripts/create_rev.py $(FEATURE_VERSION_MATHQ_FILE) $(CPP_VERSION_FILE) $(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE)
 	@chmod a-w $(TAG_FILE_MATHQ) 
 	@chmod a-w $(TAG_ANNOTATION_FILE)
 
-$(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE): $(COMPATIBLE_VERSION_MATHQ_FILE)
+$(TAG_FILE_MATHQ) $(TAG_ANNOTATION_FILE): $(FEATURE_VERSION_MATHQ_FILE) $(CPP_VERSION_FILE)
 	newrev
 
-clean: cleanstd
+clean::
 	\rm -f $(TAG_FILE_MATHQ) 
 	git restore $(TAG_FILE_MATHQ) 
 	\rm -f $(TAG_ANNOTATION_FILE)

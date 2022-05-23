@@ -5,26 +5,26 @@
 namespace mathq {
 
 
-  
+
 
   //---------------------------------------------------------------------------
   // TERW_Subset   Subset Expression
   //---------------------------------------------------------------------------
   template<class D>
-  class TERW_Subset : public  TensorRW<TERW_Subset<D>, D,D,1,1> {
+  class TERW_Subset : public  TensorRW<TERW_Subset<D>, D, D, 1, 1> {
   public:
     constexpr static int Rvalue = 1;
     constexpr static int Mvalue = 1;
-    typedef Materialize<D,D,Mvalue,Rvalue> XType;
+    typedef Materialize<D, D, Mvalue, Rvalue> XType;
     typedef D EType;
     typedef D DType;
-          
+
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& x_;
     const Vector<index_type>& ii_;
     const bool delete_ii_;
-    VectorofPtrs *vptrs;
+    VectorofPtrs* vptrs;
   public:
     typedef typename NumberType<D>::Type MyNumberType;
 
@@ -40,9 +40,9 @@ namespace mathq {
       vptrs->add(&x_);
       vptrs->add(&ii_);
     }
-    
+
     ~TERW_Subset() {
-      if (delete_ii_) delete &ii_;
+      if (delete_ii_) delete& ii_;
       delete vptrs;
     }
 
@@ -50,44 +50,44 @@ namespace mathq {
     const D dat(const index_type i) const {
       index_type ind = ii_[i];
       if (ind < 0) {
-	ind = x_.size() + ind;
+        ind = x_.size() + ind;
       }
       return x_.dat(ind);
     }
-    MyNumberType& dat(const index_type i)  {
+    MyNumberType& dat(const index_type i) {
       index_type ind = ii_[i];
       if (ind < 0) {
-	ind = x_.size() + ind;
+        ind = x_.size() + ind;
       }
       return x_.dat(ind);
     }
-  
+
     const D operator[](const index_type i) const {
       index_type ind = ii_[i];
       if (ind < 0) {
-	ind = x_.size() + ind;
+        ind = x_.size() + ind;
       }
       return x_[ind];
     }
-    D& operator[](const index_type i)  {
+    D& operator[](const index_type i) {
       index_type ind = ii_[i];
       if (ind < 0) {
-	ind = x_.size() + ind;
+        ind = x_.size() + ind;
       }
       return x_[ind];
     }
 
     template <class Y, class D2>
-    TERW_Subset<D>& operator=(const TensorR<Y,D2,D2,Mvalue,Rvalue>& rhs) { 
+    TERW_Subset<D>& operator=(const TensorR<Y, D2, D2, Mvalue, Rvalue>& rhs) {
       return this->equals(rhs);
     }
-    
-    TERW_Subset<D>& operator=(const D d) { 
+
+    TERW_Subset<D>& operator=(const D d) {
       return this->equals(d);
     }
 
     //----------------------------------------------
-    
+
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
@@ -109,7 +109,7 @@ namespace mathq {
     std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
       return x_.deepdims(parentdims);
     }
-    
+
     bool isExpression(void) const {
       return true;
     }
@@ -117,31 +117,34 @@ namespace mathq {
       return Mvalue;
     }
     size_type elsize(void) const {
-      if constexpr(Mvalue<=1) {
-	  return 1;
-	} else {
-	return x_.elsize();
+      if constexpr (Mvalue<=1) {
+        return 1;
+      }
+      else {
+        return x_.elsize();
       }
     }
     size_type eldeepsize(void) const {
-      if constexpr(Mvalue<=1) {
-	  return 1;
-	} else {
-	return x_.eldeepsize();
+      if constexpr (Mvalue<=1) {
+        return 1;
+      }
+      else {
+        return x_.eldeepsize();
       }
     }
     size_type deepsize(void) const {
-      if constexpr(Mvalue<=1) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
+      if constexpr (Mvalue<=1) {
+        return this->size();
+      }
+      else {
+        return (this->size())*(this->eldeepsize());
       }
     }
     std::string classname() const {
       return "TERW_Subset";
     }
- 
-   
+
+
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
@@ -156,31 +159,31 @@ namespace mathq {
   // TERW_Submask   Submask Expression
   //--------------------------------------------------------------------------
   template<class D>
-  class TERW_Submask : public  TensorRW<TERW_Submask<D>, D,D,1,1> {
+  class TERW_Submask : public  TensorRW<TERW_Submask<D>, D, D, 1, 1> {
   public:
     constexpr static int Rvalue = 1;
     constexpr static int Mvalue = 1;
-    typedef Materialize<D,D,Mvalue,Rvalue> XType;
+    typedef Materialize<D, D, Mvalue, Rvalue> XType;
     typedef D EType;
     typedef D DType;
-          
+
   private:
     // can't be constant since we alow to be on left hand side
     Vector<D>& x_;
     const Vector<index_type>& ii_;
-    VectorofPtrs *vptrs;
+    VectorofPtrs* vptrs;
 
   public:
     typedef typename NumberType<D>::Type MyNumberType;
 
     TERW_Submask(Vector<D>& x, const Vector<bool>& mask)
-      : x_(x), ii_(*(new Vector<index_type>(findtrue(mask)))) { 
-        vptrs = new VectorofPtrs();
-        vptrs->add(&x_);
-        vptrs->add(&ii_);
-      }
+      : x_(x), ii_(*(new Vector<index_type>(findtrue(mask)))) {
+      vptrs = new VectorofPtrs();
+      vptrs->add(&x_);
+      vptrs->add(&ii_);
+    }
     ~TERW_Submask() {
-      delete &ii_;
+      delete& ii_;
       delete vptrs;
     }
 
@@ -189,31 +192,31 @@ namespace mathq {
       index_type ind = ii_[i];
       return x_.dat(ind);
     }
-    MyNumberType& dat(const index_type i)  {
+    MyNumberType& dat(const index_type i) {
       index_type ind = ii_[i];
       return x_.dat(ind);
     }
-  
+
     const D operator[](const index_type i) const {
       index_type ind = ii_[i];
       return x_[ind];
     }
-    D& operator[](const index_type i)  {
+    D& operator[](const index_type i) {
       index_type ind = ii_[i];
       return x_[ind];
     }
 
     template <class Y, class D2>
-    TERW_Submask<D>& operator=(const TensorR<Y,D2,D2,Mvalue,Rvalue>& rhs) { 
+    TERW_Submask<D>& operator=(const TensorR<Y, D2, D2, Mvalue, Rvalue>& rhs) {
       return this->equals(rhs);
     }
-    
-    TERW_Submask<D>& operator=(const D d) { 
+
+    TERW_Submask<D>& operator=(const D d) {
       return this->equals(d);
     }
 
     //---------------------------------------------
-    
+
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
     }
@@ -235,7 +238,7 @@ namespace mathq {
     std::vector<Dimensions>& deepdims(std::vector<Dimensions>& parentdims) const {
       return x_.deepdims(parentdims);
     }
-    
+
     bool isExpression(void) const {
       return true;
     }
@@ -243,24 +246,27 @@ namespace mathq {
       return Mvalue;
     }
     size_type elsize(void) const {
-      if constexpr(Mvalue<=1) {
-	  return 1;
-	} else {
-	return x_.elsize();
+      if constexpr (Mvalue<=1) {
+        return 1;
+      }
+      else {
+        return x_.elsize();
       }
     }
     size_type eldeepsize(void) const {
-      if constexpr(Mvalue<=1) {
-	  return 1;
-	} else {
-	return x_.eldeepsize();
+      if constexpr (Mvalue<=1) {
+        return 1;
+      }
+      else {
+        return x_.eldeepsize();
       }
     }
     size_type deepsize(void) const {
-      if constexpr(Mvalue<=1) {
-	  return this->size();
-	} else {
-	return (this->size())*(this->eldeepsize());
+      if constexpr (Mvalue<=1) {
+        return this->size();
+      }
+      else {
+        return (this->size())*(this->eldeepsize());
       }
     }
     std::string classname() const {
@@ -268,8 +274,8 @@ namespace mathq {
     }
 
 
-    
-   
+
+
 #if MATRICKS_DEBUG>=1
     std::string expression(void) const {
       return "";
@@ -284,77 +290,81 @@ namespace mathq {
   // VERW_Join   joining two Vectors (RHS only)
   //---------------------------------------------------------------------------
 
-  template <class X, class Y, class E, class D, int M> 
-  class TERW_Join  : public  TensorRW<TERW_Join<X,Y,E,D,M>, E,D,M,1> {
+  template <class X, class Y, class E, class D, int M>
+  class TERW_Join : public  TensorRW<TERW_Join<X, Y, E, D, M>, E, D, M, 1> {
   public:
     constexpr static int Rvalue = 1;
     constexpr static int Mvalue = M;
-    typedef Materialize<E,D,M,Rvalue> XType;
+    typedef Materialize<E, D, M, Rvalue> XType;
     typedef E EType;
     typedef D DType;
-      
+
   private:
     // can't be constant since we alow to be on left hand side
     X& x_;
     Y& y_;
-    VectorofPtrs *vptrs;
-      
+    VectorofPtrs* vptrs;
+
   public:
-      
+
 
 
     TERW_Join(X& x, Y& y) : x_(x), y_(y) {
       vptrs = new VectorofPtrs();
       vptrs->add(x_.getAddresses());
       vptrs->add(y_.getAddresses());
-      disp3(x);
+      // DISP3(x);
     }
-    
+
     ~TERW_Join() {
       delete vptrs;
     }
 
     const D dat(const index_type i) const {
-      if ( i < x_.deepsize() ) {
+      if (i < x_.deepsize()) {
         return x_.dat(i);
-      } else {
-  	return y_.dat(i-x_.deepsize());
+      }
+      else {
+        return y_.dat(i-x_.deepsize());
       }
     }
     D& dat(const index_type i) {
-      if ( i < x_.deepsize() ) {
+      if (i < x_.deepsize()) {
         return x_.dat(i);
-      } else {
-  	return y_.dat(i-x_.deepsize());
+      }
+      else {
+        return y_.dat(i-x_.deepsize());
       }
     }
     const E operator[](const index_type i) const {
-      if ( i < x_.size() ) {
+      if (i < x_.size()) {
         return x_[i];
-      } else {
-  	return y_[i-x_.size()];
+      }
+      else {
+        return y_[i-x_.size()];
       }
     }
     E& operator[](const index_type i) {
-      if ( i < x_.size() ) {
+      if (i < x_.size()) {
         return x_[i];
-      } else {
-  	return y_[i-x_.size()];
+      }
+      else {
+        return y_[i-x_.size()];
       }
     }
-    
+
     template <class Z>
-    TERW_Join<X,Y,E,D,M>& operator=(const TensorR<Z,E,D,M,1>& rhs) { 
+    TERW_Join<X, Y, E, D, M>& operator=(const TensorR<Z, E, D, M, 1>& rhs) {
       return this->equals(rhs);
     }
 
-    TERW_Join<X,Y,E,D,M>& operator=(const D d) { 
+    TERW_Join<X, Y, E, D, M>& operator=(const D d) {
       return this->equals(d);
     }
-    TERW_Join<X,Y,E,D,M>& operator=(const E& e) { 
+    TERW_Join<X, Y, E, D, M>& operator=(const E& e) {
       return this->equals(e);
     }
-    
+
     //----------------------------------------------
     VectorofPtrs getAddresses(void) const {
       return *vptrs;
@@ -392,24 +402,27 @@ namespace mathq {
       return x_.eldims();
     }
     size_type elsize(void) const {
-      if constexpr(M<=1) {
-	  return 1;
-	} else {
-	return x_.elsize();
+      if constexpr (M<=1) {
+        return 1;
+      }
+      else {
+        return x_.elsize();
       }
     }
     size_type eldeepsize(void) const {
-      if constexpr(M<=1) {
-	  return 1;
-	} else {
-	return x_.eldeepsize();
+      if constexpr (M<=1) {
+        return 1;
+      }
+      else {
+        return x_.eldeepsize();
       }
     }
     size_type deepsize(void) const {
-      if constexpr(M<=1) {
-	  return this->size();
-	} else {
-	return x_.deepsize() + y_.deepsize();
+      if constexpr (M<=1) {
+        return this->size();
+      }
+      else {
+        return x_.deepsize() + y_.deepsize();
       }
     }
 
@@ -520,11 +533,11 @@ namespace mathq {
   //       TERW_RealFromComplex<D,OP,M>& operator=(const TensorR<D2,B>& rhs) { 
   //       return this->equals(rhs);
   //     }
-    
+
   //     TERW_RealFromComplex<D,OP,M>& operator=(const MyNumberType d) { 
   //       return this->equals(d);
   //     }
-    
+
 
   // #if MATRICKS_DEBUG>=1
   //     std::string expression(void) const {

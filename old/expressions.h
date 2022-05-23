@@ -29,7 +29,7 @@ namespace matricks {
   TER_Unary(const TIN& a) : a_(a) {
       vptrs = new VectorofPtrs();
       vptrs->add(a_.getAddresses());
-      disp3(a);
+      DISP3(a);
     }
     
   ~TER_Unary() {
@@ -836,7 +836,7 @@ namespace matricks {
 	  sum += an*xpow;
 	}
 	//	if (i==2) {
-	//	  mdisp(x0_,x_[i],x,sum,xpow,N_,n,an);
+	//	  MDISP(x0_,x_[i],x,sum,xpow,N_,n,an);
 	//	}
 	xpow *= x;
       }
@@ -1428,7 +1428,7 @@ namespace matricks {
 
     template <class C>
       VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs) { 
-      printf2("VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
+      PRINTF2("VERW_Join<D,A,B>& operator=(const TensorR<D,C>& rhs)\n");
       return this->equals(rhs);
     }
 
@@ -1489,7 +1489,7 @@ namespace matricks {
 
     const D operator[](const index_type i) const{
       index_type index = index_type(i % N_);
-      //      printf3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
+      //      PRINTF3("  i=%d, m_=%lu, i%%N_=%d\n",i,m_,index);
       return a_[index];
     }
 

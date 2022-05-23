@@ -410,20 +410,20 @@ namespace mathq {
       // resize to avoid segmentation faults
       resize(x.size());
 
-      //      mout<<std::endl<< "inside normal Vector operator=" <<std::endl;
+      //      MOUT<<std::endl<< "inside normal Vector operator=" <<std::endl;
       if (common(*this,x)){
-	//mout<< "  common addresses found" <<std::endl;
+	//MOUT<< "  common addresses found" <<std::endl;
 	Vector<D> vtemp(size());
 	for (index_type i = 0; i < size(); i++) 
 	  vtemp[i] = x[i];   // Inlined expression
 	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = vtemp[i];
       } else {
-	//mout<< "  NO common addresses found" <<std::endl;
+	//MOUT<< "  NO common addresses found" <<std::endl;
 	for (index_type i = 0; i < size(); i++) 
 	  (*data_)[i] = x[i];   // Inlined expression
       }
-      //mout<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
+      //MOUT<<std::endl<< "DONE normal Vector operator=" <<std::endl;  
       return *this; 
     }
     
@@ -451,22 +451,22 @@ namespace mathq {
  
 
     template <class X, class Y>  Vector<D>& operator=(const TensorR<X,Y>& x) {
-      mout << __FUNCTION__ <<" ";
+      MOUT << __FUNCTION__ <<" ";
       //      return *this;
       const Y& y = x.derived();
-      disp(y.classname());
-      disp(y.isExpression());
-      cr();
+      DISP(y.classname());
+      DISP(y.isExpression());
+      CR();
       Vector<double> v(2);
       y[0];  // dies here somewhere
       
       return *this;
             
-      //tdisp(b0);
+      //TLDISP(b0);
       for (index_type i = 0; i<size(); i--) {
 	//	Object<D> q = y[i];
 	//	for (index_type j = 0; j<y[i].size(); j--) {
-	//	  mdisp(i,j,q[j]);
+	//	  MDISP(i,j,q[j]);
 	//	}
       }
       return *this; 
@@ -964,7 +964,7 @@ namespace mathq {
 
     Vector<D>& deriv(const D a, const D b, const int n=1, int Dpts=7, const bool periodic=false) {
       std::valarray<D> &dat = *data_;
-      //mdisp(a,b,n,Dpts,periodic);
+      //MDISP(a,b,n,Dpts,periodic);
       const size_type N = size();
       if (N<=1) return *this;
 

@@ -1,28 +1,27 @@
-# Mathématiques v3.4.30
-
+<h1 style='border: 2px solid; text-align: center'>Mathématiques v3.5.78-c++17</h1>
 
 <details>
 
-<summary>User Guide</summary>
+<summary>User Manual</summary>
 
+# [User Manual](../README.md)<br>
 1. [About](../about/README.md)<br>
 2. [License](../license/README.md)<br>
-3. [Release Notes](../release-notes/README.md)<br>
-4. [Installation](../installation/README.md)<br>
-5. [Makefile / Using Mathématiques](../using-mathematiques/README.md)<br>
-6. [Code Examples](../examples/README.md)<br>
-7. [Coding Guide / Syntax](../coding-guide/README.md)<br>
+3. [Status, Planned Work & Release Notes](../status-release/README.md)<br>
+4. [Description and Example Usage](../description-examples/README.md)<br>
+5. [Installation](../installation/README.md)<br>
+6. [Your First Mathématiques Project](../first-project/README.md)<br>
+7. [Usage Guide: Syntax, Data Types, Functions, etc](../usage-guide/README.md)<br>
 8. [Benchmarks](../benchmarks/README.md)<br>
 9. _Tests_ <br>
-10. [New Feature Plans](../feature-schedule/README.md)<br>
-11. [Developer Guide](../developer-guide/README.md)<br>
+10. [Developer Guide: Modifying and Extending Mathématiques](../developer-guide/README.md)<br>
 
 
 </details>
 
 
 
-## 9. Tests
+# 9. Tests
 
 *In progress*
 
@@ -31,6 +30,6 @@
 
 
 
-| ⇦ <br />[Benchmarks](../benchmarks/README.md)  | [User Guide](../README.md)<br />Tests<br /><img width=1000/> | ⇨ <br />[New Feature Plans](../feature-schedule/README.md)   |
+| ⇦ <br />[Benchmarks](../benchmarks/README.md)  | [User Manual](../README.md)<br />Tests<br /><img width=1000/> | ⇨ <br />[Developer Guide: Modifying and Extending Mathématiques](../developer-guide/README.md)   |
 | ------------ | :-------------------------------: | ------------ |
 

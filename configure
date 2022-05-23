@@ -16,12 +16,12 @@ source scripts/style.bash || exit 1
 DIR_MATHQ=${pwd}
 MAKEDIR=${DIR_MATHQ}/make-lib
 
-cat > ${MAKEDIR}/dirmathq.mk << EOF 
+cat > ${MAKEDIR}/dirmathq.config.mk << EOF 
 # created by configure script
 # Do NOT store in git
 DIR_MATHQ := ${DIR_MATHQ}
 EOF
-chmod a-w ${MAKEDIR}/dirmathq.mk
+chmod a-w ${MAKEDIR}/dirmathq.config.mk
 
 # create Makefile for user in examples
 
